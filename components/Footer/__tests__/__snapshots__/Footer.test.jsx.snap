@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer component renders correctly 1`] = `
+<I18n
+  bindI18n="languageChanged loaded"
+  bindStore="added removed"
+  ns={
+    Array [
+      "common",
+    ]
+  }
+  nsMode="default"
+  omitBoundRerender={true}
+  t={[Function]}
+  translateFuncName="t"
+  usePureComponent={false}
+  withRef={false}
+>
+  <Component />
+</I18n>
+`;
