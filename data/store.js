@@ -45,8 +45,8 @@ function configureStore(initialState, { isServer }) {
   /* eslint-enable global-require */
 
   const persistConfig = {
-    key: "lefood",
-    whitelist: ["auth", "cart"],
+    key: "sherlock",
+    whitelist: ["auth"],
     storage
   };
 
