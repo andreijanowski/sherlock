@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Nav component renders correctly 1`] = `
-<Flex>
-  navigation
-</Flex>
-`;

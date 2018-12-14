@@ -1,0 +1,129 @@
+{
+  "topSection": {
+    "header": {
+      "start": "All in one operating system for the",
+      "end": " hospitality industry"
+    },
+    "paragraph": "Easy to use & integrate software aggregator of all F&B services for a competetive price.",
+    "getStartedForFree": "Get started for free",
+    "addYourBusiness": "Add your business",
+    "addManager": "Add manager"
+  },
+  "services": {
+    "header": "Services",
+    "paragraph": {
+      "start": "Designed for your ",
+      "firstKeyword": "needs",
+      "middle": " and ",
+      "secondKeyword": "type of business",
+      "end": ". You can easily add and remove any of the services at any point, ensuring our service is tailored to your changing needs."
+    },
+    "list": [
+      "ePOS",
+      "Payments",
+      "Booking",
+      "Delivery",
+      "Catering",
+      "Take Away",
+      "HR & Payroll",
+      "Reviews",
+      "Supply",
+      "Privatization",
+      "Analytics",
+      "Marketing"
+    ],
+    "more": "More to come..."
+  },
+  "plans": {
+    "header": "Plans",
+    "paragraph": "Choose the plan that suits your business goals. If you are a big business owner or chain manager, please add your manager in charge there.",
+    "managers": "Managers",
+    "billingYearly": "Billing Yearly",
+    "billingMonthly": "Billing Monthly",
+    "starter": {
+      "name": "Starter",
+      "priceDescription": "Forever",
+      "price": {
+        "monthly": "Free",
+        "yearly": "Free"
+      },
+      "buttonText": "Create Profile",
+      "list": [
+        "Reviews",
+        "Bookings",
+        "Take Away",
+        "Le Food",
+        "Catering",
+        "Privatization"
+      ],
+      "badge": "10%"
+    },
+    "basic": {
+      "name": "Basic",
+      "priceDescription": "Starting at",
+      "price": {
+        "monthly": "€149/month",
+        "yearly": "€1490/year"
+      },
+      "buttonText": "Get started for €149",
+      "list": [
+        "Reviews",
+        "Bookings",
+        "Take Away",
+        "Le Food",
+        "Catering",
+        "Privatization",
+        "Delivery",
+        "Monthly Data"
+      ],
+      "badge": "7%"
+    },
+    "premium": {
+      "name": "Premium",
+      "mostPopular": "Most popular",
+      "priceDescription": "Starting at",
+      "price": {
+        "monthly": "€299/month",
+        "yearly": "€2990/year"
+      },
+      "buttonText": "Get started for €299",
+      "list": [
+        "Reviews",
+        "Bookings",
+        "Take Away",
+        "Le Food",
+        "Catering",
+        "Privatization",
+        "Delivery",
+        "Weekly Data",
+        "Payment",
+        "POS",
+        "Archived Data"
+      ],
+      "badge": "5%"
+    },
+    "professional": {
+      "name": "Professional",
+      "priceDescription": "Diversely",
+      "price": {
+        "monthly": "Enterprise",
+        "yearly": "Enterprise"
+      },
+      "buttonText": "Request a Demo",
+      "list": [
+        "Reviews",
+        "Bookings",
+        "Take Away",
+        "Le Food",
+        "Catering",
+        "Privatization",
+        "Delivery",
+        "Weekly Data",
+        "Payment",
+        "POS",
+        "Archived Data"
+      ],
+      "badge": "FREE"
+    }
+  }
+}

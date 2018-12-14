@@ -1,5 +1,5 @@
 import { Flex } from "@rebass/grid";
-import { Navigation, Footer, NotificationsCenter } from "components";
+import { NotificationsCenter } from "components";
 import styled from "styled-components";
 import GlobalStyles from "utils/globalStyles";
 
@@ -12,9 +12,7 @@ const AppContainer = styled(Flex)`
 const MainLayout = ({ pageProps, Component }) => (
   <AppContainer flexDirection="column" alignItems="center">
     <GlobalStyles />
-    <Navigation />
     <Component {...pageProps} />
-    <Footer />
     <NotificationsCenter />
   </AppContainer>
 );
