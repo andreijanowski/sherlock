@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import withI18next from "lib/withI18next";
 import loadTranslations from "utils/loadTranslations";
-import { func } from "prop-types";
+import { func, string } from "prop-types";
 import { Footer } from "components";
 import { TopSection, Services, Plans } from "sections/landing";
 
@@ -27,11 +27,11 @@ class Home extends PureComponent {
   };
 
   render() {
-    const { t } = this.props;
+    const { t, lng } = this.props;
     const { billingPeriod } = this.state;
     return (
       <>
-        <TopSection {...{ t }} />
+        <TopSection {...{ t, lng }} />
         <Services {...{ t }} />
         <Plans
           {...{
@@ -47,7 +47,8 @@ class Home extends PureComponent {
 }
 
 Home.propTypes = {
-  t: func.isRequired
+  t: func.isRequired,
+  lng: string.isRequired
 };
 
 export default withI18next(namespaces)(Home);

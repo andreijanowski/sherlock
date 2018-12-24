@@ -1,3 +1,4 @@
+import { func } from "prop-types";
 import { H2, Paragraph, BlueText, BoldText, ItalicText } from "components";
 import { ServicesWrapper, MainWrapper, More } from "./styled";
 import List from "./list";
@@ -39,5 +40,9 @@ const Services = ({ t }) => (
     <BackgroundCircle size={80} top={420} left={-630} color="255, 10, 0" />
   </MainWrapper>
 );
+
+Services.propTypes = {
+  t: func.isRequired
+};
 
 export default Services;

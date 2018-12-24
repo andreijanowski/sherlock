@@ -1,3 +1,4 @@
+import { func, string } from "prop-types";
 import { Button } from "components";
 import {
   MainWrapper,
@@ -40,5 +41,12 @@ const Plan = ({ t, color, name, billingPeriod }) => (
     <List {...{ t, name, color }} />
   </MainWrapper>
 );
+
+Plan.propTypes = {
+  t: func.isRequired,
+  billingPeriod: string.isRequired,
+  color: string.isRequired,
+  name: string.isRequired
+};
 
 export default Plan;

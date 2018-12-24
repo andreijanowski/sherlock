@@ -1,5 +1,6 @@
 import { H2, Paragraph } from "components";
 import { Flex, Box } from "@rebass/grid";
+import { func, string } from "prop-types";
 import { PlansWrapper, TextWrapper } from "./styled";
 import Plan from "./plan";
 import BillingPeriod from "./billingPeriod";
@@ -64,5 +65,11 @@ const Plans = ({ t, billingPeriod, handleChangeBillngPeriod }) => (
     </PlansWrapper>
   </Flex>
 );
+
+Plans.propTypes = {
+  t: func.isRequired,
+  billingPeriod: string.isRequired,
+  handleChangeBillngPeriod: func.isRequired
+};
 
 export default Plans;

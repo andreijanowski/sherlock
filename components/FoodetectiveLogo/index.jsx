@@ -1,23 +1,18 @@
 import { Flex } from "@rebass/grid";
-import { func, bool } from "prop-types";
-import { Brandmark, BrandmarkWrapper, Wordmark, Tagline } from "./styled";
+import { bool } from "prop-types";
+import { Wordmark } from "components";
+import { Brandmark, BrandmarkWrapper } from "./styled";
 
-const FoodetectiveLogo = ({ t, withTagline }) => (
+const FoodetectiveLogo = ({ withTagline }) => (
   <Flex alignItems="center">
     <BrandmarkWrapper>
       <Brandmark />
     </BrandmarkWrapper>
-    {withTagline && (
-      <Wordmark>
-        Sherlock
-        <Tagline>{t("common:foodetectiveCompany")}</Tagline>
-      </Wordmark>
-    )}
+    {withTagline && <Wordmark />}
   </Flex>
 );
 
 FoodetectiveLogo.propTypes = {
-  t: func.isRequired,
   withTagline: bool
 };
 
