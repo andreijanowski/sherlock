@@ -14,7 +14,7 @@ export const TextWrapper = styled(Flex).attrs({
   width: 1,
   flexDirection: "column",
   alignSelf: "center",
-  mb: 58
+  mb: 90
 })`
   max-width: 896px;
 `;
@@ -85,6 +85,9 @@ export const Price = styled.div`
   font-size: ${p => p.theme.fontSizes.f36};
   line-height: 1.333;
   margin-bottom: 40px;
+  small {
+    font-size: ${p => p.theme.fontSizes.f16};
+  }
 `;
 
 export const Service = styled(Box).attrs({ mb: 1 })`
@@ -148,4 +151,14 @@ export const Option = styled(Box)`
     p.dark
       ? `rgba(${p.theme.colors.dark}, 0.4)`
       : `rgb(${p.theme.colors.blue})`};
+`;
+
+export const PromotionWrapper = styled(Box).attrs({
+  mx: -32,
+  p: 32
+})`
+  border: ${({ theme }) => theme.borderWeights.tiny} solid
+    rgb(${({ theme }) => theme.colors.navyBlue});
+  border-radius: ${({ theme }) => theme.radius.default};
+  background-color: white;
 `;

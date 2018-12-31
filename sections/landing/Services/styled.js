@@ -45,13 +45,3 @@ export const More = styled(Box).attrs({
   line-height: 1.5;
   text-align: center;
 `;
-
-export const Brand = styled.img.attrs({
-  alt: ""
-})`
-  position: absolute;
-  top: ${p => p.top};
-  left: calc(50% + ${p => p.left});
-  width: ${p => p.size};
-  height: ${p => p.size};
-`;

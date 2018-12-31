@@ -3,6 +3,7 @@ import { Flex, Box } from "@rebass/grid";
 import { PlansWrapper, TextWrapper } from "./styled";
 import Plan from "./plan";
 import BillingPeriod from "./billingPeriod";
+import PromotionBoard from "./promotionBoard";
 
 const Plans = ({ t, billingPeriod, handleChangeBillngPeriod }) => (
   <Flex flexDirection="column" width={1} mb={6}>
@@ -17,6 +18,7 @@ const Plans = ({ t, billingPeriod, handleChangeBillngPeriod }) => (
         <Box />
       </Flex>
       <Paragraph>{t("plans.paragraph")}</Paragraph>
+      <PromotionBoard {...{ t }} />
     </TextWrapper>
     <PlansWrapper>
       <Box width={1 / 4}>
@@ -24,8 +26,8 @@ const Plans = ({ t, billingPeriod, handleChangeBillngPeriod }) => (
           {...{
             t,
             billingPeriod,
-            color: "orange",
-            name: "starter"
+            color: "limeade",
+            name: "essential"
           }}
         />
       </Box>

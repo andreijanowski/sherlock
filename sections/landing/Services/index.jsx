@@ -1,6 +1,7 @@
 import { H2, Paragraph, BlueText, BoldText, ItalicText } from "components";
-import { ServicesWrapper, MainWrapper, More, Brand } from "./styled";
+import { ServicesWrapper, MainWrapper, More } from "./styled";
 import List from "./list";
+import BackgroundCircle from "./backgroundCircle";
 
 const Services = ({ t }) => (
   <MainWrapper>
@@ -24,18 +25,18 @@ const Services = ({ t }) => (
       <List {...{ t }} />
       <More>{t("services.more")}</More>
     </ServicesWrapper>
-    <Brand src="/static/brand1.png" size="184px" top="134px" left="580px" />
-    <Brand src="/static/brand2.png" size="160px" top="188px" left="-740px" />
-    <Brand src="/static/brand3.png" size="184px" top="530px" left="-780px" />
-    <Brand src="/static/brand4.png" size="160px" top="550px" left="-570px" />
-    <Brand src="/static/brand5.png" size="160px" top="580px" left="-270px" />
-    <Brand src="/static/brand6.png" size="136px" top="80px" left="410px" />
-    <Brand src="/static/brand7.png" size="120px" top="280px" left="480px" />
-    <Brand src="/static/brand8.png" size="184px" top="430px" left="500px" />
-    <Brand src="/static/brand9.png" size="120px" top="300px" left="-550px" />
-    <Brand src="/static/brand10.png" size="160px" top="580px" left="280px" />
-    <Brand src="/static/brand11.png" size="136px" top="80px" left="-560px" />
-    <Brand src="/static/brand12.png" size="120px" top="420px" left="-630px" />
+    <BackgroundCircle size={144} top={134} left={620} color="2, 7, 8" />
+    <BackgroundCircle size={120} top={188} left={-740} color="255, 0, 6" />
+    <BackgroundCircle size={144} top={530} left={-780} color="41, 34, 174" />
+    <BackgroundCircle size={120} top={600} left={-530} color="0, 0, 0" />
+    <BackgroundCircle size={120} top={590} left={-270} color="255, 212, 0" />
+    <BackgroundCircle size={96} top={80} left={430} color="2, 7, 8" />
+    <BackgroundCircle size={80} top={280} left={490} color="255, 93, 13" />
+    <BackgroundCircle size={144} top={430} left={520} color="0, 207, 192" />
+    <BackgroundCircle size={80} top={300} left={-520} color="10, 175, 241" />
+    <BackgroundCircle size={120} top={580} left={280} color="255, 0, 33" />
+    <BackgroundCircle size={96} top={80} left={-540} color="86, 173, 199" />
+    <BackgroundCircle size={80} top={420} left={-630} color="255, 10, 0" />
   </MainWrapper>
 );
 

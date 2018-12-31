@@ -5,6 +5,7 @@ const login = css`
     rgba(${p => p.theme.colors.dark}, 0.16);
   color: rgba(${p => p.theme.colors.dark}, 0.64);
   padding: 5px 13px;
+  margin-left: 16px;
   background: transparent;
 `;
 
@@ -48,6 +49,16 @@ const hanPurple = css`
   ${planButton};
 `;
 
+const transparent = css`
+  ${blue};
+  background-color: transparent;
+`;
+
+const limeade = css`
+  background-color: rgb(${p => p.theme.colors.limeade});
+  ${planButton};
+`;
+
 const Button = styled.button`
   border-radius: ${p => p.theme.radius.default};
   font-size: ${p => p.theme.fontSizes.f16};
@@ -61,6 +72,8 @@ const Button = styled.button`
   ${p => p.styleName === "deepSkyBlue" && deepSkyBlue};
   ${p => p.styleName === "navyBlue" && navyBlue};
   ${p => p.styleName === "hanPurple" && hanPurple};
+  ${p => p.styleName === "transparent" && transparent};
+  ${p => p.styleName === "limeade" && limeade};
 `;
 
 export default Button;

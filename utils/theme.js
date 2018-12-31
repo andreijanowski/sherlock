@@ -13,7 +13,10 @@ const colors = {
   orange: "243, 119, 15",
   deepSkyBlue: "15, 177, 243",
   navyBlue: "15, 87, 243",
-  hanPurple: "107, 15, 243"
+  hanPurple: "107, 15, 243",
+  limeade: "90, 175, 51",
+  brightGrey: "79, 83, 92",
+  mischka: "165, 168, 175"
 };
 
 const fontSizes = {

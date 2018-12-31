@@ -1,15 +1,24 @@
-import { Button, FoodetectiveLogo, H1, BlueText, Paragraph } from "components";
+import {
+  Button,
+  FoodetectiveLogo,
+  H1,
+  BlueText,
+  Paragraph,
+  LanguageSwitcher
+} from "components";
 import { Flex, Box } from "@rebass/grid";
-import { Content, LogoWrapper } from "./styled";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Content, LogoWrapper, ButtonWithIcon } from "./styled";
 
 const TopSection = ({ t }) => (
   <Flex flexDirection="column" mt={4} px={4} width={1}>
-    <Box alignSelf="flex-end">
+    <Flex alignSelf="flex-end" alignItems="center">
+      <LanguageSwitcher />
       <Button styleName="login">{t("common:login")}</Button>
-    </Box>
+    </Flex>
     <Content>
       <LogoWrapper>
-        <FoodetectiveLogo {...{ t }} />
+        <FoodetectiveLogo {...{ t, withTagline: true }} />
       </LogoWrapper>
       <H1>
         {t("topSection.header.start")}
@@ -23,8 +32,14 @@ const TopSection = ({ t }) => (
         <Box mr={2}>
           <Button styleName="blue">{t("topSection.addYourBusiness")}</Button>
         </Box>
-        <Box>
+        <Box mr={2}>
           <Button styleName="blue">{t("topSection.addManager")}</Button>
+        </Box>
+        <Box>
+          <ButtonWithIcon>
+            <FontAwesomeIcon icon="play" size="xs" />
+            {t("topSection.watchVideo")}
+          </ButtonWithIcon>
         </Box>
       </Flex>
     </Content>
