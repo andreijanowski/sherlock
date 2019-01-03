@@ -2,7 +2,8 @@ import { PureComponent } from "react";
 import withI18next from "lib/withI18next";
 import loadTranslations from "utils/loadTranslations";
 import { func } from "prop-types";
-import { TopSection, Services, Plans, Footer } from "sections/landing";
+import { Footer } from "components";
+import { TopSection, Services, Plans } from "sections/landing";
 
 const namespaces = ["landing", "common"];
 
@@ -39,7 +40,7 @@ class Home extends PureComponent {
             handleChangeBillngPeriod: this.handleChangeBillngPeriod
           }}
         />
-        <Footer {...{ t }} />
+        <Footer />
       </>
     );
   }
