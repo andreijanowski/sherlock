@@ -6,5 +6,10 @@
       "password": "Passwords must be at least {{length}} characters in length.",
       "passwordMatch": "The password and repeat password do not match."
     }
+  },
+  "placeholder": {
+    "custom": "Custom",
+    "location": "Location",
+    "egAccount": "e.g. Acme Corp"
   }
 }
