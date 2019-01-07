@@ -21,6 +21,7 @@ const colors = {
 };
 
 const fontSizes = {
+  f10: "10px",
   f12: "12px",
   f14: "14px",
   f16: "16px",
