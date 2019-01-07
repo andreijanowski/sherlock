@@ -55,7 +55,8 @@
                     "utils": "./utils",
                     "components": "./components",
                     "layout": "./Layout",
-                    "consts": "./consts"
+                    "consts": "./consts",
+                    "sections": "./sections"
                 }
             }
         ],

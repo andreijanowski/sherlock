@@ -1,0 +1,30 @@
+{
+  "navigation": {
+    "columnOne": {
+      "title": "Join us",
+      "links": [
+        "Why register",
+        "Partner with us",
+        "Become a reseller",
+        "Integrations"
+      ]
+    },
+    "columnTwo": {
+      "title": "Help",
+      "links": ["FAQ", "Contact us", "Blog"]
+    },
+    "columnThree": {
+      "title": "Legal",
+      "links": ["Privacy Policy", "Terms & Conditions"]
+    },
+    "columnFour": {
+      "title": "Follow us",
+      "links": ["Facebook", "Linkedin", "Twitter", "Instagram"]
+    },
+    "columnFive": {
+      "title": "Download app",
+      "links": ["Apple", "Android"]
+    }
+  },
+  "copyrightNote": "© 2018 The Food Detective SA. All rights reserved."
+}
