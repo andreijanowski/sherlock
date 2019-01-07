@@ -29,9 +29,7 @@ export const LanguageSwitcherWrapper = styled(Flex).attrs({
   font-weight: 600;
   outline: none;
   text-transform: capitalize;
-  svg {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 
 const LanguageListTop = css`

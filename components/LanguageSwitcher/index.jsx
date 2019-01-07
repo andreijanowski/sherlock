@@ -27,8 +27,7 @@ class LanguageSwitcher extends Component {
 
   changeLanguage = language => {
     this.setState({
-      selectedLanguage: language,
-      listIsVisible: false
+      selectedLanguage: language
     });
     i18n.changeLanguage(language);
   };
@@ -47,6 +46,7 @@ class LanguageSwitcher extends Component {
     return (
       <LanguageSwitcherWrapper
         onBlur={() => this.setState({ listIsVisible: false })}
+        onClick={this.toggleLanguageListVisible}
         tabIndex="0"
         {...{ withBorder }}
       >
@@ -57,7 +57,6 @@ class LanguageSwitcher extends Component {
         <FontAwesomeIcon
           flip={this.setProperIconPosition()}
           icon="angle-down"
-          onClick={this.toggleLanguageListVisible}
         />
         {listIsVisible && (
           <LanguageList {...{ listPosition }}>
