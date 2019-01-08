@@ -2,7 +2,7 @@
 import { Flex } from "@rebass/grid";
 import { NotificationsCenter } from "components";
 import styled from "styled-components";
-import { any } from "prop-types";
+import { object, node } from "prop-types";
 import GlobalStyles from "utils/globalStyles";
 
 const AppContainer = styled(Flex)`
@@ -20,8 +20,8 @@ const MainLayout = ({ pageProps, Component }) => (
 );
 
 MainLayout.propTypes = {
-  pageProps: any.isRequired,
-  Component: any.isRequired
+  pageProps: object.isRequired,
+  Component: node.isRequired
 };
 
 export default MainLayout;

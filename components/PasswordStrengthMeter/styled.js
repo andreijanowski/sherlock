@@ -27,7 +27,7 @@ export const weekPassword = css`
 export const mediumPassword = css`
   background-image: url("/static/emoji/slightly-smiling-face.png");
   ${MeterProgress} {
-    stroke: orange;
+    stroke: rgba(${({ theme }) => theme.colors.carrotOrange}, 1);
   }
 `;
 
