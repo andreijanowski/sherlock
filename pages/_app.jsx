@@ -8,9 +8,13 @@ import forceLanguageInUrl from "utils/forceLanguageInUrl";
 import Layout from "layout";
 import { ThemeProvider } from "styled-components";
 import { theme } from "utils/theme";
-import { PersistGate } from "redux-persist/integration/react";
+import { PersistGate as PersistGateClient } from "redux-persist/integration/react";
+import isServer from "utils/isServer";
 import initialI18nInstance from "../i18n";
 import createStore from "../data/store";
+
+const PersistGateServer = ({ children }) => children;
+const PersistGate = isServer ? PersistGateServer : PersistGateClient;
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
