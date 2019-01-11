@@ -1,4 +1,4 @@
-import { func, string } from "prop-types";
+import { func, string, shape, object } from "prop-types";
 import { Router } from "routes";
 import {
   Button,
@@ -12,13 +12,13 @@ import { Flex, Box } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Content, LogoWrapper, ButtonWithIcon } from "./styled";
 
-const TopSection = ({ t, lng }) => (
+const TopSection = ({ t, lng, plansRef }) => (
   <Flex flexDirection="column" mt={4} px={4} width={1}>
     <Flex alignSelf="flex-end" alignItems="center">
       <LanguageSwitcher />
       <Button
         styleName="login"
-        onClick={() => Router.pushRoute(`/${lng}/register`)}
+        onClick={() => Router.pushRoute(`/${lng}/login`)}
       >
         {t("common:login")}
       </Button>
@@ -36,7 +36,11 @@ const TopSection = ({ t, lng }) => (
         <Box mr={2}>
           <Button
             styleName="blue"
-            onClick={() => Router.pushRoute(`/${lng}/register`)}
+            onClick={() =>
+              plansRef.current.scrollIntoView({
+                behavior: "smooth"
+              })
+            }
           >
             {t("topSection.getStartedForFree")}
           </Button>
@@ -65,7 +69,8 @@ const TopSection = ({ t, lng }) => (
 
 TopSection.propTypes = {
   t: func.isRequired,
-  lng: string.isRequired
+  lng: string.isRequired,
+  plansRef: shape({ current: object }).isRequired
 };
 
 export default TopSection;

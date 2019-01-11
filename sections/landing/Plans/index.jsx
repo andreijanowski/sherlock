@@ -1,3 +1,5 @@
+import React from "react";
+import { Router } from "routes";
 import { H2, Paragraph } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { func, string } from "prop-types";
@@ -6,68 +8,75 @@ import Plan from "./plan";
 import BillingPeriod from "./billingPeriod";
 import PromotionBoard from "./promotionBoard";
 
-const Plans = ({ t, billingPeriod, handleChangeBillngPeriod }) => (
-  <Flex flexDirection="column" width={1} mb={6}>
-    <TextWrapper>
-      <Flex
-        flexDirection="row"
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        <H2>{t("plans.header")}</H2>
-        <BillingPeriod {...{ t, billingPeriod, handleChangeBillngPeriod }} />
-        <Box />
-      </Flex>
-      <Paragraph>{t("plans.paragraph")}</Paragraph>
-      <PromotionBoard {...{ t }} />
-    </TextWrapper>
-    <PlansWrapper>
-      <Box width={1 / 4}>
-        <Plan
-          {...{
-            t,
-            billingPeriod,
-            color: "limeade",
-            name: "essential"
-          }}
-        />
-      </Box>
-      <Box width={1 / 4}>
-        <Plan
-          {...{
-            t,
-            billingPeriod,
-            color: "deepSkyBlue",
-            name: "basic"
-          }}
-        />
-      </Box>
-      <Box width={1 / 4}>
-        <Plan
-          {...{
-            t,
-            billingPeriod,
-            color: "navyBlue",
-            name: "premium"
-          }}
-        />
-      </Box>
-      <Box width={1 / 4}>
-        <Plan
-          {...{
-            t,
-            billingPeriod,
-            color: "hanPurple",
-            name: "professional"
-          }}
-        />
-      </Box>
-    </PlansWrapper>
-  </Flex>
+const Plans = React.forwardRef(
+  ({ t, lng, billingPeriod, handleChangeBillngPeriod }, ref) => (
+    <Flex flexDirection="column" width={1} mb={6}>
+      <TextWrapper>
+        <Flex
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <H2>{t("plans.header")}</H2>
+          <BillingPeriod {...{ t, billingPeriod, handleChangeBillngPeriod }} />
+          <Box />
+        </Flex>
+        <Paragraph>{t("plans.paragraph")}</Paragraph>
+        <PromotionBoard {...{ t }} />
+      </TextWrapper>
+      <PlansWrapper ref={ref}>
+        <Box width={1 / 4}>
+          <Plan
+            {...{
+              t,
+              billingPeriod,
+              color: "limeade",
+              name: "essential",
+              onClickActionButton: () => Router.pushRoute(`/${lng}/register`)
+            }}
+          />
+        </Box>
+        <Box width={1 / 4}>
+          <Plan
+            {...{
+              t,
+              billingPeriod,
+              color: "deepSkyBlue",
+              name: "basic",
+              onClickActionButton: () => Router.pushRoute(`/${lng}/register`)
+            }}
+          />
+        </Box>
+        <Box width={1 / 4}>
+          <Plan
+            {...{
+              t,
+              billingPeriod,
+              color: "navyBlue",
+              name: "premium",
+              onClickActionButton: () => Router.pushRoute(`/${lng}/register`)
+            }}
+          />
+        </Box>
+        <Box width={1 / 4}>
+          <Plan
+            {...{
+              t,
+              billingPeriod,
+              color: "hanPurple",
+              name: "professional",
+              onClickActionButton: () => {}
+            }}
+          />
+        </Box>
+      </PlansWrapper>
+    </Flex>
+  )
 );
 
 Plans.propTypes = {
   t: func.isRequired,
+  lng: string.isRequired,
   billingPeriod: string.isRequired,
   handleChangeBillngPeriod: func.isRequired
 };

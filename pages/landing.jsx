@@ -1,4 +1,4 @@
-import { PureComponent } from "react";
+import React, { PureComponent } from "react";
 import withI18next from "lib/withI18next";
 import loadTranslations from "utils/loadTranslations";
 import { func, string } from "prop-types";
@@ -16,9 +16,13 @@ class Home extends PureComponent {
     };
   }
 
-  state = {
-    billingPeriod: "monthly"
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      billingPeriod: "monthly"
+    };
+    this.plansRef = React.createRef();
+  }
 
   handleChangeBillngPeriod = () => {
     const { billingPeriod } = this.state;
@@ -31,13 +35,15 @@ class Home extends PureComponent {
     const { billingPeriod } = this.state;
     return (
       <>
-        <TopSection {...{ t, lng }} />
+        <TopSection {...{ t, lng, plansRef: this.plansRef }} />
         <Services {...{ t }} />
         <Plans
           {...{
             t,
+            lng,
             billingPeriod,
-            handleChangeBillngPeriod: this.handleChangeBillngPeriod
+            handleChangeBillngPeriod: this.handleChangeBillngPeriod,
+            ref: this.plansRef
           }}
         />
         <Footer />
