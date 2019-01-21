@@ -12,6 +12,7 @@ services:
     environment:
       - NODE_ENV=staging
       - APP_URL=https://sherlock.staging.devguru.co
+      - VIRTUAL_HOST=sherlock.staging.devgguru.co
     networks:
       - frontend
 
