@@ -1,37 +1,74 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
+deploy: &deploy
+  working_directory: ~/repo
+  docker:
+    - image: circleci/ruby:2.5.1
+
+
+node_machine: &node_machine
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:10
+
+
+
 version: 2
 jobs:
-  build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:10
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/repo
-
+  checkout_code:
+    <<: *node_machine
     steps:
       - checkout
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - .
 
-      # Download and cache dependencies
+  yarn_lint:
+    <<: *node_machine
+    working_directory: ~/repo
+    steps:
+      - attach_workspace:
+          at: ~/repo
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
+            - yarn-{{ checksum "yarn.lock" }}
+            - yarn -
+      - run: curl -o- -L https://yarnpkg.com/install.sh | bash
       - run: yarn install
-
       - save_cache:
+          key: yarn-{{ checksum "yarn.lock" }}
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ~/repo/node_modules
+      - run:
+          name: Run JS linter
+          command: yarn lint:js
+      - run:
+          name: Run CSS Linter
+          command: yarn lint:css
 
-      # run tests!
-      - run: yarn test
+  deploy_staging_front:
+    <<: *deploy
+    working_directory: ~/repo/deployment
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: bundle config
+          command: bundle config --local path ~/repo/deployment/vendor/bundle
+      - run:
+          name: Deploy to production
+          command: bundle install; bundle exec cap staging deploy
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - checkout_code
+      # - yarn_lint:
+      #     requires:
+      #       - checkout_code
+      - deploy_staging_front:
+          requires:
+            - checkout_code
+          filters:
+            branches:
+              only: master
