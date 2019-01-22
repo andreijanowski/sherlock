@@ -69,6 +69,6 @@ workflows:
       - deploy_staging_front:
           requires:
             - checkout_code
-          # filters:
-          #   branches:
-          #     only: master
+          filters:
+            branches:
+              only: master
