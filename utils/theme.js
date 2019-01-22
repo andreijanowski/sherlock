@@ -17,10 +17,12 @@ const colors = {
   limeade: "90, 175, 51",
   brightGrey: "79, 83, 92",
   mischka: "165, 168, 175",
-  ruby: "222, 17, 84"
+  ruby: "222, 17, 84",
+  carrotOrange: "243, 119, 15"
 };
 
 const fontSizes = {
+  f10: "10px",
   f12: "12px",
   f14: "14px",
   f16: "16px",

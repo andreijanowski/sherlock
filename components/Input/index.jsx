@@ -4,8 +4,7 @@ const Input = styled(({ invalid, small, ...props }) => <input {...props} />)`
   width: 100%;
   height: 56px;
   padding: 16px;
-  border: ${({ theme }) => theme.borderWeights.normal} solid
-    rgba(${({ theme }) => theme.colors.dark}, 0);
+  border: ${({ theme }) => theme.borderWeights.normal} solid transparent;
   background-color: rgba(${({ theme }) => theme.colors.dark}, 0.1);
   border-radius: ${({ theme }) => theme.radius.default};
   &:hover {

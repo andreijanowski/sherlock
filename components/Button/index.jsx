@@ -41,6 +41,10 @@ const planButton = css`
   color: rgb(${p => p.theme.colors.white});
   padding: 12px;
   width: 100%;
+
+  &:hover:enabled {
+    box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.blue}, 0.48);
+  }
 `;
 
 const orange = css`
