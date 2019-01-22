@@ -16,3 +16,4 @@ export { default as CheckboxField } from "./CheckboxField";
 export { default as PasswordStrengthMeter } from "./PasswordStrengthMeter";
 export { default as Wordmark } from "./Wordmark";
 export { default as FacebookLogin } from "./FacebookLogin";
+export { default as RadioButtonField } from "./RadioButtonField";
