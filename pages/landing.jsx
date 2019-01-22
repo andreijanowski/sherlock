@@ -1,7 +1,7 @@
-import { PureComponent } from "react";
+import React, { PureComponent } from "react";
 import withI18next from "lib/withI18next";
 import loadTranslations from "utils/loadTranslations";
-import { func } from "prop-types";
+import { func, string } from "prop-types";
 import { Footer } from "components";
 import { TopSection, Services, Plans } from "sections/landing";
 
@@ -16,9 +16,13 @@ class Home extends PureComponent {
     };
   }
 
-  state = {
-    billingPeriod: "monthly"
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      billingPeriod: "monthly"
+    };
+    this.plansRef = React.createRef();
+  }
 
   handleChangeBillngPeriod = () => {
     const { billingPeriod } = this.state;
@@ -27,17 +31,19 @@ class Home extends PureComponent {
   };
 
   render() {
-    const { t } = this.props;
+    const { t, lng } = this.props;
     const { billingPeriod } = this.state;
     return (
       <>
-        <TopSection {...{ t }} />
+        <TopSection {...{ t, lng, plansRef: this.plansRef }} />
         <Services {...{ t }} />
         <Plans
           {...{
             t,
+            lng,
             billingPeriod,
-            handleChangeBillngPeriod: this.handleChangeBillngPeriod
+            handleChangeBillngPeriod: this.handleChangeBillngPeriod,
+            ref: this.plansRef
           }}
         />
         <Footer />
@@ -47,7 +53,8 @@ class Home extends PureComponent {
 }
 
 Home.propTypes = {
-  t: func.isRequired
+  t: func.isRequired,
+  lng: string.isRequired
 };
 
 export default withI18next(namespaces)(Home);

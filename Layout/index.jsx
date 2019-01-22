@@ -1,6 +1,8 @@
+/* eslint-disable react/forbid-prop-types */
 import { Flex } from "@rebass/grid";
 import { NotificationsCenter } from "components";
 import styled from "styled-components";
+import { object, node } from "prop-types";
 import GlobalStyles from "utils/globalStyles";
 
 const AppContainer = styled(Flex)`
@@ -16,5 +18,10 @@ const MainLayout = ({ pageProps, Component }) => (
     <NotificationsCenter />
   </AppContainer>
 );
+
+MainLayout.propTypes = {
+  pageProps: object.isRequired,
+  Component: node.isRequired
+};
 
 export default MainLayout;

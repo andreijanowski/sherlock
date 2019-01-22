@@ -16,10 +16,14 @@ const colors = {
   hanPurple: "107, 15, 243",
   limeade: "90, 175, 51",
   brightGrey: "79, 83, 92",
-  mischka: "165, 168, 175"
+  mischka: "165, 168, 175",
+  ruby: "222, 17, 84",
+  carrotOrange: "243, 119, 15"
 };
 
 const fontSizes = {
+  f10: "10px",
+  f12: "12px",
   f14: "14px",
   f16: "16px",
   f18: "18px",
@@ -35,11 +39,18 @@ const radius = {
   double: "12px"
 };
 
+const fontWeights = {
+  regular: 400,
+  semiBold: 600,
+  bold: 700
+};
+
 // eslint-disable-next-line import/prefer-default-export
 export const theme = {
   breakpoints,
   borderWeights,
   colors,
   fontSizes,
-  radius
+  radius,
+  fontWeights
 };

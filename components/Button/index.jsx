@@ -15,9 +15,23 @@ const blue = css`
   color: rgb(${p => p.theme.colors.blue});
   padding: 16px;
 
-  &:hover {
+  &:hover:enabled {
     background-color: rgba(${p => p.theme.colors.blue}, 1);
     color: rgb(${p => p.theme.colors.white});
+    box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.blue}, 0.48);
+  }
+`;
+
+const outlineBlue = css`
+  background-color: white;
+  border: ${p => p.theme.borderWeights.normal} solid
+    rgba(${p => p.theme.colors.blue}, 0.1);
+  color: rgb(${p => p.theme.colors.blue});
+  padding: 13px 16px;
+
+  &:hover:enabled {
+    border: ${p => p.theme.borderWeights.normal} solid
+      rgba(${p => p.theme.colors.blue}, 1);
     box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.blue}, 0.48);
   }
 `;
@@ -27,6 +41,10 @@ const planButton = css`
   color: rgb(${p => p.theme.colors.white});
   padding: 12px;
   width: 100%;
+
+  &:hover:enabled {
+    box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.blue}, 0.48);
+  }
 `;
 
 const orange = css`
@@ -74,6 +92,12 @@ const Button = styled.button`
   ${p => p.styleName === "hanPurple" && hanPurple};
   ${p => p.styleName === "transparent" && transparent};
   ${p => p.styleName === "limeade" && limeade};
+  ${p => p.styleName === "outlineBlue" && outlineBlue};
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 `;
 
 export default Button;

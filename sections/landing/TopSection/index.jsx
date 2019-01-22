@@ -1,3 +1,5 @@
+import { func, string, shape, object } from "prop-types";
+import { Router } from "routes";
 import {
   Button,
   FoodetectiveLogo,
@@ -10,15 +12,20 @@ import { Flex, Box } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Content, LogoWrapper, ButtonWithIcon } from "./styled";
 
-const TopSection = ({ t }) => (
+const TopSection = ({ t, lng, plansRef }) => (
   <Flex flexDirection="column" mt={4} px={4} width={1}>
     <Flex alignSelf="flex-end" alignItems="center">
       <LanguageSwitcher />
-      <Button styleName="login">{t("common:login")}</Button>
+      <Button
+        styleName="login"
+        onClick={() => Router.pushRoute(`/${lng}/login`)}
+      >
+        {t("common:login")}
+      </Button>
     </Flex>
     <Content>
       <LogoWrapper>
-        <FoodetectiveLogo {...{ t, withTagline: true }} />
+        <FoodetectiveLogo withTagline />
       </LogoWrapper>
       <H1>
         {t("topSection.header.start")}
@@ -27,10 +34,24 @@ const TopSection = ({ t }) => (
       <Paragraph>{t("topSection.paragraph")}</Paragraph>
       <Flex flexDirection="row">
         <Box mr={2}>
-          <Button styleName="blue">{t("topSection.getStartedForFree")}</Button>
+          <Button
+            styleName="blue"
+            onClick={() =>
+              plansRef.current.scrollIntoView({
+                behavior: "smooth"
+              })
+            }
+          >
+            {t("topSection.getStartedForFree")}
+          </Button>
         </Box>
         <Box mr={2}>
-          <Button styleName="blue">{t("topSection.addYourBusiness")}</Button>
+          <Button
+            styleName="blue"
+            onClick={() => Router.pushRoute(`/${lng}/register`)}
+          >
+            {t("topSection.addYourBusiness")}
+          </Button>
         </Box>
         <Box mr={2}>
           <Button styleName="blue">{t("topSection.addManager")}</Button>
@@ -45,5 +66,11 @@ const TopSection = ({ t }) => (
     </Content>
   </Flex>
 );
+
+TopSection.propTypes = {
+  t: func.isRequired,
+  lng: string.isRequired,
+  plansRef: shape({ current: object }).isRequired
+};
 
 export default TopSection;
