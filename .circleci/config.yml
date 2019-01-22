@@ -1,7 +1,7 @@
 deploy: &deploy
   working_directory: ~/repo
   docker:
-    - image: circleci/ruby:2.5.1
+    - image: circleci/ruby:2.4.3
 
 
 node_machine: &node_machine
@@ -55,7 +55,7 @@ jobs:
           name: bundle config
           command: bundle config --local path ~/repo/deployment/vendor/bundle
       - run:
-          name: Deploy to production
+          name: Deploy to staging
           command: bundle install; bundle exec cap staging deploy
 
 workflows:
@@ -69,6 +69,6 @@ workflows:
       - deploy_staging_front:
           requires:
             - checkout_code
-          filters:
-            branches:
-              only: master
+          # filters:
+          #   branches:
+          #     only: master
