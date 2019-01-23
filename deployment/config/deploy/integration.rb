@@ -8,6 +8,6 @@ set :default_env, {
 set :capose_commands, -> {
   [
     'build',
-    'up -d web'
+    'up -d'
   ]
 }
