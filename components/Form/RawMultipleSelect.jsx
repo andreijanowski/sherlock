@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import matchSorter from "match-sorter";
 import onClickOutside from "react-onclickoutside";
-import { shape, arrayOf, number, string, boolean, func } from "prop-types";
+import { shape, arrayOf, number, string, bool, func } from "prop-types";
 import {
   MultipleSelectWrapper,
   MultipleSelectInput,
@@ -148,7 +148,7 @@ RawMultipleSelect.propTypes = {
   placeholder: string.isRequired,
   items: arrayOf(shape()).isRequired,
   maxItems: number.isRequired,
-  isOpen: boolean.isRequired,
+  isOpen: bool.isRequired,
   getInputProps: func.isRequired,
   getItemProps: func.isRequired,
   highlightedIndex: number.isRequired,

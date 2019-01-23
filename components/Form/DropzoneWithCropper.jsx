@@ -1,6 +1,6 @@
 import { PureComponent } from "react";
 import { Dropzone, Cropper } from "components";
-import { string, boolean, number, func } from "prop-types";
+import { string, bool, number, func } from "prop-types";
 
 class DropzoneWithCropper extends PureComponent {
   state = {
@@ -77,7 +77,7 @@ DropzoneWithCropper.propTypes = {
   errorTip: string.isRequired,
   info: string.isRequired,
   errorInfo: string.isRequired,
-  multiple: boolean.isRequired,
+  multiple: bool.isRequired,
   accept: string.isRequired,
   cancel: string.isRequired,
   maxWidth: number.isRequired,

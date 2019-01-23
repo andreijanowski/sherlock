@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import { string, shape, arrayOf, boolean } from "prop-types";
+import { string, shape, arrayOf, bool } from "prop-types";
 import Downshift from "downshift";
 import matchSorter from "match-sorter";
 import {
@@ -170,8 +170,8 @@ FormSelect.propTypes = {
   placeholder: string.isRequired,
   items: arrayOf(shape()).isRequired,
   label: string.isRequired,
-  disabled: boolean.isRequired,
-  showFlag: boolean.isRequired
+  disabled: bool.isRequired,
+  showFlag: bool.isRequired
 };
 
 export default FormSelect;

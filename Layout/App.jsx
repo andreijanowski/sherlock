@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { Flex } from "@rebass/grid";
 import { NavBar, MainApp } from "components";
-import { node, boolean, func, string } from "prop-types";
+import { node, bool, func, string } from "prop-types";
 
 class AppLayout extends PureComponent {
   render() {
@@ -31,7 +31,7 @@ class AppLayout extends PureComponent {
 
 AppLayout.propTypes = {
   children: node.isRequired,
-  withMenu: boolean.isRequired,
+  withMenu: bool.isRequired,
   menu: node,
   mainIcon: string.isRequired,
   header: string.isRequired,
