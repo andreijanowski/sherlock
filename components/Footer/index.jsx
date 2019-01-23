@@ -1,4 +1,5 @@
 import withI18next from "lib/withI18next";
+import { func } from "prop-types";
 import { FoodetectiveLogo, LanguageSwitcher } from "components";
 import { Box } from "@rebass/grid";
 import {
@@ -14,11 +15,13 @@ import {
 } from "./styled";
 import NavigationList from "./navigationList";
 
+const namespaces = ["footer"];
+
 const Footer = ({ t }) => (
   <FooterWrapper>
     <TextWrapper>
       <Box width={120}>
-        <FoodetectiveLogo {...{ t }} />
+        <FoodetectiveLogo />
       </Box>
       <MenuWrapper>
         <Box>
@@ -65,4 +68,8 @@ const Footer = ({ t }) => (
   </FooterWrapper>
 );
 
-export default withI18next("footer")(Footer);
+Footer.propTypes = {
+  t: func.isRequired
+};
+
+export default withI18next(namespaces)(Footer);

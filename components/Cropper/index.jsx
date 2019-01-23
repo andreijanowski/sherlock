@@ -2,6 +2,7 @@ import { PureComponent, createRef } from "react";
 import ReactCropper from "react-cropper";
 import { Modal, Button } from "components";
 import { Box } from "@rebass/grid";
+import { string, func, number, boolean } from "prop-types";
 import { CropperStyles, Wrapper } from "./styled";
 
 class Cropper extends PureComponent {
@@ -66,5 +67,17 @@ class Cropper extends PureComponent {
     );
   }
 }
+
+Cropper.propTypes = {
+  src: string.isRequired,
+  aspectRatio: number.isRequired,
+  isVisible: boolean.isRequired,
+  hide: func.isRequired,
+  accept: string.isRequired,
+  cancel: string.isRequired,
+  maxWidth: number.isRequired,
+  maxHeight: number.isRequired,
+  onCrop: func.isRequired
+};
 
 export default Cropper;

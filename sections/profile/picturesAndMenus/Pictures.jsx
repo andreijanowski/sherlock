@@ -1,3 +1,4 @@
+import { string, func } from "prop-types";
 import { H3, DropzoneWithCropper, Paragraph, PerfectSquare } from "components";
 import { Flex, Box } from "@rebass/grid";
 import Picture from "./Picture";
@@ -39,5 +40,10 @@ const Pictures = ({
     </Flex>
   </>
 );
+
+Pictures.propTypes = {
+  t: func.isRequired,
+  pictures: string.isRequired
+};
 
 export default Pictures;

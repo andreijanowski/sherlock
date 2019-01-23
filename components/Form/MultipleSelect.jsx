@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import { string, shape, arrayOf } from "prop-types";
+import { string, shape, arrayOf, number } from "prop-types";
 import Downshift from "downshift";
 import RawMultipleSelect from "./RawMultipleSelect";
 
@@ -62,7 +62,8 @@ FormMultipleSelect.propTypes = {
   input: shape().isRequired,
   meta: shape().isRequired,
   placeholder: string.isRequired,
-  items: arrayOf(shape()).isRequired
+  items: arrayOf(shape()).isRequired,
+  maxItems: number.isRequired
 };
 
 export default FormMultipleSelect;

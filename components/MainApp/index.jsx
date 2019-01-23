@@ -1,4 +1,5 @@
 import { Flex } from "@rebass/grid";
+import { boolean, node, string } from "prop-types";
 import {
   Wrapper,
   HeaderWrapper,
@@ -46,6 +47,13 @@ const MainApp = ({ withMenu, mainIcon, header, children }) => {
       {children}
     </Wrapper>
   );
+};
+
+MainApp.propTypes = {
+  withMenu: boolean.isRequired,
+  mainIcon: string.isRequired,
+  header: string.isRequired,
+  children: node.isRequired
 };
 
 export default MainApp;

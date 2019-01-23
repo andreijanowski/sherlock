@@ -1,0 +1,167 @@
+import { PureComponent } from "react";
+import { connect } from "react-redux";
+import { Form } from "react-final-form";
+import { func } from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  InputField,
+  Button,
+  CheckboxField,
+  BlueText,
+  ItalicText,
+  PasswordStrengthMeter,
+  FacebookLogin
+} from "components";
+import { register } from "actions/auth";
+import { validateEmail, validatePassword, required } from "utils/validators";
+import { formValidation } from "consts";
+import {
+  ButtonContainer,
+  HelperTitle,
+  Separator,
+  SuccessMessageWrapper
+} from "./styled";
+
+class CreateAccount extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      successMessage: null
+    };
+    this.validateEmail = validateEmail(props.t);
+    this.validatePassword = validatePassword(props.t);
+    this.validateCheckbox = required(props.t);
+  }
+
+  validatePasswordsMatch = (passwordConfirmation, { password }) => {
+    const { t } = this.props;
+    if (!passwordConfirmation) return t("forms:validation.error.required");
+    if (passwordConfirmation !== password)
+      return t("forms:validation.error.passwordMatch");
+
+    if (passwordConfirmation.length < formValidation.MINIMUM_PASSWORD_LENGTH)
+      return t("forms:validation.error.password", {
+        length: formValidation.MINIMUM_PASSWORD_LENGTH
+      });
+
+    return undefined;
+  };
+
+  submitForm = async ({
+    email,
+    password,
+    passwordConfirmation,
+    termsAgreement
+  }) => {
+    try {
+      const { t, createUserAccount } = this.props;
+      await createUserAccount({
+        email,
+        password,
+        passwordConfirmation,
+        termsAgreement
+      })
+        .then(() =>
+          this.setState({
+            successMessage: t("confirmationMessege", { email })
+          })
+        )
+        .catch(e => console.log(e));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  render() {
+    const { t } = this.props;
+    const { successMessage } = this.state;
+    if (successMessage) {
+      return <SuccessMessageWrapper>{successMessage}</SuccessMessageWrapper>;
+    }
+    return (
+      <Form
+        onSubmit={this.submitForm}
+        render={({ handleSubmit, pristine, invalid, submitting, values }) => (
+          <form onSubmit={handleSubmit}>
+            <HelperTitle>{t("emailHelperTitle")}</HelperTitle>
+            <InputField
+              name="email"
+              type="email"
+              placeholder="name@company.com"
+              validate={this.validateEmail}
+            />
+            <Separator size={32} />
+            <HelperTitle>{t("paswordHelperTitle")}</HelperTitle>
+            <InputField
+              name="password"
+              type="password"
+              autoComplete="new-password"
+              placeholder="Something secure"
+              validate={this.validatePassword}
+            >
+              <PasswordStrengthMeter password={values.password} />
+            </InputField>
+            <InputField
+              name="passwordConfirmation"
+              type="password"
+              placeholder="Repeat Password"
+              validate={this.validatePasswordsMatch}
+            >
+              <PasswordStrengthMeter password={values.passwordConfirmation} />
+            </InputField>
+            <Separator size={32} />
+            <CheckboxField
+              name="termsAgreement"
+              validate={this.validateCheckbox}
+            >
+              {t("terms.start")}
+              <a href="#">
+                <BlueText>
+                  <ItalicText>{t("terms.privacyPolicy")}</ItalicText>
+                </BlueText>
+              </a>
+              {t("terms.and")}
+              <a href="#">
+                <BlueText>
+                  <ItalicText>{t("terms.termsOfUse")}</ItalicText>
+                </BlueText>
+              </a>
+            </CheckboxField>
+            <Separator size={32} />
+            <ButtonContainer>
+              <Button
+                onClick={handleSubmit}
+                styleName="blue"
+                disabled={invalid || pristine || submitting}
+              >
+                {submitting ? (
+                  <FontAwesomeIcon icon="circle-notch" spin size="lg" />
+                ) : (
+                  t("registerButton")
+                )}
+              </Button>
+              <FacebookLogin
+                disabled={!values.termsAgreement}
+                withAgreement={!values.termsAgreement}
+              >
+                {t("Facebook")}
+              </FacebookLogin>
+            </ButtonContainer>
+          </form>
+        )}
+      />
+    );
+  }
+}
+
+CreateAccount.propTypes = {
+  createUserAccount: func.isRequired,
+  t: func.isRequired
+};
+
+export default connect(
+  null,
+  {
+    createUserAccount: register
+  }
+)(CreateAccount);

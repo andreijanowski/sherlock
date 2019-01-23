@@ -1,3 +1,4 @@
+import { func, string } from "prop-types";
 import { Button } from "components";
 import {
   MainWrapper,
@@ -11,7 +12,7 @@ import {
 import Managers from "./managers";
 import List from "./list";
 
-const Plan = ({ t, color, name, billingPeriod }) => (
+const Plan = ({ t, color, name, billingPeriod, onClickActionButton }) => (
   <MainWrapper>
     <NameWrapper>
       <Name color={color}>{t(`plans.${name}.name`)}</Name>
@@ -35,10 +36,20 @@ const Plan = ({ t, color, name, billingPeriod }) => (
         <Price>{t(`plans.${name}.price.${billingPeriod}`)}</Price>
       )}
       <Managers {...{ color, t }} />
-      <Button styleName={color}>{t(`plans.${name}.buttonText`)}</Button>
+      <Button onClick={onClickActionButton} styleName={color}>
+        {t(`plans.${name}.buttonText`)}
+      </Button>
     </PriceWrapper>
     <List {...{ t, name, color }} />
   </MainWrapper>
 );
+
+Plan.propTypes = {
+  t: func.isRequired,
+  billingPeriod: string.isRequired,
+  color: string.isRequired,
+  name: string.isRequired,
+  onClickActionButton: func.isRequired
+};
 
 export default Plan;

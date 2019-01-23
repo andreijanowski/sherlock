@@ -6,12 +6,25 @@ import {
   faPlus,
   faMinus,
   faCheck,
-  faTimes
+  faTimes,
+  faArrowLeft,
+  faCircleNotch
 } from "@fortawesome/free-solid-svg-icons";
+import { faFacebookF } from "@fortawesome/fontawesome-free-brands";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import fonts from "./fonts";
 
-library.add(faPlay, faAngleDown, faPlus, faMinus, faCheck, faTimes);
+library.add(
+  faPlay,
+  faAngleDown,
+  faPlus,
+  faMinus,
+  faCheck,
+  faTimes,
+  faArrowLeft,
+  faCircleNotch,
+  faFacebookF
+);
 
 export default createGlobalStyle`
     ${styledNormalize}

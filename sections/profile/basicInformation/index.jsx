@@ -10,6 +10,7 @@ import {
 import { Form as FinalForm, Field } from "react-final-form";
 import { required, maxLength } from "utils/validators";
 import iso3166 from "iso-3166-2";
+import { func } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import { Form } from "../styled";
 
@@ -232,5 +233,9 @@ const BasicInformationForm = ({ t }) => (
     )}
   />
 );
+
+BasicInformationForm.propTypes = {
+  t: func.isRequired
+};
 
 export default BasicInformationForm;

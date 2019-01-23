@@ -1,5 +1,6 @@
 import { H3, Dropzone, InputWithRemoveButton } from "components";
 import { Flex, Box } from "@rebass/grid";
+import { func } from "prop-types";
 
 const Menu = ({ t, onDrop }) => (
   <>
@@ -26,5 +27,10 @@ const Menu = ({ t, onDrop }) => (
     </Flex>
   </>
 );
+
+Menu.propTypes = {
+  t: func.isRequired,
+  onDrop: func.isRequired
+};
 
 export default Menu;

@@ -1,4 +1,5 @@
 import ReactDropzone from "react-dropzone";
+import { arrayOf, string, boolean, func } from "prop-types";
 import { Wrapper, Input, Tip, Info } from "./styled";
 
 const Dropzone = ({
@@ -21,5 +22,16 @@ const Dropzone = ({
     )}
   </ReactDropzone>
 );
+
+Dropzone.propTypes = {
+  accept: arrayOf(string).isRequired,
+  onDrop: func.isRequired,
+  multiple: boolean.isRequired,
+  tip: string.isRequired,
+  errorTip: string.isRequired,
+  info: string.isRequired,
+  errorInfo: string.isRequired,
+  image: string.isRequired
+};
 
 export default Dropzone;

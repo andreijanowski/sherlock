@@ -1,4 +1,4 @@
-import { string } from "prop-types";
+import { string, shape } from "prop-types";
 import { Field as FinalFormField } from "react-final-form";
 import { FontAwesomeIcon as Icon } from "@fortawesome/react-fontawesome";
 import { getError } from "./utils";
@@ -14,6 +14,16 @@ export const RawCheckbox = ({ input, error, label }) => (
     {error && <Error>{error}</Error>}
   </FieldWrapper>
 );
+
+RawCheckbox.propTypes = {
+  label: string.isRequired,
+  input: shape().isRequired,
+  error: string
+};
+
+RawCheckbox.defaultProps = {
+  error: ""
+};
 
 const Checkbox = ({ name, label }) => (
   <FinalFormField

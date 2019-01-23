@@ -14,20 +14,20 @@ export const IconWrapper = styled(Flex).attrs(p => ({
     p.deletePicture
       ? `rgb(${p.theme.colors.white})`
       : `rgba(
-      ${p.red ? p.theme.colors.red : p.theme.colors.green},
+      ${p.red ? p.theme.colors.ruby : p.theme.colors.green},
       0.1
     )`};
   border-radius: ${p => p.theme.radius.default};
   color: rgb(
     ${p =>
-      p.red || p.deletePicture ? p.theme.colors.red : p.theme.colors.green}
+      p.red || p.deletePicture ? p.theme.colors.ruby : p.theme.colors.green}
   );
   ${p => p.deletePicture && `position: absolute; top: 8px; right: 8px;`}
 
   &:hover {
     background-color: rgb(
       ${p =>
-        p.red || p.deletePicture ? p.theme.colors.red : p.theme.colors.green}
+        p.red || p.deletePicture ? p.theme.colors.ruby : p.theme.colors.green}
     );
     color: rgb(${p => p.theme.colors.white});
   }

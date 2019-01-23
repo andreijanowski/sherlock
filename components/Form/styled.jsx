@@ -20,7 +20,7 @@ export const LABEL_ACTIVE_SCALE = 0.7;
 export const RawInput = styled.input`
   border-radius: ${p => p.theme.radius.small};
   border: 1px solid
-    rgb(${p => (p.invalid ? p.theme.colors.red : p.theme.colors.snuff)});
+    rgb(${p => (p.invalid ? p.theme.colors.ruby : p.theme.colors.snuff)});
   padding: ${p => p.padding || "16px"};
   box-sizing: border-box;
   ${p => !p.rows && "height: 60px;"}
@@ -63,7 +63,7 @@ export const RawInput = styled.input`
   }
 
   &:invalid {
-    border-color: rgb(${p => p.theme.colors.red});
+    border-color: rgb(${p => p.theme.colors.ruby});
   }
 
   ${p =>
@@ -112,7 +112,7 @@ export const MultipleSelectWrapper = styled(FieldWrapper).attrs(p => ({
 }))`
   border-radius: ${p => p.theme.radius.small};
   border: 1px solid
-    rgb(${p => (p.invalid ? p.theme.colors.red : p.theme.colors.snuff)});
+    rgb(${p => (p.invalid ? p.theme.colors.ruby : p.theme.colors.snuff)});
   ${p => p.isActive && `border-color:rgb(${p.theme.colors.blue});`}
 `;
 
@@ -138,14 +138,14 @@ export const TagIcon = styled(FontAwesomeIcon).attrs({
   cursor: pointer;
 
   &:hover {
-    color: rgb(${p => p.theme.colors.red});
+    color: rgb(${p => p.theme.colors.ruby});
   }
 `;
 
 export const Error = styled.span`
   position: absolute;
   bottom: -${p => p.theme.fontSizes.f12};
-  color: rgb(${p => p.theme.colors.red});
+  color: rgb(${p => p.theme.colors.ruby});
   font-size: ${p => p.theme.fontSizes.f12};
 `;
 
@@ -256,7 +256,7 @@ export const Checkmark = styled(Flex).attrs({
   ${p =>
     !p.isChecked &&
     `border: 1px solid
-    rgb(${p.invalid ? p.theme.colors.red : p.theme.colors.snuff});`}
+    rgb(${p.invalid ? p.theme.colors.ruby : p.theme.colors.snuff});`}
 `;
 
 export const HiddenCheckboxInput = styled.input.attrs({

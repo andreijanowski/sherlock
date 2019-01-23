@@ -1,6 +1,7 @@
 import { PureComponent } from "react";
 import { Flex } from "@rebass/grid";
 import { NavBar, MainApp } from "components";
+import { node, boolean, func, string } from "prop-types";
 
 class AppLayout extends PureComponent {
   render() {
@@ -27,5 +28,20 @@ class AppLayout extends PureComponent {
     );
   }
 }
+
+AppLayout.propTypes = {
+  children: node.isRequired,
+  withMenu: boolean.isRequired,
+  menu: node,
+  mainIcon: string.isRequired,
+  header: string.isRequired,
+  t: func.isRequired,
+  lng: string.isRequired,
+  slug: string.isRequired
+};
+
+AppLayout.defaultProps = {
+  menu: null
+};
 
 export default AppLayout;

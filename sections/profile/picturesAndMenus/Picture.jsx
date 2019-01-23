@@ -1,3 +1,4 @@
+import { string } from "prop-types";
 import { PerfectSquare, ActionIcon } from "components";
 import { Image } from "../styled";
 
@@ -8,5 +9,9 @@ const Picture = ({ src }) => (
     </Image>
   </PerfectSquare>
 );
+
+Picture.propTypes = {
+  src: string.isRequired
+};
 
 export default Picture;

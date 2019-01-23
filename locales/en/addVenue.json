@@ -1,0 +1,10 @@
+{
+  "title": "Venue",
+  "description": "Let’s add some basic information",
+  "accountName": "What’s your Account name?",
+  "managerName": "What’s your Manager’s name?",
+  "venueName": "What’s your Venue name?",
+  "venueAddress": "What’s your Venue address?",
+  "venueNumber": "How many number of Venues?",
+  "startButton": "Get started now"
+}

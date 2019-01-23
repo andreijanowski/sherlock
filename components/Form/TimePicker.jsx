@@ -2,6 +2,7 @@ import { PureComponent, createRef } from "react";
 import Timekeeper from "react-timekeeper";
 import { Field as FinalFormField } from "react-final-form";
 import onClickOutside from "react-onclickoutside";
+import { shape, string, boolean } from "prop-types";
 import {
   FieldWrapper,
   RawInput,
@@ -98,6 +99,15 @@ class RawTimePicker extends PureComponent {
   }
 }
 
+RawTimePicker.propTypes = {
+  input: shape().isRequired,
+  meta: shape().isRequired,
+  name: string.isRequired,
+  disabled: boolean.isRequired,
+  placeholder: string.isRequired,
+  label: string.isRequired
+};
+
 const EnhancedRawTimePicker = onClickOutside(RawTimePicker);
 
 const TimePicker = ({ name, ...rest }) => (
@@ -108,5 +118,9 @@ const TimePicker = ({ name, ...rest }) => (
     )}
   />
 );
+
+TimePicker.propTypes = {
+  name: string.isRequired
+};
 
 export default TimePicker;

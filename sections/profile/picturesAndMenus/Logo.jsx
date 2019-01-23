@@ -1,4 +1,5 @@
 import { H3, DropzoneWithCropper } from "components";
+import { func } from "prop-types";
 
 const Logo = ({ t }) => (
   <>
@@ -19,5 +20,9 @@ const Logo = ({ t }) => (
     />
   </>
 );
+
+Logo.propTypes = {
+  t: func.isRequired
+};
 
 export default Logo;

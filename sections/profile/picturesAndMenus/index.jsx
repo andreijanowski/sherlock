@@ -1,3 +1,4 @@
+import { func } from "prop-types";
 import { Form } from "../styled";
 import Logo from "./Logo";
 import Pictures from "./Pictures";
@@ -17,5 +18,9 @@ const PicturesAndMenusForm = ({ t }) => (
     <MustTry {...{ t }} />
   </Form>
 );
+
+PicturesAndMenusForm.propTypes = {
+  t: func.isRequired
+};
 
 export default PicturesAndMenusForm;

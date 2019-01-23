@@ -1,6 +1,7 @@
 import { Flex } from "@rebass/grid";
 import { NotificationsCenter } from "components";
 import styled from "styled-components";
+import { shape, node, oneOfType, string, func, element } from "prop-types";
 import GlobalStyles from "utils/globalStyles";
 
 const AppContainer = styled(Flex)`
@@ -16,5 +17,15 @@ const MainLayout = ({ pageProps, slug, Component }) => (
     <NotificationsCenter />
   </AppContainer>
 );
+
+MainLayout.propTypes = {
+  pageProps: shape().isRequired,
+  Component: oneOfType([string, func, node, element]).isRequired,
+  slug: string
+};
+
+MainLayout.defaultProps = {
+  slug: ""
+};
 
 export default MainLayout;

@@ -1,6 +1,7 @@
 import { PureComponent } from "react";
 import matchSorter from "match-sorter";
 import onClickOutside from "react-onclickoutside";
+import { shape, arrayOf, number, string, boolean, func } from "prop-types";
 import {
   MultipleSelectWrapper,
   MultipleSelectInput,
@@ -140,5 +141,21 @@ class RawMultipleSelect extends PureComponent {
     );
   }
 }
+
+RawMultipleSelect.propTypes = {
+  input: shape().isRequired,
+  meta: shape().isRequired,
+  placeholder: string.isRequired,
+  items: arrayOf(shape()).isRequired,
+  maxItems: number.isRequired,
+  isOpen: boolean.isRequired,
+  getInputProps: func.isRequired,
+  getItemProps: func.isRequired,
+  highlightedIndex: number.isRequired,
+  inputValue: string.isRequired,
+  setInputValue: func.isRequired,
+  openMenu: func.isRequired,
+  closeMenu: func.isRequired
+};
 
 export default onClickOutside(RawMultipleSelect);

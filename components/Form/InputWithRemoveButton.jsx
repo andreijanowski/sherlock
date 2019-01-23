@@ -34,7 +34,8 @@ InputWithRemoveButton.propTypes = {
   fieldProps: shape(),
   label: string,
   placeholder: string,
-  type: string
+  type: string,
+  input: shape().isRequired
 };
 InputWithRemoveButton.defaultProps = {
   label: "",

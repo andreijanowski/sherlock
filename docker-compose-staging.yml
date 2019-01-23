@@ -1,0 +1,26 @@
+version: '3.4'
+services:
+  front:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.staging
+    hostname: "sherlock.staging.front"
+    labels:
+      - "netguru.appname=sherlock"
+      - "netguru.stage=staging"
+    env_file: /home/deploy/apps/sherlock-front/shared/secrets.env
+    environment:
+      - NODE_ENV=staging
+      - APP_URL=https://sherlock.staging.devguru.co
+      - VIRTUAL_HOST=sherlock.staging.devguru.co
+      - LETSENCRYPT_HOST=sherlock.staging.devguru.co
+      - LETSENCRYPT_EMAIL=devops-team@netguru.co
+    networks:
+      - frontend
+    expose:
+      - "3000"
+
+networks:
+  frontend:
+    external:
+      name: frontend

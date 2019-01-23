@@ -10,7 +10,6 @@ export const colors = {
   blue: "76, 104, 255",
   white: "255, 255, 255",
   background: "248, 249, 255",
-  orange: "243, 119, 15",
   deepSkyBlue: "15, 177, 243",
   navyBlue: "15, 87, 243",
   hanPurple: "107, 15, 243",
@@ -19,13 +18,15 @@ export const colors = {
   mischka: "165, 168, 175",
   brightGray: "61, 67, 78",
   snuff: "221, 223, 239",
-  red: "222, 17, 84",
   green: "3, 160, 79",
   bombay: "170, 172, 175",
-  lavenderGray: "180, 184, 209"
+  lavenderGray: "180, 184, 209",
+  ruby: "222, 17, 84",
+  carrotOrange: "243, 119, 15"
 };
 
 const fontSizes = {
+  f10: "10px",
   f12: "12px",
   f14: "14px",
   f16: "16px",
@@ -43,10 +44,17 @@ export const radius = {
   double: "12px"
 };
 
+const fontWeights = {
+  regular: 400,
+  semiBold: 600,
+  bold: 700
+};
+
 export const theme = {
   breakpoints,
   borderWeights,
   colors,
   fontSizes,
-  radius
+  radius,
+  fontWeights
 };

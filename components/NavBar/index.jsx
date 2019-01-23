@@ -1,4 +1,5 @@
 import { Link } from "components";
+import { func, string } from "prop-types";
 import {
   Wrapper,
   LogoWrapper,
@@ -115,5 +116,11 @@ const NavBar = ({ t, lng, slug }) => (
     </Item>
   </Wrapper>
 );
+
+NavBar.propTypes = {
+  t: func.isRequired,
+  lng: string.isRequired,
+  slug: string.isRequired
+};
 
 export default NavBar;

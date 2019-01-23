@@ -1,3 +1,4 @@
+import { func, shape, arrayOf, string } from "prop-types";
 import { H3, Paragraph } from "components";
 import Product from "./Product";
 
@@ -26,5 +27,11 @@ const MustTry = ({
     ))}
   </>
 );
+MustTry.propTypes = {
+  t: func.isRequired,
+  products: arrayOf(
+    shape({ photo: string.isRequired, name: string.isRequired })
+  ).isRequired
+};
 
 export default MustTry;

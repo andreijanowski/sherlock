@@ -1,0 +1,74 @@
+deploy: &deploy
+  working_directory: ~/repo
+  docker:
+    - image: circleci/ruby:2.4.3
+
+
+node_machine: &node_machine
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:10
+
+
+
+version: 2
+jobs:
+  checkout_code:
+    <<: *node_machine
+    steps:
+      - checkout
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - .
+
+  yarn_lint:
+    <<: *node_machine
+    working_directory: ~/repo
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - restore_cache:
+          keys:
+            - yarn-{{ checksum "yarn.lock" }}
+            - yarn -
+      - run: curl -o- -L https://yarnpkg.com/install.sh | bash
+      - run: yarn install
+      - save_cache:
+          key: yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/repo/node_modules
+      - run:
+          name: Run JS linter
+          command: yarn lint:js
+      - run:
+          name: Run CSS Linter
+          command: yarn lint:css
+
+  deploy_staging_front:
+    <<: *deploy
+    working_directory: ~/repo/deployment
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: bundle config
+          command: bundle config --local path ~/repo/deployment/vendor/bundle
+      - run:
+          name: Deploy to staging
+          command: bundle install; bundle exec cap staging deploy
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - checkout_code
+      # - yarn_lint:
+      #     requires:
+      #       - checkout_code
+      - deploy_staging_front:
+          requires:
+            - checkout_code
+          filters:
+            branches:
+              only: master

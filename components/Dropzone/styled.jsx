@@ -17,7 +17,7 @@ export const Wrapper = styled(Flex).attrs({
   ${p =>
     p.isDragActive &&
     (p.isDragReject
-      ? `background-color: rgb(${p.theme.colors.red}); cursor: no-drop`
+      ? `background-color: rgb(${p.theme.colors.ruby}); cursor: no-drop`
       : `background-color: rgb(${p.theme.colors.background});`)};
 
   ${p =>
