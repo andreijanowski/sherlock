@@ -5,7 +5,7 @@ const borderWeights = {
   normal: "3px"
 };
 
-const colors = {
+export const colors = {
   dark: "42, 47, 56",
   blue: "76, 104, 255",
   white: "255, 255, 255",
@@ -15,11 +15,18 @@ const colors = {
   navyBlue: "15, 87, 243",
   hanPurple: "107, 15, 243",
   limeade: "90, 175, 51",
-  brightGrey: "79, 83, 92",
-  mischka: "165, 168, 175"
+  abbey: "79, 83, 92",
+  mischka: "165, 168, 175",
+  brightGray: "61, 67, 78",
+  snuff: "221, 223, 239",
+  red: "222, 17, 84",
+  green: "3, 160, 79",
+  bombay: "170, 172, 175",
+  lavenderGray: "180, 184, 209"
 };
 
 const fontSizes = {
+  f12: "12px",
   f14: "14px",
   f16: "16px",
   f18: "18px",
@@ -30,12 +37,12 @@ const fontSizes = {
   f56: "56px"
 };
 
-const radius = {
+export const radius = {
+  small: "4px",
   default: "6px",
   double: "12px"
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export const theme = {
   breakpoints,
   borderWeights,

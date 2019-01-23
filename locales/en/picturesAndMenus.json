@@ -1,0 +1,13 @@
+{
+  "header": "Pictures and Menus",
+  "logo": "Logo",
+  "chooseOrDragFile": "Choose a file or drag it here",
+  "picturesInfo": "png or jpeg file",
+  "someFilesAreInvalid": "Some of dragged files are not valid",
+  "validFiles": "Please drop single png or jpeg file",
+  "uploadCoverPicture": "Upload Cover Picture",
+  "uploadCoverPictureTip": "Please insert a high quality picture/photo that shows the atmosphereof your business (preferably the interior).",
+  "menu": "Menu",
+  "mustTry": "Must try",
+  "mustTryTip": "If you feel there is a dish you would recommend to have at this particular place, please, let us know and share a picture of it."
+}

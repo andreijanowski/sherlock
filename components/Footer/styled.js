@@ -46,7 +46,7 @@ export const ColumnTitle = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.f14};
   font-weight: 600;
   line-height: 24px;
-  color: ${({ theme }) => theme.colors.brightGrey};
+  color: ${({ theme }) => theme.colors.abbey};
   margin: 0 0 15px 0;
 `;
 
@@ -62,7 +62,7 @@ export const NavigationLink = styled.a`
   line-height: 35px;
   text-decoration: none;
   &:hover {
-    color: rgb(${({ theme }) => theme.colors.brightGrey});
+    color: rgb(${({ theme }) => theme.colors.abbey});
   }
 `;
 

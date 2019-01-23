@@ -9,10 +9,10 @@ const AppContainer = styled(Flex)`
   overflow: hidden;
 `;
 
-const MainLayout = ({ pageProps, Component }) => (
+const MainLayout = ({ pageProps, slug, Component }) => (
   <AppContainer flexDirection="column" alignItems="center">
     <GlobalStyles />
-    <Component {...pageProps} />
+    <Component {...{ ...pageProps, slug }} />
     <NotificationsCenter />
   </AppContainer>
 );
