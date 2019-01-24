@@ -63,7 +63,11 @@ class MyApp extends App {
 export default withRedux(createStore)(
   withReduxSaga({ async: true })(
     connect(
-      state => ({ slug: state.app.currentBusiness.slug }),
+      state => ({
+        slug: state.users.currentBusiness.data
+          ? state.users.currentBusiness.data.slug
+          : undefined
+      }),
       {
         startApp
       }

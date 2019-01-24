@@ -10,7 +10,7 @@ import {
 import { Form as FinalForm, Field } from "react-final-form";
 import { required, maxLength } from "utils/validators";
 import iso3166 from "iso-3166-2";
-import { func } from "prop-types";
+import { func, shape } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import { Form } from "../styled";
 
@@ -27,8 +27,9 @@ const getSubdivisions = country =>
     label: i[1].name.replace(", City of", "")
   }));
 
-const BasicInformationForm = ({ t }) => (
+const BasicInformationForm = ({ t, initialValues }) => (
   <FinalForm
+    initialValues={initialValues}
     onSubmit={v => console.log(v)}
     render={({ values }) => (
       <Form>
@@ -220,7 +221,7 @@ const BasicInformationForm = ({ t }) => (
         />
         <H3 mt={4}>{t("additionalInformation")}</H3>
         <FormInput
-          name="role"
+          name="ownerRole"
           label={t("roleLabel")}
           placeholder={t("rolePlaceholder")}
         />
@@ -235,7 +236,8 @@ const BasicInformationForm = ({ t }) => (
 );
 
 BasicInformationForm.propTypes = {
-  t: func.isRequired
+  t: func.isRequired,
+  initialValues: shape().isRequired
 };
 
 export default BasicInformationForm;

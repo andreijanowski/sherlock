@@ -31,17 +31,20 @@ class AppLayout extends PureComponent {
 
 AppLayout.propTypes = {
   children: node.isRequired,
-  withMenu: bool.isRequired,
+  withMenu: bool,
   menu: node,
-  mainIcon: string.isRequired,
-  header: string.isRequired,
+  mainIcon: string,
+  header: string,
   t: func.isRequired,
   lng: string.isRequired,
   slug: string.isRequired
 };
 
 AppLayout.defaultProps = {
-  menu: null
+  menu: null,
+  withMenu: false,
+  mainIcon: null,
+  header: null
 };
 
 export default AppLayout;

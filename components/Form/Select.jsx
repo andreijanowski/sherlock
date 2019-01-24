@@ -170,8 +170,13 @@ FormSelect.propTypes = {
   placeholder: string.isRequired,
   items: arrayOf(shape()).isRequired,
   label: string.isRequired,
-  disabled: bool.isRequired,
-  showFlag: bool.isRequired
+  disabled: bool,
+  showFlag: bool
+};
+
+FormSelect.defaultProps = {
+  disabled: false,
+  showFlag: false
 };
 
 export default FormSelect;

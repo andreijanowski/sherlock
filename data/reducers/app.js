@@ -3,11 +3,7 @@ import { APP_START, SAGA_START } from "types/app";
 const reducer = (
   state = {
     appStarted: false,
-    sagaStarted: false,
-    // TODO: Real data here
-    currentBusiness: {
-      slug: "le-cinq"
-    }
+    sagaStarted: false
   },
   { type }
 ) => {

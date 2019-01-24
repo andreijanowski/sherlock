@@ -151,11 +151,15 @@ RawMultipleSelect.propTypes = {
   isOpen: bool.isRequired,
   getInputProps: func.isRequired,
   getItemProps: func.isRequired,
-  highlightedIndex: number.isRequired,
+  highlightedIndex: number,
   inputValue: string.isRequired,
   setInputValue: func.isRequired,
   openMenu: func.isRequired,
   closeMenu: func.isRequired
+};
+
+RawMultipleSelect.defaultProps = {
+  highlightedIndex: undefined
 };
 
 export default onClickOutside(RawMultipleSelect);

@@ -1,6 +1,10 @@
 import { takeEvery, put, all, select, takeLatest } from "redux-saga/effects";
 import { REHYDRATE } from "redux-persist";
-import { fetchProfile } from "actions/users";
+import {
+  fetchProfile,
+  fetchProfileBusinesses,
+  fetchProfileBusiness
+} from "actions/users";
 import { Router } from "routes";
 import {
   LOGIN_SUCCESS,
@@ -21,6 +25,12 @@ function* initialTokenRefresh() {
 
 function* fetchUserData() {
   yield put(fetchProfile());
+  const {
+    rawData: { data }
+  } = yield put.resolve(fetchProfileBusinesses());
+  if (data && data.length) {
+    yield put(fetchProfileBusiness(data[0].id));
+  }
 }
 
 function* redirectHomepage() {
@@ -28,7 +38,7 @@ function* redirectHomepage() {
 }
 
 function* redirectToRegisterPage() {
-  yield put(Router.pushRoute("/register"));
+  yield put(Router.pushRoute("/register/"));
 }
 
 export default all([

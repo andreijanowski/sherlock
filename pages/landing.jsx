@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import withI18next from "lib/withI18next";
+import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
 import { func, string } from "prop-types";
 import { Footer } from "components";
@@ -57,4 +58,4 @@ Home.propTypes = {
   lng: string.isRequired
 };
 
-export default withI18next(namespaces)(Home);
+export default requireAuth(false)(withI18next(namespaces)(Home));

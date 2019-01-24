@@ -31,7 +31,7 @@ if (isServer) {
 
 // eslint-disable-next-line no-undef
 if (!isServer && window.location.host === "localhost:3000") {
-  headers.NETGURU_DEV_PASSWORD = NETGURU_DEV_PASSWORD;
+  headers.NETGURU = NETGURU_DEV_PASSWORD;
 }
 
 export const client = axios.create({

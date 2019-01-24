@@ -8,5 +8,6 @@
       "additionalInformation": "Additional Information",
       "inviteYourTeam": "Invite your team"
     }
-  }
+  },
+  "loading": "Loading data..."
 }

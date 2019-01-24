@@ -1,6 +1,7 @@
 import { PureComponent } from "react";
 import withI18next from "lib/withI18next";
 import loadTranslations from "utils/loadTranslations";
+import requireAuth from "lib/requireAuth";
 import { func, string } from "prop-types";
 import { SingleActionView } from "components";
 import SignInForm from "sections/login/SignInForm";
@@ -37,4 +38,4 @@ Login.propTypes = {
   lng: string.isRequired
 };
 
-export default withI18next(namespaces)(Login);
+export default requireAuth(false)(withI18next(namespaces)(Login));

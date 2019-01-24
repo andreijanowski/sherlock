@@ -26,10 +26,12 @@ const MainApp = ({ withMenu, mainIcon, header, children }) => {
     <Wrapper {...{ withMenu }}>
       <HeaderWrapper>
         <Flex alignItems="center">
-          <MainIconWrapper>
-            <MainIcon>{mainIcon}</MainIcon>
-          </MainIconWrapper>
-          <Header>{header}</Header>
+          {mainIcon && (
+            <MainIconWrapper>
+              <MainIcon />
+            </MainIconWrapper>
+          )}
+          {header && <Header>{header}</Header>}
         </Flex>
         <Flex>
           <Icon>
@@ -51,9 +53,14 @@ const MainApp = ({ withMenu, mainIcon, header, children }) => {
 
 MainApp.propTypes = {
   withMenu: bool.isRequired,
-  mainIcon: string.isRequired,
-  header: string.isRequired,
+  mainIcon: string,
+  header: string,
   children: node.isRequired
+};
+
+MainApp.defaultProps = {
+  mainIcon: "",
+  header: ""
 };
 
 export default MainApp;

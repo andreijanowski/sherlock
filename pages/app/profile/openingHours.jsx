@@ -1,5 +1,6 @@
 import { PureComponent } from "react";
 import withI18next from "lib/withI18next";
+import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
 import { func, string } from "prop-types";
 import AppLayout from "layout/App";
@@ -40,4 +41,4 @@ OpeningHours.propTypes = {
   slug: string.isRequired
 };
 
-export default withI18next(namespaces)(OpeningHours);
+export default requireAuth(true)(withI18next(namespaces)(OpeningHours));
