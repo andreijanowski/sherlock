@@ -26,12 +26,12 @@ const AdditionalInformationForm = ({ t }) => (
   <FinalForm
     onSubmit={v => console.log(v)}
     render={({ handleSubmit }) => (
-      <Form onSubmit={handleSubmit} width={[1, 1, 1]} mx={0}>
+      <Form onSubmit={handleSubmit}>
         <H3>{t("timeOfTheDay")}</H3>
         <Flex flexWrap="wrap">
-          {timeOfTheDay.map(i => (
+          {timeOfTheDay.map(time => (
             <Box width={1 / 2}>
-              <FormCheckbox name={i} key={i} label={t(i)} />
+              <FormCheckbox name={time} key={time} label={t(time)} />
             </Box>
           ))}
         </Flex>
@@ -73,9 +73,9 @@ const AdditionalInformationForm = ({ t }) => (
         />
         <H3 mt={3}>{t("paymentMethods")}</H3>
         <Flex flexWrap="wrap">
-          {paymentMethods.map(i => (
+          {paymentMethods.map(method => (
             <Box width={1 / 2}>
-              <FormCheckbox name={i} key={i} label={t(i)} />
+              <FormCheckbox name={method} key={method} label={t(method)} />
             </Box>
           ))}
         </Flex>

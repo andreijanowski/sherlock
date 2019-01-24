@@ -10,16 +10,16 @@ import { Form } from "../styled";
 const countriesPhoneCodes = [];
 Object.entries(countries)
   .sort((a, b) => (a[1].name < b[1].name ? -1 : 1))
-  .forEach(i => {
-    const phoneCodes = i[1].phone.split(",");
-    phoneCodes.forEach(p => {
+  .forEach(country => {
+    const phoneCodes = country[1].phone.split(",");
+    phoneCodes.forEach(code => {
       countriesPhoneCodes.push({
-        label: `+${p}`,
+        label: `+${code}`,
         value: {
-          code: i[0],
-          name: i[1].name,
-          native: i[1].native,
-          prefix: p
+          code: country[0],
+          name: country[1].name,
+          native: country[1].native,
+          prefix: code
         }
       });
     });
@@ -29,7 +29,7 @@ const ContactInformationForm = ({ t }) => (
   <FinalForm
     onSubmit={v => console.log(v)}
     render={({ handleSubmit }) => (
-      <Form onSubmit={handleSubmit} width={[1, 1, 1]} mx={0}>
+      <Form onSubmit={handleSubmit}>
         <H3>{t("contactInformation")}</H3>
         <FormInput
           name="name"

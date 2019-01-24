@@ -91,7 +91,7 @@ class RawMultipleSelect extends PureComponent {
     const error = getError(meta);
     const selectItems = this.getItems(inputValue, items);
     return (
-      <div>
+      <>
         <MultipleSelectWrapper
           onClick={() => this.handleFocus()}
           isActive={meta.active}
@@ -137,7 +137,7 @@ class RawMultipleSelect extends PureComponent {
             ))}
           </Items>
         )}
-      </div>
+      </>
     );
   }
 }

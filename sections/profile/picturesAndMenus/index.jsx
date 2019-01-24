@@ -6,7 +6,7 @@ import Menu from "./Menu";
 import MustTry from "./MustTry";
 
 const PicturesAndMenusForm = ({ t }) => (
-  <Form width={[1, 1, 1]} mx={0}>
+  <Form>
     <Logo {...{ t }} />
     <Pictures {...{ t }} />
     <Menu
