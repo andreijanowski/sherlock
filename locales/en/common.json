@@ -1,4 +1,6 @@
 {
   "login": "Login",
-  "foodetectiveCompany": "a foodetective company"
+  "foodetectiveCompany": "a foodetective company",
+  "accept": "accept",
+  "cancel": "cancel"
 }

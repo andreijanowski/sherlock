@@ -70,9 +70,12 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     case FETCH_PROFILE_BUSINESSES_SUCCESS: {
       const newState = state;
+      const businesses = build(payload.data, "businesses", null, {
+        ignoreLinks: true
+      });
       newState.profileBusinesses.isFetching = false;
       newState.profileBusinesses.isSucceeded = true;
-      newState.profileBusinesses.data = payload.rawData.data;
+      newState.profileBusinesses.data = businesses;
       return { ...newState };
     }
     case FETCH_PROFILE_BUSINESSES_FAIL: {

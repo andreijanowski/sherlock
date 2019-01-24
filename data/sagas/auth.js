@@ -5,6 +5,7 @@ import {
   fetchProfileBusinesses,
   fetchProfileBusiness
 } from "actions/users";
+import { fetchGroups } from "actions/groups";
 import { Router } from "routes";
 import {
   LOGIN_SUCCESS,
@@ -25,6 +26,7 @@ function* initialTokenRefresh() {
 
 function* fetchUserData() {
   yield put(fetchProfile());
+  yield put(fetchGroups());
   const {
     rawData: { data }
   } = yield put.resolve(fetchProfileBusinesses());

@@ -27,6 +27,7 @@ class MyApp extends App {
     }
 
     pageProps.query = ctx.query;
+    pageProps.pathname = ctx.pathname;
 
     return { pageProps };
   }
@@ -36,10 +37,23 @@ class MyApp extends App {
     props.startApp();
   }
 
+  componentDidMount() {
+    // console.log(this.props.pageProps.pathname);
+  }
+
+  componentDidUpdate(prevProps) {
+    const {
+      pageProps: { pathname: prevPathname }
+    } = prevProps;
+    const {
+      pageProps: { pathname }
+    } = this.props;
+    console.log(prevPathname, pathname);
+  }
+
   render() {
     const { Component, pageProps, store, slug } = this.props;
     const { i18n, initialI18nStore, initialLanguage } = pageProps || {};
-
     return (
       <Container>
         <Provider store={store}>
