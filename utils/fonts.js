@@ -13,7 +13,7 @@ export default `
         src: url("/static/fonts/Inter-UI-Italic.woff2") format("woff2"),
             url("/static/fonts/Inter-UI-Italic.woff") format("woff");
     }
-  
+
     @font-face {
         font-family: 'Inter UI';
         font-style:  normal;
@@ -28,7 +28,7 @@ export default `
         src: url("/static/fonts/Inter-UI-MediumItalic.woff2") format("woff2"),
             url("/static/fonts/Inter-UI-MediumItalic.woff") format("woff");
     }
-  
+
     @font-face {
         font-family: 'Inter UI';
         font-style:  normal;
@@ -43,7 +43,7 @@ export default `
         src: url("/static/fonts/Inter-UI-SemiBoldItalic.woff2") format("woff2"),
             url("/static/fonts/Inter-UI-SemiBoldItalic.woff") format("woff");
     }
-  
+
     @font-face {
         font-family: 'Inter UI';
         font-style:  normal;
@@ -58,7 +58,7 @@ export default `
         src: url("/static/fonts/Inter-UI-BoldItalic.woff2") format("woff2"),
             url("/static/fonts/Inter-UI-BoldItalic.woff") format("woff");
     }
-  
+
     @font-face {
         font-family: 'Inter UI';
         font-style:  normal;
@@ -73,7 +73,7 @@ export default `
         src: url("/static/fonts/Inter-UI-ExtraBoldItalic.woff2") format("woff2"),
             url("/static/fonts/Inter-UI-ExtraBoldItalic.woff") format("woff");
     }
-  
+
     @font-face {
         font-family: 'Inter UI';
         font-style:  normal;
@@ -88,31 +88,11 @@ export default `
         src: url("/static/fonts/Inter-UI-BlackItalic.woff2") format("woff2"),
             url("/static/fonts/Inter-UI-BlackItalic.woff") format("woff");
     }
-  
     @font-face {
         font-family: 'Inter UI var';
         font-weight: 400 900;
         font-style: oblique 0deg 10deg;
         src: url("/static/fonts/Inter-UI.var.woff2") format("woff2-variations"),
             url("/static/fonts/Inter-UI.var.woff2") format("woff2");
-    }
-    
-    @font-face {
-        font-family: 'Inter UI var alt';
-        font-weight: 400 900;
-        font-style: normal;
-        font-named-instance: 'Regular';
-        src: url("/static/fonts/Inter-UI-upright.var.woff2") format("woff2 supports variations(gvar)"),
-            url("/static/fonts/Inter-UI-upright.var.woff2") format("woff2-variations"),
-            url("/static/fonts/Inter-UI-upright.var.woff2") format("woff2");
-    }
-    @font-face {
-        font-family: 'Inter UI var alt';
-        font-weight: 400 900;
-        font-style: italic;
-        font-named-instance: 'Italic';
-        src: url("/static/fonts/Inter-UI-italic.var.woff2") format("woff2 supports variations(gvar)"),
-            url("/static/fonts/Inter-UI-italic.var.woff2") format("woff2-variations"),
-            url("/static/fonts/Inter-UI-italic.var.woff2") format("woff2");
     }
 `;
