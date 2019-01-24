@@ -23,9 +23,10 @@
   "perfectFor": "Perfect for:",
   "perfectForPlaceholder": "first date",
   "diet": "Diet",
-  "dietPlaceholer": "Vegan",
+  "dietPlaceholder": "Vegan",
   "additionalInformation": "Additional information:",
   "roleLabel": "What is your role? (optional)",
   "rolePlaceholder": "Owner",
-  "bioLabel": "Restaurant Bio (optional)"
+  "bioLabel": "Restaurant Bio (optional)",
+  "bioPlaceholder": "It's a small place in..."
 }
