@@ -3,7 +3,7 @@ import { PerfectSquare, ActionIcon } from "components";
 import { Image } from "../styled";
 
 const Picture = ({ src }) => (
-  <PerfectSquare width={1}>
+  <PerfectSquare>
     <Image {...{ src }}>
       <ActionIcon deletePicture size="sm" icon={["fa", "times"]} />
     </Image>

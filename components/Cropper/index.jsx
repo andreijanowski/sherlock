@@ -70,7 +70,7 @@ class Cropper extends PureComponent {
 
 Cropper.propTypes = {
   src: string.isRequired,
-  aspectRatio: number.isRequired,
+  aspectRatio: number,
   isVisible: bool.isRequired,
   hide: func.isRequired,
   accept: string.isRequired,
@@ -79,5 +79,7 @@ Cropper.propTypes = {
   maxHeight: number.isRequired,
   onCrop: func.isRequired
 };
+
+Cropper.defaultProps = { aspectRatio: undefined };
 
 export default Cropper;

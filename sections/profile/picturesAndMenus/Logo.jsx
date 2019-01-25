@@ -1,28 +1,39 @@
-import { H3, DropzoneWithCropper } from "components";
-import { func } from "prop-types";
+import { H3, DropzoneWithCropper, PerfectSquare } from "components";
+import { func, shape, string } from "prop-types";
+import { Flex } from "@rebass/grid";
 
-const Logo = ({ t }) => (
+const Logo = ({ t, logo, saveLogo }) => (
   <>
     <H3>{t("logo")}</H3>
-    <DropzoneWithCropper
-      tip={t("chooseOrDragFile")}
-      info={t("picturesInfo")}
-      errorTip={t("someFilesAreInvalid")}
-      errorInfo={t("validFiles")}
-      accept={t("common:accept")}
-      cancel={t("common:cancel")}
-      multiple={false}
-      maxWidth={4096}
-      maxHeight={4096}
-      // eslint-disable-next-line no-unused-vars
-      saveImage={image => null}
-      aspectRatio={1}
-    />
+    <Flex width={[1 / 2, 1 / 4]}>
+      <PerfectSquare>
+        <DropzoneWithCropper
+          tip={t("chooseOrDragFile")}
+          info={t("picturesInfo")}
+          errorTip={t("someFilesAreInvalid")}
+          errorInfo={t("validFiles")}
+          accept={t("common:accept")}
+          cancel={t("common:cancel")}
+          multiple={false}
+          maxWidth={300}
+          maxHeight={300}
+          image={logo.url ? `${logo.url}?${new Date().getTime()}` : undefined}
+          saveImage={saveLogo}
+          aspectRatio={1}
+        />
+      </PerfectSquare>
+    </Flex>
   </>
 );
 
 Logo.propTypes = {
-  t: func.isRequired
+  t: func.isRequired,
+  logo: shape({ url: string }),
+  saveLogo: func.isRequired
+};
+
+Logo.defaultProps = {
+  logo: {}
 };
 
 export default Logo;

@@ -2,9 +2,12 @@ import { PureComponent } from "react";
 import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
-import { func, string } from "prop-types";
+import { func, string, shape } from "prop-types";
 import AppLayout from "layout/App";
 import Form from "sections/profile/picturesAndMenus";
+import { connect } from "react-redux";
+import { patchBusiness } from "actions/businesses";
+import { getInitialValues } from "sections/profile/picturesAndMenus/utils";
 
 const namespaces = ["picturesAndMenus", "app"];
 
@@ -17,8 +20,19 @@ class PicturesAndMenus extends PureComponent {
     };
   }
 
+  saveLogo = async logo => {
+    try {
+      const { updateBusiness, slug } = this.props;
+      return updateBusiness(slug, { logo });
+    } catch (e) {
+      console.log(e);
+      return e;
+    }
+  };
+
   render() {
-    const { t, lng, slug } = this.props;
+    const { t, lng, slug, business } = this.props;
+    const initialValues = getInitialValues(business);
     return (
       <AppLayout
         {...{
@@ -29,7 +43,7 @@ class PicturesAndMenus extends PureComponent {
           slug
         }}
       >
-        <Form {...{ t }} />
+        <Form {...{ t, initialValues, saveLogo: this.saveLogo }} />
       </AppLayout>
     );
   }
@@ -38,7 +52,22 @@ class PicturesAndMenus extends PureComponent {
 PicturesAndMenus.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  slug: string.isRequired
+  slug: string.isRequired,
+  updateBusiness: func.isRequired,
+  business: shape()
 };
 
-export default requireAuth(true)(withI18next(namespaces)(PicturesAndMenus));
+PicturesAndMenus.defaultProps = {
+  business: null
+};
+
+export default requireAuth(true)(
+  withI18next(namespaces)(
+    connect(
+      state => ({
+        business: state.users.currentBusiness.data
+      }),
+      { updateBusiness: patchBusiness }
+    )(PicturesAndMenus)
+  )
+);

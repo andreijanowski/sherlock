@@ -14,6 +14,8 @@ export const Wrapper = styled(Flex).attrs({
   border: 1px dashed rgb(${p => p.theme.colors.snuff});
   cursor: pointer;
   overflow: hidden;
+  text-align: center;
+
   ${p =>
     p.isDragActive &&
     (p.isDragReject
