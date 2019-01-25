@@ -1,6 +1,7 @@
 import { PureComponent } from "react";
 import matchSorter from "match-sorter";
 import onClickOutside from "react-onclickoutside";
+import { LoadingIndicator } from "components";
 import { shape, arrayOf, number, string, bool, func } from "prop-types";
 import {
   MultipleSelectWrapper,
@@ -9,7 +10,8 @@ import {
   Items,
   Item,
   Tag,
-  TagIcon
+  TagIcon,
+  LoadingWrapper
 } from "./styled";
 import { getError } from "./utils";
 
@@ -116,6 +118,11 @@ class RawMultipleSelect extends PureComponent {
             })}
           />
           {error && <Error>{error}</Error>}
+          {meta.data.saving && !meta.active && (
+            <LoadingWrapper>
+              <LoadingIndicator />
+            </LoadingWrapper>
+          )}
         </MultipleSelectWrapper>
         {isOpen && selectItems.length > 0 && input.value.length < maxItems && (
           <Items>

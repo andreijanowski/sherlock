@@ -37,19 +37,21 @@ class MyApp extends App {
     props.startApp();
   }
 
-  componentDidMount() {
-    // console.log(this.props.pageProps.pathname);
-  }
+  // componentDidMount() {
+  //   // console.log(this.props.pageProps.pathname);
+  // }
 
-  componentDidUpdate(prevProps) {
-    const {
-      pageProps: { pathname: prevPathname }
-    } = prevProps;
-    const {
-      pageProps: { pathname }
-    } = this.props;
-    console.log(prevPathname, pathname);
-  }
+  // componentDidUpdate(prevProps) {
+  //   const {
+  //     pageProps: { pathname: prevPathname }
+  //   } = prevProps;
+  //   const {
+  //     pageProps: { pathname }
+  //   } = this.props;
+
+  //   // TODO: Use conditional fetching related to pathname
+  //   // console.log(prevPathname, pathname);
+  // }
 
   render() {
     const { Component, pageProps, store, slug } = this.props;

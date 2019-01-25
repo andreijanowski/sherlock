@@ -1,0 +1,25 @@
+version: '3.4'
+services:
+  front:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.staging
+    hostname: "sherlock.integration.front"
+    labels:
+      - "netguru.appname=sherlock"
+      - "netguru.stage=integration"
+    env_file: /home/deploy/apps/sherlock-front/shared/secrets.env
+    environment:
+      - NODE_ENV=integration
+      - APP_URL=https://$PULL_REQUEST_NUMBER.sherlock.integration.devguru.co
+      - VIRTUAL_HOST=$PULL_REQUEST_NUMBER.sherlock.integration.devguru.co
+      - PULL_REQUEST_ID=netguru/sherlock#$PULL_REQUEST_NUMBER
+    networks:
+      - frontend
+    expose:
+      - "3000"
+
+networks:
+  frontend:
+    external:
+      name: frontend

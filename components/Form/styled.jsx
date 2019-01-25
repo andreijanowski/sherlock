@@ -17,7 +17,7 @@ export const FieldWrapper = styled(Flex).attrs({
 
 export const LABEL_ACTIVE_SCALE = 0.7;
 
-export const RawInput = styled.input`
+export const RawInput = styled(({ smallLabel, ...p }) => <input {...p} />)`
   border-radius: ${p => p.theme.radius.small};
   border: 1px solid
     rgb(${p => (p.invalid ? p.theme.colors.ruby : p.theme.colors.snuff)});
@@ -278,4 +278,16 @@ export const ActionIconWrapper = styled.div`
   position: absolute;
   right: 10px;
   top: 10px;
+`;
+
+export const LoadingWrapper = styled(Flex).attrs({
+  width: 1,
+  alignItems: "center",
+  justifyContent: "center"
+})`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: rgba(${p => p.theme.colors.background}, 0.5);
 `;

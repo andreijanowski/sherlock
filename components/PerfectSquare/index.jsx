@@ -5,6 +5,7 @@ import { node } from "prop-types";
 
 const Square = styled(Flex)`
   height: ${p => p.height}px;
+  position: relative;
 `;
 
 class PerfectSquare extends PureComponent {

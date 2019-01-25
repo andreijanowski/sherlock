@@ -1,42 +1,22 @@
 import React from "react";
-import { func } from "prop-types";
-import { required, validateEmail } from "utils/validators";
+import { func, shape } from "prop-types";
+import { validateEmail } from "utils/validators";
 import { Form as FinalForm, Field } from "react-final-form";
-import { H3, FormInput, FormSelect } from "components";
-import { countries } from "countries-list";
+import { H3, FormInput, FormSelect, AutoSave } from "components";
 import { Flex, Box } from "@rebass/grid";
+import setFieldData from "final-form-set-field-data";
 import { Form } from "../styled";
+import { countriesPhoneCodes } from "./utils";
 
-const countriesPhoneCodes = [];
-Object.entries(countries)
-  .sort((a, b) => (a[1].name < b[1].name ? -1 : 1))
-  .forEach(i => {
-    const phoneCodes = i[1].phone.split(",");
-    phoneCodes.forEach(p => {
-      countriesPhoneCodes.push({
-        label: `+${p}`,
-        value: {
-          code: i[0],
-          name: i[1].name,
-          native: i[1].native,
-          prefix: p
-        }
-      });
-    });
-  });
-
-const ContactInformationForm = ({ t }) => (
+const ContactInformationForm = ({ t, initialValues, handleSubmit }) => (
   <FinalForm
-    onSubmit={v => console.log(v)}
-    render={({ handleSubmit }) => (
-      <Form onSubmit={handleSubmit} width={[1, 1, 1]} mx={0}>
+    initialValues={initialValues}
+    onSubmit={handleSubmit}
+    mutators={{ setFieldData }}
+    render={({ form: { mutators } }) => (
+      <Form>
+        <AutoSave setFieldData={mutators.setFieldData} save={handleSubmit} />
         <H3>{t("contactInformation")}</H3>
-        <FormInput
-          name="name"
-          validate={required(t)}
-          label={t("nameLabel")}
-          placeholder={t("namePlaceholder")}
-        />
         <FormInput
           name="email"
           validate={validateEmail(t)}
@@ -46,7 +26,7 @@ const ContactInformationForm = ({ t }) => (
         <Flex mx={-2}>
           <Box width={1 / 3} px={2}>
             <Field
-              name="country"
+              name="phoneCountry"
               component={FormSelect}
               label={t("countryLabel")}
               placeholder={t("countryPlaceholder")}
@@ -78,7 +58,13 @@ const ContactInformationForm = ({ t }) => (
 );
 
 ContactInformationForm.propTypes = {
-  t: func.isRequired
+  t: func.isRequired,
+  initialValues: shape(),
+  handleSubmit: func.isRequired
+};
+
+ContactInformationForm.defaultProps = {
+  initialValues: undefined
 };
 
 export default ContactInformationForm;

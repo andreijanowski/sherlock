@@ -1,13 +1,32 @@
-import React, { PureComponent } from "react";
+import { PureComponent, createRef } from "react";
 import { Field as FinalFormField } from "react-final-form";
-import { string, func } from "prop-types";
-import { PerfectSquare } from "components";
-import { CheckboxLabel, Checkbox, CheckboxText } from "./styled";
+import { string, func, shape } from "prop-types";
+import { PerfectSquare, LoadingIndicator } from "components";
+import {
+  CheckboxLabel,
+  Checkbox,
+  CheckboxText,
+  LoadingWrapper
+} from "./styled";
 
 class BigCheckbox extends PureComponent {
-  handleChange = (e, input) => {
-    Promise.all([input.onChange(e)]).then(() =>
-      Promise.all([this.ref.focus()]).then(() => this.ref.blur())
+  checkbox = createRef();
+
+  handleChange = (e, input, checkedValues) => {
+    const checkboxValue = JSON.parse(e.target.value);
+    const isChecked = e.target.checked;
+    let newValue;
+    if (isChecked) {
+      newValue = [...checkedValues, checkboxValue];
+    } else {
+      newValue = [
+        ...checkedValues.filter(v => v.value !== checkboxValue.value)
+      ];
+    }
+    Promise.all([input.onChange(newValue)]).then(() =>
+      Promise.all([this.checkbox.current.focus()]).then(() =>
+        this.checkbox.current.blur()
+      )
     );
   };
 
@@ -24,24 +43,28 @@ class BigCheckbox extends PureComponent {
           if (meta.touched) {
             setError(meta.error);
           }
+          const isChecked =
+            checkedValues && checkedValues.some(v => v.value === value.value);
           return (
             <PerfectSquare width={1}>
               <CheckboxLabel
-                checked={checkedValues.includes(value)}
-                error={
-                  checkedValues.includes(value) && meta.touched && meta.error
-                }
+                checked={isChecked}
+                error={isChecked && meta.touched && meta.error}
               >
                 <Checkbox
-                  ref={r => {
-                    this.ref = r;
-                  }}
+                  ref={this.checkbox}
                   {...input}
-                  onChange={e => this.handleChange(e, input, meta)}
-                  checked={checkedValues.includes(value)}
+                  value={JSON.stringify(value)}
+                  onChange={e => this.handleChange(e, input, checkedValues)}
+                  checked={isChecked}
                 />
                 <CheckboxText>{label}</CheckboxText>
               </CheckboxLabel>
+              {meta.data.saving && !meta.active && (
+                <LoadingWrapper>
+                  <LoadingIndicator />
+                </LoadingWrapper>
+              )}
             </PerfectSquare>
           );
         }}
@@ -53,7 +76,7 @@ class BigCheckbox extends PureComponent {
 BigCheckbox.propTypes = {
   name: string.isRequired,
   setError: func.isRequired,
-  value: string.isRequired,
+  value: shape().isRequired,
   label: string.isRequired
 };
 

@@ -1,36 +1,24 @@
 import React from "react";
-import { func } from "prop-types";
+import { func, shape } from "prop-types";
 import { Form as FinalForm, Field } from "react-final-form";
-import { H3, FormCheckbox, FormSelect, FormInput } from "components";
-import cc from "currency-codes";
+import { H3, FormCheckbox, FormSelect, FormInput, AutoSave } from "components";
 import { Flex, Box } from "@rebass/grid";
+import setFieldData from "final-form-set-field-data";
 import { Form } from "../styled";
+import { timeOfTheDay, paymentMethods, currencies } from "./utils";
 
-const timeOfTheDay = [
-  "breakfastService",
-  "lunchService",
-  "dinnerService",
-  "brunchService",
-  "cafeService",
-  "snackService"
-];
-
-const paymentMethods = ["canPayWithCards", "canPayWithCash", "canPayByPhone"];
-
-const currencies = cc.codes().map(c => ({
-  value: c,
-  label: c
-}));
-
-const AdditionalInformationForm = ({ t }) => (
+const AdditionalInformationForm = ({ t, initialValues, handleSubmit }) => (
   <FinalForm
-    onSubmit={v => console.log(v)}
-    render={({ handleSubmit }) => (
-      <Form onSubmit={handleSubmit} width={[1, 1, 1]} mx={0}>
+    initialValues={initialValues}
+    onSubmit={handleSubmit}
+    mutators={{ setFieldData }}
+    render={({ form: { mutators } }) => (
+      <Form>
+        <AutoSave setFieldData={mutators.setFieldData} save={handleSubmit} />
         <H3>{t("timeOfTheDay")}</H3>
         <Flex flexWrap="wrap">
           {timeOfTheDay.map(i => (
-            <Box width={1 / 2}>
+            <Box width={1 / 2} key={i}>
               <FormCheckbox name={i} key={i} label={t(i)} />
             </Box>
           ))}
@@ -74,7 +62,7 @@ const AdditionalInformationForm = ({ t }) => (
         <H3 mt={3}>{t("paymentMethods")}</H3>
         <Flex flexWrap="wrap">
           {paymentMethods.map(i => (
-            <Box width={1 / 2}>
+            <Box width={1 / 2} key={i}>
               <FormCheckbox name={i} key={i} label={t(i)} />
             </Box>
           ))}
@@ -91,7 +79,13 @@ const AdditionalInformationForm = ({ t }) => (
 );
 
 AdditionalInformationForm.propTypes = {
-  t: func.isRequired
+  t: func.isRequired,
+  initialValues: shape(),
+  handleSubmit: func.isRequired
+};
+
+AdditionalInformationForm.defaultProps = {
+  initialValues: undefined
 };
 
 export default AdditionalInformationForm;

@@ -2,6 +2,7 @@ import { PureComponent } from "react";
 import { string, shape, arrayOf, bool } from "prop-types";
 import Downshift from "downshift";
 import matchSorter from "match-sorter";
+import { LoadingIndicator } from "components";
 import {
   FieldWrapper,
   RawInput,
@@ -10,7 +11,8 @@ import {
   Items,
   Item,
   ExpandIcon,
-  FlagIcon
+  FlagIcon,
+  LoadingWrapper
 } from "./styled";
 import { getError } from "./utils";
 
@@ -108,7 +110,7 @@ class FormSelect extends PureComponent {
                   onBlur: () => this.handleBlur(selectItems, input, inputValue),
                   placeholder,
                   disabled,
-                  padding: showFlag && "16px 16px 16px 48px",
+                  padding: showFlag ? "16px 16px 16px 48px" : undefined,
                   name: input.name,
                   onChange: this.handleInputChange
                 })}
@@ -126,6 +128,11 @@ class FormSelect extends PureComponent {
               )}
               <ExpandIcon />
               {error && <Error>{error}</Error>}
+              {meta.data.saving && !meta.active && (
+                <LoadingWrapper>
+                  <LoadingIndicator />
+                </LoadingWrapper>
+              )}
             </FieldWrapper>
             {isOpen && selectItems.length > 0 && (
               <Items>

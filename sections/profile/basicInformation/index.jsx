@@ -5,34 +5,35 @@ import {
   BigCheckbox,
   H3,
   WhenFieldChanges,
-  FormMultipleSelect
+  FormMultipleSelect,
+  AutoSave
 } from "components";
 import { Form as FinalForm, Field } from "react-final-form";
 import { required, maxLength } from "utils/validators";
-import iso3166 from "iso-3166-2";
-import { func, shape } from "prop-types";
+import { func, shape, arrayOf, string } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
+import setFieldData from "final-form-set-field-data";
 import { Form } from "../styled";
+import { getSubdivisions } from "./utils";
 
-const countries = Object.entries(iso3166.data)
-  .map(i => ({
-    value: i[0],
-    label: i[1].name
-  }))
-  .sort((a, b) => (a.label > b.label ? 1 : -1));
-
-const getSubdivisions = country =>
-  Object.entries(iso3166.country(country).sub).map(i => ({
-    value: i[0],
-    label: i[1].name.replace(", City of", "")
-  }));
-
-const BasicInformationForm = ({ t, initialValues }) => (
+const BasicInformationForm = ({
+  t,
+  initialValues,
+  countries,
+  types,
+  cuisines,
+  foodsAndDrinks,
+  quirks,
+  diets,
+  handleSubmit
+}) => (
   <FinalForm
     initialValues={initialValues}
-    onSubmit={v => console.log(v)}
-    render={({ values }) => (
+    onSubmit={handleSubmit}
+    mutators={{ setFieldData }}
+    render={({ values, form: { mutators } }) => (
       <Form>
+        <AutoSave setFieldData={mutators.setFieldData} save={handleSubmit} />
         <WhenFieldChanges field="country" set="region" to={undefined} />
         <H3>{t("basicInformation")}</H3>
         <FormInput
@@ -97,133 +98,57 @@ const BasicInformationForm = ({ t, initialValues }) => (
             />
           </Box>
         </Flex>
-        <Flex mx={-2}>
-          <Box width={1 / 4} p={2}>
-            <BigCheckbox
-              {...{
-                label: t("bigCheckboxLabel"),
-                name: "bigCheckbox",
-                value: "value1",
-                setError: err => console.log(err)
-              }}
-            />
-          </Box>
-          <Box width={1 / 4} p={2}>
-            <BigCheckbox
-              {...{
-                label: t("bigCheckboxLabel"),
-                name: "bigCheckbox",
-                value: "value2",
-                setError: err => console.log(err)
-              }}
-            />
-          </Box>
-          <Box width={1 / 4} p={2}>
-            <BigCheckbox
-              {...{
-                label: t("bigCheckboxLabel"),
-                name: "bigCheckbox",
-                value: "value3",
-                setError: err => console.log(err)
-              }}
-            />
-          </Box>
-          <Box width={1 / 4} p={2}>
-            <BigCheckbox
-              {...{
-                label: t("bigCheckboxLabel"),
-                name: "bigCheckbox",
-                value: "value4",
-                setError: err => console.log(err)
-              }}
-            />
-          </Box>
+        <Flex mx={-2} flexWrap="wrap">
+          {types.map(type => (
+            <Box width={1 / 4} p={2} key={type.value}>
+              <BigCheckbox
+                {...{
+                  label: type.label,
+                  name: "types",
+                  value: type,
+                  setError: err => err
+                }}
+              />
+            </Box>
+          ))}
         </Flex>
-        <H3 mt={4}>{t("cusines")}</H3>
+        <H3 mt={4}>{t("cuisines")}</H3>
         <Field
-          name="cusines"
-          placeholder={t("cusinesPlaceholder")}
+          name="cuisines"
+          placeholder={t("cuisinesPlaceholder")}
           component={FormMultipleSelect}
           maxItems={12}
-          items={[
-            { value: "value1", label: "label1" },
-            { value: "value2", label: "label2" },
-            { value: "value3", label: "label3" },
-            { value: "value4", label: "label4" },
-            { value: "value5", label: "label5" },
-            { value: "value6", label: "label6" },
-            { value: "value7", label: "label7" },
-            { value: "value8", label: "label8" },
-            { value: "value9", label: "label9" },
-            { value: "value10", label: "label10" },
-            { value: "value11", label: "label11" }
-          ]}
+          items={cuisines}
         />
-        <H3 mt={4}>{t("foodAndDrinks")}</H3>
+        <H3 mt={4}>{t("foodsAndDrinks")}</H3>
         <Field
-          name="foodAndDrinks"
-          placeholder={t("foodAndDrinksPlaceholder")}
+          name="foodsAndDrinks"
+          placeholder={t("foodsAndDrinksPlaceholder")}
           component={FormMultipleSelect}
           maxItems={12}
-          items={[
-            { value: "value1", label: "label1" },
-            { value: "value2", label: "label2" },
-            { value: "value3", label: "label3" },
-            { value: "value4", label: "label4" },
-            { value: "value5", label: "label5" },
-            { value: "value6", label: "label6" },
-            { value: "value7", label: "label7" },
-            { value: "value8", label: "label8" },
-            { value: "value9", label: "label9" },
-            { value: "value10", label: "label10" },
-            { value: "value11", label: "label11" }
-          ]}
+          items={foodsAndDrinks}
         />
-        <H3 mt={4}>{t("perfectFor")}</H3>
+        <H3 mt={4}>{t("quirks")}</H3>
         <Field
-          name="perfectFor"
-          placeholder={t("perfectForPlaceholder")}
+          name="quirks"
+          placeholder={t("quirksPlaceholder")}
           component={FormMultipleSelect}
           maxItems={12}
-          items={[
-            { value: "value1", label: "label1" },
-            { value: "value2", label: "label2" },
-            { value: "value3", label: "label3" },
-            { value: "value4", label: "label4" },
-            { value: "value5", label: "label5" },
-            { value: "value6", label: "label6" },
-            { value: "value7", label: "label7" },
-            { value: "value8", label: "label8" },
-            { value: "value9", label: "label9" },
-            { value: "value10", label: "label10" },
-            { value: "value11", label: "label11" }
-          ]}
+          items={quirks}
         />
-        <H3 mt={4}>{t("diet")}</H3>
+        <H3 mt={4}>{t("diets")}</H3>
         <Field
-          name="diet"
-          placeholder={t("dietPlaceholder")}
+          name="diets"
+          placeholder={t("dietsPlaceholder")}
           component={FormMultipleSelect}
           maxItems={12}
-          items={[
-            { value: "value1", label: "label1" },
-            { value: "value2", label: "label2" },
-            { value: "value3", label: "label3" },
-            { value: "value4", label: "label4" },
-            { value: "value5", label: "label5" },
-            { value: "value6", label: "label6" },
-            { value: "value7", label: "label7" },
-            { value: "value8", label: "label8" },
-            { value: "value9", label: "label9" },
-            { value: "value10", label: "label10" },
-            { value: "value11", label: "label11" }
-          ]}
+          items={diets}
         />
         <H3 mt={4}>{t("additionalInformation")}</H3>
         <FormInput
           name="ownerRole"
-          label={t("roleLabel")}
-          placeholder={t("rolePlaceholder")}
+          label={t("ownerRoleLabel")}
+          placeholder={t("ownerRolePlaceholder")}
         />
         <FormTextarea
           name="bio"
@@ -237,7 +162,27 @@ const BasicInformationForm = ({ t, initialValues }) => (
 
 BasicInformationForm.propTypes = {
   t: func.isRequired,
-  initialValues: shape().isRequired
+  initialValues: shape(),
+  countries: arrayOf(
+    shape({ value: string.isRequired, label: string.isRequired })
+  ).isRequired,
+  types: arrayOf(shape({ value: string.isRequired, label: string.isRequired }))
+    .isRequired,
+  cuisines: arrayOf(
+    shape({ value: string.isRequired, label: string.isRequired })
+  ).isRequired,
+  foodsAndDrinks: arrayOf(
+    shape({ value: string.isRequired, label: string.isRequired })
+  ).isRequired,
+  quirks: arrayOf(shape({ value: string.isRequired, label: string.isRequired }))
+    .isRequired,
+  diets: arrayOf(shape({ value: string.isRequired, label: string.isRequired }))
+    .isRequired,
+  handleSubmit: func.isRequired
+};
+
+BasicInformationForm.defaultProps = {
+  initialValues: undefined
 };
 
 export default BasicInformationForm;
