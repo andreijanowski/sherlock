@@ -27,7 +27,7 @@ const MembersForm = ({ t, members, deleteMember }) => (
     }}
     mutators={{ ...arrayMutators }}
     render={({ handleSubmit }) => (
-      <Form onSubmit={handleSubmit} width={[1, 1, 1]} mx={0}>
+      <Form onSubmit={handleSubmit}>
         <H3>{t("members")}</H3>
         <FieldArray name="members">
           {({ fields }) =>

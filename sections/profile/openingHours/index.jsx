@@ -12,7 +12,7 @@ const OpeningHoursForm = ({ t }) => (
     onSubmit={v => console.log(v)}
     mutators={{ ...{ ...arrayMutators } }}
     render={({ handleSubmit }) => (
-      <Form onSubmit={handleSubmit} width={[1, 1, 1]} mx={0}>
+      <Form onSubmit={handleSubmit}>
         <H3>{t("openingHours")}</H3>
         {weekdays.map(weekday => (
           <Day {...{ t, weekday }} />

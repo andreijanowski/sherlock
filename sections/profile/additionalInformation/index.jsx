@@ -17,9 +17,9 @@ const AdditionalInformationForm = ({ t, initialValues, handleSubmit }) => (
         <AutoSave setFieldData={mutators.setFieldData} save={handleSubmit} />
         <H3>{t("timeOfTheDay")}</H3>
         <Flex flexWrap="wrap">
-          {timeOfTheDay.map(i => (
-            <Box width={1 / 2} key={i}>
-              <FormCheckbox name={i} key={i} label={t(i)} />
+          {timeOfTheDay.map(time => (
+            <Box width={1 / 2} key={time}>
+              <FormCheckbox name={time} label={t(time)} />
             </Box>
           ))}
         </Flex>
@@ -61,9 +61,9 @@ const AdditionalInformationForm = ({ t, initialValues, handleSubmit }) => (
         />
         <H3 mt={3}>{t("paymentMethods")}</H3>
         <Flex flexWrap="wrap">
-          {paymentMethods.map(i => (
-            <Box width={1 / 2} key={i}>
-              <FormCheckbox name={i} key={i} label={t(i)} />
+          {paymentMethods.map(method => (
+            <Box width={1 / 2} key={method}>
+              <FormCheckbox name={method} label={t(method)} />
             </Box>
           ))}
         </Flex>
