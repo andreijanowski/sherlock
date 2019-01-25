@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Content, LogoWrapper, ButtonWithIcon } from "./styled";
 
 const TopSection = ({ t, lng, plansRef }) => (
-  <Flex flexDirection="column" mt={4} px={4} width={1}>
+  <Flex flexDirection="column" mt={4} width={1} px={3}>
     <Flex alignSelf="flex-end" alignItems="center">
       <LanguageSwitcher />
       <Button
@@ -32,10 +32,11 @@ const TopSection = ({ t, lng, plansRef }) => (
         <BlueText>{t("topSection.header.end")}</BlueText>
       </H1>
       <Paragraph>{t("topSection.paragraph")}</Paragraph>
-      <Flex flexDirection="row">
-        <Box mr={2}>
+      <Flex flexDirection="row" flexWrap="wrap" m={["-2px", -1]}>
+        <Box width={[1, "auto"]} p={["2px", 1]}>
           <Button
             styleName="blue"
+            fluid
             onClick={() =>
               plansRef.current.scrollIntoView({
                 behavior: "smooth"
@@ -45,19 +46,22 @@ const TopSection = ({ t, lng, plansRef }) => (
             {t("topSection.getStartedForFree")}
           </Button>
         </Box>
-        <Box mr={2}>
+        <Box width={[1 / 2, "auto"]} p={["2px", 1]}>
           <Button
             styleName="blue"
+            fluid
             onClick={() => Router.pushRoute(`/${lng}/register`)}
           >
             {t("topSection.addYourBusiness")}
           </Button>
         </Box>
-        <Box mr={2}>
-          <Button styleName="blue">{t("topSection.addManager")}</Button>
+        <Box width={[1 / 2, "auto"]} p={["2px", 1]}>
+          <Button fluid styleName="blue">
+            {t("topSection.addManager")}
+          </Button>
         </Box>
-        <Box>
-          <ButtonWithIcon>
+        <Box width={[1, "auto"]}>
+          <ButtonWithIcon fluid>
             <FontAwesomeIcon icon="play" size="xs" />
             {t("topSection.watchVideo")}
           </ButtonWithIcon>
