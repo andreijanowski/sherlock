@@ -8,6 +8,8 @@ const headers = {
   "Content-Type": "application/vnd.api+json"
 };
 
+console.log({ API_URL });
+
 const instance = axios.create({
   baseURL: API_URL,
   method: "GET",
