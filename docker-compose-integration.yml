@@ -15,7 +15,6 @@ services:
       - APP_URL=https://$PULL_REQUEST_NUMBER.sherlock.integration.devguru.co
       - VIRTUAL_HOST=$PULL_REQUEST_NUMBER.sherlock.integration.devguru.co
       - PULL_REQUEST_ID=netguru/sherlock#$PULL_REQUEST_NUMBER
-      - PUBLIC_API_URL=https://thefooddetective.staging.devguru.co
     networks:
       - frontend
     expose:
