@@ -1,17 +1,24 @@
-import { string } from "prop-types";
+import { string, func } from "prop-types";
 import { PerfectSquare, ActionIcon } from "components";
 import { Image } from "../styled";
 
-const Picture = ({ src }) => (
+const Picture = ({ url, id, remove }) => (
   <PerfectSquare>
-    <Image {...{ src }}>
-      <ActionIcon deletePicture size="sm" icon={["fa", "times"]} />
+    <Image {...{ url }}>
+      <ActionIcon
+        deletePicture
+        size="sm"
+        icon={["fa", "times"]}
+        onClick={() => remove(id)}
+      />
     </Image>
   </PerfectSquare>
 );
 
 Picture.propTypes = {
-  src: string.isRequired
+  url: string.isRequired,
+  id: string.isRequired,
+  remove: func.isRequired
 };
 
 export default Picture;

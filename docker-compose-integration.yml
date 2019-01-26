@@ -5,6 +5,7 @@ services:
       context: .
       dockerfile: ./docker/Dockerfile.staging
     hostname: "sherlock.integration.front"
+    command: ash -c 'yarn build && yarn start'
     labels:
       - "netguru.appname=sherlock"
       - "netguru.stage=integration"

@@ -11,8 +11,7 @@ import {
   Items,
   Item,
   ExpandIcon,
-  FlagIcon,
-  LoadingWrapper
+  FlagIcon
 } from "./styled";
 import { getError } from "./utils";
 
@@ -128,11 +127,7 @@ class FormSelect extends PureComponent {
               )}
               <ExpandIcon />
               {error && <Error>{error}</Error>}
-              {meta.data.saving && !meta.active && (
-                <LoadingWrapper>
-                  <LoadingIndicator />
-                </LoadingWrapper>
-              )}
+              {meta.data.saving && !meta.active && <LoadingIndicator />}
             </FieldWrapper>
             {isOpen && selectItems.length > 0 && (
               <Items>

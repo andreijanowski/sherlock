@@ -9,6 +9,11 @@ import {
   FETCH_PROFILE_BUSINESS_SUCCESS,
   FETCH_PROFILE_BUSINESS_FAIL
 } from "types/users";
+
+import { POST_PICTURE_SUCCESS, DELETE_PICTURE_REQUEST } from "types/pictures";
+import { POST_MENU_SUCCESS, DELETE_MENU_REQUEST } from "types/menus";
+import { POST_PRODUCT_SUCCESS, DELETE_PRODUCT_REQUEST } from "types/products";
+
 import build from "redux-object";
 
 const initialState = {
@@ -32,7 +37,7 @@ const initialState = {
   }
 };
 
-const reducer = (state = initialState, { type, payload }) => {
+const reducer = (state = initialState, { type, payload, meta }) => {
   switch (type) {
     case FETCH_PROFILE_REQUEST: {
       const newState = state;
@@ -111,6 +116,73 @@ const reducer = (state = initialState, { type, payload }) => {
       const newState = state;
       newState.currentBusiness.isFetching = false;
       newState.currentBusiness.isFailed = true;
+      return { ...newState };
+    }
+
+    case POST_PICTURE_SUCCESS: {
+      const newState = state;
+      const picture = build(payload.data, "pictures", payload.rawData.data.id, {
+        ignoreLinks: true
+      });
+      newState.currentBusiness.data = {
+        ...newState.currentBusiness.data,
+        pictures: [...newState.currentBusiness.data.pictures, picture]
+      };
+      return { ...newState };
+    }
+
+    case DELETE_PICTURE_REQUEST: {
+      const newState = state;
+      newState.currentBusiness.data = {
+        ...newState.currentBusiness.data,
+        pictures: newState.currentBusiness.data.pictures.filter(
+          p => p.id !== meta.id
+        )
+      };
+      return { ...newState };
+    }
+
+    case POST_MENU_SUCCESS: {
+      const newState = state;
+      const menu = build(payload.data, "menus", payload.rawData.data.id, {
+        ignoreLinks: true
+      });
+      newState.currentBusiness.data = {
+        ...newState.currentBusiness.data,
+        menus: [...newState.currentBusiness.data.menus, menu]
+      };
+      return { ...newState };
+    }
+
+    case DELETE_MENU_REQUEST: {
+      const newState = state;
+      newState.currentBusiness.data = {
+        ...newState.currentBusiness.data,
+        menus: newState.currentBusiness.data.menus.filter(m => m.id !== meta.id)
+      };
+      return { ...newState };
+    }
+
+    case POST_PRODUCT_SUCCESS: {
+      const newState = state;
+      const product = build(payload.data, "products", payload.rawData.data.id, {
+        ignoreLinks: true
+      });
+      newState.currentBusiness.data = {
+        ...newState.currentBusiness.data,
+        products: [...newState.currentBusiness.data.products, product]
+      };
+      return { ...newState };
+    }
+
+    case DELETE_PRODUCT_REQUEST: {
+      const newState = state;
+      newState.currentBusiness.data = {
+        ...newState.currentBusiness.data,
+        products: newState.currentBusiness.data.products.filter(
+          p => p.id !== meta.id
+        )
+      };
       return { ...newState };
     }
 

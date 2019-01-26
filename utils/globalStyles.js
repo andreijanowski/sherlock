@@ -8,7 +8,8 @@ import {
   faCheck,
   faTimes,
   faArrowLeft,
-  faCircleNotch
+  faCircleNotch,
+  faFileAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF } from "@fortawesome/fontawesome-free-brands";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -23,7 +24,8 @@ library.add(
   faTimes,
   faArrowLeft,
   faCircleNotch,
-  faFacebookF
+  faFacebookF,
+  faFileAlt
 );
 
 export default createGlobalStyle`

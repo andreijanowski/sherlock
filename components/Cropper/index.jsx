@@ -1,12 +1,14 @@
 import { PureComponent, createRef } from "react";
 import ReactCropper from "react-cropper";
-import { Modal, Button } from "components";
+import { Modal, Button, LoadingIndicator } from "components";
 import { Box } from "@rebass/grid";
 import { string, func, number, bool } from "prop-types";
 import { CropperStyles, Wrapper } from "./styled";
 
 class Cropper extends PureComponent {
   cropper = createRef();
+
+  state = { cropping: false };
 
   componentDidUpdate(prevProps) {
     const { src: prevSrc } = prevProps;
@@ -16,8 +18,12 @@ class Cropper extends PureComponent {
     }
   }
 
-  handleCrop = () => {
-    this.cropper.current.disable();
+  handleCrop = async () => {
+    // without setTimeout function LoadingIndicator is not displayed ¯\_(ツ)_/¯
+    this.setState({ cropping: true }, () => setTimeout(this.crop, 0));
+  };
+
+  crop = () => {
     const { maxWidth, maxHeight, onCrop } = this.props;
     const { width, height } = this.cropper.current.getCroppedCanvas();
     let computedWidth = width;
@@ -36,11 +42,15 @@ class Cropper extends PureComponent {
       })
       .toDataURL("image/jpeg", 0.7);
     onCrop(croppedImage);
-    this.cropper.current.enable();
+
+    if (this.cropper.current) {
+      this.setState({ cropping: false });
+    }
   };
 
   render() {
     const { src, aspectRatio, isVisible, hide, accept, cancel } = this.props;
+    const { cropping } = this.state;
     return (
       <Modal {...{ open: isVisible, onClose: hide }}>
         <Wrapper>
@@ -62,6 +72,7 @@ class Cropper extends PureComponent {
               {cancel}
             </Button>
           </Box>
+          {cropping && <LoadingIndicator />}
         </Wrapper>
       </Modal>
     );

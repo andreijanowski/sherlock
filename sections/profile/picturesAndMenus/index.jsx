@@ -2,29 +2,60 @@ import { func, shape } from "prop-types";
 import { Form } from "../styled";
 import Logo from "./Logo";
 import Pictures from "./Pictures";
-import Menu from "./Menu";
-import MustTry from "./MustTry";
+import Menus from "./Menus";
+import Products from "./Products";
 
-const PicturesAndMenusForm = ({ t, initialValues, saveLogo }) =>
+const PicturesAndMenusForm = ({
+  t,
+  initialValues,
+  saveLogo,
+  addPicture,
+  removePicture,
+  addMenu,
+  updateMenu,
+  removeMenu,
+  addProduct,
+  updateProduct,
+  removeProduct
+}) =>
   initialValues ? (
     <Form>
-      {console.log(initialValues)}
       <Logo {...{ t, logo: initialValues.logo, saveLogo }} />
-      <Pictures {...{ t }} />
-      <Menu
-        {...{ t }}
-        onDrop={(a, r) => {
-          console.log({ a, r });
+      <Pictures
+        {...{
+          t,
+          pictures: initialValues.pictures,
+          addPicture,
+          removePicture
         }}
       />
-      <MustTry {...{ t }} />
+      <Menus
+        {...{ t, menus: initialValues.menus, addMenu, updateMenu, removeMenu }}
+      />
+      <Products
+        {...{
+          t,
+          products: initialValues.products,
+          addProduct,
+          updateProduct,
+          removeProduct
+        }}
+      />
     </Form>
   ) : null;
 
 PicturesAndMenusForm.propTypes = {
   t: func.isRequired,
   initialValues: shape(),
-  saveLogo: func.isRequired
+  saveLogo: func.isRequired,
+  addPicture: func.isRequired,
+  removePicture: func.isRequired,
+  addMenu: func.isRequired,
+  updateMenu: func.isRequired,
+  removeMenu: func.isRequired,
+  addProduct: func.isRequired,
+  updateProduct: func.isRequired,
+  removeProduct: func.isRequired
 };
 
 PicturesAndMenusForm.defaultProps = {

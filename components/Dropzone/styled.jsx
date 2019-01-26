@@ -6,10 +6,9 @@ export const Wrapper = styled(Flex).attrs({
   justifyContent: "center",
   flexDirection: "column",
   width: 1,
-  p: 4
+  px: 3
 })`
   position: relative;
-  min-height: 120px;
   border-radius: ${p => p.theme.radius.default};
   border: 1px dashed rgb(${p => p.theme.colors.snuff});
   cursor: pointer;

@@ -10,8 +10,7 @@ import {
   Items,
   Item,
   Tag,
-  TagIcon,
-  LoadingWrapper
+  TagIcon
 } from "./styled";
 import { getError } from "./utils";
 
@@ -118,11 +117,7 @@ class RawMultipleSelect extends PureComponent {
             })}
           />
           {error && <Error>{error}</Error>}
-          {meta.data.saving && !meta.active && (
-            <LoadingWrapper>
-              <LoadingIndicator />
-            </LoadingWrapper>
-          )}
+          {meta.data.saving && !meta.active && <LoadingIndicator />}
         </MultipleSelectWrapper>
         {isOpen && selectItems.length > 0 && input.value.length < maxItems && (
           <Items>

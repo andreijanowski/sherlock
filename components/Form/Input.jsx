@@ -1,7 +1,7 @@
 import { string, bool, shape } from "prop-types";
 import { Field as FinalFormField } from "react-final-form";
 import { LoadingIndicator } from "components";
-import { FieldWrapper, RawInput, Label, Error, LoadingWrapper } from "./styled";
+import { FieldWrapper, RawInput, Label, Error } from "./styled";
 import { getError } from "./utils";
 
 const InputField = ({
@@ -30,11 +30,7 @@ const InputField = ({
           />
           <Label htmlFor={name}>{label}</Label>
           {error && <Error>{error}</Error>}
-          {meta.data.saving && !meta.active && (
-            <LoadingWrapper>
-              <LoadingIndicator />
-            </LoadingWrapper>
-          )}
+          {meta.data.saving && !meta.active && <LoadingIndicator />}
         </FieldWrapper>
       );
     }}
