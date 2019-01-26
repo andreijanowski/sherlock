@@ -5,7 +5,7 @@ export default ctx => {
     const pattern = `^(${languagesPattern})$`;
     const regex = new RegExp(pattern, "gm");
     const firstUrlParam = ctx.req.url.split("/").filter(i => i !== "")[0];
-    if (firstUrlParam !== "locales") {
+    if (firstUrlParam !== "locales" && firstUrlParam !== "static") {
       const language = languages.find(l => l === firstUrlParam);
       const shouldRedirect = !regex.test(language);
       if (shouldRedirect) {
