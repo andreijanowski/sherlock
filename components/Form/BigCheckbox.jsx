@@ -2,7 +2,7 @@ import { PureComponent, createRef } from "react";
 import { Field as FinalFormField } from "react-final-form";
 import { string, func, shape } from "prop-types";
 import { PerfectSquare, LoadingIndicator } from "components";
-import { CheckboxLabel, Checkbox, CheckboxText } from "./styled";
+import { CheckboxLabel, Checkbox } from "./styled";
 
 class BigCheckbox extends PureComponent {
   checkbox = createRef();
@@ -53,7 +53,7 @@ class BigCheckbox extends PureComponent {
                   onChange={e => this.handleChange(e, input, checkedValues)}
                   checked={isChecked}
                 />
-                <CheckboxText>{label}</CheckboxText>
+                {label}
               </CheckboxLabel>
               {meta.data.saving && !meta.active && <LoadingIndicator />}
             </PerfectSquare>

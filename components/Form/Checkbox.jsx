@@ -4,7 +4,13 @@ import { Field as FinalFormField } from "react-final-form";
 import { FontAwesomeIcon as Icon } from "@fortawesome/react-fontawesome";
 import { LoadingIndicator } from "components";
 import { getError } from "./utils";
-import { FieldWrapper, Error, Checkmark, HiddenCheckboxInput } from "./styled";
+import {
+  FieldWrapper,
+  Error,
+  Checkmark,
+  HiddenCheckboxInput,
+  CheckboxText
+} from "./styled";
 
 export class RawCheckbox extends PureComponent {
   checkbox = createRef();
@@ -31,7 +37,7 @@ export class RawCheckbox extends PureComponent {
         <Checkmark isChecked={input.value} invalid={error ? "true" : undefined}>
           {input.value && <Icon icon={["fa", "check"]} />}
         </Checkmark>
-        {label}
+        <CheckboxText>{label}</CheckboxText>
         {error && <Error>{error}</Error>}
         {meta && meta.data.saving && !meta.active && <LoadingIndicator />}
       </FieldWrapper>

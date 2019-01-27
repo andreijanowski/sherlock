@@ -4,8 +4,15 @@ import { FieldArray } from "react-final-form-arrays";
 import { func, number } from "prop-types";
 import { Actions } from "../styled";
 import { Copy, Line } from "./styled";
+import { addNewOpenPeriod } from "./utils";
 
-const Day = ({ t, weekday }) => (
+const Day = ({
+  t,
+  weekday,
+  addOpenPeriod,
+  updateOpenPeriod,
+  removeOpenPeriod
+}) => (
   <FieldArray name={`day-${weekday}`}>
     {({ fields }) => (
       <>
@@ -14,13 +21,14 @@ const Day = ({ t, weekday }) => (
             <RawCheckbox
               label={t(`weekdays.${weekday}`)}
               input={{
-                onClick: () => {
+                onChange: () => {
                   if (fields.length) {
                     for (let i = 0; i < fields.length; i += 1) {
+                      removeOpenPeriod(fields.value[i].id);
                       fields.remove(0);
                     }
                   } else {
-                    fields.push({ openedFrom: "", openedTo: "" });
+                    addNewOpenPeriod(addOpenPeriod, fields, weekday);
                   }
                 },
                 value: !!fields.length
@@ -38,6 +46,12 @@ const Day = ({ t, weekday }) => (
                     name={`${name}.openedFrom`}
                     label={t("openedFromLabel")}
                     placeholder={t("openedFromPlaceholder")}
+                    handleBlur={value => {
+                      updateOpenPeriod({
+                        ...fields.value[index],
+                        openedFrom: value
+                      });
+                    }}
                   />
                 </Box>
                 <Box width="calc(50% - 48px)" px={2}>
@@ -45,6 +59,12 @@ const Day = ({ t, weekday }) => (
                     name={`${name}.openedTo`}
                     label={t("openedToLabel")}
                     placeholder={t("openedToPlaceholder")}
+                    handleBlur={value => {
+                      updateOpenPeriod({
+                        ...fields.value[index],
+                        openedTo: value
+                      });
+                    }}
                   />
                 </Box>
                 <Actions key={name}>
@@ -52,14 +72,17 @@ const Day = ({ t, weekday }) => (
                     size="sm"
                     icon={["fa", "minus"]}
                     red
-                    onClick={() => fields.remove(index)}
+                    onClick={() => {
+                      removeOpenPeriod(fields.value[index].id);
+                      fields.remove(index);
+                    }}
                   />
                   {index === fields.length - 1 && (
                     <ActionIcon
                       size="sm"
                       icon={["fa", "plus"]}
                       onClick={() =>
-                        fields.push({ openedFrom: "", openedTo: "" })
+                        addNewOpenPeriod(addOpenPeriod, fields, weekday)
                       }
                     />
                   )}
@@ -76,6 +99,9 @@ const Day = ({ t, weekday }) => (
 
 Day.propTypes = {
   t: func.isRequired,
+  addOpenPeriod: func.isRequired,
+  updateOpenPeriod: func.isRequired,
+  removeOpenPeriod: func.isRequired,
   weekday: number.isRequired
 };
 

@@ -227,7 +227,9 @@ export const Checkbox = styled.input.attrs({ type: "checkbox" })`
   height: 0;
 `;
 
-export const CheckboxText = styled.div``;
+export const CheckboxText = styled(Box).attrs({
+  width: "calc(100% - 64px)"
+})``;
 
 export const FlagIcon = styled.img.attrs(({ code }) => ({
   src: `/static/flags/${code.toLowerCase()}.svg`
