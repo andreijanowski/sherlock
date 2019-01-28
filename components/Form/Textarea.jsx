@@ -21,7 +21,7 @@ const TextareaField = ({
       return (
         <FieldWrapper>
           <RawInput
-            as={TextareaAutosize}
+            as={({ smallLabel, ...p }) => <TextareaAutosize {...p} />}
             rows={6}
             smallLabel={!!input.value}
             invalid={error ? "true" : undefined}

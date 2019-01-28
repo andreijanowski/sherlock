@@ -11,12 +11,13 @@ const InputField = ({
   type,
   fieldProps,
   disabled,
+  forceShowError,
   ...rest
 }) => (
   <FinalFormField
     name={name}
     render={({ input, meta }) => {
-      const error = getError(meta);
+      const error = getError(meta, forceShowError);
       return (
         <FieldWrapper>
           <RawInput
@@ -44,14 +45,16 @@ InputField.propTypes = {
   fieldProps: shape(),
   label: string,
   placeholder: string,
-  type: string
+  type: string,
+  forceShowError: bool
 };
 InputField.defaultProps = {
   label: "",
   type: "text",
   placeholder: "",
   fieldProps: {},
-  disabled: false
+  disabled: false,
+  forceShowError: false
 };
 
 export default InputField;

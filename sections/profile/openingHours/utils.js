@@ -54,15 +54,12 @@ export const getInitialValues = business => {
   return undefined;
 };
 
-export const parseOpenPeriod = openPeriod => {
-  console.log({ openPeriod });
-  return {
-    location: openPeriod.location,
-    openedFrom: timeToNumber(openPeriod.openedFrom),
-    openedTo: timeToNumber(openPeriod.openedTo),
-    weekday: openPeriod.weekday
-  };
-};
+export const parseOpenPeriod = openPeriod => ({
+  location: openPeriod.location,
+  openedFrom: timeToNumber(openPeriod.openedFrom),
+  openedTo: timeToNumber(openPeriod.openedTo),
+  weekday: openPeriod.weekday
+});
 
 export const addNewOpenPeriod = async (addOpenPeriod, fields, weekday) => {
   try {

@@ -2,9 +2,11 @@ import { PureComponent } from "react";
 import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
-import { func, string } from "prop-types";
+import { func, string, shape, arrayOf } from "prop-types";
 import AppLayout from "layout/App";
 import Form from "sections/profile/members";
+import { connect } from "react-redux";
+import { postMember, patchMember, deleteMember } from "actions/members";
 
 const namespaces = ["members", "app"];
 
@@ -17,8 +19,32 @@ class Members extends PureComponent {
     };
   }
 
+  handleSubmit = async members => {
+    try {
+      const { addMember, updateMember, slug } = this.props;
+      const { id, email, role } = members[0];
+      if (id) {
+        return updateMember(id, { email, role });
+      }
+      return addMember({ email, role }, slug);
+    } catch (e) {
+      console.log(e);
+      return e;
+    }
+  };
+
+  removeMember = async id => {
+    try {
+      const { removeMember } = this.props;
+      return removeMember(id);
+    } catch (e) {
+      console.log(e);
+      return e;
+    }
+  };
+
   render() {
-    const { t, lng, slug } = this.props;
+    const { t, lng, slug, members } = this.props;
     return (
       <AppLayout
         {...{
@@ -29,7 +55,14 @@ class Members extends PureComponent {
           slug
         }}
       >
-        <Form {...{ t }} />
+        <Form
+          {...{
+            t,
+            members,
+            handleSubmit: this.handleSubmit,
+            removeMember: this.removeMember
+          }}
+        />
       </AppLayout>
     );
   }
@@ -38,7 +71,28 @@ class Members extends PureComponent {
 Members.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  slug: string.isRequired
+  slug: string.isRequired,
+  addMember: func.isRequired,
+  updateMember: func.isRequired,
+  removeMember: func.isRequired,
+  members: arrayOf(shape())
 };
 
-export default requireAuth(true)(withI18next(namespaces)(Members));
+Members.defaultProps = {
+  members: null
+};
+
+export default requireAuth(true)(
+  withI18next(namespaces)(
+    connect(
+      state => ({
+        members: state.members.data
+      }),
+      {
+        addMember: postMember,
+        updateMember: patchMember,
+        removeMember: deleteMember
+      }
+    )(Members)
+  )
+);

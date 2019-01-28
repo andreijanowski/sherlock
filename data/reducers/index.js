@@ -3,11 +3,13 @@ import app from "./app";
 import auth from "./auth";
 import users from "./users";
 import groups from "./groups";
+import members from "./members";
 
 export default {
   notifications,
   app,
   auth,
   users,
-  groups
+  groups,
+  members
 };

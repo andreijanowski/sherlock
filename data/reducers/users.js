@@ -31,6 +31,7 @@ const initialState = {
   },
   currentBusiness: {
     data: null,
+    members: null,
     isFetching: false,
     isFailed: false,
     isSucceeded: false

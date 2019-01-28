@@ -34,8 +34,6 @@ if (!isServer && window.location.host === "localhost:3000") {
   headers.NETGURU = NETGURU_DEV_PASSWORD;
 }
 
-console.log({ API_URL });
-
 export const client = axios.create({
   baseURL: API_URL,
   method: "GET",

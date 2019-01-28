@@ -2,6 +2,7 @@ import React from "react";
 import { FormSpy } from "react-final-form";
 import diff from "object-diff";
 import { shape, string, func } from "prop-types";
+import { getArraysDiff } from "./utils";
 
 class AutoSave extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class AutoSave extends React.Component {
   }
 
   save = async blurredField => {
-    const { setFieldData } = this.props;
+    const { setFieldData, array } = this.props;
     try {
       setFieldData(blurredField, { saving: true });
       if (this.promise) {
@@ -25,11 +26,14 @@ class AutoSave extends React.Component {
       }
       const { values, save, errors } = this.props;
       const { values: prevValues } = this.state;
-      const difference = diff(prevValues, values);
-
-      Object.keys(errors).forEach(e => {
-        delete difference[e];
-      });
+      const difference = array
+        ? getArraysDiff(values[array], prevValues[array], errors[array])
+        : diff(prevValues, values);
+      if (!array) {
+        Object.keys(errors).forEach(e => {
+          delete difference[e];
+        });
+      }
 
       const keys = Object.keys(difference);
       if (keys.length) {
@@ -72,12 +76,14 @@ AutoSave.propTypes = {
   active: string,
   setFieldData: func.isRequired,
   save: func.isRequired,
-  errors: shape()
+  errors: shape(),
+  array: string
 };
 
 AutoSave.defaultProps = {
   active: "",
-  errors: null
+  errors: null,
+  array: undefined
 };
 
 const Spy = props => (
