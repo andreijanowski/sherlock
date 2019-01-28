@@ -90,7 +90,8 @@ class RawMultipleSelect extends PureComponent {
       getInputProps,
       getItemProps,
       highlightedIndex,
-      inputValue
+      inputValue,
+      closeMenu
     } = this.props;
     const error = getError(meta);
     const selectItems = this.getItems(inputValue, items);
@@ -135,7 +136,7 @@ class RawMultipleSelect extends PureComponent {
                 {...getItemProps({
                   item,
                   isActive: highlightedIndex === index,
-                  onClick: this.handleBlur
+                  onClick: closeMenu
                 })}
               >
                 {item.label}
