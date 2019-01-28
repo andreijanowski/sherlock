@@ -73,7 +73,10 @@ class RawMultipleSelect extends PureComponent {
   };
 
   handleClickOutside = () => {
-    this.handleBlur();
+    const { meta } = this.props;
+    if (meta.active) {
+      this.handleBlur();
+    }
   };
 
   render() {
@@ -123,6 +126,7 @@ class RawMultipleSelect extends PureComponent {
           <Items>
             {selectItems.map((item, index) => (
               <Item
+                className="ignore-react-onclickoutside"
                 key={
                   typeof item.value === "object"
                     ? JSON.stringify(item.value)

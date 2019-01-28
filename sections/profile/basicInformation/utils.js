@@ -45,12 +45,12 @@ export const getInitialValues = business => {
       name,
       tagline,
       country: {
-        label: country,
-        value: countryCode
+        label: country || "",
+        value: countryCode || ""
       },
       region: {
-        label: region,
-        value: regionCode
+        label: region || "",
+        value: regionCode || ""
       },
       street,
       streetNumber,

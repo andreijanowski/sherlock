@@ -27,7 +27,7 @@ class FormSelect extends PureComponent {
 
   handleBlur = (items, input, inputValue) => {
     if (items.length && inputValue) {
-      this.setState({ inputValue: items[0].label });
+      this.setState({ inputValue: items[0].label || "" });
       input.onChange(items[0]);
     } else {
       this.setState({ inputValue: "" });
@@ -50,7 +50,7 @@ class FormSelect extends PureComponent {
   };
 
   getValue = (input, meta, inputValue) =>
-    meta.active ? inputValue : input.value && input.value.label;
+    meta.active ? inputValue : (input.value && input.value.label) || "";
 
   getItems = (inputValue, items) =>
     inputValue
