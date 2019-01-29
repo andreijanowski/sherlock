@@ -2,9 +2,10 @@ import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 
 export const MainWrapper = styled.div`
-  width: 100%;
   max-width: 960px;
   margin-bottom: 80px;
+  margin-left: 16px;
+  margin-right: 16px;
   position: relative;
 `;
 
@@ -24,16 +25,20 @@ export const Service = styled(Box).attrs({
   m: 2
 })`
   color: rgb(${p => p.theme.colors.white});
-  font-size: ${p => p.theme.fontSizes.f24};
+  font-size: ${p => p.theme.fontSizes.f16};
   line-height: 1.333;
   text-align: center;
-  padding: 41px 0;
+  padding: 21px 0;
   border: ${p => p.theme.borderWeights.normal} solid
     rgba(${p => p.theme.colors.white}, 0.04);
   border-radius: ${p => p.theme.radius.default};
 
   &:nth-child(3) {
     margin-right: 0;
+  }
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    font-size: ${p => p.theme.fontSizes.f24};
+    padding: 41px 0;
   }
 `;
 

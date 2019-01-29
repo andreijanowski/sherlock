@@ -10,10 +10,11 @@ import PromotionBoard from "./promotionBoard";
 
 const Plans = React.forwardRef(
   ({ t, lng, billingPeriod, handleChangeBillngPeriod }, ref) => (
-    <Flex flexDirection="column" width={1} mb={6}>
+    <Flex flexDirection="column" width={1} mb={6} px={3}>
       <TextWrapper>
         <Flex
           flexDirection="row"
+          flexWrap="wrap"
           justifyContent="space-between"
           alignItems="center"
         >
@@ -25,7 +26,7 @@ const Plans = React.forwardRef(
         <PromotionBoard {...{ t }} />
       </TextWrapper>
       <PlansWrapper ref={ref}>
-        <Box width={1 / 4}>
+        <Box width={[1, 1 / 2, 1 / 4]}>
           <Plan
             {...{
               t,
@@ -36,7 +37,7 @@ const Plans = React.forwardRef(
             }}
           />
         </Box>
-        <Box width={1 / 4}>
+        <Box width={[1, 1 / 2, 1 / 4]}>
           <Plan
             {...{
               t,
@@ -47,7 +48,7 @@ const Plans = React.forwardRef(
             }}
           />
         </Box>
-        <Box width={1 / 4}>
+        <Box width={[1, 1 / 2, 1 / 4]}>
           <Plan
             {...{
               t,
@@ -58,7 +59,7 @@ const Plans = React.forwardRef(
             }}
           />
         </Box>
-        <Box width={1 / 4}>
+        <Box width={[1, 1 / 2, 1 / 4]}>
           <Plan
             {...{
               t,

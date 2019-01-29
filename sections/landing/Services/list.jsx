@@ -8,7 +8,7 @@ const List = ({ t }) => {
   for (let i = 0; i < listLength; i += 1) {
     const serviceName = t(`services.list.${i}`);
     listArray.push(
-      <Box width={1 / 4} key={serviceName}>
+      <Box width={[1 / 2, 1 / 4]} key={serviceName}>
         <Service>{serviceName}</Service>
       </Box>
     );
