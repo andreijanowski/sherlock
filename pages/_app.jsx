@@ -10,11 +10,19 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "utils/theme";
 import { PersistGate as PersistGateClient } from "redux-persist/integration/react";
 import isServer from "utils/isServer";
+import NProgress from "nprogress";
+import { Router } from "routes";
 import initialI18nInstance from "../i18n";
 import createStore from "../data/store";
 
 const PersistGateServer = ({ children }) => children;
 const PersistGate = isServer ? PersistGateServer : PersistGateClient;
+
+Router.events.on("routeChangeStart", () => {
+  NProgress.start();
+});
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -37,24 +45,8 @@ class MyApp extends App {
     props.startApp();
   }
 
-  // componentDidMount() {
-  //   // console.log(this.props.pageProps.pathname);
-  // }
-
-  // componentDidUpdate(prevProps) {
-  //   const {
-  //     pageProps: { pathname: prevPathname }
-  //   } = prevProps;
-  //   const {
-  //     pageProps: { pathname }
-  //   } = this.props;
-
-  //   // TODO: Use conditional fetching related to pathname
-  //   // console.log(prevPathname, pathname);
-  // }
-
   render() {
-    const { Component, pageProps, store, slug } = this.props;
+    const { Component, pageProps, store } = this.props;
     const { i18n, initialI18nStore, initialLanguage } = pageProps || {};
     return (
       <Container>
@@ -66,7 +58,7 @@ class MyApp extends App {
                 initialI18nStore={initialI18nStore}
                 initialLanguage={initialLanguage}
               >
-                <Layout {...{ pageProps, slug, Component }} />
+                <Layout {...{ pageProps, Component }} />
               </I18nextProvider>
             </ThemeProvider>
           </PersistGate>
@@ -79,11 +71,7 @@ class MyApp extends App {
 export default withRedux(createStore)(
   withReduxSaga({ async: true })(
     connect(
-      state => ({
-        slug: state.users.currentBusiness.data
-          ? state.users.currentBusiness.data.slug
-          : undefined
-      }),
+      null,
       {
         startApp
       }

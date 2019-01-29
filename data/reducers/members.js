@@ -17,6 +17,7 @@ const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case FETCH_BUISNESS_MEMBERS_REQUEST: {
       const newState = state;
+      newState.data = null;
       newState.isFetching = true;
       newState.isFailed = false;
       newState.isSucceeded = false;
@@ -24,9 +25,10 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     case FETCH_BUISNESS_MEMBERS_SUCCESS: {
       const newState = state;
-      const members = build(payload.data, "members", null, {
-        ignoreLinks: true
-      });
+      const members =
+        build(payload.data, "members", null, {
+          ignoreLinks: true
+        }) || [];
       newState.isFetching = false;
       newState.isSucceeded = true;
       newState.data = members;

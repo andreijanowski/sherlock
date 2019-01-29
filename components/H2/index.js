@@ -7,7 +7,7 @@ const H2 = styled(Box).attrs({
   mt: 0
 })`
   font-size: ${p => p.theme.fontSizes.f46};
-  font-weight: 600;
+  font-weight: ${p => p.theme.fontWeights.semiBold};
   line-height: 1.25;
   color: rgb(${p => (p.white ? p.theme.colors.white : p.theme.colors.dark)});
 `;

@@ -7,7 +7,8 @@ import {
   FETCH_PROFILE_BUSINESSES_FAIL,
   FETCH_PROFILE_BUSINESS_REQUEST,
   FETCH_PROFILE_BUSINESS_SUCCESS,
-  FETCH_PROFILE_BUSINESS_FAIL
+  FETCH_PROFILE_BUSINESS_FAIL,
+  SET_CURRENT_BUSINESS
 } from "types/users";
 
 import { POST_PICTURE_SUCCESS, DELETE_PICTURE_REQUEST } from "types/pictures";
@@ -42,6 +43,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
   switch (type) {
     case FETCH_PROFILE_REQUEST: {
       const newState = state;
+      newState.profile.data = null;
       newState.profile.isFetching = true;
       newState.profile.isFailed = false;
       newState.profile.isSucceeded = false;
@@ -69,6 +71,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
 
     case FETCH_PROFILE_BUSINESSES_REQUEST: {
       const newState = state;
+      newState.profileBusinesses.data = null;
       newState.profileBusinesses.isFetching = true;
       newState.profileBusinesses.isFailed = false;
       newState.profileBusinesses.isSucceeded = false;
@@ -76,9 +79,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     }
     case FETCH_PROFILE_BUSINESSES_SUCCESS: {
       const newState = state;
-      const businesses = build(payload.data, "businesses", null, {
-        ignoreLinks: true
-      });
+      const businesses =
+        build(payload.data, "businesses", null, {
+          ignoreLinks: true
+        }) || [];
       newState.profileBusinesses.isFetching = false;
       newState.profileBusinesses.isSucceeded = true;
       newState.profileBusinesses.data = businesses;
@@ -93,6 +97,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
 
     case FETCH_PROFILE_BUSINESS_REQUEST: {
       const newState = state;
+      newState.currentBusiness.data = null;
       newState.currentBusiness.isFetching = true;
       newState.currentBusiness.isFailed = false;
       newState.currentBusiness.isSucceeded = false;
@@ -184,6 +189,12 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           p => p.id !== meta.id
         )
       };
+      return { ...newState };
+    }
+
+    case SET_CURRENT_BUSINESS: {
+      const newState = state;
+      newState.currentBusiness = initialState.currentBusiness;
       return { ...newState };
     }
 

@@ -1,7 +1,8 @@
 import {
   FETCH_PROFILE_REQUEST,
   FETCH_PROFILE_BUSINESSES_REQUEST,
-  FETCH_PROFILE_BUSINESS_REQUEST
+  FETCH_PROFILE_BUSINESS_REQUEST,
+  SET_CURRENT_BUSINESS
 } from "types/users";
 
 export const fetchProfile = () => ({
@@ -30,4 +31,11 @@ export const fetchProfileBusiness = id => ({
     }
   },
   meta: { thunk: true }
+});
+
+export const setCurrentBusiness = id => ({
+  type: SET_CURRENT_BUSINESS,
+  payload: {
+    id
+  }
 });

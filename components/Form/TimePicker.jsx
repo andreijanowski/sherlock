@@ -62,15 +62,7 @@ class RawTimePicker extends PureComponent {
   };
 
   render() {
-    const {
-      input,
-      meta,
-      name,
-      disabled,
-      placeholder,
-      label,
-      ...fieldProps
-    } = this.props;
+    const { input, meta, name, disabled, placeholder, label } = this.props;
     const { isTimekeeperVisible, top } = this.state;
     const error = getError(meta);
 
@@ -85,7 +77,6 @@ class RawTimePicker extends PureComponent {
           onFocus={this.handleFocus}
           onBlur={!isTimekeeperVisible ? input.onBlur : undefined}
           readOnly
-          {...fieldProps}
         />
         <Label htmlFor={name}>{label}</Label>
         {error && <Error>{error}</Error>}

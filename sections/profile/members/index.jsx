@@ -3,7 +3,7 @@ import { FieldArray } from "react-final-form-arrays";
 import arrayMutators from "final-form-arrays";
 import setFieldData from "final-form-set-field-data";
 import { Form as FinalForm } from "react-final-form";
-import { H3, AutoSave } from "components";
+import { H3, AutoSave, LoadingIndicator } from "components";
 import Member from "./Member";
 import { Form } from "../styled";
 import { generateMembersArray } from "./utils";
@@ -56,7 +56,9 @@ const MembersForm = ({ t, members, removeMember, handleSubmit }) =>
         </Form>
       )}
     />
-  ) : null;
+  ) : (
+    <LoadingIndicator />
+  );
 
 MembersForm.propTypes = {
   t: func.isRequired,

@@ -1,4 +1,5 @@
 import { func, shape } from "prop-types";
+import { LoadingIndicator } from "components";
 import { Form } from "../styled";
 import Logo from "./Logo";
 import Pictures from "./Pictures";
@@ -42,7 +43,9 @@ const PicturesAndMenusForm = ({
         }}
       />
     </Form>
-  ) : null;
+  ) : (
+    <LoadingIndicator />
+  );
 
 PicturesAndMenusForm.propTypes = {
   t: func.isRequired,

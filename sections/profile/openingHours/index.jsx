@@ -1,6 +1,6 @@
 import { func, shape } from "prop-types";
 import { Form as FinalForm } from "react-final-form";
-import { H3 } from "components";
+import { H3, LoadingIndicator } from "components";
 import arrayMutators from "final-form-arrays";
 import { Form } from "../styled";
 import Day from "./Day";
@@ -15,7 +15,7 @@ const OpeningHoursForm = ({
 }) =>
   initialValues ? (
     <FinalForm
-      onSubmit={v => console.log(v)}
+      onSubmit={() => null}
       initialValues={initialValues}
       mutators={{ ...{ ...arrayMutators } }}
       render={() => (
@@ -36,7 +36,9 @@ const OpeningHoursForm = ({
         </Form>
       )}
     />
-  ) : null;
+  ) : (
+    <LoadingIndicator />
+  );
 
 OpeningHoursForm.propTypes = {
   t: func.isRequired,

@@ -125,7 +125,7 @@ export const Tag = styled(Flex).attrs({
   background-color: rgb(${p => p.theme.colors.background});
   border-radius: ${p => p.theme.radius.default};
   font-size: ${p => p.theme.fontSizes.f14};
-  font-weight: 600;
+  font-weight: ${p => p.theme.fontWeights.semiBold};
   line-height: 42px;
 `;
 
@@ -177,6 +177,7 @@ export const Item = styled(Box).attrs({
   px: 3,
   py: 2
 })`
+  cursor: pointer;
   ${p => p.isActive && `background-color: rgb(${p.theme.colors.background});`}
 `;
 
@@ -208,6 +209,7 @@ export const CheckboxLabel = styled(Flex).attrs({
   alignItems: "center",
   width: 1
 })`
+  text-align: center;
   cursor: pointer;
   background-color: rgb(
     ${p => (p.checked ? p.theme.colors.white : p.theme.colors.background)}
@@ -217,7 +219,8 @@ export const CheckboxLabel = styled(Flex).attrs({
   border-radius: ${p => p.theme.radius.default};
   color: rgb(${p => (p.checked ? p.theme.colors.blue : p.theme.colors.dark)});
   font-size: ${p => p.theme.fontSizes.f14};
-  font-weight: ${p => (p.checked ? 600 : 500)};
+  font-weight: ${p =>
+    p.checked ? p.theme.fontWeights.semiBold : p.theme.fontWeights.medium};
 `;
 
 export const Checkbox = styled.input.attrs({ type: "checkbox" })`

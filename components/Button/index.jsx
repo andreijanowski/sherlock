@@ -80,7 +80,7 @@ const limeade = css`
 const Button = styled.button`
   border-radius: ${p => p.theme.radius.default};
   font-size: ${p => p.theme.fontSizes.f16};
-  font-weight: 500;
+  font-weight: ${p => p.theme.fontWeights.medium};
   line-height: 1.5;
   cursor: pointer;
 

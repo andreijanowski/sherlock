@@ -18,7 +18,7 @@ export const LogoWrapper = styled(Box).attrs({
 export const ButtonWithIcon = styled(Button).attrs({
   styleName: "transparent"
 })`
-  font-size: ${({ theme }) => theme.fontSizes.f14};
+  font-size: ${p => p.theme.fontSizes.f14};
   svg {
     margin-right: 8px;
   }

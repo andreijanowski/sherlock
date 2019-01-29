@@ -16,7 +16,7 @@ export const getSubdivisions = country =>
 export const getGroupsByParentGroups = (groups, parentGroups) =>
   groups
     .filter(g => parentGroups.indexOf(g.parentGroup) !== -1)
-    .map(g => ({ label: g.name, value: g.slug }));
+    .map(g => ({ label: g.name, value: g.id }));
 
 export const getInitialValues = business => {
   if (business) {

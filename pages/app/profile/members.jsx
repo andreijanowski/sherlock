@@ -7,6 +7,11 @@ import AppLayout from "layout/App";
 import Form from "sections/profile/members";
 import { connect } from "react-redux";
 import { postMember, patchMember, deleteMember } from "actions/members";
+import {
+  generateMenuItems,
+  prepareBusinessesList
+} from "sections/profile/utils";
+import { setCurrentBusiness } from "actions/users";
 
 const namespaces = ["members", "app"];
 
@@ -21,12 +26,16 @@ class Members extends PureComponent {
 
   handleSubmit = async members => {
     try {
-      const { addMember, updateMember, slug } = this.props;
+      const {
+        addMember,
+        updateMember,
+        business: { id: businessId }
+      } = this.props;
       const { id, email, role } = members[0];
       if (id) {
         return updateMember(id, { email, role });
       }
-      return addMember({ email, role }, slug);
+      return addMember({ email, role }, businessId);
     } catch (e) {
       console.log(e);
       return e;
@@ -43,8 +52,14 @@ class Members extends PureComponent {
     }
   };
 
+  handleBusinessChange = b => {
+    const { changeCurrentBusiness } = this.props;
+    changeCurrentBusiness(b.value);
+  };
+
   render() {
-    const { t, lng, slug, members } = this.props;
+    const { t, lng, members, business, businesses } = this.props;
+    const businessesList = prepareBusinessesList(businesses);
     return (
       <AppLayout
         {...{
@@ -52,7 +67,17 @@ class Members extends PureComponent {
           header: t("header"),
           t,
           lng,
-          slug
+          withMenu: true,
+          menuItems: generateMenuItems(t, "inviteYourTeam"),
+          select: {
+            value: {
+              value: business && business.id,
+              label: business && business.name,
+              src: business && business.logo.url
+            },
+            items: businessesList,
+            handleChange: this.handleBusinessChange
+          }
         }}
       >
         <Form
@@ -71,27 +96,34 @@ class Members extends PureComponent {
 Members.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  slug: string.isRequired,
   addMember: func.isRequired,
   updateMember: func.isRequired,
   removeMember: func.isRequired,
-  members: arrayOf(shape())
+  members: arrayOf(shape()),
+  business: shape(),
+  changeCurrentBusiness: func.isRequired,
+  businesses: arrayOf(shape())
 };
 
 Members.defaultProps = {
-  members: null
+  members: null,
+  business: null,
+  businesses: null
 };
 
 export default requireAuth(true)(
   withI18next(namespaces)(
     connect(
       state => ({
-        members: state.members.data
+        members: state.members.data,
+        business: state.users.currentBusiness.data,
+        businesses: state.users.profileBusinesses.data
       }),
       {
         addMember: postMember,
         updateMember: patchMember,
-        removeMember: deleteMember
+        removeMember: deleteMember,
+        changeCurrentBusiness: setCurrentBusiness
       }
     )(Members)
   )

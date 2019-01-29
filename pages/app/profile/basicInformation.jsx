@@ -11,8 +11,13 @@ import {
   getInitialValues,
   getGroupsValues
 } from "sections/profile/basicInformation/utils";
+import {
+  generateMenuItems,
+  prepareBusinessesList
+} from "sections/profile/utils";
 import { connect } from "react-redux";
 import { patchBusiness } from "actions/businesses";
+import { setCurrentBusiness } from "actions/users";
 
 const namespaces = ["basicInformation", "app"];
 
@@ -79,7 +84,10 @@ class BasicInformation extends PureComponent {
     { types, cuisines, foodsAndDrinks, quirks, diets }
   ) => {
     try {
-      const { updateBusiness, slug } = this.props;
+      const {
+        updateBusiness,
+        business: { id }
+      } = this.props;
       const requestValues = {
         name,
         tagline,
@@ -98,18 +106,23 @@ class BasicInformation extends PureComponent {
         ownerRole,
         bio
       };
-      return updateBusiness(slug, requestValues);
+      return updateBusiness(id, requestValues);
     } catch (e) {
       console.log(e);
       return e;
     }
   };
 
+  handleBusinessChange = b => {
+    const { changeCurrentBusiness } = this.props;
+    changeCurrentBusiness(b.value);
+  };
+
   render() {
-    const { t, lng, slug, business } = this.props;
+    const { t, lng, business, businesses } = this.props;
     const { types, cuisines, foodsAndDrinks, quirks, diets } = this.state;
     const initialValues = getInitialValues(business);
-
+    const businessesList = prepareBusinessesList(businesses);
     return (
       <AppLayout
         {...{
@@ -117,7 +130,17 @@ class BasicInformation extends PureComponent {
           header: t("header"),
           t,
           lng,
-          slug
+          withMenu: true,
+          menuItems: generateMenuItems(t, "basicInformation"),
+          select: {
+            value: {
+              value: business && business.id,
+              label: business && business.name,
+              src: business && business.logo.url
+            },
+            items: businessesList,
+            handleChange: this.handleBusinessChange
+          }
         }}
       >
         <Form
@@ -141,14 +164,16 @@ class BasicInformation extends PureComponent {
 BasicInformation.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  slug: string.isRequired,
   business: shape(),
   groups: arrayOf(shape()).isRequired,
-  updateBusiness: func.isRequired
+  updateBusiness: func.isRequired,
+  changeCurrentBusiness: func.isRequired,
+  businesses: arrayOf(shape())
 };
 
 BasicInformation.defaultProps = {
-  business: null
+  business: null,
+  businesses: null
 };
 
 export default requireAuth(true)(
@@ -156,9 +181,13 @@ export default requireAuth(true)(
     connect(
       state => ({
         business: state.users.currentBusiness.data,
-        groups: state.groups.groups.data || []
+        groups: state.groups.groups.data || [],
+        businesses: state.users.profileBusinesses.data
       }),
-      { updateBusiness: patchBusiness }
+      {
+        updateBusiness: patchBusiness,
+        changeCurrentBusiness: setCurrentBusiness
+      }
     )(BasicInformation)
   )
 );

@@ -6,7 +6,8 @@ import {
   H3,
   WhenFieldChanges,
   FormMultipleSelect,
-  AutoSave
+  AutoSave,
+  LoadingIndicator
 } from "components";
 import { Form as FinalForm, Field } from "react-final-form";
 import { required, maxLength } from "utils/validators";
@@ -160,7 +161,9 @@ const BasicInformationForm = ({
         </Form>
       )}
     />
-  ) : null;
+  ) : (
+    <LoadingIndicator />
+  );
 
 BasicInformationForm.propTypes = {
   t: func.isRequired,

@@ -74,7 +74,7 @@ export const Tip = styled.span`
   position: relative;
   z-index: 1;
   font-size: ${p => p.theme.fontSizes.f16};
-  font-weight: 500;
+  font-weight: ${p => p.theme.fontWeights.medium};
   color: rgb(
     ${p => (p.isDragReject ? p.theme.colors.white : p.theme.colors.dark)}
   );

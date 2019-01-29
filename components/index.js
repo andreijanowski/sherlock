@@ -38,3 +38,5 @@ export { default as Wordmark } from "./Wordmark";
 export { default as FacebookLogin } from "./FacebookLogin";
 export { default as RadioButtonField } from "./RadioButtonField";
 export { default as LoadingIndicator } from "./LoadingIndicator";
+export { default as Menu } from "./Menu";
+export { default as Select } from "./Select";

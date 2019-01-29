@@ -7,6 +7,7 @@ import AppLayout from "layout/App";
 import { Flex } from "@rebass/grid";
 import { connect } from "react-redux";
 import { Router } from "routes";
+import { LoadingIndicator } from "components";
 
 const namespaces = ["app"];
 
@@ -24,25 +25,23 @@ class AppLanding extends PureComponent {
   }
 
   redirectToProfile = () => {
-    const { canRedirect, slug } = this.props;
+    const { canRedirect } = this.props;
     if (canRedirect) {
-      Router.pushRoute(`/app/${slug}/profile/basic-information/`);
+      Router.pushRoute(`/app/profile/basic-information/`);
     }
   };
 
   render() {
-    const { t, lng, slug } = this.props;
+    const { t, lng } = this.props;
     return (
       <AppLayout
         {...{
           t,
-          lng,
-          slug
+          lng
         }}
       >
         <Flex pt={6} width={1} alignItems="center" justifyContent="center">
-          {/* TODO: Add spinner here... */}
-          {t("loading")}
+          <LoadingIndicator />
         </Flex>
       </AppLayout>
     );
@@ -52,7 +51,6 @@ class AppLanding extends PureComponent {
 AppLanding.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  slug: string.isRequired,
   canRedirect: bool.isRequired
 };
 

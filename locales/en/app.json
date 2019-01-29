@@ -1,13 +1,11 @@
 {
-  "navBar": {
-    "manageProfile": {
-      "basicInformation": "Basic Information",
-      "contactInformation": "Contact Information",
-      "openingHours": "Opening Hours",
-      "picturesAndMenus": "Pictures and Menus",
-      "additionalInformation": "Additional Information",
-      "inviteYourTeam": "Invite your team"
-    }
+  "manageProfile": {
+    "basicInformation": "Basic Information",
+    "contactInformation": "Contact Information",
+    "openingHours": "Opening Hours",
+    "picturesAndMenus": "Pictures and Menus",
+    "additionalInformation": "Additional Information",
+    "inviteYourTeam": "Invite your team"
   },
   "loading": "Loading data..."
 }

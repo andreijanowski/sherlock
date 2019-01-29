@@ -1,24 +1,20 @@
 import { Flex } from "@rebass/grid";
-import { NavBar, MainApp } from "components";
-import { node, bool, func, string } from "prop-types";
+import { NavBar, MainApp, Menu } from "components";
+import { node, bool, func, string, arrayOf, shape } from "prop-types";
 
 const AppLayout = ({
   children,
   withMenu,
-  menu,
+  menuItems,
   mainIcon,
   header,
   t,
   lng,
-  slug
+  select
 }) => (
   <Flex width={1}>
-    <NavBar {...{ t, lng, slug }} />
-    {withMenu && (
-      <Flex ml="1px" width={280}>
-        {menu}
-      </Flex>
-    )}
+    <NavBar {...{ t, lng }} />
+    {withMenu && <Menu {...{ lng, menuItems, select }} />}
     <MainApp {...{ withMenu, mainIcon, header }}>{children}</MainApp>
   </Flex>
 );
@@ -26,19 +22,26 @@ const AppLayout = ({
 AppLayout.propTypes = {
   children: node.isRequired,
   withMenu: bool,
-  menu: node,
+  menuItems: arrayOf(
+    shape({
+      route: string.isRequired,
+      label: string.isRequired,
+      isActive: bool.isRequired
+    })
+  ),
   mainIcon: string,
   header: string,
   t: func.isRequired,
   lng: string.isRequired,
-  slug: string.isRequired
+  select: shape()
 };
 
 AppLayout.defaultProps = {
-  menu: null,
+  menuItems: null,
   withMenu: false,
   mainIcon: null,
-  header: null
+  header: null,
+  select: null
 };
 
 export default AppLayout;

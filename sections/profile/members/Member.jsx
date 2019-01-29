@@ -1,7 +1,7 @@
 import { required, validateEmail } from "utils/validators";
 import { FormInput, ActionIcon } from "components";
 import { Box } from "@rebass/grid";
-import { func, arrayOf, shape, string, number } from "prop-types";
+import { func, shape, string, number } from "prop-types";
 import { Wrapper, Inputs } from "./styled";
 import { Actions } from "../styled";
 
@@ -67,12 +67,7 @@ const Member = ({ name, fields, index, t, removeMember }) => (
 
 Member.propTypes = {
   name: string.isRequired,
-  fields: arrayOf(
-    shape({
-      email: "",
-      role: ""
-    })
-  ).isRequired,
+  fields: shape().isRequired,
   index: number.isRequired,
   t: func.isRequired,
   removeMember: func.isRequired

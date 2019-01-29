@@ -3,7 +3,7 @@ import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
 import fileToBase64 from "utils/fileToBase64";
-import { func, string, shape } from "prop-types";
+import { func, string, shape, arrayOf } from "prop-types";
 import AppLayout from "layout/App";
 import Form from "sections/profile/picturesAndMenus";
 import { connect } from "react-redux";
@@ -12,6 +12,11 @@ import { postPicture, deletePicture } from "actions/pictures";
 import { postMenu, patchMenu, deleteMenu } from "actions/menus";
 import { postProduct, patchProduct, deleteProduct } from "actions/products";
 import { getInitialValues } from "sections/profile/picturesAndMenus/utils";
+import {
+  generateMenuItems,
+  prepareBusinessesList
+} from "sections/profile/utils";
+import { setCurrentBusiness } from "actions/users";
 
 const namespaces = ["picturesAndMenus", "app"];
 
@@ -26,8 +31,11 @@ class PicturesAndMenus extends PureComponent {
 
   saveLogo = async logo => {
     try {
-      const { updateBusiness, slug } = this.props;
-      return updateBusiness(slug, { logo });
+      const {
+        updateBusiness,
+        business: { id }
+      } = this.props;
+      return updateBusiness(id, { logo });
     } catch (e) {
       console.log(e);
       return e;
@@ -36,8 +44,11 @@ class PicturesAndMenus extends PureComponent {
 
   addPicture = async photo => {
     try {
-      const { addPicture, slug } = this.props;
-      return addPicture("business", slug, photo);
+      const {
+        addPicture,
+        business: { id }
+      } = this.props;
+      return addPicture("business", id, photo);
     } catch (e) {
       console.log(e);
       return e;
@@ -60,10 +71,13 @@ class PicturesAndMenus extends PureComponent {
 
   addMenu = async menu => {
     try {
-      const { addMenu, slug } = this.props;
+      const {
+        addMenu,
+        business: { id }
+      } = this.props;
       const { name } = menu;
       const file = await fileToBase64(menu);
-      return addMenu(slug, name, file);
+      return addMenu(id, name, file);
     } catch (e) {
       console.log(e);
       return e;
@@ -92,8 +106,11 @@ class PicturesAndMenus extends PureComponent {
 
   addProduct = async product => {
     try {
-      const { addProduct, slug } = this.props;
-      return addProduct(slug, product);
+      const {
+        addProduct,
+        business: { id }
+      } = this.props;
+      return addProduct(id, product);
     } catch (e) {
       console.log(e);
       return e;
@@ -120,9 +137,16 @@ class PicturesAndMenus extends PureComponent {
     }
   };
 
+  handleBusinessChange = b => {
+    const { changeCurrentBusiness } = this.props;
+    changeCurrentBusiness(b.value);
+  };
+
   render() {
-    const { t, lng, slug, business } = this.props;
+    const { t, lng, business, businesses } = this.props;
     const initialValues = getInitialValues(business);
+    const businessesList = prepareBusinessesList(businesses);
+
     return (
       <AppLayout
         {...{
@@ -130,7 +154,17 @@ class PicturesAndMenus extends PureComponent {
           header: t("header"),
           t,
           lng,
-          slug
+          withMenu: true,
+          menuItems: generateMenuItems(t, "picturesAndMenus"),
+          select: {
+            value: {
+              value: business && business.id,
+              label: business && business.name,
+              src: business && business.logo.url
+            },
+            items: businessesList,
+            handleChange: this.handleBusinessChange
+          }
         }}
       >
         <Form
@@ -156,7 +190,6 @@ class PicturesAndMenus extends PureComponent {
 PicturesAndMenus.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  slug: string.isRequired,
   updateBusiness: func.isRequired,
   addPicture: func.isRequired,
   removePicture: func.isRequired,
@@ -166,10 +199,13 @@ PicturesAndMenus.propTypes = {
   addProduct: func.isRequired,
   updateProduct: func.isRequired,
   removeProduct: func.isRequired,
-  business: shape()
+  business: shape(),
+  changeCurrentBusiness: func.isRequired,
+  businesses: arrayOf(shape())
 };
 
 PicturesAndMenus.defaultProps = {
+  businesses: null,
   business: null
 };
 
@@ -177,7 +213,8 @@ export default requireAuth(true)(
   withI18next(namespaces)(
     connect(
       state => ({
-        business: state.users.currentBusiness.data
+        business: state.users.currentBusiness.data,
+        businesses: state.users.profileBusinesses.data
       }),
       {
         updateBusiness: patchBusiness,
@@ -188,7 +225,8 @@ export default requireAuth(true)(
         removeMenu: deleteMenu,
         addProduct: postProduct,
         updateProduct: patchProduct,
-        removeProduct: deleteProduct
+        removeProduct: deleteProduct,
+        changeCurrentBusiness: setCurrentBusiness
       }
     )(PicturesAndMenus)
   )

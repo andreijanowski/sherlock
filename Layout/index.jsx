@@ -10,22 +10,17 @@ const AppContainer = styled(Flex)`
   overflow: hidden;
 `;
 
-const MainLayout = ({ pageProps, slug, Component }) => (
+const MainLayout = ({ pageProps, Component }) => (
   <AppContainer flexDirection="column" alignItems="center">
     <GlobalStyles />
-    <Component {...{ ...pageProps, slug }} />
+    <Component {...{ ...pageProps }} />
     <NotificationsCenter />
   </AppContainer>
 );
 
 MainLayout.propTypes = {
   pageProps: shape().isRequired,
-  Component: oneOfType([string, func, node, element]).isRequired,
-  slug: string
-};
-
-MainLayout.defaultProps = {
-  slug: ""
+  Component: oneOfType([string, func, node, element]).isRequired
 };
 
 export default MainLayout;

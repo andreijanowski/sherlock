@@ -14,9 +14,15 @@ export default class MyDocument extends Document {
   render() {
     return (
       <html lang={this.props.__NEXT_DATA__.query.lng}>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <Head>{this.props.styleTags}</Head>
+        <Head>
+          <meta charSet="UTF-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          {this.props.styleTags}
+          <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
+        </Head>
         <body>
           <Main />
           <NextScript />

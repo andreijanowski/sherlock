@@ -20,21 +20,21 @@ export const emptyPassword = css`
 export const weekPassword = css`
   background-image: url("/static/emoji/face-screaming-in-fear.png");
   ${MeterProgress} {
-    stroke: rgba(${({ theme }) => theme.colors.ruby}, 1);
+    stroke: rgba(${p => p.theme.colors.ruby}, 1);
   }
 `;
 
 export const mediumPassword = css`
   background-image: url("/static/emoji/slightly-smiling-face.png");
   ${MeterProgress} {
-    stroke: rgba(${({ theme }) => theme.colors.carrotOrange}, 1);
+    stroke: rgba(${p => p.theme.colors.carrotOrange}, 1);
   }
 `;
 
 export const strongPassword = css`
   background-image: url("/static/emoji/smiling-face-with-sunglasses.png");
   ${MeterProgress} {
-    stroke: rgba(${({ theme }) => theme.colors.blue}, 1);
+    stroke: rgba(${p => p.theme.colors.blue}, 1);
   }
 `;
 
@@ -55,7 +55,7 @@ export const PasswordStrengthMeterWrapper = styled.div`
 
   ${MeterBackground} {
     fill: none;
-    stroke: rgba(${({ theme }) => theme.colors.dark}, 0.24);
+    stroke: rgba(${p => p.theme.colors.dark}, 0.24);
     stroke-width: 3.8;
   }
 
