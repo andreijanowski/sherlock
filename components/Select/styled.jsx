@@ -33,18 +33,44 @@ export const Avatar = styled.div`
   box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.dark}, 0.16);
 `;
 
+export const Action = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 56px;
+  line-height: 56px;
+  text-align: center;
+  color: rgb(${p => p.theme.colors.blue});
+  border-top: 1px solid rgb(${p => p.theme.colors.background});
+  cursor: pointer;
+  &:hover {
+    background-color: rgb(${p => p.theme.colors.blue});
+    color: rgb(${p => p.theme.colors.white});
+  }
+`;
+
+export const ItemsWrapper = styled(Flex).attrs(p => ({
+  flexDirection: "column",
+  mt: 2,
+  width: 1,
+  pb: p.bottomAction ? 56 : undefined
+}))`
+  background-color: rgb(${p => p.theme.colors.white});
+  border-radius: ${p => p.theme.radius.default};
+  position: absolute;
+  z-index: 2;
+  box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
+  overflow: hidden;
+`;
+
 export const Items = styled(Flex).attrs({
   flexDirection: "column",
   mt: 2,
   width: 1
 })`
-  background-color: rgb(${p => p.theme.colors.white});
-  border-radius: ${p => p.theme.radius.default};
+  position: relative;
   overflow: scroll;
-  position: absolute;
   max-height: 250px;
-  z-index: 2;
-  box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
 `;
 
 export const Item = styled(Box).attrs({

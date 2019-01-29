@@ -16,7 +16,8 @@ export const fetchProfile = () => ({
 export const fetchProfileBusinesses = () => ({
   type: FETCH_PROFILE_BUSINESSES_REQUEST,
   payload: {
-    endpoint: "/api/v1/users/me/businesses"
+    endpoint: "/api/v1/users/me/businesses",
+    params: { per_page: 200, page: 1 }
   },
   meta: { thunk: true }
 });
@@ -36,6 +37,10 @@ export const fetchProfileBusiness = id => ({
 export const setCurrentBusiness = id => ({
   type: SET_CURRENT_BUSINESS,
   payload: {
-    id
+    rawData: {
+      data: {
+        id
+      }
+    }
   }
 });

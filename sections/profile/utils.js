@@ -33,11 +33,11 @@ export const generateMenuItems = (t, active) => [
   }
 ];
 
-export const prepareBusinessesList = businesses =>
+export const prepareBusinessesList = (t, businesses) =>
   businesses
     ? businesses.map(b => ({
         value: b.id,
-        label: b.name,
+        label: b.name || t("app:manageProfile.unnamedBusiness"),
         src: b.logo.url
       }))
     : [];

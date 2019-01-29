@@ -3,7 +3,6 @@ import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
 import { func, string, shape, arrayOf } from "prop-types";
-import AppLayout from "layout/App";
 import Form from "sections/profile/basicInformation";
 import {
   countries,
@@ -11,12 +10,9 @@ import {
   getInitialValues,
   getGroupsValues
 } from "sections/profile/basicInformation/utils";
-import {
-  generateMenuItems,
-  prepareBusinessesList
-} from "sections/profile/utils";
+import ProfileLayout from "sections/profile/Layout";
 import { connect } from "react-redux";
-import { patchBusiness } from "actions/businesses";
+import { postBusiness, patchBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/users";
 
 const namespaces = ["basicInformation", "app"];
@@ -113,34 +109,27 @@ class BasicInformation extends PureComponent {
     }
   };
 
-  handleBusinessChange = b => {
-    const { changeCurrentBusiness } = this.props;
-    changeCurrentBusiness(b.value);
-  };
-
   render() {
-    const { t, lng, business, businesses } = this.props;
+    const {
+      t,
+      lng,
+      business,
+      businesses,
+      changeCurrentBusiness,
+      addBusiness
+    } = this.props;
     const { types, cuisines, foodsAndDrinks, quirks, diets } = this.state;
     const initialValues = getInitialValues(business);
-    const businessesList = prepareBusinessesList(businesses);
     return (
-      <AppLayout
+      <ProfileLayout
         {...{
-          mainIcon: "profile",
-          header: t("header"),
           t,
           lng,
-          withMenu: true,
-          menuItems: generateMenuItems(t, "basicInformation"),
-          select: {
-            value: {
-              value: business && business.id,
-              label: business && business.name,
-              src: business && business.logo.url
-            },
-            items: businessesList,
-            handleChange: this.handleBusinessChange
-          }
+          business,
+          businesses,
+          changeCurrentBusiness,
+          addBusiness,
+          currentPage: "basicInformation"
         }}
       >
         <Form
@@ -156,7 +145,7 @@ class BasicInformation extends PureComponent {
             handleSubmit: this.handleSubmit
           }}
         />
-      </AppLayout>
+      </ProfileLayout>
     );
   }
 }
@@ -168,6 +157,7 @@ BasicInformation.propTypes = {
   groups: arrayOf(shape()).isRequired,
   updateBusiness: func.isRequired,
   changeCurrentBusiness: func.isRequired,
+  addBusiness: func.isRequired,
   businesses: arrayOf(shape())
 };
 
@@ -186,7 +176,8 @@ export default requireAuth(true)(
       }),
       {
         updateBusiness: patchBusiness,
-        changeCurrentBusiness: setCurrentBusiness
+        changeCurrentBusiness: setCurrentBusiness,
+        addBusiness: postBusiness
       }
     )(BasicInformation)
   )

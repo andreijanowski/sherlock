@@ -10,7 +10,7 @@ import {
   FETCH_PROFILE_BUSINESS_FAIL,
   SET_CURRENT_BUSINESS
 } from "types/users";
-
+import { POST_BUSINESS_REQUEST, POST_BUSINESS_SUCCESS } from "types/businesses";
 import { POST_PICTURE_SUCCESS, DELETE_PICTURE_REQUEST } from "types/pictures";
 import { POST_MENU_SUCCESS, DELETE_MENU_REQUEST } from "types/menus";
 import { POST_PRODUCT_SUCCESS, DELETE_PRODUCT_REQUEST } from "types/products";
@@ -192,9 +192,22 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       return { ...newState };
     }
 
-    case SET_CURRENT_BUSINESS: {
+    case SET_CURRENT_BUSINESS:
+    case POST_BUSINESS_REQUEST: {
       const newState = state;
       newState.currentBusiness = initialState.currentBusiness;
+      return { ...newState };
+    }
+
+    case POST_BUSINESS_SUCCESS: {
+      const newState = state;
+      const business =
+        build(payload.data, "businesses", payload.rawData.data.id, {
+          ignoreLinks: true
+        }) || [];
+      newState.profileBusinesses.data = newState.profileBusinesses.data.concat(
+        business
+      );
       return { ...newState };
     }
 

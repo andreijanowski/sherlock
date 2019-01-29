@@ -4,18 +4,14 @@ import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
 import fileToBase64 from "utils/fileToBase64";
 import { func, string, shape, arrayOf } from "prop-types";
-import AppLayout from "layout/App";
+import ProfileLayout from "sections/profile/Layout";
 import Form from "sections/profile/picturesAndMenus";
 import { connect } from "react-redux";
-import { patchBusiness } from "actions/businesses";
+import { postBusiness, patchBusiness } from "actions/businesses";
 import { postPicture, deletePicture } from "actions/pictures";
 import { postMenu, patchMenu, deleteMenu } from "actions/menus";
 import { postProduct, patchProduct, deleteProduct } from "actions/products";
 import { getInitialValues } from "sections/profile/picturesAndMenus/utils";
-import {
-  generateMenuItems,
-  prepareBusinessesList
-} from "sections/profile/utils";
 import { setCurrentBusiness } from "actions/users";
 
 const namespaces = ["picturesAndMenus", "app"];
@@ -137,34 +133,27 @@ class PicturesAndMenus extends PureComponent {
     }
   };
 
-  handleBusinessChange = b => {
-    const { changeCurrentBusiness } = this.props;
-    changeCurrentBusiness(b.value);
-  };
-
   render() {
-    const { t, lng, business, businesses } = this.props;
+    const {
+      t,
+      lng,
+      business,
+      businesses,
+      changeCurrentBusiness,
+      addBusiness
+    } = this.props;
     const initialValues = getInitialValues(business);
-    const businessesList = prepareBusinessesList(businesses);
 
     return (
-      <AppLayout
+      <ProfileLayout
         {...{
-          mainIcon: "profile",
-          header: t("header"),
           t,
           lng,
-          withMenu: true,
-          menuItems: generateMenuItems(t, "picturesAndMenus"),
-          select: {
-            value: {
-              value: business && business.id,
-              label: business && business.name,
-              src: business && business.logo.url
-            },
-            items: businessesList,
-            handleChange: this.handleBusinessChange
-          }
+          business,
+          businesses,
+          changeCurrentBusiness,
+          addBusiness,
+          currentPage: "picturesAndMenus"
         }}
       >
         <Form
@@ -182,7 +171,7 @@ class PicturesAndMenus extends PureComponent {
             removeProduct: this.removeProduct
           }}
         />
-      </AppLayout>
+      </ProfileLayout>
     );
   }
 }
@@ -190,6 +179,7 @@ class PicturesAndMenus extends PureComponent {
 PicturesAndMenus.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
+  addBusiness: func.isRequired,
   updateBusiness: func.isRequired,
   addPicture: func.isRequired,
   removePicture: func.isRequired,
@@ -217,6 +207,7 @@ export default requireAuth(true)(
         businesses: state.users.profileBusinesses.data
       }),
       {
+        addBusiness: postBusiness,
         updateBusiness: patchBusiness,
         addPicture: postPicture,
         removePicture: deletePicture,

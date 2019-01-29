@@ -5,7 +5,9 @@
     "openingHours": "Opening Hours",
     "picturesAndMenus": "Pictures and Menus",
     "additionalInformation": "Additional Information",
-    "inviteYourTeam": "Invite your team"
+    "inviteYourTeam": "Invite your team",
+    "unnamedBusiness": "Unnamed business",
+    "addNewBusiness": "Add new business"
   },
   "loading": "Loading data..."
 }

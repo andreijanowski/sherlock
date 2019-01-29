@@ -11,6 +11,7 @@ const Menu = ({ lng, menuItems, select }) => (
           value={select.value}
           items={select.items}
           onChange={select.handleChange}
+          bottomAction={select.bottomAction}
         />
       </Flex>
     )}

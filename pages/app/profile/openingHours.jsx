@@ -3,7 +3,7 @@ import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
 import { func, string, shape, arrayOf } from "prop-types";
-import AppLayout from "layout/App";
+import ProfileLayout from "sections/profile/Layout";
 import Form from "sections/profile/openingHours";
 import {
   getInitialValues,
@@ -15,11 +15,8 @@ import {
   patchOpenPeriod,
   deleteOpenPeriod
 } from "actions/openPeriods";
-import {
-  generateMenuItems,
-  prepareBusinessesList
-} from "sections/profile/utils";
 import { setCurrentBusiness } from "actions/users";
+import { postBusiness } from "actions/businesses";
 
 const namespaces = ["openingHours", "app"];
 
@@ -65,34 +62,27 @@ class OpeningHours extends PureComponent {
     }
   };
 
-  handleBusinessChange = b => {
-    const { changeCurrentBusiness } = this.props;
-    changeCurrentBusiness(b.value);
-  };
-
   render() {
-    const { t, lng, business, businesses } = this.props;
+    const {
+      t,
+      lng,
+      business,
+      businesses,
+      changeCurrentBusiness,
+      addBusiness
+    } = this.props;
     const initialValues = getInitialValues(business);
-    const businessesList = prepareBusinessesList(businesses);
 
     return (
-      <AppLayout
+      <ProfileLayout
         {...{
-          mainIcon: "profile",
-          header: t("header"),
           t,
           lng,
-          withMenu: true,
-          menuItems: generateMenuItems(t, "openingHours"),
-          select: {
-            value: {
-              value: business && business.id,
-              label: business && business.name,
-              src: business && business.logo.url
-            },
-            items: businessesList,
-            handleChange: this.handleBusinessChange
-          }
+          business,
+          businesses,
+          changeCurrentBusiness,
+          addBusiness,
+          currentPage: "openingHours"
         }}
       >
         <Form
@@ -104,7 +94,7 @@ class OpeningHours extends PureComponent {
             removeOpenPeriod: this.removeOpenPeriod
           }}
         />
-      </AppLayout>
+      </ProfileLayout>
     );
   }
 }
@@ -115,6 +105,7 @@ OpeningHours.propTypes = {
   addOpenPeriod: func.isRequired,
   updateOpenPeriod: func.isRequired,
   removeOpenPeriod: func.isRequired,
+  addBusiness: func.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
   businesses: arrayOf(shape())
@@ -133,6 +124,7 @@ export default requireAuth(true)(
         businesses: state.users.profileBusinesses.data
       }),
       {
+        addBusiness: postBusiness,
         addOpenPeriod: postOpenPeriod,
         updateOpenPeriod: patchOpenPeriod,
         removeOpenPeriod: deleteOpenPeriod,
