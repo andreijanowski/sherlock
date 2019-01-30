@@ -1,4 +1,3 @@
-// import { APP_START, SAGA_START } from "types/members";
 import {
   FETCH_BUISNESS_MEMBERS_REQUEST,
   FETCH_BUISNESS_MEMBERS_SUCCESS,
@@ -16,15 +15,15 @@ const initialState = {
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case FETCH_BUISNESS_MEMBERS_REQUEST: {
-      const newState = state;
+      const newState = { ...state };
       newState.data = null;
       newState.isFetching = true;
       newState.isFailed = false;
       newState.isSucceeded = false;
-      return { ...newState };
+      return newState;
     }
     case FETCH_BUISNESS_MEMBERS_SUCCESS: {
-      const newState = state;
+      const newState = { ...state };
       const members =
         build(payload.data, "members", null, {
           ignoreLinks: true
@@ -32,13 +31,13 @@ const reducer = (state = initialState, { type, payload }) => {
       newState.isFetching = false;
       newState.isSucceeded = true;
       newState.data = members;
-      return { ...newState };
+      return newState;
     }
     case FETCH_BUISNESS_MEMBERS_FAIL: {
-      const newState = state;
+      const newState = { ...state };
       newState.isFetching = false;
       newState.isFailed = true;
-      return { ...newState };
+      return newState;
     }
     default: {
       return state;

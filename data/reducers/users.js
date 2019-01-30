@@ -42,15 +42,15 @@ const initialState = {
 const reducer = (state = initialState, { type, payload, meta }) => {
   switch (type) {
     case FETCH_PROFILE_REQUEST: {
-      const newState = state;
+      const newState = { ...state };
       newState.profile.data = null;
       newState.profile.isFetching = true;
       newState.profile.isFailed = false;
       newState.profile.isSucceeded = false;
-      return { ...newState };
+      return newState;
     }
     case FETCH_PROFILE_SUCCESS: {
-      const newState = state;
+      const newState = { ...state };
       const profile = build(payload.data, "users", payload.rawData.data.id, {
         ignoreLinks: true
       });
@@ -60,25 +60,25 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       newState.profile.data.avatar.url = `${
         profile.avatar.url
       }?${new Date().getTime()}`;
-      return { ...newState };
+      return newState;
     }
     case FETCH_PROFILE_FAIL: {
-      const newState = state;
+      const newState = { ...state };
       newState.profile.isFetching = false;
       newState.profile.isFailed = true;
-      return { ...newState };
+      return newState;
     }
 
     case FETCH_PROFILE_BUSINESSES_REQUEST: {
-      const newState = state;
+      const newState = { ...state };
       newState.profileBusinesses.data = null;
       newState.profileBusinesses.isFetching = true;
       newState.profileBusinesses.isFailed = false;
       newState.profileBusinesses.isSucceeded = false;
-      return { ...newState };
+      return newState;
     }
     case FETCH_PROFILE_BUSINESSES_SUCCESS: {
-      const newState = state;
+      const newState = { ...state };
       const businesses =
         build(payload.data, "businesses", null, {
           ignoreLinks: true
@@ -86,25 +86,25 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       newState.profileBusinesses.isFetching = false;
       newState.profileBusinesses.isSucceeded = true;
       newState.profileBusinesses.data = businesses;
-      return { ...newState };
+      return newState;
     }
     case FETCH_PROFILE_BUSINESSES_FAIL: {
-      const newState = state;
+      const newState = { ...state };
       newState.profileBusinesses.isFetching = false;
       newState.profileBusinesses.isFailed = true;
-      return { ...newState };
+      return newState;
     }
 
     case FETCH_PROFILE_BUSINESS_REQUEST: {
-      const newState = state;
+      const newState = { ...state };
       newState.currentBusiness.data = null;
       newState.currentBusiness.isFetching = true;
       newState.currentBusiness.isFailed = false;
       newState.currentBusiness.isSucceeded = false;
-      return { ...newState };
+      return newState;
     }
     case FETCH_PROFILE_BUSINESS_SUCCESS: {
-      const newState = state;
+      const newState = { ...state };
       const business = build(
         payload.data,
         "businesses",
@@ -116,17 +116,17 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       newState.currentBusiness.isFetching = false;
       newState.currentBusiness.isSucceeded = true;
       newState.currentBusiness.data = business;
-      return { ...newState };
+      return newState;
     }
     case FETCH_PROFILE_BUSINESS_FAIL: {
-      const newState = state;
+      const newState = { ...state };
       newState.currentBusiness.isFetching = false;
       newState.currentBusiness.isFailed = true;
-      return { ...newState };
+      return newState;
     }
 
     case POST_PICTURE_SUCCESS: {
-      const newState = state;
+      const newState = { ...state };
       const picture = build(payload.data, "pictures", payload.rawData.data.id, {
         ignoreLinks: true
       });
@@ -134,22 +134,22 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         ...newState.currentBusiness.data,
         pictures: [...newState.currentBusiness.data.pictures, picture]
       };
-      return { ...newState };
+      return newState;
     }
 
     case DELETE_PICTURE_REQUEST: {
-      const newState = state;
+      const newState = { ...state };
       newState.currentBusiness.data = {
         ...newState.currentBusiness.data,
         pictures: newState.currentBusiness.data.pictures.filter(
           p => p.id !== meta.id
         )
       };
-      return { ...newState };
+      return newState;
     }
 
     case POST_MENU_SUCCESS: {
-      const newState = state;
+      const newState = { ...state };
       const menu = build(payload.data, "menus", payload.rawData.data.id, {
         ignoreLinks: true
       });
@@ -157,20 +157,20 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         ...newState.currentBusiness.data,
         menus: [...newState.currentBusiness.data.menus, menu]
       };
-      return { ...newState };
+      return newState;
     }
 
     case DELETE_MENU_REQUEST: {
-      const newState = state;
+      const newState = { ...state };
       newState.currentBusiness.data = {
         ...newState.currentBusiness.data,
         menus: newState.currentBusiness.data.menus.filter(m => m.id !== meta.id)
       };
-      return { ...newState };
+      return newState;
     }
 
     case POST_PRODUCT_SUCCESS: {
-      const newState = state;
+      const newState = { ...state };
       const product = build(payload.data, "products", payload.rawData.data.id, {
         ignoreLinks: true
       });
@@ -178,29 +178,29 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         ...newState.currentBusiness.data,
         products: [...newState.currentBusiness.data.products, product]
       };
-      return { ...newState };
+      return newState;
     }
 
     case DELETE_PRODUCT_REQUEST: {
-      const newState = state;
+      const newState = { ...state };
       newState.currentBusiness.data = {
         ...newState.currentBusiness.data,
         products: newState.currentBusiness.data.products.filter(
           p => p.id !== meta.id
         )
       };
-      return { ...newState };
+      return newState;
     }
 
     case SET_CURRENT_BUSINESS:
     case POST_BUSINESS_REQUEST: {
-      const newState = state;
+      const newState = { ...state };
       newState.currentBusiness = initialState.currentBusiness;
-      return { ...newState };
+      return newState;
     }
 
     case POST_BUSINESS_SUCCESS: {
-      const newState = state;
+      const newState = { ...state };
       const business =
         build(payload.data, "businesses", payload.rawData.data.id, {
           ignoreLinks: true
@@ -208,7 +208,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       newState.profileBusinesses.data = newState.profileBusinesses.data.concat(
         business
       );
-      return { ...newState };
+      return newState;
     }
 
     default: {

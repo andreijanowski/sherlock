@@ -18,7 +18,7 @@ class AutoSave extends React.Component {
   }
 
   save = async blurredField => {
-    const { setFieldData, array } = this.props;
+    const { setFieldData, arrayName } = this.props;
     try {
       setFieldData(blurredField, { saving: true });
       if (this.promise) {
@@ -26,10 +26,14 @@ class AutoSave extends React.Component {
       }
       const { values, save, errors } = this.props;
       const { values: prevValues } = this.state;
-      const difference = array
-        ? getArraysDiff(values[array], prevValues[array], errors[array])
+      const difference = arrayName
+        ? getArraysDiff(
+            values[arrayName],
+            prevValues[arrayName],
+            errors[arrayName]
+          )
         : diff(prevValues, values);
-      if (!array) {
+      if (!arrayName) {
         Object.keys(errors).forEach(e => {
           delete difference[e];
         });
@@ -77,13 +81,13 @@ AutoSave.propTypes = {
   setFieldData: func.isRequired,
   save: func.isRequired,
   errors: shape(),
-  array: string
+  arrayName: string
 };
 
 AutoSave.defaultProps = {
   active: "",
   errors: null,
-  array: undefined
+  arrayName: undefined
 };
 
 const Spy = props => (

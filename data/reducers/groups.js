@@ -17,27 +17,27 @@ const initialState = {
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case FETCH_GROUPS_REQUEST: {
-      const newState = state;
+      const newState = { ...state };
       newState.groups.isFetching = true;
       newState.groups.isFailed = false;
       newState.groups.isSucceeded = false;
-      return { ...newState };
+      return newState;
     }
     case FETCH_GROUPS_SUCCESS: {
-      const newState = state;
+      const newState = { ...state };
       const groups = build(payload.data, "groups", null, {
         ignoreLinks: true
       });
       newState.groups.isFetching = false;
       newState.groups.isSucceeded = true;
       newState.groups.data = groups;
-      return { ...newState };
+      return newState;
     }
     case FETCH_GROUPS_FAIL: {
-      const newState = state;
+      const newState = { ...state };
       newState.groups.isFetching = false;
       newState.groups.isFailed = true;
-      return { ...newState };
+      return newState;
     }
 
     default: {

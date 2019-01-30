@@ -46,7 +46,7 @@ const MembersForm = ({ t, members, removeMember, handleSubmit }) =>
                       });
                     }
                   }}
-                  array="members"
+                  arrayName="members"
                   key="autoSave"
                 />,
                 ...membersArray

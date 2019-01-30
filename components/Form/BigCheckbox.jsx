@@ -10,14 +10,9 @@ class BigCheckbox extends PureComponent {
   handleChange = (e, input, checkedValues) => {
     const checkboxValue = JSON.parse(e.target.value);
     const isChecked = e.target.checked;
-    let newValue;
-    if (isChecked) {
-      newValue = [...checkedValues, checkboxValue];
-    } else {
-      newValue = [
-        ...checkedValues.filter(v => v.value !== checkboxValue.value)
-      ];
-    }
+    const newValue = isChecked
+      ? [...checkedValues, checkboxValue]
+      : checkedValues.filter(v => v.value !== checkboxValue.value);
     Promise.all([input.onChange(newValue)]).then(() =>
       Promise.all([this.checkbox.current.focus()]).then(() =>
         this.checkbox.current.blur()
