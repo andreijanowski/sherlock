@@ -21,7 +21,7 @@ class AdditionalInformation extends PureComponent {
     };
   }
 
-  handleSubmit = async ({
+  handleSubmit = ({
     breakfastService,
     lunchService,
     dinnerService,
@@ -39,34 +39,29 @@ class AdditionalInformation extends PureComponent {
     canPayWithMobile,
     secretCode
   }) => {
-    try {
-      const {
-        updateBusiness,
-        business: { id }
-      } = this.props;
-      const requestValues = {
-        breakfastService,
-        lunchService,
-        dinnerService,
-        brunchService,
-        cafeService,
-        snackService,
-        currency: currency && currency.value,
-        pricePerPerson,
-        hasCatering,
-        deliveryUrl,
-        onlineBookingUrl,
-        takeawayUrl,
-        canPayWithCards,
-        canPayWithCash,
-        canPayWithMobile,
-        secretCode
-      };
-      return updateBusiness(id, requestValues);
-    } catch (e) {
-      console.log(e);
-      return e;
-    }
+    const {
+      updateBusiness,
+      business: { id }
+    } = this.props;
+    const requestValues = {
+      breakfastService,
+      lunchService,
+      dinnerService,
+      brunchService,
+      cafeService,
+      snackService,
+      currency: currency && currency.value,
+      pricePerPerson,
+      hasCatering,
+      deliveryUrl,
+      onlineBookingUrl,
+      takeawayUrl,
+      canPayWithCards,
+      canPayWithCash,
+      canPayWithMobile,
+      secretCode
+    };
+    return updateBusiness(id, requestValues);
   };
 
   render() {
