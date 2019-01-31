@@ -22,8 +22,8 @@ const Products = ({
           <DropzoneWithCropper
             tip="＋"
             info={t("picturesInfo")}
-            errorTip={t("someFilesAreInvalid")}
-            errorInfo={t("validFiles")}
+            errorTipType={t("invalidFiles")}
+            errorInfoType={t("validImages")}
             accept={t("common:accept")}
             cancel={t("common:cancel")}
             multiple

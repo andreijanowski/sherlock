@@ -11,8 +11,8 @@ const Menus = ({ t, menus, addMenu, updateMenu, removeMenu }) => (
         accept={["image/png", "image/jpeg", "application/pdf"]}
         tip={t("chooseOrDragFile")}
         info={t("picturesInfo")}
-        errorTip={t("someFilesAreInvalid")}
-        errorInfo={t("validFiles")}
+        errorTipType={t("invalidFiles")}
+        errorInfoType={t("validMenus")}
         multiple
         onDrop={m => addMenu(m)}
       />

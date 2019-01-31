@@ -7,19 +7,40 @@ const Dropzone = ({
   onDrop,
   multiple,
   tip,
-  errorTip,
+  errorTipType,
+  errorTipMultiple,
   info,
-  errorInfo,
+  errorInfoType,
+  errorInfoMultiple,
   image
 }) => (
   <ReactDropzone {...{ accept, onDrop, multiple }}>
-    {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
-      <Wrapper {...getRootProps({ isDragActive, isDragReject, image })}>
-        <Input {...getInputProps()} />
-        <Tip {...{ isDragReject }}>{isDragReject ? errorTip : tip}</Tip>
-        <Info {...{ isDragReject }}>{isDragReject ? errorInfo : info}</Info>
-      </Wrapper>
-    )}
+    {({
+      getRootProps,
+      getInputProps,
+      isDragActive,
+      isDragReject,
+      draggedFiles
+    }) => {
+      let tipText = tip;
+      let infoText = info;
+      if (isDragReject) {
+        if (!multiple && draggedFiles.length > 1) {
+          tipText = errorTipMultiple;
+          infoText = errorInfoMultiple;
+        } else {
+          tipText = errorTipType;
+          infoText = errorInfoType;
+        }
+      }
+      return (
+        <Wrapper {...getRootProps({ isDragActive, isDragReject, image })}>
+          <Input {...getInputProps()} />
+          <Tip {...{ isDragReject }}>{tipText}</Tip>
+          <Info {...{ isDragReject }}>{infoText}</Info>
+        </Wrapper>
+      );
+    }}
   </ReactDropzone>
 );
 
@@ -28,14 +49,18 @@ Dropzone.propTypes = {
   onDrop: func.isRequired,
   multiple: bool.isRequired,
   tip: string.isRequired,
-  errorTip: string.isRequired,
+  errorTipType: string.isRequired,
+  errorTipMultiple: string,
   info: string.isRequired,
-  errorInfo: string.isRequired,
+  errorInfoType: string.isRequired,
+  errorInfoMultiple: string,
   image: string
 };
 
 Dropzone.defaultProps = {
-  image: null
+  image: null,
+  errorTipMultiple: "",
+  errorInfoMultiple: ""
 };
 
 export default Dropzone;

@@ -22,6 +22,7 @@ export const Wrapper = styled(Flex).attrs({
       : `background-color: rgb(${p.theme.colors.background});`)};
 
   ${p =>
+    !p.isDragActive &&
     p.image &&
     `
     &::before {
