@@ -18,13 +18,12 @@ class DropzoneWithCropper extends PureComponent {
       filesForCropping: state.filesForCropping.splice(1)
     }));
 
-  handleCrop = image => {
+  handleCrop = async image => {
     const { saveImage } = this.props;
     this.handleCropperHide();
     this.setState({ isAddingFile: true });
-    saveImage(image)
-      .then(() => this.setState({ isAddingFile: false }))
-      .catch(() => this.setState({ isAddingFile: false }));
+    await saveImage(image);
+    this.setState({ isAddingFile: false });
   };
 
   render() {
