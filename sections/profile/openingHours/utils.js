@@ -64,11 +64,13 @@ export const parseOpenPeriod = openPeriod => ({
 export const addNewOpenPeriod = async (addOpenPeriod, fields, weekday) => {
   try {
     const defaultTime = {
-      hour24: 12,
+      formatted: "12:00 am",
+      formatted24: "0:00",
+      formattedSimple: "12:00",
       hour: 12,
-      minute: 0,
+      hour24: 0,
       meridiem: "am",
-      formatted: "12:00 am"
+      minute: 0
     };
     const newOpenPeriod = {
       openedFrom: defaultTime,
