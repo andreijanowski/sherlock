@@ -25,13 +25,17 @@ class Day extends PureComponent {
   };
 
   handleBlur = async (value, fields, index, fieldName) => {
-    const { updateOpenPeriod } = this.props;
-    this.setState({ isRequestPenging: true });
-    await updateOpenPeriod({
-      ...fields.value[index],
-      [fieldName]: value
-    });
-    this.setState({ isRequestPenging: false });
+    try {
+      const { updateOpenPeriod } = this.props;
+      this.setState({ isRequestPenging: true });
+      await updateOpenPeriod({
+        ...fields.value[index],
+        [fieldName]: value
+      });
+      this.setState({ isRequestPenging: false });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   remove = (fields, index) => {
