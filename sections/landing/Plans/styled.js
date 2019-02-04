@@ -3,6 +3,7 @@ import { Flex, Box } from "@rebass/grid";
 
 export const PlansWrapper = styled(Flex).attrs({
   flexDirection: "row",
+  flexWrap: "wrap",
   m: -2,
   width: 1,
   alignSelf: "center"
@@ -154,7 +155,6 @@ export const Option = styled(Box)`
 `;
 
 export const PromotionWrapper = styled(Box).attrs({
-  mx: -32,
   p: 32
 })`
   border: ${p => p.theme.borderWeights.tiny} solid
