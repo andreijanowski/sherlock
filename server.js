@@ -22,6 +22,7 @@ i18n
       fallbackLng: "en",
       preload: languages, // preload all langages
       ns: [
+        "additionalInformation",
         "addManager",
         "addVenue",
         "app",
