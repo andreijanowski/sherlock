@@ -9,7 +9,7 @@ import { addNewOpenPeriod } from "./utils";
 
 class Day extends PureComponent {
   state = {
-    isRequestPenging: false
+    isRequestPending: false
   };
 
   handleChange = fields => {
@@ -27,12 +27,12 @@ class Day extends PureComponent {
   handleBlur = async (value, fields, index, fieldName) => {
     try {
       const { updateOpenPeriod } = this.props;
-      this.setState({ isRequestPenging: true });
+      this.setState({ isRequestPending: true });
       await updateOpenPeriod({
         ...fields.value[index],
         [fieldName]: value
       });
-      this.setState({ isRequestPenging: false });
+      this.setState({ isRequestPending: false });
     } catch (e) {
       console.log(e);
     }
@@ -46,7 +46,7 @@ class Day extends PureComponent {
 
   render() {
     const { t, weekday, addOpenPeriod, copy, paste } = this.props;
-    const { isRequestPenging } = this.state;
+    const { isRequestPending } = this.state;
     return (
       <FieldArray name={`day-${weekday}`}>
         {({ fields }) => (
@@ -79,7 +79,7 @@ class Day extends PureComponent {
                         name={`${name}.openedFrom`}
                         label={t("openedFromLabel")}
                         placeholder={t("openedFromPlaceholder")}
-                        loading={isRequestPenging}
+                        loading={isRequestPending}
                         handleBlur={value =>
                           this.handleBlur(value, fields, index, "openedFrom")
                         }
@@ -90,7 +90,7 @@ class Day extends PureComponent {
                         name={`${name}.openedTo`}
                         label={t("openedToLabel")}
                         placeholder={t("openedToPlaceholder")}
-                        loading={isRequestPenging}
+                        loading={isRequestPending}
                         handleBlur={value =>
                           this.handleBlur(value, fields, index, "openedTo")
                         }
