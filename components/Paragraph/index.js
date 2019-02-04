@@ -14,6 +14,9 @@ const Paragraph = styled(Box).attrs(p => ({
     ${p => (p.white ? p.theme.colors.white : p.theme.colors.dark)},
     ${p => (p.app ? 0.4 : 0.72)}
   );
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    font-size: ${p => p.theme.fontSizes.f21};
+  }
 `;
 
 Paragraph.propTypes = {

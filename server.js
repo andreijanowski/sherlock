@@ -3,13 +3,13 @@ const path = require("path");
 const next = require("next");
 const i18nextMiddleware = require("i18next-express-middleware");
 const Backend = require("i18next-node-fs-backend");
-
-const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev });
+const basicAuth = require("express-basic-auth");
 const i18n = require("./i18n");
 const routes = require("./routes");
 const { languages } = require("./consts");
 
+const dev = process.env.NODE_ENV !== "production";
+const app = next({ dev });
 const handler = routes.getRequestHandler(app);
 
 // init i18next with serverside settings
@@ -66,6 +66,15 @@ i18n
       // loaded translations we can bootstrap our routes
       app.prepare().then(() => {
         const server = express();
+
+        if (process.env.NODE_ENV === "production") {
+          server.use(
+            basicAuth({
+              users: { sherlock: "netguru" },
+              challenge: true
+            })
+          );
+        }
 
         // enable middleware for i18next
         server.use(i18nextMiddleware.handle(i18n));
