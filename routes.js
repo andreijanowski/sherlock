@@ -28,4 +28,10 @@ module.exports = routes()
   .add(
     "app/profile/picturesAndMenus",
     `/:lng(${languagesPattern})/app/profile/pictures-and-menus/`
-  );
+  )
+  .add(
+    "app/user/basicInformation",
+    `/:lng(${languagesPattern})/app/user/basic-information/`
+  )
+  .add("app/user/billing", `/:lng(${languagesPattern})/app/user/billing/`)
+  .add("app/user/password", `/:lng(${languagesPattern})/app/user/password/`);

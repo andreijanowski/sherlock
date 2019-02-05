@@ -9,5 +9,10 @@
     "unnamedBusiness": "Unnamed business",
     "addNewBusiness": "Add new business"
   },
-  "loading": "Loading data..."
+  "userSettings": {
+    "basicInformation": "Basic Information",
+    "billing": "Billing",
+    "password": "Password",
+    "logout": "Logout"
+  }
 }
