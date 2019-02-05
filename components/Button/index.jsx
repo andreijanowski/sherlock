@@ -77,6 +77,10 @@ const limeade = css`
   ${planButton};
 `;
 
+const fluid = css`
+  width: 100%;
+`;
+
 const Button = styled.button`
   border-radius: ${p => p.theme.radius.default};
   font-size: ${p => p.theme.fontSizes.f16};
@@ -95,6 +99,7 @@ const Button = styled.button`
   ${p => p.styleName === "transparent" && transparent};
   ${p => p.styleName === "limeade" && limeade};
   ${p => p.styleName === "outlineBlue" && outlineBlue};
+  ${p => p.fluid && fluid};
 
   &:disabled {
     cursor: not-allowed;
