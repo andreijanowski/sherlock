@@ -8,7 +8,6 @@ import {
   FormMultipleSelect
 } from "components";
 import { Form as FinalForm, Field } from "react-final-form";
-import { required, maxLength } from "utils/validators";
 import iso3166 from "iso-3166-2";
 import { func } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
@@ -36,13 +35,11 @@ const BasicInformationForm = ({ t }) => (
         <H3>{t("basicInformation")}</H3>
         <FormInput
           name="name"
-          validate={required(t)}
           label={t("nameLabel")}
           placeholder={t("namePlaceholder")}
         />
         <FormInput
           name="tagline"
-          validate={maxLength(t, 100)}
           label={t("taglineLabel")}
           placeholder={t("taglinePlaceholder")}
         />
@@ -74,7 +71,6 @@ const BasicInformationForm = ({ t }) => (
           <Box width={1 / 2} px={2}>
             <FormInput
               name="street"
-              validate={maxLength(t, 100)}
               label={t("streetLabel")}
               placeholder={t("streetPlaceholder")}
             />
@@ -82,7 +78,6 @@ const BasicInformationForm = ({ t }) => (
           <Box width={3 / 10} px={2}>
             <FormInput
               name="streetNumber"
-              validate={maxLength(t, 100)}
               label={t("streetNumberLabel")}
               placeholder={t("streetNumberPlaceholder")}
             />
@@ -90,7 +85,6 @@ const BasicInformationForm = ({ t }) => (
           <Box width={1 / 5} px={2}>
             <FormInput
               name="postCode"
-              validate={maxLength(t, 100)}
               label={t("postCodeLabel")}
               placeholder={t("postCodePlaceholder")}
             />
