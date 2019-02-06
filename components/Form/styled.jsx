@@ -8,6 +8,7 @@ export const FieldWrapper = styled(Flex).attrs({
   alignItems: "center"
 })`
   position: relative;
+  ${p => p.as === "label" && "cursor:pointer;"}
 
   .ExpandIcon {
     position: absolute;
