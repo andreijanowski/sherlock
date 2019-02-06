@@ -1,24 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-export const FieldWrapper = styled(Flex).attrs({
-  width: 1,
-  mb: 3,
-  alignItems: "center"
-})`
-  position: relative;
-  ${p => p.as === "label" && "cursor:pointer;"}
-
-  .ExpandIcon {
-    position: absolute;
-    right: 24px;
-  }
-`;
+import TextareaAutosize from "react-autosize-textarea";
 
 export const LABEL_ACTIVE_SCALE = 0.7;
 
-export const RawInput = styled(({ smallLabel, ...p }) => <input {...p} />)`
+const InputStyles = css`
   border-radius: ${p => p.theme.radius.small};
   border: 1px solid
     rgb(${p => (p.invalid ? p.theme.colors.ruby : p.theme.colors.snuff)});
@@ -66,26 +53,44 @@ export const RawInput = styled(({ smallLabel, ...p }) => <input {...p} />)`
   &:invalid {
     border-color: rgb(${p => p.theme.colors.ruby});
   }
+`;
 
-  ${p =>
-    !p.rows &&
-    `&:not([value=""]) {
-      padding-top: 27px;
-      padding-bottom: 12px;
+const FilledInputStyles = css`
+  padding-top: 27px;
+  padding-bottom: 12px;
 
-      & + label {
-        transform: translateY(-120%) scale(${LABEL_ACTIVE_SCALE});
-      }
-    }`}
+  & + label {
+    transform: translateY(-120%) scale(${LABEL_ACTIVE_SCALE});
+  }
+`;
 
-  ${p =>
-    p.smallLabel &&
-    `padding-top: 27px;
-      padding-bottom: 12px;
+export const FieldWrapper = styled(Flex).attrs({
+  width: 1,
+  mb: 3,
+  alignItems: "center"
+})`
+  position: relative;
+  ${p => p.as === "label" && "cursor:pointer;"}
 
-      & + label {
-        transform: translateY(-120%) scale(${LABEL_ACTIVE_SCALE});
-      }`}
+  .ExpandIcon {
+    position: absolute;
+    right: 24px;
+  }
+`;
+
+export const RawInput = styled.input`
+  ${InputStyles}
+
+  &:not([value=""]) {
+    ${FilledInputStyles}
+  }
+`;
+
+export const RawTextarea = styled(({ smallLabel, ...p }) => (
+  <TextareaAutosize {...p} />
+))`
+  ${InputStyles}
+  ${p => p.smallLabel && FilledInputStyles}
 `;
 
 export const MultipleSelectInput = styled(RawInput)`
