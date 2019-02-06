@@ -1,18 +1,23 @@
 import { string, shape } from "prop-types";
 import { Field as FinalFormField } from "react-final-form";
 import { FontAwesomeIcon as Icon } from "@fortawesome/react-fontawesome";
+import { Flex, Box } from "@rebass/grid";
 import { getError } from "./utils";
 import { FieldWrapper, Error, Checkmark, HiddenCheckboxInput } from "./styled";
 
 export const RawCheckbox = ({ input, error, label }) => (
-  <FieldWrapper as="label">
-    <HiddenCheckboxInput {...input} />
-    <Checkmark isChecked={input.value} invalid={error ? "true" : undefined}>
-      {input.value && <Icon icon={["fa", "check"]} />}
-    </Checkmark>
-    {label}
-    {error && <Error>{error}</Error>}
-  </FieldWrapper>
+  <Flex>
+    <Box>
+      <FieldWrapper as="label">
+        <HiddenCheckboxInput {...input} />
+        <Checkmark isChecked={input.value} invalid={error ? "true" : undefined}>
+          {input.value && <Icon icon={["fa", "check"]} />}
+        </Checkmark>
+        {label}
+        {error && <Error>{error}</Error>}
+      </FieldWrapper>
+    </Box>
+  </Flex>
 );
 
 RawCheckbox.propTypes = {
