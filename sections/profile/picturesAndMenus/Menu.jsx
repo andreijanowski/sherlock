@@ -17,11 +17,15 @@ class Menu extends PureComponent {
   handleChange = e => this.setState({ value: e.target.value });
 
   handleBlur = async () => {
-    const { updateMenu, id } = this.props;
-    const { value } = this.state;
-    this.setState({ saving: true });
-    await updateMenu(id, value);
-    this.setState({ saving: false });
+    try {
+      const { updateMenu, id } = this.props;
+      const { value } = this.state;
+      this.setState({ saving: true });
+      await updateMenu(id, value);
+      this.setState({ saving: false });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   render() {

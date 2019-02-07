@@ -33,37 +33,22 @@ class OpeningHours extends PureComponent {
     copied: undefined
   };
 
-  addOpenPeriod = async openPeriod => {
-    try {
-      const {
-        addOpenPeriod,
-        business: { id }
-      } = this.props;
-      return addOpenPeriod(id, parseOpenPeriod(openPeriod));
-    } catch (e) {
-      console.log(e);
-      return e;
-    }
+  addOpenPeriod = openPeriod => {
+    const {
+      addOpenPeriod,
+      business: { id }
+    } = this.props;
+    return addOpenPeriod(id, parseOpenPeriod(openPeriod));
   };
 
-  updateOpenPeriod = async openPeriod => {
-    try {
-      const { updateOpenPeriod } = this.props;
-      return updateOpenPeriod(openPeriod.id, parseOpenPeriod(openPeriod));
-    } catch (e) {
-      console.log(e);
-      return e;
-    }
+  updateOpenPeriod = openPeriod => {
+    const { updateOpenPeriod } = this.props;
+    return updateOpenPeriod(openPeriod.id, parseOpenPeriod(openPeriod));
   };
 
-  removeOpenPeriod = async id => {
-    try {
-      const { removeOpenPeriod } = this.props;
-      return removeOpenPeriod(id);
-    } catch (e) {
-      console.log(e);
-      return e;
-    }
+  removeOpenPeriod = id => {
+    const { removeOpenPeriod } = this.props;
+    return removeOpenPeriod(id);
   };
 
   copy = fields => this.setState({ copied: fields });

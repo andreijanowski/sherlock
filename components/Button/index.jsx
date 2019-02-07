@@ -88,6 +88,8 @@ const Button = styled.button`
   line-height: 1.5;
   cursor: pointer;
 
+  ${p => p.width && `width: ${p.width};`};
+
   ${p => p.styleName === "login" && login};
   ${p => p.styleName === "blue" && blue};
   ${p => p.styleName === "orange" && orange};

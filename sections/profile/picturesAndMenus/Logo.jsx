@@ -13,8 +13,8 @@ const Logo = ({ t, logo, saveLogo }) => (
             info={t("picturesInfo")}
             errorTip={t("someFilesAreInvalid")}
             errorInfo={t("validFiles")}
-            accept={t("common:accept")}
-            cancel={t("common:cancel")}
+            crop={t("app:crop")}
+            cancel={t("app:cancel")}
             multiple={false}
             maxWidth={300}
             maxHeight={300}

@@ -25,44 +25,33 @@ class PicturesAndMenus extends PureComponent {
     };
   }
 
-  saveLogo = async logo => {
-    try {
-      const {
-        updateBusiness,
-        business: { id }
-      } = this.props;
-      return updateBusiness(id, { logo });
-    } catch (e) {
-      console.log(e);
-      return e;
-    }
+  saveLogo = logo => {
+    const {
+      updateBusiness,
+      business: { id }
+    } = this.props;
+    return updateBusiness(id, { logo });
   };
 
-  addPicture = async photo => {
-    try {
-      const {
-        addPicture,
-        business: { id }
-      } = this.props;
-      return addPicture("business", id, photo);
-    } catch (e) {
-      console.log(e);
-      return e;
-    }
+  addPicture = photo => {
+    const {
+      addPicture,
+      business: { id }
+    } = this.props;
+    return addPicture("business", id, photo);
   };
 
-  removePicture = async id => {
-    try {
-      const { removePicture } = this.props;
-      return removePicture(id);
-    } catch (e) {
-      console.log(e);
-      return e;
-    }
+  removePicture = id => {
+    const { removePicture } = this.props;
+    return removePicture(id);
   };
 
   addMenus = menus => {
-    menus.forEach(m => this.addMenu(m));
+    const savedMenus = menus.map(m => {
+      const menu = this.addMenu(m);
+      return menu;
+    });
+    return Promise.all(savedMenus);
   };
 
   addMenu = async menu => {
@@ -73,64 +62,40 @@ class PicturesAndMenus extends PureComponent {
       } = this.props;
       const { name } = menu;
       const file = await fileToBase64(menu);
-      return addMenu(id, name, file);
+      const res = addMenu(id, name, file);
+      return res;
     } catch (e) {
       console.log(e);
       return e;
     }
   };
 
-  updateMenu = async (id, name) => {
-    try {
-      const { updateMenu } = this.props;
-      return updateMenu(id, name);
-    } catch (e) {
-      console.log(e);
-      return e;
-    }
+  updateMenu = (id, name) => {
+    const { updateMenu } = this.props;
+    return updateMenu(id, name);
   };
 
-  removeMenu = async id => {
-    try {
-      const { removeMenu } = this.props;
-      return removeMenu(id);
-    } catch (e) {
-      console.log(e);
-      return e;
-    }
+  removeMenu = id => {
+    const { removeMenu } = this.props;
+    return removeMenu(id);
   };
 
-  addProduct = async product => {
-    try {
-      const {
-        addProduct,
-        business: { id }
-      } = this.props;
-      return addProduct(id, product);
-    } catch (e) {
-      console.log(e);
-      return e;
-    }
+  addProduct = product => {
+    const {
+      addProduct,
+      business: { id }
+    } = this.props;
+    return addProduct(id, product);
   };
 
-  updateProduct = async (id, name) => {
-    try {
-      const { updateProduct } = this.props;
-      return updateProduct(id, name);
-    } catch (e) {
-      console.log(e);
-      return e;
-    }
+  updateProduct = (id, name) => {
+    const { updateProduct } = this.props;
+    return updateProduct(id, name);
   };
 
-  removeProduct = async id => {
-    try {
-      const { removeProduct } = this.props;
-      return removeProduct(id);
-    } catch (e) {
-      console.log(e);
-      return e;
-    }
+  removeProduct = id => {
+    const { removeProduct } = this.props;
+    return removeProduct(id);
   };
 
   render() {
