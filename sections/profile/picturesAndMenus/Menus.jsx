@@ -1,27 +1,50 @@
+import { PureComponent } from "react";
 import { H3, Dropzone } from "components";
 import { func, arrayOf, shape, string } from "prop-types";
 import Menu from "./Menu";
 import { DropzoneWrapper } from "../styled";
 
-const Menus = ({ t, menus, addMenu, updateMenu, removeMenu }) => (
-  <>
-    <H3 mt={4}>{t("menu")}</H3>
-    <DropzoneWrapper>
-      <Dropzone
-        accept={["image/png", "image/jpeg", "application/pdf"]}
-        tip={t("chooseOrDragFile")}
-        info={t("picturesInfo")}
-        errorTip={t("someFilesAreInvalid")}
-        errorInfo={t("validFiles")}
-        multiple
-        onDrop={m => addMenu(m)}
-      />
-    </DropzoneWrapper>
-    {menus.map(m => (
-      <Menu {...{ ...m, updateMenu, removeMenu, key: m.id }} />
-    ))}
-  </>
-);
+class Menus extends PureComponent {
+  state = {
+    isAddingFile: false
+  };
+
+  handleDrop = async m => {
+    try {
+      const { addMenu } = this.props;
+      this.setState({ isAddingFile: true });
+      await addMenu(m);
+      this.setState({ isAddingFile: false });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  render() {
+    const { t, menus, updateMenu, removeMenu } = this.props;
+    const { isAddingFile } = this.state;
+    return (
+      <>
+        <H3 mt={4}>{t("menu")}</H3>
+        <DropzoneWrapper>
+          <Dropzone
+            accept={["image/png", "image/jpeg", "application/pdf"]}
+            tip={t("chooseOrDragFile")}
+            info={t("picturesInfo")}
+            errorTipType={t("invalidFiles")}
+            errorInfoType={t("validMenus")}
+            multiple
+            loading={isAddingFile}
+            onDrop={this.handleDrop}
+          />
+        </DropzoneWrapper>
+        {menus.map(m => (
+          <Menu {...{ ...m, updateMenu, removeMenu, key: m.id }} />
+        ))}
+      </>
+    );
+  }
+}
 
 Menus.propTypes = {
   t: func.isRequired,

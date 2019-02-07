@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Copy = styled.span`
+export const Action = styled.span`
   font-size: ${p => p.theme.fontSizes.f14};
   color: rgb(${p => p.theme.colors.blue});
   cursor: pointer;

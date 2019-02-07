@@ -21,32 +21,22 @@ class Members extends PureComponent {
     };
   }
 
-  handleSubmit = async members => {
-    try {
-      const {
-        addMember,
-        updateMember,
-        business: { id: businessId }
-      } = this.props;
-      const { id, email, role } = members[0];
-      if (id) {
-        return updateMember(id, { email, role });
-      }
-      return addMember({ email, role }, businessId);
-    } catch (e) {
-      console.log(e);
-      return e;
+  handleSubmit = members => {
+    const {
+      addMember,
+      updateMember,
+      business: { id: businessId }
+    } = this.props;
+    const { id, email, role } = members[0];
+    if (id) {
+      return updateMember(id, { email, role });
     }
+    return addMember({ email, role }, businessId);
   };
 
-  removeMember = async id => {
-    try {
-      const { removeMember } = this.props;
-      return removeMember(id);
-    } catch (e) {
-      console.log(e);
-      return e;
-    }
+  removeMember = id => {
+    const { removeMember } = this.props;
+    return removeMember(id);
   };
 
   render() {

@@ -47,12 +47,17 @@ const ProfileLayout = ({
 ProfileLayout.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  business: shape().isRequired,
-  businesses: arrayOf(shape()).isRequired,
+  business: shape(),
+  businesses: arrayOf(shape()),
   changeCurrentBusiness: func.isRequired,
   addBusiness: func.isRequired,
   currentPage: string.isRequired,
   children: node.isRequired
+};
+
+ProfileLayout.defaultProps = {
+  business: null,
+  businesses: null
 };
 
 export default ProfileLayout;

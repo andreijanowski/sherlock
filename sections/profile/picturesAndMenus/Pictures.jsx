@@ -13,10 +13,10 @@ const Pictures = ({ t, pictures, addPicture, removePicture }) => (
           <DropzoneWithCropper
             tip="＋"
             info={t("picturesInfo")}
-            errorTip={t("someFilesAreInvalid")}
-            errorInfo={t("validFiles")}
-            accept={t("common:accept")}
-            cancel={t("common:cancel")}
+            errorTipType={t("invalidFiles")}
+            errorInfoType={t("validImages")}
+            crop={t("app:crop")}
+            cancel={t("app:cancel")}
             multiple
             maxWidth={4096}
             maxHeight={4096}
