@@ -15,8 +15,8 @@ const Pictures = ({ t, pictures, addPicture, removePicture }) => (
             info={t("picturesInfo")}
             errorTip={t("someFilesAreInvalid")}
             errorInfo={t("validFiles")}
-            accept={t("common:accept")}
-            cancel={t("common:cancel")}
+            crop={t("app:crop")}
+            cancel={t("app:cancel")}
             multiple
             maxWidth={4096}
             maxHeight={4096}
