@@ -1,17 +1,30 @@
 import { createGlobalStyle } from "styled-components";
 import styledNormalize from "styled-normalize";
-import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faPlay,
   faAngleDown,
+  faPlus,
+  faMinus,
+  faCheck,
+  faTimes,
   faArrowLeft,
   faCircleNotch
 } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF } from "@fortawesome/fontawesome-free-brands";
-
+import { library } from "@fortawesome/fontawesome-svg-core";
 import fonts from "./fonts";
 
-library.add(faPlay, faAngleDown, faArrowLeft, faCircleNotch, faFacebookF);
+library.add(
+  faPlay,
+  faAngleDown,
+  faPlus,
+  faMinus,
+  faCheck,
+  faTimes,
+  faArrowLeft,
+  faCircleNotch,
+  faFacebookF
+);
 
 export default createGlobalStyle`
     ${styledNormalize}

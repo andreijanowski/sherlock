@@ -37,7 +37,7 @@ class MyApp extends App {
   }
 
   render() {
-    const { Component, pageProps, store } = this.props;
+    const { Component, pageProps, store, slug } = this.props;
     const { i18n, initialI18nStore, initialLanguage } = pageProps || {};
 
     return (
@@ -50,7 +50,7 @@ class MyApp extends App {
                 initialI18nStore={initialI18nStore}
                 initialLanguage={initialLanguage}
               >
-                <Layout {...{ pageProps, Component }} />
+                <Layout {...{ pageProps, slug, Component }} />
               </I18nextProvider>
             </ThemeProvider>
           </PersistGate>
@@ -63,7 +63,7 @@ class MyApp extends App {
 export default withRedux(createStore)(
   withReduxSaga({ async: true })(
     connect(
-      null,
+      state => ({ slug: state.app.currentBusiness.slug }),
       {
         startApp
       }

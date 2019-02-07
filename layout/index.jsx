@@ -1,8 +1,7 @@
-/* eslint-disable react/forbid-prop-types */
 import { Flex } from "@rebass/grid";
 import { NotificationsCenter } from "components";
 import styled from "styled-components";
-import { object, node } from "prop-types";
+import { shape, node, oneOfType, string, func, element } from "prop-types";
 import GlobalStyles from "utils/globalStyles";
 
 const AppContainer = styled(Flex)`
@@ -11,17 +10,22 @@ const AppContainer = styled(Flex)`
   overflow: hidden;
 `;
 
-const MainLayout = ({ pageProps, Component }) => (
+const MainLayout = ({ pageProps, slug, Component }) => (
   <AppContainer flexDirection="column" alignItems="center">
     <GlobalStyles />
-    <Component {...pageProps} />
+    <Component {...{ ...pageProps, slug }} />
     <NotificationsCenter />
   </AppContainer>
 );
 
 MainLayout.propTypes = {
-  pageProps: object.isRequired,
-  Component: node.isRequired
+  pageProps: shape().isRequired,
+  Component: oneOfType([string, func, node, element]).isRequired,
+  slug: string
+};
+
+MainLayout.defaultProps = {
+  slug: ""
 };
 
 export default MainLayout;

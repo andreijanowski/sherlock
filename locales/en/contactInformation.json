@@ -1,0 +1,16 @@
+{
+  "header": "Contact Information",
+  "contactInformation": "Contact Information",
+  "nameLabel": "Name",
+  "namePlaceholder": "John Smith",
+  "emailLabel": "E-mail",
+  "emailPlaceholder": "name@company.com",
+  "countryLabel": "Country",
+  "countryPlaceholder": "+48",
+  "phoneLabel": "Phone",
+  "phonePlaceholder": "543 423 534",
+  "websiteLabel": "Website (optional, e.g. http://example.com)",
+  "websitePlaceholder": "http://example.com",
+  "instagramLabel": "Instagram (optional, e.g. https://instagram.com/profile)",
+  "instagramPlaceholder": "https://instagram.com/profile"
+}

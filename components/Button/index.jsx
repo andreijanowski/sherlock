@@ -48,7 +48,7 @@ const planButton = css`
 `;
 
 const orange = css`
-  background-color: rgb(${p => p.theme.colors.orange});
+  background-color: rgb(${p => p.theme.colors.carrotOrange});
   ${planButton};
 `;
 
