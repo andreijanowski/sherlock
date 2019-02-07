@@ -4,7 +4,8 @@ import { string, bool, number, func } from "prop-types";
 
 class DropzoneWithCropper extends PureComponent {
   state = {
-    filesForCropping: []
+    filesForCropping: [],
+    isAddingFile: false
   };
 
   handleDrop = files => {
@@ -17,10 +18,12 @@ class DropzoneWithCropper extends PureComponent {
       filesForCropping: state.filesForCropping.splice(1)
     }));
 
-  handleCrop = image => {
+  handleCrop = async image => {
     const { saveImage } = this.props;
     this.handleCropperHide();
-    saveImage(image);
+    this.setState({ isAddingFile: true });
+    await saveImage(image);
+    this.setState({ isAddingFile: false });
   };
 
   render() {
@@ -37,7 +40,7 @@ class DropzoneWithCropper extends PureComponent {
       aspectRatio,
       image
     } = this.props;
-    const { filesForCropping } = this.state;
+    const { filesForCropping, isAddingFile } = this.state;
     return (
       <>
         <Dropzone
@@ -49,7 +52,8 @@ class DropzoneWithCropper extends PureComponent {
             info,
             errorInfo,
             multiple,
-            image
+            image,
+            loading: isAddingFile
           }}
         />
         {filesForCropping.length > 0 && (
