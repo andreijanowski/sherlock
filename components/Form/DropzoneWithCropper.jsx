@@ -29,9 +29,11 @@ class DropzoneWithCropper extends PureComponent {
   render() {
     const {
       tip,
-      errorTip,
+      errorTipType,
+      errorTipMultiple,
       info,
-      errorInfo,
+      errorInfoType,
+      errorInfoMultiple,
       multiple,
       crop,
       cancel,
@@ -48,9 +50,11 @@ class DropzoneWithCropper extends PureComponent {
             accept: ["image/png", "image/jpeg"],
             onDrop: this.handleDrop,
             tip,
-            errorTip,
+            errorTipType,
+            errorTipMultiple,
             info,
-            errorInfo,
+            errorInfoType,
+            errorInfoMultiple,
             multiple,
             image,
             loading: isAddingFile
@@ -78,9 +82,11 @@ class DropzoneWithCropper extends PureComponent {
 
 DropzoneWithCropper.propTypes = {
   tip: string.isRequired,
-  errorTip: string.isRequired,
+  errorTipType: string.isRequired,
+  errorTipMultiple: string,
   info: string.isRequired,
-  errorInfo: string.isRequired,
+  errorInfoType: string.isRequired,
+  errorInfoMultiple: string,
   multiple: bool.isRequired,
   crop: string.isRequired,
   cancel: string.isRequired,
@@ -93,7 +99,9 @@ DropzoneWithCropper.propTypes = {
 
 DropzoneWithCropper.defaultProps = {
   aspectRatio: undefined,
-  image: null
+  image: null,
+  errorTipMultiple: "",
+  errorInfoMultiple: ""
 };
 
 export default DropzoneWithCropper;

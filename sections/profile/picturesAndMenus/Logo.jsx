@@ -11,6 +11,10 @@ const Logo = ({ t, logo, saveLogo }) => (
           <DropzoneWithCropper
             tip={t("chooseOrDragFile")}
             info={t("picturesInfo")}
+            errorTipType={t("invalidFiles")}
+            errorInfoType={t("validImages")}
+            errorTipMultiple={t("invalidMultiple")}
+            errorInfoMultiple={t("validMultiple")}
             errorTip={t("someFilesAreInvalid")}
             errorInfo={t("validFiles")}
             crop={t("app:crop")}

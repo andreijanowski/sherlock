@@ -31,8 +31,8 @@ class Menus extends PureComponent {
             accept={["image/png", "image/jpeg", "application/pdf"]}
             tip={t("chooseOrDragFile")}
             info={t("picturesInfo")}
-            errorTip={t("someFilesAreInvalid")}
-            errorInfo={t("validFiles")}
+            errorTipType={t("invalidFiles")}
+            errorInfoType={t("validMenus")}
             multiple
             loading={isAddingFile}
             onDrop={this.handleDrop}
