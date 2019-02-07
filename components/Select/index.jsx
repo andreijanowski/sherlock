@@ -71,8 +71,8 @@ Select.propTypes = {
   value: shape().isRequired,
   onChange: func.isRequired,
   bottomAction: shape({
-    onClick: func.isRequired,
-    text: string.isRequired
+    onClick: func,
+    text: string
   })
 };
 

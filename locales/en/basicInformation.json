@@ -2,8 +2,8 @@
   "header": "Basic Information",
   "basicInformation": "Basic Information",
   "nameLabel": "Name",
-  "namePlaceholder": "John Simth",
-  "taglineLabel": "Tageline (optional)",
+  "namePlaceholder": "The Amber Chicken",
+  "taglineLabel": "Tagline (optional)",
   "taglinePlaceholder": "member of foodetective.co",
   "countryLabel": "Country",
   "countryPlaceholder": "Switzerland",
@@ -27,6 +27,8 @@
   "additionalInformation": "Additional information:",
   "ownerRoleLabel": "What is your role? (optional)",
   "ownerRolePlaceholder": "Owner",
-  "bioLabel": "Restaurant Bio (optional)",
-  "bioPlaceholder": "It is a small place in..."
+  "roleLabel": "What is your role? (optional)",
+  "rolePlaceholder": "Owner",
+  "bioLabel": "Restaurant bio (optional)",
+  "bioPlaceholder": "It's a small place in..."
 }
