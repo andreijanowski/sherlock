@@ -25,8 +25,6 @@ class InviteManagers extends PureComponent {
     this.validateEmail = isEmail(props.t);
   }
 
-  submitForm = async () => {};
-
   initializeMembers = () =>
     Array(3).fill({
       email: undefined
@@ -48,7 +46,7 @@ class InviteManagers extends PureComponent {
     }
     return (
       <Form
-        onSubmit={this.submitForm}
+        onSubmit={() => null}
         mutators={{
           ...arrayMutators
         }}
