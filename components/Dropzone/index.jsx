@@ -36,16 +36,18 @@ const Dropzone = ({
         }
       }
       return (
-        <Wrapper {...getRootProps({ isDragActive, isDragReject, image, loading })}>
+        <Wrapper
+          {...getRootProps({ isDragActive, isDragReject, image, loading })}
+        >
           {loading ? (
-          <LoadingIndicator />
-        ) : (
-          <>
-            <Input {...getInputProps()} />
-            <Tip {...{ isDragReject }}>{tipText}</Tip>
-            <Info {...{ isDragReject }}>{infoText}</Info>
-          </>
-         )}
+            <LoadingIndicator />
+          ) : (
+            <>
+              <Input {...getInputProps()} />
+              <Tip {...{ isDragReject }}>{tipText}</Tip>
+              <Info {...{ isDragReject }}>{infoText}</Info>
+            </>
+          )}
         </Wrapper>
       );
     }}
