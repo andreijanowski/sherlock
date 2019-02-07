@@ -61,28 +61,20 @@ export const parseOpenPeriod = openPeriod => ({
   weekday: openPeriod.weekday
 });
 
-export const addNewOpenPeriod = async (addOpenPeriod, fields, weekday) => {
-  try {
-    const defaultTime = {
-      hour24: 12,
-      hour: 12,
-      minute: 0,
-      meridiem: "am",
-      formatted: "12:00 am"
-    };
-    const newOpenPeriod = {
-      openedFrom: defaultTime,
-      openedTo: defaultTime,
-      weekday
-    };
-    const res = await addOpenPeriod(newOpenPeriod);
-    if (res.status === 201) {
-      fields.push({
-        ...newOpenPeriod,
-        id: res.rawData.data.id
-      });
-    }
-  } catch (e) {
-    console.log(e);
-  }
+export const addNewOpenPeriod = (addOpenPeriod, fields, weekday) => {
+  const defaultTime = {
+    formatted: "12:00 am",
+    formatted24: "0:00",
+    formattedSimple: "12:00",
+    hour: 12,
+    hour24: 0,
+    meridiem: "am",
+    minute: 0
+  };
+  const newOpenPeriod = {
+    openedFrom: defaultTime,
+    openedTo: defaultTime,
+    weekday
+  };
+  addOpenPeriod(newOpenPeriod);
 };

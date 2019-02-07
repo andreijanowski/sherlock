@@ -29,6 +29,10 @@ class OpeningHours extends PureComponent {
     };
   }
 
+  state = {
+    copied: undefined
+  };
+
   addOpenPeriod = openPeriod => {
     const {
       addOpenPeriod,
@@ -45,6 +49,18 @@ class OpeningHours extends PureComponent {
   removeOpenPeriod = id => {
     const { removeOpenPeriod } = this.props;
     return removeOpenPeriod(id);
+  };
+
+  copy = fields => this.setState({ copied: fields });
+
+  paste = weekday => {
+    const { copied } = this.state;
+    if (copied && copied.length) {
+      copied.forEach(async c => {
+        this.addOpenPeriod({ ...c, weekday });
+      });
+    }
+    return null;
   };
 
   render() {
@@ -76,7 +92,9 @@ class OpeningHours extends PureComponent {
             initialValues,
             addOpenPeriod: this.addOpenPeriod,
             updateOpenPeriod: this.updateOpenPeriod,
-            removeOpenPeriod: this.removeOpenPeriod
+            removeOpenPeriod: this.removeOpenPeriod,
+            copy: this.copy,
+            paste: this.paste
           }}
         />
       </ProfileLayout>

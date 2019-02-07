@@ -11,7 +11,9 @@ const OpeningHoursForm = ({
   initialValues,
   addOpenPeriod,
   updateOpenPeriod,
-  removeOpenPeriod
+  removeOpenPeriod,
+  copy,
+  paste
 }) =>
   initialValues ? (
     <FinalForm
@@ -29,6 +31,8 @@ const OpeningHoursForm = ({
                 addOpenPeriod,
                 updateOpenPeriod,
                 removeOpenPeriod,
+                copy,
+                paste,
                 key: weekday
               }}
             />
@@ -45,7 +49,9 @@ OpeningHoursForm.propTypes = {
   addOpenPeriod: func.isRequired,
   updateOpenPeriod: func.isRequired,
   removeOpenPeriod: func.isRequired,
-  initialValues: shape()
+  initialValues: shape(),
+  copy: func.isRequired,
+  paste: func.isRequired
 };
 
 OpeningHoursForm.defaultProps = {
