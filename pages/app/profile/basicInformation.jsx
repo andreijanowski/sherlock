@@ -65,7 +65,7 @@ class BasicInformation extends PureComponent {
     });
   };
 
-  handleSubmit = async (
+  handleSubmit = (
     {
       name,
       tagline,
@@ -79,34 +79,29 @@ class BasicInformation extends PureComponent {
     },
     { types, cuisines, foodsAndDrinks, quirks, diets }
   ) => {
-    try {
-      const {
-        updateBusiness,
-        business: { id }
-      } = this.props;
-      const requestValues = {
-        name,
-        tagline,
-        countryCode: country ? country.value : undefined,
-        regionCode: region ? region.value : undefined,
-        street,
-        streetNumber,
-        postCode,
-        groupsList: getGroupsValues([
-          ...types,
-          ...cuisines,
-          ...foodsAndDrinks,
-          ...quirks,
-          ...diets
-        ]),
-        ownerRole,
-        bio
-      };
-      return updateBusiness(id, requestValues);
-    } catch (e) {
-      console.log(e);
-      return e;
-    }
+    const {
+      updateBusiness,
+      business: { id }
+    } = this.props;
+    const requestValues = {
+      name,
+      tagline,
+      countryCode: country ? country.value : undefined,
+      regionCode: region ? region.value : undefined,
+      street,
+      streetNumber,
+      postCode,
+      groupsList: getGroupsValues([
+        ...types,
+        ...cuisines,
+        ...foodsAndDrinks,
+        ...quirks,
+        ...diets
+      ]),
+      ownerRole,
+      bio
+    };
+    return updateBusiness(id, requestValues);
   };
 
   render() {

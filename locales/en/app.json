@@ -9,6 +9,12 @@
     "unnamedBusiness": "Unnamed business",
     "addNewBusiness": "Add new business"
   },
+  "userSettings": {
+    "basicInformation": "Basic Information",
+    "billing": "Billing",
+    "password": "Password",
+    "logout": "Logout"
+  }
   "crop": "Crop",
   "cancel": "Cancel"
 }

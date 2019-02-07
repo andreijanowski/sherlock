@@ -18,7 +18,7 @@ class Cropper extends PureComponent {
     }
   }
 
-  handleCrop = async () => {
+  handleCrop = () => {
     // without setTimeout function LoadingIndicator is not displayed ¯\_(ツ)_/¯
     this.setState({ cropping: true }, () => setTimeout(this.crop, 0));
   };

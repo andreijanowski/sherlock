@@ -1,4 +1,5 @@
 import ReactDropzone from "react-dropzone";
+import { LoadingIndicator } from "components";
 import { arrayOf, string, bool, func } from "prop-types";
 import { Wrapper, Input, Tip, Info } from "./styled";
 
@@ -12,7 +13,8 @@ const Dropzone = ({
   info,
   errorInfoType,
   errorInfoMultiple,
-  image
+  image,
+  loading
 }) => (
   <ReactDropzone {...{ accept, onDrop, multiple }}>
     {({
@@ -34,10 +36,16 @@ const Dropzone = ({
         }
       }
       return (
-        <Wrapper {...getRootProps({ isDragActive, isDragReject, image })}>
-          <Input {...getInputProps()} />
-          <Tip {...{ isDragReject }}>{tipText}</Tip>
-          <Info {...{ isDragReject }}>{infoText}</Info>
+        <Wrapper {...getRootProps({ isDragActive, isDragReject, image, loading })}>
+          {loading ? (
+          <LoadingIndicator />
+        ) : (
+          <>
+            <Input {...getInputProps()} />
+            <Tip {...{ isDragReject }}>{tipText}</Tip>
+            <Info {...{ isDragReject }}>{infoText}</Info>
+          </>
+         )}
         </Wrapper>
       );
     }}
@@ -54,13 +62,15 @@ Dropzone.propTypes = {
   info: string.isRequired,
   errorInfoType: string.isRequired,
   errorInfoMultiple: string,
-  image: string
+  image: string,
+  loading: bool
 };
 
 Dropzone.defaultProps = {
   image: null,
   errorTipMultiple: "",
-  errorInfoMultiple: ""
+  errorInfoMultiple: "",
+  loading: false
 };
 
 export default Dropzone;

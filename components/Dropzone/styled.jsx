@@ -24,6 +24,7 @@ export const Wrapper = styled(Flex).attrs({
   ${p =>
     !p.isDragActive &&
     p.image &&
+    !p.loading &&
     `
     &::before {
       content: "";
@@ -41,6 +42,9 @@ export const Wrapper = styled(Flex).attrs({
     }
   `}
 
+  ${p =>
+    !p.loading &&
+    `
   &:hover {
     &::before {
       filter: grayscale(100%);
@@ -53,15 +57,15 @@ export const Wrapper = styled(Flex).attrs({
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(${p => p.theme.colors.blue}, 0.7);
+      background-color: rgba(${p.theme.colors.blue}, 0.7);
     }
 
     span {
       opacity: 1;
-      color: rgb(${p => p.theme.colors.white});
+      color: rgb(${p.theme.colors.white});
     }
   }
-
+  `}
   &:focus {
     outline: none;
   }
