@@ -44,7 +44,7 @@ export const Name = styled.div`
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.dark}, 0.08);
   background: rgb(${p => p.theme.colors.white});
   font-size: ${p => p.theme.fontSizes.f14};
-  font-weight: 700;
+  font-weight: ${p => p.theme.fontWeights.bold};
   line-height: 1.15;
   padding: 2px 8px;
   color: rgb(${p => p.theme.colors[p.color]});
@@ -52,7 +52,7 @@ export const Name = styled.div`
 
 export const MostPopular = styled.div`
   font-size: ${p => p.theme.fontSizes.f14};
-  font-weight: 700;
+  font-weight: ${p => p.theme.fontWeights.bold};
   line-height: 1.15;
   padding: 0 6px;
   border: ${p => p.theme.borderWeights.tiny} solid
@@ -75,14 +75,14 @@ export const PriceWrapper = styled(Flex).attrs({
 
 export const PriceDescription = styled.div`
   color: rgba(${p => p.theme.colors.dark}, 0.8);
-  font-weight: 500;
+  font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 1.5;
 `;
 
 export const Price = styled.div`
   color: rgb(${p => p.theme.colors.dark});
-  font-weight: 600;
+  font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f36};
   line-height: 1.333;
   margin-bottom: 40px;
@@ -94,7 +94,7 @@ export const Price = styled.div`
 export const Service = styled(Box).attrs({ mb: 1 })`
   text-align: center;
   font-size: ${p => p.theme.fontSizes.f16};
-  font-weight: 500;
+  font-weight: ${p => p.theme.fontWeights.medium};
   line-height: 1.5;
   color: rgba(${p => p.theme.colors.dark}, 0.8);
 `;
@@ -106,7 +106,7 @@ export const Badge = styled.span`
   border-radius: ${p => p.theme.radius.default};
   font-size: ${p => p.theme.fontSizes.f14};
   line-height: 1.15;
-  font-weight: 700;
+  font-weight: ${p => p.theme.fontWeights.bold};
   margin-right: 4px;
 `;
 
@@ -130,7 +130,7 @@ export const Icon = styled.div`
       ? `rgba(${p.theme.colors[p.color]}, 0.4)`
       : `rgb(${p.theme.colors[p.color]})`};
   font-size: ${p => p.theme.fontSizes.f18};
-  font-weight: 500;
+  font-weight: ${p => p.theme.fontWeights.medium};
   text-align: center;
   line-height: 1;
   width: 22px;
@@ -141,13 +141,13 @@ export const ManagersText = styled.div`
   color: rgb(${p => p.theme.colors[p.color]});
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 1.5;
-  font-weight: 500;
+  font-weight: ${p => p.theme.fontWeights.medium};
 `;
 
 export const Option = styled(Box)`
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 1.5;
-  font-weight: 500;
+  font-weight: ${p => p.theme.fontWeights.medium};
   color: ${p =>
     p.dark
       ? `rgba(${p.theme.colors.dark}, 0.4)`
@@ -157,8 +157,8 @@ export const Option = styled(Box)`
 export const PromotionWrapper = styled(Box).attrs({
   p: 32
 })`
-  border: ${({ theme }) => theme.borderWeights.tiny} solid
-    rgb(${({ theme }) => theme.colors.navyBlue});
-  border-radius: ${({ theme }) => theme.radius.default};
+  border: ${p => p.theme.borderWeights.tiny} solid
+    rgb(${p => p.theme.colors.navyBlue});
+  border-radius: ${p => p.theme.radius.default};
   background-color: white;
 `;

@@ -1,7 +1,7 @@
 import { string, bool, shape } from "prop-types";
 import { Field as FinalFormField } from "react-final-form";
-import TextareaAutosize from "react-autosize-textarea";
-import { FieldWrapper, RawInput, Label, Error } from "./styled";
+import { LoadingIndicator } from "components";
+import { FieldWrapper, RawTextarea, Label, Error } from "./styled";
 import { getError } from "./utils";
 
 const TextareaField = ({
@@ -19,8 +19,7 @@ const TextareaField = ({
       const error = getError(meta);
       return (
         <FieldWrapper>
-          <RawInput
-            as={TextareaAutosize}
+          <RawTextarea
             rows={6}
             smallLabel={!!input.value}
             invalid={error ? "true" : undefined}
@@ -35,6 +34,7 @@ const TextareaField = ({
             {label}
           </Label>
           {error && <Error>{error}</Error>}
+          {meta.data.saving && !meta.active && <LoadingIndicator />}
         </FieldWrapper>
       );
     }}

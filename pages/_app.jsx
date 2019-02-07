@@ -2,7 +2,7 @@ import App, { Container } from "next/app";
 import { Provider, connect } from "react-redux";
 import withRedux from "next-redux-wrapper";
 import withReduxSaga from "next-redux-saga";
-import { startApp } from "actions/app";
+import { startApp, pathChanged as pathChangedAction } from "actions/app";
 import { I18nextProvider } from "react-i18next";
 import forceLanguageInUrl from "utils/forceLanguageInUrl";
 import Layout from "layout";
@@ -10,11 +10,19 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "utils/theme";
 import { PersistGate as PersistGateClient } from "redux-persist/integration/react";
 import isServer from "utils/isServer";
+import NProgress from "nprogress";
+import { Router } from "routes";
 import initialI18nInstance from "../i18n";
 import createStore from "../data/store";
 
 const PersistGateServer = ({ children }) => children;
 const PersistGate = isServer ? PersistGateServer : PersistGateClient;
+
+Router.events.on("routeChangeStart", () => {
+  NProgress.start();
+});
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -27,6 +35,7 @@ class MyApp extends App {
     }
 
     pageProps.query = ctx.query;
+    pageProps.pathname = ctx.pathname;
 
     return { pageProps };
   }
@@ -36,10 +45,20 @@ class MyApp extends App {
     props.startApp();
   }
 
-  render() {
-    const { Component, pageProps, store, slug } = this.props;
-    const { i18n, initialI18nStore, initialLanguage } = pageProps || {};
+  componentDidUpdate(prevProps) {
+    const {
+      pageProps: { pathname },
+      pathChanged
+    } = this.props;
+    const { pathname: prevPathname } = prevProps.pageProps;
+    if (pathname !== prevPathname) {
+      pathChanged(pathname);
+    }
+  }
 
+  render() {
+    const { Component, pageProps, store } = this.props;
+    const { i18n, initialI18nStore, initialLanguage } = pageProps || {};
     return (
       <Container>
         <Provider store={store}>
@@ -50,7 +69,7 @@ class MyApp extends App {
                 initialI18nStore={initialI18nStore}
                 initialLanguage={initialLanguage}
               >
-                <Layout {...{ pageProps, slug, Component }} />
+                <Layout {...{ pageProps, Component }} />
               </I18nextProvider>
             </ThemeProvider>
           </PersistGate>
@@ -63,9 +82,10 @@ class MyApp extends App {
 export default withRedux(createStore)(
   withReduxSaga({ async: true })(
     connect(
-      state => ({ slug: state.app.currentBusiness.slug }),
+      null,
       {
-        startApp
+        startApp,
+        pathChanged: pathChangedAction
       }
     )(MyApp)
   )

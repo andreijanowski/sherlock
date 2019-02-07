@@ -14,8 +14,8 @@ export const SuccessMessageWrapper = styled(Paragraph)`
 `;
 
 export const HelperTitle = styled.h2`
-  font-size: ${({ theme }) => theme.fontSizes.f24};
-  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f24};
+  font-weight: ${p => p.theme.fontWeights.semiBold};
   margin: 0 0 16px 0;
 `;
 
@@ -49,7 +49,7 @@ export const FieldsContainer = styled.div`
 export const RemoveButton = styled.button.attrs({
   type: "button"
 })`
-  border: solid rgba(${({ theme }) => theme.colors.dark}, 0.4);
+  border: solid rgba(${p => p.theme.colors.dark}, 0.4);
   outline: none;
   border-radius: 100%;
   position: absolute;
@@ -61,7 +61,7 @@ export const RemoveButton = styled.button.attrs({
   top: 13px;
   &::after {
     content: "";
-    background-color: rgba(${({ theme }) => theme.colors.dark}, 0.4);
+    background-color: rgba(${p => p.theme.colors.dark}, 0.4);
     position: absolute;
     width: 10px;
     height: 3px;
@@ -69,10 +69,10 @@ export const RemoveButton = styled.button.attrs({
     top: 11px;
   }
   &:hover {
-    border: solid rgba(${({ theme }) => theme.colors.dark}, 1);
-    box-shadow: 0px 2px 6px 0px rgba(${({ theme }) => theme.colors.dark}, 0.1);
+    border: solid rgba(${p => p.theme.colors.dark}, 1);
+    box-shadow: 0px 2px 6px 0px rgba(${p => p.theme.colors.dark}, 0.1);
     &::after {
-      background-color: rgba(${({ theme }) => theme.colors.dark}, 1);
+      background-color: rgba(${p => p.theme.colors.dark}, 1);
     }
   }
 `;

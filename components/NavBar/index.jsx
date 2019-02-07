@@ -24,7 +24,7 @@ import {
   SettingsIcon
 } from "./icons";
 
-const NavBar = ({ t, lng, slug }) => (
+const NavBar = ({ t, lng }) => (
   <Wrapper>
     <LogoWrapper>
       <Logo />
@@ -75,31 +75,23 @@ const NavBar = ({ t, lng, slug }) => (
       </Icon>
       <SubitemsWrapper>
         <Subitems>
-          <Link {...{ lng, route: `/app/${slug}/profile/basic-information/` }}>
-            <Subitem>{t("app:navBar.manageProfile.basicInformation")}</Subitem>
+          <Link {...{ lng, route: `/app/profile/basic-information/` }}>
+            <Subitem>{t("app:manageProfile.basicInformation")}</Subitem>
           </Link>
-          <Link
-            {...{ lng, route: `/app/${slug}/profile/contact-information/` }}
-          >
-            <Subitem>
-              {t("app:navBar.manageProfile.contactInformation")}
-            </Subitem>
+          <Link {...{ lng, route: `/app/profile/contact-information/` }}>
+            <Subitem>{t("app:manageProfile.contactInformation")}</Subitem>
           </Link>
-          <Link {...{ lng, route: `/app/${slug}/profile/opening-hours/` }}>
-            <Subitem>{t("app:navBar.manageProfile.openingHours")}</Subitem>
+          <Link {...{ lng, route: `/app/profile/opening-hours/` }}>
+            <Subitem>{t("app:manageProfile.openingHours")}</Subitem>
           </Link>
-          <Link {...{ lng, route: `/app/${slug}/profile/pictures-and-menus/` }}>
-            <Subitem>{t("app:navBar.manageProfile.picturesAndMenus")}</Subitem>
+          <Link {...{ lng, route: `/app/profile/pictures-and-menus/` }}>
+            <Subitem>{t("app:manageProfile.picturesAndMenus")}</Subitem>
           </Link>
-          <Link
-            {...{ lng, route: `/app/${slug}/profile/additional-information/` }}
-          >
-            <Subitem>
-              {t("app:navBar.manageProfile.additionalInformation")}
-            </Subitem>
+          <Link {...{ lng, route: `/app/profile/additional-information/` }}>
+            <Subitem>{t("app:manageProfile.additionalInformation")}</Subitem>
           </Link>
-          <Link {...{ lng, route: `/app/${slug}/profile/members/` }}>
-            <Subitem>{t("app:navBar.manageProfile.inviteYourTeam")}</Subitem>
+          <Link {...{ lng, route: `/app/profile/members/` }}>
+            <Subitem>{t("app:manageProfile.inviteYourTeam")}</Subitem>
           </Link>
         </Subitems>
       </SubitemsWrapper>
@@ -119,8 +111,7 @@ const NavBar = ({ t, lng, slug }) => (
 
 NavBar.propTypes = {
   t: func.isRequired,
-  lng: string.isRequired,
-  slug: string.isRequired
+  lng: string.isRequired
 };
 
 export default NavBar;

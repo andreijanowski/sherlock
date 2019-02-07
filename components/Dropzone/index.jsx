@@ -31,7 +31,11 @@ Dropzone.propTypes = {
   errorTip: string.isRequired,
   info: string.isRequired,
   errorInfo: string.isRequired,
-  image: string.isRequired
+  image: string
+};
+
+Dropzone.defaultProps = {
+  image: null
 };
 
 export default Dropzone;

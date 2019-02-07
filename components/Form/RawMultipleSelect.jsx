@@ -1,6 +1,7 @@
 import { PureComponent } from "react";
 import matchSorter from "match-sorter";
 import onClickOutside from "react-onclickoutside";
+import { LoadingIndicator } from "components";
 import { shape, arrayOf, number, string, bool, func } from "prop-types";
 import {
   MultipleSelectWrapper,
@@ -72,7 +73,10 @@ class RawMultipleSelect extends PureComponent {
   };
 
   handleClickOutside = () => {
-    this.handleBlur();
+    const { meta } = this.props;
+    if (meta.active) {
+      this.handleBlur();
+    }
   };
 
   render() {
@@ -86,7 +90,8 @@ class RawMultipleSelect extends PureComponent {
       getInputProps,
       getItemProps,
       highlightedIndex,
-      inputValue
+      inputValue,
+      closeMenu
     } = this.props;
     const error = getError(meta);
     const selectItems = this.getItems(inputValue, items);
@@ -116,11 +121,13 @@ class RawMultipleSelect extends PureComponent {
             })}
           />
           {error && <Error>{error}</Error>}
+          {meta.data.saving && !meta.active && <LoadingIndicator />}
         </MultipleSelectWrapper>
         {isOpen && selectItems.length > 0 && input.value.length < maxItems && (
           <Items>
             {selectItems.map((item, index) => (
               <Item
+                className="ignore-react-onclickoutside"
                 key={
                   typeof item.value === "object"
                     ? JSON.stringify(item.value)
@@ -129,7 +136,7 @@ class RawMultipleSelect extends PureComponent {
                 {...getItemProps({
                   item,
                   isActive: highlightedIndex === index,
-                  onClick: this.handleBlur
+                  onClick: closeMenu
                 })}
               >
                 {item.label}
@@ -151,11 +158,15 @@ RawMultipleSelect.propTypes = {
   isOpen: bool.isRequired,
   getInputProps: func.isRequired,
   getItemProps: func.isRequired,
-  highlightedIndex: number.isRequired,
+  highlightedIndex: number,
   inputValue: string.isRequired,
   setInputValue: func.isRequired,
   openMenu: func.isRequired,
   closeMenu: func.isRequired
+};
+
+RawMultipleSelect.defaultProps = {
+  highlightedIndex: undefined
 };
 
 export default onClickOutside(RawMultipleSelect);

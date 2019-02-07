@@ -18,7 +18,7 @@ const TopSection = ({ t, lng, plansRef }) => (
       <LanguageSwitcher />
       <Button
         styleName="login"
-        onClick={() => Router.pushRoute(`/${lng}/login`)}
+        onClick={() => Router.pushRoute(`/${lng}/login/`)}
       >
         {t("common:login")}
       </Button>
@@ -50,7 +50,7 @@ const TopSection = ({ t, lng, plansRef }) => (
           <Button
             styleName="blue"
             fluid
-            onClick={() => Router.pushRoute(`/${lng}/register`)}
+            onClick={() => Router.pushRoute(`/${lng}/register/`)}
           >
             {t("topSection.addYourBusiness")}
           </Button>

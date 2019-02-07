@@ -1,5 +1,5 @@
-import { string, bool, shape } from "prop-types";
-import { ActionIcon } from "components";
+import { string, bool, shape, func } from "prop-types";
+import { ActionIcon, LoadingIndicator } from "components";
 import { FieldWrapper, RawInput, Label, ActionIconWrapper } from "./styled";
 
 const InputWithRemoveButton = ({
@@ -9,7 +9,9 @@ const InputWithRemoveButton = ({
   type,
   fieldProps,
   disabled,
-  input
+  input,
+  remove,
+  saving
 }) => (
   <FieldWrapper>
     <RawInput
@@ -22,9 +24,10 @@ const InputWithRemoveButton = ({
       padding="16px 60px 16px 16px"
     />
     <Label htmlFor={name}>{label}</Label>
-    <ActionIconWrapper>
+    <ActionIconWrapper onClick={remove}>
       <ActionIcon size="sm" icon={["fa", "minus"]} red />
     </ActionIconWrapper>
+    {saving && <LoadingIndicator />}
   </FieldWrapper>
 );
 
@@ -35,7 +38,9 @@ InputWithRemoveButton.propTypes = {
   label: string,
   placeholder: string,
   type: string,
-  input: shape().isRequired
+  input: shape().isRequired,
+  remove: func.isRequired,
+  saving: bool.isRequired
 };
 InputWithRemoveButton.defaultProps = {
   label: "",

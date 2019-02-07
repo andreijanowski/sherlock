@@ -1,24 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-export const FieldWrapper = styled(Flex).attrs({
-  width: 1,
-  mb: 3,
-  alignItems: "center"
-})`
-  position: relative;
-  ${p => p.as === "label" && "cursor:pointer;"}
-
-  .ExpandIcon {
-    position: absolute;
-    right: 24px;
-  }
-`;
+import TextareaAutosize from "react-autosize-textarea";
 
 export const LABEL_ACTIVE_SCALE = 0.7;
 
-export const RawInput = styled.input`
+const InputStyles = css`
   border-radius: ${p => p.theme.radius.small};
   border: 1px solid
     rgb(${p => (p.invalid ? p.theme.colors.ruby : p.theme.colors.snuff)});
@@ -66,26 +53,44 @@ export const RawInput = styled.input`
   &:invalid {
     border-color: rgb(${p => p.theme.colors.ruby});
   }
+`;
 
-  ${p =>
-    !p.rows &&
-    `&:not([value=""]) {
-      padding-top: 27px;
-      padding-bottom: 12px;
+const FilledInputStyles = css`
+  padding-top: 27px;
+  padding-bottom: 12px;
 
-      & + label {
-        transform: translateY(-120%) scale(${LABEL_ACTIVE_SCALE});
-      }
-    }`}
+  & + label {
+    transform: translateY(-120%) scale(${LABEL_ACTIVE_SCALE});
+  }
+`;
 
-  ${p =>
-    p.smallLabel &&
-    `padding-top: 27px;
-      padding-bottom: 12px;
+export const FieldWrapper = styled(Flex).attrs({
+  width: 1,
+  mb: 3,
+  alignItems: "center"
+})`
+  position: relative;
+  ${p => p.as === "label" && "cursor:pointer;"}
 
-      & + label {
-        transform: translateY(-120%) scale(${LABEL_ACTIVE_SCALE});
-      }`}
+  .ExpandIcon {
+    position: absolute;
+    right: 24px;
+  }
+`;
+
+export const RawInput = styled.input`
+  ${InputStyles}
+
+  &:not([value=""]) {
+    ${FilledInputStyles}
+  }
+`;
+
+export const RawTextarea = styled(({ smallLabel, ...p }) => (
+  <TextareaAutosize {...p} />
+))`
+  ${InputStyles}
+  ${p => p.smallLabel && FilledInputStyles}
 `;
 
 export const MultipleSelectInput = styled(RawInput)`
@@ -126,7 +131,7 @@ export const Tag = styled(Flex).attrs({
   background-color: rgb(${p => p.theme.colors.background});
   border-radius: ${p => p.theme.radius.default};
   font-size: ${p => p.theme.fontSizes.f14};
-  font-weight: 600;
+  font-weight: ${p => p.theme.fontWeights.semiBold};
   line-height: 42px;
 `;
 
@@ -210,6 +215,7 @@ export const CheckboxLabel = styled(Flex).attrs({
   alignItems: "center",
   width: 1
 })`
+  text-align: center;
   cursor: pointer;
   background-color: rgb(
     ${p => (p.checked ? p.theme.colors.white : p.theme.colors.background)}
@@ -219,7 +225,8 @@ export const CheckboxLabel = styled(Flex).attrs({
   border-radius: ${p => p.theme.radius.default};
   color: rgb(${p => (p.checked ? p.theme.colors.blue : p.theme.colors.dark)});
   font-size: ${p => p.theme.fontSizes.f14};
-  font-weight: ${p => (p.checked ? 600 : 500)};
+  font-weight: ${p =>
+    p.checked ? p.theme.fontWeights.semiBold : p.theme.fontWeights.medium};
 `;
 
 export const Checkbox = styled.input.attrs({ type: "checkbox" })`
@@ -229,7 +236,9 @@ export const Checkbox = styled.input.attrs({ type: "checkbox" })`
   height: 0;
 `;
 
-export const CheckboxText = styled.div``;
+export const CheckboxText = styled(Box).attrs({
+  width: "calc(100% - 64px)"
+})``;
 
 export const FlagIcon = styled.img.attrs(({ code }) => ({
   src: `/static/flags/${code.toLowerCase()}.svg`

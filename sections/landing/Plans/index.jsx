@@ -33,7 +33,7 @@ const Plans = React.forwardRef(
               billingPeriod,
               color: "limeade",
               name: "essential",
-              onClickActionButton: () => Router.pushRoute(`/${lng}/register`)
+              onClickActionButton: () => Router.pushRoute(`/${lng}/register/`)
             }}
           />
         </Box>
@@ -44,7 +44,7 @@ const Plans = React.forwardRef(
               billingPeriod,
               color: "deepSkyBlue",
               name: "basic",
-              onClickActionButton: () => Router.pushRoute(`/${lng}/register`)
+              onClickActionButton: () => Router.pushRoute(`/${lng}/register/`)
             }}
           />
         </Box>
@@ -55,7 +55,7 @@ const Plans = React.forwardRef(
               billingPeriod,
               color: "navyBlue",
               name: "premium",
-              onClickActionButton: () => Router.pushRoute(`/${lng}/register`)
+              onClickActionButton: () => Router.pushRoute(`/${lng}/register/`)
             }}
           />
         </Box>

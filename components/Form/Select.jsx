@@ -2,6 +2,7 @@ import { PureComponent } from "react";
 import { string, shape, arrayOf, bool } from "prop-types";
 import Downshift from "downshift";
 import matchSorter from "match-sorter";
+import { LoadingIndicator } from "components";
 import {
   FieldWrapper,
   RawInput,
@@ -26,7 +27,7 @@ class FormSelect extends PureComponent {
 
   handleBlur = (items, input, inputValue) => {
     if (items.length && inputValue) {
-      this.setState({ inputValue: items[0].label });
+      this.setState({ inputValue: items[0].label || "" });
       input.onChange(items[0]);
     } else {
       this.setState({ inputValue: "" });
@@ -49,7 +50,7 @@ class FormSelect extends PureComponent {
   };
 
   getValue = (input, meta, inputValue) =>
-    meta.active ? inputValue : input.value && input.value.label;
+    meta.active ? inputValue : (input.value && input.value.label) || "";
 
   getItems = (inputValue, items) =>
     inputValue
@@ -108,7 +109,7 @@ class FormSelect extends PureComponent {
                   onBlur: () => this.handleBlur(selectItems, input, inputValue),
                   placeholder,
                   disabled,
-                  padding: showFlag && "16px 16px 16px 48px",
+                  padding: showFlag ? "16px 16px 16px 48px" : undefined,
                   name: input.name,
                   onChange: this.handleInputChange
                 })}
@@ -126,6 +127,7 @@ class FormSelect extends PureComponent {
               )}
               <ExpandIcon />
               {error && <Error>{error}</Error>}
+              {meta.data.saving && !meta.active && <LoadingIndicator />}
             </FieldWrapper>
             {isOpen && selectItems.length > 0 && (
               <Items>
@@ -170,8 +172,13 @@ FormSelect.propTypes = {
   placeholder: string.isRequired,
   items: arrayOf(shape()).isRequired,
   label: string.isRequired,
-  disabled: bool.isRequired,
-  showFlag: bool.isRequired
+  disabled: bool,
+  showFlag: bool
+};
+
+FormSelect.defaultProps = {
+  disabled: false,
+  showFlag: false
 };
 
 export default FormSelect;

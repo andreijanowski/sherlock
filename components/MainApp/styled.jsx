@@ -5,7 +5,9 @@ export const Wrapper = styled(Flex).attrs(p => ({
   width: p.withMenu ? "calc(100% - 361px)" : "calc(100% - 80px)",
   flexDirection: "column",
   p: 3
-}))``;
+}))`
+  position: relative;
+`;
 
 export const HeaderWrapper = styled(Flex).attrs({
   width: 1,
@@ -34,7 +36,7 @@ export const MainIconWrapper = styled(Flex).attrs({
 
 export const Header = styled(Flex).attrs({ as: "h1", ml: 3, my: 0 })`
   font-size: ${p => p.theme.fontSizes.f36};
-  font-weight: 600;
+  font-weight: ${p => p.theme.fontWeights.semiBold};
 `;
 
 export const Icon = styled(Flex).attrs({

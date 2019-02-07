@@ -25,7 +25,7 @@ const instance = axios.create({
 
 const request = async (config, isServer) => {
   let authHeader = {
-    NETGURU_DEV_PASSWORD
+    NETGURU: NETGURU_DEV_PASSWORD
   };
 
   if (isServer) {

@@ -10,8 +10,8 @@ export const SuccessMessageWrapper = styled(Paragraph)`
 `;
 
 export const HelperTitle = styled.h2`
-  font-size: ${({ theme }) => theme.fontSizes.f24};
-  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f24};
+  font-weight: ${p => p.theme.fontWeights.semiBold};
   margin: 0 0 16px 0;
 `;
 

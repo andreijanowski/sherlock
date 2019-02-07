@@ -36,13 +36,13 @@ export const BackToLandingPage = styled.a`
   display: flex;
   width: 20px;
   height: 20px;
-  border: 2px solid rgba(${({ theme }) => theme.colors.dark}, 0.4);
-  color: rgb(${({ theme }) => theme.colors.dark});
+  border: 2px solid rgba(${p => p.theme.colors.dark}, 0.4);
+  color: rgb(${p => p.theme.colors.dark});
   border-radius: 100%;
   align-items: center;
   justify-content: center;
   margin-bottom: 36px;
   &:hover {
-    border: 2px solid rgba(${({ theme }) => theme.colors.dark}, 1);
+    border: 2px solid rgba(${p => p.theme.colors.dark}, 1);
   }
 `;

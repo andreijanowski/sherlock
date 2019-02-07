@@ -1,11 +1,11 @@
 import { required, validateEmail } from "utils/validators";
 import { FormInput, ActionIcon } from "components";
 import { Box } from "@rebass/grid";
-import { func, arrayOf, shape, string, number } from "prop-types";
+import { func, shape, string, number } from "prop-types";
 import { Wrapper, Inputs } from "./styled";
 import { Actions } from "../styled";
 
-const Member = ({ name, fields, index, t, deleteMember }) => (
+const Member = ({ name, fields, index, t, removeMember }) => (
   <Wrapper key={name}>
     <Inputs>
       <Box width={1 / 2} pr={2}>
@@ -13,7 +13,8 @@ const Member = ({ name, fields, index, t, deleteMember }) => (
           label={t("emailLabel")}
           placeholder={t("emailPlaceholder")}
           name={`${name}.email`}
-          validate={fields.value[index].email && validateEmail(t)}
+          validate={fields.value[index].role && validateEmail(t)}
+          forceShowError={!!fields.value[index].role}
           fieldProps={{
             disabled: fields.value[index].id !== undefined
           }}
@@ -25,7 +26,8 @@ const Member = ({ name, fields, index, t, deleteMember }) => (
           label={t("roleLabel")}
           placeholder={t("rolePlaceholder")}
           name={`${name}.role`}
-          validate={fields.value[index].email && required}
+          forceShowError={!!fields.value[index].email}
+          validate={fields.value[index].email && required(t)}
         />
       </Box>
     </Inputs>
@@ -35,8 +37,8 @@ const Member = ({ name, fields, index, t, deleteMember }) => (
         icon={["fa", "minus"]}
         red
         onClick={() => {
-          if (fields.value[index].id !== undefined) {
-            deleteMember(fields.value[index].id);
+          if (fields.value[index].id) {
+            removeMember(fields.value[index].id);
           }
           fields.remove(index);
           if (fields.value.length <= 1) {
@@ -65,15 +67,10 @@ const Member = ({ name, fields, index, t, deleteMember }) => (
 
 Member.propTypes = {
   name: string.isRequired,
-  fields: arrayOf(
-    shape({
-      email: "",
-      role: ""
-    })
-  ).isRequired,
+  fields: shape().isRequired,
   index: number.isRequired,
   t: func.isRequired,
-  deleteMember: func.isRequired
+  removeMember: func.isRequired
 };
 
 export default Member;

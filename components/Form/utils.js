@@ -1,7 +1,16 @@
 import { colors } from "utils/theme";
 
-export const getError = meta =>
-  (meta.touched && meta.error) || (meta.data && meta.data.error);
+export const getError = (meta, forceShowError) =>
+  forceShowError
+    ? meta.error || (meta.data && meta.data.error)
+    : (meta.touched && meta.error) || (meta.data && meta.data.error);
+
+export const getArraysDiff = (a, b, err) =>
+  a.filter((ai, i) =>
+    err && err[i]
+      ? false
+      : b.map(bi => JSON.stringify(bi)).indexOf(JSON.stringify(ai)) === -1
+  );
 
 export const TimekeeperConfig = {
   // main container

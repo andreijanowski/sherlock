@@ -5,6 +5,7 @@ import { node } from "prop-types";
 
 const Square = styled(Flex)`
   height: ${p => p.height}px;
+  position: relative;
 `;
 
 class PerfectSquare extends PureComponent {
@@ -32,7 +33,6 @@ class PerfectSquare extends PureComponent {
   render() {
     const { children } = this.props;
     const { height } = this.state;
-
     return (
       <Square ref={this.sqareRef} height={height}>
         {children}

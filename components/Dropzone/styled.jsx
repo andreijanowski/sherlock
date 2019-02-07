@@ -6,14 +6,15 @@ export const Wrapper = styled(Flex).attrs({
   justifyContent: "center",
   flexDirection: "column",
   width: 1,
-  p: 4
+  px: 3
 })`
   position: relative;
-  min-height: 120px;
   border-radius: ${p => p.theme.radius.default};
   border: 1px dashed rgb(${p => p.theme.colors.snuff});
   cursor: pointer;
   overflow: hidden;
+  text-align: center;
+
   ${p =>
     p.isDragActive &&
     (p.isDragReject
@@ -73,7 +74,7 @@ export const Tip = styled.span`
   position: relative;
   z-index: 1;
   font-size: ${p => p.theme.fontSizes.f16};
-  font-weight: 500;
+  font-weight: ${p => p.theme.fontWeights.medium};
   color: rgb(
     ${p => (p.isDragReject ? p.theme.colors.white : p.theme.colors.dark)}
   );

@@ -8,7 +8,8 @@ const Paragraph = styled(Box).attrs(p => ({
   mt: p.mt
 }))`
   font-size: ${p => (p.app ? p.theme.fontSizes.f14 : p.theme.fontSizes.f21)};
-  font-weight: ${p => (p.app ? 500 : 400)};
+  font-weight: ${p =>
+    p.app ? p.theme.fontWeights.medium : p.theme.fontWeights.regular};
   line-height: 1.5;
   color: rgba(
     ${p => (p.white ? p.theme.colors.white : p.theme.colors.dark)},

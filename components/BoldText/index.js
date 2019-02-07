@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const BoldText = styled.span`
-  font-weight: 600;
+  font-weight: ${p => p.theme.fontWeights.semiBold};
 `;
 
 export default BoldText;

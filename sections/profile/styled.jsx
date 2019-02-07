@@ -18,10 +18,33 @@ export const Actions = styled(Flex).attrs({
 })``;
 
 export const Image = styled.div`
-  background-image: url(${p => p.src});
+  background-image: url(${p => p.url});
   background-size: cover;
   background-position: center;
   width: 100%;
   border-radius: ${p => p.theme.radius.default};
   position: relative;
+`;
+
+export const FileIconWrapper = styled(Flex).attrs({
+  width: "60px",
+  alignItems: "center",
+  justifyContent: "center",
+  as: "a",
+  target: "_blank"
+})`
+  height: 60px;
+  background-color: rgb(${p => p.theme.colors.white});
+  color: rgb(${p => p.theme.colors.blue});
+  border-radius: ${p => p.theme.radius.default};
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(${p => p.theme.colors.blue});
+    color: rgb(${p => p.theme.colors.white});
+  }
+`;
+
+export const DropzoneWrapper = styled(Flex)`
+  min-height: 120px;
 `;

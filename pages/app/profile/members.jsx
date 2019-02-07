@@ -1,9 +1,14 @@
 import { PureComponent } from "react";
 import withI18next from "lib/withI18next";
+import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
-import { func, string } from "prop-types";
-import AppLayout from "layout/App";
+import { func, string, shape, arrayOf } from "prop-types";
 import Form from "sections/profile/members";
+import { connect } from "react-redux";
+import { postMember, patchMember, deleteMember } from "actions/members";
+import { postBusiness } from "actions/businesses";
+import { setCurrentBusiness } from "actions/users";
+import ProfileLayout from "sections/profile/Layout";
 
 const namespaces = ["members", "app"];
 
@@ -16,20 +21,65 @@ class Members extends PureComponent {
     };
   }
 
+  handleSubmit = async members => {
+    try {
+      const {
+        addMember,
+        updateMember,
+        business: { id: businessId }
+      } = this.props;
+      const { id, email, role } = members[0];
+      if (id) {
+        return updateMember(id, { email, role });
+      }
+      return addMember({ email, role }, businessId);
+    } catch (e) {
+      console.log(e);
+      return e;
+    }
+  };
+
+  removeMember = async id => {
+    try {
+      const { removeMember } = this.props;
+      return removeMember(id);
+    } catch (e) {
+      console.log(e);
+      return e;
+    }
+  };
+
   render() {
-    const { t, lng, slug } = this.props;
+    const {
+      t,
+      lng,
+      members,
+      business,
+      businesses,
+      changeCurrentBusiness,
+      addBusiness
+    } = this.props;
     return (
-      <AppLayout
+      <ProfileLayout
         {...{
-          mainIcon: "profile",
-          header: t("header"),
           t,
           lng,
-          slug
+          business,
+          businesses,
+          changeCurrentBusiness,
+          addBusiness,
+          currentPage: "inviteYourTeam"
         }}
       >
-        <Form {...{ t }} />
-      </AppLayout>
+        <Form
+          {...{
+            t,
+            members,
+            handleSubmit: this.handleSubmit,
+            removeMember: this.removeMember
+          }}
+        />
+      </ProfileLayout>
     );
   }
 }
@@ -37,7 +87,37 @@ class Members extends PureComponent {
 Members.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  slug: string.isRequired
+  addMember: func.isRequired,
+  updateMember: func.isRequired,
+  removeMember: func.isRequired,
+  addBusiness: func.isRequired,
+  members: arrayOf(shape()),
+  business: shape(),
+  changeCurrentBusiness: func.isRequired,
+  businesses: arrayOf(shape())
 };
 
-export default withI18next(namespaces)(Members);
+Members.defaultProps = {
+  members: null,
+  business: null,
+  businesses: null
+};
+
+export default requireAuth(true)(
+  withI18next(namespaces)(
+    connect(
+      state => ({
+        members: state.members.data,
+        business: state.users.currentBusiness.data,
+        businesses: state.users.profileBusinesses.data
+      }),
+      {
+        addBusiness: postBusiness,
+        addMember: postMember,
+        updateMember: patchMember,
+        removeMember: deleteMember,
+        changeCurrentBusiness: setCurrentBusiness
+      }
+    )(Members)
+  )
+);

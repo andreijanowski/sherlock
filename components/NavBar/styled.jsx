@@ -120,11 +120,12 @@ export const Subitems = styled(Flex).attrs({
   }
 `;
 
-export const Subitem = styled(Box).attrs({ p: 3 })`
+export const Subitem = styled(Box).attrs({ as: "a", p: 3 })`
   color: rgb(${p => p.theme.colors.white});
   border-radius: ${p => p.theme.radius.default};
   cursor: pointer;
   white-space: nowrap;
+  text-decoration: none;
 
   &:hover {
     background-color: rgb(${p => p.theme.colors.brightGray});

@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
 export const InputError = styled.span`
-  color: rgb(${({ theme }) => theme.colors.ruby});
-  font-size: ${({ theme }) => theme.fontSizes.f12};
-  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+  color: rgb(${p => p.theme.colors.ruby});
+  font-size: ${p => p.theme.fontSizes.f12};
+  font-weight: ${p => p.theme.fontWeights.semiBold};
   position: absolute;
   left: 0;
   top: -20px;
@@ -12,7 +12,7 @@ export const InputError = styled.span`
 `;
 
 export const Checkmark = styled.span`
-  border: ${({ theme }) => theme.borderWeights.normal} solid
+  border: ${p => p.theme.borderWeights.normal} solid
     rgba(
       ${({ theme, error }) =>
         error ? `${theme.colors.ruby}, 1` : `${theme.colors.dark}, 0.16`}
@@ -33,7 +33,7 @@ export const Checkmark = styled.span`
     width: 4px;
     height: 6px;
     margin-bottom: 2px;
-    border: solid rgba(${({ theme }) => theme.colors.dark}, 0.4);
+    border: solid rgba(${p => p.theme.colors.dark}, 0.4);
     border-width: 0 2px 2px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
@@ -46,9 +46,9 @@ export const CheckboxContainer = styled(Flex).attrs({
   alignItems: "center"
 })`
   white-space: pre-wrap;
-  color: rgba(${({ theme }) => theme.colors.dark}, 0.4);
-  font-size: ${({ theme }) => theme.fontSizes.f14};
-  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+  color: rgba(${p => p.theme.colors.dark}, 0.4);
+  font-size: ${p => p.theme.fontSizes.f14};
+  font-weight: ${p => p.theme.fontWeights.semiBold};
   line-height: 20px;
   position: relative;
   width: 100%;
@@ -72,9 +72,9 @@ export const Checkbox = styled.input.attrs({
   height: 0;
   width: 0;
   &:checked ~ ${Checkmark} {
-    background-color: rgb(${({ theme }) => theme.colors.blue});
-    border-color: rgb(${({ theme }) => theme.colors.blue});
-    box-shadow: 0px 2px 6px 0px rgba(${({ theme }) => theme.colors.dark}, 0.1);
+    background-color: rgb(${p => p.theme.colors.blue});
+    border-color: rgb(${p => p.theme.colors.blue});
+    box-shadow: 0px 2px 6px 0px rgba(${p => p.theme.colors.dark}, 0.1);
     &:after {
       border-color: white;
     }

@@ -21,9 +21,9 @@ export const Separator = styled(Box).attrs(({ size }) => ({
   as: "p",
   my: size
 }))`
-  font-size: ${({ theme }) => theme.fontSizes.f10};
-  color: rgba(${({ theme }) => theme.colors.dark}, 0.4);
-  line-height: ${({ theme }) => theme.fontSizes.f24};
+  font-size: ${p => p.theme.fontSizes.f10};
+  color: rgba(${p => p.theme.colors.dark}, 0.4);
+  line-height: ${p => p.theme.fontSizes.f24};
   position: relative;
   text-transform: uppercase;
   text-align: center;

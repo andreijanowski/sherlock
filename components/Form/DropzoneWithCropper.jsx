@@ -82,9 +82,14 @@ DropzoneWithCropper.propTypes = {
   cancel: string.isRequired,
   maxWidth: number.isRequired,
   maxHeight: number.isRequired,
-  aspectRatio: number.isRequired,
-  image: string.isRequired,
+  aspectRatio: number,
+  image: string,
   saveImage: func.isRequired
+};
+
+DropzoneWithCropper.defaultProps = {
+  aspectRatio: undefined,
+  image: null
 };
 
 export default DropzoneWithCropper;
