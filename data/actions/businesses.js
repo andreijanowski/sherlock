@@ -33,7 +33,7 @@ export const patchBusiness = (id, values) => ({
       }
     }
   },
-  meta: { thunk: true }
+  meta: { thunk: true, updatedValues: Object.keys(values) }
 });
 
 export const fetchBusinessMembers = id => ({
