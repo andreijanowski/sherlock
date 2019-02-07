@@ -1,5 +1,7 @@
 import { Link } from "components";
 import { func, string } from "prop-types";
+import { logout as logoutAction } from "actions/auth";
+import { connect } from "react-redux";
 import {
   Wrapper,
   LogoWrapper,
@@ -24,7 +26,7 @@ import {
   SettingsIcon
 } from "./icons";
 
-const NavBar = ({ t, lng }) => (
+const NavBar = ({ t, lng, logout }) => (
   <Wrapper>
     <LogoWrapper>
       <Logo />
@@ -105,13 +107,31 @@ const NavBar = ({ t, lng }) => (
       <Icon>
         <SettingsIcon />
       </Icon>
+      <SubitemsWrapper top={-160} arrowTop={160}>
+        <Subitems arrowTop={175}>
+          <Link {...{ lng, route: `/app/user/basic-information/` }}>
+            <Subitem>{t("app:userSettings.basicInformation")}</Subitem>
+          </Link>
+          <Link {...{ lng, route: `/app/user/billing/` }}>
+            <Subitem>{t("app:userSettings.billing")}</Subitem>
+          </Link>
+          <Link {...{ lng, route: `/app/user/password/` }}>
+            <Subitem>{t("app:userSettings.password")}</Subitem>
+          </Link>
+          <Subitem onClick={logout}>{t("app:userSettings.logout")}</Subitem>
+        </Subitems>
+      </SubitemsWrapper>
     </Item>
   </Wrapper>
 );
 
 NavBar.propTypes = {
   t: func.isRequired,
-  lng: string.isRequired
+  lng: string.isRequired,
+  logout: func.isRequired
 };
 
-export default NavBar;
+export default connect(
+  null,
+  { logout: logoutAction }
+)(NavBar);

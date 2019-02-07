@@ -14,5 +14,6 @@
     "Friday",
     "Saturday"
   ],
-  "copy": "copy"
+  "copy": "copy",
+  "paste": "paste"
 }
