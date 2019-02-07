@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 
-// eslint-disable-next-line import/prefer-default-export
 export const ModalStyles = createGlobalStyle`
   .modal-overlay {
     background-color: rgba(${p => p.theme.colors.dark}, 0.16);
@@ -26,7 +25,7 @@ export const ModalStyles = createGlobalStyle`
         stroke: rgb(${p => p.theme.colors.dark});
         fill: rgb(${p => p.theme.colors.dark});
     }
-    
+
     &:hover {
         background-color: rgb(${p => p.theme.colors.dark});
         border: 2px solid rgba(${p => p.theme.colors.white}, 0.4);

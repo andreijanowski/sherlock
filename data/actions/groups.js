@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { FETCH_GROUPS_REQUEST } from "types/groups";
 
 export const fetchGroups = () => ({

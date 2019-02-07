@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import {
   POST_OPEN_PERIOD_REQUEST,
   PATCH_OPEN_PERIOD_REQUEST,

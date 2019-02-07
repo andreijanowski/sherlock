@@ -9,12 +9,14 @@ import {
   Avatar
 } from "./styled";
 import { Docs, Feedback, Notifications } from "./icons";
-import { ProfileIcon } from "../NavBar/icons";
+import { ProfileIcon, SettingsIcon } from "../NavBar/icons";
 
 const chooseIcon = icon => {
   switch (icon) {
     case "profile":
       return ProfileIcon;
+    case "settings":
+      return SettingsIcon;
     default:
       return null;
   }

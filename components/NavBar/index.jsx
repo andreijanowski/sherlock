@@ -109,13 +109,13 @@ const NavBar = ({ t, lng, logout }) => (
       </Icon>
       <SubitemsWrapper top={-160} arrowTop={160}>
         <Subitems arrowTop={175}>
-          <Link {...{ lng, route: `/app/user/basic-information/` }}>
+          <Link {...{ lng, route: `/app/settings/basic-information/` }}>
             <Subitem>{t("app:userSettings.basicInformation")}</Subitem>
           </Link>
-          <Link {...{ lng, route: `/app/user/billing/` }}>
+          <Link {...{ lng, route: `/app/settings/billing/` }}>
             <Subitem>{t("app:userSettings.billing")}</Subitem>
           </Link>
-          <Link {...{ lng, route: `/app/user/password/` }}>
+          <Link {...{ lng, route: `/app/settings/password/` }}>
             <Subitem>{t("app:userSettings.password")}</Subitem>
           </Link>
           <Subitem onClick={logout}>{t("app:userSettings.logout")}</Subitem>

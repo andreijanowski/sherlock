@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-
 export const generateMenuItems = (t, active) => [
   {
     route: `/app/profile/basic-information/`,

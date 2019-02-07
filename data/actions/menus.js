@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import {
   POST_MENU_REQUEST,
   PATCH_MENU_REQUEST,

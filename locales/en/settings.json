@@ -1,0 +1,8 @@
+{
+  "name": "Name",
+  "email": "E-mail",
+  "updatePhoto": "Update photo",
+  "avatarInfo": "jpg/png",
+  "invalidFileType": "Invalid file type",
+  "validFileTypeInfo": "Accept jpg/png"
+}

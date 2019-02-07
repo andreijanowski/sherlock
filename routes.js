@@ -30,8 +30,14 @@ module.exports = routes()
     `/:lng(${languagesPattern})/app/profile/pictures-and-menus/`
   )
   .add(
-    "app/user/basicInformation",
-    `/:lng(${languagesPattern})/app/user/basic-information/`
+    "app/settings/basicInformation",
+    `/:lng(${languagesPattern})/app/settings/basic-information/`
   )
-  .add("app/user/billing", `/:lng(${languagesPattern})/app/user/billing/`)
-  .add("app/user/password", `/:lng(${languagesPattern})/app/user/password/`);
+  .add(
+    "app/settings/billing",
+    `/:lng(${languagesPattern})/app/settings/billing/`
+  )
+  .add(
+    "app/settings/password",
+    `/:lng(${languagesPattern})/app/settings/password/`
+  );

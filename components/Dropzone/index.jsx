@@ -10,11 +10,14 @@ const Dropzone = ({
   errorTip,
   info,
   errorInfo,
-  image
+  image,
+  isCircleShape
 }) => (
   <ReactDropzone {...{ accept, onDrop, multiple }}>
     {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
-      <Wrapper {...getRootProps({ isDragActive, isDragReject, image })}>
+      <Wrapper
+        {...getRootProps({ isDragActive, isDragReject, image, isCircleShape })}
+      >
         <Input {...getInputProps()} />
         <Tip {...{ isDragReject }}>{isDragReject ? errorTip : tip}</Tip>
         <Info {...{ isDragReject }}>{isDragReject ? errorInfo : info}</Info>
@@ -31,11 +34,13 @@ Dropzone.propTypes = {
   errorTip: string.isRequired,
   info: string.isRequired,
   errorInfo: string.isRequired,
-  image: string
+  image: string,
+  isCircleShape: bool
 };
 
 Dropzone.defaultProps = {
-  image: null
+  image: null,
+  isCircleShape: false
 };
 
 export default Dropzone;
