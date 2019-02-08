@@ -16,11 +16,15 @@ class Product extends PureComponent {
   handleChange = e => this.setState({ value: e.target.value });
 
   handleBlur = async () => {
-    const { updateProduct, id } = this.props;
-    const { value } = this.state;
-    this.setState({ saving: true });
-    await updateProduct(id, value);
-    this.setState({ saving: false });
+    try {
+      const { updateProduct, id } = this.props;
+      const { value } = this.state;
+      this.setState({ saving: true });
+      await updateProduct(id, value);
+      this.setState({ saving: false });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   render() {

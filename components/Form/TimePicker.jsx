@@ -3,6 +3,7 @@ import Timekeeper from "react-timekeeper";
 import { Field as FinalFormField } from "react-final-form";
 import onClickOutside from "react-onclickoutside";
 import { shape, string, bool, func } from "prop-types";
+import { LoadingIndicator } from "components";
 import {
   FieldWrapper,
   RawInput,
@@ -62,7 +63,15 @@ class RawTimePicker extends PureComponent {
   };
 
   render() {
-    const { input, meta, name, disabled, placeholder, label } = this.props;
+    const {
+      input,
+      meta,
+      name,
+      disabled,
+      placeholder,
+      label,
+      loading
+    } = this.props;
     const { isTimekeeperVisible, top } = this.state;
     const error = getError(meta);
 
@@ -90,6 +99,7 @@ class RawTimePicker extends PureComponent {
             />
           </TimekeeperWrapper>
         )}
+        {loading && <LoadingIndicator />}
       </FieldWrapper>
     );
   }
@@ -102,12 +112,14 @@ RawTimePicker.propTypes = {
   disabled: bool,
   placeholder: string.isRequired,
   label: string.isRequired,
-  handleBlur: func
+  handleBlur: func,
+  loading: bool
 };
 
 RawTimePicker.defaultProps = {
   disabled: false,
-  handleBlur: undefined
+  handleBlur: undefined,
+  loading: false
 };
 
 const EnhancedRawTimePicker = onClickOutside(RawTimePicker);

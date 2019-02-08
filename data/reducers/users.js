@@ -15,6 +15,11 @@ import { POST_BUSINESS_REQUEST, POST_BUSINESS_SUCCESS } from "types/businesses";
 import { POST_PICTURE_SUCCESS, DELETE_PICTURE_REQUEST } from "types/pictures";
 import { POST_MENU_SUCCESS, DELETE_MENU_REQUEST } from "types/menus";
 import { POST_PRODUCT_SUCCESS, DELETE_PRODUCT_REQUEST } from "types/products";
+import {
+  POST_OPEN_PERIOD_SUCCESS,
+  PATCH_OPEN_PERIOD_SUCCESS,
+  DELETE_OPEN_PERIOD_REQUEST
+} from "types/openPeriods";
 
 import build from "redux-object";
 
@@ -221,6 +226,45 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       newState.profileBusinesses.data = newState.profileBusinesses.data.concat(
         business
       );
+      return newState;
+    }
+
+    case POST_OPEN_PERIOD_SUCCESS: {
+      const newState = { ...state };
+      const openPeriod =
+        build(payload.data, "openPeriods", payload.rawData.data.id, {
+          ignoreLinks: true
+        }) || [];
+      newState.currentBusiness.data = {
+        ...newState.currentBusiness.data,
+        openPeriods: [...newState.currentBusiness.data.openPeriods, openPeriod]
+      };
+      return newState;
+    }
+
+    case PATCH_OPEN_PERIOD_SUCCESS: {
+      const newState = { ...state };
+      const openPeriod =
+        build(payload.data, "openPeriods", payload.rawData.data.id, {
+          ignoreLinks: true
+        }) || [];
+      const editedOpenPeriodIndex = newState.currentBusiness.data.openPeriods.findIndex(
+        p => p.id === payload.rawData.data.id
+      );
+      newState.currentBusiness.data.openPeriods[
+        editedOpenPeriodIndex
+      ] = openPeriod;
+      return newState;
+    }
+
+    case DELETE_OPEN_PERIOD_REQUEST: {
+      const newState = { ...state };
+      newState.currentBusiness.data = {
+        ...newState.currentBusiness.data,
+        openPeriods: newState.currentBusiness.data.openPeriods.filter(
+          p => p.id !== meta.id
+        )
+      };
       return newState;
     }
 

@@ -4,7 +4,8 @@ import { string, bool, number, func } from "prop-types";
 
 class DropzoneWithCropper extends PureComponent {
   state = {
-    filesForCropping: []
+    filesForCropping: [],
+    isAddingFile: false
   };
 
   handleDrop = files => {
@@ -17,20 +18,24 @@ class DropzoneWithCropper extends PureComponent {
       filesForCropping: state.filesForCropping.splice(1)
     }));
 
-  handleCrop = image => {
+  handleCrop = async image => {
     const { saveImage } = this.props;
     this.handleCropperHide();
-    saveImage(image);
+    this.setState({ isAddingFile: true });
+    await saveImage(image);
+    this.setState({ isAddingFile: false });
   };
 
   render() {
     const {
       tip,
-      errorTip,
+      errorTipType,
+      errorTipMultiple,
       info,
-      errorInfo,
+      errorInfoType,
+      errorInfoMultiple,
       multiple,
-      accept,
+      crop,
       cancel,
       maxWidth,
       maxHeight,
@@ -38,7 +43,7 @@ class DropzoneWithCropper extends PureComponent {
       image,
       isCircleShape
     } = this.props;
-    const { filesForCropping } = this.state;
+    const { filesForCropping, isAddingFile } = this.state;
     return (
       <>
         <Dropzone
@@ -46,12 +51,15 @@ class DropzoneWithCropper extends PureComponent {
             accept: ["image/png", "image/jpeg"],
             onDrop: this.handleDrop,
             tip,
-            errorTip,
+            errorTipType,
+            errorTipMultiple,
             info,
-            errorInfo,
+            errorInfoType,
+            errorInfoMultiple,
             multiple,
             image,
-            isCircleShape
+            isCircleShape,
+            loading: isAddingFile
           }}
         />
         {filesForCropping.length > 0 && (
@@ -59,7 +67,7 @@ class DropzoneWithCropper extends PureComponent {
             {...{
               maxWidth,
               maxHeight,
-              accept,
+              crop,
               cancel,
               aspectRatio,
               isVisible: filesForCropping.length > 0,
@@ -76,11 +84,13 @@ class DropzoneWithCropper extends PureComponent {
 
 DropzoneWithCropper.propTypes = {
   tip: string.isRequired,
-  errorTip: string.isRequired,
+  errorTipType: string.isRequired,
+  errorTipMultiple: string,
   info: string.isRequired,
-  errorInfo: string.isRequired,
+  errorInfoType: string.isRequired,
+  errorInfoMultiple: string,
   multiple: bool.isRequired,
-  accept: string.isRequired,
+  crop: string.isRequired,
   cancel: string.isRequired,
   maxWidth: number.isRequired,
   maxHeight: number.isRequired,
@@ -93,7 +103,9 @@ DropzoneWithCropper.propTypes = {
 DropzoneWithCropper.defaultProps = {
   aspectRatio: undefined,
   image: null,
-  isCircleShape: false
+  isCircleShape: false,
+  errorTipMultiple: "",
+  errorInfoMultiple: ""
 };
 
 export default DropzoneWithCropper;

@@ -14,5 +14,7 @@
     "billing": "Billing",
     "password": "Password",
     "logout": "Logout"
-  }
+  },
+  "crop": "Crop",
+  "cancel": "Cancel"
 }

@@ -21,31 +21,26 @@ class ContactInformation extends PureComponent {
     };
   }
 
-  handleSubmit = async ({ email, phone, phoneCountry, website, instagram }) => {
-    try {
-      const {
-        updateBusiness,
-        business: { id }
-      } = this.props;
-      const requestValues = {
-        email,
-        phone,
-        phoneCountryPrefix:
-          phoneCountry && phoneCountry.value
-            ? phoneCountry.value.prefix
-            : undefined,
-        phoneCountryCode:
-          phoneCountry && phoneCountry.value
-            ? phoneCountry.value.code
-            : undefined,
-        website,
-        instagram
-      };
-      return updateBusiness(id, requestValues);
-    } catch (e) {
-      console.log(e);
-      return e;
-    }
+  handleSubmit = ({ email, phone, phoneCountry, website, instagram }) => {
+    const {
+      updateBusiness,
+      business: { id }
+    } = this.props;
+    const requestValues = {
+      email,
+      phone,
+      phoneCountryPrefix:
+        phoneCountry && phoneCountry.value
+          ? phoneCountry.value.prefix
+          : undefined,
+      phoneCountryCode:
+        phoneCountry && phoneCountry.value
+          ? phoneCountry.value.code
+          : undefined,
+      website,
+      instagram
+    };
+    return updateBusiness(id, requestValues);
   };
 
   render() {
