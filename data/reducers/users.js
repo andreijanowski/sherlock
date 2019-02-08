@@ -8,7 +8,8 @@ import {
   FETCH_PROFILE_BUSINESS_REQUEST,
   FETCH_PROFILE_BUSINESS_SUCCESS,
   FETCH_PROFILE_BUSINESS_FAIL,
-  SET_CURRENT_BUSINESS
+  SET_CURRENT_BUSINESS,
+  UPDATE_PROFILE_SUCCESS
 } from "types/users";
 import { POST_BUSINESS_REQUEST, POST_BUSINESS_SUCCESS } from "types/businesses";
 import { POST_PICTURE_SUCCESS, DELETE_PICTURE_REQUEST } from "types/pictures";
@@ -67,6 +68,18 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       newState.profile.isFetching = false;
       newState.profile.isFailed = true;
       return newState;
+    }
+
+    case UPDATE_PROFILE_SUCCESS: {
+      const profileData = build(
+        payload.data,
+        "users",
+        payload.rawData.data.id,
+        {
+          ignoreLinks: true
+        }
+      );
+      return { ...state, profile: { data: { ...profileData } } };
     }
 
     case FETCH_PROFILE_BUSINESSES_REQUEST: {

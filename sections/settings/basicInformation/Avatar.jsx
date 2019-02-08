@@ -1,8 +1,8 @@
 import React from "react";
 import { DropzoneWithCropper, PerfectSquare } from "components";
-import { func } from "prop-types";
+import { func, string } from "prop-types";
 
-const Avatar = ({ t }) => (
+const Avatar = ({ t, url, saveImage }) => (
   <>
     <PerfectSquare>
       <DropzoneWithCropper
@@ -16,9 +16,9 @@ const Avatar = ({ t }) => (
         isCircleShape
         maxWidth={300}
         maxHeight={300}
-        image={undefined}
-        saveImage={e => {
-          console.log(e);
+        image={url}
+        saveImage={imgBase64 => {
+          saveImage("avatar", imgBase64);
         }}
         aspectRatio={1}
       />
@@ -27,7 +27,13 @@ const Avatar = ({ t }) => (
 );
 
 Avatar.propTypes = {
-  t: func.isRequired
+  t: func.isRequired,
+  url: string,
+  saveImage: func.isRequired
+};
+
+Avatar.defaultProps = {
+  url: null
 };
 
 export default Avatar;
