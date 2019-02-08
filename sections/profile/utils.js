@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 
-export const generateMenuItems = (t, active) => [
+export const generateMenuItems = (t, active, showPublishModal) => [
   {
     route: `/app/profile/basic-information/`,
     label: t("app:manageProfile.basicInformation"),
@@ -30,6 +30,11 @@ export const generateMenuItems = (t, active) => [
     route: `/app/profile/members/`,
     label: t("app:manageProfile.inviteYourTeam"),
     isActive: active === "inviteYourTeam"
+  },
+  {
+    onClick: showPublishModal,
+    label: t("app:manageProfile.publish"),
+    isActive: false
   }
 ];
 
