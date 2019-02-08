@@ -37,6 +37,7 @@ i18n
         "notifications",
         "openingHours",
         "picturesAndMenus",
+        "publishModal",
         "register"
       ], // need to preload all the namespaces
       backend: {

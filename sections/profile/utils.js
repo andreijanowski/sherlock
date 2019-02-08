@@ -38,6 +38,25 @@ export const generateMenuItems = (t, active, showPublishModal) => [
   }
 ];
 
+export const generatePublishModalItems = (t, validation) => {
+  const tips = [
+    t("publishModal:basicInformationTip"),
+    t("publishModal:contactInformationTip"),
+    t("publishModal:openingHoursTip"),
+    t("publishModal:picturesAndMenusTip"),
+    t("publishModal:additionalInformationTip"),
+    t("publishModal:inviteYourTeamTip")
+  ];
+  const items = generateMenuItems(t);
+  items.pop();
+  return items.map((item, index) => ({
+    name: item.label,
+    route: item.route,
+    tip: tips[index],
+    isValid: validation[index]
+  }));
+};
+
 export const prepareBusinessesList = (t, businesses) =>
   businesses
     ? businesses.map(b => ({

@@ -6,6 +6,7 @@ import {
   generateMenuItems,
   prepareBusinessesList
 } from "sections/profile/utils";
+import PublishModal from "sections/profile/publishModal";
 
 class ProfileLayout extends PureComponent {
   state = {
@@ -60,7 +61,7 @@ class ProfileLayout extends PureComponent {
         <Modal
           {...{ open: isPublishModalVisible, onClose: this.hidePublishModal }}
         >
-          Hello this is modal
+          <PublishModal {...{ t, lng, close: this.hidePublishModal }} />
         </Modal>
       </AppLayout>
     );
