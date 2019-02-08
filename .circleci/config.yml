@@ -58,6 +58,19 @@ jobs:
           name: Deploy to staging
           command: bundle install; bundle exec cap staging deploy
 
+    deploy_production_front:
+      <<: *deploy
+      working_directory: ~/repo/deployment
+      steps:
+        - attach_workspace:
+            at: ~/repo
+        - run:
+            name: bundle config
+            command: bundle config --local path ~/repo/deployment/vendor/bundle
+        - run:
+            name: Deploy to production
+            command: bundle install; bundle exec cap production deploy
+
 workflows:
   version: 2
   build-and-deploy:
@@ -72,3 +85,11 @@ workflows:
           filters:
             branches:
               only: master
+      - deploy_production_front:
+          requires:
+            - checkout_code
+          filters:
+            branches:
+              only:
+                - production
+                - production-setup
