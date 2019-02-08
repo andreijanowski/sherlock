@@ -38,7 +38,8 @@ i18n
         "openingHours",
         "picturesAndMenus",
         "register",
-        "settings"
+        "settingsBasicInfo",
+        "passwordSettings"
       ], // need to preload all the namespaces
       backend: {
         loadPath: path.join(__dirname, "/locales/{{lng}}/{{ns}}.json"),
