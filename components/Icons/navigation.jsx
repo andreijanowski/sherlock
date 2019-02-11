@@ -1,7 +1,7 @@
 const fillNone = { fill: "none" };
 const strokeNone = { stroke: "none" };
 
-export const Icon1 = () => (
+export const ControlCentre = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -31,7 +31,7 @@ export const Icon1 = () => (
   </svg>
 );
 
-export const Icon2 = () => (
+export const Bookings = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -67,7 +67,7 @@ export const Icon2 = () => (
   </svg>
 );
 
-export const Icon3 = () => (
+export const Delivery = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -95,7 +95,7 @@ export const Icon3 = () => (
   </svg>
 );
 
-export const Icon4 = () => (
+export const TakeAway = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -125,7 +125,7 @@ export const Icon4 = () => (
   </svg>
 );
 
-export const Icon5 = () => (
+export const Catering = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -145,7 +145,7 @@ export const Icon5 = () => (
   </svg>
 );
 
-export const Icon6 = () => (
+export const Privatisations = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="22"
@@ -169,7 +169,7 @@ export const Icon6 = () => (
   </svg>
 );
 
-export const Icon7 = () => (
+export const LeFood = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="18"
@@ -196,7 +196,7 @@ export const Icon7 = () => (
   </svg>
 );
 
-export const Icon8 = () => (
+export const Billing = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -238,7 +238,7 @@ export const ProfileIcon = () => (
   </svg>
 );
 
-export const Icon10 = () => (
+export const Subscriptions = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="22"

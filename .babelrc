@@ -54,6 +54,7 @@
                     "i18n": "./i18n",
                     "utils": "./utils",
                     "components": "./components",
+                    "icons": "./components/Icons",
                     "layout": "./layout",
                     "consts": "./consts",
                     "sections": "./sections"

@@ -3,6 +3,19 @@ import { func, string } from "prop-types";
 import { logout as logoutAction } from "actions/auth";
 import { connect } from "react-redux";
 import {
+  ControlCentre,
+  Bookings,
+  Delivery,
+  TakeAway,
+  Catering,
+  Privatisations,
+  LeFood,
+  Billing,
+  ProfileIcon,
+  Subscriptions,
+  SettingsIcon
+} from "icons";
+import {
   Wrapper,
   LogoWrapper,
   Logo,
@@ -12,19 +25,6 @@ import {
   Subitem,
   Icon
 } from "./styled";
-import {
-  Icon1,
-  Icon2,
-  Icon3,
-  Icon4,
-  Icon5,
-  Icon6,
-  Icon7,
-  Icon8,
-  ProfileIcon,
-  Icon10,
-  SettingsIcon
-} from "./icons";
 
 const NavBar = ({ t, lng, logout }) => (
   <Wrapper>
@@ -33,42 +33,42 @@ const NavBar = ({ t, lng, logout }) => (
     </LogoWrapper>
     <Item>
       <Icon>
-        <Icon1 />
+        <ControlCentre />
       </Icon>
     </Item>
     <Item>
       <Icon>
-        <Icon2 />
+        <Bookings />
       </Icon>
     </Item>
     <Item>
       <Icon>
-        <Icon3 />
+        <Delivery />
       </Icon>
     </Item>
     <Item>
       <Icon>
-        <Icon4 />
+        <TakeAway />
       </Icon>
     </Item>
     <Item>
       <Icon>
-        <Icon5 />
+        <Catering />
       </Icon>
     </Item>
     <Item>
       <Icon>
-        <Icon6 />
+        <Privatisations />
       </Icon>
     </Item>
     <Item>
       <Icon>
-        <Icon7 />
+        <LeFood />
       </Icon>
     </Item>
     <Item>
       <Icon>
-        <Icon8 />
+        <Billing />
       </Icon>
     </Item>
     <Item>
@@ -100,7 +100,7 @@ const NavBar = ({ t, lng, logout }) => (
     </Item>
     <Item>
       <Icon>
-        <Icon10 />
+        <Subscriptions />
       </Icon>
     </Item>
     <Item>

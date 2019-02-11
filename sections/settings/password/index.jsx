@@ -8,43 +8,41 @@ import { validatePassword } from "utils/validators";
 
 const ChangePasswordForm = ({ t, profile, changePassword }) =>
   profile ? (
-    <>
-      <FinalForm
-        onSubmit={changePassword}
-        render={({ handleSubmit, invalid }) => (
-          <Form onSubmit={handleSubmit}>
-            <Flex mx={-2} flexDirection="column">
-              <Box width={[1, 1, 560]}>
-                <FormInput
-                  name="currentPassword"
-                  label={t("currentPassword")}
-                  validate={validatePassword(t)}
-                />
-              </Box>
-              <Box width={[1, 1, 560]}>
-                <FormInput
-                  name="password"
-                  label={t("newPassword")}
-                  validate={validatePassword(t)}
-                />
-              </Box>
-              <Box width={[1, 1, 560]}>
-                <FormInput
-                  name="passwordConfirmation"
-                  label={t("passwordConfirmation")}
-                  validate={validatePassword(t)}
-                />
-              </Box>
-              <Box width={[1, 200]}>
-                <Button type="submit" styleName="navyBlue" disabled={invalid}>
-                  {t("common:update")}
-                </Button>
-              </Box>
-            </Flex>
-          </Form>
-        )}
-      />
-    </>
+    <FinalForm
+      onSubmit={changePassword}
+      render={({ handleSubmit, invalid }) => (
+        <Form onSubmit={handleSubmit}>
+          <Flex mx={-2} flexDirection="column">
+            <Box width={[1, 1, 560]}>
+              <FormInput
+                name="currentPassword"
+                label={t("currentPassword")}
+                validate={validatePassword(t)}
+              />
+            </Box>
+            <Box width={[1, 1, 560]}>
+              <FormInput
+                name="password"
+                label={t("newPassword")}
+                validate={validatePassword(t)}
+              />
+            </Box>
+            <Box width={[1, 1, 560]}>
+              <FormInput
+                name="passwordConfirmation"
+                label={t("passwordConfirmation")}
+                validate={validatePassword(t)}
+              />
+            </Box>
+            <Box width={[1, 200]}>
+              <Button type="submit" styleName="navyBlue" disabled={invalid}>
+                {t("common:update")}
+              </Button>
+            </Box>
+          </Flex>
+        </Form>
+      )}
+    />
   ) : (
     <LoadingIndicator />
   );
