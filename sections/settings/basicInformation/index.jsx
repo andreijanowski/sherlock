@@ -4,6 +4,7 @@ import { Form as FinalForm, Field } from "react-final-form";
 import { FormInput, Button, LoadingIndicator } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Form, ConfirmationMsg } from "sections/settings/styled";
+import { validateEmail, required } from "utils/validators";
 import Avatar from "./Avatar";
 
 const UserBasicInfoForm = ({ t, profile, updateProfile }) =>
@@ -15,7 +16,7 @@ const UserBasicInfoForm = ({ t, profile, updateProfile }) =>
           email: profile.email
         }}
         onSubmit={updateProfile}
-        render={({ handleSubmit, form }) => (
+        render={({ handleSubmit, form, invalid }) => (
           <Form onSubmit={handleSubmit}>
             <Flex mx={-2} flexDirection="column">
               <Box width={100} mb={32}>
@@ -33,13 +34,21 @@ const UserBasicInfoForm = ({ t, profile, updateProfile }) =>
                 />
               </Box>
               <Box width={[1, 1, 560]}>
-                <FormInput name="name" label={t("name")} />
+                <FormInput
+                  name="name"
+                  label={t("name")}
+                  validate={required(t)}
+                />
               </Box>
               <Box width={[1, 1, 560]}>
-                <FormInput name="email" label={t("email")} />
+                <FormInput
+                  name="email"
+                  label={t("email")}
+                  validate={validateEmail(t)}
+                />
               </Box>
               <Box width={[1, 200]}>
-                <Button type="submit" styleName="navyBlue">
+                <Button type="submit" styleName="navyBlue" disabled={invalid}>
                   {t("common:update")}
                 </Button>
               </Box>

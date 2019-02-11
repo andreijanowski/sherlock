@@ -10,8 +10,8 @@ const Avatar = ({ t, url, saveImage }) => (
         info={t("avatarInfo")}
         errorTip={t("invalidFileType")}
         errorInfo={t("validFileTypeInfo")}
-        accept={t("common:accept")}
-        cancel={t("common:cancel")}
+        crop={t("app:crop")}
+        cancel={t("app:cancel")}
         multiple={false}
         isCircleShape
         maxWidth={300}

@@ -6,7 +6,7 @@ import { func, shape } from "prop-types";
 import { connect } from "react-redux";
 import { updateProfile } from "actions/users";
 
-const namespaces = ["settingsBasicInfo", "app"];
+const namespaces = ["settingsBasicInfo", "app", "forms"];
 
 const BasicInformation = ({ t, profile, updateProfileHandler }) => (
   <UserLayout {...{ t, currentPage: "basicInformation" }}>
