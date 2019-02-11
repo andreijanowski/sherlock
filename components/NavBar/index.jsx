@@ -37,9 +37,11 @@ const NavBar = ({ t, lng, logout }) => (
       </Icon>
     </Item>
     <Item>
-      <Icon>
-        <Icon2 />
-      </Icon>
+      <Link {...{ lng, route: `/app/catering/month/` }}>
+        <Icon>
+          <Icon2 />
+        </Icon>
+      </Link>
     </Item>
     <Item>
       <Icon>

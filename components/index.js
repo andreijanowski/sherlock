@@ -40,3 +40,4 @@ export { default as RadioButtonField } from "./RadioButtonField";
 export { default as LoadingIndicator } from "./LoadingIndicator";
 export { default as Menu } from "./Menu";
 export { default as Select } from "./Select";
+export { default as Event } from "./Event";

@@ -34,4 +34,5 @@ module.exports = routes()
     `/:lng(${languagesPattern})/app/user/basic-information/`
   )
   .add("app/user/billing", `/:lng(${languagesPattern})/app/user/billing/`)
-  .add("app/user/password", `/:lng(${languagesPattern})/app/user/password/`);
+  .add("app/user/password", `/:lng(${languagesPattern})/app/user/password/`)
+  .add("app/catering/month", `/:lng(${languagesPattern})/app/catering/month/`);

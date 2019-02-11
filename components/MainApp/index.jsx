@@ -16,7 +16,7 @@ const chooseIcon = icon => {
     case "profile":
       return ProfileIcon;
     default:
-      return null;
+      return () => <></>;
   }
 };
 
