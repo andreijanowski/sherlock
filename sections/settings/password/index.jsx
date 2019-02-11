@@ -4,44 +4,42 @@ import { Form as FinalForm } from "react-final-form";
 import { FormInput, Button, LoadingIndicator } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Form } from "sections/settings/styled";
+import { validatePassword } from "utils/validators";
 
-const ChangePasswordForm = ({ t, profile, updateProfile }) =>
+const ChangePasswordForm = ({ t, profile, changePassword }) =>
   profile ? (
     <>
       <FinalForm
-        onSubmit={updateProfile}
-        render={({ handleSubmit }) => (
+        onSubmit={changePassword}
+        render={({ handleSubmit, invalid }) => (
           <Form onSubmit={handleSubmit}>
             <Flex mx={-2} flexDirection="column">
               <Box width={[1, 1, 560]}>
                 <FormInput
                   name="currentPassword"
                   label={t("currentPassword")}
+                  validate={validatePassword(t)}
                 />
               </Box>
               <Box width={[1, 1, 560]}>
-                <FormInput name="password" label={t("newPassword")} />
+                <FormInput
+                  name="password"
+                  label={t("newPassword")}
+                  validate={validatePassword(t)}
+                />
               </Box>
               <Box width={[1, 1, 560]}>
                 <FormInput
                   name="passwordConfirmation"
                   label={t("passwordConfirmation")}
+                  validate={validatePassword(t)}
                 />
               </Box>
               <Box width={[1, 200]}>
-                <Button type="submit" styleName="navyBlue">
-                  {t("update")}
+                <Button type="submit" styleName="navyBlue" disabled={invalid}>
+                  {t("common:update")}
                 </Button>
               </Box>
-              {/* {profile.unconfirmedEmail && (
-                <Box my={3}>
-                  <ConfirmationMsg>
-                    {t("confirmEmailChange", {
-                      email: profile.unconfirmedEmail
-                    })}
-                  </ConfirmationMsg>
-                </Box>
-              )} */}
             </Flex>
           </Form>
         )}
@@ -53,7 +51,7 @@ const ChangePasswordForm = ({ t, profile, updateProfile }) =>
 ChangePasswordForm.propTypes = {
   t: func.isRequired,
   profile: shape().isRequired,
-  updateProfile: func.isRequired
+  changePassword: func.isRequired
 };
 
 export default ChangePasswordForm;

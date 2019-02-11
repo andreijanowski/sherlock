@@ -4,21 +4,21 @@ import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
 import { func, shape } from "prop-types";
 import { connect } from "react-redux";
-import { updateProfile } from "actions/users";
+import { changePassword } from "actions/auth";
 
-const namespaces = ["passwordSettings", "app"];
+const namespaces = ["passwordSettings", "app", "forms"];
 
-const Password = ({ t, profile, updateProfileHandler }) => (
+const Password = ({ t, profile, changePasswordHandler }) => (
   <UserLayout {...{ t, currentPage: "password" }}>
     <ChangePasswordForm
-      {...{ t, profile, updateProfile: updateProfileHandler }}
+      {...{ t, profile, changePassword: changePasswordHandler }}
     />
   </UserLayout>
 );
 
 Password.propTypes = {
   t: func.isRequired,
-  updateProfileHandler: func.isRequired,
+  changePasswordHandler: func.isRequired,
   profile: shape().isRequired
 };
 
@@ -26,7 +26,7 @@ const mapStateToProps = state => ({
   profile: state.users.profile.data
 });
 
-const mapDispatchToProps = { updateProfileHandler: updateProfile };
+const mapDispatchToProps = { changePasswordHandler: changePassword };
 
 export default requireAuth(true)(
   withI18next(namespaces)(

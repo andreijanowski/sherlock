@@ -40,7 +40,7 @@ const UserBasicInfoForm = ({ t, profile, updateProfile }) =>
               </Box>
               <Box width={[1, 200]}>
                 <Button type="submit" styleName="navyBlue">
-                  {t("update")}
+                  {t("common:update")}
                 </Button>
               </Box>
               {profile.unconfirmedEmail && (

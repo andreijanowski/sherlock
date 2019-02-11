@@ -4,7 +4,8 @@ import {
   REFRESH_TOKEN_REQUEST,
   LOGOUT,
   REDIRECT_TO_REGISTER,
-  REGISTER_REQUEST
+  REGISTER_REQUEST,
+  CHANGE_PASSWORD_REQUEST
 } from "types/auth";
 
 export const login = data => ({
@@ -78,6 +79,23 @@ export const register = ({
     endpoint: "/api/v1/users",
     authRequired: false,
     method: "POST"
+  },
+  meta: { thunk: true }
+});
+
+export const changePassword = data => ({
+  type: CHANGE_PASSWORD_REQUEST,
+  payload: {
+    data: {
+      data: {
+        type: "users",
+        attributes: {
+          ...data
+        }
+      }
+    },
+    endpoint: "/api/v1/users/me/reset_password",
+    method: "PATCH"
   },
   meta: { thunk: true }
 });
