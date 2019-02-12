@@ -3,6 +3,7 @@ import AppLayout from "layout/App";
 import prepareBusinessesList from "utils/prepareBusinessesList";
 import { Select } from "components";
 import { Flex, Box } from "@rebass/grid";
+import { Router } from "routes";
 import { preparePeriodsList } from "./utils";
 
 const CateringLayout = ({
@@ -43,7 +44,7 @@ const CateringLayout = ({
             label: t("month")
           }}
           items={preparePeriodsList(t)}
-          onChange={p => console.log(p)}
+          onChange={p => Router.pushRoute(`/${lng}/app/catering/${p.value}/`)}
         />
       </Box>
     </Flex>

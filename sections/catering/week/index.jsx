@@ -11,7 +11,8 @@ const getRandomIntInclusive = (min, max) =>
 
 const getRandomMoment = (i, startDay, minHour, maxHour) => {
   const now = new Date();
-  const day = startDay || getRandomIntInclusive(i * 3, i * 3 + 3);
+  const day =
+    startDay || getRandomIntInclusive(now.getDate() - 7 + i, now.getDate() + 7);
   const hour = getRandomIntInclusive(minHour, maxHour);
   const date = new Date(now.getFullYear(), now.getMonth(), day, hour);
   return date;
@@ -21,8 +22,8 @@ const mockEvents = () => {
   const events = [];
 
   for (let i = 0; i < 10; i += 1) {
-    const start = getRandomMoment(i, undefined, 0, 6);
-    const end = getRandomMoment(i, start.getDate(), start.getHours(), 12);
+    const start = getRandomMoment(i, undefined, 0, 12);
+    const end = getRandomMoment(i, start.getDate(), start.getHours(), 24);
     events.push({
       title: `Conference ${i}`,
       start,
@@ -35,8 +36,8 @@ const mockEvents = () => {
   return events;
 };
 
-const Month = () => (
-  <CalendarWrapper height="550">
+const Week = () => (
+  <CalendarWrapper height="1500">
     <CalendarStyles />
     <BigCalendar
       localizer={localizer}
@@ -44,12 +45,14 @@ const Month = () => (
         event: CalendarEvent,
         toolbar: CalendarToolbar
       }}
-      defaultView="month"
+      defaultView="week"
       events={mockEvents()}
       startAccessor="start"
       endAccessor="end"
+      step={60}
+      timeslots={1}
     />
   </CalendarWrapper>
 );
 
-export default Month;
+export default Week;

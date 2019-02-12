@@ -256,7 +256,6 @@ export default createGlobalStyle`.rbc-btn {
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
-        height: 36px;
     }
     &:nth-child(2) {
         display: -webkit-flex;
@@ -461,6 +460,7 @@ export default createGlobalStyle`.rbc-btn {
         -ms-flex-direction: column;
             flex-direction: column;
     min-height: 100%;
+    width: 70px;
   }
   .rbc-time-column .rbc-timeslot-group {
     -webkit-flex: 1;
@@ -484,7 +484,8 @@ export default createGlobalStyle`.rbc-btn {
             flex: none;
   }
   .rbc-label {
-    padding: 0 5px;
+    font-size: ${p => p.theme.fontSizes.f12};
+    color: rgb(${p => p.theme.colors.bombay});
   }
   .rbc-day-slot {
     position: relative;
@@ -502,7 +503,6 @@ export default createGlobalStyle`.rbc-btn {
     right: 0;
   }
   .rbc-day-slot .rbc-event {
-    border: 1px solid #265985;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
@@ -518,11 +518,7 @@ export default createGlobalStyle`.rbc-btn {
     position: absolute;
   }
   .rbc-day-slot .rbc-event-label {
-    -webkit-flex: none;
-        -ms-flex: none;
-            flex: none;
-    padding-right: 5px;
-    width: auto;
+    display: none;
   }
   .rbc-day-slot .rbc-event-content {
     width: 100%;
@@ -534,9 +530,7 @@ export default createGlobalStyle`.rbc-btn {
     height: 100%;
     min-height: 1em;
   }
-  .rbc-day-slot .rbc-time-slot {
-    border-top: 1px solid #f7f7f7;
-  }
+  .rbc-day-slot .rbc-time-slot {}
   .rbc-time-view-resources .rbc-time-gutter,
   .rbc-time-view-resources .rbc-time-header-gutter {
     position: -webkit-sticky;
@@ -582,6 +576,9 @@ export default createGlobalStyle`.rbc-btn {
     -webkit-flex: 1 0 0;
         -ms-flex: 1 0 0px;
             flex: 1 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .rbc-time-slot.rbc-now {
     font-weight: bold;
@@ -615,14 +612,17 @@ export default createGlobalStyle`.rbc-btn {
     border: 1px solid rgb(${p => p.theme.colors.background});
     min-height: 0;
   }
+  .rbc-time-view .rbc-time-header-gutter {
+    width: 70px !important;
+    min-width: 70px !important;
+    max-width: 70px !important;
+    border-bottom: 1px solid rgb(${p => p.theme.colors.background});
+  }
   .rbc-time-view .rbc-time-gutter {
     white-space: nowrap;
   }
   .rbc-time-view .rbc-allday-cell {
-    box-sizing: content-box;
-    width: 100%;
-    height: 100%;
-    position: relative;
+    display: none;
   }
   .rbc-time-view .rbc-allday-cell + .rbc-allday-cell {
     border-left: 1px solid rgb(${p => p.theme.colors.background});
@@ -690,8 +690,6 @@ export default createGlobalStyle`.rbc-btn {
         -ms-flex-align: start;
             align-items: flex-start;
     width: 100%;
-    border-top: 2px solid rgb(${p => p.theme.colors.background});
-    overflow-y: auto;
     position: relative;
   }
   .rbc-time-content > .rbc-time-gutter {
@@ -719,6 +717,8 @@ export default createGlobalStyle`.rbc-btn {
     left: 0;
     right: 0;
     height: 1px;
-    background-color: #74ad31;
+    background-color: rgb(${p => p.theme.colors.ruby});
     pointer-events: none;
+    left: -800%;
+    width: 1600%;
   }`;
