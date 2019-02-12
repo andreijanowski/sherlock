@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { func, shape } from "prop-types";
 import { Form as FinalForm } from "react-final-form";
 import { FormInput, Button, LoadingIndicator } from "components";
@@ -6,7 +6,7 @@ import { Flex, Box } from "@rebass/grid";
 import { Form, PasswordChangedMsg } from "sections/settings/styled";
 import { validatePassword } from "utils/validators";
 
-class ChangePasswordForm extends Component {
+class ChangePasswordForm extends PureComponent {
   state = {
     wasPasswordChanged: false
   };

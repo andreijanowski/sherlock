@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { DropzoneWithCropper, PerfectSquare } from "components";
 import { func, string } from "prop-types";
 
-class Avatar extends Component {
+class Avatar extends PureComponent {
   state = {
     chosenAvatar: null
   };

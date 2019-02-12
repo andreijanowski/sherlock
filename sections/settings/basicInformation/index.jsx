@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { func, shape } from "prop-types";
 import { Form as FinalForm, Field } from "react-final-form";
 import { FormInput, Button, LoadingIndicator } from "components";
@@ -7,7 +7,7 @@ import { Form, ConfirmationMsg } from "sections/settings/styled";
 import { validateEmail, required } from "utils/validators";
 import Avatar from "./Avatar";
 
-class UserBasicInfoForm extends Component {
+class UserBasicInfoForm extends PureComponent {
   submitForm = async values => {
     try {
       const { updateProfile } = this.props;
