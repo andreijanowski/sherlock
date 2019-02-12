@@ -22,7 +22,7 @@ const Logo = ({ t, logo, saveLogo }) => (
             multiple={false}
             maxWidth={300}
             maxHeight={300}
-            image={logo.url ? `${logo.url}?${new Date().getTime()}` : undefined}
+            image={logo.url || undefined}
             saveImage={saveLogo}
             aspectRatio={1}
           />
