@@ -8,3 +8,7 @@ export const Form = styled.form`
 export const ConfirmationMsg = styled.form`
   color: rgb(${p => p.theme.colors.carrotOrange});
 `;
+
+export const PasswordChangedMsg = styled.form`
+  color: rgb(${p => p.theme.colors.green});
+`;
