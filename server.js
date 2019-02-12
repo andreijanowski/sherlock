@@ -39,7 +39,8 @@ i18n
         "picturesAndMenus",
         "register",
         "settingsBasicInfo",
-        "passwordSettings"
+        "passwordSettings",
+        "connectWithStripe"
       ], // need to preload all the namespaces
       backend: {
         loadPath: path.join(__dirname, "/locales/{{lng}}/{{ns}}.json"),
