@@ -47,8 +47,8 @@ const UserBasicInfoForm = ({ t, profile, updateProfile }) =>
                   validate={validateEmail(t)}
                 />
               </Box>
-              <Box width={[1, 200]}>
-                <Button type="submit" styleName="navyBlue" disabled={invalid}>
+              <Box width={1}>
+                <Button type="submit" styleName="blue" disabled={invalid}>
                   {t("common:update")}
                 </Button>
               </Box>
