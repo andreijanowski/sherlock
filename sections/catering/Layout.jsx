@@ -22,7 +22,7 @@ const CateringLayout = ({
     }}
   >
     <Flex width={1} mb={3}>
-      <Box width={1 / 3} pr={2}>
+      <Box width={1 / 3} pr={3}>
         <Select
           value={{
             value: business && business.id,
