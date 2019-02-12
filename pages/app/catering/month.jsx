@@ -2,9 +2,11 @@ import { PureComponent } from "react";
 import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
-import { func, string } from "prop-types";
+import { func, string, shape, arrayOf } from "prop-types";
 import Month from "sections/catering/month";
 import CateringLayout from "sections/catering/Layout";
+import { connect } from "react-redux";
+import { setCurrentBusiness } from "actions/users";
 
 const namespaces = ["catering", "app"];
 
@@ -18,12 +20,15 @@ class MonthPage extends PureComponent {
   }
 
   render() {
-    const { t, lng } = this.props;
+    const { t, lng, business, businesses, changeCurrentBusiness } = this.props;
     return (
       <CateringLayout
         {...{
           t,
-          lng
+          lng,
+          business,
+          businesses,
+          changeCurrentBusiness
         }}
       >
         <Month />
@@ -34,7 +39,27 @@ class MonthPage extends PureComponent {
 
 MonthPage.propTypes = {
   t: func.isRequired,
-  lng: string.isRequired
+  lng: string.isRequired,
+  business: shape(),
+  changeCurrentBusiness: func.isRequired,
+  businesses: arrayOf(shape())
 };
 
-export default requireAuth(true)(withI18next(namespaces)(MonthPage));
+MonthPage.defaultProps = {
+  business: null,
+  businesses: null
+};
+
+export default requireAuth(true)(
+  withI18next(namespaces)(
+    connect(
+      state => ({
+        business: state.users.currentBusiness.data,
+        businesses: state.users.profileBusinesses.data
+      }),
+      {
+        changeCurrentBusiness: setCurrentBusiness
+      }
+    )(MonthPage)
+  )
+);

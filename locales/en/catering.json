@@ -1,3 +1,7 @@
 {
-  "header": "Catering"
+  "header": "Catering",
+  "day": "Day",
+  "week": "Week",
+  "month": "Month",
+  "year": "Year"
 }

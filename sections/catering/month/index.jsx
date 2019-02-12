@@ -1,6 +1,6 @@
 import BigCalendar from "react-big-calendar";
 import moment from "moment";
-import { Event } from "components";
+import { CalendarEvent, CalendarToolbar } from "components";
 import CalendarStyles from "../calendarStyles";
 import { CalendarWrapper } from "../styled";
 
@@ -41,7 +41,8 @@ const Month = () => (
     <BigCalendar
       localizer={localizer}
       components={{
-        event: Event
+        event: CalendarEvent,
+        toolbar: CalendarToolbar
       }}
       events={mockEvents()}
       startAccessor="start"

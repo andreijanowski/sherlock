@@ -1,18 +1,20 @@
 import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 
-export const ToggleButtonWrapper = styled(Flex).attrs({
+export const ToggleButtonWrapper = styled(Flex).attrs(p => ({
   width: 1,
   alignItems: "center",
-  pl: 48,
+  pl: p.withImage ? 48 : 3,
   pr: 40,
   py: 2
-})`
+}))`
   appearance: none !important;
   position: relative;
   line-height: 24px;
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
   min-height: 40px;
+  background-color: rgb(${p => p.theme.colors.white});
+  border-radius: ${p => p.theme.radius.default};
 
   .ExpandIcon {
     position: absolute;
@@ -58,7 +60,7 @@ export const ItemsWrapper = styled(Flex).attrs(p => ({
   background-color: rgb(${p => p.theme.colors.white});
   border-radius: ${p => p.theme.radius.default};
   position: absolute;
-  z-index: 2;
+  z-index: 99;
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
   overflow: hidden;
 `;
@@ -73,11 +75,11 @@ export const Items = styled(Flex).attrs({
   max-height: 250px;
 `;
 
-export const Item = styled(Box).attrs({
-  pl: 48,
+export const Item = styled(Box).attrs(p => ({
+  pl: p.withImage ? 48 : 3,
   pr: 3,
   py: 2
-})`
+}))`
   line-height: 24px;
   cursor: pointer;
   ${p => p.isActive && `background-color: rgb(${p.theme.colors.background});`}

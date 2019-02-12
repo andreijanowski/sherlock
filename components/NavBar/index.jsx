@@ -14,7 +14,7 @@ import {
 } from "./styled";
 import {
   Icon1,
-  Icon2,
+  CateringIcon,
   Icon3,
   Icon4,
   Icon5,
@@ -39,7 +39,7 @@ const NavBar = ({ t, lng, logout }) => (
     <Item>
       <Link {...{ lng, route: `/app/catering/month/` }}>
         <Icon>
-          <Icon2 />
+          <CateringIcon />
         </Icon>
       </Link>
     </Item>

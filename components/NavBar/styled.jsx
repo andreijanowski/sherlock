@@ -9,6 +9,8 @@ export const Wrapper = styled(Flex).attrs({
 })`
   min-height: 100vh;
   background-color: rgb(${p => p.theme.colors.white});
+  position: relative;
+  z-index: 100;
 `;
 
 export const Logo = styled.img.attrs({

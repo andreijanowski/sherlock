@@ -12,6 +12,7 @@ const Menu = ({ lng, menuItems, select }) => (
           items={select.items}
           onChange={select.handleChange}
           bottomAction={select.bottomAction}
+          withImage={select.withImage}
         />
       </Flex>
     )}

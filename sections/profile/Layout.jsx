@@ -1,9 +1,7 @@
 import { func, string, arrayOf, shape, node } from "prop-types";
 import AppLayout from "layout/App";
-import {
-  generateMenuItems,
-  prepareBusinessesList
-} from "sections/profile/utils";
+import { generateMenuItems } from "sections/profile/utils";
+import prepareBusinessesList from "utils/prepareBusinessesList";
 
 const ProfileLayout = ({
   t,
@@ -31,6 +29,7 @@ const ProfileLayout = ({
             t("app:manageProfile.unnamedBusiness"),
           src: business && business.logo.url
         },
+        withImage: true,
         items: prepareBusinessesList(t, businesses),
         handleChange: b => changeCurrentBusiness(b.value),
         bottomAction: {
