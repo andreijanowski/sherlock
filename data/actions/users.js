@@ -11,7 +11,10 @@ export const fetchProfile = () => ({
   payload: {
     endpoint: "/api/v1/users/me"
   },
-  meta: { thunk: true }
+  meta: {
+    thunk: true,
+    timestamp: Date.now()
+  }
 });
 
 export const updateProfile = data => ({

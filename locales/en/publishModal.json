@@ -1,0 +1,13 @@
+{
+  "cancel": "Cancel",
+  "header": "Complete your profile",
+  "paragraph": ["You need to add ", "important details", " to see data."],
+  "step": "Step",
+  "publish": "Let’s get started",
+  "basicInformationTip": "Start with the basics",
+  "contactInformationTip": "Start with the basics",
+  "openingHoursTip": "Get ready for guests",
+  "picturesAndMenusTip": "Easy recognition",
+  "additionalInformationTip": "More accurate data",
+  "inviteYourTeamTip": "Add business members"
+}

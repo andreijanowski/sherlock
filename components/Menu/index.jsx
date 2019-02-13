@@ -1,5 +1,5 @@
 import { Link, Select } from "components";
-import { string, bool, arrayOf, shape } from "prop-types";
+import { string, bool, arrayOf, shape, func } from "prop-types";
 import { Flex } from "@rebass/grid";
 import { Wrapper, Items, Item } from "./styled";
 
@@ -37,7 +37,8 @@ Menu.propTypes = {
   lng: string.isRequired,
   menuItems: arrayOf(
     shape({
-      route: string.isRequired,
+      route: string,
+      onClick: func,
       label: string.isRequired,
       isActive: bool.isRequired
     })

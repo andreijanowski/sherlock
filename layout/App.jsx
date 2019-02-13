@@ -24,7 +24,8 @@ AppLayout.propTypes = {
   withMenu: bool,
   menuItems: arrayOf(
     shape({
-      route: string.isRequired,
+      onClick: func,
+      route: string,
       label: string.isRequired,
       isActive: bool.isRequired
     })
