@@ -17,25 +17,23 @@ class Avatar extends PureComponent {
     const { t, url } = this.props;
     const { chosenAvatar } = this.state;
     return (
-      <>
-        <PerfectSquare>
-          <DropzoneWithCropper
-            tip={t("updatePhoto")}
-            info={t("avatarInfo")}
-            errorTip={t("invalidFileType")}
-            errorInfo={t("validFileTypeInfo")}
-            crop={t("app:crop")}
-            cancel={t("app:cancel")}
-            multiple={false}
-            isCircleShape
-            maxWidth={300}
-            maxHeight={300}
-            image={chosenAvatar || url}
-            saveImage={this.onImageSave}
-            aspectRatio={1}
-          />
-        </PerfectSquare>
-      </>
+      <PerfectSquare>
+        <DropzoneWithCropper
+          tip={t("updatePhoto")}
+          info={t("avatarInfo")}
+          errorTip={t("invalidFileType")}
+          errorInfo={t("validFileTypeInfo")}
+          crop={t("app:crop")}
+          cancel={t("app:cancel")}
+          multiple={false}
+          isCircleShape
+          maxWidth={300}
+          maxHeight={300}
+          image={chosenAvatar || url}
+          saveImage={this.onImageSave}
+          aspectRatio={1}
+        />
+      </PerfectSquare>
     );
   }
 }

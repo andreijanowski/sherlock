@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import UserLayout from "sections/settings/Layout";
+import SettingsLayout from "sections/settings/Layout";
 import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
 import { func, string } from "prop-types";
@@ -20,9 +20,9 @@ class Billing extends PureComponent {
   render() {
     const { t, lng } = this.props;
     return (
-      <UserLayout {...{ t, lng, currentPage: "billing" }}>
+      <SettingsLayout {...{ t, lng, currentPage: "billing" }}>
         <BillingSettings {...{ t }} />
-      </UserLayout>
+      </SettingsLayout>
     );
   }
 }

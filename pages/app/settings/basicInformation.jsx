@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import UserLayout from "sections/settings/Layout";
+import SettingsLayout from "sections/settings/Layout";
 import Form from "sections/settings/basicInformation";
 import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
@@ -22,9 +22,9 @@ class BasicInformation extends PureComponent {
   render() {
     const { t, lng, profile, updateProfileHandler } = this.props;
     return (
-      <UserLayout {...{ t, lng, currentPage: "basicInformation" }}>
+      <SettingsLayout {...{ t, lng, currentPage: "basicInformation" }}>
         <Form {...{ t, profile, updateProfile: updateProfileHandler }} />
-      </UserLayout>
+      </SettingsLayout>
     );
   }
 }

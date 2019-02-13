@@ -1,6 +1,4 @@
-import LogoutMenuItem from "./LogoutMenuItem";
-
-export const generateMenuItems = (t, active) => [
+export const generateMenuItems = (t, active, logout) => [
   {
     route: `/app/settings/basic-information/`,
     label: t("app:userSettings.basicInformation"),
@@ -17,7 +15,8 @@ export const generateMenuItems = (t, active) => [
     isActive: active === "password"
   },
   {
-    Component: LogoutMenuItem,
-    label: t("app:userSettings.logout")
+    onClick: logout,
+    label: t("app:userSettings.logout"),
+    isActive: false
   }
 ];

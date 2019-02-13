@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import UserLayout from "sections/settings/Layout";
+import SettingsLayout from "sections/settings/Layout";
 import ChangePasswordForm from "sections/settings/password";
 import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
@@ -22,11 +22,11 @@ class Password extends PureComponent {
   render() {
     const { t, lng, profile, changePasswordHandler } = this.props;
     return (
-      <UserLayout {...{ t, lng, currentPage: "password" }}>
+      <SettingsLayout {...{ t, lng, currentPage: "password" }}>
         <ChangePasswordForm
           {...{ t, profile, changePassword: changePasswordHandler }}
         />
-      </UserLayout>
+      </SettingsLayout>
     );
   }
 }

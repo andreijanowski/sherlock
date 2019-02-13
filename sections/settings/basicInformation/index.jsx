@@ -20,67 +20,65 @@ class UserBasicInfoForm extends PureComponent {
   render() {
     const { profile, t } = this.props;
     return profile ? (
-      <>
-        <FinalForm
-          initialValues={{
-            name: profile.name,
-            email: profile.email
-          }}
-          onSubmit={this.submitForm}
-          render={({ handleSubmit, form, invalid, submitting }) => (
-            <Form onSubmit={handleSubmit}>
-              <Flex mx={-2} flexDirection="column">
-                <Box width={100} mb={32}>
-                  <Field
-                    name="avatar"
-                    render={() => (
-                      <Avatar
-                        {...{
-                          t,
-                          url: profile && profile.avatar.url,
-                          saveToFormState: form.change
-                        }}
-                      />
-                    )}
-                  />
+      <FinalForm
+        initialValues={{
+          name: profile.name,
+          email: profile.email
+        }}
+        onSubmit={this.submitForm}
+        render={({ handleSubmit, form, invalid, submitting }) => (
+          <Form onSubmit={handleSubmit}>
+            <Flex mx={-2} flexDirection="column">
+              <Box width={100} mb={32}>
+                <Field
+                  name="avatar"
+                  render={() => (
+                    <Avatar
+                      {...{
+                        t,
+                        url: profile && profile.avatar.url,
+                        saveToFormState: form.change
+                      }}
+                    />
+                  )}
+                />
+              </Box>
+              <Box width={[1, 1, 560]}>
+                <FormInput
+                  name="name"
+                  label={t("name")}
+                  validate={required(t)}
+                />
+              </Box>
+              <Box width={[1, 1, 560]}>
+                <FormInput
+                  name="email"
+                  label={t("email")}
+                  validate={validateEmail(t)}
+                />
+              </Box>
+              <Box width={1}>
+                <Button
+                  type="submit"
+                  styleName="blue"
+                  disabled={invalid || submitting}
+                >
+                  {t("common:update")}
+                </Button>
+              </Box>
+              {profile.unconfirmedEmail && (
+                <Box my={3}>
+                  <ConfirmationMsg>
+                    {t("confirmEmailChange", {
+                      email: profile.unconfirmedEmail
+                    })}
+                  </ConfirmationMsg>
                 </Box>
-                <Box width={[1, 1, 560]}>
-                  <FormInput
-                    name="name"
-                    label={t("name")}
-                    validate={required(t)}
-                  />
-                </Box>
-                <Box width={[1, 1, 560]}>
-                  <FormInput
-                    name="email"
-                    label={t("email")}
-                    validate={validateEmail(t)}
-                  />
-                </Box>
-                <Box width={1}>
-                  <Button
-                    type="submit"
-                    styleName="blue"
-                    disabled={invalid || submitting}
-                  >
-                    {t("common:update")}
-                  </Button>
-                </Box>
-                {profile.unconfirmedEmail && (
-                  <Box my={3}>
-                    <ConfirmationMsg>
-                      {t("confirmEmailChange", {
-                        email: profile.unconfirmedEmail
-                      })}
-                    </ConfirmationMsg>
-                  </Box>
-                )}
-              </Flex>
-            </Form>
-          )}
-        />
-      </>
+              )}
+            </Flex>
+          </Form>
+        )}
+      />
     ) : (
       <LoadingIndicator />
     );
