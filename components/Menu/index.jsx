@@ -16,13 +16,21 @@ const Menu = ({ lng, menuItems, select }) => (
       </Flex>
     )}
     <Items>
-      {menuItems.map(i => (
-        <Link {...{ lng, route: i.route, key: i.route }}>
-          <Item isActive={i.isActive}>
-            <span>{i.label}</span>
-          </Item>
-        </Link>
-      ))}
+      {menuItems.map(i =>
+        i.Component ? (
+          <i.Component>
+            <Item isActive={i.isActive}>
+              <span>{i.label}</span>
+            </Item>
+          </i.Component>
+        ) : (
+          <Link {...{ lng, route: i.route, key: i.route }}>
+            <Item isActive={i.isActive}>
+              <span>{i.label}</span>
+            </Item>
+          </Link>
+        )
+      )}
     </Items>
   </Wrapper>
 );
