@@ -200,11 +200,11 @@ export default createGlobalStyle`.rbc-btn {
     margin-left: 10px;
   }
   .rbc-event {
-    border: none;
+    border: 1px solid rgb(${p => p.theme.colors.white});
     box-shadow: 0 3px 8px 0 rgba(${p => p.theme.colors.blue}, 0.48);
     margin: 0;
     padding: 8px;
-    background-color: rgb(${p => p.theme.colors.blue});
+    background-color: rgba(${p => p.theme.colors.blue}, 0.9);
     border-radius: ${p => p.theme.radius.tiny};
     color: rgb(${p => p.theme.colors.white});
     cursor: pointer;
@@ -214,16 +214,18 @@ export default createGlobalStyle`.rbc-btn {
     font-size: ${p => p.theme.fontSizes.f12};
     font-weight: ${p => p.theme.fontWeights.normal};
     line-height: 16px;
+    position: relative;
+    z-index: 1;
+    outline: none;
   }
   .rbc-slot-selecting .rbc-event {
     cursor: inherit;
     pointer-events: none;
   }
   .rbc-event.rbc-selected {
-    background-color: #265985;
-  }
-  .rbc-event:focus {
-    outline: 5px auto #3b99fc;
+    z-index: 2;
+    background-color: rgba(${p => p.theme.colors.blue}, 1);
+    box-shadow: 0 5px 12px 0 rgba(${p => p.theme.colors.blue}, 0.64);
   }
   .rbc-event-label {
     font-size: 80%;
