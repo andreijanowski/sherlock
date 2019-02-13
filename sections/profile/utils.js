@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 
-export const generateMenuItems = (t, active) => [
+export const generateMenuItems = (t, active, showPublishModal) => [
   {
     route: `/app/profile/basic-information/`,
     label: t("app:manageProfile.basicInformation"),
@@ -30,8 +30,32 @@ export const generateMenuItems = (t, active) => [
     route: `/app/profile/members/`,
     label: t("app:manageProfile.inviteYourTeam"),
     isActive: active === "inviteYourTeam"
+  },
+  {
+    onClick: showPublishModal,
+    label: t("app:manageProfile.publish"),
+    isActive: false
   }
 ];
+
+export const generatePublishModalItems = (t, validation) => {
+  const tips = [
+    t("publishModal:basicInformationTip"),
+    t("publishModal:contactInformationTip"),
+    t("publishModal:openingHoursTip"),
+    t("publishModal:picturesAndMenusTip"),
+    t("publishModal:additionalInformationTip"),
+    t("publishModal:inviteYourTeamTip")
+  ];
+  const items = generateMenuItems(t);
+  items.pop();
+  return items.map((item, index) => ({
+    name: item.label,
+    route: item.route,
+    tip: tips[index],
+    isValid: validation[index]
+  }));
+};
 
 export const prepareBusinessesList = (t, businesses) =>
   businesses

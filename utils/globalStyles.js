@@ -40,4 +40,8 @@ export default createGlobalStyle`
         font-family: Inter UI;
         background-color: rgb(${p => p.theme.colors.background});
     }
+
+    button {
+      outline: none;
+    }
 `;
