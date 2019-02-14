@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 import { postBusiness, patchBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/users";
 
-const namespaces = ["basicInformation", "app"];
+const namespaces = ["basicInformation", "app", "publishModal"];
 
 class BasicInformation extends PureComponent {
   static async getInitialProps({ ctx }) {
