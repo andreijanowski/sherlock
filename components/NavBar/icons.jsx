@@ -31,7 +31,7 @@ export const Icon1 = () => (
   </svg>
 );
 
-export const Icon2 = () => (
+export const CateringIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"

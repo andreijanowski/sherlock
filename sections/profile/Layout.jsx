@@ -1,11 +1,9 @@
 import { PureComponent } from "react";
 import { func, string, arrayOf, shape, node } from "prop-types";
 import AppLayout from "layout/App";
+import { generateMenuItems } from "sections/profile/utils";
+import prepareBusinessesList from "utils/prepareBusinessesList";
 import { Modal } from "components";
-import {
-  generateMenuItems,
-  prepareBusinessesList
-} from "sections/profile/utils";
 import PublishModal from "sections/profile/publishModal";
 
 class ProfileLayout extends PureComponent {

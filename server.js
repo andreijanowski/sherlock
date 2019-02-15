@@ -27,6 +27,7 @@ i18n
         "addVenue",
         "app",
         "basicInformation",
+        "catering",
         "common",
         "contactInformation",
         "footer",

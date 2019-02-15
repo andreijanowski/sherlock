@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-
 export const generateMenuItems = (t, active, showPublishModal) => [
   {
     route: `/app/profile/basic-information/`,
@@ -56,12 +54,3 @@ export const generatePublishModalItems = (t, validation) => {
     isValid: validation[index]
   }));
 };
-
-export const prepareBusinessesList = (t, businesses) =>
-  businesses
-    ? businesses.map(b => ({
-        value: b.id,
-        label: b.name || t("app:manageProfile.unnamedBusiness"),
-        src: b.logo.url
-      }))
-    : [];
