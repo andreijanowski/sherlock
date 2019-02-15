@@ -3,7 +3,7 @@ import FacebookLoginBase from "react-facebook-login/dist/facebook-login-render-p
 import { node, func, bool } from "prop-types";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FACEBOOK_APP_ID, FACEBOOK_APP_FIELDS } from "consts";
+import { PUBLIC_FACEBOOK_APP_ID, PUBLIC_FACEBOOK_APP_FIELDS } from "consts";
 import { Button } from "components";
 import { facebookLogin } from "actions/auth";
 
@@ -14,8 +14,8 @@ const handleClick = cb => e => {
 
 const FacebookLogin = props => (
   <FacebookLoginBase
-    appId={FACEBOOK_APP_ID}
-    fields={FACEBOOK_APP_FIELDS}
+    appId={PUBLIC_FACEBOOK_APP_ID}
+    fields={PUBLIC_FACEBOOK_APP_FIELDS}
     callback={({ accessToken }) =>
       props.facebookLogin({ accessToken, agreement: props.withAgreement })
     }
