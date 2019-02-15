@@ -142,7 +142,7 @@ class CreateAccount extends PureComponent {
               </Button>
               <FacebookLogin
                 disabled={!values.termsAgreement}
-                withAgreement={!values.termsAgreement}
+                withAgreement={values.termsAgreement}
               >
                 {t("Facebook")}
               </FacebookLogin>

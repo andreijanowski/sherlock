@@ -56,7 +56,7 @@ class SignInForm extends PureComponent {
               )}
             </Button>
             <Separator size={36}>or</Separator>
-            <FacebookLogin withAgreement>{t("Facebook")}</FacebookLogin>
+            <FacebookLogin>{t("Facebook")}</FacebookLogin>
           </FormContainer>
         )}
       />
