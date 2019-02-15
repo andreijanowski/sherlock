@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 export const generateMembersArray = m => {
   const members = m;
   if (members.length < 5) {

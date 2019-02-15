@@ -1,6 +1,14 @@
 import { Flex } from "@rebass/grid";
 import { bool, node, string } from "prop-types";
 import {
+  ProfileIcon,
+  SettingsIcon,
+  Docs,
+  Feedback,
+  Notifications,
+  CateringIcon
+} from "icons";
+import {
   Wrapper,
   HeaderWrapper,
   MainIconWrapper,
@@ -8,13 +16,13 @@ import {
   Icon,
   Avatar
 } from "./styled";
-import { Docs, Feedback, Notifications } from "./icons";
-import { ProfileIcon, CateringIcon } from "../NavBar/icons";
 
 const chooseIcon = icon => {
   switch (icon) {
     case "profile":
       return ProfileIcon;
+    case "settings":
+      return SettingsIcon;
     case "catering":
       return CateringIcon;
     default:

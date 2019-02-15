@@ -8,7 +8,9 @@ import {
   FETCH_PROFILE_BUSINESS_REQUEST,
   FETCH_PROFILE_BUSINESS_SUCCESS,
   FETCH_PROFILE_BUSINESS_FAIL,
-  SET_CURRENT_BUSINESS
+  SET_CURRENT_BUSINESS,
+  UPDATE_PROFILE_REQUEST,
+  UPDATE_PROFILE_SUCCESS
 } from "types/users";
 import {
   POST_BUSINESS_REQUEST,
@@ -31,7 +33,8 @@ const initialState = {
     data: null,
     isFetching: false,
     isFailed: false,
-    isSucceeded: false
+    isSucceeded: false,
+    isUpdating: false
   },
   profileBusinesses: {
     data: null,
@@ -76,6 +79,29 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       newState.profile.isFetching = false;
       newState.profile.isFailed = true;
       return newState;
+    }
+
+    case UPDATE_PROFILE_REQUEST: {
+      return { ...state, profile: { ...state.profile, isUpdating: true } };
+    }
+
+    case UPDATE_PROFILE_SUCCESS: {
+      const profileData = build(
+        payload.data,
+        "users",
+        payload.rawData.data.id,
+        {
+          ignoreLinks: true
+        }
+      );
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          isUpdating: false,
+          data: { ...profileData }
+        }
+      };
     }
 
     case FETCH_PROFILE_BUSINESSES_REQUEST: {
