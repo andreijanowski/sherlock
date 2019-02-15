@@ -15,7 +15,7 @@
       "password": "Password is the same as current password"
     },
     "confirmation": {
-      "password_confirmation": "Current password doesn't match"
+      "password_confirmation": "Password confirmation doesn't match"
     }
   }
 }
