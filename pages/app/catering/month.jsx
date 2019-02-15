@@ -31,7 +31,7 @@ class MonthPage extends PureComponent {
           changeCurrentBusiness
         }}
       >
-        <Month />
+        <Month {...{ t }} />
       </CateringLayout>
     );
   }

@@ -31,7 +31,7 @@ class WeekPage extends PureComponent {
           changeCurrentBusiness
         }}
       >
-        <Week />
+        <Week {...{ t }} />
       </CateringLayout>
     );
   }

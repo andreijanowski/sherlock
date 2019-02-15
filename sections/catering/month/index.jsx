@@ -1,5 +1,6 @@
 import BigCalendar from "react-big-calendar";
 import moment from "moment";
+import { func } from "prop-types";
 import { CalendarEvent, CalendarToolbar } from "components";
 import CalendarStyles from "../calendarStyles";
 import { CalendarWrapper } from "../styled";
@@ -24,24 +25,37 @@ const mockEvents = () => {
     const start = getRandomMoment(i, undefined, 0, 6);
     const end = getRandomMoment(i, start.getDate(), start.getHours(), 12);
     events.push({
-      title: `Conference ${i}`,
+      title: "Italian Food",
       start,
       end,
       allDay: false,
-      resource: "https://foodetective.co"
+      resource: {
+        start,
+        end,
+        name: "Italian Food",
+        price: `$${getRandomIntInclusive(1100, 50000)}`,
+        servings: getRandomIntInclusive(100, 500),
+        type: "Marriage",
+        waiters: getRandomIntInclusive(10, 20),
+        cutlery: !!getRandomIntInclusive(0, 1),
+        chef: !!getRandomIntInclusive(0, 1),
+        specifications: "Gluten Free",
+        additional: "Don’t serve white bread.",
+        location: { lat: 46.2008138, lng: 6.1560229 }
+      }
     });
   }
 
   return events;
 };
 
-const Month = () => (
+const Month = ({ t }) => (
   <CalendarWrapper height="550">
     <CalendarStyles />
     <BigCalendar
       localizer={localizer}
       components={{
-        event: CalendarEvent,
+        event: p => <CalendarEvent {...{ t, ...p }} />,
         toolbar: CalendarToolbar
       }}
       defaultView="month"
@@ -51,5 +65,9 @@ const Month = () => (
     />
   </CalendarWrapper>
 );
+
+Month.propTypes = {
+  t: func.isRequired
+};
 
 export default Month;
