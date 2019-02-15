@@ -4,7 +4,7 @@ import { logout as logoutAction } from "actions/auth";
 import { connect } from "react-redux";
 import {
   ControlCentre,
-  Bookings,
+  CateringIcon,
   Delivery,
   TakeAway,
   Catering,
@@ -37,9 +37,11 @@ const NavBar = ({ t, lng, logout }) => (
       </Icon>
     </Item>
     <Item>
-      <Icon>
-        <Bookings />
-      </Icon>
+      <Link {...{ lng, route: `/app/catering/month/` }}>
+        <Icon>
+          <CateringIcon />
+        </Icon>
+      </Link>
     </Item>
     <Item>
       <Icon>

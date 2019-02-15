@@ -1,6 +1,6 @@
 export {
   ControlCentre,
-  Bookings,
+  CateringIcon,
   Delivery,
   TakeAway,
   Catering,
