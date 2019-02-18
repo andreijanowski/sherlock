@@ -14,6 +14,7 @@ import NProgress from "nprogress";
 import { Router } from "routes";
 import initialI18nInstance from "../i18n";
 import createStore from "../data/store";
+import "react-dates/initialize";
 
 const PersistGateServer = ({ children }) => children;
 const PersistGate = isServer ? PersistGateServer : PersistGateClient;
