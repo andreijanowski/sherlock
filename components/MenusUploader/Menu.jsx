@@ -3,7 +3,7 @@ import { Flex, Box } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { InputWithRemoveButton } from "components";
 import { string, func } from "prop-types";
-import { FileIconWrapper } from "../styled";
+import { FileIconWrapper } from "./styled";
 
 class Menu extends PureComponent {
   constructor(props) {

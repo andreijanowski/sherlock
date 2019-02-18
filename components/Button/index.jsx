@@ -22,6 +22,11 @@ const blue = css`
   }
 `;
 
+const formBlue = css`
+  ${blue};
+  padding: 9px;
+`;
+
 const outlineBlue = css`
   background-color: white;
   border: ${p => p.theme.borderWeights.normal} solid
@@ -92,6 +97,7 @@ const Button = styled.button`
 
   ${p => p.styleName === "login" && login};
   ${p => p.styleName === "blue" && blue};
+  ${p => p.styleName === "formBlue" && formBlue};
   ${p => p.styleName === "orange" && orange};
   ${p => p.styleName === "deepSkyBlue" && deepSkyBlue};
   ${p => p.styleName === "navyBlue" && navyBlue};
