@@ -1,5 +1,5 @@
 const express = require("express");
-const secure = require("express-force-https");
+const { redirectToHTTPS } = require("express-http-to-https");
 const path = require("path");
 const next = require("next");
 const i18nextMiddleware = require("i18next-express-middleware");
@@ -68,7 +68,7 @@ i18n
       // loaded translations we can bootstrap our routes
       app.prepare().then(() => {
         const server = express();
-        server.use(secure);
+        server.use(redirectToHTTPS([/localhost:(\d{4})/]));
 
         if (process.env.NODE_ENV === "production") {
           server.use(
