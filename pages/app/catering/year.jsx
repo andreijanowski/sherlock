@@ -6,8 +6,7 @@ import { func, string, shape, arrayOf } from "prop-types";
 import CateringLayout from "sections/catering/Layout";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/users";
-import { SingleDatePicker } from "react-dates";
-import YearCalendarStyles from "sections/catering/yearCalendarStyles";
+import Year from "sections/catering/year";
 
 const namespaces = ["catering", "app"];
 
@@ -20,32 +19,31 @@ class YearPage extends PureComponent {
     };
   }
 
-  state = {
-    date: null,
-    focused: true
-  };
+  constructor(p) {
+    super();
+    this.state = {
+      view: {
+        value: "year",
+        label: p.t("year")
+      }
+    };
+  }
 
   render() {
     const { t, lng, business, businesses, changeCurrentBusiness } = this.props;
-    const { date, focused } = this.state;
+    const { view } = this.state;
     return (
       <CateringLayout
         {...{
           t,
           lng,
+          view,
           business,
           businesses,
           changeCurrentBusiness
         }}
       >
-        <YearCalendarStyles />
-        <SingleDatePicker
-          date={date}
-          onDateChange={d => this.setState({ date: d })}
-          focused={focused}
-          onFocusChange={p => this.setState({ focused: p.focused })}
-          id="your_unique_id"
-        />
+        <Year />
       </CateringLayout>
     );
   }

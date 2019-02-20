@@ -56,7 +56,6 @@
     "react-autosize-textarea": "^6.0.0",
     "react-big-calendar": "^0.20.3",
     "react-cropper": "^1.0.1",
-    "react-dates": "^19.0.3",
     "react-dom": "^16.6.3",
     "react-dropzone": "^8.0.3",
     "react-facebook-login": "^4.1.1",

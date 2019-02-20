@@ -19,13 +19,25 @@ class DayPage extends PureComponent {
     };
   }
 
+  constructor(p) {
+    super();
+    this.state = {
+      view: {
+        value: "day",
+        label: p.t("day")
+      }
+    };
+  }
+
   render() {
     const { t, lng, business, businesses, changeCurrentBusiness } = this.props;
+    const { view } = this.state;
     return (
       <CateringLayout
         {...{
           t,
           lng,
+          view,
           business,
           businesses,
           changeCurrentBusiness

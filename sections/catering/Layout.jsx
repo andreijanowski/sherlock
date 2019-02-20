@@ -9,6 +9,7 @@ import { preparePeriodsList } from "./utils";
 const CateringLayout = ({
   t,
   lng,
+  view,
   business,
   businesses,
   changeCurrentBusiness,
@@ -39,10 +40,7 @@ const CateringLayout = ({
       </Box>
       <Box width={1 / 4}>
         <Select
-          value={{
-            value: "month",
-            label: t("month")
-          }}
+          value={view}
           items={preparePeriodsList(t)}
           onChange={p => Router.pushRoute(`/${lng}/app/catering/${p.value}/`)}
         />
@@ -55,6 +53,7 @@ const CateringLayout = ({
 CateringLayout.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
+  view: shape().isRequired,
   children: node.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
