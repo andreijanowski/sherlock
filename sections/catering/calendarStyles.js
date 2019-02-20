@@ -53,6 +53,7 @@ export default createGlobalStyle`.rbc-btn {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    height: 100%;
   }
   .rbc-rtl {
     direction: rtl;
@@ -200,10 +201,10 @@ export default createGlobalStyle`.rbc-btn {
     margin-left: 10px;
   }
   .rbc-event {
-    border: 1px solid rgb(${p => p.theme.colors.white});
+    border: none;
     box-shadow: 0 3px 8px 0 rgba(${p => p.theme.colors.blue}, 0.48);
     margin: 0;
-    padding: 8px;
+    padding: 0;
     background-color: rgba(${p => p.theme.colors.blue}, 0.9);
     border-radius: ${p => p.theme.radius.tiny};
     color: rgb(${p => p.theme.colors.white});

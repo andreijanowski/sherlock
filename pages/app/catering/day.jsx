@@ -31,7 +31,7 @@ class DayPage extends PureComponent {
           changeCurrentBusiness
         }}
       >
-        <Day />
+        <Day {...{ t }} />
       </CateringLayout>
     );
   }
