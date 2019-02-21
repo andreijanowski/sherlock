@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { countries } from "countries-list";
 
 const countriesPhoneCodes = [];

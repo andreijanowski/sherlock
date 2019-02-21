@@ -41,6 +41,7 @@ const fontSizes = {
 };
 
 export const radius = {
+  tiny: "2px",
   small: "4px",
   default: "6px",
   double: "12px"

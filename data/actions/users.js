@@ -1,5 +1,6 @@
 import {
   FETCH_PROFILE_REQUEST,
+  UPDATE_PROFILE_REQUEST,
   FETCH_PROFILE_BUSINESSES_REQUEST,
   FETCH_PROFILE_BUSINESS_REQUEST,
   SET_CURRENT_BUSINESS
@@ -9,6 +10,26 @@ export const fetchProfile = () => ({
   type: FETCH_PROFILE_REQUEST,
   payload: {
     endpoint: "/api/v1/users/me"
+  },
+  meta: {
+    thunk: true,
+    timestamp: Date.now()
+  }
+});
+
+export const updateProfile = data => ({
+  type: UPDATE_PROFILE_REQUEST,
+  payload: {
+    method: "PATCH",
+    endpoint: "/api/v1/users/me",
+    data: {
+      data: {
+        type: "users",
+        attributes: {
+          ...data
+        }
+      }
+    }
   },
   meta: { thunk: true }
 });

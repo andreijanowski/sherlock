@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { POST_PICTURE_REQUEST, DELETE_PICTURE_REQUEST } from "types/pictures";
 import { getRelationships } from "./utils";
 

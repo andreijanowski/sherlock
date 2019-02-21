@@ -14,7 +14,8 @@ const Dropzone = ({
   errorInfoType,
   errorInfoMultiple,
   image,
-  loading
+  loading,
+  isCircleShape
 }) => (
   <ReactDropzone {...{ accept, onDrop, multiple }}>
     {({
@@ -37,7 +38,13 @@ const Dropzone = ({
       }
       return (
         <Wrapper
-          {...getRootProps({ isDragActive, isDragReject, image, loading })}
+          {...getRootProps({
+            isDragActive,
+            isDragReject,
+            image,
+            loading,
+            isCircleShape
+          })}
         >
           {loading ? (
             <LoadingIndicator />
@@ -59,17 +66,19 @@ Dropzone.propTypes = {
   onDrop: func.isRequired,
   multiple: bool.isRequired,
   tip: string.isRequired,
+  info: string.isRequired,
   errorTipType: string.isRequired,
   errorTipMultiple: string,
-  info: string.isRequired,
   errorInfoType: string.isRequired,
   errorInfoMultiple: string,
   image: string,
+  isCircleShape: bool,
   loading: bool
 };
 
 Dropzone.defaultProps = {
   image: null,
+  isCircleShape: false,
   errorTipMultiple: "",
   errorInfoMultiple: "",
   loading: false

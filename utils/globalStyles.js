@@ -9,7 +9,8 @@ import {
   faTimes,
   faArrowLeft,
   faCircleNotch,
-  faFileAlt
+  faFileAlt,
+  faPen
 } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF } from "@fortawesome/fontawesome-free-brands";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -25,7 +26,8 @@ library.add(
   faArrowLeft,
   faCircleNotch,
   faFacebookF,
-  faFileAlt
+  faFileAlt,
+  faPen
 );
 
 export default createGlobalStyle`
@@ -39,5 +41,9 @@ export default createGlobalStyle`
     body {
         font-family: Inter UI;
         background-color: rgb(${p => p.theme.colors.background});
+    }
+
+    button {
+      outline: none;
     }
 `;

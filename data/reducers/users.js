@@ -8,9 +8,15 @@ import {
   FETCH_PROFILE_BUSINESS_REQUEST,
   FETCH_PROFILE_BUSINESS_SUCCESS,
   FETCH_PROFILE_BUSINESS_FAIL,
-  SET_CURRENT_BUSINESS
+  SET_CURRENT_BUSINESS,
+  UPDATE_PROFILE_REQUEST,
+  UPDATE_PROFILE_SUCCESS
 } from "types/users";
-import { POST_BUSINESS_REQUEST, POST_BUSINESS_SUCCESS } from "types/businesses";
+import {
+  POST_BUSINESS_REQUEST,
+  POST_BUSINESS_SUCCESS,
+  PATCH_BUSINESS_SUCCESS
+} from "types/businesses";
 import { POST_PICTURE_SUCCESS, DELETE_PICTURE_REQUEST } from "types/pictures";
 import { POST_MENU_SUCCESS, DELETE_MENU_REQUEST } from "types/menus";
 import { POST_PRODUCT_SUCCESS, DELETE_PRODUCT_REQUEST } from "types/products";
@@ -27,7 +33,8 @@ const initialState = {
     data: null,
     isFetching: false,
     isFailed: false,
-    isSucceeded: false
+    isSucceeded: false,
+    isUpdating: false
   },
   profileBusinesses: {
     data: null,
@@ -62,9 +69,9 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       newState.profile.isFetching = false;
       newState.profile.isSucceeded = true;
       newState.profile.data = profile;
-      newState.profile.data.avatar.url = `${
-        profile.avatar.url
-      }?${new Date().getTime()}`;
+      newState.profile.data.avatar.url = `${profile.avatar.url}?${
+        meta.timestamp
+      }`;
       return newState;
     }
     case FETCH_PROFILE_FAIL: {
@@ -72,6 +79,29 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       newState.profile.isFetching = false;
       newState.profile.isFailed = true;
       return newState;
+    }
+
+    case UPDATE_PROFILE_REQUEST: {
+      return { ...state, profile: { ...state.profile, isUpdating: true } };
+    }
+
+    case UPDATE_PROFILE_SUCCESS: {
+      const profileData = build(
+        payload.data,
+        "users",
+        payload.rawData.data.id,
+        {
+          ignoreLinks: true
+        }
+      );
+      return {
+        ...state,
+        profile: {
+          ...state.profile,
+          isUpdating: false,
+          data: { ...profileData }
+        }
+      };
     }
 
     case FETCH_PROFILE_BUSINESSES_REQUEST: {
@@ -213,6 +243,25 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       newState.profileBusinesses.data = newState.profileBusinesses.data.concat(
         business
       );
+      return newState;
+    }
+
+    case PATCH_BUSINESS_SUCCESS: {
+      const newState = { ...state };
+      const business =
+        build(payload.data, "businesses", payload.rawData.data.id, {
+          ignoreLinks: true
+        }) || [];
+      meta.updatedValues.forEach(v => {
+        if (v === "logo") {
+          newState.currentBusiness.data = {
+            ...newState.currentBusiness.data,
+            [v]: {
+              url: `${business[v].url}?${meta.timestamp}`
+            }
+          };
+        }
+      });
       return newState;
     }
 

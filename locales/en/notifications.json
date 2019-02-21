@@ -1,5 +1,21 @@
 {
   "loginFailed": "Login failed",
   "termsAgreementError": "You have to register first and accept our terms and conditions and privacy policy.",
-  "mustBeLoggedIn": "You must be logged in to continue"
+  "mustBeLoggedIn": "You must be logged in to continue",
+  "updateProfileSuccess": "Profile has been updated",
+  "changePasswordSuccess": "Password has been changed",
+  "errors": {
+    "missing_attributes": {
+      "Missing attributes": "Missing attributes"
+    },
+    "incorrect_password": {
+      "current_password": "Password is incorrect"
+    },
+    "same_password": {
+      "password": "Password is the same as current password"
+    },
+    "confirmation": {
+      "password_confirmation": "Password confirmation doesn't match"
+    }
+  }
 }

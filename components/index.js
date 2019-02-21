@@ -40,3 +40,6 @@ export { default as RadioButtonField } from "./RadioButtonField";
 export { default as LoadingIndicator } from "./LoadingIndicator";
 export { default as Menu } from "./Menu";
 export { default as Select } from "./Select";
+export { default as CalendarEvent } from "./Calendar/Event";
+export { default as CalendarToolbar } from "./Calendar/Toolbar";
+export { default as Map } from "./Map";

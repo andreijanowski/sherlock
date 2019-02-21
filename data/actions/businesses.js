@@ -33,7 +33,11 @@ export const patchBusiness = (id, values) => ({
       }
     }
   },
-  meta: { thunk: true }
+  meta: {
+    thunk: true,
+    updatedValues: Object.keys(values),
+    timestamp: Date.now()
+  }
 });
 
 export const fetchBusinessMembers = id => ({

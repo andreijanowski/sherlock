@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import {
   POST_PRODUCT_REQUEST,
   PATCH_PRODUCT_REQUEST,
