@@ -4,7 +4,7 @@ import withRedux from "next-redux-wrapper";
 import withReduxSaga from "next-redux-saga";
 import { startApp, pathChanged as pathChangedAction } from "actions/app";
 import { I18nextProvider } from "react-i18next";
-// import forceLanguageInUrl from "utils/forceLanguageInUrl";
+import forceLanguageInUrl from "utils/forceLanguageInUrl";
 import Layout from "layout";
 import { ThemeProvider } from "styled-components";
 import { theme } from "utils/theme";
@@ -28,7 +28,7 @@ class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
 
-    // forceLanguageInUrl(ctx);
+    forceLanguageInUrl(ctx);
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps({ ctx });

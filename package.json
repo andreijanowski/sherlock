@@ -31,7 +31,6 @@
     "downshift": "^3.1.12",
     "express": "^4.16.3",
     "express-basic-auth": "^1.1.6",
-    "express-http-to-https": "^1.1.4",
     "final-form": "^4.11.0",
     "final-form-arrays": "^1.1.1",
     "final-form-set-field-data": "^1.0.1",
