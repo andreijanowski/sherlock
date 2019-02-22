@@ -7,6 +7,7 @@ import CateringLayout from "sections/lefood/Layout";
 import Orders from "sections/lefood/orders";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/users";
+import { mockData } from "sections/lefood/orders/utils";
 
 const namespaces = ["catering", "app"];
 
@@ -18,6 +19,54 @@ class OrdersPage extends PureComponent {
       ...pageProps
     };
   }
+
+  state = mockData;
+
+  handleDragEnd = ({ destination, source, draggableId }) => {
+    if (
+      !destination ||
+      (destination.droppableId === source.droppableId &&
+        destination.index === source.index)
+    ) {
+      return;
+    }
+
+    this.setState(state => {
+      const sourceColumn = state.columns[source.droppableId];
+      const newSourceOrderIds = Array.from(sourceColumn.orderIds);
+      newSourceOrderIds.splice(source.index, 1);
+      if (source.droppableId === destination.droppableId) {
+        newSourceOrderIds.splice(destination.index, 0, draggableId);
+        return {
+          ...state,
+          columns: {
+            ...state.columns,
+            [sourceColumn.id]: {
+              ...sourceColumn,
+              orderIds: newSourceOrderIds
+            }
+          }
+        };
+      }
+      const destinationColumn = state.columns[destination.droppableId];
+      const newDestinationOrderIds = Array.from(destinationColumn.orderIds);
+      newDestinationOrderIds.splice(destination.index, 0, draggableId);
+      return {
+        ...state,
+        columns: {
+          ...state.columns,
+          [sourceColumn.id]: {
+            ...sourceColumn,
+            orderIds: newSourceOrderIds
+          },
+          [destinationColumn.id]: {
+            ...destinationColumn,
+            orderIds: newDestinationOrderIds
+          }
+        }
+      };
+    });
+  };
 
   render() {
     const { t, lng, business, businesses, changeCurrentBusiness } = this.props;
@@ -31,7 +80,7 @@ class OrdersPage extends PureComponent {
           changeCurrentBusiness
         }}
       >
-        <Orders {...{ t }} />
+        <Orders {...{ onDragEnd: this.handleDragEnd, data: this.state }} />
       </CateringLayout>
     );
   }
