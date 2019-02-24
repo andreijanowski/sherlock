@@ -1,11 +1,9 @@
 version: '3.4'
 services:
   front:
-    build:
-      context: .
-      dockerfile: ./docker/Dockerfile.staging
+    image: 458563939634.dkr.ecr.eu-central-1.amazonaws.com/ecr-sherlock-production:latest
     hostname: "sherlock.production.front"
-    command: ash -c 'yarn build && yarn start'
+    # command: ash -c 'yarn build && yarn start'
     labels:
       - "netguru.appname=sherlock"
       - "netguru.stage=production"

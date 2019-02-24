@@ -26,7 +26,7 @@ namespace :deploy do
     after :updated, 'sherlock-front:deploy' do
         on roles(:front), in: :parallel do
             within release_path do
-              execute :"docker-compose", compose('build', 'front')
+              execute :"docker-compose", compose('pull', 'front')
             end
         end
         on roles(:front), in: :parallel do
