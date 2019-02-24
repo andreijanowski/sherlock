@@ -58,6 +58,33 @@ jobs:
           name: Deploy to staging
           command: bundle install; bundle exec cap staging deploy
 
+  build_push_docker:
+    docker:
+      - image: circleci/python:2.7-jessie
+    working_directory: ~/repo
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Install AWSCLI
+          command: sudo pip install awscli
+      - run:
+          name: Log into ECR
+          command: $(aws ecr get-login --no-include-email --region eu-central-1)
+      - run:
+          name: Build docker image
+          command: docker build -t ${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-${CIRCLE_SHA1} -f docker/Dockerfile.production .
+      - run:
+          name: Push image to AWS ECR
+          command: |
+            docker tag ${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-${CIRCLE_SHA1} ${AWS_ECR_REPO_URL}:latest
+            docker tag ${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-${CIRCLE_SHA1} ${AWS_ECR_REPO_URL}:${CIRCLE_SHA1}
+            docker push ${AWS_ECR_REPO_URL}:latest
+            docker push ${AWS_ECR_REPO_URL}:${CIRCLE_SHA1}
+
+
   deploy_production_front:
     <<: *deploy
     working_directory: ~/repo/deployment
@@ -85,7 +112,7 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy_production_front:
+      - build_push_docker:
           requires:
             - checkout_code
           filters:
@@ -93,3 +120,12 @@ workflows:
               only:
                 - production
                 - production-setup
+      # - deploy_production_front:
+      #     requires:
+      #       - checkout_code
+      #       - build_push_docker
+      #     filters:
+      #       branches:
+      #         only:
+      #           - production
+      #           - production-setup
