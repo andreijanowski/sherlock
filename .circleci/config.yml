@@ -3,13 +3,10 @@ deploy: &deploy
   docker:
     - image: circleci/ruby:2.4.3
 
-
 node_machine: &node_machine
   working_directory: ~/repo
   docker:
     - image: circleci/node:10
-
-
 
 version: 2
 jobs:
@@ -77,13 +74,15 @@ jobs:
           name: Build docker image
           command: docker build -t ${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-${CIRCLE_SHA1} -f docker/Dockerfile.production .
       - run:
+          name: Log env
+          command: env
+      - run:
           name: Push image to AWS ECR
           command: |
             docker tag ${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-${CIRCLE_SHA1} ${AWS_ECR_REPO_URL}:latest
             docker tag ${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-${CIRCLE_SHA1} ${AWS_ECR_REPO_URL}:${CIRCLE_SHA1}
             docker push ${AWS_ECR_REPO_URL}:latest
             docker push ${AWS_ECR_REPO_URL}:${CIRCLE_SHA1}
-
 
   deploy_production_front:
     <<: *deploy

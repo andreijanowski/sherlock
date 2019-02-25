@@ -3,8 +3,6 @@ FROM node:10-alpine
 ENV APP_HOME /app
 ENV PATH $PATH:$APP_HOME/node_modules/.bin
 
-RUN env
-
 ## Copy build/ folder to new image
 ADD . $APP_HOME
 WORKDIR $APP_HOME
