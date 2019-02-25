@@ -72,7 +72,7 @@ jobs:
           command: $(aws ecr get-login --no-include-email --region eu-central-1)
       - run:
           name: Build docker image
-          command: docker build --build-arg PUBLIC_API_URL --build-arg PUBLIC_GOOGLE_MAPS_API_KEY --build-arg PUBLIC_FACEBOOK_APP_FIELDS --build-arg PUBLIC_FACEBOOK_APP_ID -t ${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-${CIRCLE_SHA1} -f docker/Dockerfile.production .
+          command: docker build -t ${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-${CIRCLE_SHA1} -f docker/Dockerfile.production .
       - run:
           name: Push image to AWS ECR
           command: |
