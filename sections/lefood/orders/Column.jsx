@@ -9,7 +9,7 @@ import {
   OrdersWrapper
 } from "./styled";
 
-const Column = ({ id, title, orders, t }) => (
+const Column = ({ id, title, orders, t, onClick }) => (
   <ColumnWrapper>
     <ColumnHeader>
       <ColumnTitle>{title}</ColumnTitle>
@@ -19,7 +19,9 @@ const Column = ({ id, title, orders, t }) => (
       {provided => (
         <OrdersWrapper {...provided.droppableProps} ref={provided.innerRef}>
           {orders.map((order, index) => (
-            <Order {...{ order, t, columnId: id, index, key: order.id }} />
+            <Order
+              {...{ order, t, onClick, columnId: id, index, key: order.id }}
+            />
           ))}
           {provided.placeholder}
         </OrdersWrapper>
@@ -29,6 +31,7 @@ const Column = ({ id, title, orders, t }) => (
 );
 
 Column.propTypes = {
+  onClick: func.isRequired,
   t: func.isRequired,
   id: string.isRequired,
   title: string.isRequired,

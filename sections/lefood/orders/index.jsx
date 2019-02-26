@@ -8,7 +8,11 @@ const Orders = ({ onDragEnd, data, t }) => (
     <ColumnsWrapper>
       {Object.values(data.columns).map(column => {
         const orders = column.orderIds.map(id => data.orders[id]);
-        return <Column {...{ ...column, orders, t, key: column.id }} />;
+        return (
+          <Column
+            {...{ ...column, orders, t, onClick: onDragEnd, key: column.id }}
+          />
+        );
       })}
     </ColumnsWrapper>
   </DragDropContext>

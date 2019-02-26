@@ -13,7 +13,7 @@ import {
   PaymentConfirmed
 } from "./styled";
 
-const Order = ({ order, columnId, index, t }) => (
+const Order = ({ order, columnId, index, t, onClick }) => (
   <Draggable draggableId={order.id} index={index}>
     {provided => (
       <OrderWrapper
@@ -38,12 +38,44 @@ const Order = ({ order, columnId, index, t }) => (
           {columnId === "newOrders" && (
             <Flex mx={-1} mt={3}>
               <Box width={1 / 2} px={1}>
-                <Button fluid styleName="reject">
+                <Button
+                  fluid
+                  styleName="reject"
+                  onClick={() =>
+                    onClick({
+                      destination: {
+                        droppableId: "canceled",
+                        index: 0
+                      },
+                      source: {
+                        droppableId: "newOrders",
+                        index
+                      },
+                      draggableId: order.id
+                    })
+                  }
+                >
                   {t("reject")}
                 </Button>
               </Box>
               <Box width={1 / 2} px={1}>
-                <Button fluid styleName="accept">
+                <Button
+                  fluid
+                  styleName="accept"
+                  onClick={() =>
+                    onClick({
+                      destination: {
+                        droppableId: "inProgress",
+                        index: 0
+                      },
+                      source: {
+                        droppableId: "newOrders",
+                        index
+                      },
+                      draggableId: order.id
+                    })
+                  }
+                >
                   {t("accept")}
                 </Button>
               </Box>
@@ -59,7 +91,8 @@ Order.propTypes = {
   order: shape().isRequired,
   columnId: string.isRequired,
   index: number.isRequired,
-  t: func.isRequired
+  t: func.isRequired,
+  onClick: func.isRequired
 };
 
 export default Order;
