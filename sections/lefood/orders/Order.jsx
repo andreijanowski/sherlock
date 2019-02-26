@@ -20,6 +20,7 @@ const Order = ({ order, columnId, index, t, onClick }) => (
         ref={provided.innerRef}
         {...provided.draggableProps}
         {...provided.dragHandleProps}
+        canceled={columnId === "canceled"}
       >
         <OrderHeader>
           <OrderPrice>{order.price}</OrderPrice>
@@ -35,6 +36,15 @@ const Order = ({ order, columnId, index, t, onClick }) => (
           {order.details.map(detail => (
             <OrderDetail key={detail}>{detail}</OrderDetail>
           ))}
+          {columnId === "canceled" && (
+            <Flex mt={3}>
+              <Box width={1}>
+                <Button fluid styleName="reject" onClick={() => null}>
+                  reject reason here
+                </Button>
+              </Box>
+            </Flex>
+          )}
           {columnId === "newOrders" && (
             <Flex mx={-1} mt={3}>
               <Box width={1 / 2} px={1}>

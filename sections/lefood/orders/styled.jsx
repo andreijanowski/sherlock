@@ -26,8 +26,11 @@ export const OrdersNumber = styled(Box).attrs({ width: 32 })`
   line-height: 32px;
   text-align: center;
   border-radius: 16px;
-  background-color: rgba(${p => p.theme.colors.blue}, 0.1);
-  color: rgb(${p => p.theme.colors.blue});
+  background-color: rgba(
+    ${p => (p.canceled ? p.theme.colors.ruby : p.theme.colors.blue)},
+    0.1
+  );
+  color: rgb(${p => (p.canceled ? p.theme.colors.ruby : p.theme.colors.blue)});
   font-size: ${p => p.theme.fontSizes.f14};
   font-weight: ${p => p.theme.fontWeights.bold};
 `;
@@ -35,7 +38,15 @@ export const OrdersWrapper = styled(Flex).attrs({
   flexDirection: "column",
   p: 2
 })`
-  background-color: rgb(${p => p.theme.colors.linkWater});
+  ${p =>
+    p.canceled
+      ? `background: repeating-linear-gradient(45deg, 
+          rgb(${p.theme.colors.white}),
+          rgb(${p.theme.colors.white}) 10px,
+          rgb(${p.theme.colors.linkWater}) 10px,
+          rgb(${p.theme.colors.linkWater}) 11px);
+        border: 1px solid rgb(${p.theme.colors.linkWater})`
+      : `background-color: rgb(${p.theme.colors.linkWater})`};
   border-radius: ${p => p.theme.radius.default};
   height: 100%;
 `;
@@ -46,6 +57,7 @@ export const OrderWrapper = styled(Flex).attrs({
   border: 1px solid rgb(${p => p.theme.colors.linkWaterDark});
   border-radius: ${p => p.theme.radius.default};
   overflow: hidden;
+  ${p => p.canceled && "opacity: 0.6;"}
 `;
 export const OrderHeader = styled(Flex).attrs({
   px: 3,
