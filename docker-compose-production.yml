@@ -1,0 +1,24 @@
+version: "3.4"
+services:
+  front:
+    image: 458563939634.dkr.ecr.eu-central-1.amazonaws.com/ecr-sherlock-production:latest
+    hostname: "sherlock.production.front"
+    # command: ash -c 'yarn build && yarn start'
+    labels:
+      - "netguru.appname=sherlock"
+      - "netguru.stage=production"
+    env_file: /home/deploy/apps/sherlock/shared/secrets.env
+    environment:
+      - NODE_ENV=production
+      - APP_URL=https://sherlock.foodetective.co
+      # - VIRTUAL_HOST=sherlock.foodetective.co,
+      # - LETSENCRYPT_HOST=sherlock.foodetective.co
+      # - LETSENCRYPT_EMAIL=devops-team@netguru.co
+    # networks:
+    #   - frontend
+    ports:
+      - "3002:3000"
+# networks:
+#   frontend:
+#     external:
+#       name: frontend

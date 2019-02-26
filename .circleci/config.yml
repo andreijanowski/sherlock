@@ -3,13 +3,10 @@ deploy: &deploy
   docker:
     - image: circleci/ruby:2.4.3
 
-
 node_machine: &node_machine
   working_directory: ~/repo
   docker:
     - image: circleci/node:10
-
-
 
 version: 2
 jobs:
@@ -58,6 +55,54 @@ jobs:
           name: Deploy to staging
           command: bundle install; bundle exec cap staging deploy
 
+  build_push_docker:
+    docker:
+      - image: circleci/python:2.7-jessie
+    working_directory: ~/repo
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Install AWSCLI
+          command: sudo pip install awscli
+      - run:
+          name: Log into ECR
+          command: $(aws ecr get-login --no-include-email --region eu-central-1)
+      - run:
+          name: Build docker image
+          command: docker build --build-arg PUBLIC_API_URL --build-arg PUBLIC_GOOGLE_MAPS_API_KEY --build-arg PUBLIC_FACEBOOK_APP_FIELDS --build-arg PUBLIC_FACEBOOK_APP_ID -t ${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-${CIRCLE_SHA1} -f docker/Dockerfile.production .
+      - run:
+          name: Push image to AWS ECR
+          command: |
+            docker tag ${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-${CIRCLE_SHA1} ${AWS_ECR_REPO_URL}:latest
+            docker tag ${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-${CIRCLE_SHA1} ${AWS_ECR_REPO_URL}:${CIRCLE_SHA1}
+            docker push ${AWS_ECR_REPO_URL}:latest
+            docker push ${AWS_ECR_REPO_URL}:${CIRCLE_SHA1}
+
+  deploy_production_front:
+    <<: *deploy
+    working_directory: ~/repo/deployment
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: bundle config
+          command: bundle config --local path ~/repo/deployment/vendor/bundle
+      - run:
+          name: Install AWSCLI
+          command: |
+            sudo apt install -qq -y python python-pip python-dev
+            sudo pip install awscli
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Deploy to production
+          command: |
+            $(aws ecr get-login --no-include-email --region eu-central-1)
+            bundle install; bundle exec cap production deploy
+
 workflows:
   version: 2
   build-and-deploy:
@@ -72,3 +117,20 @@ workflows:
           filters:
             branches:
               only: master
+      - build_push_docker:
+          requires:
+            - checkout_code
+          filters:
+            branches:
+              only:
+                - production
+                - production-setup
+      - deploy_production_front:
+          requires:
+            - checkout_code
+            - build_push_docker
+          filters:
+            branches:
+              only:
+                - production
+                - production-setup

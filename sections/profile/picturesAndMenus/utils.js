@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-
 const parsePictures = pictures =>
   pictures.map(p => ({ id: p.id, url: p.photo.tablet.url || p.photo.url }));
 

@@ -13,8 +13,10 @@ import {
   FACEBOOK_LOGIN_SUCCESS,
   LOGOUT,
   REFRESH_TOKEN_SUCCESS,
-  REDIRECT_TO_REGISTER
+  REDIRECT_TO_REGISTER,
+  CHANGE_PASSWORD_SUCCESS
 } from "types/auth";
+import Notifications from "react-notification-system-redux";
 
 import { refreshToken as refresh } from "actions/auth";
 
@@ -47,6 +49,14 @@ function* redirectToRegisterPage() {
   yield put(Router.pushRoute("/register/"));
 }
 
+function* showSuccessPasswordChangeMsg() {
+  yield put(
+    Notifications.success({
+      message: "changePasswordSuccess"
+    })
+  );
+}
+
 export default all([
   takeLatest(REHYDRATE, initialTokenRefresh),
   takeEvery(
@@ -54,5 +64,6 @@ export default all([
     fetchUserData
   ),
   takeEvery([LOGOUT], redirectHomepage),
-  takeEvery([REDIRECT_TO_REGISTER], redirectToRegisterPage)
+  takeEvery([REDIRECT_TO_REGISTER], redirectToRegisterPage),
+  takeEvery(CHANGE_PASSWORD_SUCCESS, showSuccessPasswordChangeMsg)
 ]);

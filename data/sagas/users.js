@@ -1,8 +1,9 @@
 import { fetchProfileBusiness } from "actions/users";
 import { fetchBusinessMembers } from "actions/businesses";
-import { SET_CURRENT_BUSINESS } from "types/users";
+import { SET_CURRENT_BUSINESS, UPDATE_PROFILE_SUCCESS } from "types/users";
 import { POST_BUSINESS_SUCCESS } from "types/businesses";
 import { takeEvery, all, put } from "redux-saga/effects";
+import Notifications from "react-notification-system-redux";
 
 function* fetchBusinessData({
   payload: {
@@ -15,6 +16,15 @@ function* fetchBusinessData({
   yield put(fetchBusinessMembers(id));
 }
 
+function* showSuccesNotification() {
+  yield put(
+    Notifications.success({
+      message: "updateProfileSuccess"
+    })
+  );
+}
+
 export default all([
-  takeEvery([SET_CURRENT_BUSINESS, POST_BUSINESS_SUCCESS], fetchBusinessData)
+  takeEvery([SET_CURRENT_BUSINESS, POST_BUSINESS_SUCCESS], fetchBusinessData),
+  takeEvery(UPDATE_PROFILE_SUCCESS, showSuccesNotification)
 ]);

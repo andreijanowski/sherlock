@@ -19,19 +19,31 @@ class WeekPage extends PureComponent {
     };
   }
 
+  constructor(p) {
+    super();
+    this.state = {
+      view: {
+        value: "week",
+        label: p.t("week")
+      }
+    };
+  }
+
   render() {
     const { t, lng, business, businesses, changeCurrentBusiness } = this.props;
+    const { view } = this.state;
     return (
       <CateringLayout
         {...{
           t,
           lng,
+          view,
           business,
           businesses,
           changeCurrentBusiness
         }}
       >
-        <Week />
+        <Week {...{ t }} />
       </CateringLayout>
     );
   }

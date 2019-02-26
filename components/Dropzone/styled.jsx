@@ -10,6 +10,7 @@ export const Wrapper = styled(Flex).attrs({
 })`
   position: relative;
   border-radius: ${p => p.theme.radius.default};
+  ${p => p.isCircleShape && "border-radius: 50%;"};
   border: 1px dashed rgb(${p => p.theme.colors.snuff});
   cursor: pointer;
   overflow: hidden;

@@ -3,6 +3,19 @@ import { func, string } from "prop-types";
 import { logout as logoutAction } from "actions/auth";
 import { connect } from "react-redux";
 import {
+  ControlCentre,
+  CateringIcon,
+  Delivery,
+  TakeAway,
+  Catering,
+  Privatisations,
+  LeFood,
+  Billing,
+  ProfileIcon,
+  Subscriptions,
+  SettingsIcon
+} from "icons";
+import {
   Wrapper,
   LogoWrapper,
   Logo,
@@ -12,19 +25,6 @@ import {
   Subitem,
   Icon
 } from "./styled";
-import {
-  Icon1,
-  CateringIcon,
-  Icon3,
-  Icon4,
-  Icon5,
-  Icon6,
-  Icon7,
-  Icon8,
-  ProfileIcon,
-  Icon10,
-  SettingsIcon
-} from "./icons";
 
 const NavBar = ({ t, lng, logout }) => (
   <Wrapper>
@@ -33,7 +33,7 @@ const NavBar = ({ t, lng, logout }) => (
     </LogoWrapper>
     <Item>
       <Icon>
-        <Icon1 />
+        <ControlCentre />
       </Icon>
     </Item>
     <Item>
@@ -45,32 +45,32 @@ const NavBar = ({ t, lng, logout }) => (
     </Item>
     <Item>
       <Icon>
-        <Icon3 />
+        <Delivery />
       </Icon>
     </Item>
     <Item>
       <Icon>
-        <Icon4 />
+        <TakeAway />
       </Icon>
     </Item>
     <Item>
       <Icon>
-        <Icon5 />
+        <Catering />
       </Icon>
     </Item>
     <Item>
       <Icon>
-        <Icon6 />
+        <Privatisations />
       </Icon>
     </Item>
     <Item>
       <Icon>
-        <Icon7 />
+        <LeFood />
       </Icon>
     </Item>
     <Item>
       <Icon>
-        <Icon8 />
+        <Billing />
       </Icon>
     </Item>
     <Item>
@@ -102,7 +102,7 @@ const NavBar = ({ t, lng, logout }) => (
     </Item>
     <Item>
       <Icon>
-        <Icon10 />
+        <Subscriptions />
       </Icon>
     </Item>
     <Item>
@@ -111,13 +111,13 @@ const NavBar = ({ t, lng, logout }) => (
       </Icon>
       <SubitemsWrapper top={-160} arrowTop={160}>
         <Subitems arrowTop={175}>
-          <Link {...{ lng, route: `/app/user/basic-information/` }}>
+          <Link {...{ lng, route: `/app/settings/basic-information/` }}>
             <Subitem>{t("app:userSettings.basicInformation")}</Subitem>
           </Link>
-          <Link {...{ lng, route: `/app/user/billing/` }}>
+          <Link {...{ lng, route: `/app/settings/billing/` }}>
             <Subitem>{t("app:userSettings.billing")}</Subitem>
           </Link>
-          <Link {...{ lng, route: `/app/user/password/` }}>
+          <Link {...{ lng, route: `/app/settings/password/` }}>
             <Subitem>{t("app:userSettings.password")}</Subitem>
           </Link>
           <Subitem onClick={logout}>{t("app:userSettings.logout")}</Subitem>

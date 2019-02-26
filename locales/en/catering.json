@@ -28,5 +28,15 @@
     "specifications": "Specifications",
     "additional": "Additional",
     "location": "Location"
-  }
+  },
+  "servings": "Number of servings:",
+  "type": "Type of event:",
+  "waiters": "Number of waiters:",
+  "cutlery": "Cutlery:",
+  "chef": "Chef attendance:",
+  "specifications": "Specifications:",
+  "additional": "Additional:",
+  "downloadMenu": "Download Menu",
+  "yes": "Yes",
+  "no": "No"
 }

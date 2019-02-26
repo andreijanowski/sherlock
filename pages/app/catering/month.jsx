@@ -19,19 +19,31 @@ class MonthPage extends PureComponent {
     };
   }
 
+  constructor(p) {
+    super();
+    this.state = {
+      view: {
+        value: "month",
+        label: p.t("month")
+      }
+    };
+  }
+
   render() {
     const { t, lng, business, businesses, changeCurrentBusiness } = this.props;
+    const { view } = this.state;
     return (
       <CateringLayout
         {...{
           t,
           lng,
+          view,
           business,
           businesses,
           changeCurrentBusiness
         }}
       >
-        <Month />
+        <Month {...{ t }} />
       </CateringLayout>
     );
   }

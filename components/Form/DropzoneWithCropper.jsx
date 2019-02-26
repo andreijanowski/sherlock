@@ -40,7 +40,8 @@ class DropzoneWithCropper extends PureComponent {
       maxWidth,
       maxHeight,
       aspectRatio,
-      image
+      image,
+      isCircleShape
     } = this.props;
     const { filesForCropping, isAddingFile } = this.state;
     return (
@@ -57,6 +58,7 @@ class DropzoneWithCropper extends PureComponent {
             errorInfoMultiple,
             multiple,
             image,
+            isCircleShape,
             loading: isAddingFile
           }}
         />
@@ -94,12 +96,14 @@ DropzoneWithCropper.propTypes = {
   maxHeight: number.isRequired,
   aspectRatio: number,
   image: string,
-  saveImage: func.isRequired
+  saveImage: func.isRequired,
+  isCircleShape: bool
 };
 
 DropzoneWithCropper.defaultProps = {
   aspectRatio: undefined,
   image: null,
+  isCircleShape: false,
   errorTipMultiple: "",
   errorInfoMultiple: ""
 };

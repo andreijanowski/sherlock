@@ -1,20 +1,42 @@
-import { shape } from "prop-types";
+import { PureComponent } from "react";
+import { shape, func } from "prop-types";
 import { BoldText } from "components";
-import { Text } from "./styled";
+import { Text, Wrapper } from "./styled";
+import EventModal from "./EventModal";
 
-const Event = ({ event }) => (
-  <>
-    <Text>{event.title}</Text>
-    <Text>
-      <BoldText>
-        {event.start.getHours()} - {event.end.getHours()} pm
-      </BoldText>
-    </Text>
-  </>
-);
+class Event extends PureComponent {
+  state = {
+    isModalVisible: false
+  };
+
+  openModal = () => this.setState({ isModalVisible: true });
+
+  closeModal = () => this.setState({ isModalVisible: false });
+
+  render() {
+    const { event, t } = this.props;
+    const { isModalVisible } = this.state;
+    return (
+      <>
+        <Wrapper onClick={this.openModal}>
+          <Text>{event.title}</Text>
+          <Text>
+            <BoldText>
+              {event.start.getHours()} - {event.end.getHours()} pm
+            </BoldText>
+          </Text>
+        </Wrapper>
+        <EventModal
+          {...{ open: isModalVisible, onClose: this.closeModal, event, t }}
+        />
+      </>
+    );
+  }
+}
 
 Event.propTypes = {
-  event: shape().isRequired
+  event: shape().isRequired,
+  t: func.isRequired
 };
 
 export default Event;

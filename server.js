@@ -38,8 +38,11 @@ i18n
         "notifications",
         "openingHours",
         "picturesAndMenus",
-        "publishModal",
-        "register"
+        "register",
+        "settingsBasicInfo",
+        "passwordSettings",
+        "connectWithStripe",
+        "publishModal"
       ], // need to preload all the namespaces
       backend: {
         loadPath: path.join(__dirname, "/locales/{{lng}}/{{ns}}.json"),
