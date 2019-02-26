@@ -6,7 +6,7 @@ import {
   Docs,
   Feedback,
   Notifications,
-  CateringIcon
+  Catering
 } from "icons";
 import {
   Wrapper,
@@ -14,7 +14,8 @@ import {
   MainIconWrapper,
   Header,
   Icon,
-  Avatar
+  Avatar,
+  IconsWrapper
 } from "./styled";
 
 const chooseIcon = icon => {
@@ -24,7 +25,7 @@ const chooseIcon = icon => {
     case "settings":
       return SettingsIcon;
     case "catering":
-      return CateringIcon;
+      return Catering;
     default:
       return () => <></>;
   }
@@ -43,7 +44,7 @@ const MainApp = ({ withMenu, mainIcon, header, children }) => {
           )}
           {header && <Header>{header}</Header>}
         </Flex>
-        <Flex>
+        <IconsWrapper>
           <Icon>
             <Feedback />
           </Icon>
@@ -54,7 +55,7 @@ const MainApp = ({ withMenu, mainIcon, header, children }) => {
             <Notifications />
           </Icon>
           <Avatar src="https://foodetective-production.s3.amazonaws.com/uploads/user/avatar/b4a9df76-7c7f-43a2-be2e-a504c09fd072/avatar.png" />
-        </Flex>
+        </IconsWrapper>
       </HeaderWrapper>
       {children}
     </Wrapper>

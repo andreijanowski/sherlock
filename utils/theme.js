@@ -22,7 +22,8 @@ export const colors = {
   bombay: "170, 172, 175",
   lavenderGray: "180, 184, 209",
   ruby: "222, 17, 84",
-  carrotOrange: "243, 119, 15"
+  carrotOrange: "243, 119, 15",
+  iceBlue: "248, 249, 255"
 };
 
 const fontSizes = {

@@ -2,41 +2,61 @@ import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
 export const Wrapper = styled(Flex).attrs(p => ({
-  width: p.withMenu ? "calc(100% - 361px)" : "calc(100% - 80px)",
+  width: [1, p.withMenu ? "calc(100% - 361px)" : "calc(100% - 80px)"],
   flexDirection: "column",
-  p: 3
+  p: 3,
+  mt: [60, 0]
 }))`
   position: relative;
 `;
 
 export const HeaderWrapper = styled(Flex).attrs({
-  width: 1,
+  width: ["100vw", 1],
+  ml: [-3, 0],
+  mt: [-3, 0],
+  mb: [3, 0],
   alignItems: "center",
-  justifyContent: "space-between",
+  justifyContent: ["center", "space-between"],
   p: 3
-})``;
+})`
+  height: 60px;
+  background: rgb(${p => p.theme.colors.white});
+  box-shadow: 0 2px 6px 0 rgba(76, 104, 255, 0.08);
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    height: auto;
+    background: rgb(${p => p.theme.colors.iceBlue});
+    box-shadow: none;
+  }
+`;
 
 export const MainIconWrapper = styled(Flex).attrs({
   alignItems: "center",
   justifyContent: "center",
   width: 48
 })`
-  height: 48px;
-  border-radius: 24px;
-  background-color: rgb(${p => p.theme.colors.blue});
-  box-shadow: 0 3px 8px 0 rgba(${p => p.theme.colors.blue}, 0.48);
+  display: none;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    display: flex;
+    height: 48px;
+    border-radius: 24px;
+    background-color: rgb(${p => p.theme.colors.blue});
+    box-shadow: 0 3px 8px 0 rgba(${p => p.theme.colors.blue}, 0.48);
 
-  path,
-  circle,
-  rect {
-    stroke: rgb(${p => p.theme.colors.white});
-    fill: rgb(${p => p.theme.colors.white});
+    path,
+    circle,
+    rect {
+      stroke: rgb(${p => p.theme.colors.white});
+      fill: rgb(${p => p.theme.colors.white});
+    }
   }
 `;
 
-export const Header = styled(Flex).attrs({ as: "h1", ml: 3, my: 0 })`
-  font-size: ${p => p.theme.fontSizes.f36};
+export const Header = styled(Flex).attrs({ as: "h1", ml: [0, 3], my: 0 })`
+  font-size: ${p => p.theme.fontSizes.f16};
   font-weight: ${p => p.theme.fontWeights.semiBold};
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    font-size: ${p => p.theme.fontSizes.f36};
+  }
 `;
 
 export const Icon = styled(Flex).attrs({
@@ -66,6 +86,13 @@ export const Icon = styled(Flex).attrs({
       stroke: rgb(${p => p.theme.colors.white});
       fill: rgb(${p => p.theme.colors.white});
     }
+  }
+`;
+
+export const IconsWrapper = styled(Flex)`
+  display: none;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    display: flex;
   }
 `;
 

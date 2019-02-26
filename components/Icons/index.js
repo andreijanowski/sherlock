@@ -1,6 +1,6 @@
 export {
   ControlCentre,
-  CateringIcon,
+  Bookings,
   Delivery,
   TakeAway,
   Catering,
@@ -8,7 +8,20 @@ export {
   LeFood,
   Billing,
   ProfileIcon,
+  ProfileBasicInfo,
+  ProfileContact,
+  ProfileOpeningHours,
+  ProfilePicturesAndMenus,
+  ProfileAdditionaInfo,
+  ProfileMembers,
   Subscriptions,
-  SettingsIcon
+  SettingsIcon,
+  BackArrow,
+  LiveStream,
+  Hamburger,
+  SettingsBasicInfo,
+  SettingsBilling,
+  SettingsPassword,
+  SettingsLogout
 } from "./navigation";
 export { Docs, Feedback, Notifications } from "./mainControls";
