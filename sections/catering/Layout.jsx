@@ -1,7 +1,7 @@
 import { func, string, node, shape, arrayOf } from "prop-types";
 import AppLayout from "layout/App";
 import prepareBusinessesList from "utils/prepareBusinessesList";
-import { Select } from "components";
+import { Select, ActionIcon } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Router } from "routes";
 import { preparePeriodsList } from "./utils";
@@ -38,11 +38,21 @@ const CateringLayout = ({
           onChange={b => changeCurrentBusiness(b.value)}
         />
       </Box>
-      <Box width={1 / 4}>
-        <Select
-          value={view}
-          items={preparePeriodsList(t)}
-          onChange={p => Router.pushRoute(`/${lng}/app/catering/${p.value}/`)}
+      {view && (
+        <Box width={1 / 4}>
+          <Select
+            value={view}
+            items={preparePeriodsList(t)}
+            onChange={p => Router.pushRoute(`/${lng}/app/catering/${p.value}/`)}
+          />
+        </Box>
+      )}
+      <Box width={5 / 12}>
+        <ActionIcon
+          size="sm"
+          icon={["fa", "plus"]}
+          white
+          onClick={() => Router.pushRoute(`/${lng}/app/catering/create/`)}
         />
       </Box>
     </Flex>
