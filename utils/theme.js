@@ -27,7 +27,8 @@ export const colors = {
   linkWater: "235, 237, 251",
   linkWaterLight: "238, 239, 250",
   titanWhite: "251, 251, 255",
-  rollingStone: "119, 122, 128"
+  rollingStone: "119, 122, 128",
+  greenHaze: "3, 160, 79"
 };
 
 const fontSizes = {

@@ -1,15 +1,19 @@
 import { Draggable } from "react-beautiful-dnd";
-import { shape, number } from "prop-types";
+import { shape, number, string, func } from "prop-types";
+import { Button } from "components";
+import { Flex, Box } from "@rebass/grid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   OrderWrapper,
   OrderHeader,
   OrderPrice,
   OrderTime,
   OrderDetails,
-  OrderDetail
+  OrderDetail,
+  PaymentConfirmed
 } from "./styled";
 
-const Order = ({ order, index }) => (
+const Order = ({ order, columnId, index, t }) => (
   <Draggable draggableId={order.id} index={index}>
     {provided => (
       <OrderWrapper
@@ -22,9 +26,29 @@ const Order = ({ order, index }) => (
           <OrderTime>{order.time}</OrderTime>
         </OrderHeader>
         <OrderDetails>
+          {columnId === "newOrders" && (
+            <PaymentConfirmed>
+              <FontAwesomeIcon icon={["fa", "check"]} />
+              <Box ml={2}>{t("paymentConfimed")}</Box>
+            </PaymentConfirmed>
+          )}
           {order.details.map(detail => (
             <OrderDetail key={detail}>{detail}</OrderDetail>
           ))}
+          {columnId === "newOrders" && (
+            <Flex mx={-1} mt={3}>
+              <Box width={1 / 2} px={1}>
+                <Button fluid styleName="reject">
+                  {t("reject")}
+                </Button>
+              </Box>
+              <Box width={1 / 2} px={1}>
+                <Button fluid styleName="accept">
+                  {t("accept")}
+                </Button>
+              </Box>
+            </Flex>
+          )}
         </OrderDetails>
       </OrderWrapper>
     )}
@@ -33,7 +57,9 @@ const Order = ({ order, index }) => (
 
 Order.propTypes = {
   order: shape().isRequired,
-  index: number.isRequired
+  columnId: string.isRequired,
+  index: number.isRequired,
+  t: func.isRequired
 };
 
 export default Order;

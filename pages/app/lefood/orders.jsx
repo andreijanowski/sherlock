@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/users";
 import { mockData } from "sections/lefood/orders/utils";
 
-const namespaces = ["catering", "app"];
+const namespaces = ["orders", "app"];
 
 class OrdersPage extends PureComponent {
   static async getInitialProps({ ctx }) {
@@ -80,7 +80,7 @@ class OrdersPage extends PureComponent {
           changeCurrentBusiness
         }}
       >
-        <Orders {...{ onDragEnd: this.handleDragEnd, data: this.state }} />
+        <Orders {...{ onDragEnd: this.handleDragEnd, data: this.state, t }} />
       </CateringLayout>
     );
   }

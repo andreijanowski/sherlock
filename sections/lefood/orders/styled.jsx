@@ -77,3 +77,10 @@ export const OrderDetail = styled(Box).attrs({})`
   font-size: ${p => p.theme.fontSizes.f14};
   line-height: 24px;
 `;
+
+export const PaymentConfirmed = styled(Flex).attrs({
+  mb: 2
+})`
+  color: rgb(${p => p.theme.colors.greenHaze});
+  font-size: ${p => p.theme.fontSizes.f14};
+`;

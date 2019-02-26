@@ -1,5 +1,5 @@
 import { Droppable } from "react-beautiful-dnd";
-import { shape, string, arrayOf } from "prop-types";
+import { shape, string, arrayOf, func } from "prop-types";
 import Order from "./Order";
 import {
   ColumnWrapper,
@@ -9,7 +9,7 @@ import {
   OrdersWrapper
 } from "./styled";
 
-const Column = ({ id, title, orders }) => (
+const Column = ({ id, title, orders, t }) => (
   <ColumnWrapper>
     <ColumnHeader>
       <ColumnTitle>{title}</ColumnTitle>
@@ -19,7 +19,7 @@ const Column = ({ id, title, orders }) => (
       {provided => (
         <OrdersWrapper {...provided.droppableProps} ref={provided.innerRef}>
           {orders.map((order, index) => (
-            <Order {...{ order, index }} key={order.id} />
+            <Order {...{ order, t, columnId: id, index, key: order.id }} />
           ))}
           {provided.placeholder}
         </OrdersWrapper>
@@ -29,6 +29,7 @@ const Column = ({ id, title, orders }) => (
 );
 
 Column.propTypes = {
+  t: func.isRequired,
   id: string.isRequired,
   title: string.isRequired,
   orders: arrayOf(shape()).isRequired

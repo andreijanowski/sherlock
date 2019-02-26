@@ -77,6 +77,41 @@ const limeade = css`
   ${planButton};
 `;
 
+const newOrderButton = css`
+  border: none;
+  padding: 12px;
+  font-size: 12px;
+  font-weight: ${p => p.theme.fontWeights.bold};
+  text-transform: uppercase;
+  line-height: 16px;
+
+  &:hover {
+    color: rgb(${p => p.theme.colors.white});
+  }
+`;
+
+const reject = css`
+  ${newOrderButton}
+  background-color: rgba(${p => p.theme.colors.ruby}, 0.1);
+  color: rgb(${p => p.theme.colors.ruby});
+
+  &:hover {
+    background-color: rgba(${p => p.theme.colors.ruby}, 1);
+    box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.ruby}, 0.48);
+  }
+`;
+
+const accept = css`
+  ${newOrderButton}
+  background-color: rgba(${p => p.theme.colors.greenHaze}, 0.1);
+  color: rgb(${p => p.theme.colors.greenHaze});
+
+  &:hover {
+    background-color: rgba(${p => p.theme.colors.greenHaze}, 1);
+    box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.greenHaze}, 0.48);
+  }
+`;
+
 const fluid = css`
   width: 100%;
 `;
@@ -99,6 +134,8 @@ const Button = styled.button`
   ${p => p.styleName === "transparent" && transparent};
   ${p => p.styleName === "limeade" && limeade};
   ${p => p.styleName === "outlineBlue" && outlineBlue};
+  ${p => p.styleName === "reject" && reject};
+  ${p => p.styleName === "accept" && accept};
   ${p => p.fluid && fluid};
 
   &:disabled {
