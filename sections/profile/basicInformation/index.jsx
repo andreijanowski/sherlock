@@ -50,8 +50,8 @@ const BasicInformationForm = ({
             label={t("taglineLabel")}
             placeholder={t("taglinePlaceholder")}
           />
-          <Flex mx={-2}>
-            <Box width={1 / 2} px={2}>
+          <Flex mx={-2} flexWrap="wrap">
+            <Box width={[1, 1 / 2]} px={2}>
               <Field
                 name="country"
                 component={FormSelect}
@@ -61,7 +61,7 @@ const BasicInformationForm = ({
                 showFlag
               />
             </Box>
-            <Box width={1 / 2} px={2}>
+            <Box width={[1, 1 / 2]} px={2}>
               <Field
                 name="region"
                 component={FormSelect}
@@ -76,8 +76,8 @@ const BasicInformationForm = ({
               />
             </Box>
           </Flex>
-          <Flex mx={-2}>
-            <Box width={1 / 2} px={2}>
+          <Flex mx={-2} flexWrap="wrap">
+            <Box width={[1, 1 / 2]} px={2}>
               <FormInput
                 name="street"
                 validate={maxLength(t, 100)}
@@ -85,7 +85,7 @@ const BasicInformationForm = ({
                 placeholder={t("streetPlaceholder")}
               />
             </Box>
-            <Box width={3 / 10} px={2}>
+            <Box width={[1 / 2, 3 / 10]} px={2}>
               <FormInput
                 name="streetNumber"
                 validate={maxLength(t, 100)}
@@ -93,7 +93,7 @@ const BasicInformationForm = ({
                 placeholder={t("streetNumberPlaceholder")}
               />
             </Box>
-            <Box width={1 / 5} px={2}>
+            <Box width={[1 / 2, 1 / 5]} px={2}>
               <FormInput
                 name="postCode"
                 validate={maxLength(t, 100)}
@@ -104,7 +104,7 @@ const BasicInformationForm = ({
           </Flex>
           <Flex mx={-2} flexWrap="wrap">
             {types.map(type => (
-              <Box width={1 / 4} p={2} key={type.value}>
+              <Box width={[1 / 3, 1 / 4]} p={2} key={type.value}>
                 <BigCheckbox
                   {...{
                     label: type.label,

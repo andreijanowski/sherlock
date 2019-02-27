@@ -8,7 +8,7 @@ const Pictures = ({ t, pictures, addPicture, removePicture }) => (
     <H3 mt={4}>{t("uploadCoverPicture")}</H3>
     <Paragraph app>{t("uploadCoverPictureTip")}</Paragraph>
     <Flex m={-2} flexWrap="wrap">
-      <Box width={1 / 4} p={2}>
+      <Box width={[1 / 3, 1 / 4]} p={2}>
         <PerfectSquare width={1}>
           <DropzoneWithCropper
             tip="＋"
@@ -20,13 +20,12 @@ const Pictures = ({ t, pictures, addPicture, removePicture }) => (
             multiple
             maxWidth={4096}
             maxHeight={4096}
-            // eslint-disable-next-line no-unused-vars
             saveImage={image => addPicture(image)}
           />
         </PerfectSquare>
       </Box>
       {pictures.map(p => (
-        <Box width={1 / 4} p={2} key={p.url}>
+        <Box width={[1 / 3, 1 / 4]} p={2} key={p.url}>
           <Picture {...{ ...p, remove: removePicture }} />
         </Box>
       ))}

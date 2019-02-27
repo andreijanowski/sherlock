@@ -31,11 +31,11 @@ class Product extends PureComponent {
     const { t, id, url, removeProduct } = this.props;
     const { value, saving } = this.state;
     return (
-      <Flex m={-2} mb={3} alignItems="center">
-        <Box width={1 / 4} p={2}>
+      <Flex m={-2} mb={3} alignItems="center" flexWrap="wrap">
+        <Box width={[1 / 3, 1 / 4]} p={2}>
           <Picture {...{ url, id, remove: removeProduct }} />
         </Box>
-        <Box width={3 / 4} p={2}>
+        <Box width={[1, 3 / 4]} p={2}>
           <InputWithRemoveButton
             label={t("productLabel")}
             name="name"
