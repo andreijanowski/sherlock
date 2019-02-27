@@ -1,17 +1,14 @@
-import { func, string, node, shape, arrayOf } from "prop-types";
+import { func, string, node } from "prop-types";
 import AppLayout from "layout/App";
-import prepareBusinessesList from "utils/prepareBusinessesList";
-import { Select } from "components";
+import {
+  Button,
+  ButtonWithImageText,
+  ButtonWithImageIconWrapper
+} from "components";
+import { Orders, Time, Menu, Clock, Location, Pause } from "icons";
 import { Flex, Box } from "@rebass/grid";
 
-const CateringLayout = ({
-  t,
-  lng,
-  business,
-  businesses,
-  changeCurrentBusiness,
-  children
-}) => (
+const CateringLayout = ({ t, lng, children }) => (
   <AppLayout
     {...{
       mainIcon: "catering",
@@ -20,20 +17,53 @@ const CateringLayout = ({
       lng
     }}
   >
-    <Flex width={1} mb={3}>
-      <Box width={1 / 3} pr={3}>
-        <Select
-          value={{
-            value: business && business.id,
-            label:
-              (business && business.name) ||
-              t("app:manageProfile.unnamedBusiness"),
-            src: business && business.logo.url
-          }}
-          withImage
-          items={prepareBusinessesList(t, businesses)}
-          onChange={b => changeCurrentBusiness(b.value)}
-        />
+    <Flex width={1} mt={3} mb={2}>
+      <Box pr={3}>
+        <Button styleName="withImage" onClick={() => console.log("click")}>
+          <ButtonWithImageIconWrapper>
+            <Orders />
+          </ButtonWithImageIconWrapper>
+          <ButtonWithImageText>Orders</ButtonWithImageText>
+        </Button>
+      </Box>
+      <Box pr={3}>
+        <Button styleName="withImage" onClick={() => console.log("click")}>
+          <ButtonWithImageIconWrapper>
+            <Time />
+          </ButtonWithImageIconWrapper>
+          <ButtonWithImageText>45 min</ButtonWithImageText>
+        </Button>
+      </Box>
+      <Box pr={3}>
+        <Button styleName="withImage" onClick={() => console.log("click")}>
+          <ButtonWithImageIconWrapper>
+            <Menu />
+          </ButtonWithImageIconWrapper>
+          <ButtonWithImageText>Menu</ButtonWithImageText>
+        </Button>
+      </Box>
+      <Box pr={3}>
+        <Button styleName="withImage" onClick={() => console.log("click")}>
+          <ButtonWithImageIconWrapper>
+            <Clock />
+          </ButtonWithImageIconWrapper>
+          <ButtonWithImageText>Ordering Hours</ButtonWithImageText>
+        </Button>
+      </Box>
+      <Box pr={3}>
+        <Button styleName="withImage" onClick={() => console.log("click")}>
+          <ButtonWithImageIconWrapper>
+            <Location />
+          </ButtonWithImageIconWrapper>
+          <ButtonWithImageText>Delivery Area</ButtonWithImageText>
+        </Button>
+      </Box>
+      <Box pr={3}>
+        <Button styleName="withImage" red onClick={() => console.log("click")}>
+          <ButtonWithImageIconWrapper>
+            <Pause />
+          </ButtonWithImageIconWrapper>
+        </Button>
       </Box>
     </Flex>
     {children}
@@ -43,15 +73,7 @@ const CateringLayout = ({
 CateringLayout.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  children: node.isRequired,
-  business: shape(),
-  changeCurrentBusiness: func.isRequired,
-  businesses: arrayOf(shape())
-};
-
-CateringLayout.defaultProps = {
-  business: null,
-  businesses: null
+  children: node.isRequired
 };
 
 export default CateringLayout;

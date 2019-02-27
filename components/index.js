@@ -1,6 +1,10 @@
 export { default as NotificationsCenter } from "./NotificationsCenter";
 export { default as FoodetectiveLogo } from "./FoodetectiveLogo";
-export { default as Button } from "./Button";
+export {
+  default as Button,
+  ButtonWithImageText,
+  ButtonWithImageIconWrapper
+} from "./Button";
 export { default as BlueText } from "./BlueText";
 export { default as BoldText } from "./BoldText";
 export { default as ItalicText } from "./ItalicText";
@@ -19,8 +23,7 @@ export { default as FormMultipleSelect } from "./Form/MultipleSelect";
 export { default as InputWithRemoveButton } from "./Form/InputWithRemoveButton";
 export { default as WhenFieldChanges } from "./Form/WhenFieldChanges";
 export { default as BigCheckbox } from "./Form/BigCheckbox";
-export { default as FormCheckbox } from "./Form/Checkbox";
-export { RawCheckbox } from "./Form/Checkbox";
+export { default as FormCheckbox, RawCheckbox } from "./Form/Checkbox";
 export { default as FormTimePicker } from "./Form/TimePicker";
 export { default as AutoSave } from "./Form/AutoSave";
 export { default as Link } from "./Link";

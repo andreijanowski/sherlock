@@ -2,11 +2,9 @@ import { PureComponent } from "react";
 import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
-import { func, string, shape, arrayOf } from "prop-types";
+import { func, string } from "prop-types";
 import CateringLayout from "sections/lefood/Layout";
 import Orders from "sections/lefood/orders";
-import { connect } from "react-redux";
-import { setCurrentBusiness } from "actions/users";
 import { mockData } from "sections/lefood/orders/utils";
 
 const namespaces = ["orders", "app"];
@@ -69,15 +67,12 @@ class OrdersPage extends PureComponent {
   };
 
   render() {
-    const { t, lng, business, businesses, changeCurrentBusiness } = this.props;
+    const { t, lng } = this.props;
     return (
       <CateringLayout
         {...{
           t,
-          lng,
-          business,
-          businesses,
-          changeCurrentBusiness
+          lng
         }}
       >
         <Orders {...{ onDragEnd: this.handleDragEnd, data: this.state, t }} />
@@ -88,27 +83,7 @@ class OrdersPage extends PureComponent {
 
 OrdersPage.propTypes = {
   t: func.isRequired,
-  lng: string.isRequired,
-  business: shape(),
-  changeCurrentBusiness: func.isRequired,
-  businesses: arrayOf(shape())
+  lng: string.isRequired
 };
 
-OrdersPage.defaultProps = {
-  business: null,
-  businesses: null
-};
-
-export default requireAuth(true)(
-  withI18next(namespaces)(
-    connect(
-      state => ({
-        business: state.users.currentBusiness.data,
-        businesses: state.users.profileBusinesses.data
-      }),
-      {
-        changeCurrentBusiness: setCurrentBusiness
-      }
-    )(OrdersPage)
-  )
-);
+export default requireAuth(true)(withI18next(namespaces)(OrdersPage));

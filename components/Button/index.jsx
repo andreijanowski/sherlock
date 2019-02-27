@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { Flex } from "@rebass/grid";
 
 const login = css`
   border: ${p => p.theme.borderWeights.normal} solid
@@ -112,6 +113,36 @@ const accept = css`
   }
 `;
 
+const withImage = css`
+  border: none;
+  position: relative;
+  line-height: 24px;
+  box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
+  min-height: 40px;
+  background-color: ${p =>
+    p.red
+      ? `rgba(${p.theme.colors.ruby}, 0.1)`
+      : `rgb(${p.theme.colors.white})`};
+  border-radius: ${p => p.theme.radius.default};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(${p => (p.red ? p.theme.colors.ruby : p.theme.colors.dark)});
+  fill: rgb(${p => (p.red ? p.theme.colors.ruby : p.theme.colors.dark)});
+  stroke: rgb(${p => (p.red ? p.theme.colors.ruby : p.theme.colors.dark)});
+  padding: 0;
+  font-weight: ${p => p.theme.fontWeights.regular};
+
+  &:hover {
+    color: rgb(${p => p.theme.colors.white});
+    fill: rgb(${p => p.theme.colors.white});
+    stroke: rgb(${p => p.theme.colors.white});
+    background-color: rgb(
+      ${p => (p.red ? p.theme.colors.ruby : p.theme.colors.blue)}
+    );
+  }
+`;
+
 const fluid = css`
   width: 100%;
 `;
@@ -136,6 +167,7 @@ const Button = styled.button`
   ${p => p.styleName === "outlineBlue" && outlineBlue};
   ${p => p.styleName === "reject" && reject};
   ${p => p.styleName === "accept" && accept};
+  ${p => p.styleName === "withImage" && withImage};
   ${p => p.fluid && fluid};
 
   &:disabled {
@@ -145,3 +177,15 @@ const Button = styled.button`
 `;
 
 export default Button;
+
+export const ButtonWithImageText = styled.div`
+  padding: 0 16px;
+`;
+
+export const ButtonWithImageIconWrapper = styled(Flex)`
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid rgb(${p => p.theme.colors.linkWater});
+`;
