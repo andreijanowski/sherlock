@@ -5,7 +5,7 @@ import {
   ButtonWithImageText,
   ButtonWithImageIconWrapper
 } from "components";
-import { Orders, Time, Menu, Clock, Location, Pause } from "icons";
+import { Orders, Time, Price, Menu, Clock, Location, Pause } from "icons";
 import { Flex, Box } from "@rebass/grid";
 
 const CateringLayout = ({ t, lng, children }) => (
@@ -32,6 +32,13 @@ const CateringLayout = ({ t, lng, children }) => (
             <Time />
           </ButtonWithImageIconWrapper>
           <ButtonWithImageText>45 min</ButtonWithImageText>
+        </Button>
+      </Box>
+      <Box pr={3}>
+        <Button styleName="withImage" onClick={() => console.log("click")}>
+          <ButtonWithImageIconWrapper>
+            <Price />
+          </ButtonWithImageIconWrapper>
         </Button>
       </Box>
       <Box pr={3}>
