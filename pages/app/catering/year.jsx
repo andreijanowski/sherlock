@@ -6,6 +6,7 @@ import { func, string, shape, arrayOf } from "prop-types";
 import CateringLayout from "sections/catering/Layout";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/users";
+import Year from "sections/catering/year";
 
 const namespaces = ["catering", "app"];
 
@@ -18,19 +19,31 @@ class YearPage extends PureComponent {
     };
   }
 
+  constructor(p) {
+    super();
+    this.state = {
+      view: {
+        value: "year",
+        label: p.t("year")
+      }
+    };
+  }
+
   render() {
     const { t, lng, business, businesses, changeCurrentBusiness } = this.props;
+    const { view } = this.state;
     return (
       <CateringLayout
         {...{
           t,
           lng,
+          view,
           business,
           businesses,
           changeCurrentBusiness
         }}
       >
-        year
+        <Year />
       </CateringLayout>
     );
   }

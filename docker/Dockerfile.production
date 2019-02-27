@@ -1,0 +1,17 @@
+FROM node:10-alpine
+
+ENV APP_HOME /app
+ENV PATH $PATH:$APP_HOME/node_modules/.bin
+ARG PUBLIC_API_URL
+ARG PUBLIC_GOOGLE_MAPS_API_KEY
+ARG PUBLIC_FACEBOOK_APP_FIELDS
+ARG PUBLIC_FACEBOOK_APP_ID
+
+## Copy build/ folder to new image
+ADD . $APP_HOME
+WORKDIR $APP_HOME
+
+RUN yarn install
+RUN yarn build
+EXPOSE 3000
+CMD ["yarn", "start"]

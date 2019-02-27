@@ -4,13 +4,13 @@ import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
 import { func, string, shape, arrayOf } from "prop-types";
 import CateringLayout from "sections/catering/Layout";
-import Day from "sections/catering/day";
+import CreateEventForm from "sections/catering/create";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/users";
 
-const namespaces = ["catering", "app"];
+const namespaces = ["catering", "app", "forms"];
 
-class DayPage extends PureComponent {
+class Create extends PureComponent {
   static async getInitialProps({ ctx }) {
     const pageProps = loadTranslations(ctx, namespaces);
 
@@ -19,37 +19,25 @@ class DayPage extends PureComponent {
     };
   }
 
-  constructor(p) {
-    super();
-    this.state = {
-      view: {
-        value: "day",
-        label: p.t("day")
-      }
-    };
-  }
-
   render() {
     const { t, lng, business, businesses, changeCurrentBusiness } = this.props;
-    const { view } = this.state;
     return (
       <CateringLayout
         {...{
           t,
           lng,
-          view,
           business,
           businesses,
           changeCurrentBusiness
         }}
       >
-        <Day {...{ t }} />
+        <CreateEventForm {...{ t }} />
       </CateringLayout>
     );
   }
 }
 
-DayPage.propTypes = {
+Create.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   business: shape(),
@@ -57,7 +45,7 @@ DayPage.propTypes = {
   businesses: arrayOf(shape())
 };
 
-DayPage.defaultProps = {
+Create.defaultProps = {
   business: null,
   businesses: null
 };
@@ -72,6 +60,6 @@ export default requireAuth(true)(
       {
         changeCurrentBusiness: setCurrentBusiness
       }
-    )(DayPage)
+    )(Create)
   )
 );
