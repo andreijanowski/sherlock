@@ -9,7 +9,7 @@ import {
   ControlCentre,
   TakeAway,
   Catering,
-  Notifications,
+  LiveStream,
   Hamburger
 } from "icons";
 import { Select } from "components";
@@ -50,7 +50,7 @@ class MobileNav extends PureComponent {
         <MainIcon Icon={ControlCentre} {...{ lng }} />
         <MainIcon Icon={Catering} route="/app/catering/month/" {...{ lng }} />
         <MainIcon Icon={TakeAway} {...{ lng }} />
-        <MainIcon Icon={Notifications} {...{ lng }} />
+        <MainIcon Icon={LiveStream} {...{ lng }} />
         <MainIcon
           Icon={Hamburger}
           onClick={this.toggleNav}

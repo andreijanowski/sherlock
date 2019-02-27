@@ -21,7 +21,7 @@ export const HeaderWrapper = styled(Flex).attrs({
 })`
   height: 60px;
   background: rgb(${p => p.theme.colors.white});
-  box-shadow: 0 2px 6px 0 rgba(76, 104, 255, 0.08);
+  box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     height: auto;
     background: rgb(${p => p.theme.colors.iceBlue});

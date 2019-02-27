@@ -3,52 +3,15 @@ const strokeNone = { stroke: "none" };
 
 export const Hamburger = () => (
   <svg
-    width="20px"
-    height="18px"
-    viewBox="0 0 20 18"
-    version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    xlink="http://www.w3.org/1999/xlink"
+    width="20"
+    height="18"
+    viewBox="0 0 20 18"
   >
-    <title>hamburger</title>
-    <desc>Created with Sketch.</desc>
-    <g
-      id="Symbols"
-      stroke="none"
-      strokeWidth="1"
-      fill="none"
-      fillRule="evenodd"
-      opacity="0.5"
-    >
-      <g
-        id="tap-bar-mobile"
-        transform="translate(-334.000000, -21.000000)"
-        fill="#FFFFFF"
-      >
-        <g id="Tap-bar">
-          <g id="side_menu" transform="translate(312.000000, 0.000000)">
-            <g id="hamburger" transform="translate(22.000000, 21.000000)">
-              <rect id="Rectangle" x="0" y="0" width="20" height="2" rx="1" />
-              <rect
-                id="Rectangle-Copy"
-                x="0"
-                y="8"
-                width="20"
-                height="2"
-                rx="1"
-              />
-              <rect
-                id="Rectangle-Copy-2"
-                x="0"
-                y="16"
-                width="20"
-                height="2"
-                rx="1"
-              />
-            </g>
-          </g>
-        </g>
-      </g>
+    <g fillRule="evenodd">
+      <rect width="20" height="2" rx="1" />
+      <rect y="8" width="20" height="2" rx="1" />
+      <rect y="16" width="20" height="2" rx="1" />
     </g>
   </svg>
 );
@@ -58,107 +21,57 @@ export const LiveStream = () => (
     width="30px"
     height="22px"
     viewBox="0 0 30 22"
-    version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    xlink="http://www.w3.org/1999/xlink"
   >
-    <title>live_stream</title>
-    <desc>Created with Sketch.</desc>
     <g
-      id="Symbols"
-      stroke="none"
       strokeWidth="1"
-      fill="none"
       fillRule="evenodd"
+      transform="translate(2.000000, 2.000000)"
     >
-      <g
-        id="tap-bar-mobile-dash"
-        transform="translate(-205.000000, -19.000000)"
-      >
-        <g id="Tap-bar">
-          <g id="live_stream" transform="translate(188.000000, 0.000000)">
-            <g transform="translate(19.000000, 21.000000)">
-              <path
-                d="M3.80982659,17.8843902 C1.45780347,15.5941463 0,12.4302439 0,8.94292683 C0,5.45414634 1.45780347,2.29170732 3.80982659,0"
-                id="Path"
-                stroke="#8F9296"
-                strokeWidth="2.4"
-                strokeLinecap="round"
-              />
-              <path
-                d="M22.1766474,0 C24.5301734,2.29170732 25.986474,5.45414634 25.986474,8.94292683 C25.986474,12.4317073 24.5286705,15.5941463 22.1766474,17.8858537"
-                id="Path"
-                stroke="#8F9296"
-                strokeWidth="2.4"
-                strokeLinecap="round"
-              />
-              <path
-                d="M18.5636994,3.51804878 C19.9914451,4.90829268 20.8751445,6.82682927 20.8751445,8.94146341 C20.8751445,11.057561 19.9914451,12.9760976 18.5636994,14.364878"
-                id="Path"
-                stroke="#8F9296"
-                strokeWidth="2.4"
-                strokeLinecap="round"
-              />
-              <path
-                d="M7.42277457,14.3663415 C5.9950289,12.9760976 5.11132948,11.057561 5.11132948,8.94292683 C5.11132948,6.82682927 5.9950289,4.90829268 7.42277457,3.5195122"
-                id="Path"
-                stroke="#8F9296"
-                strokeWidth="2.4"
-                strokeLinecap="round"
-              />
-              <path
-                d="M12.9939884,7.75756098 C13.6642775,7.75756098 14.2098266,8.28878049 14.2098266,8.94146341 C14.2098266,9.59414634 13.6642775,10.1253659 12.9939884,10.1253659 C12.3236994,10.1253659 11.7781503,9.59414634 11.7781503,8.94146341 C11.7781503,8.28878049 12.3221965,7.75756098 12.9939884,7.75756098 L12.9939884,7.75756098 Z M12.9939884,5.41609756 C10.9966474,5.41609756 9.37352601,6.99804878 9.37352601,8.94146341 C9.37352601,10.884878 10.9966474,12.4682927 12.9939884,12.4682927 C14.9913295,12.4682927 16.6144509,10.8863415 16.6144509,8.94292683 C16.6144509,6.9995122 14.9898266,5.41609756 12.9939884,5.41609756 L12.9939884,5.41609756 Z"
-                id="Shape"
-                fill="#8F9296"
-                fillRule="nonzero"
-              />
-            </g>
-          </g>
-        </g>
-      </g>
+      <path
+        d="M3.80982659,17.8843902 C1.45780347,15.5941463 0,12.4302439 0,8.94292683 C0,5.45414634 1.45780347,2.29170732 3.80982659,0"
+        strokeLinecap="round"
+      />
+      <path
+        d="M22.1766474,0 C24.5301734,2.29170732 25.986474,5.45414634 25.986474,8.94292683 C25.986474,12.4317073 24.5286705,15.5941463 22.1766474,17.8858537"
+        strokeLinecap="round"
+      />
+      <path
+        d="M18.5636994,3.51804878 C19.9914451,4.90829268 20.8751445,6.82682927 20.8751445,8.94146341 C20.8751445,11.057561 19.9914451,12.9760976 18.5636994,14.364878"
+        strokeLinecap="round"
+      />
+      <path
+        d="M7.42277457,14.3663415 C5.9950289,12.9760976 5.11132948,11.057561 5.11132948,8.94292683 C5.11132948,6.82682927 5.9950289,4.90829268 7.42277457,3.5195122"
+        strokeLinecap="round"
+      />
+      <path
+        d="M12.9939884,7.75756098 C13.6642775,7.75756098 14.2098266,8.28878049 14.2098266,8.94146341 C14.2098266,9.59414634 13.6642775,10.1253659 12.9939884,10.1253659 C12.3236994,10.1253659 11.7781503,9.59414634 11.7781503,8.94146341 C11.7781503,8.28878049 12.3221965,7.75756098 12.9939884,7.75756098 L12.9939884,7.75756098 Z M12.9939884,5.41609756 C10.9966474,5.41609756 9.37352601,6.99804878 9.37352601,8.94146341 C9.37352601,10.884878 10.9966474,12.4682927 12.9939884,12.4682927 C14.9913295,12.4682927 16.6144509,10.8863415 16.6144509,8.94292683 C16.6144509,6.9995122 14.9898266,5.41609756 12.9939884,5.41609756 L12.9939884,5.41609756 Z"
+        fillRule="nonzero"
+      />
     </g>
   </svg>
 );
 
 export const BackArrow = () => (
   <svg
-    width="22px"
-    height="10px"
-    viewBox="0 0 22 10"
-    version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    xlink="http://www.w3.org/1999/xlink"
+    width="22"
+    height="10"
+    viewBox="0 0 22 10"
   >
-    <title>Back</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-      <g
-        id="Catering_edit_details_mobile"
-        transform="translate(-14.000000, -25.000000)"
-      >
-        <g id="Header">
-          <g id="Back" transform="translate(15.000000, 26.000000)">
-            <rect
-              id="Rectangle"
-              fill="#555960"
-              x="1"
-              y="3"
-              width="20"
-              height="2"
-              rx="1"
-            />
-            <polyline
-              id="Path"
-              stroke="#555960"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              transform="translate(2.000000, 4.000000) rotate(-270.000000) translate(-2.000000, -4.000000) "
-              points="-2 2 2 6 6 2"
-            />
-          </g>
-        </g>
-      </g>
+    <g
+      transform="translate(-14 -25)translate(15 26)"
+      strokeWidth="1"
+      fillRule="evenodd"
+    >
+      <rect x="1" y="3" width="20" height="2" rx="1" />
+      <polyline
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        transform="translate(2 4)rotate(-270)translate(-2 -4)"
+        points="-2 2 2 6 6 2"
+      />
     </g>
   </svg>
 );
@@ -402,86 +315,41 @@ export const ProfileIcon = () => (
 
 export const ProfileBasicInfo = () => (
   <svg
-    width="22px"
-    height="22px"
-    viewBox="0 0 22 22"
-    version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    xlink="http://www.w3.org/1999/xlink"
+    width="22"
+    height="22"
+    viewBox="0 0 22 22"
   >
-    <title>basic</title>
-    <desc>Created with Sketch.</desc>
     <g
-      id="Page-1"
-      stroke="none"
-      strokeWidth="1"
-      fill="none"
+      strokeWidth="2"
       fillRule="evenodd"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <g
-        id="Catering_manage_profile_menu_mobile"
-        transform="translate(-37.000000, -93.000000)"
-        strokeWidth="2"
-      >
-        <g id="basic" transform="translate(38.000000, 94.000000)">
-          <path
-            d="M16.6113333,6.666 C16.6482707,6.88652273 16.6667791,7.10973854 16.6666667,7.33333333 L16.6666667,16 C16.6666667,18.209139 14.8758057,20 12.6666667,20 L4,20 C1.790861,20 2.96059473e-16,18.209139 0,16 L0,7.33333333 C-2.96059473e-16,5.12419433 1.790861,3.33333333 4,3.33333333 L12.6666667,3.33333333 C12.8901481,3.33329011 13.1132474,3.3517981 13.3336667,3.38866667"
-            id="Path"
-            stroke="#535760"
-          />
-          <circle
-            id="Oval"
-            stroke="#A5A8AF"
-            cx="16.6666667"
-            cy="3.33333333"
-            r="3.33333333"
-          />
-        </g>
-      </g>
+      <path d="M17.6 7.7C17.6 7.9 17.7 8.1 17.7 8.3L17.7 17C17.7 19.2 15.9 21 13.7 21L5 21C2.8 21 1 19.2 1 17L1 8.3C1 6.1 2.8 4.3 5 4.3L13.7 4.3C13.9 4.3 14.1 4.4 14.3 4.4" />
+      <circle cx="16.7" cy="3.3" r="3.3" strokeOpacity="0.4" />
     </g>
   </svg>
 );
 
 export const ProfileContact = () => (
   <svg
-    width="17px"
-    height="22px"
-    viewBox="0 0 17 22"
-    version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    xlink="http://www.w3.org/1999/xlink"
+    width="17"
+    height="22"
+    viewBox="0 0 17 22"
   >
-    <title>contact</title>
-    <desc>Created with Sketch.</desc>
     <g
-      id="Page-1"
-      stroke="none"
-      strokeWidth="1"
-      fill="none"
+      strokeWidth="2"
       fillRule="evenodd"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <g
-        id="Catering_manage_profile_menu_mobile"
-        transform="translate(-40.000000, -149.000000)"
-        strokeWidth="2"
-      >
-        <g id="contact" transform="translate(41.000000, 150.000000)">
-          <path
-            d="M12,4 L14.6666667,4 L14.6666667,20 L2.66666667,20 C1.19390733,20 0,18.8060927 0,17.3333333 L0,2"
-            id="Path"
-            stroke="#535760"
-          />
-          <path
-            d="M14.6765988,4 L2,4 C0.895430512,3.99999998 2.98023224e-08,3.10456949 2.98023224e-08,2 C2.98023224e-08,0.895430512 0.895430512,1.64593682e-08 2,0 L13.3333333,0"
-            id="Path"
-            stroke="#A5A8AF"
-          />
-        </g>
-      </g>
+      <path d="M13 5L15.7 5 15.7 21 3.7 21C2.2 21 1 19.8 1 18.3L1 3" />
+      <path
+        d="M15.7 5L3 5C1.9 5 1 4.1 1 3 1 1.9 1.9 1 3 1L14.3 1"
+        strokeOpacity="0.4"
+      />
     </g>
   </svg>
 );
@@ -491,47 +359,22 @@ export const ProfileOpeningHours = () => (
     width="15px"
     height="22px"
     viewBox="0 0 15 22"
-    version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    xlink="http://www.w3.org/1999/xlink"
   >
-    <title>hours</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-      <g
-        id="Catering_manage_profile_menu_mobile"
-        transform="translate(-41.000000, -205.000000)"
-      >
-        <g id="hours" transform="translate(42.000000, 206.000000)">
-          <path
-            d="M11.2903226,19.6774194 L11.2903226,15.3267742 C11.2904008,13.8555928 10.5738736,12.4765818 9.37,11.6309677 L7.58709677,10.3790323 C7.50105835,10.3186417 7.44984082,10.2201172 7.44984082,10.115 C7.44984082,10.0098828 7.50105835,9.91135826 7.58709677,9.85096774 L9.36967742,8.59903226 C10.5736733,7.75348925 11.290327,6.37446644 11.2903226,4.90322581 L11.2903226,0.322580645 M0.967741935,0.322580645 L0.967741935,4.90322581 C0.96773751,6.37446644 1.68439124,7.75348925 2.8883871,8.59903226 L4.67096774,9.85096774 C4.75700617,9.91135826 4.8082237,10.0098828 4.8082237,10.115 C4.8082237,10.2201172 4.75700617,10.3186417 4.67096774,10.3790323 L2.8883871,11.6309677 C1.68439124,12.4765108 0.96773751,13.8555336 0.967741935,15.3267742 L0.967741935,19.6774194 M0,19.6774194 L12.2580645,19.6774194 M7.10542736e-15,0.322580645 L12.2580645,0.322580645"
-            id="Shape"
-            stroke="#535760"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <rect
-            id="Rectangle"
-            fill="#A5A8AF"
-            x="3"
-            y="16"
-            width="6.5"
-            height="2"
-            rx="1"
-          />
-          <rect
-            id="Rectangle-Copy"
-            fill="#A5A8AF"
-            x="5"
-            y="13"
-            width="2.5"
-            height="2"
-            rx="1"
-          />
-          <path d="M0,19.6774194 L12.2580645,19.6774194" id="Path" />
-        </g>
-      </g>
+    <g
+      strokeWidth="1"
+      fillRule="evenodd"
+      transform="translate(1.000000, 1.000000)"
+    >
+      <path
+        d="M11.2903226,19.6774194 L11.2903226,15.3267742 C11.2904008,13.8555928 10.5738736,12.4765818 9.37,11.6309677 L7.58709677,10.3790323 C7.50105835,10.3186417 7.44984082,10.2201172 7.44984082,10.115 C7.44984082,10.0098828 7.50105835,9.91135826 7.58709677,9.85096774 L9.36967742,8.59903226 C10.5736733,7.75348925 11.290327,6.37446644 11.2903226,4.90322581 L11.2903226,0.322580645 M0.967741935,0.322580645 L0.967741935,4.90322581 C0.96773751,6.37446644 1.68439124,7.75348925 2.8883871,8.59903226 L4.67096774,9.85096774 C4.75700617,9.91135826 4.8082237,10.0098828 4.8082237,10.115 C4.8082237,10.2201172 4.75700617,10.3186417 4.67096774,10.3790323 L2.8883871,11.6309677 C1.68439124,12.4765108 0.96773751,13.8555336 0.967741935,15.3267742 L0.967741935,19.6774194 M0,19.6774194 L12.2580645,19.6774194 M7.10542736e-15,0.322580645 L12.2580645,0.322580645"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <rect strokeOpacity="0.4" x="3" y="16" width="6.5" height="2" rx="1" />
+      <rect strokeOpacity="0.4" x="5" y="13" width="2.5" height="2" rx="1" />
+      <path d="M0,19.6774194 L12.2580645,19.6774194" />
     </g>
   </svg>
 );
@@ -541,83 +384,41 @@ export const ProfilePicturesAndMenus = () => (
     width="22px"
     height="17px"
     viewBox="0 0 22 17"
-    version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    xlink="http://www.w3.org/1999/xlink"
   >
-    <title>pictures</title>
-    <desc>Created with Sketch.</desc>
     <g
-      id="Page-1"
-      stroke="none"
-      strokeWidth="1"
-      fill="none"
       fillRule="evenodd"
       strokeLinecap="round"
       strokeLinejoin="round"
+      transform="translate(1.000000, 1.000000)"
+      strokeWidth="2"
     >
-      <g
-        id="Catering_manage_profile_menu_mobile"
-        transform="translate(-37.000000, -263.000000)"
-        strokeWidth="2"
-      >
-        <g id="pictures" transform="translate(38.000000, 264.000000)">
-          <path
-            d="M19,2.22222222 L14.8333333,2.22222222 L12.6666667,-5.5067062e-14 L7.33333333,-5.5067062e-14 L5.16666667,2.22222222 L1,2.22222222 C0.44771525,2.22222222 0,2.66993747 0,3.22222222 L0,13.4444444 C1.97372982e-15,13.9967292 0.44771525,14.4444444 1,14.4444444 L19,14.4444444 C19.5522847,14.4444444 20,13.9967292 20,13.4444444 L20,3.22222222 C20,2.66993747 19.5522847,2.22222222 19,2.22222222 L19,2.22222222 Z"
-            id="Path"
-            stroke="#535760"
-          />
-          <circle
-            id="Oval"
-            stroke="#A5A8AF"
-            cx="9.83333333"
-            cy="7.83333333"
-            r="2.83333333"
-          />
-        </g>
-      </g>
+      <path d="M19,2.22222222 L14.8333333,2.22222222 L12.6666667,-5.5067062e-14 L7.33333333,-5.5067062e-14 L5.16666667,2.22222222 L1,2.22222222 C0.44771525,2.22222222 0,2.66993747 0,3.22222222 L0,13.4444444 C1.97372982e-15,13.9967292 0.44771525,14.4444444 1,14.4444444 L19,14.4444444 C19.5522847,14.4444444 20,13.9967292 20,13.4444444 L20,3.22222222 C20,2.66993747 19.5522847,2.22222222 19,2.22222222 L19,2.22222222 Z" />
+      <circle
+        strokeOpacity="0.4"
+        cx="9.83333333"
+        cy="7.83333333"
+        r="2.83333333"
+      />
     </g>
   </svg>
 );
 
 export const ProfileAdditionaInfo = () => (
   <svg
-    width="20px"
-    height="21px"
-    viewBox="0 0 20 21"
-    version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    xlink="http://www.w3.org/1999/xlink"
+    width="20"
+    height="21"
+    viewBox="0 0 20 21"
   >
-    <title>additional</title>
-    <desc>Created with Sketch.</desc>
     <g
-      id="Page-1"
-      stroke="none"
-      strokeWidth="1"
-      fill="none"
+      strokeWidth="2"
       fillRule="evenodd"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <g
-        id="Catering_manage_profile_menu_mobile"
-        transform="translate(-38.000000, -317.000000)"
-        strokeWidth="2"
-      >
-        <g id="additional" transform="translate(39.000000, 318.000000)">
-          <path
-            d="M9.5,17 L0,17 L0,3.66666667 L17.3333333,3.66666667 L17.3333333,11.0333333 M1.33333333,2.66666667 L1.33333333,0 L16,0 L16,2.66666667"
-            id="Shape"
-            stroke="#535760"
-          />
-          <path
-            d="M14.6666667,13 L14.6666667,18.3333333 M12,15.6666667 L17.3333333,15.6666667"
-            id="Shape"
-            stroke="#A5A8AF"
-          />
-        </g>
-      </g>
+      <path d="M10.5 18L1 18 1 4.7 18.3 4.7 18.3 12M2.3 3.7L2.3 1 17 1 17 3.7" />
+      <path d="M15.7 14L15.7 19.3M13 16.7L18.3 16.7" strokeOpacity="0.4" />
     </g>
   </svg>
 );
@@ -627,39 +428,20 @@ export const ProfileMembers = () => (
     width="20px"
     height="19px"
     viewBox="0 0 20 19"
-    version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    xlink="http://www.w3.org/1999/xlink"
   >
-    <title>members</title>
-    <desc>Created with Sketch.</desc>
     <g
-      id="Page-1"
-      stroke="none"
-      strokeWidth="1"
-      fill="none"
       fillRule="evenodd"
       strokeLinecap="round"
       strokeLinejoin="round"
+      transform="translate(1.000000, 1.000000)"
+      strokeWidth="2"
     >
-      <g
-        id="Catering_manage_profile_menu_mobile"
-        transform="translate(-38.000000, -374.000000)"
-        strokeWidth="2"
-      >
-        <g id="members" transform="translate(39.000000, 375.000000)">
-          <path
-            d="M10.0666667,1 C10.611728,0.555659624 11.2969098,0.319390022 12,0.333333333 C13.3333333,0.333333333 15,1.13333333 15,3.2 L15,5.13333333 C14.9930293,6.2371942 14.5063911,7.28346646 13.6666667,8 L13.6666667,8.63333333 C13.6666667,9.03333333 13.6333333,9.73333333 15.6333333,10.1333333 C17.6333333,10.5333333 18,12.3333333 18,12.3333333 L18,13.6666667 L14.6666667,13.6666667"
-            id="Shape"
-            stroke="#A5A8AF"
-          />
-          <path
-            d="M11.8,12.3 C9.3,11.9666667 9.33333333,11.0666667 9.33333333,10.6 L9.33333333,9.83333333 C10.2333333,9.03333333 10.6666667,7.7 10.6666667,6.2 L10.6666667,3.86666667 C10.6666667,1.33333333 8.96666667,0.333333333 7.33333333,0.333333333 C5.7,0.333333333 4,1.33333333 4,3.86666667 L4,6.2 C4,7.7 4.43333333,9.06666667 5.33333333,9.86666667 L5.33333333,10.6666667 C5.33333333,11.1666667 5.36666667,11.9666667 2.86666667,12.3 C0.366666667,12.6333333 0,15 0,15 L0,16.3333333 L14.6666667,16.3333333 L14.6666667,15 C14.6666667,15 14.6666667,12.7333333 11.8,12.3 Z"
-            id="Path"
-            stroke="#535760"
-          />
-        </g>
-      </g>
+      <path
+        d="M10.0666667,1 C10.611728,0.555659624 11.2969098,0.319390022 12,0.333333333 C13.3333333,0.333333333 15,1.13333333 15,3.2 L15,5.13333333 C14.9930293,6.2371942 14.5063911,7.28346646 13.6666667,8 L13.6666667,8.63333333 C13.6666667,9.03333333 13.6333333,9.73333333 15.6333333,10.1333333 C17.6333333,10.5333333 18,12.3333333 18,12.3333333 L18,13.6666667 L14.6666667,13.6666667"
+        strokeOpacity="0.4"
+      />
+      <path d="M11.8,12.3 C9.3,11.9666667 9.33333333,11.0666667 9.33333333,10.6 L9.33333333,9.83333333 C10.2333333,9.03333333 10.6666667,7.7 10.6666667,6.2 L10.6666667,3.86666667 C10.6666667,1.33333333 8.96666667,0.333333333 7.33333333,0.333333333 C5.7,0.333333333 4,1.33333333 4,3.86666667 L4,6.2 C4,7.7 4.43333333,9.06666667 5.33333333,9.86666667 L5.33333333,10.6666667 C5.33333333,11.1666667 5.36666667,11.9666667 2.86666667,12.3 C0.366666667,12.6333333 0,15 0,15 L0,16.3333333 L14.6666667,16.3333333 L14.6666667,15 C14.6666667,15 14.6666667,12.7333333 11.8,12.3 Z" />
     </g>
   </svg>
 );
@@ -719,35 +501,17 @@ export const SettingsBasicInfo = () => (
     width="19px"
     height="22px"
     viewBox="0 0 19 22"
-    version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    xlink="http://www.w3.org/1999/xlink"
   >
-    <title>basic-settings</title>
-    <desc>Created with Sketch.</desc>
     <g
-      id="Page-1"
-      stroke="none"
-      strokeWidth="1"
-      fill="none"
       fillRule="evenodd"
       strokeLinecap="round"
       strokeLinejoin="round"
+      transform="translate(1.000000, 1.000000)"
+      strokeWidth="2"
     >
-      <g
-        id="menu-settings"
-        transform="translate(-37.000000, -93.000000)"
-        strokeWidth="2"
-      >
-        <g id="basic-settings" transform="translate(38.000000, 94.000000)">
-          <circle id="Oval" stroke="#A5A8AF" cx="8.33499364" cy="5" r="5" />
-          <path
-            d="M8.33499364,10 C6.08806085,10.0218052 3.94313726,10.94118 2.37789317,12.5533814 C0.812649087,14.1655828 -0.0429413066,16.3367374 0.00166030816,18.5833333 L0.00166030816,20 L16.668327,20 L16.668327,18.5833333 C16.7129286,16.3367374 15.8573382,14.1655828 14.2920941,12.5533814 C12.72685,10.94118 10.5819264,10.0218052 8.33499364,10 Z"
-            id="Path"
-            stroke="#535760"
-          />
-        </g>
-      </g>
+      <circle strokeOpacity="0.4" cx="8.33499364" cy="5" r="5" />
+      <path d="M8.33499364,10 C6.08806085,10.0218052 3.94313726,10.94118 2.37789317,12.5533814 C0.812649087,14.1655828 -0.0429413066,16.3367374 0.00166030816,18.5833333 L0.00166030816,20 L16.668327,20 L16.668327,18.5833333 C16.7129286,16.3367374 15.8573382,14.1655828 14.2920941,12.5533814 C12.72685,10.94118 10.5819264,10.0218052 8.33499364,10 Z" />
     </g>
   </svg>
 );
@@ -757,39 +521,20 @@ export const SettingsBilling = () => (
     width="16px"
     height="22px"
     viewBox="0 0 16 22"
-    version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    xlink="http://www.w3.org/1999/xlink"
   >
-    <title>billing</title>
-    <desc>Created with Sketch.</desc>
     <g
-      id="Page-1"
-      stroke="none"
-      strokeWidth="1"
-      fill="none"
       fillRule="evenodd"
       strokeLinecap="round"
       strokeLinejoin="round"
+      strokeWidth="2"
+      transform="translate(1.000000, 1.000000)"
     >
-      <g
-        id="menu-settings"
-        transform="translate(-40.000000, -149.000000)"
-        strokeWidth="2"
-      >
-        <g id="billing" transform="translate(41.000000, 150.000000)">
-          <polygon
-            id="Path"
-            stroke="#535760"
-            points="0 0 0 20 14 20 14 5.33333333 8.66666667 0"
-          />
-          <path
-            d="M3.33333333,7 L10.6666667,7 M3.33333333,11.3333333 L10.6666667,11.3333333 M3.33333333,15.6666667 L9.33333333,15.6666667"
-            id="Shape"
-            stroke="#A5A8AF"
-          />
-        </g>
-      </g>
+      <polygon points="0 0 0 20 14 20 14 5.33333333 8.66666667 0" />
+      <path
+        d="M3.33333333,7 L10.6666667,7 M3.33333333,11.3333333 L10.6666667,11.3333333 M3.33333333,15.6666667 L9.33333333,15.6666667"
+        strokeOpacity="0.4"
+      />
     </g>
   </svg>
 );
@@ -799,44 +544,21 @@ export const SettingsPassword = () => (
     width="17px"
     height="22px"
     viewBox="0 0 17 22"
-    version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    xlink="http://www.w3.org/1999/xlink"
   >
-    <title>password</title>
-    <desc>Created with Sketch.</desc>
     <g
-      id="Page-1"
-      stroke="none"
-      strokeWidth="1"
-      fill="none"
+      strokeWidth="2"
       fillRule="evenodd"
       strokeLinecap="round"
       strokeLinejoin="round"
+      transform="translate(1.000000, 1.000000)"
     >
-      <g
-        id="menu-settings"
-        transform="translate(-40.000000, -205.000000)"
-        strokeWidth="2"
-      >
-        <g id="password" transform="translate(41.000000, 206.000000)">
-          <path
-            d="M3,9.33333333 L3,4.33333333 C3,1.94009942 4.94009942,2.22044605e-15 7.33333333,1.77635684e-15 C9.72656725,1.77635684e-15 11.6666667,1.94009942 11.6666667,4.33333333 L11.6666667,9.33333333"
-            id="Path"
-            stroke="#535760"
-          />
-          <polygon
-            id="Shape"
-            stroke="#535760"
-            points="0 9.33333333 14.6666667 9.33333333 14.6666667 20 0 20"
-          />
-          <path
-            d="M7.33333333,13 L7.33333333,16.3333333 L7.33333333,13 Z"
-            id="Path"
-            stroke="#A5A8AF"
-          />
-        </g>
-      </g>
+      <path d="M3,9.33333333 L3,4.33333333 C3,1.94009942 4.94009942,2.22044605e-15 7.33333333,1.77635684e-15 C9.72656725,1.77635684e-15 11.6666667,1.94009942 11.6666667,4.33333333 L11.6666667,9.33333333" />
+      <polygon points="0 9.33333333 14.6666667 9.33333333 14.6666667 20 0 20" />
+      <path
+        d="M7.33333333,13 L7.33333333,16.3333333 L7.33333333,13 Z"
+        strokeOpacity="0.4"
+      />
     </g>
   </svg>
 );
@@ -846,40 +568,24 @@ export const SettingsLogout = () => (
     width="22px"
     height="22px"
     viewBox="0 0 22 22"
-    version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    xlink="http://www.w3.org/1999/xlink"
   >
-    <title>logout</title>
-    <desc>Created with Sketch.</desc>
     <g
-      id="Page-1"
-      stroke="none"
-      strokeWidth="1"
-      fill="none"
+      strokeWidth="2"
       fillRule="evenodd"
       strokeLinecap="round"
       strokeLinejoin="round"
+      transform="translate(1.000000, 1.000000)"
     >
-      <g
-        id="menu-settings"
-        transform="translate(-38.000000, -261.000000)"
-        strokeWidth="2"
-      >
-        <g id="logout" transform="translate(39.000000, 262.000000)">
-          <polyline
-            id="Path"
-            stroke="#A5A8AF"
-            points="13.338 12.0003333 16.0046667 9.33333333 13.338 6.663"
-          />
-          <path
-            d="M16.0046667,9.33 L6.66666667,9.33 C5.56209717,9.33 4.66666667,10.2254305 4.66666667,11.33 C4.66703462,12.4344171 5.56224961,13.329632 6.66666667,13.33"
-            id="Path"
-            stroke="#A5A8AF"
-          />
-          <circle id="Oval" stroke="#535760" cx="10" cy="10" r="10" />
-        </g>
-      </g>
+      <polyline
+        strokeOpacity="0.4"
+        points="13.338 12.0003333 16.0046667 9.33333333 13.338 6.663"
+      />
+      <path
+        d="M16.0046667,9.33 L6.66666667,9.33 C5.56209717,9.33 4.66666667,10.2254305 4.66666667,11.33 C4.66703462,12.4344171 5.56224961,13.329632 6.66666667,13.33"
+        strokeOpacity="0.4"
+      />
+      <circle cx="10" cy="10" r="10" />
     </g>
   </svg>
 );

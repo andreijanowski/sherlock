@@ -57,7 +57,7 @@ class SubItem extends PureComponent {
           {submenuItems.map(item => (
             <Link {...{ lng, route: item.route }}>
               <Flex mb={4}>
-                <IconWrapper>
+                <IconWrapper dark noFill>
                   {item.SubmenuIcon && <item.SubmenuIcon />}
                 </IconWrapper>
                 <IconLabel>{item.label}</IconLabel>

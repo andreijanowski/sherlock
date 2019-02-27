@@ -19,6 +19,10 @@ export const IconSub = css`
   fill: rgb(${p => p.theme.colors.dark});
 `;
 
+export const NoFill = css`
+  fill: none;
+`;
+
 export const IconWrapper = styled.div`
   path,
   circle,
@@ -27,6 +31,8 @@ export const IconWrapper = styled.div`
     ${p => p.main && IconMain};
     ${p => p.mainActive && IconMainActive};
     ${p => p.dark && IconSub};
+    ${p => p.dark && IconSub};
+    ${p => p.noFill && NoFill};
   }
 `;
 
