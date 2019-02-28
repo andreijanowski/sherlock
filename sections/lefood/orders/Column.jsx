@@ -8,19 +8,22 @@ import {
   OrdersNumber,
   OrdersWrapper
 } from "./styled";
+import { columns } from "./utils";
 
 const Column = ({ id, title, orders, t, onClick }) => (
   <ColumnWrapper>
     <ColumnHeader>
       <ColumnTitle>{title}</ColumnTitle>
-      <OrdersNumber canceled={id === "canceled"}>{orders.length}</OrdersNumber>
+      <OrdersNumber canceled={id === columns.canceled}>
+        {orders.length}
+      </OrdersNumber>
     </ColumnHeader>
     <Droppable droppableId={id}>
       {provided => (
         <OrdersWrapper
           {...provided.droppableProps}
           ref={provided.innerRef}
-          canceled={id === "canceled"}
+          canceled={id === columns.canceled}
         >
           {orders.map((order, index) => (
             <Order

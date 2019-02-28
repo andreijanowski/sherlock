@@ -12,6 +12,7 @@ import {
   OrderDetail,
   PaymentConfirmed
 } from "./styled";
+import { columns } from "./utils";
 
 const Order = ({ order, columnId, index, t, onClick }) => (
   <Draggable draggableId={order.id} index={index}>
@@ -20,14 +21,14 @@ const Order = ({ order, columnId, index, t, onClick }) => (
         ref={provided.innerRef}
         {...provided.draggableProps}
         {...provided.dragHandleProps}
-        canceled={columnId === "canceled"}
+        canceled={columnId === columns.canceled}
       >
         <OrderHeader>
           <OrderPrice>{order.price}</OrderPrice>
           <OrderTime>{order.time}</OrderTime>
         </OrderHeader>
         <OrderDetails>
-          {columnId === "newOrders" && (
+          {columnId === columns.newOrders && (
             <PaymentConfirmed>
               <FontAwesomeIcon icon={["fa", "check"]} />
               <Box ml={2}>{t("paymentConfimed")}</Box>
@@ -45,7 +46,7 @@ const Order = ({ order, columnId, index, t, onClick }) => (
               </Box>
             </Flex>
           )}
-          {columnId === "newOrders" && (
+          {columnId === columns.newOrders && (
             <Flex mx={-1} mt={3}>
               <Box width={1 / 2} px={1}>
                 <Button
@@ -54,11 +55,11 @@ const Order = ({ order, columnId, index, t, onClick }) => (
                   onClick={() =>
                     onClick({
                       destination: {
-                        droppableId: "canceled",
+                        droppableId: columns.canceled,
                         index: 0
                       },
                       source: {
-                        droppableId: "newOrders",
+                        droppableId: columns.newOrders,
                         index
                       },
                       draggableId: order.id
@@ -75,11 +76,11 @@ const Order = ({ order, columnId, index, t, onClick }) => (
                   onClick={() =>
                     onClick({
                       destination: {
-                        droppableId: "inProgress",
+                        droppableId: columns.inProgress,
                         index: 0
                       },
                       source: {
-                        droppableId: "newOrders",
+                        droppableId: columns.newOrders,
                         index
                       },
                       draggableId: order.id

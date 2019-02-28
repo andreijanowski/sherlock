@@ -2,5 +2,9 @@
   "header": "Orders",
   "paymentConfimed": "Payment confimed",
   "accept": "Accept",
-  "reject": "Reject"
+  "reject": "Reject",
+  "orders": "Orders",
+  "menu": "Menu",
+  "orderingHours": "Ordering Hours",
+  "deliveryArea": "Delivery Area"
 }

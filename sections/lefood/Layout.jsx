@@ -23,7 +23,7 @@ const CateringLayout = ({ t, lng, children }) => (
           <ButtonWithImageIconWrapper>
             <Orders />
           </ButtonWithImageIconWrapper>
-          <ButtonWithImageText>Orders</ButtonWithImageText>
+          <ButtonWithImageText>{t("orders")}</ButtonWithImageText>
         </Button>
       </Box>
       <Box pr={3}>
@@ -39,6 +39,7 @@ const CateringLayout = ({ t, lng, children }) => (
           <ButtonWithImageIconWrapper>
             <Price />
           </ButtonWithImageIconWrapper>
+          <ButtonWithImageText>$9.99</ButtonWithImageText>
         </Button>
       </Box>
       <Box pr={3}>
@@ -46,7 +47,7 @@ const CateringLayout = ({ t, lng, children }) => (
           <ButtonWithImageIconWrapper>
             <Menu />
           </ButtonWithImageIconWrapper>
-          <ButtonWithImageText>Menu</ButtonWithImageText>
+          <ButtonWithImageText>{t("menu")}</ButtonWithImageText>
         </Button>
       </Box>
       <Box pr={3}>
@@ -54,7 +55,7 @@ const CateringLayout = ({ t, lng, children }) => (
           <ButtonWithImageIconWrapper>
             <Clock />
           </ButtonWithImageIconWrapper>
-          <ButtonWithImageText>Ordering Hours</ButtonWithImageText>
+          <ButtonWithImageText>{t("orderingHours")}</ButtonWithImageText>
         </Button>
       </Box>
       <Box pr={3}>
@@ -62,7 +63,7 @@ const CateringLayout = ({ t, lng, children }) => (
           <ButtonWithImageIconWrapper>
             <Location />
           </ButtonWithImageIconWrapper>
-          <ButtonWithImageText>Delivery Area</ButtonWithImageText>
+          <ButtonWithImageText>{t("deliveryArea")}</ButtonWithImageText>
         </Button>
       </Box>
       <Box pr={3}>

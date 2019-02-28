@@ -1,3 +1,11 @@
+export const columns = {
+  newOrders: "newOrders",
+  inProgress: "inProgress",
+  delivery: "delivery",
+  delivered: "delivered",
+  canceled: "canceled"
+};
+
 export const mockData = {
   orders: {
     order1: {
@@ -123,7 +131,7 @@ export const mockData = {
   },
   columns: {
     newOrders: {
-      id: "newOrders",
+      id: columns.newOrders,
       title: "New orders",
       orderIds: [
         "order1",
@@ -137,22 +145,22 @@ export const mockData = {
       ]
     },
     inProgress: {
-      id: "inProgress",
+      id: columns.inProgress,
       title: "In Progress",
       orderIds: ["order9", "order10"]
     },
     delivery: {
-      id: "delivery",
+      id: columns.delivery,
       title: "Delivery",
       orderIds: ["order11", "order12", "order13"]
     },
     delivered: {
-      id: "delivered",
+      id: columns.delivered,
       title: "Delivered",
       orderIds: ["order14", "order15", "order16", "order17"]
     },
     canceled: {
-      id: "canceled",
+      id: columns.canceled,
       title: "Canceled",
       orderIds: ["order18", "order19", "order20"]
     }
