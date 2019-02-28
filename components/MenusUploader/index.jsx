@@ -1,8 +1,11 @@
 import { PureComponent } from "react";
 import { H3, Dropzone } from "components";
 import { func, arrayOf, shape, string } from "prop-types";
+import withI18next from "lib/withI18next";
 import Menu from "./Menu";
-import { DropzoneWrapper } from "../styled";
+import { DropzoneWrapper } from "./styled";
+
+const namespaces = ["picturesAndMenus"];
 
 class Menus extends PureComponent {
   state = {
@@ -58,4 +61,4 @@ Menus.defaultProps = {
   menus: []
 };
 
-export default Menus;
+export default withI18next(namespaces)(Menus);

@@ -44,4 +44,8 @@ module.exports = routes()
   .add("app/catering/day", `/:lng(${languagesPattern})/app/catering/day/`)
   .add("app/catering/week", `/:lng(${languagesPattern})/app/catering/week/`)
   .add("app/catering/month", `/:lng(${languagesPattern})/app/catering/month/`)
-  .add("app/catering/year", `/:lng(${languagesPattern})/app/catering/year/`);
+  .add("app/catering/year", `/:lng(${languagesPattern})/app/catering/year/`)
+  .add(
+    "app/catering/create",
+    `/:lng(${languagesPattern})/app/catering/create/`
+  );

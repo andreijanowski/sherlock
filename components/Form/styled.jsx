@@ -290,3 +290,20 @@ export const ActionIconWrapper = styled.div`
   right: 10px;
   top: 10px;
 `;
+
+export const DaypickerWrapper = styled.div`
+  position: relative;
+  .DayPicker {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    top: 70px;
+    z-index: 2;
+    background: rgb(${p => p.theme.colors.white});
+    border: 1px solid rgb(${p => p.theme.colors.snuff});
+    border-radius: ${p => p.theme.radius.small};
+    &-Day--selected {
+      background-color: rgb(${p => p.theme.colors.blue}) !important;
+    }
+  }
+`;
