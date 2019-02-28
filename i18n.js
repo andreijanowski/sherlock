@@ -4,17 +4,16 @@ const LanguageDetector = require("i18next-browser-languagedetector");
 
 const options = {
   fallbackLng: "en",
-  load: "languageOnly", // we only provide en, de -> no region specific locals like en-US, de-DE
+  load: "languageOnly",
 
-  // have a common namespace used around the full app
   ns: ["common"],
   defaultNS: "common",
 
-  debug: false, // process.env.NODE_ENV !== 'production',
+  debug: false,
   saveMissing: true,
 
   interpolation: {
-    escapeValue: false, // not needed for react!!
+    escapeValue: false,
     formatSeparator: ",",
     format: (value, format) => {
       if (format === "uppercase") return value.toUpperCase();
@@ -22,7 +21,6 @@ const options = {
     }
   },
   detection: {
-    // order and from where user language should be detected
     order: [
       "path",
       "cookie",
@@ -33,38 +31,30 @@ const options = {
       "subdomain"
     ],
 
-    // keys or params to lookup language from
     lookupQuerystring: "lng",
     lookupCookie: "i18next",
     lookupLocalStorage: "i18nextLng",
     lookupFromPathIndex: 0,
     lookupFromSubdomainIndex: 0,
 
-    // cache user language on
     caches: ["cookie"],
-    excludeCacheFor: ["cimode"] // languages to not persist (cookie, localStorage)
+    excludeCacheFor: ["cimode"]
   }
 };
 
-// for browser use xhr backend to load translations and browser lng detector
 if (process.browser) {
-  i18n
-    .use(XHR)
-    // .use(Cache)
-    .use(LanguageDetector);
+  i18n.use(XHR).use(LanguageDetector);
 }
 
-// initialize if not already initialized
 if (!i18n.isInitialized) i18n.init(options);
 
-// a simple helper to getInitialProps passed on loaded i18n data
 i18n.getInitialProps = (req, namespaces) => {
   // eslint-disable-next-line no-param-reassign
   if (!namespaces) namespaces = i18n.options.defaultNS;
   // eslint-disable-next-line no-param-reassign
   if (typeof namespaces === "string") namespaces = [namespaces];
 
-  req.i18n.toJSON = () => null; // do not serialize i18next instance and send to client
+  req.i18n.toJSON = () => null;
 
   const initialI18nStore = {};
   req.i18n.languages.forEach(l => {
@@ -76,7 +66,7 @@ i18n.getInitialProps = (req, namespaces) => {
   });
 
   return {
-    i18n: req.i18n, // use the instance on req - fixed language on request (avoid issues in race conditions with lngs of different users)
+    i18n: req.i18n,
     initialI18nStore,
     initialLanguage: req.i18n.language
   };

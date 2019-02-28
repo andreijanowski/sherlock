@@ -9,7 +9,7 @@ set :repo_url, 'git@github.com:netguru/sherlock.git'
 set :deploy_to, -> { "/home/deploy/apps/#{fetch(:application)}" }
 set :dockerfile, -> { 'docker/Dockerfile.staging' }
 
-set :branch, 'production-setup'
+set :branch, 'production'
 
 namespace :deploy do
     def compose(cmd, role)
