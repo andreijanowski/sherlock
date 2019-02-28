@@ -36,7 +36,11 @@
       "same_password-password": "Password is the same as current password",
       "url-website": "Website is not a valid URL",
       "url-instagram": "Instagram is not a valid URL",
-      "improbable_phone-phone": "Phone is an invalid number"
+      "improbable_phone-phone": "Phone is an invalid number",
+      "invalid_range_of_types-groups_list": "Groups list must have between 1 and 3 'types' entries",
+      "invalid_range_of_cuisines-groups_list": "Groups list must have between 1 and 5 'cuisines' entries",
+      "invalid_range_of_drinks_foods-groups_list": "Groups list must have between 1 and 6 'drinks and foods' entries",
+      "invalid_range_of_quirks-groups_list": "Groups list must have between 3 and 10 'perfect for' entries"
     }
   },
   "placeholder": {

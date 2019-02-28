@@ -25,3 +25,7 @@ export const Image = styled.div`
   border-radius: ${p => p.theme.radius.default};
   position: relative;
 `;
+
+export const Error = styled.div`
+  color: rgb(${p => p.theme.colors.ruby});
+`;

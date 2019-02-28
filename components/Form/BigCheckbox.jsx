@@ -3,6 +3,7 @@ import { Field as FinalFormField } from "react-final-form";
 import { string, func, shape } from "prop-types";
 import { PerfectSquare, LoadingIndicator } from "components";
 import { CheckboxLabel, Checkbox } from "./styled";
+import { getError } from "./utils";
 
 class BigCheckbox extends PureComponent {
   checkbox = createRef();
@@ -30,17 +31,15 @@ class BigCheckbox extends PureComponent {
         type="select-multiple"
         {...rest}
         render={({ input: { value: checkedValues, ...input }, meta }) => {
+          const error = getError(meta);
           if (meta.touched) {
-            setError(meta.error);
+            setError(error);
           }
           const isChecked =
             checkedValues && checkedValues.some(v => v.value === value.value);
           return (
             <PerfectSquare width={1}>
-              <CheckboxLabel
-                checked={isChecked}
-                error={isChecked && meta.touched && meta.error}
-              >
+              <CheckboxLabel checked={isChecked} error={error}>
                 <Checkbox
                   ref={this.checkbox}
                   {...input}

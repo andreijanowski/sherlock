@@ -227,6 +227,13 @@ export const CheckboxLabel = styled(Flex).attrs({
   font-size: ${p => p.theme.fontSizes.f14};
   font-weight: ${p =>
     p.checked ? p.theme.fontWeights.semiBold : p.theme.fontWeights.medium};
+
+  ${p =>
+    p.checked &&
+    p.error &&
+    `background-color: rgba(${p.theme.colors.ruby}, 0.1);
+    border-color: rgb(${p.theme.colors.ruby});
+    color: rgb(${p.theme.colors.ruby});`}
 `;
 
 export const Checkbox = styled.input.attrs({ type: "checkbox" })`

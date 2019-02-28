@@ -22,7 +22,11 @@ const AdditionalInformationForm = ({ t, initialValues, handleSubmit }) =>
       mutators={{ setFieldData }}
       render={({ form: { mutators } }) => (
         <Form>
-          <AutoSave setFieldData={mutators.setFieldData} save={handleSubmit} />
+          <AutoSave
+            setFieldData={mutators.setFieldData}
+            save={handleSubmit}
+            t={t}
+          />
           <H3>{t("timeOfTheDay")}</H3>
           <Flex flexWrap="wrap">
             {timeOfTheDay.map(time => (

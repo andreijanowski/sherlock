@@ -4,7 +4,7 @@ export default errors => {
   let translatedMessage = { message: "Error" };
   if (errors.length) {
     translatedMessage = {
-      message: `errors.${errors[0].code}.${errors[0].title}`,
+      message: `forms:validation.error.${errors[0].code}-${errors[0].title}`,
       meta: errors[0].meta
     };
   }
