@@ -1,9 +1,8 @@
 import { func, shape } from "prop-types";
-import { LoadingIndicator } from "components";
+import { LoadingIndicator, MenusUploader } from "components";
 import { Form } from "../styled";
 import Logo from "./Logo";
 import Pictures from "./Pictures";
-import Menus from "./Menus";
 import Products from "./Products";
 
 const PicturesAndMenusForm = ({
@@ -30,7 +29,7 @@ const PicturesAndMenusForm = ({
           removePicture
         }}
       />
-      <Menus
+      <MenusUploader
         {...{ t, menus: initialValues.menus, addMenu, updateMenu, removeMenu }}
       />
       <Products

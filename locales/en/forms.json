@@ -4,12 +4,17 @@
       "email": "Invalid Email address",
       "required": "This field is required",
       "password": "Passwords must be at least {{length}} characters in length.",
-      "passwordMatch": "The password and repeat password do not match."
+      "passwordMatch": "The password and repeat password do not match.",
+      "number": "The field must be a number",
+      "nonNegative": "The field must be a non negative value",
+      "integer": "The field must be a integer"
     }
   },
   "placeholder": {
     "custom": "Custom",
     "location": "Location",
     "egAccount": "e.g. Acme Corp"
-  }
+  },
+  "save": "Save",
+  "cancel": "Cancel"
 }
