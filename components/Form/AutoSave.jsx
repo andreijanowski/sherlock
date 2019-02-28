@@ -18,7 +18,7 @@ class AutoSave extends React.Component {
   }
 
   save = async blurredField => {
-    const { setFieldData, arrayName } = this.props;
+    const { setFieldData, arrayName, t } = this.props;
     try {
       setFieldData(blurredField, { saving: true });
       if (this.promise) {
@@ -63,6 +63,16 @@ class AutoSave extends React.Component {
       setFieldData(blurredField, { saving: false });
     } catch (e) {
       console.log(e);
+      console.log(e.response);
+      if (e.response) {
+        setFieldData(blurredField, {
+          error: t(
+            `forms:validation.error.${e.response.data.errors[0].code}-${
+              e.response.data.errors[0].title
+            }`
+          )
+        });
+      }
       setFieldData(blurredField, { saving: false });
       if (this.promise) {
         delete this.promise;
@@ -80,6 +90,7 @@ AutoSave.propTypes = {
   active: string,
   setFieldData: func.isRequired,
   save: func.isRequired,
+  t: func.isRequired,
   errors: shape(),
   arrayName: string
 };

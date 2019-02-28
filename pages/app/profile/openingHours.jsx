@@ -18,7 +18,7 @@ import {
 import { setCurrentBusiness } from "actions/users";
 import { postBusiness } from "actions/businesses";
 
-const namespaces = ["openingHours", "app", "publishModal"];
+const namespaces = ["openingHours", "app", "publishModal", "forms"];
 
 class OpeningHours extends PureComponent {
   static async getInitialProps({ ctx }) {

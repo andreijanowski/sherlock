@@ -69,7 +69,8 @@ const BasicInformationForm = ({
                 placeholder={t("regionPlaceholder")}
                 disabled={!values.country}
                 items={
-                  (values.country.value &&
+                  (values.country &&
+                    values.country.value &&
                     getSubdivisions(values.country.value)) ||
                   []
                 }
