@@ -12,3 +12,4 @@ export {
   SettingsIcon
 } from "./navigation";
 export { Docs, Feedback, Notifications } from "./mainControls";
+export { FacebookIcon } from "./facebook";

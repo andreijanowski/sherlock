@@ -46,3 +46,4 @@ export { default as CalendarEvent } from "./Calendar/Event";
 export { default as CalendarToolbar } from "./Calendar/Toolbar";
 export { default as MenusUploader } from "./MenusUploader";
 export { default as Map } from "./Map";
+export { default as TextSeparator } from "./TextSeparator";

@@ -1,4 +1,4 @@
-const breakpoints = ["40em", "52em", "64em"];
+const breakpoints = ["40em", "52em", "64em", "75em"];
 
 const borderWeights = {
   tiny: "2px",
@@ -8,6 +8,7 @@ const borderWeights = {
 export const colors = {
   dark: "42, 47, 56",
   blue: "76, 104, 255",
+  facebookBlue: "66, 103, 178",
   white: "255, 255, 255",
   background: "248, 249, 255",
   deepSkyBlue: "15, 177, 243",

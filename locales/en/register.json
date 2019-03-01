@@ -3,7 +3,7 @@
   "description": "Let’s add some basic informations",
   "emailHelperTitle": "What’s your Email address?",
   "paswordHelperTitle": "What’s your Password?",
-  "registerButton": "Let's get started",
+  "registerButton": "Get started",
   "confirmationMessege": "A confirmation email has been sent to your new email address {{ email }}. To confirm the email change, click the verification link in the email.",
   "terms": {
     "start": "I have read and accepted Foodetective ",
