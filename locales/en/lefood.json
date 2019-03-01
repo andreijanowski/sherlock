@@ -1,0 +1,15 @@
+{
+  "paymentConfimed": "Payment confimed",
+  "accept": "Accept",
+  "reject": "Reject",
+  "orders": "Orders",
+  "menu": "Menu",
+  "orderingHours": "Ordering Hours",
+  "deliveryArea": "Delivery Area",
+  "delivery": "Delivery",
+  "codeLabel": "ZIP code",
+  "codePlaceholder": "64105",
+  "priceCentsLabel": "Delivery Price",
+  "priceCentsPlaceholder": "5",
+  "addedZipCodes": "Added ZIP Codes"
+}

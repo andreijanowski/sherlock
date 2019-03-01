@@ -45,8 +45,9 @@ module.exports = routes()
   .add("app/catering/week", `/:lng(${languagesPattern})/app/catering/week/`)
   .add("app/catering/month", `/:lng(${languagesPattern})/app/catering/month/`)
   .add("app/catering/year", `/:lng(${languagesPattern})/app/catering/year/`)
+  .add("app/catering/create", `/:lng(${languagesPattern})/app/catering/create/`)
+  .add("app/lefood/orders", `/:lng(${languagesPattern})/app/lefood/orders/`)
   .add(
-    "app/catering/create",
-    `/:lng(${languagesPattern})/app/catering/create/`
-  )
-  .add("app/lefood/orders", `/:lng(${languagesPattern})/app/lefood/orders/`);
+    "app/lefood/deliveries",
+    `/:lng(${languagesPattern})/app/lefood/delivery-area/`
+  );

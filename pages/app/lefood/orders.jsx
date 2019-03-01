@@ -3,11 +3,11 @@ import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
 import { func, string } from "prop-types";
-import CateringLayout from "sections/lefood/Layout";
+import LefoodLayout from "sections/lefood/Layout";
 import Orders from "sections/lefood/orders";
 import { mockData } from "sections/lefood/orders/utils";
 
-const namespaces = ["orders", "app"];
+const namespaces = ["lefood", "app"];
 
 class OrdersPage extends PureComponent {
   static async getInitialProps({ ctx }) {
@@ -69,14 +69,15 @@ class OrdersPage extends PureComponent {
   render() {
     const { t, lng } = this.props;
     return (
-      <CateringLayout
+      <LefoodLayout
         {...{
           t,
-          lng
+          lng,
+          header: "orders"
         }}
       >
         <Orders {...{ onDragEnd: this.handleDragEnd, data: this.state, t }} />
-      </CateringLayout>
+      </LefoodLayout>
     );
   }
 }

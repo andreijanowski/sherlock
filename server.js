@@ -37,7 +37,7 @@ i18n
         "members",
         "notifications",
         "openingHours",
-        "orders",
+        "lefood",
         "picturesAndMenus",
         "register",
         "settingsBasicInfo",

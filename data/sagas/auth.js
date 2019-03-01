@@ -6,7 +6,11 @@ import {
   fetchProfileBusiness
 } from "actions/users";
 import { fetchGroups } from "actions/groups";
-import { fetchBusinessMembers, postBusiness } from "actions/businesses";
+import {
+  fetchBusinessMembers,
+  postBusiness,
+  fetchBusinessDeliveries
+} from "actions/businesses";
 import { Router } from "routes";
 import {
   LOGIN_SUCCESS,
@@ -36,6 +40,7 @@ function* fetchUserData() {
   if (data && data.length) {
     yield put(fetchProfileBusiness(data[0].id));
     yield put(fetchBusinessMembers(data[0].id));
+    yield put(fetchBusinessDeliveries(data[0].id));
   } else {
     yield put(postBusiness());
   }

@@ -8,11 +8,11 @@ import {
 import { Orders, Time, Price, Menu, Clock, Location, Pause } from "icons";
 import { Flex, Box } from "@rebass/grid";
 
-const CateringLayout = ({ t, lng, children }) => (
+const CateringLayout = ({ t, lng, header, children }) => (
   <AppLayout
     {...{
       mainIcon: "catering",
-      header: t("header"),
+      header: t(header),
       t,
       lng
     }}
@@ -81,6 +81,7 @@ const CateringLayout = ({ t, lng, children }) => (
 CateringLayout.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
+  header: string.isRequired,
   children: node.isRequired
 };
 
