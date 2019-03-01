@@ -9,7 +9,8 @@ import { fetchGroups } from "actions/groups";
 import {
   fetchBusinessMembers,
   postBusiness,
-  fetchBusinessDeliveries
+  fetchBusinessDeliveries,
+  fetchBusinessDishes
 } from "actions/businesses";
 import { Router } from "routes";
 import {
@@ -41,6 +42,7 @@ function* fetchUserData() {
     yield put(fetchProfileBusiness(data[0].id));
     yield put(fetchBusinessMembers(data[0].id));
     yield put(fetchBusinessDeliveries(data[0].id));
+    yield put(fetchBusinessDishes(data[0].id));
   } else {
     yield put(postBusiness());
   }

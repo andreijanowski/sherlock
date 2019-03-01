@@ -15,8 +15,6 @@ const Logo = ({ t, logo, saveLogo }) => (
             errorInfoType={t("validImages")}
             errorTipMultiple={t("invalidMultiple")}
             errorInfoMultiple={t("validMultiple")}
-            errorTip={t("someFilesAreInvalid")}
-            errorInfo={t("validFiles")}
             crop={t("app:crop")}
             cancel={t("app:cancel")}
             multiple={false}

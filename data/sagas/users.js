@@ -1,7 +1,8 @@
 import { fetchProfileBusiness } from "actions/users";
 import {
   fetchBusinessMembers,
-  fetchBusinessDeliveries
+  fetchBusinessDeliveries,
+  fetchBusinessDishes
 } from "actions/businesses";
 import { SET_CURRENT_BUSINESS, UPDATE_PROFILE_SUCCESS } from "types/users";
 import { POST_BUSINESS_SUCCESS } from "types/businesses";
@@ -18,6 +19,7 @@ function* fetchBusinessData({
   yield put(fetchProfileBusiness(id));
   yield put(fetchBusinessMembers(id));
   yield put(fetchBusinessDeliveries(id));
+  yield put(fetchBusinessDishes(id));
 }
 
 function* showSuccesNotification() {

@@ -1,0 +1,90 @@
+import { PureComponent } from "react";
+import withI18next from "lib/withI18next";
+import requireAuth from "lib/requireAuth";
+import loadTranslations from "utils/loadTranslations";
+import { func, string, arrayOf, shape } from "prop-types";
+import LefoodLayout from "sections/lefood/Layout";
+import Menu from "sections/lefood/menu";
+import { connect } from "react-redux";
+import { postDish, deleteDish } from "actions/dishes";
+
+const namespaces = ["lefood", "app", "forms"];
+
+class MenuPage extends PureComponent {
+  static async getInitialProps({ ctx }) {
+    const pageProps = loadTranslations(ctx, namespaces);
+
+    return {
+      ...pageProps
+    };
+  }
+
+  addDish = values => {
+    const {
+      addDish,
+      currentBusiness: { id }
+    } = this.props;
+    return addDish(
+      {
+        ...values,
+        pricePerItemCents: Number(values.pricePerItemCents) * 100
+      },
+      id
+    );
+  };
+
+  removeDish = id => {
+    const { removeDish } = this.props;
+    removeDish(id);
+  };
+
+  render() {
+    const { t, lng, dishes } = this.props;
+    return (
+      <LefoodLayout
+        {...{
+          t,
+          lng,
+          header: "menu"
+        }}
+      >
+        <Menu
+          {...{
+            t,
+            dishes,
+            addDish: this.addDish,
+            removeDish: this.removeDish
+          }}
+        />
+      </LefoodLayout>
+    );
+  }
+}
+
+MenuPage.propTypes = {
+  t: func.isRequired,
+  lng: string.isRequired,
+  dishes: arrayOf(shape()).isRequired,
+  currentBusiness: shape(),
+  addDish: func.isRequired,
+  removeDish: func.isRequired
+};
+
+MenuPage.defaultProps = {
+  currentBusiness: {}
+};
+
+export default requireAuth(true)(
+  withI18next(namespaces)(
+    connect(
+      state => ({
+        dishes: state.dishes.data,
+        currentBusiness: state.users.currentBusiness.data
+      }),
+      {
+        addDish: postDish,
+        removeDish: deleteDish
+      }
+    )(MenuPage)
+  )
+);

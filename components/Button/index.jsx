@@ -185,7 +185,10 @@ const Button = styled.button`
 export default Button;
 
 export const ButtonWithImageText = styled.div`
+  height: 40px;
+  line-height: 40px;
   padding: 0 16px;
+  border-left: 1px solid rgb(${p => p.theme.colors.linkWater});
 `;
 
 export const ButtonWithImageIconWrapper = styled(Flex)`
@@ -193,5 +196,4 @@ export const ButtonWithImageIconWrapper = styled(Flex)`
   height: 40px;
   align-items: center;
   justify-content: center;
-  border-right: 1px solid rgb(${p => p.theme.colors.linkWater});
 `;

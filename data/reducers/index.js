@@ -5,6 +5,7 @@ import users from "./users";
 import groups from "./groups";
 import members from "./members";
 import deliveries from "./deliveries";
+import dishes from "./dishes";
 
 export default {
   notifications,
@@ -13,5 +14,6 @@ export default {
   users,
   groups,
   members,
-  deliveries
+  deliveries,
+  dishes
 };

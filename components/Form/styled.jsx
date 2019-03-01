@@ -86,6 +86,40 @@ export const RawInput = styled.input`
   }
 `;
 
+export const ToggleButton = styled.button`
+  appearance: none !important;
+  border-radius: ${p => p.theme.radius.small};
+  border: 1px solid
+    rgb(
+      ${p =>
+        // eslint-disable-next-line no-nested-ternary
+        p.isOpen
+          ? p.theme.colors.blue
+          : p.invalid
+          ? p.theme.colors.ruby
+          : p.theme.colors.snuff}
+    );
+  padding: 27px 16px 12px;
+  box-sizing: border-box;
+  ${p => !p.rows && "height: 60px;"}
+  width: 100%;
+  resize: none;
+  text-align: left;
+
+  .ExpandIcon {
+    top: calc(50% - 9px);
+  }
+`;
+
+export const DropdownLabel = styled.div`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-120%) scale(${LABEL_ACTIVE_SCALE});
+  transform-origin: left;
+  color: rgb(${p => p.theme.colors.bombay});
+  pointer-events: none;
+`;
+
 export const RawTextarea = styled(({ smallLabel, ...p }) => (
   <TextareaAutosize {...p} />
 ))`
@@ -185,6 +219,8 @@ export const Item = styled(Box).attrs({
 })`
   cursor: pointer;
   ${p => p.isActive && `background-color: rgb(${p.theme.colors.background});`}
+  ${p =>
+    p.isSelected && `background-color: rgb(${p.theme.colors.linkWaterLight});`}
 `;
 
 export const ExpandIcon = () => (
