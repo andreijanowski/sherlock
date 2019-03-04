@@ -31,6 +31,7 @@ export const CopyrightWrapper = styled(Flex).attrs({
   justifyContent: ["center", "flex-start"]
 })`
   border-top: 1px solid rgba(${p => p.theme.colors.mischka}, 0.1);
+  max-width: 920px;
 `;
 
 export const TextWrapper = styled(Flex).attrs({

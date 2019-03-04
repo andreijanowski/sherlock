@@ -36,7 +36,18 @@ const Footer = ({ t }) => (
         </Box>
         <Box width={[1 / 2, "auto"]} p={2}>
           <ColumnTitle>{t("navigation.columnFour.title")}</ColumnTitle>
-          <NavigationList {...{ t, columnName: "columnFour" }} />
+          <NavigationList
+            {...{
+              t,
+              columnName: "columnFour",
+              hrefs: [
+                "https://www.facebook.com/sherlock.foodetective/",
+                "https://www.linkedin.com/company/13981713/",
+                "https://twitter.com/GetSherlockNow",
+                "https://www.instagram.com/sherlock.foodetective.co"
+              ]
+            }}
+          />
         </Box>
         {/* hide until we don't have mobile app */}
         {/* <Box>
