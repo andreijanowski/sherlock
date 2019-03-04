@@ -48,4 +48,5 @@ module.exports = routes()
   .add(
     "app/catering/create",
     `/:lng(${languagesPattern})/app/catering/create/`
-  );
+  )
+  .add("app/lefood/orders", `/:lng(${languagesPattern})/app/lefood/orders/`);

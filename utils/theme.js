@@ -22,7 +22,13 @@ export const colors = {
   bombay: "170, 172, 175",
   lavenderGray: "180, 184, 209",
   ruby: "222, 17, 84",
-  carrotOrange: "243, 119, 15"
+  carrotOrange: "243, 119, 15",
+  linkWaterDark: "228, 231, 248",
+  linkWater: "235, 237, 251",
+  linkWaterLight: "238, 239, 250",
+  titanWhite: "251, 251, 255",
+  rollingStone: "119, 122, 128",
+  greenHaze: "3, 160, 79"
 };
 
 const fontSizes = {
