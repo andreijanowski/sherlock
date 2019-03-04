@@ -17,7 +17,7 @@ const Products = ({
       <Product {...{ ...p, t, updateProduct, removeProduct, key: p.id }} />
     ))}
     <Flex m={-2} mb={3}>
-      <Box width={1 / 4} p={2}>
+      <Box width={[1 / 3, 1 / 4]} p={2}>
         <PerfectSquare width={1}>
           <DropzoneWithCropper
             tip="＋"

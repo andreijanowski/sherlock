@@ -4,7 +4,7 @@ import { Flex } from "@rebass/grid";
 export const Form = styled(Flex).attrs({
   as: "form",
   flexDirection: "column",
-  p: 4,
+  p: [3, 4],
   width: 1
 })`
   background-color: rgb(${p => p.theme.colors.white});

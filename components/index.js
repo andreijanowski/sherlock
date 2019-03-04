@@ -15,6 +15,8 @@ export { default as Paragraph } from "./Paragraph";
 export { default as LanguageSwitcher } from "./LanguageSwitcher";
 export { default as Footer } from "./Footer";
 export { default as NavBar } from "./NavBar";
+export { default as NavigationContainer } from "./NavigationContainer";
+export { default as MobileNav } from "./MobileNav";
 export { default as MainApp } from "./MainApp";
 export { default as FormInput } from "./Form/Input";
 export { default as FormTextarea } from "./Form/Textarea";
