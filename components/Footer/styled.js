@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import { Flex } from "@rebass/grid";
+import { Flex, Box } from "@rebass/grid";
 
 export const FooterWrapper = styled(Flex).attrs({
   as: "footer",
   flexDirection: "column",
-  pt: 50,
+  pt: [4, 50],
   pb: 20,
+  px: 4,
   width: 1,
   alignItems: "center",
   justifyContent: "center"
@@ -13,12 +14,21 @@ export const FooterWrapper = styled(Flex).attrs({
   background-color: white;
 `;
 
+export const FoodetectiveLogoWrapper = styled(Box).attrs({
+  width: 120
+})`
+  display: none;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    display: block;
+  }
+`;
+
 export const CopyrightWrapper = styled(Flex).attrs({
-  flexDirection: "row",
+  flexDirection: ["column", "row"],
   width: 1,
   pt: 20,
   alignItems: "center",
-  justifyContent: "center"
+  justifyContent: ["center", "flex-start"]
 })`
   border-top: 1px solid rgba(${p => p.theme.colors.mischka}, 0.1);
 `;
@@ -36,7 +46,9 @@ export const MenuWrapper = styled(Flex).attrs({
   flexDirection: "row",
   alignSelf: "center",
   justifyContent: "space-between",
-  mb: 50
+  mb: 50,
+  flexWrap: "wrap",
+  m: -2
 })`
   flex: 1;
   max-width: 920px;
@@ -68,11 +80,14 @@ export const NavigationLink = styled.a`
 
 export const CopyrightNote = styled.p`
   margin: 0;
-  padding-left: 120px;
-  font-size: ${p => p.theme.fontSizes.f14};
+  font-size: ${p => p.theme.fontSizes.f12};
   color: rgb(${p => p.theme.colors.mischka});
   line-height: 35px;
   align-self: center;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    padding-left: 120px;
+    font-size: ${p => p.theme.fontSizes.f14};
+  }
 `;
 
 export const AppPlatformLogo = styled.img`
