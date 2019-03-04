@@ -73,7 +73,7 @@ class OrdersPage extends PureComponent {
         {...{
           t,
           lng,
-          header: "orders"
+          page: "orders"
         }}
       >
         <Orders {...{ onDragEnd: this.handleDragEnd, data: this.state, t }} />

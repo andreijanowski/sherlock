@@ -10,7 +10,7 @@ const ListItem = ({ item, removeDish }) => (
         src={
           item.pictures &&
           item.pictures.length &&
-          item.pictures[0].photo.mobile.url
+          (item.pictures[0].photo.mobile.url || item.pictures[0].photo.url)
         }
       />
       <Flex flexDirection="column" width="calc(100% - 80px)">

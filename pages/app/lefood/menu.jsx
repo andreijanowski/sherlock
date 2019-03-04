@@ -2,11 +2,12 @@ import { PureComponent } from "react";
 import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
-import { func, string, arrayOf, shape } from "prop-types";
+import { func, string, arrayOf, shape, bool } from "prop-types";
 import LefoodLayout from "sections/lefood/Layout";
 import Menu from "sections/lefood/menu";
 import { connect } from "react-redux";
 import { postDish, deleteDish } from "actions/dishes";
+import { postPicture } from "actions/pictures";
 
 const namespaces = ["lefood", "app", "forms"];
 
@@ -38,22 +39,29 @@ class MenuPage extends PureComponent {
     removeDish(id);
   };
 
+  addPicture = (picture, id) => {
+    const { addPicture } = this.props;
+    addPicture("dish", id, picture);
+  };
+
   render() {
-    const { t, lng, dishes } = this.props;
+    const { t, lng, dishes, loading } = this.props;
     return (
       <LefoodLayout
         {...{
           t,
           lng,
-          header: "menu"
+          page: "menu"
         }}
       >
         <Menu
           {...{
             t,
             dishes,
+            loading,
             addDish: this.addDish,
-            removeDish: this.removeDish
+            removeDish: this.removeDish,
+            addPicture: this.addPicture
           }}
         />
       </LefoodLayout>
@@ -67,7 +75,9 @@ MenuPage.propTypes = {
   dishes: arrayOf(shape()).isRequired,
   currentBusiness: shape(),
   addDish: func.isRequired,
-  removeDish: func.isRequired
+  removeDish: func.isRequired,
+  addPicture: func.isRequired,
+  loading: bool.isRequired
 };
 
 MenuPage.defaultProps = {
@@ -78,12 +88,16 @@ export default requireAuth(true)(
   withI18next(namespaces)(
     connect(
       state => ({
+        loading:
+          (!state.dishes.isFailed && !state.dishes.isSucceeded) ||
+          state.dishes.isFetching,
         dishes: state.dishes.data,
         currentBusiness: state.users.currentBusiness.data
       }),
       {
         addDish: postDish,
-        removeDish: deleteDish
+        removeDish: deleteDish,
+        addPicture: postPicture
       }
     )(MenuPage)
   )

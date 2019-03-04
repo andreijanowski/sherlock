@@ -25,6 +25,11 @@ import {
   PATCH_OPEN_PERIOD_SUCCESS,
   DELETE_OPEN_PERIOD_REQUEST
 } from "types/openPeriods";
+import {
+  POST_ORDER_PERIOD_SUCCESS,
+  PATCH_ORDER_PERIOD_SUCCESS,
+  DELETE_ORDER_PERIOD_REQUEST
+} from "types/orderPeriods";
 
 import build from "redux-object";
 
@@ -161,15 +166,23 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     }
 
     case POST_PICTURE_SUCCESS: {
-      const newState = { ...state };
-      const picture = build(payload.data, "pictures", payload.rawData.data.id, {
-        ignoreLinks: true
-      });
-      newState.currentBusiness.data = {
-        ...newState.currentBusiness.data,
-        pictures: [...newState.currentBusiness.data.pictures, picture]
-      };
-      return newState;
+      if (payload.rawData.data.attributes.parentResource === "business") {
+        const newState = { ...state };
+        const picture = build(
+          payload.data,
+          "pictures",
+          payload.rawData.data.id,
+          {
+            ignoreLinks: true
+          }
+        );
+        newState.currentBusiness.data = {
+          ...newState.currentBusiness.data,
+          pictures: [...newState.currentBusiness.data.pictures, picture]
+        };
+        return newState;
+      }
+      return state;
     }
 
     case DELETE_PICTURE_REQUEST: {
@@ -298,6 +311,48 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       newState.currentBusiness.data = {
         ...newState.currentBusiness.data,
         openPeriods: newState.currentBusiness.data.openPeriods.filter(
+          p => p.id !== meta.id
+        )
+      };
+      return newState;
+    }
+
+    case POST_ORDER_PERIOD_SUCCESS: {
+      const newState = { ...state };
+      const orderPeriod =
+        build(payload.data, "orderPeriods", payload.rawData.data.id, {
+          ignoreLinks: true
+        }) || [];
+      newState.currentBusiness.data = {
+        ...newState.currentBusiness.data,
+        orderPeriods: [
+          ...newState.currentBusiness.data.orderPeriods,
+          orderPeriod
+        ]
+      };
+      return newState;
+    }
+
+    case PATCH_ORDER_PERIOD_SUCCESS: {
+      const newState = { ...state };
+      const orderPeriod =
+        build(payload.data, "orderPeriods", payload.rawData.data.id, {
+          ignoreLinks: true
+        }) || [];
+      const editedOrderPeriodIndex = newState.currentBusiness.data.orderPeriods.findIndex(
+        p => p.id === payload.rawData.data.id
+      );
+      newState.currentBusiness.data.orderPeriods[
+        editedOrderPeriodIndex
+      ] = orderPeriod;
+      return newState;
+    }
+
+    case DELETE_ORDER_PERIOD_REQUEST: {
+      const newState = { ...state };
+      newState.currentBusiness.data = {
+        ...newState.currentBusiness.data,
+        orderPeriods: newState.currentBusiness.data.orderPeriods.filter(
           p => p.id !== meta.id
         )
       };

@@ -51,4 +51,8 @@ module.exports = routes()
     "app/lefood/deliveries",
     `/:lng(${languagesPattern})/app/lefood/delivery-area/`
   )
-  .add("app/lefood/menu", `/:lng(${languagesPattern})/app/lefood/menu/`);
+  .add("app/lefood/menu", `/:lng(${languagesPattern})/app/lefood/menu/`)
+  .add(
+    "app/lefood/orderingHours",
+    `/:lng(${languagesPattern})/app/lefood/ordering-hours/`
+  );

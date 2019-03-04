@@ -4,6 +4,7 @@ import {
   FETCH_BUSINESS_DISHES_SUCCESS,
   FETCH_BUSINESS_DISHES_FAIL
 } from "types/businesses";
+import { POST_PICTURE_SUCCESS } from "types/pictures";
 import build from "redux-object";
 
 const initialState = {
@@ -52,6 +53,27 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       const newState = { ...state };
       newState.data = newState.data.filter(m => m.id !== meta.id);
       return newState;
+    }
+
+    case POST_PICTURE_SUCCESS: {
+      if (payload.rawData.data.attributes.parentResource === "dish") {
+        const newState = { ...state };
+        const picture = build(
+          payload.data,
+          "pictures",
+          payload.rawData.data.id,
+          {
+            ignoreLinks: true
+          }
+        );
+        const index = newState.data.findIndex(i => i.id === meta.id);
+        newState.data[index] = {
+          ...newState.data[index],
+          pictures: [picture]
+        };
+        return newState;
+      }
+      return state;
     }
 
     default: {

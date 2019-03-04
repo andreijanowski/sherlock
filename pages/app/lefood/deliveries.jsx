@@ -2,7 +2,7 @@ import { PureComponent } from "react";
 import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
-import { func, string, arrayOf, shape } from "prop-types";
+import { func, string, arrayOf, shape, bool } from "prop-types";
 import LefoodLayout from "sections/lefood/Layout";
 import Delivery from "sections/lefood/delivery";
 import { connect } from "react-redux";
@@ -40,19 +40,20 @@ class DeliveriesPage extends PureComponent {
   };
 
   render() {
-    const { t, lng, deliveries } = this.props;
+    const { t, lng, deliveries, loading } = this.props;
     return (
       <LefoodLayout
         {...{
           t,
           lng,
-          header: "deliveryArea"
+          page: "deliveryArea"
         }}
       >
         <Delivery
           {...{
             t,
             deliveries,
+            loading,
             addDelivery: this.addDelivery,
             removeDelivery: this.removeDelivery
           }}
@@ -68,7 +69,8 @@ DeliveriesPage.propTypes = {
   deliveries: arrayOf(shape()).isRequired,
   currentBusiness: shape(),
   addDelivery: func.isRequired,
-  removeDelivery: func.isRequired
+  removeDelivery: func.isRequired,
+  loading: bool.isRequired
 };
 
 DeliveriesPage.defaultProps = {
@@ -79,6 +81,9 @@ export default requireAuth(true)(
   withI18next(namespaces)(
     connect(
       state => ({
+        loading:
+          (!state.deliveries.isFailed && !state.deliveries.isSucceeded) ||
+          state.deliveries.isFetching,
         deliveries: state.deliveries.data,
         currentBusiness: state.users.currentBusiness.data
       }),

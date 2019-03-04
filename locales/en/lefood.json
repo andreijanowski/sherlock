@@ -31,5 +31,21 @@
   "invalidFiles": "Some of dragged files has not valid type",
   "validImages": "valid file types are png and jpeg",
   "invalidMultiple": "Can not choose multiple files",
-  "validMultiple": "only one file is accepted here"
+  "validMultiple": "only one file is accepted here",
+  "openingHours": "Ordering Hours",
+  "openedFromLabel": "From",
+  "openedFromPlaceholder": "10:00 AM",
+  "openedToLabel": "To",
+  "openedToPlaceholder": "08:00 PM",
+  "weekdays": [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ],
+  "copy": "copy",
+  "paste": "paste"
 }
