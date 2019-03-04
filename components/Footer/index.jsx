@@ -9,9 +9,7 @@ import {
   ColumnTitle,
   CopyrightWrapper,
   CopyrightNote,
-  ListWrapper,
-  NavigationLink,
-  AppPlatformLogo
+  FoodetectiveLogoWrapper
 } from "./styled";
 import NavigationList from "./navigationList";
 
@@ -20,27 +18,39 @@ const namespaces = ["footer"];
 const Footer = ({ t }) => (
   <FooterWrapper>
     <TextWrapper>
-      <Box width={120}>
+      <FoodetectiveLogoWrapper>
         <FoodetectiveLogo />
-      </Box>
+      </FoodetectiveLogoWrapper>
       <MenuWrapper>
-        <Box>
+        <Box width={[1 / 2, "auto"]} p={2}>
           <ColumnTitle>{t("navigation.columnOne.title")}</ColumnTitle>
           <NavigationList {...{ t, columnName: "columnOne" }} />
         </Box>
-        <Box>
+        <Box width={[1 / 2, "auto"]} p={2}>
           <ColumnTitle>{t("navigation.columnTwo.title")}</ColumnTitle>
           <NavigationList {...{ t, columnName: "columnTwo" }} />
         </Box>
-        <Box>
+        <Box width={[1 / 2, "auto"]} p={2}>
           <ColumnTitle>{t("navigation.columnThree.title")}</ColumnTitle>
           <NavigationList {...{ t, columnName: "columnThree" }} />
         </Box>
-        <Box>
+        <Box width={[1 / 2, "auto"]} p={2}>
           <ColumnTitle>{t("navigation.columnFour.title")}</ColumnTitle>
-          <NavigationList {...{ t, columnName: "columnFour" }} />
+          <NavigationList
+            {...{
+              t,
+              columnName: "columnFour",
+              hrefs: [
+                "https://www.facebook.com/sherlock.foodetective/",
+                "https://www.linkedin.com/company/13981713/",
+                "https://twitter.com/GetSherlockNow",
+                "https://www.instagram.com/sherlock.foodetective.co"
+              ]
+            }}
+          />
         </Box>
-        <Box>
+        {/* hide until we don't have mobile app */}
+        {/* <Box>
           <ColumnTitle>{t("navigation.columnFive.title")}</ColumnTitle>
           <nav>
             <ListWrapper>
@@ -56,14 +66,12 @@ const Footer = ({ t }) => (
               </li>
             </ListWrapper>
           </nav>
-        </Box>
+        </Box> */}
       </MenuWrapper>
     </TextWrapper>
     <CopyrightWrapper>
-      <TextWrapper>
-        <CopyrightNote>{t("copyrightNote")}</CopyrightNote>
-        <LanguageSwitcher withBorder={false} listPosition="top" />
-      </TextWrapper>
+      <CopyrightNote>{t("copyrightNote")}</CopyrightNote>
+      <LanguageSwitcher withBorder={false} listPosition="top" />
     </CopyrightWrapper>
   </FooterWrapper>
 );
