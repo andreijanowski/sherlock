@@ -3,5 +3,40 @@
   "day": "Day",
   "week": "Week",
   "month": "Month",
-  "year": "Year"
+  "year": "Year",
+  "createEvent": {
+    "basicInfo": "Basic information",
+    "name": "Catering name",
+    "price": "Price",
+    "from": "From",
+    "to": "To",
+    "date": "Date",
+    "details": "Details",
+    "numberOfServings": "Number of servings",
+    "typeOfEvent": "Type of event",
+    "numberOfWaiters": "Number of waiters",
+    "cutlery": "Cutlery",
+    "cutleryOption": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "chefAttendance": "Chef attendance",
+    "chefAttendanceOption": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "specifications": "Specifications",
+    "additional": "Additional",
+    "location": "Location"
+  },
+  "servings": "Number of servings:",
+  "type": "Type of event:",
+  "waiters": "Number of waiters:",
+  "cutlery": "Cutlery:",
+  "chef": "Chef attendance:",
+  "specifications": "Specifications:",
+  "additional": "Additional:",
+  "downloadMenu": "Download Menu",
+  "yes": "Yes",
+  "no": "No"
 }

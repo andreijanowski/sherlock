@@ -16,7 +16,9 @@ const LANGUAGES = ["en", "fr", "de", "it"];
 class LanguageSwitcher extends Component {
   state = {
     listIsVisible: false,
-    selectedLanguage: i18n.language
+    selectedLanguage: LANGUAGES.some(l => l === i18n.language)
+      ? i18n.language
+      : "en"
   };
 
   toggleLanguageListVisible = () => {
