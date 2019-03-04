@@ -3,7 +3,7 @@ import { Flex } from "@rebass/grid";
 
 export const Wrapper = styled(Flex).attrs({
   ml: "1px",
-  width: 280,
+  width: [undefined, 160, 240, 280],
   flexDirection: "column"
 })`
   background-color: rgb(${p => p.theme.colors.white});

@@ -37,6 +37,7 @@ i18n
         "members",
         "notifications",
         "openingHours",
+        "orders",
         "picturesAndMenus",
         "register",
         "settingsBasicInfo",
