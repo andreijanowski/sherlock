@@ -4,8 +4,13 @@ import { node, func, bool } from "prop-types";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PUBLIC_FACEBOOK_APP_ID, PUBLIC_FACEBOOK_APP_FIELDS } from "consts";
-import { Button } from "components";
 import { facebookLogin } from "actions/auth";
+import { FacebookIcon } from "icons";
+import {
+  FacebookStyledButton,
+  FacebookIconWrapper,
+  LoadingIconWrapper
+} from "./styled";
 
 const handleClick = cb => e => {
   e.preventDefault();
@@ -22,22 +27,29 @@ const FacebookLogin = props => (
     isMobile
     disableMobileRedirect
     render={({ onClick, isProcessing, isSdkLoaded }) => (
-      <Button
+      <FacebookStyledButton
         type="button"
+        fluid
         disabled={isProcessing || !isSdkLoaded || props.disabled}
         onClick={handleClick(onClick)}
-        styleName="outlineBlue"
       >
+        <FacebookIconWrapper>
+          <FacebookIcon />
+        </FacebookIconWrapper>
         {isProcessing ? (
           <React.Fragment>
             <FontAwesomeIcon icon="circle-notch" spin size="lg" />
           </React.Fragment>
         ) : (
           <React.Fragment>
-            {props.children || <FontAwesomeIcon icon={["fab", "facebook-f"]} />}
+            {props.children || (
+              <LoadingIconWrapper>
+                <FontAwesomeIcon icon={["fab", "facebook-f"]} />
+              </LoadingIconWrapper>
+            )}
           </React.Fragment>
         )}
-      </Button>
+      </FacebookStyledButton>
     )}
   />
 );

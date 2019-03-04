@@ -10,9 +10,12 @@ export const SuccessMessageWrapper = styled(Paragraph)`
 `;
 
 export const HelperTitle = styled.h2`
-  font-size: ${p => p.theme.fontSizes.f24};
+  font-size: ${p => p.theme.fontSizes.f16};
   font-weight: ${p => p.theme.fontWeights.semiBold};
   margin: 0 0 16px 0;
+  @media (min-width: ${p => p.theme.breakpoints[2]}) {
+    font-size: ${p => p.theme.fontSizes.f24};
+  }
 `;
 
 export const InputContainer = styled.div`
@@ -41,10 +44,14 @@ export const CustomRadioButtonPlaceholder = styled.span`
   width: 120px;
 `;
 
+export const RadioButtonFieldContainer = styled(Flex).attrs({
+  width: 0.25
+})``;
+
 export const RadioButtonsContainer = styled(Flex).attrs({
   width: 1,
-  alignItems: "center",
-  justifyContent: "space-between"
+  flexWrap: "wrap",
+  m: -1
 })`
   max-width: 570px;
 `;

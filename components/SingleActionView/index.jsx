@@ -1,8 +1,19 @@
 import { string, node } from "prop-types";
-import { Flex, Box } from "@rebass/grid";
+import { Box } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { H2, Paragraph, Link, Wordmark } from "components";
-import { LeftBox, SherlockMark, BackToLandingPage, RightBox } from "./styled";
+import { Link, Wordmark, FoodetectiveLogo } from "components";
+import {
+  H2Styled,
+  ParagraphStyled,
+  LeftBox,
+  SherlockMark,
+  BackToLandingPage,
+  RightBox,
+  Wrapper,
+  BackWrapper,
+  LogoMobileWrapper,
+  RightBoxChildrenWrapper
+} from "./styled";
 
 const SingleActionView = ({
   lng,
@@ -10,31 +21,36 @@ const SingleActionView = ({
   actionTitle,
   actionDescription
 }) => (
-  <Flex width={1}>
-    <LeftBox width={1 / 2}>
+  <Wrapper>
+    <LeftBox width={[1, 1, 1 / 2]}>
       <SherlockMark>
         <Wordmark inline />
       </SherlockMark>
-      <Box alignSelf="center">
-        <Link lng={lng} route="/">
-          <BackToLandingPage>
-            <FontAwesomeIcon icon="arrow-left" size="xs" />
-          </BackToLandingPage>
-        </Link>
-        <H2>{actionTitle}</H2>
+      <Box alignSelf="center" width={1}>
+        <BackWrapper>
+          <Link lng={lng} route="/">
+            <BackToLandingPage>
+              <FontAwesomeIcon icon="arrow-left" size="xs" />
+            </BackToLandingPage>
+          </Link>
+          <LogoMobileWrapper>
+            <FoodetectiveLogo />
+          </LogoMobileWrapper>
+        </BackWrapper>
+        <H2Styled textAlign="center">{actionTitle}</H2Styled>
         {actionDescription.type ? (
           actionDescription
         ) : (
-          <Paragraph>{actionDescription}</Paragraph>
+          <ParagraphStyled>{actionDescription}</ParagraphStyled>
         )}
       </Box>
     </LeftBox>
-    <RightBox width={1 / 2}>
-      <Box alignSelf="center" pr={80} width={1 / 1}>
+    <RightBox width={[1, 1, 1 / 2]} justifyContent="center">
+      <RightBoxChildrenWrapper alignSelf="center" pr={[0, 0, 80]} width={1}>
         {children}
-      </Box>
+      </RightBoxChildrenWrapper>
     </RightBox>
-  </Flex>
+  </Wrapper>
 );
 
 SingleActionView.propTypes = {

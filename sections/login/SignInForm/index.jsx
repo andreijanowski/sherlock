@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import { Form } from "react-final-form";
 import { func } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { InputField, Button, FacebookLogin } from "components";
+import { InputField, Button, FacebookLogin, TextSeparator } from "components";
 import { login } from "actions/auth";
 import { validateEmail, required } from "utils/validators";
-import { FormContainer, Separator } from "./styled";
+import { FormContainer } from "./styled";
 
 class SignInForm extends PureComponent {
   constructor(props) {
@@ -55,7 +55,7 @@ class SignInForm extends PureComponent {
                 t("loginButton")
               )}
             </Button>
-            <Separator size={36}>or</Separator>
+            <TextSeparator size={36}>or</TextSeparator>
             <FacebookLogin>{t("Facebook")}</FacebookLogin>
           </FormContainer>
         )}
