@@ -1,4 +1,4 @@
-const breakpoints = ["40em", "52em", "64em"];
+const breakpoints = ["40em", "52em", "64em", "75em"];
 
 const borderWeights = {
   tiny: "2px",

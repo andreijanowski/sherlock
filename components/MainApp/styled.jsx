@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
-export const Wrapper = styled(Flex).attrs(p => ({
-  width: [1, p.withMenu ? "calc(100% - 361px)" : "calc(100% - 80px)"],
+export const Wrapper = styled(Flex).attrs({
+  width: 1,
   flexDirection: "column",
   p: 3,
   mt: [60, 0]
-}))`
+})`
   position: relative;
 `;
 
@@ -32,12 +32,12 @@ export const HeaderWrapper = styled(Flex).attrs({
 export const MainIconWrapper = styled(Flex).attrs({
   alignItems: "center",
   justifyContent: "center",
-  width: 48
+  width: [undefined, 32, 32, 48]
 })`
   display: none;
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     display: flex;
-    height: 48px;
+    height: 32px;
     border-radius: 24px;
     background-color: rgb(${p => p.theme.colors.blue});
     box-shadow: 0 3px 8px 0 rgba(${p => p.theme.colors.blue}, 0.48);
@@ -49,12 +49,21 @@ export const MainIconWrapper = styled(Flex).attrs({
       fill: rgb(${p => p.theme.colors.white});
     }
   }
+  @media (min-width: ${p => p.theme.breakpoints[2]}) {
+    height: 48px;
+  }
 `;
 
 export const Header = styled(Flex).attrs({ as: "h1", ml: [0, 3], my: 0 })`
   font-size: ${p => p.theme.fontSizes.f16};
   font-weight: ${p => p.theme.fontWeights.semiBold};
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    font-size: ${p => p.theme.fontSizes.f21};
+  }
+  @media (min-width: ${p => p.theme.breakpoints[1]}) {
+    font-size: ${p => p.theme.fontSizes.f24};
+  }
+  @media (min-width: ${p => p.theme.breakpoints[2]}) {
     font-size: ${p => p.theme.fontSizes.f36};
   }
 `;
