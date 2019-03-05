@@ -3,14 +3,17 @@ import { Flex, Box } from "@rebass/grid";
 
 export const MainWrapper = styled.div`
   max-width: 960px;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
   margin-left: 16px;
   margin-right: 16px;
   position: relative;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    margin-bottom: 80px;
+  }
 `;
 
 export const ServicesWrapper = styled(Flex).attrs({
-  p: 4,
+  p: [3, 4],
   flexDirection: "column",
   width: 1
 })`

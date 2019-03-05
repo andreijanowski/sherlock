@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
+import { alignCenterMobile } from "../sharedStyled";
 
 export const PlansWrapper = styled(Flex).attrs({
   flexDirection: "row",
@@ -78,6 +79,7 @@ export const PriceDescription = styled.div`
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 1.5;
+  ${alignCenterMobile};
 `;
 
 export const Price = styled.div`
@@ -86,6 +88,7 @@ export const Price = styled.div`
   font-size: ${p => p.theme.fontSizes.f36};
   line-height: 1.333;
   margin-bottom: 40px;
+  ${alignCenterMobile};
   small {
     font-size: ${p => p.theme.fontSizes.f16};
   }

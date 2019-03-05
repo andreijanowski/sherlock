@@ -101,8 +101,8 @@
       "mostPopular": "Most popular",
       "priceDescription": "Starting at",
       "price": {
-        "monthly": "€149",
-        "yearly": "€1490"
+        "monthly": "€29.90",
+        "yearly": "€299"
       },
       "monthly": "month",
       "yearly": "year",
@@ -130,19 +130,19 @@
         },
         {
           "name": "Take Away",
-          "discount": "3.5%"
+          "discount": "Free"
         },
         {
           "name": "Catering",
-          "discount": "7%"
+          "discount": "Free"
         },
         {
           "name": "Privatization",
-          "discount": "7%"
+          "discount": "Free"
         },
         {
           "name": "Delivery",
-          "discount": "3,5%"
+          "discount": "Free"
         },
         {
           "name": "Monthly Data",
@@ -159,8 +159,8 @@
       "bestValue": "Best Value",
       "priceDescription": "Starting at",
       "price": {
-        "monthly": "€299",
-        "yearly": "€2990"
+        "monthly": "€59.90",
+        "yearly": "€599"
       },
       "monthly": "month",
       "yearly": "year",
@@ -192,11 +192,11 @@
         },
         {
           "name": "Catering",
-          "discount": "5%"
+          "discount": "Free"
         },
         {
           "name": "Privatization",
-          "discount": "5%"
+          "discount": "Free"
         },
         {
           "name": "Delivery",
