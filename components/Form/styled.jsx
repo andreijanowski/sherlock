@@ -280,9 +280,12 @@ export const HiddenCheckboxInput = styled.input.attrs({
 export const TimekeeperWrapper = styled.div`
   position: absolute;
   width: 260px;
-  left: calc(50% - 130px);
+  left: 0;
   transform: translateY(${p => p.top}px);
   z-index: 2;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    left: calc(50% - 130px);
+  }
 `;
 
 export const ActionIconWrapper = styled.div`
@@ -295,8 +298,7 @@ export const DaypickerWrapper = styled.div`
   position: relative;
   .DayPicker {
     position: absolute;
-    top: 10px;
-    left: 0;
+    right: 0;
     top: 70px;
     z-index: 2;
     background: rgb(${p => p.theme.colors.white});

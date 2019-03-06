@@ -50,7 +50,7 @@ const mockEvents = () => {
 };
 
 const Month = ({ t }) => (
-  <CalendarWrapper height="550">
+  <CalendarWrapper height="620">
     <CalendarStyles />
     <BigCalendar
       localizer={localizer}
