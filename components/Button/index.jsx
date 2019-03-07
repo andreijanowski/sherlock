@@ -152,6 +152,10 @@ const fluid = css`
   width: 100%;
 `;
 
+const fullHeight = css`
+  height: 100%;
+`;
+
 const Button = styled.button`
   border-radius: ${p => p.theme.radius.default};
   font-size: ${p => p.theme.fontSizes.f16};
@@ -175,6 +179,7 @@ const Button = styled.button`
   ${p => p.styleName === "accept" && accept};
   ${p => p.styleName === "withImage" && withImage};
   ${p => p.fluid && fluid};
+  ${p => p.fullHeight && fullHeight};
 
   &:disabled {
     cursor: not-allowed;
