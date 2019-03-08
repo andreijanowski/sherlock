@@ -70,10 +70,16 @@ const TopSection = ({ t, lng, plansRef }) => (
             {t("topSection.addManager")}
           </Button>
         </Box>
-        <Box width={[1, "auto"]}>
+        <Box width={[1, "auto"]} p={["2px", 1]}>
           <ButtonWithIcon fluid>
             <FontAwesomeIcon icon="play" size="xs" />
             {t("topSection.watchVideo")}
+          </ButtonWithIcon>
+        </Box>
+        <Box width={[1, "auto"]} p={["2px", 1]}>
+          <ButtonWithIcon fluid>
+            <FontAwesomeIcon icon="play" size="xs" />
+            {t("topSection.testimonials")}
           </ButtonWithIcon>
         </Box>
       </Flex>

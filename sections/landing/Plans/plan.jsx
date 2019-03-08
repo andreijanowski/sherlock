@@ -17,12 +17,24 @@ const Plan = ({ t, color, name, billingPeriod, onClickActionButton }) => (
     <NameWrapper>
       <Name color={color}>{t(`plans.${name}.name`)}</Name>
       {name === "basic" && (
-        <MostPopular color={color}>
-          {t(`plans.${name}.mostPopular`)}
-        </MostPopular>
+        <>
+          <MostPopular color={color}>
+            {t(`plans.${name}.mostPopular`)}
+          </MostPopular>
+          <MostPopular color="ruby">
+            {t(`plans.${name}.promoPrice`)}
+          </MostPopular>
+        </>
       )}
       {name === "premium" && (
-        <MostPopular color={color}>{t(`plans.${name}.bestValue`)}</MostPopular>
+        <>
+          <MostPopular color={color}>
+            {t(`plans.${name}.bestValue`)}
+          </MostPopular>
+          <MostPopular color="ruby">
+            {t(`plans.${name}.promoPrice`)}
+          </MostPopular>
+        </>
       )}
     </NameWrapper>
     <PriceWrapper>

@@ -38,8 +38,10 @@ export const H1Styled = styled(H1)`
 `;
 
 export const ButtonWithIcon = styled(Button).attrs({
-  styleName: "transparent"
+  styleName: "outlineBlue",
+  fullHeight: true
 })`
+  background: none;
   font-size: ${p => p.theme.fontSizes.f14};
   svg {
     margin-right: 8px;

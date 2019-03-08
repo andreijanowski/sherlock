@@ -1,23 +1,14 @@
 import { Service, Badge } from "./styled";
+import { generatePlanOptionsList } from "./utils";
 
-const List = ({ t, name, color }) => {
-  const listLength = t(`plans.${name}.list.length`);
-  const listArray = [];
-  for (let i = 0; i < listLength; i += 1) {
-    const serviceName = t(`plans.${name}.list.${i}.name`);
-    const serivceDiscount = t(`plans.${name}.list.${i}.discount`);
-    if (serivceDiscount !== "0") {
-      listArray.push(
-        <Service key={serviceName}>
-          <Badge color={color}>{serivceDiscount}</Badge>
-          {serviceName}
-        </Service>
-      );
-    } else {
-      listArray.push(<Service key={serviceName}>{serviceName}</Service>);
-    }
-  }
-  return listArray;
+const List = ({ t, name: listName, color }) => {
+  const list = generatePlanOptionsList(listName, t);
+  return list.map(({ name, isHighlighted, isLighter, discount }) => (
+    <Service key={name} {...{ isHighlighted, isLighter }}>
+      {discount && <Badge color={color}>{discount}</Badge>}
+      {name}
+    </Service>
+  ));
 };
 
 export default List;
