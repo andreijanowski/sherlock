@@ -83,6 +83,16 @@ class BasicInformation extends PureComponent {
       updateBusiness,
       business: { id }
     } = this.props;
+    const sendGroupsList =
+      !name &&
+      !tagline &&
+      !(country && country.value) &&
+      !(region && region.value) &&
+      !street &&
+      !streetNumber &&
+      !postCode &&
+      !ownerRole &&
+      !bio;
     const requestValues = {
       name,
       tagline,
@@ -91,16 +101,19 @@ class BasicInformation extends PureComponent {
       street,
       streetNumber,
       postCode,
-      groupsList: getGroupsValues([
-        ...types,
-        ...cuisines,
-        ...foodsAndDrinks,
-        ...quirks,
-        ...diets
-      ]),
+      groupsList: sendGroupsList
+        ? getGroupsValues([
+            ...types,
+            ...cuisines,
+            ...foodsAndDrinks,
+            ...quirks,
+            ...diets
+          ])
+        : undefined,
       ownerRole,
       bio
     };
+    console.log(requestValues);
     return updateBusiness(id, requestValues);
   };
 
