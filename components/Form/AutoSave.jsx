@@ -62,8 +62,6 @@ class AutoSave extends React.Component {
       }
       setFieldData(blurredField, { saving: false });
     } catch (e) {
-      console.log(e);
-      console.log(e.response);
       if (e.response) {
         setFieldData(blurredField, {
           error: t(
@@ -72,6 +70,8 @@ class AutoSave extends React.Component {
             }`
           )
         });
+      } else {
+        console.log(e);
       }
       setFieldData(blurredField, { saving: false });
       if (this.promise) {

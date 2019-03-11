@@ -113,7 +113,6 @@ class BasicInformation extends PureComponent {
       ownerRole,
       bio
     };
-    console.log(requestValues);
     return updateBusiness(id, requestValues);
   };
 
