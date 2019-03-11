@@ -14,12 +14,14 @@ const PublishModal = ({ t, lng, close }) => {
   return (
     <Wrapper>
       <Header>
-        <Box mb={3} width={1 / 6}>
+        <Box mb={3} width={["auto", 1 / 6]}>
           <Button styleName="blue" onClick={close}>
             {t("publishModal:cancel")}
           </Button>
         </Box>
-        <H2>{t("publishModal:header")}</H2>
+        <Box width={1}>
+          <H2>{t("publishModal:header")}</H2>
+        </Box>
         <Box width={1 / 6} />
       </Header>
       <Paragraph>

@@ -25,3 +25,17 @@ export const Image = styled.div`
   border-radius: ${p => p.theme.radius.default};
   position: relative;
 `;
+
+export const PublishMobileIconWrapper = styled(Flex).attrs({
+  alignItems: "center",
+  mb: 2
+})`
+  background-color: rgb(${p => p.theme.colors.white});
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    display: none;
+  }
+`;
+
+export const PublishHeader = styled.p`
+  margin-left: 8px;
+`;

@@ -3,13 +3,20 @@ import { createGlobalStyle } from "styled-components";
 export const ModalStyles = createGlobalStyle`
   .modal-overlay {
     background-color: rgba(${p => p.theme.colors.dark}, 0.16);
-    padding: 32px;
+    padding: 16px;
+    @media (min-width: ${p => p.theme.breakpoints[0]}) {
+      padding: 32px;
+    }
   }
 
   .modal-modal {
     border-radius: ${p => p.theme.radius.default};
-    padding: 32px;
-    max-width: calc(100vw - 64px);
+    padding: 16px;
+    max-width: calc(100vw - 32px);
+    @media (min-width: ${p => p.theme.breakpoints[0]}) {
+      padding: 32px;
+      max-width: calc(100vw - 64px);
+    }
   }
 
   .modal-closeButton {
