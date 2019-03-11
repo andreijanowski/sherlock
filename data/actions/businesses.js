@@ -3,7 +3,8 @@ import {
   PATCH_BUSINESS_REQUEST,
   FETCH_BUSINESS_MEMBERS_REQUEST,
   FETCH_BUSINESS_DELIVERIES_REQUEST,
-  FETCH_BUSINESS_DISHES_REQUEST
+  FETCH_BUSINESS_DISHES_REQUEST,
+  FETCH_BUSINESS_ORDERS_REQUEST
 } from "types/businesses";
 
 export const postBusiness = () => ({
@@ -74,6 +75,19 @@ export const fetchBusinessDishes = id => ({
       per_page: 200,
       page: 1,
       include: "pictures"
+    }
+  },
+  meta: { thunk: true }
+});
+
+export const fetchBusinessOrders = id => ({
+  type: FETCH_BUSINESS_ORDERS_REQUEST,
+  payload: {
+    endpoint: `/api/v1/businesses/${id}/orders`,
+    params: {
+      per_page: 200,
+      page: 1,
+      include: "elements"
     }
   },
   meta: { thunk: true }

@@ -24,20 +24,22 @@ const Order = ({ order, columnId, index, t, onClick }) => (
         canceled={columnId === columns.canceled}
       >
         <OrderHeader>
-          <OrderPrice>{order.price}</OrderPrice>
-          <OrderTime>{order.time}</OrderTime>
+          <OrderPrice>{order.totalCostCents}</OrderPrice>
+          <OrderTime>{order.estimatedDeliveryIn}</OrderTime>
         </OrderHeader>
         <OrderDetails>
-          {columnId === columns.newOrders && (
+          {order.status === "paid" && (
             <PaymentConfirmed>
               <FontAwesomeIcon icon={["fa", "check"]} />
+
               <Box ml={2}>{t("paymentConfimed")}</Box>
             </PaymentConfirmed>
           )}
-          {order.details.map(detail => (
-            <OrderDetail key={detail}>{detail}</OrderDetail>
-          ))}
-          {columnId === "canceled" && (
+          {order.elements &&
+            order.elements.map(element => (
+              <OrderDetail key={element.id}>{element.id}</OrderDetail>
+            ))}
+          {columnId === columns.canceled && (
             <Flex mt={3}>
               <Box width={1}>
                 <Button fluid styleName="reject" onClick={() => null}>

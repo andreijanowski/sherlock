@@ -23,7 +23,7 @@ function makeStore(initialState, rootReducer) {
   );
 
   store.runSagaTask = () => {
-    store.sagaTask = sagaMiddleware.run(rootSaga);
+    store.sagaTask = sagaMiddleware.run(rootSaga, store.dispatch);
   };
 
   store.runSagaTask();

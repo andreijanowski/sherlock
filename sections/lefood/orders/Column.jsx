@@ -1,6 +1,6 @@
 import { Droppable } from "react-beautiful-dnd";
 import { shape, string, arrayOf, func } from "prop-types";
-import Order from "./Order";
+import Orders from "./Orders";
 import {
   ColumnWrapper,
   ColumnHeader,
@@ -25,11 +25,7 @@ const Column = ({ id, title, orders, t, onClick }) => (
           ref={provided.innerRef}
           canceled={id === columns.canceled}
         >
-          {orders.map((order, index) => (
-            <Order
-              {...{ order, t, onClick, columnId: id, index, key: order.id }}
-            />
-          ))}
+          <Orders {...{ orders, t, onClick, id }} />
           {provided.placeholder}
         </OrdersWrapper>
       )}

@@ -2,10 +2,15 @@ import { PureComponent } from "react";
 import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
-import { func, string } from "prop-types";
+import { func, string, arrayOf, shape, bool } from "prop-types";
 import LefoodLayout from "sections/lefood/Layout";
 import Orders from "sections/lefood/orders";
-import { mockData } from "sections/lefood/orders/utils";
+import {
+  parseOrders,
+  columns as columnsNames
+} from "sections/lefood/orders/utils";
+import { connect } from "react-redux";
+import { patchOrder } from "actions/orders";
 
 const namespaces = ["lefood", "app"];
 
@@ -18,7 +23,27 @@ class OrdersPage extends PureComponent {
     };
   }
 
-  state = mockData;
+  constructor(props) {
+    super(props);
+    this.state = {
+      columns: parseOrders(props.orders)
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    const { loading } = this.props;
+    const { loading: wasloading } = prevProps;
+    if (wasloading && !loading) {
+      this.refreshColumnsContent();
+    }
+  }
+
+  refreshColumnsContent = () => {
+    const { orders } = this.props;
+    this.setState({
+      columns: parseOrders(orders)
+    });
+  };
 
   handleDragEnd = ({ destination, source, draggableId }) => {
     if (
@@ -27,6 +52,17 @@ class OrdersPage extends PureComponent {
         destination.index === source.index)
     ) {
       return;
+    }
+
+    const { updateOrder } = this.props;
+    if (destination.droppableId === columnsNames.newOrders) {
+      updateOrder({ state: "waiting_for_approval" }, draggableId);
+    } else if (destination.droppableId === columnsNames.inProgress) {
+      updateOrder({ state: "in_preparation" }, draggableId);
+    } else if (destination.droppableId === columnsNames.done) {
+      updateOrder({ state: "completed" }, draggableId);
+    } else if (destination.droppableId === columnsNames.canceled) {
+      updateOrder({ state: "rejected" }, draggableId);
     }
 
     this.setState(state => {
@@ -67,7 +103,8 @@ class OrdersPage extends PureComponent {
   };
 
   render() {
-    const { t, lng } = this.props;
+    const { t, lng, orders, loading } = this.props;
+    const { columns } = this.state;
     return (
       <LefoodLayout
         {...{
@@ -76,7 +113,9 @@ class OrdersPage extends PureComponent {
           page: "orders"
         }}
       >
-        <Orders {...{ onDragEnd: this.handleDragEnd, data: this.state, t }} />
+        <Orders
+          {...{ onDragEnd: this.handleDragEnd, orders, columns, loading, t }}
+        />
       </LefoodLayout>
     );
   }
@@ -84,7 +123,30 @@ class OrdersPage extends PureComponent {
 
 OrdersPage.propTypes = {
   t: func.isRequired,
-  lng: string.isRequired
+  lng: string.isRequired,
+  orders: arrayOf(shape()).isRequired,
+  currentBusiness: shape(),
+  loading: bool.isRequired,
+  updateOrder: func.isRequired
 };
 
-export default requireAuth(true)(withI18next(namespaces)(OrdersPage));
+OrdersPage.defaultProps = {
+  currentBusiness: {}
+};
+
+export default requireAuth(true)(
+  withI18next(namespaces)(
+    connect(
+      state => ({
+        loading:
+          (!state.orders.isFailed && !state.orders.isSucceeded) ||
+          state.orders.isFetching,
+        orders: state.orders.data,
+        currentBusiness: state.users.currentBusiness.data
+      }),
+      {
+        updateOrder: patchOrder
+      }
+    )(OrdersPage)
+  )
+);
