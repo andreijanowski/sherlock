@@ -18,8 +18,8 @@ const Orders = ({ onDragEnd, orders, columns, loading, t }) =>
             <Column
               {...{
                 ...column,
-                orders: columnOrders,
                 t,
+                orders: columnOrders,
                 onClick: onDragEnd,
                 key: column.id
               }}
