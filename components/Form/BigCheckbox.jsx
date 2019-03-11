@@ -1,8 +1,8 @@
 import { PureComponent, createRef } from "react";
 import { Field as FinalFormField } from "react-final-form";
-import { string, func, shape } from "prop-types";
+import { string, shape } from "prop-types";
 import { PerfectSquare, LoadingIndicator } from "components";
-import { CheckboxLabel, Checkbox } from "./styled";
+import { CheckboxLabel, Checkbox, DisabledMessageCheckbox } from "./styled";
 import { getError } from "./utils";
 
 class BigCheckbox extends PureComponent {
@@ -22,7 +22,7 @@ class BigCheckbox extends PureComponent {
   };
 
   render() {
-    const { label, name, value, setError, ...rest } = this.props;
+    const { label, name, value, ...rest } = this.props;
 
     return (
       <FinalFormField
@@ -32,22 +32,35 @@ class BigCheckbox extends PureComponent {
         {...rest}
         render={({ input: { value: checkedValues, ...input }, meta }) => {
           const error = getError(meta);
-          if (meta.touched) {
-            setError(error);
-          }
           const isChecked =
             checkedValues && checkedValues.some(v => v.value === value.value);
+          const disabled =
+            !!meta.data.invalidGroupName &&
+            meta.data.invalidGroupName !== input.name;
           return (
             <PerfectSquare width={1}>
-              <CheckboxLabel checked={isChecked} error={error}>
+              <CheckboxLabel
+                checked={isChecked}
+                error={error}
+                disabled={disabled}
+              >
                 <Checkbox
                   ref={this.checkbox}
                   {...input}
                   value={JSON.stringify(value)}
-                  onChange={e => this.handleChange(e, input, checkedValues)}
+                  onChange={
+                    disabled
+                      ? undefined
+                      : e => this.handleChange(e, input, checkedValues)
+                  }
                   checked={isChecked}
                 />
                 {label}
+                {disabled && (
+                  <DisabledMessageCheckbox>
+                    {meta.data.invalidGroupNameMessage}
+                  </DisabledMessageCheckbox>
+                )}
               </CheckboxLabel>
               {meta.data.saving && !meta.active && <LoadingIndicator />}
             </PerfectSquare>
@@ -60,7 +73,6 @@ class BigCheckbox extends PureComponent {
 
 BigCheckbox.propTypes = {
   name: string.isRequired,
-  setError: func.isRequired,
   value: shape().isRequired,
   label: string.isRequired
 };
