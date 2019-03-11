@@ -13,7 +13,6 @@ const PromotionBoard = ({ t }) => (
     </Paragraph>
     <Paragraph mb={0}>
       {t("plans.promotion.endFirstLine")}
-      <BoldText>{t("plans.promotion.leftInStock")}</BoldText>
       {t("plans.promotion.endLastLine")}
     </Paragraph>
   </PromotionWrapper>
