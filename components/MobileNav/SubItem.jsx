@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { Link } from "components";
 import { Flex } from "@rebass/grid";
-import { shape, node, string, bool } from "prop-types";
+import { shape, arrayOf, string, bool, func } from "prop-types";
 import { BackArrow } from "icons";
 import { IconWrapper, IconLabel, SubMenuWrapper } from "./styled";
 
@@ -54,16 +54,25 @@ class SubItem extends PureComponent {
             </IconWrapper>
             <IconLabel>{t("app:back")}</IconLabel>
           </Flex>
-          {submenuItems.map(item => (
-            <Link {...{ lng, route: item.route }}>
-              <Flex mb={4}>
+          {submenuItems.map(item =>
+            item.route ? (
+              <Link {...{ lng, route: item.route, key: item.label }}>
+                <Flex mb={4}>
+                  <IconWrapper dark noFill>
+                    {item.SubmenuIcon && <item.SubmenuIcon />}
+                  </IconWrapper>
+                  <IconLabel>{item.label}</IconLabel>
+                </Flex>
+              </Link>
+            ) : (
+              <Flex mb={4} key={item.label}>
                 <IconWrapper dark noFill>
                   {item.SubmenuIcon && <item.SubmenuIcon />}
                 </IconWrapper>
                 <IconLabel>{item.label}</IconLabel>
               </Flex>
-            </Link>
-          ))}
+            )
+          )}
         </SubMenuWrapper>
       </Flex>
     );
@@ -74,10 +83,10 @@ SubItem.propTypes = {
   lng: string.isRequired,
   route: string,
   label: string.isRequired,
-  Icon: node,
-  t: shape().isRequired,
+  Icon: func,
+  t: func.isRequired,
   withSubmenu: bool,
-  submenuItems: shape()
+  submenuItems: arrayOf(shape())
 };
 
 SubItem.defaultProps = {

@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { Flex } from "@rebass/grid";
-import { func, string, shape } from "prop-types";
+import { arrayOf, func, string, shape } from "prop-types";
 import { connect } from "react-redux";
 import { postBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/users";
@@ -47,14 +47,14 @@ class MobileNav extends PureComponent {
         justifyContent="space-between"
         alignItems="center"
       >
-        <MainIcon Icon={ControlCentre} {...{ lng }} />
-        <MainIcon Icon={Catering} route="/app/catering/month/" {...{ lng }} />
-        <MainIcon Icon={TakeAway} {...{ lng }} />
-        <MainIcon Icon={LiveStream} {...{ lng }} />
+        <MainIcon Icon={ControlCentre} {...{ lng, route: "/" }} />
+        <MainIcon Icon={Catering} {...{ lng, route: "/app/catering/month/" }} />
+        <MainIcon Icon={TakeAway} {...{ lng, route: "/" }} />
+        <MainIcon Icon={LiveStream} {...{ lng, route: "/" }} />
         <MainIcon
           Icon={Hamburger}
           onClick={this.toggleNav}
-          {...{ isMobileNavOpen }}
+          {...{ isMobileNavOpen, lng }}
         />
         <ToggledMobileMenu {...{ isMobileNavOpen }}>
           <Select
@@ -83,7 +83,8 @@ class MobileNav extends PureComponent {
                   Icon: subitem.icon,
                   label: subitem.label,
                   withSubmenu: subitem.withSubmenu,
-                  submenuItems: subitem.submenuItems
+                  submenuItems: subitem.submenuItems,
+                  key: subitem.label
                 }}
               />
             ))}
@@ -97,10 +98,15 @@ class MobileNav extends PureComponent {
 MobileNav.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  business: shape().isRequired,
-  businesses: func.isRequired,
+  business: shape(),
+  businesses: arrayOf(shape()),
   changeCurrentBusiness: func.isRequired,
   addBusiness: func.isRequired
+};
+
+MobileNav.defaultProps = {
+  business: null,
+  businesses: null
 };
 
 export default connect(
