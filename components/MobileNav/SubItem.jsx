@@ -65,7 +65,7 @@ class SubItem extends PureComponent {
                 </Flex>
               </Link>
             ) : (
-              <Flex mb={4} key={item.label}>
+              <Flex mb={4} key={item.label} onClick={item.onClick}>
                 <IconWrapper dark noFill>
                   {item.SubmenuIcon && <item.SubmenuIcon />}
                 </IconWrapper>

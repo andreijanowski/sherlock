@@ -87,7 +87,7 @@ const generateProfileMobileSubmenu = (t, active) => [
   }
 ];
 
-export const generateToggledMobileMenuSubitems = (t, lng) => [
+export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
   {
     icon: Delivery,
     label: t("app:delivery"),
@@ -138,6 +138,6 @@ export const generateToggledMobileMenuSubitems = (t, lng) => [
     icon: SettingsIcon,
     label: t("app:userSettings.userSettings"),
     withSubmenu: true,
-    submenuItems: generateSettingsMobileSubmenu(t, lng)
+    submenuItems: generateSettingsMobileSubmenu(t, lng, logout)
   }
 ];

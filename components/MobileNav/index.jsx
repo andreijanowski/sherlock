@@ -13,6 +13,7 @@ import {
   Hamburger
 } from "icons";
 import { Select } from "components";
+import { logout as logoutAction } from "actions/auth";
 import { ToggledMobileMenu, MenuScrollContainer } from "./styled";
 import MainIcon from "./MainIcon";
 import SubItem from "./SubItem";
@@ -37,7 +38,8 @@ class MobileNav extends PureComponent {
       business,
       businesses,
       changeCurrentBusiness,
-      addBusiness
+      addBusiness,
+      logout
     } = this.props;
     return (
       <Flex
@@ -74,7 +76,7 @@ class MobileNav extends PureComponent {
             withImage
           />
           <MenuScrollContainer>
-            {generateToggledMobileMenuSubitems(t, lng).map(subitem => (
+            {generateToggledMobileMenuSubitems(t, lng, logout).map(subitem => (
               <SubItem
                 {...{
                   lng,
@@ -101,7 +103,8 @@ MobileNav.propTypes = {
   business: shape(),
   businesses: arrayOf(shape()),
   changeCurrentBusiness: func.isRequired,
-  addBusiness: func.isRequired
+  addBusiness: func.isRequired,
+  logout: func.isRequired
 };
 
 MobileNav.defaultProps = {
@@ -116,6 +119,7 @@ export default connect(
   }),
   {
     addBusiness: postBusiness,
-    changeCurrentBusiness: setCurrentBusiness
+    changeCurrentBusiness: setCurrentBusiness,
+    logout: logoutAction
   }
 )(MobileNav);
