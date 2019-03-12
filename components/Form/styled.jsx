@@ -11,9 +11,12 @@ const InputStyles = css`
     rgb(${p => (p.invalid ? p.theme.colors.ruby : p.theme.colors.snuff)});
   padding: ${p => p.padding || "16px"};
   box-sizing: border-box;
-  ${p => !p.rows && "height: 60px;"}
+  ${p => !p.rows && "height: 54px;"}
   width: 100%;
   resize: none;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    ${p => !p.rows && "height: 60px;"}
+  }
 
   & + label {
     transition: transform 0.2s;
@@ -161,8 +164,12 @@ export const Label = styled.label`
   margin-left: 16px;
   transform: translateY(-50%);
   transform-origin: left;
+  font-size: ${p => p.theme.fontSizes.f14};
   color: rgb(${p => p.theme.colors.bombay});
   pointer-events: none;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    font-size: ${p => p.theme.fontSizes.f16};
+  }
 `;
 
 export const Items = styled(Flex).attrs({
