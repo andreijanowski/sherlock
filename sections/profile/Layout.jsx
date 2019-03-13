@@ -60,7 +60,7 @@ class ProfileLayout extends PureComponent {
           <PublishMobileIconWrapper>
             <ActionIcon
               size="sm"
-              icon={["fa", "plus"]}
+              icon={["fa", "check"]}
               onClick={() => this.showPublishModal()}
             />
             <PublishHeader>{`${t("app:manageProfile.publish")}: ${
