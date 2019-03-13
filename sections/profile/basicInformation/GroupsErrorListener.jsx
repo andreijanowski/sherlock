@@ -18,7 +18,7 @@ const GroupsErrorListener = ({ name, setFieldData, t }) => (
             invalidGroupName: name,
             invalidGroupNameMessage: t(
               "forms:validation.error.invalidGroupNameMessage",
-              { field: name }
+              { field: t(name) }
             )
           })
         );

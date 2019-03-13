@@ -20,7 +20,7 @@ class AutoSave extends React.Component {
   save = async blurredField => {
     const { setFieldData, arrayName, t } = this.props;
     try {
-      setFieldData(blurredField, { saving: true });
+      setFieldData(blurredField, { saving: true, error: null });
       if (this.promise) {
         await this.promise;
       }

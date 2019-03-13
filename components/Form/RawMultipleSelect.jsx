@@ -113,7 +113,9 @@ class RawMultipleSelect extends PureComponent {
             input.value.map(i => (
               <Tag key={i.value}>
                 {i.label}
-                <TagIcon onClick={() => this.remove(i)} />
+                <TagIcon
+                  onClick={disabled ? undefined : () => this.remove(i)}
+                />
               </Tag>
             ))}
           {!disabled && (
