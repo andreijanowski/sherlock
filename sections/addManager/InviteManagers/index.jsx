@@ -3,13 +3,12 @@ import { Form } from "react-final-form";
 import arrayMutators from "final-form-arrays";
 import { FieldArray } from "react-final-form-arrays";
 import { func } from "prop-types";
+import { Box, Flex } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { InputField, Button } from "components";
 import { isEmail } from "utils/validators";
 import {
-  ButtonContainer,
   HelperTitle,
-  Separator,
   SuccessMessageWrapper,
   FieldsContainer,
   RemoveButton
@@ -75,27 +74,32 @@ class InviteManagers extends PureComponent {
                     ))}
                     {this.scrollToLastField()}
                   </FieldsContainer>
-                  <Separator size={32} />
-                  <ButtonContainer>
-                    <Button
-                      onClick={handleSubmit}
-                      styleName="blue"
-                      disabled={invalid || pristine || submitting}
-                    >
-                      {submitting ? (
-                        <FontAwesomeIcon icon="circle-notch" spin size="lg" />
-                      ) : (
-                        t("inviteButton")
-                      )}
-                    </Button>
-                    <Button
-                      type="button"
-                      styleName="outlineBlue"
-                      onClick={() => fields.push({ email: undefined })}
-                    >
-                      {t("addEmailButton")}
-                    </Button>
-                  </ButtonContainer>
+                  <Flex flexDirection={["column-reverse", "row"]} mt={[1, 4]}>
+                    <Box width={[1, "auto"]} mt={[4, 0]} mr={[0, 2]}>
+                      <Button
+                        onClick={handleSubmit}
+                        styleName="blue"
+                        fluid
+                        disabled={invalid || pristine || submitting}
+                      >
+                        {submitting ? (
+                          <FontAwesomeIcon icon="circle-notch" spin size="lg" />
+                        ) : (
+                          t("inviteButton")
+                        )}
+                      </Button>
+                    </Box>
+                    <Box width={[1, "auto"]}>
+                      <Button
+                        type="button"
+                        fluid
+                        styleName="outlineBlue"
+                        onClick={() => fields.push({ email: undefined })}
+                      >
+                        {t("addEmailButton")}
+                      </Button>
+                    </Box>
+                  </Flex>
                 </>
               )}
             </FieldArray>

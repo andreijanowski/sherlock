@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { Flex } from "@rebass/grid";
 
 const login = css`
   border: ${p => p.theme.borderWeights.normal} solid
@@ -13,12 +14,16 @@ const blue = css`
   background-color: rgba(${p => p.theme.colors.blue}, 0.1);
   border: none;
   color: rgb(${p => p.theme.colors.blue});
-  padding: 16px;
+  padding: 8px 20px;
 
   &:hover:enabled {
     background-color: rgba(${p => p.theme.colors.blue}, 1);
     color: rgb(${p => p.theme.colors.white});
     box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.blue}, 0.48);
+  }
+
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    padding: 16px 40px;
   }
 `;
 
@@ -82,8 +87,77 @@ const limeade = css`
   ${planButton};
 `;
 
+const newOrderButton = css`
+  border: none;
+  padding: 12px;
+  font-size: 12px;
+  font-weight: ${p => p.theme.fontWeights.bold};
+  text-transform: uppercase;
+  line-height: 16px;
+
+  &:hover {
+    color: rgb(${p => p.theme.colors.white});
+  }
+`;
+
+const reject = css`
+  ${newOrderButton}
+  background-color: rgba(${p => p.theme.colors.ruby}, 0.1);
+  color: rgb(${p => p.theme.colors.ruby});
+
+  &:hover {
+    background-color: rgba(${p => p.theme.colors.ruby}, 1);
+    box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.ruby}, 0.48);
+  }
+`;
+
+const accept = css`
+  ${newOrderButton}
+  background-color: rgba(${p => p.theme.colors.greenHaze}, 0.1);
+  color: rgb(${p => p.theme.colors.greenHaze});
+
+  &:hover {
+    background-color: rgba(${p => p.theme.colors.greenHaze}, 1);
+    box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.greenHaze}, 0.48);
+  }
+`;
+
+const withImage = css`
+  border: none;
+  position: relative;
+  line-height: 24px;
+  box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
+  min-height: 40px;
+  background-color: ${p =>
+    p.red
+      ? `rgba(${p.theme.colors.ruby}, 0.1)`
+      : `rgb(${p.theme.colors.white})`};
+  border-radius: ${p => p.theme.radius.default};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(${p => (p.red ? p.theme.colors.ruby : p.theme.colors.dark)});
+  fill: rgb(${p => (p.red ? p.theme.colors.ruby : p.theme.colors.dark)});
+  stroke: rgb(${p => (p.red ? p.theme.colors.ruby : p.theme.colors.dark)});
+  padding: 0;
+  font-weight: ${p => p.theme.fontWeights.regular};
+
+  &:hover {
+    color: rgb(${p => p.theme.colors.white});
+    fill: rgb(${p => p.theme.colors.white});
+    stroke: rgb(${p => p.theme.colors.white});
+    background-color: rgb(
+      ${p => (p.red ? p.theme.colors.ruby : p.theme.colors.blue)}
+    );
+  }
+`;
+
 const fluid = css`
   width: 100%;
+`;
+
+const fullHeight = css`
+  height: 100%;
 `;
 
 const Button = styled.button`
@@ -105,7 +179,11 @@ const Button = styled.button`
   ${p => p.styleName === "transparent" && transparent};
   ${p => p.styleName === "limeade" && limeade};
   ${p => p.styleName === "outlineBlue" && outlineBlue};
+  ${p => p.styleName === "reject" && reject};
+  ${p => p.styleName === "accept" && accept};
+  ${p => p.styleName === "withImage" && withImage};
   ${p => p.fluid && fluid};
+  ${p => p.fullHeight && fullHeight};
 
   &:disabled {
     cursor: not-allowed;
@@ -114,3 +192,15 @@ const Button = styled.button`
 `;
 
 export default Button;
+
+export const ButtonWithImageText = styled.div`
+  padding: 0 16px;
+`;
+
+export const ButtonWithImageIconWrapper = styled(Flex)`
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid rgb(${p => p.theme.colors.linkWater});
+`;

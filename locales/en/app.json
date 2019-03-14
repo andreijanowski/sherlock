@@ -1,5 +1,13 @@
-{
+{ "controlCenter": "Control Centre",
+  "bookings": "Bookings",
+  "delivery": "Delivery",
+  "takeAway": "Take Away",
+  "catering": "Catering",
+  "privatisations": "Privatisations",
+  "leFood": "Le Food",
+  "billing": "Billing",
   "manageProfile": {
+    "manageProfile": "Manage Profile",
     "basicInformation": "Basic Information",
     "contactInformation": "Contact Information",
     "openingHours": "Opening Hours",
@@ -10,12 +18,17 @@
     "addNewBusiness": "Add new business",
     "publish": "Publish business"
   },
+  "subscriptions": "Subscriptions",
   "userSettings": {
+    "userSettings": "Settings",
     "basicInformation": "Basic Information",
     "billing": "Billing",
     "password": "Password",
     "logout": "Logout"
   },
+  "feedback": "Feedback",
+  "docs": "Docs",
+  "back": "Back",
   "crop": "Crop",
   "cancel": "Cancel"
 }

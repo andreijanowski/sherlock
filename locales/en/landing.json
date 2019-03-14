@@ -2,13 +2,14 @@
   "topSection": {
     "header": {
       "start": "All in one operating system for the",
-      "end": " hospitality industry"
+      "end": " online F&B and hospitality industry"
     },
     "paragraph": "Easy to use & integrate software aggregator of all F&B services at a competitive price.",
     "getStartedForFree": "Get started for free",
     "addYourBusiness": "Add your business",
     "addManager": "Add manager",
-    "watchVideo": "Watch video"
+    "watchVideo": "Watch video",
+    "testimonials": "Testimonials"
   },
   "services": {
     "header": "Services",
@@ -20,35 +21,58 @@
       "end": ". You can easily add and remove any of the services at any point, ensuring our service is tailored to your changing needs."
     },
     "list": [
-      "ePOS",
-      "Payments",
-      "Booking",
+      "Reservations",
       "Delivery",
-      "Catering",
       "Take Away",
-      "HR & Payroll",
-      "Feedback",
-      "Supply",
+      "Payments",
+      "ePOS",
+      "Catering",
       "Privatization",
       "Analytics",
-      "Marketing"
+      "HR & Payroll",
+      "Supply",
+      "Marketing",
+      "Feedback"
     ],
-    "more": "More to come..."
+    "more": "One app/website to rule them all..."
   },
   "plans": {
     "header": "Plans",
-    "paragraph": "Choose the plan that suits your business goals. If you are a big business owner or chain manager, please add your manager in charge there.",
+    "paragraph": "Choose the plan that suits your business goals. If you are a big business owner or chain manager, please add your manager in charge.",
     "promotion": {
       "startFirstLine": "Get ",
       "promotionPlan": "Sherlock Basic",
-      "startLastLine": " for 6 months.",
-      "endFirstLine": "Just complete your profile. The offer is very limited, we have only ",
-      "leftInStock": "980/",
+      "startLastLine": " for 3 months for free.",
+      "endFirstLine": "Just complete your profile online. The offer is very limited, we have only ",
       "endLastLine": "1000 slots left."
     },
     "managers": "Managers",
     "billingYearly": "Billing Yearly",
     "billingMonthly": "Billing Monthly",
+    "options": {
+      "website": "Webpage",
+      "widget": "Widget - coming soon",
+      "mobileApp": "Mobile App",
+      "proFeedback": "Pro Feedback",
+      "paidBooking": "Reservation",
+      "bookings": "Reservations",
+      "takeAway": "Take Away",
+      "catering": "Catering",
+      "privatization": "Privatization",
+      "delivery": "Delivery",
+      "monthlyData": "Monthly Data",
+      "weeklyData": "Weekly Data",
+      "dailyData": "Daily Data",
+      "payments": "Payments",
+      "posIntegration": "POS integration",
+      "archivedData": "Archived Data",
+      "hrAndPeopleManagement": "HR & People Management",
+      "loyaltyProgram": "Loyalty Prorgram",
+      "clientInteraction": "Client Interaction",
+      "photoshoot": "Photoshoot",
+      "mysteryShopping": "Mystery Shopping - coming soon",
+      "supplyAutomation": "Supply Automation"
+    },
     "essential": {
       "name": "Essential",
       "priceDescription": "Forever",
@@ -56,169 +80,33 @@
         "monthly": "Free",
         "yearly": "Free"
       },
-      "buttonText": "Create Profile",
-      "list": [
-        {
-          "name": "Website",
-          "discount": "0"
-        },
-        {
-          "name": "Widget",
-          "discount": "0"
-        },
-        {
-          "name": "Application",
-          "discount": "0"
-        },
-        {
-          "name": "Pro Feedback",
-          "discount": "0"
-        },
-        {
-          "name": "1$/Booking",
-          "discount": "0"
-        },
-        {
-          "name": "Take Away",
-          "discount": "7%"
-        },
-        {
-          "name": "Catering",
-          "discount": "10%"
-        },
-        {
-          "name": "Privatization",
-          "discount": "10%"
-        },
-        {
-          "name": "Delivery",
-          "discount": "7%"
-        }
-      ]
+      "buttonText": "Create Profile"
     },
     "basic": {
       "name": "Basic",
       "mostPopular": "Most popular",
+      "promoPrice": "Limited",
       "priceDescription": "Starting at",
       "price": {
-        "monthly": "€149",
-        "yearly": "€1490"
+        "monthly": "€29.90",
+        "yearly": "€249.90"
       },
       "monthly": "month",
       "yearly": "year",
-      "buttonText": "Start a 2 months trial",
-      "list": [
-        {
-          "name": "Website",
-          "discount": "0"
-        },
-        {
-          "name": "Widget",
-          "discount": "0"
-        },
-        {
-          "name": "Application",
-          "discount": "0"
-        },
-        {
-          "name": "Pro Feedback",
-          "discount": "0"
-        },
-        {
-          "name": "Bookings",
-          "discount": "Free"
-        },
-        {
-          "name": "Take Away",
-          "discount": "3.5%"
-        },
-        {
-          "name": "Catering",
-          "discount": "7%"
-        },
-        {
-          "name": "Privatization",
-          "discount": "7%"
-        },
-        {
-          "name": "Delivery",
-          "discount": "3,5%"
-        },
-        {
-          "name": "Monthly Data",
-          "discount": "0"
-        },
-        {
-          "name": "Payment",
-          "discount": "0"
-        }
-      ]
+      "buttonText": "Start a 2 months trial"
     },
     "premium": {
       "name": "Premium",
       "bestValue": "Best Value",
+      "promoPrice": "Limited",
       "priceDescription": "Starting at",
       "price": {
-        "monthly": "€299",
-        "yearly": "€2990"
+        "monthly": "€59.90",
+        "yearly": "€549.90"
       },
       "monthly": "month",
       "yearly": "year",
-      "buttonText": "Start a 2 months trial",
-      "list": [
-        {
-          "name": "Website",
-          "discount": "0"
-        },
-        {
-          "name": "Widget",
-          "discount": "0"
-        },
-        {
-          "name": "Application",
-          "discount": "0"
-        },
-        {
-          "name": "Pro Feedback",
-          "discount": "0"
-        },
-        {
-          "name": "Bookings",
-          "discount": "Free"
-        },
-        {
-          "name": "Take Away",
-          "discount": "Free"
-        },
-        {
-          "name": "Catering",
-          "discount": "5%"
-        },
-        {
-          "name": "Privatization",
-          "discount": "5%"
-        },
-        {
-          "name": "Delivery",
-          "discount": "Free"
-        },
-        {
-          "name": "Weekly Data",
-          "discount": "0"
-        },
-        {
-          "name": "Payment",
-          "discount": "0"
-        },
-        {
-          "name": "POS integration",
-          "discount": "0"
-        },
-        {
-          "name": "Archived Data",
-          "discount": "0"
-        }
-      ]
+      "buttonText": "Start a 2 months trial"
     },
     "professional": {
       "name": "Professional",
@@ -227,77 +115,7 @@
         "monthly": "Enterprise",
         "yearly": "Enterprise"
       },
-      "buttonText": "Request a Demo",
-      "list": [
-        {
-          "name": "Website",
-          "discount": "0"
-        },
-        {
-          "name": "Widget",
-          "discount": "0"
-        },
-        {
-          "name": "Application",
-          "discount": "0"
-        },
-        {
-          "name": "Pro Feedback",
-          "discount": "0"
-        },
-        {
-          "name": "Bookings",
-          "discount": "Free"
-        },
-        {
-          "name": "Take Away",
-          "discount": "Free"
-        },
-        {
-          "name": "Catering",
-          "discount": "Free"
-        },
-        {
-          "name": "Privatization",
-          "discount": "Free"
-        },
-        {
-          "name": "Delivery",
-          "discount": "Free"
-        },
-        {
-          "name": "Weekly Data",
-          "discount": "0"
-        },
-        {
-          "name": "Payment",
-          "discount": "0"
-        },
-        {
-          "name": "POS integration",
-          "discount": "0"
-        },
-        {
-          "name": "Archived Data",
-          "discount": "0"
-        },
-        {
-          "name": "HR & People Management",
-          "discount": "0"
-        },
-        {
-          "name": "Loyalty Prorgram",
-          "discount": "0"
-        },
-        {
-          "name": "Client Interaction",
-          "discount": "0"
-        },
-        {
-          "name": "Photoshoot",
-          "discount": "0"
-        }
-      ]
+      "buttonText": "Request a Demo"
     }
   }
 }

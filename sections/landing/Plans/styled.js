@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
+import { alignCenterMobile } from "../sharedStyled";
 
 export const PlansWrapper = styled(Flex).attrs({
   flexDirection: "row",
@@ -32,7 +33,9 @@ export const MainWrapper = styled(Flex).attrs({
 `;
 
 export const NameWrapper = styled(Flex).attrs({
-  flexDirection: "row"
+  flexDirection: "row",
+  m: "-2px",
+  flexWrap: "wrap"
 })`
   position: absolute;
   top: -10px;
@@ -43,24 +46,25 @@ export const Name = styled.div`
   border-radius: ${p => p.theme.radius.default};
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.dark}, 0.08);
   background: rgb(${p => p.theme.colors.white});
-  font-size: ${p => p.theme.fontSizes.f14};
+  font-size: ${p => p.theme.fontSizes.f12};
   font-weight: ${p => p.theme.fontWeights.bold};
   line-height: 1.15;
   padding: 2px 8px;
+  margin: 2px;
   color: rgb(${p => p.theme.colors[p.color]});
 `;
 
 export const MostPopular = styled.div`
-  font-size: ${p => p.theme.fontSizes.f14};
+  font-size: ${p => p.theme.fontSizes.f12};
   font-weight: ${p => p.theme.fontWeights.bold};
   line-height: 1.15;
-  padding: 0 6px;
+  padding: 2px 6px;
+  margin: 2px;
   border: ${p => p.theme.borderWeights.tiny} solid
     rgb(${p => p.theme.colors[p.color]});
   border-radius: ${p => p.theme.radius.default};
   background: rgb(${p => p.theme.colors.white});
   color: rgb(${p => p.theme.colors[p.color]});
-  margin-left: 8px;
 `;
 
 export const PriceWrapper = styled(Flex).attrs({
@@ -74,10 +78,12 @@ export const PriceWrapper = styled(Flex).attrs({
 `;
 
 export const PriceDescription = styled.div`
+  margin-top: 20px;
   color: rgba(${p => p.theme.colors.dark}, 0.8);
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 1.5;
+  ${alignCenterMobile};
 `;
 
 export const Price = styled.div`
@@ -86,6 +92,7 @@ export const Price = styled.div`
   font-size: ${p => p.theme.fontSizes.f36};
   line-height: 1.333;
   margin-bottom: 40px;
+  ${alignCenterMobile};
   small {
     font-size: ${p => p.theme.fontSizes.f16};
   }
@@ -94,9 +101,12 @@ export const Price = styled.div`
 export const Service = styled(Box).attrs({ mb: 1 })`
   text-align: center;
   font-size: ${p => p.theme.fontSizes.f16};
-  font-weight: ${p => p.theme.fontWeights.medium};
   line-height: 1.5;
-  color: rgba(${p => p.theme.colors.dark}, 0.8);
+  font-weight: ${p => (p.isHighlighted ? 700 : p.theme.fontWeights.medium)};
+  color: ${p =>
+    p.isHighlighted
+      ? `rgb(${p.theme.colors.dark})`
+      : `rgba(${p.theme.colors.dark}, ${p.isLighter ? 0.4 : 0.8})`};
 `;
 
 export const Badge = styled.span`

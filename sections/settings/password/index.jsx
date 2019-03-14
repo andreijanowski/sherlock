@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
-import { func, shape } from "prop-types";
+import { func } from "prop-types";
 import { Form as FinalForm } from "react-final-form";
-import { FormInput, Button, LoadingIndicator } from "components";
+import { FormInput, Button } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Form, PasswordChangedMsg } from "sections/settings/styled";
 import { validatePassword } from "utils/validators";
@@ -26,14 +26,14 @@ class ChangePasswordForm extends PureComponent {
   };
 
   render() {
-    const { profile, t } = this.props;
+    const { t } = this.props;
     const { wasPasswordChanged } = this.state;
-    return profile ? (
+    return (
       <FinalForm
         onSubmit={this.submitForm}
         render={({ handleSubmit, invalid, submitting }) => (
           <Form onSubmit={handleSubmit}>
-            <Flex mx={-2} flexDirection="column">
+            <Flex flexDirection="column">
               <Box width={[1, 1, 560]}>
                 <FormInput
                   name="currentPassword"
@@ -78,14 +78,11 @@ class ChangePasswordForm extends PureComponent {
           </Form>
         )}
       />
-    ) : (
-      <LoadingIndicator />
     );
   }
 }
 ChangePasswordForm.propTypes = {
   t: func.isRequired,
-  profile: shape().isRequired,
   changePassword: func.isRequired
 };
 

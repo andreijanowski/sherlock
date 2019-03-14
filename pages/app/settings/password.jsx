@@ -3,7 +3,7 @@ import SettingsLayout from "sections/settings/Layout";
 import ChangePasswordForm from "sections/settings/password";
 import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
-import { func, shape, string } from "prop-types";
+import { func, string } from "prop-types";
 import { connect } from "react-redux";
 import { changePassword } from "actions/auth";
 import loadTranslations from "utils/loadTranslations";
@@ -20,12 +20,10 @@ class Password extends PureComponent {
   }
 
   render() {
-    const { t, lng, profile, changePasswordHandler } = this.props;
+    const { t, lng, changePasswordHandler } = this.props;
     return (
       <SettingsLayout {...{ t, lng, currentPage: "password" }}>
-        <ChangePasswordForm
-          {...{ t, profile, changePassword: changePasswordHandler }}
-        />
+        <ChangePasswordForm {...{ t, changePassword: changePasswordHandler }} />
       </SettingsLayout>
     );
   }
@@ -34,20 +32,15 @@ class Password extends PureComponent {
 Password.propTypes = {
   t: func.isRequired,
   changePasswordHandler: func.isRequired,
-  profile: shape().isRequired,
   lng: string.isRequired
 };
-
-const mapStateToProps = state => ({
-  profile: state.users.profile.data
-});
 
 const mapDispatchToProps = { changePasswordHandler: changePassword };
 
 export default requireAuth(true)(
   withI18next(namespaces)(
     connect(
-      mapStateToProps,
+      null,
       mapDispatchToProps
     )(Password)
   )

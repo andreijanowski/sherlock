@@ -1,6 +1,10 @@
 export { default as NotificationsCenter } from "./NotificationsCenter";
 export { default as FoodetectiveLogo } from "./FoodetectiveLogo";
-export { default as Button } from "./Button";
+export {
+  default as Button,
+  ButtonWithImageText,
+  ButtonWithImageIconWrapper
+} from "./Button";
 export { default as BlueText } from "./BlueText";
 export { default as BoldText } from "./BoldText";
 export { default as ItalicText } from "./ItalicText";
@@ -11,6 +15,8 @@ export { default as Paragraph } from "./Paragraph";
 export { default as LanguageSwitcher } from "./LanguageSwitcher";
 export { default as Footer } from "./Footer";
 export { default as NavBar } from "./NavBar";
+export { default as NavigationContainer } from "./NavigationContainer";
+export { default as MobileNav } from "./MobileNav";
 export { default as MainApp } from "./MainApp";
 export { default as FormInput } from "./Form/Input";
 export { default as FormTextarea } from "./Form/Textarea";
@@ -21,8 +27,7 @@ export { default as FormMultipleSelect } from "./Form/MultipleSelect";
 export { default as InputWithRemoveButton } from "./Form/InputWithRemoveButton";
 export { default as WhenFieldChanges } from "./Form/WhenFieldChanges";
 export { default as BigCheckbox } from "./Form/BigCheckbox";
-export { default as FormCheckbox } from "./Form/Checkbox";
-export { RawCheckbox } from "./Form/Checkbox";
+export { default as FormCheckbox, RawCheckbox } from "./Form/Checkbox";
 export { default as FormTimePicker } from "./Form/TimePicker";
 export { default as AutoSave } from "./Form/AutoSave";
 export { default as Link } from "./Link";
@@ -46,3 +51,4 @@ export { default as CalendarEvent } from "./Calendar/Event";
 export { default as CalendarToolbar } from "./Calendar/Toolbar";
 export { default as MenusUploader } from "./MenusUploader";
 export { default as Map } from "./Map";
+export { default as TextSeparator } from "./TextSeparator";

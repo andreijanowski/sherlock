@@ -1,14 +1,15 @@
 import { func } from "prop-types";
-import { H2, Paragraph, BlueText, BoldText, ItalicText } from "components";
+import { BlueText, BoldText, ItalicText } from "components";
 import { ServicesWrapper, MainWrapper, More } from "./styled";
+import { H2Styled, ParagraphStyled } from "../sharedStyled";
 import List from "./list";
 import BackgroundCircle from "./backgroundCircle";
 
 const Services = ({ t }) => (
   <MainWrapper>
     <ServicesWrapper>
-      <H2 white>{t("services.header")}</H2>
-      <Paragraph white>
+      <H2Styled white>{t("services.header")}</H2Styled>
+      <ParagraphStyled white>
         {t("services.paragraph.start")}
         <BlueText>
           <BoldText>
@@ -22,7 +23,7 @@ const Services = ({ t }) => (
           </BoldText>
         </BlueText>
         {t("services.paragraph.end")}
-      </Paragraph>
+      </ParagraphStyled>
       <List {...{ t }} />
       <More>{t("services.more")}</More>
     </ServicesWrapper>

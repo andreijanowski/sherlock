@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
-const Form = styled.form`
+export const Form = styled.form`
   background: rgb(${p => p.theme.colors.white});
-  padding: 32px;
+  padding: 16px;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    padding: 32px;
+  }
 `;
-
-export default Form;

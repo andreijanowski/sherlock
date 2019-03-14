@@ -15,11 +15,12 @@ import {
 import { register } from "actions/auth";
 import { validateEmail, validatePassword, required } from "utils/validators";
 import { formValidation } from "consts";
+import { Box, Flex } from "@rebass/grid";
 import {
-  ButtonContainer,
   HelperTitle,
   Separator,
-  SuccessMessageWrapper
+  SuccessMessageWrapper,
+  TextSeparatorStyled
 } from "./styled";
 
 class CreateAccount extends PureComponent {
@@ -114,39 +115,47 @@ class CreateAccount extends PureComponent {
               name="termsAgreement"
               validate={this.validateCheckbox}
             >
-              {t("terms.start")}
-              <a href="#">
-                <BlueText>
-                  <ItalicText>{t("terms.privacyPolicy")}</ItalicText>
-                </BlueText>
-              </a>
-              {t("terms.and")}
-              <a href="#">
-                <BlueText>
-                  <ItalicText>{t("terms.termsOfUse")}</ItalicText>
-                </BlueText>
-              </a>
+              <Box>
+                {t("terms.start")}
+                <a href="#">
+                  <BlueText>
+                    <ItalicText>{t("terms.privacyPolicy")}</ItalicText>
+                  </BlueText>
+                </a>
+                {t("terms.and")}
+                <a href="#">
+                  <BlueText>
+                    <ItalicText>{t("terms.termsOfUse")}</ItalicText>
+                  </BlueText>
+                </a>
+              </Box>
             </CheckboxField>
             <Separator size={32} />
-            <ButtonContainer>
-              <Button
-                onClick={handleSubmit}
-                styleName="blue"
-                disabled={invalid || pristine || submitting}
-              >
-                {submitting ? (
-                  <FontAwesomeIcon icon="circle-notch" spin size="lg" />
-                ) : (
-                  t("registerButton")
-                )}
-              </Button>
-              <FacebookLogin
-                disabled={!values.termsAgreement}
-                withAgreement={values.termsAgreement}
-              >
-                {t("Facebook")}
-              </FacebookLogin>
-            </ButtonContainer>
+            <Flex flexWrap="wrap" m={-1}>
+              <Box p={1} width={[1, 1, 1, 1 / 3]}>
+                <Button
+                  onClick={handleSubmit}
+                  styleName="blue"
+                  fluid
+                  disabled={invalid || pristine || submitting}
+                >
+                  {submitting ? (
+                    <FontAwesomeIcon icon="circle-notch" spin size="lg" />
+                  ) : (
+                    t("registerButton")
+                  )}
+                </Button>
+              </Box>
+              <TextSeparatorStyled size={16}>or</TextSeparatorStyled>
+              <Box p={1} width={[1, 1, 1, 2 / 3]}>
+                <FacebookLogin
+                  disabled={!values.termsAgreement}
+                  withAgreement={values.termsAgreement}
+                >
+                  {t("Facebook")}
+                </FacebookLogin>
+              </Box>
+            </Flex>
           </form>
         )}
       />

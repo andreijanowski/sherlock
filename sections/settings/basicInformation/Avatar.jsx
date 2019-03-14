@@ -23,6 +23,8 @@ class Avatar extends PureComponent {
           info={t("avatarInfo")}
           errorTip={t("invalidFileType")}
           errorInfo={t("validFileTypeInfo")}
+          errorTipType={t("invalidFileType")}
+          errorInfoType={t("validFileTypeInfo")}
           crop={t("app:crop")}
           cancel={t("app:cancel")}
           multiple={false}
