@@ -10,7 +10,7 @@ import {
   columns as columnsNames
 } from "sections/lefood/orders/utils";
 import { connect } from "react-redux";
-import { patchOrder } from "actions/orders";
+import { patchOrder, patchOrderReject } from "actions/orders";
 
 const namespaces = ["lefood", "app"];
 
@@ -26,14 +26,15 @@ class OrdersPage extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      columns: parseOrders(props.orders)
+      columns: parseOrders(props.orders),
+      draggedOrderState: null
     };
   }
 
   componentDidUpdate(prevProps) {
-    const { loading } = this.props;
-    const { loading: wasloading } = prevProps;
-    if (wasloading && !loading) {
+    const { loading, orders } = this.props;
+    const { loading: wasloading, orders: prevOrders } = prevProps;
+    if ((wasloading && !loading) || orders !== prevOrders) {
       this.refreshColumnsContent();
     }
   }
@@ -51,18 +52,17 @@ class OrdersPage extends PureComponent {
       (destination.droppableId === source.droppableId &&
         destination.index === source.index)
     ) {
+      this.setState({ draggedOrderState: null });
       return;
     }
 
-    const { updateOrder } = this.props;
-    if (destination.droppableId === columnsNames.newOrders) {
-      updateOrder({ state: "waiting_for_approval" }, draggableId);
-    } else if (destination.droppableId === columnsNames.inProgress) {
+    const { updateOrder, rejectOrder } = this.props;
+    if (destination.droppableId === columnsNames.inProgress) {
       updateOrder({ state: "in_preparation" }, draggableId);
     } else if (destination.droppableId === columnsNames.done) {
       updateOrder({ state: "completed" }, draggableId);
-    } else if (destination.droppableId === columnsNames.canceled) {
-      updateOrder({ state: "rejected" }, draggableId);
+    } else if (destination.droppableId === columnsNames.rejected) {
+      rejectOrder({}, draggableId);
     }
 
     this.setState(state => {
@@ -73,6 +73,7 @@ class OrdersPage extends PureComponent {
         newSourceOrderIds.splice(destination.index, 0, draggableId);
         return {
           ...state,
+          draggedOrderState: null,
           columns: {
             ...state.columns,
             [sourceColumn.id]: {
@@ -87,6 +88,7 @@ class OrdersPage extends PureComponent {
       newDestinationOrderIds.splice(destination.index, 0, draggableId);
       return {
         ...state,
+        draggedOrderState: null,
         columns: {
           ...state.columns,
           [sourceColumn.id]: {
@@ -102,9 +104,21 @@ class OrdersPage extends PureComponent {
     });
   };
 
+  updateOrder = (state, draggableId) => {
+    const { updateOrder } = this.props;
+    updateOrder({ state }, draggableId);
+  };
+
+  handleDragStart = ({ draggableId }) => {
+    const { orders } = this.props;
+    const order = orders.find(o => o.id === draggableId);
+    this.setState({ draggedOrderState: order.state });
+  };
+
   render() {
-    const { t, lng, orders, loading } = this.props;
-    const { columns } = this.state;
+    const { t, lng, orders, loading, currentBusiness } = this.props;
+    const { columns, draggedOrderState } = this.state;
+    const currency = currentBusiness ? currentBusiness.currency : "";
     return (
       <LefoodLayout
         {...{
@@ -114,7 +128,17 @@ class OrdersPage extends PureComponent {
         }}
       >
         <Orders
-          {...{ onDragEnd: this.handleDragEnd, orders, columns, loading, t }}
+          {...{
+            onDragEnd: this.handleDragEnd,
+            onDragStart: this.handleDragStart,
+            updateOrder: this.updateOrder,
+            draggedOrderState,
+            orders,
+            columns,
+            loading,
+            currency,
+            t
+          }}
         />
       </LefoodLayout>
     );
@@ -127,7 +151,8 @@ OrdersPage.propTypes = {
   orders: arrayOf(shape()).isRequired,
   currentBusiness: shape(),
   loading: bool.isRequired,
-  updateOrder: func.isRequired
+  updateOrder: func.isRequired,
+  rejectOrder: func.isRequired
 };
 
 OrdersPage.defaultProps = {
@@ -145,7 +170,8 @@ export default requireAuth(true)(
         currentBusiness: state.users.currentBusiness.data
       }),
       {
-        updateOrder: patchOrder
+        updateOrder: patchOrder,
+        rejectOrder: patchOrderReject
       }
     )(OrdersPage)
   )

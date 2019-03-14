@@ -4,6 +4,7 @@ const next = require("next");
 const i18nextMiddleware = require("i18next-express-middleware");
 const Backend = require("i18next-node-fs-backend");
 const basicAuth = require("express-basic-auth");
+const { resetServerContext } = require("react-beautiful-dnd");
 const i18n = require("./i18n");
 const routes = require("./routes");
 const { languages } = require("./consts");
@@ -99,7 +100,10 @@ i18n
         );
 
         // use next.js
-        server.get("*", (req, res) => handler(req, res));
+        server.get("*", (req, res) => {
+          resetServerContext();
+          return handler(req, res);
+        });
 
         server.listen(3000, err => {
           if (err) throw err;

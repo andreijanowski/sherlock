@@ -8,37 +8,51 @@ import {
   OrdersNumber,
   OrdersWrapper
 } from "./styled";
-import { columns } from "./utils";
+import { columns, setIsDropDisabled } from "./utils";
 
-const Column = ({ id, title, orders, t, onClick }) => (
-  <ColumnWrapper>
-    <ColumnHeader>
-      <ColumnTitle>{title}</ColumnTitle>
-      <OrdersNumber canceled={id === columns.canceled}>
-        {orders.length}
-      </OrdersNumber>
-    </ColumnHeader>
-    <Droppable droppableId={id}>
-      {provided => (
-        <OrdersWrapper
-          {...provided.droppableProps}
-          ref={provided.innerRef}
-          canceled={id === columns.canceled}
-        >
-          <Orders {...{ orders, t, onClick, id }} />
-          {provided.placeholder}
-        </OrdersWrapper>
-      )}
-    </Droppable>
-  </ColumnWrapper>
-);
+const Column = ({
+  id,
+  title,
+  orders,
+  t,
+  currency,
+  updateOrder,
+  draggedOrderState
+}) => {
+  const isDropDisabled = setIsDropDisabled(draggedOrderState, id);
+  return (
+    <ColumnWrapper>
+      <ColumnHeader>
+        <ColumnTitle>{title}</ColumnTitle>
+        <OrdersNumber rejected={id === columns.rejected}>
+          {orders.length}
+        </OrdersNumber>
+      </ColumnHeader>
+      <Droppable droppableId={id} isDropDisabled={isDropDisabled}>
+        {provided => (
+          <OrdersWrapper
+            {...provided.droppableProps}
+            isDropDisabled={isDropDisabled}
+            ref={provided.innerRef}
+            rejected={id === columns.rejected}
+          >
+            <Orders {...{ orders, currency, t, updateOrder, id }} />
+            {provided.placeholder}
+          </OrdersWrapper>
+        )}
+      </Droppable>
+    </ColumnWrapper>
+  );
+};
 
 Column.propTypes = {
-  onClick: func.isRequired,
   t: func.isRequired,
   id: string.isRequired,
   title: string.isRequired,
-  orders: arrayOf(shape()).isRequired
+  orders: arrayOf(shape()).isRequired,
+  currency: string.isRequired,
+  updateOrder: func.isRequired,
+  draggedOrderState: string.isRequired
 };
 
 export default Column;

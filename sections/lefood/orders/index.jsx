@@ -1,14 +1,24 @@
-import { func, shape, arrayOf, bool } from "prop-types";
+import { func, shape, arrayOf, bool, string } from "prop-types";
 import { DragDropContext } from "react-beautiful-dnd";
 import { LoadingIndicator } from "components";
 import Column from "./Column";
 import { ColumnsWrapper } from "./styled";
 
-const Orders = ({ onDragEnd, orders, columns, loading, t }) =>
+const Orders = ({
+  onDragEnd,
+  onDragStart,
+  draggedOrderState,
+  updateOrder,
+  orders,
+  columns,
+  loading,
+  currency,
+  t
+}) =>
   loading ? (
     <LoadingIndicator />
   ) : (
-    <DragDropContext {...{ onDragEnd }}>
+    <DragDropContext {...{ onDragStart, onDragEnd }}>
       <ColumnsWrapper>
         {Object.values(columns).map(column => {
           const columnOrders = column.orderIds.map(id =>
@@ -19,8 +29,10 @@ const Orders = ({ onDragEnd, orders, columns, loading, t }) =>
               {...{
                 ...column,
                 t,
+                currency,
+                draggedOrderState,
+                updateOrder,
                 orders: columnOrders,
-                onClick: onDragEnd,
                 key: column.id
               }}
             />
@@ -35,7 +47,11 @@ Orders.propTypes = {
   onDragEnd: func.isRequired,
   orders: arrayOf(shape()).isRequired,
   columns: shape().isRequired,
-  loading: bool.isRequired
+  loading: bool.isRequired,
+  currency: string.isRequired,
+  updateOrder: func.isRequired,
+  draggedOrderState: string.isRequired,
+  onDragStart: func.isRequired
 };
 
 export default Orders;

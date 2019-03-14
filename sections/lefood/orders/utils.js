@@ -2,7 +2,7 @@ export const columns = {
   newOrders: "newOrders",
   inProgress: "inProgress",
   done: "done",
-  canceled: "canceled"
+  rejected: "rejected"
 };
 
 export const parseOrders = orders => ({
@@ -30,12 +30,27 @@ export const parseOrders = orders => ({
     title: "Done",
     orderIds: orders.filter(o => o.state === "completed").map(o => o.id) || []
   },
-  canceled: {
-    id: columns.canceled,
-    title: "Canceled",
+  rejected: {
+    id: columns.rejected,
+    title: "Rejected",
     orderIds:
       orders
         .filter(o => o.state === "rejected" || o.state === "canceled")
         .map(o => o.id) || []
   }
 });
+
+export const setIsDropDisabled = (draggedState, droppableId) => {
+  if (
+    (draggedState === "waiting_for_approval" &&
+      (droppableId === columns.rejected ||
+        droppableId === columns.newOrders)) ||
+    (draggedState === "paid" && droppableId === columns.inProgress) ||
+    (draggedState === "in_preparation" && droppableId === columns.done) ||
+    draggedState === droppableId ||
+    !draggedState
+  ) {
+    return false;
+  }
+  return true;
+};

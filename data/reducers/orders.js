@@ -1,10 +1,13 @@
-// import { PATCH_ORDER_REQUEST } from "types/orders";
 import {
   FETCH_BUSINESS_ORDERS_REQUEST,
   FETCH_BUSINESS_ORDERS_SUCCESS,
   FETCH_BUSINESS_ORDERS_FAIL
 } from "types/businesses";
-import { FETCH_ORDER_SUCCESS } from "types/orders";
+import {
+  FETCH_ORDER_SUCCESS,
+  PATCH_ORDER_SUCCESS,
+  PATCH_ORDER_REJECT_SUCCESS
+} from "types/orders";
 import build from "redux-object";
 
 const initialState = {
@@ -39,7 +42,9 @@ const reducer = (state = initialState, { type, payload }) => {
       newState.isFailed = true;
       return newState;
     }
-    case FETCH_ORDER_SUCCESS: {
+    case FETCH_ORDER_SUCCESS:
+    case PATCH_ORDER_SUCCESS:
+    case PATCH_ORDER_REJECT_SUCCESS: {
       const newState = { ...state };
       const order = build(payload.data, "orders", payload.rawData.data.id, {
         ignoreLinks: true
@@ -47,11 +52,16 @@ const reducer = (state = initialState, { type, payload }) => {
       const index = newState.data.findIndex(
         i => i.id === payload.rawData.data.id
       );
+      const data = [...newState.data];
       if (index !== -1) {
-        newState.data[index] = order;
+        data[index] = {
+          ...data[index],
+          ...order
+        };
       } else {
-        newState.data.push(order);
+        data.push(order);
       }
+      newState.data = [...data];
       return newState;
     }
 
