@@ -48,7 +48,7 @@ const generateSettingsMobileSubmenu = (t, active, logout) => [
   }
 ];
 
-const generateProfileMobileSubmenu = (t, active, showPublishModal) => [
+const generateProfileMobileSubmenu = (t, active) => [
   {
     route: `/app/profile/basic-information/`,
     label: t("app:manageProfile.basicInformation"),
@@ -84,15 +84,10 @@ const generateProfileMobileSubmenu = (t, active, showPublishModal) => [
     label: t("app:manageProfile.inviteYourTeam"),
     isActive: active === "inviteYourTeam",
     SubmenuIcon: ProfileMembers
-  },
-  {
-    onClick: showPublishModal,
-    label: t("app:manageProfile.publish"),
-    isActive: false
   }
 ];
 
-export const generateToggledMobileMenuSubitems = (t, lng) => [
+export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
   {
     icon: Delivery,
     label: t("app:delivery"),
@@ -143,6 +138,6 @@ export const generateToggledMobileMenuSubitems = (t, lng) => [
     icon: SettingsIcon,
     label: t("app:userSettings.userSettings"),
     withSubmenu: true,
-    submenuItems: generateSettingsMobileSubmenu(t, lng)
+    submenuItems: generateSettingsMobileSubmenu(t, lng, logout)
   }
 ];

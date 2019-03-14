@@ -3,8 +3,9 @@ import { func, string, arrayOf, shape, node } from "prop-types";
 import AppLayout from "layout/App";
 import { generateMenuItems } from "sections/profile/utils";
 import prepareBusinessesList from "utils/prepareBusinessesList";
-import { Modal } from "components";
+import { Modal, ActionIcon } from "components";
 import PublishModal from "sections/profile/publishModal";
+import { PublishMobileIconWrapper, PublishHeader } from "./styled";
 
 class ProfileLayout extends PureComponent {
   state = {
@@ -55,6 +56,20 @@ class ProfileLayout extends PureComponent {
           }
         }}
       >
+        {business && business.state === "draft" && (
+          <PublishMobileIconWrapper>
+            <ActionIcon
+              size="sm"
+              icon={["fa", "check"]}
+              onClick={() => this.showPublishModal()}
+            />
+            <PublishHeader>{`${t("app:manageProfile.publish")}: ${
+              business.name
+                ? business.name
+                : t("app:manageProfile.unnamedBusiness")
+            }`}</PublishHeader>
+          </PublishMobileIconWrapper>
+        )}
         {children}
         <Modal
           {...{ open: isPublishModalVisible, onClose: this.hidePublishModal }}
