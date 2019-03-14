@@ -1,6 +1,5 @@
 import React from "react";
 import { func, shape } from "prop-types";
-import { validateEmail } from "utils/validators";
 import { Form as FinalForm, Field } from "react-final-form";
 import {
   H3,
@@ -22,11 +21,14 @@ const ContactInformationForm = ({ t, initialValues, handleSubmit }) =>
       mutators={{ setFieldData }}
       render={({ form: { mutators } }) => (
         <Form>
-          <AutoSave setFieldData={mutators.setFieldData} save={handleSubmit} />
+          <AutoSave
+            setFieldData={mutators.setFieldData}
+            save={handleSubmit}
+            t={t}
+          />
           <H3>{t("contactInformation")}</H3>
           <FormInput
             name="email"
-            validate={validateEmail(t)}
             label={t("emailLabel")}
             placeholder={t("emailPlaceholder")}
           />

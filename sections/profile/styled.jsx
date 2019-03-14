@@ -41,3 +41,7 @@ export const PublishMobileIconWrapper = styled(Flex).attrs({
 export const PublishHeader = styled.p`
   margin-left: 8px;
 `;
+
+export const Error = styled.div`
+  color: rgb(${p => p.theme.colors.ruby});
+`;

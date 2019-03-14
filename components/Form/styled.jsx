@@ -220,20 +220,39 @@ export const CheckboxLabel = styled(Flex).attrs({
   as: "label",
   justifyContent: "center",
   alignItems: "center",
-  width: 1
+  width: 1,
+  flexDirection: "column"
 })`
   text-align: center;
-  cursor: pointer;
+  cursor: ${p => (p.disabled ? "not-allowed" : "pointer")};
   background-color: rgb(
-    ${p => (p.checked ? p.theme.colors.white : p.theme.colors.background)}
+    ${p =>
+      p.disabled || p.checked
+        ? p.theme.colors.white
+        : p.theme.colors.background}
   );
   border: 2px solid
-    rgb(${p => (p.checked ? p.theme.colors.blue : p.theme.colors.background)});
+    rgb(
+      ${p =>
+        p.disabled || !p.checked
+          ? p.theme.colors.background
+          : p.theme.colors.blue}
+    );
   border-radius: ${p => p.theme.radius.default};
-  color: rgb(${p => (p.checked ? p.theme.colors.blue : p.theme.colors.dark)});
+  color: rgb(
+    ${p =>
+      p.disabled || !p.checked ? p.theme.colors.dark : p.theme.colors.blue}
+  );
   font-size: ${p => p.theme.fontSizes.f14};
   font-weight: ${p =>
     p.checked ? p.theme.fontWeights.semiBold : p.theme.fontWeights.medium};
+
+  ${p =>
+    p.checked &&
+    p.error &&
+    `background-color: rgba(${p.theme.colors.ruby}, 0.1);
+    border-color: rgb(${p.theme.colors.ruby});
+    color: rgb(${p.theme.colors.ruby});`}
 `;
 
 export const Checkbox = styled.input.attrs({ type: "checkbox" })`
@@ -315,4 +334,17 @@ export const DaypickerWrapper = styled.div`
       background-color: rgb(${p => p.theme.colors.blue}) !important;
     }
   }
+`;
+
+export const DisabledMessage = styled.div`
+  height: 42px;
+  line-height: 26px;
+  padding: 8px 16px;
+  color: rgb(${p => p.theme.colors.ruby});
+`;
+
+export const DisabledMessageCheckbox = styled.div`
+  margin-top: 4px;
+  color: rgb(${p => p.theme.colors.ruby});
+  font-weight: ${p => p.theme.fontWeights.regular};
 `;
