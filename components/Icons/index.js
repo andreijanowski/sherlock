@@ -30,6 +30,7 @@ export {
   Orders,
   Time,
   Menu,
+  Price,
   Clock,
   Location,
   Pause,

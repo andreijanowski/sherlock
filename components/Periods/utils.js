@@ -15,7 +15,7 @@ const parseTime = time => {
 
 const timeToNumber = ({ hour24, minute }) => hour24 * 60 * 60 + minute * 60;
 
-const parsePeriods = periods => {
+export const parsePeriods = periods => {
   const days = {};
   if (periods) {
     periods.forEach(p => {
@@ -45,23 +45,23 @@ const parsePeriods = periods => {
 
 export const weekdays = [1, 2, 3, 4, 5, 6, 0];
 
-export const getInitialValues = business => {
-  if (business) {
-    const { openPeriods } = business;
+// export const getInitialValues = business => {
+//   if (business) {
+//     const { periods } = business;
 
-    return parsePeriods(openPeriods);
-  }
-  return undefined;
-};
+//     return parsePeriods(periods);
+//   }
+//   return undefined;
+// };
 
-export const parseOpenPeriod = openPeriod => ({
-  location: openPeriod.location,
-  openedFrom: timeToNumber(openPeriod.openedFrom),
-  openedTo: timeToNumber(openPeriod.openedTo),
-  weekday: openPeriod.weekday
+export const parsePeriod = period => ({
+  location: period.location,
+  openedFrom: timeToNumber(period.openedFrom),
+  openedTo: timeToNumber(period.openedTo),
+  weekday: period.weekday
 });
 
-export const addNewOpenPeriod = (addOpenPeriod, fields, weekday) => {
+export const addNewPeriod = (addPeriod, fields, weekday) => {
   const defaultTime = {
     formatted: "12:00 am",
     formatted24: "0:00",
@@ -71,10 +71,10 @@ export const addNewOpenPeriod = (addOpenPeriod, fields, weekday) => {
     meridiem: "am",
     minute: 0
   };
-  const newOpenPeriod = {
+  const newPeriod = {
     openedFrom: defaultTime,
     openedTo: defaultTime,
     weekday
   };
-  addOpenPeriod(newOpenPeriod);
+  addPeriod(newPeriod);
 };

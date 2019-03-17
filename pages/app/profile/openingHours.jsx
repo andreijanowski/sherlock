@@ -4,11 +4,7 @@ import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
 import { func, string, shape, arrayOf } from "prop-types";
 import ProfileLayout from "sections/profile/Layout";
-import Form from "sections/profile/openingHours";
-import {
-  getInitialValues,
-  parseOpenPeriod
-} from "sections/profile/openingHours/utils";
+import { Periods, parsePeriods, parsePeriod } from "components";
 import { connect } from "react-redux";
 import {
   postOpenPeriod,
@@ -38,12 +34,12 @@ class OpeningHours extends PureComponent {
       addOpenPeriod,
       business: { id }
     } = this.props;
-    return addOpenPeriod(id, parseOpenPeriod(openPeriod));
+    return addOpenPeriod(id, parsePeriod(openPeriod));
   };
 
   updateOpenPeriod = openPeriod => {
     const { updateOpenPeriod } = this.props;
-    return updateOpenPeriod(openPeriod.id, parseOpenPeriod(openPeriod));
+    return updateOpenPeriod(openPeriod.id, parsePeriod(openPeriod));
   };
 
   removeOpenPeriod = id => {
@@ -72,7 +68,10 @@ class OpeningHours extends PureComponent {
       changeCurrentBusiness,
       addBusiness
     } = this.props;
-    const initialValues = getInitialValues(business);
+
+    const initialValues = business
+      ? parsePeriods(business.openPeriods)
+      : undefined;
 
     return (
       <ProfileLayout
@@ -86,13 +85,13 @@ class OpeningHours extends PureComponent {
           currentPage: "openingHours"
         }}
       >
-        <Form
+        <Periods
           {...{
             t,
             initialValues,
-            addOpenPeriod: this.addOpenPeriod,
-            updateOpenPeriod: this.updateOpenPeriod,
-            removeOpenPeriod: this.removeOpenPeriod,
+            addPeriod: this.addOpenPeriod,
+            updatePeriod: this.updateOpenPeriod,
+            removePeriod: this.removeOpenPeriod,
             copy: this.copy,
             paste: this.paste
           }}

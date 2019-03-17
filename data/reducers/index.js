@@ -4,6 +4,9 @@ import auth from "./auth";
 import users from "./users";
 import groups from "./groups";
 import members from "./members";
+import deliveries from "./deliveries";
+import dishes from "./dishes";
+import orders from "./orders";
 
 export default {
   notifications,
@@ -11,5 +14,8 @@ export default {
   auth,
   users,
   groups,
-  members
+  members,
+  deliveries,
+  dishes,
+  orders
 };
