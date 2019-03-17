@@ -90,7 +90,11 @@ export const RawTextarea = styled(({ smallLabel, ...p }) => (
   <TextareaAutosize {...p} />
 ))`
   ${InputStyles}
+  &:focus {
+    padding-bottom: 5px;
+  }
   ${p => p.smallLabel && FilledInputStyles}
+  ${p => p.smallLabel && "padding-bottom: 5px;"}
 `;
 
 export const MultipleSelectInput = styled(RawInput)`

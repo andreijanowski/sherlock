@@ -4,6 +4,8 @@ import isServer from "utils/isServer";
 import Column from "./Column";
 import { ColumnsWrapper } from "./styled";
 import RejectModal from "./RejectModal";
+import StopOrdersModal from "./StopOrdersModal";
+import FinishOrdersModal from "./FinishOrdersModal";
 
 const Orders = ({ onDragEnd, data, t }) => (
   <>
@@ -20,6 +22,12 @@ const Orders = ({ onDragEnd, data, t }) => (
       </ColumnsWrapper>
     </DragDropContext>
     {!isServer && <RejectModal {...{ open: true, onClose: () => null, t }} />}
+    {!isServer && (
+      <StopOrdersModal {...{ open: true, onClose: () => null, t }} />
+    )}
+    {!isServer && (
+      <FinishOrdersModal {...{ open: true, onClose: () => null, t }} />
+    )}
   </>
 );
 

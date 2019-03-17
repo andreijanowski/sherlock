@@ -131,3 +131,53 @@ export const RejectModalIcon = () => (
     </g>
   </svg>
 );
+
+export const StopOrdersModalIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="71"
+    height="71"
+    viewBox="0 0 71 71"
+  >
+    <g fill="none" fillRule="evenodd" transform="translate(1 1)">
+      <path
+        fill="#FBE7ED"
+        stroke="#DE1154"
+        strokeWidth="2"
+        d="M32.5 0C50.45 0 65 14.55 65 32.5S50.45 65 32.5 65 0 50.45 0 32.5 14.55 0 32.5 0z"
+      />
+      <rect width="4" height="15" x="26" y="25" fill="#DE1154" rx="2" />
+      <rect width="4" height="15" x="35" y="25" fill="#DE1154" rx="2" />
+      <g transform="translate(46 46)">
+        <rect width="24" height="24" fill="#FFF" rx="12" />
+        <path
+          fill="#DE1154"
+          fillRule="nonzero"
+          d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6 14h-7V6h2v6h5v2z"
+        />
+      </g>
+    </g>
+  </svg>
+);
+
+export const FinishOrdersModalIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="73"
+    height="63"
+    viewBox="0 0 73 63"
+  >
+    <g fill="none" fillRule="evenodd">
+      <path
+        fill="#FDF4CF"
+        stroke="#F3C60F"
+        strokeWidth="2"
+        d="M39.965 3.006L70.539 56A4 4 0 0 1 67.074 62H5.926a4 4 0 0 1-3.465-5.999L33.035 3.006a4 4 0 0 1 6.93 0z"
+      />
+      <path
+        fill="#F3C60F"
+        d="M35.117 42.833a.771.771 0 0 1-.567-.233.771.771 0 0 1-.233-.567V26.8c0-.244.077-.439.233-.583a.803.803 0 0 1 .567-.217h2.766c.223 0 .411.078.567.233a.771.771 0 0 1 .233.567v15.233a.771.771 0 0 1-.233.567.771.771 0 0 1-.567.233h-2.766zm-.2 6.5a.771.771 0 0 1-.567-.233.771.771 0 0 1-.233-.567v-3.166c0-.245.077-.44.233-.584a.803.803 0 0 1 .567-.216h3.133c.244 0 .444.077.6.233a.771.771 0 0 1 .233.567v3.166a.771.771 0 0 1-.233.567.812.812 0 0 1-.6.233h-3.133z"
+      />
+    </g>
+  </svg>
+);

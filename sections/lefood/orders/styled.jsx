@@ -104,3 +104,8 @@ export const ModalHeader = styled.h3`
   text-align: center;
   font-weight: ${p => p.theme.fontWeights.regular};
 `;
+
+export const ElementsWrapper = styled(Box)`
+  border-radius: ${p => p.theme.radius.small};
+  border: 1px solid rgb(${p => p.theme.colors.snuff});
+`;

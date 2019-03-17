@@ -33,5 +33,7 @@ export {
   Clock,
   Location,
   Pause,
-  RejectModalIcon
+  RejectModalIcon,
+  StopOrdersModalIcon,
+  FinishOrdersModalIcon
 } from "./lefoodNavigation";

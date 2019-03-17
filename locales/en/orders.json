@@ -2,5 +2,21 @@
   "header": "Orders",
   "paymentConfimed": "Payment confimed",
   "accept": "Accept",
-  "reject": "Reject"
+  "reject": "Reject",
+  "rejectReasonHeader": "Choose the reason for canceling the order",
+  "rejectReasonLabel": "Reason",
+  "rejectReasonOther": "Other",
+  "rejectReasonDishesUnavailable": "Dishes unavailable",
+  "rejectReasonKitchenFull": "Kitchen full",
+  "rejectReasonNoDeliveryPerson": "No delivery person",
+  "rejectReasonAlmostClosingTime": "Almost closing time",
+  "otherRejectionReasonLabel": "Other reason",
+  "otherRejectionReasonPlaceholder": "The reason is...",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "stopOrdersHeader": "Are you sure you want to stop receiving new orders?",
+  "yes": "Yes",
+  "no": "No",
+  "finishOrdersHeader": "You need to stop receiving new orders and finish the ones in progress in order to change this setting",
+  "back": "Back"
 }
