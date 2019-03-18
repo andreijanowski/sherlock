@@ -10,12 +10,13 @@ import {
   LoadingIndicator
 } from "components";
 import { Form as FinalForm, Field } from "react-final-form";
-import { required, maxLength } from "utils/validators";
 import { func, shape, arrayOf, string } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import setFieldData from "final-form-set-field-data";
 import { Form } from "../styled";
 import { getSubdivisions } from "./utils";
+import TypesError from "./TypesError";
+import GroupsErrorListener from "./GroupsErrorListener";
 
 const BasicInformationForm = ({
   t,
@@ -35,18 +36,20 @@ const BasicInformationForm = ({
       mutators={{ setFieldData }}
       render={({ values, form: { mutators } }) => (
         <Form>
-          <AutoSave setFieldData={mutators.setFieldData} save={handleSubmit} />
+          <AutoSave
+            setFieldData={mutators.setFieldData}
+            save={handleSubmit}
+            t={t}
+          />
           <WhenFieldChanges field="country" set="region" to={undefined} />
           <H3>{t("basicInformation")}</H3>
           <FormInput
             name="name"
-            validate={required(t)}
             label={t("nameLabel")}
             placeholder={t("namePlaceholder")}
           />
           <FormInput
             name="tagline"
-            validate={maxLength(t, 100)}
             label={t("taglineLabel")}
             placeholder={t("taglinePlaceholder")}
           />
@@ -69,7 +72,8 @@ const BasicInformationForm = ({
                 placeholder={t("regionPlaceholder")}
                 disabled={!values.country}
                 items={
-                  (values.country.value &&
+                  (values.country &&
+                    values.country.value &&
                     getSubdivisions(values.country.value)) ||
                   []
                 }
@@ -80,7 +84,6 @@ const BasicInformationForm = ({
             <Box width={[1, 1 / 2]} px={2}>
               <FormInput
                 name="street"
-                validate={maxLength(t, 100)}
                 label={t("streetLabel")}
                 placeholder={t("streetPlaceholder")}
               />
@@ -88,7 +91,6 @@ const BasicInformationForm = ({
             <Box width={[1 / 2, 3 / 10]} px={2}>
               <FormInput
                 name="streetNumber"
-                validate={maxLength(t, 100)}
                 label={t("streetNumberLabel")}
                 placeholder={t("streetNumberPlaceholder")}
               />
@@ -96,7 +98,6 @@ const BasicInformationForm = ({
             <Box width={[1 / 2, 1 / 5]} px={2}>
               <FormInput
                 name="postCode"
-                validate={maxLength(t, 100)}
                 label={t("postCodeLabel")}
                 placeholder={t("postCodePlaceholder")}
               />
@@ -109,44 +110,65 @@ const BasicInformationForm = ({
                   {...{
                     label: type.label,
                     name: "types",
-                    value: type,
-                    setError: err => err
+                    value: type
                   }}
                 />
               </Box>
             ))}
           </Flex>
+          <TypesError />
+          <GroupsErrorListener
+            name="types"
+            setFieldData={mutators.setFieldData}
+            t={t}
+          />
           <H3 mt={4}>{t("cuisines")}</H3>
           <Field
             name="cuisines"
             placeholder={t("cuisinesPlaceholder")}
             component={FormMultipleSelect}
-            maxItems={12}
             items={cuisines}
+          />
+          <GroupsErrorListener
+            name="cuisines"
+            setFieldData={mutators.setFieldData}
+            t={t}
           />
           <H3 mt={4}>{t("foodsAndDrinks")}</H3>
           <Field
             name="foodsAndDrinks"
             placeholder={t("foodsAndDrinksPlaceholder")}
             component={FormMultipleSelect}
-            maxItems={12}
             items={foodsAndDrinks}
+          />
+          <GroupsErrorListener
+            name="foodsAndDrinks"
+            setFieldData={mutators.setFieldData}
+            t={t}
           />
           <H3 mt={4}>{t("quirks")}</H3>
           <Field
             name="quirks"
             placeholder={t("quirksPlaceholder")}
             component={FormMultipleSelect}
-            maxItems={12}
             items={quirks}
+          />
+          <GroupsErrorListener
+            name="quirks"
+            setFieldData={mutators.setFieldData}
+            t={t}
           />
           <H3 mt={4}>{t("diets")}</H3>
           <Field
             name="diets"
             placeholder={t("dietsPlaceholder")}
             component={FormMultipleSelect}
-            maxItems={12}
             items={diets}
+          />
+          <GroupsErrorListener
+            name="diets"
+            setFieldData={mutators.setFieldData}
+            t={t}
           />
           <H3 mt={4}>{t("additionalInformation")}</H3>
           <FormInput

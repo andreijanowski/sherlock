@@ -10,7 +10,7 @@ import { postBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/users";
 import ProfileLayout from "sections/profile/Layout";
 
-const namespaces = ["members", "app", "publishModal"];
+const namespaces = ["members", "app", "publishModal", "forms"];
 
 class Members extends PureComponent {
   static async getInitialProps({ ctx }) {

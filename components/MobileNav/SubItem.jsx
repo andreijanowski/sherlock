@@ -55,16 +55,25 @@ class SubItem extends PureComponent {
             <IconLabel>{t("app:back")}</IconLabel>
           </Flex>
           {submenuItems &&
-            submenuItems.map(item => (
-              <Link {...{ lng, route: item.route, key: item.label }}>
-                <Flex mb={4}>
+            submenuItems.map(item =>
+              item.route ? (
+                <Link {...{ lng, route: item.route, key: item.label }}>
+                  <Flex mb={4}>
+                    <IconWrapper dark noFill>
+                      {item.SubmenuIcon && <item.SubmenuIcon />}
+                    </IconWrapper>
+                    <IconLabel>{item.label}</IconLabel>
+                  </Flex>
+                </Link>
+              ) : (
+                <Flex mb={4} key={item.label} onClick={item.onClick}>
                   <IconWrapper dark noFill>
                     {item.SubmenuIcon && <item.SubmenuIcon />}
                   </IconWrapper>
                   <IconLabel>{item.label}</IconLabel>
                 </Flex>
-              </Link>
-            ))}
+              )
+            )}
         </SubMenuWrapper>
       </Flex>
     );

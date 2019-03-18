@@ -32,8 +32,12 @@ class BasicInformation extends PureComponent {
 BasicInformation.propTypes = {
   t: func.isRequired,
   updateProfileHandler: func.isRequired,
-  profile: shape().isRequired,
+  profile: shape(),
   lng: string.isRequired
+};
+
+BasicInformation.defaultProps = {
+  profile: null
 };
 
 const mapStateToProps = state => ({

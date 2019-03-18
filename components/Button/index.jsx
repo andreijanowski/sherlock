@@ -14,12 +14,16 @@ const blue = css`
   background-color: rgba(${p => p.theme.colors.blue}, 0.1);
   border: none;
   color: rgb(${p => p.theme.colors.blue});
-  padding: 16px;
+  padding: 8px 20px;
 
   &:hover:enabled {
     background-color: rgba(${p => p.theme.colors.blue}, 1);
     color: rgb(${p => p.theme.colors.white});
     box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.blue}, 0.48);
+  }
+
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    padding: 16px 40px;
   }
 `;
 

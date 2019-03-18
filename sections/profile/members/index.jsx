@@ -50,6 +50,7 @@ class MembersForm extends PureComponent {
                   <AutoSave
                     setFieldData={mutators.setFieldData}
                     save={v => this.save(v, fields)}
+                    t={t}
                     arrayName="members"
                     key="autoSave"
                   />,

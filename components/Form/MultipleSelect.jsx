@@ -63,7 +63,11 @@ FormMultipleSelect.propTypes = {
   meta: shape().isRequired,
   placeholder: string.isRequired,
   items: arrayOf(shape()).isRequired,
-  maxItems: number.isRequired
+  maxItems: number
+};
+
+FormMultipleSelect.defaultProps = {
+  maxItems: undefined
 };
 
 export default FormMultipleSelect;

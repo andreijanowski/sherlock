@@ -14,7 +14,7 @@ import { postProduct, patchProduct, deleteProduct } from "actions/products";
 import { getInitialValues } from "sections/profile/picturesAndMenus/utils";
 import { setCurrentBusiness } from "actions/users";
 
-const namespaces = ["picturesAndMenus", "app", "publishModal"];
+const namespaces = ["picturesAndMenus", "app", "publishModal", "forms"];
 
 class PicturesAndMenus extends PureComponent {
   static async getInitialProps({ ctx }) {

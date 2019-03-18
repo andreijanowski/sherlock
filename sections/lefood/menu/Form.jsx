@@ -14,7 +14,6 @@ import { func } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import { normalizePrice } from "utils/normalizers";
 import { required } from "utils/validators";
-import { Form } from "./styled";
 
 class DishForm extends PureComponent {
   state = {
@@ -31,7 +30,7 @@ class DishForm extends PureComponent {
         }}
         onSubmit={addDish}
         render={({ handleSubmit, form: { reset } }) => (
-          <Form
+          <form
             onSubmit={e => {
               const promise = handleSubmit(e);
               if (promise && promise.then) {
@@ -112,7 +111,7 @@ class DishForm extends PureComponent {
                 {t("addToMenu")}
               </Button>
             </Box>
-          </Form>
+          </form>
         )}
       />
     );

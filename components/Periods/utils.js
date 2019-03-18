@@ -45,15 +45,6 @@ export const parsePeriods = periods => {
 
 export const weekdays = [1, 2, 3, 4, 5, 6, 0];
 
-// export const getInitialValues = business => {
-//   if (business) {
-//     const { periods } = business;
-
-//     return parsePeriods(periods);
-//   }
-//   return undefined;
-// };
-
 export const parsePeriod = period => ({
   location: period.location,
   openedFrom: timeToNumber(period.openedFrom),

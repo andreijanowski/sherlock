@@ -3,7 +3,7 @@ import Notifications from "react-notification-system-redux";
 import { connect } from "react-redux";
 import { arrayOf, shape } from "prop-types";
 
-const namespaces = ["notifications"];
+const namespaces = ["notifications", "form"];
 
 const NotificationCenter = ({ notifications }) => (
   <Notifications

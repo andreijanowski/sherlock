@@ -4,13 +4,13 @@ import { func } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import { normalizePrice } from "utils/normalizers";
 import { required } from "utils/validators";
-import { Form, AddIcon } from "./styled";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const DeliveryForm = ({ t, addDelivery }) => (
   <FinalForm
     onSubmit={addDelivery}
     render={({ handleSubmit, form: { reset } }) => (
-      <Form
+      <form
         onSubmit={e => {
           handleSubmit(e).then(() => reset());
         }}
@@ -37,12 +37,12 @@ const DeliveryForm = ({ t, addDelivery }) => (
           <Box mb={3}>
             <Button styleName="blue" type="submit">
               <Box px={1}>
-                <AddIcon icon={["fa", "plus"]} />
+                <FontAwesomeIcon icon={["fa", "plus"]} />
               </Box>
             </Button>
           </Box>
         </Flex>
-      </Form>
+      </form>
     )}
   />
 );

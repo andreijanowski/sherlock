@@ -5,10 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const Wrapper = styled(Flex).attrs({ flexDirection: "column", p: 4 })`
   background-color: rgb(${p => p.theme.colors.white});
 `;
-export const Form = styled.form``;
-export const AddIcon = styled(FontAwesomeIcon).attrs({
-  icon: ["fa", "plus"]
-})``;
 export const Delivery = styled(Flex).attrs({ p: 3 })`
   background-color: rgb(${p => p.theme.colors.background});
 `;
