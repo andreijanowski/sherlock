@@ -33,8 +33,8 @@ class OrdersPage extends PureComponent {
 
   componentDidUpdate(prevProps) {
     const { loading, orders } = this.props;
-    const { loading: wasloading, orders: prevOrders } = prevProps;
-    if ((wasloading && !loading) || orders !== prevOrders) {
+    const { loading: wasLoading, orders: prevOrders } = prevProps;
+    if ((wasLoading && !loading) || orders !== prevOrders) {
       this.refreshColumnsContent();
     }
   }

@@ -1,7 +1,8 @@
 import { Flex } from "@rebass/grid";
 import { Button, ButtonWithImageIconWrapper } from "components";
 import { func, shape } from "prop-types";
-import { Dish, Name, Description, Price, Remove, Image } from "./styled";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Dish, Name, Description, Price, Image } from "./styled";
 
 const ListItem = ({ item, removeDish }) => (
   <Dish>
@@ -25,7 +26,7 @@ const ListItem = ({ item, removeDish }) => (
       </Price>
       <Button styleName="withImage" red onClick={() => removeDish(item.id)}>
         <ButtonWithImageIconWrapper>
-          <Remove />
+          <FontAwesomeIcon icon={["fa", "times"]} />
         </ButtonWithImageIconWrapper>
       </Button>
     </Flex>

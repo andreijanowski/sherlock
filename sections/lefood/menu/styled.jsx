@@ -1,16 +1,9 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Wrapper = styled(Flex).attrs({ flexDirection: "column", p: 4 })`
   background-color: rgb(${p => p.theme.colors.white});
 `;
-
-export const Form = styled.form``;
-
-export const AddIcon = styled(FontAwesomeIcon).attrs({
-  icon: ["fa", "plus"]
-})``;
 
 export const Dish = styled(Flex).attrs({
   p: 2,
@@ -63,7 +56,3 @@ export const Price = styled.div`
   color: rgb(${p => p.theme.colors.dark});
   padding-right: 32px;
 `;
-
-export const Remove = styled(FontAwesomeIcon).attrs({
-  icon: ["fa", "times"]
-})``;
