@@ -86,9 +86,14 @@ class UserBasicInfoForm extends PureComponent {
 }
 UserBasicInfoForm.propTypes = {
   t: func.isRequired,
-  handleSubmit: func.isRequired,
-  profile: shape().isRequired,
+  handleSubmit: func,
+  profile: shape(),
   updateProfile: func.isRequired
+};
+
+UserBasicInfoForm.defaultProps = {
+  handleSubmit: null,
+  profile: null
 };
 
 export default UserBasicInfoForm;

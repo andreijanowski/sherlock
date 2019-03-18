@@ -1,5 +1,5 @@
 import { Flex } from "@rebass/grid";
-import { NavBar, MainApp, Menu } from "components";
+import { MainApp, NavigationContainer } from "components";
 import { node, bool, func, string, arrayOf, shape } from "prop-types";
 
 const AppLayout = ({
@@ -12,10 +12,17 @@ const AppLayout = ({
   lng,
   select
 }) => (
-  <Flex width={1}>
-    <NavBar {...{ t, lng }} />
-    {withMenu && <Menu {...{ lng, menuItems, select }} />}
-    <MainApp {...{ withMenu, mainIcon, header }}>{children}</MainApp>
+  <Flex flexDirection={["column", "row"]} width={1}>
+    <NavigationContainer {...{ t, lng, withMenu, menuItems, select }} />
+    <MainApp
+      {...{
+        withMenu,
+        mainIcon,
+        header
+      }}
+    >
+      {children}
+    </MainApp>
   </Flex>
 );
 

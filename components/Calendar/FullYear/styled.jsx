@@ -31,7 +31,7 @@ export const WeekDays = styled(Flex).attrs({
 
 export const Month = styled(Flex).attrs({
   flexDirection: "column",
-  width: 1 / 3,
+  width: [1, 1 / 3],
   p: 24
 })`
   border-left: 1px solid rgb(${p => p.theme.colors.background});

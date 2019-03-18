@@ -1,9 +1,9 @@
 import React from "react";
 import { Router } from "routes";
-import { H2, Paragraph } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { func, string } from "prop-types";
 import { PlansWrapper, TextWrapper } from "./styled";
+import { H2Styled, ParagraphStyled } from "../sharedStyled";
 import Plan from "./plan";
 import BillingPeriod from "./billingPeriod";
 import PromotionBoard from "./promotionBoard";
@@ -15,18 +15,20 @@ const Plans = React.forwardRef(
         <Flex
           flexDirection="row"
           flexWrap="wrap"
-          justifyContent="space-between"
+          justifyContent={["center", "space-between"]}
           alignItems="center"
         >
-          <H2>{t("plans.header")}</H2>
+          <Box width={[1, "auto"]}>
+            <H2Styled>{t("plans.header")}</H2Styled>
+          </Box>
           <BillingPeriod {...{ t, billingPeriod, handleChangeBillngPeriod }} />
           <Box />
         </Flex>
-        <Paragraph>{t("plans.paragraph")}</Paragraph>
+        <ParagraphStyled>{t("plans.paragraph")}</ParagraphStyled>
         <PromotionBoard {...{ t }} />
       </TextWrapper>
       <PlansWrapper ref={ref}>
-        <Box width={[1, 1 / 2, 1 / 4]}>
+        <Box mb={[40, 0]} width={[1, 1 / 2, 1 / 4]}>
           <Plan
             {...{
               t,
@@ -37,7 +39,7 @@ const Plans = React.forwardRef(
             }}
           />
         </Box>
-        <Box width={[1, 1 / 2, 1 / 4]}>
+        <Box mb={[40, 0]} width={[1, 1 / 2, 1 / 4]}>
           <Plan
             {...{
               t,
@@ -48,7 +50,7 @@ const Plans = React.forwardRef(
             }}
           />
         </Box>
-        <Box width={[1, 1 / 2, 1 / 4]}>
+        <Box mb={[40, 0]} width={[1, 1 / 2, 1 / 4]}>
           <Plan
             {...{
               t,
@@ -59,7 +61,7 @@ const Plans = React.forwardRef(
             }}
           />
         </Box>
-        <Box width={[1, 1 / 2, 1 / 4]}>
+        <Box mb={[40, 0]} width={[1, 1 / 2, 1 / 4]}>
           <Plan
             {...{
               t,

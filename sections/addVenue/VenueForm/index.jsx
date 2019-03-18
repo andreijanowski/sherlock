@@ -4,6 +4,7 @@ import { func } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { InputField, Button, RadioButtonField } from "components";
 import { required } from "utils/validators";
+import { Box } from "@rebass/grid";
 import {
   HelperTitle,
   Separator,
@@ -92,53 +93,68 @@ class VenueForm extends PureComponent {
             <Separator size={32} />
             <HelperTitle>{t("venueNumber")}</HelperTitle>
             <RadioButtonsContainer>
-              <RadioButtonField name="venueNumber" value="1-3">
-                1-3
-              </RadioButtonField>
-              <RadioButtonField name="venueNumber" value="4-10">
-                4-10
-              </RadioButtonField>
-              <RadioButtonField name="venueNumber" value="11-20">
-                11-20
-              </RadioButtonField>
-              <RadioButtonField name="venueNumber" value="21-30">
-                21-30
-              </RadioButtonField>
-              <RadioButtonField name="venueNumber" value="31-50">
-                31-50
-              </RadioButtonField>
-              <RadioButtonField name="venueNumber" value="custom">
-                <Field name="venueNumber" subscription={{ value: true }}>
-                  {({ input: { value } }) =>
-                    value === "custom" ? (
-                      <Field
-                        name="venueNumberCustom"
-                        component="input"
-                        autoFocus
-                        placeholder={t("forms:placeholder.custom")}
-                      />
-                    ) : (
-                      <CustomRadioButtonPlaceholder>
-                        {values.venueNumberCustom ||
-                          t("forms:placeholder.custom")}
-                      </CustomRadioButtonPlaceholder>
-                    )
-                  }
-                </Field>
-              </RadioButtonField>
+              <Box width={[1 / 4, 1 / 5, 1 / 4]} p={1}>
+                <RadioButtonField name="venueNumber" value="1-3">
+                  1-3
+                </RadioButtonField>
+              </Box>
+              <Box width={[1 / 4, 1 / 5, 1 / 4]} p={1}>
+                <RadioButtonField name="venueNumber" value="4-10">
+                  4-10
+                </RadioButtonField>
+              </Box>
+              <Box width={[1 / 4, 1 / 5, 1 / 4]} p={1}>
+                <RadioButtonField name="venueNumber" value="11-20">
+                  11-20
+                </RadioButtonField>
+              </Box>
+              <Box width={[1 / 4, 1 / 5, 1 / 4]} p={1}>
+                <RadioButtonField name="venueNumber" value="21-30">
+                  21-30
+                </RadioButtonField>
+              </Box>
+              <Box width={[1 / 4, 1 / 5, 1 / 4]} p={1}>
+                <RadioButtonField name="venueNumber" value="31-50">
+                  31-50
+                </RadioButtonField>
+              </Box>
+              <Box width={[3 / 4, 1, 3 / 4]} p={1}>
+                <RadioButtonField name="venueNumber" value="custom">
+                  <Field name="venueNumber" subscription={{ value: true }}>
+                    {({ input: { value } }) =>
+                      value === "custom" ? (
+                        <Field
+                          name="venueNumberCustom"
+                          component="input"
+                          autoFocus
+                          placeholder={t("forms:placeholder.custom")}
+                        />
+                      ) : (
+                        <CustomRadioButtonPlaceholder>
+                          {values.venueNumberCustom ||
+                            t("forms:placeholder.custom")}
+                        </CustomRadioButtonPlaceholder>
+                      )
+                    }
+                  </Field>
+                </RadioButtonField>
+              </Box>
             </RadioButtonsContainer>
             <Separator size={32} />
-            <Button
-              onClick={handleSubmit}
-              styleName="blue"
-              disabled={invalid || pristine || submitting}
-            >
-              {submitting ? (
-                <FontAwesomeIcon icon="circle-notch" spin size="lg" />
-              ) : (
-                t("startButton")
-              )}
-            </Button>
+            <Box width={[1, "auto"]}>
+              <Button
+                onClick={handleSubmit}
+                styleName="blue"
+                fluid
+                disabled={invalid || pristine || submitting}
+              >
+                {submitting ? (
+                  <FontAwesomeIcon icon="circle-notch" spin size="lg" />
+                ) : (
+                  t("startButton")
+                )}
+              </Button>
+            </Box>
           </form>
         )}
       />

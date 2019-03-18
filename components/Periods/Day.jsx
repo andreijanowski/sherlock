@@ -50,30 +50,45 @@ class Day extends PureComponent {
       <FieldArray name={`day-${weekday}`}>
         {({ fields }) => (
           <>
-            <Flex width={1} flexDirection={["column", "row"]}>
-              <Box width={[1, 1 / 6]} mt="24px" mb="8px">
-                <RawCheckbox
-                  label={t(`weekdays.${weekday}`)}
-                  input={{
-                    onChange: () => this.handleChange(fields),
-                    value: !!fields.length
-                  }}
-                />
-              </Box>
-              <Box width={[1, 1 / 12]} mt={34}>
+            <Flex
+              width={1}
+              flexDirection={["column", "column", "column", "row"]}
+              justifyContent="space-between"
+            >
+              <Flex
+                justifyContent="space-between"
+                alignItems="center"
+                flexWrap={["wrap", "wrap", "wrap", "wrap", "nowrap"]}
+                width={["auto", "auto", "auto", "auto", 0.3]}
+              >
+                <Box
+                  width={["auto", "auto", "auto", 1, "auto"]}
+                  mt="24px"
+                  mb="8px"
+                >
+                  <RawCheckbox
+                    label={t(`weekdays.${weekday}`)}
+                    input={{
+                      onChange: () => this.handleChange(fields),
+                      value: !!fields.length
+                    }}
+                  />
+                </Box>
                 {fields.value && fields.value.length && (
-                  <Action onClick={() => copy(fields.value)}>
-                    {t("copy")}
-                  </Action>
+                  <Box width="auto" mt={0}>
+                    <Action onClick={() => copy(fields.value)}>
+                      {t("copy")}
+                    </Action>
+                  </Box>
                 )}
-              </Box>
-              <Box width={[1, 1 / 12]} mt={34}>
-                <Action onClick={() => paste(weekday)}>{t("paste")}</Action>
-              </Box>
-              <Flex flexDirection="column" width={[1, 2 / 3]} mt="12px">
+                <Box width="auto" mt={0}>
+                  <Action onClick={() => paste(weekday)}>{t("paste")}</Action>
+                </Box>
+              </Flex>
+              <Flex flexDirection="column" width={[1, 1, 1, 0.6]} mt="12px">
                 {fields.map((name, index) => (
-                  <Flex alignItems="center" key={name}>
-                    <Box width="calc(50% - 48px)" px={2}>
+                  <Flex alignItems="center" key={name} flexWrap="wrap">
+                    <Box width={[1, "calc(50% - 48px)"]} px={2}>
                       <FormTimePicker
                         name={`${name}.openedFrom`}
                         label={t("openedFromLabel")}
@@ -84,7 +99,7 @@ class Day extends PureComponent {
                         }
                       />
                     </Box>
-                    <Box width="calc(50% - 48px)" px={2}>
+                    <Box width={[1, "calc(50% - 48px)"]} px={2}>
                       <FormTimePicker
                         name={`${name}.openedTo`}
                         label={t("openedToLabel")}

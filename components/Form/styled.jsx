@@ -11,9 +11,12 @@ const InputStyles = css`
     rgb(${p => (p.invalid ? p.theme.colors.ruby : p.theme.colors.snuff)});
   padding: ${p => p.padding || "16px"};
   box-sizing: border-box;
-  ${p => !p.rows && "height: 60px;"}
+  ${p => !p.rows && "height: 54px;"}
   width: 100%;
   resize: none;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    ${p => !p.rows && "height: 60px;"}
+  }
 
   & + label {
     transition: transform 0.2s;
@@ -195,8 +198,12 @@ export const Label = styled.label`
   margin-left: 16px;
   transform: translateY(-50%);
   transform-origin: left;
+  font-size: ${p => p.theme.fontSizes.f14};
   color: rgb(${p => p.theme.colors.bombay});
   pointer-events: none;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    font-size: ${p => p.theme.fontSizes.f16};
+  }
 `;
 
 export const Items = styled(Flex).attrs({
@@ -249,20 +256,39 @@ export const CheckboxLabel = styled(Flex).attrs({
   as: "label",
   justifyContent: "center",
   alignItems: "center",
-  width: 1
+  width: 1,
+  flexDirection: "column"
 })`
   text-align: center;
-  cursor: pointer;
+  cursor: ${p => (p.disabled ? "not-allowed" : "pointer")};
   background-color: rgb(
-    ${p => (p.checked ? p.theme.colors.white : p.theme.colors.background)}
+    ${p =>
+      p.disabled || p.checked
+        ? p.theme.colors.white
+        : p.theme.colors.background}
   );
   border: 2px solid
-    rgb(${p => (p.checked ? p.theme.colors.blue : p.theme.colors.background)});
+    rgb(
+      ${p =>
+        p.disabled || !p.checked
+          ? p.theme.colors.background
+          : p.theme.colors.blue}
+    );
   border-radius: ${p => p.theme.radius.default};
-  color: rgb(${p => (p.checked ? p.theme.colors.blue : p.theme.colors.dark)});
+  color: rgb(
+    ${p =>
+      p.disabled || !p.checked ? p.theme.colors.dark : p.theme.colors.blue}
+  );
   font-size: ${p => p.theme.fontSizes.f14};
   font-weight: ${p =>
     p.checked ? p.theme.fontWeights.semiBold : p.theme.fontWeights.medium};
+
+  ${p =>
+    p.checked &&
+    p.error &&
+    `background-color: rgba(${p.theme.colors.ruby}, 0.1);
+    border-color: rgb(${p.theme.colors.ruby});
+    color: rgb(${p.theme.colors.ruby});`}
 `;
 
 export const Checkbox = styled.input.attrs({ type: "checkbox" })`
@@ -316,9 +342,12 @@ export const HiddenCheckboxInput = styled.input.attrs({
 export const TimekeeperWrapper = styled.div`
   position: absolute;
   width: 260px;
-  left: calc(50% - 130px);
+  left: 0;
   transform: translateY(${p => p.top}px);
   z-index: 2;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    left: calc(50% - 130px);
+  }
 `;
 
 export const ActionIconWrapper = styled.div`
@@ -331,8 +360,7 @@ export const DaypickerWrapper = styled.div`
   position: relative;
   .DayPicker {
     position: absolute;
-    top: 10px;
-    left: 0;
+    right: 0;
     top: 70px;
     z-index: 2;
     background: rgb(${p => p.theme.colors.white});
@@ -342,4 +370,17 @@ export const DaypickerWrapper = styled.div`
       background-color: rgb(${p => p.theme.colors.blue}) !important;
     }
   }
+`;
+
+export const DisabledMessage = styled.div`
+  height: 42px;
+  line-height: 26px;
+  padding: 8px 16px;
+  color: rgb(${p => p.theme.colors.ruby});
+`;
+
+export const DisabledMessageCheckbox = styled.div`
+  margin-top: 4px;
+  color: rgb(${p => p.theme.colors.ruby});
+  font-weight: ${p => p.theme.fontWeights.regular};
 `;

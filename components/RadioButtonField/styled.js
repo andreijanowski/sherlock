@@ -6,10 +6,14 @@ export const RadioButtonLabel = styled.span`
     rgba(${p => p.theme.colors.dark}, 0);
   background-color: rgba(${p => p.theme.colors.dark}, 0.1);
   border-radius: ${p => p.theme.radius.default};
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 16px;
   cursor: pointer;
   text-align: center;
+  width: 100%;
+  height: 100%;
 
   &:hover {
     box-shadow: 0px 2px 6px 0px rgba(${p => p.theme.colors.dark}, 0.1);
@@ -20,7 +24,6 @@ export const RadioButtonLabel = styled.span`
     outline: none;
   }
   & > input {
-    width: 120px;
     border: none;
     text-align: center;
     background: transparent;
@@ -32,6 +35,7 @@ export const RadioButtonLabel = styled.span`
 export const RadioButtonContainer = styled.label`
   position: relative;
   cursor: pointer;
+  width: 100%;
 `;
 
 export const RadioButton = styled.input`

@@ -18,7 +18,7 @@ import {
   isNotNegativeNumber
 } from "utils/validators";
 import { Router } from "routes";
-import Form from "./styled";
+import { Form } from "./styled";
 
 const CreateEventForm = ({ t }) => (
   <FinalForm
@@ -146,18 +146,19 @@ const CreateEventForm = ({ t }) => (
           </Box>
         </Flex>
         <Flex flexWrap="wrap" justifyContent="center" mx={-2} mt={3}>
-          <Box width={[1, 165]} px={2}>
+          <Box width={[1 / 2, 165]} px={2}>
             <Button
               styleName="formBlue"
               fluid
-              onClick={() => {
+              onClick={e => {
+                e.preventDefault();
                 Router.pushRoute("/app/catering/month/");
               }}
             >
               {t("forms:cancel")}
             </Button>
           </Box>
-          <Box width={[1, 165]} px={2}>
+          <Box width={[1 / 2, 165]} px={2}>
             <Button styleName="formBlue" type="submit" fluid>
               {t("forms:save")}
             </Button>

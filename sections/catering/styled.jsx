@@ -1,5 +1,5 @@
-/* eslint-disable import/prefer-default-export */
 import styled from "styled-components";
+import { Box, Flex } from "@rebass/grid";
 
 export const CalendarWrapper = styled.div`
   background-color: rgb(${p => p.theme.colors.white});
@@ -7,4 +7,20 @@ export const CalendarWrapper = styled.div`
   border-radius: ${p => p.theme.radius.default};
   overflow: hidden;
   ${p => p.height && `height: ${p.height}px;`}
+`;
+
+export const ActionBarWrapper = styled(Flex)`
+  position: relative;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    position: static;
+  }
+`;
+
+export const AddIconWrapper = styled(Box)`
+  position: absolute;
+  right: 0;
+  top: -66px;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    position: static;
+  }
 `;

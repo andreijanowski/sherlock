@@ -3,14 +3,19 @@ import { Router } from "routes";
 import {
   Button,
   FoodetectiveLogo,
-  H1,
   BlueText,
-  Paragraph,
   LanguageSwitcher
 } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Content, LogoWrapper, ButtonWithIcon } from "./styled";
+import {
+  Content,
+  LogoWrapper,
+  LogoMobileWrapper,
+  ButtonWithIcon,
+  H1Styled
+} from "./styled";
+import { ParagraphStyled } from "../sharedStyled";
 
 const TopSection = ({ t, lng, plansRef }) => (
   <Flex flexDirection="column" mt={4} width={1} px={3}>
@@ -27,16 +32,20 @@ const TopSection = ({ t, lng, plansRef }) => (
       <LogoWrapper>
         <FoodetectiveLogo withTagline />
       </LogoWrapper>
-      <H1>
+      <LogoMobileWrapper>
+        <FoodetectiveLogo />
+      </LogoMobileWrapper>
+      <H1Styled>
         {t("topSection.header.start")}
         <BlueText>{t("topSection.header.end")}</BlueText>
-      </H1>
-      <Paragraph>{t("topSection.paragraph")}</Paragraph>
+      </H1Styled>
+      <ParagraphStyled>{t("topSection.paragraph")}</ParagraphStyled>
       <Flex flexDirection="row" flexWrap="wrap" m={["-2px", -1]}>
         <Box width={[1, "auto"]} p={["2px", 1]}>
           <Button
             styleName="blue"
             fluid
+            fullHeight
             onClick={() =>
               plansRef.current.scrollIntoView({
                 behavior: "smooth"
@@ -50,20 +59,27 @@ const TopSection = ({ t, lng, plansRef }) => (
           <Button
             styleName="blue"
             fluid
+            fullHeight
             onClick={() => Router.pushRoute(`/${lng}/register/`)}
           >
             {t("topSection.addYourBusiness")}
           </Button>
         </Box>
         <Box width={[1 / 2, "auto"]} p={["2px", 1]}>
-          <Button fluid styleName="blue">
+          <Button fluid fullHeight styleName="blue">
             {t("topSection.addManager")}
           </Button>
         </Box>
-        <Box width={[1, "auto"]}>
+        <Box width={[1, "auto"]} p={["2px", 1]}>
           <ButtonWithIcon fluid>
             <FontAwesomeIcon icon="play" size="xs" />
             {t("topSection.watchVideo")}
+          </ButtonWithIcon>
+        </Box>
+        <Box width={[1, "auto"]} p={["2px", 1]}>
+          <ButtonWithIcon fluid>
+            <FontAwesomeIcon icon="play" size="xs" />
+            {t("topSection.testimonials")}
           </ButtonWithIcon>
         </Box>
       </Flex>

@@ -28,7 +28,8 @@ class Create extends PureComponent {
           lng,
           business,
           businesses,
-          changeCurrentBusiness
+          changeCurrentBusiness,
+          isAddActionHidden: true
         }}
       >
         <CreateEventForm {...{ t }} />

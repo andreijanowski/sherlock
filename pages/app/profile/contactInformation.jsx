@@ -10,7 +10,7 @@ import { getInitialValues } from "sections/profile/contactInformation/utils";
 import { setCurrentBusiness } from "actions/users";
 import ProfileLayout from "sections/profile/Layout";
 
-const namespaces = ["contactInformation", "app", "publishModal"];
+const namespaces = ["contactInformation", "app", "publishModal", "forms"];
 
 class ContactInformation extends PureComponent {
   static async getInitialProps({ ctx }) {

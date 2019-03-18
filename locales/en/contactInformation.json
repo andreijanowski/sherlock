@@ -5,7 +5,7 @@
   "namePlaceholder": "John Smith",
   "emailLabel": "E-mail",
   "emailPlaceholder": "name@company.com",
-  "countryLabel": "Country",
+  "countryLabel": "Country code",
   "countryPlaceholder": "+48",
   "phoneLabel": "Phone",
   "phonePlaceholder": "543 423 534",

@@ -12,7 +12,10 @@ export const Wrapper = styled.div`
   border: 1px solid rgb(${p => p.theme.colors.white});
   border-radius: ${p => p.theme.radius.tiny};
   height: 100%;
-  padding: 8px;
+  padding: 2px;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    padding: 8px;
+  }
 `;
 
 export const Header = styled(Flex).attrs({
