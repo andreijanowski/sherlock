@@ -274,6 +274,12 @@ const reducer = (state = initialState, { type, payload, meta }) => {
             }
           };
         }
+        if (v === "visibleInLefood") {
+          newState.currentBusiness.data = {
+            ...newState.currentBusiness.data,
+            visibleInLefood: business.visibleInLefood
+          };
+        }
       });
       return newState;
     }

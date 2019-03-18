@@ -6,11 +6,13 @@ import { func, string, arrayOf, shape, bool } from "prop-types";
 import LefoodLayout from "sections/lefood/Layout";
 import Orders from "sections/lefood/orders";
 import {
+  calcPendingOrders,
   parseOrders,
   columns as columnsNames
-} from "sections/lefood/orders/utils";
+} from "sections/lefood/utils";
 import { connect } from "react-redux";
 import { patchOrder, patchOrderReject } from "actions/orders";
+import { patchBusiness } from "actions/businesses";
 
 const namespaces = ["lefood", "app"];
 
@@ -27,7 +29,8 @@ class OrdersPage extends PureComponent {
     super(props);
     this.state = {
       columns: parseOrders(props.orders),
-      draggedOrderState: null
+      draggedOrderState: null,
+      pendingRejectionOrderId: undefined
     };
   }
 
@@ -56,13 +59,14 @@ class OrdersPage extends PureComponent {
       return;
     }
 
-    const { updateOrder, rejectOrder } = this.props;
+    const { updateOrder } = this.props;
     if (destination.droppableId === columnsNames.inProgress) {
       updateOrder({ state: "in_preparation" }, draggableId);
     } else if (destination.droppableId === columnsNames.done) {
       updateOrder({ state: "completed" }, draggableId);
     } else if (destination.droppableId === columnsNames.rejected) {
-      rejectOrder({}, draggableId);
+      this.setRejectModalVisibility(draggableId);
+      return;
     }
 
     this.setState(state => {
@@ -115,16 +119,64 @@ class OrdersPage extends PureComponent {
     this.setState({ draggedOrderState: order.state });
   };
 
+  setRejectModalVisibility = orderId =>
+    this.setState({
+      pendingRejectionOrderId: orderId
+    });
+
+  handleRejectionSubmit = ({
+    rejectReason,
+    unavailableElements,
+    otherRejectionReason
+  }) => {
+    const { rejectOrder, orders } = this.props;
+    const { pendingRejectionOrderId } = this.state;
+    const order = orders.find(o => o.id === pendingRejectionOrderId);
+    const unavailableElementsIds = unavailableElements
+      .map((unavailable, index) => {
+        if (unavailable) {
+          return order.elements[index].id;
+        }
+        return null;
+      })
+      .filter(e => !!e)
+      .toString();
+    rejectOrder(
+      {
+        rejectReason,
+        unavailableElements:
+          rejectReason === "dishes_unavailable"
+            ? unavailableElementsIds || undefined
+            : undefined,
+        otherRejectionReason:
+          rejectReason === "other" ? otherRejectionReason : undefined
+      },
+      pendingRejectionOrderId
+    ).then(() => this.refreshColumnsContent());
+    this.setRejectModalVisibility(undefined);
+  };
+
   render() {
-    const { t, lng, orders, loading, currentBusiness } = this.props;
-    const { columns, draggedOrderState } = this.state;
-    const currency = currentBusiness ? currentBusiness.currency : "";
+    const {
+      t,
+      lng,
+      orders,
+      loading,
+      currentBusiness,
+      updateBusiness
+    } = this.props;
+    const { columns, draggedOrderState, pendingRejectionOrderId } = this.state;
+    const { currency, visibleInLefood, id } = currentBusiness || {};
     return (
       <LefoodLayout
         {...{
           t,
           lng,
-          page: "orders"
+          page: "orders",
+          pendingOrdersLength: calcPendingOrders(orders),
+          visibleInLefood,
+          updateBusiness,
+          currentBusinessId: id
         }}
       >
         <Orders
@@ -132,6 +184,9 @@ class OrdersPage extends PureComponent {
             onDragEnd: this.handleDragEnd,
             onDragStart: this.handleDragStart,
             updateOrder: this.updateOrder,
+            handleRejectionSubmit: this.handleRejectionSubmit,
+            setRejectModalVisibility: this.setRejectModalVisibility,
+            pendingRejectionOrderId,
             draggedOrderState,
             orders,
             columns,
@@ -152,7 +207,8 @@ OrdersPage.propTypes = {
   currentBusiness: shape(),
   loading: bool.isRequired,
   updateOrder: func.isRequired,
-  rejectOrder: func.isRequired
+  rejectOrder: func.isRequired,
+  updateBusiness: func.isRequired
 };
 
 OrdersPage.defaultProps = {
@@ -171,7 +227,8 @@ export default requireAuth(true)(
       }),
       {
         updateOrder: patchOrder,
-        rejectOrder: patchOrderReject
+        rejectOrder: patchOrderReject,
+        updateBusiness: patchBusiness
       }
     )(OrdersPage)
   )

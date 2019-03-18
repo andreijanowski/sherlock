@@ -1,7 +1,7 @@
 import React from "react";
 import { NavBar, Menu, MobileNav } from "components";
 import { Flex } from "@rebass/grid";
-import { node, bool, func, string, arrayOf, shape } from "prop-types";
+import { bool, func, string, arrayOf, shape } from "prop-types";
 import { Wrapper, MobileWrapper } from "./styled";
 
 const NavigationContainer = ({ withMenu, menuItems, t, lng, select }) => (
@@ -19,7 +19,6 @@ const NavigationContainer = ({ withMenu, menuItems, t, lng, select }) => (
 );
 
 NavigationContainer.propTypes = {
-  children: node.isRequired,
   withMenu: bool,
   menuItems: arrayOf(
     shape({

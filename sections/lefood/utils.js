@@ -54,3 +54,7 @@ export const setIsDropDisabled = (draggedState, droppableId) => {
   }
   return true;
 };
+
+export const calcPendingOrders = orders =>
+  (orders || []).filter(o => o.state !== "completed" && o.state !== "rejected")
+    .length;

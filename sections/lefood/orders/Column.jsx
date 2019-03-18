@@ -8,7 +8,7 @@ import {
   OrdersNumber,
   OrdersWrapper
 } from "./styled";
-import { columns, setIsDropDisabled } from "./utils";
+import { columns, setIsDropDisabled } from "../utils";
 
 const Column = ({
   id,
@@ -17,7 +17,8 @@ const Column = ({
   t,
   currency,
   updateOrder,
-  draggedOrderState
+  draggedOrderState,
+  setRejectModalVisibility
 }) => {
   const isDropDisabled = setIsDropDisabled(draggedOrderState, id);
   return (
@@ -36,7 +37,16 @@ const Column = ({
             ref={provided.innerRef}
             rejected={id === columns.rejected}
           >
-            <Orders {...{ orders, currency, t, updateOrder, id }} />
+            <Orders
+              {...{
+                orders,
+                currency,
+                t,
+                updateOrder,
+                id,
+                setRejectModalVisibility
+              }}
+            />
             {provided.placeholder}
           </OrdersWrapper>
         )}
@@ -52,7 +62,12 @@ Column.propTypes = {
   orders: arrayOf(shape()).isRequired,
   currency: string.isRequired,
   updateOrder: func.isRequired,
-  draggedOrderState: string.isRequired
+  setRejectModalVisibility: func.isRequired,
+  draggedOrderState: string
+};
+
+Column.defaultProps = {
+  draggedOrderState: null
 };
 
 export default Column;

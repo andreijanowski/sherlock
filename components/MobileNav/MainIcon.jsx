@@ -1,5 +1,5 @@
 import React from "react";
-import { func, bool, node, string } from "prop-types";
+import { func, bool, string } from "prop-types";
 import { Link } from "components";
 import { IconWrapper } from "./styled";
 
@@ -19,14 +19,16 @@ const MainIcon = ({ Icon, lng, onClick, isMobileNavOpen, route }) =>
 MainIcon.propTypes = {
   onClick: func,
   isMobileNavOpen: bool,
-  Icon: node.isRequired,
-  lng: string.isRequired,
-  route: string.isRequired
+  Icon: func.isRequired,
+  lng: string,
+  route: string
 };
 
 MainIcon.defaultProps = {
   onClick: null,
-  isMobileNavOpen: false
+  isMobileNavOpen: false,
+  route: null,
+  lng: null
 };
 
 export default MainIcon;

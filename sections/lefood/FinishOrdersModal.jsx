@@ -6,7 +6,7 @@ import { ModalHeader } from "./styled";
 
 const FinishOrdersModal = ({ open, onClose, t }) => (
   <Modal {...{ open, onClose }}>
-    <Flex flexDirection="column" alignItems="center">
+    <Flex flexDirection="column" alignItems="center" width={320}>
       <FinishOrdersModalIcon />
       <ModalHeader>{t("finishOrdersHeader")}</ModalHeader>
       <Button onClick={onClose} styleName="blue" type="submit" width="100%">

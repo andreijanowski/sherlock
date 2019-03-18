@@ -1,12 +1,9 @@
 import { func, shape, arrayOf, bool, string } from "prop-types";
 import { DragDropContext } from "react-beautiful-dnd";
-import isServer from "utils/isServer";
 import { LoadingIndicator } from "components";
 import Column from "./Column";
 import { ColumnsWrapper } from "./styled";
 import RejectModal from "./RejectModal";
-import StopOrdersModal from "./StopOrdersModal";
-import FinishOrdersModal from "./FinishOrdersModal";
 
 const Orders = ({
   onDragEnd,
@@ -17,6 +14,9 @@ const Orders = ({
   columns,
   loading,
   currency,
+  setRejectModalVisibility,
+  pendingRejectionOrderId,
+  handleRejectionSubmit,
   t
 }) =>
   loading ? (
@@ -36,21 +36,24 @@ const Orders = ({
                 currency,
                 draggedOrderState,
                 updateOrder,
+                setRejectModalVisibility,
                 orders: columnOrders,
                 key: column.id
               }}
             />
           );
         })}
-        {!isServer && (
-          <RejectModal {...{ open: true, onClose: () => null, t }} />
-        )}
-        {!isServer && (
-          <StopOrdersModal {...{ open: true, onClose: () => null, t }} />
-        )}
-        {!isServer && (
-          <FinishOrdersModal {...{ open: true, onClose: () => null, t }} />
-        )}
+        <RejectModal
+          {...{
+            open: !!pendingRejectionOrderId,
+            onClose: () => setRejectModalVisibility(undefined),
+            pendingRejectionOrder: orders.find(
+              o => o.id === pendingRejectionOrderId
+            ),
+            handleRejectionSubmit,
+            t
+          }}
+        />
       </ColumnsWrapper>
     </DragDropContext>
   );
@@ -63,8 +66,15 @@ Orders.propTypes = {
   loading: bool.isRequired,
   currency: string.isRequired,
   updateOrder: func.isRequired,
-  draggedOrderState: string.isRequired,
-  onDragStart: func.isRequired
+  draggedOrderState: string,
+  onDragStart: func.isRequired,
+  setRejectModalVisibility: func.isRequired,
+  pendingRejectionOrderId: string.isRequired,
+  handleRejectionSubmit: func.isRequired
+};
+
+Orders.defaultProps = {
+  draggedOrderState: null
 };
 
 export default Orders;

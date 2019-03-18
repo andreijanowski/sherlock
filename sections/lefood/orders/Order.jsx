@@ -12,9 +12,17 @@ import {
   OrderDetail,
   PaymentConfirmed
 } from "./styled";
-import { columns } from "./utils";
+import { columns } from "../utils";
 
-const Order = ({ order, columnId, index, t, currency, updateOrder }) => (
+const Order = ({
+  order,
+  columnId,
+  index,
+  t,
+  currency,
+  updateOrder,
+  setRejectModalVisibility
+}) => (
   <Draggable draggableId={order.id} index={index}>
     {provided => (
       <OrderWrapper
@@ -42,11 +50,11 @@ const Order = ({ order, columnId, index, t, currency, updateOrder }) => (
                 {element.units}x {element.dishName}
               </OrderDetail>
             ))}
-          {columnId === columns.rejected && (
+          {order.rejectReason && (
             <Flex mt={3}>
               <Box width={1}>
                 <Button fluid styleName="reject" onClick={() => null}>
-                  reject reason here
+                  {t(order.rejectReason)}
                 </Button>
               </Box>
             </Flex>
@@ -57,7 +65,7 @@ const Order = ({ order, columnId, index, t, currency, updateOrder }) => (
                 <Button
                   fluid
                   styleName="reject"
-                  onClick={() => console.log("TODO: Show reject modal here")}
+                  onClick={() => setRejectModalVisibility(order.id)}
                 >
                   {t("reject")}
                 </Button>
@@ -85,7 +93,8 @@ Order.propTypes = {
   index: number.isRequired,
   t: func.isRequired,
   currency: string.isRequired,
-  updateOrder: func.isRequired
+  updateOrder: func.isRequired,
+  setRejectModalVisibility: func.isRequired
 };
 
 export default Order;

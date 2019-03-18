@@ -11,6 +11,8 @@ import {
   patchOrderPeriod,
   deleteOrderPeriod
 } from "actions/orderPeriods";
+import { calcPendingOrders } from "sections/lefood/utils";
+import { patchBusiness } from "actions/businesses";
 
 const namespaces = ["lefood", "app", "forms"];
 
@@ -30,7 +32,7 @@ class OrderingHoursPage extends PureComponent {
   addOrderPeriod = orderPeriod => {
     const {
       addOrderPeriod,
-      business: { id }
+      currentBusiness: { id }
     } = this.props;
     return addOrderPeriod(id, parsePeriod(orderPeriod));
   };
@@ -58,10 +60,10 @@ class OrderingHoursPage extends PureComponent {
   };
 
   render() {
-    const { t, lng, business } = this.props;
-
-    const initialValues = business
-      ? parsePeriods(business.orderPeriods)
+    const { t, lng, currentBusiness, updateBusiness, orders } = this.props;
+    const { visibleInLefood, id } = currentBusiness || {};
+    const initialValues = currentBusiness
+      ? parsePeriods(currentBusiness.orderPeriods)
       : undefined;
 
     return (
@@ -69,7 +71,11 @@ class OrderingHoursPage extends PureComponent {
         {...{
           t,
           lng,
-          page: "orderingHours"
+          page: "orderingHours",
+          pendingOrdersLength: calcPendingOrders(orders),
+          visibleInLefood,
+          updateBusiness,
+          currentBusinessId: id
         }}
       >
         <Periods
@@ -91,28 +97,32 @@ class OrderingHoursPage extends PureComponent {
 OrderingHoursPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  business: shape(),
+  currentBusiness: shape(),
   loading: bool.isRequired,
   orderingHours: arrayOf(shape()).isRequired,
+  orders: arrayOf(shape()).isRequired,
   addOrderPeriod: func.isRequired,
   updateOrderPeriod: func.isRequired,
-  removeOrderPeriod: func.isRequired
+  removeOrderPeriod: func.isRequired,
+  updateBusiness: func.isRequired
 };
 
 OrderingHoursPage.defaultProps = {
-  business: {}
+  currentBusiness: {}
 };
 
 export default requireAuth(true)(
   withI18next(namespaces)(
     connect(
       state => ({
-        business: state.users.currentBusiness.data
+        currentBusiness: state.users.currentBusiness.data,
+        orders: state.orders.data
       }),
       {
         addOrderPeriod: postOrderPeriod,
         updateOrderPeriod: patchOrderPeriod,
-        removeOrderPeriod: deleteOrderPeriod
+        removeOrderPeriod: deleteOrderPeriod,
+        updateBusiness: patchBusiness
       }
     )(OrderingHoursPage)
   )
