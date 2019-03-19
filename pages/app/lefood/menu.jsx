@@ -10,6 +10,7 @@ import { postDish, deleteDish } from "actions/dishes";
 import { postPicture } from "actions/pictures";
 import { patchBusiness } from "actions/businesses";
 import { calcPendingOrders } from "sections/lefood/utils";
+import { convertToCents } from "utils/price";
 
 const namespaces = ["lefood", "app", "forms"];
 
@@ -30,7 +31,7 @@ class MenuPage extends PureComponent {
     return addDish(
       {
         ...values,
-        pricePerItemCents: Number(values.pricePerItemCents) * 100
+        pricePerItemCents: convertToCents(values.pricePerItemCents)
       },
       id
     );
