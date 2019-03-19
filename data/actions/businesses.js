@@ -1,7 +1,10 @@
 import {
   POST_BUSINESS_REQUEST,
   PATCH_BUSINESS_REQUEST,
-  FETCH_BUISNESS_MEMBERS_REQUEST
+  FETCH_BUSINESS_MEMBERS_REQUEST,
+  FETCH_BUSINESS_DELIVERIES_REQUEST,
+  FETCH_BUSINESS_DISHES_REQUEST,
+  FETCH_BUSINESS_ORDERS_REQUEST
 } from "types/businesses";
 
 export const postBusiness = () => ({
@@ -41,12 +44,50 @@ export const patchBusiness = (id, values) => ({
 });
 
 export const fetchBusinessMembers = id => ({
-  type: FETCH_BUISNESS_MEMBERS_REQUEST,
+  type: FETCH_BUSINESS_MEMBERS_REQUEST,
   payload: {
     endpoint: `/api/v1/businesses/${id}/members`,
     params: {
       per_page: 200,
       page: 1
+    }
+  },
+  meta: { thunk: true }
+});
+
+export const fetchBusinessDeliveries = id => ({
+  type: FETCH_BUSINESS_DELIVERIES_REQUEST,
+  payload: {
+    endpoint: `/api/v1/businesses/${id}/deliveries`,
+    params: {
+      per_page: 200,
+      page: 1
+    }
+  },
+  meta: { thunk: true }
+});
+
+export const fetchBusinessDishes = id => ({
+  type: FETCH_BUSINESS_DISHES_REQUEST,
+  payload: {
+    endpoint: `/api/v1/businesses/${id}/dishes`,
+    params: {
+      per_page: 200,
+      page: 1,
+      include: "pictures"
+    }
+  },
+  meta: { thunk: true }
+});
+
+export const fetchBusinessOrders = id => ({
+  type: FETCH_BUSINESS_ORDERS_REQUEST,
+  payload: {
+    endpoint: `/api/v1/businesses/${id}/orders`,
+    params: {
+      per_page: 200,
+      page: 1,
+      include: "elements"
     }
   },
   meta: { thunk: true }

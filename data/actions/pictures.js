@@ -17,7 +17,7 @@ export const postPicture = (parentResource, id, photo) => ({
       }
     }
   },
-  meta: { thunk: true }
+  meta: { thunk: true, id }
 });
 
 export const deletePicture = id => ({

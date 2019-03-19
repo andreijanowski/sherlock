@@ -3,9 +3,8 @@ import { RawCheckbox, ActionIcon, FormTimePicker } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { FieldArray } from "react-final-form-arrays";
 import { func, number } from "prop-types";
-import { Actions } from "../styled";
-import { Action, Line } from "./styled";
-import { addNewOpenPeriod } from "./utils";
+import { Actions, Action, Line } from "./styled";
+import { addNewPeriod } from "./utils";
 
 class Day extends PureComponent {
   state = {
@@ -13,22 +12,22 @@ class Day extends PureComponent {
   };
 
   handleChange = fields => {
-    const { removeOpenPeriod, addOpenPeriod, weekday } = this.props;
+    const { removePeriod, addPeriod, weekday } = this.props;
     if (fields.length) {
       for (let i = 0; i < fields.length; i += 1) {
-        removeOpenPeriod(fields.value[i].id);
+        removePeriod(fields.value[i].id);
         fields.remove(0);
       }
     } else {
-      addNewOpenPeriod(addOpenPeriod, fields, weekday);
+      addNewPeriod(addPeriod, fields, weekday);
     }
   };
 
   handleBlur = async (value, fields, index, fieldName) => {
     try {
-      const { updateOpenPeriod } = this.props;
+      const { updatePeriod } = this.props;
       this.setState({ isRequestPending: true });
-      await updateOpenPeriod({
+      await updatePeriod({
         ...fields.value[index],
         [fieldName]: value
       });
@@ -39,13 +38,13 @@ class Day extends PureComponent {
   };
 
   remove = (fields, index) => {
-    const { removeOpenPeriod } = this.props;
-    removeOpenPeriod(fields.value[index].id);
+    const { removePeriod } = this.props;
+    removePeriod(fields.value[index].id);
     fields.remove(index);
   };
 
   render() {
-    const { t, weekday, addOpenPeriod, copy, paste } = this.props;
+    const { t, weekday, addPeriod, copy, paste } = this.props;
     const { isRequestPending } = this.state;
     return (
       <FieldArray name={`day-${weekday}`}>
@@ -123,7 +122,7 @@ class Day extends PureComponent {
                           size="sm"
                           icon={["fa", "plus"]}
                           onClick={() =>
-                            addNewOpenPeriod(addOpenPeriod, fields, weekday)
+                            addNewPeriod(addPeriod, fields, weekday)
                           }
                         />
                       )}
@@ -142,9 +141,9 @@ class Day extends PureComponent {
 
 Day.propTypes = {
   t: func.isRequired,
-  addOpenPeriod: func.isRequired,
-  updateOpenPeriod: func.isRequired,
-  removeOpenPeriod: func.isRequired,
+  addPeriod: func.isRequired,
+  updatePeriod: func.isRequired,
+  removePeriod: func.isRequired,
   weekday: number.isRequired,
   copy: func.isRequired,
   paste: func.isRequired

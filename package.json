@@ -54,6 +54,7 @@
     "nprogress": "^0.2.0",
     "object-diff": "^0.0.4",
     "prop-types": "^15.6.2",
+    "pusher-js": "^4.4.0",
     "qs": "^6.6.0",
     "react": "^16.6.3",
     "react-autosize-textarea": "^6.0.0",

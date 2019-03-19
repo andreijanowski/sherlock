@@ -121,6 +121,14 @@ const accept = css`
     box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.greenHaze}, 0.48);
   }
 `;
+const withImageActive = css`
+  color: rgb(${p => p.theme.colors.white});
+  fill: rgb(${p => p.theme.colors.white});
+  stroke: rgb(${p => p.theme.colors.white});
+  background-color: rgb(
+    ${p => (p.red ? p.theme.colors.ruby : p.theme.colors.blue)}
+  );
+`;
 
 const withImage = css`
   border: none;
@@ -142,13 +150,10 @@ const withImage = css`
   padding: 0;
   font-weight: ${p => p.theme.fontWeights.regular};
 
+  ${p => p.active && withImageActive}
+
   &:hover {
-    color: rgb(${p => p.theme.colors.white});
-    fill: rgb(${p => p.theme.colors.white});
-    stroke: rgb(${p => p.theme.colors.white});
-    background-color: rgb(
-      ${p => (p.red ? p.theme.colors.ruby : p.theme.colors.blue)}
-    );
+    ${withImageActive}
   }
 `;
 
@@ -166,6 +171,7 @@ const Button = styled.button`
   font-weight: ${p => p.theme.fontWeights.medium};
   line-height: 1.5;
   cursor: pointer;
+  text-decoration: none;
 
   ${p => p.width && `width: ${p.width};`};
 
@@ -194,7 +200,10 @@ const Button = styled.button`
 export default Button;
 
 export const ButtonWithImageText = styled.div`
+  height: 40px;
+  line-height: 40px;
   padding: 0 16px;
+  border-left: 1px solid rgb(${p => p.theme.colors.linkWater});
 `;
 
 export const ButtonWithImageIconWrapper = styled(Flex)`
@@ -202,5 +211,4 @@ export const ButtonWithImageIconWrapper = styled(Flex)`
   height: 40px;
   align-items: center;
   justify-content: center;
-  border-right: 1px solid rgb(${p => p.theme.colors.linkWater});
 `;

@@ -27,10 +27,10 @@ export const OrdersNumber = styled(Box).attrs({ width: 32 })`
   text-align: center;
   border-radius: 16px;
   background-color: rgba(
-    ${p => (p.canceled ? p.theme.colors.ruby : p.theme.colors.blue)},
+    ${p => (p.rejected ? p.theme.colors.ruby : p.theme.colors.blue)},
     0.1
   );
-  color: rgb(${p => (p.canceled ? p.theme.colors.ruby : p.theme.colors.blue)});
+  color: rgb(${p => (p.rejected ? p.theme.colors.ruby : p.theme.colors.blue)});
   font-size: ${p => p.theme.fontSizes.f14};
   font-weight: ${p => p.theme.fontWeights.bold};
 `;
@@ -39,7 +39,7 @@ export const OrdersWrapper = styled(Flex).attrs({
   p: 2
 })`
   ${p =>
-    p.canceled
+    p.rejected
       ? `background: repeating-linear-gradient(45deg, 
           rgb(${p.theme.colors.white}),
           rgb(${p.theme.colors.white}) 10px,
@@ -48,6 +48,8 @@ export const OrdersWrapper = styled(Flex).attrs({
         border: 1px solid rgb(${p.theme.colors.linkWater})`
       : `background-color: rgb(${p.theme.colors.linkWater})`};
   border-radius: ${p => p.theme.radius.default};
+  ${p =>
+    p.isDropDisabled && `background-color: rgba(${p.theme.colors.ruby}, 0.1);`}
   height: 100%;
 `;
 export const OrderWrapper = styled(Flex).attrs({
@@ -57,7 +59,7 @@ export const OrderWrapper = styled(Flex).attrs({
   border: 1px solid rgb(${p => p.theme.colors.linkWaterDark});
   border-radius: ${p => p.theme.radius.default};
   overflow: hidden;
-  ${p => p.canceled && "opacity: 0.6;"}
+  ${p => p.rejected && "opacity: 0.6;"}
 `;
 export const OrderHeader = styled(Flex).attrs({
   px: 3,
@@ -84,10 +86,9 @@ export const OrderDetails = styled(Flex).attrs({
 })`
   background-color: rgb(${p => p.theme.colors.white});
 `;
-export const OrderDetail = styled(Box).attrs({})`
+export const OrderDetail = styled(Box).attrs({ pb: 2 })`
   color: rgba(${p => p.theme.colors.rollingStone});
   font-size: ${p => p.theme.fontSizes.f14};
-  line-height: 24px;
 `;
 
 export const PaymentConfirmed = styled(Flex).attrs({

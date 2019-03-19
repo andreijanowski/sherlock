@@ -1,7 +1,7 @@
 import {
-  FETCH_BUISNESS_MEMBERS_REQUEST,
-  FETCH_BUISNESS_MEMBERS_SUCCESS,
-  FETCH_BUISNESS_MEMBERS_FAIL
+  FETCH_BUSINESS_MEMBERS_REQUEST,
+  FETCH_BUSINESS_MEMBERS_SUCCESS,
+  FETCH_BUSINESS_MEMBERS_FAIL
 } from "types/businesses";
 import build from "redux-object";
 
@@ -14,7 +14,7 @@ const initialState = {
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case FETCH_BUISNESS_MEMBERS_REQUEST: {
+    case FETCH_BUSINESS_MEMBERS_REQUEST: {
       const newState = { ...state };
       newState.data = null;
       newState.isFetching = true;
@@ -22,7 +22,7 @@ const reducer = (state = initialState, { type, payload }) => {
       newState.isSucceeded = false;
       return newState;
     }
-    case FETCH_BUISNESS_MEMBERS_SUCCESS: {
+    case FETCH_BUSINESS_MEMBERS_SUCCESS: {
       const newState = { ...state };
       const members =
         build(payload.data, "members", null, {
@@ -33,7 +33,7 @@ const reducer = (state = initialState, { type, payload }) => {
       newState.data = members;
       return newState;
     }
-    case FETCH_BUISNESS_MEMBERS_FAIL: {
+    case FETCH_BUSINESS_MEMBERS_FAIL: {
       const newState = { ...state };
       newState.isFetching = false;
       newState.isFailed = true;

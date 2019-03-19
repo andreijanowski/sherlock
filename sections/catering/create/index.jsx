@@ -22,6 +22,10 @@ import { Form } from "./styled";
 
 const CreateEventForm = ({ t }) => (
   <FinalForm
+    initialValues={{
+      cutlery: "true",
+      chefAttendance: "false"
+    }}
     onSubmit={catering => {
       console.log(catering);
     }}

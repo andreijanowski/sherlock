@@ -1,4 +1,4 @@
-import { string, bool, shape } from "prop-types";
+import { string, bool, shape, number } from "prop-types";
 import { Field as FinalFormField } from "react-final-form";
 import { LoadingIndicator } from "components";
 import { FieldWrapper, RawTextarea, Label, Error } from "./styled";
@@ -11,6 +11,7 @@ const TextareaField = ({
   type,
   fieldProps,
   disabled,
+  rows,
   ...rest
 }) => (
   <FinalFormField
@@ -20,7 +21,7 @@ const TextareaField = ({
       return (
         <FieldWrapper>
           <RawTextarea
-            rows={6}
+            rows={rows}
             smallLabel={!!input.value}
             invalid={error ? "true" : undefined}
             autoComplete="nope"
@@ -48,14 +49,16 @@ TextareaField.propTypes = {
   fieldProps: shape(),
   label: string,
   placeholder: string,
-  type: string
+  type: string,
+  rows: number
 };
 TextareaField.defaultProps = {
   label: "",
   type: "text",
   placeholder: "",
   fieldProps: {},
-  disabled: false
+  disabled: false,
+  rows: 6
 };
 
 export default TextareaField;
