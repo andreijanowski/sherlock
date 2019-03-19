@@ -4,6 +4,7 @@ import { Flex, Box } from "@rebass/grid";
 export const ColumnsWrapper = styled(Flex).attrs({ mx: -2 })`
   overflow: auto;
 `;
+
 export const ColumnWrapper = styled(Flex).attrs({
   flexDirection: "column",
   width: 1 / 5,
@@ -11,16 +12,19 @@ export const ColumnWrapper = styled(Flex).attrs({
 })`
   min-width: 280px;
 `;
+
 export const ColumnHeader = styled(Flex).attrs({
   py: 3,
   px: 2,
   justifyContent: "space-between",
   alignItems: "center"
 })``;
-export const ColumnTitle = styled(Box).attrs({})`
+
+export const ColumnTitle = styled(Box)`
   font-size: ${p => p.theme.fontSizes.f21};
   color: rgb(${p => p.theme.colors.dark});
 `;
+
 export const OrdersNumber = styled(Box).attrs({ width: 32 })`
   height: 32px;
   line-height: 32px;
@@ -34,6 +38,7 @@ export const OrdersNumber = styled(Box).attrs({ width: 32 })`
   font-size: ${p => p.theme.fontSizes.f14};
   font-weight: ${p => p.theme.fontWeights.bold};
 `;
+
 export const OrdersWrapper = styled(Flex).attrs({
   flexDirection: "column",
   p: 2
@@ -52,6 +57,7 @@ export const OrdersWrapper = styled(Flex).attrs({
     p.isDropDisabled && `background-color: rgba(${p.theme.colors.ruby}, 0.1);`}
   height: 100%;
 `;
+
 export const OrderWrapper = styled(Flex).attrs({
   flexDirection: "column",
   mb: 2
@@ -61,6 +67,7 @@ export const OrderWrapper = styled(Flex).attrs({
   overflow: hidden;
   ${p => p.rejected && "opacity: 0.6;"}
 `;
+
 export const OrderHeader = styled(Flex).attrs({
   px: 3,
   py: 2,
@@ -71,12 +78,14 @@ export const OrderHeader = styled(Flex).attrs({
   background-color: rgb(${p => p.theme.colors.titanWhite});
   border-bottom: 1px solid rgb(${p => p.theme.colors.linkWaterDark});
 `;
-export const OrderPrice = styled(Box).attrs({})`
+
+export const OrderPrice = styled(Box)`
   color: rgb(${p => p.theme.colors.dark});
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.f14};
 `;
-export const OrderTime = styled(Box).attrs({})`
+
+export const OrderTime = styled(Box)`
   color: rgba(${p => p.theme.colors.rollingStone});
   font-size: ${p => p.theme.fontSizes.f12};
 `;
@@ -86,6 +95,7 @@ export const OrderDetails = styled(Flex).attrs({
 })`
   background-color: rgb(${p => p.theme.colors.white});
 `;
+
 export const OrderDetail = styled(Box).attrs({ pb: 2 })`
   color: rgba(${p => p.theme.colors.rollingStone});
   font-size: ${p => p.theme.fontSizes.f14};
@@ -96,4 +106,9 @@ export const PaymentConfirmed = styled(Flex).attrs({
 })`
   color: rgb(${p => p.theme.colors.greenHaze});
   font-size: ${p => p.theme.fontSizes.f14};
+`;
+
+export const ElementsWrapper = styled(Box)`
+  border-radius: ${p => p.theme.radius.small};
+  border: 1px solid rgb(${p => p.theme.colors.snuff});
 `;

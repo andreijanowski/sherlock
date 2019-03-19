@@ -8,6 +8,8 @@ import Menu from "sections/lefood/menu";
 import { connect } from "react-redux";
 import { postDish, deleteDish } from "actions/dishes";
 import { postPicture } from "actions/pictures";
+import { patchBusiness } from "actions/businesses";
+import { calcPendingOrders } from "sections/lefood/utils";
 import { convertToCents } from "utils/price";
 
 const namespaces = ["lefood", "app", "forms"];
@@ -46,13 +48,26 @@ class MenuPage extends PureComponent {
   };
 
   render() {
-    const { t, lng, dishes, loading } = this.props;
+    const {
+      t,
+      lng,
+      dishes,
+      loading,
+      currentBusiness,
+      updateBusiness,
+      orders
+    } = this.props;
+    const { visibleInLefood, id } = currentBusiness || {};
     return (
       <LefoodLayout
         {...{
           t,
           lng,
-          page: "menu"
+          page: "menu",
+          pendingOrdersLength: calcPendingOrders(orders),
+          visibleInLefood,
+          updateBusiness,
+          currentBusinessId: id
         }}
       >
         <Menu
@@ -74,11 +89,13 @@ MenuPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   dishes: arrayOf(shape()).isRequired,
+  orders: arrayOf(shape()).isRequired,
   currentBusiness: shape(),
   addDish: func.isRequired,
   removeDish: func.isRequired,
   addPicture: func.isRequired,
-  loading: bool.isRequired
+  loading: bool.isRequired,
+  updateBusiness: func.isRequired
 };
 
 MenuPage.defaultProps = {
@@ -93,12 +110,14 @@ export default requireAuth(true)(
           (!state.dishes.isFailed && !state.dishes.isSucceeded) ||
           state.dishes.isFetching,
         dishes: state.dishes.data,
-        currentBusiness: state.users.currentBusiness.data
+        currentBusiness: state.users.currentBusiness.data,
+        orders: state.orders.data
       }),
       {
         addDish: postDish,
         removeDish: deleteDish,
-        addPicture: postPicture
+        addPicture: postPicture,
+        updateBusiness: patchBusiness
       }
     )(MenuPage)
   )

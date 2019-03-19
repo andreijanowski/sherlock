@@ -7,6 +7,8 @@ import LefoodLayout from "sections/lefood/Layout";
 import Delivery from "sections/lefood/delivery";
 import { connect } from "react-redux";
 import { postDelivery, deleteDelivery } from "actions/deliveries";
+import { patchBusiness } from "actions/businesses";
+import { calcPendingOrders } from "sections/lefood/utils";
 import { convertToCents } from "utils/price";
 
 const namespaces = ["lefood", "app", "forms"];
@@ -41,13 +43,26 @@ class DeliveriesPage extends PureComponent {
   };
 
   render() {
-    const { t, lng, deliveries, loading } = this.props;
+    const {
+      t,
+      lng,
+      deliveries,
+      loading,
+      currentBusiness,
+      updateBusiness,
+      orders
+    } = this.props;
+    const { visibleInLefood, id } = currentBusiness || {};
     return (
       <LefoodLayout
         {...{
           t,
           lng,
-          page: "deliveryArea"
+          page: "deliveryArea",
+          pendingOrdersLength: calcPendingOrders(orders),
+          visibleInLefood,
+          updateBusiness,
+          currentBusinessId: id
         }}
       >
         <Delivery
@@ -71,7 +86,9 @@ DeliveriesPage.propTypes = {
   currentBusiness: shape(),
   addDelivery: func.isRequired,
   removeDelivery: func.isRequired,
-  loading: bool.isRequired
+  loading: bool.isRequired,
+  updateBusiness: func.isRequired,
+  orders: arrayOf(shape()).isRequired
 };
 
 DeliveriesPage.defaultProps = {
@@ -86,11 +103,13 @@ export default requireAuth(true)(
           (!state.deliveries.isFailed && !state.deliveries.isSucceeded) ||
           state.deliveries.isFetching,
         deliveries: state.deliveries.data,
-        currentBusiness: state.users.currentBusiness.data
+        currentBusiness: state.users.currentBusiness.data,
+        orders: state.orders.data
       }),
       {
         addDelivery: postDelivery,
-        removeDelivery: deleteDelivery
+        removeDelivery: deleteDelivery,
+        updateBusiness: patchBusiness
       }
     )(DeliveriesPage)
   )

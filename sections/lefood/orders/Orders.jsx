@@ -13,7 +13,14 @@ class Orders extends Component {
   }
 
   render() {
-    const { id, orders, t, currency, updateOrder } = this.props;
+    const {
+      id,
+      orders,
+      t,
+      currency,
+      updateOrder,
+      setRejectModalVisibility
+    } = this.props;
     if (orders && orders.length !== 0) {
       return (
         <>
@@ -26,6 +33,7 @@ class Orders extends Component {
                 updateOrder,
                 columnId: id,
                 index,
+                setRejectModalVisibility,
                 key: order.id
               }}
             />
@@ -43,7 +51,8 @@ Orders.propTypes = {
   id: string.isRequired,
   orders: arrayOf(shape()).isRequired,
   currency: string.isRequired,
-  updateOrder: func.isRequired
+  updateOrder: func.isRequired,
+  setRejectModalVisibility: func.isRequired
 };
 
 export default Orders;

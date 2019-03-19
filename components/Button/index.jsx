@@ -125,9 +125,9 @@ const withImageActive = css`
   color: rgb(${p => p.theme.colors.white});
   fill: rgb(${p => p.theme.colors.white});
   stroke: rgb(${p => p.theme.colors.white});
-  background-color: rgb(
-    ${p => (p.red ? p.theme.colors.ruby : p.theme.colors.blue)}
-  );
+  background-color: rgb(${p => p.theme.colors.blue});
+  ${p => p.red && `background-color: rgb(${p.theme.colors.ruby});`}
+  ${p => p.greenHaze && `background-color: rgb(${p.theme.colors.greenHaze});`}
 `;
 
 const withImage = css`
@@ -147,6 +147,12 @@ const withImage = css`
   color: rgb(${p => (p.red ? p.theme.colors.ruby : p.theme.colors.dark)});
   fill: rgb(${p => (p.red ? p.theme.colors.ruby : p.theme.colors.dark)});
   stroke: rgb(${p => (p.red ? p.theme.colors.ruby : p.theme.colors.dark)});
+  ${p =>
+    p.greenHaze &&
+    `
+    color: rgb(${p.theme.colors.greenHaze});
+    background-color:rgba(${p.theme.colors.greenHaze}, 0.1);
+  `}
   padding: 0;
   font-weight: ${p => p.theme.fontWeights.regular};
 

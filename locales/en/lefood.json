@@ -47,5 +47,21 @@
     "Saturday"
   ],
   "copy": "copy",
-  "paste": "paste"
+  "paste": "paste",
+  "rejectReasonHeader": "Choose the reason for canceling the order",
+  "rejectReasonLabel": "Reason",
+  "other": "Other",
+  "dishes_unavailable": "Dishes unavailable",
+  "kitchen_full": "Kitchen full",
+  "no_delivery_person": "No delivery person",
+  "almost_closing_time": "Almost closing time",
+  "otherRejectionReasonLabel": "Other reason",
+  "otherRejectionReasonPlaceholder": "The reason is...",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "stopOrdersHeader": "Are you sure you want to stop receiving new orders?",
+  "yes": "Yes",
+  "no": "No",
+  "finishOrdersHeader": "You need to stop receiving new orders and finish the ones in progress in order to change this setting",
+  "back": "Back"
 }

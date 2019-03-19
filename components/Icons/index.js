@@ -25,15 +25,16 @@ export {
   SettingsLogout
 } from "./navigation";
 export { Docs, Feedback, Notifications } from "./mainControls";
-
+export { FacebookIcon } from "./facebook";
 export {
   Orders,
   Time,
-  Price,
   Menu,
+  Price,
   Clock,
   Location,
-  Pause
+  Pause,
+  RejectModalIcon,
+  StopOrdersModalIcon,
+  FinishOrdersModalIcon
 } from "./lefoodNavigation";
-
-export { FacebookIcon } from "./facebook";

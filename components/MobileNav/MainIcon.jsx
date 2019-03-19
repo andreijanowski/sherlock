@@ -20,14 +20,15 @@ MainIcon.propTypes = {
   onClick: func,
   isMobileNavOpen: bool,
   Icon: func.isRequired,
-  lng: string.isRequired,
+  lng: string,
   route: string
 };
 
 MainIcon.defaultProps = {
   onClick: null,
   isMobileNavOpen: false,
-  route: null
+  route: null,
+  lng: null
 };
 
 export default MainIcon;

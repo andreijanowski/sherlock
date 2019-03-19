@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { Link } from "components";
 import { Flex } from "@rebass/grid";
-import { shape, arrayOf, string, bool, func } from "prop-types";
+import { arrayOf, shape, func, string, bool } from "prop-types";
 import { BackArrow } from "icons";
 import { IconWrapper, IconLabel, SubMenuWrapper } from "./styled";
 
@@ -54,25 +54,26 @@ class SubItem extends PureComponent {
             </IconWrapper>
             <IconLabel>{t("app:back")}</IconLabel>
           </Flex>
-          {submenuItems.map(item =>
-            item.route ? (
-              <Link {...{ lng, route: item.route, key: item.label }}>
-                <Flex mb={4}>
+          {submenuItems &&
+            submenuItems.map(item =>
+              item.route ? (
+                <Link {...{ lng, route: item.route, key: item.label }}>
+                  <Flex mb={4}>
+                    <IconWrapper dark noFill>
+                      {item.SubmenuIcon && <item.SubmenuIcon />}
+                    </IconWrapper>
+                    <IconLabel>{item.label}</IconLabel>
+                  </Flex>
+                </Link>
+              ) : (
+                <Flex mb={4} key={item.label} onClick={item.onClick}>
                   <IconWrapper dark noFill>
                     {item.SubmenuIcon && <item.SubmenuIcon />}
                   </IconWrapper>
                   <IconLabel>{item.label}</IconLabel>
                 </Flex>
-              </Link>
-            ) : (
-              <Flex mb={4} key={item.label} onClick={item.onClick}>
-                <IconWrapper dark noFill>
-                  {item.SubmenuIcon && <item.SubmenuIcon />}
-                </IconWrapper>
-                <IconLabel>{item.label}</IconLabel>
-              </Flex>
-            )
-          )}
+              )
+            )}
         </SubMenuWrapper>
       </Flex>
     );

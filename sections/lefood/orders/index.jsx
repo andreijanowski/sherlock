@@ -3,6 +3,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { LoadingIndicator } from "components";
 import Column from "./Column";
 import { ColumnsWrapper } from "./styled";
+import RejectModal from "./RejectModal";
 
 const Orders = ({
   onDragEnd,
@@ -13,6 +14,9 @@ const Orders = ({
   columns,
   loading,
   currency,
+  setRejectModalVisibility,
+  pendingRejectionOrderId,
+  handleRejectionSubmit,
   t
 }) =>
   loading ? (
@@ -32,12 +36,24 @@ const Orders = ({
                 currency,
                 draggedOrderState,
                 updateOrder,
+                setRejectModalVisibility,
                 orders: columnOrders,
                 key: column.id
               }}
             />
           );
         })}
+        <RejectModal
+          {...{
+            isOpen: !!pendingRejectionOrderId,
+            onClose: () => setRejectModalVisibility(undefined),
+            pendingRejectionOrder: orders.find(
+              o => o.id === pendingRejectionOrderId
+            ),
+            handleRejectionSubmit,
+            t
+          }}
+        />
       </ColumnsWrapper>
     </DragDropContext>
   );
@@ -50,8 +66,15 @@ Orders.propTypes = {
   loading: bool.isRequired,
   currency: string.isRequired,
   updateOrder: func.isRequired,
-  draggedOrderState: string.isRequired,
-  onDragStart: func.isRequired
+  draggedOrderState: string,
+  onDragStart: func.isRequired,
+  setRejectModalVisibility: func.isRequired,
+  pendingRejectionOrderId: string.isRequired,
+  handleRejectionSubmit: func.isRequired
+};
+
+Orders.defaultProps = {
+  draggedOrderState: null
 };
 
 export default Orders;
