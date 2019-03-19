@@ -4,8 +4,8 @@ import { shape, func, bool } from "prop-types";
 import { Flex } from "@rebass/grid";
 import { ModalHeader } from "./styled";
 
-const FinishOrdersModal = ({ open, onClose, t }) => (
-  <Modal {...{ open, onClose }}>
+const FinishOrdersModal = ({ isOpen, onClose, t }) => (
+  <Modal {...{ open: isOpen, onClose }}>
     <Flex flexDirection="column" alignItems="center" width={320}>
       <FinishOrdersModalIcon />
       <ModalHeader>{t("finishOrdersHeader")}</ModalHeader>
@@ -18,7 +18,7 @@ const FinishOrdersModal = ({ open, onClose, t }) => (
 
 FinishOrdersModal.propTypes = {
   event: shape().isRequired,
-  open: bool.isRequired,
+  isOpen: bool.isRequired,
   onClose: func.isRequired,
   t: func.isRequired
 };

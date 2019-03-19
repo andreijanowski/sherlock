@@ -15,13 +15,13 @@ import { ElementsWrapper } from "./styled";
 import { ModalHeader } from "../styled";
 
 const RejectModal = ({
-  open,
+  isOpen,
   onClose,
   t,
   pendingRejectionOrder,
   handleRejectionSubmit
 }) => (
-  <Modal {...{ open, onClose }}>
+  <Modal {...{ open: isOpen, onClose }}>
     <FinalForm
       initialValues={{
         unavailableElements: pendingRejectionOrder
@@ -116,7 +116,7 @@ const RejectModal = ({
 RejectModal.propTypes = {
   event: shape().isRequired,
   pendingRejectionOrder: shape(),
-  open: bool.isRequired,
+  isOpen: bool.isRequired,
   onClose: func.isRequired,
   handleRejectionSubmit: func.isRequired,
   t: func.isRequired

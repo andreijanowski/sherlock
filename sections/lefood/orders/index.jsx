@@ -45,7 +45,7 @@ const Orders = ({
         })}
         <RejectModal
           {...{
-            open: !!pendingRejectionOrderId,
+            isOpen: !!pendingRejectionOrderId,
             onClose: () => setRejectModalVisibility(undefined),
             pendingRejectionOrder: orders.find(
               o => o.id === pendingRejectionOrderId

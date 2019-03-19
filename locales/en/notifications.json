@@ -18,10 +18,10 @@
       "password_confirmation": "Password confirmation doesn't match"
     },
     "business_is_visible_in_lefood": {
-      "base": "Cannot call this endpoint when associated business is currently visible in lefood"
+      "base": "Cannot update value because business is currently visible in lefood"
     },
     "business_has_pending_orders": {
-      "base": "Cannot call this endpoint when associated business has pending orders"
+      "base": "Cannot update value because business has pending orders"
     },
     "blank": {
       "other_rejection_reason": "Other rejection reason can't be blank if chosen"

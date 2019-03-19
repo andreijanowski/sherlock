@@ -16,8 +16,8 @@ import {
   MapWrapper
 } from "./styled";
 
-const EventModal = ({ event, open, onClose, t }) => (
-  <Modal {...{ open, onClose }}>
+const EventModal = ({ event, isOpen, onClose, t }) => (
+  <Modal {...{ open: isOpen, onClose }}>
     <Header>
       <MainInfo>
         <Time>
@@ -77,7 +77,7 @@ const EventModal = ({ event, open, onClose, t }) => (
 
 EventModal.propTypes = {
   event: shape().isRequired,
-  open: bool.isRequired,
+  isOpen: bool.isRequired,
   onClose: func.isRequired,
   t: func.isRequired
 };

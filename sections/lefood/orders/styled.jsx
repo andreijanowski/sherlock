@@ -79,13 +79,13 @@ export const OrderHeader = styled(Flex).attrs({
   border-bottom: 1px solid rgb(${p => p.theme.colors.linkWaterDark});
 `;
 
-export const OrderPrice = styled(Box).attrs({})`
+export const OrderPrice = styled(Box)`
   color: rgb(${p => p.theme.colors.dark});
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.f14};
 `;
 
-export const OrderTime = styled(Box).attrs({})`
+export const OrderTime = styled(Box)`
   color: rgba(${p => p.theme.colors.rollingStone});
   font-size: ${p => p.theme.fontSizes.f12};
 `;

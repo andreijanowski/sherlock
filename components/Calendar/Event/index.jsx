@@ -6,16 +6,16 @@ import EventModal from "./EventModal";
 
 class Event extends PureComponent {
   state = {
-    isModalVisible: false
+    isOpen: false
   };
 
-  openModal = () => this.setState({ isModalVisible: true });
+  openModal = () => this.setState({ isOpen: true });
 
-  closeModal = () => this.setState({ isModalVisible: false });
+  closeModal = () => this.setState({ isOpen: false });
 
   render() {
     const { event, t } = this.props;
-    const { isModalVisible } = this.state;
+    const { isOpen } = this.state;
     return (
       <>
         <Wrapper onClick={this.openModal}>
@@ -26,9 +26,7 @@ class Event extends PureComponent {
             </BoldText>
           </Text>
         </Wrapper>
-        <EventModal
-          {...{ open: isModalVisible, onClose: this.closeModal, event, t }}
-        />
+        <EventModal {...{ isOpen, onClose: this.closeModal, event, t }} />
       </>
     );
   }

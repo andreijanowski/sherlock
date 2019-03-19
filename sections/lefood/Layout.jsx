@@ -203,7 +203,7 @@ class CateringLayout extends PureComponent {
         {children}
         <StopOrdersModal
           {...{
-            open: isStopOrdersModalVisible,
+            isOpen: isStopOrdersModalVisible,
             onClose: () => this.setStopOrdersModalVisibility(false),
             stopOrders: () => {
               this.setOrdersAvailability(false);
@@ -214,7 +214,7 @@ class CateringLayout extends PureComponent {
         />
         <FinishOrdersModal
           {...{
-            open: isFinishOrdersModalVisible,
+            isOpen: isFinishOrdersModalVisible,
             onClose: () => this.setFinishOrdersModalVisibility(false),
             t
           }}

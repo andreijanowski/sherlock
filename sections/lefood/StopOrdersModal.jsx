@@ -4,8 +4,8 @@ import { func, bool } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import { ModalHeader } from "./styled";
 
-const StopOrdersModal = ({ open, onClose, stopOrders, t }) => (
-  <Modal {...{ open, onClose }}>
+const StopOrdersModal = ({ isOpen, onClose, stopOrders, t }) => (
+  <Modal {...{ open: isOpen, onClose }}>
     <Flex flexDirection="column" alignItems="center" width={320}>
       <StopOrdersModalIcon />
       <ModalHeader>{t("stopOrdersHeader")}</ModalHeader>
@@ -38,7 +38,7 @@ const StopOrdersModal = ({ open, onClose, stopOrders, t }) => (
 );
 
 StopOrdersModal.propTypes = {
-  open: bool.isRequired,
+  isOpen: bool.isRequired,
   onClose: func.isRequired,
   stopOrders: func.isRequired,
   t: func.isRequired
