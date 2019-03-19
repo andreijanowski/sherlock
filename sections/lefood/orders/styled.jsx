@@ -20,7 +20,7 @@ export const ColumnHeader = styled(Flex).attrs({
   alignItems: "center"
 })``;
 
-export const ColumnTitle = styled(Box).attrs({})`
+export const ColumnTitle = styled(Box)`
   font-size: ${p => p.theme.fontSizes.f21};
   color: rgb(${p => p.theme.colors.dark});
 `;
