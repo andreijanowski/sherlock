@@ -8,6 +8,7 @@ import Menu from "sections/lefood/menu";
 import { connect } from "react-redux";
 import { postDish, deleteDish } from "actions/dishes";
 import { postPicture } from "actions/pictures";
+import { convertToCents } from "utils/price";
 
 const namespaces = ["lefood", "app", "forms"];
 
@@ -28,7 +29,7 @@ class MenuPage extends PureComponent {
     return addDish(
       {
         ...values,
-        pricePerItemCents: Number(values.pricePerItemCents) * 100
+        pricePerItemCents: convertToCents(values.pricePerItemCents)
       },
       id
     );

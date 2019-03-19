@@ -7,6 +7,7 @@ import LefoodLayout from "sections/lefood/Layout";
 import Delivery from "sections/lefood/delivery";
 import { connect } from "react-redux";
 import { postDelivery, deleteDelivery } from "actions/deliveries";
+import { convertToCents } from "utils/price";
 
 const namespaces = ["lefood", "app", "forms"];
 
@@ -28,7 +29,7 @@ class DeliveriesPage extends PureComponent {
       {
         ...values,
         code: `${countryCode}-${values.code}`,
-        priceCents: Number(values.priceCents) * 100
+        priceCents: convertToCents(values.priceCents)
       },
       id
     );
