@@ -17,6 +17,7 @@ const Orders = ({
   setRejectModalVisibility,
   pendingRejectionOrderId,
   handleRejectionSubmit,
+  toggleOrderDetails,
   t
 }) =>
   loading ? (
@@ -37,6 +38,7 @@ const Orders = ({
                 draggedOrderState,
                 updateOrder,
                 setRejectModalVisibility,
+                toggleOrderDetails,
                 orders: columnOrders,
                 key: column.id
               }}
@@ -47,9 +49,9 @@ const Orders = ({
           {...{
             isOpen: !!pendingRejectionOrderId,
             onClose: () => setRejectModalVisibility(undefined),
-            pendingRejectionOrder: orders.find(
-              o => o.id === pendingRejectionOrderId
-            ),
+            pendingRejectionOrder: orders
+              ? orders.find(o => o.id === pendingRejectionOrderId)
+              : null,
             handleRejectionSubmit,
             t
           }}
@@ -70,7 +72,8 @@ Orders.propTypes = {
   onDragStart: func.isRequired,
   setRejectModalVisibility: func.isRequired,
   pendingRejectionOrderId: string.isRequired,
-  handleRejectionSubmit: func.isRequired
+  handleRejectionSubmit: func.isRequired,
+  toggleOrderDetails: func.isRequired
 };
 
 Orders.defaultProps = {

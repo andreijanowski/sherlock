@@ -63,5 +63,18 @@
   "yes": "Yes",
   "no": "No",
   "finishOrdersHeader": "You need to stop receiving new orders and finish the ones in progress in order to change this setting",
-  "back": "Back"
+  "back": "Back",
+  "orderDetails": "Order details",
+  "total": "Total",
+  "personalInformation": "Personal information",
+  "email": "Email",
+  "phone": "Phone",
+  "orderState": "Current state",
+  "waiting_for_approval": "Waiting for approval",
+  "waiting_for_payment": "Waiting for payment",
+  "paid": "Paid",
+  "in_preparation": "In preparation",
+  "completed": "Completed",
+  "rejected": "Rejected",
+  "rejectReason": "Reject reason"
 }

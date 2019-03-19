@@ -13,8 +13,11 @@ import {
 import { connect } from "react-redux";
 import { patchOrder, patchOrderReject } from "actions/orders";
 import { patchBusiness } from "actions/businesses";
+import OrderDetails from "sections/lefood/orders/OrderDetails";
+import { SliderStyles } from "sections/lefood/orders/styled";
+import { action as toggleMenu } from "redux-burger-menu";
 
-const namespaces = ["lefood", "app"];
+const namespaces = ["lefood", "app", "forms"];
 
 class OrdersPage extends PureComponent {
   static async getInitialProps({ ctx }) {
@@ -30,7 +33,8 @@ class OrdersPage extends PureComponent {
     this.state = {
       columns: parseOrders(props.orders),
       draggedOrderState: null,
-      pendingRejectionOrderId: undefined
+      pendingRejectionOrderId: undefined,
+      orderDetailsId: undefined
     };
   }
 
@@ -115,8 +119,8 @@ class OrdersPage extends PureComponent {
 
   handleDragStart = ({ draggableId }) => {
     const { orders } = this.props;
-    const order = orders.find(o => o.id === draggableId);
-    this.setState({ draggedOrderState: order.state });
+    const order = orders && orders.find(o => o.id === draggableId);
+    this.setState({ draggedOrderState: order ? order.state : null });
   };
 
   setRejectModalVisibility = orderId =>
@@ -156,6 +160,14 @@ class OrdersPage extends PureComponent {
     this.setRejectModalVisibility(undefined);
   };
 
+  toggleOrderDetails = orderId => {
+    const { toggleOrderDetails } = this.props;
+    this.setState({
+      orderDetailsId: orderId
+    });
+    toggleOrderDetails(!!orderId);
+  };
+
   render() {
     const {
       t,
@@ -165,37 +177,52 @@ class OrdersPage extends PureComponent {
       currentBusiness,
       updateBusiness
     } = this.props;
-    const { columns, draggedOrderState, pendingRejectionOrderId } = this.state;
+    const {
+      columns,
+      draggedOrderState,
+      pendingRejectionOrderId,
+      orderDetailsId
+    } = this.state;
     const { currency, visibleInLefood, id } = currentBusiness || {};
+    const orderDetails = orders
+      ? orders.find(o => o.id === orderDetailsId)
+      : null;
     return (
-      <LefoodLayout
-        {...{
-          t,
-          lng,
-          page: "orders",
-          pendingOrdersLength: calcPendingOrders(orders),
-          visibleInLefood,
-          updateBusiness,
-          currentBusinessId: id
-        }}
-      >
-        <Orders
+      <>
+        <LefoodLayout
           {...{
-            onDragEnd: this.handleDragEnd,
-            onDragStart: this.handleDragStart,
-            updateOrder: this.updateOrder,
-            handleRejectionSubmit: this.handleRejectionSubmit,
-            setRejectModalVisibility: this.setRejectModalVisibility,
-            pendingRejectionOrderId,
-            draggedOrderState,
-            orders,
-            columns,
-            loading,
-            currency,
-            t
+            t,
+            lng,
+            page: "orders",
+            pendingOrdersLength: calcPendingOrders(orders),
+            visibleInLefood,
+            updateBusiness,
+            currentBusinessId: id
           }}
-        />
-      </LefoodLayout>
+        >
+          <Orders
+            {...{
+              onDragEnd: this.handleDragEnd,
+              onDragStart: this.handleDragStart,
+              updateOrder: this.updateOrder,
+              toggleOrderDetails: this.toggleOrderDetails,
+              handleRejectionSubmit: this.handleRejectionSubmit,
+              setRejectModalVisibility: this.setRejectModalVisibility,
+              pendingRejectionOrderId,
+              draggedOrderState,
+              orders,
+              columns,
+              loading,
+              currency,
+              t
+            }}
+          />
+        </LefoodLayout>
+        <SliderStyles />
+        <div style={{ position: "absolute", left: 0 }}>
+          <OrderDetails {...{ orderDetails, t }} />
+        </div>
+      </>
     );
   }
 }
@@ -208,7 +235,8 @@ OrdersPage.propTypes = {
   loading: bool.isRequired,
   updateOrder: func.isRequired,
   rejectOrder: func.isRequired,
-  updateBusiness: func.isRequired
+  updateBusiness: func.isRequired,
+  toggleOrderDetails: func.isRequired
 };
 
 OrdersPage.defaultProps = {
@@ -228,7 +256,8 @@ export default requireAuth(true)(
       {
         updateOrder: patchOrder,
         rejectOrder: patchOrderReject,
-        updateBusiness: patchBusiness
+        updateBusiness: patchBusiness,
+        toggleOrderDetails: toggleMenu
       }
     )(OrdersPage)
   )

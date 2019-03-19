@@ -12,7 +12,7 @@ const AppLayout = ({
   lng,
   select
 }) => (
-  <Flex flexDirection={["column", "row"]} width={1}>
+  <Flex flexDirection={["column", "row"]} width={1} id="app">
     <NavigationContainer {...{ t, lng, withMenu, menuItems, select }} />
     <MainApp
       {...{

@@ -18,7 +18,8 @@ const Column = ({
   currency,
   updateOrder,
   draggedOrderState,
-  setRejectModalVisibility
+  setRejectModalVisibility,
+  toggleOrderDetails
 }) => {
   const isDropDisabled = setIsDropDisabled(draggedOrderState, id);
   return (
@@ -44,6 +45,7 @@ const Column = ({
                 t,
                 updateOrder,
                 id,
+                toggleOrderDetails,
                 setRejectModalVisibility
               }}
             />
@@ -63,6 +65,7 @@ Column.propTypes = {
   currency: string.isRequired,
   updateOrder: func.isRequired,
   setRejectModalVisibility: func.isRequired,
+  toggleOrderDetails: func.isRequired,
   draggedOrderState: string
 };
 
