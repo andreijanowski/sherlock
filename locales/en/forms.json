@@ -54,7 +54,14 @@
       "presence-data[attributes][role] is missing": "Role is missing",
       "presence-data[attributes][email] is missing": "Email is missing",
       "invalidGroupNameMessage": "You can not edit this field because '{{field}}' field is invalid. Please fix it first.",
-      "cannot_set_while_currency_not_set-visible_in_lefood": "Set currency first in order to make your business visible in lefood"
+      "cannot_set_while_currency_not_set-visible_in_lefood": "Set currency first in order to make your business visible in lefood",
+      "unauthorized_state_update-base": "Invalid state change",
+      "server_error-Cannot transition state via :begin_preparation from :waiting_for_approval (Reason(s): State cannot transition via \"begin preparation\")": "Invalid state change",
+      "server_error-Cannot transition state via :complete from :waiting_for_approval (Reason(s): State cannot transition via \"complete\")": "Invalid state change",
+      "invalid-base": "Order is not waiting for approval so cannot be rejected",
+      "server_error-Cannot transition state via .wait_for_approval from .waiting_for_payment (Reason(s). State cannot transition via \"wait for approval\")": "Invalid state change",
+      "server_error-Cannot transition state via :begin_preparation from :waiting_for_payment (Reason(s): State cannot transition via \"begin preparation\")": "Invalid state change",
+      "server_error-Cannot transition state via :complete from :waiting_for_payment (Reason(s): State cannot transition via \"complete\")": "Invalid state change"
     }
   },
   "placeholder": {

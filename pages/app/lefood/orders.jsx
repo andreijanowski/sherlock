@@ -123,10 +123,14 @@ class OrdersPage extends PureComponent {
     this.setState({ draggedOrderState: order ? order.state : null });
   };
 
-  setRejectModalVisibility = orderId =>
+  setRejectModalVisibility = orderId => {
+    const { toggleOrderDetails } = this.props;
+    toggleOrderDetails(false);
     this.setState({
-      pendingRejectionOrderId: orderId
+      pendingRejectionOrderId: orderId,
+      orderDetailsId: undefined
     });
+  };
 
   handleRejectionSubmit = ({
     rejectReason,
@@ -220,7 +224,14 @@ class OrdersPage extends PureComponent {
         </LefoodLayout>
         <SliderStyles />
         <div style={{ position: "absolute", left: 0 }}>
-          <OrderDetails {...{ orderDetails, t }} />
+          <OrderDetails
+            {...{
+              orderDetails,
+              t,
+              updateOrder: this.updateOrder,
+              setRejectModalVisibility: this.setRejectModalVisibility
+            }}
+          />
         </div>
       </>
     );
