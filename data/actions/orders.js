@@ -10,7 +10,7 @@ export const fetchOrder = id => ({
   payload: {
     endpoint: `/api/v1/orders/${id}`,
     params: {
-      include: "elements"
+      include: "addresses,elements"
     }
   },
   meta: { thunk: true }

@@ -53,7 +53,13 @@
       "blank-role": "Role can not be blank",
       "presence-data[attributes][role] is missing": "Role is missing",
       "presence-data[attributes][email] is missing": "Email is missing",
-      "invalidGroupNameMessage": "You can not edit this field because '{{field}}' field is invalid. Please fix it first."
+      "invalidGroupNameMessage": "You can not edit this field because '{{field}}' field is invalid. Please fix it first.",
+      "cannot_set_while_currency_not_set-visible_in_lefood": "Set currency first in order to make your business visible in lefood",
+      "unauthorized_state_update-base": "Invalid state change",
+      "server_error-Cannot transition state via": "Invalid state change",
+      "invalid-base": "Order is not waiting for approval so cannot be rejected",
+      "taken-email": "This email is taken already",
+      "elements_not_found-base": "You have to select which dishes are unavailable"
     }
   },
   "placeholder": {

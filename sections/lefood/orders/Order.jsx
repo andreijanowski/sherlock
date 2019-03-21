@@ -21,7 +21,8 @@ const Order = ({
   t,
   currency,
   updateOrder,
-  setRejectModalVisibility
+  setRejectModalVisibility,
+  toggleOrderDetails
 }) => (
   <Draggable draggableId={order.id} index={index}>
     {provided => (
@@ -30,6 +31,7 @@ const Order = ({
         {...provided.draggableProps}
         {...provided.dragHandleProps}
         rejected={columnId === columns.rejected}
+        onClick={() => toggleOrderDetails(order.id)}
       >
         <OrderHeader>
           <OrderPrice>
@@ -65,7 +67,10 @@ const Order = ({
                 <Button
                   fluid
                   styleName="reject"
-                  onClick={() => setRejectModalVisibility(order.id)}
+                  onClick={e => {
+                    e.stopPropagation();
+                    setRejectModalVisibility(order.id);
+                  }}
                 >
                   {t("reject")}
                 </Button>
@@ -74,7 +79,10 @@ const Order = ({
                 <Button
                   fluid
                   styleName="accept"
-                  onClick={() => updateOrder("waiting_for_payment", order.id)}
+                  onClick={e => {
+                    e.stopPropagation();
+                    updateOrder("waiting_for_payment", order.id);
+                  }}
                 >
                   {t("accept")}
                 </Button>
@@ -94,6 +102,7 @@ Order.propTypes = {
   t: func.isRequired,
   currency: string.isRequired,
   updateOrder: func.isRequired,
+  toggleOrderDetails: func.isRequired,
   setRejectModalVisibility: func.isRequired
 };
 

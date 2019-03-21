@@ -19,7 +19,8 @@ class Orders extends Component {
       t,
       currency,
       updateOrder,
-      setRejectModalVisibility
+      setRejectModalVisibility,
+      toggleOrderDetails
     } = this.props;
     if (orders && orders.length !== 0) {
       return (
@@ -33,6 +34,7 @@ class Orders extends Component {
                 updateOrder,
                 columnId: id,
                 index,
+                toggleOrderDetails,
                 setRejectModalVisibility,
                 key: order.id
               }}
@@ -52,7 +54,8 @@ Orders.propTypes = {
   orders: arrayOf(shape()).isRequired,
   currency: string.isRequired,
   updateOrder: func.isRequired,
-  setRejectModalVisibility: func.isRequired
+  setRejectModalVisibility: func.isRequired,
+  toggleOrderDetails: func.isRequired
 };
 
 export default Orders;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 
 export const ColumnsWrapper = styled(Flex).attrs({ mx: -2 })`
@@ -112,3 +112,93 @@ export const ElementsWrapper = styled(Box)`
   border-radius: ${p => p.theme.radius.small};
   border: 1px solid rgb(${p => p.theme.colors.snuff});
 `;
+
+export const SliderStyles = createGlobalStyle`
+  .bm-burger-button {
+    display: none
+  }
+
+  .bm-cross-button {
+    border: 2px solid rgba(${p => p.theme.colors.dark}, 0.4);
+    border-radius: 100%;
+    width: 20px !important;
+    height: 20px !important;
+    top: 12px !important;
+    right: 12px !important;
+    cursor: pointer;
+
+    > span {
+      top: 7px !important;
+      right: 13px !important;
+    }
+  }
+
+  .bm-cross {
+    background: rgb(${p => p.theme.colors.dark});
+    border-radius: 2px;
+    width: 10px !important;
+    height: 2px !important;
+  }
+
+  .bm-menu-wrap {
+    position: fixed;
+    height: 100%;
+  }
+
+  .bm-menu {
+    background: rgb(${p => p.theme.colors.white});
+    padding: 32px;
+  }
+
+  .bm-item {
+    outline: none;
+  }
+
+  .bm-overlay {
+    background-color: rgba(${p => p.theme.colors.dark}, 0.16);
+  }
+`;
+
+export const OrderDetailsHeader = styled.h2`
+  color: rgb(${p => p.theme.colors.dark});
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f24};
+  margin: 0;
+  padding-bottom: 32px;
+`;
+
+export const OrderDetailsSubheader = styled(OrderDetailsHeader)`
+  font-size: ${p => p.theme.fontSizes.f18};
+`;
+
+export const OrderDetailsSpacer = styled.div`
+  width: calc(100% + 64px);
+  height: 1px;
+  background-color: rgb(${p => p.theme.colors.linkWaterDark});
+  margin: 8px -32px 24px -32px;
+`;
+
+export const OrderDetailWrapper = styled(Flex).attrs({
+  justifyContent: "space-between",
+  pb: 3
+})`
+  font-size: ${p => p.theme.fontSizes.f16};
+  line-height: 1.5;
+  color: rgb(
+    ${p => (p.isBold ? p.theme.colors.dark : p.theme.colors.rollingStone)}
+  );
+`;
+
+export const PersonalInformationName = styled.div`
+  font-size: ${p => p.theme.fontSizes.f12};
+  line-height: 1.5;
+  color: rgb(${p => p.theme.colors.bombay});
+`;
+export const PersonalInformationValue = styled.div`
+  font-size: ${p => p.theme.fontSizes.f16};
+  line-height: 1.5;
+  color: rgb(${p => p.theme.colors.dark});
+  padding-bottom: 16px;
+`;
+
+export const OrderDetailsState = styled(PersonalInformationValue)``;
