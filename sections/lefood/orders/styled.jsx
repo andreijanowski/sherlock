@@ -185,7 +185,7 @@ export const OrderDetailWrapper = styled(Flex).attrs({
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 1.5;
   color: rgb(
-    ${p => (p.bold ? p.theme.colors.dark : p.theme.colors.rollingStone)}
+    ${p => (p.isBold ? p.theme.colors.dark : p.theme.colors.rollingStone)}
   );
 `;
 

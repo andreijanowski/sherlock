@@ -3,14 +3,14 @@ import { BoldText } from "components";
 import { string, number, bool } from "prop-types";
 import { OrderDetailWrapper } from "./styled";
 
-const OrderDetail = ({ name, price, currency, bold }) => {
+const OrderDetail = ({ name, price, currency, isBold }) => {
   const priceWithCurrency = `${(price / 100).toFixed(2)} ${currency}`;
   return (
-    <OrderDetailWrapper {...{ bold }}>
+    <OrderDetailWrapper {...{ isBold }}>
       <Box>{name}</Box>
       <Box>
-        {bold && <BoldText>{priceWithCurrency}</BoldText>}
-        {!bold && <>{priceWithCurrency}</>}
+        {isBold && <BoldText>{priceWithCurrency}</BoldText>}
+        {!isBold && <>{priceWithCurrency}</>}
       </Box>
     </OrderDetailWrapper>
   );
@@ -20,7 +20,7 @@ OrderDetail.propTypes = {
   name: string.isRequired,
   price: number.isRequired,
   currency: string.isRequired,
-  bold: bool.isRequired
+  isBold: bool.isRequired
 };
 
 export default OrderDetail;

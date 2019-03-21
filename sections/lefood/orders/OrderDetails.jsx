@@ -90,7 +90,7 @@ const OrderDetails = ({
             name: t("total"),
             price: orderDetails.totalCostCents,
             currency: orderDetails.currency,
-            bold: true
+            isBold: true
           }}
         />
         <OrderDetailsSpacer />
