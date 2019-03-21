@@ -1,5 +1,11 @@
 import { fetchProfileBusiness } from "actions/users";
-import { fetchBusinessMembers } from "actions/businesses";
+import {
+  fetchBusinessMembers,
+  fetchBusinessDeliveries,
+  fetchBusinessDishes,
+  fetchBusinessOrders
+} from "actions/businesses";
+import { patchOrder } from "actions/orders";
 import { SET_CURRENT_BUSINESS, UPDATE_PROFILE_SUCCESS } from "types/users";
 import { POST_BUSINESS_SUCCESS } from "types/businesses";
 import { takeEvery, all, put } from "redux-saga/effects";
@@ -14,6 +20,16 @@ function* fetchBusinessData({
 }) {
   yield put(fetchProfileBusiness(id));
   yield put(fetchBusinessMembers(id));
+  yield put(fetchBusinessDeliveries(id));
+  yield put(fetchBusinessDishes(id));
+  const {
+    rawData: { data: orders }
+  } = yield put.resolve(fetchBusinessOrders(id));
+  for (let i = 0; i < orders.length; i += 1) {
+    if (orders[i].state === "placed") {
+      yield put(patchOrder({ state: "waiting_for_approval" }, orders[i].id));
+    }
+  }
 }
 
 function* showSuccesNotification() {

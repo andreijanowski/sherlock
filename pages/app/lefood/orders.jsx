@@ -2,12 +2,22 @@ import { PureComponent } from "react";
 import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
-import { func, string } from "prop-types";
-import CateringLayout from "sections/lefood/Layout";
+import { func, string, arrayOf, shape, bool } from "prop-types";
+import LefoodLayout from "sections/lefood/Layout";
 import Orders from "sections/lefood/orders";
-import { mockData } from "sections/lefood/orders/utils";
+import {
+  calcPendingOrders,
+  parseOrders,
+  columns as columnsNames
+} from "sections/lefood/utils";
+import { connect } from "react-redux";
+import { patchOrder, patchOrderReject } from "actions/orders";
+import { patchBusiness } from "actions/businesses";
+import OrderDetails from "sections/lefood/orders/OrderDetails";
+import { SliderStyles } from "sections/lefood/orders/styled";
+import { action as toggleMenu } from "redux-burger-menu";
 
-const namespaces = ["orders", "app"];
+const namespaces = ["lefood", "app", "forms"];
 
 class OrdersPage extends PureComponent {
   static async getInitialProps({ ctx }) {
@@ -18,7 +28,30 @@ class OrdersPage extends PureComponent {
     };
   }
 
-  state = mockData;
+  constructor(props) {
+    super(props);
+    this.state = {
+      columns: parseOrders(props.orders),
+      draggedOrderState: null,
+      pendingRejectionOrderId: undefined,
+      orderDetailsId: undefined
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    const { loading, orders } = this.props;
+    const { loading: wasLoading, orders: prevOrders } = prevProps;
+    if ((wasLoading && !loading) || orders !== prevOrders) {
+      this.refreshColumnsContent();
+    }
+  }
+
+  refreshColumnsContent = () => {
+    const { orders } = this.props;
+    this.setState({
+      columns: parseOrders(orders)
+    });
+  };
 
   handleDragEnd = ({ destination, source, draggableId }) => {
     if (
@@ -26,6 +59,17 @@ class OrdersPage extends PureComponent {
       (destination.droppableId === source.droppableId &&
         destination.index === source.index)
     ) {
+      this.setState({ draggedOrderState: null });
+      return;
+    }
+
+    const { updateOrder } = this.props;
+    if (destination.droppableId === columnsNames.inProgress) {
+      updateOrder({ state: "in_preparation" }, draggableId);
+    } else if (destination.droppableId === columnsNames.done) {
+      updateOrder({ state: "completed" }, draggableId);
+    } else if (destination.droppableId === columnsNames.rejected) {
+      this.setRejectModalVisibility(draggableId);
       return;
     }
 
@@ -37,6 +81,7 @@ class OrdersPage extends PureComponent {
         newSourceOrderIds.splice(destination.index, 0, draggableId);
         return {
           ...state,
+          draggedOrderState: null,
           columns: {
             ...state.columns,
             [sourceColumn.id]: {
@@ -51,6 +96,7 @@ class OrdersPage extends PureComponent {
       newDestinationOrderIds.splice(destination.index, 0, draggableId);
       return {
         ...state,
+        draggedOrderState: null,
         columns: {
           ...state.columns,
           [sourceColumn.id]: {
@@ -66,24 +112,164 @@ class OrdersPage extends PureComponent {
     });
   };
 
+  updateOrder = (state, draggableId) => {
+    const { updateOrder } = this.props;
+    updateOrder({ state }, draggableId);
+  };
+
+  handleDragStart = ({ draggableId }) => {
+    const { orders } = this.props;
+    const order = orders && orders.find(o => o.id === draggableId);
+    this.setState({ draggedOrderState: order ? order.state : null });
+  };
+
+  setRejectModalVisibility = orderId => {
+    const { toggleOrderDetails } = this.props;
+    toggleOrderDetails(false);
+    this.setState({
+      pendingRejectionOrderId: orderId,
+      orderDetailsId: undefined
+    });
+  };
+
+  handleRejectionSubmit = ({
+    rejectReason,
+    unavailableElements,
+    otherRejectionReason
+  }) => {
+    const { rejectOrder, orders } = this.props;
+    const { pendingRejectionOrderId } = this.state;
+    const order = orders.find(o => o.id === pendingRejectionOrderId);
+    const unavailableElementsIds = unavailableElements
+      .map((unavailable, index) => {
+        if (unavailable) {
+          return order.elements[index].id;
+        }
+        return null;
+      })
+      .filter(e => !!e)
+      .toString();
+    rejectOrder(
+      {
+        rejectReason,
+        unavailableElements:
+          rejectReason === "dishes_unavailable"
+            ? unavailableElementsIds || undefined
+            : undefined,
+        otherRejectionReason:
+          rejectReason === "other" ? otherRejectionReason : undefined
+      },
+      pendingRejectionOrderId
+    ).then(() => this.refreshColumnsContent());
+    this.setRejectModalVisibility(undefined);
+  };
+
+  toggleOrderDetails = orderId => {
+    const { toggleOrderDetails } = this.props;
+    this.setState({
+      orderDetailsId: orderId
+    });
+    toggleOrderDetails(!!orderId);
+  };
+
   render() {
-    const { t, lng } = this.props;
+    const {
+      t,
+      lng,
+      orders,
+      loading,
+      currentBusiness,
+      updateBusiness
+    } = this.props;
+    const {
+      columns,
+      draggedOrderState,
+      pendingRejectionOrderId,
+      orderDetailsId
+    } = this.state;
+    const { currency, visibleInLefood, id } = currentBusiness || {};
+    const orderDetails = orders
+      ? orders.find(o => o.id === orderDetailsId)
+      : null;
     return (
-      <CateringLayout
-        {...{
-          t,
-          lng
-        }}
-      >
-        <Orders {...{ onDragEnd: this.handleDragEnd, data: this.state, t }} />
-      </CateringLayout>
+      <>
+        <LefoodLayout
+          {...{
+            t,
+            lng,
+            page: "orders",
+            pendingOrdersLength: calcPendingOrders(orders),
+            visibleInLefood,
+            updateBusiness,
+            currentBusinessId: id
+          }}
+        >
+          <Orders
+            {...{
+              onDragEnd: this.handleDragEnd,
+              onDragStart: this.handleDragStart,
+              updateOrder: this.updateOrder,
+              toggleOrderDetails: this.toggleOrderDetails,
+              handleRejectionSubmit: this.handleRejectionSubmit,
+              setRejectModalVisibility: this.setRejectModalVisibility,
+              pendingRejectionOrderId,
+              draggedOrderState,
+              orders,
+              columns,
+              loading,
+              currency,
+              t
+            }}
+          />
+        </LefoodLayout>
+        <SliderStyles />
+        <div style={{ position: "absolute", left: 0 }}>
+          <OrderDetails
+            {...{
+              orderDetails,
+              t,
+              updateOrder: this.updateOrder,
+              setRejectModalVisibility: this.setRejectModalVisibility
+            }}
+          />
+        </div>
+      </>
     );
   }
 }
 
 OrdersPage.propTypes = {
   t: func.isRequired,
-  lng: string.isRequired
+  lng: string.isRequired,
+  orders: arrayOf(shape()).isRequired,
+  currentBusiness: shape(),
+  loading: bool.isRequired,
+  updateOrder: func.isRequired,
+  rejectOrder: func.isRequired,
+  updateBusiness: func.isRequired,
+  toggleOrderDetails: func.isRequired
 };
 
-export default requireAuth(true)(withI18next(namespaces)(OrdersPage));
+OrdersPage.defaultProps = {
+  currentBusiness: {}
+};
+
+export default requireAuth(true)(
+  withI18next(namespaces)(
+    connect(
+      state => ({
+        loading:
+          (!state.orders.isFailed && !state.orders.isSucceeded) ||
+          state.orders.isFetching,
+        orders: state.orders.data,
+        currentBusiness: state.users.currentBusiness.data
+      }),
+      {
+        updateOrder: patchOrder,
+        rejectOrder: patchOrderReject,
+        updateBusiness: patchBusiness,
+        toggleOrderDetails: toggleMenu
+      }
+    )(OrdersPage)
+  )
+);

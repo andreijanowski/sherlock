@@ -7,63 +7,70 @@ import {
   OrderWrapper,
   OrderHeader,
   OrderPrice,
-  OrderTime,
+  // OrderTime,
   OrderDetails,
   OrderDetail,
   PaymentConfirmed
 } from "./styled";
+import { columns } from "../utils";
 
-const Order = ({ order, columnId, index, t, onClick }) => (
+const Order = ({
+  order,
+  columnId,
+  index,
+  t,
+  currency,
+  updateOrder,
+  setRejectModalVisibility,
+  toggleOrderDetails
+}) => (
   <Draggable draggableId={order.id} index={index}>
     {provided => (
       <OrderWrapper
         ref={provided.innerRef}
         {...provided.draggableProps}
         {...provided.dragHandleProps}
-        canceled={columnId === "canceled"}
+        rejected={columnId === columns.rejected}
+        onClick={() => toggleOrderDetails(order.id)}
       >
         <OrderHeader>
-          <OrderPrice>{order.price}</OrderPrice>
-          <OrderTime>{order.time}</OrderTime>
+          <OrderPrice>
+            {(order.totalCostCents / 100).toFixed(2)} {currency}
+          </OrderPrice>
+          {/* <OrderTime>{TODO: display order time when ready on backend side}</OrderTime> */}
         </OrderHeader>
         <OrderDetails>
-          {columnId === "newOrders" && (
+          {order.state === "paid" && (
             <PaymentConfirmed>
               <FontAwesomeIcon icon={["fa", "check"]} />
               <Box ml={2}>{t("paymentConfimed")}</Box>
             </PaymentConfirmed>
           )}
-          {order.details.map(detail => (
-            <OrderDetail key={detail}>{detail}</OrderDetail>
-          ))}
-          {columnId === "canceled" && (
+          {order.elements &&
+            order.elements.map(element => (
+              <OrderDetail key={element.id}>
+                {element.units}x {element.dishName}
+              </OrderDetail>
+            ))}
+          {order.rejectReason && (
             <Flex mt={3}>
               <Box width={1}>
                 <Button fluid styleName="reject" onClick={() => null}>
-                  reject reason here
+                  {t(order.rejectReason)}
                 </Button>
               </Box>
             </Flex>
           )}
-          {columnId === "newOrders" && (
+          {order.state === "waiting_for_approval" && (
             <Flex mx={-1} mt={3}>
               <Box width={1 / 2} px={1}>
                 <Button
                   fluid
                   styleName="reject"
-                  onClick={() =>
-                    onClick({
-                      destination: {
-                        droppableId: "canceled",
-                        index: 0
-                      },
-                      source: {
-                        droppableId: "newOrders",
-                        index
-                      },
-                      draggableId: order.id
-                    })
-                  }
+                  onClick={e => {
+                    e.stopPropagation();
+                    setRejectModalVisibility(order.id);
+                  }}
                 >
                   {t("reject")}
                 </Button>
@@ -72,19 +79,10 @@ const Order = ({ order, columnId, index, t, onClick }) => (
                 <Button
                   fluid
                   styleName="accept"
-                  onClick={() =>
-                    onClick({
-                      destination: {
-                        droppableId: "inProgress",
-                        index: 0
-                      },
-                      source: {
-                        droppableId: "newOrders",
-                        index
-                      },
-                      draggableId: order.id
-                    })
-                  }
+                  onClick={e => {
+                    e.stopPropagation();
+                    updateOrder("waiting_for_payment", order.id);
+                  }}
                 >
                   {t("accept")}
                 </Button>
@@ -102,7 +100,10 @@ Order.propTypes = {
   columnId: string.isRequired,
   index: number.isRequired,
   t: func.isRequired,
-  onClick: func.isRequired
+  currency: string.isRequired,
+  updateOrder: func.isRequired,
+  toggleOrderDetails: func.isRequired,
+  setRejectModalVisibility: func.isRequired
 };
 
 export default Order;

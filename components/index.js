@@ -52,3 +52,4 @@ export { default as CalendarToolbar } from "./Calendar/Toolbar";
 export { default as MenusUploader } from "./MenusUploader";
 export { default as Map } from "./Map";
 export { default as TextSeparator } from "./TextSeparator";
+export { default as Periods, parsePeriods, parsePeriod } from "./Periods";

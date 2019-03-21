@@ -6,7 +6,13 @@ import {
   fetchProfileBusiness
 } from "actions/users";
 import { fetchGroups } from "actions/groups";
-import { fetchBusinessMembers, postBusiness } from "actions/businesses";
+import {
+  fetchBusinessMembers,
+  postBusiness,
+  fetchBusinessDeliveries,
+  fetchBusinessDishes,
+  fetchBusinessOrders
+} from "actions/businesses";
 import { Router } from "routes";
 import {
   LOGIN_SUCCESS,
@@ -17,7 +23,6 @@ import {
   CHANGE_PASSWORD_SUCCESS
 } from "types/auth";
 import Notifications from "react-notification-system-redux";
-
 import { refreshToken as refresh } from "actions/auth";
 
 function* initialTokenRefresh() {
@@ -36,6 +41,9 @@ function* fetchUserData() {
   if (data && data.length) {
     yield put(fetchProfileBusiness(data[0].id));
     yield put(fetchBusinessMembers(data[0].id));
+    yield put(fetchBusinessDeliveries(data[0].id));
+    yield put(fetchBusinessDishes(data[0].id));
+    yield put(fetchBusinessOrders(data[0].id));
   } else {
     yield put(postBusiness());
   }

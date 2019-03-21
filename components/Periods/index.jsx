@@ -2,16 +2,16 @@ import { func, shape } from "prop-types";
 import { Form as FinalForm } from "react-final-form";
 import { H3, LoadingIndicator } from "components";
 import arrayMutators from "final-form-arrays";
-import { Form } from "../styled";
+import { Form } from "./styled";
 import Day from "./Day";
-import { weekdays } from "./utils";
+import { weekdays, parsePeriods, parsePeriod } from "./utils";
 
-const OpeningHoursForm = ({
+const PeriodsForm = ({
   t,
   initialValues,
-  addOpenPeriod,
-  updateOpenPeriod,
-  removeOpenPeriod,
+  addPeriod,
+  updatePeriod,
+  removePeriod,
   copy,
   paste
 }) =>
@@ -28,9 +28,9 @@ const OpeningHoursForm = ({
               {...{
                 t,
                 weekday,
-                addOpenPeriod,
-                updateOpenPeriod,
-                removeOpenPeriod,
+                addPeriod,
+                updatePeriod,
+                removePeriod,
                 copy,
                 paste,
                 key: weekday
@@ -44,18 +44,20 @@ const OpeningHoursForm = ({
     <LoadingIndicator />
   );
 
-OpeningHoursForm.propTypes = {
+PeriodsForm.propTypes = {
   t: func.isRequired,
-  addOpenPeriod: func.isRequired,
-  updateOpenPeriod: func.isRequired,
-  removeOpenPeriod: func.isRequired,
+  addPeriod: func.isRequired,
+  updatePeriod: func.isRequired,
+  removePeriod: func.isRequired,
   initialValues: shape(),
   copy: func.isRequired,
   paste: func.isRequired
 };
 
-OpeningHoursForm.defaultProps = {
+PeriodsForm.defaultProps = {
   initialValues: null
 };
 
-export default OpeningHoursForm;
+export default PeriodsForm;
+
+export { parsePeriods, parsePeriod };

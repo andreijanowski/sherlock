@@ -112,6 +112,11 @@ MobileNav.defaultProps = {
   businesses: null
 };
 
+MobileNav.defaultProps = {
+  business: null,
+  businesses: null
+};
+
 export default connect(
   state => ({
     business: state.users.currentBusiness.data,
