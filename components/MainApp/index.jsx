@@ -55,7 +55,6 @@ const MainApp = ({ withMenu, mainIcon, header, children, avatar }) => {
           <Icon>
             <Notifications />
           </Icon>
-          {console.log({ avatar })}
           <Avatar src={avatar} />
         </IconsWrapper>
       </HeaderWrapper>
