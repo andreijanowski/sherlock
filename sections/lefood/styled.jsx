@@ -7,3 +7,8 @@ export const ModalHeader = styled.h3`
   text-align: center;
   font-weight: ${p => p.theme.fontWeights.regular};
 `;
+
+export const Orange = styled.span`
+  color: rgb(${p => p.theme.colors.carrotOrange});
+  text-decoration: none;
+`;

@@ -59,7 +59,8 @@
       "server_error-Cannot transition state via": "Invalid state change",
       "invalid-base": "Order is not waiting for approval so cannot be rejected",
       "taken-email": "This email is taken already",
-      "elements_not_found-base": "You have to select which dishes are unavailable"
+      "elements_not_found-base": "You have to select which dishes are unavailable",
+      "business_is_visible_in_lefood-base": "Action can not be done because business is currently visible in lefood"
     }
   },
   "placeholder": {

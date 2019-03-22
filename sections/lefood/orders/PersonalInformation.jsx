@@ -5,9 +5,7 @@ const PersonalInformation = ({ name, value }) => (
   <>
     <PersonalInformationName>{name}</PersonalInformationName>
     <PersonalInformationValue>
-      {value.map(v => (
-        <div>{v}</div>
-      ))}
+      {value.map(v => (v ? <div key={v}>{v}</div> : null))}
     </PersonalInformationValue>
   </>
 );

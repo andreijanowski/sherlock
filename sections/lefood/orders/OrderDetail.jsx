@@ -20,7 +20,11 @@ OrderDetail.propTypes = {
   name: string.isRequired,
   price: number.isRequired,
   currency: string.isRequired,
-  isBold: bool.isRequired
+  isBold: bool
+};
+
+OrderDetail.defaultProps = {
+  isBold: false
 };
 
 export default OrderDetail;

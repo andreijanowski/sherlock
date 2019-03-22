@@ -61,7 +61,12 @@ class OrderingHoursPage extends PureComponent {
 
   render() {
     const { t, lng, currentBusiness, updateBusiness, orders } = this.props;
-    const { visibleInLefood, id } = currentBusiness || {};
+    const {
+      visibleInLefood,
+      id,
+      averageDeliveryTime,
+      minAmountForDeliveryCents
+    } = currentBusiness || {};
     const initialValues = currentBusiness
       ? parsePeriods(currentBusiness.orderPeriods)
       : undefined;
@@ -75,6 +80,8 @@ class OrderingHoursPage extends PureComponent {
           pendingOrdersLength: calcPendingOrders(orders),
           visibleInLefood,
           updateBusiness,
+          averageDeliveryTime,
+          minAmountForDeliveryCents,
           currentBusinessId: id
         }}
       >

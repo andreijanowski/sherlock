@@ -3,6 +3,7 @@
   "accept": "Accept",
   "reject": "Reject",
   "orders": "Orders",
+  "deliveryTime": "Delivery Time",
   "menu": "Menu",
   "orderingHours": "Ordering Hours",
   "deliveryArea": "Delivery Area",
@@ -78,5 +79,9 @@
   "rejected": "Rejected",
   "rejectReason": "Reject reason",
   "deliveryAddress": "Delivery address",
-  "pickupAtRestaurant": "Pickup at restaurant"
+  "pickupAtRestaurant": "Pickup at restaurant",
+  "completeYourProfile": "Complete your Profile",
+  "and": "and",
+  "toSeeAnyNewOrders": "to see any new orders",
+  "complete": "complete"
 }

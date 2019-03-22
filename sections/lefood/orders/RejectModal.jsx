@@ -114,7 +114,6 @@ const RejectModal = ({
 );
 
 RejectModal.propTypes = {
-  event: shape().isRequired,
   pendingRejectionOrder: shape(),
   isOpen: bool.isRequired,
   onClose: func.isRequired,

@@ -1,6 +1,6 @@
 import { Modal, Button } from "components";
 import { FinishOrdersModalIcon } from "icons";
-import { shape, func, bool } from "prop-types";
+import { func, bool } from "prop-types";
 import { Flex } from "@rebass/grid";
 import { ModalHeader } from "./styled";
 
@@ -17,7 +17,6 @@ const FinishOrdersModal = ({ isOpen, onClose, t }) => (
 );
 
 FinishOrdersModal.propTypes = {
-  event: shape().isRequired,
   isOpen: bool.isRequired,
   onClose: func.isRequired,
   t: func.isRequired

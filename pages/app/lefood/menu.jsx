@@ -57,7 +57,12 @@ class MenuPage extends PureComponent {
       updateBusiness,
       orders
     } = this.props;
-    const { visibleInLefood, id } = currentBusiness || {};
+    const {
+      visibleInLefood,
+      id,
+      averageDeliveryTime,
+      minAmountForDeliveryCents
+    } = currentBusiness || {};
     return (
       <LefoodLayout
         {...{
@@ -67,6 +72,8 @@ class MenuPage extends PureComponent {
           pendingOrdersLength: calcPendingOrders(orders),
           visibleInLefood,
           updateBusiness,
+          averageDeliveryTime,
+          minAmountForDeliveryCents,
           currentBusinessId: id
         }}
       >

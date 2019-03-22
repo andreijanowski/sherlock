@@ -78,6 +78,7 @@ export const FieldWrapper = styled(Flex).attrs({
   .ExpandIcon {
     position: absolute;
     right: 24px;
+    stroke: rgb(${p => p.theme.colors.dark});
   }
 `;
 
@@ -111,6 +112,7 @@ export const ToggleButton = styled.button`
 
   .ExpandIcon {
     top: calc(50% - 9px);
+    stroke: rgb(${p => p.theme.colors.dark});
   }
 `;
 

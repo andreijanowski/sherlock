@@ -2,7 +2,7 @@ import { PureComponent } from "react";
 import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
-import { func, string, arrayOf, shape, bool } from "prop-types";
+import { func, string, arrayOf, shape, bool, number } from "prop-types";
 import LefoodLayout from "sections/lefood/Layout";
 import Orders from "sections/lefood/orders";
 import {
@@ -179,7 +179,9 @@ class OrdersPage extends PureComponent {
       orders,
       loading,
       currentBusiness,
-      updateBusiness
+      updateBusiness,
+      dishesLength,
+      deliveriesLength
     } = this.props;
     const {
       columns,
@@ -187,7 +189,13 @@ class OrdersPage extends PureComponent {
       pendingRejectionOrderId,
       orderDetailsId
     } = this.state;
-    const { currency, visibleInLefood, id } = currentBusiness || {};
+    const {
+      currency,
+      visibleInLefood,
+      id,
+      averageDeliveryTime,
+      minAmountForDeliveryCents
+    } = currentBusiness || {};
     const orderDetails = orders
       ? orders.find(o => o.id === orderDetailsId)
       : null;
@@ -201,7 +209,13 @@ class OrdersPage extends PureComponent {
             pendingOrdersLength: calcPendingOrders(orders),
             visibleInLefood,
             updateBusiness,
-            currentBusinessId: id
+            currentBusinessId: id,
+            dishesLength,
+            deliveriesLength,
+            ordersLength: orders && orders.length,
+            averageDeliveryTime,
+            minAmountForDeliveryCents,
+            currency
           }}
         >
           <Orders
@@ -247,7 +261,9 @@ OrdersPage.propTypes = {
   updateOrder: func.isRequired,
   rejectOrder: func.isRequired,
   updateBusiness: func.isRequired,
-  toggleOrderDetails: func.isRequired
+  toggleOrderDetails: func.isRequired,
+  dishesLength: number.isRequired,
+  deliveriesLength: number.isRequired
 };
 
 OrdersPage.defaultProps = {
@@ -262,6 +278,8 @@ export default requireAuth(true)(
           (!state.orders.isFailed && !state.orders.isSucceeded) ||
           state.orders.isFetching,
         orders: state.orders.data,
+        dishesLength: state.dishes.data && state.dishes.data.length,
+        deliveriesLength: state.deliveries.data && state.deliveries.data.length,
         currentBusiness: state.users.currentBusiness.data
       }),
       {
