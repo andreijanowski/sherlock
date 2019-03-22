@@ -1,5 +1,6 @@
 import { Flex } from "@rebass/grid";
 import { bool, node, string } from "prop-types";
+import { connect } from "react-redux";
 import {
   ProfileIcon,
   SettingsIcon,
@@ -31,7 +32,7 @@ const chooseIcon = icon => {
   }
 };
 
-const MainApp = ({ withMenu, mainIcon, header, children }) => {
+const MainApp = ({ withMenu, mainIcon, header, children, avatar }) => {
   const MainIcon = chooseIcon(mainIcon);
   return (
     <Wrapper {...{ withMenu }}>
@@ -54,7 +55,8 @@ const MainApp = ({ withMenu, mainIcon, header, children }) => {
           <Icon>
             <Notifications />
           </Icon>
-          <Avatar src="https://foodetective-production.s3.amazonaws.com/uploads/user/avatar/b4a9df76-7c7f-43a2-be2e-a504c09fd072/avatar.png" />
+          {console.log({ avatar })}
+          <Avatar src={avatar} />
         </IconsWrapper>
       </HeaderWrapper>
       {children}
@@ -66,12 +68,19 @@ MainApp.propTypes = {
   withMenu: bool.isRequired,
   mainIcon: string,
   header: string,
-  children: node.isRequired
+  children: node.isRequired,
+  avatar: string
 };
 
 MainApp.defaultProps = {
   mainIcon: "",
-  header: ""
+  header: "",
+  avatar: ""
 };
 
-export default MainApp;
+export default connect(state => ({
+  avatar:
+    state.users.profile.data &&
+    state.users.profile.data.avatar &&
+    state.users.profile.data.avatar.url
+}))(MainApp);
