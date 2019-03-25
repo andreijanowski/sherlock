@@ -9,7 +9,8 @@ export const getArraysDiff = (a, b, err) =>
   a.filter((ai, i) =>
     err && err[i]
       ? false
-      : b.map(bi => JSON.stringify(bi)).indexOf(JSON.stringify(ai)) === -1
+      : (b.map(bi => JSON.stringify(bi)) || []).indexOf(JSON.stringify(ai)) ===
+        -1
   );
 
 export const TimekeeperConfig = {

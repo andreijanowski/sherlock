@@ -280,6 +280,12 @@ const reducer = (state = initialState, { type, payload, meta }) => {
             visibleInLefood: business.visibleInLefood
           };
         }
+        if (v === "state") {
+          newState.currentBusiness.data = {
+            ...newState.currentBusiness.data,
+            state: business.state
+          };
+        }
       });
       return newState;
     }

@@ -59,7 +59,16 @@
       "server_error-Cannot transition state via": "Invalid state change",
       "invalid-base": "Order is not waiting for approval so cannot be rejected",
       "taken-email": "This email is taken already",
-      "elements_not_found-base": "You have to select which dishes are unavailable"
+      "elements_not_found-base": "You have to select which dishes are unavailable",
+      "invalid_range_of_drinks_foods-groups": "Invalid range of foods and drinks groups",
+      "invalid_range_of_cuisines-groups": "Invalid range of cuisines groups",
+      "invalid_range_of_types-groups": "Invalid range of types groups",
+      "invalid_range_of_quirks-groups": "Invalid range of perfect for groups",
+      "blank-country_code": "Country code can't be blank",
+      "blank-name": "Name can't be blank",
+      "blank-city": "City can't be blank",
+      "blank-post_code": "Post code can't be blank",
+      "blank-street": "Street can't be blank"
     }
   },
   "placeholder": {
