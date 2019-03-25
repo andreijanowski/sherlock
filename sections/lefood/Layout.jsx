@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { bool, func, string, node, number } from "prop-types";
 import AppLayout from "layout/App";
-import AutosizeInput from "react-input-autosize";
+// import AutosizeInput from "react-input-autosize";
 import {
   Button,
   ButtonWithImageText,
@@ -9,7 +9,8 @@ import {
   Link,
   InfoBar,
   ItalicText,
-  Select
+  Select,
+  AutosizeInput
 } from "components";
 import {
   Orders,
@@ -114,13 +115,13 @@ class LefoodLayout extends PureComponent {
   updateMinAmountForDeliveryCents = () => {
     const { minAmountForDeliveryCents } = this.props;
     // without setTimeout AutosizeInput is not working correctly ¯\_(ツ)_/¯
-    setTimeout(
-      () =>
-        this.setState({
-          minAmountForDeliveryCents: normalizePrice(minAmountForDeliveryCents)
-        }),
-      0
-    );
+    // setTimeout(
+    //   () =>
+    this.setState({
+      minAmountForDeliveryCents: normalizePrice(minAmountForDeliveryCents)
+    });
+    //   0
+    // );
   };
 
   setStopOrdersModalVisibility = isVisible =>
