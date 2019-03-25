@@ -65,7 +65,8 @@ class OrderingHoursPage extends PureComponent {
       visibleInLefood,
       id,
       averageDeliveryTime,
-      minAmountForDeliveryCents
+      minAmountForDeliveryCents,
+      currency
     } = currentBusiness || {};
     const initialValues = currentBusiness
       ? parsePeriods(currentBusiness.orderPeriods)
@@ -82,7 +83,8 @@ class OrderingHoursPage extends PureComponent {
           updateBusiness,
           averageDeliveryTime,
           minAmountForDeliveryCents,
-          currentBusinessId: id
+          currentBusinessId: id,
+          currency
         }}
       >
         <Periods

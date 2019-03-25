@@ -8,6 +8,14 @@ class AutosizeInput extends PureComponent {
 
   state = { inputWidth: 0 };
 
+  componentDidUpdate(prevProps) {
+    const { value } = this.props;
+    const { value: prevValue } = prevProps;
+    if (value !== prevValue) {
+      this.handleResize();
+    }
+  }
+
   handleResize = () =>
     this.setState({
       inputWidth: this.sizer.current.scrollWidth

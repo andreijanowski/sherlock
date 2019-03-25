@@ -61,7 +61,8 @@ class MenuPage extends PureComponent {
       visibleInLefood,
       id,
       averageDeliveryTime,
-      minAmountForDeliveryCents
+      minAmountForDeliveryCents,
+      currency
     } = currentBusiness || {};
     return (
       <LefoodLayout
@@ -74,7 +75,8 @@ class MenuPage extends PureComponent {
           updateBusiness,
           averageDeliveryTime,
           minAmountForDeliveryCents,
-          currentBusinessId: id
+          currentBusinessId: id,
+          currency
         }}
       >
         <Menu
