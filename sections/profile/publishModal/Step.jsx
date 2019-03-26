@@ -28,13 +28,7 @@ const Step = ({
     <Box>
       <StepTip>{tip}</StepTip>
       <Link {...{ lng, route }}>
-        <StepName
-          onClick={() => {
-            close();
-          }}
-        >
-          {name}
-        </StepName>
+        <StepName onClick={close}>{name}</StepName>
       </Link>
     </Box>
     <Box>
