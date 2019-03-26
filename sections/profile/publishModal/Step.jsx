@@ -10,7 +10,17 @@ import {
   StepStatus
 } from "./styled";
 
-const Step = ({ t, lng, index, tip, name, isValid, route, close }) => (
+const Step = ({
+  t,
+  lng,
+  index,
+  tip,
+  name,
+  isValid,
+  isFilled,
+  route,
+  close
+}) => (
   <StepWrapper>
     <StepNumber>
       {t("publishModal:step")} {index + 1}
@@ -22,8 +32,8 @@ const Step = ({ t, lng, index, tip, name, isValid, route, close }) => (
       </Link>
     </Box>
     <Box>
-      <StepStatus isChecked={isValid}>
-        <Icon icon={["fa", "check"]} />
+      <StepStatus isValid={isValid} isFilled={isFilled}>
+        <Icon icon={["fa", isValid ? "check" : "times"]} />
       </StepStatus>
     </Box>
   </StepWrapper>
@@ -37,6 +47,7 @@ Step.propTypes = {
   tip: string.isRequired,
   name: string.isRequired,
   isValid: bool.isRequired,
+  isFilled: bool.isRequired,
   close: func.isRequired
 };
 

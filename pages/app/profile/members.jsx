@@ -6,8 +6,8 @@ import { func, string, shape, arrayOf } from "prop-types";
 import Form from "sections/profile/members";
 import { connect } from "react-redux";
 import { postMember, patchMember, deleteMember } from "actions/members";
-import { postBusiness } from "actions/businesses";
-import { setCurrentBusiness } from "actions/users";
+import { postBusiness, patchBusiness } from "actions/businesses";
+import { setCurrentBusiness, fetchProfileBusiness } from "actions/users";
 import ProfileLayout from "sections/profile/Layout";
 
 const namespaces = ["members", "app", "publishModal", "forms"];
@@ -47,7 +47,9 @@ class Members extends PureComponent {
       business,
       businesses,
       changeCurrentBusiness,
-      addBusiness
+      addBusiness,
+      updateBusiness,
+      getProfileBusiness
     } = this.props;
     return (
       <ProfileLayout
@@ -58,6 +60,8 @@ class Members extends PureComponent {
           businesses,
           changeCurrentBusiness,
           addBusiness,
+          updateBusiness,
+          getProfileBusiness,
           currentPage: "inviteYourTeam"
         }}
       >
@@ -81,9 +85,11 @@ Members.propTypes = {
   updateMember: func.isRequired,
   removeMember: func.isRequired,
   addBusiness: func.isRequired,
+  updateBusiness: func.isRequired,
   members: arrayOf(shape()),
   business: shape(),
   changeCurrentBusiness: func.isRequired,
+  getProfileBusiness: func.isRequired,
   businesses: arrayOf(shape())
 };
 
@@ -103,10 +109,12 @@ export default requireAuth(true)(
       }),
       {
         addBusiness: postBusiness,
+        updateBusiness: patchBusiness,
         addMember: postMember,
         updateMember: patchMember,
         removeMember: deleteMember,
-        changeCurrentBusiness: setCurrentBusiness
+        changeCurrentBusiness: setCurrentBusiness,
+        getProfileBusiness: fetchProfileBusiness
       }
     )(Members)
   )

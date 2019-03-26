@@ -88,14 +88,21 @@ const BasicInformationForm = ({
                 placeholder={t("streetPlaceholder")}
               />
             </Box>
-            <Box width={[1 / 2, 3 / 10]} px={2}>
+            <Box width={[1, 1 / 2]} px={2}>
               <FormInput
                 name="streetNumber"
                 label={t("streetNumberLabel")}
                 placeholder={t("streetNumberPlaceholder")}
               />
             </Box>
-            <Box width={[1 / 2, 1 / 5]} px={2}>
+            <Box width={[1, 1 / 2]} px={2}>
+              <FormInput
+                name="city"
+                label={t("cityLabel")}
+                placeholder={t("cityPlaceholder")}
+              />
+            </Box>
+            <Box width={[1, 1 / 2]} px={2}>
               <FormInput
                 name="postCode"
                 label={t("postCodeLabel")}

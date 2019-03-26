@@ -17,9 +17,6 @@ const InputField = ({
   <FinalFormField
     name={name}
     render={({ input, meta }) => {
-      if (name === "website") {
-        console.log(meta, forceShowError);
-      }
       const error = getError(meta, forceShowError);
       return (
         <FieldWrapper>
