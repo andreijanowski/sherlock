@@ -284,6 +284,18 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           newState.currentBusiness.data = {
             ...newState.currentBusiness.data,
             state: business.state
+          }
+        }
+        if (v === "averageDeliveryTime") {
+          newState.currentBusiness.data = {
+            ...newState.currentBusiness.data,
+            averageDeliveryTime: business.averageDeliveryTime
+          };
+        }
+        if (v === "minAmountForDeliveryCents") {
+          newState.currentBusiness.data = {
+            ...newState.currentBusiness.data,
+            minAmountForDeliveryCents: business.minAmountForDeliveryCents
           };
         }
       });

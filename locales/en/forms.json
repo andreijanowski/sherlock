@@ -68,7 +68,11 @@
       "blank-name": "Name can't be blank",
       "blank-city": "City can't be blank",
       "blank-post_code": "Post code can't be blank",
-      "blank-street": "Street can't be blank"
+      "blank-street": "Street can't be blank",
+      "business_is_visible_in_lefood-base": "Action can not be done because business is currently visible in lefood",
+      "business_has_pending_orders-base": "Cannot update value because business has pending orders",
+      "business_not_approved_for_lefood-base": "Cannot update value because business is not approved for lefood",
+      "greater_than-price_per_item_cents": "Price per item cents must be greater than {{count}}. Your value is {{value}}"
     }
   },
   "placeholder": {

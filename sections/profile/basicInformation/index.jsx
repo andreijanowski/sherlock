@@ -112,7 +112,7 @@ const BasicInformationForm = ({
           </Flex>
           <Flex mx={-2} flexWrap="wrap">
             {types.map(type => (
-              <Box width={[1 / 3, 1 / 4]} p={2} key={type.value}>
+              <Box width={[1 / 4, 1 / 4, 1 / 5, 1 / 7]} p={2} key={type.value}>
                 <BigCheckbox
                   {...{
                     label: type.label,
