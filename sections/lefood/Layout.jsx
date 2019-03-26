@@ -1,7 +1,6 @@
 import { PureComponent } from "react";
 import { bool, func, string, node, number } from "prop-types";
 import AppLayout from "layout/App";
-// import AutosizeInput from "react-input-autosize";
 import {
   Button,
   ButtonWithImageText,
@@ -10,7 +9,9 @@ import {
   InfoBar,
   ItalicText,
   Select,
-  AutosizeInput
+  AutosizeInput,
+  ConnectWithStripe,
+  LoadingIndicator
 } from "components";
 import {
   Orders,
@@ -152,7 +153,8 @@ class LefoodLayout extends PureComponent {
       deliveriesLength,
       orderPeriodsLength,
       averageDeliveryTime,
-      currency
+      currency,
+      stripeUserId
     } = this.props;
     const { minAmountForDeliveryCents } = this.state;
     const { isStopOrdersModalVisible, isFinishOrdersModalVisible } = this.state;
@@ -173,231 +175,261 @@ class LefoodLayout extends PureComponent {
     return (
       <AppLayout
         {...{
-          mainIcon: "catering",
+          mainIcon: "leFood",
           header: t(page),
           t,
           lng
         }}
       >
-        {profileCompletedPercents !== 100 && (
-          <InfoBar
-            info={
-              // eslint-disable-next-line react/jsx-wrap-multilines
-              <span>
-                {`${t("completeYourProfile")} `}
-                <ItalicText>
-                  <Orange>
-                    ({`${t("deliveryTime")} `}
-                    <Link route="/app/lefood/menu/" lng={lng}>
-                      <Orange as="a">{t("menu")}</Orange>
-                    </Link>
-                    {", "}
-                    <Link route="/app/lefood/ordering-hours/" lng={lng}>
-                      <Orange as="a">{t("orderingHours")}</Orange>
-                    </Link>
-                    {` ${t("and")} `}
-                    <Link route="/app/lefood/delivery-area/" lng={lng}>
-                      <Orange as="a">{t("deliveryArea")}</Orange>
-                    </Link>
-                    )
-                  </Orange>
-                </ItalicText>
-                {` ${t("toSeeAnyNewOrders")}`}.
-              </span>
-            }
-            complete={`${profileCompletedPercents}% ${t("complete")}`}
-          />
-        )}
-        <Flex width={1} mt={3} mb={2}>
-          <Box pr={3}>
-            <Link route="/app/lefood/orders/" lng={lng}>
-              <Button as="a" styleName="withImage" active={page === "orders"}>
-                <ButtonWithImageIconWrapper>
-                  <Orders />
-                </ButtonWithImageIconWrapper>
-                <ButtonWithImageText>{t("orders")}</ButtonWithImageText>
-              </Button>
-            </Link>
-          </Box>
-          <Box pr={3}>
-            <Select
-              items={averageDeliveryTimeList}
-              value={currentAverageDeliveryTime}
-              onChange={({ value }) =>
-                this.updateBusiness({ averageDeliveryTime: value })
-              }
-              ButtonComponent={p => (
-                <Button styleName="withImage" {...p}>
-                  <ButtonWithImageIconWrapper>
-                    <Time />
-                  </ButtonWithImageIconWrapper>
-                  <ButtonWithImageText>
-                    {currentAverageDeliveryTime
-                      ? currentAverageDeliveryTime.label
-                      : "-"}
-                  </ButtonWithImageText>
+        {stripeUserId === undefined ? (
+          <LoadingIndicator />
+        ) : (
+          <>
+            {stripeUserId ? (
+              <>
+                {profileCompletedPercents !== 100 && (
+                  <InfoBar
+                    info={
+                      // eslint-disable-next-line react/jsx-wrap-multilines
+                      <span>
+                        {`${t("completeYourProfile")} `}
+                        <ItalicText>
+                          <Orange>
+                            ({`${t("deliveryTime")} `}
+                            <Link route="/app/lefood/menu/" lng={lng}>
+                              <Orange as="a">{t("menu")}</Orange>
+                            </Link>
+                            {", "}
+                            <Link route="/app/lefood/ordering-hours/" lng={lng}>
+                              <Orange as="a">{t("orderingHours")}</Orange>
+                            </Link>
+                            {` ${t("and")} `}
+                            <Link route="/app/lefood/delivery-area/" lng={lng}>
+                              <Orange as="a">{t("deliveryArea")}</Orange>
+                            </Link>
+                            )
+                          </Orange>
+                        </ItalicText>
+                        {` ${t("toSeeAnyNewOrders")}`}.
+                      </span>
+                    }
+                    complete={`${profileCompletedPercents}% ${t("complete")}`}
+                  />
+                )}
+                <Flex width={1} mt={3} mb={2}>
                   <Box pr={3}>
-                    <ExpandIcon />
+                    <Link route="/app/lefood/orders/" lng={lng}>
+                      <Button
+                        as="a"
+                        styleName="withImage"
+                        active={page === "orders"}
+                      >
+                        <ButtonWithImageIconWrapper>
+                          <Orders />
+                        </ButtonWithImageIconWrapper>
+                        <ButtonWithImageText>{t("orders")}</ButtonWithImageText>
+                      </Button>
+                    </Link>
                   </Box>
-                </Button>
-              )}
-            />
-          </Box>
-          <Box pr={3}>
-            <Button styleName="withImage">
-              <ButtonWithImageIconWrapper>
-                <Price />
-              </ButtonWithImageIconWrapper>
-              <ButtonWithImageText>
-                <AutosizeInput
-                  value={minAmountForDeliveryCents}
-                  onChange={e => {
-                    this.setState({
-                      minAmountForDeliveryCents: normalizePrice(e.target.value)
-                    });
+                  <Box pr={3}>
+                    <Select
+                      items={averageDeliveryTimeList}
+                      value={currentAverageDeliveryTime}
+                      onChange={({ value }) =>
+                        this.updateBusiness({ averageDeliveryTime: value })
+                      }
+                      ButtonComponent={p => (
+                        <Button styleName="withImage" {...p}>
+                          <ButtonWithImageIconWrapper>
+                            <Time />
+                          </ButtonWithImageIconWrapper>
+                          <ButtonWithImageText>
+                            {currentAverageDeliveryTime
+                              ? currentAverageDeliveryTime.label
+                              : "-"}
+                          </ButtonWithImageText>
+                          <Box pr={3}>
+                            <ExpandIcon />
+                          </Box>
+                        </Button>
+                      )}
+                    />
+                  </Box>
+                  <Box pr={3}>
+                    <Button styleName="withImage">
+                      <ButtonWithImageIconWrapper>
+                        <Price />
+                      </ButtonWithImageIconWrapper>
+                      <ButtonWithImageText>
+                        <AutosizeInput
+                          value={minAmountForDeliveryCents}
+                          onChange={e => {
+                            this.setState({
+                              minAmountForDeliveryCents: normalizePrice(
+                                e.target.value
+                              )
+                            });
+                          }}
+                          onBlur={() =>
+                            this.updateBusiness({
+                              minAmountForDeliveryCents: convertToCents(
+                                minAmountForDeliveryCents
+                              )
+                            })
+                          }
+                        />
+                        {currency}
+                      </ButtonWithImageText>
+                    </Button>
+                  </Box>
+                  <Box pr={3}>
+                    {canEditBusinessData ? (
+                      <Link route="/app/lefood/menu/" lng={lng}>
+                        <Button
+                          as="a"
+                          styleName="withImage"
+                          active={page === "menu"}
+                          onClick={() => null}
+                        >
+                          <ButtonWithImageIconWrapper>
+                            <Menu />
+                          </ButtonWithImageIconWrapper>
+                          <ButtonWithImageText>{t("menu")}</ButtonWithImageText>
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Button
+                        styleName="withImage"
+                        active={page === "menu"}
+                        onClick={() =>
+                          this.setFinishOrdersModalVisibility(true)
+                        }
+                      >
+                        <ButtonWithImageIconWrapper>
+                          <Menu />
+                        </ButtonWithImageIconWrapper>
+                        <ButtonWithImageText>{t("menu")}</ButtonWithImageText>
+                      </Button>
+                    )}
+                  </Box>
+                  <Box pr={3}>
+                    {canEditBusinessData ? (
+                      <Link route="/app/lefood/ordering-hours/" lng={lng}>
+                        <Button
+                          as="a"
+                          styleName="withImage"
+                          active={page === "orderingHours"}
+                        >
+                          <ButtonWithImageIconWrapper>
+                            <Clock />
+                          </ButtonWithImageIconWrapper>
+                          <ButtonWithImageText>
+                            {t("orderingHours")}
+                          </ButtonWithImageText>
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Button
+                        styleName="withImage"
+                        active={page === "orderingHours"}
+                        onClick={() =>
+                          this.setFinishOrdersModalVisibility(true)
+                        }
+                      >
+                        <ButtonWithImageIconWrapper>
+                          <Clock />
+                        </ButtonWithImageIconWrapper>
+                        <ButtonWithImageText>
+                          {t("orderingHours")}
+                        </ButtonWithImageText>
+                      </Button>
+                    )}
+                  </Box>
+                  <Box pr={3}>
+                    {canEditBusinessData ? (
+                      <Link route="/app/lefood/delivery-area/" lng={lng}>
+                        <Button
+                          as="a"
+                          styleName="withImage"
+                          active={page === "deliveryArea"}
+                        >
+                          <ButtonWithImageIconWrapper>
+                            <Location />
+                          </ButtonWithImageIconWrapper>
+                          <ButtonWithImageText>
+                            {t("deliveryArea")}
+                          </ButtonWithImageText>
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Button
+                        styleName="withImage"
+                        active={page === "deliveryArea"}
+                        onClick={() =>
+                          this.setFinishOrdersModalVisibility(true)
+                        }
+                      >
+                        <ButtonWithImageIconWrapper>
+                          <Location />
+                        </ButtonWithImageIconWrapper>
+                        <ButtonWithImageText>
+                          {t("deliveryArea")}
+                        </ButtonWithImageText>
+                      </Button>
+                    )}
+                  </Box>
+                  <Box pr={3}>
+                    {visibleInLefood ? (
+                      <Button
+                        styleName="withImage"
+                        red
+                        onClick={() => this.setStopOrdersModalVisibility(true)}
+                      >
+                        <ButtonWithImageIconWrapper>
+                          <Pause />
+                        </ButtonWithImageIconWrapper>
+                      </Button>
+                    ) : (
+                      <Button
+                        styleName="withImage"
+                        greenHaze
+                        onClick={() => {
+                          this.updateBusiness({ visibleInLefood: true });
+                          Router.pushRoute(`/${lng}/app/lefood/orders/`);
+                        }}
+                      >
+                        <ButtonWithImageIconWrapper>
+                          <FontAwesomeIcon icon={["fa", "play"]} />
+                        </ButtonWithImageIconWrapper>
+                      </Button>
+                    )}
+                  </Box>
+                </Flex>
+                {children}
+                <StopOrdersModal
+                  {...{
+                    isOpen: isStopOrdersModalVisible,
+                    onClose: () => this.setStopOrdersModalVisibility(false),
+                    stopOrders: () => {
+                      this.updateBusiness({ visibleInLefood: false });
+                      this.setStopOrdersModalVisibility(false);
+                    },
+                    t
                   }}
-                  onBlur={() =>
-                    this.updateBusiness({
-                      minAmountForDeliveryCents: convertToCents(
-                        minAmountForDeliveryCents
-                      )
-                    })
-                  }
                 />
-                {currency}
-              </ButtonWithImageText>
-            </Button>
-          </Box>
-          <Box pr={3}>
-            {canEditBusinessData ? (
-              <Link route="/app/lefood/menu/" lng={lng}>
-                <Button
-                  as="a"
-                  styleName="withImage"
-                  active={page === "menu"}
-                  onClick={() => null}
-                >
-                  <ButtonWithImageIconWrapper>
-                    <Menu />
-                  </ButtonWithImageIconWrapper>
-                  <ButtonWithImageText>{t("menu")}</ButtonWithImageText>
-                </Button>
-              </Link>
+                <FinishOrdersModal
+                  {...{
+                    isOpen: isFinishOrdersModalVisible,
+                    onClose: () => this.setFinishOrdersModalVisibility(false),
+                    t
+                  }}
+                />
+              </>
             ) : (
-              <Button
-                styleName="withImage"
-                active={page === "menu"}
-                onClick={() => this.setFinishOrdersModalVisibility(true)}
-              >
-                <ButtonWithImageIconWrapper>
-                  <Menu />
-                </ButtonWithImageIconWrapper>
-                <ButtonWithImageText>{t("menu")}</ButtonWithImageText>
-              </Button>
+              <ConnectWithStripe {...{ t }} />
             )}
-          </Box>
-          <Box pr={3}>
-            {canEditBusinessData ? (
-              <Link route="/app/lefood/ordering-hours/" lng={lng}>
-                <Button
-                  as="a"
-                  styleName="withImage"
-                  active={page === "orderingHours"}
-                >
-                  <ButtonWithImageIconWrapper>
-                    <Clock />
-                  </ButtonWithImageIconWrapper>
-                  <ButtonWithImageText>
-                    {t("orderingHours")}
-                  </ButtonWithImageText>
-                </Button>
-              </Link>
-            ) : (
-              <Button
-                styleName="withImage"
-                active={page === "orderingHours"}
-                onClick={() => this.setFinishOrdersModalVisibility(true)}
-              >
-                <ButtonWithImageIconWrapper>
-                  <Clock />
-                </ButtonWithImageIconWrapper>
-                <ButtonWithImageText>{t("orderingHours")}</ButtonWithImageText>
-              </Button>
-            )}
-          </Box>
-          <Box pr={3}>
-            {canEditBusinessData ? (
-              <Link route="/app/lefood/delivery-area/" lng={lng}>
-                <Button
-                  as="a"
-                  styleName="withImage"
-                  active={page === "deliveryArea"}
-                >
-                  <ButtonWithImageIconWrapper>
-                    <Location />
-                  </ButtonWithImageIconWrapper>
-                  <ButtonWithImageText>{t("deliveryArea")}</ButtonWithImageText>
-                </Button>
-              </Link>
-            ) : (
-              <Button
-                styleName="withImage"
-                active={page === "deliveryArea"}
-                onClick={() => this.setFinishOrdersModalVisibility(true)}
-              >
-                <ButtonWithImageIconWrapper>
-                  <Location />
-                </ButtonWithImageIconWrapper>
-                <ButtonWithImageText>{t("deliveryArea")}</ButtonWithImageText>
-              </Button>
-            )}
-          </Box>
-          <Box pr={3}>
-            {visibleInLefood ? (
-              <Button
-                styleName="withImage"
-                red
-                onClick={() => this.setStopOrdersModalVisibility(true)}
-              >
-                <ButtonWithImageIconWrapper>
-                  <Pause />
-                </ButtonWithImageIconWrapper>
-              </Button>
-            ) : (
-              <Button
-                styleName="withImage"
-                greenHaze
-                onClick={() => {
-                  this.updateBusiness({ visibleInLefood: true });
-                  Router.pushRoute(`/${lng}/app/lefood/orders/`);
-                }}
-              >
-                <ButtonWithImageIconWrapper>
-                  <FontAwesomeIcon icon={["fa", "play"]} />
-                </ButtonWithImageIconWrapper>
-              </Button>
-            )}
-          </Box>
-        </Flex>
-        {children}
-        <StopOrdersModal
-          {...{
-            isOpen: isStopOrdersModalVisible,
-            onClose: () => this.setStopOrdersModalVisibility(false),
-            stopOrders: () => {
-              this.updateBusiness({ visibleInLefood: false });
-              this.setStopOrdersModalVisibility(false);
-            },
-            t
-          }}
-        />
-        <FinishOrdersModal
-          {...{
-            isOpen: isFinishOrdersModalVisible,
-            onClose: () => this.setFinishOrdersModalVisibility(false),
-            t
-          }}
-        />
+          </>
+        )}
       </AppLayout>
     );
   }
@@ -417,7 +449,8 @@ LefoodLayout.propTypes = {
   orderPeriodsLength: number,
   averageDeliveryTime: number,
   minAmountForDeliveryCents: number,
-  currency: string
+  currency: string,
+  stripeUserId: string
 };
 
 LefoodLayout.defaultProps = {
@@ -428,7 +461,8 @@ LefoodLayout.defaultProps = {
   visibleInLefood: false,
   currentBusinessId: "",
   averageDeliveryTime: 0,
-  minAmountForDeliveryCents: 0
+  minAmountForDeliveryCents: 0,
+  stripeUserId: undefined
 };
 
 export default LefoodLayout;

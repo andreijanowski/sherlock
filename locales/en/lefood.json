@@ -84,5 +84,7 @@
   "completeYourProfile": "Complete your Profile",
   "and": "and",
   "toSeeAnyNewOrders": "to see any new orders",
-  "complete": "complete"
+  "complete": "complete",
+  "connectWithStripe": "Connect with stripe",
+  "connectWithStripeSubheading": "Connect your account to stripe in order to access all the payment features."
 }

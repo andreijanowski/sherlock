@@ -56,4 +56,4 @@ module.exports = routes()
     "app/lefood/orderingHours",
     `/:lng(${languagesPattern})/app/lefood/ordering-hours/`
   )
-  .add("stripeOauth", `/:lng(${languagesPattern})/stripe-oauth`);
+  .add("app/stripeOauth", `/:lng(${languagesPattern})/stripe-oauth`);

@@ -43,7 +43,7 @@ i18n
         "register",
         "settingsBasicInfo",
         "passwordSettings",
-        "connectWithStripe",
+        "stripe",
         "publishModal"
       ], // need to preload all the namespaces
       backend: {
