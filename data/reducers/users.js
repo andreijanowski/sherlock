@@ -280,6 +280,18 @@ const reducer = (state = initialState, { type, payload, meta }) => {
             visibleInLefood: business.visibleInLefood
           };
         }
+        if (v === "averageDeliveryTime") {
+          newState.currentBusiness.data = {
+            ...newState.currentBusiness.data,
+            averageDeliveryTime: business.averageDeliveryTime
+          };
+        }
+        if (v === "minAmountForDeliveryCents") {
+          newState.currentBusiness.data = {
+            ...newState.currentBusiness.data,
+            minAmountForDeliveryCents: business.minAmountForDeliveryCents
+          };
+        }
       });
       return newState;
     }

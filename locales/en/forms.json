@@ -59,7 +59,11 @@
       "server_error-Cannot transition state via": "Invalid state change",
       "invalid-base": "Order is not waiting for approval so cannot be rejected",
       "taken-email": "This email is taken already",
-      "elements_not_found-base": "You have to select which dishes are unavailable"
+      "elements_not_found-base": "You have to select which dishes are unavailable",
+      "business_is_visible_in_lefood-base": "Action can not be done because business is currently visible in lefood",
+      "business_has_pending_orders-base": "Cannot update value because business has pending orders",
+      "business_not_approved_for_lefood-base": "Cannot update value because business is not approved for lefood",
+      "greater_than-price_per_item_cents": "Price per item cents must be greater than {{count}}. Your value is {{value}}"
     }
   },
   "placeholder": {

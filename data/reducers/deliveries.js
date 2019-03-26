@@ -52,7 +52,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           ignoreLinks: true
         }
       );
-      newState.data = [...newState.data, delivery];
+      newState.data = newState.data ? [...newState.data, delivery] : [delivery];
       return newState;
     }
 

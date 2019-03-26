@@ -66,18 +66,20 @@ Orders.propTypes = {
   orders: arrayOf(shape()).isRequired,
   columns: shape().isRequired,
   loading: bool.isRequired,
-  currency: string.isRequired,
+  currency: string,
   updateOrder: func.isRequired,
   draggedOrderState: string,
   onDragStart: func.isRequired,
   setRejectModalVisibility: func.isRequired,
-  pendingRejectionOrderId: string.isRequired,
+  pendingRejectionOrderId: string,
   handleRejectionSubmit: func.isRequired,
   toggleOrderDetails: func.isRequired
 };
 
 Orders.defaultProps = {
-  draggedOrderState: null
+  draggedOrderState: null,
+  currency: "",
+  pendingRejectionOrderId: ""
 };
 
 export default Orders;
