@@ -44,7 +44,8 @@ i18n
         "settingsBasicInfo",
         "passwordSettings",
         "connectWithStripe",
-        "publishModal"
+        "publishModal",
+        "resetPassword"
       ], // need to preload all the namespaces
       backend: {
         loadPath: path.join(__dirname, "/locales/{{lng}}/{{ns}}.json"),

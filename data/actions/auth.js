@@ -5,7 +5,8 @@ import {
   LOGOUT,
   REDIRECT_TO_REGISTER,
   REGISTER_REQUEST,
-  CHANGE_PASSWORD_REQUEST
+  CHANGE_PASSWORD_REQUEST,
+  RESET_PASSWORD_REQUEST
 } from "types/auth";
 
 export const login = data => ({
@@ -71,7 +72,8 @@ export const register = ({
           email,
           password,
           passwordConfirmation,
-          termsAgreement
+          termsAgreement,
+          source: "sherlock"
         }
       },
       grant_type: "password"
@@ -96,6 +98,22 @@ export const changePassword = data => ({
     },
     endpoint: "/api/v1/users/me/reset_password",
     method: "PATCH"
+  },
+  meta: { thunk: true }
+});
+
+export const resetPassword = data => ({
+  type: RESET_PASSWORD_REQUEST,
+  payload: {
+    data: {
+      data: {
+        type: "users",
+        attributes: data
+      }
+    },
+    endpoint: "/api/v1/users/request_reset_password",
+    authRequired: false,
+    method: "POST"
   },
   meta: { thunk: true }
 });

@@ -20,7 +20,8 @@ import {
   LOGOUT,
   REFRESH_TOKEN_SUCCESS,
   REDIRECT_TO_REGISTER,
-  CHANGE_PASSWORD_SUCCESS
+  CHANGE_PASSWORD_SUCCESS,
+  RESET_PASSWORD_SUCCESS
 } from "types/auth";
 import Notifications from "react-notification-system-redux";
 import { refreshToken as refresh } from "actions/auth";
@@ -65,6 +66,14 @@ function* showSuccessPasswordChangeMsg() {
   );
 }
 
+function* showSuccessResetPasswordMsg() {
+  yield put(
+    Notifications.success({
+      message: "passwordResetSuccess"
+    })
+  );
+}
+
 export default all([
   takeLatest(REHYDRATE, initialTokenRefresh),
   takeEvery(
@@ -73,5 +82,6 @@ export default all([
   ),
   takeEvery([LOGOUT], redirectHomepage),
   takeEvery([REDIRECT_TO_REGISTER], redirectToRegisterPage),
-  takeEvery(CHANGE_PASSWORD_SUCCESS, showSuccessPasswordChangeMsg)
+  takeEvery(CHANGE_PASSWORD_SUCCESS, showSuccessPasswordChangeMsg),
+  takeEvery(RESET_PASSWORD_SUCCESS, showSuccessResetPasswordMsg)
 ]);
