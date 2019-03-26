@@ -194,7 +194,8 @@ class OrdersPage extends PureComponent {
       visibleInLefood,
       id,
       averageDeliveryTime,
-      minAmountForDeliveryCents
+      minAmountForDeliveryCents,
+      orderPeriods
     } = currentBusiness || {};
     const orderDetails = orders
       ? orders.find(o => o.id === orderDetailsId)
@@ -212,7 +213,7 @@ class OrdersPage extends PureComponent {
             currentBusinessId: id,
             dishesLength,
             deliveriesLength,
-            ordersLength: orders && orders.length,
+            orderPeriodsLength: orderPeriods && orderPeriods.length,
             averageDeliveryTime,
             minAmountForDeliveryCents,
             currency

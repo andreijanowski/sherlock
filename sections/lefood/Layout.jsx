@@ -69,7 +69,7 @@ const averageDeliveryTimeList = [
 const calcProfileCompletedPercents = ({
   dishesLength,
   deliveriesLength,
-  ordersLength,
+  orderPeriodsLength,
   averageDeliveryTime
 }) => {
   let profileCompletedPercents = 0;
@@ -79,7 +79,7 @@ const calcProfileCompletedPercents = ({
   if (deliveriesLength) {
     profileCompletedPercents += 25;
   }
-  if (ordersLength) {
+  if (orderPeriodsLength) {
     profileCompletedPercents += 25;
   }
   if (averageDeliveryTime) {
@@ -153,7 +153,7 @@ class LefoodLayout extends PureComponent {
       children,
       dishesLength,
       deliveriesLength,
-      ordersLength,
+      orderPeriodsLength,
       averageDeliveryTime,
       currency
     } = this.props;
@@ -165,7 +165,7 @@ class LefoodLayout extends PureComponent {
         ? calcProfileCompletedPercents({
             dishesLength,
             deliveriesLength,
-            ordersLength,
+            orderPeriodsLength,
             averageDeliveryTime
           })
         : 100;
@@ -417,7 +417,7 @@ LefoodLayout.propTypes = {
   currentBusinessId: string,
   dishesLength: number,
   deliveriesLength: number,
-  ordersLength: number,
+  orderPeriodsLength: number,
   averageDeliveryTime: number,
   minAmountForDeliveryCents: number,
   currency: string
@@ -426,7 +426,7 @@ LefoodLayout.propTypes = {
 LefoodLayout.defaultProps = {
   dishesLength: 0,
   deliveriesLength: 0,
-  ordersLength: 0,
+  orderPeriodsLength: 0,
   currency: "",
   visibleInLefood: false,
   currentBusinessId: "",
