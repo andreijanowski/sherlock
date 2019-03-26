@@ -5,10 +5,10 @@ export const columns = {
   rejected: "rejected"
 };
 
-export const parseOrders = orders => ({
+export const parseOrders = (orders, t) => ({
   newOrders: {
     id: columns.newOrders,
-    title: "New orders",
+    title: t("newOrders"),
     orderIds: orders
       ? orders
           .filter(
@@ -22,21 +22,21 @@ export const parseOrders = orders => ({
   },
   inProgress: {
     id: columns.inProgress,
-    title: "In Progress",
+    title: t("in_preparation"),
     orderIds: orders
       ? orders.filter(o => o.state === "in_preparation").map(o => o.id)
       : []
   },
   done: {
     id: columns.done,
-    title: "Done",
+    title: t("completed"),
     orderIds: orders
       ? orders.filter(o => o.state === "completed").map(o => o.id)
       : []
   },
   rejected: {
     id: columns.rejected,
-    title: "Rejected",
+    title: t("rejected"),
     orderIds: orders
       ? orders
           .filter(o => o.state === "rejected" || o.state === "canceled")

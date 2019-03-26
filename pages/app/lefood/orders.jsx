@@ -31,7 +31,7 @@ class OrdersPage extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      columns: parseOrders(props.orders),
+      columns: parseOrders(props.orders, props.t),
       draggedOrderState: null,
       pendingRejectionOrderId: undefined,
       orderDetailsId: undefined
@@ -47,9 +47,9 @@ class OrdersPage extends PureComponent {
   }
 
   refreshColumnsContent = () => {
-    const { orders } = this.props;
+    const { orders, t } = this.props;
     this.setState({
-      columns: parseOrders(orders)
+      columns: parseOrders(orders, t)
     });
   };
 
