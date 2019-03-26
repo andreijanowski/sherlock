@@ -89,14 +89,11 @@ const calcProfileCompletedPercents = ({
 };
 
 class LefoodLayout extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      minAmountForDeliveryCents: 0,
-      isStopOrdersModalVisible: false,
-      isFinishOrdersModalVisible: false
-    };
-  }
+  state = {
+    minAmountForDeliveryCents: 0,
+    isStopOrdersModalVisible: false,
+    isFinishOrdersModalVisible: false
+  };
 
   componentDidMount() {
     this.updateMinAmountForDeliveryCents();
@@ -187,25 +184,25 @@ class LefoodLayout extends PureComponent {
             info={
               // eslint-disable-next-line react/jsx-wrap-multilines
               <span>
-                {t("completeYourProfile")}{" "}
+                {`${t("completeYourProfile")} `}
                 <ItalicText>
                   <Orange>
-                    ({t("deliveryTime")},{" "}
+                    ({`${t("deliveryTime")} `}
                     <Link route="/app/lefood/menu/" lng={lng}>
                       <Orange as="a">{t("menu")}</Orange>
                     </Link>
-                    ,{" "}
+                    {", "}
                     <Link route="/app/lefood/ordering-hours/" lng={lng}>
                       <Orange as="a">{t("orderingHours")}</Orange>
-                    </Link>{" "}
-                    {t("and")}{" "}
+                    </Link>
+                    {` ${t("and")} `}
                     <Link route="/app/lefood/delivery-area/" lng={lng}>
                       <Orange as="a">{t("deliveryArea")}</Orange>
                     </Link>
                     )
                   </Orange>
-                </ItalicText>{" "}
-                {t("toSeeAnyNewOrders")}.
+                </ItalicText>
+                {` ${t("toSeeAnyNewOrders")}`}.
               </span>
             }
             complete={`${profileCompletedPercents}% ${t("complete")}`}
