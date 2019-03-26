@@ -11,8 +11,8 @@ import {
   patchOpenPeriod,
   deleteOpenPeriod
 } from "actions/openPeriods";
-import { setCurrentBusiness } from "actions/users";
-import { postBusiness } from "actions/businesses";
+import { setCurrentBusiness, fetchProfileBusiness } from "actions/users";
+import { postBusiness, patchBusiness } from "actions/businesses";
 
 const namespaces = ["openingHours", "app", "publishModal", "forms"];
 
@@ -66,7 +66,9 @@ class OpeningHours extends PureComponent {
       business,
       businesses,
       changeCurrentBusiness,
-      addBusiness
+      addBusiness,
+      updateBusiness,
+      getProfileBusiness
     } = this.props;
 
     const initialValues = business
@@ -82,6 +84,8 @@ class OpeningHours extends PureComponent {
           businesses,
           changeCurrentBusiness,
           addBusiness,
+          updateBusiness,
+          getProfileBusiness,
           currentPage: "openingHours"
         }}
       >
@@ -108,8 +112,10 @@ OpeningHours.propTypes = {
   updateOpenPeriod: func.isRequired,
   removeOpenPeriod: func.isRequired,
   addBusiness: func.isRequired,
+  updateBusiness: func.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
+  getProfileBusiness: func.isRequired,
   businesses: arrayOf(shape())
 };
 
@@ -127,10 +133,12 @@ export default requireAuth(true)(
       }),
       {
         addBusiness: postBusiness,
+        updateBusiness: patchBusiness,
         addOpenPeriod: postOpenPeriod,
         updateOpenPeriod: patchOpenPeriod,
         removeOpenPeriod: deleteOpenPeriod,
-        changeCurrentBusiness: setCurrentBusiness
+        changeCurrentBusiness: setCurrentBusiness,
+        getProfileBusiness: fetchProfileBusiness
       }
     )(OpeningHours)
   )

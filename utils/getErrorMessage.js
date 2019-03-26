@@ -5,18 +5,17 @@ const isInvalidStateTransitionError = error =>
   error.title.startsWith &&
   error.title.startsWith("Cannot transition state via");
 
-const generateErrorMassageKey = error =>
-  isInvalidStateTransitionError(error)
+export const getErrorMessageKey = errors => ({
+  message: isInvalidStateTransitionError(errors[0])
     ? `forms:validation.error.server_error-Cannot transition state via`
-    : `forms:validation.error.${error.code}-${error.title}`;
+    : `forms:validation.error.${errors[0].code}-${errors[0].title}`,
+  meta: errors[0].meta
+});
 
 export default errors => {
   let translatedMessage = { message: "Error" };
   if (errors.length) {
-    translatedMessage = {
-      message: generateErrorMassageKey(errors[0]),
-      meta: errors[0].meta
-    };
+    translatedMessage = getErrorMessageKey(errors);
   }
 
   return Notifications.error(translatedMessage);

@@ -77,6 +77,7 @@
   "in_preparation": "In preparation",
   "completed": "Completed",
   "rejected": "Rejected",
+  "newOrders": "New orders",
   "rejectReason": "Reject reason",
   "deliveryAddress": "Delivery address",
   "pickupAtRestaurant": "Pickup at restaurant",

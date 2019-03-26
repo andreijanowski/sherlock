@@ -74,14 +74,14 @@ export const StepStatus = styled(Flex).attrs({
   height: 30px;
   border-radius: 20px;
   color: ${p =>
-    p.isChecked
+    p.isFilled || !p.isValid
       ? `rgb(${p.theme.colors.white})`
       : `rgba(${p.theme.colors.dark}, 0.32)`};
   background-color: rgb(
-    ${p => (p.isChecked ? p.theme.colors.blue : p.theme.colors.white)}
+    ${p => (p.isFilled ? p.theme.colors.blue : p.theme.colors.white)}
   );
-  ${p =>
-    !p.isChecked && `border: 3px solid rgba(${p.theme.colors.dark}, 0.08);`}
+  ${p => !p.isValid && `background-color: rgb(${p.theme.colors.ruby});`}
+  ${p => !p.isFilled && `border: 3px solid rgba(${p.theme.colors.dark}, 0.08);`}
 
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     height: 40px;

@@ -54,3 +54,4 @@ export { default as Map } from "./Map";
 export { default as TextSeparator } from "./TextSeparator";
 export { default as Periods, parsePeriods, parsePeriod } from "./Periods";
 export { default as InfoBar } from "./InfoBar";
+export { default as AutosizeInput } from "./AutosizeInput";

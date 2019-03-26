@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { bool, func, string, node, number } from "prop-types";
 import AppLayout from "layout/App";
-import AutosizeInput from "react-input-autosize";
+// import AutosizeInput from "react-input-autosize";
 import {
   Button,
   ButtonWithImageText,
@@ -9,7 +9,8 @@ import {
   Link,
   InfoBar,
   ItalicText,
-  Select
+  Select,
+  AutosizeInput
 } from "components";
 import {
   Orders,
@@ -68,7 +69,7 @@ const averageDeliveryTimeList = [
 const calcProfileCompletedPercents = ({
   dishesLength,
   deliveriesLength,
-  ordersLength,
+  orderPeriodsLength,
   averageDeliveryTime
 }) => {
   let profileCompletedPercents = 0;
@@ -78,7 +79,7 @@ const calcProfileCompletedPercents = ({
   if (deliveriesLength) {
     profileCompletedPercents += 25;
   }
-  if (ordersLength) {
+  if (orderPeriodsLength) {
     profileCompletedPercents += 25;
   }
   if (averageDeliveryTime) {
@@ -88,14 +89,11 @@ const calcProfileCompletedPercents = ({
 };
 
 class LefoodLayout extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      minAmountForDeliveryCents: 0,
-      isStopOrdersModalVisible: false,
-      isFinishOrdersModalVisible: false
-    };
-  }
+  state = {
+    minAmountForDeliveryCents: 0,
+    isStopOrdersModalVisible: false,
+    isFinishOrdersModalVisible: false
+  };
 
   componentDidMount() {
     this.updateMinAmountForDeliveryCents();
@@ -114,13 +112,13 @@ class LefoodLayout extends PureComponent {
   updateMinAmountForDeliveryCents = () => {
     const { minAmountForDeliveryCents } = this.props;
     // without setTimeout AutosizeInput is not working correctly ¯\_(ツ)_/¯
-    setTimeout(
-      () =>
-        this.setState({
-          minAmountForDeliveryCents: normalizePrice(minAmountForDeliveryCents)
-        }),
-      0
-    );
+    // setTimeout(
+    //   () =>
+    this.setState({
+      minAmountForDeliveryCents: normalizePrice(minAmountForDeliveryCents)
+    });
+    //   0
+    // );
   };
 
   setStopOrdersModalVisibility = isVisible =>
@@ -152,7 +150,7 @@ class LefoodLayout extends PureComponent {
       children,
       dishesLength,
       deliveriesLength,
-      ordersLength,
+      orderPeriodsLength,
       averageDeliveryTime,
       currency
     } = this.props;
@@ -164,7 +162,7 @@ class LefoodLayout extends PureComponent {
         ? calcProfileCompletedPercents({
             dishesLength,
             deliveriesLength,
-            ordersLength,
+            orderPeriodsLength,
             averageDeliveryTime
           })
         : 100;
@@ -186,25 +184,25 @@ class LefoodLayout extends PureComponent {
             info={
               // eslint-disable-next-line react/jsx-wrap-multilines
               <span>
-                {t("completeYourProfile")}{" "}
+                {`${t("completeYourProfile")} `}
                 <ItalicText>
                   <Orange>
-                    ({t("deliveryTime")},{" "}
+                    ({`${t("deliveryTime")} `}
                     <Link route="/app/lefood/menu/" lng={lng}>
                       <Orange as="a">{t("menu")}</Orange>
                     </Link>
-                    ,{" "}
+                    {", "}
                     <Link route="/app/lefood/ordering-hours/" lng={lng}>
                       <Orange as="a">{t("orderingHours")}</Orange>
-                    </Link>{" "}
-                    {t("and")}{" "}
+                    </Link>
+                    {` ${t("and")} `}
                     <Link route="/app/lefood/delivery-area/" lng={lng}>
                       <Orange as="a">{t("deliveryArea")}</Orange>
                     </Link>
                     )
                   </Orange>
-                </ItalicText>{" "}
-                {t("toSeeAnyNewOrders")}.
+                </ItalicText>
+                {` ${t("toSeeAnyNewOrders")}`}.
               </span>
             }
             complete={`${profileCompletedPercents}% ${t("complete")}`}
@@ -416,7 +414,7 @@ LefoodLayout.propTypes = {
   currentBusinessId: string,
   dishesLength: number,
   deliveriesLength: number,
-  ordersLength: number,
+  orderPeriodsLength: number,
   averageDeliveryTime: number,
   minAmountForDeliveryCents: number,
   currency: string
@@ -425,7 +423,7 @@ LefoodLayout.propTypes = {
 LefoodLayout.defaultProps = {
   dishesLength: 0,
   deliveriesLength: 0,
-  ordersLength: 0,
+  orderPeriodsLength: 0,
   currency: "",
   visibleInLefood: false,
   currentBusinessId: "",

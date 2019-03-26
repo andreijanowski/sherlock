@@ -12,7 +12,7 @@ import { postPicture, deletePicture } from "actions/pictures";
 import { postMenu, patchMenu, deleteMenu } from "actions/menus";
 import { postProduct, patchProduct, deleteProduct } from "actions/products";
 import { getInitialValues } from "sections/profile/picturesAndMenus/utils";
-import { setCurrentBusiness } from "actions/users";
+import { setCurrentBusiness, fetchProfileBusiness } from "actions/users";
 
 const namespaces = ["picturesAndMenus", "app", "publishModal", "forms"];
 
@@ -105,7 +105,9 @@ class PicturesAndMenus extends PureComponent {
       business,
       businesses,
       changeCurrentBusiness,
-      addBusiness
+      addBusiness,
+      updateBusiness,
+      getProfileBusiness
     } = this.props;
     const initialValues = getInitialValues(business);
 
@@ -118,6 +120,8 @@ class PicturesAndMenus extends PureComponent {
           businesses,
           changeCurrentBusiness,
           addBusiness,
+          updateBusiness,
+          getProfileBusiness,
           currentPage: "picturesAndMenus"
         }}
       >
@@ -156,6 +160,7 @@ PicturesAndMenus.propTypes = {
   removeProduct: func.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
+  getProfileBusiness: func.isRequired,
   businesses: arrayOf(shape())
 };
 
@@ -182,7 +187,8 @@ export default requireAuth(true)(
         addProduct: postProduct,
         updateProduct: patchProduct,
         removeProduct: deleteProduct,
-        changeCurrentBusiness: setCurrentBusiness
+        changeCurrentBusiness: setCurrentBusiness,
+        getProfileBusiness: fetchProfileBusiness
       }
     )(PicturesAndMenus)
   )

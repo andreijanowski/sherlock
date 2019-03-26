@@ -2,7 +2,7 @@ import React from "react";
 import { FormSpy } from "react-final-form";
 import diff from "object-diff";
 import { shape, string, func } from "prop-types";
-import getErrorMessage from "utils/getErrorMessage";
+import { getErrorMessageKey } from "utils/getErrorMessage";
 import { getArraysDiff } from "./utils";
 
 class AutoSave extends React.Component {
@@ -67,8 +67,9 @@ class AutoSave extends React.Component {
       setFieldData(blurredField, { saving: false });
     } catch (e) {
       if (e.response) {
+        const { message, meta } = getErrorMessageKey(e.response.data.errors);
         setFieldData(blurredField, {
-          error: t(getErrorMessage(e.response.data.errors))
+          error: t(message, { ...meta })
         });
       } else {
         console.log(e);
