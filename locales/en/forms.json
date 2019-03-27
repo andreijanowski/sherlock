@@ -59,7 +59,9 @@
       "server_error-Cannot transition state via": "Invalid state change",
       "invalid-base": "Order is not waiting for approval so cannot be rejected",
       "taken-email": "This email is taken already",
-      "elements_not_found-base": "You have to select which dishes are unavailable"
+      "elements_not_found-base": "You have to select which dishes are unavailable",
+      "already_confirmed-email": "Email has been already confirmed",
+      "invalid-confirmation_token": "Invalid confirmation link"
     }
   },
   "placeholder": {

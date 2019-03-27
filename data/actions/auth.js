@@ -6,7 +6,8 @@ import {
   REDIRECT_TO_REGISTER,
   REGISTER_REQUEST,
   CHANGE_PASSWORD_REQUEST,
-  RESET_PASSWORD_REQUEST
+  RESET_PASSWORD_REQUEST,
+  CONFIRM_REQUEST
 } from "types/auth";
 
 export const login = data => ({
@@ -114,6 +115,23 @@ export const resetPassword = data => ({
     endpoint: "/api/v1/users/request_reset_password",
     authRequired: false,
     method: "POST"
+  },
+  meta: { thunk: true }
+});
+
+export const confirmMail = token => ({
+  type: CONFIRM_REQUEST,
+  payload: {
+    method: "POST",
+    endpoint: `/api/v1/users/confirm`,
+    data: {
+      data: {
+        type: "users",
+        attributes: {
+          confirmation_token: token
+        }
+      }
+    }
   },
   meta: { thunk: true }
 });
