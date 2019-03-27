@@ -4,5 +4,7 @@
   "login": "Login",
   "password": "Password",
   "loginButton": "Log in",
-  "Facebook": "Continue with Facebook"
+  "Facebook": "Continue with Facebook",
+  "forgotPassword": "Forgot password?",
+  "letsSignUp": "Don't have an account? Sign up"
 }
