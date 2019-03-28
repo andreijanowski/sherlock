@@ -9,47 +9,45 @@ import {
   PriceDescription,
   Price
 } from "./styled";
-import Managers from "./managers";
 import List from "./list";
 
 const Plan = ({ t, color, name, billingPeriod, onClickActionButton }) => (
   <MainWrapper>
     <NameWrapper>
-      <Name color={color}>{t(`plans.${name}.name`)}</Name>
+      <Name color={color}>{t(`plans:${name}.name`)}</Name>
       {name === "basic" && (
         <>
           <MostPopular color={color}>
-            {t(`plans.${name}.mostPopular`)}
+            {t(`plans:${name}.mostPopular`)}
           </MostPopular>
           <MostPopular color="ruby">
-            {t(`plans.${name}.promoPrice`)}
+            {t(`plans:${name}.promoPrice`)}
           </MostPopular>
         </>
       )}
       {name === "premium" && (
         <>
           <MostPopular color={color}>
-            {t(`plans.${name}.bestValue`)}
+            {t(`plans:${name}.bestValue`)}
           </MostPopular>
           <MostPopular color="ruby">
-            {t(`plans.${name}.promoPrice`)}
+            {t(`plans:${name}.promoPrice`)}
           </MostPopular>
         </>
       )}
     </NameWrapper>
     <PriceWrapper>
-      <PriceDescription>{t(`plans.${name}.priceDescription`)}</PriceDescription>
+      <PriceDescription>{t(`plans:${name}.priceDescription`)}</PriceDescription>
       {name === "basic" || name === "premium" ? (
         <Price>
-          {t(`plans.${name}.price.${billingPeriod}`)}
-          <small>/{t(`plans.${name}.${billingPeriod}`)}</small>
+          {t(`plans:${name}.price.${billingPeriod}`)}
+          <small>/{t(`plans:${name}.${billingPeriod}`)}</small>
         </Price>
       ) : (
-        <Price>{t(`plans.${name}.price.${billingPeriod}`)}</Price>
+        <Price>{t(`plans:${name}.price.${billingPeriod}`)}</Price>
       )}
-      <Managers {...{ color, t }} />
       <Button onClick={onClickActionButton} styleName={color}>
-        {t(`plans.${name}.buttonText`)}
+        {t(`plans:${name}.buttonText`)}
       </Button>
     </PriceWrapper>
     <List {...{ t, name, color }} />

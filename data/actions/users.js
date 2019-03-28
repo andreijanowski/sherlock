@@ -3,7 +3,9 @@ import {
   UPDATE_PROFILE_REQUEST,
   FETCH_PROFILE_BUSINESSES_REQUEST,
   FETCH_PROFILE_BUSINESS_REQUEST,
-  SET_CURRENT_BUSINESS
+  SET_CURRENT_BUSINESS,
+  FETCH_PROFILE_CARDS_REQUEST,
+  FETCH_PROFILE_SUBSCRIPTIONS_REQUEST
 } from "types/users";
 
 export const fetchProfile = () => ({
@@ -64,4 +66,22 @@ export const setCurrentBusiness = id => ({
       }
     }
   }
+});
+
+export const fetchProfileCards = () => ({
+  type: FETCH_PROFILE_CARDS_REQUEST,
+  payload: {
+    endpoint: "/api/v1/users/me/cards",
+    params: { per_page: 200, page: 1 }
+  },
+  meta: { thunk: true }
+});
+
+export const fetchProfileSubscriptions = () => ({
+  type: FETCH_PROFILE_SUBSCRIPTIONS_REQUEST,
+  payload: {
+    endpoint: "/api/v1/users/me/subscriptions",
+    params: { per_page: 200, page: 1 }
+  },
+  meta: { thunk: true }
 });

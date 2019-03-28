@@ -57,6 +57,7 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
+        <script id="stripe-js" src="https://js.stripe.com/v3/" async />
       </html>
     );
   }

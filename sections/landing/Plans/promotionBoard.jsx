@@ -5,15 +5,15 @@ import { PromotionWrapper } from "./styled";
 const PromotionBoard = ({ t }) => (
   <PromotionWrapper>
     <Paragraph mb={0}>
-      {t("plans.promotion.startFirstLine")}
+      {t("plans:promotion.startFirstLine")}
       <BlueText>
-        <BoldText>{t("plans.promotion.promotionPlan")}</BoldText>
+        <BoldText>{t("plans:promotion.promotionPlan")}</BoldText>
       </BlueText>
-      {t("plans.promotion.startLastLine")}
+      {t("plans:promotion.startLastLine")}
     </Paragraph>
     <Paragraph mb={0}>
-      {t("plans.promotion.endFirstLine")}
-      {t("plans.promotion.endLastLine")}
+      {t("plans:promotion.endFirstLine")}
+      {t("plans:promotion.endLastLine")}
     </Paragraph>
   </PromotionWrapper>
 );

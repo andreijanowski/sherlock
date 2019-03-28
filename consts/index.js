@@ -8,6 +8,7 @@ const PUBLIC_FACEBOOK_APP_ID = process.env.PUBLIC_FACEBOOK_APP_ID;
 const PUSHER_APP_KEY = process.env.PUBLIC_PUSHER_APP_KEY;
 const PUSHER_APP_CLUSTER = process.env.PUBLIC_PUSHER_APP_CLUSTER;
 const STRIPE_CLIENT_ID = process.env.STRIPE_CLIENT_ID;
+const STRIPE_API_KEY = process.env.PUBLIC_STRIPE_API_KEY;
 
 const contentTypes = {
   JSON: "application/json",
@@ -29,5 +30,6 @@ module.exports = {
   PUBLIC_FACEBOOK_APP_ID,
   PUSHER_APP_KEY,
   PUSHER_APP_CLUSTER,
-  STRIPE_CLIENT_ID
+  STRIPE_CLIENT_ID,
+  STRIPE_API_KEY
 };
