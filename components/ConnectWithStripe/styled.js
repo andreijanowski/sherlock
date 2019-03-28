@@ -35,6 +35,7 @@ export const StripeButtonStyled = styled(Button)`
   padding: 0 40px 0 20px;
   color: white;
   border: none;
+  align-items: center;
   > span {
     padding-left: 10px;
   }

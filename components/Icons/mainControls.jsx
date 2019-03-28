@@ -86,3 +86,24 @@ export const Notifications = () => (
     </g>
   </svg>
 );
+
+export const ExpandIcon = () => (
+  <span className="ExpandIcon">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="10"
+      height="6"
+      viewBox="0 0 10 6"
+    >
+      <path
+        fill="none"
+        fillRule="evenodd"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeOpacity="0.4"
+        strokeWidth="2"
+        d="M1 1l4 4 4-4"
+      />
+    </svg>
+  </span>
+);

@@ -6,14 +6,14 @@ import { func, string, shape, arrayOf } from "prop-types";
 import Form from "sections/profile/basicInformation";
 import {
   countries,
-  getGroupsByParentGroups,
   getInitialValues,
   getGroupsValues
 } from "sections/profile/basicInformation/utils";
+import { getGroupsData } from "sections/profile/utils";
 import ProfileLayout from "sections/profile/Layout";
 import { connect } from "react-redux";
 import { postBusiness, patchBusiness } from "actions/businesses";
-import { setCurrentBusiness } from "actions/users";
+import { setCurrentBusiness, fetchProfileBusiness } from "actions/users";
 
 const namespaces = ["basicInformation", "app", "publishModal", "forms"];
 
@@ -51,18 +51,7 @@ class BasicInformation extends PureComponent {
 
   loadGroups = () => {
     const { groups } = this.props;
-    const types = getGroupsByParentGroups(groups, ["types"]);
-    const cuisines = getGroupsByParentGroups(groups, ["cuisines"]);
-    const foodsAndDrinks = getGroupsByParentGroups(groups, ["foods", "drinks"]);
-    const quirks = getGroupsByParentGroups(groups, ["quirks"]);
-    const diets = getGroupsByParentGroups(groups, ["diets"]);
-    this.setState({
-      types,
-      cuisines,
-      foodsAndDrinks,
-      quirks,
-      diets
-    });
+    this.setState(getGroupsData(groups));
   };
 
   handleSubmit = (
@@ -73,6 +62,7 @@ class BasicInformation extends PureComponent {
       region,
       street,
       streetNumber,
+      city,
       postCode,
       ownerRole,
       bio
@@ -90,6 +80,7 @@ class BasicInformation extends PureComponent {
       !(region && region.value) &&
       !street &&
       !streetNumber &&
+      !city &&
       !postCode &&
       !ownerRole &&
       !bio;
@@ -100,6 +91,7 @@ class BasicInformation extends PureComponent {
       regionCode: region ? region.value : undefined,
       street,
       streetNumber,
+      city,
       postCode,
       groupsList: sendGroupsList
         ? getGroupsValues([
@@ -123,7 +115,9 @@ class BasicInformation extends PureComponent {
       business,
       businesses,
       changeCurrentBusiness,
-      addBusiness
+      addBusiness,
+      updateBusiness,
+      getProfileBusiness
     } = this.props;
     const { types, cuisines, foodsAndDrinks, quirks, diets } = this.state;
     const initialValues = getInitialValues(business);
@@ -136,6 +130,8 @@ class BasicInformation extends PureComponent {
           businesses,
           changeCurrentBusiness,
           addBusiness,
+          updateBusiness,
+          getProfileBusiness,
           currentPage: "basicInformation"
         }}
       >
@@ -164,6 +160,7 @@ BasicInformation.propTypes = {
   groups: arrayOf(shape()).isRequired,
   updateBusiness: func.isRequired,
   changeCurrentBusiness: func.isRequired,
+  getProfileBusiness: func.isRequired,
   addBusiness: func.isRequired,
   businesses: arrayOf(shape())
 };
@@ -184,7 +181,8 @@ export default requireAuth(true)(
       {
         updateBusiness: patchBusiness,
         changeCurrentBusiness: setCurrentBusiness,
-        addBusiness: postBusiness
+        addBusiness: postBusiness,
+        getProfileBusiness: fetchProfileBusiness
       }
     )(BasicInformation)
   )

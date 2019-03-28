@@ -6,7 +6,7 @@ import { func, string } from "prop-types";
 import { Footer } from "components";
 import { TopSection, Services, Plans } from "sections/landing";
 
-const namespaces = ["landing", "common"];
+const namespaces = ["landing", "plans", "common"];
 
 class Home extends PureComponent {
   static async getInitialProps({ ctx }) {
@@ -25,11 +25,10 @@ class Home extends PureComponent {
     this.plansRef = React.createRef();
   }
 
-  handleChangeBillngPeriod = () => {
-    const { billingPeriod } = this.state;
-    const newBillingPeriod = billingPeriod === "monthly" ? "yearly" : "monthly";
-    this.setState({ billingPeriod: newBillingPeriod });
-  };
+  handleChangeBillngPeriod = () =>
+    this.setState(({ billingPeriod }) => ({
+      billingPeriod: billingPeriod === "monthly" ? "yearly" : "monthly"
+    }));
 
   render() {
     const { t, lng } = this.props;

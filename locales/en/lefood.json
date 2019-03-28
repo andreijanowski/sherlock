@@ -3,6 +3,7 @@
   "accept": "Accept",
   "reject": "Reject",
   "orders": "Orders",
+  "deliveryTime": "Delivery Time",
   "menu": "Menu",
   "orderingHours": "Ordering Hours",
   "deliveryArea": "Delivery Area",
@@ -76,7 +77,14 @@
   "in_preparation": "In preparation",
   "completed": "Completed",
   "rejected": "Rejected",
+  "newOrders": "New orders",
   "rejectReason": "Reject reason",
   "deliveryAddress": "Delivery address",
-  "pickupAtRestaurant": "Pickup at restaurant"
+  "pickupAtRestaurant": "Pickup at restaurant",
+  "completeYourProfile": "Complete your Profile",
+  "and": "and",
+  "toSeeAnyNewOrders": "to see any new orders",
+  "complete": "complete",
+  "connectWithStripe": "Connect with stripe",
+  "connectWithStripeSubheading": "Connect your account to stripe in order to access all the payment features."
 }

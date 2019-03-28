@@ -19,6 +19,7 @@ export const ToggleButtonWrapper = styled(Flex).attrs(p => ({
   .ExpandIcon {
     position: absolute;
     right: 16px;
+    stroke: rgb(${p => p.theme.colors.dark});
   }
 `;
 
@@ -84,25 +85,3 @@ export const Item = styled(Box).attrs(p => ({
   cursor: pointer;
   ${p => p.isActive && `background-color: rgb(${p.theme.colors.background});`}
 `;
-
-export const ExpandIcon = () => (
-  <span className="ExpandIcon">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="10"
-      height="6"
-      viewBox="0 0 10 6"
-    >
-      <path
-        fill="none"
-        fillRule="evenodd"
-        stroke="#2A2F38"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeOpacity=".4"
-        strokeWidth="2"
-        d="M1 1l4 4 4-4"
-      />
-    </svg>
-  </span>
-);

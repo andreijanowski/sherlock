@@ -12,6 +12,8 @@ import { PersistGate as PersistGateClient } from "redux-persist/integration/reac
 import isServer from "utils/isServer";
 import NProgress from "nprogress";
 import { Router } from "routes";
+import { StripeProvider } from "react-stripe-elements";
+import { STRIPE_API_KEY } from "consts";
 import initialI18nInstance from "../i18n";
 import createStore from "../data/store";
 
@@ -43,6 +45,19 @@ class MyApp extends App {
   constructor(props) {
     super();
     props.startApp();
+    this.state = {
+      stripe: null
+    };
+  }
+
+  componentDidMount() {
+    if (window.Stripe) {
+      this.setState({ stripe: window.Stripe(STRIPE_API_KEY) });
+    } else {
+      document.querySelector("#stripe-js").addEventListener("load", () => {
+        this.setState({ stripe: window.Stripe(STRIPE_API_KEY) });
+      });
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -69,7 +84,9 @@ class MyApp extends App {
                 initialI18nStore={initialI18nStore}
                 initialLanguage={initialLanguage}
               >
-                <Layout {...{ pageProps, Component }} />
+                <StripeProvider stripe={this.state.stripe}>
+                  <Layout {...{ pageProps, Component }} />
+                </StripeProvider>
               </I18nextProvider>
             </ThemeProvider>
           </PersistGate>

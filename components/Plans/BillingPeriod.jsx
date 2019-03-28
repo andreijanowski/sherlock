@@ -1,25 +1,13 @@
 import Switch from "react-switch";
-import { Flex, Box } from "@rebass/grid";
-import styled from "styled-components";
+import { Flex } from "@rebass/grid";
 import { theme } from "utils/theme";
 import { func, string } from "prop-types";
-import { Option } from "./styled";
-
-const SwitchWrapper = styled(Box)`
-  border-radius: 13px;
-  padding: 2px;
-  height: 26px;
-  background: linear-gradient(
-    to right,
-    rgba(${p => p.theme.colors.dark}, 0.4),
-    rgb(${p => p.theme.colors.blue})
-  );
-`;
+import { Option, SwitchWrapper } from "./styled";
 
 const BillingPeriod = ({ t, billingPeriod, handleChangeBillngPeriod }) => (
   <Flex alignItems="center" mb={3}>
     <Option dark mr={3}>
-      {t("plans.billingYearly")}
+      {t("plans:billingYearly")}
     </Option>
     <SwitchWrapper>
       <Switch
@@ -38,7 +26,7 @@ const BillingPeriod = ({ t, billingPeriod, handleChangeBillngPeriod }) => (
         activeBoxShadow={`0 0 0 3px rgba(${theme.colors.blue}, 0.48)`}
       />
     </SwitchWrapper>
-    <Option ml={3}>{t("plans.billingMonthly")}</Option>
+    <Option ml={3}>{t("plans:billingMonthly")}</Option>
   </Flex>
 );
 

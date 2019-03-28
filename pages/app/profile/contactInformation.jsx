@@ -7,7 +7,7 @@ import Form from "sections/profile/contactInformation";
 import { connect } from "react-redux";
 import { postBusiness, patchBusiness } from "actions/businesses";
 import { getInitialValues } from "sections/profile/contactInformation/utils";
-import { setCurrentBusiness } from "actions/users";
+import { setCurrentBusiness, fetchProfileBusiness } from "actions/users";
 import ProfileLayout from "sections/profile/Layout";
 
 const namespaces = ["contactInformation", "app", "publishModal", "forms"];
@@ -50,7 +50,9 @@ class ContactInformation extends PureComponent {
       business,
       businesses,
       changeCurrentBusiness,
-      addBusiness
+      addBusiness,
+      updateBusiness,
+      getProfileBusiness
     } = this.props;
     const initialValues = getInitialValues(business);
 
@@ -63,6 +65,8 @@ class ContactInformation extends PureComponent {
           businesses,
           changeCurrentBusiness,
           addBusiness,
+          updateBusiness,
+          getProfileBusiness,
           currentPage: "contactInformation"
         }}
       >
@@ -78,6 +82,7 @@ ContactInformation.propTypes = {
   updateBusiness: func.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
+  getProfileBusiness: func.isRequired,
   addBusiness: func.isRequired,
   businesses: arrayOf(shape())
 };
@@ -97,7 +102,8 @@ export default requireAuth(true)(
       {
         addBusiness: postBusiness,
         updateBusiness: patchBusiness,
-        changeCurrentBusiness: setCurrentBusiness
+        changeCurrentBusiness: setCurrentBusiness,
+        getProfileBusiness: fetchProfileBusiness
       }
     )(ContactInformation)
   )

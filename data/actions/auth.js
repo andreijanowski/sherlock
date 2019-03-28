@@ -5,7 +5,9 @@ import {
   LOGOUT,
   REDIRECT_TO_REGISTER,
   REGISTER_REQUEST,
-  CHANGE_PASSWORD_REQUEST
+  CHANGE_PASSWORD_REQUEST,
+  CONNECT_STRIPE_REQUEST,
+  SET_STRIPE_DATA
 } from "types/auth";
 
 export const login = data => ({
@@ -98,4 +100,29 @@ export const changePassword = data => ({
     method: "PATCH"
   },
   meta: { thunk: true }
+});
+
+export const connectStripe = (authCode, id) => ({
+  type: CONNECT_STRIPE_REQUEST,
+  payload: {
+    endpoint: `/api/v1/businesses/${id}/connect_stripe`,
+    data: {
+      data: {
+        type: "businesses",
+        id,
+        attributes: {
+          authorization_code: authCode
+        }
+      }
+    },
+    method: "PATCH"
+  },
+  meta: { thunk: true }
+});
+
+export const setStripeData = data => ({
+  type: SET_STRIPE_DATA,
+  payload: {
+    data
+  }
 });
