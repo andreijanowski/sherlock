@@ -46,7 +46,8 @@ i18n
         "connectWithStripe",
         "publishModal",
         "resetPassword",
-        "confirm"
+        "confirm",
+        "changePassword"
       ], // need to preload all the namespaces
       backend: {
         loadPath: path.join(__dirname, "/locales/{{lng}}/{{ns}}.json"),

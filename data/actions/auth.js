@@ -7,7 +7,8 @@ import {
   REGISTER_REQUEST,
   CHANGE_PASSWORD_REQUEST,
   RESET_PASSWORD_REQUEST,
-  CONFIRM_REQUEST
+  CONFIRM_REQUEST,
+  CHANGE_PASSWORD_BY_TOKEN_REQUEST
 } from "types/auth";
 
 export const login = data => ({
@@ -132,6 +133,23 @@ export const confirmMail = token => ({
         }
       }
     }
+  },
+  meta: { thunk: true }
+});
+
+export const changePasswordByToken = data => ({
+  type: CHANGE_PASSWORD_BY_TOKEN_REQUEST,
+  payload: {
+    data: {
+      data: {
+        type: "users",
+        attributes: data
+      },
+      grant_type: "password"
+    },
+    endpoint: "/api/v1/users/reset_password_by_token",
+    authRequired: false,
+    method: "PATCH"
   },
   meta: { thunk: true }
 });
