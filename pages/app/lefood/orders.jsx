@@ -195,7 +195,8 @@ class OrdersPage extends PureComponent {
       id,
       averageDeliveryTime,
       minAmountForDeliveryCents,
-      orderPeriods
+      orderPeriods,
+      stripeUserId
     } = currentBusiness || {};
     const orderDetails = orders
       ? orders.find(o => o.id === orderDetailsId)
@@ -216,7 +217,8 @@ class OrdersPage extends PureComponent {
             orderPeriodsLength: orderPeriods && orderPeriods.length,
             averageDeliveryTime,
             minAmountForDeliveryCents,
-            currency
+            currency,
+            stripeUserId
           }}
         >
           <Orders

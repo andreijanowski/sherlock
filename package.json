@@ -78,6 +78,7 @@
     "react-responsive-modal": "^3.5.1",
     "react-select": "^2.2.0",
     "react-spinners": "^0.5.1",
+    "react-stripe-elements": "^2.0.3",
     "react-switch": "^3.0.4",
     "react-timekeeper": "^1.0.9",
     "redux": "^4.0.0",
@@ -93,6 +94,7 @@
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-order": "^2.1.0",
     "stylelint-processor-styled-components": "^1.5.2",
+    "uuid": "^3.3.2",
     "validator": "^10.10.0"
   },
   "devDependencies": {

@@ -55,4 +55,13 @@ module.exports = routes()
   .add(
     "app/lefood/orderingHours",
     `/:lng(${languagesPattern})/app/lefood/ordering-hours/`
+  )
+  .add("app/stripeOauth", `/:lng(${languagesPattern})/stripe-oauth`)
+  .add(
+    "app/subscriptions/plans",
+    `/:lng(${languagesPattern})/app/subscriptions/plans`
+  )
+  .add(
+    "app/subscriptions/payments",
+    `/:lng(${languagesPattern})/app/subscriptions/payments`
   );

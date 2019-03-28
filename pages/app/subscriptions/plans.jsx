@@ -1,14 +1,15 @@
-import React, { PureComponent } from "react";
+import { PureComponent } from "react";
 import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
 import { func, string } from "prop-types";
-import { Footer } from "components";
-import { TopSection, Services, Plans } from "sections/landing";
+import { connect } from "react-redux";
+import AppLayout from "layout/App";
+import { Plans } from "sections/subscriptions";
 
-const namespaces = ["landing", "plans", "common"];
+const namespaces = ["plans", "app"];
 
-class Home extends PureComponent {
+class PlansPage extends PureComponent {
   static async getInitialProps({ ctx }) {
     const pageProps = loadTranslations(ctx, namespaces);
 
@@ -17,13 +18,9 @@ class Home extends PureComponent {
     };
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      billingPeriod: "monthly"
-    };
-    this.plansRef = React.createRef();
-  }
+  state = {
+    billingPeriod: "monthly"
+  };
 
   handleChangeBillngPeriod = () =>
     this.setState(({ billingPeriod }) => ({
@@ -33,28 +30,32 @@ class Home extends PureComponent {
   render() {
     const { t, lng } = this.props;
     const { billingPeriod } = this.state;
+
     return (
-      <>
-        <TopSection {...{ t, lng, plansRef: this.plansRef }} />
-        <Services {...{ t }} />
+      <AppLayout
+        {...{
+          t,
+          lng,
+          mainIcon: "subscriptions",
+          header: t("header")
+        }}
+      >
         <Plans
           {...{
             t,
             lng,
             billingPeriod,
-            handleChangeBillngPeriod: this.handleChangeBillngPeriod,
-            ref: this.plansRef
+            handleChangeBillngPeriod: this.handleChangeBillngPeriod
           }}
         />
-        <Footer />
-      </>
+      </AppLayout>
     );
   }
 }
 
-Home.propTypes = {
+PlansPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired
 };
 
-export default requireAuth(false)(withI18next(namespaces)(Home));
+export default requireAuth(true)(withI18next(namespaces)(connect()(PlansPage)));

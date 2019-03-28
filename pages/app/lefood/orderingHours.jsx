@@ -66,7 +66,8 @@ class OrderingHoursPage extends PureComponent {
       id,
       averageDeliveryTime,
       minAmountForDeliveryCents,
-      currency
+      currency,
+      stripeUserId
     } = currentBusiness || {};
     const initialValues = currentBusiness
       ? parsePeriods(currentBusiness.orderPeriods)
@@ -84,7 +85,8 @@ class OrderingHoursPage extends PureComponent {
           averageDeliveryTime,
           minAmountForDeliveryCents,
           currentBusinessId: id,
-          currency
+          currency,
+          stripeUserId
         }}
       >
         <Periods

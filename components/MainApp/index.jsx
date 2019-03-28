@@ -7,7 +7,8 @@ import {
   Docs,
   Feedback,
   Notifications,
-  Catering
+  Catering,
+  LeFood
 } from "icons";
 import {
   Wrapper,
@@ -27,6 +28,8 @@ const chooseIcon = icon => {
       return SettingsIcon;
     case "catering":
       return Catering;
+    case "leFood":
+      return LeFood;
     default:
       return () => <></>;
   }
