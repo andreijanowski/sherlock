@@ -87,6 +87,12 @@ const limeade = css`
   ${planButton};
 `;
 
+const background = css`
+  background-color: rgb(${p => p.theme.colors.background});
+  ${planButton};
+  color: rgba(${p => p.theme.colors.dark}, 0.5);
+`;
+
 const newOrderButton = css`
   border: none;
   padding: 12px;
@@ -195,6 +201,7 @@ const Button = styled.button`
   ${p => p.styleName === "hanPurple" && hanPurple};
   ${p => p.styleName === "transparent" && transparent};
   ${p => p.styleName === "limeade" && limeade};
+  ${p => p.styleName === "background" && background};
   ${p => p.styleName === "outlineBlue" && outlineBlue};
   ${p => p.styleName === "reject" && reject};
   ${p => p.styleName === "accept" && accept};

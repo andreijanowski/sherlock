@@ -32,3 +32,18 @@ export const CardWrapper = styled(Flex).attrs({
     background-color: rgb(${p => p.theme.colors.blue});
   }
 `;
+
+export const Price = styled.div`
+  color: rgb(${p => p.theme.colors.dark});
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f36};
+  line-height: 1.333;
+  margin-bottom: 16px;
+  text-align: center;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    text-align: start;
+  }
+  small {
+    font-size: ${p => p.theme.fontSizes.f16};
+  }
+`;

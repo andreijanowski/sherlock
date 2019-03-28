@@ -15,6 +15,7 @@ import {
   fetchBusinessDishes,
   fetchBusinessOrders
 } from "actions/businesses";
+import { fetchStiripePlans } from "actions/stripe";
 import { Router } from "routes";
 import {
   LOGIN_SUCCESS,
@@ -36,7 +37,10 @@ function* initialTokenRefresh() {
 
 function* fetchUserData() {
   yield put(fetchProfile());
+  yield put(fetchProfileCards());
+  yield put(fetchProfileSubscriptions());
   yield put(fetchGroups());
+  yield put(fetchStiripePlans());
   const {
     rawData: { data }
   } = yield put.resolve(fetchProfileBusinesses());
@@ -46,8 +50,6 @@ function* fetchUserData() {
     yield put(fetchBusinessDeliveries(data[0].id));
     yield put(fetchBusinessDishes(data[0].id));
     yield put(fetchBusinessOrders(data[0].id));
-    yield put(fetchProfileCards());
-    yield put(fetchProfileSubscriptions());
   } else {
     yield put(postBusiness());
   }

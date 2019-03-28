@@ -10,6 +10,8 @@
   "ccv": "CCV",
   "postalCode": "Postal code",
   "upgradeMyPlan": "Upgrade my plan",
+  "choose": "Choose",
+  "selectCardForPayment": "Select card for payment",
   "promotion": {
     "startFirstLine": "Get ",
     "promotionPlan": "Sherlock Basic",
@@ -47,8 +49,8 @@
     "name": "Essential",
     "priceDescription": "Forever",
     "price": {
-      "monthly": "Free",
-      "yearly": "Free"
+      "month": "Free",
+      "year": "Free"
     },
     "buttonText": "Create Profile"
   },
@@ -58,11 +60,11 @@
     "promoPrice": "Limited",
     "priceDescription": "Starting at",
     "price": {
-      "monthly": "€29.90",
-      "yearly": "€249.90"
+      "month": "€29.90",
+      "year": "€249.90"
     },
-    "monthly": "month",
-    "yearly": "year",
+    "month": "month",
+    "year": "year",
     "buttonText": "Start a 2 months trial"
   },
   "premium": {
@@ -71,19 +73,19 @@
     "promoPrice": "Limited",
     "priceDescription": "Starting at",
     "price": {
-      "monthly": "€59.90",
-      "yearly": "€549.90"
+      "month": "€59.90",
+      "year": "€549.90"
     },
-    "monthly": "month",
-    "yearly": "year",
+    "month": "month",
+    "year": "year",
     "buttonText": "Start a 2 months trial"
   },
   "professional": {
     "name": "Professional",
     "priceDescription": "Diversely",
     "price": {
-      "monthly": "Enterprise",
-      "yearly": "Enterprise"
+      "month": "Enterprise",
+      "year": "Enterprise"
     },
     "buttonText": "Request a Demo"
   }

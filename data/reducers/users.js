@@ -62,14 +62,12 @@ const initialState = {
   },
   cards: {
     data: null,
-    members: null,
     isFetching: false,
     isFailed: false,
     isSucceeded: false
   },
   subscriptions: {
     data: null,
-    members: null,
     isFetching: false,
     isFailed: false,
     isSucceeded: false

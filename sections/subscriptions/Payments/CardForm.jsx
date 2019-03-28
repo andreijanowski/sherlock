@@ -28,13 +28,14 @@ const style = {
 
 class Form extends PureComponent {
   handleSubmit = () => {
-    const { stripe } = this.props;
+    const { stripe, updateSubscription } = this.props;
     if (stripe) {
       stripe.createSource({ type: "card" }).then(payload => {
         if (payload.error) {
           console.log("error", payload);
         } else if (payload.source) {
           console.log("success", payload);
+          updateSubscription(payload.source.id);
         }
       });
     } else {
@@ -45,7 +46,7 @@ class Form extends PureComponent {
   render() {
     const { t } = this.props;
     return (
-      <Flex width={1} mt={40} flexDirection="column">
+      <Flex width={1} flexDirection="column">
         <Box width={1}>
           <H3>{t("addCard")}</H3>
         </Box>
@@ -79,7 +80,8 @@ class Form extends PureComponent {
 
 Form.propTypes = {
   stripe: shape().isRequired,
-  t: func.isRequired
+  t: func.isRequired,
+  updateSubscription: func.isRequired
 };
 
 export default injectStripe(Form);
