@@ -20,15 +20,21 @@ class DishForm extends PureComponent {
     picture: null
   };
 
+  handleAddDish = dish => {
+    const { addDish } = this.props;
+    const { available, ...rest } = dish;
+    return addDish({ ...rest, unavailable: !dish.available });
+  };
+
   render() {
-    const { t, addDish, addPicture } = this.props;
+    const { t, addPicture } = this.props;
     const { picture } = this.state;
     return (
       <FinalForm
         initialValues={{
           category: "trays"
         }}
-        onSubmit={addDish}
+        onSubmit={this.handleAddDish}
         render={({ handleSubmit, form: { reset } }) => (
           <form
             onSubmit={e => {
@@ -104,7 +110,7 @@ class DishForm extends PureComponent {
               />
             </Box>
             <Box my={4}>
-              <FormCheckbox name="unavailable" label={t("availability")} />
+              <FormCheckbox name="available" label={t("availability")} />
             </Box>
             <Box mb={3}>
               <Button fluid styleName="blue" type="submit">

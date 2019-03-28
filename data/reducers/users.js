@@ -284,7 +284,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           newState.currentBusiness.data = {
             ...newState.currentBusiness.data,
             state: business.state
-          }
+          };
         }
         if (v === "averageDeliveryTime") {
           newState.currentBusiness.data = {
