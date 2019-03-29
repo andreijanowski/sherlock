@@ -1,0 +1,85 @@
+import {
+  POST_CATERING_SUCCESS,
+  PATCH_CATERING_SUCCESS,
+  DELETE_CATERING_REQUEST
+} from "types/caterings";
+import {
+  FETCH_BUSINESS_CATERINGS_REQUEST,
+  FETCH_BUSINESS_CATERINGS_SUCCESS,
+  FETCH_BUSINESS_CATERINGS_FAIL
+} from "types/businesses";
+import build from "redux-object";
+
+const initialState = {
+  data: [],
+  isFetching: false,
+  isFailed: false,
+  isSucceeded: false
+};
+
+const reducer = (state = initialState, { type, payload, meta }) => {
+  switch (type) {
+    case FETCH_BUSINESS_CATERINGS_REQUEST: {
+      const newState = { ...state };
+      newState.isFetching = true;
+      newState.isFailed = false;
+      newState.isSucceeded = false;
+      return newState;
+    }
+    case FETCH_BUSINESS_CATERINGS_SUCCESS: {
+      const newState = { ...state };
+      const caterings = build(payload.data, "caterings", null, {
+        ignoreLinks: true
+      });
+      newState.isFetching = false;
+      newState.isSucceeded = true;
+      newState.data = caterings;
+      return newState;
+    }
+    case FETCH_BUSINESS_CATERINGS_FAIL: {
+      const newState = { ...state };
+      newState.isFetching = false;
+      newState.isFailed = true;
+      return newState;
+    }
+
+    case POST_CATERING_SUCCESS: {
+      const newState = { ...state };
+      const catering = build(
+        payload.data,
+        "caterings",
+        payload.rawData.data.id,
+        {
+          ignoreLinks: true
+        }
+      );
+      newState.data = newState.data ? [...newState.data, catering] : [catering];
+      return newState;
+    }
+
+    case PATCH_CATERING_SUCCESS: {
+      const newState = { ...state };
+      const catering =
+        build(payload.data, "caterings", payload.rawData.data.id, {
+          ignoreLinks: true
+        }) || [];
+      const editedCateringIndex = newState.data.findIndex(
+        c => c.id === payload.rawData.data.id
+      );
+      newState.data[editedCateringIndex] = catering;
+      return newState;
+    }
+
+    case DELETE_CATERING_REQUEST: {
+      const newState = { ...state };
+      newState.data = newState.data.filter(c => c.id !== meta.id);
+      return newState;
+    }
+
+    default: {
+      return state;
+    }
+  }
+};
+
+export default reducer;

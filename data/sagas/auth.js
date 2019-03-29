@@ -13,7 +13,8 @@ import {
   postBusiness,
   fetchBusinessDeliveries,
   fetchBusinessDishes,
-  fetchBusinessOrders
+  fetchBusinessOrders,
+  fetchBusinessCaterings
 } from "actions/businesses";
 import { Router } from "routes";
 import {
@@ -46,6 +47,7 @@ function* fetchUserData() {
     yield put(fetchBusinessDeliveries(data[0].id));
     yield put(fetchBusinessDishes(data[0].id));
     yield put(fetchBusinessOrders(data[0].id));
+    yield put(fetchBusinessCaterings(data[0].id));
     yield put(fetchProfileCards());
     yield put(fetchProfileSubscriptions());
   } else {

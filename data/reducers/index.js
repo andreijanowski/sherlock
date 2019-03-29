@@ -8,6 +8,7 @@ import members from "./members";
 import deliveries from "./deliveries";
 import dishes from "./dishes";
 import orders from "./orders";
+import caterings from "./caterings";
 
 export default {
   notifications,
@@ -19,5 +20,6 @@ export default {
   members,
   deliveries,
   dishes,
-  orders
+  orders,
+  caterings
 };
