@@ -31,7 +31,8 @@ class DeliveriesPage extends PureComponent {
       {
         ...values,
         code: `${countryCode}-${values.code}`,
-        priceCents: convertToCents(values.priceCents)
+        priceCents: convertToCents(values.priceCents),
+        freeFromCents: convertToCents(values.freeFromCents)
       },
       id
     );
