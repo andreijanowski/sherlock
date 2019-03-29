@@ -30,8 +30,16 @@ class DayPage extends PureComponent {
   }
 
   render() {
-    const { t, lng, business, businesses, changeCurrentBusiness } = this.props;
+    const {
+      t,
+      lng,
+      business,
+      businesses,
+      changeCurrentBusiness,
+      caterings
+    } = this.props;
     const { view } = this.state;
+    const { currency } = business || {};
     return (
       <CateringLayout
         {...{
@@ -43,7 +51,7 @@ class DayPage extends PureComponent {
           changeCurrentBusiness
         }}
       >
-        <Day {...{ t }} />
+        <Day {...{ t, caterings, currency }} />
       </CateringLayout>
     );
   }
@@ -54,12 +62,14 @@ DayPage.propTypes = {
   lng: string.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
-  businesses: arrayOf(shape())
+  businesses: arrayOf(shape()),
+  caterings: arrayOf(shape())
 };
 
 DayPage.defaultProps = {
   business: null,
-  businesses: null
+  businesses: null,
+  caterings: null
 };
 
 export default requireAuth(true)(
@@ -67,7 +77,8 @@ export default requireAuth(true)(
     connect(
       state => ({
         business: state.users.currentBusiness.data,
-        businesses: state.users.profileBusinesses.data
+        businesses: state.users.profileBusinesses.data,
+        caterings: state.caterings.data
       }),
       {
         changeCurrentBusiness: setCurrentBusiness

@@ -1,39 +1,11 @@
 import { CalendarToolbar } from "components";
 import Calendar from "components/Calendar/FullYear/Calendar";
 import moment from "moment";
+import { arrayOf, shape, string } from "prop-types";
+import { parseCaterings } from "../utils";
 import { CalendarWrapper } from "../styled";
 
-const getRandomIntInclusive = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1)) + min;
-
-const getRandomMoment = (i, startDay, minHour, maxHour) => {
-  const now = new Date();
-  const day = startDay || getRandomIntInclusive(0, 365);
-  const month = getRandomIntInclusive(0, 11);
-  const hour = getRandomIntInclusive(minHour, maxHour);
-  const date = new Date(now.getFullYear(), month, day, hour);
-  return date;
-};
-
-const mockEvents = () => {
-  const events = [];
-
-  for (let i = 0; i < 200; i += 1) {
-    const start = getRandomMoment(i, undefined, 0, 12);
-    const end = getRandomMoment(i, start.getDate(), start.getHours(), 24);
-    events.push({
-      title: `Conference ${i}`,
-      start,
-      end,
-      allDay: false,
-      resource: "https://foodetective.co"
-    });
-  }
-
-  return events;
-};
-
-const Week = () => (
+const Year = ({ caterings, currency }) => (
   <CalendarWrapper>
     <CalendarToolbar
       label={moment()
@@ -43,9 +15,19 @@ const Week = () => (
     <Calendar
       startDate={moment().startOf("year")}
       endDate={moment().endOf("year")}
-      events={mockEvents()}
+      events={parseCaterings(caterings, currency)}
     />
   </CalendarWrapper>
 );
 
-export default Week;
+Year.propTypes = {
+  caterings: arrayOf(shape()),
+  currency: string
+};
+
+Year.defaultProps = {
+  caterings: null,
+  currency: "EUR"
+};
+
+export default Year;

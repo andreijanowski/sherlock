@@ -11,7 +11,9 @@ import {
   faCircleNotch,
   faFileAlt,
   faPen,
-  faCreditCard
+  faCreditCard,
+  faArrowAltCircleLeft,
+  faArrowAltCircleRight
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebookF,
@@ -43,7 +45,9 @@ library.add(
   faCcDiscover,
   faCcJcb,
   faCcMastercard,
-  faCcVisa
+  faCcVisa,
+  faArrowAltCircleLeft,
+  faArrowAltCircleRight
 );
 
 export default createGlobalStyle`

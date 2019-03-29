@@ -1,6 +1,7 @@
 import { PureComponent } from "react";
 import { shape, func } from "prop-types";
 import { BoldText } from "components";
+import moment from "moment";
 import { Text, Wrapper } from "./styled";
 import EventModal from "./EventModal";
 
@@ -22,7 +23,9 @@ class Event extends PureComponent {
           <Text>{event.title}</Text>
           <Text>
             <BoldText>
-              {event.start.getHours()} - {event.end.getHours()} pm
+              {`${moment(event.start).format("h:mm a")} - ${moment(
+                event.end
+              ).format("h:mm a")} `}
             </BoldText>
           </Text>
         </Wrapper>
