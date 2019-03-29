@@ -12,9 +12,24 @@ class ProfileLayout extends PureComponent {
     isPublishModalVisible: false
   };
 
-  showPublishModal = () => this.setState({ isPublishModalVisible: true });
+  showPublishModal = () => {
+    const {
+      getProfileBusiness,
+      business: { id }
+    } = this.props;
+    getProfileBusiness(id);
+    this.setState({ isPublishModalVisible: true });
+  };
 
   hidePublishModal = () => this.setState({ isPublishModalVisible: false });
+
+  publish = () => {
+    const {
+      updateBusiness,
+      business: { id }
+    } = this.props;
+    updateBusiness(id, { state: "waiting_for_approval" });
+  };
 
   render() {
     const {
@@ -38,7 +53,12 @@ class ProfileLayout extends PureComponent {
           t,
           lng,
           withMenu: true,
-          menuItems: generateMenuItems(t, currentPage, this.showPublishModal),
+          menuItems: generateMenuItems(
+            t,
+            currentPage,
+            this.showPublishModal,
+            business && business.state
+          ),
           select: {
             value: {
               value: business && business.id,
@@ -56,7 +76,7 @@ class ProfileLayout extends PureComponent {
           }
         }}
       >
-        {business && business.state === "draft" && (
+        {business && business.state !== "published" && (
           <PublishMobileIconWrapper>
             <ActionIcon
               size="sm"
@@ -71,11 +91,21 @@ class ProfileLayout extends PureComponent {
           </PublishMobileIconWrapper>
         )}
         {children}
-        <Modal
-          {...{ open: isPublishModalVisible, onClose: this.hidePublishModal }}
-        >
-          <PublishModal {...{ t, lng, close: this.hidePublishModal }} />
-        </Modal>
+        {isPublishModalVisible && (
+          <Modal
+            {...{ open: isPublishModalVisible, onClose: this.hidePublishModal }}
+          >
+            <PublishModal
+              {...{
+                t,
+                lng,
+                close: this.hidePublishModal,
+                publish: this.publish,
+                business
+              }}
+            />
+          </Modal>
+        )}
       </AppLayout>
     );
   }
@@ -89,7 +119,9 @@ ProfileLayout.propTypes = {
   changeCurrentBusiness: func.isRequired,
   addBusiness: func.isRequired,
   currentPage: string.isRequired,
-  children: node.isRequired
+  children: node.isRequired,
+  updateBusiness: func.isRequired,
+  getProfileBusiness: func.isRequired
 };
 
 ProfileLayout.defaultProps = {

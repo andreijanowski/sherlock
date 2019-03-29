@@ -10,9 +10,18 @@ import {
   faArrowLeft,
   faCircleNotch,
   faFileAlt,
-  faPen
+  faPen,
+  faCreditCard
 } from "@fortawesome/free-solid-svg-icons";
-import { faFacebookF } from "@fortawesome/fontawesome-free-brands";
+import {
+  faFacebookF,
+  faCcAmex,
+  faCcDinersClub,
+  faCcDiscover,
+  faCcJcb,
+  faCcMastercard,
+  faCcVisa
+} from "@fortawesome/fontawesome-free-brands";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import fonts from "./fonts";
 
@@ -27,7 +36,14 @@ library.add(
   faCircleNotch,
   faFacebookF,
   faFileAlt,
-  faPen
+  faPen,
+  faCreditCard,
+  faCcAmex,
+  faCcDinersClub,
+  faCcDiscover,
+  faCcJcb,
+  faCcMastercard,
+  faCcVisa
 );
 
 export default createGlobalStyle`

@@ -8,7 +8,8 @@ import {
   REFRESH_TOKEN_REQUEST,
   REFRESH_TOKEN_SUCCESS,
   REFRESH_TOKEN_FAIL,
-  LOGOUT
+  LOGOUT,
+  SET_STRIPE_DATA
 } from "types/auth";
 
 export const initialState = {
@@ -47,7 +48,8 @@ const reducer = (state = initialState, { type, payload }) => {
         accessToken,
         refreshToken,
         createdAt,
-        expiresIn
+        expiresIn,
+        stripeConnectData: { businessId: null, state: null }
       };
     }
     case LOGIN_FAIL:
@@ -55,6 +57,12 @@ const reducer = (state = initialState, { type, payload }) => {
     case REFRESH_TOKEN_FAIL:
     case LOGOUT: {
       return initialState;
+    }
+    case SET_STRIPE_DATA: {
+      return {
+        ...state,
+        stripeConnectData: payload.data
+      };
     }
     default: {
       return state;

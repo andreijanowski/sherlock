@@ -45,7 +45,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       const dish = build(payload.data, "dishes", payload.rawData.data.id, {
         ignoreLinks: true
       });
-      newState.data = [...newState.data, dish];
+      newState.data = newState.data ? [...newState.data, dish] : [dish];
       return newState;
     }
 

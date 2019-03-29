@@ -158,6 +158,10 @@ const withImage = css`
 
   ${p => p.active && withImageActive}
 
+  stroke {
+    color: rgb(${p => (p.red ? p.theme.colors.ruby : p.theme.colors.dark)});
+  }
+
   &:hover {
     ${withImageActive}
   }
@@ -178,6 +182,7 @@ const Button = styled.button`
   line-height: 1.5;
   cursor: pointer;
   text-decoration: none;
+  overflow: hidden;
 
   ${p => p.width && `width: ${p.width};`};
 
@@ -210,6 +215,13 @@ export const ButtonWithImageText = styled.div`
   line-height: 40px;
   padding: 0 16px;
   border-left: 1px solid rgb(${p => p.theme.colors.linkWater});
+
+  input {
+    border: none;
+    background-color: transparent;
+    color: inherit;
+    outline: none;
+  }
 `;
 
 export const ButtonWithImageIconWrapper = styled(Flex)`

@@ -1,4 +1,5 @@
 import iso3166 from "iso-3166-2";
+import { getGroupsData } from "../utils";
 
 export const countries = Object.entries(iso3166.data)
   .map(i => ({
@@ -13,11 +14,6 @@ export const getSubdivisions = country =>
     label: i[1].name.replace(", City of", "")
   }));
 
-export const getGroupsByParentGroups = (groups, parentGroups) =>
-  groups
-    .filter(g => parentGroups.indexOf(g.parentGroup) !== -1)
-    .map(g => ({ label: g.name, value: g.slug }));
-
 export const getInitialValues = business => {
   if (business) {
     const {
@@ -29,17 +25,16 @@ export const getInitialValues = business => {
       regionCode,
       street,
       streetNumber,
+      city,
       postCode,
       ownerRole,
       bio,
       groups
     } = business;
 
-    const types = getGroupsByParentGroups(groups, ["types"]);
-    const cuisines = getGroupsByParentGroups(groups, ["cuisines"]);
-    const foodsAndDrinks = getGroupsByParentGroups(groups, ["foods", "drinks"]);
-    const quirks = getGroupsByParentGroups(groups, ["quirks"]);
-    const diets = getGroupsByParentGroups(groups, ["diets"]);
+    const { types, cuisines, foodsAndDrinks, quirks, diets } = getGroupsData(
+      groups
+    );
 
     return {
       name,
@@ -54,6 +49,7 @@ export const getInitialValues = business => {
       },
       street,
       streetNumber,
+      city,
       postCode,
       ownerRole,
       bio,

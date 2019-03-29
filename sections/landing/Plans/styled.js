@@ -1,6 +1,13 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Flex, Box } from "@rebass/grid";
-import { alignCenterMobile } from "../sharedStyled";
+import { H2, Paragraph } from "components";
+
+const alignCenterMobile = css`
+  text-align: center;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    text-align: start;
+  }
+`;
 
 export const PlansWrapper = styled(Flex).attrs({
   flexDirection: "row",
@@ -21,149 +28,6 @@ export const TextWrapper = styled(Flex).attrs({
   max-width: 896px;
 `;
 
-export const MainWrapper = styled(Flex).attrs({
-  flexDirection: "column",
-  m: 2,
-  pb: 3
-})`
-  position: relative;
-  border-radius: ${p => p.theme.radius.default};
-  background: rgba(${p => p.theme.colors.dark}, 0.1);
-  box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
-`;
-
-export const NameWrapper = styled(Flex).attrs({
-  flexDirection: "row",
-  m: "-2px",
-  flexWrap: "wrap"
-})`
-  position: absolute;
-  top: -10px;
-  left: 16px;
-`;
-
-export const Name = styled.div`
-  border-radius: ${p => p.theme.radius.default};
-  box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.dark}, 0.08);
-  background: rgb(${p => p.theme.colors.white});
-  font-size: ${p => p.theme.fontSizes.f12};
-  font-weight: ${p => p.theme.fontWeights.bold};
-  line-height: 1.15;
-  padding: 2px 8px;
-  margin: 2px;
-  color: rgb(${p => p.theme.colors[p.color]});
-`;
-
-export const MostPopular = styled.div`
-  font-size: ${p => p.theme.fontSizes.f12};
-  font-weight: ${p => p.theme.fontWeights.bold};
-  line-height: 1.15;
-  padding: 2px 6px;
-  margin: 2px;
-  border: ${p => p.theme.borderWeights.tiny} solid
-    rgb(${p => p.theme.colors[p.color]});
-  border-radius: ${p => p.theme.radius.default};
-  background: rgb(${p => p.theme.colors.white});
-  color: rgb(${p => p.theme.colors[p.color]});
-`;
-
-export const PriceWrapper = styled(Flex).attrs({
-  flexDirection: "column",
-  mb: 3
-})`
-  padding: 24px 16px 16px;
-  border-radius: ${p => p.theme.radius.default};
-  box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
-  background: rgb(${p => p.theme.colors.white});
-`;
-
-export const PriceDescription = styled.div`
-  margin-top: 20px;
-  color: rgba(${p => p.theme.colors.dark}, 0.8);
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: ${p => p.theme.fontSizes.f16};
-  line-height: 1.5;
-  ${alignCenterMobile};
-`;
-
-export const Price = styled.div`
-  color: rgb(${p => p.theme.colors.dark});
-  font-weight: ${p => p.theme.fontWeights.semiBold};
-  font-size: ${p => p.theme.fontSizes.f36};
-  line-height: 1.333;
-  margin-bottom: 40px;
-  ${alignCenterMobile};
-  small {
-    font-size: ${p => p.theme.fontSizes.f16};
-  }
-`;
-
-export const Service = styled(Box).attrs({ mb: 1 })`
-  text-align: center;
-  font-size: ${p => p.theme.fontSizes.f16};
-  line-height: 1.5;
-  font-weight: ${p => (p.isHighlighted ? 700 : p.theme.fontWeights.medium)};
-  color: ${p =>
-    p.isHighlighted
-      ? `rgb(${p.theme.colors.dark})`
-      : `rgba(${p.theme.colors.dark}, ${p.isLighter ? 0.4 : 0.8})`};
-`;
-
-export const Badge = styled.span`
-  padding: 2px 8px;
-  color: rgb(${p => p.theme.colors[p.color]});
-  background: rgb(${p => p.theme.colors.white});
-  border-radius: ${p => p.theme.radius.default};
-  font-size: ${p => p.theme.fontSizes.f14};
-  line-height: 1.15;
-  font-weight: ${p => p.theme.fontWeights.bold};
-  margin-right: 4px;
-`;
-
-export const ManagersWrapper = styled(Flex).attrs({
-  width: 1,
-  alignItems: "center",
-  justifyContent: "space-between",
-  mb: 2
-})`
-  background: rgba(${p => p.theme.colors[p.color]}, 0.1);
-  padding: 12px 16px;
-  border-radius: ${p => p.theme.radius.default};
-`;
-
-export const Icon = styled.div`
-  border: ${p => p.theme.borderWeights.tiny} solid
-    rgba(${p => p.theme.colors[p.color]}, ${p => (p.disabled ? "0.16" : "0.4")});
-  border-radius: 100%;
-  color: ${p =>
-    p.disabled
-      ? `rgba(${p.theme.colors[p.color]}, 0.4)`
-      : `rgb(${p.theme.colors[p.color]})`};
-  font-size: ${p => p.theme.fontSizes.f18};
-  font-weight: ${p => p.theme.fontWeights.medium};
-  text-align: center;
-  line-height: 1;
-  width: 22px;
-  height: 22px;
-`;
-
-export const ManagersText = styled.div`
-  color: rgb(${p => p.theme.colors[p.color]});
-  font-size: ${p => p.theme.fontSizes.f16};
-  line-height: 1.5;
-  font-weight: ${p => p.theme.fontWeights.medium};
-`;
-
-export const Option = styled(Box)`
-  font-size: ${p => p.theme.fontSizes.f16};
-  line-height: 1.5;
-  font-weight: ${p => p.theme.fontWeights.medium};
-  color: ${p =>
-    p.dark
-      ? `rgba(${p.theme.colors.dark}, 0.4)`
-      : `rgb(${p.theme.colors.blue})`};
-`;
-
 export const PromotionWrapper = styled(Box).attrs({
   p: 32
 })`
@@ -171,4 +35,12 @@ export const PromotionWrapper = styled(Box).attrs({
     rgb(${p => p.theme.colors.navyBlue});
   border-radius: ${p => p.theme.radius.default};
   background-color: white;
+`;
+
+export const H2Styled = styled(H2)`
+  ${alignCenterMobile}
+`;
+
+export const ParagraphStyled = styled(Paragraph)`
+  ${alignCenterMobile}
 `;

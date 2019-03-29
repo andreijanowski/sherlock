@@ -78,6 +78,7 @@ export const FieldWrapper = styled(Flex).attrs({
   .ExpandIcon {
     position: absolute;
     right: 24px;
+    stroke: rgb(${p => p.theme.colors.dark});
   }
 `;
 
@@ -111,6 +112,7 @@ export const ToggleButton = styled.button`
 
   .ExpandIcon {
     top: calc(50% - 9px);
+    stroke: rgb(${p => p.theme.colors.dark});
   }
 `;
 
@@ -283,7 +285,7 @@ export const CheckboxLabel = styled(Flex).attrs({
     ${p =>
       p.disabled || !p.checked ? p.theme.colors.dark : p.theme.colors.blue}
   );
-  font-size: ${p => p.theme.fontSizes.f14};
+  font-size: ${p => p.theme.fontSizes.f12};
   font-weight: ${p =>
     p.checked ? p.theme.fontWeights.semiBold : p.theme.fontWeights.medium};
 
