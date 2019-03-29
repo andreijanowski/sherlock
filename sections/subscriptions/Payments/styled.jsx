@@ -54,3 +54,10 @@ export const Container = styled(Flex).attrs({
 })`
   max-width: 600px;
 `;
+
+export const Line = styled.div`
+  height: 1px;
+  margin-left: -32px;
+  width: calc(100% + 64px);
+  background-color: rgb(${p => p.theme.colors.linkWaterLight});
+`;

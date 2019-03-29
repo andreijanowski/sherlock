@@ -5,12 +5,16 @@ import loadTranslations from "utils/loadTranslations";
 import { func, string, arrayOf, shape } from "prop-types";
 import { connect } from "react-redux";
 import AppLayout from "layout/App";
-import { Plans, Payments } from "sections/subscriptions";
+import { LoadingIndicator } from "components";
+import { Plans, Payments, Success } from "sections/subscriptions";
+import { error } from "react-notification-system-redux";
 import {
   pathSubscriptionChangePlan,
+  pathSubscriptionChangeCard,
   pathSubscriptionCancel,
   postSubscription
 } from "actions/subscriptions";
+import { fetchProfileSubscriptions } from "actions/users";
 
 const namespaces = ["plans", "app"];
 
@@ -25,8 +29,7 @@ class SubscriptionsPage extends PureComponent {
 
   state = {
     billingInterval: "month",
-    // view: "plans",
-    view: "payments",
+    view: "plans",
     choosedPlan: null
   };
 
@@ -44,12 +47,27 @@ class SubscriptionsPage extends PureComponent {
     } = this.props;
     if (subscriptions && subscriptions[0]) {
       if (planName === "essential") {
-        cancelSubscriptionPlan(subscriptions[0].id);
+        this.setState({
+          view: "loading"
+        });
+        cancelSubscriptionPlan(subscriptions[0].id).then(() => {
+          this.goToSuccess();
+        });
       } else {
-        updateSubscriptionPlan(
-          subscriptions[0].id,
-          `sherlock-${planName}-${billingInterval}ly-eur`
-        );
+        const newPlanSlug = `sherlock-${planName}-${billingInterval}ly-eur`;
+        if (subscriptions[0].slug === newPlanSlug) {
+          this.setState({
+            choosedPlan: planName,
+            view: "payments"
+          });
+        } else {
+          this.setState({
+            view: "loading"
+          });
+          updateSubscriptionPlan(subscriptions[0].id, newPlanSlug).then(() => {
+            this.goToSuccess();
+          });
+        }
       }
     } else if (planName !== "essential") {
       this.setState({
@@ -60,25 +78,43 @@ class SubscriptionsPage extends PureComponent {
   };
 
   updateSubscription = stripeToken => {
-    const { createSubscription, subscriptions } = this.props;
+    const {
+      createSubscription,
+      updateSubscriptionCard,
+      subscriptions
+    } = this.props;
     const { billingInterval, choosedPlan } = this.state;
     if (subscriptions && subscriptions[0]) {
-      // updateSubscriptionCard
+      this.setState({
+        view: "loading"
+      });
+      updateSubscriptionCard(subscriptions[0].id, stripeToken).then(() => {
+        this.goToSuccess();
+      });
     } else {
+      this.setState({
+        view: "loading"
+      });
       createSubscription(
         stripeToken,
         `sherlock-${choosedPlan}-${billingInterval}ly-eur`
       ).then(() => {
-        this.setState({
-          choosedPlan: null,
-          view: "success"
-        });
+        this.goToSuccess();
       });
     }
   };
 
+  goToSuccess = () => {
+    const { getProfileSubscriptions } = this.props;
+    getProfileSubscriptions();
+    this.setState({
+      choosedPlan: null,
+      view: "success"
+    });
+  };
+
   render() {
-    const { t, lng, subscriptions, cards } = this.props;
+    const { t, lng, subscriptions, cards, notificationError } = this.props;
     const { billingInterval, view, choosedPlan } = this.state;
 
     return (
@@ -90,6 +126,7 @@ class SubscriptionsPage extends PureComponent {
           header: t("header")
         }}
       >
+        {view === "loading" && <LoadingIndicator />}
         {view === "plans" && (
           <Plans
             {...{
@@ -111,11 +148,13 @@ class SubscriptionsPage extends PureComponent {
               billingInterval,
               cards,
               choosedPlan,
+              notificationError,
               handleChangeBillngPeriod: this.handleChangeBillngPeriod,
               updateSubscription: this.updateSubscription
             }}
           />
         )}
+        {view === "success" && <Success {...{ t, lng }} />}
       </AppLayout>
     );
   }
@@ -127,8 +166,11 @@ SubscriptionsPage.propTypes = {
   subscriptions: arrayOf(shape()),
   cards: arrayOf(shape()),
   updateSubscriptionPlan: func.isRequired,
+  updateSubscriptionCard: func.isRequired,
   cancelSubscriptionPlan: func.isRequired,
-  createSubscription: func.isRequired
+  createSubscription: func.isRequired,
+  getProfileSubscriptions: func.isRequired,
+  notificationError: func.isRequired
 };
 
 SubscriptionsPage.defaultProps = {
@@ -145,8 +187,11 @@ export default requireAuth(true)(
       }),
       {
         updateSubscriptionPlan: pathSubscriptionChangePlan,
+        updateSubscriptionCard: pathSubscriptionChangeCard,
         cancelSubscriptionPlan: pathSubscriptionCancel,
-        createSubscription: postSubscription
+        createSubscription: postSubscription,
+        getProfileSubscriptions: fetchProfileSubscriptions,
+        notificationError: error
       }
     )(SubscriptionsPage)
   )

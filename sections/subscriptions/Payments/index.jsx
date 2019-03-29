@@ -3,7 +3,7 @@ import { PlansBillingInterval } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Elements } from "react-stripe-elements";
 import { Wrapper } from "../styled";
-import { Price, Container } from "./styled";
+import { Price, Container, Line } from "./styled";
 // import CardsModal from "./CardsModal";
 import CardForm from "./CardForm";
 
@@ -13,12 +13,14 @@ const PaymentsSection = ({
   handleChangeBillngPeriod,
   // cards,
   choosedPlan,
-  updateSubscription
+  updateSubscription,
+  notificationError
 }) => (
   <Wrapper>
+    <Box mb={4}>{t("finishPoweringYouUp")}</Box>
+    <Line />
     <Container>
-      <Box mb={3}>{t("finishPoweringYouUp")}</Box>
-      <Flex justifyContent="space-between" alignItems="center" mb={3}>
+      <Flex justifyContent="space-between" alignItems="center" mb={3} mt={4}>
         <PlansBillingInterval
           {...{ t, billingInterval, handleChangeBillngPeriod }}
         />
@@ -29,11 +31,12 @@ const PaymentsSection = ({
           </Price>
         )}
       </Flex>
-      {/* {cards && <CardsModal {...{ cards, isOpen: false, t }} />} */}
-      <Elements>
-        <CardForm {...{ t, updateSubscription }} />
-      </Elements>
     </Container>
+    <Line />
+    {/* {cards && <CardsModal {...{ cards, isOpen: false, t }} />} */}
+    <Elements>
+      <CardForm {...{ t, updateSubscription, notificationError }} />
+    </Elements>
   </Wrapper>
 );
 
@@ -44,7 +47,8 @@ PaymentsSection.propTypes = {
   handleChangeBillngPeriod: func.isRequired,
   cards: arrayOf(shape()),
   choosedPlan: string.isRequired,
-  updateSubscription: func.isRequired
+  updateSubscription: func.isRequired,
+  notificationError: func.isRequired
 };
 
 PaymentsSection.defaultProps = {

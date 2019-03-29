@@ -13,6 +13,9 @@
   "choose": "Choose",
   "selectCardForPayment": "Select card for payment",
   "secureCreditCardPayment": "Secure credit card payment",
+  "success": "Success",
+  "successMessage": "Your subscription was successfully updated!",
+  "successButton": "Go back to dashboard",
   "promotion": {
     "startFirstLine": "Get ",
     "promotionPlan": "Sherlock Basic",

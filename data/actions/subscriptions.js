@@ -41,6 +41,24 @@ export const pathSubscriptionChangePlan = (id, stripePlanId) => ({
   meta: { thunk: true }
 });
 
+export const pathSubscriptionChangeCard = (id, stripeToken) => ({
+  type: PATCH_SUBSCRIPTION_CHANGE_PLAN_REQUEST,
+  payload: {
+    method: "PATCH",
+    endpoint: `/api/v1/subscriptions/${id}/change_card`,
+    data: {
+      data: {
+        id,
+        type: "subscriptions",
+        attributes: {
+          stripeToken
+        }
+      }
+    }
+  },
+  meta: { thunk: true }
+});
+
 export const pathSubscriptionCancel = id => ({
   type: PATCH_SUBSCRIPTION_CANCEL_REQUEST,
   payload: {
