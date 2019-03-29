@@ -102,7 +102,7 @@ i18n
         );
 
         // use next.js
-        server.get("*", (req, res) => {
+        server.get(/^((?!^\/locales\/).)*$/, (req, res) => {
           resetServerContext();
           return handler(req, res);
         });

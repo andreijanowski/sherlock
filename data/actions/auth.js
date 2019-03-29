@@ -3,7 +3,6 @@ import {
   FACEBOOK_LOGIN_REQUEST,
   REFRESH_TOKEN_REQUEST,
   LOGOUT,
-  REDIRECT_TO_REGISTER,
   REGISTER_REQUEST,
   CHANGE_PASSWORD_REQUEST,
   CONNECT_STRIPE_REQUEST,
@@ -55,8 +54,6 @@ export const refreshToken = data => ({
 });
 
 export const logout = () => ({ type: LOGOUT });
-
-export const redirectToRegister = () => ({ type: REDIRECT_TO_REGISTER });
 
 export const register = ({
   email,

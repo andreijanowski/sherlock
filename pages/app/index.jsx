@@ -25,9 +25,9 @@ class AppLanding extends PureComponent {
   }
 
   redirectToProfile = () => {
-    const { canRedirect } = this.props;
+    const { canRedirect, lng } = this.props;
     if (canRedirect) {
-      Router.pushRoute(`/app/profile/basic-information/`);
+      Router.pushRoute(`/${lng}/app/profile/basic-information/`);
     }
   };
 

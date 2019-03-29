@@ -94,9 +94,9 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       newState.profile.isFetching = false;
       newState.profile.isSucceeded = true;
       newState.profile.data = profile;
-      newState.profile.data.avatar.url = `${profile.avatar.url}?${
-        meta.timestamp
-      }`;
+      newState.profile.data.avatar.url = profile.avatar.url
+        ? `${profile.avatar.url}?${meta.timestamp}`
+        : null;
       return newState;
     }
     case FETCH_PROFILE_FAIL: {
