@@ -28,9 +28,11 @@ class MenuPage extends PureComponent {
       addDish,
       currentBusiness: { id }
     } = this.props;
+    const { available, ...rest } = values;
     return addDish(
       {
-        ...values,
+        ...rest,
+        unavailable: !values.available,
         pricePerItemCents: convertToCents(values.pricePerItemCents)
       },
       id

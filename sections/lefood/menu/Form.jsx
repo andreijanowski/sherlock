@@ -20,21 +20,15 @@ class DishForm extends PureComponent {
     picture: null
   };
 
-  handleAddDish = dish => {
-    const { addDish } = this.props;
-    const { available, ...rest } = dish;
-    return addDish({ ...rest, unavailable: !dish.available });
-  };
-
   render() {
-    const { t, addPicture } = this.props;
+    const { t, addPicture, addDish } = this.props;
     const { picture } = this.state;
     return (
       <FinalForm
         initialValues={{
           category: "trays"
         }}
-        onSubmit={this.handleAddDish}
+        onSubmit={addDish}
         render={({ handleSubmit, form: { reset } }) => (
           <form
             onSubmit={e => {
