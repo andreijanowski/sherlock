@@ -47,3 +47,10 @@ export const Price = styled.div`
     font-size: ${p => p.theme.fontSizes.f16};
   }
 `;
+
+export const Container = styled(Flex).attrs({
+  width: 1,
+  flexDirection: "column"
+})`
+  max-width: 600px;
+`;

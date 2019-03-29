@@ -7,9 +7,10 @@ import {
   PostalCodeElement
 } from "react-stripe-elements";
 import { Flex, Box } from "@rebass/grid";
-import { Button, H3 } from "components";
+import { Button, H3, BlueText, Opacity } from "components";
 import { shape, func } from "prop-types";
 import { theme } from "utils/theme";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Label, Input } from "./styled";
 
 const style = {
@@ -50,7 +51,7 @@ class Form extends PureComponent {
         <Box width={1}>
           <H3>{t("addCard")}</H3>
         </Box>
-        <Flex flexWrap="wrap" width={1 / 2} mt={24} mx={-2}>
+        <Flex flexWrap="wrap" mx={-2}>
           <Box as="label" width={1} mb={3} px={2}>
             <Label mb={1}>{t("cardNumber")}</Label>
             <Input as={CardNumberElement} style={style} />
@@ -68,11 +69,24 @@ class Form extends PureComponent {
             <Input as={PostalCodeElement} style={style} />
           </Box>
         </Flex>
-        <Box>
-          <Button onClick={this.handleSubmit} styleName="blue">
-            {t("upgradeMyPlan")}
-          </Button>
-        </Box>
+        <Flex
+          mt={3}
+          flexWrap="wrap"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Box>
+            <BlueText>
+              <FontAwesomeIcon icon={["fa", "lock"]} />
+            </BlueText>
+            <Opacity value={0.4}>{` ${t("secureCreditCardPayment")}`}</Opacity>
+          </Box>
+          <Box>
+            <Button onClick={this.handleSubmit} styleName="blue">
+              {t("upgradeMyPlan")}
+            </Button>
+          </Box>
+        </Flex>
       </Flex>
     );
   }

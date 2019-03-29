@@ -25,7 +25,8 @@ class SubscriptionsPage extends PureComponent {
 
   state = {
     billingInterval: "month",
-    view: "plans",
+    // view: "plans",
+    view: "payments",
     choosedPlan: null
   };
 
