@@ -2,31 +2,10 @@ import { PureComponent } from "react";
 import withI18next from "lib/withI18next";
 import loadTranslations from "utils/loadTranslations";
 import { func, string, shape } from "prop-types";
-import {
-  SingleActionView,
-  LoadingIndicator,
-  Paragraph,
-  Link
-} from "components";
+import { SingleActionView, LoadingIndicator } from "components";
 import { connect } from "react-redux";
 import { confirmMail as confirmMailAction } from "actions/auth";
-import styled from "styled-components";
-
-const ParagraphStyled = styled(Paragraph)`
-  margin: 0;
-  text-align: center;
-`;
-
-const ToLogin = styled(Paragraph)`
-  margin-top: 8px;
-  margin-bottom: 0;
-  cursor: pointer;
-  text-align: center;
-
-  :hover {
-    color: rgb(${p => p.theme.colors.dark});
-  }
-`;
+import ConfirmationStatusMessage from "sections/confirm/ConfirmationStatusMessage";
 
 const namespaces = ["confirm"];
 
@@ -65,26 +44,9 @@ class ConfirmAccount extends PureComponent {
       });
   }
 
-  renderConfirmationStatusMessage = () => {
-    const { t, lng } = this.props;
-    const { isSucceed, errorMessage } = this.state;
-    return isSucceed ? (
-      <>
-        <ParagraphStyled>{t("succeedConfirmation")}</ParagraphStyled>
-        <Link {...{ lng, route: "/login" }}>
-          <ToLogin>{t("toLoginPage")}</ToLogin>
-        </Link>
-      </>
-    ) : (
-      <ParagraphStyled>
-        {t(`failedConfirmation-${errorMessage}`)}
-      </ParagraphStyled>
-    );
-  };
-
   render() {
     const { t, lng } = this.props;
-    const { isPending } = this.state;
+    const { isPending, isSucceed, errorMessage } = this.state;
     return (
       <SingleActionView
         {...{
@@ -95,7 +57,7 @@ class ConfirmAccount extends PureComponent {
         {isPending ? (
           <LoadingIndicator hasTransparentBackground />
         ) : (
-          this.renderConfirmationStatusMessage()
+          <ConfirmationStatusMessage {...{ t, lng, isSucceed, errorMessage }} />
         )}
       </SingleActionView>
     );

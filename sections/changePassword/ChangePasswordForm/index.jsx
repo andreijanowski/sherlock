@@ -32,10 +32,10 @@ class ChangePasswordForm extends PureComponent {
   render() {
     const { t } = this.props;
     const { successMessage } = this.state;
-    if (successMessage) {
-      return <SuccessMessageWrapper>{successMessage}</SuccessMessageWrapper>;
-    }
-    return (
+
+    return successMessage ? (
+      <SuccessMessageWrapper>{successMessage}</SuccessMessageWrapper>
+    ) : (
       <Form
         onSubmit={this.submitForm}
         render={({ handleSubmit, pristine, invalid, submitting, values }) => (
