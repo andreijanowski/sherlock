@@ -3,14 +3,11 @@ import { connect } from "react-redux";
 import { Form } from "react-final-form";
 import { func } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { InputField, Button, FacebookLogin, TextSeparator } from "components";
-import { login } from "actions/auth";
+import { InputField, Button } from "components";
+import { resetPassword as resetPasswordAction } from "actions/auth";
 import { validateEmail, required } from "utils/validators";
-import { Link } from "routes";
-import { Flex, Box } from "@rebass/grid";
-import { Tip } from "./styled";
 
-class SignInForm extends PureComponent {
+class ResetPasswordForm extends PureComponent {
   constructor(props) {
     super(props);
     this.validateEmail = validateEmail(props.t);
@@ -19,8 +16,8 @@ class SignInForm extends PureComponent {
 
   submitForm = async values => {
     try {
-      const { loginUser } = this.props;
-      await loginUser(values);
+      const { resetPassword } = this.props;
+      await resetPassword(values);
     } catch (e) {
       console.log(e);
     }
@@ -36,15 +33,8 @@ class SignInForm extends PureComponent {
             <InputField
               name="email"
               type="email"
-              placeholder={t("login")}
+              placeholder={t("emailToReset")}
               validate={this.validateEmail}
-            />
-            <InputField
-              name="password"
-              type="password"
-              autoComplete="new-password"
-              placeholder={t("password")}
-              validate={this.validatePassword}
             />
             <Button
               onClick={handleSubmit}
@@ -54,23 +44,9 @@ class SignInForm extends PureComponent {
               {submitting ? (
                 <FontAwesomeIcon icon="circle-notch" spin size="lg" />
               ) : (
-                t("loginButton")
+                t("resetButton")
               )}
             </Button>
-            <TextSeparator size={36}>or</TextSeparator>
-            <FacebookLogin>{t("Facebook")}</FacebookLogin>
-            <Flex mt={4} flexDirection="column">
-              <Box mb={3}>
-                <Link route="/reset-password">
-                  <Tip>{t("forgotPassword")}</Tip>
-                </Link>
-              </Box>
-              <Box>
-                <Link route="/register">
-                  <Tip>{t("letsSignUp")}</Tip>
-                </Link>
-              </Box>
-            </Flex>
           </form>
         )}
       />
@@ -78,14 +54,14 @@ class SignInForm extends PureComponent {
   }
 }
 
-SignInForm.propTypes = {
-  loginUser: func.isRequired,
+ResetPasswordForm.propTypes = {
+  resetPassword: func.isRequired,
   t: func.isRequired
 };
 
 export default connect(
   null,
   {
-    loginUser: login
+    resetPassword: resetPasswordAction
   }
-)(SignInForm);
+)(ResetPasswordForm);

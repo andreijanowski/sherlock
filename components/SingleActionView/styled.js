@@ -72,8 +72,7 @@ export const SherlockMark = styled.div`
 `;
 
 export const BackWrapper = styled(Flex).attrs({
-  justifyContent: ["center", "center", "flex-start"],
-  mb: 50
+  justifyContent: ["center", "center", "flex-start"]
 })`
   position: relative;
 `;

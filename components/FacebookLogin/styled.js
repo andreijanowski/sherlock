@@ -7,6 +7,7 @@ export const FacebookStyledButton = styled(Button)`
   min-height: 49px;
   color: rgb(${p => p.theme.colors.white});
   position: relative;
+  border: none;
 `;
 
 export const FacebookIconWrapper = styled.div`
