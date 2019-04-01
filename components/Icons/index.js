@@ -24,7 +24,7 @@ export {
   SettingsPassword,
   SettingsLogout
 } from "./navigation";
-export { Docs, Feedback, Notifications } from "./mainControls";
+export { Docs, Feedback, Notifications, ExpandIcon } from "./mainControls";
 export { FacebookIcon } from "./facebook";
 export {
   Orders,

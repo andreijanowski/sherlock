@@ -10,7 +10,13 @@ import {
   FETCH_PROFILE_BUSINESS_FAIL,
   SET_CURRENT_BUSINESS,
   UPDATE_PROFILE_REQUEST,
-  UPDATE_PROFILE_SUCCESS
+  UPDATE_PROFILE_SUCCESS,
+  FETCH_PROFILE_CARDS_REQUEST,
+  FETCH_PROFILE_CARDS_SUCCESS,
+  FETCH_PROFILE_CARDS_FAIL,
+  FETCH_PROFILE_SUBSCRIPTIONS_REQUEST,
+  FETCH_PROFILE_SUBSCRIPTIONS_SUCCESS,
+  FETCH_PROFILE_SUBSCRIPTIONS_FAIL
 } from "types/users";
 import {
   POST_BUSINESS_REQUEST,
@@ -48,6 +54,20 @@ const initialState = {
     isSucceeded: false
   },
   currentBusiness: {
+    data: null,
+    members: null,
+    isFetching: false,
+    isFailed: false,
+    isSucceeded: false
+  },
+  cards: {
+    data: null,
+    members: null,
+    isFetching: false,
+    isFailed: false,
+    isSucceeded: false
+  },
+  subscriptions: {
     data: null,
     members: null,
     isFetching: false,
@@ -280,6 +300,24 @@ const reducer = (state = initialState, { type, payload, meta }) => {
             visibleInLefood: business.visibleInLefood
           };
         }
+        if (v === "state") {
+          newState.currentBusiness.data = {
+            ...newState.currentBusiness.data,
+            state: business.state
+          };
+        }
+        if (v === "averageDeliveryTime") {
+          newState.currentBusiness.data = {
+            ...newState.currentBusiness.data,
+            averageDeliveryTime: business.averageDeliveryTime
+          };
+        }
+        if (v === "minAmountForDeliveryCents") {
+          newState.currentBusiness.data = {
+            ...newState.currentBusiness.data,
+            minAmountForDeliveryCents: business.minAmountForDeliveryCents
+          };
+        }
       });
       return newState;
     }
@@ -362,6 +400,58 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           p => p.id !== meta.id
         )
       };
+      return newState;
+    }
+
+    case FETCH_PROFILE_CARDS_REQUEST: {
+      const newState = { ...state };
+      newState.cards.data = null;
+      newState.cards.isFetching = true;
+      newState.cards.isFailed = false;
+      newState.cards.isSucceeded = false;
+      return newState;
+    }
+    case FETCH_PROFILE_CARDS_SUCCESS: {
+      const newState = { ...state };
+      const cards =
+        build(payload.data, "cards", null, {
+          ignoreLinks: true
+        }) || [];
+      newState.cards.isFetching = false;
+      newState.cards.isSucceeded = true;
+      newState.cards.data = cards;
+      return newState;
+    }
+    case FETCH_PROFILE_CARDS_FAIL: {
+      const newState = { ...state };
+      newState.cards.isFetching = false;
+      newState.cards.isFailed = true;
+      return newState;
+    }
+
+    case FETCH_PROFILE_SUBSCRIPTIONS_REQUEST: {
+      const newState = { ...state };
+      newState.subscriptions.data = null;
+      newState.subscriptions.isFetching = true;
+      newState.subscriptions.isFailed = false;
+      newState.subscriptions.isSucceeded = false;
+      return newState;
+    }
+    case FETCH_PROFILE_SUBSCRIPTIONS_SUCCESS: {
+      const newState = { ...state };
+      const subscriptions =
+        build(payload.data, "subscriptions", null, {
+          ignoreLinks: true
+        }) || [];
+      newState.subscriptions.isFetching = false;
+      newState.subscriptions.isSucceeded = true;
+      newState.subscriptions.data = subscriptions;
+      return newState;
+    }
+    case FETCH_PROFILE_SUBSCRIPTIONS_FAIL: {
+      const newState = { ...state };
+      newState.subscriptions.isFetching = false;
+      newState.subscriptions.isFailed = true;
       return newState;
     }
 

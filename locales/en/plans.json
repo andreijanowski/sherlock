@@ -1,0 +1,90 @@
+{
+  "header": "Plans",
+  "paragraph": "Choose the plan that suits your business goals. If you are a big business owner or chain manager, please add your manager in charge.",
+  "yourCurrentPlan": "Your current plan",
+  "nextPayment": "Next payment",
+  "finishPoweringYouUp": "Let's finish powering you up!",
+  "addCard": "Add a new card",
+  "cardNumber": "Card number",
+  "expirationDate": "Expiration date",
+  "ccv": "CCV",
+  "postalCode": "Postal code",
+  "upgradeMyPlan": "Upgrade my plan",
+  "promotion": {
+    "startFirstLine": "Get ",
+    "promotionPlan": "Sherlock Basic",
+    "startLastLine": " for 3 months for free.",
+    "endFirstLine": "Just complete your profile online. The offer is very limited, we have only ",
+    "endLastLine": "1000 slots left."
+  },
+  "billingYearly": "Billing Yearly (save 10%)",
+  "billingMonthly": "Billing Monthly",
+  "options": {
+    "website": "Webpage",
+    "widget": "Widget - coming soon",
+    "mobileApp": "Mobile App",
+    "proFeedback": "Pro Feedback",
+    "paidBooking": "Reservation",
+    "bookings": "Reservations",
+    "takeAway": "Take Away",
+    "catering": "Catering",
+    "privatization": "Privatization",
+    "delivery": "Delivery",
+    "monthlyData": "Monthly Data",
+    "weeklyData": "Weekly Data",
+    "dailyData": "Daily Data",
+    "payments": "Payments",
+    "posIntegration": "POS integration",
+    "archivedData": "Archived Data",
+    "hrAndPeopleManagement": "HR & People Management",
+    "loyaltyProgram": "Loyalty Prorgram",
+    "clientInteraction": "Client Interaction",
+    "photoshoot": "Photoshoot",
+    "mysteryShopping": "Mystery Shopping - coming soon",
+    "supplyAutomation": "Supply Automation"
+  },
+  "essential": {
+    "name": "Essential",
+    "priceDescription": "Forever",
+    "price": {
+      "monthly": "Free",
+      "yearly": "Free"
+    },
+    "buttonText": "Create Profile"
+  },
+  "basic": {
+    "name": "Basic",
+    "mostPopular": "Most popular",
+    "promoPrice": "Limited",
+    "priceDescription": "Starting at",
+    "price": {
+      "monthly": "€29.90",
+      "yearly": "€249.90"
+    },
+    "monthly": "month",
+    "yearly": "year",
+    "buttonText": "Start a 2 months trial"
+  },
+  "premium": {
+    "name": "Premium",
+    "bestValue": "Best Value",
+    "promoPrice": "Limited",
+    "priceDescription": "Starting at",
+    "price": {
+      "monthly": "€59.90",
+      "yearly": "€549.90"
+    },
+    "monthly": "month",
+    "yearly": "year",
+    "buttonText": "Start a 2 months trial"
+  },
+  "professional": {
+    "name": "Professional",
+    "priceDescription": "Diversely",
+    "price": {
+      "monthly": "Enterprise",
+      "yearly": "Enterprise"
+    },
+    "buttonText": "Request a Demo"
+  }
+}

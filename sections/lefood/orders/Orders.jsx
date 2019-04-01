@@ -48,7 +48,6 @@ class Orders extends Component {
 }
 
 Orders.propTypes = {
-  onClick: func.isRequired,
   t: func.isRequired,
   id: string.isRequired,
   orders: arrayOf(shape()).isRequired,

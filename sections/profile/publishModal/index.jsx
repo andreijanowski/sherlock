@@ -1,24 +1,22 @@
-import { Button, Paragraph, BlueText, ItalicText, BoldText } from "components";
+import {
+  Button,
+  Paragraph,
+  BlueText,
+  ItalicText,
+  BoldText,
+  LoadingIndicator
+} from "components";
 import { Box } from "@rebass/grid";
-import { func, string } from "prop-types";
+import { func, string, shape } from "prop-types";
 import { Wrapper, Header, H2 } from "./styled";
 import Step from "./Step";
 import { generatePublishModalItems } from "../utils";
 
-// TODO: When API will be ready add validation checks.
-// Line below is just a mock used for dev purposes
-const validation = [true, true, false, false, false, false];
-
-const PublishModal = ({ t, lng, close }) => {
-  const steps = generatePublishModalItems(t, validation);
+const PublishModal = ({ t, lng, close, publish, business }) => {
+  const steps = business ? generatePublishModalItems(t, business) : [];
   return (
     <Wrapper>
       <Header>
-        <Box mb={3} width={["auto", 1 / 6]}>
-          <Button styleName="blue" onClick={close}>
-            {t("publishModal:cancel")}
-          </Button>
-        </Box>
         <Box width={1}>
           <H2>{t("publishModal:header")}</H2>
         </Box>
@@ -36,9 +34,19 @@ const PublishModal = ({ t, lng, close }) => {
       {steps.map((s, index) => (
         <Step {...{ ...s, index, t, lng, close }} key={s.name} />
       ))}
-      <Button styleName="blue" onClick={close}>
-        {t("publishModal:publish")}
-      </Button>
+      {business ? (
+        <Button
+          styleName="blue"
+          onClick={() => {
+            publish();
+            close();
+          }}
+        >
+          {t("publishModal:publish")}
+        </Button>
+      ) : (
+        <LoadingIndicator />
+      )}
     </Wrapper>
   );
 };
@@ -46,7 +54,9 @@ const PublishModal = ({ t, lng, close }) => {
 PublishModal.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  close: func.isRequired
+  close: func.isRequired,
+  publish: func.isRequired,
+  business: shape().isRequired
 };
 
 export default PublishModal;

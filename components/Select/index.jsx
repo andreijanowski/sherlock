@@ -1,9 +1,9 @@
 import { shape, arrayOf, func, string, bool } from "prop-types";
 import Downshift from "downshift";
 import { LoadingIndicator } from "components";
+import { ExpandIcon } from "icons";
 import {
   ToggleButtonWrapper,
-  ExpandIcon,
   Items,
   Item,
   Avatar,
@@ -11,7 +11,14 @@ import {
   ItemsWrapper
 } from "./styled";
 
-const Select = ({ value, items, onChange, bottomAction, withImage }) => (
+const Select = ({
+  value,
+  items,
+  onChange,
+  bottomAction,
+  withImage,
+  ButtonComponent
+}) => (
   <Downshift
     selectedItem={value}
     onChange={onChange}
@@ -26,12 +33,16 @@ const Select = ({ value, items, onChange, bottomAction, withImage }) => (
       selectedItem: dsSelectedItem
     }) => (
       <div style={{ position: "relative", width: "100%" }}>
-        <ToggleButtonWrapper {...getToggleButtonProps({ withImage })}>
-          {withImage && <Avatar src={value.src} />}
-          {value.label}
-          <ExpandIcon />
-          {!value.value && <LoadingIndicator />}
-        </ToggleButtonWrapper>
+        {ButtonComponent ? (
+          <ButtonComponent {...getToggleButtonProps()} />
+        ) : (
+          <ToggleButtonWrapper {...getToggleButtonProps({ withImage })}>
+            {withImage && <Avatar src={value.src} />}
+            {value.label}
+            <ExpandIcon />
+            {!value.value && <LoadingIndicator />}
+          </ToggleButtonWrapper>
+        )}
         {isOpen && items.length > 0 && (
           <ItemsWrapper bottomAction={!!bottomAction}>
             <Items>
@@ -72,6 +83,7 @@ Select.propTypes = {
   value: shape().isRequired,
   onChange: func.isRequired,
   withImage: bool,
+  ButtonComponent: func,
   bottomAction: shape({
     onClick: func,
     text: string
@@ -80,7 +92,8 @@ Select.propTypes = {
 
 Select.defaultProps = {
   bottomAction: null,
-  withImage: false
+  withImage: false,
+  ButtonComponent: null
 };
 
 export default Select;

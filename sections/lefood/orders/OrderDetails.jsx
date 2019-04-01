@@ -71,9 +71,10 @@ const OrderDetails = ({
             ({ units, dishName, dishPricePerItemCents, currency }) => (
               <OrderDetail
                 {...{
+                  key: dishName,
                   name: `${units}x ${dishName}`,
                   price: dishPricePerItemCents,
-                  currency
+                  currency: currency || orderDetails.currency
                 }}
               />
             )
@@ -169,10 +170,14 @@ const OrderDetails = ({
 OrderDetails.propTypes = {
   isOpen: bool.isRequired,
   onStateChange: func.isRequired,
-  orderDetails: shape().isRequired,
+  orderDetails: shape(),
   setRejectModalVisibility: func.isRequired,
   updateOrder: func.isRequired,
   t: func.isRequired
+};
+
+OrderDetails.defaultProps = {
+  orderDetails: null
 };
 
 export default reduxBurgerMenu(OrderDetails);

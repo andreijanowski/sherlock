@@ -39,7 +39,11 @@ i18n
         "notifications",
         "openingHours",
         "lefood",
+        "passwordSettings",
+        "payments",
         "picturesAndMenus",
+        "plans",
+        "publishModal",
         "register",
         "settingsBasicInfo",
         "passwordSettings",
@@ -47,7 +51,8 @@ i18n
         "publishModal",
         "resetPassword",
         "confirm",
-        "changePassword"
+        "changePassword",
+        "stripe"
       ], // need to preload all the namespaces
       backend: {
         loadPath: path.join(__dirname, "/locales/{{lng}}/{{ns}}.json"),

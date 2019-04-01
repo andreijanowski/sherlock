@@ -3,7 +3,9 @@ import { REHYDRATE } from "redux-persist";
 import {
   fetchProfile,
   fetchProfileBusinesses,
-  fetchProfileBusiness
+  fetchProfileBusiness,
+  fetchProfileCards,
+  fetchProfileSubscriptions
 } from "actions/users";
 import { fetchGroups } from "actions/groups";
 import {
@@ -46,6 +48,8 @@ function* fetchUserData() {
     yield put(fetchBusinessDeliveries(data[0].id));
     yield put(fetchBusinessDishes(data[0].id));
     yield put(fetchBusinessOrders(data[0].id));
+    yield put(fetchProfileCards());
+    yield put(fetchProfileSubscriptions());
   } else {
     yield put(postBusiness());
   }

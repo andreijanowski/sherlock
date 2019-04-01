@@ -1,5 +1,5 @@
 import React from "react";
-import ConnectWithStripe from "components/Stripe/ConnectWithStripe";
+import { ConnectWithStripe } from "components";
 import { func } from "prop-types";
 import { Container } from "./styled";
 

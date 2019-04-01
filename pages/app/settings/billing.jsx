@@ -3,10 +3,10 @@ import SettingsLayout from "sections/settings/Layout";
 import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
 import { func, string } from "prop-types";
-import BillingSettings from "sections/settings/billing";
+// import BillingSettings from "sections/settings/billing";
 import loadTranslations from "utils/loadTranslations";
 
-const namespaces = ["connectWithStripe", "app"];
+const namespaces = ["app"];
 
 class Billing extends PureComponent {
   static async getInitialProps({ ctx }) {
@@ -21,7 +21,7 @@ class Billing extends PureComponent {
     const { t, lng } = this.props;
     return (
       <SettingsLayout {...{ t, lng, currentPage: "billing" }}>
-        <BillingSettings {...{ t }} />
+        {/* <BillingSettings {...{ t }} /> */}
       </SettingsLayout>
     );
   }
