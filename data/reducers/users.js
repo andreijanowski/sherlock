@@ -94,9 +94,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       newState.profile.isFetching = false;
       newState.profile.isSucceeded = true;
       newState.profile.data = profile;
-      newState.profile.data.avatar.url = `${profile.avatar.url}?${
-        meta.timestamp
-      }`;
+      newState.profile.data.avatar.url = profile.avatar.url;
       return newState;
     }
     case FETCH_PROFILE_FAIL: {
@@ -290,7 +288,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           newState.currentBusiness.data = {
             ...newState.currentBusiness.data,
             [v]: {
-              url: `${business[v].url}?${meta.timestamp}`
+              url: business[v].url
             }
           };
         }

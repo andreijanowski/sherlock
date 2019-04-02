@@ -117,7 +117,7 @@ export const Avatar = styled.div`
   border-radius: 16px;
   cursor: pointer;
   background-color: rgb(${p => p.theme.colors.dark});
-  background-image: url(${p => p.src});
+  ${p => p.src && `background-image: url(${p.src});`}
   background-size: cover;
   background-position: center;
 `;

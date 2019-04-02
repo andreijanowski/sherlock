@@ -15,13 +15,10 @@ import {
   fetchBusinessDishes,
   fetchBusinessOrders
 } from "actions/businesses";
-import { Router } from "routes";
 import {
   LOGIN_SUCCESS,
   FACEBOOK_LOGIN_SUCCESS,
-  LOGOUT,
   REFRESH_TOKEN_SUCCESS,
-  REDIRECT_TO_REGISTER,
   CHANGE_PASSWORD_SUCCESS,
   RESET_PASSWORD_SUCCESS,
   CHANGE_PASSWORD_BY_TOKEN_SUCCESS
@@ -55,14 +52,6 @@ function* fetchUserData() {
   }
 }
 
-function* redirectHomepage() {
-  yield put(Router.pushRoute("/"));
-}
-
-function* redirectToRegisterPage() {
-  yield put(Router.pushRoute("/register/"));
-}
-
 function* showSuccessPasswordChangeMsg() {
   yield put(
     Notifications.success({
@@ -94,8 +83,6 @@ export default all([
     [LOGIN_SUCCESS, FACEBOOK_LOGIN_SUCCESS, REFRESH_TOKEN_SUCCESS],
     fetchUserData
   ),
-  takeEvery([LOGOUT], redirectHomepage),
-  takeEvery([REDIRECT_TO_REGISTER], redirectToRegisterPage),
   takeEvery(CHANGE_PASSWORD_SUCCESS, showSuccessPasswordChangeMsg),
   takeEvery(RESET_PASSWORD_SUCCESS, showSuccessResetPasswordMsg),
   takeEvery(CHANGE_PASSWORD_BY_TOKEN_SUCCESS, onSuccessPasswordChangeByToken)
