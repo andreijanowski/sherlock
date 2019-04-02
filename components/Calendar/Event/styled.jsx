@@ -18,6 +18,20 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const EventWrapper = styled(Wrapper)`
+  background-color: rgba(${p => p.theme.colors.blue}, 0.9);
+  color: rgb(${p => p.theme.colors.white});
+  box-shadow: 0 3px 8px 0 rgba(${p => p.theme.colors.blue}, 0.48);
+  font-size: ${p => p.theme.fontSizes.f12};
+  line-height: 1.33;
+  margin-bottom: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(${p => p.theme.colors.blue});
+  }
+`;
+
 export const Header = styled(Flex).attrs({
   justifyContent: "space-between"
 })`

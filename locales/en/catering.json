@@ -5,6 +5,7 @@
   "month": "Month",
   "year": "Year",
   "multipleEvents": "Multiple events",
+  "chooseEvent": "Choose event",
   "createEvent": {
     "basicInfo": "Basic information",
     "name": "Catering name",
