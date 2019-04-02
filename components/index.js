@@ -50,6 +50,7 @@ export { default as Menu } from "./Menu";
 export { default as Select } from "./Select";
 export { default as CalendarEvent } from "./Calendar/Event";
 export { default as CalendarToolbar } from "./Calendar/Toolbar";
+export { default as BigCalendar } from "./Calendar/BigCalendar";
 export { default as MenusUploader } from "./MenusUploader";
 export { default as Map } from "./Map";
 export { default as TextSeparator } from "./TextSeparator";

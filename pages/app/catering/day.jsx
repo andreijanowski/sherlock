@@ -7,6 +7,7 @@ import CateringLayout from "sections/catering/Layout";
 import Day from "sections/catering/day";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/users";
+import isServer from "utils/isServer";
 
 const namespaces = ["catering", "app"];
 
@@ -51,7 +52,16 @@ class DayPage extends PureComponent {
           changeCurrentBusiness
         }}
       >
-        <Day {...{ t, caterings, currency }} />
+        {!isServer && (
+          <Day
+            {...{
+              t,
+              caterings,
+              currency,
+              timeZone: business && business.timezone
+            }}
+          />
+        )}
       </CateringLayout>
     );
   }

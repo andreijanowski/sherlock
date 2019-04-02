@@ -4,6 +4,7 @@
   "week": "Week",
   "month": "Month",
   "year": "Year",
+  "multipleEvents": "Multiple events",
   "createEvent": {
     "basicInfo": "Basic information",
     "name": "Catering name",

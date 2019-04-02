@@ -1,38 +1,28 @@
-import BigCalendar from "react-big-calendar";
 import { func, arrayOf, shape, string } from "prop-types";
-import { CalendarEvent, CalendarToolbar } from "components";
-import { parseCaterings, localizer } from "../utils";
-import CalendarStyles from "../calendarStyles";
+import { BigCalendar } from "components";
 import { CalendarWrapper } from "../styled";
 
-const Week = ({ t, caterings, currency }) => (
+const Week = ({ t, caterings, currency, timeZone }) => (
   <CalendarWrapper height="1500">
-    <CalendarStyles />
-    <BigCalendar
-      localizer={localizer}
-      components={{
-        event: p => <CalendarEvent {...{ t, ...p }} />,
-        toolbar: CalendarToolbar
-      }}
-      defaultView="week"
-      events={parseCaterings(caterings, currency)}
-      startAccessor="start"
-      endAccessor="end"
-      step={60}
-      timeslots={1}
-    />
+    {timeZone && (
+      <BigCalendar
+        {...{ t, caterings, currency, defaultView: "week", timeZone }}
+      />
+    )}
   </CalendarWrapper>
 );
 
 Week.propTypes = {
   t: func.isRequired,
   currency: string,
-  caterings: arrayOf(shape())
+  caterings: arrayOf(shape()),
+  timeZone: string
 };
 
 Week.defaultProps = {
   caterings: null,
-  currency: "EUR"
+  currency: "EUR",
+  timeZone: null
 };
 
 export default Week;

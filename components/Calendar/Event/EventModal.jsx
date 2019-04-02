@@ -23,9 +23,15 @@ const EventModal = ({ event, isOpen, onClose, t }) => (
     <Header>
       <MainInfo>
         <Time>
-          {`${moment(event.resource.start).format("h:mm a")} - ${moment(
-            event.resource.end
-          ).format("h:mm a")} `}
+          {`${moment(event.date)
+            .hour(0)
+            .minute(0)
+            .second(event.resource.realFrom || event.resource.from)
+            .format("h:mm a")} - ${moment(event.date)
+            .hour(0)
+            .minute(0)
+            .second(event.resource.to)
+            .format("h:mm a")} `}
         </Time>
         <Name>{event.resource.name}</Name>
         <Price>{`${normalizePrice(event.resource.priceCents)}${

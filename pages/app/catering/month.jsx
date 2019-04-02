@@ -51,7 +51,14 @@ class MonthPage extends PureComponent {
           changeCurrentBusiness
         }}
       >
-        <Month {...{ t, caterings, currency }} />
+        <Month
+          {...{
+            t,
+            caterings,
+            currency,
+            timeZone: business && business.timezone
+          }}
+        />
       </CateringLayout>
     );
   }
