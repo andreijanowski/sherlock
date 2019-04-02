@@ -19,7 +19,9 @@ import {
   LOGIN_SUCCESS,
   FACEBOOK_LOGIN_SUCCESS,
   REFRESH_TOKEN_SUCCESS,
-  CHANGE_PASSWORD_SUCCESS
+  CHANGE_PASSWORD_SUCCESS,
+  RESET_PASSWORD_SUCCESS,
+  CHANGE_PASSWORD_BY_TOKEN_SUCCESS
 } from "types/auth";
 import Notifications from "react-notification-system-redux";
 import { refreshToken as refresh } from "actions/auth";
@@ -58,11 +60,30 @@ function* showSuccessPasswordChangeMsg() {
   );
 }
 
+function* showSuccessResetPasswordMsg() {
+  yield put(
+    Notifications.success({
+      message: "passwordResetSuccess"
+    })
+  );
+}
+
+function* onSuccessPasswordChangeByToken() {
+  yield put(
+    Notifications.success({
+      message: "changePasswordSuccess"
+    })
+  );
+  Router.pushRoute("/login");
+}
+
 export default all([
   takeLatest(REHYDRATE, initialTokenRefresh),
   takeEvery(
     [LOGIN_SUCCESS, FACEBOOK_LOGIN_SUCCESS, REFRESH_TOKEN_SUCCESS],
     fetchUserData
   ),
-  takeEvery(CHANGE_PASSWORD_SUCCESS, showSuccessPasswordChangeMsg)
+  takeEvery(CHANGE_PASSWORD_SUCCESS, showSuccessPasswordChangeMsg),
+  takeEvery(RESET_PASSWORD_SUCCESS, showSuccessResetPasswordMsg),
+  takeEvery(CHANGE_PASSWORD_BY_TOKEN_SUCCESS, onSuccessPasswordChangeByToken)
 ]);

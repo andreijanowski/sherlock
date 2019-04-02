@@ -43,3 +43,19 @@ export const validateEmail = t => composeValidators(required(t), isEmail(t));
 
 export const validatePassword = t =>
   composeValidators(required(t), minPasswordLength(t));
+
+export const validatePasswordsMatch = t => (
+  passwordConfirmation,
+  { password }
+) => {
+  if (!passwordConfirmation) return t("forms:validation.error.required");
+  if (passwordConfirmation !== password)
+    return t("forms:validation.error.passwordMatch");
+
+  if (passwordConfirmation.length < formValidation.MINIMUM_PASSWORD_LENGTH)
+    return t("forms:validation.error.password", {
+      length: formValidation.MINIMUM_PASSWORD_LENGTH
+    });
+
+  return undefined;
+};

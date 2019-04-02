@@ -1,0 +1,8 @@
+{
+  "title": "Account confirmation",
+  "description": "Log in to start using all the nice features of Sherlock!",
+  "succeedConfirmation": "Your account has been successfully confirmed.",
+  "toLoginPage": "Click here to go to the login page.",
+  "failedConfirmation-already_confirmed": "Your account has been already confirmed.",
+  "failedConfirmation-invalid": "Your confirmation link is invalid."
+}
