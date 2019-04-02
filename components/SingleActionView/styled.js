@@ -37,7 +37,7 @@ export const RightBox = styled(Flex)`
 `;
 
 export const RightBoxChildrenWrapper = styled(Box)`
-  max-width: 558px;
+  max-width: 600px;
 `;
 
 export const LeftBox = styled(Flex).attrs({
