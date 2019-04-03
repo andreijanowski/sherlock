@@ -8,7 +8,7 @@ const Plans = ({
   lng,
   billingInterval,
   choosePlan,
-  currentPlanName,
+  nextPlanName,
   currentPlanInterval
 }) => (
   <>
@@ -17,7 +17,7 @@ const Plans = ({
         {...{
           t,
           billingInterval,
-          currentPlanName,
+          nextPlanName,
           currentPlanInterval,
           color: "limeade",
           name: "essential",
@@ -33,7 +33,7 @@ const Plans = ({
         {...{
           t,
           billingInterval,
-          currentPlanName,
+          nextPlanName,
           currentPlanInterval,
           color: "deepSkyBlue",
           name: "basic",
@@ -49,7 +49,7 @@ const Plans = ({
         {...{
           t,
           billingInterval,
-          currentPlanName,
+          nextPlanName,
           currentPlanInterval,
           color: "navyBlue",
           name: "premium",
@@ -65,7 +65,7 @@ const Plans = ({
         {...{
           t,
           billingInterval,
-          currentPlanName,
+          nextPlanName,
           currentPlanInterval,
           color: "hanPurple",
           name: "professional",
@@ -83,13 +83,13 @@ Plans.propTypes = {
   lng: string.isRequired,
   billingInterval: string.isRequired,
   choosePlan: func,
-  currentPlanName: string,
+  nextPlanName: string,
   currentPlanInterval: string
 };
 
 Plans.defaultProps = {
   choosePlan: null,
-  currentPlanName: null,
+  nextPlanName: null,
   currentPlanInterval: null
 };
 

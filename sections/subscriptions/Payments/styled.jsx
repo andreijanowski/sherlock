@@ -25,12 +25,16 @@ export const CardWrapper = styled(Flex).attrs({
   background-color: rgba(
     ${p => `${p.theme.colors.blue}, ${p.selected ? 1 : 0.1}`}
   );
-  cursor: pointer;
+  ${p =>
+    !p.disabled &&
+    `
+    cursor: pointer;
 
-  &:hover {
-    color: rgb(${p => p.theme.colors.white});
-    background-color: rgb(${p => p.theme.colors.blue});
-  }
+    &:hover {
+      color: rgb(${p.theme.colors.white});
+      background-color: rgb(${p.theme.colors.blue});
+    }
+  `};
 `;
 
 export const Price = styled.div`

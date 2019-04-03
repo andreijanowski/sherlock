@@ -19,20 +19,27 @@ const PaymentsSection = ({
   <Wrapper>
     <Box mb={4}>{t("finishPoweringYouUp")}</Box>
     <Line />
-    <Container>
-      <Flex justifyContent="space-between" alignItems="center" mb={3} mt={4}>
-        <PlansBillingInterval
-          {...{ t, billingInterval, handleChangeBillngPeriod }}
-        />
-        {choosedPlan && (
-          <Price>
-            {t(`plans:${choosedPlan}.price.${billingInterval}`)}
-            <small>/{t(`plans:${choosedPlan}.${billingInterval}`)}</small>
-          </Price>
-        )}
-      </Flex>
-    </Container>
-    <Line />
+    {choosedPlan && (
+      <>
+        <Container>
+          <Flex
+            justifyContent="space-between"
+            alignItems="center"
+            mb={3}
+            mt={4}
+          >
+            <PlansBillingInterval
+              {...{ t, billingInterval, handleChangeBillngPeriod }}
+            />
+            <Price>
+              {t(`plans:${choosedPlan}.price.${billingInterval}`)}
+              <small>/{t(`plans:${choosedPlan}.${billingInterval}`)}</small>
+            </Price>
+          </Flex>
+        </Container>
+        <Line />
+      </>
+    )}
     {/* {cards && <CardsModal {...{ cards, isOpen: false, t }} />} */}
     <Elements>
       <CardForm {...{ t, updateSubscription, notificationError }} />

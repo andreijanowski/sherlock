@@ -77,6 +77,11 @@ const hanPurple = css`
   ${planButton};
 `;
 
+const smallBlue = css`
+  background-color: rgb(${p => p.theme.colors.blue});
+  ${planButton};
+`;
+
 const transparent = css`
   ${blue};
   background-color: transparent;
@@ -199,6 +204,7 @@ const Button = styled.button`
   ${p => p.styleName === "deepSkyBlue" && deepSkyBlue};
   ${p => p.styleName === "navyBlue" && navyBlue};
   ${p => p.styleName === "hanPurple" && hanPurple};
+  ${p => p.styleName === "smallBlue" && smallBlue};
   ${p => p.styleName === "transparent" && transparent};
   ${p => p.styleName === "limeade" && limeade};
   ${p => p.styleName === "background" && background};

@@ -1,9 +1,10 @@
 import { func, string, shape } from "prop-types";
-import { Plans, PlansBillingInterval, BoldText } from "components";
+import { Plans, PlansBillingInterval, BoldText, Button } from "components";
 import { Flex, Box } from "@rebass/grid";
-import moment from "moment";
 import { Wrapper } from "../styled";
-import { parsePlan } from "./utils";
+import { getPlanName } from "./utils";
+import Card from "../Payments/Card";
+import PlanStatus from "./PlanStatus";
 
 const PlansSection = ({
   t,
@@ -11,26 +12,44 @@ const PlansSection = ({
   billingInterval,
   handleChangeBillngPeriod,
   choosePlan,
-  currentPlan
+  currentPlan,
+  cards,
+  goToPayments
 }) => {
-  const { name, nextPaymentDate, interval } = parsePlan(currentPlan);
+  const { currentPlanName, nextPlanName } = getPlanName(currentPlan);
+  const { interval, nextPaymentAt, cancelAt, trialEndsAt } = currentPlan || {};
+  const currentCard =
+    cards && currentPlan
+      ? cards.find(c => c.stripeSourceId === currentPlan.stripeSourceId)
+      : null;
+
   return (
     <Wrapper>
-      <Flex justifyContent="space-between" alignItems="center" mb={4}>
+      <Flex justifyContent="space-between" alignItems="center" mb={2}>
         <Box mb={3}>
           {`${t("yourCurrentPlan")}: `}
-          <BoldText>{t(`plans:${name}.name`)}.</BoldText>
-          {nextPaymentDate && (
-            <>
-              {` ${t("nextPayment")}: `}
-              <BoldText>{moment(nextPaymentDate).format("Do MMMM")}</BoldText>.
-            </>
-          )}
+          <BoldText>{t(`plans:${currentPlanName}.name`)}.</BoldText>
+          <PlanStatus {...{ nextPaymentAt, cancelAt, trialEndsAt, t }} />
         </Box>
         <PlansBillingInterval
           {...{ t, billingInterval, handleChangeBillngPeriod }}
         />
       </Flex>
+      {currentCard && (
+        <Flex flexDirection="column" mb={4}>
+          <Box mr={2} mb={3}>{`${t("paymentInfo")}: `}</Box>
+          <Flex>
+            <Box mb={-2} mr={2}>
+              <Card {...currentCard} disabled />
+            </Box>
+            <Box>
+              <Button styleName="smallBlue" onClick={goToPayments}>
+                {currentCard ? t("changeCard") : t("setCard")}
+              </Button>
+            </Box>
+          </Flex>
+        </Flex>
+      )}
       <Flex mx={-2}>
         <Plans
           {...{
@@ -38,7 +57,7 @@ const PlansSection = ({
             lng,
             billingInterval,
             choosePlan,
-            currentPlanName: name,
+            nextPlanName,
             currentPlanInterval: interval
           }}
         />
@@ -53,11 +72,14 @@ PlansSection.propTypes = {
   billingInterval: string.isRequired,
   handleChangeBillngPeriod: func.isRequired,
   choosePlan: func.isRequired,
-  currentPlan: shape()
+  goToPayments: func.isRequired,
+  currentPlan: shape(),
+  cards: shape()
 };
 
 PlansSection.defaultProps = {
-  currentPlan: null
+  currentPlan: null,
+  cards: null
 };
 
 export default PlansSection;

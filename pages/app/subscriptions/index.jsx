@@ -55,12 +55,7 @@ class SubscriptionsPage extends PureComponent {
         });
       } else {
         const newPlanSlug = `sherlock-${planName}-${billingInterval}ly-eur`;
-        if (subscriptions[0].slug === newPlanSlug) {
-          this.setState({
-            choosedPlan: planName,
-            view: "payments"
-          });
-        } else {
+        if (subscriptions[0].slug !== newPlanSlug) {
           this.setState({
             view: "loading"
           });
@@ -104,6 +99,12 @@ class SubscriptionsPage extends PureComponent {
     }
   };
 
+  goToPayments = () => {
+    this.setState({
+      view: "payments"
+    });
+  };
+
   goToSuccess = () => {
     const { getProfileSubscriptions } = this.props;
     getProfileSubscriptions();
@@ -132,11 +133,13 @@ class SubscriptionsPage extends PureComponent {
             {...{
               t,
               lng,
+              cards,
               subscriptions,
               billingInterval,
-              handleChangeBillngPeriod: this.handleChangeBillngPeriod,
               choosePlan: this.choosePlan,
-              currentPlan: subscriptions && subscriptions[0]
+              goToPayments: this.goToPayments,
+              currentPlan: subscriptions && subscriptions[0],
+              handleChangeBillngPeriod: this.handleChangeBillngPeriod
             }}
           />
         )}

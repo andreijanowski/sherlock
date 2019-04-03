@@ -17,17 +17,16 @@ const Plan = ({
   name,
   billingInterval,
   onClickActionButton,
-  currentPlanName,
+  nextPlanName,
   currentPlanInterval
 }) => {
-  const isChoosed =
-    currentPlanName === name &&
-    (currentPlanInterval === billingInterval ||
-      currentPlanName === "essential");
+  const isChosen =
+    nextPlanName === name &&
+    (currentPlanInterval === billingInterval || nextPlanName === "essential");
   let buttonText = t(`plans:${name}.buttonText`);
-  if (isChoosed) {
-    buttonText = t(`plans:yourCurrentPlan`);
-  } else if (currentPlanName !== null && name !== "professional") {
+  if (isChosen) {
+    buttonText = t(`plans:chosen`);
+  } else if (nextPlanName !== null && name !== "professional") {
     buttonText = t(`plans:choose`);
   }
 
@@ -70,7 +69,7 @@ const Plan = ({
         )}
         <Button
           onClick={onClickActionButton}
-          styleName={isChoosed ? "background" : color}
+          styleName={isChosen ? "background" : color}
         >
           {buttonText}
         </Button>
@@ -86,12 +85,12 @@ Plan.propTypes = {
   color: string.isRequired,
   name: string.isRequired,
   onClickActionButton: func.isRequired,
-  currentPlanName: string,
+  nextPlanName: string,
   currentPlanInterval: string
 };
 
 Plan.defaultProps = {
-  currentPlanName: null,
+  nextPlanName: null,
   currentPlanInterval: null
 };
 
