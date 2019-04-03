@@ -7,7 +7,7 @@ const PlanStatus = ({ nextPaymentAt, cancelAt, trialEndsAt, t }) => {
     return (
       <>
         {` ${t("trialEndsAt")}: `}
-        <BoldText>{moment(trialEndsAt).format("Do MMMM")}</BoldText>.
+        <BoldText>{moment(trialEndsAt).format("Do MMMM YYYY")}</BoldText>.
       </>
     );
   }
@@ -16,7 +16,7 @@ const PlanStatus = ({ nextPaymentAt, cancelAt, trialEndsAt, t }) => {
       return (
         <>
           {` ${t("cancelAt")}: `}
-          <BoldText>{moment(cancelAt).format("Do MMMM")}</BoldText>.
+          <BoldText>{moment(cancelAt).format("Do MMMM YYYY")}</BoldText>.
         </>
       );
     }
@@ -26,7 +26,7 @@ const PlanStatus = ({ nextPaymentAt, cancelAt, trialEndsAt, t }) => {
     return (
       <>
         {` ${t("nextPaymentAt")}: `}
-        <BoldText>{moment(nextPaymentAt).format("Do MMMM")}</BoldText>.
+        <BoldText>{moment(nextPaymentAt).format("Do MMMM YYYY")}</BoldText>.
       </>
     );
   }

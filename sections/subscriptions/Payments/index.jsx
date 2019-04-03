@@ -1,5 +1,5 @@
 import { func, string, arrayOf, shape } from "prop-types";
-import { PlansBillingInterval } from "components";
+import { PlansBillingInterval, Button } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Elements } from "react-stripe-elements";
 import { Wrapper } from "../styled";
@@ -13,11 +13,19 @@ const PaymentsSection = ({
   handleChangeBillngPeriod,
   // cards,
   choosedPlan,
+  goToPlans,
   updateSubscription,
   notificationError
 }) => (
   <Wrapper>
-    <Box mb={4}>{t("finishPoweringYouUp")}</Box>
+    <Flex mb={4} justifyContent="space-between" alignItems="center">
+      <Box>{t("finishPoweringYouUp")}</Box>
+      <Box>
+        <Button styleName="smallBlue" onClick={goToPlans}>
+          {t("goBackToPlans")}
+        </Button>
+      </Box>
+    </Flex>
     <Line />
     {choosedPlan && (
       <>
@@ -54,6 +62,7 @@ PaymentsSection.propTypes = {
   handleChangeBillngPeriod: func.isRequired,
   cards: arrayOf(shape()),
   choosedPlan: string.isRequired,
+  goToPlans: func.isRequired,
   updateSubscription: func.isRequired,
   notificationError: func.isRequired
 };

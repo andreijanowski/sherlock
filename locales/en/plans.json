@@ -21,7 +21,7 @@
   "secureCreditCardPayment": "Secure credit card payment",
   "success": "Success",
   "successMessage": "Your subscription was successfully updated!",
-  "successButton": "Go back to dashboard",
+  "goBackToPlans": "Go back to plans",
   "promotion": {
     "startFirstLine": "Get ",
     "promotionPlan": "Sherlock Basic",
