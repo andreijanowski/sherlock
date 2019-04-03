@@ -15,7 +15,7 @@ import {
   fetchBusinessDishes,
   fetchBusinessOrders
 } from "actions/businesses";
-import { fetchStiripePlans } from "actions/stripe";
+import { fetchStripePlans } from "actions/stripe";
 import { Router } from "routes";
 import {
   LOGIN_SUCCESS,
@@ -40,7 +40,7 @@ function* fetchUserData() {
   yield put(fetchProfileCards());
   yield put(fetchProfileSubscriptions());
   yield put(fetchGroups());
-  yield put(fetchStiripePlans());
+  yield put(fetchStripePlans());
   const {
     rawData: { data }
   } = yield put.resolve(fetchProfileBusinesses());
