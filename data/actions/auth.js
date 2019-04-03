@@ -132,7 +132,8 @@ export const confirmMail = token => ({
         }
       }
     }
-  }
+  },
+  meta: { thunk: true }
 });
 
 export const connectStripe = (authCode, id) => ({

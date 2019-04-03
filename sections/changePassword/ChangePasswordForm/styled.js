@@ -1,12 +1,5 @@
 import styled from "styled-components";
 import { Box } from "@rebass/grid";
-import { Paragraph } from "components";
-
-export const SuccessMessageWrapper = styled(Paragraph)`
-  max-width: 558px;
-  margin: 0 auto;
-  text-align: center;
-`;
 
 export const HelperTitle = styled.h2`
   margin: 0 0 16px 0;

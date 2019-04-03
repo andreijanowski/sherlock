@@ -7,7 +7,7 @@ import { InputField, Button, PasswordStrengthMeter } from "components";
 import { changePasswordByToken as changePasswordByTokenAction } from "actions/auth";
 import { validatePassword, validatePasswordsMatch } from "utils/validators";
 import { Box } from "@rebass/grid";
-import { HelperTitle, Separator, SuccessMessageWrapper } from "./styled";
+import { HelperTitle, Separator } from "./styled";
 
 class ChangePasswordForm extends PureComponent {
   constructor(props) {
@@ -31,11 +31,8 @@ class ChangePasswordForm extends PureComponent {
 
   render() {
     const { t } = this.props;
-    const { successMessage } = this.state;
 
-    return successMessage ? (
-      <SuccessMessageWrapper>{successMessage}</SuccessMessageWrapper>
-    ) : (
+    return (
       <Form
         onSubmit={this.submitForm}
         render={({ handleSubmit, pristine, invalid, submitting, values }) => (
