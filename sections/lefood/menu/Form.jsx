@@ -21,7 +21,7 @@ class DishForm extends PureComponent {
   };
 
   render() {
-    const { t, addDish, addPicture } = this.props;
+    const { t, addPicture, addDish } = this.props;
     const { picture } = this.state;
     return (
       <FinalForm
@@ -104,7 +104,7 @@ class DishForm extends PureComponent {
               />
             </Box>
             <Box my={4}>
-              <FormCheckbox name="unavailable" label={t("availability")} />
+              <FormCheckbox name="available" label={t("availability")} />
             </Box>
             <Box mb={3}>
               <Button fluid styleName="blue" type="submit">
