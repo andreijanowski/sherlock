@@ -31,12 +31,6 @@ export const getPlanName = plan => {
         nextPlanName: "essential"
       };
     }
-    // if (
-    //   !plan.nextPaymentAt &&
-    //   new Date(plan.trialEndsAt).getTime() < new Date().getTime()
-    // ) {
-    //   return essentialPlan;
-    // }
     return {
       currentPlanName: currentPlan,
       nextPlanName: currentPlan

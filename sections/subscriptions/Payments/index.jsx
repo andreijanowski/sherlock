@@ -4,6 +4,7 @@ import { Flex, Box } from "@rebass/grid";
 import { Elements } from "react-stripe-elements";
 import { Wrapper } from "../styled";
 import { Price, Container, Line } from "./styled";
+// TODO: After MVP use CardsModal for allowing user to choose from saved cards
 // import CardsModal from "./CardsModal";
 import CardForm from "./CardForm";
 
@@ -11,6 +12,7 @@ const PaymentsSection = ({
   t,
   billingInterval,
   handleChangeBillngPeriod,
+  // TODO: After MVP use CardsModal for allowing user to choose from saved cards
   // cards,
   choosedPlan,
   goToPlans,
@@ -48,6 +50,7 @@ const PaymentsSection = ({
         <Line />
       </>
     )}
+    {/* TODO: After MVP use CardsModal for allowing user to choose from saved cards */}
     {/* {cards && <CardsModal {...{ cards, isOpen: false, t }} />} */}
     <Elements>
       <CardForm {...{ t, updateSubscription, notificationError }} />
