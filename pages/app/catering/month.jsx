@@ -7,6 +7,7 @@ import Month from "sections/catering/month";
 import CateringLayout from "sections/catering/Layout";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/users";
+import { setCateringForEditing } from "actions/caterings";
 
 const namespaces = ["catering", "app"];
 
@@ -36,7 +37,8 @@ class MonthPage extends PureComponent {
       business,
       businesses,
       changeCurrentBusiness,
-      caterings
+      caterings,
+      setEditedCatering
     } = this.props;
     const { view } = this.state;
     const { currency } = business || {};
@@ -54,8 +56,10 @@ class MonthPage extends PureComponent {
         <Month
           {...{
             t,
+            lng,
             caterings,
             currency,
+            setEditedCatering,
             timeZone: business && business.timezone
           }}
         />
@@ -66,6 +70,7 @@ class MonthPage extends PureComponent {
 
 MonthPage.propTypes = {
   t: func.isRequired,
+  setEditedCatering: func.isRequired,
   lng: string.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
@@ -88,7 +93,8 @@ export default requireAuth(true)(
         caterings: state.caterings.data
       }),
       {
-        changeCurrentBusiness: setCurrentBusiness
+        changeCurrentBusiness: setCurrentBusiness,
+        setEditedCatering: setCateringForEditing
       }
     )(MonthPage)
   )

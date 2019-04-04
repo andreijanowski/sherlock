@@ -27,6 +27,17 @@
       "yes": "Yes",
       "no": "No"
     },
+    "outdoors": "Outdoors",
+    "outdoorsOption": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "corporateEvent": "Corporate event",
+    "corporateEventOption": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "companyName": "Company name",
     "specifications": "Specifications",
     "additional": "Additional",
     "location": "Location"

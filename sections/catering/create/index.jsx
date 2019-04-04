@@ -7,51 +7,33 @@ import {
   FormInput,
   Button,
   FormTimePicker,
-  MenusUploader,
   FormDaypicker
 } from "components";
 import { Flex, Box } from "@rebass/grid";
-import {
-  required,
-  isNotNegativeInt,
-  composeValidators,
-  isNotNegativeNumber
-} from "utils/validators";
 import { Router } from "routes";
-import { Form } from "./styled";
+import { Form } from "../styled";
 
-const CreateEventForm = ({ t }) => (
+const CreateCateringForm = ({ t, handleFormSubmit }) => (
   <FinalForm
     initialValues={{
-      cutlery: "true",
-      chefAttendance: "false"
+      cutlery: false,
+      chefAttendance: false,
+      outdoors: false,
+      corporateEvent: false
     }}
-    onSubmit={catering => {
-      console.log(catering);
-    }}
+    onSubmit={v => handleFormSubmit(v)}
     render={({ handleSubmit }) => (
       <Form onSubmit={handleSubmit}>
         <H3 mt={3}>{t("createEvent.basicInfo")}</H3>
         <Flex flexWrap="wrap" mx={-2}>
           <Box width={[1, 1 / 2]} px={2}>
-            <FormInput
-              name="cateringName"
-              label={t("createEvent.name")}
-              validate={required(t)}
-            />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <FormInput
-              name="price"
-              label={t("createEvent.price")}
-              validate={composeValidators(required(t), isNotNegativeNumber(t))}
-            />
+            <FormInput name="name" label={t("createEvent.name")} />
           </Box>
           <Box width={[1 / 2, 1 / 3]} px={2}>
-            <FormTimePicker name="fromHour" label={t("createEvent.from")} />
+            <FormTimePicker name="from" label={t("createEvent.from")} />
           </Box>
           <Box width={[1 / 2, 1 / 3]} px={2}>
-            <FormTimePicker name="toHour" label={t("createEvent.to")} />
+            <FormTimePicker name="to" label={t("createEvent.to")} />
           </Box>
           <Box width={[1, 1 / 3]} px={2}>
             <FormDaypicker name="date" label={t("createEvent.date")} />
@@ -63,7 +45,6 @@ const CreateEventForm = ({ t }) => (
             <FormInput
               name="numberOfServings"
               label={t("createEvent.numberOfServings")}
-              validate={composeValidators(required(t), isNotNegativeInt(t))}
             />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
@@ -76,7 +57,23 @@ const CreateEventForm = ({ t }) => (
             <FormInput
               name="numberOfWaiters"
               label={t("createEvent.numberOfWaiters")}
-              validate={composeValidators(required(t), isNotNegativeInt(t))}
+            />
+          </Box>
+          <Box width={[1, 1 / 2]} px={2}>
+            <FormInput name="userName" label={t("createEvent.userName")} />
+          </Box>
+          <Box width={[1, 1 / 2]} px={2}>
+            <FormInput name="email" label={t("createEvent.email")} />
+          </Box>
+          <Box width={[1, 1 / 2]} px={2}>
+            <Field
+              name="outdoors"
+              component={FormDropdown}
+              label={t("createEvent.outdoors")}
+              items={[
+                { label: t("createEvent.outdoorsOption.yes"), value: true },
+                { label: t("createEvent.outdoorsOption.no"), value: false }
+              ]}
             />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
@@ -85,8 +82,8 @@ const CreateEventForm = ({ t }) => (
               component={FormDropdown}
               label={t("createEvent.cutlery")}
               items={[
-                { label: t("createEvent.cutleryOption.yes"), value: "true" },
-                { label: t("createEvent.cutleryOption.no"), value: "false" }
+                { label: t("createEvent.cutleryOption.yes"), value: true },
+                { label: t("createEvent.cutleryOption.no"), value: false }
               ]}
             />
           </Box>
@@ -98,50 +95,42 @@ const CreateEventForm = ({ t }) => (
               items={[
                 {
                   label: t("createEvent.chefAttendanceOption.yes"),
-                  value: "true"
+                  value: true
                 },
                 {
                   label: t("createEvent.chefAttendanceOption.no"),
-                  value: "false"
+                  value: false
+                }
+              ]}
+            />
+          </Box>
+          <Box width={[1, 1 / 2]} px={2}>
+            <Field
+              name="corporateEvent"
+              component={FormDropdown}
+              label={t("createEvent.corporateEvent")}
+              items={[
+                {
+                  label: t("createEvent.corporateEventOption.yes"),
+                  value: true
+                },
+                {
+                  label: t("createEvent.corporateEventOption.no"),
+                  value: false
                 }
               ]}
             />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
             <FormInput
-              name="specifications"
-              label={t("createEvent.specifications")}
+              name="companyName"
+              label={t("createEvent.companyName")}
             />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <FormInput name="additional" label={t("createEvent.additional")} />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
             <FormInput
-              name="location"
-              label={t("createEvent.location")}
-              validate={required(t)}
-            />
-          </Box>
-        </Flex>
-        <Flex flexWrap="wrap" mx={-2}>
-          <Box width={1} px={2}>
-            <MenusUploader
-              {...{
-                // placeholder, waiting for API connection
-                menus: [
-                  {
-                    displayName: "photo",
-                    id: "b5ea2478-7224-436e-a57d-cdda2ea49630",
-                    url:
-                      "https://thefooddetective-staging.s3.amazonaws.com/uploads/menu/file/b5ea2478-7224-436e-a57d-cdda2ea49630/file.jpeg"
-                  }
-                ],
-                // waiting for API connection
-                addMenu: null,
-                updateMenu: null,
-                removeMenu: null
-              }}
+              name="specifications"
+              label={t("createEvent.specifications")}
             />
           </Box>
         </Flex>
@@ -169,8 +158,9 @@ const CreateEventForm = ({ t }) => (
   />
 );
 
-CreateEventForm.propTypes = {
-  t: func.isRequired
+CreateCateringForm.propTypes = {
+  t: func.isRequired,
+  handleFormSubmit: func.isRequired
 };
 
-export default CreateEventForm;
+export default CreateCateringForm;

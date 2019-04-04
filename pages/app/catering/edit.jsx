@@ -7,10 +7,11 @@ import CateringLayout from "sections/catering/Layout";
 import EditCateringForm from "sections/catering/edit";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/users";
+import { Router } from "routes";
 
 const namespaces = ["catering", "app", "forms"];
 
-class CreateCateringPage extends PureComponent {
+class EditCateringPage extends PureComponent {
   static async getInitialProps({ ctx }) {
     const pageProps = loadTranslations(ctx, namespaces);
 
@@ -19,13 +20,27 @@ class CreateCateringPage extends PureComponent {
     };
   }
 
-  handleFormSubmit = values => {
-    console.log(values);
-    // post
+  componentDidMount() {
+    const { editedCatering, lng } = this.props;
+    if (!editedCatering) {
+      Router.pushRoute(`/${lng}/app/catering/month`);
+    }
+  }
+
+  handleFormSubmit = (values, id) => {
+    console.log(values, id);
+    // patch
   };
 
   render() {
-    const { t, lng, business, businesses, changeCurrentBusiness } = this.props;
+    const {
+      t,
+      lng,
+      business,
+      businesses,
+      changeCurrentBusiness,
+      editedCatering
+    } = this.props;
     return (
       <CateringLayout
         {...{
@@ -37,13 +52,18 @@ class CreateCateringPage extends PureComponent {
           isAddActionHidden: true
         }}
       >
-        <EditCateringForm {...{ t, handleFormSubmit: this.handleFormSubmit }} />
+        {editedCatering && (
+          <EditCateringForm
+            {...{ t, editedCatering, handleFormSubmit: this.handleFormSubmit }}
+          />
+        )}
       </CateringLayout>
     );
   }
 }
 
-CreateCateringPage.propTypes = {
+EditCateringPage.propTypes = {
+  editedCatering: shape(),
   t: func.isRequired,
   lng: string.isRequired,
   business: shape(),
@@ -51,9 +71,10 @@ CreateCateringPage.propTypes = {
   businesses: arrayOf(shape())
 };
 
-CreateCateringPage.defaultProps = {
+EditCateringPage.defaultProps = {
   business: null,
-  businesses: null
+  businesses: null,
+  editedCatering: null
 };
 
 export default requireAuth(true)(
@@ -61,11 +82,12 @@ export default requireAuth(true)(
     connect(
       state => ({
         business: state.users.currentBusiness.data,
-        businesses: state.users.profileBusinesses.data
+        businesses: state.users.profileBusinesses.data,
+        editedCatering: state.caterings.editedCatering
       }),
       {
         changeCurrentBusiness: setCurrentBusiness
       }
-    )(CreateCateringPage)
+    )(EditCateringPage)
   )
 );

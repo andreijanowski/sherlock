@@ -1,7 +1,8 @@
 import {
   POST_CATERING_SUCCESS,
   PATCH_CATERING_SUCCESS,
-  DELETE_CATERING_REQUEST
+  DELETE_CATERING_REQUEST,
+  SET_EDIT_CATERING
 } from "types/caterings";
 import {
   FETCH_BUSINESS_CATERINGS_REQUEST,
@@ -14,7 +15,8 @@ const initialState = {
   data: [],
   isFetching: false,
   isFailed: false,
-  isSucceeded: false
+  isSucceeded: false,
+  editedCatering: null
 };
 
 const reducer = (state = initialState, { type, payload, meta }) => {
@@ -74,6 +76,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       const newState = { ...state };
       newState.data = newState.data.filter(c => c.id !== meta.id);
       return newState;
+    }
+
+    case SET_EDIT_CATERING: {
+      return { ...state, editedCatering: payload.editedCatering };
     }
 
     default: {

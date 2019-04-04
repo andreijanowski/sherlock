@@ -12,7 +12,7 @@ const EventDetails = ({ t, event, chooseEvent }) => (
     </Header>
     <Details>
       {event.resource.map(e => (
-        <EventWrapper onClick={() => chooseEvent(e)}>
+        <EventWrapper onClick={() => chooseEvent(e)} key={e.resource.id}>
           <Text>{e.resource.name}</Text>
           <Text>
             <BoldText>{`${moment(e.resource.date).format("Do MMMM")}, ${moment(

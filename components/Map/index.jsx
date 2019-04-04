@@ -20,7 +20,7 @@ const GoogleMap = ({ google, center, points }) => (
     zoom={16}
   >
     {points.map(p => (
-      <Marker {...p} icon="/static/mapMarker.svg" />
+      <Marker {...p} key={p.name} icon="/static/mapMarker.svg" />
     ))}
   </Map>
 );

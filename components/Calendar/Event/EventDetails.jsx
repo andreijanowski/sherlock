@@ -1,7 +1,8 @@
 import { Button, Map } from "components";
-import { shape, func } from "prop-types";
+import { shape, func, string } from "prop-types";
 import moment from "moment";
 import { normalizePrice } from "utils/normalizers";
+import { Router } from "routes";
 import {
   Header,
   MainInfo,
@@ -18,7 +19,7 @@ import {
   MapWrapper
 } from "./styled";
 
-const EventDetails = ({ t, event }) => (
+const EventDetails = ({ t, lng, event, setEditedCatering }) => (
   <>
     <Header>
       <MainInfo>
@@ -39,7 +40,12 @@ const EventDetails = ({ t, event }) => (
         }`}</Price>
       </MainInfo>
       <IconWrapper>
-        <EditIcon />
+        <EditIcon
+          onClick={() => {
+            setEditedCatering(event.resource);
+            Router.pushRoute(`/${lng}/app/catering/edit/`);
+          }}
+        />
       </IconWrapper>
     </Header>
     <Details>
@@ -80,10 +86,13 @@ const EventDetails = ({ t, event }) => (
         <AdditionalParagraph>{event.resource.additional}</AdditionalParagraph>
       </>
     )}
-    {event.resource.location && (
+    {event.resource.address && (
       <MapWrapper>
         <Map
-          center={event.resource.location}
+          center={{
+            lat: event.resource.address.geolocationLat,
+            lng: event.resource.address.geolocationLng
+          }}
           points={[{ name: event.resource.name }]}
         />
       </MapWrapper>
@@ -98,7 +107,9 @@ const EventDetails = ({ t, event }) => (
 
 EventDetails.propTypes = {
   event: shape().isRequired,
-  t: func.isRequired
+  t: func.isRequired,
+  lng: string.isRequired,
+  setEditedCatering: func.isRequired
 };
 
 export default EventDetails;

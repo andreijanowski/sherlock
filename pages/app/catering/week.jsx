@@ -7,6 +7,7 @@ import CateringLayout from "sections/catering/Layout";
 import Week from "sections/catering/week";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/users";
+import { setCateringForEditing } from "actions/caterings";
 import isServer from "utils/isServer";
 
 const namespaces = ["catering", "app"];
@@ -37,7 +38,8 @@ class WeekPage extends PureComponent {
       business,
       businesses,
       changeCurrentBusiness,
-      caterings
+      caterings,
+      setEditedCatering
     } = this.props;
     const { view } = this.state;
     const { currency } = business || {};
@@ -56,8 +58,10 @@ class WeekPage extends PureComponent {
           <Week
             {...{
               t,
+              lng,
               caterings,
               currency,
+              setEditedCatering,
               timeZone: business && business.timezone
             }}
           />
@@ -69,6 +73,7 @@ class WeekPage extends PureComponent {
 
 WeekPage.propTypes = {
   t: func.isRequired,
+  setEditedCatering: func.isRequired,
   lng: string.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
@@ -91,7 +96,8 @@ export default requireAuth(true)(
         caterings: state.caterings.data
       }),
       {
-        changeCurrentBusiness: setCurrentBusiness
+        changeCurrentBusiness: setCurrentBusiness,
+        setEditedCatering: setCateringForEditing
       }
     )(WeekPage)
   )

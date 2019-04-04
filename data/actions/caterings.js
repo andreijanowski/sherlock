@@ -3,7 +3,8 @@ import {
   POST_CATERING_REQUEST,
   PATCH_CATERING_REQUEST,
   DELETE_CATERING_REQUEST,
-  SEND_CATERING_OFFER_REQUEST
+  SEND_CATERING_OFFER_REQUEST,
+  SET_EDIT_CATERING
 } from "types/caterings";
 import { getRelationships } from "./utils";
 
@@ -69,4 +70,11 @@ export const deleteCatering = id => ({
     endpoint: `/api/v1/caterings/${id}`
   },
   meta: { thunk: true, id }
+});
+
+export const setCateringForEditing = editedCatering => ({
+  type: SET_EDIT_CATERING,
+  payload: {
+    editedCatering
+  }
 });
