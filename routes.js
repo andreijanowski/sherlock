@@ -64,7 +64,4 @@ module.exports = routes()
     "app/subscriptions/plans",
     `/:lng(${languagesPattern})/app/subscriptions/plans`
   )
-  .add(
-    "app/subscriptions/payments",
-    `/:lng(${languagesPattern})/app/subscriptions/payments`
-  );
+  .add("app/subscriptions", `/:lng(${languagesPattern})/app/subscriptions`);

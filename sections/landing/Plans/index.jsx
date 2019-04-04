@@ -1,12 +1,12 @@
 import React from "react";
 import { Flex, Box } from "@rebass/grid";
 import { func, string } from "prop-types";
-import { Plans, PlansBillingPeriod } from "components";
+import { Plans, PlansBillingInterval } from "components";
 import { H2Styled, ParagraphStyled, PlansWrapper, TextWrapper } from "./styled";
 import PromotionBoard from "./promotionBoard";
 
 const PlansMainComponent = React.forwardRef(
-  ({ t, lng, billingPeriod, handleChangeBillngPeriod }, ref) => (
+  ({ t, lng, billingInterval, handleChangeBillngPeriod }, ref) => (
     <Flex flexDirection="column" width={1} mb={6} px={3}>
       <TextWrapper>
         <Flex
@@ -18,8 +18,8 @@ const PlansMainComponent = React.forwardRef(
           <Box width={[1, "auto"]}>
             <H2Styled>{t("plans:header")}</H2Styled>
           </Box>
-          <PlansBillingPeriod
-            {...{ t, billingPeriod, handleChangeBillngPeriod }}
+          <PlansBillingInterval
+            {...{ t, billingInterval, handleChangeBillngPeriod }}
           />
           <Box />
         </Flex>
@@ -27,7 +27,7 @@ const PlansMainComponent = React.forwardRef(
         <PromotionBoard {...{ t }} />
       </TextWrapper>
       <PlansWrapper ref={ref}>
-        <Plans {...{ t, lng, billingPeriod, isAuthenticated: false }} />
+        <Plans {...{ t, lng, billingInterval, isAuthenticated: false }} />
       </PlansWrapper>
     </Flex>
   )
@@ -36,7 +36,7 @@ const PlansMainComponent = React.forwardRef(
 PlansMainComponent.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  billingPeriod: string.isRequired,
+  billingInterval: string.isRequired,
   handleChangeBillngPeriod: func.isRequired
 };
 

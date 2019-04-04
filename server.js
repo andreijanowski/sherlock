@@ -40,7 +40,6 @@ i18n
         "openingHours",
         "lefood",
         "passwordSettings",
-        "payments",
         "picturesAndMenus",
         "plans",
         "publishModal",

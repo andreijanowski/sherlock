@@ -25,10 +25,43 @@ export const CardWrapper = styled(Flex).attrs({
   background-color: rgba(
     ${p => `${p.theme.colors.blue}, ${p.selected ? 1 : 0.1}`}
   );
-  cursor: pointer;
+  ${p =>
+    !p.disabled &&
+    `
+    cursor: pointer;
 
-  &:hover {
-    color: rgb(${p => p.theme.colors.white});
-    background-color: rgb(${p => p.theme.colors.blue});
+    &:hover {
+      color: rgb(${p.theme.colors.white});
+      background-color: rgb(${p.theme.colors.blue});
+    }
+  `};
+`;
+
+export const Price = styled.div`
+  color: rgb(${p => p.theme.colors.dark});
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f36};
+  line-height: 1.333;
+  margin-bottom: 16px;
+  text-align: center;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    text-align: start;
   }
+  small {
+    font-size: ${p => p.theme.fontSizes.f16};
+  }
+`;
+
+export const Container = styled(Flex).attrs({
+  width: 1,
+  flexDirection: "column"
+})`
+  max-width: 600px;
+`;
+
+export const Line = styled.div`
+  height: 1px;
+  margin-left: -32px;
+  width: calc(100% + 64px);
+  background-color: rgb(${p => p.theme.colors.linkWaterLight});
 `;
