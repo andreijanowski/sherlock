@@ -216,8 +216,8 @@ class LefoodLayout extends PureComponent {
                     complete={`${profileCompletedPercents}% ${t("complete")}`}
                   />
                 )}
-                <Flex width={1} mt={3} mb={2}>
-                  <Box pr={3}>
+                <Flex width={1} mt={3} flexWrap="wrap">
+                  <Box pr={3} mb={2}>
                     <Link route="/app/lefood/orders/" lng={lng}>
                       <Button
                         as="a"
@@ -231,7 +231,7 @@ class LefoodLayout extends PureComponent {
                       </Button>
                     </Link>
                   </Box>
-                  <Box pr={3}>
+                  <Box pr={3} mb={2}>
                     <Select
                       items={averageDeliveryTimeList}
                       value={currentAverageDeliveryTime}
@@ -255,7 +255,7 @@ class LefoodLayout extends PureComponent {
                       )}
                     />
                   </Box>
-                  <Box pr={3}>
+                  <Box pr={3} mb={2}>
                     <Button styleName="withImage">
                       <ButtonWithImageIconWrapper>
                         <Price />
@@ -282,7 +282,7 @@ class LefoodLayout extends PureComponent {
                       </ButtonWithImageText>
                     </Button>
                   </Box>
-                  <Box pr={3}>
+                  <Box pr={3} mb={2}>
                     {canEditBusinessData ? (
                       <Link route="/app/lefood/menu/" lng={lng}>
                         <Button
@@ -312,7 +312,7 @@ class LefoodLayout extends PureComponent {
                       </Button>
                     )}
                   </Box>
-                  <Box pr={3}>
+                  <Box pr={3} mb={2}>
                     {canEditBusinessData ? (
                       <Link route="/app/lefood/ordering-hours/" lng={lng}>
                         <Button
@@ -345,7 +345,7 @@ class LefoodLayout extends PureComponent {
                       </Button>
                     )}
                   </Box>
-                  <Box pr={3}>
+                  <Box pr={3} mb={2}>
                     {canEditBusinessData ? (
                       <Link route="/app/lefood/delivery-area/" lng={lng}>
                         <Button
@@ -378,7 +378,7 @@ class LefoodLayout extends PureComponent {
                       </Button>
                     )}
                   </Box>
-                  <Box pr={3}>
+                  <Box pr={3} mb={2}>
                     {visibleInLefood ? (
                       <Button
                         styleName="withImage"

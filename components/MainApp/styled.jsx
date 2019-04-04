@@ -1,12 +1,17 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
-export const Wrapper = styled(Flex).attrs({
-  width: 1,
+export const Wrapper = styled(Flex).attrs(p => ({
+  width: [
+    1,
+    p.withMenu ? "calc(100% - 241px)" : "calc(100% - 80px)",
+    p.withMenu ? "calc(100% - 321px)" : "calc(100% - 80px)",
+    p.withMenu ? "calc(100% - 361px)" : "calc(100% - 80px)"
+  ],
   flexDirection: "column",
   p: 3,
   mt: [60, 0]
-})`
+}))`
   position: relative;
 `;
 
@@ -112,7 +117,7 @@ export const Avatar = styled.div`
   border-radius: 16px;
   cursor: pointer;
   background-color: rgb(${p => p.theme.colors.dark});
-  background-image: url(${p => p.src});
+  ${p => p.src && `background-image: url(${p.src});`}
   background-size: cover;
   background-position: center;
 `;

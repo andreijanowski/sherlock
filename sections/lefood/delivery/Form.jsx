@@ -12,7 +12,10 @@ const DeliveryForm = ({ t, addDelivery }) => (
     render={({ handleSubmit, form: { reset } }) => (
       <form
         onSubmit={e => {
-          handleSubmit(e).then(() => reset());
+          const promise = handleSubmit(e);
+          if (promise && promise.then) {
+            promise.then(() => reset());
+          }
         }}
       >
         <H3>{t("delivery")}</H3>
@@ -31,6 +34,14 @@ const DeliveryForm = ({ t, addDelivery }) => (
               validate={required(t)}
               label={t("priceCentsLabel")}
               placeholder={t("priceCentsPlaceholder")}
+              parse={normalizePrice}
+            />
+          </Box>
+          <Box mr={2}>
+            <FormInput
+              name="freeFromCents"
+              label={t("freeFromCentsLabel")}
+              placeholder={t("freeFromCentsPlaceholder")}
               parse={normalizePrice}
             />
           </Box>

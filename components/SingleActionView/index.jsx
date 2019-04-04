@@ -38,7 +38,7 @@ const SingleActionView = ({
           </LogoMobileWrapper>
         </BackWrapper>
         <H2Styled textAlign="center">{actionTitle}</H2Styled>
-        {actionDescription.type ? (
+        {actionDescription && actionDescription.type ? (
           actionDescription
         ) : (
           <ParagraphStyled>{actionDescription}</ParagraphStyled>
