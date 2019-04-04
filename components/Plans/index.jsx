@@ -70,7 +70,7 @@ const Plans = ({
           color: "hanPurple",
           name: "professional",
           onClickActionButton: () => {
-            window.location.href = "mailto:hello@foodetective.co";
+            window.open("mailto:hello@foodetective.co", "_blank");
           }
         }}
       />
