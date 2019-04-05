@@ -48,6 +48,7 @@ const Plan = ({ t, color, name, billingPeriod, onClickActionButton }) => (
       )}
       <Button onClick={onClickActionButton} styleName={color}>
         {t(`plans:${name}.buttonText`)}
+        {name === "premium" && t(`plans:${name}.price.${billingPeriod}`)}
       </Button>
     </PriceWrapper>
     <List {...{ t, name, color }} />
