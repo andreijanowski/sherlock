@@ -6,7 +6,8 @@ export const FileIconWrapper = styled(Flex).attrs({
   alignItems: "center",
   justifyContent: "center",
   as: "a",
-  target: "_blank"
+  target: "_blank",
+  rel: "noreferrer noopener"
 })`
   height: 60px;
   background-color: rgb(${p => p.theme.colors.white});

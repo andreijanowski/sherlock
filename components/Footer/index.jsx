@@ -24,7 +24,19 @@ const Footer = ({ t }) => (
       <MenuWrapper>
         <Box width={[1 / 2, "auto"]} p={2}>
           <ColumnTitle>{t("navigation.columnOne.title")}</ColumnTitle>
-          <NavigationList {...{ t, columnName: "columnOne" }} />
+          <NavigationList
+            {...{
+              t,
+              columnName: "columnOne",
+              hrefs: {
+                "1": {
+                  href: "https://foodetective.typeform.com/to/tzqu8b",
+                  target: "_blank",
+                  rel: "noreferrer noopener"
+                }
+              }
+            }}
+          />
         </Box>
         <Box width={[1 / 2, "auto"]} p={2}>
           <ColumnTitle>{t("navigation.columnTwo.title")}</ColumnTitle>
@@ -40,12 +52,28 @@ const Footer = ({ t }) => (
             {...{
               t,
               columnName: "columnFour",
-              hrefs: [
-                "https://www.facebook.com/sherlock.foodetective/",
-                "https://www.linkedin.com/company/13981713/",
-                "https://twitter.com/GetSherlockNow",
-                "https://www.instagram.com/sherlock.foodetective.co"
-              ]
+              hrefs: {
+                "0": {
+                  href: "https://www.facebook.com/sherlock.foodetective/",
+                  target: "_blank",
+                  rel: "noreferrer noopener"
+                },
+                "1": {
+                  href: "https://www.linkedin.com/company/13981713/",
+                  target: "_blank",
+                  rel: "noreferrer noopener"
+                },
+                "2": {
+                  href: "https://twitter.com/GetSherlockNow",
+                  target: "_blank",
+                  rel: "noreferrer noopener"
+                },
+                "3": {
+                  href: "https://www.instagram.com/sherlock.foodetective.co",
+                  target: "_blank",
+                  rel: "noreferrer noopener"
+                }
+              }
             }}
           />
         </Box>
