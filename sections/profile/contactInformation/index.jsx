@@ -10,8 +10,8 @@ import {
 } from "components";
 import { Flex, Box } from "@rebass/grid";
 import setFieldData from "final-form-set-field-data";
+import countriesPhoneCodes from "utils/countriesPhoneCodes";
 import { Form } from "../styled";
-import { countriesPhoneCodes } from "./utils";
 
 const ContactInformationForm = ({ t, initialValues, handleSubmit }) =>
   initialValues ? (

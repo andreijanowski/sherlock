@@ -76,7 +76,7 @@ export const EditIcon = styled(FontAwesomeIcon).attrs({
 })``;
 
 export const Details = styled.div`
-  margin: 0 -32px;
+  margin: 0 -32px 16px;
   border-top: 1px solid rgba(${p => p.theme.colors.blue}, 0.08);
   border-bottom: 1px solid rgba(${p => p.theme.colors.blue}, 0.08);
   padding: 24px 32px 16px;

@@ -8,6 +8,9 @@ import EditCateringForm from "sections/catering/edit";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/users";
 import { Router } from "routes";
+import { timeToNumber, LoadingIndicator } from "components";
+import { patchCatering } from "actions/caterings";
+import fileToBase64 from "utils/fileToBase64";
 
 const namespaces = ["catering", "app", "forms"];
 
@@ -20,6 +23,10 @@ class EditCateringPage extends PureComponent {
     };
   }
 
+  state = {
+    sending: false
+  };
+
   componentDidMount() {
     const { editedCatering, lng } = this.props;
     if (!editedCatering) {
@@ -27,9 +34,20 @@ class EditCateringPage extends PureComponent {
     }
   }
 
-  handleFormSubmit = (values, id) => {
-    console.log(values, id);
-    // patch
+  handleFormSubmit = async ({ menu, ...values }, id) => {
+    const { updateCatering, lng } = this.props;
+    const updatedCatering = {
+      ...values,
+      from: timeToNumber(values.from),
+      to: timeToNumber(values.to)
+    };
+    if (menu && menu.name) {
+      updatedCatering.menu = await fileToBase64(menu);
+    }
+    this.setState({ sending: true });
+    updateCatering(id, updatedCatering)
+      .then(() => Router.pushRoute(`/${lng}/app/catering/month`))
+      .catch(() => this.setState({ sending: false }));
   };
 
   render() {
@@ -41,6 +59,8 @@ class EditCateringPage extends PureComponent {
       changeCurrentBusiness,
       editedCatering
     } = this.props;
+    const { sending } = this.state;
+    const showForm = !sending && editedCatering;
     return (
       <CateringLayout
         {...{
@@ -52,10 +72,17 @@ class EditCateringPage extends PureComponent {
           isAddActionHidden: true
         }}
       >
-        {editedCatering && (
+        {showForm ? (
           <EditCateringForm
-            {...{ t, editedCatering, handleFormSubmit: this.handleFormSubmit }}
+            {...{
+              t,
+              lng,
+              editedCatering,
+              handleFormSubmit: this.handleFormSubmit
+            }}
           />
+        ) : (
+          <LoadingIndicator />
         )}
       </CateringLayout>
     );
@@ -68,6 +95,7 @@ EditCateringPage.propTypes = {
   lng: string.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
+  updateCatering: func.isRequired,
   businesses: arrayOf(shape())
 };
 
@@ -86,7 +114,8 @@ export default requireAuth(true)(
         editedCatering: state.caterings.editedCatering
       }),
       {
-        changeCurrentBusiness: setCurrentBusiness
+        changeCurrentBusiness: setCurrentBusiness,
+        updateCatering: patchCatering
       }
     )(EditCateringPage)
   )

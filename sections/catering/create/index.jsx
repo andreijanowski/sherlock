@@ -1,42 +1,111 @@
 import React from "react";
-import { func } from "prop-types";
+import { func, string, bool } from "prop-types";
 import { Form as FinalForm, Field } from "react-final-form";
 import {
   H3,
-  FormDropdown,
-  FormInput,
   Button,
+  FormInput,
+  FormSelect,
+  FormTextarea,
+  FormDropdown,
+  FormDaypicker,
   FormTimePicker,
-  FormDaypicker
+  WhenFieldChanges,
+  LoadingIndicator
 } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Router } from "routes";
+import countriesPhoneCodes from "utils/countriesPhoneCodes";
+import { getSubdivisions, countries } from "utils/iso-3166-2";
 import { Form } from "../styled";
 
-const CreateCateringForm = ({ t, handleFormSubmit }) => (
+const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
   <FinalForm
     initialValues={{
-      cutlery: false,
-      chefAttendance: false,
+      corporateEvent: false,
       outdoors: false,
-      corporateEvent: false
+      chefAttendance: false,
+      cutlery: false
     }}
-    onSubmit={v => handleFormSubmit(v)}
-    render={({ handleSubmit }) => (
+    onSubmit={handleFormSubmit}
+    render={({ handleSubmit, values }) => (
       <Form onSubmit={handleSubmit}>
         <H3 mt={3}>{t("createEvent.basicInfo")}</H3>
         <Flex flexWrap="wrap" mx={-2}>
           <Box width={[1, 1 / 2]} px={2}>
             <FormInput name="name" label={t("createEvent.name")} />
           </Box>
-          <Box width={[1 / 2, 1 / 3]} px={2}>
+          <Box width={[1, 1 / 2]} px={2}>
+            <FormDaypicker name="date" label={t("createEvent.date")} />
+          </Box>
+          <Box width={[1 / 2, 1 / 2]} px={2}>
             <FormTimePicker name="from" label={t("createEvent.from")} />
           </Box>
-          <Box width={[1 / 2, 1 / 3]} px={2}>
+          <Box width={[1 / 2, 1 / 2]} px={2}>
             <FormTimePicker name="to" label={t("createEvent.to")} />
           </Box>
-          <Box width={[1, 1 / 3]} px={2}>
-            <FormDaypicker name="date" label={t("createEvent.date")} />
+        </Flex>
+        <H3 mt={3}>{t("createEvent.address")}</H3>
+        <Flex flexWrap="wrap" mx={-2}>
+          <Box width={[1 / 2, 1 / 2]} px={2}>
+            <FormInput name="street" label={t("createEvent.street")} />
+          </Box>
+          <Box width={[1, 1 / 2]} px={2}>
+            <FormInput
+              name="streetNumber"
+              label={t("createEvent.streetNumber")}
+            />
+          </Box>
+          <Box width={[1, 1 / 2]} px={2}>
+            <FormInput name="city" label={t("createEvent.city")} />
+          </Box>
+          <Box width={[1 / 2, 1 / 2]} px={2}>
+            <FormInput name="postCode" label={t("createEvent.postCode")} />
+          </Box>
+          <WhenFieldChanges field="country" set="region" to={undefined} />
+          <Box width={[1, 1 / 2]} px={2}>
+            <Field
+              name="country"
+              component={FormSelect}
+              label={t("createEvent.country")}
+              items={countries}
+              showFlag
+            />
+          </Box>
+          <Box width={[1, 1 / 2]} px={2}>
+            <Field
+              name="region"
+              component={FormSelect}
+              label={t("createEvent.region")}
+              disabled={!values.country}
+              items={
+                (values.country &&
+                  values.country.value &&
+                  getSubdivisions(values.country.value)) ||
+                []
+              }
+            />
+          </Box>
+        </Flex>
+        <H3 mt={3}>{t("createEvent.client")}</H3>
+        <Flex flexWrap="wrap" mx={-2}>
+          <Box width={[1, 1 / 2]} px={2}>
+            <FormInput name="userName" label={t("createEvent.userName")} />
+          </Box>
+          <Box width={[1, 1 / 2]} px={2}>
+            <FormInput name="email" label={t("createEvent.email")} />
+          </Box>
+          <Box width={[1, 1 / 2]} px={2}>
+            <Field
+              name="phoneCountry"
+              component={FormSelect}
+              label={t("createEvent.country")}
+              items={countriesPhoneCodes}
+              showFlag
+            />
+          </Box>
+          <Box width={[1, 1 / 2]} px={2}>
+            <FormInput name="phone" label={t("createEvent.phone")} />
           </Box>
         </Flex>
         <H3 mt={3}>{t("createEvent.details")}</H3>
@@ -58,12 +127,6 @@ const CreateCateringForm = ({ t, handleFormSubmit }) => (
               name="numberOfWaiters"
               label={t("createEvent.numberOfWaiters")}
             />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <FormInput name="userName" label={t("createEvent.userName")} />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <FormInput name="email" label={t("createEvent.email")} />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
             <Field
@@ -133,15 +196,21 @@ const CreateCateringForm = ({ t, handleFormSubmit }) => (
               label={t("createEvent.specifications")}
             />
           </Box>
+          <Box width={[1, 1 / 2]} px={2}>
+            <FormInput name="currency" label={t("createEvent.currency")} />
+          </Box>
+          <Box width={1} px={2}>
+            <FormTextarea name="notes" label={t("createEvent.notes")} />
+          </Box>
         </Flex>
         <Flex flexWrap="wrap" justifyContent="center" mx={-2} mt={3}>
           <Box width={[1 / 2, 165]} px={2}>
             <Button
               styleName="formBlue"
               fluid
-              onClick={e => {
-                e.preventDefault();
-                Router.pushRoute("/app/catering/month/");
+              type="button"
+              onClick={() => {
+                Router.pushRoute(`/${lng}/app/catering/month/`);
               }}
             >
               {t("forms:cancel")}
@@ -153,6 +222,7 @@ const CreateCateringForm = ({ t, handleFormSubmit }) => (
             </Button>
           </Box>
         </Flex>
+        {sending && <LoadingIndicator />}
       </Form>
     )}
   />
@@ -160,7 +230,9 @@ const CreateCateringForm = ({ t, handleFormSubmit }) => (
 
 CreateCateringForm.propTypes = {
   t: func.isRequired,
-  handleFormSubmit: func.isRequired
+  lng: string.isRequired,
+  handleFormSubmit: func.isRequired,
+  sending: bool.isRequired
 };
 
 export default CreateCateringForm;

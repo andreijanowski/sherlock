@@ -31,6 +31,7 @@ export { default as BigCheckbox } from "./Form/BigCheckbox";
 export { default as FormCheckbox, RawCheckbox } from "./Form/Checkbox";
 export { default as FormTimePicker } from "./Form/TimePicker";
 export { default as AutoSave } from "./Form/AutoSave";
+export { default as File } from "./Form/File";
 export { default as Link } from "./Link";
 export { default as Dropzone } from "./Dropzone";
 export { default as DropzoneWithCropper } from "./Form/DropzoneWithCropper";

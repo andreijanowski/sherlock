@@ -68,7 +68,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       const editedCateringIndex = newState.data.findIndex(
         c => c.id === payload.rawData.data.id
       );
-      newState.data[editedCateringIndex] = catering;
+      newState.data[editedCateringIndex] = {
+        ...newState.data[editedCateringIndex],
+        ...catering
+      };
       return newState;
     }
 

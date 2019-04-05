@@ -35,17 +35,19 @@ const EventDetails = ({ t, lng, event, setEditedCatering }) => (
             .format("h:mm a")} `}
         </Time>
         <Name>{event.resource.name}</Name>
-        <Price>{`${normalizePrice(event.resource.priceCents)}${
-          event.resource.currency
-        }`}</Price>
+        {!!event.resource.priceCents && (
+          <Price>{`${normalizePrice(event.resource.priceCents)}${
+            event.resource.currency ? event.resource.currency : ""
+          }`}</Price>
+        )}
       </MainInfo>
-      <IconWrapper>
-        <EditIcon
-          onClick={() => {
-            setEditedCatering(event.resource);
-            Router.pushRoute(`/${lng}/app/catering/edit/`);
-          }}
-        />
+      <IconWrapper
+        onClick={() => {
+          setEditedCatering(event.resource);
+          Router.pushRoute(`/${lng}/app/catering/edit/`);
+        }}
+      >
+        <EditIcon />
       </IconWrapper>
     </Header>
     <Details>
@@ -97,10 +99,16 @@ const EventDetails = ({ t, lng, event, setEditedCatering }) => (
         />
       </MapWrapper>
     )}
-    {event.resource.menu && (
-      <Button styleName="blue" onClick={() => null} width="100%">
-        {t("downloadMenu")}
-      </Button>
+    {event.resource.menu.url && (
+      <a
+        href={event.resource.menu.url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Button styleName="blue" onClick={() => null} width="100%">
+          {t("downloadMenu")}
+        </Button>
+      </a>
     )}
   </>
 );

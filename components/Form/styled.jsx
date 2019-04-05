@@ -390,3 +390,7 @@ export const DisabledMessageCheckbox = styled.div`
   color: rgb(${p => p.theme.colors.ruby});
   font-weight: ${p => p.theme.fontWeights.regular};
 `;
+
+export const FileWrapper = styled(Flex)`
+  height: 60px;
+`;
