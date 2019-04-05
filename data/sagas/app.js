@@ -1,11 +1,6 @@
 import { all, put, takeEvery, select } from "redux-saga/effects";
-import { startSaga as startSagaAction } from "actions/app";
-import { APP_START, PATH_CHANGED } from "types/app";
+import { PATH_CHANGED } from "types/app";
 import { fetchProfileBusiness } from "actions/users";
-
-function* startSaga() {
-  yield put(startSagaAction());
-}
 
 function* handlePatchChangeSaga({ payload: { path } }) {
   switch (path) {
@@ -24,7 +19,4 @@ function* handlePatchChangeSaga({ payload: { path } }) {
   }
 }
 
-export default all([
-  takeEvery(APP_START, startSaga),
-  takeEvery(PATH_CHANGED, handlePatchChangeSaga)
-]);
+export default all([takeEvery(PATH_CHANGED, handlePatchChangeSaga)]);

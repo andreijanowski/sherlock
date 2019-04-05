@@ -46,7 +46,7 @@ function configureStore(initialState, { isServer }) {
 
   const persistConfig = {
     key: "sherlock",
-    whitelist: ["auth"],
+    whitelist: ["auth", "app"],
     storage
   };
 

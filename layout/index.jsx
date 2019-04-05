@@ -1,5 +1,5 @@
 import { Flex } from "@rebass/grid";
-import { NotificationsCenter } from "components";
+import { NotificationsCenter, CookiesModal } from "components";
 import styled from "styled-components";
 import { shape, node, oneOfType, string, func, element } from "prop-types";
 import GlobalStyles from "utils/globalStyles";
@@ -15,6 +15,7 @@ const MainLayout = ({ pageProps, Component }) => (
     <GlobalStyles />
     <Component {...{ ...pageProps }} />
     <NotificationsCenter />
+    <CookiesModal />
   </AppContainer>
 );
 

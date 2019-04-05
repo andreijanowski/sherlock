@@ -1,24 +1,14 @@
-import { APP_START, SAGA_START } from "types/app";
+import { ACCEPT_COOKIES } from "types/app";
 
 const reducer = (
   state = {
-    appStarted: false,
-    sagaStarted: false
+    cookiesAccepted: false
   },
   { type }
 ) => {
   switch (type) {
-    case APP_START: {
-      return {
-        ...state,
-        appStarted: true
-      };
-    }
-    case SAGA_START: {
-      return {
-        ...state,
-        sagaStarted: true
-      };
+    case ACCEPT_COOKIES: {
+      return { cookiesAccepted: true };
     }
     default: {
       return state;

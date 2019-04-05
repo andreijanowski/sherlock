@@ -62,4 +62,9 @@ export default createGlobalStyle`
     button {
       outline: none;
     }
+
+    a {
+      text-decoration: none;
+      color: rgb(${p => p.theme.colors.blue});
+    }
 `;
