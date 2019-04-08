@@ -4,9 +4,9 @@ import { colors } from "utils/theme";
 import { number, bool } from "prop-types";
 import { LoadingWrapper } from "./styled";
 
-const LoadingIndicator = ({ size, wrapped }) =>
-  wrapped ? (
-    <LoadingWrapper>
+const LoadingIndicator = ({ size, isWrapped, hasTransparentBackground }) =>
+  isWrapped ? (
+    <LoadingWrapper {...{ hasTransparentBackground }}>
       <PulseLoader size={size} color={`rgb(${colors.blue})`} loading />
     </LoadingWrapper>
   ) : (
@@ -15,12 +15,14 @@ const LoadingIndicator = ({ size, wrapped }) =>
 
 LoadingIndicator.propTypes = {
   size: number,
-  wrapped: bool
+  isWrapped: bool,
+  hasTransparentBackground: bool
 };
 
 LoadingIndicator.defaultProps = {
   size: 15,
-  wrapped: true
+  isWrapped: true,
+  hasTransparentBackground: false
 };
 
 export default LoadingIndicator;

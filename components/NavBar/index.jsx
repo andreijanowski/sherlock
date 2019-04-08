@@ -103,9 +103,11 @@ const NavBar = ({ t, lng, logout }) => (
       </SubitemsWrapper>
     </Item>
     <Item>
-      <Icon>
-        <Subscriptions />
-      </Icon>
+      <Link {...{ lng, route: `/app/subscriptions/` }}>
+        <Icon>
+          <Subscriptions />
+        </Icon>
+      </Link>
     </Item>
     <Item>
       <Icon>
