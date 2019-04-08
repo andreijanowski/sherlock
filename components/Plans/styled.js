@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { Flex, Box } from "@rebass/grid";
+import { theme } from "utils/theme";
 
 const alignCenterMobile = css`
   text-align: center;
@@ -94,6 +95,7 @@ export const Service = styled(Box).attrs({ mb: 1 })`
     p.isHighlighted
       ? `rgb(${p.theme.colors.dark})`
       : `rgba(${p.theme.colors.dark}, ${p.isLighter ? 0.4 : 0.8})`};
+  ${p => p.tooltipImage && "cursor:pointer;"}
 `;
 
 export const Badge = styled.span`
@@ -126,4 +128,10 @@ export const SwitchWrapper = styled(Box)`
     rgba(${p => p.theme.colors.dark}, 0.4),
     rgb(${p => p.theme.colors.blue})
   );
+`;
+
+export const Design = styled.img`
+  width: 300px;
+  border-radius: ${theme.radius.default};
+  box-shadow: 0 2px 6px 0 rgba(${theme.colors.blue}, 0.08);
 `;

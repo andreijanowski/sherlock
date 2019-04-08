@@ -4,6 +4,7 @@
   "mustBeLoggedIn": "You must be logged in to continue",
   "updateProfileSuccess": "Profile has been updated",
   "changePasswordSuccess": "Password has been changed",
+  "passwordResetSuccess": "Please check your email to see instructions on how to reset your password.",
   "errors": {
     "missing_attributes": {
       "Missing attributes": "Missing attributes"

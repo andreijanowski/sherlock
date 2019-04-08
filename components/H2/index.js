@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { Box } from "@rebass/grid";
 
-const H2 = styled(Box).attrs({
+const H2 = styled(Box).attrs(p => ({
   as: "h2",
-  mb: 3,
-  mt: 0
-})`
+  mb: p.mb || 3,
+  mt: p.mt || 0
+}))`
   font-size: ${p => p.theme.fontSizes.f24};
   font-weight: ${p => p.theme.fontWeights.semiBold};
   line-height: 1.25;

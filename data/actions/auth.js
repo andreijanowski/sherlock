@@ -3,9 +3,11 @@ import {
   FACEBOOK_LOGIN_REQUEST,
   REFRESH_TOKEN_REQUEST,
   LOGOUT,
-  REDIRECT_TO_REGISTER,
   REGISTER_REQUEST,
   CHANGE_PASSWORD_REQUEST,
+  RESET_PASSWORD_REQUEST,
+  CONFIRM_REQUEST,
+  CHANGE_PASSWORD_BY_TOKEN_REQUEST,
   CONNECT_STRIPE_REQUEST,
   SET_STRIPE_DATA
 } from "types/auth";
@@ -56,8 +58,6 @@ export const refreshToken = data => ({
 
 export const logout = () => ({ type: LOGOUT });
 
-export const redirectToRegister = () => ({ type: REDIRECT_TO_REGISTER });
-
 export const register = ({
   email,
   password,
@@ -73,7 +73,8 @@ export const register = ({
           email,
           password,
           passwordConfirmation,
-          termsAgreement
+          termsAgreement,
+          source: "sherlock"
         }
       },
       grant_type: "password"
@@ -102,6 +103,39 @@ export const changePassword = data => ({
   meta: { thunk: true }
 });
 
+export const resetPassword = data => ({
+  type: RESET_PASSWORD_REQUEST,
+  payload: {
+    data: {
+      data: {
+        type: "users",
+        attributes: data
+      }
+    },
+    endpoint: "/api/v1/users/request_reset_password",
+    authRequired: false,
+    method: "POST"
+  },
+  meta: { thunk: true }
+});
+
+export const confirmMail = token => ({
+  type: CONFIRM_REQUEST,
+  payload: {
+    method: "POST",
+    endpoint: `/api/v1/users/confirm`,
+    data: {
+      data: {
+        type: "users",
+        attributes: {
+          confirmation_token: token
+        }
+      }
+    }
+  },
+  meta: { thunk: true }
+});
+
 export const connectStripe = (authCode, id) => ({
   type: CONNECT_STRIPE_REQUEST,
   payload: {
@@ -115,6 +149,23 @@ export const connectStripe = (authCode, id) => ({
         }
       }
     },
+    method: "PATCH"
+  },
+  meta: { thunk: true }
+});
+
+export const changePasswordByToken = data => ({
+  type: CHANGE_PASSWORD_BY_TOKEN_REQUEST,
+  payload: {
+    data: {
+      data: {
+        type: "users",
+        attributes: data
+      },
+      grant_type: "password"
+    },
+    endpoint: "/api/v1/users/reset_password_by_token",
+    authRequired: false,
     method: "PATCH"
   },
   meta: { thunk: true }
