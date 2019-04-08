@@ -72,6 +72,7 @@ const Plan = ({
           styleName={isChosen ? "background" : color}
         >
           {buttonText}
+          {name === "premium" && t(`plans:${name}.price.${billingInterval}`)}
         </Button>
       </PriceWrapper>
       <List {...{ t, name, color }} />

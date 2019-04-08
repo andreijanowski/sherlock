@@ -3,8 +3,9 @@ import { Router } from "routes";
 import {
   Button,
   FoodetectiveLogo,
-  BlueText,
-  LanguageSwitcher
+  BlueText
+  // uncomment after translations are ready
+  // LanguageSwitcher
 } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,7 +21,8 @@ import { ParagraphStyled } from "../sharedStyled";
 const TopSection = ({ t, lng, plansRef }) => (
   <Flex flexDirection="column" mt={4} width={1} px={3}>
     <Flex alignSelf="flex-end" alignItems="center">
-      <LanguageSwitcher />
+      {/* uncomment after translations are ready */}
+      {/* <LanguageSwitcher /> */}
       <Button
         styleName="login"
         onClick={() => Router.pushRoute(`/${lng}/login/`)}

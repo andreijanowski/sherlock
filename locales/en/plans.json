@@ -49,7 +49,7 @@
     "posIntegration": "POS integration",
     "archivedData": "Archived Data",
     "hrAndPeopleManagement": "HR & People Management",
-    "loyaltyProgram": "Loyalty Prorgram",
+    "loyaltyProgram": "Loyalty Program",
     "clientInteraction": "Client Interaction",
     "photoshoot": "Photoshoot",
     "mysteryShopping": "Mystery Shopping - coming soon",
@@ -75,7 +75,7 @@
     },
     "month": "month",
     "year": "year",
-    "buttonText": "Start a 2 months trial"
+    "buttonText": "Start a 3 months trial"
   },
   "premium": {
     "name": "Premium",
@@ -88,7 +88,7 @@
     },
     "month": "month",
     "year": "year",
-    "buttonText": "Start a 2 months trial"
+    "buttonText": "Get started at "
   },
   "professional": {
     "name": "Professional",
