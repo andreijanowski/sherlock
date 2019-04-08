@@ -6,11 +6,11 @@ const navigationList = ({ t, columnName, hrefs }) => {
   const linksList = [];
   for (let i = 0; i < listLength; i += 1) {
     const linkName = t(`navigation.${columnName}.links.${i}`);
+    const navigationLinkProps =
+      hrefs && hrefs[i] ? { ...hrefs[i] } : { href: "#" };
     linksList.push(
       <li key={linkName}>
-        <NavigationLink href={hrefs ? hrefs[i] : "#"}>
-          {linkName}
-        </NavigationLink>
+        <NavigationLink {...navigationLinkProps}>{linkName}</NavigationLink>
       </li>
     );
   }
