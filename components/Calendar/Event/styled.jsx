@@ -36,7 +36,6 @@ export const Header = styled(Flex).attrs({
   justifyContent: "space-between"
 })`
   padding-bottom: 24px;
-  width: 400px;
 `;
 export const MainInfo = styled.div``;
 export const Time = styled.div`
@@ -88,7 +87,7 @@ export const DetailContent = styled(Box).attrs({ width: 1 / 2, mb: 2 })`
   line-height: 24px;
 `;
 export const AdditionalHeader = styled.div`
-  padding: 24px 0 4px;
+  padding: 8px 0 4px;
   color: rgb(${p => p.theme.colors.dark});
 `;
 export const AdditionalParagraph = styled.div`
@@ -103,4 +102,8 @@ export const MapWrapper = styled.div`
   height: 200px;
   position: relative;
   margin-bottom: 16px;
+`;
+
+export const ModalContentWrapper = styled.div`
+  min-width: 450px;
 `;

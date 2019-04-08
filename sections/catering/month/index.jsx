@@ -8,7 +8,8 @@ const Month = ({
   caterings,
   currency,
   timeZone,
-  setEditedCatering
+  setEditedCatering,
+  sendOffer
 }) => (
   <CalendarWrapper height="620">
     {timeZone && (
@@ -20,7 +21,8 @@ const Month = ({
           currency,
           defaultView: "month",
           timeZone,
-          setEditedCatering
+          setEditedCatering,
+          sendOffer
         }}
       />
     )}
@@ -31,6 +33,7 @@ Month.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   setEditedCatering: func.isRequired,
+  sendOffer: func.isRequired,
   currency: string,
   caterings: arrayOf(shape()),
   timeZone: string

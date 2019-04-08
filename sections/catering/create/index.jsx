@@ -3,10 +3,12 @@ import { func, string, bool } from "prop-types";
 import { Form as FinalForm, Field } from "react-final-form";
 import {
   H3,
+  File,
   Button,
   FormInput,
   FormSelect,
   FormTextarea,
+  FormCheckbox,
   FormDropdown,
   FormDaypicker,
   FormTimePicker,
@@ -17,6 +19,7 @@ import { Flex, Box } from "@rebass/grid";
 import { Router } from "routes";
 import countriesPhoneCodes from "utils/countriesPhoneCodes";
 import { getSubdivisions, countries } from "utils/iso-3166-2";
+import currencies from "utils/currencies";
 import { Form } from "../styled";
 
 const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
@@ -48,24 +51,31 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
         <H3 mt={3}>{t("createEvent.address")}</H3>
         <Flex flexWrap="wrap" mx={-2}>
           <Box width={[1 / 2, 1 / 2]} px={2}>
-            <FormInput name="street" label={t("createEvent.street")} />
+            <FormInput name="addressStreet" label={t("createEvent.street")} />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
             <FormInput
-              name="streetNumber"
+              name="addressStreetNumber"
               label={t("createEvent.streetNumber")}
             />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
-            <FormInput name="city" label={t("createEvent.city")} />
+            <FormInput name="addressCity" label={t("createEvent.city")} />
           </Box>
           <Box width={[1 / 2, 1 / 2]} px={2}>
-            <FormInput name="postCode" label={t("createEvent.postCode")} />
+            <FormInput
+              name="addressPostCode"
+              label={t("createEvent.postCode")}
+            />
           </Box>
-          <WhenFieldChanges field="country" set="region" to={undefined} />
+          <WhenFieldChanges
+            field="addressCountry"
+            set="addressRegion"
+            to={undefined}
+          />
           <Box width={[1, 1 / 2]} px={2}>
             <Field
-              name="country"
+              name="addressCountry"
               component={FormSelect}
               label={t("createEvent.country")}
               items={countries}
@@ -74,17 +84,20 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
             <Field
-              name="region"
+              name="addressRegion"
               component={FormSelect}
               label={t("createEvent.region")}
-              disabled={!values.country}
+              disabled={!values.addressCountry}
               items={
-                (values.country &&
-                  values.country.value &&
-                  getSubdivisions(values.country.value)) ||
+                (values.addressCountry &&
+                  values.addressCountry.value &&
+                  getSubdivisions(values.addressCountry.value)) ||
                 []
               }
             />
+          </Box>
+          <Box width={1} px={2}>
+            <FormTextarea name="addressNotes" label={t("createEvent.notes")} />
           </Box>
         </Flex>
         <H3 mt={3}>{t("createEvent.client")}</H3>
@@ -190,21 +203,43 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
               label={t("createEvent.companyName")}
             />
           </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <FormInput
+          <Box width={1} px={2}>
+            <FormTextarea
               name="specifications"
               label={t("createEvent.specifications")}
             />
           </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <FormInput name="currency" label={t("createEvent.currency")} />
-          </Box>
           <Box width={1} px={2}>
-            <FormTextarea name="notes" label={t("createEvent.notes")} />
+            <File
+              {...{
+                name: "menu",
+                accept: ["image/png", "image/jpeg", "application/pdf"],
+                tip: t("createEvent.chooseOrDragFile"),
+                info: t("createEvent.menuInfo"),
+                errorTipType: t("createEvent.invalidFiles"),
+                errorInfoType: t("createEvent.validMenu")
+              }}
+            />
           </Box>
+          <Flex width={1} alignItems="center" mt={3}>
+            <Box width={1 / 2} px={2}>
+              <FormCheckbox
+                name="consentGdpr"
+                label={t("createEvent.consentGdpr")}
+              />
+            </Box>
+            <Box width={1 / 2} px={2}>
+              <Field
+                name="currency"
+                component={FormSelect}
+                label={t("createEvent.currency")}
+                items={currencies}
+              />
+            </Box>
+          </Flex>
         </Flex>
         <Flex flexWrap="wrap" justifyContent="center" mx={-2} mt={3}>
-          <Box width={[1 / 2, 165]} px={2}>
+          <Box width={1 / 2} px={2}>
             <Button
               styleName="formBlue"
               fluid
@@ -216,7 +251,7 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
               {t("forms:cancel")}
             </Button>
           </Box>
-          <Box width={[1 / 2, 165]} px={2}>
+          <Box width={1 / 2} px={2}>
             <Button styleName="formBlue" type="submit" fluid>
               {t("forms:save")}
             </Button>

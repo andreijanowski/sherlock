@@ -6,6 +6,8 @@ import {
   File,
   Button,
   FormInput,
+  FormSelect,
+  FormTextarea,
   FormDropdown,
   FormDaypicker,
   FormTimePicker,
@@ -13,6 +15,8 @@ import {
 } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Router } from "routes";
+import { normalizePrice } from "utils/normalizers";
+import currencies from "utils/currencies";
 import { Form } from "../styled";
 
 const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
@@ -32,7 +36,8 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
       chefAttendance: editedCatering.chefAttendance,
       numberOfWaiters: editedCatering.numberOfWaiters,
       cutlery: editedCatering.cutlery,
-      price: editedCatering.priceCents / 100
+      priceCents: normalizePrice(editedCatering.priceCents),
+      currency: currencies.find(c => c.value === editedCatering.currency)
     }}
     onSubmit={v => {
       handleFormSubmit(v, editedCatering.id);
@@ -45,16 +50,28 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
             <FormInput name="name" label={t("createEvent.name")} />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
-            <FormInput name="price" label={t("createEvent.price")} />
+            <FormDaypicker name="date" label={t("createEvent.date")} />
           </Box>
-          <Box width={[1 / 2, 1 / 3]} px={2}>
+          <Box width={1 / 2} px={2}>
             <FormTimePicker name="from" label={t("createEvent.from")} />
           </Box>
-          <Box width={[1 / 2, 1 / 3]} px={2}>
+          <Box width={1 / 2} px={2}>
             <FormTimePicker name="to" label={t("createEvent.to")} />
           </Box>
-          <Box width={[1, 1 / 3]} px={2}>
-            <FormDaypicker name="date" label={t("createEvent.date")} />
+          <Box width={[1, 1 / 2]} px={2}>
+            <FormInput
+              name="priceCents"
+              parse={normalizePrice}
+              label={t("createEvent.price")}
+            />
+          </Box>
+          <Box width={1 / 2} px={2}>
+            <Field
+              name="currency"
+              component={FormSelect}
+              label={t("currency")}
+              items={currencies}
+            />
           </Box>
         </Flex>
         <H3 mt={3}>{t("createEvent.details")}</H3>
@@ -139,13 +156,13 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
               label={t("createEvent.companyName")}
             />
           </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <FormInput
+          <Box width={1} px={2}>
+            <FormTextarea
               name="specifications"
               label={t("createEvent.specifications")}
             />
           </Box>
-          <Box width={[1, 1 / 2]} px={2}>
+          <Box width={1} px={2}>
             <File
               {...{
                 name: "menu",
@@ -159,7 +176,7 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
           </Box>
         </Flex>
         <Flex flexWrap="wrap" justifyContent="center" mx={-2} mt={3}>
-          <Box width={[1 / 2, 165]} px={2}>
+          <Box width={1 / 2} px={2}>
             <Button
               styleName="formBlue"
               fluid
@@ -171,7 +188,7 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
               {t("forms:cancel")}
             </Button>
           </Box>
-          <Box width={[1 / 2, 165]} px={2}>
+          <Box width={1 / 2} px={2}>
             <Button styleName="formBlue" type="submit" fluid>
               {t("forms:save")}
             </Button>

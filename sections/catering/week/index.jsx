@@ -2,7 +2,15 @@ import { func, arrayOf, shape, string } from "prop-types";
 import { BigCalendar } from "components";
 import { CalendarWrapper } from "../styled";
 
-const Week = ({ t, lng, caterings, currency, timeZone, setEditedCatering }) => (
+const Week = ({
+  t,
+  lng,
+  caterings,
+  currency,
+  timeZone,
+  setEditedCatering,
+  sendOffer
+}) => (
   <CalendarWrapper height="1500">
     {timeZone && (
       <BigCalendar
@@ -13,7 +21,8 @@ const Week = ({ t, lng, caterings, currency, timeZone, setEditedCatering }) => (
           currency,
           defaultView: "week",
           timeZone,
-          setEditedCatering
+          setEditedCatering,
+          sendOffer
         }}
       />
     )}
@@ -24,6 +33,7 @@ Week.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   setEditedCatering: func.isRequired,
+  sendOffer: func.isRequired,
   currency: string,
   caterings: arrayOf(shape()),
   timeZone: string

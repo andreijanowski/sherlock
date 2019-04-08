@@ -2,7 +2,8 @@ import {
   POST_CATERING_SUCCESS,
   PATCH_CATERING_SUCCESS,
   DELETE_CATERING_REQUEST,
-  SET_EDIT_CATERING
+  SET_EDIT_CATERING,
+  SEND_CATERING_OFFER_SUCCESS
 } from "types/caterings";
 import {
   FETCH_BUSINESS_CATERINGS_REQUEST,
@@ -83,6 +84,17 @@ const reducer = (state = initialState, { type, payload, meta }) => {
 
     case SET_EDIT_CATERING: {
       return { ...state, editedCatering: payload.editedCatering };
+    }
+
+    case SEND_CATERING_OFFER_SUCCESS: {
+      const { time, id } = meta;
+      const newStateData = [...state.data];
+      const editedCateringIndex = newStateData.findIndex(c => c.id === id);
+      newStateData[editedCateringIndex] = {
+        ...newStateData[editedCateringIndex],
+        offerSendAt: time
+      };
+      return { ...state, data: newStateData };
     }
 
     default: {

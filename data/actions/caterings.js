@@ -22,9 +22,10 @@ export const fetchCatering = id => ({
 export const sendCateringOffer = id => ({
   type: SEND_CATERING_OFFER_REQUEST,
   payload: {
+    method: "PATCH",
     endpoint: `/api/v1/caterings/${id}/send`
   },
-  meta: { thunk: true }
+  meta: { thunk: true, time: new Date().toISOString(), id }
 });
 
 export const postCatering = (values, id) => ({

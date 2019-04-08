@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/users";
 import { postCatering } from "actions/caterings";
 import { Router } from "routes";
+import fileToBase64 from "utils/fileToBase64";
 import { timeToNumber } from "components";
 
 const namespaces = ["catering", "app", "forms"];
@@ -26,7 +27,14 @@ class CreateCateringPage extends PureComponent {
     sending: false
   };
 
-  handleFormSubmit = ({ phoneCountry, country, region, ...values }) => {
+  handleFormSubmit = async ({
+    phoneCountry,
+    addressCountry,
+    addressRegion,
+    menu,
+    currency,
+    ...values
+  }) => {
     const {
       createCatering,
       lng,
@@ -44,8 +52,10 @@ class CreateCateringPage extends PureComponent {
         phoneCountry && phoneCountry.value
           ? phoneCountry.value.code
           : undefined,
-      countryCode: country ? country.value : undefined,
-      regionCode: region ? region.value : undefined
+      addressCountryCode: addressCountry ? addressCountry.value : undefined,
+      addressRegionCode: addressRegion ? addressRegion.value : undefined,
+      menu: menu && menu.name ? await fileToBase64(menu) : undefined,
+      currency: currency ? currency.value : undefined
     };
     this.setState({ sending: true });
     createCatering(newCatering, id)

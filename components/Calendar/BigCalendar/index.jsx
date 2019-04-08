@@ -14,6 +14,29 @@ class CustomBigCalendar extends PureComponent {
     event: null
   };
 
+  componentDidUpdate(prevProps) {
+    const { caterings: prevCaterings } = prevProps;
+    const { caterings, currency, defaultView, timeZone, t } = this.props;
+    const { event } = this.state;
+    if (prevCaterings !== caterings && event) {
+      const parsedCaterings = parseCaterings(
+        caterings,
+        currency,
+        defaultView,
+        timeZone,
+        t
+      );
+      const updatedEvent = event.resource.id
+        ? parsedCaterings.find(c => c.resource.id === event.resource.id)
+        : parsedCaterings.find(c =>
+            c.start ? c.start.getTime() === event.start.getTime() : false
+          );
+      this.setEvent(updatedEvent);
+    }
+  }
+
+  setEvent = event => this.setState({ event });
+
   toggleModal = event =>
     this.setState(state => ({ event: state.event ? null : event }));
 
@@ -25,7 +48,8 @@ class CustomBigCalendar extends PureComponent {
       currency,
       defaultView,
       timeZone,
-      setEditedCatering
+      setEditedCatering,
+      sendOffer
     } = this.props;
     const { event } = this.state;
     return (
@@ -56,6 +80,7 @@ class CustomBigCalendar extends PureComponent {
               onClose: this.toggleModal,
               event,
               setEditedCatering,
+              sendOffer,
               t,
               lng
             }}
@@ -70,6 +95,7 @@ CustomBigCalendar.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   setEditedCatering: func.isRequired,
+  sendOffer: func.isRequired,
   defaultView: string.isRequired,
   timeZone: string.isRequired,
   currency: string,

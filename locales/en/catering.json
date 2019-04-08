@@ -8,7 +8,7 @@
   "chooseEvent": "Choose event",
   "createEvent": {
     "basicInfo": "Basic information",
-    "name": "Catering name",
+    "name": "Event name",
     "price": "Price",
     "from": "From",
     "to": "To",
@@ -58,16 +58,26 @@
     "notes": "Notes",
     "country": "Country",
     "region": "Region",
-    "phone": "Phone"
+    "phone": "Phone",
+    "consentGdpr": "Consent GDPR"
   },
   "servings": "Number of servings:",
   "type": "Type of event:",
   "waiters": "Number of waiters:",
   "cutlery": "Cutlery:",
   "chef": "Chef attendance:",
-  "specifications": "Specifications:",
-  "additional": "Additional:",
+  "specifications": "Specifications",
   "downloadMenu": "Download Menu",
   "yes": "Yes",
-  "no": "No"
+  "no": "No",
+  "address": "Address",
+  "outdoors": "Outdoors",
+  "corporateEvent": "Corporate event",
+  "companyName": "Company name",
+  "contactPerson": "Contact person",
+  "email": "E-mail",
+  "phoneNumber": "Phone number",
+  "sendOffer": "Send offer",
+  "resendOffer": "Resend offer",
+  "offerWasSentAt": "Offer was sent at "
 }

@@ -11,6 +11,7 @@ import { Router } from "routes";
 import { timeToNumber, LoadingIndicator } from "components";
 import { patchCatering } from "actions/caterings";
 import fileToBase64 from "utils/fileToBase64";
+import { convertToCents } from "utils/price";
 
 const namespaces = ["catering", "app", "forms"];
 
@@ -34,7 +35,7 @@ class EditCateringPage extends PureComponent {
     }
   }
 
-  handleFormSubmit = async ({ menu, ...values }, id) => {
+  handleFormSubmit = async ({ menu, currency, priceCents, ...values }, id) => {
     const { updateCatering, lng } = this.props;
     const updatedCatering = {
       ...values,
@@ -43,6 +44,12 @@ class EditCateringPage extends PureComponent {
     };
     if (menu && menu.name) {
       updatedCatering.menu = await fileToBase64(menu);
+    }
+    if (currency && currency.value) {
+      updatedCatering.currency = currency.value;
+    }
+    if (priceCents) {
+      updatedCatering.priceCents = convertToCents(priceCents);
     }
     this.setState({ sending: true });
     updateCatering(id, updatedCatering)
