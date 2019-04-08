@@ -1,17 +1,11 @@
 import styled from "styled-components";
-import { Paragraph, Button } from "components";
 
-export const SuccessMessageWrapper = styled(Paragraph)`
-  max-width: 558px;
-  text-align: center;
-  margin: 0 auto;
-`;
+export const Tip = styled.span`
+  font-size: 14px;
+  color: rgba(${p => p.theme.colors.dark}, 0.64);
+  cursor: pointer;
 
-export const FormContainer = styled.form`
-  position: relative;
-  width: 100%;
-  max-width: 558px;
-  ${Button} {
-    width: 100%;
+  :hover {
+    color: rgb(${p => p.theme.colors.dark});
   }
 `;

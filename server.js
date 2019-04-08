@@ -41,12 +41,17 @@ i18n
         "openingHours",
         "lefood",
         "passwordSettings",
-        "payments",
         "picturesAndMenus",
         "plans",
         "publishModal",
         "register",
         "settingsBasicInfo",
+        "passwordSettings",
+        "connectWithStripe",
+        "publishModal",
+        "resetPassword",
+        "confirm",
+        "changePassword",
         "stripe"
       ], // need to preload all the namespaces
       backend: {
@@ -103,7 +108,7 @@ i18n
         );
 
         // use next.js
-        server.get("*", (req, res) => {
+        server.get(/^((?!^\/locales\/).)*$/, (req, res) => {
           resetServerContext();
           return handler(req, res);
         });

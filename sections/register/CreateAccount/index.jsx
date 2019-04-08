@@ -13,9 +13,14 @@ import {
   FacebookLogin
 } from "components";
 import { register } from "actions/auth";
-import { validateEmail, validatePassword, required } from "utils/validators";
-import { formValidation } from "consts";
+import {
+  validateEmail,
+  validatePassword,
+  required,
+  validatePasswordsMatch
+} from "utils/validators";
 import { Box, Flex } from "@rebass/grid";
+import { privacyPolicyLink, termsAndConditionsLink } from "consts";
 import {
   HelperTitle,
   Separator,
@@ -32,21 +37,8 @@ class CreateAccount extends PureComponent {
     this.validateEmail = validateEmail(props.t);
     this.validatePassword = validatePassword(props.t);
     this.validateCheckbox = required(props.t);
+    this.validatePasswordsMatch = validatePasswordsMatch(props.t);
   }
-
-  validatePasswordsMatch = (passwordConfirmation, { password }) => {
-    const { t } = this.props;
-    if (!passwordConfirmation) return t("forms:validation.error.required");
-    if (passwordConfirmation !== password)
-      return t("forms:validation.error.passwordMatch");
-
-    if (passwordConfirmation.length < formValidation.MINIMUM_PASSWORD_LENGTH)
-      return t("forms:validation.error.password", {
-        length: formValidation.MINIMUM_PASSWORD_LENGTH
-      });
-
-    return undefined;
-  };
 
   submitForm = async ({
     email,
@@ -117,13 +109,21 @@ class CreateAccount extends PureComponent {
             >
               <Box>
                 {t("terms.start")}
-                <a href="#">
+                <a
+                  href={privacyPolicyLink}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   <BlueText>
                     <ItalicText>{t("terms.privacyPolicy")}</ItalicText>
                   </BlueText>
                 </a>
                 {t("terms.and")}
-                <a href="#">
+                <a
+                  href={termsAndConditionsLink}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   <BlueText>
                     <ItalicText>{t("terms.termsOfUse")}</ItalicText>
                   </BlueText>

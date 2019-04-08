@@ -57,5 +57,6 @@ export { default as Periods, parsePeriods, parsePeriod } from "./Periods";
 export { default as InfoBar } from "./InfoBar";
 export { default as AutosizeInput } from "./AutosizeInput";
 export { default as ConnectWithStripe } from "./ConnectWithStripe";
-export { default as Plans, PlansBillingPeriod } from "./Plans";
 export { default as CookiesModal } from "./CookiesModal";
+export { default as Plans, PlansBillingInterval } from "./Plans";
+export { default as Opacity } from "./Opacity";

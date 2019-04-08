@@ -4,14 +4,14 @@ import { theme } from "utils/theme";
 import { func, string } from "prop-types";
 import { Option, SwitchWrapper } from "./styled";
 
-const BillingPeriod = ({ t, billingPeriod, handleChangeBillngPeriod }) => (
+const BillingInterval = ({ t, billingInterval, handleChangeBillngPeriod }) => (
   <Flex alignItems="center" mb={3}>
     <Option dark mr={3}>
       {t("plans:billingYearly")}
     </Option>
     <SwitchWrapper>
       <Switch
-        checked={billingPeriod === "monthly"}
+        checked={billingInterval === "month"}
         onChange={handleChangeBillngPeriod}
         uncheckedIcon={false}
         checkedIcon={false}
@@ -30,10 +30,10 @@ const BillingPeriod = ({ t, billingPeriod, handleChangeBillngPeriod }) => (
   </Flex>
 );
 
-BillingPeriod.propTypes = {
+BillingInterval.propTypes = {
   t: func.isRequired,
-  billingPeriod: string.isRequired,
+  billingInterval: string.isRequired,
   handleChangeBillngPeriod: func.isRequired
 };
 
-export default BillingPeriod;
+export default BillingInterval;

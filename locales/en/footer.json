@@ -26,5 +26,5 @@
       "links": ["Apple", "Android"]
     }
   },
-  "copyrightNote": "© 2018 The Food Detective SA. All rights reserved."
+  "copyrightNote": "© {{currentYear}} The Food Detective SA. All rights reserved."
 }
