@@ -11,7 +11,7 @@ const namespaces = ["cookies"];
 
 const CookiesModal = ({ t, cookiesAccepted, acceptCookies }) =>
   !cookiesAccepted && !isServer ? (
-    <Modal {...{ open: true, onClose: acceptCookies }}>
+    <Modal open onClose={acceptCookies}>
       <Flex width={450} flexDirection="column">
         <H3>{t("header")}</H3>
         <Paragraph>
