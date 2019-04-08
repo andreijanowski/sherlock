@@ -15,13 +15,16 @@ const contentTypes = {
   JSONAPI: "application/vnd.api+json",
   MULTIPART: "multipart/form-data"
 };
-
+const privacyPolicyLink = "https://foodetective.co/privacy-policy";
+const termsAndConditionsLink = "https://foodetective.co/terms-conditions";
 const formValidation = { MINIMUM_PASSWORD_LENGTH: 8 };
 
 module.exports = {
   contentTypes,
   languages,
   languagesPattern,
+  privacyPolicyLink,
+  termsAndConditionsLink,
   API_URL,
   GOOGLE_MAPS_API_KEY,
   NETGURU_DEV_PASSWORD,

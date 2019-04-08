@@ -6,10 +6,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PUBLIC_FACEBOOK_APP_ID, PUBLIC_FACEBOOK_APP_FIELDS } from "consts";
 import { facebookLogin } from "actions/auth";
 import { FacebookIcon } from "icons";
+import { Flex } from "@rebass/grid";
 import {
   FacebookStyledButton,
   FacebookIconWrapper,
-  LoadingIconWrapper
+  LoadingIconWrapper,
+  FacebookButtonText
 } from "./styled";
 
 const handleClick = cb => e => {
@@ -33,22 +35,22 @@ const FacebookLogin = props => (
         disabled={isProcessing || !isSdkLoaded || props.disabled}
         onClick={handleClick(onClick)}
       >
-        <FacebookIconWrapper>
-          <FacebookIcon />
-        </FacebookIconWrapper>
-        {isProcessing ? (
-          <React.Fragment>
+        <Flex alignItems="center">
+          <FacebookIconWrapper>
+            <FacebookIcon />
+          </FacebookIconWrapper>
+          {isProcessing ? (
             <FontAwesomeIcon icon="circle-notch" spin size="lg" />
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            {props.children || (
-              <LoadingIconWrapper>
-                <FontAwesomeIcon icon={["fab", "facebook-f"]} />
-              </LoadingIconWrapper>
-            )}
-          </React.Fragment>
-        )}
+          ) : (
+            <FacebookButtonText>
+              {props.children || (
+                <LoadingIconWrapper>
+                  <FontAwesomeIcon icon={["fab", "facebook-f"]} />
+                </LoadingIconWrapper>
+              )}
+            </FacebookButtonText>
+          )}
+        </Flex>
       </FacebookStyledButton>
     )}
   />

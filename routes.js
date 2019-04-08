@@ -5,6 +5,9 @@ module.exports = routes()
   .add("landing", `/:lng(${languagesPattern})`)
   .add("login", `/:lng(${languagesPattern})/login`)
   .add("register", `/:lng(${languagesPattern})/register`)
+  .add("confirm", `/:lng(${languagesPattern})/confirm/:token`)
+  .add("resetPassword", `/:lng(${languagesPattern})/reset-password`)
+  .add("changePassword", `/:lng(${languagesPattern})/change-password/:token`)
   .add("add/manager", `/:lng(${languagesPattern})/add/manager`)
   .add("add/venue", `/:lng(${languagesPattern})/add/venue`)
   .add("app/index", `/:lng(${languagesPattern})/app`)
@@ -62,7 +65,4 @@ module.exports = routes()
     "app/subscriptions/plans",
     `/:lng(${languagesPattern})/app/subscriptions/plans`
   )
-  .add(
-    "app/subscriptions/payments",
-    `/:lng(${languagesPattern})/app/subscriptions/payments`
-  );
+  .add("app/subscriptions", `/:lng(${languagesPattern})/app/subscriptions`);
