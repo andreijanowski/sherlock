@@ -20,6 +20,7 @@ import {
   validatePasswordsMatch
 } from "utils/validators";
 import { Box, Flex } from "@rebass/grid";
+import { privacyPolicyLink, termsAndConditionsLink } from "consts";
 import {
   HelperTitle,
   Separator,
@@ -108,13 +109,21 @@ class CreateAccount extends PureComponent {
             >
               <Box>
                 {t("terms.start")}
-                <a href="#">
+                <a
+                  href={privacyPolicyLink}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   <BlueText>
                     <ItalicText>{t("terms.privacyPolicy")}</ItalicText>
                   </BlueText>
                 </a>
                 {t("terms.and")}
-                <a href="#">
+                <a
+                  href={termsAndConditionsLink}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   <BlueText>
                     <ItalicText>{t("terms.termsOfUse")}</ItalicText>
                   </BlueText>

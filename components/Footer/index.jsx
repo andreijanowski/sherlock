@@ -50,7 +50,24 @@ const Footer = ({ t }) => {
           </Box>
           <Box width={[1 / 2, "auto"]} p={2}>
             <ColumnTitle>{t("navigation.columnThree.title")}</ColumnTitle>
-            <NavigationList {...{ t, columnName: "columnThree" }} />
+            <NavigationList
+              {...{
+                t,
+                columnName: "columnThree",
+                hrefs: {
+                  "0": {
+                    href: "https://foodetective.co/privacy-policy",
+                    target: "_blank",
+                    rel: "noreferrer noopener"
+                  },
+                  "1": {
+                    href: "https://foodetective.co/terms-conditions",
+                    target: "_blank",
+                    rel: "noreferrer noopener"
+                  }
+                }
+              }}
+            />
           </Box>
           <Box width={[1 / 2, "auto"]} p={2}>
             <ColumnTitle>{t("navigation.columnFour.title")}</ColumnTitle>
