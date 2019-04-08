@@ -5,7 +5,7 @@ import { func, bool } from "prop-types";
 import { acceptCookies as acceptCookiesAction } from "actions/app";
 import isServer from "utils/isServer";
 import { Flex } from "@rebass/grid";
-import { privacyPolicy, termsAndConditions } from "./links";
+import { privacyPolicyLink, termsAndConditionsLink } from "consts";
 
 const namespaces = ["cookies"];
 
@@ -16,9 +16,17 @@ const CookiesModal = ({ t, cookiesAccepted, acceptCookies }) =>
         <H3>{t("header")}</H3>
         <Paragraph>
           {`${t("paragraph")} `}
-          <a {...privacyPolicy}>{t("privacyPolicy")}</a>
+          <a href={privacyPolicyLink} target="_blank" rel="noreferrer noopener">
+            {t("privacyPolicy")}
+          </a>
           {` ${t("and")} `}
-          <a {...termsAndConditions}>{t("termsAndConditions")}</a>
+          <a
+            href={termsAndConditionsLink}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            {t("termsAndConditions")}
+          </a>
         </Paragraph>
         <Button styleName="blue" onClick={acceptCookies}>
           {t("ok")}
