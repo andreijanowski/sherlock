@@ -77,6 +77,11 @@ const hanPurple = css`
   ${planButton};
 `;
 
+const smallBlue = css`
+  background-color: rgb(${p => p.theme.colors.blue});
+  ${planButton};
+`;
+
 const transparent = css`
   ${blue};
   background-color: transparent;
@@ -85,6 +90,12 @@ const transparent = css`
 const limeade = css`
   background-color: rgb(${p => p.theme.colors.limeade});
   ${planButton};
+`;
+
+const background = css`
+  background-color: rgb(${p => p.theme.colors.background});
+  ${planButton};
+  color: rgba(${p => p.theme.colors.dark}, 0.5);
 `;
 
 const newOrderButton = css`
@@ -193,8 +204,10 @@ const Button = styled.button`
   ${p => p.styleName === "deepSkyBlue" && deepSkyBlue};
   ${p => p.styleName === "navyBlue" && navyBlue};
   ${p => p.styleName === "hanPurple" && hanPurple};
+  ${p => p.styleName === "smallBlue" && smallBlue};
   ${p => p.styleName === "transparent" && transparent};
   ${p => p.styleName === "limeade" && limeade};
+  ${p => p.styleName === "background" && background};
   ${p => p.styleName === "outlineBlue" && outlineBlue};
   ${p => p.styleName === "reject" && reject};
   ${p => p.styleName === "accept" && accept};

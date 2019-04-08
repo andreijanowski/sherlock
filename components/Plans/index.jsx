@@ -3,16 +3,28 @@ import { Box } from "@rebass/grid";
 import { Router } from "routes";
 import Plan from "./plan";
 
-const Plans = ({ t, lng, billingPeriod }) => (
+const Plans = ({
+  t,
+  lng,
+  billingInterval,
+  choosePlan,
+  nextPlanName,
+  currentPlanInterval
+}) => (
   <>
     <Box mb={[40, 0]} width={[1, 1 / 2, 1 / 4]}>
       <Plan
         {...{
           t,
-          billingPeriod,
+          billingInterval,
+          nextPlanName,
+          currentPlanInterval,
           color: "limeade",
           name: "essential",
-          onClickActionButton: () => Router.pushRoute(`/${lng}/register/`)
+          onClickActionButton: () =>
+            choosePlan
+              ? choosePlan("essential")
+              : Router.pushRoute(`/${lng}/register/`)
         }}
       />
     </Box>
@@ -20,10 +32,15 @@ const Plans = ({ t, lng, billingPeriod }) => (
       <Plan
         {...{
           t,
-          billingPeriod,
+          billingInterval,
+          nextPlanName,
+          currentPlanInterval,
           color: "deepSkyBlue",
           name: "basic",
-          onClickActionButton: () => Router.pushRoute(`/${lng}/register/`)
+          onClickActionButton: () =>
+            choosePlan
+              ? choosePlan("basic")
+              : Router.pushRoute(`/${lng}/register/`)
         }}
       />
     </Box>
@@ -31,10 +48,15 @@ const Plans = ({ t, lng, billingPeriod }) => (
       <Plan
         {...{
           t,
-          billingPeriod,
+          billingInterval,
+          nextPlanName,
+          currentPlanInterval,
           color: "navyBlue",
           name: "premium",
-          onClickActionButton: () => Router.pushRoute(`/${lng}/register/`)
+          onClickActionButton: () =>
+            choosePlan
+              ? choosePlan("premium")
+              : Router.pushRoute(`/${lng}/register/`)
         }}
       />
     </Box>
@@ -42,10 +64,14 @@ const Plans = ({ t, lng, billingPeriod }) => (
       <Plan
         {...{
           t,
-          billingPeriod,
+          billingInterval,
+          nextPlanName,
+          currentPlanInterval,
           color: "hanPurple",
           name: "professional",
-          onClickActionButton: () => {}
+          onClickActionButton: () => {
+            window.open("mailto:hello@foodetective.co", "_blank");
+          }
         }}
       />
     </Box>
@@ -55,8 +81,17 @@ const Plans = ({ t, lng, billingPeriod }) => (
 Plans.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  billingPeriod: string.isRequired
+  billingInterval: string.isRequired,
+  choosePlan: func,
+  nextPlanName: string,
+  currentPlanInterval: string
+};
+
+Plans.defaultProps = {
+  choosePlan: null,
+  nextPlanName: null,
+  currentPlanInterval: null
 };
 
 export default Plans;
-export { default as PlansBillingPeriod } from "./BillingPeriod";
+export { default as PlansBillingInterval } from "./BillingInterval";

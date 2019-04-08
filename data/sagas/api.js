@@ -7,7 +7,8 @@ import isLoginRequest from "utils/isLoginRequest";
 import isServer from "utils/isServer";
 import getErrorMessage from "utils/getErrorMessage";
 import { takeEvery, call, put, select } from "redux-saga/effects";
-import { logout, redirectToRegister } from "actions/auth";
+import { logout } from "actions/auth";
+import { Router } from "routes";
 import { contentTypes, API_URL, NETGURU_DEV_PASSWORD } from "consts";
 import { REFRESH_TOKEN_REQUEST } from "types/auth";
 
@@ -105,7 +106,7 @@ function* handleApiCall(action) {
               message: "termsAgreementError"
             })
           );
-          yield put(redirectToRegister());
+          Router.pushRoute("/");
         } else {
           yield put(
             Notifications.error({

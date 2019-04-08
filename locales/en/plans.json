@@ -1,8 +1,13 @@
 {
-  "header": "Plans",
+  "header": "My plan",
   "paragraph": "Choose the plan that suits your business goals. If you are a big business owner or chain manager, please add your manager in charge.",
   "yourCurrentPlan": "Your current plan",
-  "nextPayment": "Next payment",
+  "paymentInfo": "Payment informations",
+  "changeCard": "Change card",
+  "setCard": "Set card",
+  "nextPaymentAt": "Next payment at",
+  "trialEndsAt": "Trial ends at",
+  "cancelAt": "Cancel at",
   "finishPoweringYouUp": "Let's finish powering you up!",
   "addCard": "Add a new card",
   "cardNumber": "Card number",
@@ -10,6 +15,13 @@
   "ccv": "CCV",
   "postalCode": "Postal code",
   "upgradeMyPlan": "Upgrade my plan",
+  "choose": "Choose",
+  "chosen": "Chosen",
+  "selectCardForPayment": "Select card for payment",
+  "secureCreditCardPayment": "Secure credit card payment",
+  "success": "Success",
+  "successMessage": "Your subscription was successfully updated!",
+  "goBackToPlans": "Go back to plans",
   "promotion": {
     "startFirstLine": "Get ",
     "promotionPlan": "Sherlock Basic",
@@ -47,8 +59,8 @@
     "name": "Essential",
     "priceDescription": "Forever",
     "price": {
-      "monthly": "Free",
-      "yearly": "Free"
+      "month": "Free",
+      "year": "Free"
     },
     "buttonText": "Create Profile"
   },
@@ -58,11 +70,11 @@
     "promoPrice": "Limited",
     "priceDescription": "Starting at",
     "price": {
-      "monthly": "€29.90",
-      "yearly": "€249.90"
+      "month": "€29.90",
+      "year": "€249.90"
     },
-    "monthly": "month",
-    "yearly": "year",
+    "month": "month",
+    "year": "year",
     "buttonText": "Start a 3 months trial"
   },
   "premium": {
@@ -71,19 +83,19 @@
     "promoPrice": "Limited",
     "priceDescription": "Starting at",
     "price": {
-      "monthly": "€59.90",
-      "yearly": "€549.90"
+      "month": "€59.90",
+      "year": "€549.90"
     },
-    "monthly": "month",
-    "yearly": "year",
+    "month": "month",
+    "year": "year",
     "buttonText": "Get started at "
   },
   "professional": {
     "name": "Professional",
     "priceDescription": "Diversely",
     "price": {
-      "monthly": "Enterprise",
-      "yearly": "Enterprise"
+      "month": "Enterprise",
+      "year": "Enterprise"
     },
     "buttonText": "Request a Demo"
   }

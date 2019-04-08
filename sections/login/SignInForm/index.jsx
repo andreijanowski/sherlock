@@ -6,7 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { InputField, Button, FacebookLogin, TextSeparator } from "components";
 import { login } from "actions/auth";
 import { validateEmail, required } from "utils/validators";
-import { FormContainer } from "./styled";
+import { Link } from "routes";
+import { Flex, Box } from "@rebass/grid";
+import { Tip } from "./styled";
 
 class SignInForm extends PureComponent {
   constructor(props) {
@@ -30,7 +32,7 @@ class SignInForm extends PureComponent {
       <Form
         onSubmit={this.submitForm}
         render={({ handleSubmit, pristine, invalid, submitting }) => (
-          <FormContainer onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <InputField
               name="email"
               type="email"
@@ -57,7 +59,19 @@ class SignInForm extends PureComponent {
             </Button>
             <TextSeparator size={36}>or</TextSeparator>
             <FacebookLogin>{t("Facebook")}</FacebookLogin>
-          </FormContainer>
+            <Flex mt={4} flexDirection="column">
+              <Box mb={3}>
+                <Link route="/reset-password">
+                  <Tip>{t("forgotPassword")}</Tip>
+                </Link>
+              </Box>
+              <Box>
+                <Link route="/register">
+                  <Tip>{t("letsSignUp")}</Tip>
+                </Link>
+              </Box>
+            </Flex>
+          </form>
         )}
       />
     );
