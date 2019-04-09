@@ -1,5 +1,11 @@
 import Document, { Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
+import {
+  FacebookPixelScript,
+  GoogleAnalyticsScript,
+  GoogleTagManagerScript,
+  GoogleTagManagerNoscript
+} from "scripts";
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
@@ -16,6 +22,8 @@ export default class MyDocument extends Document {
       <html lang={this.props.__NEXT_DATA__.query.lng}>
         <Head>
           <meta charSet="UTF-8" />
+          <GoogleTagManagerScript />
+          <GoogleAnalyticsScript />
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
@@ -52,8 +60,10 @@ export default class MyDocument extends Document {
             content="/static/favicon/browserconfig.xml"
           />
           <meta name="theme-color" content="#ffffff" />
+          <FacebookPixelScript />
         </Head>
         <body>
+          <GoogleTagManagerNoscript />
           <Main />
           <NextScript />
         </body>
