@@ -19,21 +19,17 @@ import {
   AdditionalParagraph,
   MapWrapper
 } from "./styled";
+import { parseDateTime } from "../utils";
 
 const EventDetails = ({ t, lng, event, setEditedCatering, sendOffer }) => (
   <>
     <Header>
       <MainInfo>
         <Time>
-          {`${moment(event.resource.date)
-            .hour(0)
-            .minute(0)
-            .second(event.resource.realFrom || event.resource.from)
-            .format("h:mm a")} - ${moment(event.resource.date)
-            .hour(0)
-            .minute(0)
-            .second(event.resource.to)
-            .format("h:mm a")} `}
+          {`${parseDateTime(
+            event.resource.date,
+            event.resource.realFrom || event.resource.from
+          )} - ${parseDateTime(event.resource.date, event.resource.to)} `}
         </Time>
         <Name>{event.resource.name}</Name>
         {!!event.resource.priceCents && (

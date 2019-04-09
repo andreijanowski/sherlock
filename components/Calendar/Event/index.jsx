@@ -1,7 +1,7 @@
 import { shape } from "prop-types";
 import { BoldText } from "components";
-import moment from "moment";
 import { Text, Wrapper } from "./styled";
+import { parseDateTime } from "../utils";
 
 const Event = ({ event }) => (
   <Wrapper>
@@ -9,15 +9,10 @@ const Event = ({ event }) => (
     <Text>
       <BoldText>
         {!event.resource.length &&
-          `${moment(event.date)
-            .hour(0)
-            .minute(0)
-            .second(event.resource.realFrom || event.resource.from)
-            .format("h:mm a")} - ${moment(event.date)
-            .hour(0)
-            .minute(0)
-            .second(event.resource.to)
-            .format("h:mm a")} `}
+          `${parseDateTime(
+            event.date,
+            event.resource.realFrom || event.resource.from
+          )} - ${parseDateTime(event.date, event.resource.to)} `}
       </BoldText>
     </Text>
   </Wrapper>

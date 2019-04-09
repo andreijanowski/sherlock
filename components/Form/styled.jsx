@@ -315,7 +315,7 @@ export const FlagIcon = styled.img.attrs(({ code }) => ({
   height: 14px;
 
   ${p =>
-    p.choosed
+    p.chosen
       ? "position: absolute; left: 16px; top: 30px;"
       : "margin-right: 16px"}
 `;

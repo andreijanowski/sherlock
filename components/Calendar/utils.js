@@ -84,3 +84,10 @@ export const parseCaterings = (
   }
   return parsedCaterings;
 };
+
+export const parseDateTime = (date, time) =>
+  moment(date)
+    .hour(0)
+    .minute(0)
+    .second(time)
+    .format("h:mm a");

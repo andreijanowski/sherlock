@@ -14,7 +14,7 @@ const PaymentsSection = ({
   handleChangeBillngPeriod,
   // TODO: After MVP use CardsModal for allowing user to choose from saved cards
   // cards,
-  choosedPlan,
+  chosenPlan,
   goToPlans,
   updateSubscription,
   notificationError
@@ -29,7 +29,7 @@ const PaymentsSection = ({
       </Box>
     </Flex>
     <Line />
-    {choosedPlan && (
+    {chosenPlan && (
       <>
         <Container>
           <Flex
@@ -42,8 +42,8 @@ const PaymentsSection = ({
               {...{ t, billingInterval, handleChangeBillngPeriod }}
             />
             <Price>
-              {t(`plans:${choosedPlan}.price.${billingInterval}`)}
-              <small>/{t(`plans:${choosedPlan}.${billingInterval}`)}</small>
+              {t(`plans:${chosenPlan}.price.${billingInterval}`)}
+              <small>/{t(`plans:${chosenPlan}.${billingInterval}`)}</small>
             </Price>
           </Flex>
         </Container>
@@ -64,7 +64,7 @@ PaymentsSection.propTypes = {
   billingInterval: string.isRequired,
   handleChangeBillngPeriod: func.isRequired,
   cards: arrayOf(shape()),
-  choosedPlan: string.isRequired,
+  chosenPlan: string.isRequired,
   goToPlans: func.isRequired,
   updateSubscription: func.isRequired,
   notificationError: func.isRequired

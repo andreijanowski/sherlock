@@ -2,6 +2,7 @@ import { shape, func } from "prop-types";
 import moment from "moment";
 import { BoldText } from "components";
 import { Header, MainInfo, Name, Details, Text, EventWrapper } from "./styled";
+import { parseDateTime } from "../utils";
 
 const EventDetails = ({ t, event, chooseEvent }) => (
   <>
@@ -15,17 +16,11 @@ const EventDetails = ({ t, event, chooseEvent }) => (
         <EventWrapper onClick={() => chooseEvent(e)} key={e.resource.id}>
           <Text>{e.resource.name}</Text>
           <Text>
-            <BoldText>{`${moment(e.resource.date).format("Do MMMM")}, ${moment(
-              e.resource.date
-            )
-              .hour(0)
-              .minute(0)
-              .second(e.resource.realFrom || e.resource.from)
-              .format("h:mm a")} - ${moment(e.resource.date)
-              .hour(0)
-              .minute(0)
-              .second(e.resource.to)
-              .format("h:mm a")} `}</BoldText>
+            <BoldText>{`${moment(e.resource.date).format("Do MMMM")}, 
+            ${parseDateTime(
+              e.resource.date,
+              e.resource.realFrom || e.resource.from
+            )} - ${parseDateTime(e.resource.date, e.resource.to)} `}</BoldText>
           </Text>
         </EventWrapper>
       ))}

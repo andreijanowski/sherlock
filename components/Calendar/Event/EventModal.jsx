@@ -16,13 +16,13 @@ class EventModal extends PureComponent {
   componentDidUpdate(prevProps) {
     const { event: prevEvent } = prevProps;
     const { event } = this.props;
-    const { event: choosedEvent } = this.state;
+    const { event: chosenEvent } = this.state;
     if (event !== prevEvent) {
       if (event.resource.id) {
         this.chooseEvent(event);
       } else {
         const updatedEvent = event.resource.find(
-          e => e.resource.id === choosedEvent.resource.id
+          e => e.resource.id === chosenEvent.resource.id
         );
         this.chooseEvent(updatedEvent);
       }
@@ -41,13 +41,13 @@ class EventModal extends PureComponent {
       setEditedCatering,
       sendOffer
     } = this.props;
-    const { event: choosedEvent } = this.state;
+    const { event: chosenEvent } = this.state;
     return (
       <Modal {...{ open: isOpen, onClose }}>
         <ModalContentWrapper>
-          {choosedEvent ? (
+          {chosenEvent ? (
             <EventDetails
-              {...{ event: choosedEvent, t, lng, setEditedCatering, sendOffer }}
+              {...{ event: chosenEvent, t, lng, setEditedCatering, sendOffer }}
             />
           ) : (
             <EventChooser {...{ event, t, chooseEvent: this.chooseEvent }} />
