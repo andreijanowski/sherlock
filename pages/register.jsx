@@ -2,7 +2,7 @@ import { PureComponent } from "react";
 import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
-import { func, string } from "prop-types";
+import { func, string, shape } from "prop-types";
 import { SingleActionView } from "components";
 import CreateAccount from "sections/register/CreateAccount";
 
@@ -18,7 +18,7 @@ class Register extends PureComponent {
   }
 
   render() {
-    const { t, lng } = this.props;
+    const { t, lng, query } = this.props;
     return (
       <SingleActionView
         {...{
@@ -27,7 +27,7 @@ class Register extends PureComponent {
           actionDescription: t("description")
         }}
       >
-        <CreateAccount {...{ t }} />
+        <CreateAccount {...{ t, lng, query }} />
       </SingleActionView>
     );
   }
@@ -35,7 +35,8 @@ class Register extends PureComponent {
 
 Register.propTypes = {
   t: func.isRequired,
-  lng: string.isRequired
+  lng: string.isRequired,
+  query: shape().isRequired
 };
 
 export default requireAuth(false)(withI18next(namespaces)(Register));

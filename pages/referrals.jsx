@@ -2,12 +2,15 @@ import { PureComponent } from "react";
 import withI18next from "lib/withI18next";
 import loadTranslations from "utils/loadTranslations";
 import { func, string } from "prop-types";
+import requireAuth from "lib/requireAuth";
 import { SingleActionView, BlueText, BoldText } from "components";
 import { DesciprtionWrapper, InviteManagers } from "sections/addManager";
+import { postReferrals } from "actions/referrals";
+import { connect } from "react-redux";
 
 const namespaces = ["addManager", "forms"];
 
-class addManager extends PureComponent {
+class AddManager extends PureComponent {
   static async getInitialProps({ ctx }) {
     const pageProps = loadTranslations(ctx, namespaces);
 
@@ -15,6 +18,11 @@ class addManager extends PureComponent {
       ...pageProps
     };
   }
+
+  addReferrals = emails => {
+    const { addReferrals } = this.props;
+    return addReferrals(emails);
+  };
 
   render() {
     const { t, lng } = this.props;
@@ -33,15 +41,23 @@ class addManager extends PureComponent {
           )
         }}
       >
-        <InviteManagers {...{ t }} />
+        <InviteManagers {...{ t, addReferrals: this.addReferrals }} />
       </SingleActionView>
     );
   }
 }
 
-addManager.propTypes = {
+AddManager.propTypes = {
   t: func.isRequired,
-  lng: string.isRequired
+  lng: string.isRequired,
+  addReferrals: func.isRequired
 };
 
-export default withI18next(namespaces)(addManager);
+export default requireAuth(true)(
+  withI18next(namespaces)(
+    connect(
+      null,
+      { addReferrals: postReferrals }
+    )(AddManager)
+  )
+);

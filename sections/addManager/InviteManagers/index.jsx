@@ -24,7 +24,7 @@ class InviteManagers extends PureComponent {
     this.validateEmail = isEmail(props.t);
   }
 
-  initializeMembers = () =>
+  initializeEmails = () =>
     Array(3).fill({
       email: undefined
     });
@@ -38,24 +38,24 @@ class InviteManagers extends PureComponent {
   };
 
   render() {
-    const { t } = this.props;
+    const { t, addReferrals } = this.props;
     const { successMessage } = this.state;
     if (successMessage) {
       return <SuccessMessageWrapper>{successMessage}</SuccessMessageWrapper>;
     }
     return (
       <Form
-        onSubmit={() => null}
+        onSubmit={addReferrals}
         mutators={{
           ...arrayMutators
         }}
         initialValues={{
-          members: this.initializeMembers()
+          emails: this.initializeEmails()
         }}
         render={({ handleSubmit, pristine, invalid, submitting }) => (
           <form onSubmit={handleSubmit}>
             <HelperTitle>{t("emailHelperTitle")}</HelperTitle>
-            <FieldArray name="members">
+            <FieldArray name="emails">
               {({ fields }) => (
                 <>
                   <FieldsContainer ref={this.fieldsContainer}>
@@ -111,7 +111,8 @@ class InviteManagers extends PureComponent {
 }
 
 InviteManagers.propTypes = {
-  t: func.isRequired
+  t: func.isRequired,
+  addReferrals: func.isRequired
 };
 
 export default InviteManagers;

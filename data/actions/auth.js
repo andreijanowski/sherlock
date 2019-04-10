@@ -76,8 +76,7 @@ export const register = ({
           termsAgreement,
           source: "sherlock"
         }
-      },
-      grant_type: "password"
+      }
     },
     endpoint: "/api/v1/users",
     authRequired: false,

@@ -5,6 +5,7 @@ import { bool } from "prop-types";
 
 export default requireAuth => ComposedComponent => {
   const Extended = ({ isAuthenticated, ...rest }) => {
+    console.log({ isAuthenticated });
     if (!isServer && isAuthenticated && !requireAuth) {
       Router.pushRoute("/app/");
       return null;
