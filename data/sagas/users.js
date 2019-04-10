@@ -3,7 +3,8 @@ import {
   fetchBusinessMembers,
   fetchBusinessDeliveries,
   fetchBusinessDishes,
-  fetchBusinessOrders
+  fetchBusinessOrders,
+  fetchBusinessCaterings
 } from "actions/businesses";
 import { patchOrder } from "actions/orders";
 import { SET_CURRENT_BUSINESS, UPDATE_PROFILE_SUCCESS } from "types/users";
@@ -22,6 +23,7 @@ function* fetchBusinessData({
   yield put(fetchBusinessMembers(id));
   yield put(fetchBusinessDeliveries(id));
   yield put(fetchBusinessDishes(id));
+  yield put(fetchBusinessCaterings(id));
   const {
     rawData: { data: orders }
   } = yield put.resolve(fetchBusinessOrders(id));

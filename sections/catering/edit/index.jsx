@@ -1,5 +1,5 @@
 import React from "react";
-import { func, string, bool } from "prop-types";
+import { func, shape, string } from "prop-types";
 import { Form as FinalForm, Field } from "react-final-form";
 import {
   H3,
@@ -8,30 +8,41 @@ import {
   FormInput,
   FormSelect,
   FormTextarea,
-  FormCheckbox,
   FormDropdown,
   FormDaypicker,
   FormTimePicker,
-  WhenFieldChanges,
-  LoadingIndicator
+  parseTime
 } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Router } from "routes";
-import countriesPhoneCodes from "utils/countriesPhoneCodes";
-import { getSubdivisions, countries } from "utils/iso-3166-2";
+import { normalizePrice } from "utils/normalizers";
 import currencies from "utils/currencies";
 import { Form } from "../styled";
 
-const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
+const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
   <FinalForm
     initialValues={{
-      corporateEvent: false,
-      outdoors: false,
-      chefAttendance: false,
-      cutlery: false
+      name: editedCatering.name,
+      date: editedCatering.date,
+      from: parseTime(editedCatering.from),
+      to: parseTime(editedCatering.to),
+      typeOfEvent: editedCatering.typeOfEvent,
+      outdoors: editedCatering.outdoors,
+      corporateEvent: editedCatering.corporateEvent,
+      companyName: editedCatering.companyName,
+      numberOfServings: editedCatering.numberOfServings,
+      specifications: editedCatering.specifications,
+      menu: editedCatering.menu,
+      chefAttendance: editedCatering.chefAttendance,
+      numberOfWaiters: editedCatering.numberOfWaiters,
+      cutlery: editedCatering.cutlery,
+      priceCents: normalizePrice(editedCatering.priceCents),
+      currency: currencies.find(c => c.value === editedCatering.currency)
     }}
-    onSubmit={handleFormSubmit}
-    render={({ handleSubmit, values }) => (
+    onSubmit={v => {
+      handleFormSubmit(v, editedCatering.id);
+    }}
+    render={({ handleSubmit }) => (
       <Form onSubmit={handleSubmit}>
         <H3 mt={3}>{t("createEvent.basicInfo")}</H3>
         <Flex flexWrap="wrap" mx={-2}>
@@ -41,84 +52,26 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
           <Box width={[1, 1 / 2]} px={2}>
             <FormDaypicker name="date" label={t("createEvent.date")} />
           </Box>
-          <Box width={[1 / 2, 1 / 2]} px={2}>
+          <Box width={1 / 2} px={2}>
             <FormTimePicker name="from" label={t("createEvent.from")} />
           </Box>
-          <Box width={[1 / 2, 1 / 2]} px={2}>
+          <Box width={1 / 2} px={2}>
             <FormTimePicker name="to" label={t("createEvent.to")} />
           </Box>
-        </Flex>
-        <H3 mt={3}>{t("createEvent.address")}</H3>
-        <Flex flexWrap="wrap" mx={-2}>
-          <Box width={[1 / 2, 1 / 2]} px={2}>
-            <FormInput name="addressStreet" label={t("createEvent.street")} />
-          </Box>
           <Box width={[1, 1 / 2]} px={2}>
             <FormInput
-              name="addressStreetNumber"
-              label={t("createEvent.streetNumber")}
+              name="priceCents"
+              parse={normalizePrice}
+              label={t("createEvent.price")}
             />
           </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <FormInput name="addressCity" label={t("createEvent.city")} />
-          </Box>
-          <Box width={[1 / 2, 1 / 2]} px={2}>
-            <FormInput
-              name="addressPostCode"
-              label={t("createEvent.postCode")}
-            />
-          </Box>
-          <WhenFieldChanges
-            field="addressCountry"
-            set="addressRegion"
-            to={undefined}
-          />
-          <Box width={[1, 1 / 2]} px={2}>
+          <Box width={1 / 2} px={2}>
             <Field
-              name="addressCountry"
+              name="currency"
               component={FormSelect}
-              label={t("createEvent.country")}
-              items={countries}
-              showFlag
+              label={t("currency")}
+              items={currencies}
             />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <Field
-              name="addressRegion"
-              component={FormSelect}
-              label={t("createEvent.region")}
-              disabled={!values.addressCountry}
-              items={
-                (values.addressCountry &&
-                  values.addressCountry.value &&
-                  getSubdivisions(values.addressCountry.value)) ||
-                []
-              }
-            />
-          </Box>
-          <Box width={1} px={2}>
-            <FormTextarea name="addressNotes" label={t("createEvent.notes")} />
-          </Box>
-        </Flex>
-        <H3 mt={3}>{t("createEvent.client")}</H3>
-        <Flex flexWrap="wrap" mx={-2}>
-          <Box width={[1, 1 / 2]} px={2}>
-            <FormInput name="userName" label={t("createEvent.userName")} />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <FormInput name="email" label={t("createEvent.email")} />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <Field
-              name="phoneCountry"
-              component={FormSelect}
-              label={t("createEvent.country")}
-              items={countriesPhoneCodes}
-              showFlag
-            />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <FormInput name="phone" label={t("createEvent.phone")} />
           </Box>
         </Flex>
         <H3 mt={3}>{t("createEvent.details")}</H3>
@@ -221,22 +174,6 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
               }}
             />
           </Box>
-          <Flex width={1} alignItems="center" mt={3}>
-            <Box width={1 / 2} px={2}>
-              <FormCheckbox
-                name="consentGdpr"
-                label={t("createEvent.consentGdpr")}
-              />
-            </Box>
-            <Box width={1 / 2} px={2}>
-              <Field
-                name="currency"
-                component={FormSelect}
-                label={t("createEvent.currency")}
-                items={currencies}
-              />
-            </Box>
-          </Flex>
         </Flex>
         <Flex flexWrap="wrap" justifyContent="center" mx={-2} mt={3}>
           <Box width={1 / 2} px={2}>
@@ -257,17 +194,16 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
             </Button>
           </Box>
         </Flex>
-        {sending && <LoadingIndicator />}
       </Form>
     )}
   />
 );
 
-CreateCateringForm.propTypes = {
+EditCateringForm.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   handleFormSubmit: func.isRequired,
-  sending: bool.isRequired
+  editedCatering: shape().isRequired
 };
 
-export default CreateCateringForm;
+export default EditCateringForm;

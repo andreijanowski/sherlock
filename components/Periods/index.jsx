@@ -4,7 +4,13 @@ import { H3, LoadingIndicator } from "components";
 import arrayMutators from "final-form-arrays";
 import { Form } from "./styled";
 import Day from "./Day";
-import { weekdays, parsePeriods, parsePeriod } from "./utils";
+import {
+  weekdays,
+  parsePeriods,
+  parsePeriod,
+  parseTime,
+  timeToNumber
+} from "./utils";
 
 const PeriodsForm = ({
   t,
@@ -60,4 +66,4 @@ PeriodsForm.defaultProps = {
 
 export default PeriodsForm;
 
-export { parsePeriods, parsePeriod };
+export { parsePeriods, parsePeriod, parseTime, timeToNumber };

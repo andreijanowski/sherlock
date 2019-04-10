@@ -1,40 +1,25 @@
-import { PureComponent } from "react";
-import { shape, func } from "prop-types";
+import { shape } from "prop-types";
 import { BoldText } from "components";
 import { Text, Wrapper } from "./styled";
-import EventModal from "./EventModal";
+import { parseDateTime } from "../utils";
 
-class Event extends PureComponent {
-  state = {
-    isOpen: false
-  };
-
-  openModal = () => this.setState({ isOpen: true });
-
-  closeModal = () => this.setState({ isOpen: false });
-
-  render() {
-    const { event, t } = this.props;
-    const { isOpen } = this.state;
-    return (
-      <>
-        <Wrapper onClick={this.openModal}>
-          <Text>{event.title}</Text>
-          <Text>
-            <BoldText>
-              {event.start.getHours()} - {event.end.getHours()} pm
-            </BoldText>
-          </Text>
-        </Wrapper>
-        <EventModal {...{ isOpen, onClose: this.closeModal, event, t }} />
-      </>
-    );
-  }
-}
+const Event = ({ event }) => (
+  <Wrapper>
+    <Text>{event.title}</Text>
+    <Text>
+      <BoldText>
+        {!event.resource.length &&
+          `${parseDateTime(
+            event.date,
+            event.resource.realFrom || event.resource.from
+          )} - ${parseDateTime(event.date, event.resource.to)} `}
+      </BoldText>
+    </Text>
+  </Wrapper>
+);
 
 Event.propTypes = {
-  event: shape().isRequired,
-  t: func.isRequired
+  event: shape().isRequired
 };
 
 export default Event;

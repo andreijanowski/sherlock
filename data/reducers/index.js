@@ -8,6 +8,7 @@ import members from "./members";
 import deliveries from "./deliveries";
 import dishes from "./dishes";
 import orders from "./orders";
+import caterings from "./caterings";
 import stripe from "./stripe";
 
 export default {
@@ -21,5 +22,6 @@ export default {
   deliveries,
   dishes,
   orders,
+  caterings,
   stripe
 };

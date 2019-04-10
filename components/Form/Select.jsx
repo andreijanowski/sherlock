@@ -117,7 +117,7 @@ class FormSelect extends PureComponent {
               <Label htmlFor={input.name}>{label}</Label>
               {showFlag && input.value.value && (
                 <FlagIcon
-                  choosed
+                  chosen
                   code={
                     typeof input.value.value === "object"
                       ? input.value.value.code

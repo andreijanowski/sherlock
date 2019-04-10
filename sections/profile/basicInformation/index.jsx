@@ -13,8 +13,8 @@ import { Form as FinalForm, Field } from "react-final-form";
 import { func, shape, arrayOf, string } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import setFieldData from "final-form-set-field-data";
+import { getSubdivisions } from "utils/iso-3166-2";
 import { Form } from "../styled";
-import { getSubdivisions } from "./utils";
 import TypesError from "./TypesError";
 import GroupsErrorListener from "./GroupsErrorListener";
 
