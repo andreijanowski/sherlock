@@ -55,7 +55,9 @@ const CateringLayout = ({
             size="sm"
             icon={["fa", "plus"]}
             white
-            onClick={() => Router.pushRoute(`/${lng}/app/catering/create/`)}
+            onClick={() => {
+              Router.pushRoute(`/${lng}/app/catering/create/`);
+            }}
           />
         </AddIconWrapper>
       )}

@@ -315,7 +315,7 @@ export const FlagIcon = styled.img.attrs(({ code }) => ({
   height: 14px;
 
   ${p =>
-    p.choosed
+    p.chosen
       ? "position: absolute; left: 16px; top: 30px;"
       : "margin-right: 16px"}
 `;
@@ -389,4 +389,8 @@ export const DisabledMessageCheckbox = styled.div`
   margin-top: 4px;
   color: rgb(${p => p.theme.colors.ruby});
   font-weight: ${p => p.theme.fontWeights.regular};
+`;
+
+export const FileWrapper = styled(Flex)`
+  height: 60px;
 `;

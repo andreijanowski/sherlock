@@ -5,10 +5,10 @@ import loadTranslations from "utils/loadTranslations";
 import { func, string, shape, arrayOf } from "prop-types";
 import Form from "sections/profile/basicInformation";
 import {
-  countries,
   getInitialValues,
   getGroupsValues
 } from "sections/profile/basicInformation/utils";
+import { countries } from "utils/iso-3166-2";
 import { getGroupsData } from "sections/profile/utils";
 import ProfileLayout from "sections/profile/Layout";
 import { connect } from "react-redux";

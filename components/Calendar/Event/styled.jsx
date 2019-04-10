@@ -18,11 +18,24 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const EventWrapper = styled(Wrapper)`
+  background-color: rgba(${p => p.theme.colors.blue}, 0.9);
+  color: rgb(${p => p.theme.colors.white});
+  box-shadow: 0 3px 8px 0 rgba(${p => p.theme.colors.blue}, 0.48);
+  font-size: ${p => p.theme.fontSizes.f12};
+  line-height: 1.33;
+  margin-bottom: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(${p => p.theme.colors.blue});
+  }
+`;
+
 export const Header = styled(Flex).attrs({
   justifyContent: "space-between"
 })`
   padding-bottom: 24px;
-  width: 400px;
 `;
 export const MainInfo = styled.div``;
 export const Time = styled.div`
@@ -62,7 +75,7 @@ export const EditIcon = styled(FontAwesomeIcon).attrs({
 })``;
 
 export const Details = styled.div`
-  margin: 0 -32px;
+  margin: 0 -32px 16px;
   border-top: 1px solid rgba(${p => p.theme.colors.blue}, 0.08);
   border-bottom: 1px solid rgba(${p => p.theme.colors.blue}, 0.08);
   padding: 24px 32px 16px;
@@ -74,7 +87,7 @@ export const DetailContent = styled(Box).attrs({ width: 1 / 2, mb: 2 })`
   line-height: 24px;
 `;
 export const AdditionalHeader = styled.div`
-  padding: 24px 0 4px;
+  padding: 8px 0 4px;
   color: rgb(${p => p.theme.colors.dark});
 `;
 export const AdditionalParagraph = styled.div`
@@ -89,4 +102,8 @@ export const MapWrapper = styled.div`
   height: 200px;
   position: relative;
   margin-bottom: 16px;
+`;
+
+export const ModalContentWrapper = styled.div`
+  min-width: 450px;
 `;

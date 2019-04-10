@@ -11,8 +11,9 @@ import {
 } from "components";
 import { Flex, Box } from "@rebass/grid";
 import setFieldData from "final-form-set-field-data";
+import currencies from "utils/currencies";
 import { Form } from "../styled";
-import { timeOfTheDay, paymentMethods, currencies } from "./utils";
+import { timeOfTheDay, paymentMethods } from "./utils";
 
 const AdditionalInformationForm = ({ t, initialValues, handleSubmit }) =>
   initialValues ? (

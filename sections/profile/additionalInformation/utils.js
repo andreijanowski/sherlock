@@ -1,4 +1,4 @@
-import cc from "currency-codes";
+import currencies from "utils/currencies";
 
 export const timeOfTheDay = [
   "breakfastService",
@@ -14,11 +14,6 @@ export const paymentMethods = [
   "canPayWithCash",
   "canPayWithMobile"
 ];
-
-export const currencies = cc.codes().map(c => ({
-  value: c,
-  label: c
-}));
 
 export const getInitialValues = business => {
   if (business) {

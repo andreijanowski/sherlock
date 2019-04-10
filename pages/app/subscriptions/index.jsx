@@ -30,7 +30,7 @@ class SubscriptionsPage extends PureComponent {
   state = {
     billingInterval: "month",
     view: "plans",
-    choosedPlan: null
+    chosenPlan: null
   };
 
   componentDidUpdate(prevProps) {
@@ -92,7 +92,7 @@ class SubscriptionsPage extends PureComponent {
       }
     } else if (planName !== "essential") {
       this.setState({
-        choosedPlan: planName,
+        chosenPlan: planName,
         view: "payments"
       });
     }
@@ -104,7 +104,7 @@ class SubscriptionsPage extends PureComponent {
       updateSubscriptionCard,
       subscriptions
     } = this.props;
-    const { billingInterval, choosedPlan } = this.state;
+    const { billingInterval, chosenPlan } = this.state;
     if (subscriptions && subscriptions[0]) {
       this.setState({
         view: "loading"
@@ -120,7 +120,7 @@ class SubscriptionsPage extends PureComponent {
       });
       createSubscription(
         stripeToken,
-        `sherlock-${choosedPlan}-${billingInterval}ly-eur`
+        `sherlock-${chosenPlan}-${billingInterval}ly-eur`
       )
         .then(() => {
           this.goToSuccess();
@@ -146,14 +146,14 @@ class SubscriptionsPage extends PureComponent {
     getProfileSubscriptions();
     getProfileCards();
     this.setState({
-      choosedPlan: null,
+      chosenPlan: null,
       view: "success"
     });
   };
 
   render() {
     const { t, lng, subscriptions, cards, notificationError } = this.props;
-    const { billingInterval, view, choosedPlan } = this.state;
+    const { billingInterval, view, chosenPlan } = this.state;
 
     return (
       <AppLayout
@@ -187,7 +187,7 @@ class SubscriptionsPage extends PureComponent {
               lng,
               billingInterval,
               cards,
-              choosedPlan,
+              chosenPlan,
               notificationError,
               goToPlans: this.goToPlans,
               handleChangeBillngPeriod: this.handleChangeBillngPeriod,

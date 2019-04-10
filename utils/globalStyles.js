@@ -12,6 +12,8 @@ import {
   faFileAlt,
   faPen,
   faCreditCard,
+  faArrowAltCircleLeft,
+  faArrowAltCircleRight,
   faEye,
   faLock
 } from "@fortawesome/free-solid-svg-icons";
@@ -46,6 +48,8 @@ library.add(
   faCcJcb,
   faCcMastercard,
   faCcVisa,
+  faArrowAltCircleLeft,
+  faArrowAltCircleRight,
   faEye,
   faLock
 );
