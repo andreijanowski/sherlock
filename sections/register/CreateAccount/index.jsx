@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { connect } from "react-redux";
 import { Form } from "react-final-form";
-import { func } from "prop-types";
+import { func, string, shape } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   InputField,
@@ -20,7 +20,7 @@ import {
   validatePasswordsMatch
 } from "utils/validators";
 import { Box, Flex } from "@rebass/grid";
-// import { Router } from "routes";
+import { Router } from "routes";
 import { privacyPolicyLink, termsAndConditionsLink } from "consts";
 import { HelperTitle, Separator, TextSeparatorStyled } from "./styled";
 
@@ -34,22 +34,21 @@ class CreateAccount extends PureComponent {
   }
 
   submitForm = ({ email, password, passwordConfirmation, termsAgreement }) => {
-    // const { lng, createUserAccount, query } = this.props;
-    const { createUserAccount } = this.props;
-    return createUserAccount({
+    const { lng, createUserAccount, query } = this.props;
+    createUserAccount({
       email,
       password,
       passwordConfirmation,
       termsAgreement
-    });
-    // .then(() => {
-    //   if (query.plan === "essential" || query.plan === "basic") {
-    //     Router.pushRoute(`/${lng}/referrals/?plan=${query.plan}`);
-    //   } else {
-    //     Router.pushRoute(`/${lng}/app/subscriptions/`);
-    //   }
-    // })
-    // .catch(e => console.log(e));
+    })
+      .then(() => {
+        if (query.plan === "essential" || query.plan === "basic") {
+          Router.pushRoute(`/${lng}/referrals/?plan=${query.plan}`);
+        } else {
+          Router.pushRoute(`/${lng}/app/subscriptions/`);
+        }
+      })
+      .catch(e => console.log(e));
   };
 
   render() {
@@ -148,9 +147,9 @@ class CreateAccount extends PureComponent {
 
 CreateAccount.propTypes = {
   createUserAccount: func.isRequired,
-  t: func.isRequired
-  // lng: string.isRequired,
-  // query: shape().isRequired
+  t: func.isRequired,
+  lng: string.isRequired,
+  query: shape().isRequired
 };
 
 export default connect(

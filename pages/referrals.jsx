@@ -1,12 +1,13 @@
 import { PureComponent } from "react";
 import withI18next from "lib/withI18next";
 import loadTranslations from "utils/loadTranslations";
-import { func, string } from "prop-types";
+import { func, string, shape } from "prop-types";
 import requireAuth from "lib/requireAuth";
 import { SingleActionView, BlueText, BoldText } from "components";
 import { DesciprtionWrapper, InviteManagers } from "sections/addManager";
 import { postReferrals } from "actions/referrals";
 import { connect } from "react-redux";
+import { Router } from "routes";
 
 const namespaces = ["addManager", "forms"];
 
@@ -19,9 +20,17 @@ class AddManager extends PureComponent {
     };
   }
 
-  addReferrals = emails => {
-    const { addReferrals } = this.props;
-    return addReferrals(emails);
+  addReferrals = ({ emails }) => {
+    const { addReferrals, lng, query } = this.props;
+    addReferrals(emails.map(e => e.email).filter(e => !!e))
+      .then(() => {
+        if (query.plan === "essential") {
+          Router.pushRoute(`/${lng}/app/`);
+        } else {
+          Router.pushRoute(`/${lng}/app/subscriptions/`);
+        }
+      })
+      .catch(e => console.log(e));
   };
 
   render() {
@@ -50,7 +59,8 @@ class AddManager extends PureComponent {
 AddManager.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  addReferrals: func.isRequired
+  addReferrals: func.isRequired,
+  query: shape().isRequired
 };
 
 export default requireAuth(true)(

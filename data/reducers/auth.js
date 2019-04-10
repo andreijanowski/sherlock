@@ -44,11 +44,12 @@ const reducer = (state = initialState, { type, payload }) => {
     case FACEBOOK_LOGIN_SUCCESS:
     case REFRESH_TOKEN_SUCCESS:
     case REGISTER_SUCCESS: {
-      const { accessToken, refreshToken, createdAt, expiresIn } = payload.data;
-      console.log(
-        { accessToken, refreshToken, createdAt, expiresIn },
-        payload.data
-      );
+      const {
+        accessToken,
+        refreshToken,
+        createdAt,
+        expiresIn
+      } = payload.rawData;
       return {
         isFetching: false,
         isRefreshing: false,
