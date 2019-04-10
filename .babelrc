@@ -57,7 +57,8 @@
                     "icons": "./components/Icons",
                     "layout": "./layout",
                     "consts": "./consts",
-                    "sections": "./sections"
+                    "sections": "./sections",
+                    "scripts": "./scripts"
                 }
             }
         ],
