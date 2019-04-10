@@ -33,9 +33,8 @@ const EventDetails = ({ t, lng, event, setEditedCatering, sendOffer }) => (
         </Time>
         <Name>{event.resource.name}</Name>
         {!!event.resource.priceCents && (
-          <Price>{`${normalizePrice(event.resource.priceCents)}${
-            event.resource.currency || ""
-          }`}</Price>
+          <Price>{`${normalizePrice(event.resource.priceCents)}${event.resource
+            .currency || ""}`}</Price>
         )}
       </MainInfo>
       <IconWrapper
