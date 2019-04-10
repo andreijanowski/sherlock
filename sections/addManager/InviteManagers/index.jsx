@@ -7,19 +7,11 @@ import { Box, Flex } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { InputField, Button } from "components";
 import { isEmail } from "utils/validators";
-import {
-  HelperTitle,
-  SuccessMessageWrapper,
-  FieldsContainer,
-  RemoveButton
-} from "./styled";
+import { HelperTitle, FieldsContainer, RemoveButton } from "./styled";
 
 class InviteManagers extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      successMessage: null
-    };
     this.fieldsContainer = React.createRef();
     this.validateEmail = isEmail(props.t);
   }
@@ -39,10 +31,6 @@ class InviteManagers extends PureComponent {
 
   render() {
     const { t, addReferrals } = this.props;
-    const { successMessage } = this.state;
-    if (successMessage) {
-      return <SuccessMessageWrapper>{successMessage}</SuccessMessageWrapper>;
-    }
     return (
       <Form
         onSubmit={addReferrals}
