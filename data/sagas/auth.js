@@ -28,7 +28,6 @@ import {
 } from "types/auth";
 import Notifications from "react-notification-system-redux";
 import { refreshToken as refresh } from "actions/auth";
-import { Router } from "routes";
 
 function* initialTokenRefresh() {
   const refreshToken = yield select(state => state.auth.refreshToken);
@@ -82,7 +81,6 @@ function* onSuccessPasswordChangeByToken() {
       message: "changePasswordSuccess"
     })
   );
-  Router.pushRoute("/login");
 }
 
 export default all([
