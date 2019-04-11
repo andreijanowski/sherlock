@@ -1,12 +1,6 @@
 import styled from "styled-components";
 import { Box } from "@rebass/grid";
-import { Paragraph, TextSeparator } from "components";
-
-export const SuccessMessageWrapper = styled(Paragraph)`
-  max-width: 558px;
-  text-align: center;
-  margin: 0 auto;
-`;
+import { TextSeparator } from "components";
 
 export const HelperTitle = styled.h2`
   font-size: ${p => p.theme.fontSizes.f16};

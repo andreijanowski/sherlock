@@ -24,7 +24,7 @@ const Plans = ({
           onClickActionButton: () =>
             choosePlan
               ? choosePlan("essential")
-              : Router.pushRoute(`/${lng}/register/`)
+              : Router.pushRoute(`/${lng}/register/?plan=essential`)
         }}
       />
     </Box>
@@ -40,7 +40,7 @@ const Plans = ({
           onClickActionButton: () =>
             choosePlan
               ? choosePlan("basic")
-              : Router.pushRoute(`/${lng}/register/`)
+              : Router.pushRoute(`/${lng}/register/?plan=basic`)
         }}
       />
     </Box>
@@ -56,7 +56,7 @@ const Plans = ({
           onClickActionButton: () =>
             choosePlan
               ? choosePlan("premium")
-              : Router.pushRoute(`/${lng}/register/`)
+              : Router.pushRoute(`/${lng}/register/?plan=premium`)
         }}
       />
     </Box>

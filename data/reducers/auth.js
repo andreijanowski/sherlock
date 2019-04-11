@@ -2,6 +2,9 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  REGISTER_REQUEST,
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
   FACEBOOK_LOGIN_REQUEST,
   FACEBOOK_LOGIN_SUCCESS,
   FACEBOOK_LOGIN_FAIL,
@@ -25,7 +28,8 @@ export const initialState = {
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case LOGIN_REQUEST:
-    case FACEBOOK_LOGIN_REQUEST: {
+    case FACEBOOK_LOGIN_REQUEST:
+    case REGISTER_REQUEST: {
       return {
         ...state,
         isFetching: true
@@ -39,8 +43,14 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     case LOGIN_SUCCESS:
     case FACEBOOK_LOGIN_SUCCESS:
-    case REFRESH_TOKEN_SUCCESS: {
-      const { accessToken, refreshToken, createdAt, expiresIn } = payload.data;
+    case REFRESH_TOKEN_SUCCESS:
+    case REGISTER_SUCCESS: {
+      const {
+        accessToken,
+        refreshToken,
+        createdAt,
+        expiresIn
+      } = payload.rawData;
       return {
         isFetching: false,
         isRefreshing: false,
@@ -53,6 +63,7 @@ const reducer = (state = initialState, { type, payload }) => {
       };
     }
     case LOGIN_FAIL:
+    case REGISTER_FAIL:
     case FACEBOOK_LOGIN_FAIL:
     case REFRESH_TOKEN_FAIL:
     case LOGOUT: {

@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { connect } from "react-redux";
 import { Form } from "react-final-form";
-import { func } from "prop-types";
+import { func, string, shape } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   InputField,
@@ -20,57 +20,39 @@ import {
   validatePasswordsMatch
 } from "utils/validators";
 import { Box, Flex } from "@rebass/grid";
+import { Router } from "routes";
 import { privacyPolicyLink, termsAndConditionsLink } from "consts";
-import {
-  HelperTitle,
-  Separator,
-  SuccessMessageWrapper,
-  TextSeparatorStyled
-} from "./styled";
+import { HelperTitle, Separator, TextSeparatorStyled } from "./styled";
 
 class CreateAccount extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      successMessage: null
-    };
     this.validateEmail = validateEmail(props.t);
     this.validatePassword = validatePassword(props.t);
     this.validateCheckbox = required(props.t);
     this.validatePasswordsMatch = validatePasswordsMatch(props.t);
   }
 
-  submitForm = async ({
-    email,
-    password,
-    passwordConfirmation,
-    termsAgreement
-  }) => {
-    try {
-      const { t, createUserAccount } = this.props;
-      await createUserAccount({
-        email,
-        password,
-        passwordConfirmation,
-        termsAgreement
+  submitForm = ({ email, password, passwordConfirmation, termsAgreement }) => {
+    const { lng, createUserAccount, query } = this.props;
+    createUserAccount({
+      email,
+      password,
+      passwordConfirmation,
+      termsAgreement
+    })
+      .then(() => {
+        if (query.plan === "essential" || query.plan === "basic") {
+          Router.pushRoute(`/${lng}/referrals/?plan=${query.plan}`);
+        } else {
+          Router.pushRoute(`/${lng}/app/subscriptions/`);
+        }
       })
-        .then(() =>
-          this.setState({
-            successMessage: t("confirmationMessege", { email })
-          })
-        )
-        .catch(e => console.log(e));
-    } catch (e) {
-      console.log(e);
-    }
+      .catch(e => console.log(e));
   };
 
   render() {
     const { t } = this.props;
-    const { successMessage } = this.state;
-    if (successMessage) {
-      return <SuccessMessageWrapper>{successMessage}</SuccessMessageWrapper>;
-    }
     return (
       <Form
         onSubmit={this.submitForm}
@@ -165,7 +147,9 @@ class CreateAccount extends PureComponent {
 
 CreateAccount.propTypes = {
   createUserAccount: func.isRequired,
-  t: func.isRequired
+  t: func.isRequired,
+  lng: string.isRequired,
+  query: shape().isRequired
 };
 
 export default connect(

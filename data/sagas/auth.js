@@ -19,6 +19,7 @@ import {
 import { fetchStripePlans } from "actions/stripe";
 import {
   LOGIN_SUCCESS,
+  REGISTER_SUCCESS,
   FACEBOOK_LOGIN_SUCCESS,
   REFRESH_TOKEN_SUCCESS,
   CHANGE_PASSWORD_SUCCESS,
@@ -87,7 +88,12 @@ function* onSuccessPasswordChangeByToken() {
 export default all([
   takeLatest(REHYDRATE, initialTokenRefresh),
   takeEvery(
-    [LOGIN_SUCCESS, FACEBOOK_LOGIN_SUCCESS, REFRESH_TOKEN_SUCCESS],
+    [
+      LOGIN_SUCCESS,
+      REGISTER_SUCCESS,
+      FACEBOOK_LOGIN_SUCCESS,
+      REFRESH_TOKEN_SUCCESS
+    ],
     fetchUserData
   ),
   takeEvery(CHANGE_PASSWORD_SUCCESS, showSuccessPasswordChangeMsg),
