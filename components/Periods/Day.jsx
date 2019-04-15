@@ -1,8 +1,14 @@
 import { PureComponent } from "react";
-import { RawCheckbox, ActionIcon, FormTimePicker } from "components";
+import {
+  RawCheckbox,
+  ActionIcon,
+  FormTimePicker,
+  FormInput,
+  AutoSave
+} from "components";
 import { Flex, Box } from "@rebass/grid";
 import { FieldArray } from "react-final-form-arrays";
-import { func, number } from "prop-types";
+import { func, number, bool, shape } from "prop-types";
 import { Actions, Action, Line } from "./styled";
 import { addNewPeriod } from "./utils";
 
@@ -23,18 +29,11 @@ class Day extends PureComponent {
     }
   };
 
-  handleBlur = async (value, fields, index, fieldName) => {
-    try {
-      const { updatePeriod } = this.props;
-      this.setState({ isRequestPending: true });
-      await updatePeriod({
-        ...fields.value[index],
-        [fieldName]: value
-      });
-      this.setState({ isRequestPending: false });
-    } catch (e) {
-      console.log(e);
-    }
+  handleBlur = value => {
+    const { updatePeriod } = this.props;
+    return updatePeriod({
+      ...value[0]
+    });
   };
 
   remove = (fields, index) => {
@@ -44,12 +43,27 @@ class Day extends PureComponent {
   };
 
   render() {
-    const { t, weekday, addPeriod, copy, paste } = this.props;
+    const {
+      t,
+      weekday,
+      addPeriod,
+      copy,
+      paste,
+      isLocationVisible,
+      mutators
+    } = this.props;
     const { isRequestPending } = this.state;
     return (
       <FieldArray name={`day-${weekday}`}>
         {({ fields }) => (
           <>
+            <AutoSave
+              setFieldData={mutators.setFieldData}
+              save={v => this.handleBlur(v, fields)}
+              t={t}
+              arrayName={`day-${weekday}`}
+              key="autoSave"
+            />
             <Flex
               width={1}
               flexDirection={["column", "column", "column", "row"]}
@@ -88,28 +102,44 @@ class Day extends PureComponent {
               <Flex flexDirection="column" width={[1, 1, 1, 0.6]} mt="12px">
                 {fields.map((name, index) => (
                   <Flex alignItems="center" key={name} flexWrap="wrap">
-                    <Box width={[1, "calc(50% - 48px)"]} px={2}>
+                    <Box
+                      width={[
+                        1,
+                        isLocationVisible ? 1 / 2 : "calc(50% - 48px)"
+                      ]}
+                      px={2}
+                    >
                       <FormTimePicker
                         name={`${name}.openedFrom`}
                         label={t("openedFromLabel")}
                         placeholder={t("openedFromPlaceholder")}
                         loading={isRequestPending}
-                        handleBlur={value =>
-                          this.handleBlur(value, fields, index, "openedFrom")
-                        }
                       />
                     </Box>
-                    <Box width={[1, "calc(50% - 48px)"]} px={2}>
+                    <Box
+                      width={[
+                        1,
+                        isLocationVisible ? 1 / 2 : "calc(50% - 48px)"
+                      ]}
+                      px={2}
+                    >
                       <FormTimePicker
                         name={`${name}.openedTo`}
                         label={t("openedToLabel")}
                         placeholder={t("openedToPlaceholder")}
                         loading={isRequestPending}
-                        handleBlur={value =>
-                          this.handleBlur(value, fields, index, "openedTo")
-                        }
                       />
                     </Box>
+                    {isLocationVisible && (
+                      <Box width={[1, "calc(100% - 96px)"]} px={2}>
+                        <FormInput
+                          name={`${name}.location`}
+                          label={t("locationLabel")}
+                          placeholder={t("locationPlaceholder")}
+                          loading={isRequestPending}
+                        />
+                      </Box>
+                    )}
                     <Actions key={name}>
                       <ActionIcon
                         size="sm"
@@ -146,7 +176,9 @@ Day.propTypes = {
   removePeriod: func.isRequired,
   weekday: number.isRequired,
   copy: func.isRequired,
-  paste: func.isRequired
+  paste: func.isRequired,
+  isLocationVisible: bool.isRequired,
+  mutators: shape().isRequired
 };
 
 export default Day;

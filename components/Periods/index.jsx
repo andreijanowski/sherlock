@@ -1,7 +1,8 @@
-import { func, shape } from "prop-types";
+import { func, shape, bool } from "prop-types";
 import { Form as FinalForm } from "react-final-form";
 import { H3, LoadingIndicator } from "components";
 import arrayMutators from "final-form-arrays";
+import setFieldData from "final-form-set-field-data";
 import { Form } from "./styled";
 import Day from "./Day";
 import {
@@ -9,7 +10,8 @@ import {
   parsePeriods,
   parsePeriod,
   parseTime,
-  timeToNumber
+  timeToNumber,
+  isMovableBusiness
 } from "./utils";
 
 const PeriodsForm = ({
@@ -19,14 +21,15 @@ const PeriodsForm = ({
   updatePeriod,
   removePeriod,
   copy,
-  paste
+  paste,
+  isLocationVisible
 }) =>
   initialValues ? (
     <FinalForm
       onSubmit={() => null}
       initialValues={initialValues}
-      mutators={{ ...{ ...arrayMutators } }}
-      render={() => (
+      mutators={{ ...{ ...arrayMutators, setFieldData } }}
+      render={({ form: { mutators } }) => (
         <Form>
           <H3>{t("openingHours")}</H3>
           {weekdays.map(weekday => (
@@ -39,6 +42,8 @@ const PeriodsForm = ({
                 removePeriod,
                 copy,
                 paste,
+                isLocationVisible,
+                mutators,
                 key: weekday
               }}
             />
@@ -57,13 +62,21 @@ PeriodsForm.propTypes = {
   removePeriod: func.isRequired,
   initialValues: shape(),
   copy: func.isRequired,
-  paste: func.isRequired
+  paste: func.isRequired,
+  isLocationVisible: bool
 };
 
 PeriodsForm.defaultProps = {
-  initialValues: null
+  initialValues: null,
+  isLocationVisible: false
 };
 
 export default PeriodsForm;
 
-export { parsePeriods, parsePeriod, parseTime, timeToNumber };
+export {
+  parsePeriods,
+  parsePeriod,
+  parseTime,
+  timeToNumber,
+  isMovableBusiness
+};

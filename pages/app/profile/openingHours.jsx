@@ -4,7 +4,12 @@ import requireAuth from "lib/requireAuth";
 import loadTranslations from "utils/loadTranslations";
 import { func, string, shape, arrayOf } from "prop-types";
 import ProfileLayout from "sections/profile/Layout";
-import { Periods, parsePeriods, parsePeriod } from "components";
+import {
+  Periods,
+  parsePeriods,
+  parsePeriod,
+  isMovableBusiness
+} from "components";
 import { connect } from "react-redux";
 import {
   postOpenPeriod,
@@ -75,6 +80,10 @@ class OpeningHours extends PureComponent {
       ? parsePeriods(business.openPeriods)
       : undefined;
 
+    const isLocationVisible = business
+      ? isMovableBusiness(business.groups)
+      : false;
+
     return (
       <ProfileLayout
         {...{
@@ -93,6 +102,7 @@ class OpeningHours extends PureComponent {
           {...{
             t,
             initialValues,
+            isLocationVisible,
             addPeriod: this.addOpenPeriod,
             updatePeriod: this.updateOpenPeriod,
             removePeriod: this.removeOpenPeriod,

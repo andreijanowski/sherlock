@@ -21,7 +21,6 @@ class AutoSave extends React.Component {
   save = async blurredField => {
     const { setFieldData, arrayName, t } = this.props;
     try {
-      setFieldData(blurredField, { saving: true });
       if (this.promise) {
         await this.promise;
       }
@@ -45,6 +44,7 @@ class AutoSave extends React.Component {
 
       const keys = Object.keys(difference);
       if (keys.length) {
+        setFieldData(blurredField, { saving: true });
         this.setState({ values });
         keys.forEach(k => {
           if (difference[k] === undefined) {
@@ -63,8 +63,8 @@ class AutoSave extends React.Component {
             error: null
           });
         }
+        setFieldData(blurredField, { saving: false });
       }
-      setFieldData(blurredField, { saving: false });
     } catch (e) {
       if (e.response) {
         const { errors } = e.response.data;

@@ -18,6 +18,9 @@ const InputField = ({
     name={name}
     render={({ input, meta }) => {
       const error = getError(meta, forceShowError);
+      if (meta.data.saving !== undefined) {
+        console.log({ name, saving: meta.data.saving, active: meta.active });
+      }
       return (
         <FieldWrapper>
           <RawInput
