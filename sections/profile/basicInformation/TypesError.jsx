@@ -4,12 +4,13 @@ import { Error } from "../styled";
 const TypesError = () => (
   <Field
     name="types"
-    subscription={{ data: true }}
+    subscription={{ error: true, data: true }}
     render={({
       meta: {
-        data: { error }
+        error,
+        data: { error: dataError }
       }
-    }) => (error ? <Error>{error}</Error> : null)}
+    }) => (error || dataError ? <Error>{error || dataError}</Error> : null)}
   />
 );
 

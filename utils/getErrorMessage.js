@@ -12,6 +12,14 @@ export const getErrorMessageKey = errors => ({
   meta: errors[0].meta
 });
 
+export const getValidMessageKey = (errors, code) => {
+  const validErrors = errors.filter(e => e.code === code);
+  if (validErrors.length) {
+    return getErrorMessageKey(validErrors);
+  }
+  return null;
+};
+
 export default errors => {
   let translatedMessage = { message: "Error" };
   if (errors.length) {

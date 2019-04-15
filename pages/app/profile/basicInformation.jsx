@@ -95,10 +95,10 @@ class BasicInformation extends PureComponent {
       postCode,
       groupsList: sendGroupsList
         ? getGroupsValues([
-            ...types,
-            ...cuisines,
-            ...foodsAndDrinks,
-            ...quirks,
+            ...types.slice(0, 3),
+            ...cuisines.slice(0, 5),
+            ...foodsAndDrinks.slice(0, 6),
+            ...quirks.slice(0, 10),
             ...diets
           ])
         : undefined,

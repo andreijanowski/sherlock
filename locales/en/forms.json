@@ -1,6 +1,7 @@
 {
   "validation": {
     "error": {
+      "length": "Please choose from {{min}} to {{max}} items",
       "email": "Invalid Email address",
       "required": "This field is required",
       "password": "Passwords must be at least {{length}} characters.",
@@ -38,10 +39,10 @@
       "url-website": "Website is not a valid URL",
       "url-instagram": "Instagram is not a valid URL",
       "improbable_phone-phone": "Phone is an invalid number",
-      "invalid_range_of_types-groups_list": "Groups list must have between 1 and 3 'types' entries",
-      "invalid_range_of_cuisines-groups_list": "Groups list must have between 1 and 5 'cuisines' entries",
-      "invalid_range_of_drinks_foods-groups_list": "Groups list must have between 1 and 6 'food and drinks' entries",
-      "invalid_range_of_quirks-groups_list": "Groups list must have between 3 and 10 'perfect for' entries",
+      "invalid_range_of_types-groups_list": "Groups list must have between {{min}} and {{max}} 'types' entries",
+      "invalid_range_of_cuisines-groups_list": "Groups list must have between {{min}} and {{max}} 'cuisines' entries",
+      "invalid_range_of_drinks_foods-groups_list": "Groups list must have between {{min}} and {{max}} 'food and drinks' entries",
+      "invalid_range_of_quirks-groups_list": "Groups list must have between {{min}} and {{max}} 'perfect for' entries",
       "not_a_number-price_per_person": "Price per person must be a number",
       "not_an_integer-price_per_person": "Price per person must be an integer",
       "greater_than_or_equal_to-price_per_person": "Price per person must be greater then or equal 0",
@@ -70,7 +71,6 @@
       "presence-data[attributes][address_street] is missing": "'Street' is missing",
       "presence-data[attributes][address_street_number] is missing": "'Street number' is missing",
       "presence-data[attributes][currency] is missing": "'Currency' is missing",
-      "invalidGroupNameMessage": "You can not edit this field because '{{field}}' field is invalid. Please fix it first.",
       "cannot_set_while_currency_not_set-visible_in_lefood": "Set currency first in order to make your business visible in lefood",
       "unauthorized_state_update-base": "Invalid state change",
       "server_error-Cannot transition state via": "Invalid state change",

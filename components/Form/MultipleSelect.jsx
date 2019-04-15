@@ -16,7 +16,7 @@ class FormMultipleSelect extends PureComponent {
   };
 
   render() {
-    const { input, meta, placeholder, items, maxItems } = this.props;
+    const { input, meta, placeholder, items, max, min } = this.props;
     const { inputValue } = this.state;
 
     return (
@@ -46,7 +46,8 @@ class FormMultipleSelect extends PureComponent {
                 meta,
                 placeholder,
                 items,
-                maxItems,
+                max,
+                min,
                 inputValue,
                 setInputValue: v => this.setState({ inputValue: v })
               }}
@@ -63,11 +64,13 @@ FormMultipleSelect.propTypes = {
   meta: shape().isRequired,
   placeholder: string.isRequired,
   items: arrayOf(shape()).isRequired,
-  maxItems: number
+  max: number,
+  min: number
 };
 
 FormMultipleSelect.defaultProps = {
-  maxItems: undefined
+  max: 100,
+  min: 0
 };
 
 export default FormMultipleSelect;

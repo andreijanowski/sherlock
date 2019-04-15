@@ -15,6 +15,11 @@ export const maxLength = (t, length) => value =>
     ? t("forms:validation.error.maxLength", { length })
     : undefined;
 
+export const validateLength = (t, min, max) => value =>
+  value && (value.length > max || value.length < min)
+    ? t("forms:validation.error.length", { min, max })
+    : undefined;
+
 export const minPasswordLength = t => (value = "") =>
   value.length >= formValidation.MINIMUM_PASSWORD_LENGTH
     ? undefined

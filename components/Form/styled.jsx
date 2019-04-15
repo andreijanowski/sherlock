@@ -173,9 +173,20 @@ export const Tag = styled(Flex).attrs({
 })`
   background-color: rgb(${p => p.theme.colors.background});
   border-radius: ${p => p.theme.radius.default};
+  color: rgb(${p => p.theme.colors.dark});
   font-size: ${p => p.theme.fontSizes.f14};
   font-weight: ${p => p.theme.fontWeights.semiBold};
   line-height: 42px;
+  ${p =>
+    p.isInvalid &&
+    `
+    background-color: rgb(${p.theme.colors.ruby});
+    color: rgb(${p.theme.colors.white});
+  `}
+
+  &:active {
+    opacity: 0.5;
+  }
 `;
 
 export const TagIcon = styled(FontAwesomeIcon).attrs({
@@ -184,18 +195,21 @@ export const TagIcon = styled(FontAwesomeIcon).attrs({
 })`
   margin-left: 8px;
   color: rgb(${p => p.theme.colors.lavenderGray});
+  ${p => p.isInvalid && `color: rgb(${p.theme.colors.white});`}
   cursor: pointer;
 
   &:hover {
     color: rgb(${p => p.theme.colors.ruby});
+    ${p => p.isInvalid && `color: rgba(${p.theme.colors.white}, 0.5);`}
   }
 `;
 
 export const Error = styled.span`
   position: absolute;
-  bottom: -${p => p.theme.fontSizes.f12};
+  bottom: -17px;
+  left: 0;
   color: rgb(${p => p.theme.colors.ruby});
-  font-size: ${p => p.theme.fontSizes.f12};
+  font-size: ${p => p.theme.fontSizes.f16};
 `;
 
 export const Label = styled.label`
@@ -231,6 +245,7 @@ export const Item = styled(Box).attrs({
   py: 2
 })`
   cursor: pointer;
+  color: rgb(${p => p.theme.colors.dark});
   ${p => p.isActive && `background-color: rgb(${p.theme.colors.background});`}
   ${p =>
     p.isSelected && `background-color: rgb(${p.theme.colors.linkWaterLight});`}
@@ -295,6 +310,10 @@ export const CheckboxLabel = styled(Flex).attrs({
     `background-color: rgba(${p.theme.colors.ruby}, 0.1);
     border-color: rgb(${p.theme.colors.ruby});
     color: rgb(${p.theme.colors.ruby});`}
+
+  &:active {
+    opacity: 0.5;
+  }
 `;
 
 export const Checkbox = styled.input.attrs({ type: "checkbox" })`
@@ -376,19 +395,6 @@ export const DaypickerWrapper = styled.div`
       background-color: rgb(${p => p.theme.colors.blue}) !important;
     }
   }
-`;
-
-export const DisabledMessage = styled.div`
-  height: 42px;
-  line-height: 26px;
-  padding: 8px 16px;
-  color: rgb(${p => p.theme.colors.ruby});
-`;
-
-export const DisabledMessageCheckbox = styled.div`
-  margin-top: 4px;
-  color: rgb(${p => p.theme.colors.ruby});
-  font-weight: ${p => p.theme.fontWeights.regular};
 `;
 
 export const FileWrapper = styled(Flex)`

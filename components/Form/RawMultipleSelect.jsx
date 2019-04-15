@@ -10,8 +10,7 @@ import {
   Items,
   Item,
   Tag,
-  TagIcon,
-  DisabledMessage
+  TagIcon
 } from "./styled";
 import { getError } from "./utils";
 
@@ -19,16 +18,11 @@ class RawMultipleSelect extends PureComponent {
   handleInputChange = e => {
     const {
       input: { value },
-      maxItems,
       items,
       setInputValue
     } = this.props;
     const safeValue = value || [];
-    if (
-      (maxItems && safeValue.length >= maxItems) ||
-      safeValue.length === items.length
-    )
-      return;
+    if (safeValue.length === items.length) return;
     setInputValue(e.target.value);
   };
 
@@ -89,18 +83,17 @@ class RawMultipleSelect extends PureComponent {
       meta,
       placeholder,
       items,
-      maxItems,
       isOpen,
       getInputProps,
       getItemProps,
       highlightedIndex,
       inputValue,
-      closeMenu
+      closeMenu,
+      max,
+      min
     } = this.props;
     const error = getError(meta);
     const selectItems = this.getItems(inputValue, items);
-    const disabled =
-      !!meta.data.invalidGroupName && meta.data.invalidGroupName !== input.name;
 
     return (
       <>
@@ -110,59 +103,52 @@ class RawMultipleSelect extends PureComponent {
           isEmpty={input.value.length === 0}
         >
           {input.value &&
-            input.value.map(i => (
-              <Tag key={i.value}>
+            input.value.map((i, index) => (
+              <Tag key={i.value} isInvalid={index >= max}>
                 {i.label}
                 <TagIcon
-                  onClick={disabled ? undefined : () => this.remove(i)}
+                  isInvalid={index >= max}
+                  onClick={
+                    input.value.length > min ? () => this.remove(i) : undefined
+                  }
                 />
               </Tag>
             ))}
-          {!disabled && (
-            <MultipleSelectInput
-              autoComplete="nope"
-              {...getInputProps({
-                invalid: error ? "true" : undefined,
-                value: inputValue,
-                placeholder,
-                name: input.name,
-                onChange: this.handleInputChange,
-                onKeyDown: this.handleKeyDown
-              })}
-            />
-          )}
-          {disabled && (
-            <DisabledMessage>
-              {meta.data.invalidGroupNameMessage}
-            </DisabledMessage>
-          )}
+          <MultipleSelectInput
+            autoComplete="nope"
+            {...getInputProps({
+              invalid: error ? "true" : undefined,
+              value: inputValue,
+              placeholder,
+              name: input.name,
+              onChange: this.handleInputChange,
+              onKeyDown: this.handleKeyDown
+            })}
+          />
           {error && <Error>{error}</Error>}
           {meta.data.saving && !meta.active && <LoadingIndicator />}
         </MultipleSelectWrapper>
-        {!disabled &&
-          isOpen &&
-          selectItems.length > 0 &&
-          (!maxItems || input.value.length < maxItems) && (
-            <Items>
-              {selectItems.map((item, index) => (
-                <Item
-                  className="ignore-react-onclickoutside"
-                  key={
-                    typeof item.value === "object"
-                      ? JSON.stringify(item.value)
-                      : item.value
-                  }
-                  {...getItemProps({
-                    item,
-                    isActive: highlightedIndex === index,
-                    onClick: closeMenu
-                  })}
-                >
-                  {item.label}
-                </Item>
-              ))}
-            </Items>
-          )}
+        {isOpen && selectItems.length > 0 && (
+          <Items>
+            {selectItems.map((item, index) => (
+              <Item
+                className="ignore-react-onclickoutside"
+                key={
+                  typeof item.value === "object"
+                    ? JSON.stringify(item.value)
+                    : item.value
+                }
+                {...getItemProps({
+                  item,
+                  isActive: highlightedIndex === index,
+                  onClick: closeMenu
+                })}
+              >
+                {item.label}
+              </Item>
+            ))}
+          </Items>
+        )}
       </>
     );
   }
@@ -173,7 +159,6 @@ RawMultipleSelect.propTypes = {
   meta: shape().isRequired,
   placeholder: string.isRequired,
   items: arrayOf(shape()).isRequired,
-  maxItems: number,
   isOpen: bool.isRequired,
   getInputProps: func.isRequired,
   getItemProps: func.isRequired,
@@ -181,12 +166,13 @@ RawMultipleSelect.propTypes = {
   inputValue: string.isRequired,
   setInputValue: func.isRequired,
   openMenu: func.isRequired,
-  closeMenu: func.isRequired
+  closeMenu: func.isRequired,
+  max: number.isRequired,
+  min: number.isRequired
 };
 
 RawMultipleSelect.defaultProps = {
-  highlightedIndex: undefined,
-  maxItems: undefined
+  highlightedIndex: undefined
 };
 
 export default onClickOutside(RawMultipleSelect);
