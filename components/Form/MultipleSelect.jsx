@@ -23,7 +23,7 @@ class FormMultipleSelect extends PureComponent {
       items,
       max,
       min,
-      forceShowError
+      isErrorVisibilityRequired
     } = this.props;
     const { inputValue } = this.state;
 
@@ -57,7 +57,7 @@ class FormMultipleSelect extends PureComponent {
                 max,
                 min,
                 inputValue,
-                forceShowError,
+                isErrorVisibilityRequired,
                 setInputValue: v => this.setState({ inputValue: v })
               }}
             />
@@ -75,13 +75,13 @@ FormMultipleSelect.propTypes = {
   items: arrayOf(shape()).isRequired,
   max: number,
   min: number,
-  forceShowError: bool
+  isErrorVisibilityRequired: bool
 };
 
 FormMultipleSelect.defaultProps = {
   max: 100,
   min: 0,
-  forceShowError: false
+  isErrorVisibilityRequired: false
 };
 
 export default FormMultipleSelect;

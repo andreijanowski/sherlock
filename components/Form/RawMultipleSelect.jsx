@@ -91,9 +91,9 @@ class RawMultipleSelect extends PureComponent {
       closeMenu,
       max,
       min,
-      forceShowError
+      isErrorVisibilityRequired
     } = this.props;
-    const error = getError(meta, forceShowError);
+    const error = getError(meta, isErrorVisibilityRequired);
     const selectItems = this.getItems(inputValue, items);
 
     return (
@@ -170,12 +170,12 @@ RawMultipleSelect.propTypes = {
   closeMenu: func.isRequired,
   max: number.isRequired,
   min: number.isRequired,
-  forceShowError: bool
+  isErrorVisibilityRequired: bool
 };
 
 RawMultipleSelect.defaultProps = {
   highlightedIndex: undefined,
-  forceShowError: false
+  isErrorVisibilityRequired: false
 };
 
 export default onClickOutside(RawMultipleSelect);

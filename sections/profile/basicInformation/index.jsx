@@ -41,7 +41,7 @@ class BasicInformationForm extends PureComponent {
       quirks,
       diets,
       handleSubmit,
-      forceShowError
+      isErrorVisibilityRequired
     } = this.props;
     return initialValues ? (
       <FinalForm
@@ -61,14 +61,14 @@ class BasicInformationForm extends PureComponent {
               name="name"
               label={t("nameLabel")}
               placeholder={t("namePlaceholder")}
-              forceShowError={forceShowError}
+              isErrorVisibilityRequired={isErrorVisibilityRequired}
               validate={this.required}
             />
             <FormInput
               name="tagline"
               label={t("taglineLabel")}
               placeholder={t("taglinePlaceholder")}
-              forceShowError={forceShowError}
+              isErrorVisibilityRequired={isErrorVisibilityRequired}
             />
             <Flex mx={-2} flexWrap="wrap">
               <Box width={[1, 1 / 2]} px={2}>
@@ -78,7 +78,7 @@ class BasicInformationForm extends PureComponent {
                   label={t("countryLabel")}
                   placeholder={t("countryPlaceholder")}
                   items={countries}
-                  forceShowError={forceShowError}
+                  isErrorVisibilityRequired={isErrorVisibilityRequired}
                   showFlag
                   validate={this.requiredCountry}
                 />
@@ -88,7 +88,7 @@ class BasicInformationForm extends PureComponent {
                   name="region"
                   component={FormSelect}
                   label={t("regionLabel")}
-                  forceShowError={forceShowError}
+                  isErrorVisibilityRequired={isErrorVisibilityRequired}
                   placeholder={t("regionPlaceholder")}
                   disabled={!values.country}
                   items={
@@ -105,7 +105,7 @@ class BasicInformationForm extends PureComponent {
                 <FormInput
                   name="street"
                   label={t("streetLabel")}
-                  forceShowError={forceShowError}
+                  isErrorVisibilityRequired={isErrorVisibilityRequired}
                   placeholder={t("streetPlaceholder")}
                   validate={this.required}
                 />
@@ -114,7 +114,7 @@ class BasicInformationForm extends PureComponent {
                 <FormInput
                   name="streetNumber"
                   label={t("streetNumberLabel")}
-                  forceShowError={forceShowError}
+                  isErrorVisibilityRequired={isErrorVisibilityRequired}
                   placeholder={t("streetNumberPlaceholder")}
                 />
               </Box>
@@ -122,7 +122,7 @@ class BasicInformationForm extends PureComponent {
                 <FormInput
                   name="city"
                   label={t("cityLabel")}
-                  forceShowError={forceShowError}
+                  isErrorVisibilityRequired={isErrorVisibilityRequired}
                   placeholder={t("cityPlaceholder")}
                   validate={this.required}
                 />
@@ -131,7 +131,7 @@ class BasicInformationForm extends PureComponent {
                 <FormInput
                   name="postCode"
                   label={t("postCodeLabel")}
-                  forceShowError={forceShowError}
+                  isErrorVisibilityRequired={isErrorVisibilityRequired}
                   placeholder={t("postCodePlaceholder")}
                   validate={this.required}
                 />
@@ -157,7 +157,9 @@ class BasicInformationForm extends PureComponent {
                   />
                 </Box>
               ))}
-              <TypesError forceShowError={forceShowError} />
+              <TypesError
+                isErrorVisibilityRequired={isErrorVisibilityRequired}
+              />
             </TypesWrapper>
             <H3 mt={4}>{t("cuisines")}</H3>
             <Field
@@ -167,7 +169,7 @@ class BasicInformationForm extends PureComponent {
               items={cuisines}
               max={5}
               min={1}
-              forceShowError={forceShowError}
+              isErrorVisibilityRequired={isErrorVisibilityRequired}
               validate={this.validateCuisinesLength}
             />
             <H3 mt={4}>{t("foodsAndDrinks")}</H3>
@@ -178,7 +180,7 @@ class BasicInformationForm extends PureComponent {
               items={foodsAndDrinks}
               max={6}
               min={1}
-              forceShowError={forceShowError}
+              isErrorVisibilityRequired={isErrorVisibilityRequired}
               validate={this.validateFoodsAndDrinksLength}
             />
             <H3 mt={4}>{t("quirks")}</H3>
@@ -189,7 +191,7 @@ class BasicInformationForm extends PureComponent {
               items={quirks}
               max={10}
               min={3}
-              forceShowError={forceShowError}
+              isErrorVisibilityRequired={isErrorVisibilityRequired}
               validate={this.validateQuirksLength}
             />
             <H3 mt={4}>{t("diets")}</H3>
@@ -198,19 +200,19 @@ class BasicInformationForm extends PureComponent {
               placeholder={t("dietsPlaceholder")}
               component={FormMultipleSelect}
               items={diets}
-              forceShowError={forceShowError}
+              isErrorVisibilityRequired={isErrorVisibilityRequired}
             />
             <H3 mt={4}>{t("additionalInformation")}</H3>
             <FormInput
               name="ownerRole"
               label={t("ownerRoleLabel")}
-              forceShowError={forceShowError}
+              isErrorVisibilityRequired={isErrorVisibilityRequired}
               placeholder={t("ownerRolePlaceholder")}
             />
             <FormTextarea
               name="bio"
               label={t("bioLabel")}
-              forceShowError={forceShowError}
+              isErrorVisibilityRequired={isErrorVisibilityRequired}
               placeholder={t("bioPlaceholder")}
             />
           </Form>
@@ -241,12 +243,12 @@ BasicInformationForm.propTypes = {
   diets: arrayOf(shape({ value: string.isRequired, label: string.isRequired }))
     .isRequired,
   handleSubmit: func.isRequired,
-  forceShowError: bool
+  isErrorVisibilityRequired: bool
 };
 
 BasicInformationForm.defaultProps = {
   initialValues: undefined,
-  forceShowError: false
+  isErrorVisibilityRequired: false
 };
 
 export default BasicInformationForm;

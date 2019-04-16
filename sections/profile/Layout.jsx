@@ -32,7 +32,7 @@ class ProfileLayout extends PureComponent {
     } = this.props;
     updateBusiness(id, { state: "waiting_for_approval" }).catch(() =>
       Router.pushRoute(
-        `/${lng}/app/profile/basic-information/?forceShowError=true`
+        `/${lng}/app/profile/basic-information/?isErrorVisibilityRequired=true`
       )
     );
   };

@@ -75,10 +75,10 @@ class FormSelect extends PureComponent {
       items,
       disabled,
       showFlag,
-      forceShowError
+      isErrorVisibilityRequired
     } = this.props;
     const { inputValue } = this.state;
-    const error = getError(meta, forceShowError);
+    const error = getError(meta, isErrorVisibilityRequired);
     const selectItems = this.getItems(inputValue, items);
 
     return (
@@ -175,13 +175,13 @@ FormSelect.propTypes = {
   label: string.isRequired,
   disabled: bool,
   showFlag: bool,
-  forceShowError: bool
+  isErrorVisibilityRequired: bool
 };
 
 FormSelect.defaultProps = {
   disabled: false,
   showFlag: false,
-  forceShowError: false
+  isErrorVisibilityRequired: false
 };
 
 export default FormSelect;

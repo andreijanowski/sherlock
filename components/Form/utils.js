@@ -1,7 +1,7 @@
 import { colors } from "utils/theme";
 
-export const getError = (meta, forceShowError) =>
-  forceShowError
+export const getError = (meta, isErrorVisibilityRequired) =>
+  isErrorVisibilityRequired
     ? meta.error || (meta.data && meta.data.error)
     : (meta.touched && meta.error) || (meta.data && meta.data.error);
 

@@ -4,12 +4,12 @@ import { getError } from "components/Form/utils";
 import { bool } from "prop-types";
 import { Box } from "@rebass/grid";
 
-const TypesError = ({ forceShowError }) => (
+const TypesError = ({ isErrorVisibilityRequired }) => (
   <Field
     name="types"
     subscription={{ error: true, data: true }}
     render={({ meta }) => {
-      const error = getError(meta, forceShowError);
+      const error = getError(meta, isErrorVisibilityRequired);
       return error ? (
         <Error>
           <Box ml={2}>{error}</Box>
@@ -20,11 +20,11 @@ const TypesError = ({ forceShowError }) => (
 );
 
 TypesError.propTypes = {
-  forceShowError: bool
+  isErrorVisibilityRequired: bool
 };
 
 TypesError.defaultProps = {
-  forceShowError: false
+  isErrorVisibilityRequired: false
 };
 
 export default TypesError;

@@ -11,16 +11,13 @@ const InputField = ({
   type,
   fieldProps,
   disabled,
-  forceShowError,
+  isErrorVisibilityRequired,
   ...rest
 }) => (
   <FinalFormField
     name={name}
     render={({ input, meta }) => {
-      const error = getError(meta, forceShowError);
-      if (meta.data.saving !== undefined) {
-        console.log({ name, saving: meta.data.saving, active: meta.active });
-      }
+      const error = getError(meta, isErrorVisibilityRequired);
       return (
         <FieldWrapper>
           <RawInput
@@ -49,7 +46,7 @@ InputField.propTypes = {
   label: string,
   placeholder: string,
   type: string,
-  forceShowError: bool
+  isErrorVisibilityRequired: bool
 };
 InputField.defaultProps = {
   label: "",
@@ -57,7 +54,7 @@ InputField.defaultProps = {
   placeholder: "",
   fieldProps: {},
   disabled: false,
-  forceShowError: false
+  isErrorVisibilityRequired: false
 };
 
 export default InputField;

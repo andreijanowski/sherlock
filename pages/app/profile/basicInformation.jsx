@@ -146,7 +146,7 @@ class BasicInformation extends PureComponent {
             foodsAndDrinks,
             quirks,
             diets,
-            forceShowError: !!query.forceShowError,
+            isErrorVisibilityRequired: !!query.isErrorVisibilityRequired,
             handleSubmit: this.handleSubmit
           }}
         />
