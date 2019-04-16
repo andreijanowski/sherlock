@@ -90,9 +90,10 @@ class RawMultipleSelect extends PureComponent {
       inputValue,
       closeMenu,
       max,
-      min
+      min,
+      forceShowError
     } = this.props;
-    const error = getError(meta);
+    const error = getError(meta, forceShowError);
     const selectItems = this.getItems(inputValue, items);
 
     return (
@@ -100,7 +101,7 @@ class RawMultipleSelect extends PureComponent {
         <MultipleSelectWrapper
           onClick={() => this.handleFocus()}
           isActive={meta.active}
-          isEmpty={input.value.length === 0}
+          invalid={error ? "true" : undefined}
         >
           {input.value &&
             input.value.map((i, index) => (
@@ -125,11 +126,11 @@ class RawMultipleSelect extends PureComponent {
               onKeyDown: this.handleKeyDown
             })}
           />
-          {error && <Error>{error}</Error>}
           {meta.data.saving && !meta.active && <LoadingIndicator />}
         </MultipleSelectWrapper>
+        {error && <Error>{error}</Error>}
         {isOpen && selectItems.length > 0 && (
-          <Items>
+          <Items mt={2}>
             {selectItems.map((item, index) => (
               <Item
                 className="ignore-react-onclickoutside"
@@ -168,11 +169,13 @@ RawMultipleSelect.propTypes = {
   openMenu: func.isRequired,
   closeMenu: func.isRequired,
   max: number.isRequired,
-  min: number.isRequired
+  min: number.isRequired,
+  forceShowError: bool
 };
 
 RawMultipleSelect.defaultProps = {
-  highlightedIndex: undefined
+  highlightedIndex: undefined,
+  forceShowError: false
 };
 
 export default onClickOutside(RawMultipleSelect);

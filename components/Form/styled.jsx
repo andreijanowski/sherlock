@@ -139,6 +139,7 @@ export const RawTextarea = styled(({ smallLabel, ...p }) => (
 export const MultipleSelectInput = styled(RawInput)`
   border: 0;
   height: 42px;
+  margin-top: -8px;
   padding: 8px 16px;
   width: auto;
 
@@ -152,13 +153,15 @@ export const MultipleSelectInput = styled(RawInput)`
   }
 `;
 
-export const MultipleSelectWrapper = styled(FieldWrapper).attrs(p => ({
+export const MultipleSelectWrapper = styled(FieldWrapper).attrs({
   as: "label",
   p: 2,
-  pb: p.isEmpty ? undefined : 0,
+  mb: 0,
+  pb: 0,
   flexWrap: "wrap",
   alignItems: "flex-start"
-}))`
+})`
+  position: static;
   border-radius: ${p => p.theme.radius.small};
   border: 1px solid
     rgb(${p => (p.invalid ? p.theme.colors.ruby : p.theme.colors.snuff)});
@@ -206,10 +209,9 @@ export const TagIcon = styled(FontAwesomeIcon).attrs({
 
 export const Error = styled.span`
   position: absolute;
-  bottom: -17px;
-  left: 0;
+  bottom: -13px;
   color: rgb(${p => p.theme.colors.ruby});
-  font-size: ${p => p.theme.fontSizes.f16};
+  font-size: ${p => p.theme.fontSizes.f12};
 `;
 
 export const Label = styled.label`
@@ -226,11 +228,11 @@ export const Label = styled.label`
   }
 `;
 
-export const Items = styled(Flex).attrs({
+export const Items = styled(Flex).attrs(p => ({
   flexDirection: "column",
-  mt: -2,
+  mt: p.mt || -2,
   width: 1
-})`
+}))`
   background-color: rgb(${p => p.theme.colors.white});
   border-radius: ${p => p.theme.radius.small};
   border: 1px solid rgb(${p => p.theme.colors.blue});

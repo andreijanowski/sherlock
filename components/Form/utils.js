@@ -5,7 +5,7 @@ export const getError = (meta, forceShowError) =>
     ? meta.error || (meta.data && meta.data.error)
     : (meta.touched && meta.error) || (meta.data && meta.data.error);
 
-export const getArraysDiff = (a, b, err) =>
+export const getArraysDiff = (a = [], b = [], err) =>
   a.filter((ai, i) =>
     err && err[i]
       ? false

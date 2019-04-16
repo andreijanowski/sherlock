@@ -164,7 +164,7 @@ export const generatePublishModalItems = (t, business) => {
   const isBasicInformationValid = !!checkIsBasicInformationValid(business);
   return tips.map((item, index) => ({
     name: items[index].label,
-    route: items[index].route,
+    route: `${items[index].route}?forceShowError=true`,
     tip: item,
     isValid: index === 0 ? isBasicInformationValid : true,
     isFilled:

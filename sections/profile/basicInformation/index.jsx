@@ -11,12 +11,12 @@ import {
   LoadingIndicator
 } from "components";
 import { Form as FinalForm, Field } from "react-final-form";
-import { func, shape, arrayOf, string } from "prop-types";
+import { func, shape, arrayOf, string, bool } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import setFieldData from "final-form-set-field-data";
 import { getSubdivisions } from "utils/iso-3166-2";
-import { validateLength } from "utils/validators";
-import { Form } from "../styled";
+import { validateLength, required, requiredProperty } from "utils/validators";
+import { Form, TypesWrapper } from "../styled";
 import TypesError from "./TypesError";
 
 class BasicInformationForm extends PureComponent {
@@ -26,6 +26,8 @@ class BasicInformationForm extends PureComponent {
     this.validateCuisinesLength = validateLength(props.t, 1, 5);
     this.validateFoodsAndDrinksLength = validateLength(props.t, 1, 6);
     this.validateQuirksLength = validateLength(props.t, 3, 10);
+    this.requiredCountry = requiredProperty(props.t, "value");
+    this.required = required(props.t);
   }
 
   render() {
@@ -38,7 +40,8 @@ class BasicInformationForm extends PureComponent {
       foodsAndDrinks,
       quirks,
       diets,
-      handleSubmit
+      handleSubmit,
+      forceShowError
     } = this.props;
     return initialValues ? (
       <FinalForm
@@ -58,11 +61,14 @@ class BasicInformationForm extends PureComponent {
               name="name"
               label={t("nameLabel")}
               placeholder={t("namePlaceholder")}
+              forceShowError={forceShowError}
+              validate={this.required}
             />
             <FormInput
               name="tagline"
               label={t("taglineLabel")}
               placeholder={t("taglinePlaceholder")}
+              forceShowError={forceShowError}
             />
             <Flex mx={-2} flexWrap="wrap">
               <Box width={[1, 1 / 2]} px={2}>
@@ -72,7 +78,9 @@ class BasicInformationForm extends PureComponent {
                   label={t("countryLabel")}
                   placeholder={t("countryPlaceholder")}
                   items={countries}
+                  forceShowError={forceShowError}
                   showFlag
+                  validate={this.requiredCountry}
                 />
               </Box>
               <Box width={[1, 1 / 2]} px={2}>
@@ -80,6 +88,7 @@ class BasicInformationForm extends PureComponent {
                   name="region"
                   component={FormSelect}
                   label={t("regionLabel")}
+                  forceShowError={forceShowError}
                   placeholder={t("regionPlaceholder")}
                   disabled={!values.country}
                   items={
@@ -96,13 +105,16 @@ class BasicInformationForm extends PureComponent {
                 <FormInput
                   name="street"
                   label={t("streetLabel")}
+                  forceShowError={forceShowError}
                   placeholder={t("streetPlaceholder")}
+                  validate={this.required}
                 />
               </Box>
               <Box width={[1, 1 / 2]} px={2}>
                 <FormInput
                   name="streetNumber"
                   label={t("streetNumberLabel")}
+                  forceShowError={forceShowError}
                   placeholder={t("streetNumberPlaceholder")}
                 />
               </Box>
@@ -110,19 +122,23 @@ class BasicInformationForm extends PureComponent {
                 <FormInput
                   name="city"
                   label={t("cityLabel")}
+                  forceShowError={forceShowError}
                   placeholder={t("cityPlaceholder")}
+                  validate={this.required}
                 />
               </Box>
               <Box width={[1, 1 / 2]} px={2}>
                 <FormInput
                   name="postCode"
                   label={t("postCodeLabel")}
+                  forceShowError={forceShowError}
                   placeholder={t("postCodePlaceholder")}
+                  validate={this.required}
                 />
               </Box>
             </Flex>
             <H3 mt={4}>{t("types")}</H3>
-            <Flex mx={-2} flexWrap="wrap">
+            <TypesWrapper>
               {types.map(type => (
                 <Box
                   width={[1 / 4, 1 / 4, 1 / 5, 1 / 7]}
@@ -141,8 +157,8 @@ class BasicInformationForm extends PureComponent {
                   />
                 </Box>
               ))}
-            </Flex>
-            <TypesError />
+              <TypesError forceShowError={forceShowError} />
+            </TypesWrapper>
             <H3 mt={4}>{t("cuisines")}</H3>
             <Field
               name="cuisines"
@@ -151,6 +167,7 @@ class BasicInformationForm extends PureComponent {
               items={cuisines}
               max={5}
               min={1}
+              forceShowError={forceShowError}
               validate={this.validateCuisinesLength}
             />
             <H3 mt={4}>{t("foodsAndDrinks")}</H3>
@@ -161,6 +178,7 @@ class BasicInformationForm extends PureComponent {
               items={foodsAndDrinks}
               max={6}
               min={1}
+              forceShowError={forceShowError}
               validate={this.validateFoodsAndDrinksLength}
             />
             <H3 mt={4}>{t("quirks")}</H3>
@@ -171,6 +189,7 @@ class BasicInformationForm extends PureComponent {
               items={quirks}
               max={10}
               min={3}
+              forceShowError={forceShowError}
               validate={this.validateQuirksLength}
             />
             <H3 mt={4}>{t("diets")}</H3>
@@ -179,16 +198,19 @@ class BasicInformationForm extends PureComponent {
               placeholder={t("dietsPlaceholder")}
               component={FormMultipleSelect}
               items={diets}
+              forceShowError={forceShowError}
             />
             <H3 mt={4}>{t("additionalInformation")}</H3>
             <FormInput
               name="ownerRole"
               label={t("ownerRoleLabel")}
+              forceShowError={forceShowError}
               placeholder={t("ownerRolePlaceholder")}
             />
             <FormTextarea
               name="bio"
               label={t("bioLabel")}
+              forceShowError={forceShowError}
               placeholder={t("bioPlaceholder")}
             />
           </Form>
@@ -218,11 +240,13 @@ BasicInformationForm.propTypes = {
     .isRequired,
   diets: arrayOf(shape({ value: string.isRequired, label: string.isRequired }))
     .isRequired,
-  handleSubmit: func.isRequired
+  handleSubmit: func.isRequired,
+  forceShowError: bool
 };
 
 BasicInformationForm.defaultProps = {
-  initialValues: undefined
+  initialValues: undefined,
+  forceShowError: false
 };
 
 export default BasicInformationForm;

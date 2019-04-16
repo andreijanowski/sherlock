@@ -5,6 +5,7 @@ import { generateMenuItems } from "sections/profile/utils";
 import prepareBusinessesList from "utils/prepareBusinessesList";
 import { Modal, ActionIcon } from "components";
 import PublishModal from "sections/profile/publishModal";
+import { Router } from "routes";
 import { PublishMobileIconWrapper, PublishHeader } from "./styled";
 
 class ProfileLayout extends PureComponent {
@@ -25,10 +26,15 @@ class ProfileLayout extends PureComponent {
 
   publish = () => {
     const {
+      lng,
       updateBusiness,
       business: { id }
     } = this.props;
-    updateBusiness(id, { state: "waiting_for_approval" });
+    updateBusiness(id, { state: "waiting_for_approval" }).catch(() =>
+      Router.pushRoute(
+        `/${lng}/app/profile/basic-information/?forceShowError=true`
+      )
+    );
   };
 
   render() {
