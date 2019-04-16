@@ -8,6 +8,7 @@ import Delivery from "sections/lefood/delivery";
 import { connect } from "react-redux";
 import { postDelivery, deleteDelivery } from "actions/deliveries";
 import { patchBusiness } from "actions/businesses";
+import { setCurrentBusiness } from "actions/users";
 import { calcPendingOrders } from "sections/lefood/utils";
 import { convertToCents } from "utils/price";
 
@@ -25,7 +26,7 @@ class DeliveriesPage extends PureComponent {
   addDelivery = values => {
     const {
       addDelivery,
-      currentBusiness: { id, countryCode }
+      business: { id, countryCode }
     } = this.props;
     return addDelivery(
       {
@@ -49,9 +50,11 @@ class DeliveriesPage extends PureComponent {
       lng,
       deliveries,
       loading,
-      currentBusiness,
       updateBusiness,
-      orders
+      orders,
+      business,
+      businesses,
+      changeCurrentBusiness
     } = this.props;
     const {
       visibleInLefood,
@@ -60,7 +63,7 @@ class DeliveriesPage extends PureComponent {
       minAmountForDeliveryCents,
       currency,
       stripeUserId
-    } = currentBusiness || {};
+    } = business || {};
     return (
       <LefoodLayout
         {...{
@@ -74,7 +77,10 @@ class DeliveriesPage extends PureComponent {
           minAmountForDeliveryCents,
           currentBusinessId: id,
           currency,
-          stripeUserId
+          stripeUserId,
+          business,
+          businesses,
+          changeCurrentBusiness
         }}
       >
         <Delivery
@@ -95,16 +101,19 @@ DeliveriesPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   deliveries: arrayOf(shape()).isRequired,
-  currentBusiness: shape(),
+  business: shape(),
   addDelivery: func.isRequired,
   removeDelivery: func.isRequired,
   loading: bool.isRequired,
   updateBusiness: func.isRequired,
-  orders: arrayOf(shape()).isRequired
+  orders: arrayOf(shape()).isRequired,
+  businesses: arrayOf(shape()),
+  changeCurrentBusiness: func.isRequired
 };
 
 DeliveriesPage.defaultProps = {
-  currentBusiness: {}
+  business: {},
+  businesses: null
 };
 
 export default requireAuth(true)(
@@ -115,13 +124,15 @@ export default requireAuth(true)(
           (!state.deliveries.isFailed && !state.deliveries.isSucceeded) ||
           state.deliveries.isFetching,
         deliveries: state.deliveries.data,
-        currentBusiness: state.users.currentBusiness.data,
+        business: state.users.currentBusiness.data,
+        businesses: state.users.profileBusinesses.data,
         orders: state.orders.data
       }),
       {
         addDelivery: postDelivery,
         removeDelivery: deleteDelivery,
-        updateBusiness: patchBusiness
+        updateBusiness: patchBusiness,
+        changeCurrentBusiness: setCurrentBusiness
       }
     )(DeliveriesPage)
   )
