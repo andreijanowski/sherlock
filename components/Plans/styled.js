@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import Tippy from "@tippy.js/react";
 import { Flex, Box } from "@rebass/grid";
 import { theme } from "utils/theme";
 
@@ -134,4 +135,12 @@ export const Design = styled.img`
   width: 300px;
   border-radius: ${theme.radius.default};
   box-shadow: 0 2px 6px 0 rgba(${theme.colors.blue}, 0.08);
+`;
+
+export const Tooltip = styled(Tippy)`
+  padding: 0;
+
+  .tippy-backdrop {
+    background: transparent;
+  }
 `;

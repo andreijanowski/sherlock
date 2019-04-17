@@ -53,19 +53,23 @@ export const Item = styled(Flex).attrs({
   }
 
   &:hover {
-    background-color: rgb(${p => p.theme.colors.dark});
-    box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.dark}, 0.48);
-
     > nav {
       display: flex;
     }
 
+    ${p =>
+      !p.inactive &&
+      `
+    background-color: rgb(${p.theme.colors.dark});
+    box-shadow: 0 2px 6px 0 rgba(${p.theme.colors.dark}, 0.48);
+
     path,
     circle,
     rect {
-      stroke: rgb(${p => p.theme.colors.white});
-      fill: rgb(${p => p.theme.colors.white});
+      stroke: rgb(${p.theme.colors.white});
+      fill: rgb(${p.theme.colors.white});
     }
+    `}
   }
 `;
 
@@ -81,13 +85,14 @@ export const Icon = styled(Flex).attrs({
   cursor: pointer;
   top: 0;
   left: 0;
+  ${p => p.inactive && "opacity: 0.5;"}
 `;
 
 export const SubitemsWrapper = styled(Flex).attrs({ pl: 3, as: "nav" })`
   position: absolute;
   left: 100%;
   z-index: 2;
-  ${p => p.top && `top: ${p.top}px;`}
+  ${p => p.top !== undefined && `top: ${p.top}px;`}
 
   &:after {
     z-index: 2;
@@ -95,7 +100,8 @@ export const SubitemsWrapper = styled(Flex).attrs({ pl: 3, as: "nav" })`
     width: 40px;
     height: 40px;
     position: absolute;
-    top: ${p => (p.arrowTop ? `${p.arrowTop}px` : "calc(50% - 20px)")};
+    top: ${p =>
+      p.arrowTop !== undefined ? `${p.arrowTop}px` : "calc(50% - 20px)"};
     transform: rotate(45deg);
     left: -20px;
   }
@@ -117,7 +123,8 @@ export const Subitems = styled(Flex).attrs({
     background-color: rgb(${p => p.theme.colors.dark});
     box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.dark}, 0.48);
     position: absolute;
-    top: ${p => (p.arrowTop ? `${p.arrowTop}px` : "calc(50% - 6px)")};
+    top: ${p =>
+      p.arrowTop !== undefined ? `${p.arrowTop}px` : "calc(50% - 6px)"};
     transform: rotate(45deg);
     left: -6px;
   }

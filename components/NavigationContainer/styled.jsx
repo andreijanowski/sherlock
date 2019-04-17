@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
-export const Wrapper = styled(Flex).attrs({
-  flexDirection: "column"
-})`
+export const Wrapper = styled(Flex)`
   display: none;
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     display: flex;

@@ -1,10 +1,10 @@
 export {
-  ControlCentre,
+  ControlCenter,
   Bookings,
   Delivery,
   TakeAway,
   Catering,
-  Privatisations,
+  Privatizations,
   LeFood,
   Billing,
   ProfileIcon,

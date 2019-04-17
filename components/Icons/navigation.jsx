@@ -76,7 +76,7 @@ export const BackArrow = () => (
   </svg>
 );
 
-export const ControlCentre = () => (
+export const ControlCenter = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -220,7 +220,7 @@ export const Catering = () => (
   </svg>
 );
 
-export const Privatisations = () => (
+export const Privatizations = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="22"
