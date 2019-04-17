@@ -38,7 +38,13 @@ class AutoSave extends React.Component {
         : diff(prevValues, values);
       if (!arrayName) {
         Object.keys(errors).forEach(e => {
-          delete difference[e];
+          if (
+            e !== "types" &&
+            e !== "cuisines" &&
+            e !== "foodsAndDrinks" &&
+            e !== "quirks"
+          )
+            delete difference[e];
         });
       }
 
@@ -109,9 +115,6 @@ class AutoSave extends React.Component {
                 error: t(error.message, { ...error.meta })
               });
             }
-            break;
-          }
-          case "diets": {
             break;
           }
           default: {

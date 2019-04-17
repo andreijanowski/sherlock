@@ -7,7 +7,7 @@ import { Box } from "@rebass/grid";
 const TypesError = ({ isErrorVisibilityRequired }) => (
   <Field
     name="types"
-    subscription={{ error: true, data: true }}
+    subscription={{ error: true, data: true, touched: true }}
     render={({ meta }) => {
       const error = getError(meta, isErrorVisibilityRequired);
       return error ? (
