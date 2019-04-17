@@ -15,5 +15,7 @@
     "Saturday"
   ],
   "copy": "copy",
-  "paste": "paste"
+  "paste": "paste",
+  "locationLabel": "Location",
+  "locationPlaceholder": "Near Rue des Deux-Ponts 124, Geneva"
 }

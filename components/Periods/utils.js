@@ -70,3 +70,14 @@ export const addNewPeriod = (addPeriod, fields, weekday) => {
   };
   addPeriod(newPeriod);
 };
+
+export const isMovableBusiness = groups =>
+  groups.some(
+    g =>
+      g.name === "Food Court" ||
+      g.name === "Food Festival" ||
+      g.name === "Food Stand" ||
+      g.name === "Food Truck" ||
+      g.name === "Ice Cream Stand" ||
+      g.name === "Street Food"
+  );

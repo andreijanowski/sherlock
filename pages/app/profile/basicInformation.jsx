@@ -95,10 +95,10 @@ class BasicInformation extends PureComponent {
       postCode,
       groupsList: sendGroupsList
         ? getGroupsValues([
-            ...types,
-            ...cuisines,
-            ...foodsAndDrinks,
-            ...quirks,
+            ...types.slice(0, 3),
+            ...cuisines.slice(0, 5),
+            ...foodsAndDrinks.slice(0, 6),
+            ...quirks.slice(0, 10),
             ...diets
           ])
         : undefined,
@@ -117,7 +117,8 @@ class BasicInformation extends PureComponent {
       changeCurrentBusiness,
       addBusiness,
       updateBusiness,
-      getProfileBusiness
+      getProfileBusiness,
+      query
     } = this.props;
     const { types, cuisines, foodsAndDrinks, quirks, diets } = this.state;
     const initialValues = getInitialValues(business);
@@ -145,6 +146,7 @@ class BasicInformation extends PureComponent {
             foodsAndDrinks,
             quirks,
             diets,
+            isErrorVisibilityRequired: !!query.isErrorVisibilityRequired,
             handleSubmit: this.handleSubmit
           }}
         />
@@ -162,12 +164,14 @@ BasicInformation.propTypes = {
   changeCurrentBusiness: func.isRequired,
   getProfileBusiness: func.isRequired,
   addBusiness: func.isRequired,
-  businesses: arrayOf(shape())
+  businesses: arrayOf(shape()),
+  query: shape()
 };
 
 BasicInformation.defaultProps = {
   business: null,
-  businesses: null
+  businesses: null,
+  query: {}
 };
 
 export default requireAuth(true)(

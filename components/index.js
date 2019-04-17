@@ -60,7 +60,8 @@ export {
   parsePeriods,
   parsePeriod,
   parseTime,
-  timeToNumber
+  timeToNumber,
+  isMovableBusiness
 } from "./Periods";
 export { default as InfoBar } from "./InfoBar";
 export { default as AutosizeInput } from "./AutosizeInput";

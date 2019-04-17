@@ -63,15 +63,7 @@ class RawTimePicker extends PureComponent {
   };
 
   render() {
-    const {
-      input,
-      meta,
-      name,
-      disabled,
-      placeholder,
-      label,
-      loading
-    } = this.props;
+    const { input, meta, name, disabled, placeholder, label } = this.props;
     const { isTimekeeperVisible, top } = this.state;
     const error = getError(meta);
 
@@ -99,7 +91,7 @@ class RawTimePicker extends PureComponent {
             />
           </TimekeeperWrapper>
         )}
-        {loading && <LoadingIndicator />}
+        {meta.data.saving && !meta.active && <LoadingIndicator />}
       </FieldWrapper>
     );
   }
@@ -112,14 +104,12 @@ RawTimePicker.propTypes = {
   disabled: bool,
   placeholder: string.isRequired,
   label: string.isRequired,
-  handleBlur: func,
-  loading: bool
+  handleBlur: func
 };
 
 RawTimePicker.defaultProps = {
   disabled: false,
-  handleBlur: undefined,
-  loading: false
+  handleBlur: undefined
 };
 
 const EnhancedRawTimePicker = onClickOutside(RawTimePicker);
