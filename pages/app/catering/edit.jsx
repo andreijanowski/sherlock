@@ -6,7 +6,7 @@ import { func, string, shape, arrayOf } from "prop-types";
 import CateringLayout from "sections/catering/Layout";
 import EditCateringForm from "sections/catering/edit";
 import { connect } from "react-redux";
-import { setCurrentBusiness } from "actions/users";
+import { setCurrentBusiness } from "actions/app";
 import { Router } from "routes";
 import { timeToNumber, LoadingIndicator } from "components";
 import { patchCatering } from "actions/caterings";

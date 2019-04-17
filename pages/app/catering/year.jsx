@@ -5,7 +5,7 @@ import loadTranslations from "utils/loadTranslations";
 import { func, string, shape, arrayOf } from "prop-types";
 import CateringLayout from "sections/catering/Layout";
 import { connect } from "react-redux";
-import { setCurrentBusiness } from "actions/users";
+import { setCurrentBusiness } from "actions/app";
 import Year from "sections/catering/year";
 
 const namespaces = ["catering", "app"];

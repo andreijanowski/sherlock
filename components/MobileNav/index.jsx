@@ -3,7 +3,7 @@ import { Flex } from "@rebass/grid";
 import { arrayOf, func, string, shape } from "prop-types";
 import { connect } from "react-redux";
 import { postBusiness } from "actions/businesses";
-import { setCurrentBusiness } from "actions/users";
+import { setCurrentBusiness } from "actions/app";
 import prepareBusinessesList from "utils/prepareBusinessesList";
 import {
   ControlCentre,

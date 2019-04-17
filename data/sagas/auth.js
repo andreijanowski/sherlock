@@ -28,6 +28,7 @@ import {
 } from "types/auth";
 import Notifications from "react-notification-system-redux";
 import { refreshToken as refresh } from "actions/auth";
+import { setCurrentBusiness } from "actions/app";
 
 function* initialTokenRefresh() {
   const refreshToken = yield select(state => state.auth.refreshToken);
@@ -36,26 +37,35 @@ function* initialTokenRefresh() {
   }
 }
 
+function* fetchBusinessData(id) {
+  yield put(fetchProfileBusiness(id));
+  yield put(fetchBusinessMembers(id));
+  yield put(fetchBusinessDeliveries(id));
+  yield put(fetchBusinessDishes(id));
+  yield put(fetchBusinessOrders(id));
+  yield put(fetchBusinessCaterings(id));
+}
+
 function* fetchUserData() {
   yield put(fetchProfile());
   yield put(fetchProfileCards());
   yield put(fetchProfileSubscriptions());
   yield put(fetchGroups());
   yield put(fetchStripePlans());
-  const {
-    rawData: { data }
-  } = yield put.resolve(fetchProfileBusinesses());
-  if (data && data.length) {
-    yield put(fetchProfileBusiness(data[0].id));
-    yield put(fetchBusinessMembers(data[0].id));
-    yield put(fetchBusinessDeliveries(data[0].id));
-    yield put(fetchBusinessDishes(data[0].id));
-    yield put(fetchBusinessOrders(data[0].id));
-    yield put(fetchBusinessCaterings(data[0].id));
-    yield put(fetchProfileCards());
-    yield put(fetchProfileSubscriptions());
+  const currentBusinessId = yield select(state => state.app.currentBusinessId);
+  if (currentBusinessId) {
+    yield fetchBusinessData(currentBusinessId);
+    yield put(fetchProfileBusinesses());
   } else {
-    yield put(postBusiness());
+    const {
+      rawData: { data }
+    } = yield put.resolve(fetchProfileBusinesses());
+    if (data && data.length) {
+      yield fetchBusinessData(data[0].id);
+      yield put(setCurrentBusiness(data[0].id));
+    } else {
+      yield put(postBusiness());
+    }
   }
 }
 

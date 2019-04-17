@@ -8,7 +8,6 @@ import {
   FETCH_PROFILE_BUSINESS_REQUEST,
   FETCH_PROFILE_BUSINESS_SUCCESS,
   FETCH_PROFILE_BUSINESS_FAIL,
-  SET_CURRENT_BUSINESS,
   UPDATE_PROFILE_REQUEST,
   UPDATE_PROFILE_SUCCESS,
   FETCH_PROFILE_CARDS_REQUEST,
@@ -256,7 +255,6 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       return newState;
     }
 
-    case SET_CURRENT_BUSINESS:
     case POST_BUSINESS_REQUEST: {
       const newState = { ...state };
       newState.currentBusiness = initialState.currentBusiness;

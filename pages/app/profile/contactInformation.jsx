@@ -7,7 +7,8 @@ import Form from "sections/profile/contactInformation";
 import { connect } from "react-redux";
 import { postBusiness, patchBusiness } from "actions/businesses";
 import { getInitialValues } from "sections/profile/contactInformation/utils";
-import { setCurrentBusiness, fetchProfileBusiness } from "actions/users";
+import { fetchProfileBusiness } from "actions/users";
+import { setCurrentBusiness } from "actions/app";
 import ProfileLayout from "sections/profile/Layout";
 
 const namespaces = ["contactInformation", "app", "publishModal", "forms"];

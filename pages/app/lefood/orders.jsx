@@ -13,7 +13,7 @@ import {
 import { connect } from "react-redux";
 import { patchOrder, patchOrderReject } from "actions/orders";
 import { patchBusiness } from "actions/businesses";
-import { setCurrentBusiness } from "actions/users";
+import { setCurrentBusiness } from "actions/app";
 import OrderDetails from "sections/lefood/orders/OrderDetails";
 import { SliderStyles } from "sections/lefood/orders/styled";
 import { action as toggleMenu } from "redux-burger-menu";

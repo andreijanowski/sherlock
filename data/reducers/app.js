@@ -1,14 +1,18 @@
-import { ACCEPT_COOKIES } from "types/app";
+import { ACCEPT_COOKIES, SET_CURRENT_BUSINESS } from "types/app";
 
 const reducer = (
   state = {
-    cookiesAccepted: false
+    cookiesAccepted: false,
+    currentBusinessId: undefined
   },
-  { type }
+  { type, payload }
 ) => {
   switch (type) {
     case ACCEPT_COOKIES: {
-      return { cookiesAccepted: true };
+      return { ...state, cookiesAccepted: true };
+    }
+    case SET_CURRENT_BUSINESS: {
+      return { ...state, currentBusinessId: payload.id };
     }
     default: {
       return state;

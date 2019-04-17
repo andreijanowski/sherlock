@@ -6,7 +6,8 @@ import { func, string, shape, arrayOf } from "prop-types";
 import Form from "sections/profile/additionalInformation";
 import { connect } from "react-redux";
 import { postBusiness, patchBusiness } from "actions/businesses";
-import { setCurrentBusiness, fetchProfileBusiness } from "actions/users";
+import { fetchProfileBusiness } from "actions/users";
+import { setCurrentBusiness } from "actions/app";
 import { getInitialValues } from "sections/profile/additionalInformation/utils";
 import ProfileLayout from "sections/profile/Layout";
 
