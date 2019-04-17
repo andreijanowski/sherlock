@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import { bool, func, string, node, number } from "prop-types";
+import { bool, func, string, node, number, shape, arrayOf } from "prop-types";
 import AppLayout from "layout/App";
 import {
   Button,
@@ -28,6 +28,7 @@ import { Flex, Box } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Router } from "routes";
 import { convertToCents } from "utils/price";
+import prepareBusinessesList from "utils/prepareBusinessesList";
 import StopOrdersModal from "./StopOrdersModal";
 import FinishOrdersModal from "./FinishOrdersModal";
 import { Orange } from "./styled";
@@ -154,7 +155,10 @@ class LefoodLayout extends PureComponent {
       orderPeriodsLength,
       averageDeliveryTime,
       currency,
-      stripeUserId
+      stripeUserId,
+      business,
+      businesses,
+      changeCurrentBusiness
     } = this.props;
     const { minAmountForDeliveryCents } = this.state;
     const { isStopOrdersModalVisible, isFinishOrdersModalVisible } = this.state;
@@ -185,6 +189,20 @@ class LefoodLayout extends PureComponent {
           <LoadingIndicator />
         ) : (
           <>
+            <Box width={[1, 1 / 2]}>
+              <Select
+                value={{
+                  value: business && business.id,
+                  label:
+                    (business && business.name) ||
+                    t("app:manageProfile.unnamedBusiness"),
+                  src: business && business.logo.url
+                }}
+                withImage
+                items={prepareBusinessesList(t, businesses)}
+                onChange={b => changeCurrentBusiness(b.value)}
+              />
+            </Box>
             {stripeUserId ? (
               <>
                 {profileCompletedPercents !== 100 && (
@@ -443,6 +461,9 @@ LefoodLayout.propTypes = {
   visibleInLefood: bool,
   pendingOrdersLength: number.isRequired,
   updateBusiness: func.isRequired,
+  business: shape(),
+  businesses: arrayOf(shape()),
+  changeCurrentBusiness: func.isRequired,
   currentBusinessId: string,
   dishesLength: number,
   deliveriesLength: number,
@@ -462,7 +483,9 @@ LefoodLayout.defaultProps = {
   currentBusinessId: "",
   averageDeliveryTime: 0,
   minAmountForDeliveryCents: 0,
-  stripeUserId: undefined
+  stripeUserId: undefined,
+  business: null,
+  businesses: null
 };
 
 export default LefoodLayout;
