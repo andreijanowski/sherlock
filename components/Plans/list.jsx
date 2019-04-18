@@ -1,6 +1,5 @@
-import { Tooltip } from "react-tippy";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Service, Badge, Design } from "./styled";
+import { Service, Badge, Design, Tooltip } from "./styled";
 import { generatePlanOptionsList } from "./utils";
 
 const List = ({ t, name: listName, color }) =>
@@ -19,7 +18,7 @@ const List = ({ t, name: listName, color }) =>
         </Service>
       );
       return tooltipImage ? (
-        <Tooltip key={name} html={<Design src={tooltipImage} />}>
+        <Tooltip key={name} content={<Design src={tooltipImage} />}>
           {item}
         </Tooltip>
       ) : (

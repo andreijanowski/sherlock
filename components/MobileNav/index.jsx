@@ -6,7 +6,7 @@ import { postBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/users";
 import prepareBusinessesList from "utils/prepareBusinessesList";
 import {
-  ControlCentre,
+  ControlCenter,
   TakeAway,
   Catering,
   LiveStream,
@@ -49,7 +49,7 @@ class MobileNav extends PureComponent {
         justifyContent="space-between"
         alignItems="center"
       >
-        <MainIcon Icon={ControlCentre} {...{ lng, route: "/" }} />
+        <MainIcon Icon={ControlCenter} {...{ lng, route: "/" }} />
         <MainIcon Icon={Catering} {...{ lng, route: "/app/catering/month/" }} />
         <MainIcon Icon={TakeAway} {...{ lng, route: "/" }} />
         <MainIcon Icon={LiveStream} {...{ lng, route: "/" }} />
