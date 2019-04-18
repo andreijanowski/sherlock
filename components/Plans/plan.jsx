@@ -7,7 +7,10 @@ import {
   MostPopular,
   PriceWrapper,
   PriceDescription,
-  Price
+  Price,
+  BetaPrice,
+  BetaPriceText,
+  RegularPrice
 } from "./styled";
 import List from "./list";
 
@@ -60,10 +63,26 @@ const Plan = ({
           {t(`plans:${name}.priceDescription`)}
         </PriceDescription>
         {name === "basic" || name === "premium" ? (
-          <Price>
-            {t(`plans:${name}.price.${billingInterval}`)}
-            <small>/{t(`plans:${name}.${billingInterval}`)}</small>
-          </Price>
+          <>
+            {billingInterval === "year" ? (
+              <>
+                <RegularPrice>
+                  {t(`plans:${name}.price.${billingInterval}`)}
+                  <small>/{t(`plans:${name}.${billingInterval}`)}</small>
+                </RegularPrice>
+                <BetaPrice>
+                  {t(`plans:${name}.price.beta`)}
+                  <small>/{t(`plans:${name}.${billingInterval}`)}</small>
+                </BetaPrice>
+                <BetaPriceText> {t("plans:betaPrice")}</BetaPriceText>
+              </>
+            ) : (
+              <Price>
+                {t(`plans:${name}.price.${billingInterval}`)}
+                <small>/{t(`plans:${name}.${billingInterval}`)}</small>
+              </Price>
+            )}
+          </>
         ) : (
           <Price>{t(`plans:${name}.price.${billingInterval}`)}</Price>
         )}
@@ -72,7 +91,12 @@ const Plan = ({
           styleName={isChosen ? "background" : color}
         >
           {buttonText}
-          {name === "premium" && t(`plans:${name}.price.${billingInterval}`)}
+          {name === "premium" &&
+            t(
+              `plans:${name}.price.${
+                billingInterval === "year" ? "beta" : billingInterval
+              }`
+            )}
         </Button>
       </PriceWrapper>
       <List {...{ t, name, color }} />
