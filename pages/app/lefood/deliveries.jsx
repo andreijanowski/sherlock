@@ -8,7 +8,7 @@ import Delivery from "sections/lefood/delivery";
 import { connect } from "react-redux";
 import { postDelivery, deleteDelivery } from "actions/deliveries";
 import { patchBusiness } from "actions/businesses";
-import { setCurrentBusiness } from "actions/users";
+import { setCurrentBusiness } from "actions/app";
 import { calcPendingOrders } from "sections/lefood/utils";
 import { convertToCents } from "utils/price";
 

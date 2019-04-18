@@ -12,7 +12,8 @@ import { postPicture, deletePicture } from "actions/pictures";
 import { postMenu, patchMenu, deleteMenu } from "actions/menus";
 import { postProduct, patchProduct, deleteProduct } from "actions/products";
 import { getInitialValues } from "sections/profile/picturesAndMenus/utils";
-import { setCurrentBusiness, fetchProfileBusiness } from "actions/users";
+import { fetchProfileBusiness } from "actions/users";
+import { setCurrentBusiness } from "actions/app";
 
 const namespaces = ["picturesAndMenus", "app", "publishModal", "forms"];
 

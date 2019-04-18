@@ -16,7 +16,8 @@ import {
   patchOpenPeriod,
   deleteOpenPeriod
 } from "actions/openPeriods";
-import { setCurrentBusiness, fetchProfileBusiness } from "actions/users";
+import { fetchProfileBusiness } from "actions/users";
+import { setCurrentBusiness } from "actions/app";
 import { postBusiness, patchBusiness } from "actions/businesses";
 
 const namespaces = ["openingHours", "app", "publishModal", "forms"];

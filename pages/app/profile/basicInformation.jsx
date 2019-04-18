@@ -13,7 +13,8 @@ import { getGroupsData } from "sections/profile/utils";
 import ProfileLayout from "sections/profile/Layout";
 import { connect } from "react-redux";
 import { postBusiness, patchBusiness } from "actions/businesses";
-import { setCurrentBusiness, fetchProfileBusiness } from "actions/users";
+import { fetchProfileBusiness } from "actions/users";
+import { setCurrentBusiness } from "actions/app";
 
 const namespaces = ["basicInformation", "app", "publishModal", "forms"];
 

@@ -11,7 +11,7 @@ import {
   patchOrderPeriod,
   deleteOrderPeriod
 } from "actions/orderPeriods";
-import { setCurrentBusiness } from "actions/users";
+import { setCurrentBusiness } from "actions/app";
 import { calcPendingOrders } from "sections/lefood/utils";
 import { patchBusiness } from "actions/businesses";
 

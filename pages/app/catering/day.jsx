@@ -6,7 +6,7 @@ import { func, string, shape, arrayOf } from "prop-types";
 import CateringLayout from "sections/catering/Layout";
 import Day from "sections/catering/day";
 import { connect } from "react-redux";
-import { setCurrentBusiness } from "actions/users";
+import { setCurrentBusiness } from "actions/app";
 import { setCateringForEditing, sendCateringOffer } from "actions/caterings";
 import isServer from "utils/isServer";
 
