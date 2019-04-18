@@ -71,7 +71,7 @@ class SignInForm extends PureComponent {
                 </Link>
               </Box>
               <Box>
-                <Link lng={lng} route="/register">
+                <Link lng={lng} route="/register/?plan=basic">
                   <Tip as="a">{t("letsSignUp")}</Tip>
                 </Link>
               </Box>
