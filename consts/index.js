@@ -18,8 +18,8 @@ const contentTypes = {
   JSONAPI: "application/vnd.api+json",
   MULTIPART: "multipart/form-data"
 };
-const privacyPolicyLink = "https://foodetective.co/privacy-policy";
-const termsAndConditionsLink = "https://foodetective.co/terms-conditions";
+const privacyPolicyLink = "https://foodetective.co/sherlock-privacy-policy";
+const termsAndConditionsLink = "https://foodetective.co/sherlock-terms-of-use";
 const formValidation = { MINIMUM_PASSWORD_LENGTH: 8 };
 
 module.exports = {
