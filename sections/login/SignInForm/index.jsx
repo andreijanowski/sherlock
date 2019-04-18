@@ -1,12 +1,17 @@
 import { PureComponent } from "react";
 import { connect } from "react-redux";
 import { Form } from "react-final-form";
-import { func } from "prop-types";
+import { func, string } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { InputField, Button, FacebookLogin, TextSeparator } from "components";
+import {
+  InputField,
+  Button,
+  FacebookLogin,
+  TextSeparator,
+  Link
+} from "components";
 import { login } from "actions/auth";
 import { validateEmail, required } from "utils/validators";
-import { Link } from "routes";
 import { Flex, Box } from "@rebass/grid";
 import { Tip } from "./styled";
 
@@ -27,7 +32,7 @@ class SignInForm extends PureComponent {
   };
 
   render() {
-    const { t } = this.props;
+    const { t, lng } = this.props;
     return (
       <Form
         onSubmit={this.submitForm}
@@ -61,13 +66,13 @@ class SignInForm extends PureComponent {
             <FacebookLogin>{t("Facebook")}</FacebookLogin>
             <Flex mt={4} flexDirection="column">
               <Box mb={3}>
-                <Link route="/reset-password">
-                  <Tip>{t("forgotPassword")}</Tip>
+                <Link lng={lng} route="/reset-password">
+                  <Tip as="a">{t("forgotPassword")}</Tip>
                 </Link>
               </Box>
               <Box>
-                <Link route="/register">
-                  <Tip>{t("letsSignUp")}</Tip>
+                <Link lng={lng} route="/register">
+                  <Tip as="a">{t("letsSignUp")}</Tip>
                 </Link>
               </Box>
             </Flex>
@@ -80,7 +85,8 @@ class SignInForm extends PureComponent {
 
 SignInForm.propTypes = {
   loginUser: func.isRequired,
-  t: func.isRequired
+  t: func.isRequired,
+  lng: string.isRequired
 };
 
 export default connect(
