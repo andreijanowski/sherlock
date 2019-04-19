@@ -77,9 +77,7 @@ class TopSection extends PureComponent {
                 styleName="blue"
                 fluid
                 fullHeight
-                onClick={() =>
-                  Router.pushRoute(`/${lng}/register/?plan="basic"`)
-                }
+                onClick={() => Router.pushRoute(`/${lng}/register/?plan=basic`)}
               >
                 {t("topSection.addYourBusiness")}
               </Button>
