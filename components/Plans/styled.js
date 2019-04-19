@@ -29,6 +29,7 @@ export const NameWrapper = styled(Flex).attrs({
   position: absolute;
   top: -10px;
   left: 16px;
+  z-index: 1;
 `;
 
 export const Name = styled.div`
@@ -61,6 +62,7 @@ export const PriceWrapper = styled(Flex).attrs({
   mb: 3
 })`
   padding: 24px 16px 16px;
+  position: relative;
   border-radius: ${p => p.theme.radius.default};
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
   background: rgb(${p => p.theme.colors.white});
@@ -85,6 +87,24 @@ export const Price = styled.div`
   small {
     font-size: ${p => p.theme.fontSizes.f16};
   }
+`;
+
+export const RegularPrice = styled(Price)`
+  margin-bottom: 0;
+  font-size: ${p => p.theme.fontSizes.f16};
+  text-decoration: line-through;
+  line-height: 20px;
+`;
+
+export const BetaPrice = styled(Price)`
+  margin-bottom: 20px;
+`;
+
+export const BetaPriceText = styled.div`
+  position: absolute;
+  color: rgb(${p => p.theme.colors.ruby});
+  bottom: 70px;
+  font-weight: ${p => p.theme.fontWeights.bold};
 `;
 
 export const Service = styled(Box).attrs({ mb: 1 })`
