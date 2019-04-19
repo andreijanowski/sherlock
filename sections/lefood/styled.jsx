@@ -1,3 +1,4 @@
+import { H2 } from "components";
 import styled from "styled-components";
 
 export const ModalHeader = styled.h3`
@@ -11,4 +12,8 @@ export const ModalHeader = styled.h3`
 export const Orange = styled.span`
   color: rgb(${p => p.theme.colors.carrotOrange});
   text-decoration: none;
+`;
+
+export const StyledH2 = styled(H2)`
+  text-align: center;
 `;

@@ -26,9 +26,9 @@ const Orders = ({
     <DragDropContext {...{ onDragStart, onDragEnd }}>
       <ColumnsWrapper>
         {Object.values(columns).map(column => {
-          const columnOrders = column.orderIds.map(id =>
-            orders.find(o => o.id === id)
-          );
+          const columnOrders = column.orderIds
+            .map(id => orders.find(o => o.id === id))
+            .filter(o => !!o);
           return (
             <Column
               {...{
