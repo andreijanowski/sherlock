@@ -31,5 +31,6 @@
   "docs": "Docs",
   "back": "Back",
   "crop": "Crop",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "confirmAccount": "We sent you confirmation message to your email. Please confirm your account within 3 days."
 }
