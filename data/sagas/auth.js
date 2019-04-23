@@ -28,7 +28,7 @@ import {
 } from "types/auth";
 import Notifications from "react-notification-system-redux";
 import { refreshToken as refresh } from "actions/auth";
-import { setCurrentBusiness } from "actions/app";
+import { setCurrentBusiness, saveCurrentUserId } from "actions/app";
 
 function* initialTokenRefresh() {
   const refreshToken = yield select(state => state.auth.refreshToken);
@@ -47,14 +47,19 @@ function* fetchBusinessData(id) {
 }
 
 function* fetchUserData() {
-  yield put(fetchProfile());
+  const {
+    rawData: {
+      data: { id: userId }
+    }
+  } = yield put.resolve(fetchProfile());
   yield put(fetchProfileCards());
   yield put(fetchProfileSubscriptions());
   yield put(fetchGroups());
   yield put(fetchStripePlans());
-  const currentBusinessId = yield select(state => state.app.currentBusinessId);
-  if (currentBusinessId) {
-    yield fetchBusinessData(currentBusinessId);
+  const lastBusinessId = yield select(state => state.app.currentBusinessId);
+  const lastUserId = yield select(state => state.app.currentUserId);
+  if (lastBusinessId && userId === lastUserId) {
+    yield fetchBusinessData(lastBusinessId);
     yield put(fetchProfileBusinesses());
   } else {
     const {
@@ -67,6 +72,7 @@ function* fetchUserData() {
       yield put(postBusiness());
     }
   }
+  yield put(saveCurrentUserId(userId));
 }
 
 function* showSuccessPasswordChangeMsg() {
