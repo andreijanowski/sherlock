@@ -1,4 +1,4 @@
-import { func, string } from "prop-types";
+import { func, string, bool } from "prop-types";
 import { Box } from "@rebass/grid";
 import { Router } from "routes";
 import Plan from "./plan";
@@ -9,7 +9,8 @@ const Plans = ({
   billingInterval,
   choosePlan,
   nextPlanName,
-  currentPlanInterval
+  currentPlanInterval,
+  isSubscriptionView
 }) => (
   <>
     <Box mb={[40, 0]} width={[1, 1 / 2, 1 / 4]}>
@@ -53,6 +54,7 @@ const Plans = ({
           currentPlanInterval,
           color: "navyBlue",
           name: "premium",
+          isSubscriptionView,
           onClickActionButton: () =>
             choosePlan
               ? choosePlan("premium")
@@ -84,13 +86,15 @@ Plans.propTypes = {
   billingInterval: string.isRequired,
   choosePlan: func,
   nextPlanName: string,
-  currentPlanInterval: string
+  currentPlanInterval: string,
+  isSubscriptionView: bool
 };
 
 Plans.defaultProps = {
   choosePlan: null,
   nextPlanName: null,
-  currentPlanInterval: null
+  currentPlanInterval: null,
+  isSubscriptionView: false
 };
 
 export default Plans;
