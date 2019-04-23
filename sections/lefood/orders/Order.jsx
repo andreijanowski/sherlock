@@ -10,7 +10,8 @@ import {
   // OrderTime,
   OrderDetails,
   OrderDetail,
-  PaymentConfirmed
+  PaymentConfirmed,
+  WaitingForPayment
 } from "./styled";
 import { columns } from "../utils";
 
@@ -45,6 +46,12 @@ const Order = ({
               <FontAwesomeIcon icon={["fa", "check"]} />
               <Box ml={2}>{t("paymentConfimed")}</Box>
             </PaymentConfirmed>
+          )}
+          {order.state === "waiting_for_payment" && (
+            <WaitingForPayment>
+              <FontAwesomeIcon icon={["fa", "hourglass-start"]} />
+              <Box ml={2}>{t("waitingForPayment")}</Box>
+            </WaitingForPayment>
           )}
           {order.elements &&
             order.elements.map(element => (

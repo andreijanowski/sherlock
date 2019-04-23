@@ -108,6 +108,10 @@ export const PaymentConfirmed = styled(Flex).attrs({
   font-size: ${p => p.theme.fontSizes.f14};
 `;
 
+export const WaitingForPayment = styled(PaymentConfirmed)`
+  color: rgb(${p => p.theme.colors.carrotOrange});
+`;
+
 export const ElementsWrapper = styled(Box)`
   border-radius: ${p => p.theme.radius.small};
   border: 1px solid rgb(${p => p.theme.colors.snuff});
