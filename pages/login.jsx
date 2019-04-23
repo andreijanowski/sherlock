@@ -27,7 +27,7 @@ class Login extends PureComponent {
           actionDescription: t("description")
         }}
       >
-        <SignInForm {...{ t }} />
+        <SignInForm {...{ t, lng }} />
       </SingleActionView>
     );
   }
