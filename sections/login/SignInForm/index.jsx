@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Form } from "react-final-form";
 import { func, string } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FOODETECTIVE_URL } from "consts";
 import {
   InputField,
   Button,
@@ -69,6 +70,15 @@ class SignInForm extends PureComponent {
                 <Link lng={lng} route="/reset-password">
                   <Tip as="a">{t("forgotPassword")}</Tip>
                 </Link>
+              </Box>
+              <Box mb={3}>
+                <Tip
+                  as="a"
+                  target="_blank"
+                  href={`${FOODETECTIVE_URL}/request-confirmation-email`}
+                >
+                  {t("unconfirmedEmail")}
+                </Tip>
               </Box>
               <Box>
                 <Link lng={lng} route="/register/?plan=basic">
