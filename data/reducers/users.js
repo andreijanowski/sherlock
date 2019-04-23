@@ -313,9 +313,12 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           };
         }
         if (v === "stripeCurrency") {
-          newState.currentBusiness.data = {
-            ...newState.currentBusiness.data,
-            stripeCurrency: business.stripeCurrency
+          newState.currentBusiness = {
+            ...state.currentBusiness,
+            data: {
+              ...state.currentBusiness.data,
+              stripeCurrency: business.stripeCurrency
+            }
           };
         }
       });
