@@ -26,7 +26,7 @@ export const Item = styled(Flex).attrs({
   height: 56px;
   border-bottom: 1px solid rgb(${p => p.theme.colors.background});
   cursor: pointer;
-  color: rgb(${p => p.theme.colors.dark});
+  color: rgb(${p => (p.color ? p.theme.colors[p.color] : p.theme.colors.dark)});
   text-decoration: none;
 
   ${p =>

@@ -33,11 +33,20 @@ export const generateMenuItems = (t, active, showPublishModal, state) => {
     {
       onClick: showPublishModal,
       label: t("app:manageProfile.publish"),
-      isActive: false
+      color: "ruby"
     }
   ];
-  if (state === "published" || state === "waiting_for_approval") {
-    menuItems.pop();
+  if (state === "published") {
+    menuItems[6] = {
+      label: t("app:manageProfile.published"),
+      color: "green"
+    };
+  }
+  if (state === "waiting_for_approval") {
+    menuItems[6] = {
+      label: t("app:manageProfile.waitingForApproval"),
+      color: "carrotOrange"
+    };
   }
   return menuItems;
 };

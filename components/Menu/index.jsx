@@ -20,12 +20,17 @@ const Menu = ({ lng, menuItems, select }) => (
       {menuItems.map(i =>
         i.route ? (
           <Link {...{ lng, route: i.route, key: i.route }}>
-            <Item isActive={i.isActive}>
+            <Item isActive={i.isActive} color={i.color}>
               <span>{i.label}</span>
             </Item>
           </Link>
         ) : (
-          <Item isActive={i.isActive} onClick={i.onClick} key={i.label}>
+          <Item
+            isActive={i.isActive}
+            onClick={i.onClick}
+            key={i.label}
+            color={i.color}
+          >
             <span>{i.label}</span>
           </Item>
         )
