@@ -11,6 +11,8 @@
   "phonePlaceholder": "543 423 534",
   "websiteLabel": "Website (optional, e.g. http://example.com)",
   "websitePlaceholder": "http://example.com",
+  "facebookLabel": "Facebook (optional, e.g. https://facebook.com/profile/)",
+  "facebookPlaceholder": "https://facebook.com/profile/",
   "instagramLabel": "Instagram (optional, e.g. https://instagram.com/profile)",
   "instagramPlaceholder": "https://instagram.com/profile"
 }
