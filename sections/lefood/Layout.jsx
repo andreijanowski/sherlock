@@ -99,7 +99,7 @@ class LefoodLayout extends PureComponent {
       minAmountForDeliveryCents: 0,
       isStopOrdersModalVisible: false,
       isFinishOrdersModalVisible: false,
-      isCurrencyModalVisible: !props.currency
+      isCurrencyModalVisible: props.business && !props.currency
     };
   }
 
@@ -109,24 +109,30 @@ class LefoodLayout extends PureComponent {
 
   componentDidUpdate(prevProps) {
     const {
-      minAmountForDeliveryCents: prevMinAmountForDeliveryCents
+      minAmountForDeliveryCents: prevMinAmountForDeliveryCents,
+      business: prevBusiness
     } = prevProps;
-    const { minAmountForDeliveryCents } = this.props;
+    const { minAmountForDeliveryCents, business } = this.props;
     if (prevMinAmountForDeliveryCents !== minAmountForDeliveryCents) {
       this.updateMinAmountForDeliveryCents();
+    }
+    if (!prevBusiness && business) {
+      this.updateCurrencyModalVisibility();
     }
   }
 
   updateMinAmountForDeliveryCents = () => {
     const { minAmountForDeliveryCents } = this.props;
-    // without setTimeout AutosizeInput is not working correctly ¯\_(ツ)_/¯
-    // setTimeout(
-    //   () =>
     this.setState({
       minAmountForDeliveryCents: normalizePrice(minAmountForDeliveryCents)
     });
-    //   0
-    // );
+  };
+
+  updateCurrencyModalVisibility = () => {
+    const { currency } = this.props;
+    this.setState({
+      isCurrencyModalVisible: !currency
+    });
   };
 
   setStopOrdersModalVisibility = isVisible =>
