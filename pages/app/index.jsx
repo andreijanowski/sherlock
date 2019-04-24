@@ -20,6 +20,10 @@ class AppLanding extends PureComponent {
     };
   }
 
+  componentDidMount() {
+    this.redirectToProfile();
+  }
+
   componentDidUpdate() {
     this.redirectToProfile();
   }

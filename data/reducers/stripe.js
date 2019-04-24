@@ -4,6 +4,7 @@ import {
   FETCH_STRIPE_PLANS_FAIL
 } from "types/stripe";
 import build from "redux-object";
+import { LOGOUT } from "types/auth";
 
 const initialState = {
   data: null,
@@ -39,6 +40,11 @@ const reducer = (state = initialState, { type, payload }) => {
       newState.isFailed = true;
       return newState;
     }
+
+    case LOGOUT: {
+      return initialState;
+    }
+
     default: {
       return state;
     }

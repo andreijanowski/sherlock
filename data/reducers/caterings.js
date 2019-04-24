@@ -10,6 +10,7 @@ import {
   FETCH_BUSINESS_CATERINGS_SUCCESS,
   FETCH_BUSINESS_CATERINGS_FAIL
 } from "types/businesses";
+import { LOGOUT } from "types/auth";
 import build from "redux-object";
 
 const initialState = {
@@ -95,6 +96,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         offerSendAt: time
       };
       return { ...state, data: newStateData };
+    }
+
+    case LOGOUT: {
+      return initialState;
     }
 
     default: {

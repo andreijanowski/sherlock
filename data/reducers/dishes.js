@@ -6,6 +6,7 @@ import {
 } from "types/businesses";
 import { POST_PICTURE_SUCCESS } from "types/pictures";
 import build from "redux-object";
+import { LOGOUT } from "types/auth";
 
 const initialState = {
   data: [],
@@ -74,6 +75,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         return newState;
       }
       return state;
+    }
+
+    case LOGOUT: {
+      return initialState;
     }
 
     default: {

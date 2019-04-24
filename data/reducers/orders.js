@@ -1,3 +1,4 @@
+import { LOGOUT } from "types/auth";
 import {
   FETCH_BUSINESS_ORDERS_REQUEST,
   FETCH_BUSINESS_ORDERS_SUCCESS,
@@ -86,6 +87,10 @@ const reducer = (state = initialState, { type, payload }) => {
       }
       newState.data = [...data];
       return newState;
+    }
+
+    case LOGOUT: {
+      return initialState;
     }
 
     default: {
