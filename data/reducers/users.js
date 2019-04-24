@@ -312,6 +312,15 @@ const reducer = (state = initialState, { type, payload, meta }) => {
             minAmountForDeliveryCents: business.minAmountForDeliveryCents
           };
         }
+        if (v === "allowPickup") {
+          newState.currentBusiness = {
+            ...state.currentBusiness,
+            data: {
+              ...state.currentBusiness.data,
+              allowPickup: business.allowPickup
+            }
+          };
+        }
       });
       return newState;
     }

@@ -89,5 +89,6 @@
   "toSeeAnyNewOrders": "to see any new orders",
   "complete": "complete",
   "connectWithStripe": "Connect with stripe",
-  "connectWithStripeSubheading": "Connect your account to stripe in order to access all the payment features."
+  "connectWithStripeSubheading": "Connect your account to stripe in order to access all the payment features.",
+  "allowPickup": "Allow pickup"
 }
