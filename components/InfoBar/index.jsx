@@ -7,13 +7,17 @@ const InfoBar = ({ info, complete }) => (
       <Info>INFO</Info>
       {info}
     </InfoWrapper>
-    <Complete>{complete}</Complete>
+    {complete && <Complete>{complete}</Complete>}
   </Wrapper>
 );
 
 InfoBar.propTypes = {
   info: node.isRequired,
-  complete: string.isRequired
+  complete: string
+};
+
+InfoBar.defaultProps = {
+  complete: null
 };
 
 export default InfoBar;
