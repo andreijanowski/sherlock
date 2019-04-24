@@ -20,7 +20,6 @@ export {
   LiveStream,
   Hamburger,
   SettingsBasicInfo,
-  SettingsBilling,
   SettingsPassword,
   SettingsLogout
 } from "./navigation";

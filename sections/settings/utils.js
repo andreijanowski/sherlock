@@ -5,11 +5,6 @@ export const generateMenuItems = (t, active, logout) => [
     isActive: active === "basicInformation"
   },
   {
-    route: `/app/settings/billing/`,
-    label: t("app:userSettings.billing"),
-    isActive: active === "billing"
-  },
-  {
     route: `/app/settings/password/`,
     label: t("app:userSettings.password"),
     isActive: active === "password"
