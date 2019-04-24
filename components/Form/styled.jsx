@@ -325,9 +325,9 @@ export const Checkbox = styled.input.attrs({ type: "checkbox" })`
   height: 0;
 `;
 
-export const CheckboxText = styled(Box).attrs({
-  width: "calc(100% - 64px)"
-})``;
+export const CheckboxText = styled(Box).attrs(p => ({
+  width: p.hasCloserText ? "calc(100% - 46px)" : "calc(100% - 64px)"
+}))``;
 
 export const FlagIcon = styled.img.attrs(({ code }) => ({
   src: `/static/flags/${code.toLowerCase()}.svg`
@@ -341,12 +341,12 @@ export const FlagIcon = styled.img.attrs(({ code }) => ({
       : "margin-right: 16px"}
 `;
 
-export const Checkmark = styled(Flex).attrs({
+export const Checkmark = styled(Flex).attrs(p => ({
   width: 40,
   justifyContent: "center",
   alignItems: "center",
-  mr: 24
-})`
+  mr: p.hasCloserText ? "8px" : 24
+}))`
   height: 40px;
   background-color: rgb(
     ${p => (p.isChecked ? p.theme.colors.blue : p.theme.colors.white)}

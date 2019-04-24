@@ -11,7 +11,8 @@ import {
   Select,
   AutosizeInput,
   ConnectWithStripe,
-  LoadingIndicator
+  LoadingIndicator,
+  RawCheckbox
 } from "components";
 import {
   Orders,
@@ -395,6 +396,19 @@ class LefoodLayout extends PureComponent {
                         </ButtonWithImageText>
                       </Button>
                     )}
+                  </Box>
+                  <Box pr={4}>
+                    <RawCheckbox
+                      hasCloserText
+                      label={t("allowPickup")}
+                      input={{
+                        onChange: () =>
+                          this.updateBusiness({
+                            allowPickup: !business.allowPickup
+                          }),
+                        value: business.allowPickup
+                      }}
+                    />
                   </Box>
                   <Box pr={3} mb={2}>
                     {visibleInLefood ? (
