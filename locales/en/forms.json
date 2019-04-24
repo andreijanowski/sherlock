@@ -124,7 +124,9 @@
       "not_a_number-free_from_cents": "Delivery \"Free from\" is missing",
       "too_long-name": "Dish name is too long. Max {{count}} characters.",
       "too_long-description": "Description is too long. Max {{count}} characters.",
-      "owner_not_confirmed-base": "You need to confirm your email in order to publish your business. Please check your mailbox."
+      "owner_not_confirmed-base": "You need to confirm your email in order to publish your business. Please check your mailbox.",
+      "currency_not_supported-stripe_currency": "Selected currency is not supported by Stripe in country in which your business is placed",
+      "currency_cannot_be_change-stripe_currency": "Stripe currency cannot be change"
     }
   },
   "placeholder": {
