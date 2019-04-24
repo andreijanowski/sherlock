@@ -399,6 +399,7 @@ class LefoodLayout extends PureComponent {
                   </Box>
                   <Box pr={4}>
                     <RawCheckbox
+                      hasCloserText
                       label={t("allowPickup")}
                       input={{
                         onChange: () =>
