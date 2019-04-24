@@ -52,7 +52,8 @@ i18n
         "resetPassword",
         "confirm",
         "changePassword",
-        "stripe"
+        "stripe",
+        "deleteByToken"
       ], // need to preload all the namespaces
       backend: {
         loadPath: path.join(__dirname, "/locales/{{lng}}/{{ns}}.json"),
