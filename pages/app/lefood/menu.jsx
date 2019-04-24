@@ -67,7 +67,7 @@ class MenuPage extends PureComponent {
       id,
       averageDeliveryTime,
       minAmountForDeliveryCents,
-      currency,
+      stripeCurrency,
       stripeUserId
     } = business || {};
     return (
@@ -82,7 +82,7 @@ class MenuPage extends PureComponent {
           averageDeliveryTime,
           minAmountForDeliveryCents,
           currentBusinessId: id,
-          currency,
+          currency: stripeCurrency,
           stripeUserId,
           business,
           businesses,

@@ -193,7 +193,7 @@ class OrdersPage extends PureComponent {
       orderDetailsId
     } = this.state;
     const {
-      currency,
+      stripeCurrency,
       visibleInLefood,
       id,
       averageDeliveryTime,
@@ -220,7 +220,7 @@ class OrdersPage extends PureComponent {
             orderPeriodsLength: orderPeriods && orderPeriods.length,
             averageDeliveryTime,
             minAmountForDeliveryCents,
-            currency,
+            currency: stripeCurrency,
             stripeUserId,
             business,
             businesses,
@@ -240,7 +240,7 @@ class OrdersPage extends PureComponent {
               orders,
               columns,
               loading,
-              currency,
+              currency: stripeCurrency,
               t
             }}
           />

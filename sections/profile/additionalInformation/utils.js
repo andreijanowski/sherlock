@@ -43,7 +43,7 @@ export const getInitialValues = business => {
       brunchService,
       cafeService,
       snackService,
-      currency: currencies.find(c => c.value === (currency || "USD")),
+      currency: currencies.find(c => c.value === currency) || {},
       pricePerPerson,
       hasCatering,
       deliveryUrl,

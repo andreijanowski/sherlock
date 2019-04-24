@@ -313,6 +313,15 @@ const reducer = (state = initialState, { type, payload, meta }) => {
             minAmountForDeliveryCents: business.minAmountForDeliveryCents
           };
         }
+        if (v === "stripeCurrency") {
+          newState.currentBusiness = {
+            ...state.currentBusiness,
+            data: {
+              ...state.currentBusiness.data,
+              stripeCurrency: business.stripeCurrency
+            }
+          };
+        }
         if (v === "allowPickup") {
           newState.currentBusiness = {
             ...state.currentBusiness,
