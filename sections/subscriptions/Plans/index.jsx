@@ -58,7 +58,8 @@ const PlansSection = ({
             billingInterval,
             choosePlan,
             nextPlanName,
-            currentPlanInterval: interval
+            currentPlanInterval: interval,
+            isSubscriptionView: true
           }}
         />
       </Flex>
