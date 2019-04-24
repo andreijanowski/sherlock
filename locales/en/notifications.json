@@ -1,5 +1,5 @@
 {
-  "loginFailed": "Login failed",
+  "loginFailed": "Login failed, bad credentials or unconfirmed email.",
   "termsAgreementError": "You have to register first and accept our terms and conditions and privacy policy.",
   "mustBeLoggedIn": "You must be logged in to continue",
   "updateProfileSuccess": "Profile has been updated",
