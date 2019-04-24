@@ -2,7 +2,7 @@ import {
   Delivery,
   Bookings,
   Privatizations,
-  LeFood,
+  TakeAway,
   Billing,
   ProfileIcon,
   ProfileBasicInfo,
@@ -16,7 +16,6 @@ import {
   Docs,
   Feedback,
   SettingsBasicInfo,
-  SettingsBilling,
   SettingsPassword,
   SettingsLogout
 } from "icons";
@@ -27,12 +26,6 @@ const generateSettingsMobileSubmenu = (t, active, logout) => [
     label: t("app:userSettings.basicInformation"),
     isActive: active === "basicInformation",
     SubmenuIcon: SettingsBasicInfo
-  },
-  {
-    route: `/app/settings/billing/`,
-    label: t("app:userSettings.billing"),
-    isActive: active === "billing",
-    SubmenuIcon: SettingsBilling
   },
   {
     route: `/app/settings/password/`,
@@ -104,8 +97,8 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     route: "/"
   },
   {
-    icon: LeFood,
-    label: t("app:leFood"),
+    icon: TakeAway,
+    label: t("app:takeAway"),
     route: "/"
   },
   {

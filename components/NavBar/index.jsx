@@ -9,7 +9,7 @@ import {
   TakeAway,
   Catering,
   Privatizations,
-  LeFood,
+  SocialMedia,
   Billing,
   ProfileIcon,
   Subscriptions,
@@ -77,13 +77,13 @@ const NavBar = ({ t, lng, logout }) => (
     <Item>
       <Link {...{ lng, route: `/app/lefood/orders/` }}>
         <Icon>
-          <LeFood />
+          <TakeAway />
         </Icon>
       </Link>
       <SubitemsWrapper>
         <Subitems>
           <Link {...{ lng, route: `/app/lefood/orders/` }}>
-            <Subitem>{t("app:leFood")}</Subitem>
+            <Subitem>{t("app:takeAway")}</Subitem>
           </Link>
         </Subitems>
       </SubitemsWrapper>
@@ -108,13 +108,10 @@ const NavBar = ({ t, lng, logout }) => (
           <SettingsIcon />
         </Icon>
       </Link>
-      <SubitemsWrapper top={-160} arrowTop={160}>
-        <Subitems arrowTop={175}>
+      <SubitemsWrapper top={-120} arrowTop={120}>
+        <Subitems arrowTop={135}>
           <Link {...{ lng, route: `/app/settings/basic-information/` }}>
             <Subitem>{t("app:userSettings.basicInformation")}</Subitem>
-          </Link>
-          <Link {...{ lng, route: `/app/settings/billing/` }}>
-            <Subitem>{t("app:userSettings.billing")}</Subitem>
           </Link>
           <Link {...{ lng, route: `/app/settings/password/` }}>
             <Subitem>{t("app:userSettings.password")}</Subitem>
@@ -155,11 +152,11 @@ const NavBar = ({ t, lng, logout }) => (
     </Item>
     <Item inactive>
       <Icon inactive>
-        <TakeAway />
+        <SocialMedia />
       </Icon>
       <SubitemsWrapper>
         <Subitems>
-          <Subitem>{t("app:takeAway")}</Subitem>
+          <Subitem>{t("app:socialMedia")}</Subitem>
         </Subitems>
       </SubitemsWrapper>
     </Item>

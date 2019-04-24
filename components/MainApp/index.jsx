@@ -1,6 +1,7 @@
 import { Flex } from "@rebass/grid";
-import { bool, node, string } from "prop-types";
+import { bool, node, string, func } from "prop-types";
 import { connect } from "react-redux";
+import { InfoBar } from "components";
 import {
   ProfileIcon,
   SettingsIcon,
@@ -8,7 +9,7 @@ import {
   Feedback,
   Notifications,
   Catering,
-  LeFood,
+  TakeAway,
   Subscriptions
 } from "icons";
 import {
@@ -30,7 +31,7 @@ const chooseIcon = icon => {
     case "catering":
       return Catering;
     case "leFood":
-      return LeFood;
+      return TakeAway;
     case "subscriptions":
       return Subscriptions;
     default:
@@ -38,10 +39,19 @@ const chooseIcon = icon => {
   }
 };
 
-const MainApp = ({ withMenu, mainIcon, header, children, avatar }) => {
+const MainApp = ({
+  t,
+  withMenu,
+  mainIcon,
+  header,
+  children,
+  avatar,
+  isAccountConfirmed
+}) => {
   const MainIcon = chooseIcon(mainIcon);
   return (
     <Wrapper {...{ withMenu }}>
+      {!isAccountConfirmed && <InfoBar info={t("app:confirmAccount")} />}
       <HeaderWrapper>
         <Flex alignItems="center">
           {mainIcon && (
@@ -74,18 +84,23 @@ MainApp.propTypes = {
   mainIcon: string,
   header: string,
   children: node.isRequired,
-  avatar: string
+  avatar: string,
+  t: func.isRequired,
+  isAccountConfirmed: bool
 };
 
 MainApp.defaultProps = {
   mainIcon: "",
   header: "",
-  avatar: ""
+  avatar: "",
+  isAccountConfirmed: false
 };
 
 export default connect(state => ({
   avatar:
     state.users.profile.data &&
     state.users.profile.data.avatar &&
-    state.users.profile.data.avatar.url
+    state.users.profile.data.avatar.url,
+  isAccountConfirmed:
+    state.users.profile.data && state.users.profile.data.confirmed
 }))(MainApp);

@@ -12,7 +12,8 @@ import {
   REFRESH_TOKEN_SUCCESS,
   REFRESH_TOKEN_FAIL,
   LOGOUT,
-  SET_STRIPE_DATA
+  SET_STRIPE_DATA,
+  SET_AUTH_SYNCHRONIZED_FROM_STORAGE
 } from "types/auth";
 
 export const initialState = {
@@ -75,6 +76,9 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         stripeConnectData: payload.data
       };
+    }
+    case SET_AUTH_SYNCHRONIZED_FROM_STORAGE: {
+      return { ...payload };
     }
     default: {
       return state;

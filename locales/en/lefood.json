@@ -1,5 +1,6 @@
 {
   "paymentConfimed": "Payment confimed",
+  "waitingForPayment": "Waiting for payment",
   "accept": "Accept",
   "reject": "Reject",
   "orders": "Orders",

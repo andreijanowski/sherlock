@@ -5,7 +5,7 @@ export {
   TakeAway,
   Catering,
   Privatizations,
-  LeFood,
+  SocialMedia,
   Billing,
   ProfileIcon,
   ProfileBasicInfo,
@@ -20,7 +20,6 @@ export {
   LiveStream,
   Hamburger,
   SettingsBasicInfo,
-  SettingsBilling,
   SettingsPassword,
   SettingsLogout
 } from "./navigation";

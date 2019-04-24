@@ -37,10 +37,6 @@ module.exports = routes()
     `/:lng(${languagesPattern})/app/settings/basic-information`
   )
   .add(
-    "app/settings/billing",
-    `/:lng(${languagesPattern})/app/settings/billing`
-  )
-  .add(
     "app/settings/password",
     `/:lng(${languagesPattern})/app/settings/password`
   )

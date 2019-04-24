@@ -18,7 +18,8 @@ const AppLayout = ({
       {...{
         withMenu,
         mainIcon,
-        header
+        header,
+        t
       }}
     >
       {children}

@@ -25,21 +25,23 @@ class Orders extends Component {
     if (orders && orders.length !== 0) {
       return (
         <>
-          {orders.map((order, index) => (
-            <Order
-              {...{
-                order,
-                t,
-                currency,
-                updateOrder,
-                columnId: id,
-                index,
-                toggleOrderDetails,
-                setRejectModalVisibility,
-                key: order.id
-              }}
-            />
-          ))}
+          {orders.map((order, index) =>
+            order.id ? (
+              <Order
+                {...{
+                  order,
+                  t,
+                  currency,
+                  updateOrder,
+                  columnId: id,
+                  index,
+                  toggleOrderDetails,
+                  setRejectModalVisibility,
+                  key: order.id
+                }}
+              />
+            ) : null
+          )}
         </>
       );
     }
