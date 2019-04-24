@@ -9,7 +9,7 @@ import {
   TakeAway,
   Catering,
   Privatizations,
-  LeFood,
+  SocialMedia,
   Billing,
   ProfileIcon,
   Subscriptions,
@@ -77,13 +77,13 @@ const NavBar = ({ t, lng, logout }) => (
     <Item>
       <Link {...{ lng, route: `/app/lefood/orders/` }}>
         <Icon>
-          <LeFood />
+          <TakeAway />
         </Icon>
       </Link>
       <SubitemsWrapper>
         <Subitems>
           <Link {...{ lng, route: `/app/lefood/orders/` }}>
-            <Subitem>{t("app:leFood")}</Subitem>
+            <Subitem>{t("app:takeAway")}</Subitem>
           </Link>
         </Subitems>
       </SubitemsWrapper>
@@ -155,11 +155,11 @@ const NavBar = ({ t, lng, logout }) => (
     </Item>
     <Item inactive>
       <Icon inactive>
-        <TakeAway />
+        <SocialMedia />
       </Icon>
       <SubitemsWrapper>
         <Subitems>
-          <Subitem>{t("app:takeAway")}</Subitem>
+          <Subitem>{t("app:socialMedia")}</Subitem>
         </Subitems>
       </SubitemsWrapper>
     </Item>

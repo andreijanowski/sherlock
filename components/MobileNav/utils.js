@@ -2,7 +2,7 @@ import {
   Delivery,
   Bookings,
   Privatizations,
-  LeFood,
+  TakeAway,
   Billing,
   ProfileIcon,
   ProfileBasicInfo,
@@ -104,8 +104,8 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     route: "/"
   },
   {
-    icon: LeFood,
-    label: t("app:leFood"),
+    icon: TakeAway,
+    label: t("app:takeAway"),
     route: "/"
   },
   {

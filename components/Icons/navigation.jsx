@@ -142,7 +142,7 @@ export const Bookings = () => (
   </svg>
 );
 
-export const Delivery = () => (
+export const TakeAway = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -170,7 +170,7 @@ export const Delivery = () => (
   </svg>
 );
 
-export const TakeAway = () => (
+export const Delivery = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -244,7 +244,7 @@ export const Privatizations = () => (
   </svg>
 );
 
-export const LeFood = () => (
+export const SocialMedia = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="18"
