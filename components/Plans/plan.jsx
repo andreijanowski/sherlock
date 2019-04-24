@@ -1,4 +1,4 @@
-import { func, string } from "prop-types";
+import { func, string, bool } from "prop-types";
 import { Button } from "components";
 import {
   MainWrapper,
@@ -21,7 +21,8 @@ const Plan = ({
   billingInterval,
   onClickActionButton,
   nextPlanName,
-  currentPlanInterval
+  currentPlanInterval,
+  isSubscriptionView
 }) => {
   const isChosen =
     nextPlanName === name &&
@@ -32,7 +33,6 @@ const Plan = ({
   } else if (nextPlanName !== null && name !== "professional") {
     buttonText = t(`plans:choose`);
   }
-
   return (
     <MainWrapper>
       <NameWrapper>
@@ -92,6 +92,7 @@ const Plan = ({
         >
           {buttonText}
           {name === "premium" &&
+            !isSubscriptionView &&
             t(
               `plans:${name}.price.${
                 billingInterval === "year" ? "beta" : billingInterval
@@ -111,12 +112,14 @@ Plan.propTypes = {
   name: string.isRequired,
   onClickActionButton: func.isRequired,
   nextPlanName: string,
-  currentPlanInterval: string
+  currentPlanInterval: string,
+  isSubscriptionView: bool
 };
 
 Plan.defaultProps = {
   nextPlanName: null,
-  currentPlanInterval: null
+  currentPlanInterval: null,
+  isSubscriptionView: false
 };
 
 export default Plan;
