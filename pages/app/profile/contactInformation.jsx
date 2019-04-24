@@ -22,7 +22,14 @@ class ContactInformation extends PureComponent {
     };
   }
 
-  handleSubmit = ({ email, phone, phoneCountry, website, instagram }) => {
+  handleSubmit = ({
+    email,
+    phone,
+    phoneCountry,
+    website,
+    facebook,
+    instagram
+  }) => {
     const {
       updateBusiness,
       business: { id }
@@ -39,6 +46,7 @@ class ContactInformation extends PureComponent {
           ? phoneCountry.value.code
           : undefined,
       website,
+      facebook,
       instagram
     };
     return updateBusiness(id, requestValues);

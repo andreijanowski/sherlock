@@ -57,6 +57,11 @@ const ContactInformationForm = ({ t, initialValues, handleSubmit }) =>
             placeholder={t("websitePlaceholder")}
           />
           <FormInput
+            name="facebook"
+            label={t("facebookLabel")}
+            placeholder={t("facebookPlaceholder")}
+          />
+          <FormInput
             name="instagram"
             label={t("instagramLabel")}
             placeholder={t("instagramPlaceholder")}
