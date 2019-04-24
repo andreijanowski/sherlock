@@ -9,7 +9,8 @@ import {
   CONFIRM_REQUEST,
   CHANGE_PASSWORD_BY_TOKEN_REQUEST,
   CONNECT_STRIPE_REQUEST,
-  SET_STRIPE_DATA
+  SET_STRIPE_DATA,
+  SET_AUTH_SYNCHRONIZED_FROM_STORAGE
 } from "types/auth";
 
 export const login = data => ({
@@ -175,4 +176,9 @@ export const setStripeData = data => ({
   payload: {
     data
   }
+});
+
+export const setAuthSynchronizedFromStorage = data => ({
+  type: SET_AUTH_SYNCHRONIZED_FROM_STORAGE,
+  payload: data
 });

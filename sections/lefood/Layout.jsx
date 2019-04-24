@@ -213,7 +213,7 @@ class LefoodLayout extends PureComponent {
                         {`${t("completeYourProfile")} `}
                         <ItalicText>
                           <Orange>
-                            ({`${t("deliveryTime")} `}
+                            ({`${t("deliveryTime")}, `}
                             <Link route="/app/lefood/menu/" lng={lng}>
                               <Orange as="a">{t("menu")}</Orange>
                             </Link>

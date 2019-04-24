@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const DeliveryForm = ({ t, addDelivery }) => (
   <FinalForm
     onSubmit={addDelivery}
+    initialValues={{ freeFromCents: normalizePrice(0) }}
     render={({ handleSubmit, form: { reset } }) => (
       <form
         onSubmit={e => {

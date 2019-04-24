@@ -29,8 +29,9 @@
     "endFirstLine": "Just complete your profile online. The offer is very limited, we have only ",
     "endLastLine": "1000 slots left."
   },
-  "billingYearly": "Billing Yearly (save 10%)",
+  "billingYearly": "Billing Yearly (save up to 30%)",
   "billingMonthly": "Billing Monthly",
+  "betaPrice": "Beta price!",
   "options": {
     "website": "Webpage",
     "widget": "Widget - coming soon",
@@ -67,11 +68,12 @@
   "basic": {
     "name": "Basic",
     "mostPopular": "Most popular",
-    "promoPrice": "Limited",
+    "promoPrice": "Limited beta",
     "priceDescription": "Starting at",
     "price": {
       "month": "€29.90",
-      "year": "€249.90"
+      "year": "€358.80",
+      "beta": "€249.90"
     },
     "month": "month",
     "year": "year",
@@ -80,11 +82,12 @@
   "premium": {
     "name": "Premium",
     "bestValue": "Best Value",
-    "promoPrice": "Limited",
+    "promoPrice": "Limited beta",
     "priceDescription": "Starting at",
     "price": {
       "month": "€59.90",
-      "year": "€549.90"
+      "year": "€718.80",
+      "beta": "€549.90"
     },
     "month": "month",
     "year": "year",

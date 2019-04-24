@@ -119,7 +119,12 @@
       "payment_intent_authentication_failure-base": "We are unable to authenticate your payment method. Please choose a different payment method and try again.",
       "processing_error-base": "An error occurred while processing your card. Try again in a little bit.",
       "process_error_intransient-base": "An error occurred while processing your card.",
-      "unexpected-base": "An unexpected error occurred."
+      "unexpected-base": "An unexpected error occurred.",
+      "address_cannot_be_change-base": "The address cannot be changed if the restaurant is already published.",
+      "not_a_number-free_from_cents": "Delivery \"Free from\" is missing",
+      "too_long-name": "Dish name is too long. Max {{count}} characters.",
+      "too_long-description": "Description is too long. Max {{count}} characters.",
+      "owner_not_confirmed-base": "You need to confirm your email in order to publish your business. Please check your mailbox."
     }
   },
   "placeholder": {
