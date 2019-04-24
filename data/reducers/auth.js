@@ -2,6 +2,9 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  REGISTER_REQUEST,
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
   FACEBOOK_LOGIN_REQUEST,
   FACEBOOK_LOGIN_SUCCESS,
   FACEBOOK_LOGIN_FAIL,
@@ -9,7 +12,8 @@ import {
   REFRESH_TOKEN_SUCCESS,
   REFRESH_TOKEN_FAIL,
   LOGOUT,
-  SET_STRIPE_DATA
+  SET_STRIPE_DATA,
+  SET_AUTH_SYNCHRONIZED_FROM_STORAGE
 } from "types/auth";
 
 export const initialState = {
@@ -19,13 +23,15 @@ export const initialState = {
   accessToken: "",
   refreshToken: "",
   createdAt: 0,
-  expiresIn: 0
+  expiresIn: 0,
+  stripeConnectData: { businessId: null, state: null }
 };
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case LOGIN_REQUEST:
-    case FACEBOOK_LOGIN_REQUEST: {
+    case FACEBOOK_LOGIN_REQUEST:
+    case REGISTER_REQUEST: {
       return {
         ...state,
         isFetching: true
@@ -39,8 +45,14 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     case LOGIN_SUCCESS:
     case FACEBOOK_LOGIN_SUCCESS:
-    case REFRESH_TOKEN_SUCCESS: {
-      const { accessToken, refreshToken, createdAt, expiresIn } = payload.data;
+    case REFRESH_TOKEN_SUCCESS:
+    case REGISTER_SUCCESS: {
+      const {
+        accessToken,
+        refreshToken,
+        createdAt,
+        expiresIn
+      } = payload.rawData;
       return {
         isFetching: false,
         isRefreshing: false,
@@ -49,10 +61,11 @@ const reducer = (state = initialState, { type, payload }) => {
         refreshToken,
         createdAt,
         expiresIn,
-        stripeConnectData: { businessId: null, state: null }
+        stripeConnectData: state.stripeConnectData
       };
     }
     case LOGIN_FAIL:
+    case REGISTER_FAIL:
     case FACEBOOK_LOGIN_FAIL:
     case REFRESH_TOKEN_FAIL:
     case LOGOUT: {
@@ -63,6 +76,9 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         stripeConnectData: payload.data
       };
+    }
+    case SET_AUTH_SYNCHRONIZED_FROM_STORAGE: {
+      return { ...payload };
     }
     default: {
       return state;

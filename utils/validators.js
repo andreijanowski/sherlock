@@ -10,9 +10,17 @@ export const composeValidators = (...validators) => (...values) =>
 export const required = t => value =>
   value ? undefined : t("forms:validation.error.required");
 
+export const requiredProperty = (t, property) => value =>
+  value && value[property] ? undefined : t("forms:validation.error.required");
+
 export const maxLength = (t, length) => value =>
   value && value.length > length
     ? t("forms:validation.error.maxLength", { length })
+    : undefined;
+
+export const validateLength = (t, min, max) => value =>
+  value && (value.length > max || value.length < min)
+    ? t("forms:validation.error.length", { min, max })
     : undefined;
 
 export const minPasswordLength = t => (value = "") =>

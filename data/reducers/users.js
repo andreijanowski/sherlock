@@ -8,7 +8,6 @@ import {
   FETCH_PROFILE_BUSINESS_REQUEST,
   FETCH_PROFILE_BUSINESS_SUCCESS,
   FETCH_PROFILE_BUSINESS_FAIL,
-  SET_CURRENT_BUSINESS,
   UPDATE_PROFILE_REQUEST,
   UPDATE_PROFILE_SUCCESS,
   FETCH_PROFILE_CARDS_REQUEST,
@@ -36,6 +35,7 @@ import {
   PATCH_ORDER_PERIOD_SUCCESS,
   DELETE_ORDER_PERIOD_REQUEST
 } from "types/orderPeriods";
+import { LOGOUT } from "types/auth";
 
 import build from "redux-object";
 
@@ -256,7 +256,6 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       return newState;
     }
 
-    case SET_CURRENT_BUSINESS:
     case POST_BUSINESS_REQUEST: {
       const newState = { ...state };
       newState.currentBusiness = initialState.currentBusiness;
@@ -312,6 +311,24 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           newState.currentBusiness.data = {
             ...newState.currentBusiness.data,
             minAmountForDeliveryCents: business.minAmountForDeliveryCents
+          };
+        }
+        if (v === "stripeCurrency") {
+          newState.currentBusiness = {
+            ...state.currentBusiness,
+            data: {
+              ...state.currentBusiness.data,
+              stripeCurrency: business.stripeCurrency
+            }
+          };
+        }
+        if (v === "allowPickup") {
+          newState.currentBusiness = {
+            ...state.currentBusiness,
+            data: {
+              ...state.currentBusiness.data,
+              allowPickup: business.allowPickup
+            }
           };
         }
       });
@@ -449,6 +466,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       newState.subscriptions.isFetching = false;
       newState.subscriptions.isFailed = true;
       return newState;
+    }
+
+    case LOGOUT: {
+      return initialState;
     }
 
     default: {

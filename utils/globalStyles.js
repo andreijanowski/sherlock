@@ -12,7 +12,11 @@ import {
   faFileAlt,
   faPen,
   faCreditCard,
-  faLock
+  faArrowAltCircleLeft,
+  faArrowAltCircleRight,
+  faEye,
+  faLock,
+  faHourglassStart
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebookF,
@@ -45,7 +49,11 @@ library.add(
   faCcJcb,
   faCcMastercard,
   faCcVisa,
-  faLock
+  faArrowAltCircleLeft,
+  faArrowAltCircleRight,
+  faEye,
+  faLock,
+  faHourglassStart
 );
 
 export default createGlobalStyle`
@@ -63,5 +71,10 @@ export default createGlobalStyle`
 
     button {
       outline: none;
+    }
+
+    a {
+      text-decoration: none;
+      color: rgb(${p => p.theme.colors.blue});
     }
 `;

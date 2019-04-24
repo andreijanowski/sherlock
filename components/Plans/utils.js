@@ -76,10 +76,14 @@ export const generatePlanOptionsList = (planName, t) => {
           name: t("plans:options.proFeedback")
         },
         {
-          name: t("plans:options.monthlyData")
+          name: t("plans:options.monthlyData"),
+          isLighter: true,
+          tooltipImage: "/static/img/controlCenter.png"
         },
         {
-          name: t("plans:options.posIntegration")
+          name: t("plans:options.posIntegration"),
+          isLighter: true,
+          tooltipImage: "/static/img/integrations.png"
         },
         {
           name: t("plans:options.widget"),
@@ -122,16 +126,23 @@ export const generatePlanOptionsList = (planName, t) => {
           name: t("plans:options.proFeedback")
         },
         {
-          name: t("plans:options.weeklyData")
+          name: t("plans:options.weeklyData"),
+          isLighter: true,
+          tooltipImage: "/static/img/controlCenter.png"
         },
         {
-          name: t("plans:options.posIntegration")
+          name: t("plans:options.posIntegration"),
+          isLighter: true,
+          tooltipImage: "/static/img/integrations.png"
         },
         {
-          name: t("plans:options.archivedData")
+          name: t("plans:options.archivedData"),
+          isLighter: true,
+          tooltipImage: "/static/img/documents.png"
         },
         {
-          name: t("plans:options.photoshoot")
+          name: t("plans:options.photoshoot"),
+          isLighter: true
         },
         {
           name: t("plans:options.mysteryShopping"),
@@ -178,28 +189,39 @@ export const generatePlanOptionsList = (planName, t) => {
           name: t("plans:options.proFeedback")
         },
         {
-          name: t("plans:options.dailyData")
+          name: t("plans:options.dailyData"),
+          isLighter: true,
+          tooltipImage: "/static/img/controlCenter.png"
         },
         {
-          name: t("plans:options.posIntegration")
+          name: t("plans:options.posIntegration"),
+          isLighter: true,
+          tooltipImage: "/static/img/integrations.png"
         },
         {
-          name: t("plans:options.archivedData")
+          name: t("plans:options.archivedData"),
+          isLighter: true,
+          tooltipImage: "/static/img/documents.png"
         },
         {
-          name: t("plans:options.hrAndPeopleManagement")
+          name: t("plans:options.hrAndPeopleManagement"),
+          isLighter: true
         },
         {
-          name: t("plans:options.supplyAutomation")
+          name: t("plans:options.supplyAutomation"),
+          isLighter: true
         },
         {
-          name: t("plans:options.loyaltyProgram")
+          name: t("plans:options.loyaltyProgram"),
+          isLighter: true
         },
         {
-          name: t("plans:options.clientInteraction")
+          name: t("plans:options.clientInteraction"),
+          isLighter: true
         },
         {
-          name: t("plans:options.photoshoot")
+          name: t("plans:options.photoshoot"),
+          isLighter: true
         },
         {
           name: t("plans:options.mysteryShopping"),

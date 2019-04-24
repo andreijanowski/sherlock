@@ -13,7 +13,7 @@ const Member = ({ name, fields, index, t, removeMember }) => (
         placeholder={t("emailPlaceholder")}
         name={`${name}.email`}
         validate={fields.value[index].role && validateEmail(t)}
-        forceShowError={!!fields.value[index].role}
+        isErrorVisibilityRequired={!!fields.value[index].role}
         fieldProps={{
           disabled: fields.value[index].id !== undefined
         }}
@@ -25,7 +25,7 @@ const Member = ({ name, fields, index, t, removeMember }) => (
         label={t("roleLabel")}
         placeholder={t("rolePlaceholder")}
         name={`${name}.role`}
-        forceShowError={!!fields.value[index].email}
+        isErrorVisibilityRequired={!!fields.value[index].email}
         validate={fields.value[index].email && required(t)}
       />
     </Box>

@@ -3,25 +3,23 @@ import {
   fetchBusinessMembers,
   fetchBusinessDeliveries,
   fetchBusinessDishes,
-  fetchBusinessOrders
+  fetchBusinessOrders,
+  fetchBusinessCaterings
 } from "actions/businesses";
 import { patchOrder } from "actions/orders";
-import { SET_CURRENT_BUSINESS, UPDATE_PROFILE_SUCCESS } from "types/users";
+import { UPDATE_PROFILE_SUCCESS } from "types/users";
+import { SET_CURRENT_BUSINESS } from "types/app";
 import { POST_BUSINESS_SUCCESS } from "types/businesses";
 import { takeEvery, all, put } from "redux-saga/effects";
 import Notifications from "react-notification-system-redux";
+import { setCurrentBusiness } from "actions/app";
 
-function* fetchBusinessData({
-  payload: {
-    rawData: {
-      data: { id }
-    }
-  }
-}) {
+function* fetchBusinessData({ payload: { id } }) {
   yield put(fetchProfileBusiness(id));
   yield put(fetchBusinessMembers(id));
   yield put(fetchBusinessDeliveries(id));
   yield put(fetchBusinessDishes(id));
+  yield put(fetchBusinessCaterings(id));
   const {
     rawData: { data: orders }
   } = yield put.resolve(fetchBusinessOrders(id));
@@ -40,7 +38,18 @@ function* showSuccesNotification() {
   );
 }
 
+function* setBusiness({
+  payload: {
+    rawData: {
+      data: { id }
+    }
+  }
+}) {
+  yield put(setCurrentBusiness(id));
+}
+
 export default all([
-  takeEvery([SET_CURRENT_BUSINESS, POST_BUSINESS_SUCCESS], fetchBusinessData),
+  takeEvery([POST_BUSINESS_SUCCESS], setBusiness),
+  takeEvery([SET_CURRENT_BUSINESS], fetchBusinessData),
   takeEvery(UPDATE_PROFILE_SUCCESS, showSuccesNotification)
 ]);

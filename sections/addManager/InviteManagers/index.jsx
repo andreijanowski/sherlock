@@ -7,24 +7,16 @@ import { Box, Flex } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { InputField, Button } from "components";
 import { isEmail } from "utils/validators";
-import {
-  HelperTitle,
-  SuccessMessageWrapper,
-  FieldsContainer,
-  RemoveButton
-} from "./styled";
+import { HelperTitle, FieldsContainer, RemoveButton } from "./styled";
 
 class InviteManagers extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      successMessage: null
-    };
     this.fieldsContainer = React.createRef();
     this.validateEmail = isEmail(props.t);
   }
 
-  initializeMembers = () =>
+  initializeEmails = () =>
     Array(3).fill({
       email: undefined
     });
@@ -38,24 +30,20 @@ class InviteManagers extends PureComponent {
   };
 
   render() {
-    const { t } = this.props;
-    const { successMessage } = this.state;
-    if (successMessage) {
-      return <SuccessMessageWrapper>{successMessage}</SuccessMessageWrapper>;
-    }
+    const { t, addReferrals } = this.props;
     return (
       <Form
-        onSubmit={() => null}
+        onSubmit={addReferrals}
         mutators={{
           ...arrayMutators
         }}
         initialValues={{
-          members: this.initializeMembers()
+          emails: this.initializeEmails()
         }}
         render={({ handleSubmit, pristine, invalid, submitting }) => (
           <form onSubmit={handleSubmit}>
             <HelperTitle>{t("emailHelperTitle")}</HelperTitle>
-            <FieldArray name="members">
+            <FieldArray name="emails">
               {({ fields }) => (
                 <>
                   <FieldsContainer ref={this.fieldsContainer}>
@@ -111,7 +99,8 @@ class InviteManagers extends PureComponent {
 }
 
 InviteManagers.propTypes = {
-  t: func.isRequired
+  t: func.isRequired,
+  addReferrals: func.isRequired
 };
 
 export default InviteManagers;

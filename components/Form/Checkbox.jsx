@@ -1,5 +1,5 @@
 import { PureComponent, createRef } from "react";
-import { string, shape } from "prop-types";
+import { string, shape, bool } from "prop-types";
 import { Field as FinalFormField } from "react-final-form";
 import { FontAwesomeIcon as Icon } from "@fortawesome/react-fontawesome";
 import { LoadingIndicator } from "components";
@@ -25,7 +25,7 @@ export class RawCheckbox extends PureComponent {
   };
 
   render() {
-    const { input, meta, error, label } = this.props;
+    const { input, meta, error, label, hasCloserText } = this.props;
     return (
       <Flex>
         <Box>
@@ -40,10 +40,11 @@ export class RawCheckbox extends PureComponent {
             <Checkmark
               isChecked={input.value}
               invalid={error ? "true" : undefined}
+              hasCloserText={hasCloserText}
             >
               {input.value && <Icon icon={["fa", "check"]} />}
             </Checkmark>
-            <CheckboxText>{label}</CheckboxText>
+            <CheckboxText hasCloserText={hasCloserText}>{label}</CheckboxText>
             {error && <Error>{error}</Error>}
             {meta && meta.data.saving && !meta.active && <LoadingIndicator />}
           </FieldWrapper>
@@ -57,12 +58,14 @@ RawCheckbox.propTypes = {
   label: string.isRequired,
   input: shape().isRequired,
   meta: shape(),
-  error: string
+  error: string,
+  hasCloserText: bool
 };
 
 RawCheckbox.defaultProps = {
   error: "",
-  meta: null
+  meta: null,
+  hasCloserText: false
 };
 
 const Checkbox = ({ name, label }) => (

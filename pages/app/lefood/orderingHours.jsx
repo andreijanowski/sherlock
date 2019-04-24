@@ -11,6 +11,7 @@ import {
   patchOrderPeriod,
   deleteOrderPeriod
 } from "actions/orderPeriods";
+import { setCurrentBusiness } from "actions/app";
 import { calcPendingOrders } from "sections/lefood/utils";
 import { patchBusiness } from "actions/businesses";
 
@@ -32,7 +33,7 @@ class OrderingHoursPage extends PureComponent {
   addOrderPeriod = orderPeriod => {
     const {
       addOrderPeriod,
-      currentBusiness: { id }
+      business: { id }
     } = this.props;
     return addOrderPeriod(id, parsePeriod(orderPeriod));
   };
@@ -60,17 +61,25 @@ class OrderingHoursPage extends PureComponent {
   };
 
   render() {
-    const { t, lng, currentBusiness, updateBusiness, orders } = this.props;
+    const {
+      t,
+      lng,
+      updateBusiness,
+      orders,
+      business,
+      businesses,
+      changeCurrentBusiness
+    } = this.props;
     const {
       visibleInLefood,
       id,
       averageDeliveryTime,
       minAmountForDeliveryCents,
-      currency,
+      stripeCurrency,
       stripeUserId
-    } = currentBusiness || {};
-    const initialValues = currentBusiness
-      ? parsePeriods(currentBusiness.orderPeriods)
+    } = business || {};
+    const initialValues = business
+      ? parsePeriods(business.orderPeriods)
       : undefined;
 
     return (
@@ -85,8 +94,11 @@ class OrderingHoursPage extends PureComponent {
           averageDeliveryTime,
           minAmountForDeliveryCents,
           currentBusinessId: id,
-          currency,
-          stripeUserId
+          currency: stripeCurrency,
+          stripeUserId,
+          business,
+          businesses,
+          changeCurrentBusiness
         }}
       >
         <Periods
@@ -108,32 +120,37 @@ class OrderingHoursPage extends PureComponent {
 OrderingHoursPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  currentBusiness: shape(),
+  business: shape(),
   loading: bool.isRequired,
   orderingHours: arrayOf(shape()).isRequired,
   orders: arrayOf(shape()).isRequired,
   addOrderPeriod: func.isRequired,
   updateOrderPeriod: func.isRequired,
   removeOrderPeriod: func.isRequired,
-  updateBusiness: func.isRequired
+  updateBusiness: func.isRequired,
+  businesses: arrayOf(shape()),
+  changeCurrentBusiness: func.isRequired
 };
 
 OrderingHoursPage.defaultProps = {
-  currentBusiness: {}
+  business: {},
+  businesses: null
 };
 
 export default requireAuth(true)(
   withI18next(namespaces)(
     connect(
       state => ({
-        currentBusiness: state.users.currentBusiness.data,
+        business: state.users.currentBusiness.data,
+        businesses: state.users.profileBusinesses.data,
         orders: state.orders.data
       }),
       {
         addOrderPeriod: postOrderPeriod,
         updateOrderPeriod: patchOrderPeriod,
         removeOrderPeriod: deleteOrderPeriod,
-        updateBusiness: patchBusiness
+        updateBusiness: patchBusiness,
+        changeCurrentBusiness: setCurrentBusiness
       }
     )(OrderingHoursPage)
   )

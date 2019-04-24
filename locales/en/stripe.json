@@ -1,5 +1,6 @@
 {
   "header": "Connect with stripe",
   "success": "Connection with Stripe succeeded",
-  "fail": "Connection with stripe failed"
+  "fail": "Connection with stripe failed",
+  "goToOrders": "Go to orders"
 }

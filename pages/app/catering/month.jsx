@@ -6,7 +6,8 @@ import { func, string, shape, arrayOf } from "prop-types";
 import Month from "sections/catering/month";
 import CateringLayout from "sections/catering/Layout";
 import { connect } from "react-redux";
-import { setCurrentBusiness } from "actions/users";
+import { setCurrentBusiness } from "actions/app";
+import { setCateringForEditing, sendCateringOffer } from "actions/caterings";
 
 const namespaces = ["catering", "app"];
 
@@ -30,8 +31,18 @@ class MonthPage extends PureComponent {
   }
 
   render() {
-    const { t, lng, business, businesses, changeCurrentBusiness } = this.props;
+    const {
+      t,
+      lng,
+      business,
+      businesses,
+      changeCurrentBusiness,
+      caterings,
+      setEditedCatering,
+      sendOffer
+    } = this.props;
     const { view } = this.state;
+    const { currency } = business || {};
     return (
       <CateringLayout
         {...{
@@ -43,7 +54,17 @@ class MonthPage extends PureComponent {
           changeCurrentBusiness
         }}
       >
-        <Month {...{ t }} />
+        <Month
+          {...{
+            t,
+            lng,
+            caterings,
+            currency,
+            setEditedCatering,
+            sendOffer,
+            timeZone: business && business.timezone
+          }}
+        />
       </CateringLayout>
     );
   }
@@ -51,15 +72,19 @@ class MonthPage extends PureComponent {
 
 MonthPage.propTypes = {
   t: func.isRequired,
+  setEditedCatering: func.isRequired,
+  sendOffer: func.isRequired,
   lng: string.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
-  businesses: arrayOf(shape())
+  businesses: arrayOf(shape()),
+  caterings: arrayOf(shape())
 };
 
 MonthPage.defaultProps = {
   business: null,
-  businesses: null
+  businesses: null,
+  caterings: null
 };
 
 export default requireAuth(true)(
@@ -67,10 +92,13 @@ export default requireAuth(true)(
     connect(
       state => ({
         business: state.users.currentBusiness.data,
-        businesses: state.users.profileBusinesses.data
+        businesses: state.users.profileBusinesses.data,
+        caterings: state.caterings.data
       }),
       {
-        changeCurrentBusiness: setCurrentBusiness
+        changeCurrentBusiness: setCurrentBusiness,
+        setEditedCatering: setCateringForEditing,
+        sendOffer: sendCateringOffer
       }
     )(MonthPage)
   )

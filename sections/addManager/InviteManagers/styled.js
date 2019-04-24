@@ -9,12 +9,6 @@ export const DesciprtionWrapper = styled(Paragraph)`
   }
 `;
 
-export const SuccessMessageWrapper = styled(Paragraph)`
-  max-width: 558px;
-  text-align: center;
-  margin: 0 auto;
-`;
-
 export const HelperTitle = styled.h2`
   font-size: ${p => p.theme.fontSizes.f16};
   font-weight: ${p => p.theme.fontWeights.semiBold};

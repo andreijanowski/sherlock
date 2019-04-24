@@ -31,6 +31,7 @@ export { default as BigCheckbox } from "./Form/BigCheckbox";
 export { default as FormCheckbox, RawCheckbox } from "./Form/Checkbox";
 export { default as FormTimePicker } from "./Form/TimePicker";
 export { default as AutoSave } from "./Form/AutoSave";
+export { default as File } from "./Form/File";
 export { default as Link } from "./Link";
 export { default as Dropzone } from "./Dropzone";
 export { default as DropzoneWithCropper } from "./Form/DropzoneWithCropper";
@@ -50,12 +51,22 @@ export { default as Menu } from "./Menu";
 export { default as Select } from "./Select";
 export { default as CalendarEvent } from "./Calendar/Event";
 export { default as CalendarToolbar } from "./Calendar/Toolbar";
+export { default as BigCalendar } from "./Calendar/BigCalendar";
 export { default as MenusUploader } from "./MenusUploader";
 export { default as Map } from "./Map";
 export { default as TextSeparator } from "./TextSeparator";
-export { default as Periods, parsePeriods, parsePeriod } from "./Periods";
+export {
+  default as Periods,
+  parsePeriods,
+  parsePeriod,
+  parseTime,
+  timeToNumber,
+  isMovableBusiness
+} from "./Periods";
 export { default as InfoBar } from "./InfoBar";
 export { default as AutosizeInput } from "./AutosizeInput";
 export { default as ConnectWithStripe } from "./ConnectWithStripe";
+export { default as CookiesModal } from "./CookiesModal";
 export { default as Plans, PlansBillingInterval } from "./Plans";
 export { default as Opacity } from "./Opacity";
+export { default as YoutubeModal } from "./YoutubeModal";

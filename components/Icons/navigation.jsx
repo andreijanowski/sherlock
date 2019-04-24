@@ -76,7 +76,7 @@ export const BackArrow = () => (
   </svg>
 );
 
-export const ControlCentre = () => (
+export const ControlCenter = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -142,7 +142,7 @@ export const Bookings = () => (
   </svg>
 );
 
-export const Delivery = () => (
+export const TakeAway = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -170,7 +170,7 @@ export const Delivery = () => (
   </svg>
 );
 
-export const TakeAway = () => (
+export const Delivery = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"
@@ -220,7 +220,7 @@ export const Catering = () => (
   </svg>
 );
 
-export const Privatisations = () => (
+export const Privatizations = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="22"
@@ -244,7 +244,7 @@ export const Privatisations = () => (
   </svg>
 );
 
-export const LeFood = () => (
+export const SocialMedia = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="18"
@@ -512,29 +512,6 @@ export const SettingsBasicInfo = () => (
     >
       <circle strokeOpacity="0.4" cx="8.33499364" cy="5" r="5" />
       <path d="M8.33499364,10 C6.08806085,10.0218052 3.94313726,10.94118 2.37789317,12.5533814 C0.812649087,14.1655828 -0.0429413066,16.3367374 0.00166030816,18.5833333 L0.00166030816,20 L16.668327,20 L16.668327,18.5833333 C16.7129286,16.3367374 15.8573382,14.1655828 14.2920941,12.5533814 C12.72685,10.94118 10.5819264,10.0218052 8.33499364,10 Z" />
-    </g>
-  </svg>
-);
-
-export const SettingsBilling = () => (
-  <svg
-    width="16px"
-    height="22px"
-    viewBox="0 0 16 22"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <g
-      fillRule="evenodd"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      transform="translate(1.000000, 1.000000)"
-    >
-      <polygon points="0 0 0 20 14 20 14 5.33333333 8.66666667 0" />
-      <path
-        d="M3.33333333,7 L10.6666667,7 M3.33333333,11.3333333 L10.6666667,11.3333333 M3.33333333,15.6666667 L9.33333333,15.6666667"
-        strokeOpacity="0.4"
-      />
     </g>
   </svg>
 );

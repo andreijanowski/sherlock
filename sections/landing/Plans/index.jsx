@@ -3,11 +3,11 @@ import { Flex, Box } from "@rebass/grid";
 import { func, string } from "prop-types";
 import { Plans, PlansBillingInterval } from "components";
 import { H2Styled, ParagraphStyled, PlansWrapper, TextWrapper } from "./styled";
-import PromotionBoard from "./promotionBoard";
+// import PromotionBoard from "./promotionBoard";
 
 const PlansMainComponent = React.forwardRef(
   ({ t, lng, billingInterval, handleChangeBillngPeriod }, ref) => (
-    <Flex flexDirection="column" width={1} mb={6} px={3}>
+    <Flex flexDirection="column" width={1} mb={6} px={3} ref={ref}>
       <TextWrapper>
         <Flex
           flexDirection="row"
@@ -24,9 +24,10 @@ const PlansMainComponent = React.forwardRef(
           <Box />
         </Flex>
         <ParagraphStyled>{t("plans:paragraph")}</ParagraphStyled>
-        <PromotionBoard {...{ t }} />
+        {/* Hiden for now */}
+        {/* <PromotionBoard {...{ t }} /> */}
       </TextWrapper>
-      <PlansWrapper ref={ref}>
+      <PlansWrapper>
         <Plans {...{ t, lng, billingInterval, isAuthenticated: false }} />
       </PlansWrapper>
     </Flex>

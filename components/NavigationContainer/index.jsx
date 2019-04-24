@@ -1,16 +1,13 @@
 import React from "react";
 import { NavBar, Menu, MobileNav } from "components";
-import { Flex } from "@rebass/grid";
 import { bool, func, string, arrayOf, shape } from "prop-types";
 import { Wrapper, MobileWrapper } from "./styled";
 
 const NavigationContainer = ({ withMenu, menuItems, t, lng, select }) => (
   <>
     <Wrapper>
-      <Flex>
-        <NavBar {...{ t, lng, withMenu }} />
-        {withMenu && <Menu {...{ lng, menuItems, select }} />}
-      </Flex>
+      <NavBar {...{ t, lng, withMenu }} />
+      {withMenu && <Menu {...{ lng, menuItems, select }} />}
     </Wrapper>
     <MobileWrapper>
       <MobileNav {...{ t, lng }} />

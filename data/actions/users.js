@@ -3,7 +3,6 @@ import {
   UPDATE_PROFILE_REQUEST,
   FETCH_PROFILE_BUSINESSES_REQUEST,
   FETCH_PROFILE_BUSINESS_REQUEST,
-  SET_CURRENT_BUSINESS,
   FETCH_PROFILE_CARDS_REQUEST,
   FETCH_PROFILE_SUBSCRIPTIONS_REQUEST
 } from "types/users";
@@ -55,17 +54,6 @@ export const fetchProfileBusiness = id => ({
     }
   },
   meta: { thunk: true }
-});
-
-export const setCurrentBusiness = id => ({
-  type: SET_CURRENT_BUSINESS,
-  payload: {
-    rawData: {
-      data: {
-        id
-      }
-    }
-  }
 });
 
 export const fetchProfileCards = () => ({

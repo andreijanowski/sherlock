@@ -13,6 +13,7 @@ import {
 import { connect } from "react-redux";
 import { patchOrder, patchOrderReject } from "actions/orders";
 import { patchBusiness } from "actions/businesses";
+import { setCurrentBusiness } from "actions/app";
 import OrderDetails from "sections/lefood/orders/OrderDetails";
 import { SliderStyles } from "sections/lefood/orders/styled";
 import { action as toggleMenu } from "redux-burger-menu";
@@ -178,10 +179,12 @@ class OrdersPage extends PureComponent {
       lng,
       orders,
       loading,
-      currentBusiness,
       updateBusiness,
       dishesLength,
-      deliveriesLength
+      deliveriesLength,
+      business,
+      businesses,
+      changeCurrentBusiness
     } = this.props;
     const {
       columns,
@@ -190,14 +193,14 @@ class OrdersPage extends PureComponent {
       orderDetailsId
     } = this.state;
     const {
-      currency,
+      stripeCurrency,
       visibleInLefood,
       id,
       averageDeliveryTime,
       minAmountForDeliveryCents,
       orderPeriods,
       stripeUserId
-    } = currentBusiness || {};
+    } = business || {};
     const orderDetails = orders
       ? orders.find(o => o.id === orderDetailsId)
       : null;
@@ -217,8 +220,11 @@ class OrdersPage extends PureComponent {
             orderPeriodsLength: orderPeriods && orderPeriods.length,
             averageDeliveryTime,
             minAmountForDeliveryCents,
-            currency,
-            stripeUserId
+            currency: stripeCurrency,
+            stripeUserId,
+            business,
+            businesses,
+            changeCurrentBusiness
           }}
         >
           <Orders
@@ -234,7 +240,7 @@ class OrdersPage extends PureComponent {
               orders,
               columns,
               loading,
-              currency,
+              currency: stripeCurrency,
               t
             }}
           />
@@ -259,18 +265,21 @@ OrdersPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   orders: arrayOf(shape()).isRequired,
-  currentBusiness: shape(),
+  business: shape(),
   loading: bool.isRequired,
   updateOrder: func.isRequired,
   rejectOrder: func.isRequired,
   updateBusiness: func.isRequired,
   toggleOrderDetails: func.isRequired,
   dishesLength: number.isRequired,
-  deliveriesLength: number.isRequired
+  deliveriesLength: number.isRequired,
+  businesses: arrayOf(shape()),
+  changeCurrentBusiness: func.isRequired
 };
 
 OrdersPage.defaultProps = {
-  currentBusiness: {}
+  business: {},
+  businesses: null
 };
 
 export default requireAuth(true)(
@@ -283,13 +292,15 @@ export default requireAuth(true)(
         orders: state.orders.data,
         dishesLength: state.dishes.data && state.dishes.data.length,
         deliveriesLength: state.deliveries.data && state.deliveries.data.length,
-        currentBusiness: state.users.currentBusiness.data
+        business: state.users.currentBusiness.data,
+        businesses: state.users.profileBusinesses.data
       }),
       {
         updateOrder: patchOrder,
         rejectOrder: patchOrderReject,
         updateBusiness: patchBusiness,
-        toggleOrderDetails: toggleMenu
+        toggleOrderDetails: toggleMenu,
+        changeCurrentBusiness: setCurrentBusiness
       }
     )(OrdersPage)
   )

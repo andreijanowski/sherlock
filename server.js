@@ -31,6 +31,7 @@ i18n
         "catering",
         "common",
         "contactInformation",
+        "cookies",
         "footer",
         "forms",
         "landing",

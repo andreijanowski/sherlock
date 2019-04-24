@@ -8,7 +8,7 @@ module.exports = routes()
   .add("confirm", `/:lng(${languagesPattern})/confirm/:token`)
   .add("resetPassword", `/:lng(${languagesPattern})/reset-password`)
   .add("changePassword", `/:lng(${languagesPattern})/change-password/:token`)
-  .add("add/manager", `/:lng(${languagesPattern})/add/manager`)
+  .add("referrals", `/:lng(${languagesPattern})/referrals`)
   .add("add/venue", `/:lng(${languagesPattern})/add/venue`)
   .add("app/index", `/:lng(${languagesPattern})/app`)
   .add(
@@ -37,10 +37,6 @@ module.exports = routes()
     `/:lng(${languagesPattern})/app/settings/basic-information`
   )
   .add(
-    "app/settings/billing",
-    `/:lng(${languagesPattern})/app/settings/billing`
-  )
-  .add(
     "app/settings/password",
     `/:lng(${languagesPattern})/app/settings/password`
   )
@@ -48,6 +44,7 @@ module.exports = routes()
   .add("app/catering/week", `/:lng(${languagesPattern})/app/catering/week`)
   .add("app/catering/month", `/:lng(${languagesPattern})/app/catering/month`)
   .add("app/catering/year", `/:lng(${languagesPattern})/app/catering/year`)
+  .add("app/catering/edit", `/:lng(${languagesPattern})/app/catering/edit`)
   .add("app/catering/create", `/:lng(${languagesPattern})/app/catering/create`)
   .add("app/lefood/orders", `/:lng(${languagesPattern})/app/lefood/orders`)
   .add(
@@ -60,8 +57,4 @@ module.exports = routes()
     `/:lng(${languagesPattern})/app/lefood/ordering-hours`
   )
   .add("app/stripeOauth", `/:lng(${languagesPattern})/stripe-oauth`)
-  .add(
-    "app/subscriptions/plans",
-    `/:lng(${languagesPattern})/app/subscriptions/plans`
-  )
   .add("app/subscriptions", `/:lng(${languagesPattern})/app/subscriptions`);

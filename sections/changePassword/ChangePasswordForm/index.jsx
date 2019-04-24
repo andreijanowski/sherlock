@@ -7,6 +7,7 @@ import { InputField, Button, PasswordStrengthMeter } from "components";
 import { changePasswordByToken as changePasswordByTokenAction } from "actions/auth";
 import { validatePassword, validatePasswordsMatch } from "utils/validators";
 import { Box } from "@rebass/grid";
+import { Router } from "routes";
 import { HelperTitle, Separator } from "./styled";
 
 class ChangePasswordForm extends PureComponent {
@@ -18,12 +19,13 @@ class ChangePasswordForm extends PureComponent {
 
   submitForm = async ({ password, passwordConfirmation }) => {
     try {
-      const { changePasswordByToken, token } = this.props;
+      const { changePasswordByToken, token, lng } = this.props;
       await changePasswordByToken({
         password,
         passwordConfirmation,
         resetPasswordToken: token
       });
+      Router.pushRoute(`/${lng}/login/`);
     } catch (e) {
       console.log(e);
     }
@@ -80,6 +82,7 @@ class ChangePasswordForm extends PureComponent {
 ChangePasswordForm.propTypes = {
   changePasswordByToken: func.isRequired,
   t: func.isRequired,
+  lng: string.isRequired,
   token: string.isRequired
 };
 

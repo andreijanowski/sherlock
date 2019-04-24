@@ -1,5 +1,7 @@
 import styled, { css } from "styled-components";
+import Tippy from "@tippy.js/react";
 import { Flex, Box } from "@rebass/grid";
+import { theme } from "utils/theme";
 
 const alignCenterMobile = css`
   text-align: center;
@@ -27,6 +29,7 @@ export const NameWrapper = styled(Flex).attrs({
   position: absolute;
   top: -10px;
   left: 16px;
+  z-index: 1;
 `;
 
 export const Name = styled.div`
@@ -59,6 +62,7 @@ export const PriceWrapper = styled(Flex).attrs({
   mb: 3
 })`
   padding: 24px 16px 16px;
+  position: relative;
   border-radius: ${p => p.theme.radius.default};
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
   background: rgb(${p => p.theme.colors.white});
@@ -85,6 +89,24 @@ export const Price = styled.div`
   }
 `;
 
+export const RegularPrice = styled(Price)`
+  margin-bottom: 0;
+  font-size: ${p => p.theme.fontSizes.f16};
+  text-decoration: line-through;
+  line-height: 20px;
+`;
+
+export const BetaPrice = styled(Price)`
+  margin-bottom: 20px;
+`;
+
+export const BetaPriceText = styled.div`
+  position: absolute;
+  color: rgb(${p => p.theme.colors.ruby});
+  bottom: 70px;
+  font-weight: ${p => p.theme.fontWeights.bold};
+`;
+
 export const Service = styled(Box).attrs({ mb: 1 })`
   text-align: center;
   font-size: ${p => p.theme.fontSizes.f16};
@@ -94,6 +116,7 @@ export const Service = styled(Box).attrs({ mb: 1 })`
     p.isHighlighted
       ? `rgb(${p.theme.colors.dark})`
       : `rgba(${p.theme.colors.dark}, ${p.isLighter ? 0.4 : 0.8})`};
+  ${p => p.tooltipImage && "cursor:pointer;"}
 `;
 
 export const Badge = styled.span`
@@ -126,4 +149,18 @@ export const SwitchWrapper = styled(Box)`
     rgba(${p => p.theme.colors.dark}, 0.4),
     rgb(${p => p.theme.colors.blue})
   );
+`;
+
+export const Design = styled.img`
+  width: 300px;
+  border-radius: ${theme.radius.default};
+  box-shadow: 0 2px 6px 0 rgba(${theme.colors.blue}, 0.08);
+`;
+
+export const Tooltip = styled(Tippy)`
+  padding: 0;
+
+  .tippy-backdrop {
+    background: transparent;
+  }
 `;

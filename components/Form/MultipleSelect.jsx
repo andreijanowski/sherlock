@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import { string, shape, arrayOf, number } from "prop-types";
+import { string, shape, arrayOf, number, bool } from "prop-types";
 import Downshift from "downshift";
 import RawMultipleSelect from "./RawMultipleSelect";
 
@@ -16,7 +16,15 @@ class FormMultipleSelect extends PureComponent {
   };
 
   render() {
-    const { input, meta, placeholder, items, maxItems } = this.props;
+    const {
+      input,
+      meta,
+      placeholder,
+      items,
+      max,
+      min,
+      isErrorVisibilityRequired
+    } = this.props;
     const { inputValue } = this.state;
 
     return (
@@ -46,8 +54,10 @@ class FormMultipleSelect extends PureComponent {
                 meta,
                 placeholder,
                 items,
-                maxItems,
+                max,
+                min,
                 inputValue,
+                isErrorVisibilityRequired,
                 setInputValue: v => this.setState({ inputValue: v })
               }}
             />
@@ -63,11 +73,15 @@ FormMultipleSelect.propTypes = {
   meta: shape().isRequired,
   placeholder: string.isRequired,
   items: arrayOf(shape()).isRequired,
-  maxItems: number
+  max: number,
+  min: number,
+  isErrorVisibilityRequired: bool
 };
 
 FormMultipleSelect.defaultProps = {
-  maxItems: undefined
+  max: 100,
+  min: 0,
+  isErrorVisibilityRequired: false
 };
 
 export default FormMultipleSelect;

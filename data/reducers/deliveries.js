@@ -7,6 +7,7 @@ import {
   FETCH_BUSINESS_DELIVERIES_SUCCESS,
   FETCH_BUSINESS_DELIVERIES_FAIL
 } from "types/businesses";
+import { LOGOUT } from "types/auth";
 import build from "redux-object";
 
 const initialState = {
@@ -60,6 +61,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       const newState = { ...state };
       newState.data = newState.data.filter(m => m.id !== meta.id);
       return newState;
+    }
+
+    case LOGOUT: {
+      return initialState;
     }
 
     default: {

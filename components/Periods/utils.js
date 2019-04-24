@@ -1,4 +1,4 @@
-const parseTime = time => {
+export const parseTime = time => {
   const hour24 = Math.floor(time / 60 / 60);
   const hour = hour24 > 12 ? hour24 - 12 : hour24;
   const minute = `0${(time / 60) % 60}`.slice(-2);
@@ -13,7 +13,8 @@ const parseTime = time => {
   };
 };
 
-const timeToNumber = ({ hour24, minute }) => hour24 * 60 * 60 + minute * 60;
+export const timeToNumber = ({ hour24, minute }) =>
+  hour24 * 60 * 60 + minute * 60;
 
 export const parsePeriods = periods => {
   const days = {};
@@ -69,3 +70,14 @@ export const addNewPeriod = (addPeriod, fields, weekday) => {
   };
   addPeriod(newPeriod);
 };
+
+export const isMovableBusiness = groups =>
+  groups.some(
+    g =>
+      g.name === "Food Court" ||
+      g.name === "Food Festival" ||
+      g.name === "Food Stand" ||
+      g.name === "Food Truck" ||
+      g.name === "Ice Cream Stand" ||
+      g.name === "Street Food"
+  );

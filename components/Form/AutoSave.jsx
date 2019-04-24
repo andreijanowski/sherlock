@@ -2,7 +2,7 @@ import React from "react";
 import { FormSpy } from "react-final-form";
 import diff from "object-diff";
 import { shape, string, func } from "prop-types";
-import { getErrorMessageKey } from "utils/getErrorMessage";
+import { getErrorMessageKey, getValidMessageKey } from "utils/getErrorMessage";
 import { getArraysDiff } from "./utils";
 
 class AutoSave extends React.Component {
@@ -21,7 +21,6 @@ class AutoSave extends React.Component {
   save = async blurredField => {
     const { setFieldData, arrayName, t } = this.props;
     try {
-      setFieldData(blurredField, { saving: true });
       if (this.promise) {
         await this.promise;
       }
@@ -39,12 +38,19 @@ class AutoSave extends React.Component {
         : diff(prevValues, values);
       if (!arrayName) {
         Object.keys(errors).forEach(e => {
-          delete difference[e];
+          if (
+            e !== "types" &&
+            e !== "cuisines" &&
+            e !== "foodsAndDrinks" &&
+            e !== "quirks"
+          )
+            delete difference[e];
         });
       }
 
       const keys = Object.keys(difference);
       if (keys.length) {
+        setFieldData(blurredField, { saving: true });
         this.setState({ values });
         keys.forEach(k => {
           if (difference[k] === undefined) {
@@ -63,14 +69,61 @@ class AutoSave extends React.Component {
             error: null
           });
         }
+        setFieldData(blurredField, { saving: false });
       }
-      setFieldData(blurredField, { saving: false });
     } catch (e) {
       if (e.response) {
-        const { message, meta } = getErrorMessageKey(e.response.data.errors);
-        setFieldData(blurredField, {
-          error: t(message, { ...meta })
-        });
+        const { errors } = e.response.data;
+        switch (blurredField) {
+          case "types": {
+            const error = getValidMessageKey(errors, "invalid_range_of_types");
+            if (error) {
+              setFieldData(blurredField, {
+                error: t(error.message, { ...error.meta })
+              });
+            }
+            break;
+          }
+          case "cuisines": {
+            const error = getValidMessageKey(
+              errors,
+              "invalid_range_of_cuisines"
+            );
+            if (error) {
+              setFieldData(blurredField, {
+                error: t(error.message, { ...error.meta })
+              });
+            }
+            break;
+          }
+          case "foodsAndDrinks": {
+            const error = getValidMessageKey(
+              errors,
+              "invalid_range_of_drinks_foods"
+            );
+            if (error) {
+              setFieldData(blurredField, {
+                error: t(error.message, { ...error.meta })
+              });
+            }
+            break;
+          }
+          case "quirks": {
+            const error = getValidMessageKey(errors, "invalid_range_of_quirks");
+            if (error) {
+              setFieldData(blurredField, {
+                error: t(error.message, { ...error.meta })
+              });
+            }
+            break;
+          }
+          default: {
+            const { message, meta } = getErrorMessageKey(errors);
+            setFieldData(blurredField, {
+              error: t(message, { ...meta })
+            });
+          }
+        }
       } else {
         console.log(e);
       }

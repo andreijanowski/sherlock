@@ -1,11 +1,11 @@
 export {
-  ControlCentre,
+  ControlCenter,
   Bookings,
   Delivery,
   TakeAway,
   Catering,
-  Privatisations,
-  LeFood,
+  Privatizations,
+  SocialMedia,
   Billing,
   ProfileIcon,
   ProfileBasicInfo,
@@ -20,7 +20,6 @@ export {
   LiveStream,
   Hamburger,
   SettingsBasicInfo,
-  SettingsBilling,
   SettingsPassword,
   SettingsLogout
 } from "./navigation";

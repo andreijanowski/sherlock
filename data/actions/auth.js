@@ -9,7 +9,8 @@ import {
   CONFIRM_REQUEST,
   CHANGE_PASSWORD_BY_TOKEN_REQUEST,
   CONNECT_STRIPE_REQUEST,
-  SET_STRIPE_DATA
+  SET_STRIPE_DATA,
+  SET_AUTH_SYNCHRONIZED_FROM_STORAGE
 } from "types/auth";
 
 export const login = data => ({
@@ -76,8 +77,7 @@ export const register = ({
           termsAgreement,
           source: "sherlock"
         }
-      },
-      grant_type: "password"
+      }
     },
     endpoint: "/api/v1/users",
     authRequired: false,
@@ -176,4 +176,9 @@ export const setStripeData = data => ({
   payload: {
     data
   }
+});
+
+export const setAuthSynchronizedFromStorage = data => ({
+  type: SET_AUTH_SYNCHRONIZED_FROM_STORAGE,
+  payload: data
 });

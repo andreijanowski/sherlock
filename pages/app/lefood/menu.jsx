@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { postDish, deleteDish } from "actions/dishes";
 import { postPicture } from "actions/pictures";
 import { patchBusiness } from "actions/businesses";
+import { setCurrentBusiness } from "actions/app";
 import { calcPendingOrders } from "sections/lefood/utils";
 import { convertToCents } from "utils/price";
 
@@ -26,7 +27,7 @@ class MenuPage extends PureComponent {
   addDish = values => {
     const {
       addDish,
-      currentBusiness: { id }
+      business: { id }
     } = this.props;
     const { available, ...rest } = values;
     return addDish(
@@ -55,18 +56,20 @@ class MenuPage extends PureComponent {
       lng,
       dishes,
       loading,
-      currentBusiness,
       updateBusiness,
-      orders
+      orders,
+      business,
+      businesses,
+      changeCurrentBusiness
     } = this.props;
     const {
       visibleInLefood,
       id,
       averageDeliveryTime,
       minAmountForDeliveryCents,
-      currency,
+      stripeCurrency,
       stripeUserId
-    } = currentBusiness || {};
+    } = business || {};
     return (
       <LefoodLayout
         {...{
@@ -79,8 +82,11 @@ class MenuPage extends PureComponent {
           averageDeliveryTime,
           minAmountForDeliveryCents,
           currentBusinessId: id,
-          currency,
-          stripeUserId
+          currency: stripeCurrency,
+          stripeUserId,
+          business,
+          businesses,
+          changeCurrentBusiness
         }}
       >
         <Menu
@@ -103,16 +109,19 @@ MenuPage.propTypes = {
   lng: string.isRequired,
   dishes: arrayOf(shape()).isRequired,
   orders: arrayOf(shape()).isRequired,
-  currentBusiness: shape(),
+  business: shape(),
   addDish: func.isRequired,
   removeDish: func.isRequired,
   addPicture: func.isRequired,
   loading: bool.isRequired,
-  updateBusiness: func.isRequired
+  updateBusiness: func.isRequired,
+  businesses: arrayOf(shape()),
+  changeCurrentBusiness: func.isRequired
 };
 
 MenuPage.defaultProps = {
-  currentBusiness: {}
+  business: {},
+  businesses: null
 };
 
 export default requireAuth(true)(
@@ -123,14 +132,16 @@ export default requireAuth(true)(
           (!state.dishes.isFailed && !state.dishes.isSucceeded) ||
           state.dishes.isFetching,
         dishes: state.dishes.data,
-        currentBusiness: state.users.currentBusiness.data,
+        business: state.users.currentBusiness.data,
+        businesses: state.users.profileBusinesses.data,
         orders: state.orders.data
       }),
       {
         addDish: postDish,
         removeDish: deleteDish,
         addPicture: postPicture,
-        updateBusiness: patchBusiness
+        updateBusiness: patchBusiness,
+        changeCurrentBusiness: setCurrentBusiness
       }
     )(MenuPage)
   )

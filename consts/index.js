@@ -9,19 +9,26 @@ const PUSHER_APP_KEY = process.env.PUBLIC_PUSHER_APP_KEY;
 const PUSHER_APP_CLUSTER = process.env.PUBLIC_PUSHER_APP_CLUSTER;
 const STRIPE_CLIENT_ID = process.env.STRIPE_CLIENT_ID;
 const STRIPE_API_KEY = process.env.PUBLIC_STRIPE_API_KEY;
+const GOOGLE_TAG_MANAGER_ID = process.env.PUBLIC_GOOGLE_TAG_MANAGER_ID;
+const FACEBOOK_PIXEL_ID = process.env.PUBLIC_FACEBOOK_PIXEL_ID;
+const GOOGLE_ANALYTICS_ID = process.env.PUBLIC_GOOGLE_ANALYTICS_ID;
+const FOODETECTIVE_URL = process.env.PUBLIC_FOODETECTIVE_URL;
 
 const contentTypes = {
   JSON: "application/json",
   JSONAPI: "application/vnd.api+json",
   MULTIPART: "multipart/form-data"
 };
-
+const privacyPolicyLink = `${FOODETECTIVE_URL}/sherlock-privacy-policy`;
+const termsAndConditionsLink = `${FOODETECTIVE_URL}/sherlock-terms-of-use`;
 const formValidation = { MINIMUM_PASSWORD_LENGTH: 8 };
 
 module.exports = {
   contentTypes,
   languages,
   languagesPattern,
+  privacyPolicyLink,
+  termsAndConditionsLink,
   API_URL,
   GOOGLE_MAPS_API_KEY,
   NETGURU_DEV_PASSWORD,
@@ -31,5 +38,9 @@ module.exports = {
   PUSHER_APP_KEY,
   PUSHER_APP_CLUSTER,
   STRIPE_CLIENT_ID,
-  STRIPE_API_KEY
+  STRIPE_API_KEY,
+  GOOGLE_TAG_MANAGER_ID,
+  FACEBOOK_PIXEL_ID,
+  GOOGLE_ANALYTICS_ID,
+  FOODETECTIVE_URL
 };

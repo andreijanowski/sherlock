@@ -1,4 +1,14 @@
-import { takeEvery, put, all, select, takeLatest } from "redux-saga/effects";
+import {
+  takeEvery,
+  put,
+  all,
+  select,
+  takeLatest,
+  call,
+  take,
+  fork
+} from "redux-saga/effects";
+import { eventChannel } from "redux-saga";
 import { REHYDRATE } from "redux-persist";
 import {
   fetchProfile,
@@ -13,11 +23,13 @@ import {
   postBusiness,
   fetchBusinessDeliveries,
   fetchBusinessDishes,
-  fetchBusinessOrders
+  fetchBusinessOrders,
+  fetchBusinessCaterings
 } from "actions/businesses";
 import { fetchStripePlans } from "actions/stripe";
 import {
   LOGIN_SUCCESS,
+  REGISTER_SUCCESS,
   FACEBOOK_LOGIN_SUCCESS,
   REFRESH_TOKEN_SUCCESS,
   CHANGE_PASSWORD_SUCCESS,
@@ -25,33 +37,104 @@ import {
   CHANGE_PASSWORD_BY_TOKEN_SUCCESS
 } from "types/auth";
 import Notifications from "react-notification-system-redux";
-import { refreshToken as refresh } from "actions/auth";
-import { Router } from "routes";
+import {
+  refreshToken as refresh,
+  setAuthSynchronizedFromStorage
+} from "actions/auth";
+import { setCurrentBusiness, saveCurrentUserId } from "actions/app";
 
-function* initialTokenRefresh() {
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
+function createLocalstorageChannel() {
+  return eventChannel(emit => {
+    const watchHandler = event => {
+      emit(event);
+    };
+    window.addEventListener("storage", watchHandler);
+    const unsubscribe = () => {
+      window.removeEventListener("storage", watchHandler);
+    };
+
+    return unsubscribe;
+  });
+}
+
+function* syncWithLocalStorage() {
+  const storageChanel = yield call(createLocalstorageChannel);
+  while (true) {
+    const payload = yield take(storageChanel);
+    if (payload.key === "persist:sherlock") {
+      const parsedNewValue = JSON.parse(payload.newValue);
+      const parsedOldValue = JSON.parse(payload.oldValue);
+      if (parsedNewValue.auth !== parsedOldValue.auth) {
+        const parsedAuth = JSON.parse(parsedNewValue.auth);
+        yield put(setAuthSynchronizedFromStorage(parsedAuth));
+      }
+    }
+  }
+}
+
+function* subscribeForRefresh() {
+  const { expiresIn } = yield select(state => state.auth);
+  // 5 minutes before expires
+  const msBeforeExpires = 300000;
+  yield delay(expiresIn * 1000 - msBeforeExpires);
   const refreshToken = yield select(state => state.auth.refreshToken);
   if (refreshToken) {
     yield put(refresh({ refreshToken }));
   }
 }
 
+function* fetchBusinessData(id) {
+  yield put(fetchProfileBusiness(id));
+  yield put(fetchBusinessMembers(id));
+  yield put(fetchBusinessDeliveries(id));
+  yield put(fetchBusinessDishes(id));
+  yield put(fetchBusinessOrders(id));
+  yield put(fetchBusinessCaterings(id));
+}
+
 function* fetchUserData() {
-  yield put(fetchProfile());
+  const {
+    rawData: {
+      data: { id: userId }
+    }
+  } = yield put.resolve(fetchProfile());
   yield put(fetchProfileCards());
   yield put(fetchProfileSubscriptions());
   yield put(fetchGroups());
   yield put(fetchStripePlans());
-  const {
-    rawData: { data }
-  } = yield put.resolve(fetchProfileBusinesses());
-  if (data && data.length) {
-    yield put(fetchProfileBusiness(data[0].id));
-    yield put(fetchBusinessMembers(data[0].id));
-    yield put(fetchBusinessDeliveries(data[0].id));
-    yield put(fetchBusinessDishes(data[0].id));
-    yield put(fetchBusinessOrders(data[0].id));
+  const lastBusinessId = yield select(state => state.app.currentBusinessId);
+  const lastUserId = yield select(state => state.app.currentUserId);
+  if (lastBusinessId && userId === lastUserId) {
+    yield fetchBusinessData(lastBusinessId);
+    yield put(fetchProfileBusinesses());
   } else {
-    yield put(postBusiness());
+    const {
+      rawData: { data }
+    } = yield put.resolve(fetchProfileBusinesses());
+    if (data && data.length) {
+      yield fetchBusinessData(data[0].id);
+      yield put(setCurrentBusiness(data[0].id));
+    } else {
+      yield put(postBusiness());
+    }
+  }
+  yield put(saveCurrentUserId(userId));
+}
+
+function* initialTokenRefresh() {
+  const refreshToken = yield select(state => state.auth.refreshToken);
+  const createdAt = yield select(state => state.auth.createdAt);
+  const expiresIn = yield select(state => state.auth.expiresIn);
+  if (refreshToken) {
+    if ((createdAt + expiresIn) * 1000 < new Date().getTime()) {
+      yield put(refresh({ refreshToken }));
+    } else {
+      yield fetchUserData();
+      yield fork(syncWithLocalStorage);
+      yield subscribeForRefresh();
+    }
   }
 }
 
@@ -77,14 +160,36 @@ function* onSuccessPasswordChangeByToken() {
       message: "changePasswordSuccess"
     })
   );
-  Router.pushRoute("/login");
 }
 
 export default all([
   takeLatest(REHYDRATE, initialTokenRefresh),
   takeEvery(
-    [LOGIN_SUCCESS, FACEBOOK_LOGIN_SUCCESS, REFRESH_TOKEN_SUCCESS],
+    [
+      LOGIN_SUCCESS,
+      REGISTER_SUCCESS,
+      FACEBOOK_LOGIN_SUCCESS,
+      REFRESH_TOKEN_SUCCESS
+    ],
     fetchUserData
+  ),
+  takeEvery(
+    [
+      LOGIN_SUCCESS,
+      REGISTER_SUCCESS,
+      FACEBOOK_LOGIN_SUCCESS,
+      REFRESH_TOKEN_SUCCESS
+    ],
+    syncWithLocalStorage
+  ),
+  takeEvery(
+    [
+      LOGIN_SUCCESS,
+      REGISTER_SUCCESS,
+      FACEBOOK_LOGIN_SUCCESS,
+      REFRESH_TOKEN_SUCCESS
+    ],
+    subscribeForRefresh
   ),
   takeEvery(CHANGE_PASSWORD_SUCCESS, showSuccessPasswordChangeMsg),
   takeEvery(RESET_PASSWORD_SUCCESS, showSuccessResetPasswordMsg),

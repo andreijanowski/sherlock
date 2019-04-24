@@ -3,13 +3,13 @@ import { func, string } from "prop-types";
 import { logout as logoutAction } from "actions/auth";
 import { connect } from "react-redux";
 import {
-  ControlCentre,
+  ControlCenter,
   Bookings,
   Delivery,
   TakeAway,
   Catering,
-  Privatisations,
-  LeFood,
+  Privatizations,
+  SocialMedia,
   Billing,
   ProfileIcon,
   Subscriptions,
@@ -32,55 +32,13 @@ const NavBar = ({ t, lng, logout }) => (
       <Logo />
     </LogoWrapper>
     <Item>
-      <Icon>
-        <ControlCentre />
-      </Icon>
-    </Item>
-    <Item>
-      <Icon>
-        <Bookings />
-      </Icon>
-    </Item>
-    <Item>
-      <Icon>
-        <Delivery />
-      </Icon>
-    </Item>
-    <Item>
-      <Icon>
-        <TakeAway />
-      </Icon>
-    </Item>
-    <Item>
-      <Link {...{ lng, route: `/app/catering/month/` }}>
+      <Link {...{ lng, route: `/app/profile/basic-information/` }}>
         <Icon>
-          <Catering />
+          <ProfileIcon />
         </Icon>
       </Link>
-    </Item>
-    <Item>
-      <Icon>
-        <Privatisations />
-      </Icon>
-    </Item>
-    <Item>
-      <Link {...{ lng, route: `/app/lefood/orders/` }}>
-        <Icon>
-          <LeFood />
-        </Icon>
-      </Link>
-    </Item>
-    <Item>
-      <Icon>
-        <Billing />
-      </Icon>
-    </Item>
-    <Item>
-      <Icon>
-        <ProfileIcon />
-      </Icon>
-      <SubitemsWrapper>
-        <Subitems>
+      <SubitemsWrapper top={-16} arrowTop={16}>
+        <Subitems arrowTop={30}>
           <Link {...{ lng, route: `/app/profile/basic-information/` }}>
             <Subitem>{t("app:manageProfile.basicInformation")}</Subitem>
           </Link>
@@ -103,28 +61,122 @@ const NavBar = ({ t, lng, logout }) => (
       </SubitemsWrapper>
     </Item>
     <Item>
+      <Link {...{ lng, route: `/app/catering/month/` }}>
+        <Icon>
+          <Catering />
+        </Icon>
+      </Link>
+      <SubitemsWrapper>
+        <Subitems>
+          <Link {...{ lng, route: `/app/catering/month/` }}>
+            <Subitem>{t("app:catering")}</Subitem>
+          </Link>
+        </Subitems>
+      </SubitemsWrapper>
+    </Item>
+    <Item>
+      <Link {...{ lng, route: `/app/lefood/orders/` }}>
+        <Icon>
+          <TakeAway />
+        </Icon>
+      </Link>
+      <SubitemsWrapper>
+        <Subitems>
+          <Link {...{ lng, route: `/app/lefood/orders/` }}>
+            <Subitem>{t("app:takeAway")}</Subitem>
+          </Link>
+        </Subitems>
+      </SubitemsWrapper>
+    </Item>
+    <Item>
       <Link {...{ lng, route: `/app/subscriptions/` }}>
         <Icon>
           <Subscriptions />
         </Icon>
       </Link>
+      <SubitemsWrapper>
+        <Subitems>
+          <Link {...{ lng, route: `/app/subscriptions/` }}>
+            <Subitem>{t("app:subscriptions")}</Subitem>
+          </Link>
+        </Subitems>
+      </SubitemsWrapper>
     </Item>
     <Item>
-      <Icon>
-        <SettingsIcon />
-      </Icon>
-      <SubitemsWrapper top={-160} arrowTop={160}>
-        <Subitems arrowTop={175}>
+      <Link {...{ lng, route: `/app/settings/basic-information/` }}>
+        <Icon>
+          <SettingsIcon />
+        </Icon>
+      </Link>
+      <SubitemsWrapper top={-120} arrowTop={120}>
+        <Subitems arrowTop={135}>
           <Link {...{ lng, route: `/app/settings/basic-information/` }}>
             <Subitem>{t("app:userSettings.basicInformation")}</Subitem>
-          </Link>
-          <Link {...{ lng, route: `/app/settings/billing/` }}>
-            <Subitem>{t("app:userSettings.billing")}</Subitem>
           </Link>
           <Link {...{ lng, route: `/app/settings/password/` }}>
             <Subitem>{t("app:userSettings.password")}</Subitem>
           </Link>
           <Subitem onClick={logout}>{t("app:userSettings.logout")}</Subitem>
+        </Subitems>
+      </SubitemsWrapper>
+    </Item>
+    <Item inactive>
+      <Icon inactive>
+        <ControlCenter />
+      </Icon>
+      <SubitemsWrapper>
+        <Subitems>
+          <Subitem>{t("app:controlCenter")}</Subitem>
+        </Subitems>
+      </SubitemsWrapper>
+    </Item>
+    <Item inactive>
+      <Icon inactive>
+        <Bookings />
+      </Icon>
+      <SubitemsWrapper>
+        <Subitems>
+          <Subitem>{t("app:bookings")}</Subitem>
+        </Subitems>
+      </SubitemsWrapper>
+    </Item>
+    <Item inactive>
+      <Icon inactive>
+        <Delivery />
+      </Icon>
+      <SubitemsWrapper>
+        <Subitems>
+          <Subitem>{t("app:delivery")}</Subitem>
+        </Subitems>
+      </SubitemsWrapper>
+    </Item>
+    <Item inactive>
+      <Icon inactive>
+        <SocialMedia />
+      </Icon>
+      <SubitemsWrapper>
+        <Subitems>
+          <Subitem>{t("app:socialMedia")}</Subitem>
+        </Subitems>
+      </SubitemsWrapper>
+    </Item>
+    <Item inactive>
+      <Icon inactive>
+        <Privatizations />
+      </Icon>
+      <SubitemsWrapper>
+        <Subitems>
+          <Subitem>{t("app:privatizations")}</Subitem>
+        </Subitems>
+      </SubitemsWrapper>
+    </Item>
+    <Item inactive>
+      <Icon inactive>
+        <Billing />
+      </Icon>
+      <SubitemsWrapper>
+        <Subitems>
+          <Subitem>{t("app:billing")}</Subitem>
         </Subitems>
       </SubitemsWrapper>
     </Item>
