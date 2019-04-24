@@ -35,6 +35,7 @@ import {
   PATCH_ORDER_PERIOD_SUCCESS,
   DELETE_ORDER_PERIOD_REQUEST
 } from "types/orderPeriods";
+import { LOGOUT } from "types/auth";
 
 import build from "redux-object";
 
@@ -456,6 +457,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       newState.subscriptions.isFetching = false;
       newState.subscriptions.isFailed = true;
       return newState;
+    }
+
+    case LOGOUT: {
+      return initialState;
     }
 
     default: {

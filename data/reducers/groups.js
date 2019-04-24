@@ -4,6 +4,7 @@ import {
   FETCH_GROUPS_FAIL
 } from "types/groups";
 import build from "redux-object";
+import { LOGOUT } from "types/auth";
 
 const initialState = {
   groups: {
@@ -38,6 +39,10 @@ const reducer = (state = initialState, { type, payload }) => {
       newState.groups.isFetching = false;
       newState.groups.isFailed = true;
       return newState;
+    }
+
+    case LOGOUT: {
+      return initialState;
     }
 
     default: {
