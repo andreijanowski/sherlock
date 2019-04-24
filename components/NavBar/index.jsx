@@ -108,8 +108,8 @@ const NavBar = ({ t, lng, logout }) => (
           <SettingsIcon />
         </Icon>
       </Link>
-      <SubitemsWrapper top={-160} arrowTop={160}>
-        <Subitems arrowTop={175}>
+      <SubitemsWrapper top={-120} arrowTop={120}>
+        <Subitems arrowTop={135}>
           <Link {...{ lng, route: `/app/settings/basic-information/` }}>
             <Subitem>{t("app:userSettings.basicInformation")}</Subitem>
           </Link>
