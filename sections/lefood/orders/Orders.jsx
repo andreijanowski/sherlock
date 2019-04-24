@@ -26,7 +26,7 @@ class Orders extends Component {
       return (
         <>
           {orders.map((order, index) =>
-            order.id ? (
+            order && order.id ? (
               <Order
                 {...{
                   order,
