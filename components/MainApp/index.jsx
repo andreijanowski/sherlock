@@ -9,7 +9,7 @@ import {
   Feedback,
   Notifications,
   Catering,
-  LeFood,
+  TakeAway,
   Subscriptions
 } from "icons";
 import {
@@ -31,7 +31,7 @@ const chooseIcon = icon => {
     case "catering":
       return Catering;
     case "leFood":
-      return LeFood;
+      return TakeAway;
     case "subscriptions":
       return Subscriptions;
     default:

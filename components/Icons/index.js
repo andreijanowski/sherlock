@@ -5,7 +5,7 @@ export {
   TakeAway,
   Catering,
   Privatizations,
-  LeFood,
+  SocialMedia,
   Billing,
   ProfileIcon,
   ProfileBasicInfo,
