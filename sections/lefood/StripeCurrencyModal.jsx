@@ -17,7 +17,7 @@ const StripeCurrencyModal = ({
         stripeCurrency: currencies.find(c => c.value === stripeCurrency) || {}
       }}
       onSubmit={setStripeCurrency}
-      render={({ handleSubmit }) => (
+      render={({ handleSubmit, values }) => (
         <Flex
           onSubmit={handleSubmit}
           as="form"
@@ -52,7 +52,14 @@ const StripeCurrencyModal = ({
                 </Box>
               )}
               <Box width={stripeCurrency ? [1, 1 / 2] : 1} px={2}>
-                <Button styleName="blue" type="submit" width="100%">
+                <Button
+                  styleName="blue"
+                  type="submit"
+                  disabled={
+                    !(values.stripeCurrency && values.stripeCurrency.value)
+                  }
+                  width="100%"
+                >
                   {t("setStripeCurrency")}
                 </Button>
               </Box>
