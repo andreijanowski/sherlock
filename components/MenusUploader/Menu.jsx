@@ -29,7 +29,7 @@ class Menu extends PureComponent {
   };
 
   render() {
-    const { id, url, removeMenu } = this.props;
+    const { t, id, url, removeMenu } = this.props;
     const { value, saving } = this.state;
     return (
       <Flex width={1} alignItems="center">
@@ -38,9 +38,9 @@ class Menu extends PureComponent {
         </FileIconWrapper>
         <Box mt={3} width="calc(100% - 60px)" pl={2}>
           <InputWithRemoveButton
-            label="label"
+            label={t("menuLabel")}
             name="name"
-            placeholder="placeholder"
+            placeholder={t("menuPlaceholder")}
             type="text"
             input={{
               value,
@@ -61,7 +61,8 @@ Menu.propTypes = {
   url: string.isRequired,
   displayName: string.isRequired,
   updateMenu: func.isRequired,
-  removeMenu: func.isRequired
+  removeMenu: func.isRequired,
+  t: func.isRequired
 };
 
 export default Menu;
