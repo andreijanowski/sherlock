@@ -42,7 +42,27 @@ const reducer = (state = initialState, { type, payload }) => {
       newState.isFailed = true;
       return newState;
     }
-    case FETCH_ORDER_SUCCESS:
+    case FETCH_ORDER_SUCCESS: {
+      const newState = { ...state };
+      const order = build(payload.data, "orders", payload.rawData.data.id, {
+        ignoreLinks: true
+      });
+      const index = newState.data.findIndex(
+        i => i.id === payload.rawData.data.id
+      );
+      const data = [...newState.data];
+      if (index !== -1) {
+        data[index] = {
+          ...data[index],
+          ...order
+        };
+      } else {
+        data.push(order);
+      }
+      newState.data = [...data];
+      return newState;
+    }
+
     case PATCH_ORDER_SUCCESS:
     case PATCH_ORDER_REJECT_SUCCESS: {
       const newState = { ...state };
@@ -56,7 +76,10 @@ const reducer = (state = initialState, { type, payload }) => {
       if (index !== -1) {
         data[index] = {
           ...data[index],
-          ...order
+          ...order,
+          addresses: data[index].addresses,
+          business: data[index].business,
+          elements: data[index].elements
         };
       } else {
         data.push(order);
