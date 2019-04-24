@@ -42,7 +42,7 @@ class Menus extends PureComponent {
           />
         </DropzoneWrapper>
         {menus.map(m => (
-          <Menu {...{ ...m, updateMenu, removeMenu, key: m.id }} />
+          <Menu {...{ ...m, t, updateMenu, removeMenu, key: m.id }} />
         ))}
       </>
     );
