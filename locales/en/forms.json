@@ -17,6 +17,7 @@
       "not_existing-secret_code": "Not associated with any active Food Detective",
       "invalid-facebook": "Not a facebook URL",
       "invalid-instagram": "Not an instagram URL",
+      "url-facebook": "Not a facebook URL",
       "too_many_types-groups_list": "Can have max 3 'types' entries",
       "too_many_types-groups": "Can have max 3 'types' entries",
       "too_many_others-groups_list": "Can have max 5 entries other than 'types' and 'quirks'",

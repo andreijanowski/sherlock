@@ -321,6 +321,15 @@ const reducer = (state = initialState, { type, payload, meta }) => {
             }
           };
         }
+        if (v === "allowPickup") {
+          newState.currentBusiness = {
+            ...state.currentBusiness,
+            data: {
+              ...state.currentBusiness.data,
+              allowPickup: business.allowPickup
+            }
+          };
+        }
       });
       return newState;
     }

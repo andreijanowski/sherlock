@@ -96,5 +96,6 @@
   "stripeCurrencyLabel": "Stripe currency",
   "stripeCurrencyPlaceholder": "EUR",
   "setStripeCurrency": "Set stripe currency",
-  "stripeCurrencyNotSet": "Currency for stripe is not set"
+  "stripeCurrencyNotSet": "Currency for stripe is not set",
+  "allowPickup": "Allow pickup"
 }

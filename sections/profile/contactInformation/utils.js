@@ -8,6 +8,7 @@ export const getInitialValues = business => {
       phoneCountryPrefix,
       phoneCountryCode,
       website,
+      facebook,
       instagram
     } = business;
 
@@ -21,6 +22,7 @@ export const getInitialValues = business => {
       phone,
       phoneCountry,
       website,
+      facebook,
       instagram
     };
   }

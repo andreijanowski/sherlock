@@ -15,5 +15,7 @@
   "products": "Must try",
   "productsTip": "If you feel there is a dish you would recommend to have at this particular place, please, let us know and share a picture of it.",
   "productLabel": "Must Try Display Name",
-  "productPlaceholder": "Pizza capricciosa"
+  "productPlaceholder": "Pizza capricciosa",
+  "menuLabel": "Menu name",
+  "menuPlaceholder": "Drinks"
 }

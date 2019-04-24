@@ -17,7 +17,9 @@
     "inviteYourTeam": "Invite your team",
     "unnamedBusiness": "Unnamed business",
     "addNewBusiness": "Add new business",
-    "publish": "Publish business"
+    "publish": "Publish business",
+    "published": "Published",
+    "waitingForApproval": "Waiting for approval"
   },
   "subscriptions": "Subscriptions",
   "userSettings": {
