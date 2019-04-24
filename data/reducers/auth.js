@@ -23,7 +23,8 @@ export const initialState = {
   accessToken: "",
   refreshToken: "",
   createdAt: 0,
-  expiresIn: 0
+  expiresIn: 0,
+  stripeConnectData: { businessId: null, state: null }
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -60,7 +61,7 @@ const reducer = (state = initialState, { type, payload }) => {
         refreshToken,
         createdAt,
         expiresIn,
-        stripeConnectData: { businessId: null, state: null }
+        stripeConnectData: state.stripeConnectData
       };
     }
     case LOGIN_FAIL:

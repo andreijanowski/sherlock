@@ -128,7 +128,9 @@ class FormSelect extends PureComponent {
               )}
               <ExpandIcon />
               {error && <Error>{error}</Error>}
-              {meta.data.saving && !meta.active && <LoadingIndicator />}
+              {meta.data && meta.data.saving && !meta.active && (
+                <LoadingIndicator />
+              )}
             </FieldWrapper>
             {isOpen && selectItems.length > 0 && (
               <Items>

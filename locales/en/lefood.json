@@ -90,5 +90,12 @@
   "complete": "complete",
   "connectWithStripe": "Connect with stripe",
   "connectWithStripeSubheading": "Connect your account to stripe in order to access all the payment features.",
+  "notApprovedForLefood": "Business {{businessName}} is not approved for lefood.",
+  "setStripeCurrencyHeader": "Set stripe currency",
+  "setStripeCurrencyParagraph": "All dishes and deliveries related to current business will be removed after this change.",
+  "stripeCurrencyLabel": "Stripe currency",
+  "stripeCurrencyPlaceholder": "EUR",
+  "setStripeCurrency": "Set stripe currency",
+  "stripeCurrencyNotSet": "Currency for stripe is not set",
   "allowPickup": "Allow pickup"
 }
