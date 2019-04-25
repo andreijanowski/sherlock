@@ -5,6 +5,7 @@ import loadTranslations from "utils/loadTranslations";
 import { func, string, shape } from "prop-types";
 import { connect } from "react-redux";
 import { connectStripe, setStripeData } from "actions/auth";
+import { fetchProfileBusiness } from "actions/users";
 import AppLayout from "layout/App";
 import { LoadingIndicator, H2, Button, Link } from "components";
 import styled from "styled-components";
@@ -56,18 +57,20 @@ class StripeOauth extends PureComponent {
     const {
       connectWithStripe,
       setStripeConnectData,
+      getBusiness,
       stripeConnectData: { businessId, state: stateFromApp },
       query: { code, state: stateFromStripe }
     } = this.props;
 
     if (code && stateFromStripe === stateFromApp) {
       connectWithStripe(code, businessId)
-        .then(() =>
+        .then(() => {
+          getBusiness(businessId);
           this.setState({
             isConnectionWithStripeInProgress: false,
             isConnectionWithStripeSucceeded: true
-          })
-        )
+          });
+        })
         .catch(() =>
           this.setState({
             isConnectionWithStripeInProgress: false,
@@ -129,6 +132,7 @@ StripeOauth.propTypes = {
   lng: string.isRequired,
   connectWithStripe: func.isRequired,
   setStripeConnectData: func.isRequired,
+  getBusiness: func.isRequired,
   query: shape().isRequired,
   stripeConnectData: shape().isRequired
 };
@@ -137,7 +141,11 @@ export default requireAuth(true)(
   withI18next(namespaces)(
     connect(
       state => ({ stripeConnectData: state.auth.stripeConnectData }),
-      { connectWithStripe: connectStripe, setStripeConnectData: setStripeData }
+      {
+        connectWithStripe: connectStripe,
+        setStripeConnectData: setStripeData,
+        getBusiness: fetchProfileBusiness
+      }
     )(StripeOauth)
   )
 );

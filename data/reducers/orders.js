@@ -48,19 +48,23 @@ const reducer = (state = initialState, { type, payload }) => {
       const order = build(payload.data, "orders", payload.rawData.data.id, {
         ignoreLinks: true
       });
-      const index = newState.data.findIndex(
-        i => i.id === payload.rawData.data.id
-      );
-      const data = [...newState.data];
-      if (index !== -1) {
-        data[index] = {
-          ...data[index],
-          ...order
-        };
+      if (newState.data) {
+        const index = newState.data.findIndex(
+          i => i.id === payload.rawData.data.id
+        );
+        const data = [...newState.data];
+        if (index !== -1) {
+          data[index] = {
+            ...data[index],
+            ...order
+          };
+        } else {
+          data.push(order);
+        }
+        newState.data = [...data];
       } else {
-        data.push(order);
+        newState.data = [order];
       }
-      newState.data = [...data];
       return newState;
     }
 

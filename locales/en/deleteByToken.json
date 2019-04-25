@@ -1,0 +1,8 @@
+{
+  "title": "Account removal",
+  "description": "Maybe you will change your mind? Go to the homepage and read about all the nice features of Sherlock!",
+  "succeedRemoval": "Your account has been successfully removed.",
+  "toHomePage": "Click here to go to the home page.",
+  "failedRemoval-already_deleted": "Your account has been already removed.",
+  "failedRemoval-record_not_found": "Your link for removing account is invalid."
+}
