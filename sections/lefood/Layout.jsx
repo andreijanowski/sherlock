@@ -149,12 +149,22 @@ class LefoodLayout extends PureComponent {
     this.setState({ isCurrencyModalVisible: isVisible });
 
   updateBusiness = values => {
-    const { updateBusiness, currentBusinessId } = this.props;
-    updateBusiness(currentBusinessId, values).catch(() => {
-      if (values.minAmountForDeliveryCents) {
-        this.updateMinAmountForDeliveryCents();
-      }
-    });
+    const {
+      updateBusiness,
+      currentBusinessId,
+      changeCurrentBusiness
+    } = this.props;
+    updateBusiness(currentBusinessId, values)
+      .then(() => {
+        if (values.stripeCurrency) {
+          changeCurrentBusiness(currentBusinessId);
+        }
+      })
+      .catch(() => {
+        if (values.minAmountForDeliveryCents) {
+          this.updateMinAmountForDeliveryCents();
+        }
+      });
   };
 
   render() {
