@@ -7,6 +7,7 @@ import {
   CHANGE_PASSWORD_REQUEST,
   RESET_PASSWORD_REQUEST,
   CONFIRM_REQUEST,
+  DELETE_BY_TOKEN_REQUEST,
   CHANGE_PASSWORD_BY_TOKEN_REQUEST,
   CONNECT_STRIPE_REQUEST,
   SET_STRIPE_DATA,
@@ -132,6 +133,15 @@ export const confirmMail = token => ({
         }
       }
     }
+  },
+  meta: { thunk: true }
+});
+
+export const deleteByToken = token => ({
+  type: DELETE_BY_TOKEN_REQUEST,
+  payload: {
+    method: "DELETE",
+    endpoint: `/api/v1/users/delete_by_token?data[type]=users&data[attributes]%5Bdelete_token%5D=${token}`
   },
   meta: { thunk: true }
 });

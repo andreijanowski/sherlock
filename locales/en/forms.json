@@ -126,6 +126,7 @@
       "too_long-name": "Dish name is too long. Max {{count}} characters.",
       "too_long-description": "Description is too long. Max {{count}} characters.",
       "owner_not_confirmed-base": "You need to confirm your email in order to publish your business. Please check your mailbox.",
+      "record_not_found-Record not found": "Resource was not found in the database",
       "currency_not_supported-stripe_currency": "Selected currency is not supported by Stripe in country in which your business is placed",
       "currency_cannot_be_change-stripe_currency": "Stripe currency cannot be change",
       "cannot_set_without_deliveries_or_pickup‌-visible_in_lefood": "Add delivery areas or allow pickup first",

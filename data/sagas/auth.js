@@ -34,10 +34,12 @@ import {
   REFRESH_TOKEN_SUCCESS,
   CHANGE_PASSWORD_SUCCESS,
   RESET_PASSWORD_SUCCESS,
-  CHANGE_PASSWORD_BY_TOKEN_SUCCESS
+  CHANGE_PASSWORD_BY_TOKEN_SUCCESS,
+  DELETE_BY_TOKEN_SUCCESS
 } from "types/auth";
 import Notifications from "react-notification-system-redux";
 import {
+  logout as logoutAction,
   refreshToken as refresh,
   setAuthSynchronizedFromStorage
 } from "actions/auth";
@@ -162,6 +164,10 @@ function* onSuccessPasswordChangeByToken() {
   );
 }
 
+function* logout() {
+  yield put(logoutAction());
+}
+
 export default all([
   takeLatest(REHYDRATE, initialTokenRefresh),
   takeEvery(
@@ -193,5 +199,6 @@ export default all([
   ),
   takeEvery(CHANGE_PASSWORD_SUCCESS, showSuccessPasswordChangeMsg),
   takeEvery(RESET_PASSWORD_SUCCESS, showSuccessResetPasswordMsg),
-  takeEvery(CHANGE_PASSWORD_BY_TOKEN_SUCCESS, onSuccessPasswordChangeByToken)
+  takeEvery(CHANGE_PASSWORD_BY_TOKEN_SUCCESS, onSuccessPasswordChangeByToken),
+  takeEvery(DELETE_BY_TOKEN_SUCCESS, logout)
 ]);
