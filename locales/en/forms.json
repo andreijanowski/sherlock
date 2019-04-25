@@ -127,7 +127,11 @@
       "too_long-description": "Description is too long. Max {{count}} characters.",
       "owner_not_confirmed-base": "You need to confirm your email in order to publish your business. Please check your mailbox.",
       "currency_not_supported-stripe_currency": "Selected currency is not supported by Stripe in country in which your business is placed",
-      "currency_cannot_be_change-stripe_currency": "Stripe currency cannot be change"
+      "currency_cannot_be_change-stripe_currency": "Stripe currency cannot be change",
+      "cannot_set_without_deliveries_or_pickup‌-visible_in_lefood": "Add delivery areas or allow pickup first",
+      "‌cannot_set_without_dishes‌-visible_in_lefood": "Add some dishes first",
+      "cannot_set_without_order_periods-visible_in_lefood": "Add order periods first",
+      "blank-display_name": "Display name can't be blank"
     }
   },
   "placeholder": {
