@@ -6,6 +6,7 @@ import {
   // LanguageSwitcher
 } from "components";
 import { Box } from "@rebass/grid";
+import { privacyPolicyLink, termsAndConditionsLink } from "consts";
 import {
   FooterWrapper,
   TextWrapper,
@@ -56,12 +57,12 @@ const Footer = ({ t }) => {
                 columnName: "columnThree",
                 hrefs: {
                   "0": {
-                    href: "https://foodetective.co/privacy-policy",
+                    href: privacyPolicyLink,
                     target: "_blank",
                     rel: "noreferrer noopener"
                   },
                   "1": {
-                    href: "https://foodetective.co/terms-conditions",
+                    href: termsAndConditionsLink,
                     target: "_blank",
                     rel: "noreferrer noopener"
                   }
