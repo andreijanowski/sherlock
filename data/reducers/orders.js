@@ -18,7 +18,7 @@ const initialState = {
   isSucceeded: false
 };
 
-const reducer = (state = initialState, { type, payload }) => {
+const reducer = (state = initialState, { type, payload, meta }) => {
   switch (type) {
     case FETCH_BUSINESS_ORDERS_REQUEST: {
       const newState = { ...state };
@@ -34,7 +34,11 @@ const reducer = (state = initialState, { type, payload }) => {
       });
       newState.isFetching = false;
       newState.isSucceeded = true;
-      newState.data = orders;
+      if (meta.page === 1) {
+        newState.data = orders;
+      } else {
+        newState.data = newState.data.concat(orders);
+      }
       return newState;
     }
     case FETCH_BUSINESS_ORDERS_FAIL: {

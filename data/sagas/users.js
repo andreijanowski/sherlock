@@ -6,7 +6,6 @@ import {
   fetchBusinessOrders,
   fetchBusinessCaterings
 } from "actions/businesses";
-import { patchOrder } from "actions/orders";
 import { UPDATE_PROFILE_SUCCESS } from "types/users";
 import { SET_CURRENT_BUSINESS } from "types/app";
 import { POST_BUSINESS_SUCCESS } from "types/businesses";
@@ -21,11 +20,13 @@ function* fetchBusinessData({ payload: { id } }) {
   yield put(fetchBusinessDishes(id));
   yield put(fetchBusinessCaterings(id));
   const {
-    rawData: { data: orders }
+    rawData: {
+      meta: { totalPages: ordersTotalPages }
+    }
   } = yield put.resolve(fetchBusinessOrders(id));
-  for (let i = 0; i < orders.length; i += 1) {
-    if (orders[i].state === "placed") {
-      yield put(patchOrder({ state: "waiting_for_approval" }, orders[i].id));
+  if (ordersTotalPages > 1) {
+    for (let i = 2; i <= ordersTotalPages; i += 1) {
+      yield put(fetchBusinessOrders(id, i));
     }
   }
 }

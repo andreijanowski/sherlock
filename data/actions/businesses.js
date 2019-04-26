@@ -81,17 +81,22 @@ export const fetchBusinessDishes = id => ({
   meta: { thunk: true }
 });
 
-export const fetchBusinessOrders = id => ({
+export const fetchBusinessOrders = (
+  id,
+  page = 1,
+  day = new Date().toISOString()
+) => ({
   type: FETCH_BUSINESS_ORDERS_REQUEST,
   payload: {
     endpoint: `/api/v1/businesses/${id}/orders`,
     params: {
       per_page: 200,
-      page: 1,
+      page,
+      filter: { day },
       include: "addresses,elements"
     }
   },
-  meta: { thunk: true }
+  meta: { thunk: true, page }
 });
 
 export const fetchBusinessCaterings = id => ({
