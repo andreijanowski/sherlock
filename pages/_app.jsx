@@ -19,6 +19,9 @@ import initialI18nInstance from "../i18n";
 import createStore from "../data/store";
 
 ReactGA.initialize(GOOGLE_ANALYTICS_ID);
+if (!isServer) {
+  ReactGA.pageview(window.location.pathname + window.location.search);
+}
 
 const PersistGateServer = ({ children }) => children;
 const PersistGate = isServer ? PersistGateServer : PersistGateClient;
