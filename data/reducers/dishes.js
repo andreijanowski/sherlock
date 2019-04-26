@@ -31,7 +31,11 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       });
       newState.isFetching = false;
       newState.isSucceeded = true;
-      newState.data = dishes;
+      if (meta.page === 1) {
+        newState.data = dishes;
+      } else {
+        newState.data = newState.data.concat(dishes);
+      }
       return newState;
     }
     case FETCH_BUSINESS_DISHES_FAIL: {
