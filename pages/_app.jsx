@@ -13,9 +13,12 @@ import isServer from "utils/isServer";
 import NProgress from "nprogress";
 import { Router } from "routes";
 import { StripeProvider } from "react-stripe-elements";
-import { STRIPE_API_KEY } from "consts";
+import { STRIPE_API_KEY, GOOGLE_ANALYTICS_ID } from "consts";
+import ReactGA from "react-ga";
 import initialI18nInstance from "../i18n";
 import createStore from "../data/store";
+
+ReactGA.initialize(GOOGLE_ANALYTICS_ID);
 
 const PersistGateServer = ({ children }) => children;
 const PersistGate = isServer ? PersistGateServer : PersistGateClient;
@@ -23,7 +26,10 @@ const PersistGate = isServer ? PersistGateServer : PersistGateClient;
 Router.events.on("routeChangeStart", () => {
   NProgress.start();
 });
-Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeComplete", route => {
+  NProgress.done();
+  ReactGA.pageview(route);
+});
 Router.events.on("routeChangeError", () => NProgress.done());
 
 class MyApp extends App {
