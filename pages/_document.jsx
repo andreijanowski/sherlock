@@ -2,7 +2,6 @@ import Document, { Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 import {
   FacebookPixelScript,
-  GoogleAnalyticsScript,
   GoogleTagManagerScript,
   GoogleTagManagerNoscript
 } from "scripts";
@@ -23,7 +22,6 @@ export default class MyDocument extends Document {
         <Head>
           <meta charSet="UTF-8" />
           <GoogleTagManagerScript />
-          <GoogleAnalyticsScript />
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
