@@ -36,6 +36,7 @@ import {
   setAuthSynchronizedFromStorage
 } from "actions/auth";
 import { setCurrentBusiness, saveCurrentUserId } from "actions/app";
+import { fetchAllUserData } from "./utils";
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
@@ -85,7 +86,7 @@ function* fetchUserData() {
       data: { id: userId }
     }
   } = yield put.resolve(fetchProfile());
-  yield put(fetchProfileCards());
+  yield fetchAllUserData(fetchProfileCards);
   yield put(fetchProfileSubscriptions());
   yield put(fetchGroups());
   yield put(fetchStripePlans());
@@ -93,13 +94,21 @@ function* fetchUserData() {
   const lastUserId = yield select(state => state.app.currentUserId);
   if (lastBusinessId && userId === lastUserId) {
     yield put(setCurrentBusiness(lastBusinessId));
-    yield put(fetchProfileBusinesses());
+    yield fetchAllUserData(fetchProfileBusinesses);
   } else {
     const {
-      rawData: { data }
+      rawData: {
+        data,
+        meta: { totalPages }
+      }
     } = yield put.resolve(fetchProfileBusinesses());
     if (data && data.length) {
       yield put(setCurrentBusiness(data[0].id));
+      if (totalPages > 1) {
+        for (let i = 2; i <= totalPages; i += 1) {
+          yield put(fetchProfileBusinesses(i));
+        }
+      }
     } else {
       yield put(postBusiness());
     }

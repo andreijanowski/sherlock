@@ -44,6 +44,9 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       const newState = { ...state };
       newState.isFetching = false;
       newState.isFailed = true;
+      if (meta.page === 1) {
+        newState.data = null;
+      }
       return newState;
     }
 

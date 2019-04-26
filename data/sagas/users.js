@@ -12,15 +12,15 @@ import { POST_BUSINESS_SUCCESS } from "types/businesses";
 import { takeEvery, all, put } from "redux-saga/effects";
 import Notifications from "react-notification-system-redux";
 import { setCurrentBusiness } from "actions/app";
-import { fetchAllData } from "./utils";
+import { fetchAllBusinessData } from "./utils";
 
 function* fetchBusinessData({ payload: { id } }) {
   yield put(fetchProfileBusiness(id));
-  yield fetchAllData(fetchBusinessMembers, id);
-  yield fetchAllData(fetchBusinessDeliveries, id);
-  yield fetchAllData(fetchBusinessDishes, id);
-  yield fetchAllData(fetchBusinessOrders, id);
-  yield fetchAllData(fetchBusinessCaterings, id);
+  yield fetchAllBusinessData(fetchBusinessMembers, id);
+  yield fetchAllBusinessData(fetchBusinessDeliveries, id);
+  yield fetchAllBusinessData(fetchBusinessDishes, id);
+  yield fetchAllBusinessData(fetchBusinessOrders, id);
+  yield fetchAllBusinessData(fetchBusinessCaterings, id);
 }
 
 function* showSuccesNotification() {

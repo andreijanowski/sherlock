@@ -1,6 +1,6 @@
 import { put } from "redux-saga/effects";
 
-export function* fetchAllData(action, id) {
+export function* fetchAllBusinessData(action, id) {
   const {
     rawData: {
       meta: { totalPages }
@@ -9,6 +9,19 @@ export function* fetchAllData(action, id) {
   if (totalPages > 1) {
     for (let i = 2; i <= totalPages; i += 1) {
       yield put(action(id, i));
+    }
+  }
+}
+
+export function* fetchAllUserData(action) {
+  const {
+    rawData: {
+      meta: { totalPages }
+    }
+  } = yield put.resolve(action());
+  if (totalPages > 1) {
+    for (let i = 2; i <= totalPages; i += 1) {
+      yield put(action(i));
     }
   }
 }

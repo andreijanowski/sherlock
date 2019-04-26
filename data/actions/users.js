@@ -35,13 +35,13 @@ export const updateProfile = data => ({
   meta: { thunk: true }
 });
 
-export const fetchProfileBusinesses = () => ({
+export const fetchProfileBusinesses = (page = 1) => ({
   type: FETCH_PROFILE_BUSINESSES_REQUEST,
   payload: {
     endpoint: "/api/v1/users/me/businesses",
-    params: { per_page: 200, page: 1 }
+    params: { per_page: 200, page }
   },
-  meta: { thunk: true }
+  meta: { thunk: true, page }
 });
 
 export const fetchProfileBusiness = id => ({
@@ -56,13 +56,13 @@ export const fetchProfileBusiness = id => ({
   meta: { thunk: true }
 });
 
-export const fetchProfileCards = () => ({
+export const fetchProfileCards = (page = 1) => ({
   type: FETCH_PROFILE_CARDS_REQUEST,
   payload: {
     endpoint: "/api/v1/users/me/cards",
-    params: { per_page: 200, page: 1 }
+    params: { per_page: 200, page }
   },
-  meta: { thunk: true }
+  meta: { thunk: true, page }
 });
 
 export const fetchProfileSubscriptions = () => ({

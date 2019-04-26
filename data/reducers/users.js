@@ -127,7 +127,6 @@ const reducer = (state = initialState, { type, payload, meta }) => {
 
     case FETCH_PROFILE_BUSINESSES_REQUEST: {
       const newState = { ...state };
-      newState.profileBusinesses.data = null;
       newState.profileBusinesses.isFetching = true;
       newState.profileBusinesses.isFailed = false;
       newState.profileBusinesses.isSucceeded = false;
@@ -141,13 +140,22 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         }) || [];
       newState.profileBusinesses.isFetching = false;
       newState.profileBusinesses.isSucceeded = true;
-      newState.profileBusinesses.data = businesses;
+      if (meta.page === 1) {
+        newState.profileBusinesses.data = businesses;
+      } else {
+        newState.profileBusinesses.data = newState.profileBusinesses.data.concat(
+          businesses
+        );
+      }
       return newState;
     }
     case FETCH_PROFILE_BUSINESSES_FAIL: {
       const newState = { ...state };
       newState.profileBusinesses.isFetching = false;
       newState.profileBusinesses.isFailed = true;
+      if (meta.page === 1) {
+        newState.profileBusinesses.data = null;
+      }
       return newState;
     }
 
@@ -418,7 +426,6 @@ const reducer = (state = initialState, { type, payload, meta }) => {
 
     case FETCH_PROFILE_CARDS_REQUEST: {
       const newState = { ...state };
-      newState.cards.data = null;
       newState.cards.isFetching = true;
       newState.cards.isFailed = false;
       newState.cards.isSucceeded = false;
@@ -432,13 +439,20 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         }) || [];
       newState.cards.isFetching = false;
       newState.cards.isSucceeded = true;
-      newState.cards.data = cards;
+      if (meta.page === 1) {
+        newState.cards.data = cards;
+      } else {
+        newState.cards.data = newState.cards.data.concat(cards);
+      }
       return newState;
     }
     case FETCH_PROFILE_CARDS_FAIL: {
       const newState = { ...state };
       newState.cards.isFetching = false;
       newState.cards.isFailed = true;
+      if (meta.page === 1) {
+        newState.cards.data = null;
+      }
       return newState;
     }
 
