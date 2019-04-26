@@ -47,7 +47,19 @@ const Footer = ({ t }) => {
           </Box>
           <Box width={[1 / 2, "auto"]} p={2}>
             <ColumnTitle>{t("navigation.columnTwo.title")}</ColumnTitle>
-            <NavigationList {...{ t, columnName: "columnTwo" }} />
+            <NavigationList
+              {...{
+                t,
+                columnName: "columnTwo",
+                hrefs: {
+                  "2": {
+                    href: "https://medium.com/@GetSherlockNow",
+                    target: "_blank",
+                    rel: "noreferrer noopener"
+                  }
+                }
+              }}
+            />
           </Box>
           <Box width={[1 / 2, "auto"]} p={2}>
             <ColumnTitle>{t("navigation.columnThree.title")}</ColumnTitle>

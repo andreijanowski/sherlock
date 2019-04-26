@@ -72,7 +72,7 @@ const Plans = ({
           color: "hanPurple",
           name: "professional",
           onClickActionButton: () => {
-            window.open("mailto:hello@foodetective.co", "_blank");
+            window.open("mailto:hello@foodetective.co", "_self");
           }
         }}
       />
