@@ -13,11 +13,10 @@ const initialState = {
   isSucceeded: false
 };
 
-const reducer = (state = initialState, { type, payload }) => {
+const reducer = (state = initialState, { type, payload, meta }) => {
   switch (type) {
     case FETCH_BUSINESS_MEMBERS_REQUEST: {
       const newState = { ...state };
-      newState.data = null;
       newState.isFetching = true;
       newState.isFailed = false;
       newState.isSucceeded = false;
@@ -31,13 +30,20 @@ const reducer = (state = initialState, { type, payload }) => {
         }) || [];
       newState.isFetching = false;
       newState.isSucceeded = true;
-      newState.data = members;
+      if (meta.page === 1) {
+        newState.data = members;
+      } else {
+        newState.data = newState.data.concat(members);
+      }
       return newState;
     }
     case FETCH_BUSINESS_MEMBERS_FAIL: {
       const newState = { ...state };
       newState.isFetching = false;
       newState.isFailed = true;
+      if (meta.page === 1) {
+        newState.data = null;
+      }
       return newState;
     }
 

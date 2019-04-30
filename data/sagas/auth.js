@@ -13,19 +13,11 @@ import { REHYDRATE } from "redux-persist";
 import {
   fetchProfile,
   fetchProfileBusinesses,
-  fetchProfileBusiness,
   fetchProfileCards,
   fetchProfileSubscriptions
 } from "actions/users";
 import { fetchGroups } from "actions/groups";
-import {
-  fetchBusinessMembers,
-  postBusiness,
-  fetchBusinessDeliveries,
-  fetchBusinessDishes,
-  fetchBusinessOrders,
-  fetchBusinessCaterings
-} from "actions/businesses";
+import { postBusiness } from "actions/businesses";
 import { fetchStripePlans } from "actions/stripe";
 import {
   LOGIN_SUCCESS,
@@ -44,6 +36,7 @@ import {
   setAuthSynchronizedFromStorage
 } from "actions/auth";
 import { setCurrentBusiness, saveCurrentUserId } from "actions/app";
+import { fetchAllUserData } from "./utils";
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
@@ -87,37 +80,35 @@ function* subscribeForRefresh() {
   }
 }
 
-function* fetchBusinessData(id) {
-  yield put(fetchProfileBusiness(id));
-  yield put(fetchBusinessMembers(id));
-  yield put(fetchBusinessDeliveries(id));
-  yield put(fetchBusinessDishes(id));
-  yield put(fetchBusinessOrders(id));
-  yield put(fetchBusinessCaterings(id));
-}
-
 function* fetchUserData() {
   const {
     rawData: {
       data: { id: userId }
     }
   } = yield put.resolve(fetchProfile());
-  yield put(fetchProfileCards());
+  yield fetchAllUserData(fetchProfileCards);
   yield put(fetchProfileSubscriptions());
   yield put(fetchGroups());
   yield put(fetchStripePlans());
   const lastBusinessId = yield select(state => state.app.currentBusinessId);
   const lastUserId = yield select(state => state.app.currentUserId);
   if (lastBusinessId && userId === lastUserId) {
-    yield fetchBusinessData(lastBusinessId);
-    yield put(fetchProfileBusinesses());
+    yield put(setCurrentBusiness(lastBusinessId));
+    yield fetchAllUserData(fetchProfileBusinesses);
   } else {
     const {
-      rawData: { data }
+      rawData: {
+        data,
+        meta: { totalPages }
+      }
     } = yield put.resolve(fetchProfileBusinesses());
     if (data && data.length) {
-      yield fetchBusinessData(data[0].id);
       yield put(setCurrentBusiness(data[0].id));
+      if (totalPages > 1) {
+        for (let i = 2; i <= totalPages; i += 1) {
+          yield put(fetchProfileBusinesses(i));
+        }
+      }
     } else {
       yield put(postBusiness());
     }
