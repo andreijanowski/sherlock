@@ -77,7 +77,7 @@ class InviteManagers extends PureComponent {
                         )}
                       </Button>
                     </Box>
-                    <Box width={[1, "auto"]}>
+                    <Box width={[1, "auto"]} mt={[4, 0]} mr={[0, 2]}>
                       <Button
                         type="button"
                         fluid
@@ -85,6 +85,16 @@ class InviteManagers extends PureComponent {
                         onClick={() => fields.push({ email: undefined })}
                       >
                         {t("addEmailButton")}
+                      </Button>
+                    </Box>
+                    <Box width={[1, "auto"]}>
+                      <Button
+                        onClick={handleSubmit}
+                        type="button"
+                        fluid
+                        styleName="outlineBlue"
+                      >
+                        {t("skip")}
                       </Button>
                     </Box>
                   </Flex>

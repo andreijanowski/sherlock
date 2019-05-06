@@ -33,7 +33,7 @@ export const Checkmark = styled.span`
     width: 4px;
     height: 6px;
     margin-bottom: 2px;
-    border: solid rgba(${p => p.theme.colors.dark}, 0.4);
+    border: solid transparent;
     border-width: 0 2px 2px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
