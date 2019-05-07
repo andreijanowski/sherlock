@@ -2,8 +2,8 @@ import styled, { css } from "styled-components";
 
 const validInput = css`
   border: ${p => p.theme.borderWeights.tiny} solid
-    rgba(${p => p.theme.colors.blue}, 1);
-  background-color: rgba(${p => p.theme.colors.blue}, 0.1);
+    rgba(${p => p.theme.colors.green}, 1);
+  background-color: rgba(${p => p.theme.colors.green}, 0.1);
 `;
 
 const errorInput = css`
