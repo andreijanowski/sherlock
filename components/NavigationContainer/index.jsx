@@ -22,7 +22,7 @@ NavigationContainer.propTypes = {
       onClick: func,
       route: string,
       label: string.isRequired,
-      isActive: bool.isRequired
+      isActive: bool
     })
   ),
   mainIcon: string,

@@ -23,7 +23,9 @@ class FormSelect extends PureComponent {
     };
   }
 
-  handleInputChange = e => this.setState({ inputValue: e.target.value });
+  handleInputChange = e => {
+    this.setState({ inputValue: e.target.value });
+  };
 
   handleBlur = (items, input, inputValue) => {
     if (items.length && inputValue) {
@@ -145,7 +147,9 @@ class FormSelect extends PureComponent {
                       item,
                       isActive: highlightedIndex === index,
                       isSelected: dsSelectedItem.value === item.value,
-                      onClick: () => this.setState({ inputValue: item.label })
+                      onClick: () => {
+                        this.setState({ inputValue: item.label });
+                      }
                     })}
                   >
                     {showFlag && (

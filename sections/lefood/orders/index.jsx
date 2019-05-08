@@ -63,7 +63,7 @@ const Orders = ({
 Orders.propTypes = {
   t: func.isRequired,
   onDragEnd: func.isRequired,
-  orders: arrayOf(shape()).isRequired,
+  orders: arrayOf(shape()),
   columns: shape().isRequired,
   loading: bool.isRequired,
   currency: string,
@@ -79,7 +79,8 @@ Orders.propTypes = {
 Orders.defaultProps = {
   draggedOrderState: null,
   currency: "",
-  pendingRejectionOrderId: ""
+  pendingRejectionOrderId: "",
+  orders: null
 };
 
 export default Orders;

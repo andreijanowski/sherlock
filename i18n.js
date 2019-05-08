@@ -5,6 +5,7 @@ const LanguageDetector = require("i18next-browser-languagedetector");
 const options = {
   fallbackLng: "en",
   load: "languageOnly",
+  whitelist: ["en"],
 
   ns: ["common"],
   defaultNS: "common",

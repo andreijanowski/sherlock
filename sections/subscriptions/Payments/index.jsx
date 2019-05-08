@@ -64,14 +64,15 @@ PaymentsSection.propTypes = {
   billingInterval: string.isRequired,
   handleChangeBillngPeriod: func.isRequired,
   cards: arrayOf(shape()),
-  chosenPlan: string.isRequired,
+  chosenPlan: string,
   goToPlans: func.isRequired,
   updateSubscription: func.isRequired,
   notificationError: func.isRequired
 };
 
 PaymentsSection.defaultProps = {
-  cards: null
+  cards: null,
+  chosenPlan: null
 };
 
 export default PaymentsSection;

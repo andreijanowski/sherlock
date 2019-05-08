@@ -42,10 +42,18 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
             <FormDaypicker name="date" label={t("createEvent.date")} />
           </Box>
           <Box width={[1 / 2, 1 / 2]} px={2}>
-            <FormTimePicker name="from" label={t("createEvent.from")} />
+            <FormTimePicker
+              name="from"
+              label={t("createEvent.from")}
+              placeholder={t("createEvent.from")}
+            />
           </Box>
           <Box width={[1 / 2, 1 / 2]} px={2}>
-            <FormTimePicker name="to" label={t("createEvent.to")} />
+            <FormTimePicker
+              name="to"
+              label={t("createEvent.to")}
+              placeholder={t("createEvent.to")}
+            />
           </Box>
         </Flex>
         <H3 mt={3}>{t("createEvent.address")}</H3>
@@ -78,6 +86,7 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
               name="addressCountry"
               component={FormSelect}
               label={t("createEvent.country")}
+              placeholder={t("createEvent.country")}
               items={countries}
               showFlag
             />
@@ -87,6 +96,7 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
               name="addressRegion"
               component={FormSelect}
               label={t("createEvent.region")}
+              placeholder={t("createEvent.region")}
               disabled={!values.addressCountry}
               items={
                 (values.addressCountry &&
@@ -113,6 +123,7 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
               name="phoneCountry"
               component={FormSelect}
               label={t("createEvent.country")}
+              placeholder={t("createEvent.country")}
               items={countriesPhoneCodes}
               showFlag
             />
@@ -233,6 +244,7 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
                 name="currency"
                 component={FormSelect}
                 label={t("createEvent.currency")}
+                placeholder={t("createEvent.currency")}
                 items={currencies}
               />
             </Box>
