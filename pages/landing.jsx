@@ -1,19 +1,16 @@
 import React, { PureComponent } from "react";
-import withI18next from "lib/withI18next";
 import requireAuth from "lib/requireAuth";
-import loadTranslations from "utils/loadTranslations";
 import { func, string } from "prop-types";
 import { Footer } from "components";
 import { TopSection, Services, Plans } from "sections/landing";
+import { withNamespaces } from "i18n";
 
 const namespaces = ["landing", "plans", "common"];
 
 class Home extends PureComponent {
-  static async getInitialProps({ ctx }) {
-    const pageProps = loadTranslations(ctx, namespaces);
-
+  static async getInitialProps() {
     return {
-      ...pageProps
+      namespacesRequired: namespaces
     };
   }
 
@@ -57,4 +54,4 @@ Home.propTypes = {
   lng: string.isRequired
 };
 
-export default requireAuth(false)(withI18next(namespaces)(Home));
+export default requireAuth(false)(withNamespaces(namespaces)(Home));

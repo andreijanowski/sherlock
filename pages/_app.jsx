@@ -3,7 +3,6 @@ import { Provider, connect } from "react-redux";
 import withRedux from "next-redux-wrapper";
 import withReduxSaga from "next-redux-saga";
 import { pathChanged as pathChangedAction } from "actions/app";
-import { I18nextProvider } from "react-i18next";
 import forceLanguageInUrl from "utils/forceLanguageInUrl";
 import Layout from "layout";
 import { ThemeProvider } from "styled-components";
@@ -15,7 +14,7 @@ import { Router } from "routes";
 import { StripeProvider } from "react-stripe-elements";
 import { STRIPE_API_KEY, GOOGLE_ANALYTICS_ID } from "consts";
 import ReactGA from "react-ga";
-import initialI18nInstance from "../i18n";
+import { appWithTranslation } from "../i18n";
 import createStore from "../data/store";
 
 ReactGA.initialize(GOOGLE_ANALYTICS_ID);
@@ -78,21 +77,14 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps, store } = this.props;
-    const { i18n, initialI18nStore, initialLanguage } = pageProps || {};
     return (
       <Container>
         <Provider store={store}>
           <PersistGate persistor={store.__persistor}>
             <ThemeProvider theme={theme}>
-              <I18nextProvider
-                i18n={i18n || initialI18nInstance}
-                initialI18nStore={initialI18nStore}
-                initialLanguage={initialLanguage}
-              >
-                <StripeProvider stripe={this.state.stripe}>
-                  <Layout {...{ pageProps, Component }} />
-                </StripeProvider>
-              </I18nextProvider>
+              <StripeProvider stripe={this.state.stripe}>
+                <Layout {...{ pageProps, Component }} />
+              </StripeProvider>
             </ThemeProvider>
           </PersistGate>
         </Provider>
@@ -108,6 +100,6 @@ export default withRedux(createStore)(
       {
         pathChanged: pathChangedAction
       }
-    )(MyApp)
+    )(appWithTranslation(MyApp))
   )
 );

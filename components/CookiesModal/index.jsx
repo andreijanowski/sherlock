@@ -1,4 +1,4 @@
-import withI18next from "lib/withI18next";
+import { withNamespaces } from "i18n";
 import { connect } from "react-redux";
 import { Modal, H3, Paragraph, Button } from "components";
 import { func, bool } from "prop-types";
@@ -41,7 +41,7 @@ CookiesModal.propTypes = {
   cookiesAccepted: bool.isRequired
 };
 
-export default withI18next(namespaces)(
+export default withNamespaces(namespaces)(
   connect(
     state => ({
       cookiesAccepted: state.app.cookiesAccepted

@@ -1,6 +1,5 @@
 import { PureComponent } from "react";
-import withI18next from "lib/withI18next";
-import loadTranslations from "utils/loadTranslations";
+import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string } from "prop-types";
 import { SingleActionView } from "components";
@@ -9,11 +8,9 @@ import SignInForm from "sections/login/SignInForm";
 const namespaces = ["login", "forms"];
 
 class Login extends PureComponent {
-  static async getInitialProps({ ctx }) {
-    const pageProps = loadTranslations(ctx, namespaces);
-
+  static async getInitialProps() {
     return {
-      ...pageProps
+      namespacesRequired: namespaces
     };
   }
 
@@ -38,4 +35,4 @@ Login.propTypes = {
   lng: string.isRequired
 };
 
-export default requireAuth(false)(withI18next(namespaces)(Login));
+export default requireAuth(false)(withNamespaces(namespaces)(Login));

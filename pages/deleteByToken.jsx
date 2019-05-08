@@ -1,6 +1,5 @@
 import { PureComponent } from "react";
-import withI18next from "lib/withI18next";
-import loadTranslations from "utils/loadTranslations";
+import { withNamespaces } from "i18n";
 import { func, string, shape } from "prop-types";
 import { SingleActionView, LoadingIndicator } from "components";
 import { connect } from "react-redux";
@@ -10,11 +9,9 @@ import RemovalStatusMessage from "sections/deleteByToken/RemovalStatusMessage";
 const namespaces = ["deleteByToken"];
 
 class DeleteByToken extends PureComponent {
-  static async getInitialProps({ ctx }) {
-    const pageProps = loadTranslations(ctx, namespaces);
-
+  static async getInitialProps() {
     return {
-      ...pageProps
+      namespacesRequired: namespaces
     };
   }
 
@@ -72,7 +69,7 @@ DeleteByToken.propTypes = {
   deleteByToken: func.isRequired
 };
 
-export default withI18next(namespaces)(
+export default withNamespaces(namespaces)(
   connect(
     null,
     {

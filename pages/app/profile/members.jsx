@@ -1,7 +1,6 @@
 import { PureComponent } from "react";
-import withI18next from "lib/withI18next";
+import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import loadTranslations from "utils/loadTranslations";
 import { func, string, shape, arrayOf } from "prop-types";
 import Form from "sections/profile/members";
 import { connect } from "react-redux";
@@ -14,11 +13,9 @@ import ProfileLayout from "sections/profile/Layout";
 const namespaces = ["members", "app", "publishModal", "forms"];
 
 class Members extends PureComponent {
-  static async getInitialProps({ ctx }) {
-    const pageProps = loadTranslations(ctx, namespaces);
-
+  static async getInitialProps() {
     return {
-      ...pageProps
+      namespacesRequired: namespaces
     };
   }
 
@@ -101,7 +98,7 @@ Members.defaultProps = {
 };
 
 export default requireAuth(true)(
-  withI18next(namespaces)(
+  withNamespaces(namespaces)(
     connect(
       state => ({
         members: state.members.data,

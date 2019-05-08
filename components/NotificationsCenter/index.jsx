@@ -1,7 +1,7 @@
-import withI18next from "lib/withI18next";
 import Notifications from "react-notification-system-redux";
 import { connect } from "react-redux";
 import { arrayOf, shape } from "prop-types";
+import { withNamespaces } from "i18n";
 
 const namespaces = ["notifications", "forms"];
 
@@ -22,7 +22,7 @@ NotificationCenter.propTypes = {
   notifications: arrayOf(shape({})).isRequired
 };
 
-export default withI18next(namespaces)(
+export default withNamespaces(namespaces)(
   connect((state, { t }) => ({
     notifications: state.notifications.map(n => ({
       ...n,

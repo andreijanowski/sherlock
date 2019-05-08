@@ -1,7 +1,6 @@
 import { PureComponent } from "react";
-import withI18next from "lib/withI18next";
+import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import loadTranslations from "utils/loadTranslations";
 import { func, string, shape, arrayOf } from "prop-types";
 import ProfileLayout from "sections/profile/Layout";
 import {
@@ -23,11 +22,9 @@ import { postBusiness, patchBusiness } from "actions/businesses";
 const namespaces = ["openingHours", "app", "publishModal", "forms"];
 
 class OpeningHours extends PureComponent {
-  static async getInitialProps({ ctx }) {
-    const pageProps = loadTranslations(ctx, namespaces);
-
+  static async getInitialProps() {
     return {
-      ...pageProps
+      namespacesRequired: namespaces
     };
   }
 
@@ -136,7 +133,7 @@ OpeningHours.defaultProps = {
 };
 
 export default requireAuth(true)(
-  withI18next(namespaces)(
+  withNamespaces(namespaces)(
     connect(
       state => ({
         business: state.users.currentBusiness.data,

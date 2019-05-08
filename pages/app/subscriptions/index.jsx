@@ -1,7 +1,6 @@
 import { PureComponent } from "react";
-import withI18next from "lib/withI18next";
+import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import loadTranslations from "utils/loadTranslations";
 import { func, string, arrayOf, shape } from "prop-types";
 import { connect } from "react-redux";
 import AppLayout from "layout/App";
@@ -19,11 +18,9 @@ import { fetchProfileSubscriptions, fetchProfileCards } from "actions/users";
 const namespaces = ["plans", "forms", "app"];
 
 class SubscriptionsPage extends PureComponent {
-  static async getInitialProps({ ctx }) {
-    const pageProps = loadTranslations(ctx, namespaces);
-
+  static async getInitialProps() {
     return {
-      ...pageProps
+      namespacesRequired: namespaces
     };
   }
 
@@ -223,7 +220,7 @@ SubscriptionsPage.defaultProps = {
 };
 
 export default requireAuth(true)(
-  withI18next(namespaces)(
+  withNamespaces(namespaces)(
     connect(
       state => ({
         subscriptions: state.users.subscriptions.data,
