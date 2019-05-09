@@ -17,7 +17,7 @@ class AddManager extends PureComponent {
     };
   }
 
-  addReferrals = ({ emails }) => {
+  addReferrals = ({ emails = [] }) => {
     const { addReferrals, lng, query } = this.props;
     addReferrals(emails.map(e => e.email).filter(e => !!e))
       .then(() => {
