@@ -1,4 +1,4 @@
-import { func, string, shape } from "prop-types";
+import { func, string, shape, arrayOf } from "prop-types";
 import { Plans, PlansBillingInterval, BoldText, Button } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Wrapper } from "../styled";
@@ -75,7 +75,7 @@ PlansSection.propTypes = {
   choosePlan: func.isRequired,
   goToPayments: func.isRequired,
   currentPlan: shape(),
-  cards: shape()
+  cards: arrayOf(shape())
 };
 
 PlansSection.defaultProps = {

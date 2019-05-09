@@ -100,20 +100,22 @@ class DeliveriesPage extends PureComponent {
 DeliveriesPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  deliveries: arrayOf(shape()).isRequired,
+  deliveries: arrayOf(shape()),
   business: shape(),
   addDelivery: func.isRequired,
   removeDelivery: func.isRequired,
   loading: bool.isRequired,
   updateBusiness: func.isRequired,
-  orders: arrayOf(shape()).isRequired,
+  orders: arrayOf(shape()),
   businesses: arrayOf(shape()),
   changeCurrentBusiness: func.isRequired
 };
 
 DeliveriesPage.defaultProps = {
   business: {},
-  businesses: null
+  businesses: null,
+  deliveries: null,
+  orders: null
 };
 
 export default requireAuth(true)(

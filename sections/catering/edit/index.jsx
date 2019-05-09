@@ -53,10 +53,18 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
             <FormDaypicker name="date" label={t("createEvent.date")} />
           </Box>
           <Box width={1 / 2} px={2}>
-            <FormTimePicker name="from" label={t("createEvent.from")} />
+            <FormTimePicker
+              name="from"
+              label={t("createEvent.from")}
+              placeholder={t("createEvent.from")}
+            />
           </Box>
           <Box width={1 / 2} px={2}>
-            <FormTimePicker name="to" label={t("createEvent.to")} />
+            <FormTimePicker
+              name="to"
+              label={t("createEvent.to")}
+              placeholder={t("createEvent.to")}
+            />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
             <FormInput
@@ -69,7 +77,8 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
             <Field
               name="currency"
               component={FormSelect}
-              label={t("currency")}
+              label={t("createEvent.currency")}
+              placeholder={t("createEvent.currency")}
               items={currencies}
             />
           </Box>

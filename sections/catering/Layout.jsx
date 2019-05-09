@@ -69,7 +69,7 @@ const CateringLayout = ({
 CateringLayout.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  view: shape().isRequired,
+  view: shape(),
   children: node.isRequired,
   business: shape(),
   isAddActionHidden: bool,
@@ -80,7 +80,8 @@ CateringLayout.propTypes = {
 CateringLayout.defaultProps = {
   business: null,
   businesses: null,
-  isAddActionHidden: false
+  isAddActionHidden: false,
+  view: null
 };
 
 export default CateringLayout;
