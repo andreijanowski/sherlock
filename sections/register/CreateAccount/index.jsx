@@ -10,7 +10,8 @@ import {
   BlueText,
   ItalicText,
   PasswordStrengthMeter,
-  FacebookLogin
+  FacebookLogin,
+  TextSeparator
 } from "components";
 import { register } from "actions/auth";
 import {
@@ -54,93 +55,105 @@ class CreateAccount extends PureComponent {
   render() {
     const { t } = this.props;
     return (
-      <Form
-        onSubmit={this.submitForm}
-        render={({ handleSubmit, pristine, invalid, submitting, values }) => (
-          <form onSubmit={handleSubmit}>
-            <HelperTitle>{t("emailHelperTitle")}</HelperTitle>
-            <InputField
-              name="email"
-              type="email"
-              placeholder="name@company.com"
-              validate={this.validateEmail}
-            />
-            <Separator size={32} />
-            <HelperTitle>{t("paswordHelperTitle")}</HelperTitle>
-            <InputField
-              name="password"
-              type="password"
-              autoComplete="new-password"
-              placeholder="Something secure"
-              validate={this.validatePassword}
-            >
-              <PasswordStrengthMeter password={values.password} />
-            </InputField>
-            <InputField
-              name="passwordConfirmation"
-              type="password"
-              placeholder="Repeat Password"
-              validate={this.validatePasswordsMatch}
-            >
-              <PasswordStrengthMeter password={values.passwordConfirmation} />
-            </InputField>
-            <Separator size={32} />
-            <CheckboxField
-              name="termsAgreement"
-              validate={this.validateCheckbox}
-            >
-              <Box>
-                {t("terms.start")}
-                <a
-                  href={privacyPolicyLink}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  <BlueText>
-                    <ItalicText>{t("terms.privacyPolicy")}</ItalicText>
-                  </BlueText>
-                </a>
-                {t("terms.and")}
-                <a
-                  href={termsAndConditionsLink}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  <BlueText>
-                    <ItalicText>{t("terms.termsOfUse")}</ItalicText>
-                  </BlueText>
-                </a>
-              </Box>
-            </CheckboxField>
-            <Separator size={32} />
-            <Flex flexWrap="wrap" m={-1}>
-              <Box p={1} width={[1, 1, 1, 1 / 3]}>
-                <Button
-                  onClick={handleSubmit}
-                  styleName="blue"
-                  fluid
-                  disabled={invalid || pristine || submitting}
-                >
-                  {submitting ? (
-                    <FontAwesomeIcon icon="circle-notch" spin size="lg" />
-                  ) : (
-                    t("registerButton")
-                  )}
-                </Button>
-              </Box>
-              <TextSeparatorStyled size={16}>or</TextSeparatorStyled>
-              <Box p={1} width={[1, 1, 1, 2 / 3]}>
-                <FacebookLogin
-                  disabled={!values.termsAgreement}
-                  withAgreement={values.termsAgreement}
-                >
-                  {t("Facebook")}
-                </FacebookLogin>
-              </Box>
-            </Flex>
-          </form>
-        )}
-      />
+      <>
+        <Form
+          onSubmit={this.submitForm}
+          render={({ handleSubmit, pristine, invalid, submitting, values }) => (
+            <form onSubmit={handleSubmit}>
+              <HelperTitle>{t("emailHelperTitle")}</HelperTitle>
+              <InputField
+                name="email"
+                type="email"
+                placeholder="name@company.com"
+                validate={this.validateEmail}
+              />
+              <Separator size={32} />
+              <HelperTitle>{t("paswordHelperTitle")}</HelperTitle>
+              <InputField
+                name="password"
+                type="password"
+                autoComplete="new-password"
+                placeholder="Something secure"
+                validate={this.validatePassword}
+              >
+                <PasswordStrengthMeter password={values.password} />
+              </InputField>
+              <InputField
+                name="passwordConfirmation"
+                type="password"
+                placeholder="Repeat Password"
+                validate={this.validatePasswordsMatch}
+              >
+                <PasswordStrengthMeter password={values.passwordConfirmation} />
+              </InputField>
+              <Separator size={32} />
+              <CheckboxField
+                name="termsAgreement"
+                validate={this.validateCheckbox}
+              >
+                <Box>
+                  {t("terms.start")}
+                  <a
+                    href={privacyPolicyLink}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    <BlueText>
+                      <ItalicText>{t("terms.privacyPolicy")}</ItalicText>
+                    </BlueText>
+                  </a>
+                  {t("terms.and")}
+                  <a
+                    href={termsAndConditionsLink}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    <BlueText>
+                      <ItalicText>{t("terms.termsOfUse")}</ItalicText>
+                    </BlueText>
+                  </a>
+                </Box>
+              </CheckboxField>
+              <Separator size={32} />
+              <Flex flexWrap="wrap" m={-1}>
+                <Box p={1} width={[1, 1, 1, 1 / 3]}>
+                  <Button
+                    onClick={handleSubmit}
+                    styleName="blue"
+                    fluid
+                    disabled={invalid || pristine || submitting}
+                  >
+                    {submitting ? (
+                      <FontAwesomeIcon icon="circle-notch" spin size="lg" />
+                    ) : (
+                      t("registerButton")
+                    )}
+                  </Button>
+                </Box>
+                <TextSeparatorStyled size={16}>{t("or")}</TextSeparatorStyled>
+                <Box p={1} width={[1, 1, 1, 2 / 3]}>
+                  <FacebookLogin
+                    disabled={!values.termsAgreement}
+                    withAgreement={values.termsAgreement}
+                  >
+                    {t("Facebook")}
+                  </FacebookLogin>
+                </Box>
+              </Flex>
+            </form>
+          )}
+        />
+        <TextSeparator size={16}>{t("or")}</TextSeparator>
+        <Button
+          onClick={() => {
+            Router.push("/login");
+          }}
+          styleName="blue"
+          fluid
+        >
+          {t("alreadyHaveAccount")}
+        </Button>
+      </>
     );
   }
 }

@@ -11,5 +11,7 @@
     "and": " and ",
     "privacyPolicy": "Privacy Policy"
   },
-  "Facebook": "Sign up with Facebook"
+  "Facebook": "Sign up with Facebook",
+  "alreadyHaveAccount": "Already have an account?",
+  "or": "or"
 }
