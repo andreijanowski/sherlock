@@ -70,10 +70,6 @@ https://sherlock.staging.devguru.co
 Push to `production` to trigger production build.
 https://sherlock.foodetective.co
 
-## Docs
-
-You can find more details [here](./docs).
-
 ## Project structure
 
 - `/pages` - for pages (routes)
@@ -96,3 +92,7 @@ You can find more details [here](./docs).
 ## TBD - Linters
 
 ## TBD - Testing
+
+## Docs
+
+You can find more details [here](./docs).
