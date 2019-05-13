@@ -5,8 +5,8 @@ Sherlock is restaurant manager application.
 ## Technology stack
 
 - [next.js](https://nextjs.org)
-- [redux](https://redux.js.org/)
-- [redux-saga](https://redux.js.org/)
+- [redux](https://redux.js.org)
+- [redux-saga](https://redux-saga.js.org)
 - [styled-components](https://www.styled-components.com)
 
 See more in docs: [technology stack](./docs/technology-stack.md).
