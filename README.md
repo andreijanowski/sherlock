@@ -73,7 +73,7 @@ https://sherlock.foodetective.co
 ## Project structure
 
 - `/pages` - for pages (routes)
-- `/sections` - paged related components
+- `/sections` - page related components
 - `/components` - shared components
 - `/data` - redux staff, api calls etc.
   - `/actions` - redux actions
