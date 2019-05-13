@@ -192,7 +192,9 @@ export const Tag = styled(Flex).attrs({
   }
 `;
 
-export const TagIcon = styled(FontAwesomeIcon).attrs({
+export const TagIcon = styled(({ isInvalid, ...p }) => (
+  <FontAwesomeIcon {...p} />
+)).attrs({
   size: "sm",
   icon: ["fa", "times"]
 })`

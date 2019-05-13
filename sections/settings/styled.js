@@ -8,10 +8,10 @@ export const Form = styled.form`
   }
 `;
 
-export const ConfirmationMsg = styled.form`
+export const ConfirmationMsg = styled.div`
   color: rgb(${p => p.theme.colors.carrotOrange});
 `;
 
-export const PasswordChangedMsg = styled.form`
+export const PasswordChangedMsg = styled.div`
   color: rgb(${p => p.theme.colors.green});
 `;
