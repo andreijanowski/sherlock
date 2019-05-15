@@ -560,6 +560,7 @@ class LefoodLayout extends PureComponent {
                 {isCurrencyModalVisible && (
                   <StripeCurrencyModal
                     {...{
+                      isOpen: true,
                       stripeCurrency: currency,
                       setStripeCurrency: values => {
                         this.updateBusiness({

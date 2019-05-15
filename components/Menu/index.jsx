@@ -46,7 +46,7 @@ Menu.propTypes = {
       route: string,
       onClick: func,
       label: string.isRequired,
-      isActive: bool.isRequired
+      isActive: bool
     })
   ).isRequired,
   select: shape()
