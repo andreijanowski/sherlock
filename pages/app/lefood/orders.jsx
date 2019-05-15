@@ -1,7 +1,6 @@
 import { PureComponent } from "react";
-import withI18next from "lib/withI18next";
+import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import loadTranslations from "utils/loadTranslations";
 import { func, string, arrayOf, shape, bool, number } from "prop-types";
 import LefoodLayout from "sections/lefood/Layout";
 import Orders from "sections/lefood/orders";
@@ -21,11 +20,9 @@ import { action as toggleMenu } from "redux-burger-menu";
 const namespaces = ["lefood", "app", "forms"];
 
 class OrdersPage extends PureComponent {
-  static async getInitialProps({ ctx }) {
-    const pageProps = loadTranslations(ctx, namespaces);
-
+  static async getInitialProps() {
     return {
-      ...pageProps
+      namespacesRequired: namespaces
     };
   }
 
@@ -284,7 +281,7 @@ OrdersPage.defaultProps = {
 };
 
 export default requireAuth(true)(
-  withI18next(namespaces)(
+  withNamespaces(namespaces)(
     connect(
       state => ({
         loading:

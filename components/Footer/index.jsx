@@ -1,4 +1,4 @@
-import withI18next from "lib/withI18next";
+import { withNamespaces } from "i18n";
 import { func } from "prop-types";
 import {
   FoodetectiveLogo
@@ -146,4 +146,4 @@ Footer.propTypes = {
   t: func.isRequired
 };
 
-export default withI18next(namespaces)(Footer);
+export default withNamespaces(namespaces)(Footer);

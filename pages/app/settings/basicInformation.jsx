@@ -1,21 +1,18 @@
 import { PureComponent } from "react";
 import SettingsLayout from "sections/settings/Layout";
 import Form from "sections/settings/basicInformation";
-import withI18next from "lib/withI18next";
+import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, shape, string } from "prop-types";
 import { connect } from "react-redux";
 import { updateProfile } from "actions/users";
-import loadTranslations from "utils/loadTranslations";
 
 const namespaces = ["settingsBasicInfo", "app", "forms"];
 
 class BasicInformation extends PureComponent {
-  static async getInitialProps({ ctx }) {
-    const pageProps = loadTranslations(ctx, namespaces);
-
+  static async getInitialProps() {
     return {
-      ...pageProps
+      namespacesRequired: namespaces
     };
   }
 
@@ -47,7 +44,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = { updateProfileHandler: updateProfile };
 
 export default requireAuth(true)(
-  withI18next(namespaces)(
+  withNamespaces(namespaces)(
     connect(
       mapStateToProps,
       mapDispatchToProps

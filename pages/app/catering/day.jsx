@@ -1,7 +1,6 @@
 import { PureComponent } from "react";
-import withI18next from "lib/withI18next";
+import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import loadTranslations from "utils/loadTranslations";
 import { func, string, shape, arrayOf } from "prop-types";
 import CateringLayout from "sections/catering/Layout";
 import Day from "sections/catering/day";
@@ -13,11 +12,9 @@ import isServer from "utils/isServer";
 const namespaces = ["catering", "app"];
 
 class DayPage extends PureComponent {
-  static async getInitialProps({ ctx }) {
-    const pageProps = loadTranslations(ctx, namespaces);
-
+  static async getInitialProps() {
     return {
-      ...pageProps
+      namespacesRequired: namespaces
     };
   }
 
@@ -91,7 +88,7 @@ DayPage.defaultProps = {
 };
 
 export default requireAuth(true)(
-  withI18next(namespaces)(
+  withNamespaces(namespaces)(
     connect(
       state => ({
         business: state.users.currentBusiness.data,

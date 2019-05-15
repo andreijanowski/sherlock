@@ -1,4 +1,4 @@
-import withI18next from "lib/withI18next";
+import { withNamespaces } from "i18n";
 import { func, bool } from "prop-types";
 import { WordmarkWrapper, Tagline } from "./styled";
 
@@ -20,4 +20,4 @@ Wordmark.defaultProps = {
   inline: false
 };
 
-export default withI18next(namespaces)(Wordmark);
+export default withNamespaces(namespaces)(Wordmark);
