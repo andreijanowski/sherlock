@@ -1,6 +1,5 @@
 import { PureComponent } from "react";
-import withI18next from "lib/withI18next";
-import loadTranslations from "utils/loadTranslations";
+import { withNamespaces } from "i18n";
 import { func, string } from "prop-types";
 import { SingleActionView } from "components";
 import VenueForm from "sections/addVenue/VenueForm";
@@ -8,11 +7,9 @@ import VenueForm from "sections/addVenue/VenueForm";
 const namespaces = ["addVenue", "forms"];
 
 class addVenue extends PureComponent {
-  static async getInitialProps({ ctx }) {
-    const pageProps = loadTranslations(ctx, namespaces);
-
+  static async getInitialProps() {
     return {
-      ...pageProps
+      namespacesRequired: namespaces
     };
   }
 
@@ -37,4 +34,4 @@ addVenue.propTypes = {
   lng: string.isRequired
 };
 
-export default withI18next(namespaces)(addVenue);
+export default withNamespaces(namespaces)(addVenue);

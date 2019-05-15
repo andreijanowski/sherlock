@@ -1,7 +1,6 @@
 import { PureComponent } from "react";
-import withI18next from "lib/withI18next";
+import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import loadTranslations from "utils/loadTranslations";
 import { func, string, bool } from "prop-types";
 import AppLayout from "layout/App";
 import { Flex } from "@rebass/grid";
@@ -12,11 +11,9 @@ import { LoadingIndicator } from "components";
 const namespaces = ["app"];
 
 class AppLanding extends PureComponent {
-  static async getInitialProps({ ctx }) {
-    const pageProps = loadTranslations(ctx, namespaces);
-
+  static async getInitialProps() {
     return {
-      ...pageProps
+      namespacesRequired: namespaces
     };
   }
 
@@ -59,7 +56,7 @@ AppLanding.propTypes = {
 };
 
 export default requireAuth(true)(
-  withI18next(namespaces)(
+  withNamespaces(namespaces)(
     connect(state => ({
       canRedirect:
         !state.users.currentBusiness.isFetching &&
