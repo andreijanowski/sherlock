@@ -17,42 +17,24 @@ export const paymentMethods = [
 
 export const getInitialValues = business => {
   if (business) {
-    const {
-      breakfastService,
-      lunchService,
-      dinnerService,
-      brunchService,
-      cafeService,
-      snackService,
-      currency,
-      pricePerPerson,
-      hasCatering,
-      deliveryUrl,
-      onlineBookingUrl,
-      takeawayUrl,
-      canPayWithCards,
-      canPayWithCash,
-      canPayWithMobile,
-      secretCode
-    } = business;
-
     return {
-      breakfastService,
-      lunchService,
-      dinnerService,
-      brunchService,
-      cafeService,
-      snackService,
-      currency: currencies.find(c => c.value === currency) || {},
-      pricePerPerson,
-      hasCatering,
-      deliveryUrl,
-      onlineBookingUrl,
-      takeawayUrl,
-      canPayWithCards,
-      canPayWithCash,
-      canPayWithMobile,
-      secretCode
+      breakfastService: business.get("breakfastService"),
+      lunchService: business.get("lunchService"),
+      dinnerService: business.get("dinnerService"),
+      brunchService: business.get("brunchService"),
+      cafeService: business.get("cafeService"),
+      snackService: business.get("snackService"),
+      currency:
+        currencies.find(c => c.value === business.get("currency")) || {},
+      pricePerPerson: business.get("pricePerPerson"),
+      hasCatering: business.get("hasCatering"),
+      deliveryUrl: business.get("deliveryUrl"),
+      onlineBookingUrl: business.get("onlineBookingUrl"),
+      takeawayUrl: business.get("takeawayUrl"),
+      canPayWithCards: business.get("canPayWithCards"),
+      canPayWithCash: business.get("canPayWithCash"),
+      canPayWithMobile: business.get("canPayWithMobile"),
+      secretCode: business.get("secretCode")
     };
   }
   return undefined;

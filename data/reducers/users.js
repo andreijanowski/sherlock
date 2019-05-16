@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import {
   FETCH_PROFILE_REQUEST,
   FETCH_PROFILE_SUCCESS,
@@ -36,74 +37,87 @@ import {
   DELETE_ORDER_PERIOD_REQUEST
 } from "types/orderPeriods";
 import { LOGOUT } from "types/auth";
-
 import build from "redux-object";
+import { Record, fromJS } from "immutable";
 
-const initialState = {
-  profile: {
+const initialState = Record({
+  profile: Record({
     data: null,
     isFetching: false,
     isFailed: false,
     isSucceeded: false,
     isUpdating: false
-  },
-  profileBusinesses: {
+  })(),
+  profileBusinesses: Record({
     data: null,
     isFetching: false,
     isFailed: false,
     isSucceeded: false
-  },
-  currentBusiness: {
+  })(),
+  currentBusiness: Record({
     data: null,
     members: null,
     isFetching: false,
     isFailed: false,
     isSucceeded: false
-  },
-  cards: {
+  })(),
+  cards: Record({
     data: null,
     isFetching: false,
     isFailed: false,
     isSucceeded: false
-  },
-  subscriptions: {
+  })(),
+  subscriptions: Record({
     data: null,
     isFetching: false,
     isFailed: false,
     isSucceeded: false
-  }
-};
+  })()
+})();
 
 const reducer = (state = initialState, { type, payload, meta }) => {
   switch (type) {
     case FETCH_PROFILE_REQUEST: {
-      const newState = { ...state };
-      newState.profile.data = null;
-      newState.profile.isFetching = true;
-      newState.profile.isFailed = false;
-      newState.profile.isSucceeded = false;
-      return newState;
+      return state.mergeIn(
+        ["profile"],
+        Record({
+          data: null,
+          isFetching: true,
+          isFailed: false,
+          isSucceeded: false
+        })()
+      );
     }
     case FETCH_PROFILE_SUCCESS: {
-      const newState = { ...state };
       const profile = build(payload.data, "users", payload.rawData.data.id, {
         ignoreLinks: true
       });
-      newState.profile.isFetching = false;
-      newState.profile.isSucceeded = true;
-      newState.profile.data = profile;
-      newState.profile.data.avatar.url = profile.avatar.url;
-      return newState;
+      return state.mergeIn(
+        ["profile"],
+        Record({
+          data: fromJS(profile),
+          isFetching: false,
+          isSucceeded: true
+        })()
+      );
     }
     case FETCH_PROFILE_FAIL: {
-      const newState = { ...state };
-      newState.profile.isFetching = false;
-      newState.profile.isFailed = true;
-      return newState;
+      return state.mergeIn(
+        ["profile"],
+        Record({
+          isFetching: false,
+          isFailed: true
+        })()
+      );
     }
 
     case UPDATE_PROFILE_REQUEST: {
-      return { ...state, profile: { ...state.profile, isUpdating: true } };
+      return state.mergeIn(
+        ["profile"],
+        Record({
+          isUpdating: true
+        })()
+      );
     }
 
     case UPDATE_PROFILE_SUCCESS: {
@@ -115,371 +129,333 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           ignoreLinks: true
         }
       );
-      return {
-        ...state,
-        profile: {
-          ...state.profile,
+      return state.mergeDeepIn(
+        ["profile"],
+        Record({
           isUpdating: false,
-          data: { ...profileData }
-        }
-      };
+          data: fromJS(profileData)
+        })()
+      );
     }
 
     case FETCH_PROFILE_BUSINESSES_REQUEST: {
-      const newState = { ...state };
-      newState.profileBusinesses.isFetching = true;
-      newState.profileBusinesses.isFailed = false;
-      newState.profileBusinesses.isSucceeded = false;
-      return newState;
+      return state.mergeIn(
+        ["profileBusinesses"],
+        Record({
+          isFetching: true,
+          isFailed: false,
+          isSucceeded: false
+        })()
+      );
     }
     case FETCH_PROFILE_BUSINESSES_SUCCESS: {
-      const newState = { ...state };
       const businesses =
         build(payload.data, "businesses", null, {
           ignoreLinks: true
         }) || [];
-      newState.profileBusinesses.isFetching = false;
-      newState.profileBusinesses.isSucceeded = true;
+      state = state.mergeIn(
+        ["profileBusinesses"],
+        Record({
+          isFetching: false,
+          isSucceeded: true
+        })()
+      );
       if (meta.page === 1) {
-        newState.profileBusinesses.data = businesses;
+        state = state.setIn(["profileBusinesses", "data"], fromJS(businesses));
       } else {
-        newState.profileBusinesses.data = newState.profileBusinesses.data.concat(
-          businesses
+        state = state.mergeIn(
+          ["profileBusinesses", "data"],
+          fromJS(businesses)
         );
       }
-      return newState;
+      return state;
     }
     case FETCH_PROFILE_BUSINESSES_FAIL: {
-      const newState = { ...state };
-      newState.profileBusinesses.isFetching = false;
-      newState.profileBusinesses.isFailed = true;
+      state.mergeIn(
+        ["profileBusinesses"],
+        Record({
+          isFetching: false,
+          isFailed: true
+        })
+      );
       if (meta.page === 1) {
-        newState.profileBusinesses.data = null;
+        state.setIn(["profileBusinesses", "data"], null);
       }
-      return newState;
+      return state;
     }
 
     case FETCH_PROFILE_BUSINESS_REQUEST: {
-      const newState = { ...state };
-      newState.currentBusiness.data = null;
-      newState.currentBusiness.isFetching = true;
-      newState.currentBusiness.isFailed = false;
-      newState.currentBusiness.isSucceeded = false;
-      return newState;
+      return state.mergeIn(
+        ["currentBusiness"],
+        Record({
+          data: null,
+          isFetching: true,
+          isFailed: false,
+          isSucceeded: false
+        })()
+      );
     }
     case FETCH_PROFILE_BUSINESS_SUCCESS: {
-      const newState = { ...state };
-      const business = build(
-        payload.data,
-        "businesses",
-        payload.rawData.data.id,
-        {
-          ignoreLinks: true
-        }
+      return state.mergeIn(
+        ["currentBusiness"],
+        Record({
+          data: fromJS(payload.data),
+          isFetching: false,
+          isSucceeded: true
+        })()
       );
-      newState.currentBusiness.isFetching = false;
-      newState.currentBusiness.isSucceeded = true;
-      newState.currentBusiness.data = business;
-      return newState;
     }
     case FETCH_PROFILE_BUSINESS_FAIL: {
-      const newState = { ...state };
-      newState.currentBusiness.isFetching = false;
-      newState.currentBusiness.isFailed = true;
-      return newState;
+      return state.mergeIn(
+        ["currentBusiness"],
+        Record({
+          isFetching: false,
+          isFailed: true
+        })()
+      );
     }
 
     case POST_PICTURE_SUCCESS: {
       if (payload.rawData.data.attributes.parentResource === "business") {
-        const newState = { ...state };
-        const picture = build(
-          payload.data,
-          "pictures",
-          payload.rawData.data.id,
-          {
-            ignoreLinks: true
-          }
+        return state.setIn(
+          ["currentBusiness", "data", "pictures", payload.rawData.data.id],
+          fromJS(payload.data.pictures[payload.rawData.data.id])
         );
-        newState.currentBusiness.data = {
-          ...newState.currentBusiness.data,
-          pictures: [...newState.currentBusiness.data.pictures, picture]
-        };
-        return newState;
       }
       return state;
     }
 
     case DELETE_PICTURE_REQUEST: {
-      const newState = { ...state };
-      newState.currentBusiness.data = {
-        ...newState.currentBusiness.data,
-        pictures: newState.currentBusiness.data.pictures.filter(
-          p => p.id !== meta.id
-        )
-      };
-      return newState;
+      return state.deleteIn(["currentBusiness", "data", "pictures", meta.id]);
     }
 
     case POST_MENU_SUCCESS: {
-      const newState = { ...state };
-      const menu = build(payload.data, "menus", payload.rawData.data.id, {
-        ignoreLinks: true
-      });
-      newState.currentBusiness.data = {
-        ...newState.currentBusiness.data,
-        menus: [...newState.currentBusiness.data.menus, menu]
-      };
-      return newState;
+      return state.setIn(
+        ["currentBusiness", "data", "menus", payload.rawData.data.id],
+        fromJS(payload.data.menus[payload.rawData.data.id])
+      );
     }
 
     case DELETE_MENU_REQUEST: {
-      const newState = { ...state };
-      newState.currentBusiness.data = {
-        ...newState.currentBusiness.data,
-        menus: newState.currentBusiness.data.menus.filter(m => m.id !== meta.id)
-      };
-      return newState;
+      return state.deleteIn(["currentBusiness", "data", "menus", meta.id]);
     }
 
     case POST_PRODUCT_SUCCESS: {
-      const newState = { ...state };
-      const product = build(payload.data, "products", payload.rawData.data.id, {
-        ignoreLinks: true
-      });
-      newState.currentBusiness.data = {
-        ...newState.currentBusiness.data,
-        products: [...newState.currentBusiness.data.products, product]
-      };
-      return newState;
+      return state.setIn(
+        ["currentBusiness", "data", "products", payload.rawData.data.id],
+        fromJS(payload.data.products[payload.rawData.data.id])
+      );
     }
 
     case DELETE_PRODUCT_REQUEST: {
-      const newState = { ...state };
-      newState.currentBusiness.data = {
-        ...newState.currentBusiness.data,
-        products: newState.currentBusiness.data.products.filter(
-          p => p.id !== meta.id
-        )
-      };
-      return newState;
+      return state.deleteIn(["currentBusiness", "data", "products", meta.id]);
     }
 
     case POST_BUSINESS_REQUEST: {
-      const newState = { ...state };
-      newState.currentBusiness = initialState.currentBusiness;
-      return newState;
+      return state.setIn(
+        ["currentBusiness"],
+        initialState.get("currentBusiness")
+      );
     }
 
     case POST_BUSINESS_SUCCESS: {
-      const newState = { ...state };
       const business =
         build(payload.data, "businesses", payload.rawData.data.id, {
           ignoreLinks: true
         }) || [];
-      newState.profileBusinesses.data = newState.profileBusinesses.data.concat(
-        business
-      );
-      return newState;
+      return state.mergeIn(["profileBusinesses", "data"], fromJS(business));
     }
 
     case PATCH_BUSINESS_SUCCESS: {
-      const newState = { ...state };
-      const business =
-        build(payload.data, "businesses", payload.rawData.data.id, {
-          ignoreLinks: true
-        }) || [];
       meta.updatedValues.forEach(v => {
         if (v === "logo") {
-          newState.currentBusiness.data = {
-            ...newState.currentBusiness.data,
-            [v]: {
-              url: business[v].url
-            }
-          };
+          state = state.setIn(
+            [
+              "currentBusiness",
+              "data",
+              "businesses",
+              payload.rawData.data.id,
+              "attributes",
+              v,
+              "url"
+            ],
+            payload.data.businesses[payload.rawData.data.id].attributes[v].url
+          );
         }
-        if (v === "visibleInLefood") {
-          newState.currentBusiness.data = {
-            ...newState.currentBusiness.data,
-            visibleInLefood: business.visibleInLefood
-          };
-        }
-        if (v === "state") {
-          newState.currentBusiness.data = {
-            ...newState.currentBusiness.data,
-            state: business.state
-          };
-        }
-        if (v === "averageDeliveryTime") {
-          newState.currentBusiness.data = {
-            ...newState.currentBusiness.data,
-            averageDeliveryTime: business.averageDeliveryTime
-          };
-        }
-        if (v === "minAmountForDeliveryCents") {
-          newState.currentBusiness.data = {
-            ...newState.currentBusiness.data,
-            minAmountForDeliveryCents: business.minAmountForDeliveryCents
-          };
-        }
-        if (v === "stripeCurrency") {
-          newState.currentBusiness = {
-            ...state.currentBusiness,
-            data: {
-              ...state.currentBusiness.data,
-              stripeCurrency: business.stripeCurrency
-            }
-          };
-        }
-        if (v === "allowPickup") {
-          newState.currentBusiness = {
-            ...state.currentBusiness,
-            data: {
-              ...state.currentBusiness.data,
-              allowPickup: business.allowPickup
-            }
-          };
+        if (
+          v === "visibleInLefood" ||
+          v === "state" ||
+          v === "averageDeliveryTime" ||
+          v === "minAmountForDeliveryCents" ||
+          v === "stripeCurrency" ||
+          v === "allowPickup"
+        ) {
+          state = state.setIn(
+            [
+              "currentBusiness",
+              "data",
+              "businesses",
+              payload.rawData.data.id,
+              "attributes",
+              v
+            ],
+            payload.data.businesses[payload.rawData.data.id].attributes[v]
+          );
         }
       });
-      return newState;
+      return state;
     }
 
     case POST_OPEN_PERIOD_SUCCESS: {
-      const newState = { ...state };
-      const openPeriod =
-        build(payload.data, "openPeriods", payload.rawData.data.id, {
-          ignoreLinks: true
-        }) || [];
-      newState.currentBusiness.data = {
-        ...newState.currentBusiness.data,
-        openPeriods: [...newState.currentBusiness.data.openPeriods, openPeriod]
-      };
-      return newState;
+      return state.setIn(
+        ["currentBusiness", "data", "openPeriods", payload.rawData.data.id],
+        fromJS(payload.data.openPeriods[payload.rawData.data.id])
+      );
     }
 
     case PATCH_OPEN_PERIOD_SUCCESS: {
-      const newState = { ...state };
-      const openPeriod =
-        build(payload.data, "openPeriods", payload.rawData.data.id, {
-          ignoreLinks: true
-        }) || [];
-      const editedOpenPeriodIndex = newState.currentBusiness.data.openPeriods.findIndex(
-        p => p.id === payload.rawData.data.id
+      return state.mergeIn(
+        [
+          "currentBusiness",
+          "data",
+          "openPeriods",
+          payload.rawData.data.id,
+          "attributes"
+        ],
+        fromJS(payload.data.openPeriods[payload.rawData.data.id].attributes)
       );
-      newState.currentBusiness.data.openPeriods[
-        editedOpenPeriodIndex
-      ] = openPeriod;
-      return newState;
     }
 
     case DELETE_OPEN_PERIOD_REQUEST: {
-      const newState = { ...state };
-      newState.currentBusiness.data = {
-        ...newState.currentBusiness.data,
-        openPeriods: newState.currentBusiness.data.openPeriods.filter(
-          p => p.id !== meta.id
-        )
-      };
-      return newState;
+      return state.deleteIn([
+        "currentBusiness",
+        "data",
+        "openPeriods",
+        meta.id
+      ]);
     }
 
     case POST_ORDER_PERIOD_SUCCESS: {
-      const newState = { ...state };
       const orderPeriod =
         build(payload.data, "orderPeriods", payload.rawData.data.id, {
           ignoreLinks: true
         }) || [];
-      newState.currentBusiness.data = {
-        ...newState.currentBusiness.data,
-        orderPeriods: [
-          ...newState.currentBusiness.data.orderPeriods,
-          orderPeriod
-        ]
-      };
-      return newState;
+      return state.mergeIn(
+        ["currentBusiness", "data", "orderPeriods"],
+        fromJS(orderPeriod)
+      );
     }
 
     case PATCH_ORDER_PERIOD_SUCCESS: {
-      const newState = { ...state };
+      // const newState = { ...state };
       const orderPeriod =
         build(payload.data, "orderPeriods", payload.rawData.data.id, {
           ignoreLinks: true
         }) || [];
-      const editedOrderPeriodIndex = newState.currentBusiness.data.orderPeriods.findIndex(
-        p => p.id === payload.rawData.data.id
+      // const editedOrderPeriodIndex = newState.currentBusiness.data.orderPeriods.findIndex(
+      //   p => p.id === payload.rawData.data.id
+      // );
+      // newState.currentBusiness.data.orderPeriods[
+      //   editedOrderPeriodIndex
+      // ] = orderPeriod;
+      // return newState;
+      return state.mergeIn(
+        ["currentBusiness", "data", "orderPeriods"],
+        fromJS(orderPeriod)
       );
-      newState.currentBusiness.data.orderPeriods[
-        editedOrderPeriodIndex
-      ] = orderPeriod;
-      return newState;
     }
 
     case DELETE_ORDER_PERIOD_REQUEST: {
-      const newState = { ...state };
-      newState.currentBusiness.data = {
-        ...newState.currentBusiness.data,
-        orderPeriods: newState.currentBusiness.data.orderPeriods.filter(
-          p => p.id !== meta.id
-        )
-      };
-      return newState;
+      // const newState = { ...state };
+      // newState.currentBusiness.data = {
+      //   ...newState.currentBusiness.data,
+      //   orderPeriods: newState.currentBusiness.data.orderPeriods.filter(
+      //     p => p.id !== meta.id
+      //   )
+      // };
+      // return newState;
+      return state.deleteIn(
+        ["currentBusiness", "data", "orderPeriods"],
+        meta.id
+      );
     }
 
     case FETCH_PROFILE_CARDS_REQUEST: {
-      const newState = { ...state };
-      newState.cards.isFetching = true;
-      newState.cards.isFailed = false;
-      newState.cards.isSucceeded = false;
-      return newState;
+      return state.mergeIn(
+        ["cards"],
+        Record({
+          isFetching: true,
+          isFailed: false,
+          isSucceeded: false
+        })()
+      );
     }
     case FETCH_PROFILE_CARDS_SUCCESS: {
-      const newState = { ...state };
       const cards =
         build(payload.data, "cards", null, {
           ignoreLinks: true
         }) || [];
-      newState.cards.isFetching = false;
-      newState.cards.isSucceeded = true;
+      state.mergeIn(
+        ["cards"],
+        Record({
+          isFetching: false,
+          isSucceeded: true
+        })()
+      );
       if (meta.page === 1) {
-        newState.cards.data = cards;
+        state.setIn(["cards", "data"], fromJS(cards));
       } else {
-        newState.cards.data = newState.cards.data.concat(cards);
+        state.mergeIn(["cards", "data"], fromJS(cards));
       }
-      return newState;
+      return state;
     }
     case FETCH_PROFILE_CARDS_FAIL: {
-      const newState = { ...state };
-      newState.cards.isFetching = false;
-      newState.cards.isFailed = true;
+      state.mergeIn(
+        ["cards"],
+        Record({
+          isFetching: false,
+          isFailed: true
+        })()
+      );
       if (meta.page === 1) {
-        newState.cards.data = null;
+        state.setIn(["cards", "data"], null);
       }
-      return newState;
+      return state;
     }
 
     case FETCH_PROFILE_SUBSCRIPTIONS_REQUEST: {
-      const newState = { ...state };
-      newState.subscriptions.data = null;
-      newState.subscriptions.isFetching = true;
-      newState.subscriptions.isFailed = false;
-      newState.subscriptions.isSucceeded = false;
-      return newState;
+      return state.mergeIn(
+        ["subscriptions"],
+        Record({
+          data: null,
+          isFetching: true,
+          isFailed: false,
+          isSucceeded: false
+        })()
+      );
     }
     case FETCH_PROFILE_SUBSCRIPTIONS_SUCCESS: {
-      const newState = { ...state };
       const subscriptions =
         build(payload.data, "subscriptions", null, {
           ignoreLinks: true
         }) || [];
-      newState.subscriptions.isFetching = false;
-      newState.subscriptions.isSucceeded = true;
-      newState.subscriptions.data = subscriptions;
-      return newState;
+      return state.mergeIn(
+        ["subscriptions"],
+        Record({
+          data: fromJS(subscriptions),
+          isFetching: false,
+          isSucceeded: true
+        })()
+      );
     }
     case FETCH_PROFILE_SUBSCRIPTIONS_FAIL: {
-      const newState = { ...state };
-      newState.subscriptions.isFetching = false;
-      newState.subscriptions.isFailed = true;
-      return newState;
+      return state.mergeIn(
+        ["subscriptions"],
+        Record({
+          isFetching: false,
+          isFailed: true
+        })()
+      );
     }
 
     case LOGOUT: {

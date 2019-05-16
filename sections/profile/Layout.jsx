@@ -14,23 +14,16 @@ class ProfileLayout extends PureComponent {
   };
 
   showPublishModal = () => {
-    const {
-      getProfileBusiness,
-      business: { id }
-    } = this.props;
-    getProfileBusiness(id);
+    const { getProfileBusiness, businessId } = this.props;
+    getProfileBusiness(businessId);
     this.setState({ isPublishModalVisible: true });
   };
 
   hidePublishModal = () => this.setState({ isPublishModalVisible: false });
 
   publish = () => {
-    const {
-      lng,
-      updateBusiness,
-      business: { id }
-    } = this.props;
-    updateBusiness(id, { state: "waiting_for_approval" }).catch(() =>
+    const { lng, updateBusiness, businessId } = this.props;
+    updateBusiness(businessId, { state: "waiting_for_approval" }).catch(() =>
       Router.pushRoute(
         `/${lng}/app/profile/basic-information/?isErrorVisibilityRequired=true`
       )
@@ -42,6 +35,12 @@ class ProfileLayout extends PureComponent {
       t,
       lng,
       business,
+      businessId,
+      businessGroups,
+      businessMenus,
+      businessPictures,
+      businessProducts,
+      businessOpenPeriods,
       businesses,
       changeCurrentBusiness,
       addBusiness,
@@ -63,37 +62,36 @@ class ProfileLayout extends PureComponent {
             t,
             currentPage,
             this.showPublishModal,
-            business && business.state
+            business && business.get("state")
           ),
           select: {
             value: {
-              value: business && business.id,
+              value: businessId,
               label:
-                (business && business.name) ||
+                (business && business.get("name")) ||
                 t("app:manageProfile.unnamedBusiness"),
-              src: business && business.logo.url
+              src: business && business.getIn(["logo", "url"])
             },
             items: prepareBusinessesList(t, businesses),
             handleChange: b => changeCurrentBusiness(b.value),
             bottomAction: {
               text: t("app:manageProfile.addNewBusiness"),
               handleClick: () => addBusiness()
-            }
+            },
+            withImage: true
           }
         }}
       >
-        {business && business.state !== "published" && (
+        {business && business.get("state") !== "published" && (
           <PublishMobileIconWrapper>
             <ActionIcon
               size="sm"
               icon={["fa", "check"]}
               onClick={() => this.showPublishModal()}
             />
-            <PublishHeader>{`${t("app:manageProfile.publish")}: ${
-              business.name
-                ? business.name
-                : t("app:manageProfile.unnamedBusiness")
-            }`}</PublishHeader>
+            <PublishHeader>{`${t("app:manageProfile.publish")}: ${business.get(
+              "name"
+            ) || t("app:manageProfile.unnamedBusiness")}`}</PublishHeader>
           </PublishMobileIconWrapper>
         )}
         {children}
@@ -107,7 +105,12 @@ class ProfileLayout extends PureComponent {
                 lng,
                 close: this.hidePublishModal,
                 publish: this.publish,
-                business
+                business,
+                businessGroups,
+                businessMenus,
+                businessPictures,
+                businessProducts,
+                businessOpenPeriods
               }}
             />
           </Modal>
@@ -121,6 +124,12 @@ ProfileLayout.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   business: shape(),
+  businessId: string,
+  businessGroups: shape(),
+  businessMenus: shape(),
+  businessPictures: shape(),
+  businessProducts: shape(),
+  businessOpenPeriods: shape(),
   businesses: arrayOf(shape()),
   changeCurrentBusiness: func.isRequired,
   addBusiness: func.isRequired,
@@ -132,6 +141,12 @@ ProfileLayout.propTypes = {
 
 ProfileLayout.defaultProps = {
   business: null,
+  businessId: "",
+  businessGroups: null,
+  businessMenus: null,
+  businessPictures: null,
+  businessProducts: null,
+  businessOpenPeriods: null,
   businesses: null
 };
 

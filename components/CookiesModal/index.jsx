@@ -44,7 +44,7 @@ CookiesModal.propTypes = {
 export default withNamespaces(namespaces)(
   connect(
     state => ({
-      cookiesAccepted: state.app.cookiesAccepted
+      cookiesAccepted: state.getIn(["app", "cookiesAccepted"])
     }),
     { acceptCookies: acceptCookiesAction }
   )(CookiesModal)

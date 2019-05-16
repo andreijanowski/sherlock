@@ -12,8 +12,29 @@ import { Wrapper, Header, H2 } from "./styled";
 import Step from "./Step";
 import { generatePublishModalItems } from "../utils";
 
-const PublishModal = ({ t, lng, close, publish, business }) => {
-  const steps = business ? generatePublishModalItems(t, business) : [];
+const PublishModal = ({
+  t,
+  lng,
+  close,
+  publish,
+  business,
+  businessGroups,
+  businessMenus,
+  businessPictures,
+  businessProducts,
+  businessOpenPeriods
+}) => {
+  const steps = business
+    ? generatePublishModalItems({
+        t,
+        business,
+        businessGroups,
+        businessMenus,
+        businessPictures,
+        businessProducts,
+        businessOpenPeriods
+      })
+    : [];
   return (
     <Wrapper>
       <Header>
@@ -56,7 +77,20 @@ PublishModal.propTypes = {
   lng: string.isRequired,
   close: func.isRequired,
   publish: func.isRequired,
-  business: shape().isRequired
+  business: shape().isRequired,
+  businessGroups: shape(),
+  businessMenus: shape(),
+  businessPictures: shape(),
+  businessProducts: shape(),
+  businessOpenPeriods: shape()
+};
+
+PublishModal.defaultProps = {
+  businessGroups: null,
+  businessMenus: null,
+  businessPictures: null,
+  businessProducts: null,
+  businessOpenPeriods: null
 };
 
 export default PublishModal;

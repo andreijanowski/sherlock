@@ -24,19 +24,13 @@ class PicturesAndMenus extends PureComponent {
   }
 
   saveLogo = logo => {
-    const {
-      updateBusiness,
-      business: { id }
-    } = this.props;
-    return updateBusiness(id, { logo });
+    const { updateBusiness, businessId } = this.props;
+    return updateBusiness(businessId, { logo });
   };
 
   addPicture = photo => {
-    const {
-      addPicture,
-      business: { id }
-    } = this.props;
-    return addPicture("business", id, photo);
+    const { addPicture, businessId } = this.props;
+    return addPicture("business", businessId, photo);
   };
 
   removePicture = id => {
@@ -54,13 +48,10 @@ class PicturesAndMenus extends PureComponent {
 
   addMenu = async menu => {
     try {
-      const {
-        addMenu,
-        business: { id }
-      } = this.props;
+      const { addMenu, businessId } = this.props;
       const { name } = menu;
       const file = await fileToBase64(menu);
-      const res = addMenu(id, name, file);
+      const res = addMenu(businessId, name, file);
       return res;
     } catch (e) {
       console.log(e);
@@ -79,11 +70,8 @@ class PicturesAndMenus extends PureComponent {
   };
 
   addProduct = product => {
-    const {
-      addProduct,
-      business: { id }
-    } = this.props;
-    return addProduct(id, product);
+    const { addProduct, businessId } = this.props;
+    return addProduct(businessId, product);
   };
 
   updateProduct = (id, name) => {
@@ -101,13 +89,24 @@ class PicturesAndMenus extends PureComponent {
       t,
       lng,
       business,
+      businessId,
+      businessGroups,
+      businessMenus,
+      businessPictures,
+      businessProducts,
+      businessOpenPeriods,
       businesses,
       changeCurrentBusiness,
       addBusiness,
       updateBusiness,
       getProfileBusiness
     } = this.props;
-    const initialValues = getInitialValues(business);
+    const initialValues = getInitialValues({
+      business,
+      businessMenus,
+      businessPictures,
+      businessProducts
+    });
 
     return (
       <ProfileLayout
@@ -115,6 +114,12 @@ class PicturesAndMenus extends PureComponent {
           t,
           lng,
           business,
+          businessId,
+          businessGroups,
+          businessMenus,
+          businessPictures,
+          businessProducts,
+          businessOpenPeriods,
           businesses,
           changeCurrentBusiness,
           addBusiness,
@@ -157,6 +162,12 @@ PicturesAndMenus.propTypes = {
   updateProduct: func.isRequired,
   removeProduct: func.isRequired,
   business: shape(),
+  businessId: string,
+  businessGroups: shape(),
+  businessMenus: shape(),
+  businessPictures: shape(),
+  businessProducts: shape(),
+  businessOpenPeriods: shape(),
   changeCurrentBusiness: func.isRequired,
   getProfileBusiness: func.isRequired,
   businesses: arrayOf(shape())
@@ -164,16 +175,32 @@ PicturesAndMenus.propTypes = {
 
 PicturesAndMenus.defaultProps = {
   businesses: null,
+  businessId: "",
+  businessGroups: null,
+  businessMenus: null,
+  businessPictures: null,
+  businessProducts: null,
+  businessOpenPeriods: null,
   business: null
 };
 
 export default requireAuth(true)(
   withNamespaces(namespaces)(
     connect(
-      state => ({
-        business: state.users.currentBusiness.data,
-        businesses: state.users.profileBusinesses.data
-      }),
+      state => {
+        const businessData = state.getIn(["users", "currentBusiness", "data"]);
+        const business = businessData && businessData.get("businesses").first();
+        return {
+          business: business && business.get("attributes"),
+          businessId: business && business.get("id"),
+          businessGroups: businessData && businessData.get("groups"),
+          businessMenus: businessData && businessData.get("menus"),
+          businessPictures: businessData && businessData.get("pictures"),
+          businessProducts: businessData && businessData.get("products"),
+          businessOpenPeriods: businessData && businessData.get("openPeriods"),
+          businesses: state.getIn(["users", "profileBusinesses", "data"])
+        };
+      },
       {
         addBusiness: postBusiness,
         updateBusiness: patchBusiness,

@@ -61,11 +61,11 @@ class MobileNav extends PureComponent {
         <ToggledMobileMenu {...{ isMobileNavOpen }}>
           <Select
             value={{
-              value: business && business.id,
+              value: business && business.get("id"),
               label:
-                (business && business.name) ||
+                (business && business.get("name")) ||
                 t("app:manageProfile.unnamedBusiness"),
-              src: business && business.logo.url
+              src: business && business.getIn(["logo", "url"])
             }}
             items={prepareBusinessesList(t, businesses)}
             onChange={b => changeCurrentBusiness(b.value)}
@@ -119,8 +119,8 @@ MobileNav.defaultProps = {
 
 export default connect(
   state => ({
-    business: state.users.currentBusiness.data,
-    businesses: state.users.profileBusinesses.data
+    business: state.getIn(["users", "currentBusiness", "data"]),
+    businesses: state.getIn(["users", "profileBusinesses", "data"])
   }),
   {
     addBusiness: postBusiness,

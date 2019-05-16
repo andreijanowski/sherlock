@@ -20,16 +20,15 @@ class Members extends PureComponent {
   }
 
   handleSubmit = members => {
-    const {
-      addMember,
-      updateMember,
-      business: { id: businessId }
-    } = this.props;
+    const { addMember, updateMember, businessId } = this.props;
     const { id, email, role } = members[0];
     if (id) {
       return updateMember(id, { email, role });
     }
-    return addMember({ email, role }, businessId);
+    if (email && role) {
+      return addMember({ email, role }, businessId);
+    }
+    return null;
   };
 
   removeMember = id => {
@@ -43,6 +42,12 @@ class Members extends PureComponent {
       lng,
       members,
       business,
+      businessId,
+      businessGroups,
+      businessMenus,
+      businessPictures,
+      businessProducts,
+      businessOpenPeriods,
       businesses,
       changeCurrentBusiness,
       addBusiness,
@@ -55,6 +60,12 @@ class Members extends PureComponent {
           t,
           lng,
           business,
+          businessId,
+          businessGroups,
+          businessMenus,
+          businessPictures,
+          businessProducts,
+          businessOpenPeriods,
           businesses,
           changeCurrentBusiness,
           addBusiness,
@@ -86,6 +97,12 @@ Members.propTypes = {
   updateBusiness: func.isRequired,
   members: arrayOf(shape()),
   business: shape(),
+  businessId: string,
+  businessGroups: shape(),
+  businessMenus: shape(),
+  businessPictures: shape(),
+  businessProducts: shape(),
+  businessOpenPeriods: shape(),
   changeCurrentBusiness: func.isRequired,
   getProfileBusiness: func.isRequired,
   businesses: arrayOf(shape())
@@ -94,17 +111,33 @@ Members.propTypes = {
 Members.defaultProps = {
   members: null,
   business: null,
+  businessId: "",
+  businessGroups: null,
+  businessMenus: null,
+  businessPictures: null,
+  businessProducts: null,
+  businessOpenPeriods: null,
   businesses: null
 };
 
 export default requireAuth(true)(
   withNamespaces(namespaces)(
     connect(
-      state => ({
-        members: state.members.data,
-        business: state.users.currentBusiness.data,
-        businesses: state.users.profileBusinesses.data
-      }),
+      state => {
+        const businessData = state.getIn(["users", "currentBusiness", "data"]);
+        const business = businessData && businessData.get("businesses").first();
+        return {
+          business: business && business.get("attributes"),
+          businessId: business && business.get("id"),
+          businessGroups: businessData && businessData.get("groups"),
+          businessMenus: businessData && businessData.get("menus"),
+          businessPictures: businessData && businessData.get("pictures"),
+          businessProducts: businessData && businessData.get("products"),
+          businessOpenPeriods: businessData && businessData.get("openPeriods"),
+          businesses: state.getIn(["users", "profileBusinesses", "data"]),
+          members: state.getIn(["members", "data"])
+        };
+      },
       {
         addBusiness: postBusiness,
         updateBusiness: patchBusiness,

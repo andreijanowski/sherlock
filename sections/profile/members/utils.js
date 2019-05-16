@@ -1,5 +1,14 @@
 export const generateMembersArray = m => {
-  const members = m;
+  const members = m
+    ? m
+        .map(i => ({
+          email: i.getIn(["attributes", "email"]),
+          role: i.getIn(["attributes", "role"]),
+          id: i.get("id")
+        }))
+        .toList()
+        .toArray()
+    : [];
   if (members.length < 5) {
     for (let i = members.length; i < 5; i += 1) {
       members.push({

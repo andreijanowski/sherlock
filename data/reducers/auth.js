@@ -15,8 +15,9 @@ import {
   SET_STRIPE_DATA,
   SET_AUTH_SYNCHRONIZED_FROM_STORAGE
 } from "types/auth";
+import { Record } from "immutable";
 
-export const initialState = {
+export const initialState = Record({
   isFetching: false,
   isRefreshing: false,
   isAuthenticated: false,
@@ -24,24 +25,18 @@ export const initialState = {
   refreshToken: "",
   createdAt: 0,
   expiresIn: 0,
-  stripeConnectData: { businessId: null, state: null }
-};
+  stripeConnectData: Record({ businessId: null, state: null })()
+})();
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case LOGIN_REQUEST:
     case FACEBOOK_LOGIN_REQUEST:
     case REGISTER_REQUEST: {
-      return {
-        ...state,
-        isFetching: true
-      };
+      return state.set("isFetching", true);
     }
     case REFRESH_TOKEN_REQUEST: {
-      return {
-        ...state,
-        isRefreshing: true
-      };
+      return state.set("isRefreshing", true);
     }
     case LOGIN_SUCCESS:
     case FACEBOOK_LOGIN_SUCCESS:
@@ -53,23 +48,23 @@ const reducer = (state = initialState, { type, payload }) => {
         createdAt,
         expiresIn
       } = payload.rawData;
-      return {
+      const updatedData = Record({
         isFetching: false,
         isRefreshing: false,
         isAuthenticated: true,
         accessToken,
         refreshToken,
         createdAt,
-        expiresIn,
-        stripeConnectData: state.stripeConnectData
-      };
+        expiresIn
+      })();
+      return state.mergeDeep(updatedData);
     }
     case LOGIN_FAIL:
     case REGISTER_FAIL:
     case FACEBOOK_LOGIN_FAIL:
     case REFRESH_TOKEN_FAIL:
     case LOGOUT: {
-      return initialState;
+      return state.mergeDeep(initialState);
     }
     case SET_STRIPE_DATA: {
       return {

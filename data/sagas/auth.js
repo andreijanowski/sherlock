@@ -2,14 +2,14 @@ import {
   takeEvery,
   put,
   all,
-  select,
-  takeLatest,
-  call,
-  take,
-  fork
+  select
+  // takeLatest,
+  // call,
+  // take,
+  // fork
 } from "redux-saga/effects";
-import { eventChannel } from "redux-saga";
-import { REHYDRATE } from "redux-persist";
+// import { eventChannel } from "redux-saga";
+// import { REHYDRATE } from "redux-persist";
 import {
   fetchProfile,
   fetchProfileBusinesses,
@@ -32,49 +32,51 @@ import {
 import Notifications from "react-notification-system-redux";
 import {
   logout as logoutAction,
-  refreshToken as refresh,
-  setAuthSynchronizedFromStorage
+  refreshToken as refresh
+  // setAuthSynchronizedFromStorage
 } from "actions/auth";
 import { setCurrentBusiness, saveCurrentUserId } from "actions/app";
 import { fetchAllUserData } from "./utils";
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
-function createLocalstorageChannel() {
-  return eventChannel(emit => {
-    const watchHandler = event => {
-      emit(event);
-    };
-    window.addEventListener("storage", watchHandler);
-    const unsubscribe = () => {
-      window.removeEventListener("storage", watchHandler);
-    };
+// function createLocalstorageChannel() {
+//   return eventChannel(emit => {
+//     const watchHandler = event => {
+//       emit(event);
+//     };
+//     window.addEventListener("storage", watchHandler);
+//     const unsubscribe = () => {
+//       window.removeEventListener("storage", watchHandler);
+//     };
 
-    return unsubscribe;
-  });
-}
+//     return unsubscribe;
+//   });
+// }
 
-function* syncWithLocalStorage() {
-  const storageChanel = yield call(createLocalstorageChannel);
-  while (true) {
-    const payload = yield take(storageChanel);
-    if (payload.key === "persist:sherlock") {
-      const parsedNewValue = JSON.parse(payload.newValue);
-      const parsedOldValue = JSON.parse(payload.oldValue);
-      if (parsedNewValue.auth !== parsedOldValue.auth) {
-        const parsedAuth = JSON.parse(parsedNewValue.auth);
-        yield put(setAuthSynchronizedFromStorage(parsedAuth));
-      }
-    }
-  }
-}
+// function* syncWithLocalStorage() {
+//   const storageChanel = yield call(createLocalstorageChannel);
+//   while (true) {
+//     const payload = yield take(storageChanel);
+//     if (payload.key === "persist:sherlock") {
+//       const parsedNewValue = JSON.parse(payload.newValue);
+//       const parsedOldValue = JSON.parse(payload.oldValue);
+//       if (parsedNewValue.auth !== parsedOldValue.auth) {
+//         const parsedAuth = JSON.parse(parsedNewValue.auth);
+//         yield put(setAuthSynchronizedFromStorage(parsedAuth));
+//       }
+//     }
+//   }
+// }
 
 function* subscribeForRefresh() {
-  const { expiresIn } = yield select(state => state.auth);
+  const expiresIn = yield select(state => state.getIn(["auth", "expiresIn"]));
   // 5 minutes before expires
   const msBeforeExpires = 300000;
   yield delay(expiresIn * 1000 - msBeforeExpires);
-  const refreshToken = yield select(state => state.auth.refreshToken);
+  const refreshToken = yield select(state =>
+    state.getIn(["auth", "refreshToken"])
+  );
   if (refreshToken) {
     yield put(refresh({ refreshToken }));
   }
@@ -90,8 +92,12 @@ function* fetchUserData() {
   yield put(fetchProfileSubscriptions());
   yield put(fetchGroups());
   yield put(fetchStripePlans());
-  const lastBusinessId = yield select(state => state.app.currentBusinessId);
-  const lastUserId = yield select(state => state.app.currentUserId);
+  const lastBusinessId = yield select(state =>
+    state.getIn(["app", "currentBusinessId"])
+  );
+  const lastUserId = yield select(state =>
+    state.getIn(["app", "currentUserId"])
+  );
   if (lastBusinessId && userId === lastUserId) {
     yield put(setCurrentBusiness(lastBusinessId));
     yield fetchAllUserData(fetchProfileBusinesses);
@@ -116,20 +122,20 @@ function* fetchUserData() {
   yield put(saveCurrentUserId(userId));
 }
 
-function* initialTokenRefresh() {
-  const refreshToken = yield select(state => state.auth.refreshToken);
-  const createdAt = yield select(state => state.auth.createdAt);
-  const expiresIn = yield select(state => state.auth.expiresIn);
-  if (refreshToken) {
-    if ((createdAt + expiresIn) * 1000 < new Date().getTime()) {
-      yield put(refresh({ refreshToken }));
-    } else {
-      yield fetchUserData();
-      yield fork(syncWithLocalStorage);
-      yield subscribeForRefresh();
-    }
-  }
-}
+// function* initialTokenRefresh() {
+//   const refreshToken = yield select(state => state.auth.refreshToken);
+//   const createdAt = yield select(state => state.auth.createdAt);
+//   const expiresIn = yield select(state => state.auth.expiresIn);
+//   if (refreshToken) {
+//     if ((createdAt + expiresIn) * 1000 < new Date().getTime()) {
+//       yield put(refresh({ refreshToken }));
+//     } else {
+//       yield fetchUserData();
+//       yield fork(syncWithLocalStorage);
+//       yield subscribeForRefresh();
+//     }
+//   }
+// }
 
 function* showSuccessPasswordChangeMsg() {
   yield put(
@@ -160,7 +166,7 @@ function* logout() {
 }
 
 export default all([
-  takeLatest(REHYDRATE, initialTokenRefresh),
+  // takeLatest(REHYDRATE, initialTokenRefresh),
   takeEvery(
     [
       LOGIN_SUCCESS,
@@ -170,15 +176,15 @@ export default all([
     ],
     fetchUserData
   ),
-  takeEvery(
-    [
-      LOGIN_SUCCESS,
-      REGISTER_SUCCESS,
-      FACEBOOK_LOGIN_SUCCESS,
-      REFRESH_TOKEN_SUCCESS
-    ],
-    syncWithLocalStorage
-  ),
+  // takeEvery(
+  //   [
+  //     LOGIN_SUCCESS,
+  //     REGISTER_SUCCESS,
+  //     FACEBOOK_LOGIN_SUCCESS,
+  //     REFRESH_TOKEN_SUCCESS
+  //   ],
+  //   syncWithLocalStorage
+  // ),
   takeEvery(
     [
       LOGIN_SUCCESS,

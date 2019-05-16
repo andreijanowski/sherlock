@@ -25,6 +25,6 @@ export default requireAuth => ComposedComponent => {
   };
 
   return connect(state => ({
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.getIn(["auth", "isAuthenticated"])
   }))(Extended);
 };

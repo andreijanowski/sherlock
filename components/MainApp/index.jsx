@@ -97,10 +97,6 @@ MainApp.defaultProps = {
 };
 
 export default connect(state => ({
-  avatar:
-    state.users.profile.data &&
-    state.users.profile.data.avatar &&
-    state.users.profile.data.avatar.url,
-  isAccountConfirmed:
-    state.users.profile.data && state.users.profile.data.confirmed
+  avatar: state.getIn(["users", "profile", "data", "avatar", "url"]),
+  isAccountConfirmed: state.getIn(["users", "profile", "data", "confirmed"])
 }))(MainApp);

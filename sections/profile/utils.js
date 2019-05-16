@@ -53,8 +53,20 @@ export const generateMenuItems = (t, active, showPublishModal, state) => {
 
 const getGroupsByParentGroups = (groups, parentGroups) =>
   groups
-    .filter(g => (parentGroups || []).indexOf(g.parentGroup) !== -1)
-    .map(g => ({ label: g.name, value: g.slug }));
+    ? groups
+        .filter(
+          g =>
+            (parentGroups || []).indexOf(
+              g.getIn(["attributes", "parentGroup"])
+            ) !== -1
+        )
+        .map(g => ({
+          label: g.getIn(["attributes", "name"]),
+          value: g.getIn(["attributes", "slug"])
+        }))
+        .toList()
+        .toArray()
+    : [];
 
 export const getGroupsData = groups => {
   const types = getGroupsByParentGroups(groups, ["types"]);
@@ -68,16 +80,17 @@ export const getGroupsData = groups => {
 const checkLengthRange = (array, minLength, maxLength) =>
   array.length >= minLength && array.length <= maxLength;
 
-const checkIsBasicInformationValid = business => {
-  const { name, city, postCode, street, countryCode, groups } = business;
-  const { types, cuisines, foodsAndDrinks, quirks } = getGroupsData(groups);
+const checkIsBasicInformationValid = (business, businessGroups) => {
+  const { types, cuisines, foodsAndDrinks, quirks } = getGroupsData(
+    businessGroups
+  );
   return (
-    name &&
-    city &&
-    postCode &&
-    street &&
-    countryCode &&
-    groups &&
+    business.get("name") &&
+    business.get("city") &&
+    business.get("postCode") &&
+    business.get("street") &&
+    business.get("countryCode") &&
+    businessGroups &&
     checkLengthRange(types, 1, 3) &&
     checkLengthRange(cuisines, 1, 5) &&
     checkLengthRange(foodsAndDrinks, 1, 6) &&
@@ -85,74 +98,54 @@ const checkIsBasicInformationValid = business => {
   );
 };
 
-const checkIsFilled = (index, business) => {
+const checkIsFilled = ({
+  index,
+  business,
+  businessMenus,
+  businessPictures,
+  businessProducts,
+  businessOpenPeriods
+}) => {
   switch (index) {
     case 1: {
-      const {
-        email,
-        phone,
-        phoneCountryPrefix,
-        phoneCountryCode,
-        website,
-        instagram
-      } = business;
       return (
-        email ||
-        phone ||
-        (phoneCountryPrefix && phoneCountryCode) ||
-        website ||
-        instagram
+        business.get("email") ||
+        business.get("phone") ||
+        (business.get("phoneCountryPrefix") &&
+          business.get("phoneCountryCode")) ||
+        business.get("website") ||
+        business.get("instagram")
       );
     }
     case 2: {
-      const { openPeriods } = business;
-      return openPeriods.length;
+      return businessOpenPeriods && businessOpenPeriods.size;
     }
     case 3: {
-      const {
-        logo: { url },
-        pictures,
-        menus,
-        products
-      } = business;
-      return url || pictures.length || menus.length || products.length;
+      return (
+        business.getIn(["logo", "url"]) ||
+        (businessPictures && businessPictures.size) ||
+        (businessMenus && businessMenus.size) ||
+        (businessProducts && businessProducts.size)
+      );
     }
     case 4: {
-      const {
-        breakfastService,
-        lunchService,
-        dinnerService,
-        brunchService,
-        cafeService,
-        snackService,
-        currency,
-        pricePerPerson,
-        hasCatering,
-        deliveryUrl,
-        onlineBookingUrl,
-        takeawayUrl,
-        canPayWithCards,
-        canPayWithCash,
-        canPayWithMobile,
-        secretCode
-      } = business;
       return (
-        breakfastService ||
-        lunchService ||
-        dinnerService ||
-        brunchService ||
-        cafeService ||
-        snackService ||
-        currency ||
-        pricePerPerson ||
-        hasCatering ||
-        deliveryUrl ||
-        onlineBookingUrl ||
-        takeawayUrl ||
-        canPayWithCards ||
-        canPayWithCash ||
-        canPayWithMobile ||
-        secretCode
+        business.get("breakfastService") ||
+        business.get("lunchService") ||
+        business.get("dinnerService") ||
+        business.get("brunchService") ||
+        business.get("cafeService") ||
+        business.get("snackService") ||
+        business.get("currency") ||
+        business.get("pricePerPerson") ||
+        business.get("hasCatering") ||
+        business.get("deliveryUrl") ||
+        business.get("onlineBookingUrl") ||
+        business.get("takeawayUrl") ||
+        business.get("canPayWithCards") ||
+        business.get("canPayWithCash") ||
+        business.get("canPayWithMobile") ||
+        business.get("secretCode")
       );
     }
     default: {
@@ -161,7 +154,15 @@ const checkIsFilled = (index, business) => {
   }
 };
 
-export const generatePublishModalItems = (t, business) => {
+export const generatePublishModalItems = ({
+  t,
+  business,
+  businessGroups,
+  businessMenus,
+  businessPictures,
+  businessProducts,
+  businessOpenPeriods
+}) => {
   const tips = [
     t("publishModal:basicInformationTip"),
     t("publishModal:contactInformationTip"),
@@ -170,13 +171,25 @@ export const generatePublishModalItems = (t, business) => {
     t("publishModal:additionalInformationTip")
   ];
   const items = generateMenuItems(t);
-  const isBasicInformationValid = !!checkIsBasicInformationValid(business);
+  const isBasicInformationValid = !!checkIsBasicInformationValid(
+    business,
+    businessGroups
+  );
   return tips.map((item, index) => ({
     name: items[index].label,
     route: `${items[index].route}?isErrorVisibilityRequired=true`,
     tip: item,
     isValid: index === 0 ? isBasicInformationValid : true,
     isFilled:
-      index === 0 ? isBasicInformationValid : !!checkIsFilled(index, business)
+      index === 0
+        ? isBasicInformationValid
+        : !!checkIsFilled({
+            index,
+            business,
+            businessMenus,
+            businessPictures,
+            businessProducts,
+            businessOpenPeriods
+          })
   }));
 };

@@ -15,7 +15,9 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 
 function* waitForToken() {
   yield delay(1000);
-  const isRefreshing = yield select(state => state.auth.isRefreshing);
+  const isRefreshing = yield select(state =>
+    state.getIn(["auth", "isRefreshing"])
+  );
   if (isRefreshing) {
     yield waitForToken();
   }
@@ -63,11 +65,13 @@ function* handleApiCall(action) {
   };
 
   if (authRequired) {
-    const isRefreshing = yield select(state => state.auth.isRefreshing);
+    const isRefreshing = yield select(state =>
+      state.getIn(["auth", "isRefreshing"])
+    );
     if (isRefreshing && type !== REFRESH_TOKEN_REQUEST) {
       yield waitForToken();
     }
-    const token = yield select(state => state.auth.accessToken);
+    const token = yield select(state => state.getIn(["auth", "accessToken"]));
     additionalOptions.headers = {
       ...additionalOptions.headers,
       Authorization: `Bearer ${token}`

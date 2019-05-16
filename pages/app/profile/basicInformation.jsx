@@ -34,7 +34,7 @@ class BasicInformation extends PureComponent {
 
   componentDidMount() {
     const { groups } = this.props;
-    if (groups.length) {
+    if (groups && groups.size) {
       this.loadGroups();
     }
   }
@@ -42,7 +42,7 @@ class BasicInformation extends PureComponent {
   componentDidUpdate(prevProps) {
     const { groups } = this.props;
     const { groups: prevGroups } = prevProps;
-    if (!prevGroups.length && groups.length) {
+    if (!(prevGroups && prevGroups.size) && (groups && groups.size)) {
       this.loadGroups();
     }
   }
@@ -67,10 +67,7 @@ class BasicInformation extends PureComponent {
     },
     { types, cuisines, foodsAndDrinks, quirks, diets }
   ) => {
-    const {
-      updateBusiness,
-      business: { id }
-    } = this.props;
+    const { updateBusiness, businessId } = this.props;
     const sendGroupsList =
       !name &&
       !tagline &&
@@ -103,7 +100,7 @@ class BasicInformation extends PureComponent {
       ownerRole,
       bio
     };
-    return updateBusiness(id, requestValues);
+    return updateBusiness(businessId, requestValues);
   };
 
   render() {
@@ -111,6 +108,12 @@ class BasicInformation extends PureComponent {
       t,
       lng,
       business,
+      businessId,
+      businessGroups,
+      businessMenus,
+      businessPictures,
+      businessProducts,
+      businessOpenPeriods,
       businesses,
       changeCurrentBusiness,
       addBusiness,
@@ -119,13 +122,19 @@ class BasicInformation extends PureComponent {
       query
     } = this.props;
     const { types, cuisines, foodsAndDrinks, quirks, diets } = this.state;
-    const initialValues = getInitialValues(business);
+    const initialValues = getInitialValues({ business, businessGroups });
     return (
       <ProfileLayout
         {...{
           t,
           lng,
           business,
+          businessId,
+          businessGroups,
+          businessMenus,
+          businessPictures,
+          businessProducts,
+          businessOpenPeriods,
           businesses,
           changeCurrentBusiness,
           addBusiness,
@@ -157,6 +166,12 @@ BasicInformation.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   business: shape(),
+  businessId: string,
+  businessGroups: shape(),
+  businessMenus: shape(),
+  businessPictures: shape(),
+  businessProducts: shape(),
+  businessOpenPeriods: shape(),
   groups: arrayOf(shape()).isRequired,
   updateBusiness: func.isRequired,
   changeCurrentBusiness: func.isRequired,
@@ -168,6 +183,12 @@ BasicInformation.propTypes = {
 
 BasicInformation.defaultProps = {
   business: null,
+  businessId: "",
+  businessGroups: null,
+  businessMenus: null,
+  businessPictures: null,
+  businessProducts: null,
+  businessOpenPeriods: null,
   businesses: null,
   query: {}
 };
@@ -175,11 +196,21 @@ BasicInformation.defaultProps = {
 export default requireAuth(true)(
   withNamespaces(namespaces)(
     connect(
-      state => ({
-        business: state.users.currentBusiness.data,
-        groups: state.groups.groups.data || [],
-        businesses: state.users.profileBusinesses.data
-      }),
+      state => {
+        const businessData = state.getIn(["users", "currentBusiness", "data"]);
+        const business = businessData && businessData.get("businesses").first();
+        return {
+          business: business && business.get("attributes"),
+          businessId: business && business.get("id"),
+          businessGroups: businessData && businessData.get("groups"),
+          businessMenus: businessData && businessData.get("menus"),
+          businessPictures: businessData && businessData.get("pictures"),
+          businessProducts: businessData && businessData.get("products"),
+          businessOpenPeriods: businessData && businessData.get("openPeriods"),
+          businesses: state.getIn(["users", "profileBusinesses", "data"]),
+          groups: state.getIn(["groups", "data", "groups"])
+        };
+      },
       {
         updateBusiness: patchBusiness,
         changeCurrentBusiness: setCurrentBusiness,

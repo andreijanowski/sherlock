@@ -1,50 +1,59 @@
+/* eslint-disable no-param-reassign */
 import {
   FETCH_BUSINESS_MEMBERS_REQUEST,
   FETCH_BUSINESS_MEMBERS_SUCCESS,
   FETCH_BUSINESS_MEMBERS_FAIL
 } from "types/businesses";
-import build from "redux-object";
 import { LOGOUT } from "types/auth";
+import { Record, fromJS } from "immutable";
 
-const initialState = {
+const initialState = Record({
   data: null,
   isFetching: false,
   isFailed: false,
   isSucceeded: false
-};
+})();
 
 const reducer = (state = initialState, { type, payload, meta }) => {
   switch (type) {
     case FETCH_BUSINESS_MEMBERS_REQUEST: {
-      const newState = { ...state };
-      newState.isFetching = true;
-      newState.isFailed = false;
-      newState.isSucceeded = false;
-      return newState;
+      return state.merge(
+        Record({
+          isFetching: true,
+          isFailed: false,
+          isSucceeded: false
+        })()
+      );
     }
     case FETCH_BUSINESS_MEMBERS_SUCCESS: {
-      const newState = { ...state };
-      const members =
-        build(payload.data, "members", null, {
-          ignoreLinks: true
-        }) || [];
-      newState.isFetching = false;
-      newState.isSucceeded = true;
+      state = state.merge(
+        Record({
+          isFetching: false,
+          isSucceeded: true
+        })()
+      );
       if (meta.page === 1) {
-        newState.data = members;
+        state = state.set("data", fromJS(payload.data.members));
       } else {
-        newState.data = newState.data.concat(members);
+        state = state.mergeIn(["data"], fromJS(payload.data.members));
       }
-      return newState;
+      return state;
     }
     case FETCH_BUSINESS_MEMBERS_FAIL: {
-      const newState = { ...state };
-      newState.isFetching = false;
-      newState.isFailed = true;
+      state = state.merge(
+        Record({
+          isFetching: false,
+          isFailed: true
+        })()
+      );
       if (meta.page === 1) {
-        newState.data = null;
+        state = state.merge(
+          Record({
+            data: null
+          })()
+        );
       }
-      return newState;
+      return state;
     }
 
     case LOGOUT: {

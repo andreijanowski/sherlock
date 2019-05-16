@@ -11,7 +11,9 @@ const runPusher = dispatch =>
       }
     }
   }) {
-    const accessToken = yield select(state => state.auth.accessToken);
+    const accessToken = yield select(state =>
+      state.getIn(["auth", "accessToken"])
+    );
     Pusher.init(accessToken, id);
     Pusher.subscribe(`private-users-${id}-notifications`);
     Pusher.bind("order.update", data => dispatch(handleOrderUpdate(data)));
