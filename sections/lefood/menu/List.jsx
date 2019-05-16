@@ -3,31 +3,33 @@ import { H3 } from "components";
 import { func, arrayOf, shape } from "prop-types";
 import ListItem from "./ListItem";
 
-const List = ({ dishes, removeDish, t }) => (
-  <>
-    <H3>{t("trays")}</H3>
-    <Flex flexDirection="column">
-      {dishes &&
-        dishes
-          .filter(i => i.category === "trays")
-          .map(item => <ListItem {...{ item, removeDish, key: item.id }} />)}
-    </Flex>
-    <H3 mt={4}>{t("desserts")}</H3>
-    <Flex flexDirection="column">
-      {dishes &&
-        dishes
-          .filter(i => i.category === "desserts")
-          .map(item => <ListItem {...{ item, removeDish, key: item.id }} />)}
-    </Flex>
-    <H3 mt={4}>{t("softDrinks")}</H3>
-    <Flex flexDirection="column">
-      {dishes &&
-        dishes
-          .filter(i => i.category === "soft_drinks")
-          .map(item => <ListItem {...{ item, removeDish, key: item.id }} />)}
-    </Flex>
-  </>
-);
+const categories = [
+  "other",
+  "mains",
+  "desserts",
+  "softs",
+  "formulas",
+  "starters",
+  "sides",
+  "pastries",
+  "coffee",
+  "beer",
+  "wine",
+  "cocktails"
+];
+
+const List = ({ dishes, removeDish, t }) =>
+  categories.map(c => (
+    <>
+      <H3>{t(c)}</H3>
+      <Flex flexDirection="column">
+        {dishes &&
+          dishes
+            .filter(i => i.category === c)
+            .map(item => <ListItem {...{ item, removeDish, key: item.id }} />)}
+      </Flex>
+    </>
+  ));
 
 List.propTypes = {
   dishes: arrayOf(shape()).isRequired,
