@@ -26,7 +26,7 @@ class DishForm extends PureComponent {
     return (
       <FinalForm
         initialValues={{
-          category: "trays"
+          category: "mains"
         }}
         onSubmit={addDish}
         render={({ handleSubmit, form: { reset } }) => (
@@ -97,7 +97,6 @@ class DishForm extends PureComponent {
                 component={FormDropdown}
                 label={t("categoryLabel")}
                 items={[
-                  { label: t("other"), value: "other" },
                   { label: t("mains"), value: "mains" },
                   { label: t("desserts"), value: "desserts" },
                   { label: t("softs"), value: "softs" },
@@ -108,7 +107,8 @@ class DishForm extends PureComponent {
                   { label: t("coffee"), value: "coffee" },
                   { label: t("beer"), value: "beer" },
                   { label: t("wine"), value: "wine" },
-                  { label: t("cocktails"), value: "cocktails" }
+                  { label: t("cocktails"), value: "cocktails" },
+                  { label: t("other"), value: "other" }
                 ]}
               />
             </Box>
