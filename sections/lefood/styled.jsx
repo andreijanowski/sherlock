@@ -2,11 +2,11 @@ import { H2 } from "components";
 import styled from "styled-components";
 
 export const ModalHeader = styled.h3`
+  color: rgb(${p => p.theme.colors.dark});
+  font-weight: ${p => p.theme.fontWeights.regular};
   font-size: ${p => p.theme.fontSizes.f18};
   line-height: 1.5;
-  color: rgb(${p => p.theme.colors.dark});
   text-align: center;
-  font-weight: ${p => p.theme.fontWeights.regular};
 `;
 
 export const Orange = styled.span`

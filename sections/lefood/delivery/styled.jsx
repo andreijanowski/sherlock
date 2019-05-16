@@ -9,12 +9,12 @@ export const Delivery = styled(Flex).attrs({ p: 3 })`
   background-color: rgb(${p => p.theme.colors.background});
 `;
 export const Code = styled.div`
-  color: rgb(${p => p.theme.colors.dark});
   padding-right: 8px;
+  color: rgb(${p => p.theme.colors.dark});
 `;
 export const Price = styled.div`
-  color: rgb(${p => p.theme.colors.blue});
   padding-right: 8px;
+  color: rgb(${p => p.theme.colors.blue});
 `;
 export const Remove = styled(FontAwesomeIcon).attrs({
   icon: ["fa", "times"]

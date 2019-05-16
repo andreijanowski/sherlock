@@ -6,10 +6,10 @@ const H1 = styled(Box).attrs({
   mb: 4,
   mt: 0
 })`
+  color: rgb(${p => p.theme.colors.dark});
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f32};
   line-height: 1.15;
-  color: rgb(${p => p.theme.colors.dark});
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     font-size: ${p => p.theme.fontSizes.f48};
   }

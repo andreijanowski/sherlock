@@ -9,12 +9,12 @@ export const Wrapper = styled(Flex).attrs({
   px: 3
 })`
   position: relative;
-  border-radius: ${p => p.theme.radius.default};
-  ${p => p.isCircleShape && "border-radius: 50%;"};
-  border: 1px dashed rgb(${p => p.theme.colors.snuff});
-  cursor: pointer;
   overflow: hidden;
   text-align: center;
+  border: 1px dashed rgb(${p => p.theme.colors.snuff});
+  border-radius: ${p => p.theme.radius.default};
+  ${p => p.isCircleShape && "border-radius: 50%;"};
+  cursor: pointer;
 
   ${p =>
     p.isDragActive &&
@@ -79,19 +79,19 @@ export const Input = styled.input`
 export const Tip = styled.span`
   position: relative;
   z-index: 1;
-  font-size: ${p => p.theme.fontSizes.f16};
-  font-weight: ${p => p.theme.fontWeights.medium};
+  margin-bottom: 4px;
   color: rgb(
     ${p => (p.isDragReject ? p.theme.colors.white : p.theme.colors.dark)}
   );
-  margin-bottom: 4px;
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes.f16};
 `;
 
 export const Info = styled.span`
   position: relative;
   z-index: 1;
-  font-size: ${p => p.theme.fontSizes.f12};
   color: rgb(
     ${p => (p.isDragReject ? p.theme.colors.white : p.theme.colors.bombay)}
   );
+  font-size: ${p => p.theme.fontSizes.f12};
 `;

@@ -8,11 +8,11 @@ export const Content = styled(Box).attrs({
   alignSelf: "center",
   mt: [28, 0]
 })`
+  position: static;
   max-width: 896px;
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     position: relative;
   }
-  position: static;
 `;
 
 export const LogoWrapper = styled(Box).attrs({
@@ -41,10 +41,10 @@ export const ButtonWithIcon = styled(Button).attrs({
   styleName: "outlineBlue",
   fullHeight: true
 })`
-  background: none;
   font-size: ${p => p.theme.fontSizes.f14};
+  background: none;
   svg {
-    margin-right: 8px;
     max-height: 10.5px;
+    margin-right: 8px;
   }
 `;

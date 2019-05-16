@@ -2,12 +2,12 @@ import styled from "styled-components";
 import { Button } from "components";
 
 export const FacebookStyledButton = styled(Button)`
-  background-color: rgb(${p => p.theme.colors.facebookBlue});
-  padding: 12px;
-  min-height: 49px;
-  height: 100%;
-  color: rgb(${p => p.theme.colors.white});
   position: relative;
+  height: 100%;
+  min-height: 49px;
+  padding: 12px;
+  color: rgb(${p => p.theme.colors.white});
+  background-color: rgb(${p => p.theme.colors.facebookBlue});
   border: none;
 `;
 
@@ -21,8 +21,8 @@ export const FacebookIconWrapper = styled.div`
 export const LoadingIconWrapper = styled.div`
   svg {
     position: absolute;
-    left: 40px;
     top: 10px;
+    left: 40px;
   }
 `;
 

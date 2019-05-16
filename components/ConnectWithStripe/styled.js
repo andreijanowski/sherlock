@@ -21,21 +21,21 @@ export const ParagraphStyled = styled(Paragraph)`
 `;
 
 export const StripeLogo = styled.div`
-  background-image: url("/static/img/StripeSLogo.png");
   width: 20px;
   height: 22px;
+  background-image: url("/static/img/StripeSLogo.png");
 `;
 
 export const StripeButtonStyled = styled(Button)`
   display: flex;
-  font-weight: ${p => p.theme.fontWeights.regular};
-  height: 40px;
+  align-items: center;
   min-width: 225px;
-  background-color: rgb(${p => p.theme.colors.blue});
+  height: 40px;
   padding: 0 40px 0 20px;
   color: white;
+  font-weight: ${p => p.theme.fontWeights.regular};
+  background-color: rgb(${p => p.theme.colors.blue});
   border: none;
-  align-items: center;
   > span {
     padding-left: 10px;
   }

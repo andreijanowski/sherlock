@@ -10,9 +10,9 @@ export const DesciprtionWrapper = styled(Paragraph)`
 `;
 
 export const HelperTitle = styled.h2`
-  font-size: ${p => p.theme.fontSizes.f16};
-  font-weight: ${p => p.theme.fontWeights.semiBold};
   margin: 0 0 16px 0;
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f16};
   @media (min-width: ${p => p.theme.breakpoints[2]}) {
     font-size: ${p => p.theme.fontSizes.f24};
   }
@@ -26,33 +26,33 @@ export const InputContainer = styled.div`
 `;
 
 export const FieldsContainer = styled.div`
-  overflow-y: auto;
-  max-height: calc(100vh - 330px);
   position: relative;
   max-width: 570px;
+  max-height: calc(100vh - 330px);
+  overflow-y: auto;
 `;
 
 export const RemoveButton = styled.button.attrs({
   type: "button"
 })`
-  border: solid rgba(${p => p.theme.colors.dark}, 0.4);
-  outline: none;
-  border-radius: 100%;
   position: absolute;
+  top: 13px;
+  right: 15px;
   width: 30px;
   height: 30px;
   background: transparent;
+  border: solid rgba(${p => p.theme.colors.dark}, 0.4);
+  border-radius: 100%;
+  outline: none;
   cursor: pointer;
-  right: 15px;
-  top: 13px;
   &::after {
-    content: "";
-    background-color: rgba(${p => p.theme.colors.dark}, 0.4);
     position: absolute;
+    top: 11px;
+    left: 7px;
     width: 10px;
     height: 3px;
-    left: 7px;
-    top: 11px;
+    background-color: rgba(${p => p.theme.colors.dark}, 0.4);
+    content: "";
   }
   &:hover {
     border: solid rgba(${p => p.theme.colors.dark}, 1);
