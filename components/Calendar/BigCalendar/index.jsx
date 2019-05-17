@@ -1,6 +1,6 @@
 import { PureComponent } from "react";
 import BigCalendar from "react-big-calendar";
-import { func, arrayOf, shape, string } from "prop-types";
+import { func, shape, string } from "prop-types";
 import { CalendarEvent, CalendarToolbar } from "components";
 import moment from "moment-timezone";
 import CalendarStyles from "./calendarStyles";
@@ -45,6 +45,7 @@ class CustomBigCalendar extends PureComponent {
       t,
       lng,
       caterings,
+      addresses,
       currency,
       defaultView,
       timeZone,
@@ -67,7 +68,14 @@ class CustomBigCalendar extends PureComponent {
           }
           defaultView={defaultView}
           showMultiDayTimes={false}
-          events={parseCaterings(caterings, currency, defaultView, timeZone, t)}
+          events={parseCaterings({
+            caterings,
+            addresses,
+            currency,
+            defaultView,
+            timeZone,
+            t
+          })}
           startAccessor="start"
           endAccessor="end"
           step={60}
@@ -99,11 +107,13 @@ CustomBigCalendar.propTypes = {
   defaultView: string.isRequired,
   timeZone: string.isRequired,
   currency: string,
-  caterings: arrayOf(shape())
+  caterings: shape(),
+  addresses: shape()
 };
 
 CustomBigCalendar.defaultProps = {
   caterings: null,
+  addresses: null,
   currency: "EUR"
 };
 

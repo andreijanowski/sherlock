@@ -13,6 +13,7 @@ const CateringLayout = ({
   view,
   isAddActionHidden,
   business,
+  businessId,
   businesses,
   changeCurrentBusiness,
   children
@@ -29,11 +30,11 @@ const CateringLayout = ({
       <Box width={[1, 1 / 3]} pr={[0, 3]} pb={[1, 0]}>
         <Select
           value={{
-            value: business && business.id,
+            value: businessId,
             label:
-              (business && business.name) ||
+              (business && business.get("name")) ||
               t("app:manageProfile.unnamedBusiness"),
-            src: business && business.logo.url
+            src: business && business.getIn(["logo", "url"])
           }}
           withImage
           items={prepareBusinessesList(t, businesses)}
@@ -72,6 +73,7 @@ CateringLayout.propTypes = {
   view: shape().isRequired,
   children: node.isRequired,
   business: shape(),
+  businessId: string,
   isAddActionHidden: bool,
   changeCurrentBusiness: func.isRequired,
   businesses: arrayOf(shape())
@@ -80,6 +82,7 @@ CateringLayout.propTypes = {
 CateringLayout.defaultProps = {
   business: null,
   businesses: null,
+  businessId: "",
   isAddActionHidden: false
 };
 

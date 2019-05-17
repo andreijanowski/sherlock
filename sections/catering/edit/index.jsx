@@ -22,25 +22,25 @@ import { Form } from "../styled";
 const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
   <FinalForm
     initialValues={{
-      name: editedCatering.name,
-      date: editedCatering.date,
-      from: parseTime(editedCatering.from),
-      to: parseTime(editedCatering.to),
-      typeOfEvent: editedCatering.typeOfEvent,
-      outdoors: editedCatering.outdoors,
-      corporateEvent: editedCatering.corporateEvent,
-      companyName: editedCatering.companyName,
-      numberOfServings: editedCatering.numberOfServings,
-      specifications: editedCatering.specifications,
-      menu: editedCatering.menu,
-      chefAttendance: editedCatering.chefAttendance,
-      numberOfWaiters: editedCatering.numberOfWaiters,
-      cutlery: editedCatering.cutlery,
-      priceCents: normalizePrice(editedCatering.priceCents),
-      currency: currencies.find(c => c.value === editedCatering.currency)
+      name: editedCatering.get("name"),
+      date: editedCatering.get("date"),
+      from: parseTime(editedCatering.get("from")),
+      to: parseTime(editedCatering.get("to")),
+      typeOfEvent: editedCatering.get("typeOfEvent"),
+      outdoors: editedCatering.get("outdoors"),
+      corporateEvent: editedCatering.get("corporateEvent"),
+      companyName: editedCatering.get("companyName"),
+      numberOfServings: editedCatering.get("numberOfServings"),
+      specifications: editedCatering.get("specifications"),
+      menu: editedCatering.get("menu"),
+      chefAttendance: editedCatering.get("chefAttendance"),
+      numberOfWaiters: editedCatering.get("numberOfWaiters"),
+      cutlery: editedCatering.get("cutlery"),
+      priceCents: normalizePrice(editedCatering.get("priceCents")),
+      currency: currencies.find(c => c.value === editedCatering.get("currency"))
     }}
     onSubmit={v => {
-      handleFormSubmit(v, editedCatering.id);
+      handleFormSubmit(v, editedCatering.get("id"));
     }}
     render={({ handleSubmit }) => (
       <Form onSubmit={handleSubmit}>

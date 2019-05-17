@@ -32,7 +32,9 @@ class MonthPage extends PureComponent {
       t,
       lng,
       business,
+      businessId,
       businesses,
+      addresses,
       changeCurrentBusiness,
       caterings,
       setEditedCatering,
@@ -47,6 +49,7 @@ class MonthPage extends PureComponent {
           lng,
           view,
           business,
+          businessId,
           businesses,
           changeCurrentBusiness
         }}
@@ -56,10 +59,11 @@ class MonthPage extends PureComponent {
             t,
             lng,
             caterings,
+            addresses,
             currency,
             setEditedCatering,
             sendOffer,
-            timeZone: business && business.timezone
+            timeZone: business && business.get("timezone")
           }}
         />
       </CateringLayout>
@@ -75,23 +79,33 @@ MonthPage.propTypes = {
   business: shape(),
   changeCurrentBusiness: func.isRequired,
   businesses: arrayOf(shape()),
-  caterings: arrayOf(shape())
+  caterings: shape(),
+  addresses: shape(),
+  businessId: string
 };
 
 MonthPage.defaultProps = {
   business: null,
   businesses: null,
+  businessId: "",
+  addresses: null,
   caterings: null
 };
 
 export default requireAuth(true)(
   withNamespaces(namespaces)(
     connect(
-      state => ({
-        business: state.users.currentBusiness.data,
-        businesses: state.users.profileBusinesses.data,
-        caterings: state.caterings.data
-      }),
+      state => {
+        const businessData = state.getIn(["users", "currentBusiness", "data"]);
+        const business = businessData && businessData.get("businesses").first();
+        return {
+          business: business && business.get("attributes"),
+          businessId: business && business.get("id"),
+          businesses: state.getIn(["users", "profileBusinesses", "data"]),
+          caterings: state.getIn(["caterings", "data", "caterings"]),
+          addresses: state.getIn(["caterings", "data", "addresses"])
+        };
+      },
       {
         changeCurrentBusiness: setCurrentBusiness,
         setEditedCatering: setCateringForEditing,

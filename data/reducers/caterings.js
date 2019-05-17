@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import {
   POST_CATERING_SUCCESS,
   PATCH_CATERING_SUCCESS,
@@ -11,98 +12,86 @@ import {
   FETCH_BUSINESS_CATERINGS_FAIL
 } from "types/businesses";
 import { LOGOUT } from "types/auth";
-import build from "redux-object";
+import { Record, fromJS } from "immutable";
 
-const initialState = {
+const initialState = Record({
   data: [],
   isFetching: false,
   isFailed: false,
   isSucceeded: false,
   editedCatering: null
-};
+})();
 
 const reducer = (state = initialState, { type, payload, meta }) => {
   switch (type) {
     case FETCH_BUSINESS_CATERINGS_REQUEST: {
-      const newState = { ...state };
-      newState.isFetching = true;
-      newState.isFailed = false;
-      newState.isSucceeded = false;
-      return newState;
+      return state.merge(
+        Record({
+          isFetching: true,
+          isFailed: false,
+          isSucceeded: false
+        })()
+      );
     }
     case FETCH_BUSINESS_CATERINGS_SUCCESS: {
-      const newState = { ...state };
-      const caterings = build(payload.data, "caterings", null, {
-        ignoreLinks: true
-      });
-      newState.isFetching = false;
-      newState.isSucceeded = true;
+      state = state.merge(
+        Record({
+          isFetching: false,
+          isSucceeded: true
+        })()
+      );
       if (meta.page === 1) {
-        newState.data = caterings;
+        state = state.setIn(["data"], fromJS(payload.data));
       } else {
-        newState.data = newState.data.concat(caterings);
+        state = state.mergeIn(["data"], fromJS(payload.data));
       }
-      return newState;
+      return state;
     }
     case FETCH_BUSINESS_CATERINGS_FAIL: {
-      const newState = { ...state };
-      newState.isFetching = false;
-      newState.isFailed = true;
+      state = state.merge(
+        Record({
+          isFetching: false,
+          isFailed: true
+        })()
+      );
       if (meta.page === 1) {
-        newState.data = null;
+        state = state.merge(
+          Record({
+            data: null
+          })()
+        );
       }
-      return newState;
+      return state;
     }
 
     case POST_CATERING_SUCCESS: {
-      const newState = { ...state };
-      const catering = build(
-        payload.data,
-        "caterings",
-        payload.rawData.data.id,
-        {
-          ignoreLinks: true
-        }
+      return state.setIn(
+        ["data", "caterings", payload.rawData.data.id],
+        fromJS(payload.data.caterings[payload.rawData.data.id])
       );
-      newState.data = newState.data ? [...newState.data, catering] : [catering];
-      return newState;
     }
 
     case PATCH_CATERING_SUCCESS: {
-      const newState = { ...state };
-      const catering =
-        build(payload.data, "caterings", payload.rawData.data.id, {
-          ignoreLinks: true
-        }) || [];
-      const editedCateringIndex = newState.data.findIndex(
-        c => c.id === payload.rawData.data.id
+      return state.mergeIn(
+        ["data", "caterings", payload.rawData.data.id, "attributes"],
+        fromJS(payload.data.caterings[payload.rawData.data.id].attributes)
       );
-      newState.data[editedCateringIndex] = {
-        ...newState.data[editedCateringIndex],
-        ...catering
-      };
-      return newState;
     }
 
     case DELETE_CATERING_REQUEST: {
-      const newState = { ...state };
-      newState.data = newState.data.filter(c => c.id !== meta.id);
-      return newState;
+      return state.deleteIn(["data", "caterings", meta.id]);
     }
 
     case SET_EDIT_CATERING: {
-      return { ...state, editedCatering: payload.editedCatering };
+      return state.setIn(["editedCatering"], fromJS(payload.editedCatering));
     }
 
     case SEND_CATERING_OFFER_SUCCESS: {
       const { time, id } = meta;
-      const newStateData = [...state.data];
-      const editedCateringIndex = newStateData.findIndex(c => c.id === id);
-      newStateData[editedCateringIndex] = {
-        ...newStateData[editedCateringIndex],
-        offerSendAt: time
-      };
-      return { ...state, data: newStateData };
+      return state.setIn(
+        ["data", "caterings", id, "attributes", "offerSendAt"],
+        time
+      );
     }
 
     case LOGOUT: {
