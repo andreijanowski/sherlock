@@ -9,9 +9,9 @@
     "start": "NODE_ENV=production node server.js",
     "lint:js": "eslint --ext .js ./",
     "lint:jsx": "eslint --ext .jsx ./",
-    "lint": "yarn lint:js && yarn lint:jsx",
-    "test": "NODE_ENV=test jest",
-    "lint:stylelint": "stylelint './**/*.js' './**/*.jsx'"
+    "lint:stylelint": "stylelint './**/*.js' './**/*.jsx'",
+    "lint": "yarn lint:js && yarn lint:jsx && yarn lint:stylelint",
+    "test": "NODE_ENV=test jest"
   },
   "husky": {
     "hooks": {
