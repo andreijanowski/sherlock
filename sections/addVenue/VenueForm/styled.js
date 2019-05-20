@@ -4,15 +4,15 @@ import { Paragraph } from "components";
 
 export const SuccessMessageWrapper = styled(Paragraph)`
   max-width: 558px;
-  text-align: center;
   margin: 0 auto;
+  text-align: center;
   word-break: break-word;
 `;
 
 export const HelperTitle = styled.h2`
-  font-size: ${p => p.theme.fontSizes.f16};
-  font-weight: ${p => p.theme.fontWeights.semiBold};
   margin: 0 0 16px 0;
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f16};
   @media (min-width: ${p => p.theme.breakpoints[2]}) {
     font-size: ${p => p.theme.fontSizes.f24};
   }
@@ -33,10 +33,10 @@ export const Separator = styled(Box).attrs(({ size }) => ({
 `;
 
 export const FieldsContainer = styled.div`
-  overflow-y: auto;
-  max-height: calc(100vh - 330px);
   position: relative;
   max-width: 570px;
+  max-height: calc(100vh - 330px);
+  overflow-y: auto;
 `;
 
 export const CustomRadioButtonPlaceholder = styled.span`
@@ -46,7 +46,9 @@ export const CustomRadioButtonPlaceholder = styled.span`
 
 export const RadioButtonFieldContainer = styled(Flex).attrs({
   width: 0.25
-})``;
+})`
+  /* stylelint-disable-line no-empty-block */
+`;
 
 export const RadioButtonsContainer = styled(Flex).attrs({
   width: 1,

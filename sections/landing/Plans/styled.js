@@ -31,10 +31,10 @@ export const TextWrapper = styled(Flex).attrs({
 export const PromotionWrapper = styled(Box).attrs({
   p: 32
 })`
+  background-color: white;
   border: ${p => p.theme.borderWeights.tiny} solid
     rgb(${p => p.theme.colors.navyBlue});
   border-radius: ${p => p.theme.radius.default};
-  background-color: white;
 `;
 
 export const H2Styled = styled(H2)`

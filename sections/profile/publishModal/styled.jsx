@@ -14,7 +14,7 @@ export const Header = styled(Flex).attrs({
   alignItems: "center",
   flexWrap: "wrap"
 })`
-  /* stylelint-disable no-empty-block */
+  /* stylelint-disable-line no-empty-block */
 `;
 
 export const H2 = styled(RawH2)`
@@ -38,29 +38,29 @@ export const StepNumber = styled.div`
   position: absolute;
   top: -12px;
   padding: 0 8px;
-  font-size: ${p => p.theme.fontSizes.f14};
+  color: rgb(${p => p.theme.colors.blue});
   font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes.f14};
+  background-color: rgb(${p => p.theme.colors.white});
   border: 2px solid rgb(${p => p.theme.colors.blue});
   border-radius: ${p => p.theme.radius.default};
-  color: rgb(${p => p.theme.colors.blue});
-  background-color: rgb(${p => p.theme.colors.white});
 `;
 
 export const StepTip = styled.div`
+  color: rgba(${p => p.theme.colors.dark}, 0.64);
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 28px;
-  color: rgba(${p => p.theme.colors.dark}, 0.64);
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     font-size: ${p => p.theme.fontSizes.f24};
   }
 `;
 
 export const StepName = styled.a`
-  font-size: ${p => p.theme.fontSizes.f18};
+  color: rgb(${p => p.theme.colors.blue});
   font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f18};
   line-height: 32px;
   text-decoration: none;
-  color: rgb(${p => p.theme.colors.blue});
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     font-size: ${p => p.theme.fontSizes.f24};
   }
@@ -72,7 +72,6 @@ export const StepStatus = styled(Flex).attrs({
   alignItems: "center"
 })`
   height: 30px;
-  border-radius: 20px;
   color: ${p =>
     p.isFilled || !p.isValid
       ? `rgb(${p.theme.colors.white})`
@@ -80,6 +79,7 @@ export const StepStatus = styled(Flex).attrs({
   background-color: rgb(
     ${p => (p.isFilled ? p.theme.colors.blue : p.theme.colors.white)}
   );
+  border-radius: 20px;
   ${p => !p.isValid && `background-color: rgb(${p.theme.colors.ruby});`}
   ${p => !p.isFilled && `border: 3px solid rgba(${p.theme.colors.dark}, 0.08);`}
 

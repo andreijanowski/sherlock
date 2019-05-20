@@ -15,23 +15,23 @@ export const Wrapper = styled(Flex).attrs({
 `;
 
 export const RightBox = styled(Flex)`
-  background-color: white;
   position: relative;
+  background-color: white;
 
   @media (min-width: ${p => p.theme.breakpoints[1]}) {
     min-height: 100vh;
     &::after {
-      content: "";
       position: absolute;
-      width: 130%;
-      left: -20%;
       top: -30%;
+      left: -20%;
+      z-index: -1;
+      width: 130%;
       height: 160%;
       background-color: white;
-      z-index: -1;
-      border-bottom-left-radius: 100%;
       border-top-left-radius: 100%;
+      border-bottom-left-radius: 100%;
       box-shadow: -30px 0px 60px 0px rgba(0, 0, 0, 0.1);
+      content: "";
     }
   }
 `;
@@ -64,10 +64,10 @@ export const ParagraphStyled = styled(Paragraph)`
 export const SherlockMark = styled.div`
   display: none;
   @media (min-width: ${p => p.theme.breakpoints[1]}) {
-    display: block;
     position: absolute;
-    margin: 0;
     top: 80px;
+    display: block;
+    margin: 0;
   }
 `;
 
@@ -86,16 +86,16 @@ export const LogoMobileWrapper = styled.div`
 
 export const BackToLandingPage = styled.a`
   position: absolute;
-  left: 0;
   top: 9px;
+  left: 0;
   display: flex;
-  width: 30px;
-  height: 30px;
-  border: 2px solid rgba(${p => p.theme.colors.dark}, 0.4);
-  color: rgb(${p => p.theme.colors.dark});
-  border-radius: 100%;
   align-items: center;
   justify-content: center;
+  width: 30px;
+  height: 30px;
+  color: rgb(${p => p.theme.colors.dark});
+  border: 2px solid rgba(${p => p.theme.colors.dark}, 0.4);
+  border-radius: 100%;
   &:hover {
     border: 2px solid rgba(${p => p.theme.colors.dark}, 1);
   }
@@ -103,8 +103,8 @@ export const BackToLandingPage = styled.a`
   @media (min-width: ${p => p.theme.breakpoints[1]}) {
     position: static;
     margin-top: 0;
-    margin-left: 0;
     margin-bottom: 36px;
+    margin-left: 0;
   }
   @media (min-width: ${p => p.theme.breakpoints[2]}) {
     width: 20px;

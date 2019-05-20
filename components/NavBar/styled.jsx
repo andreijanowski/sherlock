@@ -7,10 +7,10 @@ export const Wrapper = styled(Flex).attrs({
   alignItems: "center",
   py: 4
 })`
-  min-height: 100vh;
-  background-color: rgb(${p => p.theme.colors.white});
   position: relative;
   z-index: 100;
+  min-height: 100vh;
+  background-color: rgb(${p => p.theme.colors.white});
 `;
 
 export const Logo = styled.img.attrs({
@@ -37,9 +37,9 @@ export const Item = styled(Flex).attrs({
   width: 40,
   mb: 3
 })`
+  position: relative;
   height: 40px;
   border-radius: 20px;
-  position: relative;
 
   > nav {
     display: none;
@@ -48,8 +48,8 @@ export const Item = styled(Flex).attrs({
   path,
   circle,
   rect {
-    stroke: rgb(${p => (p.active ? p.theme.colors.blue : p.theme.colors.dark)});
     fill: rgb(${p => (p.active ? p.theme.colors.blue : p.theme.colors.dark)});
+    stroke: rgb(${p => (p.active ? p.theme.colors.blue : p.theme.colors.dark)});
   }
 
   &:hover {
@@ -78,13 +78,13 @@ export const Icon = styled(Flex).attrs({
   alignItems: "center",
   justifyContent: "center"
 })`
-  height: 40px;
-  border-radius: 20px;
-  z-index: 3;
   position: absolute;
-  cursor: pointer;
   top: 0;
   left: 0;
+  z-index: 3;
+  height: 40px;
+  border-radius: 20px;
+  cursor: pointer;
   ${p => p.inactive && "opacity: 0.5;"}
 `;
 
@@ -95,15 +95,15 @@ export const SubitemsWrapper = styled(Flex).attrs({ pl: 3, as: "nav" })`
   ${p => p.top !== undefined && `top: ${p.top}px;`}
 
   &:after {
-    z-index: 2;
-    content: "";
-    width: 40px;
-    height: 40px;
     position: absolute;
     top: ${p =>
       p.arrowTop !== undefined ? `${p.arrowTop}px` : "calc(50% - 20px)"};
-    transform: rotate(45deg);
     left: -20px;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    transform: rotate(45deg);
+    content: "";
   }
 `;
 
@@ -112,30 +112,30 @@ export const Subitems = styled(Flex).attrs({
   p: 2
 })`
   position: relative;
-  border-radius: ${p => p.theme.radius.default};
   background-color: rgb(${p => p.theme.colors.dark});
+  border-radius: ${p => p.theme.radius.default};
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.dark}, 0.48);
 
   &:after {
-    content: "";
+    position: absolute;
+    top: ${p =>
+      p.arrowTop !== undefined ? `${p.arrowTop}px` : "calc(50% - 6px)"};
+    left: -6px;
     width: 12px;
     height: 12px;
     background-color: rgb(${p => p.theme.colors.dark});
     box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.dark}, 0.48);
-    position: absolute;
-    top: ${p =>
-      p.arrowTop !== undefined ? `${p.arrowTop}px` : "calc(50% - 6px)"};
     transform: rotate(45deg);
-    left: -6px;
+    content: "";
   }
 `;
 
 export const Subitem = styled(Box).attrs({ as: "a", p: 3 })`
   color: rgb(${p => p.theme.colors.white});
-  border-radius: ${p => p.theme.radius.default};
-  cursor: pointer;
   white-space: nowrap;
   text-decoration: none;
+  border-radius: ${p => p.theme.radius.default};
+  cursor: pointer;
 
   &:hover {
     background-color: rgb(${p => p.theme.colors.brightGray});

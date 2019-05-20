@@ -1,8 +1,10 @@
 ## Setup
 
-# Development mode
+`yarn` to install depedencies
 
-To start development mode, type `yarn dev` or `npm run dev`.
+### Development mode
+
+To start development mode, type `yarn dev`.
 
 It triggers npm script:
 `"dev": "nodemon server.js"`
@@ -11,9 +13,9 @@ It triggers npm script:
 
 App is now running on `http://localhost:3000`.
 
-# Production build
+### Production build
 
-`yarn build` and `yarn start` or `npm run build` and `npm run start` to build production build and start server. App is now running on `http://localhost:3000`.
+`yarn build` and `yarn start` to build production build and start server. App is now running on `http://localhost:3000`.
 
 `yarn build` triggers npm script:
 `"build": "next build",` builds production build

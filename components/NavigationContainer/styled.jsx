@@ -10,8 +10,8 @@ export const Wrapper = styled(Flex)`
 
 export const MobileWrapper = styled(Flex)`
   position: fixed;
-  width: 100vw;
   z-index: 10;
+  width: 100vw;
   height: 60px;
   background-color: rgb(${p => p.theme.colors.dark});
   @media (min-width: ${p => p.theme.breakpoints[0]}) {

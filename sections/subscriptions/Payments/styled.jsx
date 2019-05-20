@@ -20,11 +20,11 @@ export const CardWrapper = styled(Flex).attrs({
   p: 2,
   mb: 2
 })`
-  border-radius: ${p => p.theme.radius.default};
   color: rgb(${p => (p.selected ? p.theme.colors.white : p.theme.colors.blue)});
   background-color: rgba(
     ${p => `${p.theme.colors.blue}, ${p.selected ? 1 : 0.1}`}
   );
+  border-radius: ${p => p.theme.radius.default};
   ${p =>
     !p.disabled &&
     `
@@ -38,11 +38,11 @@ export const CardWrapper = styled(Flex).attrs({
 `;
 
 export const Price = styled.div`
+  margin-bottom: 16px;
   color: rgb(${p => p.theme.colors.dark});
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f36};
   line-height: 1.333;
-  margin-bottom: 16px;
   text-align: center;
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     text-align: start;
@@ -60,8 +60,8 @@ export const Container = styled(Flex).attrs({
 `;
 
 export const Line = styled.div`
+  width: calc(100% + 64px);
   height: 1px;
   margin-left: -32px;
-  width: calc(100% + 64px);
   background-color: rgb(${p => p.theme.colors.linkWaterLight});
 `;

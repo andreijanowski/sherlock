@@ -9,9 +9,9 @@
     "start": "NODE_ENV=production node server.js",
     "lint:js": "eslint --ext .js ./",
     "lint:jsx": "eslint --ext .jsx ./",
-    "lint": "yarn lint:js && yarn lint:jsx",
-    "test": "NODE_ENV=test jest",
-    "lint:stylelint": "stylelint './**/*.js' './**/*.jsx'"
+    "lint:stylelint": "stylelint './**/*.js' './**/*.jsx'",
+    "lint": "yarn lint:js && yarn lint:jsx && yarn lint:stylelint",
+    "test": "NODE_ENV=test jest"
   },
   "husky": {
     "hooks": {
@@ -88,6 +88,7 @@
     "styled-components": "^4.0.2",
     "styled-normalize": "^8.0.1",
     "stylelint": "^9.10.1",
+    "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-recommended": "^2.1.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-order": "^2.1.0",

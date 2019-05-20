@@ -15,11 +15,13 @@ export const Form = styled(Flex).attrs({
 export const Actions = styled(Flex).attrs({
   width: 96,
   mb: 3
-})``;
+})`
+  /* stylelint-disable-line no-empty-block */
+`;
 
 export const Action = styled.span`
-  font-size: ${p => p.theme.fontSizes.f14};
   color: rgb(${p => p.theme.colors.blue});
+  font-size: ${p => p.theme.fontSizes.f14};
   cursor: pointer;
 `;
 

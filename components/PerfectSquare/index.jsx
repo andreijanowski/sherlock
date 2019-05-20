@@ -4,8 +4,8 @@ import { Flex } from "@rebass/grid";
 import { node } from "prop-types";
 
 const Square = styled(Flex)`
-  height: ${p => p.height}px;
   position: relative;
+  height: ${p => p.height}px;
 `;
 
 class PerfectSquare extends PureComponent {

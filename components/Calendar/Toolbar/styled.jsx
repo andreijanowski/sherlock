@@ -5,10 +5,10 @@ export const Period = styled(Flex).attrs({
   justifyContent: "space-between",
   alignItems: "center"
 })`
-  line-height: 28px;
   padding: 16px;
-  font-size: ${p => p.theme.fontSizes.f18};
   color: rgb(${p => p.theme.colors.dark});
+  font-size: ${p => p.theme.fontSizes.f18};
+  line-height: 28px;
 `;
 
 export const NavigationItem = styled.div`
