@@ -40,7 +40,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       if (meta.page === 1) {
         state = state.setIn(["data"], fromJS(payload.data));
       } else {
-        state = state.mergeIn(["data"], fromJS(payload.data));
+        state = state.mergeIn(
+          ["data", "deliveries"],
+          fromJS(payload.data.deliveries)
+        );
       }
       return state;
     }
@@ -63,7 +66,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
 
     case POST_DELIVERY_SUCCESS: {
       if (state.getIn(["data"]) && state.getIn(["data"]).size) {
-        state = state.mergeIn(["data"], fromJS(payload.data));
+        state = state.mergeIn(
+          ["data", "deliveries"],
+          fromJS(payload.data.deliveries)
+        );
       } else {
         state = state.setIn(["data"], fromJS(payload.data));
       }

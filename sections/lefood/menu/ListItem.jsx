@@ -4,34 +4,40 @@ import { func, shape } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Dish, Name, Description, Price, Image } from "./styled";
 
-const ListItem = ({ item, removeDish }) => (
-  <Dish>
-    <Flex alignItems="center" width="calc(100% - 150px)">
-      <Image
-        src={
-          item.pictures &&
-          item.pictures.length &&
-          (item.pictures[0].photo.tablet.url || item.pictures[0].photo.url)
-        }
-      />
-      <Flex flexDirection="column" width="calc(100% - 80px)">
-        <Name>{item.name}</Name>
-        <Description>{item.description}</Description>
+const ListItem = ({ item, removeDish }) => {
+  const pictures = item.getIn(["relationships", "pictures", "data"]);
+  const picture = pictures && pictures.first();
+  const imageUrl =
+    picture &&
+    (picture.getIn(["attributes", "photo", "tablet", "url"]) ||
+      picture.getIn(["attributes", "photo", "url"]));
+  return (
+    <Dish>
+      <Flex alignItems="center" width="calc(100% - 150px)">
+        <Image src={imageUrl} />
+        <Flex flexDirection="column" width="calc(100% - 80px)">
+          <Name>{item.getIn(["attributes", "name"])}</Name>
+          <Description>{item.getIn(["attributes", "description"])}</Description>
+        </Flex>
       </Flex>
-    </Flex>
-    <Flex alignItems="center">
-      <Price>
-        {(item.pricePerItemCents / 100).toFixed(2)}
-        {item.currency}
-      </Price>
-      <Button styleName="withImage" red onClick={() => removeDish(item.id)}>
-        <ButtonWithImageIconWrapper>
-          <FontAwesomeIcon icon={["fa", "times"]} />
-        </ButtonWithImageIconWrapper>
-      </Button>
-    </Flex>
-  </Dish>
-);
+      <Flex alignItems="center">
+        <Price>
+          {(item.getIn(["attributes", "pricePerItemCents"]) / 100).toFixed(2)}
+          {item.getIn(["attributes", "currency"])}
+        </Price>
+        <Button
+          styleName="withImage"
+          red
+          onClick={() => removeDish(item.get("id"))}
+        >
+          <ButtonWithImageIconWrapper>
+            <FontAwesomeIcon icon={["fa", "times"]} />
+          </ButtonWithImageIconWrapper>
+        </Button>
+      </Flex>
+    </Dish>
+  );
+};
 
 ListItem.propTypes = {
   item: shape().isRequired,

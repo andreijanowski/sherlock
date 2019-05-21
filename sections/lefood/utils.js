@@ -85,13 +85,35 @@ export const calcPendingOrders = orders =>
       ).size
     : 0;
 
-export const mergeOrderData = (id, orders, elements) => {
-  const order = orders.find(o => o.get("id") === id);
-  if (order && order.getIn(["relationships", "elements", "data"]) && elements) {
-    const orderElements = order
-      .getIn(["relationships", "elements", "data"])
-      .map(e => elements.get(e.get("id")));
-    return order.setIn(["relationships", "elements", "data"], orderElements);
-  }
-  return order;
-};
+export const mergeOrdersData = (orders, elements) =>
+  orders
+    ? orders.map(order => {
+        const orderElements = order.getIn([
+          "relationships",
+          "elements",
+          "data"
+        ]);
+        if (orderElements) {
+          return order.setIn(
+            ["relationships", "elements", "data"],
+            orderElements.map(e => elements.get(e.get("id")))
+          );
+        }
+        return order;
+      })
+    : orders;
+
+export const mergeDishesData = (dishes, pictures) =>
+  dishes
+    ? dishes.map(dish => {
+        const dishPictures = dish.getIn(["relationships", "pictures", "data"]);
+        console.log(dishPictures, JSON.stringify(dishPictures));
+        if (dishPictures && pictures) {
+          return dish.setIn(
+            ["relationships", "pictures", "data"],
+            dishPictures.map(e => (e ? pictures.get(e.get("id")) : e))
+          );
+        }
+        return dish;
+      })
+    : dishes;

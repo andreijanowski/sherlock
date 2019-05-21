@@ -9,7 +9,7 @@ import { postDish, deleteDish } from "actions/dishes";
 import { postPicture } from "actions/pictures";
 import { patchBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/app";
-import { calcPendingOrders } from "sections/lefood/utils";
+import { calcPendingOrders, mergeDishesData } from "sections/lefood/utils";
 import { convertToCents } from "utils/price";
 
 const namespaces = ["lefood", "app", "forms"];
@@ -134,18 +134,17 @@ export default requireAuth(true)(
       state => {
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
         const business = businessData && businessData.get("businesses").first();
+        const dishes = state.getIn(["dishes", "data", "dishes"]);
+        const pictures = state.getIn(["dishes", "data", "pictures"]);
+        const deliveries = state.getIn(["deliveries", "data", "deliveries"]);
         return {
           loading:
             (!state.getIn(["dishes", "isFailed"]) &&
               !state.getIn(["dishes", "isSucceeded"])) ||
             state.getIn(["dishes", "isFetching"]),
-          dishes: state.getIn(["dishes", "data", "dishes"]),
-          dishesLength:
-            state.getIn(["dishes", "data", "dishes"]) &&
-            state.getIn(["dishes", "data", "dishes"]).size,
-          deliveriesLength:
-            state.getIn(["deliveries", "data", "deliveries"]) &&
-            state.getIn(["deliveries", "data", "deliveries"]).size,
+          dishes: mergeDishesData(dishes, pictures),
+          dishesLength: dishes && dishes.size,
+          deliveriesLength: deliveries && deliveries.size,
           business: business && business.get("attributes"),
           businessId: business && business.get("id"),
           businessOrderPeriodsLength:

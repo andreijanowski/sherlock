@@ -1,7 +1,6 @@
 import { func, shape, arrayOf, bool, string } from "prop-types";
 import { DragDropContext } from "react-beautiful-dnd";
 import { LoadingIndicator } from "components";
-import { mergeOrderData } from "sections/lefood/utils";
 import Column from "./Column";
 import { ColumnsWrapper } from "./styled";
 import RejectModal from "./RejectModal";
@@ -12,7 +11,6 @@ const Orders = ({
   draggedOrderState,
   updateOrder,
   orders,
-  ordersElements,
   columns,
   loading,
   currency,
@@ -29,7 +27,7 @@ const Orders = ({
       <ColumnsWrapper>
         {Object.values(columns).map(column => {
           const columnOrders = column.orderIds
-            .map(id => mergeOrderData(id, orders, ordersElements))
+            .map(id => orders.get(id))
             .filter(o => !!o);
           return (
             <Column
@@ -75,15 +73,13 @@ Orders.propTypes = {
   setRejectModalVisibility: func.isRequired,
   pendingRejectionOrderId: string,
   handleRejectionSubmit: func.isRequired,
-  toggleOrderDetails: func.isRequired,
-  ordersElements: shape()
+  toggleOrderDetails: func.isRequired
 };
 
 Orders.defaultProps = {
   draggedOrderState: null,
   currency: "",
   pendingRejectionOrderId: "",
-  ordersElements: {},
   orders: null
 };
 

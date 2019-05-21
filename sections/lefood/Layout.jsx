@@ -478,7 +478,7 @@ class LefoodLayout extends PureComponent {
                                     allowPickup:
                                       business && !business.get("allowPickup")
                                   }),
-                                value: business && !business.get("allowPickup")
+                                value: business && business.get("allowPickup")
                               }}
                             />
                           </Box>

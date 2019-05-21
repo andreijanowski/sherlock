@@ -8,7 +8,7 @@ import {
   calcPendingOrders,
   parseOrders,
   columns as columnsNames,
-  mergeOrderData
+  mergeOrdersData
 } from "sections/lefood/utils";
 import { connect } from "react-redux";
 import { patchOrder, patchOrderReject } from "actions/orders";
@@ -176,7 +176,6 @@ class OrdersPage extends PureComponent {
       t,
       lng,
       orders,
-      ordersElements,
       loading,
       updateBusiness,
       dishesLength,
@@ -195,9 +194,7 @@ class OrdersPage extends PureComponent {
     } = this.state;
 
     const orderDetails =
-      orderDetailsId && orders
-        ? mergeOrderData(orderDetailsId, orders, ordersElements)
-        : null;
+      orderDetailsId && orders ? orders.get(orderDetailsId) : null;
 
     return (
       <>
@@ -235,7 +232,6 @@ class OrdersPage extends PureComponent {
               pendingRejectionOrderId,
               draggedOrderState,
               orders,
-              ordersElements,
               columns,
               loading,
               currency: business && business.get("stripeCurrency"),
@@ -272,7 +268,6 @@ OrdersPage.propTypes = {
   dishesLength: number.isRequired,
   deliveriesLength: number.isRequired,
   businesses: arrayOf(shape()),
-  ordersElements: shape(),
   businessId: string,
   businessOrderPeriodsLength: number,
   changeCurrentBusiness: func.isRequired
@@ -282,7 +277,6 @@ OrdersPage.defaultProps = {
   business: {},
   businessId: "",
   businesses: null,
-  ordersElements: {},
   businessOrderPeriodsLength: 0,
   orders: null
 };
@@ -293,13 +287,15 @@ export default requireAuth(true)(
       state => {
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
         const business = businessData && businessData.get("businesses").first();
+        const orders = state.getIn(["orders", "data", "orders"]);
+        const elements = state.getIn(["orders", "data", "elements"]);
+
         return {
           loading:
             (!state.getIn(["orders", "isFailed"]) &&
               !state.getIn(["orders", "isSucceeded"])) ||
             state.getIn(["orders", "isFetching"]),
-          orders: state.getIn(["orders", "data", "orders"]),
-          ordersElements: state.getIn(["orders", "data", "elements"]),
+          orders: mergeOrdersData(orders, elements),
           dishesLength:
             state.getIn(["dishes", "data", "dishes"]) &&
             state.getIn(["dishes", "data", "dishes"]).size,

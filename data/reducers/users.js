@@ -336,48 +336,32 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     }
 
     case POST_ORDER_PERIOD_SUCCESS: {
-      const orderPeriod =
-        build(payload.data, "orderPeriods", payload.rawData.data.id, {
-          ignoreLinks: true
-        }) || [];
-      return state.mergeIn(
-        ["currentBusiness", "data", "orderPeriods"],
-        fromJS(orderPeriod)
+      return state.setIn(
+        ["currentBusiness", "data", "orderPeriods", payload.rawData.data.id],
+        fromJS(payload.data.orderPeriods[payload.rawData.data.id])
       );
     }
 
     case PATCH_ORDER_PERIOD_SUCCESS: {
-      // const newState = { ...state };
-      const orderPeriod =
-        build(payload.data, "orderPeriods", payload.rawData.data.id, {
-          ignoreLinks: true
-        }) || [];
-      // const editedOrderPeriodIndex = newState.currentBusiness.data.orderPeriods.findIndex(
-      //   p => p.id === payload.rawData.data.id
-      // );
-      // newState.currentBusiness.data.orderPeriods[
-      //   editedOrderPeriodIndex
-      // ] = orderPeriod;
-      // return newState;
       return state.mergeIn(
-        ["currentBusiness", "data", "orderPeriods"],
-        fromJS(orderPeriod)
+        [
+          "currentBusiness",
+          "data",
+          "orderPeriods",
+          payload.rawData.data.id,
+          "attributes"
+        ],
+        fromJS(payload.data.orderPeriods[payload.rawData.data.id].attributes)
       );
     }
 
     case DELETE_ORDER_PERIOD_REQUEST: {
-      // const newState = { ...state };
-      // newState.currentBusiness.data = {
-      //   ...newState.currentBusiness.data,
-      //   orderPeriods: newState.currentBusiness.data.orderPeriods.filter(
-      //     p => p.id !== meta.id
-      //   )
-      // };
-      // return newState;
-      return state.deleteIn(
-        ["currentBusiness", "data", "orderPeriods"],
+      return state.deleteIn([
+        "currentBusiness",
+        "data",
+        "orderPeriods",
         meta.id
-      );
+      ]);
     }
 
     case FETCH_PROFILE_CARDS_REQUEST: {

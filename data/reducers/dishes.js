@@ -38,7 +38,11 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       if (meta.page === 1) {
         state = state.setIn(["data"], fromJS(payload.data));
       } else {
-        state = state.mergeIn(["data"], fromJS(payload.data));
+        state = state.mergeIn(["data", "dishes"], fromJS(payload.data.dishes));
+        state = state.mergeIn(
+          ["data", "pictures"],
+          fromJS(payload.data.pictures)
+        );
       }
       return state;
     }
@@ -61,7 +65,11 @@ const reducer = (state = initialState, { type, payload, meta }) => {
 
     case POST_DISH_SUCCESS: {
       if (state.getIn(["data"]) && state.getIn(["data"]).size) {
-        state = state.mergeIn(["data"], fromJS(payload.data));
+        state = state.mergeIn(["data", "dishes"], fromJS(payload.data.dishes));
+        state = state.mergeIn(
+          ["data", "pictures"],
+          fromJS(payload.data.pictures)
+        );
       } else {
         state = state.setIn(["data"], fromJS(payload.data));
       }
@@ -74,8 +82,11 @@ const reducer = (state = initialState, { type, payload, meta }) => {
 
     case POST_PICTURE_SUCCESS: {
       if (payload.rawData.data.attributes.parentResource === "dish") {
-        state = state.mergeIn(["data"], fromJS(payload.data));
         state = state.mergeIn(
+          ["data", "pictures"],
+          fromJS(payload.data.pictures)
+        );
+        state = state.setIn(
           ["data", "dishes", meta.id, "relationships", "pictures", "data"],
           fromJS([{ type: "pictures", id: payload.rawData.data.id }])
         );

@@ -20,12 +20,13 @@ const categories = [
 
 const List = ({ dishes, removeDish, t }) =>
   categories.map(c => {
-    const items = dishes && dishes.filter(i => i.category === c);
-    return items && items.length ? (
+    const items =
+      dishes && dishes.filter(i => i.getIn(["attributes", "category"]) === c);
+    return items && items.size ? (
       <>
         <H3>{t(c)}</H3>
         <Flex flexDirection="column">
-          {items.map(item => (
+          {items.valueSeq().map(item => (
             <ListItem {...{ item, removeDish, key: item.id }} />
           ))}
         </Flex>
