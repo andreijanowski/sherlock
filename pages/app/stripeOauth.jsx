@@ -28,14 +28,14 @@ const Icon = styled(Flex).attrs({
   alignItems: "center",
   mt: 4
 })`
+  width: 100px;
+  height: 100px;
+  color: rgb(${p => p.theme.colors.white});
+  font-size: 70px;
   background-color: rgb(
     ${p => (p.isSucceeded ? p.theme.colors.green : p.theme.colors.ruby)}
   );
-  color: rgb(${p => p.theme.colors.white});
-  width: 100px;
-  height: 100px;
   border-radius: 50px;
-  font-size: 70px;
 `;
 
 class StripeOauth extends PureComponent {

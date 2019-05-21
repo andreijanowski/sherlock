@@ -15,20 +15,20 @@ export const LanguageSwitcherWrapper = styled(Flex).attrs({
   justifyContent: "space-between"
 })`
   position: relative;
+  width: 108px;
+  height: 40px;
+  color: rgba(${p => p.theme.colors.dark}, 0.64);
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f14};
+  line-height: ${p => p.theme.fontSizes.f24};
+  text-transform: capitalize;
   border: ${({ withBorder, theme }) =>
     withBorder
       ? `${theme.borderWeights.normal} solid
     rgba(${theme.colors.dark}, 0.16)`
       : "none"};
-  color: rgba(${p => p.theme.colors.dark}, 0.64);
   border-radius: ${p => p.theme.radius.default};
-  font-size: ${p => p.theme.fontSizes.f14};
-  line-height: ${p => p.theme.fontSizes.f24};
-  width: 108px;
-  height: 40px;
-  font-weight: ${p => p.theme.fontWeights.semiBold};
   outline: none;
-  text-transform: capitalize;
   cursor: pointer;
 `;
 
@@ -44,13 +44,13 @@ export const LanguageList = styled(Flex).attrs({
   flexDirection: "column"
 })`
   position: absolute;
+  left: -${p => p.theme.borderWeights.normal};
+  width: 108px;
+  color: rgba(${p => p.theme.colors.dark}, 0.64);
   background-color: rgb(${p => p.theme.colors.background});
   border: ${p => p.theme.borderWeights.normal} solid
     rgba(${p => p.theme.colors.dark}, 0.16);
-  color: rgba(${p => p.theme.colors.dark}, 0.64);
   border-radius: ${p => p.theme.radius.default};
-  width: 108px;
-  left: -${p => p.theme.borderWeights.normal};
   ${({ listPosition }) => listPosition === "top" && LanguageListTop}
   ${({ listPosition }) => listPosition === "bottom" && LanguageListBottom}
 `;
@@ -59,9 +59,9 @@ export const LanguageListItem = styled(Box).attrs({
   px: "16px",
   py: "8px"
 })`
+  width: 100%;
   font-size: ${p => p.theme.fontSizes.f14};
   line-height: ${p => p.theme.fontSizes.f24};
-  width: 100%;
   border-bottom: ${p => p.theme.borderWeights.normal} solid
     rgba(${p => p.theme.colors.dark}, 0.16);
   cursor: pointer;
@@ -73,8 +73,8 @@ export const LanguageListItem = styled(Box).attrs({
   }
 
   ${FlagIcon} {
-    vertical-align: middle;
     margin-right: 8px;
+    vertical-align: middle;
   }
 `;
 

@@ -43,15 +43,15 @@ export const MainIconWrapper = styled(Flex).attrs({
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     display: flex;
     height: 32px;
-    border-radius: 24px;
     background-color: rgb(${p => p.theme.colors.blue});
+    border-radius: 24px;
     box-shadow: 0 3px 8px 0 rgba(${p => p.theme.colors.blue}, 0.48);
 
     path,
     circle,
     rect {
-      stroke: rgb(${p => p.theme.colors.white});
       fill: rgb(${p => p.theme.colors.white});
+      stroke: rgb(${p => p.theme.colors.white});
     }
   }
   @media (min-width: ${p => p.theme.breakpoints[2]}) {
@@ -60,8 +60,8 @@ export const MainIconWrapper = styled(Flex).attrs({
 `;
 
 export const Header = styled(Flex).attrs({ as: "h1", ml: [0, 3], my: 0 })`
-  font-size: ${p => p.theme.fontSizes.f16};
   font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f16};
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     font-size: ${p => p.theme.fontSizes.f21};
   }
@@ -86,8 +86,8 @@ export const Icon = styled(Flex).attrs({
   path,
   circle,
   rect {
-    stroke: rgb(${p => (p.active ? p.theme.colors.blue : p.theme.colors.dark)});
     fill: rgb(${p => (p.active ? p.theme.colors.blue : p.theme.colors.dark)});
+    stroke: rgb(${p => (p.active ? p.theme.colors.blue : p.theme.colors.dark)});
   }
 
   &:hover {
@@ -97,8 +97,8 @@ export const Icon = styled(Flex).attrs({
     path,
     circle,
     rect {
-      stroke: rgb(${p => p.theme.colors.white});
       fill: rgb(${p => p.theme.colors.white});
+      stroke: rgb(${p => p.theme.colors.white});
     }
   }
 `;
@@ -114,10 +114,10 @@ export const Avatar = styled.div`
   width: 32px;
   height: 32px;
   margin-left: 4px;
+  background-color: rgb(${p => p.theme.colors.dark});
+  background-position: center;
+  background-size: cover;
   border-radius: 16px;
   cursor: pointer;
-  background-color: rgb(${p => p.theme.colors.dark});
   ${p => p.src && `background-image: url(${p.src});`}
-  background-size: cover;
-  background-position: center;
 `;

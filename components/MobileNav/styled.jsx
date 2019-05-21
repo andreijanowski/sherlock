@@ -4,8 +4,8 @@ import { Flex, Box } from "@rebass/grid";
 export const IconMain = css`
   stroke-opacity: 0.4;
   fill-opacity: 0.4;
-  stroke: rgb(${p => p.theme.colors.white});
   fill: rgb(${p => p.theme.colors.white});
+  stroke: rgb(${p => p.theme.colors.white});
 `;
 
 export const IconMainActive = css`
@@ -15,8 +15,8 @@ export const IconMainActive = css`
 `;
 
 export const IconSub = css`
-  stroke: rgb(${p => p.theme.colors.dark});
   fill: rgb(${p => p.theme.colors.dark});
+  stroke: rgb(${p => p.theme.colors.dark});
 `;
 
 export const NoFill = css`
@@ -43,10 +43,10 @@ export const ToggledMobileMenu = styled(Flex).attrs({
   top: 60px;
   left: -150%;
   ${p => p.isMobileNavOpen && "left: 0"};
-  transition: left 0.5s;
   width: 100vw;
   height: calc(100vh - 60px);
   background: rgb(${p => p.theme.colors.iceBlue});
+  transition: left 0.5s;
 `;
 
 export const MenuScrollContainer = styled(Box).attrs({
@@ -63,13 +63,12 @@ export const IconLabel = styled.span`
 export const SubMenuWrapper = styled(Box).attrs({
   p: 4
 })`
-  height: calc(100vh - 60px);
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
   left: -120%;
+  width: 100%;
+  height: calc(100vh - 60px);
   ${p => p.isSubmenuOpen && "left: 0"};
-  transition: left 0.5s;
   background: rgb(${p => p.theme.colors.iceBlue});
+  transition: left 0.5s;
 `;

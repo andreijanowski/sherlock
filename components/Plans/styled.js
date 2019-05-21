@@ -16,8 +16,8 @@ export const MainWrapper = styled(Flex).attrs({
   pb: 3
 })`
   position: relative;
-  border-radius: ${p => p.theme.radius.default};
   background: rgba(${p => p.theme.colors.dark}, 0.1);
+  border-radius: ${p => p.theme.radius.default};
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
 `;
 
@@ -33,39 +33,39 @@ export const NameWrapper = styled(Flex).attrs({
 `;
 
 export const Name = styled.div`
+  margin: 2px;
+  padding: 2px 8px;
+  color: rgb(${p => p.theme.colors[p.color]});
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes.f12};
+  line-height: 1.15;
+  background: rgb(${p => p.theme.colors.white});
   border-radius: ${p => p.theme.radius.default};
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.dark}, 0.08);
-  background: rgb(${p => p.theme.colors.white});
-  font-size: ${p => p.theme.fontSizes.f12};
-  font-weight: ${p => p.theme.fontWeights.bold};
-  line-height: 1.15;
-  padding: 2px 8px;
-  margin: 2px;
-  color: rgb(${p => p.theme.colors[p.color]});
 `;
 
 export const MostPopular = styled.div`
-  font-size: ${p => p.theme.fontSizes.f12};
-  font-weight: ${p => p.theme.fontWeights.bold};
-  line-height: 1.15;
-  padding: 2px 6px;
   margin: 2px;
+  padding: 2px 6px;
+  color: rgb(${p => p.theme.colors[p.color]});
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes.f12};
+  line-height: 1.15;
+  background: rgb(${p => p.theme.colors.white});
   border: ${p => p.theme.borderWeights.tiny} solid
     rgb(${p => p.theme.colors[p.color]});
   border-radius: ${p => p.theme.radius.default};
-  background: rgb(${p => p.theme.colors.white});
-  color: rgb(${p => p.theme.colors[p.color]});
 `;
 
 export const PriceWrapper = styled(Flex).attrs({
   flexDirection: "column",
   mb: 3
 })`
-  padding: 24px 16px 16px;
   position: relative;
+  padding: 24px 16px 16px;
+  background: rgb(${p => p.theme.colors.white});
   border-radius: ${p => p.theme.radius.default};
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
-  background: rgb(${p => p.theme.colors.white});
 `;
 
 export const PriceDescription = styled.div`
@@ -78,11 +78,11 @@ export const PriceDescription = styled.div`
 `;
 
 export const Price = styled.div`
+  margin-bottom: 40px;
   color: rgb(${p => p.theme.colors.dark});
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f36};
   line-height: 1.333;
-  margin-bottom: 40px;
   ${alignCenterMobile};
   small {
     font-size: ${p => p.theme.fontSizes.f16};
@@ -92,8 +92,8 @@ export const Price = styled.div`
 export const RegularPrice = styled(Price)`
   margin-bottom: 0;
   font-size: ${p => p.theme.fontSizes.f16};
-  text-decoration: line-through;
   line-height: 20px;
+  text-decoration: line-through;
 `;
 
 export const BetaPrice = styled(Price)`
@@ -102,53 +102,53 @@ export const BetaPrice = styled(Price)`
 
 export const BetaPriceText = styled.div`
   position: absolute;
-  color: rgb(${p => p.theme.colors.ruby});
   bottom: 70px;
+  color: rgb(${p => p.theme.colors.ruby});
   font-weight: ${p => p.theme.fontWeights.bold};
 `;
 
 export const Service = styled(Box).attrs({ mb: 1 })`
-  text-align: center;
-  font-size: ${p => p.theme.fontSizes.f16};
-  line-height: 1.5;
-  font-weight: ${p => (p.isHighlighted ? 700 : p.theme.fontWeights.medium)};
   color: ${p =>
     p.isHighlighted
       ? `rgb(${p.theme.colors.dark})`
       : `rgba(${p.theme.colors.dark}, ${p.isLighter ? 0.4 : 0.8})`};
+  font-weight: ${p => (p.isHighlighted ? 700 : p.theme.fontWeights.medium)};
+  font-size: ${p => p.theme.fontSizes.f16};
+  line-height: 1.5;
+  text-align: center;
   ${p => p.tooltipImage && "cursor:pointer;"}
 `;
 
 export const Badge = styled.span`
+  margin-right: 4px;
   padding: 2px 8px;
   color: rgb(${p => p.theme.colors[p.color]});
-  background: rgb(${p => p.theme.colors.white});
-  border-radius: ${p => p.theme.radius.default};
+  font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.f14};
   line-height: 1.15;
-  font-weight: ${p => p.theme.fontWeights.bold};
-  margin-right: 4px;
+  background: rgb(${p => p.theme.colors.white});
+  border-radius: ${p => p.theme.radius.default};
 `;
 
 export const Option = styled(Box)`
-  font-size: ${p => p.theme.fontSizes.f16};
-  line-height: 1.5;
-  font-weight: ${p => p.theme.fontWeights.medium};
   color: ${p =>
     p.dark
       ? `rgba(${p.theme.colors.dark}, 0.4)`
       : `rgb(${p.theme.colors.blue})`};
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes.f16};
+  line-height: 1.5;
 `;
 
 export const SwitchWrapper = styled(Box)`
-  border-radius: 13px;
-  padding: 2px;
   height: 26px;
+  padding: 2px;
   background: linear-gradient(
     to right,
     rgba(${p => p.theme.colors.dark}, 0.4),
     rgb(${p => p.theme.colors.blue})
   );
+  border-radius: 13px;
 `;
 
 export const Design = styled.img`

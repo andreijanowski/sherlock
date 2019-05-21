@@ -7,14 +7,14 @@ const Paragraph = styled(Box).attrs(p => ({
   mb: p.mb,
   mt: p.mt
 }))`
-  font-size: ${p => (p.app ? p.theme.fontSizes.f14 : p.theme.fontSizes.f16)};
-  font-weight: ${p =>
-    p.app ? p.theme.fontWeights.medium : p.theme.fontWeights.regular};
-  line-height: 1.5;
   color: rgba(
     ${p => (p.white ? p.theme.colors.white : p.theme.colors.dark)},
     ${p => (p.app ? 0.4 : 0.72)}
   );
+  font-weight: ${p =>
+    p.app ? p.theme.fontWeights.medium : p.theme.fontWeights.regular};
+  font-size: ${p => (p.app ? p.theme.fontSizes.f14 : p.theme.fontSizes.f16)};
+  line-height: 1.5;
   @media (min-width: ${p => p.theme.breakpoints[1]}) {
     font-size: ${p => p.theme.fontSizes.f21};
   }

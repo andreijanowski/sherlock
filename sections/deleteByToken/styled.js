@@ -9,8 +9,8 @@ export const ParagraphStyled = styled(Paragraph)`
 export const ToHome = styled(Paragraph)`
   margin-top: 8px;
   margin-bottom: 0;
-  cursor: pointer;
   text-align: center;
+  cursor: pointer;
 
   :hover {
     color: rgb(${p => p.theme.colors.dark});
