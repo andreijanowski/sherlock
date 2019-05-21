@@ -21,7 +21,7 @@ const categories = [
 const List = ({ dishes, removeDish, t }) =>
   categories.map(c => {
     const items = dishes && dishes.filter(i => i.category === c);
-    return items.length ? (
+    return items && items.length ? (
       <>
         <H3>{t(c)}</H3>
         <Flex flexDirection="column">
