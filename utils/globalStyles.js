@@ -65,7 +65,7 @@ export default createGlobalStyle`
     }
 
     body {
-        font-family: Inter UI;
+        font-family: Inter UI, sans-serif;
         background-color: rgb(${p => p.theme.colors.background});
     }
 
@@ -74,7 +74,7 @@ export default createGlobalStyle`
     }
 
     a {
-      text-decoration: none;
       color: rgb(${p => p.theme.colors.blue});
+      text-decoration: none;
     }
 `;

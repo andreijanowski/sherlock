@@ -262,7 +262,7 @@ class OrdersPage extends PureComponent {
 OrdersPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  orders: arrayOf(shape()).isRequired,
+  orders: arrayOf(shape()),
   business: shape(),
   loading: bool.isRequired,
   updateOrder: func.isRequired,
@@ -283,7 +283,8 @@ OrdersPage.defaultProps = {
   businessId: "",
   businesses: null,
   ordersElements: {},
-  businessOrderPeriodsLength: 0
+  businessOrderPeriodsLength: 0,
+  orders: null
 };
 
 export default requireAuth(true)(

@@ -13,8 +13,8 @@ export const Items = styled(Flex).attrs({
   flexDirection: "column",
   width: 1
 })`
-  font-size: ${p => p.theme.fontSizes.f16};
   font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes.f16};
 `;
 
 export const Item = styled(Flex).attrs({
@@ -24,10 +24,10 @@ export const Item = styled(Flex).attrs({
   as: "a"
 })`
   height: 56px;
-  border-bottom: 1px solid rgb(${p => p.theme.colors.background});
-  cursor: pointer;
   color: rgb(${p => (p.color ? p.theme.colors[p.color] : p.theme.colors.dark)});
   text-decoration: none;
+  border-bottom: 1px solid rgb(${p => p.theme.colors.background});
+  cursor: pointer;
 
   ${p =>
     p.isActive &&

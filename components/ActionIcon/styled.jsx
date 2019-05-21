@@ -3,34 +3,34 @@ import { Flex } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const red = css`
-  background-color: ${p => `rgba(${p.theme.colors.ruby}, 0.1)`};
   color: rgb(${p => p.theme.colors.ruby});
+  background-color: ${p => `rgba(${p.theme.colors.ruby}, 0.1)`};
 
   &:hover {
-    background-color: rgb(${p => p.theme.colors.ruby});
     color: rgb(${p => p.theme.colors.white});
+    background-color: rgb(${p => p.theme.colors.ruby});
   }
 `;
 
 const deletePicture = css`
-  height: 24px;
-  color: rgb(${p => p.theme.colors.ruby});
   position: absolute;
   top: 8px;
   right: 8px;
+  height: 24px;
+  color: rgb(${p => p.theme.colors.ruby});
   background-color: ${p => `rgb(${p.theme.colors.white})`};
   &:hover {
-    background-color: rgb(${p => p.theme.colors.ruby});
     color: rgb(${p => p.theme.colors.white});
+    background-color: rgb(${p => p.theme.colors.ruby});
   }
 `;
 
 const white = css`
-  background-color: ${p => `rgb(${p.theme.colors.white})`};
   color: ${p => `rgb(${p.theme.colors.blue})`};
+  background-color: ${p => `rgb(${p.theme.colors.white})`};
   &:hover {
-    background-color: rgb(${p => p.theme.colors.blue});
     color: rgb(${p => p.theme.colors.white});
+    background-color: rgb(${p => p.theme.colors.blue});
   }
 `;
 
@@ -40,15 +40,15 @@ export const IconWrapper = styled(Flex).attrs(p => ({
   justifyContent: "center",
   ml: p.deletePicture ? undefined : 2
 }))`
-  cursor: pointer;
   height: 40px;
-  background-color: ${p => `rgba(${p.theme.colors.green}, 0.1)`};
   color: rgb(${p => p.theme.colors.green});
+  background-color: ${p => `rgba(${p.theme.colors.green}, 0.1)`};
   border-radius: ${p => p.theme.radius.default};
+  cursor: pointer;
 
   &:hover {
-    background-color: rgb(${p => p.theme.colors.green});
     color: rgb(${p => p.theme.colors.white});
+    background-color: rgb(${p => p.theme.colors.green});
   }
 
   ${p => p.red && red};

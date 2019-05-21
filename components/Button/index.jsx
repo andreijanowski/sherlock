@@ -2,23 +2,23 @@ import styled, { css } from "styled-components";
 import { Flex } from "@rebass/grid";
 
 const login = css`
+  margin-left: 16px;
+  padding: 5px 13px;
+  color: rgba(${p => p.theme.colors.dark}, 0.64);
+  background: transparent;
   border: ${p => p.theme.borderWeights.normal} solid
     rgba(${p => p.theme.colors.dark}, 0.16);
-  color: rgba(${p => p.theme.colors.dark}, 0.64);
-  padding: 5px 13px;
-  margin-left: 16px;
-  background: transparent;
 `;
 
 const blue = css`
+  padding: 8px 20px;
+  color: rgb(${p => p.theme.colors.blue});
   background-color: rgba(${p => p.theme.colors.blue}, 0.1);
   border: none;
-  color: rgb(${p => p.theme.colors.blue});
-  padding: 8px 20px;
 
   &:hover:enabled {
-    background-color: rgba(${p => p.theme.colors.blue}, 1);
     color: rgb(${p => p.theme.colors.white});
+    background-color: rgba(${p => p.theme.colors.blue}, 1);
     box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.blue}, 0.48);
   }
 
@@ -33,11 +33,11 @@ const formBlue = css`
 `;
 
 const outlineBlue = css`
+  padding: 13px 16px;
+  color: rgb(${p => p.theme.colors.blue});
   background-color: white;
   border: ${p => p.theme.borderWeights.normal} solid
     rgba(${p => p.theme.colors.blue}, 0.1);
-  color: rgb(${p => p.theme.colors.blue});
-  padding: 13px 16px;
 
   &:hover:enabled {
     border: ${p => p.theme.borderWeights.normal} solid
@@ -47,10 +47,10 @@ const outlineBlue = css`
 `;
 
 const planButton = css`
-  border: none;
-  color: rgb(${p => p.theme.colors.white});
-  padding: 12px;
   width: 100%;
+  padding: 12px;
+  color: rgb(${p => p.theme.colors.white});
+  border: none;
 
   &:hover:enabled {
     box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.blue}, 0.48);
@@ -93,18 +93,18 @@ const limeade = css`
 `;
 
 const background = css`
-  background-color: rgb(${p => p.theme.colors.background});
   ${planButton};
   color: rgba(${p => p.theme.colors.dark}, 0.5);
+  background-color: rgb(${p => p.theme.colors.background});
 `;
 
 const newOrderButton = css`
-  border: none;
   padding: 12px;
-  font-size: 12px;
   font-weight: ${p => p.theme.fontWeights.bold};
-  text-transform: uppercase;
+  font-size: 12px;
   line-height: 16px;
+  text-transform: uppercase;
+  border: none;
 
   &:hover {
     color: rgb(${p => p.theme.colors.white});
@@ -113,8 +113,8 @@ const newOrderButton = css`
 
 const reject = css`
   ${newOrderButton}
-  background-color: rgba(${p => p.theme.colors.ruby}, 0.1);
   color: rgb(${p => p.theme.colors.ruby});
+  background-color: rgba(${p => p.theme.colors.ruby}, 0.1);
 
   &:hover {
     background-color: rgba(${p => p.theme.colors.ruby}, 1);
@@ -124,8 +124,8 @@ const reject = css`
 
 const accept = css`
   ${newOrderButton}
-  background-color: rgba(${p => p.theme.colors.greenHaze}, 0.1);
   color: rgb(${p => p.theme.colors.greenHaze});
+  background-color: rgba(${p => p.theme.colors.greenHaze}, 0.1);
 
   &:hover {
     background-color: rgba(${p => p.theme.colors.greenHaze}, 1);
@@ -134,28 +134,30 @@ const accept = css`
 `;
 const withImageActive = css`
   color: rgb(${p => p.theme.colors.white});
+  background-color: rgb(${p => p.theme.colors.blue});
   fill: rgb(${p => p.theme.colors.white});
   stroke: rgb(${p => p.theme.colors.white});
-  background-color: rgb(${p => p.theme.colors.blue});
   ${p => p.red && `background-color: rgb(${p.theme.colors.ruby});`}
   ${p => p.greenHaze && `background-color: rgb(${p.theme.colors.greenHaze});`}
 `;
 
 const withImage = css`
-  border: none;
   position: relative;
-  line-height: 24px;
-  box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 40px;
+  padding: 0;
+  color: rgb(${p => (p.red ? p.theme.colors.ruby : p.theme.colors.dark)});
+  font-weight: ${p => p.theme.fontWeights.regular};
+  line-height: 24px;
   background-color: ${p =>
     p.red
       ? `rgba(${p.theme.colors.ruby}, 0.1)`
       : `rgb(${p.theme.colors.white})`};
+  border: none;
   border-radius: ${p => p.theme.radius.default};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: rgb(${p => (p.red ? p.theme.colors.ruby : p.theme.colors.dark)});
+  box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
   fill: rgb(${p => (p.red ? p.theme.colors.ruby : p.theme.colors.dark)});
   stroke: rgb(${p => (p.red ? p.theme.colors.ruby : p.theme.colors.dark)});
   ${p =>
@@ -164,14 +166,9 @@ const withImage = css`
     color: rgb(${p.theme.colors.greenHaze});
     background-color:rgba(${p.theme.colors.greenHaze}, 0.1);
   `}
-  padding: 0;
-  font-weight: ${p => p.theme.fontWeights.regular};
 
   ${p => p.active && withImageActive}
 
-  stroke {
-    color: rgb(${p => (p.red ? p.theme.colors.ruby : p.theme.colors.dark)});
-  }
 
   &:hover {
     ${withImageActive}
@@ -187,13 +184,13 @@ const fullHeight = css`
 `;
 
 const Button = styled.button`
-  border-radius: ${p => p.theme.radius.default};
-  font-size: ${p => p.theme.fontSizes.f16};
-  font-weight: ${p => p.theme.fontWeights.medium};
-  line-height: 1.5;
-  cursor: pointer;
-  text-decoration: none;
   overflow: hidden;
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes.f16};
+  line-height: 1.5;
+  text-decoration: none;
+  border-radius: ${p => p.theme.radius.default};
+  cursor: pointer;
 
   ${p => p.width && `width: ${p.width};`};
 
@@ -225,21 +222,21 @@ export default Button;
 
 export const ButtonWithImageText = styled.div`
   height: 40px;
-  line-height: 40px;
   padding: 0 16px;
+  line-height: 40px;
   border-left: 1px solid rgb(${p => p.theme.colors.linkWater});
 
   input {
-    border: none;
-    background-color: transparent;
     color: inherit;
+    background-color: transparent;
+    border: none;
     outline: none;
   }
 `;
 
 export const ButtonWithImageIconWrapper = styled(Flex)`
-  width: 40px;
-  height: 40px;
   align-items: center;
   justify-content: center;
+  width: 40px;
+  height: 40px;
 `;

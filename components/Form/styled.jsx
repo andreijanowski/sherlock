@@ -6,13 +6,13 @@ import TextareaAutosize from "react-autosize-textarea";
 export const LABEL_ACTIVE_SCALE = 0.7;
 
 const InputStyles = css`
-  border-radius: ${p => p.theme.radius.small};
+  box-sizing: border-box;
+  width: 100%;
+  padding: ${p => p.padding || "16px"};
   border: 1px solid
     rgb(${p => (p.invalid ? p.theme.colors.ruby : p.theme.colors.snuff)});
-  padding: ${p => p.padding || "16px"};
-  box-sizing: border-box;
+  border-radius: ${p => p.theme.radius.small};
   ${p => !p.rows && "height: 54px;"}
-  width: 100%;
   resize: none;
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     ${p => !p.rows && "height: 60px;"}
@@ -40,8 +40,8 @@ const InputStyles = css`
     padding-bottom: 12px;
 
     && {
-      outline: 0;
       border-color: rgb(${p => p.theme.colors.blue});
+      outline: 0;
     }
 
     &::placeholder {
@@ -61,7 +61,7 @@ const InputStyles = css`
 const FilledInputStyles = css`
   padding-top: 27px;
   padding-bottom: 12px;
-
+  /* stylelint-disable no-descending-specificity */
   & + label {
     transform: translateY(-120%) scale(${LABEL_ACTIVE_SCALE});
   }
@@ -91,8 +91,11 @@ export const RawInput = styled.input`
 `;
 
 export const ToggleButton = styled.button`
-  appearance: none !important;
-  border-radius: ${p => p.theme.radius.small};
+  box-sizing: border-box;
+  width: 100%;
+  ${p => !p.rows && "height: 60px;"}
+  padding: 27px 16px 12px;
+  text-align: left;
   border: 1px solid
     rgb(
       ${p =>
@@ -103,12 +106,9 @@ export const ToggleButton = styled.button`
           ? p.theme.colors.ruby
           : p.theme.colors.snuff}
     );
-  padding: 27px 16px 12px;
-  box-sizing: border-box;
-  ${p => !p.rows && "height: 60px;"}
-  width: 100%;
+  border-radius: ${p => p.theme.radius.small};
+  appearance: none !important;
   resize: none;
-  text-align: left;
 
   .ExpandIcon {
     top: calc(50% - 9px);
@@ -119,9 +119,9 @@ export const ToggleButton = styled.button`
 export const DropdownLabel = styled.div`
   position: absolute;
   top: 50%;
+  color: rgb(${p => p.theme.colors.bombay});
   transform: translateY(-120%) scale(${LABEL_ACTIVE_SCALE});
   transform-origin: left;
-  color: rgb(${p => p.theme.colors.bombay});
   pointer-events: none;
 `;
 
@@ -137,11 +137,11 @@ export const RawTextarea = styled(({ smallLabel, ...p }) => (
 `;
 
 export const MultipleSelectInput = styled(RawInput)`
-  border: 0;
+  width: auto;
   height: 42px;
   margin-top: -8px;
   padding: 8px 16px;
-  width: auto;
+  border: 0;
 
   &::placeholder {
     color: rgb(${p => p.theme.colors.bombay});
@@ -162,9 +162,9 @@ export const MultipleSelectWrapper = styled(FieldWrapper).attrs({
   alignItems: "flex-start"
 })`
   position: static;
-  border-radius: ${p => p.theme.radius.small};
   border: 1px solid
     rgb(${p => (p.invalid ? p.theme.colors.ruby : p.theme.colors.snuff)});
+  border-radius: ${p => p.theme.radius.small};
   ${p => p.isActive && `border-color:rgb(${p.theme.colors.blue});`}
 `;
 
@@ -174,12 +174,12 @@ export const Tag = styled(Flex).attrs({
   mb: 2,
   alignItems: "center"
 })`
+  color: rgb(${p => p.theme.colors.dark});
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f14};
+  line-height: 42px;
   background-color: rgb(${p => p.theme.colors.background});
   border-radius: ${p => p.theme.radius.default};
-  color: rgb(${p => p.theme.colors.dark});
-  font-size: ${p => p.theme.fontSizes.f14};
-  font-weight: ${p => p.theme.fontWeights.semiBold};
-  line-height: 42px;
   ${p =>
     p.isInvalid &&
     `
@@ -192,7 +192,9 @@ export const Tag = styled(Flex).attrs({
   }
 `;
 
-export const TagIcon = styled(FontAwesomeIcon).attrs({
+export const TagIcon = styled(({ isInvalid, ...p }) => (
+  <FontAwesomeIcon {...p} />
+)).attrs({
   size: "sm",
   icon: ["fa", "times"]
 })`
@@ -218,10 +220,10 @@ export const Label = styled.label`
   position: absolute;
   top: ${p => (p.textarea ? "30px" : "50%")};
   margin-left: 16px;
+  color: rgb(${p => p.theme.colors.bombay});
+  font-size: ${p => p.theme.fontSizes.f14};
   transform: translateY(-50%);
   transform-origin: left;
-  font-size: ${p => p.theme.fontSizes.f14};
-  color: rgb(${p => p.theme.colors.bombay});
   pointer-events: none;
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     font-size: ${p => p.theme.fontSizes.f16};
@@ -233,21 +235,21 @@ export const Items = styled(Flex).attrs(p => ({
   mt: p.mt || -2,
   width: 1
 }))`
-  background-color: rgb(${p => p.theme.colors.white});
-  border-radius: ${p => p.theme.radius.small};
-  border: 1px solid rgb(${p => p.theme.colors.blue});
-  overflow: scroll;
   position: absolute;
-  max-height: 250px;
   z-index: 2;
+  max-height: 250px;
+  overflow: scroll;
+  background-color: rgb(${p => p.theme.colors.white});
+  border: 1px solid rgb(${p => p.theme.colors.blue});
+  border-radius: ${p => p.theme.radius.small};
 `;
 
 export const Item = styled(Box).attrs({
   px: 3,
   py: 2
 })`
-  cursor: pointer;
   color: rgb(${p => p.theme.colors.dark});
+  cursor: pointer;
   ${p => p.isActive && `background-color: rgb(${p.theme.colors.background});`}
   ${p =>
     p.isSelected && `background-color: rgb(${p.theme.colors.linkWaterLight});`}
@@ -282,8 +284,14 @@ export const CheckboxLabel = styled(Flex).attrs({
   width: 1,
   flexDirection: "column"
 })`
+  color: rgb(
+    ${p =>
+      p.disabled || !p.checked ? p.theme.colors.dark : p.theme.colors.blue}
+  );
+  font-weight: ${p =>
+    p.checked ? p.theme.fontWeights.semiBold : p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes.f12};
   text-align: center;
-  cursor: ${p => (p.disabled ? "not-allowed" : "pointer")};
   background-color: rgb(
     ${p =>
       p.disabled || p.checked
@@ -298,13 +306,7 @@ export const CheckboxLabel = styled(Flex).attrs({
           : p.theme.colors.blue}
     );
   border-radius: ${p => p.theme.radius.default};
-  color: rgb(
-    ${p =>
-      p.disabled || !p.checked ? p.theme.colors.dark : p.theme.colors.blue}
-  );
-  font-size: ${p => p.theme.fontSizes.f12};
-  font-weight: ${p =>
-    p.checked ? p.theme.fontWeights.semiBold : p.theme.fontWeights.medium};
+  cursor: ${p => (p.disabled ? "not-allowed" : "pointer")};
 
   ${p =>
     p.checked &&
@@ -320,14 +322,16 @@ export const CheckboxLabel = styled(Flex).attrs({
 
 export const Checkbox = styled.input.attrs({ type: "checkbox" })`
   position: absolute;
-  opacity: 0;
   width: 0;
   height: 0;
+  opacity: 0;
 `;
 
 export const CheckboxText = styled(Box).attrs(p => ({
   width: p.hasCloserText ? "calc(100% - 46px)" : "calc(100% - 64px)"
-}))``;
+}))`
+  /* stylelint-disable-line no-empty-block */
+`;
 
 export const FlagIcon = styled.img.attrs(({ code }) => ({
   src: `/static/flags/${code.toLowerCase()}.svg`
@@ -348,10 +352,10 @@ export const Checkmark = styled(Flex).attrs(p => ({
   mr: p.hasCloserText ? "8px" : 24
 }))`
   height: 40px;
+  color: rgb(${p => p.theme.colors.white});
   background-color: rgb(
     ${p => (p.isChecked ? p.theme.colors.blue : p.theme.colors.white)}
   );
-  color: rgb(${p => p.theme.colors.white});
   border-radius: ${p => p.theme.radius.small};
   ${p =>
     !p.isChecked &&
@@ -368,10 +372,10 @@ export const HiddenCheckboxInput = styled.input.attrs({
 
 export const TimekeeperWrapper = styled.div`
   position: absolute;
-  width: 260px;
   left: 0;
-  transform: translateY(${p => p.top}px);
   z-index: 2;
+  width: 260px;
+  transform: translateY(${p => p.top}px);
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     left: calc(50% - 130px);
   }
@@ -379,16 +383,16 @@ export const TimekeeperWrapper = styled.div`
 
 export const ActionIconWrapper = styled.div`
   position: absolute;
-  right: 10px;
   top: 10px;
+  right: 10px;
 `;
 
 export const DaypickerWrapper = styled.div`
   position: relative;
   .DayPicker {
     position: absolute;
-    right: 0;
     top: 70px;
+    right: 0;
     z-index: 2;
     background: rgb(${p => p.theme.colors.white});
     border: 1px solid rgb(${p => p.theme.colors.snuff});

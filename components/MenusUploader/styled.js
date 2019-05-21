@@ -10,14 +10,14 @@ export const FileIconWrapper = styled(Flex).attrs({
   rel: "noreferrer noopener"
 })`
   height: 60px;
-  background-color: rgb(${p => p.theme.colors.white});
   color: rgb(${p => p.theme.colors.blue});
+  background-color: rgb(${p => p.theme.colors.white});
   border-radius: ${p => p.theme.radius.default};
   cursor: pointer;
 
   &:hover {
-    background-color: rgb(${p => p.theme.colors.blue});
     color: rgb(${p => p.theme.colors.white});
+    background-color: rgb(${p => p.theme.colors.blue});
   }
 `;
 

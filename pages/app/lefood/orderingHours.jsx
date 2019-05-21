@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, arrayOf, shape, bool } from "prop-types";
+import { func, string, arrayOf, shape } from "prop-types";
 import LefoodLayout from "sections/lefood/Layout";
 import { Periods, parsePeriods, parsePeriod } from "components";
 import { connect } from "react-redux";
@@ -118,9 +118,8 @@ OrderingHoursPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   business: shape(),
-  loading: bool.isRequired,
-  orderingHours: arrayOf(shape()).isRequired,
-  orders: arrayOf(shape()).isRequired,
+  orderingHours: arrayOf(shape()),
+  orders: arrayOf(shape()),
   addOrderPeriod: func.isRequired,
   updateOrderPeriod: func.isRequired,
   removeOrderPeriod: func.isRequired,
@@ -131,7 +130,9 @@ OrderingHoursPage.propTypes = {
 
 OrderingHoursPage.defaultProps = {
   business: {},
-  businesses: null
+  businesses: null,
+  orderingHours: null,
+  orders: null
 };
 
 export default requireAuth(true)(

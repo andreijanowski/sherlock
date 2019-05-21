@@ -3,12 +3,16 @@ import styled, { css } from "styled-components";
 export const MeterBackground = styled.path.attrs({
   d:
     "M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-})``;
+})`
+  /* stylelint-disable-line no-empty-block */
+`;
 
 export const MeterProgress = styled.path.attrs({
   d:
     "M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-})``;
+})`
+  /* stylelint-disable-line no-empty-block */
+`;
 
 export const emptyPassword = css`
   background-image: none;
@@ -40,13 +44,13 @@ export const strongPassword = css`
 
 export const PasswordStrengthMeterWrapper = styled.div`
   position: absolute;
-  width: 40px;
-  height: 40px;
   top: 8px;
   right: 8px;
-  background-size: 18px 18px;
+  width: 40px;
+  height: 40px;
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 18px 18px;
 
   svg {
     display: block;

@@ -2,35 +2,35 @@ import { createGlobalStyle } from "styled-components";
 
 export const ModalStyles = createGlobalStyle`
   .modal-overlay {
-    background-color: rgba(${p => p.theme.colors.dark}, 0.16);
     padding: 16px;
+    background-color: rgba(${p => p.theme.colors.dark}, 0.16);
     @media (min-width: ${p => p.theme.breakpoints[0]}) {
       padding: 32px;
     }
   }
 
   .modal-modal {
-    border-radius: ${p => p.theme.radius.default};
-    padding: 16px;
     max-width: calc(100vw - 32px);
+    padding: 16px;
+    border-radius: ${p => p.theme.radius.default};
     @media (min-width: ${p => p.theme.breakpoints[0]}) {
-      padding: 32px;
       max-width: calc(100vw - 64px);
+      padding: 32px;
     }
   }
 
   .modal-closeButton {
-    border: 2px solid rgba(${p => p.theme.colors.dark}, 0.4);
-    border-radius: 100%;
-    width: 20px;
-    height: 20px;
     top: 12px;
     right: 12px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(${p => p.theme.colors.dark}, 0.4);
+    border-radius: 100%;
     cursor: pointer;
 
     path {
-        stroke: rgb(${p => p.theme.colors.dark});
         fill: rgb(${p => p.theme.colors.dark});
+        stroke: rgb(${p => p.theme.colors.dark});
     }
 
     &:hover {
@@ -38,8 +38,8 @@ export const ModalStyles = createGlobalStyle`
         border: 2px solid rgba(${p => p.theme.colors.white}, 0.4);
 
         path {
-            stroke: rgb(${p => p.theme.colors.white});
             fill: rgb(${p => p.theme.colors.white});
+            stroke: rgb(${p => p.theme.colors.white});
         }
     }
   }
@@ -48,8 +48,8 @@ export const ModalStyles = createGlobalStyle`
     stroke-linejoin: round;
     stroke-linecap: round;
     stroke-width: 2px;
-    padding: 2px;
     width: 100%;
     height: 100%;
+    padding: 2px;
   }
 `;

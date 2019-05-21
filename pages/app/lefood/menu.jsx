@@ -101,8 +101,8 @@ class MenuPage extends PureComponent {
 MenuPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  dishes: arrayOf(shape()).isRequired,
-  orders: arrayOf(shape()).isRequired,
+  dishes: arrayOf(shape()),
+  orders: arrayOf(shape()),
   business: shape(),
   addDish: func.isRequired,
   removeDish: func.isRequired,
@@ -123,7 +123,9 @@ MenuPage.defaultProps = {
   businesses: null,
   dishesLength: 0,
   deliveriesLength: 0,
-  businessOrderPeriodsLength: 0
+  businessOrderPeriodsLength: 0,
+  orders: null,
+  dishes: null
 };
 
 export default requireAuth(true)(
