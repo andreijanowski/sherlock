@@ -26,7 +26,7 @@ class Orders extends Component {
       return (
         <>
           {orders.map((order, index) =>
-            order && order.id ? (
+            order && order.get("id") ? (
               <Order
                 {...{
                   order,
@@ -37,7 +37,7 @@ class Orders extends Component {
                   index,
                   toggleOrderDetails,
                   setRejectModalVisibility,
-                  key: order.id
+                  key: order.get("id")
                 }}
               />
             ) : null

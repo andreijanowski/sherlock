@@ -182,6 +182,7 @@ class LefoodLayout extends PureComponent {
       currency,
       stripeUserId,
       business,
+      currentBusinessId,
       businesses,
       changeCurrentBusiness
     } = this.props;
@@ -221,18 +222,18 @@ class LefoodLayout extends PureComponent {
             <Box width={[1, 1 / 2]} mb={3}>
               <Select
                 value={{
-                  value: business && business.id,
+                  value: currentBusinessId,
                   label:
-                    (business && business.name) ||
+                    (business && business.get("name")) ||
                     t("app:manageProfile.unnamedBusiness"),
-                  src: business && business.logo.url
+                  src: business && business.getIn(["logo", "url"])
                 }}
                 withImage
                 items={prepareBusinessesList(t, businesses)}
                 onChange={b => changeCurrentBusiness(b.value)}
               />
             </Box>
-            {business.approvedForLefood ? (
+            {business && business.get("approvedForLefood") ? (
               <>
                 {currency ? (
                   <>
@@ -474,9 +475,10 @@ class LefoodLayout extends PureComponent {
                               input={{
                                 onChange: () =>
                                   this.updateBusiness({
-                                    allowPickup: !business.allowPickup
+                                    allowPickup:
+                                      business && !business.get("allowPickup")
                                   }),
-                                value: business.allowPickup
+                                value: business && !business.get("allowPickup")
                               }}
                             />
                           </Box>
@@ -576,7 +578,9 @@ class LefoodLayout extends PureComponent {
             ) : (
               <Flex justifyContent="center" pt={6}>
                 <StyledH2>
-                  {t("notApprovedForLefood", { businessName: business.name })}
+                  {t("notApprovedForLefood", {
+                    businessName: business && business.get("name")
+                  })}
                 </StyledH2>
               </Flex>
             )}

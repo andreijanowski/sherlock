@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, arrayOf, shape, bool } from "prop-types";
+import { func, string, arrayOf, shape, bool, number } from "prop-types";
 import LefoodLayout from "sections/lefood/Layout";
 import Menu from "sections/lefood/menu";
 import { connect } from "react-redux";
@@ -22,10 +22,7 @@ class MenuPage extends PureComponent {
   }
 
   addDish = values => {
-    const {
-      addDish,
-      business: { id }
-    } = this.props;
+    const { addDish, businessId } = this.props;
     const { available, ...rest } = values;
     return addDish(
       {
@@ -33,7 +30,7 @@ class MenuPage extends PureComponent {
         unavailable: !values.available,
         pricePerItemCents: convertToCents(values.pricePerItemCents)
       },
-      id
+      businessId
     );
   };
 
@@ -56,17 +53,13 @@ class MenuPage extends PureComponent {
       updateBusiness,
       orders,
       business,
+      businessId,
+      dishesLength,
+      deliveriesLength,
+      businessOrderPeriodsLength,
       businesses,
       changeCurrentBusiness
     } = this.props;
-    const {
-      visibleInLefood,
-      id,
-      averageDeliveryTime,
-      minAmountForDeliveryCents,
-      stripeCurrency,
-      stripeUserId
-    } = business || {};
     return (
       <LefoodLayout
         {...{
@@ -74,13 +67,17 @@ class MenuPage extends PureComponent {
           lng,
           page: "menu",
           pendingOrdersLength: calcPendingOrders(orders),
-          visibleInLefood,
+          visibleInLefood: business && business.get("visibleInLefood"),
           updateBusiness,
-          averageDeliveryTime,
-          minAmountForDeliveryCents,
-          currentBusinessId: id,
-          currency: stripeCurrency,
-          stripeUserId,
+          currentBusinessId: businessId,
+          dishesLength,
+          deliveriesLength,
+          orderPeriodsLength: businessOrderPeriodsLength,
+          averageDeliveryTime: business && business.get("averageDeliveryTime"),
+          minAmountForDeliveryCents:
+            business && business.get("minAmountForDeliveryCents"),
+          currency: business && business.get("stripeCurrency"),
+          stripeUserId: business && business.get("stripeUserId"),
           business,
           businesses,
           changeCurrentBusiness
@@ -113,26 +110,50 @@ MenuPage.propTypes = {
   loading: bool.isRequired,
   updateBusiness: func.isRequired,
   businesses: arrayOf(shape()),
-  changeCurrentBusiness: func.isRequired
+  businessId: string,
+  changeCurrentBusiness: func.isRequired,
+  dishesLength: number,
+  deliveriesLength: number,
+  businessOrderPeriodsLength: number
 };
 
 MenuPage.defaultProps = {
   business: {},
-  businesses: null
+  businessId: "",
+  businesses: null,
+  dishesLength: 0,
+  deliveriesLength: 0,
+  businessOrderPeriodsLength: 0
 };
 
 export default requireAuth(true)(
   withNamespaces(namespaces)(
     connect(
-      state => ({
-        loading:
-          (!state.dishes.isFailed && !state.dishes.isSucceeded) ||
-          state.dishes.isFetching,
-        dishes: state.dishes.data,
-        business: state.users.currentBusiness.data,
-        businesses: state.users.profileBusinesses.data,
-        orders: state.orders.data
-      }),
+      state => {
+        const businessData = state.getIn(["users", "currentBusiness", "data"]);
+        const business = businessData && businessData.get("businesses").first();
+        return {
+          loading:
+            (!state.getIn(["dishes", "isFailed"]) &&
+              !state.getIn(["dishes", "isSucceeded"])) ||
+            state.getIn(["dishes", "isFetching"]),
+          dishes: state.getIn(["dishes", "data", "dishes"]),
+          dishesLength:
+            state.getIn(["dishes", "data", "dishes"]) &&
+            state.getIn(["dishes", "data", "dishes"]).size,
+          deliveriesLength:
+            state.getIn(["deliveries", "data", "deliveries"]) &&
+            state.getIn(["deliveries", "data", "deliveries"]).size,
+          business: business && business.get("attributes"),
+          businessId: business && business.get("id"),
+          businessOrderPeriodsLength:
+            businessData &&
+            businessData.get("orderPeriods") &&
+            businessData.get("orderPeriods").size,
+          businesses: state.getIn(["users", "profileBusinesses", "data"]),
+          orders: state.getIn(["orders", "data", "orders"])
+        };
+      },
       {
         addDish: postDish,
         removeDish: deleteDish,
