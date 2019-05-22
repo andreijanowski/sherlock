@@ -37,9 +37,12 @@ BasicInformation.defaultProps = {
   profile: null
 };
 
-const mapStateToProps = state => ({
-  profile: state.users.profile.data
-});
+const mapStateToProps = state => {
+  const profile = state.getIn(["users", "profile", "data", "users"]);
+  return {
+    profile: profile ? profile.first() : profile
+  };
+};
 
 const mapDispatchToProps = { updateProfileHandler: updateProfile };
 

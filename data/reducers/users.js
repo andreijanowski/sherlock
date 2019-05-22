@@ -89,13 +89,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       );
     }
     case FETCH_PROFILE_SUCCESS: {
-      const profile = build(payload.data, "users", payload.rawData.data.id, {
-        ignoreLinks: true
-      });
       return state.mergeIn(
         ["profile"],
         Record({
-          data: fromJS(profile),
+          data: fromJS(payload.data),
           isFetching: false,
           isSucceeded: true
         })()
@@ -121,19 +118,11 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     }
 
     case UPDATE_PROFILE_SUCCESS: {
-      const profileData = build(
-        payload.data,
-        "users",
-        payload.rawData.data.id,
-        {
-          ignoreLinks: true
-        }
-      );
-      return state.mergeDeepIn(
+      return state.mergeIn(
         ["profile"],
         Record({
           isUpdating: false,
-          data: fromJS(profileData)
+          data: fromJS(payload.data)
         })()
       );
     }
