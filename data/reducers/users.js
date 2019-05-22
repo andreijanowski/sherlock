@@ -375,11 +375,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       );
     }
     case FETCH_PROFILE_CARDS_SUCCESS: {
-      const cards =
-        build(payload.data, "cards", null, {
-          ignoreLinks: true
-        }) || [];
-      state.mergeIn(
+      state = state.mergeIn(
         ["cards"],
         Record({
           isFetching: false,
@@ -387,9 +383,12 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         })()
       );
       if (meta.page === 1) {
-        state.setIn(["cards", "data"], fromJS(cards));
+        state = state.setIn(["cards", "data"], fromJS(payload.data));
       } else {
-        state.mergeIn(["cards", "data"], fromJS(cards));
+        state = state.mergeIn(
+          ["cards", "data", "cards"],
+          fromJS(payload.data.cards)
+        );
       }
       return state;
     }
@@ -419,14 +418,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       );
     }
     case FETCH_PROFILE_SUBSCRIPTIONS_SUCCESS: {
-      const subscriptions =
-        build(payload.data, "subscriptions", null, {
-          ignoreLinks: true
-        }) || [];
       return state.mergeIn(
         ["subscriptions"],
         Record({
-          data: fromJS(subscriptions),
+          data: fromJS(payload.data),
           isFetching: false,
           isSucceeded: true
         })()

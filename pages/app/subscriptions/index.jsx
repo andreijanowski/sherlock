@@ -34,14 +34,16 @@ class SubscriptionsPage extends PureComponent {
     const { subscriptions } = this.props;
     const { subscriptions: prevSubscriptions } = prevProps;
     if (subscriptions && subscriptions !== prevSubscriptions) {
-      this.handleChangeBillngPeriod({ interval: subscriptions.interval });
+      this.handleChangeBillngPeriod({
+        interval: subscriptions.getIn(["attributes", "interval"])
+      });
     }
   }
 
   handleChangeBillngPeriod = ({ interval }) =>
     this.setState(({ billingInterval }) => ({
       billingInterval:
-        interval || billingInterval === "month" ? "year" : "month"
+        interval || (billingInterval === "month" ? "year" : "month")
     }));
 
   choosePlan = planName => {
@@ -51,13 +53,13 @@ class SubscriptionsPage extends PureComponent {
       updateSubscriptionPlan,
       cancelSubscriptionPlan
     } = this.props;
-    if (subscriptions && subscriptions[0]) {
+    if (subscriptions) {
       if (planName === "essential") {
-        if (!subscriptions[0].cancelAt) {
+        if (!subscriptions.getIn(["attribues", "cancelAt"])) {
           this.setState({
             view: "loading"
           });
-          cancelSubscriptionPlan(subscriptions[0].id)
+          cancelSubscriptionPlan(subscriptions.get("id"))
             .then(() => {
               this.goToSuccess();
             })
@@ -70,13 +72,13 @@ class SubscriptionsPage extends PureComponent {
       } else {
         const newPlanSlug = `sherlock-${planName}-${billingInterval}ly-eur`;
         if (
-          subscriptions[0].slug !== newPlanSlug ||
-          subscriptions[0].cancelAt
+          subscriptions.getIn(["attribues", "slug"]) !== newPlanSlug ||
+          subscriptions.getIn(["attribues", "cancelAt"])
         ) {
           this.setState({
             view: "loading"
           });
-          updateSubscriptionPlan(subscriptions[0].id, newPlanSlug)
+          updateSubscriptionPlan(subscriptions.get("id"), newPlanSlug)
             .then(() => {
               this.goToSuccess();
             })
@@ -102,11 +104,11 @@ class SubscriptionsPage extends PureComponent {
       subscriptions
     } = this.props;
     const { billingInterval, chosenPlan } = this.state;
-    if (subscriptions && subscriptions[0]) {
+    if (subscriptions) {
       this.setState({
         view: "loading"
       });
-      updateSubscriptionCard(subscriptions[0].id, stripeToken)
+      updateSubscriptionCard(subscriptions.get("id"), stripeToken)
         .then(() => {
           this.goToSuccess();
         })
@@ -168,11 +170,10 @@ class SubscriptionsPage extends PureComponent {
               t,
               lng,
               cards,
-              subscriptions,
               billingInterval,
               choosePlan: this.choosePlan,
               goToPayments: this.goToPayments,
-              currentPlan: subscriptions && subscriptions[0],
+              currentPlan: subscriptions,
               handleChangeBillngPeriod: this.handleChangeBillngPeriod
             }}
           />
@@ -222,10 +223,18 @@ SubscriptionsPage.defaultProps = {
 export default requireAuth(true)(
   withNamespaces(namespaces)(
     connect(
-      state => ({
-        subscriptions: state.users.subscriptions.data,
-        cards: state.users.cards.data
-      }),
+      state => {
+        const subscriptions = state.getIn([
+          "users",
+          "subscriptions",
+          "data",
+          "subscriptions"
+        ]);
+        return {
+          subscriptions: subscriptions ? subscriptions.first() : subscriptions,
+          cards: state.getIn(["users", "cards", "data", "cards"])
+        };
+      },
       {
         updateSubscriptionPlan: pathSubscriptionChangePlan,
         updateSubscriptionCard: pathSubscriptionChangeCard,
