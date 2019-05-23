@@ -9,7 +9,6 @@ import deliveries from "./deliveries";
 import dishes from "./dishes";
 import orders from "./orders";
 import caterings from "./caterings";
-import stripe from "./stripe";
 
 export default {
   notifications,
@@ -22,6 +21,5 @@ export default {
   deliveries,
   dishes,
   orders,
-  caterings,
-  stripe
+  caterings
 };

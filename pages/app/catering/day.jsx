@@ -104,7 +104,12 @@ export default requireAuth(true)(
         return {
           business: business && business.get("attributes"),
           businessId: business && business.get("id"),
-          businesses: state.getIn(["users", "profileBusinesses", "data"]),
+          businesses: state.getIn([
+            "users",
+            "profileBusinesses",
+            "data",
+            "businesses"
+          ]),
           caterings: state.getIn(["caterings", "data", "caterings"]),
           addresses: state.getIn(["caterings", "data", "addresses"])
         };

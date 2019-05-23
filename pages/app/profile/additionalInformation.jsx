@@ -145,7 +145,12 @@ export default requireAuth(true)(
           businessPictures: businessData && businessData.get("pictures"),
           businessProducts: businessData && businessData.get("products"),
           businessOpenPeriods: businessData && businessData.get("openPeriods"),
-          businesses: state.getIn(["users", "profileBusinesses", "data"])
+          businesses: state.getIn([
+            "users",
+            "profileBusinesses",
+            "data",
+            "businesses"
+          ])
         };
       },
       {

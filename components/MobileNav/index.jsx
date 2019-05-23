@@ -120,7 +120,12 @@ MobileNav.defaultProps = {
 export default connect(
   state => ({
     business: state.getIn(["users", "currentBusiness", "data"]),
-    businesses: state.getIn(["users", "profileBusinesses", "data"])
+    businesses: state.getIn([
+      "users",
+      "profileBusinesses",
+      "data",
+      "businesses"
+    ])
   }),
   {
     addBusiness: postBusiness,

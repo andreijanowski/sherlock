@@ -55,9 +55,11 @@ class StripeOauth extends PureComponent {
       connectWithStripe,
       setStripeConnectData,
       getBusiness,
-      stripeConnectData: { businessId, state: stateFromApp },
+      stripeConnectData,
       query: { code, state: stateFromStripe }
     } = this.props;
+    const businessId = stripeConnectData.get("businessId");
+    const stateFromApp = stripeConnectData.get("state");
 
     if (code && stateFromStripe === stateFromApp) {
       connectWithStripe(code, businessId)
@@ -137,7 +139,9 @@ StripeOauth.propTypes = {
 export default requireAuth(true)(
   withNamespaces(namespaces)(
     connect(
-      state => ({ stripeConnectData: state.auth.stripeConnectData }),
+      state => ({
+        stripeConnectData: state.getIn(["auth", "stripeConnectData"])
+      }),
       {
         connectWithStripe: connectStripe,
         setStripeConnectData: setStripeData,

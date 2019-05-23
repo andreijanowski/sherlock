@@ -18,7 +18,6 @@ import {
 } from "actions/users";
 import { fetchGroups } from "actions/groups";
 import { postBusiness } from "actions/businesses";
-import { fetchStripePlans } from "actions/stripe";
 import {
   LOGIN_SUCCESS,
   REGISTER_SUCCESS,
@@ -91,7 +90,6 @@ function* fetchUserData() {
   yield fetchAllUserData(fetchProfileCards);
   yield put(fetchProfileSubscriptions());
   yield put(fetchGroups());
-  yield put(fetchStripePlans());
   const lastBusinessId = yield select(state =>
     state.getIn(["app", "currentBusinessId"])
   );

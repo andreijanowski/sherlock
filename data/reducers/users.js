@@ -37,7 +37,6 @@ import {
   DELETE_ORDER_PERIOD_REQUEST
 } from "types/orderPeriods";
 import { LOGOUT } from "types/auth";
-import build from "redux-object";
 import { Record, fromJS } from "immutable";
 
 const initialState = Record({
@@ -138,10 +137,6 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       );
     }
     case FETCH_PROFILE_BUSINESSES_SUCCESS: {
-      const businesses =
-        build(payload.data, "businesses", null, {
-          ignoreLinks: true
-        }) || [];
       state = state.mergeIn(
         ["profileBusinesses"],
         Record({
@@ -150,11 +145,14 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         })()
       );
       if (meta.page === 1) {
-        state = state.setIn(["profileBusinesses", "data"], fromJS(businesses));
+        state = state.setIn(
+          ["profileBusinesses", "data"],
+          fromJS(payload.data)
+        );
       } else {
         state = state.mergeIn(
-          ["profileBusinesses", "data"],
-          fromJS(businesses)
+          ["profileBusinesses", "data", "businesses"],
+          fromJS(payload.data.businesses)
         );
       }
       return state;
@@ -248,11 +246,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     }
 
     case POST_BUSINESS_SUCCESS: {
-      const business =
-        build(payload.data, "businesses", payload.rawData.data.id, {
-          ignoreLinks: true
-        }) || [];
-      return state.mergeIn(["profileBusinesses", "data"], fromJS(business));
+      return state.mergeIn(
+        ["profileBusinesses", "data", "businesses"],
+        fromJS(payload.data.businesses)
+      );
     }
 
     case PATCH_BUSINESS_SUCCESS: {

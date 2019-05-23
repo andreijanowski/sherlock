@@ -308,7 +308,12 @@ export default requireAuth(true)(
             businessData &&
             businessData.get("orderPeriods") &&
             businessData.get("orderPeriods").size,
-          businesses: state.getIn(["users", "profileBusinesses", "data"])
+          businesses: state.getIn([
+            "users",
+            "profileBusinesses",
+            "data",
+            "businesses"
+          ])
         };
       },
       {
