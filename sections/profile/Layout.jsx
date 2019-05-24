@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import { func, string, arrayOf, shape, node } from "prop-types";
+import { func, string, shape, node } from "prop-types";
 import AppLayout from "layout/App";
 import { generateMenuItems } from "sections/profile/utils";
 import prepareBusinessesList from "utils/prepareBusinessesList";
@@ -130,7 +130,7 @@ ProfileLayout.propTypes = {
   businessPictures: shape(),
   businessProducts: shape(),
   businessOpenPeriods: shape(),
-  businesses: arrayOf(shape()),
+  businesses: shape(),
   changeCurrentBusiness: func.isRequired,
   addBusiness: func.isRequired,
   currentPage: string.isRequired,

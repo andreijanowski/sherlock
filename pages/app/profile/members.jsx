@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, shape, arrayOf } from "prop-types";
+import { func, string, shape } from "prop-types";
 import Form from "sections/profile/members";
 import { connect } from "react-redux";
 import { postMember, patchMember, deleteMember } from "actions/members";
@@ -95,7 +95,7 @@ Members.propTypes = {
   removeMember: func.isRequired,
   addBusiness: func.isRequired,
   updateBusiness: func.isRequired,
-  members: arrayOf(shape()),
+  members: shape(),
   business: shape(),
   businessId: string,
   businessGroups: shape(),
@@ -105,7 +105,7 @@ Members.propTypes = {
   businessOpenPeriods: shape(),
   changeCurrentBusiness: func.isRequired,
   getProfileBusiness: func.isRequired,
-  businesses: arrayOf(shape())
+  businesses: shape()
 };
 
 Members.defaultProps = {

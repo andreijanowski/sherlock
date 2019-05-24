@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, arrayOf, shape, bool, number } from "prop-types";
+import { func, string, shape, bool, number } from "prop-types";
 import LefoodLayout from "sections/lefood/Layout";
 import Orders from "sections/lefood/orders";
 import {
@@ -251,26 +251,28 @@ class OrdersPage extends PureComponent {
 OrdersPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  orders: arrayOf(shape()),
+  orders: shape(),
   business: shape(),
   loading: bool.isRequired,
   updateOrder: func.isRequired,
   rejectOrder: func.isRequired,
   updateBusiness: func.isRequired,
   toggleOrderDetails: func.isRequired,
-  dishesLength: number.isRequired,
-  deliveriesLength: number.isRequired,
-  businesses: arrayOf(shape()),
+  dishesLength: number,
+  deliveriesLength: number,
+  businesses: shape(),
   businessId: string,
   businessOrderPeriodsLength: number,
   changeCurrentBusiness: func.isRequired
 };
 
 OrdersPage.defaultProps = {
-  business: {},
+  business: null,
   businessId: "",
   businesses: null,
   businessOrderPeriodsLength: 0,
+  dishesLength: 0,
+  deliveriesLength: 0,
   orders: null
 };
 

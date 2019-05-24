@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, arrayOf, shape } from "prop-types";
+import { func, string, shape } from "prop-types";
 import { connect } from "react-redux";
 import AppLayout from "layout/App";
 import { LoadingIndicator } from "components";
@@ -204,8 +204,8 @@ class SubscriptionsPage extends PureComponent {
 SubscriptionsPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  subscriptions: arrayOf(shape()),
-  cards: arrayOf(shape()),
+  subscriptions: shape(),
+  cards: shape(),
   updateSubscriptionPlan: func.isRequired,
   updateSubscriptionCard: func.isRequired,
   cancelSubscriptionPlan: func.isRequired,

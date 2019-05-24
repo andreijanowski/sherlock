@@ -1,4 +1,4 @@
-import { func, string, node, shape, arrayOf, bool } from "prop-types";
+import { func, string, node, shape, bool } from "prop-types";
 import AppLayout from "layout/App";
 import prepareBusinessesList from "utils/prepareBusinessesList";
 import { Select, ActionIcon } from "components";
@@ -76,7 +76,7 @@ CateringLayout.propTypes = {
   businessId: string,
   isAddActionHidden: bool,
   changeCurrentBusiness: func.isRequired,
-  businesses: arrayOf(shape())
+  businesses: shape()
 };
 
 CateringLayout.defaultProps = {

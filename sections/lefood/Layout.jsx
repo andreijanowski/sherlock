@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import { func, string, node, number, shape, arrayOf } from "prop-types";
+import { func, string, node, number, shape } from "prop-types";
 import AppLayout from "layout/App";
 import {
   Button,
@@ -216,7 +216,7 @@ class LefoodLayout extends PureComponent {
           lng
         }}
       >
-        {(business && business.get("stripeUserId")) === undefined ? (
+        {!business || business.get("stripeUserId") === undefined ? (
           <LoadingIndicator />
         ) : (
           <>
@@ -600,7 +600,7 @@ LefoodLayout.propTypes = {
   pendingOrdersLength: number.isRequired,
   updateBusiness: func.isRequired,
   business: shape(),
-  businesses: arrayOf(shape()),
+  businesses: shape(),
   changeCurrentBusiness: func.isRequired,
   currentBusinessId: string,
   dishesLength: number,

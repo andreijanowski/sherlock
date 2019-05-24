@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, shape, arrayOf } from "prop-types";
+import { func, string, shape } from "prop-types";
 import CateringLayout from "sections/catering/Layout";
 import CreateCateringForm from "sections/catering/create";
 import { connect } from "react-redux";
@@ -91,7 +91,7 @@ CreateCateringPage.propTypes = {
   lng: string.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
-  businesses: arrayOf(shape()),
+  businesses: shape(),
   createCatering: func.isRequired,
   businessId: string
 };

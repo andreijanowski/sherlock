@@ -2,7 +2,7 @@ import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import fileToBase64 from "utils/fileToBase64";
-import { func, string, shape, arrayOf } from "prop-types";
+import { func, string, shape } from "prop-types";
 import ProfileLayout from "sections/profile/Layout";
 import Form from "sections/profile/picturesAndMenus";
 import { connect } from "react-redux";
@@ -170,7 +170,7 @@ PicturesAndMenus.propTypes = {
   businessOpenPeriods: shape(),
   changeCurrentBusiness: func.isRequired,
   getProfileBusiness: func.isRequired,
-  businesses: arrayOf(shape())
+  businesses: shape()
 };
 
 PicturesAndMenus.defaultProps = {

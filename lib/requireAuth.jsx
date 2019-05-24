@@ -1,10 +1,9 @@
-import { connect } from "react-redux";
 import { Router } from "routes";
 import isServer from "utils/isServer";
-import { bool, shape, string } from "prop-types";
+import { shape, string } from "prop-types";
 
 export default requireAuth => ComposedComponent => {
-  const Extended = ({ isAuthenticated, query, ...rest }) => {
+  const Extended = ({ query, ...rest }) => {
     const { lng } = query;
     if (!isServer) {
       try {
@@ -22,17 +21,14 @@ export default requireAuth => ComposedComponent => {
         }
       }
     }
-    return <ComposedComponent {...{ isAuthenticated, query, ...rest }} />;
+    return <ComposedComponent {...{ query, ...rest }} />;
   };
 
   Extended.propTypes = {
-    isAuthenticated: bool.isRequired,
     query: shape({
       lng: string.isRequired
     }).isRequired
   };
 
-  return connect(state => ({
-    isAuthenticated: state.getIn(["auth", "isAuthenticated"])
-  }))(Extended);
+  return Extended;
 };

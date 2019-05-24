@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, shape, arrayOf } from "prop-types";
+import { func, string, shape } from "prop-types";
 import ProfileLayout from "sections/profile/Layout";
 import {
   Periods,
@@ -139,7 +139,7 @@ OpeningHours.propTypes = {
   businessOpenPeriods: shape(),
   changeCurrentBusiness: func.isRequired,
   getProfileBusiness: func.isRequired,
-  businesses: arrayOf(shape())
+  businesses: shape()
 };
 
 OpeningHours.defaultProps = {

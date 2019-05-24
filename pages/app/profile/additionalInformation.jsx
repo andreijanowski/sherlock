@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, shape, arrayOf } from "prop-types";
+import { func, string, shape } from "prop-types";
 import Form from "sections/profile/additionalInformation";
 import { connect } from "react-redux";
 import { postBusiness, patchBusiness } from "actions/businesses";
@@ -117,7 +117,7 @@ AdditionalInformation.propTypes = {
   changeCurrentBusiness: func.isRequired,
   getProfileBusiness: func.isRequired,
   addBusiness: func.isRequired,
-  businesses: arrayOf(shape())
+  businesses: shape()
 };
 
 AdditionalInformation.defaultProps = {

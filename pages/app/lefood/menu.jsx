@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, arrayOf, shape, bool, number } from "prop-types";
+import { func, string, shape, bool, number } from "prop-types";
 import LefoodLayout from "sections/lefood/Layout";
 import Menu from "sections/lefood/menu";
 import { connect } from "react-redux";
@@ -95,15 +95,15 @@ class MenuPage extends PureComponent {
 MenuPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  dishes: arrayOf(shape()),
-  orders: arrayOf(shape()),
+  dishes: shape(),
+  orders: shape(),
   business: shape(),
   addDish: func.isRequired,
   removeDish: func.isRequired,
   addPicture: func.isRequired,
   loading: bool.isRequired,
   updateBusiness: func.isRequired,
-  businesses: arrayOf(shape()),
+  businesses: shape(),
   businessId: string,
   changeCurrentBusiness: func.isRequired,
   dishesLength: number,

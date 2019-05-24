@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, shape, arrayOf } from "prop-types";
+import { func, string, shape } from "prop-types";
 import CateringLayout from "sections/catering/Layout";
 import EditCateringForm from "sections/catering/edit";
 import { connect } from "react-redux";
@@ -102,7 +102,7 @@ EditCateringPage.propTypes = {
   business: shape(),
   changeCurrentBusiness: func.isRequired,
   updateCatering: func.isRequired,
-  businesses: arrayOf(shape()),
+  businesses: shape(),
   businessId: string
 };
 

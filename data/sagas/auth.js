@@ -15,7 +15,13 @@ import {
   CHANGE_PASSWORD_SUCCESS,
   RESET_PASSWORD_SUCCESS,
   CHANGE_PASSWORD_BY_TOKEN_SUCCESS,
-  DELETE_BY_TOKEN_SUCCESS
+  DELETE_BY_TOKEN_SUCCESS,
+  REFRESH_TOKEN_REQUEST,
+  LOGIN_FAIL,
+  REGISTER_FAIL,
+  FACEBOOK_LOGIN_FAIL,
+  REFRESH_TOKEN_FAIL,
+  LOGOUT
 } from "types/auth";
 import Notifications from "react-notification-system-redux";
 import { logout as logoutAction, refreshToken as refresh } from "actions/auth";
@@ -42,7 +48,27 @@ function* subscribeForRefresh() {
   }
 }
 
-function* fetchUserData() {
+function* fetchUserData({
+  payload: {
+    rawData: { accessToken, refreshToken, createdAt, expiresIn }
+  }
+}) {
+  let lastBusinessId;
+  let lastUserId;
+  if (!isServer) {
+    window.localStorage.setItem("areCredentialsRefreshing", "false");
+    window.localStorage.setItem(
+      "credentials",
+      JSON.stringify({
+        accessToken,
+        refreshToken,
+        createdAt,
+        expiresIn
+      })
+    );
+    lastBusinessId = window.localStorage.getItem("currentBusinessId");
+    lastUserId = window.localStorage.getItem("currentUserId");
+  }
   const {
     rawData: {
       data: { id: userId }
@@ -51,12 +77,6 @@ function* fetchUserData() {
   yield fetchAllUserData(fetchProfileCards);
   yield put(fetchProfileSubscriptions());
   yield put(fetchGroups());
-  let lastBusinessId;
-  let lastUserId;
-  if (!isServer) {
-    lastBusinessId = window.localStorage.getItem("currentBusinessId");
-    lastUserId = window.localStorage.getItem("currentUserId");
-  }
   if (lastBusinessId && userId === lastUserId) {
     yield put(setCurrentBusiness(lastBusinessId));
     yield fetchAllUserData(fetchProfileBusinesses);
@@ -109,6 +129,18 @@ function* logout() {
   yield put(logoutAction());
 }
 
+function* setRefreshing() {
+  if (!isServer) {
+    yield window.localStorage.setItem("areCredentialsRefreshing", "true");
+  }
+}
+
+function* removeToken() {
+  if (!isServer) {
+    yield window.localStorage.removeItem("credentials");
+  }
+}
+
 export default all([
   takeEvery(
     [
@@ -131,5 +163,16 @@ export default all([
   takeEvery(CHANGE_PASSWORD_SUCCESS, showSuccessPasswordChangeMsg),
   takeEvery(RESET_PASSWORD_SUCCESS, showSuccessResetPasswordMsg),
   takeEvery(CHANGE_PASSWORD_BY_TOKEN_SUCCESS, onSuccessPasswordChangeByToken),
-  takeEvery(DELETE_BY_TOKEN_SUCCESS, logout)
+  takeEvery(DELETE_BY_TOKEN_SUCCESS, logout),
+  takeEvery([REFRESH_TOKEN_REQUEST], setRefreshing),
+  takeEvery(
+    [
+      LOGIN_FAIL,
+      REGISTER_FAIL,
+      FACEBOOK_LOGIN_FAIL,
+      REFRESH_TOKEN_FAIL,
+      LOGOUT
+    ],
+    removeToken
+  )
 ]);

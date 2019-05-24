@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, shape, arrayOf } from "prop-types";
+import { func, string, shape } from "prop-types";
 import CateringLayout from "sections/catering/Layout";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
@@ -61,7 +61,7 @@ YearPage.propTypes = {
   lng: string.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
-  businesses: arrayOf(shape()),
+  businesses: shape(),
   caterings: shape(),
   businessId: string
 };

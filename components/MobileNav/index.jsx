@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { Flex } from "@rebass/grid";
-import { arrayOf, func, string, shape } from "prop-types";
+import { func, string, shape } from "prop-types";
 import { connect } from "react-redux";
 import { postBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/app";
@@ -101,7 +101,7 @@ MobileNav.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   business: shape(),
-  businesses: arrayOf(shape()),
+  businesses: shape(),
   changeCurrentBusiness: func.isRequired,
   addBusiness: func.isRequired,
   logout: func.isRequired
