@@ -61,17 +61,11 @@ class DeliveriesPage extends PureComponent {
           lng,
           page: "deliveryArea",
           pendingOrdersLength: calcPendingOrders(orders),
-          visibleInLefood: business && business.get("visibleInLefood"),
           updateBusiness,
           currentBusinessId: businessId,
           dishesLength,
           deliveriesLength,
           orderPeriodsLength: businessOrderPeriodsLength,
-          averageDeliveryTime: business && business.get("averageDeliveryTime"),
-          minAmountForDeliveryCents:
-            business && business.get("minAmountForDeliveryCents"),
-          currency: business && business.get("stripeCurrency"),
-          stripeUserId: business && business.get("stripeUserId"),
           business,
           businesses,
           changeCurrentBusiness

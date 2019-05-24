@@ -89,8 +89,6 @@ export const parseCaterings = ({
       });
     });
 
-    console.log({ parsedCaterings });
-
     if (view === "month") {
       const days = {};
       parsedCaterings.forEach(c => {
@@ -114,7 +112,6 @@ export const parseCaterings = ({
           });
         }
       });
-      console.log({ monthViewCaterings });
       return monthViewCaterings;
     }
   }

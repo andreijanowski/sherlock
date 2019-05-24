@@ -107,7 +107,6 @@ export const mergeDishesData = (dishes, pictures) =>
   dishes
     ? dishes.map(dish => {
         const dishPictures = dish.getIn(["relationships", "pictures", "data"]);
-        console.log(dishPictures, JSON.stringify(dishPictures));
         if (dishPictures && pictures) {
           return dish.setIn(
             ["relationships", "pictures", "data"],

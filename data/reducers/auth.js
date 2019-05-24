@@ -12,10 +12,10 @@ import {
   REFRESH_TOKEN_SUCCESS,
   REFRESH_TOKEN_FAIL,
   LOGOUT,
-  SET_STRIPE_DATA,
-  SET_AUTH_SYNCHRONIZED_FROM_STORAGE
+  SET_STRIPE_DATA
 } from "types/auth";
 import { Record } from "immutable";
+import isServer from "utils/isServer";
 
 export const initialState = Record({
   isFetching: false,
@@ -36,6 +36,7 @@ const reducer = (state = initialState, { type, payload }) => {
       return state.set("isFetching", true);
     }
     case REFRESH_TOKEN_REQUEST: {
+      window.localStorage.setItem("areCredentialsRefreshing", "true");
       return state.set("isRefreshing", true);
     }
     case LOGIN_SUCCESS:
@@ -48,6 +49,7 @@ const reducer = (state = initialState, { type, payload }) => {
         createdAt,
         expiresIn
       } = payload.rawData;
+
       const updatedData = Record({
         isFetching: false,
         isRefreshing: false,
@@ -57,6 +59,20 @@ const reducer = (state = initialState, { type, payload }) => {
         createdAt,
         expiresIn
       })();
+
+      if (!isServer) {
+        window.localStorage.setItem("areCredentialsRefreshing", "false");
+        window.localStorage.setItem(
+          "credentials",
+          JSON.stringify({
+            accessToken,
+            refreshToken,
+            createdAt,
+            expiresIn
+          })
+        );
+      }
+
       return state.mergeDeep(updatedData);
     }
     case LOGIN_FAIL:
@@ -64,6 +80,9 @@ const reducer = (state = initialState, { type, payload }) => {
     case FACEBOOK_LOGIN_FAIL:
     case REFRESH_TOKEN_FAIL:
     case LOGOUT: {
+      if (!isServer) {
+        window.localStorage.removeItem("credentials");
+      }
       return state.mergeDeep(initialState);
     }
     case SET_STRIPE_DATA: {
@@ -71,9 +90,6 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         stripeConnectData: payload.data
       };
-    }
-    case SET_AUTH_SYNCHRONIZED_FROM_STORAGE: {
-      return { ...payload };
     }
     default: {
       return state;

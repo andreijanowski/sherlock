@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import { bool, func, string, node, number, shape, arrayOf } from "prop-types";
+import { func, string, node, number, shape, arrayOf } from "prop-types";
 import AppLayout from "layout/App";
 import {
   Button,
@@ -99,7 +99,8 @@ class LefoodLayout extends PureComponent {
       minAmountForDeliveryCents: 0,
       isStopOrdersModalVisible: false,
       isFinishOrdersModalVisible: false,
-      isCurrencyModalVisible: props.business && !props.currency
+      isCurrencyModalVisible:
+        props.business && !props.business.get("stripeCurrency")
     };
   }
 
@@ -108,12 +109,12 @@ class LefoodLayout extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const {
-      minAmountForDeliveryCents: prevMinAmountForDeliveryCents,
-      business: prevBusiness
-    } = prevProps;
-    const { minAmountForDeliveryCents, business } = this.props;
-    if (prevMinAmountForDeliveryCents !== minAmountForDeliveryCents) {
+    const { business: prevBusiness } = prevProps;
+    const { business } = this.props;
+    if (
+      (prevBusiness && prevBusiness.get("minAmountForDeliveryCents")) !==
+      (business && business.get("minAmountForDeliveryCents"))
+    ) {
       this.updateMinAmountForDeliveryCents();
     }
     if (!prevBusiness && business) {
@@ -122,16 +123,18 @@ class LefoodLayout extends PureComponent {
   }
 
   updateMinAmountForDeliveryCents = () => {
-    const { minAmountForDeliveryCents } = this.props;
+    const { business } = this.props;
     this.setState({
-      minAmountForDeliveryCents: normalizePrice(minAmountForDeliveryCents)
+      minAmountForDeliveryCents: normalizePrice(
+        business && business.get("minAmountForDeliveryCents")
+      )
     });
   };
 
   updateCurrencyModalVisibility = () => {
-    const { currency } = this.props;
+    const { business } = this.props;
     this.setState({
-      isCurrencyModalVisible: !currency
+      isCurrencyModalVisible: business && !business.get("stripeCurrency")
     });
   };
 
@@ -172,15 +175,11 @@ class LefoodLayout extends PureComponent {
       t,
       lng,
       page,
-      visibleInLefood,
       pendingOrdersLength,
       children,
       dishesLength,
       deliveriesLength,
       orderPeriodsLength,
-      averageDeliveryTime,
-      currency,
-      stripeUserId,
       business,
       currentBusinessId,
       businesses,
@@ -192,19 +191,21 @@ class LefoodLayout extends PureComponent {
       isFinishOrdersModalVisible,
       isCurrencyModalVisible
     } = this.state;
-    const canEditBusinessData = !visibleInLefood && pendingOrdersLength === 0;
+    const canEditBusinessData =
+      !(business && business.get("visibleInLefood")) &&
+      pendingOrdersLength === 0;
     const profileCompletedPercents =
       page === "orders"
         ? calcProfileCompletedPercents({
             dishesLength,
             deliveriesLength,
             orderPeriodsLength,
-            averageDeliveryTime
+            averageDeliveryTime: business && business.get("averageDeliveryTime")
           })
         : 100;
 
     const currentAverageDeliveryTime = averageDeliveryTimeList.find(
-      i => i.value === averageDeliveryTime
+      i => i.value === (business && business.get("averageDeliveryTime"))
     ) || { value: undefined };
     return (
       <AppLayout
@@ -215,7 +216,7 @@ class LefoodLayout extends PureComponent {
           lng
         }}
       >
-        {stripeUserId === undefined ? (
+        {(business && business.get("stripeUserId")) === undefined ? (
           <LoadingIndicator />
         ) : (
           <>
@@ -235,9 +236,9 @@ class LefoodLayout extends PureComponent {
             </Box>
             {business && business.get("approvedForLefood") ? (
               <>
-                {currency ? (
+                {business.get("currency") ? (
                   <>
-                    {stripeUserId ? (
+                    {business.get("stripeUserId") ? (
                       <>
                         {profileCompletedPercents !== 100 && (
                           <InfoBar
@@ -357,7 +358,7 @@ class LefoodLayout extends PureComponent {
                                   }
                                   role="dialog"
                                 >
-                                  {currency}
+                                  {business.get("currency")}
                                 </span>
                               </ButtonWithImageText>
                             </Button>
@@ -475,15 +476,14 @@ class LefoodLayout extends PureComponent {
                               input={{
                                 onChange: () =>
                                   this.updateBusiness({
-                                    allowPickup:
-                                      business && !business.get("allowPickup")
+                                    allowPickup: !business.get("allowPickup")
                                   }),
-                                value: business && business.get("allowPickup")
+                                value: business.get("allowPickup")
                               }}
                             />
                           </Box>
                           <Box pr={3} mb={2}>
-                            {visibleInLefood ? (
+                            {business.get("visibleInLefood") ? (
                               <Button
                                 styleName="withImage"
                                 red
@@ -563,7 +563,7 @@ class LefoodLayout extends PureComponent {
                   <StripeCurrencyModal
                     {...{
                       isOpen: true,
-                      stripeCurrency: currency,
+                      stripeCurrency: business.get("currency"),
                       setStripeCurrency: values => {
                         this.updateBusiness({
                           stripeCurrency: values.stripeCurrency.value
@@ -597,7 +597,6 @@ LefoodLayout.propTypes = {
   lng: string.isRequired,
   page: string.isRequired,
   children: node.isRequired,
-  visibleInLefood: bool,
   pendingOrdersLength: number.isRequired,
   updateBusiness: func.isRequired,
   business: shape(),
@@ -606,23 +605,14 @@ LefoodLayout.propTypes = {
   currentBusinessId: string,
   dishesLength: number,
   deliveriesLength: number,
-  orderPeriodsLength: number,
-  averageDeliveryTime: number,
-  minAmountForDeliveryCents: number,
-  currency: string,
-  stripeUserId: string
+  orderPeriodsLength: number
 };
 
 LefoodLayout.defaultProps = {
   dishesLength: 0,
   deliveriesLength: 0,
   orderPeriodsLength: 0,
-  currency: "",
-  visibleInLefood: false,
   currentBusinessId: "",
-  averageDeliveryTime: 0,
-  minAmountForDeliveryCents: 0,
-  stripeUserId: undefined,
   business: null,
   businesses: null
 };
