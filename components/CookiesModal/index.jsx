@@ -9,8 +9,8 @@ import { privacyPolicyLink, termsAndConditionsLink } from "consts";
 const namespaces = ["cookies"];
 
 const CookiesModal = ({ t }) => {
+  const [isOpen, setIsOpen] = useState(true);
   if (!isServer && window.localStorage.getItem("cookiesAccepted") !== "true") {
-    const [isOpen, setIsOpen] = useState(true);
     const acceptCookies = () =>
       window.localStorage.setItem("cookiesAccepted", "true");
     return (
