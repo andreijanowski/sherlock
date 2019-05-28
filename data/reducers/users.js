@@ -296,12 +296,12 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           if (newState) {
             newState = newState.setIn(
               pathArray,
-              payload.data.businesses[payload.rawData.data.id].attributes[v].url
+              payload.data.businesses[payload.rawData.data.id].attributes[v]
             );
           } else {
             newState = state.setIn(
               pathArray,
-              payload.data.businesses[payload.rawData.data.id].attributes[v].url
+              payload.data.businesses[payload.rawData.data.id].attributes[v]
             );
           }
         }

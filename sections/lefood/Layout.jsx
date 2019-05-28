@@ -236,7 +236,7 @@ class LefoodLayout extends PureComponent {
             </Box>
             {business && business.get("approvedForLefood") ? (
               <>
-                {business.get("currency") ? (
+                {business.get("stripeCurrency") ? (
                   <>
                     {business.get("stripeUserId") ? (
                       <>
@@ -358,7 +358,7 @@ class LefoodLayout extends PureComponent {
                                   }
                                   role="dialog"
                                 >
-                                  {business.get("currency")}
+                                  {business.get("stripeCurrency")}
                                 </span>
                               </ButtonWithImageText>
                             </Button>
@@ -563,7 +563,7 @@ class LefoodLayout extends PureComponent {
                   <StripeCurrencyModal
                     {...{
                       isOpen: true,
-                      stripeCurrency: business.get("currency"),
+                      stripeCurrency: business.get("stripeCurrency"),
                       setStripeCurrency: values => {
                         this.updateBusiness({
                           stripeCurrency: values.stripeCurrency.value

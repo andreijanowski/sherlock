@@ -77,9 +77,7 @@ class OpeningHours extends PureComponent {
       getProfileBusiness
     } = this.props;
 
-    const initialValues = businessOpenPeriods
-      ? parsePeriods(businessOpenPeriods)
-      : undefined;
+    const initialValues = parsePeriods(businessOpenPeriods);
 
     const isLocationVisible = businessGroups
       ? isMovableBusiness(businessGroups)
