@@ -70,9 +70,7 @@ class OrderingHoursPage extends PureComponent {
       changeCurrentBusiness
     } = this.props;
 
-    const initialValues = businessOrderPeriods
-      ? parsePeriods(businessOrderPeriods)
-      : undefined;
+    const initialValues = parsePeriods(businessOrderPeriods);
 
     return (
       <LefoodLayout
