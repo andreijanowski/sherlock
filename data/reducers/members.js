@@ -26,34 +26,34 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       );
     }
     case FETCH_BUSINESS_MEMBERS_SUCCESS: {
-      state = state.merge(
+      let newState = state.merge(
         Record({
           isFetching: false,
           isSucceeded: true
         })()
       );
       if (meta.page === 1) {
-        state = state.set("data", fromJS(payload.data.members));
+        newState = newState.set("data", fromJS(payload.data.members));
       } else {
-        state = state.mergeIn(["data"], fromJS(payload.data.members));
+        newState = newState.mergeIn(["data"], fromJS(payload.data.members));
       }
-      return state;
+      return newState;
     }
     case FETCH_BUSINESS_MEMBERS_FAIL: {
-      state = state.merge(
+      let newState = state.merge(
         Record({
           isFetching: false,
           isFailed: true
         })()
       );
       if (meta.page === 1) {
-        state = state.merge(
+        newState = newState.merge(
           Record({
             data: null
           })()
         );
       }
-      return state;
+      return newState;
     }
 
     case LOGOUT: {

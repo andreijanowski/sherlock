@@ -34,34 +34,34 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       );
     }
     case FETCH_BUSINESS_CATERINGS_SUCCESS: {
-      state = state.merge(
+      let newState = state.merge(
         Record({
           isFetching: false,
           isSucceeded: true
         })()
       );
       if (meta.page === 1) {
-        state = state.setIn(["data"], fromJS(payload.data));
+        newState = newState.setIn(["data"], fromJS(payload.data));
       } else {
-        state = state.mergeIn(["data"], fromJS(payload.data));
+        newState = newState.mergeIn(["data"], fromJS(payload.data));
       }
-      return state;
+      return newState;
     }
     case FETCH_BUSINESS_CATERINGS_FAIL: {
-      state = state.merge(
+      let newState = state.merge(
         Record({
           isFetching: false,
           isFailed: true
         })()
       );
       if (meta.page === 1) {
-        state = state.merge(
+        newState = newState.merge(
           Record({
             data: null
           })()
         );
       }
-      return state;
+      return newState;
     }
 
     case POST_CATERING_SUCCESS: {

@@ -31,49 +31,47 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       );
     }
     case FETCH_BUSINESS_DELIVERIES_SUCCESS: {
-      state = state.merge(
+      let newState = state.merge(
         Record({
           isFetching: false,
           isSucceeded: true
         })()
       );
       if (meta.page === 1) {
-        state = state.setIn(["data"], fromJS(payload.data));
+        newState = newState.setIn(["data"], fromJS(payload.data));
       } else {
-        state = state.mergeIn(
+        newState = newState.mergeIn(
           ["data", "deliveries"],
           fromJS(payload.data.deliveries)
         );
       }
-      return state;
+      return newState;
     }
     case FETCH_BUSINESS_DELIVERIES_FAIL: {
-      state = state.merge(
+      let newState = state.merge(
         Record({
           isFetching: false,
           isFailed: true
         })()
       );
       if (meta.page === 1) {
-        state = state.merge(
+        newState = newState.merge(
           Record({
             data: null
           })()
         );
       }
-      return state;
+      return newState;
     }
 
     case POST_DELIVERY_SUCCESS: {
       if (state.getIn(["data"]) && state.getIn(["data"]).size) {
-        state = state.mergeIn(
+        return state.mergeIn(
           ["data", "deliveries"],
           fromJS(payload.data.deliveries)
         );
-      } else {
-        state = state.setIn(["data"], fromJS(payload.data));
       }
-      return state;
+      return state.setIn(["data"], fromJS(payload.data));
     }
 
     case DELETE_DELIVERY_REQUEST: {

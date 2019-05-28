@@ -29,51 +29,56 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       );
     }
     case FETCH_BUSINESS_DISHES_SUCCESS: {
-      state = state.merge(
+      let newState = state.merge(
         Record({
           isFetching: false,
           isSucceeded: true
         })()
       );
       if (meta.page === 1) {
-        state = state.setIn(["data"], fromJS(payload.data));
+        newState = newState.setIn(["data"], fromJS(payload.data));
       } else {
-        state = state.mergeIn(["data", "dishes"], fromJS(payload.data.dishes));
-        state = state.mergeIn(
+        newState = newState.mergeIn(
+          ["data", "dishes"],
+          fromJS(payload.data.dishes)
+        );
+        newState = newState.mergeIn(
           ["data", "pictures"],
           fromJS(payload.data.pictures)
         );
       }
-      return state;
+      return newState;
     }
     case FETCH_BUSINESS_DISHES_FAIL: {
-      state = state.merge(
+      let newState = state.merge(
         Record({
           isFetching: false,
           isFailed: true
         })()
       );
       if (meta.page === 1) {
-        state = state.merge(
+        newState = newState.merge(
           Record({
             data: null
           })()
         );
       }
-      return state;
+      return newState;
     }
 
     case POST_DISH_SUCCESS: {
       if (state.getIn(["data"]) && state.getIn(["data"]).size) {
-        state = state.mergeIn(["data", "dishes"], fromJS(payload.data.dishes));
-        state = state.mergeIn(
+        let newState = state.mergeIn(
+          ["data", "dishes"],
+          fromJS(payload.data.dishes)
+        );
+        newState = newState.mergeIn(
           ["data", "pictures"],
           fromJS(payload.data.pictures)
         );
-      } else {
-        state = state.setIn(["data"], fromJS(payload.data));
+        return newState;
       }
-      return state;
+      return state.setIn(["data"], fromJS(payload.data));
     }
 
     case DELETE_DISH_REQUEST: {
@@ -82,14 +87,15 @@ const reducer = (state = initialState, { type, payload, meta }) => {
 
     case POST_PICTURE_SUCCESS: {
       if (payload.rawData.data.attributes.parentResource === "dish") {
-        state = state.mergeIn(
+        let newState = state.mergeIn(
           ["data", "pictures"],
           fromJS(payload.data.pictures)
         );
-        state = state.setIn(
+        newState = newState.setIn(
           ["data", "dishes", meta.id, "relationships", "pictures", "data"],
           fromJS([{ type: "pictures", id: payload.rawData.data.id }])
         );
+        return newState;
       }
       return state;
     }

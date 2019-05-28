@@ -137,7 +137,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       );
     }
     case FETCH_PROFILE_BUSINESSES_SUCCESS: {
-      state = state.mergeIn(
+      let newState = state.mergeIn(
         ["profileBusinesses"],
         Record({
           isFetching: false,
@@ -145,17 +145,17 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         })()
       );
       if (meta.page === 1) {
-        state = state.setIn(
+        newState = newState.setIn(
           ["profileBusinesses", "data"],
           fromJS(payload.data)
         );
       } else {
-        state = state.mergeIn(
+        newState = newState.mergeIn(
           ["profileBusinesses", "data", "businesses"],
           fromJS(payload.data.businesses)
         );
       }
-      return state;
+      return newState;
     }
     case FETCH_PROFILE_BUSINESSES_FAIL: {
       state.mergeIn(
@@ -253,20 +253,29 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     }
 
     case PATCH_BUSINESS_SUCCESS: {
+      let newState = null;
       meta.updatedValues.forEach(v => {
         if (v === "logo") {
-          state = state.setIn(
-            [
-              "currentBusiness",
-              "data",
-              "businesses",
-              payload.rawData.data.id,
-              "attributes",
-              v,
-              "url"
-            ],
-            payload.data.businesses[payload.rawData.data.id].attributes[v].url
-          );
+          const pathArray = [
+            "currentBusiness",
+            "data",
+            "businesses",
+            payload.rawData.data.id,
+            "attributes",
+            v,
+            "url"
+          ];
+          if (newState) {
+            newState = newState.setIn(
+              pathArray,
+              payload.data.businesses[payload.rawData.data.id].attributes[v].url
+            );
+          } else {
+            newState = state.setIn(
+              pathArray,
+              payload.data.businesses[payload.rawData.data.id].attributes[v].url
+            );
+          }
         }
         if (
           v === "visibleInLefood" ||
@@ -276,20 +285,28 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           v === "stripeCurrency" ||
           v === "allowPickup"
         ) {
-          state = state.setIn(
-            [
-              "currentBusiness",
-              "data",
-              "businesses",
-              payload.rawData.data.id,
-              "attributes",
-              v
-            ],
-            payload.data.businesses[payload.rawData.data.id].attributes[v]
-          );
+          const pathArray = [
+            "currentBusiness",
+            "data",
+            "businesses",
+            payload.rawData.data.id,
+            "attributes",
+            v
+          ];
+          if (newState) {
+            newState = newState.setIn(
+              pathArray,
+              payload.data.businesses[payload.rawData.data.id].attributes[v].url
+            );
+          } else {
+            newState = state.setIn(
+              pathArray,
+              payload.data.businesses[payload.rawData.data.id].attributes[v].url
+            );
+          }
         }
       });
-      return state;
+      return newState || state;
     }
 
     case POST_OPEN_PERIOD_SUCCESS: {
@@ -361,7 +378,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       );
     }
     case FETCH_PROFILE_CARDS_SUCCESS: {
-      state = state.mergeIn(
+      let newState = state.mergeIn(
         ["cards"],
         Record({
           isFetching: false,
@@ -369,14 +386,14 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         })()
       );
       if (meta.page === 1) {
-        state = state.setIn(["cards", "data"], fromJS(payload.data));
+        newState = newState.setIn(["cards", "data"], fromJS(payload.data));
       } else {
-        state = state.mergeIn(
+        newState = newState.mergeIn(
           ["cards", "data", "cards"],
           fromJS(payload.data.cards)
         );
       }
-      return state;
+      return newState;
     }
     case FETCH_PROFILE_CARDS_FAIL: {
       state.mergeIn(
