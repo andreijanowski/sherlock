@@ -29,6 +29,7 @@ const PeriodsForm = ({
       onSubmit={() => null}
       initialValues={initialValues}
       mutators={{ ...{ ...arrayMutators, setFieldData } }}
+      subscription={{ form: true }}
       render={({ form: { mutators } }) => (
         <Form>
           <H3>{t("openingHours")}</H3>

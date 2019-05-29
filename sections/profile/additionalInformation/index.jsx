@@ -21,6 +21,9 @@ const AdditionalInformationForm = ({ t, initialValues, handleSubmit }) =>
       initialValues={initialValues}
       onSubmit={handleSubmit}
       mutators={{ setFieldData }}
+      subscription={{
+        form: true
+      }}
       render={({ form: { mutators } }) => (
         <Form>
           <AutoSave
