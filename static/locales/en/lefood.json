@@ -86,6 +86,7 @@
   "waiting_for_payment": "Waiting for payment",
   "paid": "Paid",
   "in_preparation": "In preparation",
+  "in_delivery": "In delivery / ready for takeaway",
   "completed": "Completed",
   "rejected": "Rejected",
   "newOrders": "New orders",
