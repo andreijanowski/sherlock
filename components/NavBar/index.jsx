@@ -57,6 +57,9 @@ const NavBar = ({ t, lng, logout }) => (
           <Link {...{ lng, route: `/app/profile/members/` }}>
             <Subitem>{t("app:manageProfile.inviteYourTeam")}</Subitem>
           </Link>
+          <Link {...{ lng, route: `/app/profile/live-info/` }}>
+            <Subitem>{t("app:manageProfile.liveInfo")}</Subitem>
+          </Link>
         </Subitems>
       </SubitemsWrapper>
     </Item>
