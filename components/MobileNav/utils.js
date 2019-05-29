@@ -77,6 +77,12 @@ const generateProfileMobileSubmenu = (t, active) => [
     label: t("app:manageProfile.inviteYourTeam"),
     isActive: active === "inviteYourTeam",
     SubmenuIcon: ProfileMembers
+  },
+  {
+    route: `/app/profile/live-info/`,
+    label: t("app:manageProfile.liveInfo"),
+    isActive: active === "liveInfo",
+    SubmenuIcon: ProfileAdditionaInfo
   }
 ];
 

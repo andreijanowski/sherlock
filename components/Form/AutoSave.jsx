@@ -49,6 +49,12 @@ class AutoSave extends React.Component {
       }
 
       const keys = Object.keys(difference);
+      if (
+        values[blurredField] === undefined &&
+        prevValues[blurredField] !== undefined
+      ) {
+        keys.push(blurredField);
+      }
       if (keys.length) {
         setFieldData(blurredField, { saving: true });
         this.setState({ values });
