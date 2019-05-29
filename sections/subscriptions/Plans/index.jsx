@@ -17,10 +17,13 @@ const PlansSection = ({
   goToPayments
 }) => {
   const { currentPlanName, nextPlanName } = getPlanName(currentPlan);
-  const { interval, nextPaymentAt, cancelAt, trialEndsAt } = currentPlan || {};
   const currentCard =
     cards && currentPlan
-      ? cards.find(c => c.stripeSourceId === currentPlan.stripeSourceId)
+      ? cards.find(
+          c =>
+            c.getIn(["attributes", "stripeSourceId"]) ===
+            currentPlan.getIn(["attributes", "stripeSourceId"])
+        )
       : null;
 
   return (
@@ -29,7 +32,18 @@ const PlansSection = ({
         <Box mb={3}>
           {`${t("yourCurrentPlan")}: `}
           <BoldText>{t(`plans:${currentPlanName}.name`)}.</BoldText>
-          <PlanStatus {...{ nextPaymentAt, cancelAt, trialEndsAt, t }} />
+          <PlanStatus
+            {...{
+              nextPaymentAt:
+                currentPlan &&
+                currentPlan.getIn(["attributes", "nextPaymentAt"]),
+              cancelAt:
+                currentPlan && currentPlan.getIn(["attributes", "cancelAt"]),
+              trialEndsAt:
+                currentPlan && currentPlan.getIn(["attributes", "trialEndsAt"]),
+              t
+            }}
+          />
         </Box>
         <PlansBillingInterval
           {...{ t, billingInterval, handleChangeBillngPeriod }}
@@ -40,7 +54,15 @@ const PlansSection = ({
           <Box mr={2} mb={3}>{`${t("paymentInfo")}: `}</Box>
           <Flex>
             <Box mb={-2} mr={2}>
-              <Card {...currentCard} disabled />
+              <Card
+                {...{
+                  id: currentCard.get("id"),
+                  last4: currentCard.getIn(["attributes", "last4"]),
+                  brand: currentCard.getIn(["attributes", "brand"]),
+                  disabled: currentCard.getIn(["attributes", "disabled"])
+                }}
+                disabled
+              />
             </Box>
             <Box>
               <Button styleName="smallBlue" onClick={goToPayments}>
@@ -58,7 +80,8 @@ const PlansSection = ({
             billingInterval,
             choosePlan,
             nextPlanName,
-            currentPlanInterval: interval,
+            currentPlanInterval:
+              currentPlan && currentPlan.getIn(["attributes", "interval"]),
             isSubscriptionView: true
           }}
         />

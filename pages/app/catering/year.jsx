@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, shape, arrayOf } from "prop-types";
+import { func, string, shape } from "prop-types";
 import CateringLayout from "sections/catering/Layout";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
@@ -31,6 +31,7 @@ class YearPage extends PureComponent {
       t,
       lng,
       business,
+      businessId,
       businesses,
       changeCurrentBusiness,
       caterings
@@ -44,6 +45,7 @@ class YearPage extends PureComponent {
           lng,
           view,
           business,
+          businessId,
           businesses,
           changeCurrentBusiness
         }}
@@ -59,12 +61,14 @@ YearPage.propTypes = {
   lng: string.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
-  businesses: arrayOf(shape()),
-  caterings: arrayOf(shape())
+  businesses: shape(),
+  caterings: shape(),
+  businessId: string
 };
 
 YearPage.defaultProps = {
   business: null,
+  businessId: "",
   businesses: null,
   caterings: null
 };
@@ -72,11 +76,21 @@ YearPage.defaultProps = {
 export default requireAuth(true)(
   withNamespaces(namespaces)(
     connect(
-      state => ({
-        business: state.users.currentBusiness.data,
-        businesses: state.users.profileBusinesses.data,
-        caterings: state.caterings.data
-      }),
+      state => {
+        const businessData = state.getIn(["users", "currentBusiness", "data"]);
+        const business = businessData && businessData.get("businesses").first();
+        return {
+          business: business && business.get("attributes"),
+          businessId: business && business.get("id"),
+          businesses: state.getIn([
+            "users",
+            "profileBusinesses",
+            "data",
+            "businesses"
+          ]),
+          caterings: state.getIn(["caterings", "data", "caterings"])
+        };
+      },
       {
         changeCurrentBusiness: setCurrentBusiness
       }

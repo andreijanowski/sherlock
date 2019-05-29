@@ -59,8 +59,8 @@ export default requireAuth(true)(
   withNamespaces(namespaces)(
     connect(state => ({
       canRedirect:
-        !state.users.currentBusiness.isFetching &&
-        state.users.currentBusiness.isSucceeded
+        !state.getIn(["users", "currentBusiness", "isFetching"]) &&
+        state.getIn(["users", "currentBusiness", "isSucceeded"])
     }))(AppLanding)
   )
 );

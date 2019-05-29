@@ -1,4 +1,4 @@
-import { func, arrayOf, shape, string } from "prop-types";
+import { func, shape, string } from "prop-types";
 import { BigCalendar } from "components";
 import { CalendarWrapper } from "../styled";
 
@@ -6,6 +6,7 @@ const Day = ({
   t,
   lng,
   caterings,
+  addresses,
   currency,
   timeZone,
   setEditedCatering,
@@ -18,6 +19,7 @@ const Day = ({
           t,
           lng,
           caterings,
+          addresses,
           currency,
           defaultView: "day",
           timeZone,
@@ -35,12 +37,14 @@ Day.propTypes = {
   setEditedCatering: func.isRequired,
   sendOffer: func.isRequired,
   currency: string,
-  caterings: arrayOf(shape()),
+  caterings: shape(),
+  addresses: shape(),
   timeZone: string
 };
 
 Day.defaultProps = {
   caterings: null,
+  addresses: null,
   currency: "EUR",
   timeZone: null
 };

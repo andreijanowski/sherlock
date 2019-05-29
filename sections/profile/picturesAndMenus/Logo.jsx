@@ -20,7 +20,7 @@ const Logo = ({ t, logo, saveLogo }) => (
             multiple={false}
             maxWidth={300}
             maxHeight={300}
-            image={logo.url || undefined}
+            image={logo || undefined}
             saveImage={saveLogo}
             aspectRatio={1}
           />

@@ -1,51 +1,64 @@
+import { useState } from "react";
 import { withNamespaces } from "i18n";
-import { connect } from "react-redux";
 import { Modal, H3, Paragraph, Button } from "components";
-import { func, bool } from "prop-types";
-import { acceptCookies as acceptCookiesAction } from "actions/app";
+import { func } from "prop-types";
 import isServer from "utils/isServer";
 import { Flex } from "@rebass/grid";
 import { privacyPolicyLink, termsAndConditionsLink } from "consts";
 
 const namespaces = ["cookies"];
 
-const CookiesModal = ({ t, cookiesAccepted, acceptCookies }) =>
-  !cookiesAccepted && !isServer ? (
-    <Modal open onClose={acceptCookies}>
-      <Flex width={450} flexDirection="column">
-        <H3>{t("header")}</H3>
-        <Paragraph>
-          {`${t("paragraph")} `}
-          <a href={privacyPolicyLink} target="_blank" rel="noreferrer noopener">
-            {t("privacyPolicy")}
-          </a>
-          {` ${t("and")} `}
-          <a
-            href={termsAndConditionsLink}
-            target="_blank"
-            rel="noreferrer noopener"
+const CookiesModal = ({ t }) => {
+  const [isOpen, setIsOpen] = useState(true);
+  if (!isServer && window.localStorage.getItem("cookiesAccepted") !== "true") {
+    const acceptCookies = () =>
+      window.localStorage.setItem("cookiesAccepted", "true");
+    return (
+      <Modal
+        open={isOpen}
+        onClose={() => {
+          acceptCookies();
+          setIsOpen(false);
+        }}
+      >
+        <Flex width={450} flexDirection="column">
+          <H3>{t("header")}</H3>
+          <Paragraph>
+            {`${t("paragraph")} `}
+            <a
+              href={privacyPolicyLink}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              {t("privacyPolicy")}
+            </a>
+            {` ${t("and")} `}
+            <a
+              href={termsAndConditionsLink}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              {t("termsAndConditions")}
+            </a>
+          </Paragraph>
+          <Button
+            styleName="blue"
+            onClick={() => {
+              acceptCookies();
+              setIsOpen(false);
+            }}
           >
-            {t("termsAndConditions")}
-          </a>
-        </Paragraph>
-        <Button styleName="blue" onClick={acceptCookies}>
-          {t("ok")}
-        </Button>
-      </Flex>
-    </Modal>
-  ) : null;
-
-CookiesModal.propTypes = {
-  t: func.isRequired,
-  acceptCookies: func.isRequired,
-  cookiesAccepted: bool.isRequired
+            {t("ok")}
+          </Button>
+        </Flex>
+      </Modal>
+    );
+  }
+  return null;
 };
 
-export default withNamespaces(namespaces)(
-  connect(
-    state => ({
-      cookiesAccepted: state.app.cookiesAccepted
-    }),
-    { acceptCookies: acceptCookiesAction }
-  )(CookiesModal)
-);
+CookiesModal.propTypes = {
+  t: func.isRequired
+};
+
+export default withNamespaces(namespaces)(CookiesModal);

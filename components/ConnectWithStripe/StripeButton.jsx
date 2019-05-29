@@ -1,17 +1,19 @@
 import React from "react";
-import { node, func, string } from "prop-types";
+import { node, string } from "prop-types";
 import { STRIPE_CLIENT_ID } from "consts";
 import { connect } from "react-redux";
-import { setStripeData } from "actions/auth";
 import uuid from "uuid/v1";
 import { StripeButtonStyled, StripeLogo } from "./styled";
 
-const StripeButton = ({ children, setStripeConnectData, businessId }) => (
+const StripeButton = ({ children, businessId }) => (
   <StripeButtonStyled
     as="a"
     onClick={() => {
       const state = uuid();
-      setStripeConnectData({ businessId, state });
+      window.localStorage.setItem(
+        "stripeConnectData",
+        JSON.stringify({ businessId, state })
+      );
       window.location.href = `https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${STRIPE_CLIENT_ID}&scope=read_write&state=${state}`;
     }}
   >
@@ -22,14 +24,11 @@ const StripeButton = ({ children, setStripeConnectData, businessId }) => (
 
 StripeButton.propTypes = {
   children: node.isRequired,
-  setStripeConnectData: func.isRequired,
   businessId: string.isRequired
 };
 
-export default connect(
-  state => ({
-    businessId:
-      state.users.currentBusiness.data && state.users.currentBusiness.data.id
-  }),
-  { setStripeConnectData: setStripeData }
-)(StripeButton);
+export default connect(state => {
+  const businessData = state.getIn(["users", "currentBusiness", "data"]);
+  const business = businessData && businessData.get("businesses").first();
+  return { businessId: business && business.get("id") };
+})(StripeButton);

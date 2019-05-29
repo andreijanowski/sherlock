@@ -21,9 +21,14 @@ const essentialPlan = {
 
 export const getPlanName = plan => {
   if (plan) {
-    const currentPlan = getCurrentPlanNameBySlug(plan.slug);
-    if (plan.cancelAt) {
-      if (new Date(plan.cancelAt).getTime() < new Date().getTime()) {
+    const currentPlan = getCurrentPlanNameBySlug(
+      plan.getIn(["attributes", "slug"])
+    );
+    if (plan.getIn(["attributes", "cancelAt"])) {
+      if (
+        new Date(plan.getIn(["attributes", "cancelAt"])).getTime() <
+        new Date().getTime()
+      ) {
         return essentialPlan;
       }
       return {

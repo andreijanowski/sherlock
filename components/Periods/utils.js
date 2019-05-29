@@ -18,24 +18,24 @@ export const timeToNumber = ({ hour24, minute }) =>
 
 export const parsePeriods = periods => {
   const days = {};
-  if (periods) {
+  if (periods && periods.forEach) {
     periods.forEach(p => {
-      if (days[`day-${p.weekday}`]) {
-        days[`day-${p.weekday}`].push({
-          id: p.id,
-          location: p.location,
-          openedFrom: parseTime(p.openedFrom),
-          openedTo: parseTime(p.openedTo),
-          weekday: p.weekday
+      if (days[`day-${p.getIn(["attributes", "weekday"])}`]) {
+        days[`day-${p.getIn(["attributes", "weekday"])}`].push({
+          id: p.get("id"),
+          location: p.getIn(["attributes", "location"]),
+          openedFrom: parseTime(p.getIn(["attributes", "openedFrom"])),
+          openedTo: parseTime(p.getIn(["attributes", "openedTo"])),
+          weekday: p.getIn(["attributes", "weekday"])
         });
       } else {
-        days[`day-${p.weekday}`] = [
+        days[`day-${p.getIn(["attributes", "weekday"])}`] = [
           {
-            id: p.id,
-            location: p.location,
-            openedFrom: parseTime(p.openedFrom),
-            openedTo: parseTime(p.openedTo),
-            weekday: p.weekday
+            id: p.get("id"),
+            location: p.getIn(["attributes", "location"]),
+            openedFrom: parseTime(p.getIn(["attributes", "openedFrom"])),
+            openedTo: parseTime(p.getIn(["attributes", "openedTo"])),
+            weekday: p.getIn(["attributes", "weekday"])
           }
         ];
       }
@@ -53,7 +53,7 @@ export const parsePeriod = period => ({
   weekday: period.weekday
 });
 
-export const addNewPeriod = (addPeriod, fields, weekday) => {
+export const addNewPeriod = (addPeriod, weekday) => {
   const defaultTime = {
     formatted: "12:00 am",
     formatted24: "0:00",

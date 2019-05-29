@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, shape, arrayOf } from "prop-types";
+import { func, string, shape } from "prop-types";
 import ProfileLayout from "sections/profile/Layout";
 import {
   Periods,
@@ -33,11 +33,8 @@ class OpeningHours extends PureComponent {
   };
 
   addOpenPeriod = openPeriod => {
-    const {
-      addOpenPeriod,
-      business: { id }
-    } = this.props;
-    return addOpenPeriod(id, parsePeriod(openPeriod));
+    const { addOpenPeriod, businessId } = this.props;
+    return addOpenPeriod(businessId, parsePeriod(openPeriod));
   };
 
   updateOpenPeriod = openPeriod => {
@@ -67,6 +64,12 @@ class OpeningHours extends PureComponent {
       t,
       lng,
       business,
+      businessId,
+      businessGroups,
+      businessMenus,
+      businessPictures,
+      businessProducts,
+      businessOpenPeriods,
       businesses,
       changeCurrentBusiness,
       addBusiness,
@@ -74,12 +77,10 @@ class OpeningHours extends PureComponent {
       getProfileBusiness
     } = this.props;
 
-    const initialValues = business
-      ? parsePeriods(business.openPeriods)
-      : undefined;
+    const initialValues = parsePeriods(businessOpenPeriods);
 
-    const isLocationVisible = business
-      ? isMovableBusiness(business.groups)
+    const isLocationVisible = businessGroups
+      ? isMovableBusiness(businessGroups)
       : false;
 
     return (
@@ -88,6 +89,12 @@ class OpeningHours extends PureComponent {
           t,
           lng,
           business,
+          businessId,
+          businessGroups,
+          businessMenus,
+          businessPictures,
+          businessProducts,
+          businessOpenPeriods,
           businesses,
           changeCurrentBusiness,
           addBusiness,
@@ -122,23 +129,50 @@ OpeningHours.propTypes = {
   addBusiness: func.isRequired,
   updateBusiness: func.isRequired,
   business: shape(),
+  businessId: string,
+  businessGroups: shape(),
+  businessMenus: shape(),
+  businessPictures: shape(),
+  businessProducts: shape(),
+  businessOpenPeriods: shape(),
   changeCurrentBusiness: func.isRequired,
   getProfileBusiness: func.isRequired,
-  businesses: arrayOf(shape())
+  businesses: shape()
 };
 
 OpeningHours.defaultProps = {
   business: null,
+  businessId: "",
+  businessGroups: null,
+  businessMenus: null,
+  businessPictures: null,
+  businessProducts: null,
+  businessOpenPeriods: null,
   businesses: null
 };
 
 export default requireAuth(true)(
   withNamespaces(namespaces)(
     connect(
-      state => ({
-        business: state.users.currentBusiness.data,
-        businesses: state.users.profileBusinesses.data
-      }),
+      state => {
+        const businessData = state.getIn(["users", "currentBusiness", "data"]);
+        const business = businessData && businessData.get("businesses").first();
+        return {
+          business: business && business.get("attributes"),
+          businessId: business && business.get("id"),
+          businessGroups: businessData && businessData.get("groups"),
+          businessMenus: businessData && businessData.get("menus"),
+          businessPictures: businessData && businessData.get("pictures"),
+          businessProducts: businessData && businessData.get("products"),
+          businessOpenPeriods: businessData && businessData.get("openPeriods"),
+          businesses: state.getIn([
+            "users",
+            "profileBusinesses",
+            "data",
+            "businesses"
+          ])
+        };
+      },
       {
         addBusiness: postBusiness,
         updateBusiness: patchBusiness,

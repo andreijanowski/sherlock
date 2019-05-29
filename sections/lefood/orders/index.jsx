@@ -27,7 +27,7 @@ const Orders = ({
       <ColumnsWrapper>
         {Object.values(columns).map(column => {
           const columnOrders = column.orderIds
-            .map(id => orders.find(o => o.id === id))
+            .map(id => orders.get(id))
             .filter(o => !!o);
           return (
             <Column

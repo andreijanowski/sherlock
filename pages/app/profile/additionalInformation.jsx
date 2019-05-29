@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, shape, arrayOf } from "prop-types";
+import { func, string, shape } from "prop-types";
 import Form from "sections/profile/additionalInformation";
 import { connect } from "react-redux";
 import { postBusiness, patchBusiness } from "actions/businesses";
@@ -37,10 +37,7 @@ class AdditionalInformation extends PureComponent {
     canPayWithMobile,
     secretCode
   }) => {
-    const {
-      updateBusiness,
-      business: { id }
-    } = this.props;
+    const { updateBusiness, businessId } = this.props;
     const requestValues = {
       breakfastService,
       lunchService,
@@ -59,7 +56,7 @@ class AdditionalInformation extends PureComponent {
       canPayWithMobile,
       secretCode
     };
-    return updateBusiness(id, requestValues);
+    return updateBusiness(businessId, requestValues);
   };
 
   render() {
@@ -67,6 +64,12 @@ class AdditionalInformation extends PureComponent {
       t,
       lng,
       business,
+      businessId,
+      businessGroups,
+      businessMenus,
+      businessPictures,
+      businessProducts,
+      businessOpenPeriods,
       businesses,
       changeCurrentBusiness,
       addBusiness,
@@ -80,6 +83,12 @@ class AdditionalInformation extends PureComponent {
           t,
           lng,
           business,
+          businessId,
+          businessGroups,
+          businessMenus,
+          businessPictures,
+          businessProducts,
+          businessOpenPeriods,
           businesses,
           changeCurrentBusiness,
           addBusiness,
@@ -98,25 +107,52 @@ AdditionalInformation.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   business: shape(),
+  businessId: string,
+  businessGroups: shape(),
+  businessMenus: shape(),
+  businessPictures: shape(),
+  businessProducts: shape(),
+  businessOpenPeriods: shape(),
   updateBusiness: func.isRequired,
   changeCurrentBusiness: func.isRequired,
   getProfileBusiness: func.isRequired,
   addBusiness: func.isRequired,
-  businesses: arrayOf(shape())
+  businesses: shape()
 };
 
 AdditionalInformation.defaultProps = {
   business: null,
+  businessId: "",
+  businessGroups: null,
+  businessMenus: null,
+  businessPictures: null,
+  businessProducts: null,
+  businessOpenPeriods: null,
   businesses: null
 };
 
 export default requireAuth(true)(
   withNamespaces(namespaces)(
     connect(
-      state => ({
-        business: state.users.currentBusiness.data,
-        businesses: state.users.profileBusinesses.data
-      }),
+      state => {
+        const businessData = state.getIn(["users", "currentBusiness", "data"]);
+        const business = businessData && businessData.get("businesses").first();
+        return {
+          business: business && business.get("attributes"),
+          businessId: business && business.get("id"),
+          businessGroups: businessData && businessData.get("groups"),
+          businessMenus: businessData && businessData.get("menus"),
+          businessPictures: businessData && businessData.get("pictures"),
+          businessProducts: businessData && businessData.get("products"),
+          businessOpenPeriods: businessData && businessData.get("openPeriods"),
+          businesses: state.getIn([
+            "users",
+            "profileBusinesses",
+            "data",
+            "businesses"
+          ])
+        };
+      },
       {
         updateBusiness: patchBusiness,
         addBusiness: postBusiness,
