@@ -17,16 +17,6 @@ class MonthPage extends PureComponent {
     };
   }
 
-  constructor(p) {
-    super();
-    this.state = {
-      view: {
-        value: "month",
-        label: p.t("month")
-      }
-    };
-  }
-
   render() {
     const {
       t,
@@ -40,14 +30,15 @@ class MonthPage extends PureComponent {
       setEditedCatering,
       sendOffer
     } = this.props;
-    const { view } = this.state;
-    const { currency } = business || {};
     return (
       <CateringLayout
         {...{
           t,
           lng,
-          view,
+          view: {
+            value: "month",
+            label: t("month")
+          },
           business,
           businessId,
           businesses,
@@ -60,7 +51,7 @@ class MonthPage extends PureComponent {
             lng,
             caterings,
             addresses,
-            currency,
+            currency: business && business.get("currency"),
             setEditedCatering,
             sendOffer,
             timeZone: business && business.get("timezone")

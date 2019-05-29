@@ -18,16 +18,6 @@ class WeekPage extends PureComponent {
     };
   }
 
-  constructor(p) {
-    super();
-    this.state = {
-      view: {
-        value: "week",
-        label: p.t("week")
-      }
-    };
-  }
-
   render() {
     const {
       t,
@@ -41,14 +31,15 @@ class WeekPage extends PureComponent {
       setEditedCatering,
       sendOffer
     } = this.props;
-    const { view } = this.state;
-    const { currency } = business || {};
     return (
       <CateringLayout
         {...{
           t,
           lng,
-          view,
+          view: {
+            value: "week",
+            label: t("week")
+          },
           business,
           businessId,
           businesses,
@@ -62,7 +53,7 @@ class WeekPage extends PureComponent {
               lng,
               caterings,
               addresses,
-              currency,
+              currency: business && business.get("currency"),
               setEditedCatering,
               sendOffer,
               timeZone: business && business.get("timezone")

@@ -18,16 +18,6 @@ class DayPage extends PureComponent {
     };
   }
 
-  constructor(p) {
-    super();
-    this.state = {
-      view: {
-        value: "day",
-        label: p.t("day")
-      }
-    };
-  }
-
   render() {
     const {
       t,
@@ -41,14 +31,15 @@ class DayPage extends PureComponent {
       setEditedCatering,
       sendOffer
     } = this.props;
-    const { view } = this.state;
-    const { currency } = business || {};
     return (
       <CateringLayout
         {...{
           t,
           lng,
-          view,
+          view: {
+            value: "day",
+            label: t("day")
+          },
           business,
           businessId,
           businesses,
@@ -62,7 +53,7 @@ class DayPage extends PureComponent {
               lng,
               caterings,
               addresses,
-              currency,
+              currency: business && business.get("currency"),
               setEditedCatering,
               sendOffer,
               timeZone: business && business.get("timezone")

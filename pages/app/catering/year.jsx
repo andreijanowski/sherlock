@@ -16,16 +16,6 @@ class YearPage extends PureComponent {
     };
   }
 
-  constructor(p) {
-    super();
-    this.state = {
-      view: {
-        value: "year",
-        label: p.t("year")
-      }
-    };
-  }
-
   render() {
     const {
       t,
@@ -36,21 +26,24 @@ class YearPage extends PureComponent {
       changeCurrentBusiness,
       caterings
     } = this.props;
-    const { view } = this.state;
-    const { currency } = business || {};
     return (
       <CateringLayout
         {...{
           t,
           lng,
-          view,
+          view: {
+            value: "year",
+            label: t("year")
+          },
           business,
           businessId,
           businesses,
           changeCurrentBusiness
         }}
       >
-        <Year {...{ caterings, currency }} />
+        <Year
+          {...{ caterings, currency: business && business.get("currency") }}
+        />
       </CateringLayout>
     );
   }
