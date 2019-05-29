@@ -18,7 +18,7 @@ export const timeToNumber = ({ hour24, minute }) =>
 
 export const parsePeriods = periods => {
   const days = {};
-  if (periods) {
+  if (periods && periods.forEach) {
     periods.forEach(p => {
       if (days[`day-${p.getIn(["attributes", "weekday"])}`]) {
         days[`day-${p.getIn(["attributes", "weekday"])}`].push({
