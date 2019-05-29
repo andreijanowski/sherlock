@@ -1,13 +1,14 @@
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, arrayOf, shape, bool, number } from "prop-types";
+import { func, string, shape, bool, number } from "prop-types";
 import LefoodLayout from "sections/lefood/Layout";
 import Orders from "sections/lefood/orders";
 import {
   calcPendingOrders,
   parseOrders,
-  columns as columnsNames
+  columns as columnsNames,
+  mergeOrdersData
 } from "sections/lefood/utils";
 import { connect } from "react-redux";
 import { patchOrder, patchOrderReject } from "actions/orders";
@@ -15,7 +16,7 @@ import { patchBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/app";
 import OrderDetails from "sections/lefood/orders/OrderDetails";
 import { SliderStyles } from "sections/lefood/orders/styled";
-import { action as toggleMenu } from "redux-burger-menu";
+import { action as toggleMenu } from "redux-burger-menu/immutable";
 
 const namespaces = ["lefood", "app", "forms"];
 
@@ -180,6 +181,8 @@ class OrdersPage extends PureComponent {
       dishesLength,
       deliveriesLength,
       business,
+      businessId,
+      businessOrderPeriodsLength,
       businesses,
       changeCurrentBusiness
     } = this.props;
@@ -189,18 +192,10 @@ class OrdersPage extends PureComponent {
       pendingRejectionOrderId,
       orderDetailsId
     } = this.state;
-    const {
-      stripeCurrency,
-      visibleInLefood,
-      id,
-      averageDeliveryTime,
-      minAmountForDeliveryCents,
-      orderPeriods,
-      stripeUserId
-    } = business || {};
-    const orderDetails = orders
-      ? orders.find(o => o.id === orderDetailsId)
-      : null;
+
+    const orderDetails =
+      orderDetailsId && orders ? orders.get(orderDetailsId) : null;
+
     return (
       <>
         <LefoodLayout
@@ -209,16 +204,11 @@ class OrdersPage extends PureComponent {
             lng,
             page: "orders",
             pendingOrdersLength: calcPendingOrders(orders),
-            visibleInLefood,
             updateBusiness,
-            currentBusinessId: id,
+            currentBusinessId: businessId,
             dishesLength,
             deliveriesLength,
-            orderPeriodsLength: orderPeriods && orderPeriods.length,
-            averageDeliveryTime,
-            minAmountForDeliveryCents,
-            currency: stripeCurrency,
-            stripeUserId,
+            orderPeriodsLength: businessOrderPeriodsLength,
             business,
             businesses,
             changeCurrentBusiness
@@ -237,7 +227,7 @@ class OrdersPage extends PureComponent {
               orders,
               columns,
               loading,
-              currency: stripeCurrency,
+              currency: business && business.get("stripeCurrency"),
               t
             }}
           />
@@ -261,38 +251,66 @@ class OrdersPage extends PureComponent {
 OrdersPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  orders: arrayOf(shape()),
+  orders: shape(),
   business: shape(),
   loading: bool.isRequired,
   updateOrder: func.isRequired,
   rejectOrder: func.isRequired,
   updateBusiness: func.isRequired,
   toggleOrderDetails: func.isRequired,
-  dishesLength: number.isRequired,
-  deliveriesLength: number.isRequired,
-  businesses: arrayOf(shape()),
+  dishesLength: number,
+  deliveriesLength: number,
+  businesses: shape(),
+  businessId: string,
+  businessOrderPeriodsLength: number,
   changeCurrentBusiness: func.isRequired
 };
 
 OrdersPage.defaultProps = {
-  business: {},
+  business: null,
+  businessId: "",
   businesses: null,
+  businessOrderPeriodsLength: 0,
+  dishesLength: 0,
+  deliveriesLength: 0,
   orders: null
 };
 
 export default requireAuth(true)(
   withNamespaces(namespaces)(
     connect(
-      state => ({
-        loading:
-          (!state.orders.isFailed && !state.orders.isSucceeded) ||
-          state.orders.isFetching,
-        orders: state.orders.data,
-        dishesLength: state.dishes.data && state.dishes.data.length,
-        deliveriesLength: state.deliveries.data && state.deliveries.data.length,
-        business: state.users.currentBusiness.data,
-        businesses: state.users.profileBusinesses.data
-      }),
+      state => {
+        const businessData = state.getIn(["users", "currentBusiness", "data"]);
+        const business = businessData && businessData.get("businesses").first();
+        const orders = state.getIn(["orders", "data", "orders"]);
+        const elements = state.getIn(["orders", "data", "elements"]);
+
+        return {
+          loading:
+            (!state.getIn(["orders", "isFailed"]) &&
+              !state.getIn(["orders", "isSucceeded"])) ||
+            state.getIn(["orders", "isFetching"]),
+          orders: mergeOrdersData(orders, elements),
+          dishesLength:
+            state.getIn(["dishes", "data", "dishes"]) &&
+            state.getIn(["dishes", "data", "dishes"]).size,
+          deliveriesLength:
+            state.getIn(["deliveries", "data", "deliveries"]) &&
+            state.getIn(["deliveries", "data", "deliveries"]).size,
+          business: business && business.get("attributes"),
+          businessId: business && business.get("id"),
+          businessOrderPeriodsLength:
+            businessData &&
+            businessData.get("orderPeriods") &&
+            businessData.get("orderPeriods").size,
+          businesses: state.getIn([
+            "users",
+            "profileBusinesses",
+            "data",
+            "businesses"
+          ])
+        };
+      },
       {
         updateOrder: patchOrder,
         rejectOrder: patchOrderReject,

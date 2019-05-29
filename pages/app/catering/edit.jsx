@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, shape, arrayOf } from "prop-types";
+import { func, string, shape } from "prop-types";
 import CateringLayout from "sections/catering/Layout";
 import EditCateringForm from "sections/catering/edit";
 import { connect } from "react-redux";
@@ -59,6 +59,7 @@ class EditCateringPage extends PureComponent {
       t,
       lng,
       business,
+      businessId,
       businesses,
       changeCurrentBusiness,
       editedCatering
@@ -71,6 +72,7 @@ class EditCateringPage extends PureComponent {
           t,
           lng,
           business,
+          businessId,
           businesses,
           changeCurrentBusiness,
           isAddActionHidden: true
@@ -100,11 +102,13 @@ EditCateringPage.propTypes = {
   business: shape(),
   changeCurrentBusiness: func.isRequired,
   updateCatering: func.isRequired,
-  businesses: arrayOf(shape())
+  businesses: shape(),
+  businessId: string
 };
 
 EditCateringPage.defaultProps = {
   business: null,
+  businessId: "",
   businesses: null,
   editedCatering: null
 };
@@ -112,11 +116,21 @@ EditCateringPage.defaultProps = {
 export default requireAuth(true)(
   withNamespaces(namespaces)(
     connect(
-      state => ({
-        business: state.users.currentBusiness.data,
-        businesses: state.users.profileBusinesses.data,
-        editedCatering: state.caterings.editedCatering
-      }),
+      state => {
+        const businessData = state.getIn(["users", "currentBusiness", "data"]);
+        const business = businessData && businessData.get("businesses").first();
+        return {
+          business: business && business.get("attributes"),
+          businessId: business && business.get("id"),
+          businesses: state.getIn([
+            "users",
+            "profileBusinesses",
+            "data",
+            "businesses"
+          ]),
+          editedCatering: state.getIn(["caterings", "editedCatering"])
+        };
+      },
       {
         changeCurrentBusiness: setCurrentBusiness,
         updateCatering: patchCatering

@@ -22,8 +22,8 @@ class UserBasicInfoForm extends PureComponent {
     return profile ? (
       <FinalForm
         initialValues={{
-          name: profile.name,
-          email: profile.email
+          name: profile.getIn(["attributes", "name"]),
+          email: profile.getIn(["attributes", "email"])
         }}
         onSubmit={this.submitForm}
         render={({ handleSubmit, form, invalid, submitting }) => (
@@ -36,7 +36,7 @@ class UserBasicInfoForm extends PureComponent {
                     <Avatar
                       {...{
                         t,
-                        url: profile && profile.avatar.url,
+                        url: profile.getIn(["attributes", "avatar", "url"]),
                         saveToFormState: form.change
                       }}
                     />
@@ -66,11 +66,11 @@ class UserBasicInfoForm extends PureComponent {
                   {t("common:update")}
                 </Button>
               </Box>
-              {profile.unconfirmedEmail && (
+              {profile.getIn(["attributes", "unconfirmedEmail"]) && (
                 <Box my={3}>
                   <ConfirmationMsg>
                     {t("confirmEmailChange", {
-                      email: profile.unconfirmedEmail
+                      email: profile.getIn(["attributes", "unconfirmedEmail"])
                     })}
                   </ConfirmationMsg>
                 </Box>

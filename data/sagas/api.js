@@ -6,7 +6,7 @@ import qs from "qs";
 import isLoginRequest from "utils/isLoginRequest";
 import isServer from "utils/isServer";
 import getErrorMessage from "utils/getErrorMessage";
-import { takeEvery, call, put, select } from "redux-saga/effects";
+import { takeEvery, call, put } from "redux-saga/effects";
 import { logout } from "actions/auth";
 import { contentTypes, API_URL, NETGURU_DEV_PASSWORD } from "consts";
 import { REFRESH_TOKEN_REQUEST } from "types/auth";
@@ -15,8 +15,10 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 
 function* waitForToken() {
   yield delay(1000);
-  const isRefreshing = yield select(state => state.auth.isRefreshing);
-  if (isRefreshing) {
+  const areCredentialsRefreshing = window.localStorage.getItem(
+    "areCredentialsRefreshing"
+  );
+  if (areCredentialsRefreshing === "true") {
     yield waitForToken();
   }
 }
@@ -62,16 +64,23 @@ function* handleApiCall(action) {
     }
   };
 
-  if (authRequired) {
-    const isRefreshing = yield select(state => state.auth.isRefreshing);
-    if (isRefreshing && type !== REFRESH_TOKEN_REQUEST) {
+  if (authRequired && !isServer) {
+    const areCredentialsRefreshing = window.localStorage.getItem(
+      "areCredentialsRefreshing"
+    );
+    if (areCredentialsRefreshing === "true" && type !== REFRESH_TOKEN_REQUEST) {
       yield waitForToken();
     }
-    const token = yield select(state => state.auth.accessToken);
-    additionalOptions.headers = {
-      ...additionalOptions.headers,
-      Authorization: `Bearer ${token}`
-    };
+    try {
+      const credentials = JSON.parse(
+        window.localStorage.getItem("credentials")
+      );
+      additionalOptions.headers = {
+        ...additionalOptions.headers,
+        Authorization: `Bearer ${credentials.accessToken}`
+      };
+      // eslint-disable-next-line no-empty
+    } catch (e) {}
   }
 
   const mergedOptions = {

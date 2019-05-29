@@ -103,18 +103,17 @@ class RawMultipleSelect extends PureComponent {
           isActive={meta.active}
           invalid={error ? "true" : undefined}
         >
-          {input.value &&
-            input.value.map((i, index) => (
-              <Tag key={i.value} isInvalid={index >= max}>
-                {i.label}
-                <TagIcon
-                  isInvalid={index >= max}
-                  onClick={
-                    input.value.length > min ? () => this.remove(i) : undefined
-                  }
-                />
-              </Tag>
-            ))}
+          {input.value.map((i, index) => (
+            <Tag key={i.value} isInvalid={index >= max}>
+              {i.label}
+              <TagIcon
+                isInvalid={index >= max}
+                onClick={
+                  input.value.length > min ? () => this.remove(i) : undefined
+                }
+              />
+            </Tag>
+          ))}
           <MultipleSelectInput
             autoComplete="nope"
             {...getInputProps({

@@ -7,13 +7,14 @@ import forceLanguageInUrl from "utils/forceLanguageInUrl";
 import Layout from "layout";
 import { ThemeProvider } from "styled-components";
 import { theme } from "utils/theme";
-import { PersistGate as PersistGateClient } from "redux-persist/integration/react";
 import isServer from "utils/isServer";
 import NProgress from "nprogress";
 import { Router } from "routes";
 import { StripeProvider } from "react-stripe-elements";
 import { STRIPE_API_KEY, GOOGLE_ANALYTICS_ID } from "consts";
 import ReactGA from "react-ga";
+import { fromJS } from "immutable";
+import { refreshToken as refreshTokenAction } from "actions/auth";
 import { appWithTranslation } from "../i18n";
 import createStore from "../data/store";
 
@@ -21,9 +22,6 @@ ReactGA.initialize(GOOGLE_ANALYTICS_ID);
 if (!isServer) {
   ReactGA.pageview(window.location.pathname + window.location.search);
 }
-
-const PersistGateServer = ({ children }) => children;
-const PersistGate = isServer ? PersistGateServer : PersistGateClient;
 
 Router.events.on("routeChangeStart", () => {
   NProgress.start();
@@ -62,6 +60,15 @@ class MyApp extends App {
         this.setState({ stripe: window.Stripe(STRIPE_API_KEY) });
       });
     }
+    try {
+      const credentials = JSON.parse(
+        window.localStorage.getItem("credentials")
+      );
+      if (credentials.refreshToken) {
+        this.props.refreshToken({ refreshToken: credentials.refreshToken });
+      }
+      // eslint-disable-next-line no-empty
+    } catch (e) {}
   }
 
   componentDidUpdate(prevProps) {
@@ -80,25 +87,27 @@ class MyApp extends App {
     return (
       <Container>
         <Provider store={store}>
-          <PersistGate persistor={store.__persistor}>
-            <ThemeProvider theme={theme}>
-              <StripeProvider stripe={this.state.stripe}>
-                <Layout {...{ pageProps, Component }} />
-              </StripeProvider>
-            </ThemeProvider>
-          </PersistGate>
+          <ThemeProvider theme={theme}>
+            <StripeProvider stripe={this.state.stripe}>
+              <Layout {...{ pageProps, Component }} />
+            </StripeProvider>
+          </ThemeProvider>
         </Provider>
       </Container>
     );
   }
 }
 
-export default withRedux(createStore)(
+export default withRedux(createStore, {
+  serializeState: state => state.toJS(),
+  deserializeState: state => fromJS(state)
+})(
   withReduxSaga({ async: true })(
     connect(
-      null,
+      state => ({ state }),
       {
-        pathChanged: pathChangedAction
+        pathChanged: pathChangedAction,
+        refreshToken: refreshTokenAction
       }
     )(appWithTranslation(MyApp))
   )

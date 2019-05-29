@@ -1,5 +1,5 @@
 import Slide from "react-burger-menu/lib/menus/slide";
-import { decorator as reduxBurgerMenu } from "redux-burger-menu";
+import { decorator as reduxBurgerMenu } from "redux-burger-menu/immutable";
 import { func, bool, shape } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import { Button, FormDropdown } from "components";
@@ -35,12 +35,12 @@ const OrderDetails = ({
           <FormDropdown
             {...{
               input: {
-                value: orderDetails.state,
+                value: orderDetails.getIn(["attributes", "state"]),
                 onChange: state => {
                   if (state === "rejected") {
-                    setRejectModalVisibility(orderDetails.id);
+                    setRejectModalVisibility(orderDetails.get("id"));
                   } else {
-                    updateOrder(state, orderDetails.id);
+                    updateOrder(state, orderDetails.get("id"));
                   }
                 }
               },
@@ -62,35 +62,42 @@ const OrderDetails = ({
               label: t("orderState")
             }}
           />
-          {orderDetails.state === "rejected" &&
-            `${t("rejectReason")}: ${orderDetails.otherRejectionReason ||
-              t(orderDetails.rejectReason)}`}
+          {orderDetails.getIn(["attributes", "state"]) === "rejected" &&
+            `${t("rejectReason")}: ${orderDetails.getIn([
+              "attributes",
+              "otherRejectionReason"
+            ]) || t(orderDetails.getIn(["attributes", "rejectReason"]))}`}
         </OrderDetailsState>
-        {orderDetails.elements &&
-          orderDetails.elements.map(
-            ({ units, dishName, dishPricePerItemCents, currency }) => (
+        {orderDetails.getIn(["relationships", "elements", "data"]) &&
+          orderDetails
+            .getIn(["relationships", "elements", "data"])
+            .map(element => (
               <OrderDetail
                 {...{
-                  key: dishName,
-                  name: `${units}x ${dishName}`,
-                  price: dishPricePerItemCents,
-                  currency: currency || orderDetails.currency
+                  key: element.getIn(["attributes", "dishName"]),
+                  name: `${element.getIn([
+                    "attributes",
+                    "units"
+                  ])}x ${element.getIn(["attributes", "dishName"])}`,
+                  price: element.getIn(["attributes", "dishPricePerItemCents"]),
+                  currency:
+                    element.getIn(["attributes", "currency"]) ||
+                    orderDetails.getIn(["attributes", "currency"])
                 }}
               />
-            )
-          )}
+            ))}
         <OrderDetail
           {...{
             name: t("delivery"),
-            price: orderDetails.shippingCostCents,
-            currency: orderDetails.currency
+            price: orderDetails.getIn(["attributes", "shippingCostCents"]),
+            currency: orderDetails.getIn(["attributes", "currency"])
           }}
         />
         <OrderDetail
           {...{
             name: t("total"),
-            price: orderDetails.totalCostCents,
-            currency: orderDetails.currency,
+            price: orderDetails.getIn(["attributes", "totalCostCents"]),
+            currency: orderDetails.getIn(["attributes", "currency"]),
             isBold: true
           }}
         />
@@ -99,12 +106,18 @@ const OrderDetails = ({
           {t("personalInformation")}
         </OrderDetailsSubheader>
         <PersonalInformation
-          {...{ name: t("email"), value: [orderDetails.userEmail] }}
+          {...{
+            name: t("email"),
+            value: [orderDetails.getIn(["attributes", "userEmail"])]
+          }}
         />
         <PersonalInformation
-          {...{ name: t("phone"), value: [orderDetails.userPhone] }}
+          {...{
+            name: t("phone"),
+            value: [orderDetails.getIn(["attributes", "userPhone"])]
+          }}
         />
-        {orderDetails.pickupAtBusiness && (
+        {orderDetails.getIn(["attributes", "pickupAtBusiness"]) && (
           <PersonalInformation
             {...{
               name: t("deliveryAddress"),
@@ -112,29 +125,31 @@ const OrderDetails = ({
             }}
           />
         )}
-        {!orderDetails.pickupAtBusiness && orderDetails.addresses.length > 0 && (
-          <PersonalInformation
-            {...{
-              name: t("deliveryAddress"),
-              value: [
-                `${orderDetails.addresses[0].streetNumber} ${
-                  orderDetails.addresses[0].street
-                }`,
-                orderDetails.addresses[0].region
-                  ? `${orderDetails.addresses[0].region} ${
-                      orderDetails.addresses[0].regionCode
-                    }`
-                  : "",
-                `${orderDetails.addresses[0].postCode} ${
-                  orderDetails.addresses[0].city
-                }`,
-                orderDetails.addresses[0].addressLine,
-                orderDetails.addresses[0].notes
-              ]
-            }}
-          />
-        )}
-        {orderDetails.state === "waiting_for_approval" && (
+        {!orderDetails.getIn(["attributes", "pickupAtBusiness"]) &&
+          orderDetails.addresses.length > 0 && (
+            <PersonalInformation
+              {...{
+                name: t("deliveryAddress"),
+                value: [
+                  `${orderDetails.addresses[0].streetNumber} ${
+                    orderDetails.addresses[0].street
+                  }`,
+                  orderDetails.addresses[0].region
+                    ? `${orderDetails.addresses[0].region} ${
+                        orderDetails.addresses[0].regionCode
+                      }`
+                    : "",
+                  `${orderDetails.addresses[0].postCode} ${
+                    orderDetails.addresses[0].city
+                  }`,
+                  orderDetails.addresses[0].addressLine,
+                  orderDetails.addresses[0].notes
+                ]
+              }}
+            />
+          )}
+        {orderDetails.getIn(["attributes", "state"]) ===
+          "waiting_for_approval" && (
           <Flex mx={-1} mt={3} pb={3}>
             <Box width={1 / 2} px={1}>
               <Button
@@ -142,7 +157,7 @@ const OrderDetails = ({
                 styleName="reject"
                 onClick={e => {
                   e.stopPropagation();
-                  setRejectModalVisibility(orderDetails.id);
+                  setRejectModalVisibility(orderDetails.get("id"));
                 }}
               >
                 {t("reject")}
@@ -154,7 +169,7 @@ const OrderDetails = ({
                 styleName="accept"
                 onClick={e => {
                   e.stopPropagation();
-                  updateOrder("waiting_for_payment", orderDetails.id);
+                  updateOrder("waiting_for_payment", orderDetails.get("id"));
                 }}
               >
                 {t("accept")}

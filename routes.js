@@ -34,6 +34,10 @@ module.exports = routes()
     `/:lng(${languagesPattern})/app/profile/pictures-and-menus`
   )
   .add(
+    "app/profile/liveInfo",
+    `/:lng(${languagesPattern})/app/profile/live-info`
+  )
+  .add(
     "app/settings/basicInformation",
     `/:lng(${languagesPattern})/app/settings/basic-information`
   )

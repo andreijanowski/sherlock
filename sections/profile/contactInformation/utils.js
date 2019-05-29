@@ -2,28 +2,19 @@ import countriesPhoneCodes from "utils/countriesPhoneCodes";
 
 export const getInitialValues = business => {
   if (business) {
-    const {
-      email,
-      phone,
-      phoneCountryPrefix,
-      phoneCountryCode,
-      website,
-      facebook,
-      instagram
-    } = business;
-
     const phoneCountry = countriesPhoneCodes.find(
       ({ value: { code, prefix } }) =>
-        code === phoneCountryCode && prefix === phoneCountryPrefix
+        code === business.get("phoneCountryCode") &&
+        prefix === business.get("phoneCountryPrefix")
     );
 
     return {
-      email,
-      phone,
+      email: business.get("email"),
+      phone: business.get("phone"),
       phoneCountry,
-      website,
-      facebook,
-      instagram
+      website: business.get("website"),
+      facebook: business.get("facebook"),
+      instagram: business.get("instagram")
     };
   }
   return undefined;

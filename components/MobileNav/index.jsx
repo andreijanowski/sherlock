@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { Flex } from "@rebass/grid";
-import { arrayOf, func, string, shape } from "prop-types";
+import { func, string, shape } from "prop-types";
 import { connect } from "react-redux";
 import { postBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/app";
@@ -61,11 +61,11 @@ class MobileNav extends PureComponent {
         <ToggledMobileMenu {...{ isMobileNavOpen }}>
           <Select
             value={{
-              value: business && business.id,
+              value: business && business.get("id"),
               label:
-                (business && business.name) ||
+                (business && business.get("name")) ||
                 t("app:manageProfile.unnamedBusiness"),
-              src: business && business.logo.url
+              src: business && business.getIn(["logo", "url"])
             }}
             items={prepareBusinessesList(t, businesses)}
             onChange={b => changeCurrentBusiness(b.value)}
@@ -101,7 +101,7 @@ MobileNav.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   business: shape(),
-  businesses: arrayOf(shape()),
+  businesses: shape(),
   changeCurrentBusiness: func.isRequired,
   addBusiness: func.isRequired,
   logout: func.isRequired
@@ -119,8 +119,13 @@ MobileNav.defaultProps = {
 
 export default connect(
   state => ({
-    business: state.users.currentBusiness.data,
-    businesses: state.users.profileBusinesses.data
+    business: state.getIn(["users", "currentBusiness", "data"]),
+    businesses: state.getIn([
+      "users",
+      "profileBusinesses",
+      "data",
+      "businesses"
+    ])
   }),
   {
     addBusiness: postBusiness,

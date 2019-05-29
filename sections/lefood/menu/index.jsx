@@ -1,4 +1,4 @@
-import { func, arrayOf, shape, bool } from "prop-types";
+import { func, shape, bool } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import { LoadingIndicator } from "components";
 import Form from "./Form";
@@ -24,7 +24,7 @@ const Menu = ({ dishes, removeDish, addDish, addPicture, t, loading }) => (
 
 Menu.propTypes = {
   t: func.isRequired,
-  dishes: arrayOf(shape()).isRequired,
+  dishes: shape().isRequired,
   removeDish: func.isRequired,
   addDish: func.isRequired,
   addPicture: func.isRequired,

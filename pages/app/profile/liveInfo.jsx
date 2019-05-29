@@ -2,61 +2,26 @@ import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
-import ProfileLayout from "sections/profile/Layout";
-import {
-  Periods,
-  parsePeriods,
-  parsePeriod,
-  isMovableBusiness
-} from "components";
+import Form from "sections/profile/liveInfo";
 import { connect } from "react-redux";
-import {
-  postOpenPeriod,
-  patchOpenPeriod,
-  deleteOpenPeriod
-} from "actions/openPeriods";
+import { postBusiness, patchBusiness } from "actions/businesses";
+import { getInitialValues } from "sections/profile/liveInfo/utils";
 import { fetchProfileBusiness } from "actions/users";
 import { setCurrentBusiness } from "actions/app";
-import { postBusiness, patchBusiness } from "actions/businesses";
+import ProfileLayout from "sections/profile/Layout";
 
-const namespaces = ["openingHours", "app", "publishModal", "forms"];
+const namespaces = ["liveInfo", "app", "publishModal", "forms"];
 
-class OpeningHours extends PureComponent {
+class LiveInfo extends PureComponent {
   static async getInitialProps() {
     return {
       namespacesRequired: namespaces
     };
   }
 
-  state = {
-    copied: undefined
-  };
-
-  addOpenPeriod = openPeriod => {
-    const { addOpenPeriod, businessId } = this.props;
-    return addOpenPeriod(businessId, parsePeriod(openPeriod));
-  };
-
-  updateOpenPeriod = openPeriod => {
-    const { updateOpenPeriod } = this.props;
-    return updateOpenPeriod(openPeriod.id, parsePeriod(openPeriod));
-  };
-
-  removeOpenPeriod = id => {
-    const { removeOpenPeriod } = this.props;
-    return removeOpenPeriod(id);
-  };
-
-  copy = fields => this.setState({ copied: fields });
-
-  paste = weekday => {
-    const { copied } = this.state;
-    if (copied && copied.length) {
-      copied.forEach(async c => {
-        this.addOpenPeriod({ ...c, weekday });
-      });
-    }
-    return null;
+  handleSubmit = ({ liveInfo }) => {
+    const { updateBusiness, businessId } = this.props;
+    return updateBusiness(businessId, { liveInfo });
   };
 
   render() {
@@ -76,12 +41,7 @@ class OpeningHours extends PureComponent {
       updateBusiness,
       getProfileBusiness
     } = this.props;
-
-    const initialValues = parsePeriods(businessOpenPeriods);
-
-    const isLocationVisible = businessGroups
-      ? isMovableBusiness(businessGroups)
-      : false;
+    const initialValues = getInitialValues(business);
 
     return (
       <ProfileLayout
@@ -100,33 +60,18 @@ class OpeningHours extends PureComponent {
           addBusiness,
           updateBusiness,
           getProfileBusiness,
-          currentPage: "openingHours"
+          currentPage: "liveInfo"
         }}
       >
-        <Periods
-          {...{
-            t,
-            initialValues,
-            isLocationVisible,
-            addPeriod: this.addOpenPeriod,
-            updatePeriod: this.updateOpenPeriod,
-            removePeriod: this.removeOpenPeriod,
-            copy: this.copy,
-            paste: this.paste
-          }}
-        />
+        <Form {...{ t, initialValues, handleSubmit: this.handleSubmit }} />
       </ProfileLayout>
     );
   }
 }
 
-OpeningHours.propTypes = {
+LiveInfo.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  addOpenPeriod: func.isRequired,
-  updateOpenPeriod: func.isRequired,
-  removeOpenPeriod: func.isRequired,
-  addBusiness: func.isRequired,
   updateBusiness: func.isRequired,
   business: shape(),
   businessId: string,
@@ -137,10 +82,11 @@ OpeningHours.propTypes = {
   businessOpenPeriods: shape(),
   changeCurrentBusiness: func.isRequired,
   getProfileBusiness: func.isRequired,
+  addBusiness: func.isRequired,
   businesses: shape()
 };
 
-OpeningHours.defaultProps = {
+LiveInfo.defaultProps = {
   business: null,
   businessId: "",
   businessGroups: null,
@@ -176,12 +122,9 @@ export default requireAuth(true)(
       {
         addBusiness: postBusiness,
         updateBusiness: patchBusiness,
-        addOpenPeriod: postOpenPeriod,
-        updateOpenPeriod: patchOpenPeriod,
-        removeOpenPeriod: deleteOpenPeriod,
         changeCurrentBusiness: setCurrentBusiness,
         getProfileBusiness: fetchProfileBusiness
       }
-    )(OpeningHours)
+    )(LiveInfo)
   )
 );

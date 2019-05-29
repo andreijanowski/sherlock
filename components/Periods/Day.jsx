@@ -25,7 +25,7 @@ class Day extends PureComponent {
         fields.remove(0);
       }
     } else {
-      addNewPeriod(addPeriod, fields, weekday);
+      addNewPeriod(addPeriod, weekday);
     }
   };
 
@@ -151,9 +151,7 @@ class Day extends PureComponent {
                         <ActionIcon
                           size="sm"
                           icon={["fa", "plus"]}
-                          onClick={() =>
-                            addNewPeriod(addPeriod, fields, weekday)
-                          }
+                          onClick={() => addNewPeriod(addPeriod, weekday)}
                         />
                       )}
                     </Actions>

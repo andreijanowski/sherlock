@@ -3,7 +3,7 @@ import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
 import { connect } from "react-redux";
-import { connectStripe, setStripeData } from "actions/auth";
+import { connectStripe } from "actions/auth";
 import { fetchProfileBusiness } from "actions/users";
 import AppLayout from "layout/App";
 import { LoadingIndicator, H2, Button, Link } from "components";
@@ -53,16 +53,26 @@ class StripeOauth extends PureComponent {
   componentDidMount() {
     const {
       connectWithStripe,
-      setStripeConnectData,
       getBusiness,
-      stripeConnectData: { businessId, state: stateFromApp },
       query: { code, state: stateFromStripe }
     } = this.props;
 
-    if (code && stateFromStripe === stateFromApp) {
-      connectWithStripe(code, businessId)
+    let stripeConnectBusinessId;
+    let stripeConnectState;
+
+    try {
+      const stripeConnectData = JSON.parse(
+        window.localStorage.getItem("stripeConnectData")
+      );
+      stripeConnectBusinessId = stripeConnectData.businessId;
+      stripeConnectState = stripeConnectData.state;
+      // eslint-disable-next-line no-empty
+    } catch (e) {}
+
+    if (code && stateFromStripe === stripeConnectState) {
+      connectWithStripe(code, stripeConnectBusinessId)
         .then(() => {
-          getBusiness(businessId);
+          getBusiness(stripeConnectBusinessId);
           this.setState({
             isConnectionWithStripeInProgress: false,
             isConnectionWithStripeSucceeded: true
@@ -74,7 +84,7 @@ class StripeOauth extends PureComponent {
             isConnectionWithStripeSucceeded: false
           })
         );
-      setStripeConnectData({ businessId: null, state: null });
+      window.localStorage.removeItem("stripeConnectData");
     } else {
       this.setState({
         isConnectionWithStripeInProgress: false,
@@ -128,7 +138,6 @@ StripeOauth.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   connectWithStripe: func.isRequired,
-  setStripeConnectData: func.isRequired,
   getBusiness: func.isRequired,
   query: shape().isRequired,
   stripeConnectData: shape().isRequired
@@ -137,10 +146,9 @@ StripeOauth.propTypes = {
 export default requireAuth(true)(
   withNamespaces(namespaces)(
     connect(
-      state => ({ stripeConnectData: state.auth.stripeConnectData }),
+      null,
       {
         connectWithStripe: connectStripe,
-        setStripeConnectData: setStripeData,
         getBusiness: fetchProfileBusiness
       }
     )(StripeOauth)

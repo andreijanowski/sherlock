@@ -5,23 +5,51 @@ const convertDateTimeToDate = (datetime, timeZoneName) => {
   return new Date(m.year(), m.month(), m.date(), m.hour(), m.minute(), 0);
 };
 
-export const parseCaterings = (caterings, currency, view, timeZoneName, t) => {
+export const parseCaterings = ({
+  caterings,
+  addresses,
+  currency,
+  view,
+  timeZoneName,
+  t
+}) => {
   const parsedCaterings = [];
-  if (caterings && caterings.length) {
+  if (caterings && caterings.size) {
     caterings.forEach(c => {
-      const start = convertDateTimeToDate(c.date, timeZoneName);
-      start.setSeconds(c.from);
+      const start = convertDateTimeToDate(
+        c.getIn(["attributes", "date"]),
+        timeZoneName
+      );
+      start.setSeconds(c.getIn(["attributes", "from"]));
       let end;
-      if (c.from >= c.to) {
-        end = new Date(c.date);
+      if (c.getIn(["attributes", "from"]) >= c.getIn(["attributes", "to"])) {
+        end = new Date(c.getIn(["attributes", "date"]));
         if (view === "week" || view === "day") {
           end.setHours(23);
           end.setMinutes(59);
           end.setSeconds(59);
-          const today = convertDateTimeToDate(c.date, timeZoneName);
+          const today = convertDateTimeToDate(
+            c.getIn(["attributes", "date"]),
+            timeZoneName
+          );
           today.setHours(24);
           const secondHalf = parseCaterings(
-            [{ ...c, from: 1, date: today.toISOString(), realFrom: c.from }],
+            [
+              {
+                id: c.get("id"),
+                ...c.get("attributes").toObject(),
+                menu: c.getIn(["attributes", "menu"]).toObject(),
+                from: 1,
+                date: today.toISOString(),
+                realFrom: c.getIn(["attributes", "from"]),
+                address: addresses
+                  .getIn([
+                    c.getIn(["relationships", "address", "data", "id"]),
+                    "attributes"
+                  ])
+                  .toObject()
+              }
+            ],
             currency,
             undefined,
             timeZoneName
@@ -29,15 +57,18 @@ export const parseCaterings = (caterings, currency, view, timeZoneName, t) => {
           parsedCaterings.push(secondHalf[0]);
         } else {
           end.setHours(24);
-          end.setSeconds(c.to);
+          end.setSeconds(c.getIn(["attributes", "to"]));
         }
         end = convertDateTimeToDate(end, timeZoneName);
       } else {
-        end = convertDateTimeToDate(c.date, timeZoneName);
-        end.setSeconds(c.to);
+        end = convertDateTimeToDate(
+          c.getIn(["attributes", "date"]),
+          timeZoneName
+        );
+        end.setSeconds(c.getIn(["attributes", "to"]));
       }
       parsedCaterings.push({
-        title: c.name,
+        title: c.getIn(["attributes", "name"]),
         start,
         end,
         allDay: false,
@@ -45,7 +76,15 @@ export const parseCaterings = (caterings, currency, view, timeZoneName, t) => {
           start,
           end,
           currency,
-          ...c
+          id: c.get("id"),
+          ...c.get("attributes").toObject(),
+          menu: c.getIn(["attributes", "menu"]).toObject(),
+          address: addresses
+            .getIn([
+              c.getIn(["relationships", "address", "data", "id"]),
+              "attributes"
+            ])
+            .toObject()
         }
       });
     });

@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import {
   POST_DELIVERY_SUCCESS,
   DELETE_DELIVERY_REQUEST
@@ -8,66 +9,73 @@ import {
   FETCH_BUSINESS_DELIVERIES_FAIL
 } from "types/businesses";
 import { LOGOUT } from "types/auth";
-import build from "redux-object";
 
-const initialState = {
-  data: [],
+import { Record, fromJS } from "immutable";
+
+const initialState = Record({
+  data: null,
   isFetching: false,
   isFailed: false,
   isSucceeded: false
-};
+})();
 
 const reducer = (state = initialState, { type, payload, meta }) => {
   switch (type) {
     case FETCH_BUSINESS_DELIVERIES_REQUEST: {
-      const newState = { ...state };
-      newState.isFetching = true;
-      newState.isFailed = false;
-      newState.isSucceeded = false;
-      return newState;
+      return state.merge(
+        Record({
+          isFetching: true,
+          isFailed: false,
+          isSucceeded: false
+        })()
+      );
     }
     case FETCH_BUSINESS_DELIVERIES_SUCCESS: {
-      const newState = { ...state };
-      const deliveries = build(payload.data, "deliveries", null, {
-        ignoreLinks: true
-      });
-      newState.isFetching = false;
-      newState.isSucceeded = true;
+      let newState = state.merge(
+        Record({
+          isFetching: false,
+          isSucceeded: true
+        })()
+      );
       if (meta.page === 1) {
-        newState.data = deliveries;
+        newState = newState.setIn(["data"], fromJS(payload.data));
       } else {
-        newState.data = newState.data.concat(deliveries);
+        newState = newState.mergeIn(
+          ["data", "deliveries"],
+          fromJS(payload.data.deliveries)
+        );
       }
       return newState;
     }
     case FETCH_BUSINESS_DELIVERIES_FAIL: {
-      const newState = { ...state };
-      newState.isFetching = false;
-      newState.isFailed = true;
+      let newState = state.merge(
+        Record({
+          isFetching: false,
+          isFailed: true
+        })()
+      );
       if (meta.page === 1) {
-        newState.data = null;
+        newState = newState.merge(
+          Record({
+            data: null
+          })()
+        );
       }
       return newState;
     }
 
     case POST_DELIVERY_SUCCESS: {
-      const newState = { ...state };
-      const delivery = build(
-        payload.data,
-        "deliveries",
-        payload.rawData.data.id,
-        {
-          ignoreLinks: true
-        }
-      );
-      newState.data = newState.data ? [...newState.data, delivery] : [delivery];
-      return newState;
+      if (state.getIn(["data"]) && state.getIn(["data"]).size) {
+        return state.mergeIn(
+          ["data", "deliveries"],
+          fromJS(payload.data.deliveries)
+        );
+      }
+      return state.setIn(["data"], fromJS(payload.data));
     }
 
     case DELETE_DELIVERY_REQUEST: {
-      const newState = { ...state };
-      newState.data = newState.data.filter(m => m.id !== meta.id);
-      return newState;
+      return state.deleteIn(["data", "deliveries", meta.id]);
     }
 
     case LOGOUT: {

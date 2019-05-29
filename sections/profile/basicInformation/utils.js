@@ -1,44 +1,28 @@
 import { getGroupsData } from "../utils";
 
-export const getInitialValues = business => {
+export const getInitialValues = ({ business, businessGroups }) => {
   if (business) {
-    const {
-      name,
-      tagline,
-      country,
-      countryCode,
-      region,
-      regionCode,
-      street,
-      streetNumber,
-      city,
-      postCode,
-      ownerRole,
-      bio,
-      groups
-    } = business;
-
     const { types, cuisines, foodsAndDrinks, quirks, diets } = getGroupsData(
-      groups
+      businessGroups
     );
 
     return {
-      name,
-      tagline,
+      name: business.get("name"),
+      tagline: business.get("tagline"),
       country: {
-        label: country || "",
-        value: countryCode || ""
+        label: business.get("country") || "",
+        value: business.get("countryCode") || ""
       },
       region: {
-        label: region || "",
-        value: regionCode || ""
+        label: business.get("region") || "",
+        value: business.get("regionCode") || ""
       },
-      street,
-      streetNumber,
-      city,
-      postCode,
-      ownerRole,
-      bio,
+      street: business.get("street"),
+      streetNumber: business.get("streetNumber"),
+      city: business.get("city"),
+      postCode: business.get("postCode"),
+      ownerRole: business.get("ownerRole"),
+      bio: business.get("bio"),
       types,
       cuisines,
       foodsAndDrinks,

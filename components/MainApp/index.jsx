@@ -96,11 +96,11 @@ MainApp.defaultProps = {
   isAccountConfirmed: false
 };
 
-export default connect(state => ({
-  avatar:
-    state.users.profile.data &&
-    state.users.profile.data.avatar &&
-    state.users.profile.data.avatar.url,
-  isAccountConfirmed:
-    state.users.profile.data && state.users.profile.data.confirmed
-}))(MainApp);
+export default connect(state => {
+  const users = state.getIn(["users", "profile", "data", "users"]);
+  const user = users && users.first();
+  return {
+    avatar: user && user.getIn(["attributes", "avatar", "url"]),
+    isAccountConfirmed: user && user.getIn(["attributes", "confirmed"])
+  };
+})(MainApp);

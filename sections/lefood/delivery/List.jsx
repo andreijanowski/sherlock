@@ -8,15 +8,15 @@ const List = ({ deliveries, removeDelivery, t }) => (
     <H3 mt={3}>{t("addedZipCodes")}</H3>
     <Flex flexWrap="wrap" m={-2}>
       {deliveries &&
-        deliveries.map(d => (
-          <Box p={2} key={d.id}>
+        deliveries.valueSeq().map(d => (
+          <Box p={2} key={d.get("id")}>
             <Delivery>
-              <Code>{d.code}</Code>
+              <Code>{d.getIn(["attributes", "code"])}</Code>
               <Price>
-                {(d.priceCents / 100).toFixed(2)}
-                {d.currency}
+                {(d.getIn(["attributes", "priceCents"]) / 100).toFixed(2)}
+                {d.getIn(["attributes", "currency"])}
               </Price>
-              <Remove onClick={() => removeDelivery(d.id)} />
+              <Remove onClick={() => removeDelivery(d.get("id"))} />
             </Delivery>
           </Box>
         ))}

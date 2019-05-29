@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, shape, arrayOf } from "prop-types";
+import { func, string, shape } from "prop-types";
 import CateringLayout from "sections/catering/Layout";
 import CreateCateringForm from "sections/catering/create";
 import { connect } from "react-redux";
@@ -32,11 +32,7 @@ class CreateCateringPage extends PureComponent {
     currency,
     ...values
   }) => {
-    const {
-      createCatering,
-      lng,
-      business: { id }
-    } = this.props;
+    const { createCatering, lng, businessId } = this.props;
     const newCatering = {
       ...values,
       from: values.from ? timeToNumber(values.from) : undefined,
@@ -55,13 +51,20 @@ class CreateCateringPage extends PureComponent {
       currency: currency ? currency.value : undefined
     };
     this.setState({ sending: true });
-    createCatering(newCatering, id)
+    createCatering(newCatering, businessId)
       .then(() => Router.pushRoute(`/${lng}/app/catering/month`))
       .catch(() => this.setState({ sending: false }));
   };
 
   render() {
-    const { t, lng, business, businesses, changeCurrentBusiness } = this.props;
+    const {
+      t,
+      lng,
+      business,
+      businessId,
+      businesses,
+      changeCurrentBusiness
+    } = this.props;
     const { sending } = this.state;
     return (
       <CateringLayout
@@ -69,6 +72,7 @@ class CreateCateringPage extends PureComponent {
           t,
           lng,
           business,
+          businessId,
           businesses,
           changeCurrentBusiness,
           isAddActionHidden: true
@@ -87,22 +91,34 @@ CreateCateringPage.propTypes = {
   lng: string.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
-  businesses: arrayOf(shape()),
-  createCatering: func.isRequired
+  businesses: shape(),
+  createCatering: func.isRequired,
+  businessId: string
 };
 
 CreateCateringPage.defaultProps = {
   business: null,
+  businessId: "",
   businesses: null
 };
 
 export default requireAuth(true)(
   withNamespaces(namespaces)(
     connect(
-      state => ({
-        business: state.users.currentBusiness.data,
-        businesses: state.users.profileBusinesses.data
-      }),
+      state => {
+        const businessData = state.getIn(["users", "currentBusiness", "data"]);
+        const business = businessData && businessData.get("businesses").first();
+        return {
+          business: business && business.get("attributes"),
+          businessId: business && business.get("id"),
+          businesses: state.getIn([
+            "users",
+            "profileBusinesses",
+            "data",
+            "businesses"
+          ])
+        };
+      },
       {
         changeCurrentBusiness: setCurrentBusiness,
         createCatering: postCatering
