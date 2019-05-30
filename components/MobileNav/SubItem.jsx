@@ -6,7 +6,7 @@ import { BackArrow } from "icons";
 import { IconWrapper, IconLabel, SubMenuWrapper } from "./styled";
 
 const SubItem = ({ t, lng, route, label, Icon, withSubmenu, submenuItems }) => {
-  const [isSubmenuOpen, toggleSubMenu] = useState(false);
+  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
 
   return !withSubmenu ? (
     <Link {...{ lng, route }}>
@@ -18,7 +18,10 @@ const SubItem = ({ t, lng, route, label, Icon, withSubmenu, submenuItems }) => {
       </Flex>
     </Link>
   ) : (
-    <Flex mb={4} onClick={() => toggleSubMenu(!isSubmenuOpen)}>
+    <Flex
+      mb={4}
+      onClick={() => setIsSubmenuOpen(prevIsSubmenuOpen => !prevIsSubmenuOpen)}
+    >
       <IconWrapper dark>
         <Icon />
       </IconWrapper>
@@ -29,7 +32,12 @@ const SubItem = ({ t, lng, route, label, Icon, withSubmenu, submenuItems }) => {
           e.stopPropagation();
         }}
       >
-        <Flex mb={4} onClick={() => toggleSubMenu(!isSubmenuOpen)}>
+        <Flex
+          mb={4}
+          onClick={() =>
+            setIsSubmenuOpen(prevIsSubmenuOpen => !prevIsSubmenuOpen)
+          }
+        >
           <IconWrapper dark>
             <BackArrow />
           </IconWrapper>

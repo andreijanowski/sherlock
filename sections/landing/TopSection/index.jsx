@@ -21,7 +21,7 @@ import {
 import { ParagraphStyled } from "../sharedStyled";
 
 const TopSection = ({ t, lng, plansRef }) => {
-  const [isVideoVisible, toggleVideo] = useState(false);
+  const [isVideoVisible, setIsVideoVisible] = useState(false);
 
   return (
     <Flex flexDirection="column" mt={4} width={1} px={3}>
@@ -73,7 +73,12 @@ const TopSection = ({ t, lng, plansRef }) => {
             </Button>
           </Box>
           <Box width={[1, "auto"]} p={["2px", 1]}>
-            <ButtonWithIcon fluid onClick={() => toggleVideo(!isVideoVisible)}>
+            <ButtonWithIcon
+              fluid
+              onClick={() =>
+                setIsVideoVisible(prevIsVideoVisible => !prevIsVideoVisible)
+              }
+            >
               <FontAwesomeIcon icon="play" size="xs" />
               {t("topSection.watchVideo")}
             </ButtonWithIcon>
@@ -82,7 +87,9 @@ const TopSection = ({ t, lng, plansRef }) => {
       </Content>
       <YoutubeModal
         videoId="anlGRnk3UCo"
-        close={() => toggleVideo(!isVideoVisible)}
+        close={() =>
+          setIsVideoVisible(prevIsVideoVisible => !prevIsVideoVisible)
+        }
         isVisible={isVideoVisible}
       />
     </Flex>

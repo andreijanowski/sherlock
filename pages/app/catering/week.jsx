@@ -1,4 +1,3 @@
-import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
@@ -11,59 +10,52 @@ import isServer from "utils/isServer";
 
 const namespaces = ["catering", "app"];
 
-class WeekPage extends PureComponent {
-  static async getInitialProps() {
-    return {
-      namespacesRequired: namespaces
-    };
-  }
-
-  render() {
-    const {
+const WeekPage = ({
+  t,
+  lng,
+  business,
+  businessId,
+  businesses,
+  addresses,
+  changeCurrentBusiness,
+  caterings,
+  setEditedCatering,
+  sendOffer
+}) => (
+  <CateringLayout
+    {...{
       t,
       lng,
+      view: {
+        value: "week",
+        label: t("week")
+      },
       business,
       businessId,
       businesses,
-      addresses,
-      changeCurrentBusiness,
-      caterings,
-      setEditedCatering,
-      sendOffer
-    } = this.props;
-    return (
-      <CateringLayout
+      changeCurrentBusiness
+    }}
+  >
+    {!isServer && (
+      <Week
         {...{
           t,
           lng,
-          view: {
-            value: "week",
-            label: t("week")
-          },
-          business,
-          businessId,
-          businesses,
-          changeCurrentBusiness
+          caterings,
+          addresses,
+          currency: business && business.get("currency"),
+          setEditedCatering,
+          sendOffer,
+          timeZone: business && business.get("timezone")
         }}
-      >
-        {!isServer && (
-          <Week
-            {...{
-              t,
-              lng,
-              caterings,
-              addresses,
-              currency: business && business.get("currency"),
-              setEditedCatering,
-              sendOffer,
-              timeZone: business && business.get("timezone")
-            }}
-          />
-        )}
-      </CateringLayout>
-    );
-  }
-}
+      />
+    )}
+  </CateringLayout>
+);
+
+WeekPage.getInitialProps = async () => ({
+  namespacesRequired: namespaces
+});
 
 WeekPage.propTypes = {
   t: func.isRequired,

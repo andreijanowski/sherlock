@@ -1,4 +1,3 @@
-import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
@@ -11,59 +10,52 @@ import isServer from "utils/isServer";
 
 const namespaces = ["catering", "app"];
 
-class DayPage extends PureComponent {
-  static async getInitialProps() {
-    return {
-      namespacesRequired: namespaces
-    };
-  }
-
-  render() {
-    const {
+const DayPage = ({
+  t,
+  lng,
+  business,
+  businessId,
+  businesses,
+  addresses,
+  changeCurrentBusiness,
+  caterings,
+  setEditedCatering,
+  sendOffer
+}) => (
+  <CateringLayout
+    {...{
       t,
       lng,
+      view: {
+        value: "day",
+        label: t("day")
+      },
       business,
       businessId,
       businesses,
-      addresses,
-      changeCurrentBusiness,
-      caterings,
-      setEditedCatering,
-      sendOffer
-    } = this.props;
-    return (
-      <CateringLayout
+      changeCurrentBusiness
+    }}
+  >
+    {!isServer && (
+      <Day
         {...{
           t,
           lng,
-          view: {
-            value: "day",
-            label: t("day")
-          },
-          business,
-          businessId,
-          businesses,
-          changeCurrentBusiness
+          caterings,
+          addresses,
+          currency: business && business.get("currency"),
+          setEditedCatering,
+          sendOffer,
+          timeZone: business && business.get("timezone")
         }}
-      >
-        {!isServer && (
-          <Day
-            {...{
-              t,
-              lng,
-              caterings,
-              addresses,
-              currency: business && business.get("currency"),
-              setEditedCatering,
-              sendOffer,
-              timeZone: business && business.get("timezone")
-            }}
-          />
-        )}
-      </CateringLayout>
-    );
-  }
-}
+      />
+    )}
+  </CateringLayout>
+);
+
+DayPage.getInitialProps = async () => ({
+  namespacesRequired: namespaces
+});
 
 DayPage.propTypes = {
   t: func.isRequired,

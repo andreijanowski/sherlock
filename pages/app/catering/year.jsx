@@ -1,4 +1,3 @@
-import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
@@ -9,45 +8,36 @@ import Year from "sections/catering/year";
 
 const namespaces = ["catering", "app"];
 
-class YearPage extends PureComponent {
-  static async getInitialProps() {
-    return {
-      namespacesRequired: namespaces
-    };
-  }
-
-  render() {
-    const {
+const YearPage = ({
+  t,
+  lng,
+  business,
+  businessId,
+  businesses,
+  changeCurrentBusiness,
+  caterings
+}) => (
+  <CateringLayout
+    {...{
       t,
       lng,
+      view: {
+        value: "year",
+        label: t("year")
+      },
       business,
       businessId,
       businesses,
-      changeCurrentBusiness,
-      caterings
-    } = this.props;
-    return (
-      <CateringLayout
-        {...{
-          t,
-          lng,
-          view: {
-            value: "year",
-            label: t("year")
-          },
-          business,
-          businessId,
-          businesses,
-          changeCurrentBusiness
-        }}
-      >
-        <Year
-          {...{ caterings, currency: business && business.get("currency") }}
-        />
-      </CateringLayout>
-    );
-  }
-}
+      changeCurrentBusiness
+    }}
+  >
+    <Year {...{ caterings, currency: business && business.get("currency") }} />
+  </CateringLayout>
+);
+
+YearPage.getInitialProps = async () => ({
+  namespacesRequired: namespaces
+});
 
 YearPage.propTypes = {
   t: func.isRequired,

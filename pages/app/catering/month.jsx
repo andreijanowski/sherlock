@@ -1,4 +1,3 @@
-import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
@@ -10,57 +9,50 @@ import { setCateringForEditing, sendCateringOffer } from "actions/caterings";
 
 const namespaces = ["catering", "app"];
 
-class MonthPage extends PureComponent {
-  static async getInitialProps() {
-    return {
-      namespacesRequired: namespaces
-    };
-  }
-
-  render() {
-    const {
+const MonthPage = ({
+  t,
+  lng,
+  business,
+  businessId,
+  businesses,
+  addresses,
+  changeCurrentBusiness,
+  caterings,
+  setEditedCatering,
+  sendOffer
+}) => (
+  <CateringLayout
+    {...{
       t,
       lng,
+      view: {
+        value: "month",
+        label: t("month")
+      },
       business,
       businessId,
       businesses,
-      addresses,
-      changeCurrentBusiness,
-      caterings,
-      setEditedCatering,
-      sendOffer
-    } = this.props;
-    return (
-      <CateringLayout
-        {...{
-          t,
-          lng,
-          view: {
-            value: "month",
-            label: t("month")
-          },
-          business,
-          businessId,
-          businesses,
-          changeCurrentBusiness
-        }}
-      >
-        <Month
-          {...{
-            t,
-            lng,
-            caterings,
-            addresses,
-            currency: business && business.get("currency"),
-            setEditedCatering,
-            sendOffer,
-            timeZone: business && business.get("timezone")
-          }}
-        />
-      </CateringLayout>
-    );
-  }
-}
+      changeCurrentBusiness
+    }}
+  >
+    <Month
+      {...{
+        t,
+        lng,
+        caterings,
+        addresses,
+        currency: business && business.get("currency"),
+        setEditedCatering,
+        sendOffer,
+        timeZone: business && business.get("timezone")
+      }}
+    />
+  </CateringLayout>
+);
+
+MonthPage.getInitialProps = async () => ({
+  namespacesRequired: namespaces
+});
 
 MonthPage.propTypes = {
   t: func.isRequired,

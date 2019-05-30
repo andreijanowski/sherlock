@@ -28,7 +28,7 @@ const MobileNav = ({
   addBusiness,
   logout
 }) => {
-  const [isMobileNavOpen, toggleNav] = useState(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   return (
     <Flex
@@ -44,7 +44,9 @@ const MobileNav = ({
       <MainIcon Icon={LiveStream} {...{ lng, route: "/" }} />
       <MainIcon
         Icon={Hamburger}
-        onClick={() => toggleNav(!isMobileNavOpen)}
+        onClick={() =>
+          setIsMobileNavOpen(prevIsMobileNavOpen => !prevIsMobileNavOpen)
+        }
         {...{ isMobileNavOpen, lng }}
       />
       <ToggledMobileMenu {...{ isMobileNavOpen }}>
