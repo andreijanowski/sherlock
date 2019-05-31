@@ -1,13 +1,12 @@
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
-import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
 import { SingleActionView } from "components";
 import ChangePasswordForm from "sections/changePassword/ChangePasswordForm";
 
-const namespaces = ["changePassword", "forms"];
+const namespaces = ["setPassword", "forms"];
 
-class ChangePassword extends PureComponent {
+class SetPassword extends PureComponent {
   static async getInitialProps() {
     return {
       namespacesRequired: namespaces
@@ -33,10 +32,10 @@ class ChangePassword extends PureComponent {
   }
 }
 
-ChangePassword.propTypes = {
+SetPassword.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   query: shape().isRequired
 };
 
-export default requireAuth(false)(withNamespaces(namespaces)(ChangePassword));
+export default withNamespaces(namespaces)(SetPassword);
