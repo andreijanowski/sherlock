@@ -102,7 +102,7 @@ export default withRedux(createStore, {
   serializeState: state => state.toJS(),
   deserializeState: state => fromJS(state)
 })(
-  withReduxSaga({ async: true })(
+  withReduxSaga(
     connect(
       state => ({ state }),
       {

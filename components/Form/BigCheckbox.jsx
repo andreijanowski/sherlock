@@ -41,11 +41,12 @@ class BigCheckbox extends PureComponent {
               <CheckboxLabel checked={index !== -1} error={error}>
                 <Checkbox
                   ref={this.checkbox}
-                  {...input}
                   value={JSON.stringify(value)}
+                  onBlur={input.onBlur}
+                  onFocus={input.onFocus}
                   onChange={
                     disabled
-                      ? undefined
+                      ? () => null
                       : e => this.handleChange(e, input, checkedValues)
                   }
                   checked={index !== -1}

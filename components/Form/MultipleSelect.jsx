@@ -29,6 +29,7 @@ class FormMultipleSelect extends PureComponent {
 
     return (
       <Downshift
+        id={`multiple-select-${input.name}`}
         selectedItem={input.value}
         onChange={this.handleSelect}
         itemToString={i => i.label}

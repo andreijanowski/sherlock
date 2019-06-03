@@ -11,7 +11,7 @@ const FormInput = ({
   ...rest
 }) => (
   <Field
-    {...{ name, ...rest }}
+    {...{ name, type, ...rest }}
     render={({ input, meta }) => {
       const valid = meta.valid && !meta.pristine;
       const invalid = meta.touched && meta.invalid;
@@ -20,8 +20,8 @@ const FormInput = ({
           <Input
             {...{
               placeholder,
-              type,
               valid,
+              type,
               error: invalid,
               autoComplete,
               ...input

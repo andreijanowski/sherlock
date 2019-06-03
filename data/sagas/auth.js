@@ -1,4 +1,4 @@
-import { takeEvery, put, all } from "redux-saga/effects";
+import { takeEvery, put, putResolve, all } from "redux-saga/effects";
 import {
   fetchProfile,
   fetchProfileBusinesses,
@@ -73,7 +73,7 @@ function* fetchUserData({
     rawData: {
       data: { id: userId }
     }
-  } = yield put.resolve(fetchProfile());
+  } = yield putResolve(fetchProfile());
   yield fetchAllUserData(fetchProfileCards);
   yield put(fetchProfileSubscriptions());
   yield put(fetchGroups());
@@ -86,7 +86,7 @@ function* fetchUserData({
         data,
         meta: { totalPages }
       }
-    } = yield put.resolve(fetchProfileBusinesses());
+    } = yield putResolve(fetchProfileBusinesses());
     if (data && data.length) {
       yield put(setCurrentBusiness(data[0].id));
       if (totalPages > 1) {
