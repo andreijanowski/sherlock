@@ -31,6 +31,9 @@ class MembersForm extends PureComponent {
           members: generateMembersArray(members)
         }}
         mutators={{ ...arrayMutators, setFieldData }}
+        subscription={{
+          form: true
+        }}
         render={({ form: { mutators } }) => (
           <Form>
             <H3>{t("members")}</H3>

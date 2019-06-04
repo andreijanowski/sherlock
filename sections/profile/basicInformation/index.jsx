@@ -48,6 +48,7 @@ class BasicInformationForm extends PureComponent {
         initialValues={initialValues}
         onSubmit={handleSubmit}
         mutators={{ setFieldData }}
+        subscription={{ values: true, form: true }}
         render={({ values, form: { mutators } }) => (
           <Form>
             <AutoSave

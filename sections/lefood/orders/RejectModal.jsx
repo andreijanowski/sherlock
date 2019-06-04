@@ -31,6 +31,10 @@ const RejectModal = ({
       }}
       mutators={{ ...{ ...arrayMutators } }}
       onSubmit={handleRejectionSubmit}
+      subscription={{
+        handleSubmit: true,
+        values: true
+      }}
       render={({ handleSubmit, values }) => (
         <Flex
           onSubmit={handleSubmit}
