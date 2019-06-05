@@ -42,6 +42,9 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
     onSubmit={v => {
       handleFormSubmit(v, editedCatering.get("id"));
     }}
+    subscription={{
+      handleSubmit: true
+    }}
     render={({ handleSubmit }) => (
       <Form onSubmit={handleSubmit}>
         <H3 mt={3}>{t("createEvent.basicInfo")}</H3>

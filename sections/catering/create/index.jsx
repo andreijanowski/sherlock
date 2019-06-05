@@ -31,6 +31,10 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
       cutlery: false
     }}
     onSubmit={handleFormSubmit}
+    subscription={{
+      handleSubmit: true,
+      values: true
+    }}
     render={({ handleSubmit, values }) => (
       <Form onSubmit={handleSubmit}>
         <H3 mt={3}>{t("createEvent.basicInfo")}</H3>

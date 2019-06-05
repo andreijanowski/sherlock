@@ -10,7 +10,9 @@ import {
   DELETE_BY_TOKEN_REQUEST,
   CHANGE_PASSWORD_BY_TOKEN_REQUEST,
   CONNECT_STRIPE_REQUEST,
-  SET_STRIPE_DATA
+  SET_STRIPE_DATA,
+  ACCEPT_INVITATION_REQUEST,
+  REJECT_INVITATION_REQUEST
 } from "types/auth";
 
 export const login = data => ({
@@ -127,6 +129,40 @@ export const confirmMail = token => ({
     data: {
       data: {
         type: "users",
+        attributes: {
+          confirmation_token: token
+        }
+      }
+    }
+  },
+  meta: { thunk: true }
+});
+
+export const acceptInvitation = values => ({
+  type: ACCEPT_INVITATION_REQUEST,
+  payload: {
+    method: "PATCH",
+    endpoint: `/api/v1/members/accept`,
+    data: {
+      data: {
+        type: "members",
+        attributes: {
+          ...values
+        }
+      }
+    }
+  },
+  meta: { thunk: true }
+});
+
+export const rejectInvitation = token => ({
+  type: REJECT_INVITATION_REQUEST,
+  payload: {
+    method: "PATCH",
+    endpoint: `/api/v1/members/reject`,
+    data: {
+      data: {
+        type: "members",
         attributes: {
           confirmation_token: token
         }

@@ -24,6 +24,10 @@ const DishForm = ({ t, addPicture, addDish }) => {
         category: "mains"
       }}
       onSubmit={addDish}
+      subscription={{
+        handleSubmit: true,
+        form: true
+      }}
       render={({ handleSubmit, form: { reset } }) => (
         <form
           onSubmit={e => {

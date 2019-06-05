@@ -10,6 +10,10 @@ const DeliveryForm = ({ t, addDelivery }) => (
   <FinalForm
     onSubmit={addDelivery}
     initialValues={{ freeFromCents: normalizePrice(0) }}
+    subscription={{
+      handleSubmit: true,
+      form: true
+    }}
     render={({ handleSubmit, form: { reset } }) => (
       <form
         onSubmit={e => {

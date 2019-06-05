@@ -26,6 +26,12 @@ class UserBasicInfoForm extends PureComponent {
           email: profile.getIn(["attributes", "email"])
         }}
         onSubmit={this.submitForm}
+        subscription={{
+          handleSubmit: true,
+          pristine: true,
+          invalid: true,
+          submitting: true
+        }}
         render={({ handleSubmit, form, invalid, submitting }) => (
           <Form onSubmit={handleSubmit}>
             <Flex mx={-2} flexDirection="column">
