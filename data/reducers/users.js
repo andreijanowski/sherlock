@@ -172,10 +172,20 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     }
 
     case FETCH_PROFILE_BUSINESS_REQUEST: {
+      if (meta.isNewBusinessFetching) {
+        return state.mergeIn(
+          ["currentBusiness"],
+          Record({
+            data: null,
+            isFetching: true,
+            isFailed: false,
+            isSucceeded: false
+          })()
+        );
+      }
       return state.mergeIn(
         ["currentBusiness"],
         Record({
-          data: null,
           isFetching: true,
           isFailed: false,
           isSucceeded: false
@@ -255,35 +265,14 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     case PATCH_BUSINESS_SUCCESS: {
       let newState = null;
       meta.updatedValues.forEach(v => {
-        if (v === "logo") {
-          const pathArray = [
-            "currentBusiness",
-            "data",
-            "businesses",
-            payload.rawData.data.id,
-            "attributes",
-            v,
-            "url"
-          ];
-          if (newState) {
-            newState = newState.setIn(
-              pathArray,
-              payload.data.businesses[payload.rawData.data.id].attributes[v].url
-            );
-          } else {
-            newState = state.setIn(
-              pathArray,
-              payload.data.businesses[payload.rawData.data.id].attributes[v].url
-            );
-          }
-        }
         if (
           v === "visibleInLefood" ||
           v === "state" ||
           v === "averageDeliveryTime" ||
           v === "minAmountForDeliveryCents" ||
           v === "stripeCurrency" ||
-          v === "allowPickup"
+          v === "allowPickup" ||
+          v === "logo"
         ) {
           const pathArray = [
             "currentBusiness",

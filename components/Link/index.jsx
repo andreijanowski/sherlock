@@ -2,7 +2,7 @@ import { Link as RawLink } from "routes";
 import { string, node } from "prop-types";
 
 const Link = ({ lng, children, route }) => (
-  <RawLink route={`/${lng}${route}`} passHref>
+  <RawLink prefetch route={`/${lng}${route}`} passHref>
     {children}
   </RawLink>
 );
