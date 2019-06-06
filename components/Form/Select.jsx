@@ -83,6 +83,7 @@ class FormSelect extends PureComponent {
 
     return (
       <Downshift
+        id={`select-${input.name}`}
         selectedItem={input.value}
         onChange={v => {
           input.onChange(v);

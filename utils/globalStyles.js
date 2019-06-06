@@ -28,7 +28,6 @@ import {
   faCcVisa
 } from "@fortawesome/fontawesome-free-brands";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import fonts from "./fonts";
 
 library.add(
   faPlay,
@@ -58,7 +57,6 @@ library.add(
 
 export default createGlobalStyle`
     ${styledNormalize}
-    ${fonts}
 
     * {
         box-sizing: border-box;
