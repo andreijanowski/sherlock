@@ -1,5 +1,9 @@
 /* eslint-disable no-param-reassign */
-import { POST_DISH_SUCCESS, DELETE_DISH_REQUEST } from "types/dishes";
+import {
+  POST_DISH_SUCCESS,
+  PATCH_DISH_SUCCESS,
+  DELETE_DISH_REQUEST
+} from "types/dishes";
 import {
   FETCH_BUSINESS_DISHES_REQUEST,
   FETCH_BUSINESS_DISHES_SUCCESS,
@@ -67,6 +71,21 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     }
 
     case POST_DISH_SUCCESS: {
+      if (state.getIn(["data"]) && state.getIn(["data"]).size) {
+        let newState = state.mergeIn(
+          ["data", "dishes"],
+          fromJS(payload.data.dishes)
+        );
+        newState = newState.mergeIn(
+          ["data", "pictures"],
+          fromJS(payload.data.pictures)
+        );
+        return newState;
+      }
+      return state.setIn(["data"], fromJS(payload.data));
+    }
+
+    case PATCH_DISH_SUCCESS: {
       if (state.getIn(["data"]) && state.getIn(["data"]).size) {
         let newState = state.mergeIn(
           ["data", "dishes"],
