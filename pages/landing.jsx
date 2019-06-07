@@ -16,10 +16,10 @@ class Home extends PureComponent {
 
   constructor(props) {
     super(props);
+    this.plansRef = React.createRef();
     this.state = {
       billingInterval: "month"
     };
-    this.plansRef = React.createRef();
   }
 
   handleChangeBillngPeriod = () =>
