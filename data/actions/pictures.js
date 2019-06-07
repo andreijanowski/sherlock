@@ -20,11 +20,11 @@ export const postPicture = (parentResource, id, photo) => ({
   meta: { thunk: true, id }
 });
 
-export const deletePicture = id => ({
+export const deletePicture = (id, parentResource, resourceId) => ({
   type: DELETE_PICTURE_REQUEST,
   payload: {
     method: "DELETE",
     endpoint: `/api/v1/pictures/${id}`
   },
-  meta: { thunk: true, id }
+  meta: { thunk: true, id, parentResource, resourceId }
 });

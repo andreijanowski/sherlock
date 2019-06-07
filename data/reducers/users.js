@@ -213,7 +213,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     }
 
     case DELETE_PICTURE_REQUEST: {
-      return state.deleteIn(["currentBusiness", "data", "pictures", meta.id]);
+      if (meta.parentResource === "business") {
+        return state.deleteIn(["currentBusiness", "data", "pictures", meta.id]);
+      }
+      return state;
     }
 
     case POST_MENU_SUCCESS: {
