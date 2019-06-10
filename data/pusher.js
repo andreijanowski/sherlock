@@ -7,23 +7,29 @@ import {
 } from "consts";
 
 class CustomPusher {
+  constructor() {
+    this.socket = null;
+  }
+
   init = (token, userId) => {
-    this.socket = new Pusher(PUSHER_APP_KEY, {
-      cluster: PUSHER_APP_CLUSTER,
-      authEndpoint: `${API_URL}/api/v1/users/me/authenticate_pusher`,
-      auth: {
-        params: {
-          authentication_for: "user",
-          record_id: userId,
-          user_channel: "notifications"
-        },
-        headers: {
-          NETGURU: NETGURU_DEV_PASSWORD,
-          Accept: "application/vnd.api+json",
-          Authorization: `Bearer ${token}`
+    if (!this.socket) {
+      this.socket = new Pusher(PUSHER_APP_KEY, {
+        cluster: PUSHER_APP_CLUSTER,
+        authEndpoint: `${API_URL}/api/v1/users/me/authenticate_pusher`,
+        auth: {
+          params: {
+            authentication_for: "user",
+            record_id: userId,
+            user_channel: "notifications"
+          },
+          headers: {
+            NETGURU: NETGURU_DEV_PASSWORD,
+            Accept: "application/vnd.api+json",
+            Authorization: `Bearer ${token}`
+          }
         }
-      }
-    });
+      });
+    }
   };
 
   subscribe = channel => this.socket.subscribe(channel);
