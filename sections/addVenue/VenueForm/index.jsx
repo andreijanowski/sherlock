@@ -57,6 +57,13 @@ class VenueForm extends PureComponent {
     return (
       <Form
         onSubmit={this.submitForm}
+        subscription={{
+          handleSubmit: true,
+          pristine: true,
+          invalid: true,
+          submitting: true,
+          values: true
+        }}
         render={({ handleSubmit, pristine, invalid, submitting, values }) => (
           <form onSubmit={handleSubmit}>
             <HelperTitle>{t("accountName")}</HelperTitle>

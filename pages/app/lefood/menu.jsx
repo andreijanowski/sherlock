@@ -5,8 +5,8 @@ import { func, string, shape, bool, number } from "prop-types";
 import LefoodLayout from "sections/lefood/Layout";
 import Menu from "sections/lefood/menu";
 import { connect } from "react-redux";
-import { postDish, deleteDish } from "actions/dishes";
-import { postPicture } from "actions/pictures";
+import { postDish, patchDish, deleteDish } from "actions/dishes";
+import { postPicture, deletePicture } from "actions/pictures";
 import { patchBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/app";
 import { calcPendingOrders, mergeDishesData } from "sections/lefood/utils";
@@ -21,27 +21,48 @@ class MenuPage extends PureComponent {
     };
   }
 
+  constructor() {
+    super();
+    this.state = {
+      editedDishId: null
+    };
+  }
+
+  setEditedDishId = editedDishId => this.setState({ editedDishId });
+
   addDish = values => {
-    const { addDish, businessId } = this.props;
+    const { addDish, updateDish, businessId } = this.props;
+    const { editedDishId } = this.state;
     const { available, ...rest } = values;
-    return addDish(
-      {
-        ...rest,
-        unavailable: !values.available,
-        pricePerItemCents: convertToCents(values.pricePerItemCents)
-      },
-      businessId
-    );
+    const dish = {
+      ...rest,
+      unavailable: !values.available,
+      pricePerItemCents: convertToCents(values.pricePerItemCents)
+    };
+    if (editedDishId) {
+      return updateDish(dish, editedDishId);
+    }
+    return addDish(dish, businessId);
   };
 
   removeDish = id => {
     const { removeDish } = this.props;
+    const { editedDishId } = this.state;
+    if (id === editedDishId) {
+      this.setEditedDishId(null);
+    }
     removeDish(id);
   };
 
   addPicture = (picture, id) => {
     const { addPicture } = this.props;
-    addPicture("dish", id, picture);
+    return addPicture("dish", id, picture);
+  };
+
+  removePicture = id => {
+    const { removePicture } = this.props;
+    const { editedDishId } = this.state;
+    removePicture(id, "dish", editedDishId);
   };
 
   render() {
@@ -60,6 +81,7 @@ class MenuPage extends PureComponent {
       businesses,
       changeCurrentBusiness
     } = this.props;
+    const { editedDishId } = this.state;
     return (
       <LefoodLayout
         {...{
@@ -82,9 +104,12 @@ class MenuPage extends PureComponent {
             t,
             dishes,
             loading,
+            editedDishId,
             addDish: this.addDish,
+            setEditedDishId: this.setEditedDishId,
             removeDish: this.removeDish,
-            addPicture: this.addPicture
+            addPicture: this.addPicture,
+            removePicture: this.removePicture
           }}
         />
       </LefoodLayout>
@@ -99,8 +124,10 @@ MenuPage.propTypes = {
   orders: shape(),
   business: shape(),
   addDish: func.isRequired,
+  updateDish: func.isRequired,
   removeDish: func.isRequired,
   addPicture: func.isRequired,
+  removePicture: func.isRequired,
   loading: bool.isRequired,
   updateBusiness: func.isRequired,
   businesses: shape(),
@@ -156,8 +183,10 @@ export default requireAuth(true)(
       },
       {
         addDish: postDish,
+        updateDish: patchDish,
         removeDish: deleteDish,
         addPicture: postPicture,
+        removePicture: deletePicture,
         updateBusiness: patchBusiness,
         changeCurrentBusiness: setCurrentBusiness
       }

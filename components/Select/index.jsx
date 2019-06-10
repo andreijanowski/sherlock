@@ -20,6 +20,7 @@ const Select = ({
   ButtonComponent
 }) => (
   <Downshift
+    id="select-single"
     selectedItem={value}
     onChange={onChange}
     itemToString={i => i.label}

@@ -1,6 +1,6 @@
 import { string, func } from "prop-types";
 import { PerfectSquare, ActionIcon } from "components";
-import { Image } from "../styled";
+import { Image } from "./styled";
 
 const Picture = ({ url, id, remove }) => (
   <PerfectSquare>

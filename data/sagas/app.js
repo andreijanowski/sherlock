@@ -21,7 +21,7 @@ function* handlePatchChangeSaga({ payload: { path } }) {
           .first()
           .get("id")
       );
-      yield put(fetchProfileBusiness(id));
+      yield put(fetchProfileBusiness(id, false));
       break;
     }
     case "/app/profile/members": {

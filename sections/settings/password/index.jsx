@@ -31,6 +31,11 @@ class ChangePasswordForm extends PureComponent {
     return (
       <FinalForm
         onSubmit={this.submitForm}
+        subscription={{
+          handleSubmit: true,
+          invalid: true,
+          submitting: true
+        }}
         render={({ handleSubmit, invalid, submitting }) => (
           <Form onSubmit={handleSubmit}>
             <Flex flexDirection="column">

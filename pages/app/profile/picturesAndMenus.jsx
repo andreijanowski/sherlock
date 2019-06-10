@@ -35,7 +35,7 @@ class PicturesAndMenus extends PureComponent {
 
   removePicture = id => {
     const { removePicture } = this.props;
-    return removePicture(id);
+    return removePicture(id, "business");
   };
 
   addMenus = menus => {

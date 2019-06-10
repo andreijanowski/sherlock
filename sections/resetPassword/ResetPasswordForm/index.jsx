@@ -28,6 +28,12 @@ class ResetPasswordForm extends PureComponent {
     return (
       <Form
         onSubmit={this.submitForm}
+        subscription={{
+          handleSubmit: true,
+          pristine: true,
+          invalid: true,
+          submitting: true
+        }}
         render={({ handleSubmit, pristine, invalid, submitting }) => (
           <form onSubmit={handleSubmit}>
             <InputField

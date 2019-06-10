@@ -1,4 +1,4 @@
-import { func, shape, arrayOf, bool, string } from "prop-types";
+import { func, shape, bool, string } from "prop-types";
 import { DragDropContext } from "react-beautiful-dnd";
 import { LoadingIndicator } from "components";
 import Column from "./Column";
@@ -63,7 +63,7 @@ const Orders = ({
 Orders.propTypes = {
   t: func.isRequired,
   onDragEnd: func.isRequired,
-  orders: arrayOf(shape()),
+  orders: shape(),
   columns: shape().isRequired,
   loading: bool.isRequired,
   currency: string,

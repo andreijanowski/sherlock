@@ -19,15 +19,6 @@ export const Actions = styled(Flex).attrs({
   /* stylelint-disable-line no-empty-block */
 `;
 
-export const Image = styled.div`
-  position: relative;
-  width: 100%;
-  background-image: url(${p => p.url});
-  background-position: center;
-  background-size: cover;
-  border-radius: ${p => p.theme.radius.default};
-`;
-
 export const PublishMobileIconWrapper = styled(Flex).attrs({
   alignItems: "center",
   mb: 2

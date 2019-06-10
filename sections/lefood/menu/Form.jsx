@@ -1,4 +1,4 @@
-import { PureComponent } from "react";
+import { useState } from "react";
 import {
   FormInput,
   FormTextarea,
@@ -7,130 +7,183 @@ import {
   Button,
   FormCheckbox,
   PerfectSquare,
-  DropzoneWithCropper
+  DropzoneWithCropper,
+  Picture,
+  LoadingIndicator
 } from "components";
 import { Form as FinalForm, Field } from "react-final-form";
-import { func } from "prop-types";
+import { func, shape } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import { normalizePrice } from "utils/normalizers";
 import { required } from "utils/validators";
+import { Form } from "./styled";
 
-class DishForm extends PureComponent {
-  state = {
-    picture: null
-  };
+const DishForm = ({
+  t,
+  addPicture,
+  removePicture,
+  initialValues,
+  initialPicture,
+  setEditedDishId,
+  addDish
+}) => {
+  const [picture, setPicture] = useState(null);
+  const [isSending, setIsSending] = useState(false);
 
-  render() {
-    const { t, addPicture, addDish } = this.props;
-    const { picture } = this.state;
-    return (
-      <FinalForm
-        initialValues={{
-          category: "mains"
-        }}
-        onSubmit={addDish}
-        render={({ handleSubmit, form: { reset } }) => (
-          <form
+  return (
+    <FinalForm
+      initialValues={initialValues}
+      onSubmit={addDish}
+      subscription={{
+        handleSubmit: true,
+        form: true
+      }}
+      render={({ handleSubmit, form: { reset } }) => {
+        const resetForm = (shouldRemoveData = true) => {
+          setIsSending(false);
+          if (shouldRemoveData) {
+            setPicture(null);
+            setEditedDishId(null);
+            reset();
+          }
+        };
+        return (
+          <Form
             onSubmit={e => {
               const promise = handleSubmit(e);
               if (promise && promise.then) {
-                promise.then(dish => {
-                  if (picture && dish.status === 201) {
-                    addPicture(picture, dish.rawData.data.id);
-                  }
-                  this.setState({ picture: null });
-                  reset();
-                });
+                setIsSending(true);
+                promise
+                  .then(dish => {
+                    if (
+                      picture &&
+                      (dish.status === 201 || dish.status === 200)
+                    ) {
+                      addPicture(picture, dish.rawData.data.id)
+                        .then(() => {
+                          resetForm();
+                        })
+                        .catch(() => {
+                          resetForm(false);
+                        });
+                    } else {
+                      resetForm();
+                    }
+                  })
+                  .catch(() => {
+                    resetForm(false);
+                  });
               }
             }}
           >
-            <H3>{t("addDish")}</H3>
-            <Flex>
-              <Box width={152} pr={3} pb={3}>
-                <PerfectSquare>
-                  <DropzoneWithCropper
-                    tip={t("chooseOrDragFile")}
-                    info={t("picturesInfo")}
-                    errorTipType={t("invalidFiles")}
-                    errorInfoType={t("validImages")}
-                    crop={t("app:crop")}
-                    cancel={t("app:cancel")}
-                    multiple={false}
-                    maxWidth={4096}
-                    maxHeight={4096}
-                    image={picture}
-                    saveImage={pic => this.setState({ picture: pic })}
-                  />
-                </PerfectSquare>
-              </Box>
-              <Flex flexDirection="column" width="calc(100% - 152px)">
+            {isSending ? (
+              <LoadingIndicator />
+            ) : (
+              <>
+                <H3>{t("addDish")}</H3>
+                <Flex>
+                  <Box width={152} pr={3} pb={3}>
+                    {initialPicture ? (
+                      <Picture
+                        {...{ ...initialPicture, remove: removePicture }}
+                      />
+                    ) : (
+                      <PerfectSquare>
+                        <DropzoneWithCropper
+                          tip={t("chooseOrDragFile")}
+                          info={t("picturesInfo")}
+                          errorTipType={t("invalidFiles")}
+                          errorInfoType={t("validImages")}
+                          crop={t("app:crop")}
+                          cancel={t("app:cancel")}
+                          multiple={false}
+                          maxWidth={4096}
+                          maxHeight={4096}
+                          image={picture}
+                          saveImage={pic => setPicture(pic)}
+                        />
+                      </PerfectSquare>
+                    )}
+                  </Box>
+                  <Flex flexDirection="column" width="calc(100% - 152px)">
+                    <Box>
+                      <FormInput
+                        name="name"
+                        validate={required(t)}
+                        label={t("nameLabel")}
+                        placeholder={t("namePlaceholder")}
+                      />
+                    </Box>
+                    <Box>
+                      <FormInput
+                        name="pricePerItemCents"
+                        validate={required(t)}
+                        label={t("pricePerItemCentsLabel")}
+                        placeholder={t("pricePerItemCentsPlaceholder")}
+                        parse={normalizePrice}
+                      />
+                    </Box>
+                  </Flex>
+                </Flex>
                 <Box>
-                  <FormInput
-                    name="name"
-                    validate={required(t)}
-                    label={t("nameLabel")}
-                    placeholder={t("namePlaceholder")}
+                  <FormTextarea
+                    rows={3}
+                    name="description"
+                    label={t("descriptionLabel")}
+                    placeholder={t("descriptionPlaceholder")}
                   />
                 </Box>
                 <Box>
-                  <FormInput
-                    name="pricePerItemCents"
-                    validate={required(t)}
-                    label={t("pricePerItemCentsLabel")}
-                    placeholder={t("pricePerItemCentsPlaceholder")}
-                    parse={normalizePrice}
+                  <Field
+                    name="category"
+                    component={FormDropdown}
+                    label={t("categoryLabel")}
+                    items={[
+                      { label: t("mains"), value: "mains" },
+                      { label: t("desserts"), value: "desserts" },
+                      { label: t("softs"), value: "softs" },
+                      { label: t("formulas"), value: "formulas" },
+                      { label: t("starters"), value: "starters" },
+                      { label: t("sides"), value: "sides" },
+                      { label: t("pastries"), value: "pastries" },
+                      { label: t("coffee"), value: "coffee" },
+                      { label: t("beer"), value: "beer" },
+                      { label: t("wine"), value: "wine" },
+                      { label: t("cocktails"), value: "cocktails" },
+                      { label: t("catering"), value: "catering" },
+                      { label: t("other"), value: "other" }
+                    ]}
                   />
                 </Box>
-              </Flex>
-            </Flex>
-            <Box>
-              <FormTextarea
-                rows={3}
-                name="description"
-                label={t("descriptionLabel")}
-                placeholder={t("descriptionPlaceholder")}
-              />
-            </Box>
-            <Box>
-              <Field
-                name="category"
-                component={FormDropdown}
-                label={t("categoryLabel")}
-                items={[
-                  { label: t("mains"), value: "mains" },
-                  { label: t("desserts"), value: "desserts" },
-                  { label: t("softs"), value: "softs" },
-                  { label: t("formulas"), value: "formulas" },
-                  { label: t("starters"), value: "starters" },
-                  { label: t("sides"), value: "sides" },
-                  { label: t("pastries"), value: "pastries" },
-                  { label: t("coffee"), value: "coffee" },
-                  { label: t("beer"), value: "beer" },
-                  { label: t("wine"), value: "wine" },
-                  { label: t("cocktails"), value: "cocktails" },
-                  { label: t("other"), value: "other" }
-                ]}
-              />
-            </Box>
-            <Box my={4}>
-              <FormCheckbox name="available" label={t("availability")} />
-            </Box>
-            <Box mb={3}>
-              <Button fluid styleName="blue" type="submit">
-                {t("addToMenu")}
-              </Button>
-            </Box>
-          </form>
-        )}
-      />
-    );
-  }
-}
+                <Box my={4}>
+                  <FormCheckbox name="available" label={t("availability")} />
+                </Box>
+                <Box mb={3}>
+                  <Button fluid styleName="blue" type="submit">
+                    {t("addToMenu")}
+                  </Button>
+                </Box>
+              </>
+            )}
+          </Form>
+        );
+      }}
+    />
+  );
+};
 
 DishForm.propTypes = {
   t: func.isRequired,
   addDish: func.isRequired,
-  addPicture: func.isRequired
+  addPicture: func.isRequired,
+  removePicture: func.isRequired,
+  setEditedDishId: func.isRequired,
+  initialValues: shape({}).isRequired,
+  initialPicture: shape({})
+};
+
+DishForm.defaultProps = {
+  initialPicture: undefined
 };
 
 export default DishForm;

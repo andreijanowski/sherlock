@@ -1,84 +1,72 @@
-import React, { PureComponent } from "react";
+import { useState } from "react";
 import { Link } from "components";
 import { Flex } from "@rebass/grid";
 import { arrayOf, shape, func, string, bool } from "prop-types";
 import { BackArrow } from "icons";
 import { IconWrapper, IconLabel, SubMenuWrapper } from "./styled";
 
-class SubItem extends PureComponent {
-  state = {
-    isSubmenuOpen: false
-  };
+const SubItem = ({ t, lng, route, label, Icon, withSubmenu, submenuItems }) => {
+  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
 
-  toggleSubMenu = () => {
-    this.setState(prevState => ({
-      isSubmenuOpen: !prevState.isSubmenuOpen
-    }));
-  };
-
-  render() {
-    const {
-      t,
-      lng,
-      route,
-      label,
-      Icon,
-      withSubmenu,
-      submenuItems
-    } = this.props;
-    const { isSubmenuOpen } = this.state;
-    return !withSubmenu ? (
-      <Link {...{ lng, route }}>
-        <Flex mb={4}>
-          <IconWrapper dark>
-            <Icon />
-          </IconWrapper>
-          <IconLabel>{label}</IconLabel>
-        </Flex>
-      </Link>
-    ) : (
-      <Flex mb={4} onClick={this.toggleSubMenu}>
+  return !withSubmenu ? (
+    <Link {...{ lng, route }}>
+      <Flex mb={4}>
         <IconWrapper dark>
           <Icon />
         </IconWrapper>
         <IconLabel>{label}</IconLabel>
-        <SubMenuWrapper
-          {...{ isSubmenuOpen }}
-          onClick={e => {
-            e.stopPropagation();
-          }}
+      </Flex>
+    </Link>
+  ) : (
+    <Flex
+      mb={4}
+      onClick={() => setIsSubmenuOpen(prevIsSubmenuOpen => !prevIsSubmenuOpen)}
+    >
+      <IconWrapper dark>
+        <Icon />
+      </IconWrapper>
+      <IconLabel>{label}</IconLabel>
+      <SubMenuWrapper
+        {...{ isSubmenuOpen }}
+        onClick={e => {
+          e.stopPropagation();
+        }}
+      >
+        <Flex
+          mb={4}
+          onClick={() =>
+            setIsSubmenuOpen(prevIsSubmenuOpen => !prevIsSubmenuOpen)
+          }
         >
-          <Flex mb={4} onClick={this.toggleSubMenu}>
-            <IconWrapper dark>
-              <BackArrow />
-            </IconWrapper>
-            <IconLabel>{t("app:back")}</IconLabel>
-          </Flex>
-          {submenuItems &&
-            submenuItems.map(item =>
-              item.route ? (
-                <Link {...{ lng, route: item.route, key: item.label }}>
-                  <Flex mb={4}>
-                    <IconWrapper dark noFill>
-                      {item.SubmenuIcon && <item.SubmenuIcon />}
-                    </IconWrapper>
-                    <IconLabel>{item.label}</IconLabel>
-                  </Flex>
-                </Link>
-              ) : (
-                <Flex mb={4} key={item.label} onClick={item.onClick}>
+          <IconWrapper dark>
+            <BackArrow />
+          </IconWrapper>
+          <IconLabel>{t("app:back")}</IconLabel>
+        </Flex>
+        {submenuItems &&
+          submenuItems.map(item =>
+            item.route ? (
+              <Link {...{ lng, route: item.route, key: item.label }}>
+                <Flex mb={4}>
                   <IconWrapper dark noFill>
                     {item.SubmenuIcon && <item.SubmenuIcon />}
                   </IconWrapper>
                   <IconLabel>{item.label}</IconLabel>
                 </Flex>
-              )
-            )}
-        </SubMenuWrapper>
-      </Flex>
-    );
-  }
-}
+              </Link>
+            ) : (
+              <Flex mb={4} key={item.label} onClick={item.onClick}>
+                <IconWrapper dark noFill>
+                  {item.SubmenuIcon && <item.SubmenuIcon />}
+                </IconWrapper>
+                <IconLabel>{item.label}</IconLabel>
+              </Flex>
+            )
+          )}
+      </SubMenuWrapper>
+    </Flex>
+  );
+};
 
 SubItem.propTypes = {
   lng: string.isRequired,

@@ -56,3 +56,9 @@ export const Price = styled.div`
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 24px;
 `;
+
+export const Form = styled.form`
+  position: relative;
+  width: 100%;
+  min-height: 540px;
+`;

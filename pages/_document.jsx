@@ -28,6 +28,7 @@ export default class MyDocument extends Document {
           />
           {this.props.styleTags}
           <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
+          <link rel="stylesheet" type="text/css" href="/static/fonts.css" />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
