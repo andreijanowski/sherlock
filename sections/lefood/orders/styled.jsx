@@ -24,7 +24,7 @@ export const ColumnHeader = styled(Flex).attrs({
 
 export const ColumnTitle = styled(Box)`
   color: rgb(${p => p.theme.colors.dark});
-  font-size: ${p => p.theme.fontSizes.f21};
+  font-size: ${p => p.theme.fontSizes.f12};
 `;
 
 export const OrdersNumber = styled(Box).attrs({ width: 32 })`
