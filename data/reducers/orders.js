@@ -93,19 +93,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
 
     case PATCH_ORDER_SUCCESS:
     case PATCH_ORDER_REJECT_SUCCESS: {
-      let newState = state.mergeIn(
-        ["data", "orders"],
-        fromJS(payload.data.orders)
+      return state.mergeIn(
+        ["data", "orders", payload.rawData.data.id, "attributes"],
+        fromJS(payload.data.orders[payload.rawData.data.id].attributes)
       );
-      newState = newState.mergeIn(
-        ["data", "elements"],
-        fromJS(payload.data.elements)
-      );
-      newState = newState.mergeIn(
-        ["data", "addresses"],
-        fromJS(payload.data.addresses)
-      );
-      return newState;
     }
 
     case LOGOUT: {
