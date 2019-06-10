@@ -17,6 +17,10 @@ const StripeCurrencyModal = ({
         stripeCurrency: currencies.find(c => c.value === stripeCurrency) || {}
       }}
       onSubmit={setStripeCurrency}
+      subscription={{
+        handleSubmit: true,
+        values: true
+      }}
       render={({ handleSubmit, values }) => (
         <Flex
           onSubmit={handleSubmit}

@@ -1,4 +1,3 @@
-import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
@@ -10,66 +9,50 @@ import { setCateringForEditing, sendCateringOffer } from "actions/caterings";
 
 const namespaces = ["catering", "app"];
 
-class MonthPage extends PureComponent {
-  static async getInitialProps() {
-    return {
-      namespacesRequired: namespaces
-    };
-  }
-
-  constructor(p) {
-    super();
-    this.state = {
-      view: {
-        value: "month",
-        label: p.t("month")
-      }
-    };
-  }
-
-  render() {
-    const {
+const MonthPage = ({
+  t,
+  lng,
+  business,
+  businessId,
+  businesses,
+  addresses,
+  changeCurrentBusiness,
+  caterings,
+  setEditedCatering,
+  sendOffer
+}) => (
+  <CateringLayout
+    {...{
       t,
       lng,
+      view: {
+        value: "month",
+        label: t("month")
+      },
       business,
       businessId,
       businesses,
-      addresses,
-      changeCurrentBusiness,
-      caterings,
-      setEditedCatering,
-      sendOffer
-    } = this.props;
-    const { view } = this.state;
-    const { currency } = business || {};
-    return (
-      <CateringLayout
-        {...{
-          t,
-          lng,
-          view,
-          business,
-          businessId,
-          businesses,
-          changeCurrentBusiness
-        }}
-      >
-        <Month
-          {...{
-            t,
-            lng,
-            caterings,
-            addresses,
-            currency,
-            setEditedCatering,
-            sendOffer,
-            timeZone: business && business.get("timezone")
-          }}
-        />
-      </CateringLayout>
-    );
-  }
-}
+      changeCurrentBusiness
+    }}
+  >
+    <Month
+      {...{
+        t,
+        lng,
+        caterings,
+        addresses,
+        currency: business && business.get("currency"),
+        setEditedCatering,
+        sendOffer,
+        timeZone: business && business.get("timezone")
+      }}
+    />
+  </CateringLayout>
+);
+
+MonthPage.getInitialProps = async () => ({
+  namespacesRequired: namespaces
+});
 
 MonthPage.propTypes = {
   t: func.isRequired,

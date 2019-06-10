@@ -13,14 +13,15 @@ function* handlePatchChangeSaga({ payload: { path } }) {
     case "/app/profile/contactInformation":
     case "/app/profile/additionalInformation":
     case "/app/profile/openingHours":
-    case "/app/profile/picturesAndMenus": {
+    case "/app/profile/picturesAndMenus":
+    case "/app/profile/liveInfo": {
       const id = yield select(state =>
         state
           .getIn(["users", "currentBusiness", "data", "businesses"])
           .first()
           .get("id")
       );
-      yield put(fetchProfileBusiness(id));
+      yield put(fetchProfileBusiness(id, false));
       break;
     }
     case "/app/profile/members": {

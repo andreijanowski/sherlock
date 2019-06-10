@@ -1,7 +1,12 @@
 import { string, func, shape, arrayOf } from "prop-types";
-import { H3, DropzoneWithCropper, Paragraph, PerfectSquare } from "components";
+import {
+  H3,
+  DropzoneWithCropper,
+  Paragraph,
+  PerfectSquare,
+  Picture
+} from "components";
 import { Flex, Box } from "@rebass/grid";
-import Picture from "./Picture";
 
 const Pictures = ({ t, pictures, addPicture, removePicture }) => (
   <>

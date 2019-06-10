@@ -19,12 +19,11 @@ class AutoSave extends React.Component {
   }
 
   save = async blurredField => {
-    const { setFieldData, arrayName, t } = this.props;
+    const { setFieldData, arrayName, t, values, save, errors } = this.props;
     try {
       if (this.promise) {
         await this.promise;
       }
-      const { values, save, errors } = this.props;
       if (!values[blurredField]) {
         setFieldData(blurredField, { error: null });
       }
@@ -49,6 +48,12 @@ class AutoSave extends React.Component {
       }
 
       const keys = Object.keys(difference);
+      if (
+        values[blurredField] === undefined &&
+        prevValues[blurredField] !== undefined
+      ) {
+        keys.push(blurredField);
+      }
       if (keys.length) {
         setFieldData(blurredField, { saving: true });
         this.setState({ values });
@@ -73,10 +78,13 @@ class AutoSave extends React.Component {
       }
     } catch (e) {
       if (e.response) {
-        const { errors } = e.response.data;
+        const { errors: responseErrors } = e.response.data;
         switch (blurredField) {
           case "types": {
-            const error = getValidMessageKey(errors, "invalid_range_of_types");
+            const error = getValidMessageKey(
+              responseErrors,
+              "invalid_range_of_types"
+            );
             if (error) {
               setFieldData(blurredField, {
                 error: t(error.message, { ...error.meta })
@@ -86,7 +94,7 @@ class AutoSave extends React.Component {
           }
           case "cuisines": {
             const error = getValidMessageKey(
-              errors,
+              responseErrors,
               "invalid_range_of_cuisines"
             );
             if (error) {
@@ -98,7 +106,7 @@ class AutoSave extends React.Component {
           }
           case "foodsAndDrinks": {
             const error = getValidMessageKey(
-              errors,
+              responseErrors,
               "invalid_range_of_drinks_foods"
             );
             if (error) {
@@ -109,7 +117,10 @@ class AutoSave extends React.Component {
             break;
           }
           case "quirks": {
-            const error = getValidMessageKey(errors, "invalid_range_of_quirks");
+            const error = getValidMessageKey(
+              responseErrors,
+              "invalid_range_of_quirks"
+            );
             if (error) {
               setFieldData(blurredField, {
                 error: t(error.message, { ...error.meta })
@@ -118,7 +129,7 @@ class AutoSave extends React.Component {
             break;
           }
           default: {
-            const { message, meta } = getErrorMessageKey(errors);
+            const { message, meta } = getErrorMessageKey(responseErrors);
             setFieldData(blurredField, {
               error: t(message, { ...meta })
             });

@@ -27,7 +27,7 @@ class ChangePassword extends PureComponent {
           actionTitle: t("title")
         }}
       >
-        <ChangePasswordForm {...{ t, token }} />
+        <ChangePasswordForm {...{ t, lng, token }} />
       </SingleActionView>
     );
   }

@@ -6,8 +6,17 @@ module.exports = routes()
   .add("login", `/:lng(${languagesPattern})/login`)
   .add("register", `/:lng(${languagesPattern})/register`)
   .add("confirm", `/:lng(${languagesPattern})/confirm/:token`)
+  .add(
+    "acceptInvitation",
+    `/:lng(${languagesPattern})/accept-invitation/:token`
+  )
+  .add(
+    "rejectInvitation",
+    `/:lng(${languagesPattern})/reject-invitation/:token`
+  )
   .add("deleteByToken", `/:lng(${languagesPattern})/delete-by-token/:token`)
   .add("resetPassword", `/:lng(${languagesPattern})/reset-password`)
+  .add("setPassword", `/:lng(${languagesPattern})/set-password/:token`)
   .add("changePassword", `/:lng(${languagesPattern})/change-password/:token`)
   .add("referrals", `/:lng(${languagesPattern})/referrals`)
   .add("add/venue", `/:lng(${languagesPattern})/add/venue`)
@@ -32,6 +41,10 @@ module.exports = routes()
   .add(
     "app/profile/picturesAndMenus",
     `/:lng(${languagesPattern})/app/profile/pictures-and-menus`
+  )
+  .add(
+    "app/profile/liveInfo",
+    `/:lng(${languagesPattern})/app/profile/live-info`
   )
   .add(
     "app/settings/basicInformation",

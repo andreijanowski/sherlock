@@ -44,7 +44,7 @@ export const fetchProfileBusinesses = (page = 1) => ({
   meta: { thunk: true, page }
 });
 
-export const fetchProfileBusiness = id => ({
+export const fetchProfileBusiness = (id, isNewBusinessFetching = true) => ({
   type: FETCH_PROFILE_BUSINESS_REQUEST,
   payload: {
     endpoint: `/api/v1/users/me/businesses/${id}`,
@@ -53,7 +53,7 @@ export const fetchProfileBusiness = id => ({
         "addresses,groups,menus,open_periods,order_periods,orders,pictures,products"
     }
   },
-  meta: { thunk: true }
+  meta: { thunk: true, isNewBusinessFetching }
 });
 
 export const fetchProfileCards = (page = 1) => ({

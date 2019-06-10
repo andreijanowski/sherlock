@@ -31,19 +31,24 @@ export const generateMenuItems = (t, active, showPublishModal, state) => {
       isActive: active === "inviteYourTeam"
     },
     {
+      route: `/app/profile/live-info/`,
+      label: t("app:manageProfile.liveInfo"),
+      isActive: active === "liveInfo"
+    },
+    {
       onClick: showPublishModal,
       label: t("app:manageProfile.publish"),
       color: "ruby"
     }
   ];
   if (state === "published") {
-    menuItems[6] = {
+    menuItems[7] = {
       label: t("app:manageProfile.published"),
       color: "green"
     };
   }
   if (state === "waiting_for_approval") {
-    menuItems[6] = {
+    menuItems[7] = {
       label: t("app:manageProfile.waitingForApproval"),
       color: "carrotOrange"
     };
