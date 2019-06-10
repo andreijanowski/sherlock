@@ -1,6 +1,7 @@
 export const columns = {
   newOrders: "newOrders",
   inProgress: "inProgress",
+  inDelivery: "inDelivery",
   done: "done",
   rejected: "rejected"
 };
@@ -28,6 +29,17 @@ export const parseOrders = (orders, t) => ({
     orderIds: orders
       ? orders
           .filter(o => o.getIn(["attributes", "state"]) === "in_preparation")
+          .map(o => o.get("id"))
+          .toList()
+          .toArray()
+      : []
+  },
+  inDelivery: {
+    id: columns.inDelivery,
+    title: t("in_delivery"),
+    orderIds: orders
+      ? orders
+          .filter(o => o.getIn(["attributes", "state"]) === "in_delivery")
           .map(o => o.get("id"))
           .toList()
           .toArray()
@@ -67,7 +79,8 @@ export const setIsDropDisabled = (draggedState, droppableId) => {
       (droppableId === columns.rejected ||
         droppableId === columns.newOrders)) ||
     (draggedState === "paid" && droppableId === columns.inProgress) ||
-    (draggedState === "in_preparation" && droppableId === columns.done) ||
+    (draggedState === "in_preparation" && droppableId === columns.inDelivery) ||
+    (draggedState === "in_delivery" && droppableId === columns.done) ||
     draggedState === droppableId ||
     !draggedState
   ) {

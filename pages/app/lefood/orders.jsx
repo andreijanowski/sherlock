@@ -65,6 +65,8 @@ class OrdersPage extends PureComponent {
     const { updateOrder } = this.props;
     if (destination.droppableId === columnsNames.inProgress) {
       updateOrder({ state: "in_preparation" }, draggableId);
+    } else if (destination.droppableId === columnsNames.inDelivery) {
+      updateOrder({ state: "in_delivery" }, draggableId);
     } else if (destination.droppableId === columnsNames.done) {
       updateOrder({ state: "completed" }, draggableId);
     } else if (destination.droppableId === columnsNames.rejected) {

@@ -56,6 +56,7 @@ const OrderDetails = ({
                 },
                 { label: t("paid"), value: "paid" },
                 { label: t("in_preparation"), value: "in_preparation" },
+                { label: t("in_delivery"), value: "in_delivery" },
                 { label: t("completed"), value: "completed" },
                 { label: t("rejected"), value: "rejected" }
               ],
