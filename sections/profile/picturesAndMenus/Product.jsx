@@ -1,8 +1,7 @@
 import { PureComponent } from "react";
-import { InputWithRemoveButton } from "components";
+import { InputWithRemoveButton, Picture } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { func, string } from "prop-types";
-import Picture from "./Picture";
 
 class Product extends PureComponent {
   constructor(props) {
