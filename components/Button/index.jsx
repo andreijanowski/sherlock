@@ -148,24 +148,27 @@ const withImage = css`
   justify-content: center;
   min-height: 40px;
   padding: 0;
-  color: rgb(${p => (p.red ? p.theme.colors.ruby : p.theme.colors.dark)});
+  color: rgb(${p => p.theme.colors.dark});
+  ${p => p.red && `color: rgb(${p.theme.colors.ruby});`};
+  ${p => p.blue && `color: rgb(${p.theme.colors.blue});`};
+  ${p => p.greenHaze && `color: rgb(${p.theme.colors.greenHaze});`};
   font-weight: ${p => p.theme.fontWeights.regular};
   line-height: 24px;
-  background-color: ${p =>
-    p.red
-      ? `rgba(${p.theme.colors.ruby}, 0.1)`
-      : `rgb(${p.theme.colors.white})`};
+  background-color: ${p => `rgb(${p.theme.colors.white})`};
+  ${p => p.red && `background-color: rgba(${p.theme.colors.ruby}, 0.1);`}
+  ${p => p.blue && `background-color: rgba(${p.theme.colors.blue}, 0.1);`}
+  ${p =>
+    p.greenHaze && `background-color:rgba(${p.theme.colors.greenHaze}, 0.1);`}
   border: none;
   border-radius: ${p => p.theme.radius.default};
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
-  fill: rgb(${p => (p.red ? p.theme.colors.ruby : p.theme.colors.dark)});
-  stroke: rgb(${p => (p.red ? p.theme.colors.ruby : p.theme.colors.dark)});
-  ${p =>
-    p.greenHaze &&
-    `
-    color: rgb(${p.theme.colors.greenHaze});
-    background-color:rgba(${p.theme.colors.greenHaze}, 0.1);
-  `}
+  fill: rgb(${p => p.theme.colors.dark});
+  ${p => p.red && `fill: rgb(${p.theme.colors.ruby});`} 
+  ${p => p.blue && `fill: rgb(${p.theme.colors.blue});`} 
+  stroke: rgb(${p => p.theme.colors.dark});
+  ${p => p.red && `stroke: rgb(${p.theme.colors.ruby});`} 
+  ${p => p.blue && `stroke: rgb(${p.theme.colors.blue});`} 
+  
 
   ${p => p.active && withImageActive}
 
