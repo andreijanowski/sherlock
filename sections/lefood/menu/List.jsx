@@ -16,6 +16,7 @@ const categories = [
   "beer",
   "wine",
   "cocktails",
+  "catering",
   "other"
 ];
 
