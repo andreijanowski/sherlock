@@ -1,14 +1,13 @@
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
-import CateringLayout from "sections/catering/Layout";
-import Day from "sections/catering/day";
+import { CalendarLayout, BigCalendar } from "components";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
 import { setCateringForEditing, sendCateringOffer } from "actions/caterings";
 import isServer from "utils/isServer";
 
-const namespaces = ["catering", "app"];
+const namespaces = ["catering", "events", "app"];
 
 const DayPage = ({
   t,
@@ -22,35 +21,39 @@ const DayPage = ({
   setEditedCatering,
   sendOffer
 }) => (
-  <CateringLayout
+  <CalendarLayout
     {...{
       t,
       lng,
       view: {
         value: "day",
-        label: t("day")
+        label: t("events:day")
       },
       business,
       businessId,
       businesses,
-      changeCurrentBusiness
+      changeCurrentBusiness,
+      eventType: "catering"
     }}
   >
     {!isServer && (
-      <Day
+      <BigCalendar
         {...{
           t,
           lng,
-          caterings,
+          events: caterings,
           addresses,
           currency: business && business.get("currency"),
-          setEditedCatering,
+          defaultView: "day",
+          setEditedEvent: setEditedCatering,
           sendOffer,
-          timeZone: business && business.get("timezone")
+          timeZone: business && business.get("timezone"),
+          height: 1500,
+          eventType: "catering"
         }}
       />
     )}
-  </CateringLayout>
+  </CalendarLayout>
 );
 
 DayPage.getInitialProps = async () => ({

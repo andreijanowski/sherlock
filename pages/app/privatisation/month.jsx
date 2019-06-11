@@ -4,9 +4,12 @@ import { func, string, shape } from "prop-types";
 import { CalendarLayout, BigCalendar } from "components";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
-import { setCateringForEditing, sendCateringOffer } from "actions/caterings";
+import {
+  setPrivatisationForEditing,
+  sendPrivatisationOffer
+} from "actions/privatisations";
 
-const namespaces = ["catering", "events", "app"];
+const namespaces = ["privatisation", "events", "app"];
 
 const MonthPage = ({
   t,
@@ -16,8 +19,8 @@ const MonthPage = ({
   businesses,
   addresses,
   changeCurrentBusiness,
-  caterings,
-  setEditedCatering,
+  privatisations,
+  setEditedPrivatisation,
   sendOffer
 }) => (
   <CalendarLayout
@@ -32,22 +35,22 @@ const MonthPage = ({
       businessId,
       businesses,
       changeCurrentBusiness,
-      eventType: "catering"
+      eventType: "privatisation"
     }}
   >
     <BigCalendar
       {...{
         t,
         lng,
-        events: caterings,
+        events: privatisations,
         addresses,
         currency: business && business.get("currency"),
-        setEditedEvent: setEditedCatering,
+        setEditedEvent: setEditedPrivatisation,
         defaultView: "month",
         timeZone: business && business.get("timezone"),
         sendOffer,
         height: 620,
-        eventType: "catering"
+        eventType: "privatisation"
       }}
     />
   </CalendarLayout>
@@ -59,13 +62,13 @@ MonthPage.getInitialProps = async () => ({
 
 MonthPage.propTypes = {
   t: func.isRequired,
-  setEditedCatering: func.isRequired,
+  setEditedPrivatisation: func.isRequired,
   sendOffer: func.isRequired,
   lng: string.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
   businesses: shape(),
-  caterings: shape(),
+  privatisations: shape(),
   addresses: shape(),
   businessId: string
 };
@@ -75,7 +78,7 @@ MonthPage.defaultProps = {
   businesses: null,
   businessId: "",
   addresses: null,
-  caterings: null
+  privatisations: null
 };
 
 export default requireAuth(true)(
@@ -93,14 +96,18 @@ export default requireAuth(true)(
             "data",
             "businesses"
           ]),
-          caterings: state.getIn(["caterings", "data", "caterings"]),
-          addresses: state.getIn(["caterings", "data", "addresses"])
+          privatisations: state.getIn([
+            "privatisations",
+            "data",
+            "privatisations"
+          ]),
+          addresses: state.getIn(["privatisations", "data", "addresses"])
         };
       },
       {
         changeCurrentBusiness: setCurrentBusiness,
-        setEditedCatering: setCateringForEditing,
-        sendOffer: sendCateringOffer
+        setEditedPrivatisation: setPrivatisationForEditing,
+        sendOffer: sendPrivatisationOffer
       }
     )(MonthPage)
   )

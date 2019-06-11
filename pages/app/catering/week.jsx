@@ -1,14 +1,13 @@
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
-import CateringLayout from "sections/catering/Layout";
-import Week from "sections/catering/week";
+import { CalendarLayout, BigCalendar } from "components";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
 import { setCateringForEditing, sendCateringOffer } from "actions/caterings";
 import isServer from "utils/isServer";
 
-const namespaces = ["catering", "app"];
+const namespaces = ["catering", "events", "app"];
 
 const WeekPage = ({
   t,
@@ -22,35 +21,39 @@ const WeekPage = ({
   setEditedCatering,
   sendOffer
 }) => (
-  <CateringLayout
+  <CalendarLayout
     {...{
       t,
       lng,
       view: {
         value: "week",
-        label: t("week")
+        label: t("events:week")
       },
       business,
       businessId,
       businesses,
-      changeCurrentBusiness
+      changeCurrentBusiness,
+      eventType: "catering"
     }}
   >
     {!isServer && (
-      <Week
+      <BigCalendar
         {...{
           t,
           lng,
-          caterings,
+          events: caterings,
           addresses,
           currency: business && business.get("currency"),
-          setEditedCatering,
+          defaultView: "week",
+          timeZone: business && business.get("timezone"),
+          setEditedEvent: setEditedCatering,
           sendOffer,
-          timeZone: business && business.get("timezone")
+          height: 1500,
+          eventType: "catering"
         }}
       />
     )}
-  </CateringLayout>
+  </CalendarLayout>
 );
 
 WeekPage.getInitialProps = async () => ({

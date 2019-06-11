@@ -5,17 +5,17 @@ const convertDateTimeToDate = (datetime, timeZoneName) => {
   return new Date(m.year(), m.month(), m.date(), m.hour(), m.minute(), 0);
 };
 
-export const parseCaterings = ({
-  caterings,
+export const parseEvents = ({
+  events,
   addresses,
   currency,
   view,
   timeZoneName,
   t
 }) => {
-  const parsedCaterings = [];
-  if (caterings && caterings.size) {
-    caterings.forEach(c => {
+  const parsedEvents = [];
+  if (events && events.size) {
+    events.forEach(c => {
       const start = convertDateTimeToDate(
         c.getIn(["attributes", "date"]),
         timeZoneName
@@ -33,7 +33,7 @@ export const parseCaterings = ({
             timeZoneName
           );
           today.setHours(24);
-          const secondHalf = parseCaterings(
+          const secondHalf = parseEvents(
             [
               {
                 id: c.get("id"),
@@ -54,7 +54,7 @@ export const parseCaterings = ({
             undefined,
             timeZoneName
           );
-          parsedCaterings.push(secondHalf[0]);
+          parsedEvents.push(secondHalf[0]);
         } else {
           end.setHours(24);
           end.setSeconds(c.getIn(["attributes", "to"]));
@@ -67,7 +67,7 @@ export const parseCaterings = ({
         );
         end.setSeconds(c.getIn(["attributes", "to"]));
       }
-      parsedCaterings.push({
+      parsedEvents.push({
         title: c.getIn(["attributes", "name"]),
         start,
         end,
@@ -79,32 +79,34 @@ export const parseCaterings = ({
           id: c.get("id"),
           ...c.get("attributes").toObject(),
           menu: c.getIn(["attributes", "menu"]).toObject(),
-          address: addresses
-            .getIn([
-              c.getIn(["relationships", "address", "data", "id"]),
-              "attributes"
-            ])
-            .toObject()
+          address:
+            addresses &&
+            addresses
+              .getIn([
+                c.getIn(["relationships", "address", "data", "id"]),
+                "attributes"
+              ])
+              .toObject()
         }
       });
     });
 
     if (view === "month") {
       const days = {};
-      parsedCaterings.forEach(c => {
+      parsedEvents.forEach(c => {
         if (days[c.resource.date]) {
           days[c.resource.date].push(c);
         } else {
           days[c.resource.date] = [c];
         }
       });
-      const monthViewCaterings = [];
+      const monthViewEvents = [];
       Object.values(days).forEach(day => {
         if (day.length === 1) {
-          monthViewCaterings.push(day[0]);
+          monthViewEvents.push(day[0]);
         } else {
-          monthViewCaterings.push({
-            title: t("multipleEvents"),
+          monthViewEvents.push({
+            title: t("events:multipleEvents"),
             start: day[0].start,
             end: day[0].end,
             allDay: false,
@@ -112,10 +114,10 @@ export const parseCaterings = ({
           });
         }
       });
-      return monthViewCaterings;
+      return monthViewEvents;
     }
   }
-  return parsedCaterings;
+  return parsedEvents;
 };
 
 export const parseDateTime = (date, time) =>
@@ -124,3 +126,22 @@ export const parseDateTime = (date, time) =>
     .minute(0)
     .second(time)
     .format("h:mm a");
+
+export const preparePeriodsList = t => [
+  {
+    value: "day",
+    label: t("events:day")
+  },
+  {
+    value: "week",
+    label: t("events:week")
+  },
+  {
+    value: "month",
+    label: t("events:month")
+  },
+  {
+    value: "year",
+    label: t("events:year")
+  }
+];

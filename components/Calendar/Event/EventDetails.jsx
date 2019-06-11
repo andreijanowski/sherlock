@@ -21,7 +21,14 @@ import {
 } from "./styled";
 import { parseDateTime } from "../utils";
 
-const EventDetails = ({ t, lng, event, setEditedCatering, sendOffer }) => (
+const EventDetails = ({
+  t,
+  lng,
+  event,
+  setEditedEvent,
+  eventType,
+  sendOffer
+}) => (
   <>
     <Header>
       <MainInfo>
@@ -39,8 +46,8 @@ const EventDetails = ({ t, lng, event, setEditedCatering, sendOffer }) => (
       </MainInfo>
       <IconWrapper
         onClick={() => {
-          setEditedCatering(event.resource);
-          Router.pushRoute(`/${lng}/app/catering/edit/`);
+          setEditedEvent(event.resource);
+          Router.pushRoute(`/${lng}/app/${eventType}/edit/`);
         }}
       >
         <EditIcon />
@@ -48,45 +55,45 @@ const EventDetails = ({ t, lng, event, setEditedCatering, sendOffer }) => (
     </Header>
     <Details>
       <Detail>
-        <DetailContent>{t("type")}</DetailContent>
+        <DetailContent>{t("events:type")}</DetailContent>
         <DetailContent>{event.resource.typeOfEvent}</DetailContent>
       </Detail>
       <Detail>
-        <DetailContent>{t("servings")}</DetailContent>
+        <DetailContent>{t("events:servings")}</DetailContent>
         <DetailContent>{event.resource.numberOfServings}</DetailContent>
       </Detail>
       <Detail>
-        <DetailContent>{t("waiters")}</DetailContent>
+        <DetailContent>{t("events:waiters")}</DetailContent>
         <DetailContent>{event.resource.numberOfWaiters}</DetailContent>
       </Detail>
       <Detail>
-        <DetailContent>{t("outdoors")}</DetailContent>
+        <DetailContent>{t("events:outdoors")}</DetailContent>
         <DetailContent>
-          {event.resource.outdoors ? t("yes") : t("no")}
+          {event.resource.outdoors ? t("events:yes") : t("events:no")}
         </DetailContent>
       </Detail>
       <Detail>
-        <DetailContent>{t("corporateEvent")}</DetailContent>
+        <DetailContent>{t("events:corporateEvent")}</DetailContent>
         <DetailContent>
-          {event.resource.corporateEvent ? t("yes") : t("no")}
+          {event.resource.corporateEvent ? t("events:yes") : t("events:no")}
         </DetailContent>
       </Detail>
       <Detail>
-        <DetailContent>{t("cutlery")}</DetailContent>
+        <DetailContent>{t("events:cutlery")}</DetailContent>
         <DetailContent>
-          {event.resource.cutlery ? t("yes") : t("no")}
+          {event.resource.cutlery ? t("events:yes") : t("events:no")}
         </DetailContent>
       </Detail>
       <Detail>
-        <DetailContent>{t("chef")}</DetailContent>
+        <DetailContent>{t("events:chef")}</DetailContent>
         <DetailContent>
-          {event.resource.chefAttendance ? t("yes") : t("no")}
+          {event.resource.chefAttendance ? t("events:yes") : t("events:no")}
         </DetailContent>
       </Detail>
     </Details>
     {event.resource.specifications && (
       <>
-        <AdditionalHeader>{t("specifications")}</AdditionalHeader>
+        <AdditionalHeader>{t("events:specifications")}</AdditionalHeader>
         <AdditionalParagraph>
           {event.resource.specifications}
         </AdditionalParagraph>
@@ -95,25 +102,25 @@ const EventDetails = ({ t, lng, event, setEditedCatering, sendOffer }) => (
     <Details>
       {event.resource.companyName && (
         <Detail>
-          <DetailContent>{t("companyName")}</DetailContent>
+          <DetailContent>{t("events:companyName")}</DetailContent>
           <DetailContent>{event.resource.companyName}</DetailContent>
         </Detail>
       )}
       {event.resource.userName && (
         <Detail>
-          <DetailContent>{t("contactPerson")}</DetailContent>
+          <DetailContent>{t("events:contactPerson")}</DetailContent>
           <DetailContent>{event.resource.userName}</DetailContent>
         </Detail>
       )}
       {event.resource.email && (
         <Detail>
-          <DetailContent>{t("email")}</DetailContent>
+          <DetailContent>{t("events:email")}</DetailContent>
           <DetailContent>{event.resource.email}</DetailContent>
         </Detail>
       )}
       {event.resource.phone && (
         <Detail>
-          <DetailContent>{t("phoneNumber")}</DetailContent>
+          <DetailContent>{t("events:phoneNumber")}</DetailContent>
           <DetailContent>{`${event.resource.phoneCountryPrefix} ${
             event.resource.phone
           }`}</DetailContent>
@@ -122,7 +129,7 @@ const EventDetails = ({ t, lng, event, setEditedCatering, sendOffer }) => (
     </Details>
     {event.resource.address && (
       <>
-        <AdditionalHeader>{t("address")}</AdditionalHeader>
+        <AdditionalHeader>{t("events:address")}</AdditionalHeader>
         <AdditionalParagraph>
           {`${event.resource.address.street} ${
             event.resource.address.streetNumber
@@ -151,9 +158,9 @@ const EventDetails = ({ t, lng, event, setEditedCatering, sendOffer }) => (
     )}
     {event.resource.offerSendAt && (
       <AdditionalParagraph>
-        {`${t("offerWasSentAt")} ${moment(event.resource.offerSendAt).format(
-          "Do MMMM YYYY, h:mma"
-        )}`}
+        {`${t("events:offerWasSentAt")} ${moment(
+          event.resource.offerSendAt
+        ).format("Do MMMM YYYY, h:mma")}`}
       </AdditionalParagraph>
     )}
     <Flex mx={-2}>
@@ -165,7 +172,7 @@ const EventDetails = ({ t, lng, event, setEditedCatering, sendOffer }) => (
             rel="noopener noreferrer"
           >
             <Button styleName="blue" onClick={() => null} width="100%">
-              {t("downloadMenu")}
+              {t("events:downloadMenu")}
             </Button>
           </a>
         </Box>
@@ -176,7 +183,9 @@ const EventDetails = ({ t, lng, event, setEditedCatering, sendOffer }) => (
           onClick={() => sendOffer(event.resource.id)}
           width="100%"
         >
-          {event.resource.offerSendAt ? t("resendOffer") : t("sendOffer")}
+          {event.resource.offerSendAt
+            ? t("events:resendOffer")
+            : t("events:sendOffer")}
         </Button>
       </Box>
     </Flex>
@@ -187,8 +196,9 @@ EventDetails.propTypes = {
   event: shape().isRequired,
   t: func.isRequired,
   lng: string.isRequired,
-  setEditedCatering: func.isRequired,
-  sendOffer: func.isRequired
+  setEditedEvent: func.isRequired,
+  sendOffer: func.isRequired,
+  eventType: string.isRequired
 };
 
 export default EventDetails;

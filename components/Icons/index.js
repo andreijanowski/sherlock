@@ -4,7 +4,7 @@ export {
   Delivery,
   TakeAway,
   Catering,
-  Privatizations,
+  Privatisations,
   SocialMedia,
   Billing,
   ProfileIcon,
