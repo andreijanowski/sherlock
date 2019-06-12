@@ -21,7 +21,7 @@ class EditCateringPage extends PureComponent {
   }
 
   state = {
-    sending: false
+    isSending: false
   };
 
   componentDidMount() {
@@ -47,10 +47,10 @@ class EditCateringPage extends PureComponent {
     if (priceCents) {
       updatedCatering.priceCents = convertToCents(priceCents);
     }
-    this.setState({ sending: true });
+    this.setState({ isSending: true });
     updateCatering(id, updatedCatering)
       .then(() => Router.pushRoute(`/${lng}/app/catering/month`))
-      .catch(() => this.setState({ sending: false }));
+      .catch(() => this.setState({ isSending: false }));
   };
 
   render() {
@@ -63,8 +63,8 @@ class EditCateringPage extends PureComponent {
       changeCurrentBusiness,
       editedCatering
     } = this.props;
-    const { sending } = this.state;
-    const showForm = !sending && editedCatering;
+    const { isSending } = this.state;
+    const isFormShown = !isSending && editedCatering;
     return (
       <CalendarLayout
         {...{
@@ -78,7 +78,7 @@ class EditCateringPage extends PureComponent {
           eventType: "catering"
         }}
       >
-        {showForm ? (
+        {isFormShown ? (
           <EditCateringForm
             {...{
               t,

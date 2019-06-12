@@ -5,7 +5,6 @@ import { CalendarLayout, BigCalendar } from "components";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
 import { setCateringForEditing, sendCateringOffer } from "actions/caterings";
-import isServer from "utils/isServer";
 
 const namespaces = ["catering", "events", "app"];
 
@@ -36,23 +35,21 @@ const WeekPage = ({
       eventType: "catering"
     }}
   >
-    {!isServer && (
-      <BigCalendar
-        {...{
-          t,
-          lng,
-          events: caterings,
-          addresses,
-          currency: business && business.get("currency"),
-          defaultView: "week",
-          timeZone: business && business.get("timezone"),
-          setEditedEvent: setEditedCatering,
-          sendOffer,
-          height: 1500,
-          eventType: "catering"
-        }}
-      />
-    )}
+    <BigCalendar
+      {...{
+        t,
+        lng,
+        events: caterings,
+        addresses,
+        currency: business && business.get("currency"),
+        defaultView: "week",
+        timeZone: business && business.get("timezone"),
+        setEditedEvent: setEditedCatering,
+        sendOffer,
+        height: 1500,
+        eventType: "catering"
+      }}
+    />
   </CalendarLayout>
 );
 

@@ -20,7 +20,7 @@ class CreatePrivatisationPage extends PureComponent {
   }
 
   state = {
-    sending: false
+    isSending: false
   };
 
   handleFormSubmit = async ({
@@ -49,10 +49,10 @@ class CreatePrivatisationPage extends PureComponent {
       menu: menu && menu.name ? await fileToBase64(menu) : undefined,
       currency: currency ? currency.value : undefined
     };
-    this.setState({ sending: true });
+    this.setState({ isSending: true });
     createPrivatisation(newPrivatisation, businessId)
       .then(() => Router.pushRoute(`/${lng}/app/privatisation/month`))
-      .catch(() => this.setState({ sending: false }));
+      .catch(() => this.setState({ isSending: false }));
   };
 
   render() {
@@ -64,7 +64,7 @@ class CreatePrivatisationPage extends PureComponent {
       businesses,
       changeCurrentBusiness
     } = this.props;
-    const { sending } = this.state;
+    const { isSending } = this.state;
     return (
       <CalendarLayout
         {...{
@@ -79,7 +79,7 @@ class CreatePrivatisationPage extends PureComponent {
         }}
       >
         <CreatePrivatisationForm
-          {...{ t, lng, sending, handleFormSubmit: this.handleFormSubmit }}
+          {...{ t, lng, isSending, handleFormSubmit: this.handleFormSubmit }}
         />
       </CalendarLayout>
     );

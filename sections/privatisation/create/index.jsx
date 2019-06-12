@@ -19,7 +19,7 @@ import { Router } from "routes";
 import countriesPhoneCodes from "utils/countriesPhoneCodes";
 import { Form } from "../styled";
 
-const CreatePrivatisationForm = ({ t, lng, sending, handleFormSubmit }) => (
+const CreatePrivatisationForm = ({ t, lng, isSending, handleFormSubmit }) => (
   <FinalForm
     initialValues={{
       corporateEvent: false,
@@ -185,7 +185,7 @@ const CreatePrivatisationForm = ({ t, lng, sending, handleFormSubmit }) => (
             </Button>
           </Box>
         </Flex>
-        {sending && <LoadingIndicator />}
+        {isSending && <LoadingIndicator />}
       </Form>
     )}
   />
@@ -195,7 +195,7 @@ CreatePrivatisationForm.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   handleFormSubmit: func.isRequired,
-  sending: bool.isRequired
+  isSending: bool.isRequired
 };
 
 export default CreatePrivatisationForm;

@@ -21,7 +21,7 @@ class EditPrivatisationPage extends PureComponent {
   }
 
   state = {
-    sending: false
+    isSending: false
   };
 
   componentDidMount() {
@@ -47,10 +47,10 @@ class EditPrivatisationPage extends PureComponent {
     if (priceCents) {
       updatedPrivatisation.priceCents = convertToCents(priceCents);
     }
-    this.setState({ sending: true });
+    this.setState({ isSending: true });
     updatePrivatisation(id, updatedPrivatisation)
       .then(() => Router.pushRoute(`/${lng}/app/privatisation/month`))
-      .catch(() => this.setState({ sending: false }));
+      .catch(() => this.setState({ isSending: false }));
   };
 
   render() {
@@ -63,8 +63,8 @@ class EditPrivatisationPage extends PureComponent {
       changeCurrentBusiness,
       editedPrivatisation
     } = this.props;
-    const { sending } = this.state;
-    const showForm = !sending && editedPrivatisation;
+    const { isSending } = this.state;
+    const isFormShown = !isSending && editedPrivatisation;
     return (
       <CalendarLayout
         {...{
@@ -78,7 +78,7 @@ class EditPrivatisationPage extends PureComponent {
           eventType: "privatisation"
         }}
       >
-        {showForm ? (
+        {isFormShown ? (
           <EditPrivatisationForm
             {...{
               t,

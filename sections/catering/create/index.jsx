@@ -22,7 +22,7 @@ import { getSubdivisions, countries } from "utils/iso-3166-2";
 import currencies from "utils/currencies";
 import { Form } from "../styled";
 
-const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
+const CreateCateringForm = ({ t, lng, isSending, handleFormSubmit }) => (
   <FinalForm
     initialValues={{
       corporateEvent: false,
@@ -297,7 +297,7 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
             </Button>
           </Box>
         </Flex>
-        {sending && <LoadingIndicator />}
+        {isSending && <LoadingIndicator />}
       </Form>
     )}
   />
@@ -307,7 +307,7 @@ CreateCateringForm.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   handleFormSubmit: func.isRequired,
-  sending: bool.isRequired
+  isSending: bool.isRequired
 };
 
 export default CreateCateringForm;

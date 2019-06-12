@@ -8,7 +8,6 @@ import {
   setPrivatisationForEditing,
   sendPrivatisationOffer
 } from "actions/privatisations";
-import isServer from "utils/isServer";
 
 const namespaces = ["privatisation", "events", "app"];
 
@@ -39,23 +38,21 @@ const DayPage = ({
       eventType: "privatisation"
     }}
   >
-    {!isServer && (
-      <BigCalendar
-        {...{
-          t,
-          lng,
-          events: privatisations,
-          addresses,
-          currency: business && business.get("currency"),
-          defaultView: "day",
-          setEditedEvent: setEditedPrivatisation,
-          sendOffer,
-          timeZone: business && business.get("timezone"),
-          height: 1500,
-          eventType: "privatisation"
-        }}
-      />
-    )}
+    <BigCalendar
+      {...{
+        t,
+        lng,
+        events: privatisations,
+        addresses,
+        currency: business && business.get("currency"),
+        defaultView: "day",
+        setEditedEvent: setEditedPrivatisation,
+        sendOffer,
+        timeZone: business && business.get("timezone"),
+        height: 1500,
+        eventType: "privatisation"
+      }}
+    />
   </CalendarLayout>
 );
 
