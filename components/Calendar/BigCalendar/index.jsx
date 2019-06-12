@@ -1,4 +1,4 @@
-import { PureComponent } from "react";
+import { useState, useEffect } from "react";
 import BigCalendar from "react-big-calendar";
 import { func, shape, string, number } from "prop-types";
 import moment from "moment-timezone";
@@ -11,16 +11,22 @@ import { CalendarWrapper } from "../styled";
 
 const localizer = BigCalendar.momentLocalizer(moment);
 
-class CustomBigCalendar extends PureComponent {
-  state = {
-    event: null
-  };
-
-  componentDidUpdate(prevProps) {
-    const { events: prevEvents } = prevProps;
-    const { events, currency, defaultView, timeZone, t } = this.props;
-    const { event } = this.state;
-    if (prevEvents !== events && event) {
+const CustomBigCalendar = ({
+  t,
+  lng,
+  events,
+  addresses,
+  currency,
+  defaultView,
+  timeZone,
+  setEditedEvent,
+  sendOffer,
+  height,
+  eventType
+}) => {
+  const [event, setEvent] = useState(null);
+  useEffect(() => {
+    if (event) {
       const parsedEvents = parseEvents(
         events,
         currency,
@@ -33,80 +39,62 @@ class CustomBigCalendar extends PureComponent {
         : parsedEvents.find(c =>
             c.start ? c.start.getTime() === event.start.getTime() : false
           );
-      this.setEvent(updatedEvent);
+      setEvent(updatedEvent);
     }
-  }
+  }, [events]);
 
-  setEvent = event => this.setState({ event });
+  const toggleModal = newEvent =>
+    setEvent(oldEvent => (oldEvent ? null : newEvent));
 
-  toggleModal = event =>
-    this.setState(state => ({ event: state.event ? null : event }));
-
-  render() {
-    const {
-      t,
-      lng,
-      events,
-      addresses,
-      currency,
-      defaultView,
-      timeZone,
-      setEditedEvent,
-      sendOffer,
-      height,
-      eventType
-    } = this.props;
-    const { event } = this.state;
-    return (
-      <CalendarWrapper height={height}>
-        {timeZone && (
-          <>
-            <CalendarStyles />
-            <BigCalendar
-              localizer={localizer}
-              components={{
-                event: p => <CalendarEvent {...p} />,
-                toolbar: CalendarToolbar
+  return (
+    <CalendarWrapper height={height}>
+      {timeZone && (
+        <>
+          <CalendarStyles />
+          <BigCalendar
+            localizer={localizer}
+            components={{
+              event: p => <CalendarEvent {...p} />,
+              toolbar: CalendarToolbar
+            }}
+            onSelectEvent={toggleModal}
+            onDrillDown={
+              () => null /* TODO: After MVP add navigation between views */
+            }
+            defaultView={defaultView}
+            showMultiDayTimes={false}
+            events={parseEvents({
+              events,
+              addresses,
+              currency,
+              defaultView,
+              timeZone,
+              t
+            })}
+            startAccessor="start"
+            endAccessor="end"
+            step={60}
+            timeslots={1}
+          />
+          {event && (
+            <EventModal
+              {...{
+                isOpen: true,
+                onClose: toggleModal,
+                event,
+                eventType,
+                setEditedEvent,
+                sendOffer,
+                t,
+                lng
               }}
-              onSelectEvent={this.toggleModal}
-              onDrillDown={
-                () => null /* TODO: After MVP add navigation between views */
-              }
-              defaultView={defaultView}
-              showMultiDayTimes={false}
-              events={parseEvents({
-                events,
-                addresses,
-                currency,
-                defaultView,
-                timeZone,
-                t
-              })}
-              startAccessor="start"
-              endAccessor="end"
-              step={60}
-              timeslots={1}
             />
-            {event && (
-              <EventModal
-                {...{
-                  isOpen: true,
-                  onClose: this.toggleModal,
-                  event,
-                  eventType,
-                  setEditedEvent,
-                  sendOffer,
-                  t,
-                  lng
-                }}
-              />
-            )}
-          </>
-        )}
-      </CalendarWrapper>
-    );
-  }
-}
+          )}
+        </>
+      )}
+    </CalendarWrapper>
+  );
+};
 
 CustomBigCalendar.propTypes = {
   t: func.isRequired,
