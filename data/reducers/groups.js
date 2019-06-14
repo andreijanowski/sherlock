@@ -4,10 +4,10 @@ import {
   FETCH_GROUPS_FAIL
 } from "types/groups";
 import { LOGOUT } from "types/auth";
-import { Record, fromJS } from "immutable";
+import { Record, Map, fromJS } from "immutable";
 
 const initialState = Record({
-  data: null,
+  data: Map(),
   isFetching: false,
   isFailed: false,
   isSucceeded: false
