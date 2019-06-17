@@ -1,4 +1,4 @@
-import { takeEvery, put, putResolve, all } from "redux-saga/effects";
+import { takeEvery, put, putResolve, all, select } from "redux-saga/effects";
 import {
   fetchProfile,
   fetchProfileBusinesses,
@@ -77,26 +77,21 @@ function* fetchUserData({
   yield fetchAllUserData(fetchProfileCards);
   yield put(fetchProfileSubscriptions());
   yield put(fetchGroups());
-  if (lastBusinessId && userId === lastUserId) {
-    yield put(setCurrentBusiness(lastBusinessId));
-    yield fetchAllUserData(fetchProfileBusinesses);
-  } else {
-    const {
-      rawData: {
-        data,
-        meta: { totalPages }
-      }
-    } = yield putResolve(fetchProfileBusinesses());
-    if (data && data.length) {
-      yield put(setCurrentBusiness(data[0].id));
-      if (totalPages > 1) {
-        for (let i = 2; i <= totalPages; i += 1) {
-          yield put(fetchProfileBusinesses(i));
-        }
-      }
+  yield fetchAllUserData(fetchProfileBusinesses);
+  const profileBusinesses = yield select(state =>
+    state.getIn(["users", "profileBusinesses", "data", "businesses"])
+  );
+  if (profileBusinesses && profileBusinesses.size) {
+    if (
+      lastUserId === userId &&
+      profileBusinesses.find((v, k) => k === lastBusinessId)
+    ) {
+      yield put(setCurrentBusiness(lastBusinessId));
     } else {
-      yield put(postBusiness());
+      yield put(setCurrentBusiness(profileBusinesses.first().get("id")));
     }
+  } else {
+    yield put(postBusiness());
   }
   yield put(saveCurrentUserId(userId));
 }
