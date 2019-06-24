@@ -277,7 +277,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           v === "allowPickup" ||
           v === "logo"
         ) {
-          const pathArray = [
+          const currentBusinessPathArray = [
             "currentBusiness",
             "data",
             "businesses",
@@ -287,12 +287,32 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           ];
           if (newState) {
             newState = newState.setIn(
-              pathArray,
+              currentBusinessPathArray,
               payload.data.businesses[payload.rawData.data.id].attributes[v]
             );
           } else {
             newState = state.setIn(
-              pathArray,
+              currentBusinessPathArray,
+              payload.data.businesses[payload.rawData.data.id].attributes[v]
+            );
+          }
+        } else if (v === "name" || v === "logo") {
+          const profileBusinessesPathArray = [
+            "currentBusiness",
+            "data",
+            "businesses",
+            payload.rawData.data.id,
+            "attributes",
+            v
+          ];
+          if (newState) {
+            newState = newState.setIn(
+              profileBusinessesPathArray,
+              payload.data.businesses[payload.rawData.data.id].attributes[v]
+            );
+          } else {
+            newState = state.setIn(
+              profileBusinessesPathArray,
               payload.data.businesses[payload.rawData.data.id].attributes[v]
             );
           }
