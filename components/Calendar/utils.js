@@ -102,7 +102,7 @@ export const parseCaterings = ({
         }
       });
     });
-
+    console.log({ view, parsedCaterings });
     if (view === "month") {
       const days = {};
       parsedCaterings.forEach(c => {

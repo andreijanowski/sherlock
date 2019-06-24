@@ -19,13 +19,13 @@ class CustomBigCalendar extends PureComponent {
     const { caterings, currency, defaultView, timeZone, t } = this.props;
     const { event } = this.state;
     if (prevCaterings !== caterings && event) {
-      const parsedCaterings = parseCaterings(
+      const parsedCaterings = parseCaterings({
         caterings,
         currency,
-        defaultView,
+        view: defaultView,
         timeZone,
         t
-      );
+      });
       const updatedEvent = event.resource.id
         ? parsedCaterings.find(c => c.resource.id === event.resource.id)
         : parsedCaterings.find(c =>
@@ -72,7 +72,7 @@ class CustomBigCalendar extends PureComponent {
             caterings,
             addresses,
             currency,
-            defaultView,
+            view: defaultView,
             timeZone,
             t
           })}

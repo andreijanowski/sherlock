@@ -15,7 +15,7 @@ const Year = ({ caterings, currency }) => (
     <Calendar
       startDate={moment().startOf("year")}
       endDate={moment().endOf("year")}
-      events={parseCaterings(caterings, currency, "year")}
+      events={parseCaterings({ caterings, currency, view: "year" })}
     />
   </CalendarWrapper>
 );
