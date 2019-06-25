@@ -15,7 +15,7 @@ const ContactInformationForm = ({ t, initialValues, handleSubmit }) =>
         form: true
       }}
       render={({ form: { mutators } }) => (
-        <Form>
+        <Form onSubmit={e => e.preventDefault()}>
           <AutoSave
             setFieldData={mutators.setFieldData}
             save={handleSubmit}
