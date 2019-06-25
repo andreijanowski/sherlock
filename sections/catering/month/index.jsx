@@ -1,6 +1,7 @@
 import { func, shape, string } from "prop-types";
 import { BigCalendar } from "components";
 import { CalendarWrapper } from "../styled";
+import TimezoneNotDefined from "../TimezoneNotDefined";
 
 const Month = ({
   t,
@@ -13,7 +14,7 @@ const Month = ({
   sendOffer
 }) => (
   <CalendarWrapper height="620">
-    {timeZone && (
+    {timeZone ? (
       <BigCalendar
         {...{
           t,
@@ -27,6 +28,8 @@ const Month = ({
           sendOffer
         }}
       />
+    ) : (
+      <TimezoneNotDefined {...{ t }} />
     )}
   </CalendarWrapper>
 );
