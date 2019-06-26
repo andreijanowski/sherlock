@@ -3,6 +3,8 @@ import { shape, string, arrayOf } from "prop-types";
 import moment from "moment";
 import { Wrapper } from "./styled";
 import Month from "./Month";
+import { CalendarWrapper } from "../styled";
+import Toolbar from "../Toolbar";
 
 export default class Calendar extends PureComponent {
   getMonthRange() {
@@ -36,11 +38,18 @@ export default class Calendar extends PureComponent {
 
   render() {
     return (
-      <Wrapper>
-        {this.getMonthRange().map(({ date, events }) => (
-          <Month key={date.toString()} date={date} events={events} />
-        ))}
-      </Wrapper>
+      <CalendarWrapper>
+        <Toolbar
+          label={moment()
+            .startOf("year")
+            .format("YYYY")}
+        />
+        <Wrapper>
+          {this.getMonthRange().map(({ date, events }) => (
+            <Month key={date.toString()} date={date} events={events} />
+          ))}
+        </Wrapper>
+      </CalendarWrapper>
     );
   }
 }

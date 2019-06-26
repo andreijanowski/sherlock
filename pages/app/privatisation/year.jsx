@@ -10,7 +10,7 @@ import moment from "moment";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
 
-const namespaces = ["catering", "events", "app"];
+const namespaces = ["privatisation", "events", "app"];
 
 const YearPage = ({
   t,
@@ -19,7 +19,7 @@ const YearPage = ({
   businessId,
   businesses,
   changeCurrentBusiness,
-  caterings
+  privatisations
 }) => (
   <CalendarLayout
     {...{
@@ -33,14 +33,14 @@ const YearPage = ({
       businessId,
       businesses,
       changeCurrentBusiness,
-      eventType: "catering"
+      eventType: "privatisation"
     }}
   >
     <FullYearCalendar
       startDate={moment().startOf("year")}
       endDate={moment().endOf("year")}
       events={parseCalendarEvents({
-        events: caterings,
+        events: privatisations,
         currency: business && business.get("currency")
       })}
     />
@@ -57,7 +57,7 @@ YearPage.propTypes = {
   business: shape(),
   changeCurrentBusiness: func.isRequired,
   businesses: shape(),
-  caterings: shape(),
+  privatisations: shape(),
   businessId: string
 };
 
@@ -65,7 +65,7 @@ YearPage.defaultProps = {
   business: null,
   businessId: "",
   businesses: null,
-  caterings: null
+  privatisations: null
 };
 
 export default requireAuth(true)(
@@ -83,7 +83,11 @@ export default requireAuth(true)(
             "data",
             "businesses"
           ]),
-          caterings: state.getIn(["caterings", "data", "caterings"])
+          privatisations: state.getIn([
+            "privatisations",
+            "data",
+            "privatisations"
+          ])
         };
       },
       {

@@ -2,17 +2,17 @@ import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
-import CreateCateringForm from "sections/catering/create";
+import CreatePrivatisationForm from "sections/privatisation/create";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
-import { postCatering } from "actions/caterings";
+import { postPrivatisation } from "actions/privatisations";
 import { Router } from "routes";
 import fileToBase64 from "utils/fileToBase64";
 import { timeToNumber, CalendarLayout } from "components";
 
-const namespaces = ["catering", "events", "app", "forms"];
+const namespaces = ["privatisation", "events", "app", "forms"];
 
-class CreateCateringPage extends PureComponent {
+class CreatePrivatisationPage extends PureComponent {
   static async getInitialProps() {
     return {
       namespacesRequired: namespaces
@@ -31,8 +31,8 @@ class CreateCateringPage extends PureComponent {
     currency,
     ...values
   }) => {
-    const { createCatering, lng, businessId } = this.props;
-    const newCatering = {
+    const { createPrivatisation, lng, businessId } = this.props;
+    const newPrivatisation = {
       ...values,
       from: values.from ? timeToNumber(values.from) : undefined,
       to: values.to ? timeToNumber(values.to) : undefined,
@@ -50,8 +50,8 @@ class CreateCateringPage extends PureComponent {
       currency: currency ? currency.value : undefined
     };
     this.setState({ isSending: true });
-    createCatering(newCatering, businessId)
-      .then(() => Router.pushRoute(`/${lng}/app/catering/month`))
+    createPrivatisation(newPrivatisation, businessId)
+      .then(() => Router.pushRoute(`/${lng}/app/privatisation/month`))
       .catch(() => this.setState({ isSending: false }));
   };
 
@@ -75,10 +75,10 @@ class CreateCateringPage extends PureComponent {
           businesses,
           changeCurrentBusiness,
           isAddActionHidden: true,
-          eventType: "catering"
+          eventType: "privatisation"
         }}
       >
-        <CreateCateringForm
+        <CreatePrivatisationForm
           {...{ t, lng, isSending, handleFormSubmit: this.handleFormSubmit }}
         />
       </CalendarLayout>
@@ -86,17 +86,17 @@ class CreateCateringPage extends PureComponent {
   }
 }
 
-CreateCateringPage.propTypes = {
+CreatePrivatisationPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
   businesses: shape(),
-  createCatering: func.isRequired,
+  createPrivatisation: func.isRequired,
   businessId: string
 };
 
-CreateCateringPage.defaultProps = {
+CreatePrivatisationPage.defaultProps = {
   business: null,
   businessId: "",
   businesses: null
@@ -121,8 +121,8 @@ export default requireAuth(true)(
       },
       {
         changeCurrentBusiness: setCurrentBusiness,
-        createCatering: postCatering
+        createPrivatisation: postPrivatisation
       }
-    )(CreateCateringPage)
+    )(CreatePrivatisationPage)
   )
 );

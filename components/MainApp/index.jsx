@@ -10,7 +10,8 @@ import {
   Notifications,
   Catering,
   TakeAway,
-  Subscriptions
+  Subscriptions,
+  Privatisations
 } from "icons";
 import {
   Wrapper,
@@ -34,6 +35,8 @@ const chooseIcon = icon => {
       return TakeAway;
     case "subscriptions":
       return Subscriptions;
+    case "privatisations":
+      return Privatisations;
     default:
       return () => <></>;
   }

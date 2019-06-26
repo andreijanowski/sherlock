@@ -19,28 +19,33 @@ import { normalizePrice } from "utils/normalizers";
 import currencies from "utils/currencies";
 import { Form } from "../styled";
 
-const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
+const EditPrivatisationForm = ({
+  t,
+  lng,
+  editedPrivatisation,
+  handleFormSubmit
+}) => (
   <FinalForm
     initialValues={{
-      name: editedCatering.get("name"),
-      date: editedCatering.get("date"),
-      from: parseTime(editedCatering.get("from")),
-      to: parseTime(editedCatering.get("to")),
-      typeOfEvent: editedCatering.get("typeOfEvent"),
-      outdoors: editedCatering.get("outdoors"),
-      corporateEvent: editedCatering.get("corporateEvent"),
-      companyName: editedCatering.get("companyName"),
-      numberOfServings: editedCatering.get("numberOfServings"),
-      specifications: editedCatering.get("specifications"),
-      menu: editedCatering.get("menu"),
-      chefAttendance: editedCatering.get("chefAttendance"),
-      numberOfWaiters: editedCatering.get("numberOfWaiters"),
-      cutlery: editedCatering.get("cutlery"),
-      priceCents: normalizePrice(editedCatering.get("priceCents")),
-      currency: currencies.find(c => c.value === editedCatering.get("currency"))
+      name: editedPrivatisation.get("name"),
+      date: editedPrivatisation.get("date"),
+      from: parseTime(editedPrivatisation.get("from")),
+      to: parseTime(editedPrivatisation.get("to")),
+      typeOfEvent: editedPrivatisation.get("typeOfEvent"),
+      corporateEvent: editedPrivatisation.get("corporateEvent"),
+      companyName: editedPrivatisation.get("companyName"),
+      numberOfServings: editedPrivatisation.get("numberOfServings"),
+      specifications: editedPrivatisation.get("specifications"),
+      menu: editedPrivatisation.get("menu"),
+      chefAttendance: editedPrivatisation.get("chefAttendance"),
+      numberOfWaiters: editedPrivatisation.get("numberOfWaiters"),
+      priceCents: normalizePrice(editedPrivatisation.get("priceCents")),
+      currency: currencies.find(
+        c => c.value === editedPrivatisation.get("currency")
+      )
     }}
     onSubmit={v => {
-      handleFormSubmit(v, editedCatering.get("id"));
+      handleFormSubmit(v, editedPrivatisation.get("id"));
     }}
     subscription={{
       handleSubmit: true
@@ -104,40 +109,6 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
             <FormInput
               name="numberOfWaiters"
               label={t("events:createEvent.numberOfWaiters")}
-            />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <Field
-              name="outdoors"
-              component={FormDropdown}
-              label={t("events:createEvent.outdoors")}
-              items={[
-                {
-                  label: t("events:createEvent.outdoorsOption.yes"),
-                  value: true
-                },
-                {
-                  label: t("events:createEvent.outdoorsOption.no"),
-                  value: false
-                }
-              ]}
-            />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <Field
-              name="cutlery"
-              component={FormDropdown}
-              label={t("events:createEvent.cutlery")}
-              items={[
-                {
-                  label: t("events:createEvent.cutleryOption.yes"),
-                  value: true
-                },
-                {
-                  label: t("events:createEvent.cutleryOption.no"),
-                  value: false
-                }
-              ]}
             />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
@@ -206,7 +177,7 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
               fluid
               type="button"
               onClick={() => {
-                Router.pushRoute(`/${lng}/app/catering/month/`);
+                Router.pushRoute(`/${lng}/app/privatisation/month/`);
               }}
             >
               {t("forms:cancel")}
@@ -223,11 +194,11 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
   />
 );
 
-EditCateringForm.propTypes = {
+EditPrivatisationForm.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   handleFormSubmit: func.isRequired,
-  editedCatering: shape().isRequired
+  editedPrivatisation: shape().isRequired
 };
 
-export default EditCateringForm;
+export default EditPrivatisationForm;
