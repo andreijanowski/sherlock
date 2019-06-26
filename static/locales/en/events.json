@@ -78,5 +78,6 @@
   "phoneNumber": "Phone number",
   "sendOffer": "Send offer",
   "resendOffer": "Resend offer",
-  "offerWasSentAt": "Offer was sent at "
+  "offerWasSentAt": "Offer was sent at ",
+  "timezoneNotDefined": "Can not read timezone. Please check if you set valid address of your business"
 }

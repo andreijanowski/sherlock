@@ -8,6 +8,7 @@ import CalendarStyles from "./calendarStyles";
 import { parseEvents } from "../utils";
 import EventModal from "../Event/EventModal";
 import { CalendarWrapper } from "../styled";
+import TimezoneNotDefined from "./TimezoneNotDefined";
 
 const localizer = BigCalendar.momentLocalizer(moment);
 
@@ -27,13 +28,14 @@ const CustomBigCalendar = ({
   const [event, setEvent] = useState(null);
   useEffect(() => {
     if (event) {
-      const parsedEvents = parseEvents(
+      const parsedEvents = parseEvents({
         events,
+        addresses,
         currency,
-        defaultView,
+        view: defaultView,
         timeZone,
         t
-      );
+      });
       const updatedEvent = event.resource.id
         ? parsedEvents.find(c => c.resource.id === event.resource.id)
         : parsedEvents.find(c =>
@@ -48,7 +50,7 @@ const CustomBigCalendar = ({
 
   return (
     <CalendarWrapper height={height}>
-      {timeZone && (
+      {timeZone ? (
         <>
           <CalendarStyles />
           <BigCalendar
@@ -67,7 +69,7 @@ const CustomBigCalendar = ({
               events,
               addresses,
               currency,
-              defaultView,
+              view: defaultView,
               timeZone,
               t
             })}
@@ -91,6 +93,8 @@ const CustomBigCalendar = ({
             />
           )}
         </>
+      ) : (
+        <TimezoneNotDefined {...{ t }} />
       )}
     </CalendarWrapper>
   );

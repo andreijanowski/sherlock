@@ -41,7 +41,8 @@ const YearPage = ({
       endDate={moment().endOf("year")}
       events={parseCalendarEvents({
         events: caterings,
-        currency: business && business.get("currency")
+        currency: business && business.get("currency"),
+        view: "year"
       })}
     />
   </CalendarLayout>

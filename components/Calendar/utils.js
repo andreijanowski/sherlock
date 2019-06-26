@@ -90,12 +90,12 @@ export const parseEvents = ({
             c.getIn(["attributes", "menu"]).toObject(),
           address:
             addresses &&
-              addresses
-                .getIn([
-                  c.getIn(["relationships", "address", "data", "id"]),
-                  "attributes"
-                ])
-                .toObject()
+            addresses
+              .getIn([
+                c.getIn(["relationships", "address", "data", "id"]),
+                "attributes"
+              ])
+              .toObject()
         }
       });
     });
