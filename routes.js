@@ -60,6 +60,30 @@ module.exports = routes()
   .add("app/catering/year", `/:lng(${languagesPattern})/app/catering/year`)
   .add("app/catering/edit", `/:lng(${languagesPattern})/app/catering/edit`)
   .add("app/catering/create", `/:lng(${languagesPattern})/app/catering/create`)
+  .add(
+    "app/privatisation/day",
+    `/:lng(${languagesPattern})/app/privatisation/day`
+  )
+  .add(
+    "app/privatisation/week",
+    `/:lng(${languagesPattern})/app/privatisation/week`
+  )
+  .add(
+    "app/privatisation/month",
+    `/:lng(${languagesPattern})/app/privatisation/month`
+  )
+  .add(
+    "app/privatisation/year",
+    `/:lng(${languagesPattern})/app/privatisation/year`
+  )
+  .add(
+    "app/privatisation/edit",
+    `/:lng(${languagesPattern})/app/privatisation/edit`
+  )
+  .add(
+    "app/privatisation/create",
+    `/:lng(${languagesPattern})/app/privatisation/create`
+  )
   .add("app/lefood/orders", `/:lng(${languagesPattern})/app/lefood/orders`)
   .add(
     "app/lefood/deliveries",

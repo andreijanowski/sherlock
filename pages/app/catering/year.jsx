@@ -1,12 +1,16 @@
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
-import CateringLayout from "sections/catering/Layout";
+import {
+  CalendarLayout,
+  FullYearCalendar,
+  parseCalendarEvents
+} from "components";
+import moment from "moment";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
-import Year from "sections/catering/year";
 
-const namespaces = ["catering", "app"];
+const namespaces = ["catering", "events", "app"];
 
 const YearPage = ({
   t,
@@ -17,22 +21,31 @@ const YearPage = ({
   changeCurrentBusiness,
   caterings
 }) => (
-  <CateringLayout
+  <CalendarLayout
     {...{
       t,
       lng,
       view: {
         value: "year",
-        label: t("year")
+        label: t("events:year")
       },
       business,
       businessId,
       businesses,
-      changeCurrentBusiness
+      changeCurrentBusiness,
+      eventType: "catering"
     }}
   >
-    <Year {...{ caterings, currency: business && business.get("currency") }} />
-  </CateringLayout>
+    <FullYearCalendar
+      startDate={moment().startOf("year")}
+      endDate={moment().endOf("year")}
+      events={parseCalendarEvents({
+        events: caterings,
+        currency: business && business.get("currency"),
+        view: "year"
+      })}
+    />
+  </CalendarLayout>
 );
 
 YearPage.getInitialProps = async () => ({

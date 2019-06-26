@@ -1,119 +1,123 @@
-import { PureComponent } from "react";
+import { useState, useEffect } from "react";
 import BigCalendar from "react-big-calendar";
-import { func, shape, string } from "prop-types";
-import { CalendarEvent, CalendarToolbar } from "components";
+import { func, shape, string, number } from "prop-types";
 import moment from "moment-timezone";
+import CalendarEvent from "../Event";
+import CalendarToolbar from "../Toolbar";
 import CalendarStyles from "./calendarStyles";
-import { parseCaterings } from "../utils";
+import { parseEvents } from "../utils";
 import EventModal from "../Event/EventModal";
+import { CalendarWrapper } from "../styled";
+import TimezoneNotDefined from "./TimezoneNotDefined";
 
 const localizer = BigCalendar.momentLocalizer(moment);
 
-class CustomBigCalendar extends PureComponent {
-  state = {
-    event: null
-  };
-
-  componentDidUpdate(prevProps) {
-    const { caterings: prevCaterings } = prevProps;
-    const { caterings, currency, defaultView, timeZone, t } = this.props;
-    const { event } = this.state;
-    if (prevCaterings !== caterings && event) {
-      const parsedCaterings = parseCaterings({
-        caterings,
+const CustomBigCalendar = ({
+  t,
+  lng,
+  events,
+  addresses,
+  currency,
+  defaultView,
+  timeZone,
+  setEditedEvent,
+  sendOffer,
+  height,
+  eventType
+}) => {
+  const [event, setEvent] = useState(null);
+  useEffect(() => {
+    if (event) {
+      const parsedEvents = parseEvents({
+        events,
+        addresses,
         currency,
         view: defaultView,
         timeZone,
         t
       });
       const updatedEvent = event.resource.id
-        ? parsedCaterings.find(c => c.resource.id === event.resource.id)
-        : parsedCaterings.find(c =>
+        ? parsedEvents.find(c => c.resource.id === event.resource.id)
+        : parsedEvents.find(c =>
             c.start ? c.start.getTime() === event.start.getTime() : false
           );
-      this.setEvent(updatedEvent);
+      setEvent(updatedEvent);
     }
-  }
+  }, [events]);
 
-  setEvent = event => this.setState({ event });
+  const toggleModal = newEvent =>
+    setEvent(oldEvent => (oldEvent ? null : newEvent));
 
-  toggleModal = event =>
-    this.setState(state => ({ event: state.event ? null : event }));
-
-  render() {
-    const {
-      t,
-      lng,
-      caterings,
-      addresses,
-      currency,
-      defaultView,
-      timeZone,
-      setEditedCatering,
-      sendOffer
-    } = this.props;
-    const { event } = this.state;
-    return (
-      <>
-        <CalendarStyles />
-        <BigCalendar
-          localizer={localizer}
-          components={{
-            event: p => <CalendarEvent {...p} />,
-            toolbar: CalendarToolbar
-          }}
-          onSelectEvent={this.toggleModal}
-          onDrillDown={
-            () => null /* TODO: After MVP add navigation between views */
-          }
-          defaultView={defaultView}
-          showMultiDayTimes={false}
-          events={parseCaterings({
-            caterings,
-            addresses,
-            currency,
-            view: defaultView,
-            timeZone,
-            t
-          })}
-          startAccessor="start"
-          endAccessor="end"
-          step={60}
-          timeslots={1}
-        />
-        {event && (
-          <EventModal
-            {...{
-              isOpen: true,
-              onClose: this.toggleModal,
-              event,
-              setEditedCatering,
-              sendOffer,
-              t,
-              lng
+  return (
+    <CalendarWrapper height={height}>
+      {timeZone ? (
+        <>
+          <CalendarStyles />
+          <BigCalendar
+            localizer={localizer}
+            components={{
+              event: p => <CalendarEvent {...p} />,
+              toolbar: CalendarToolbar
             }}
+            onSelectEvent={toggleModal}
+            onDrillDown={
+              () => null /* TODO: After MVP add navigation between views */
+            }
+            defaultView={defaultView}
+            showMultiDayTimes={false}
+            events={parseEvents({
+              events,
+              addresses,
+              currency,
+              view: defaultView,
+              timeZone,
+              t
+            })}
+            startAccessor="start"
+            endAccessor="end"
+            step={60}
+            timeslots={1}
           />
-        )}
-      </>
-    );
-  }
-}
+          {event && (
+            <EventModal
+              {...{
+                isOpen: true,
+                onClose: toggleModal,
+                event,
+                eventType,
+                setEditedEvent,
+                sendOffer,
+                t,
+                lng
+              }}
+            />
+          )}
+        </>
+      ) : (
+        <TimezoneNotDefined {...{ t }} />
+      )}
+    </CalendarWrapper>
+  );
+};
 
 CustomBigCalendar.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  setEditedCatering: func.isRequired,
+  setEditedEvent: func.isRequired,
   sendOffer: func.isRequired,
   defaultView: string.isRequired,
-  timeZone: string.isRequired,
+  timeZone: string,
   currency: string,
-  caterings: shape(),
-  addresses: shape()
+  events: shape(),
+  addresses: shape(),
+  height: number.isRequired,
+  eventType: string.isRequired
 };
 
 CustomBigCalendar.defaultProps = {
-  caterings: null,
+  events: null,
   addresses: null,
+  timeZone: null,
   currency: "EUR"
 };
 

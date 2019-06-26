@@ -12,30 +12,24 @@ import {
   FormDropdown,
   FormDaypicker,
   FormTimePicker,
-  WhenFieldChanges,
   LoadingIndicator
 } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Router } from "routes";
 import countriesPhoneCodes from "utils/countriesPhoneCodes";
-import { getSubdivisions, countries } from "utils/iso-3166-2";
-import currencies from "utils/currencies";
 import { Form } from "../styled";
 
-const CreateCateringForm = ({ t, lng, isSending, handleFormSubmit }) => (
+const CreatePrivatisationForm = ({ t, lng, isSending, handleFormSubmit }) => (
   <FinalForm
     initialValues={{
       corporateEvent: false,
-      outdoors: false,
-      chefAttendance: false,
-      cutlery: false
+      chefAttendance: false
     }}
     onSubmit={handleFormSubmit}
     subscription={{
-      handleSubmit: true,
-      values: true
+      handleSubmit: true
     }}
-    render={({ handleSubmit, values }) => (
+    render={({ handleSubmit }) => (
       <Form onSubmit={handleSubmit}>
         <H3 mt={3}>{t("events:createEvent.basicInfo")}</H3>
         <Flex flexWrap="wrap" mx={-2}>
@@ -57,69 +51,6 @@ const CreateCateringForm = ({ t, lng, isSending, handleFormSubmit }) => (
               name="to"
               label={t("events:createEvent.to")}
               placeholder={t("events:createEvent.to")}
-            />
-          </Box>
-        </Flex>
-        <H3 mt={3}>{t("events:createEvent.address")}</H3>
-        <Flex flexWrap="wrap" mx={-2}>
-          <Box width={[1 / 2, 1 / 2]} px={2}>
-            <FormInput
-              name="addressStreet"
-              label={t("events:createEvent.street")}
-            />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <FormInput
-              name="addressStreetNumber"
-              label={t("events:createEvent.streetNumber")}
-            />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <FormInput
-              name="addressCity"
-              label={t("events:createEvent.city")}
-            />
-          </Box>
-          <Box width={[1 / 2, 1 / 2]} px={2}>
-            <FormInput
-              name="addressPostCode"
-              label={t("events:createEvent.postCode")}
-            />
-          </Box>
-          <WhenFieldChanges
-            field="addressCountry"
-            set="addressRegion"
-            to={undefined}
-          />
-          <Box width={[1, 1 / 2]} px={2}>
-            <Field
-              name="addressCountry"
-              component={FormSelect}
-              label={t("events:createEvent.country")}
-              placeholder={t("events:createEvent.country")}
-              items={countries}
-              showFlag
-            />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <Field
-              name="addressRegion"
-              component={FormSelect}
-              label={t("events:createEvent.region")}
-              placeholder={t("events:createEvent.region")}
-              disabled={!values.addressCountry}
-              items={
-                (values.addressCountry &&
-                  values.addressCountry.value &&
-                  getSubdivisions(values.addressCountry.value)) ||
-                []
-              }
-            />
-          </Box>
-          <Box width={1} px={2}>
-            <FormTextarea
-              name="addressNotes"
-              label={t("events:createEvent.notes")}
             />
           </Box>
         </Flex>
@@ -166,40 +97,6 @@ const CreateCateringForm = ({ t, lng, isSending, handleFormSubmit }) => (
             <FormInput
               name="numberOfWaiters"
               label={t("events:createEvent.numberOfWaiters")}
-            />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <Field
-              name="outdoors"
-              component={FormDropdown}
-              label={t("events:createEvent.outdoors")}
-              items={[
-                {
-                  label: t("events:createEvent.outdoorsOption.yes"),
-                  value: true
-                },
-                {
-                  label: t("events:createEvent.outdoorsOption.no"),
-                  value: false
-                }
-              ]}
-            />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <Field
-              name="cutlery"
-              component={FormDropdown}
-              label={t("events:createEvent.cutlery")}
-              items={[
-                {
-                  label: t("events:createEvent.cutleryOption.yes"),
-                  value: true
-                },
-                {
-                  label: t("events:createEvent.cutleryOption.no"),
-                  value: false
-                }
-              ]}
             />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
@@ -267,15 +164,6 @@ const CreateCateringForm = ({ t, lng, isSending, handleFormSubmit }) => (
                 label={t("events:createEvent.consentGdpr")}
               />
             </Box>
-            <Box width={1 / 2} px={2}>
-              <Field
-                name="currency"
-                component={FormSelect}
-                label={t("events:createEvent.currency")}
-                placeholder={t("events:createEvent.currency")}
-                items={currencies}
-              />
-            </Box>
           </Flex>
         </Flex>
         <Flex flexWrap="wrap" justifyContent="center" mx={-2} mt={3}>
@@ -285,15 +173,15 @@ const CreateCateringForm = ({ t, lng, isSending, handleFormSubmit }) => (
               fluid
               type="button"
               onClick={() => {
-                Router.pushRoute(`/${lng}/app/catering/month/`);
+                Router.pushRoute(`/${lng}/app/privatisation/month/`);
               }}
             >
-              {t("events:forms:cancel")}
+              {t("forms:cancel")}
             </Button>
           </Box>
           <Box width={1 / 2} px={2}>
             <Button styleName="formBlue" type="submit" fluid>
-              {t("events:forms:save")}
+              {t("forms:save")}
             </Button>
           </Box>
         </Flex>
@@ -303,11 +191,11 @@ const CreateCateringForm = ({ t, lng, isSending, handleFormSubmit }) => (
   />
 );
 
-CreateCateringForm.propTypes = {
+CreatePrivatisationForm.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   handleFormSubmit: func.isRequired,
   isSending: bool.isRequired
 };
 
-export default CreateCateringForm;
+export default CreatePrivatisationForm;

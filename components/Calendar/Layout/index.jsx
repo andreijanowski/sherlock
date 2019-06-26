@@ -4,10 +4,10 @@ import prepareBusinessesList from "utils/prepareBusinessesList";
 import { Select, ActionIcon } from "components";
 import { Box } from "@rebass/grid";
 import { Router } from "routes";
-import { preparePeriodsList } from "./utils";
+import { preparePeriodsList } from "../utils";
 import { AddIconWrapper, ActionBarWrapper } from "./styled";
 
-const CateringLayout = ({
+const CalendarLayout = ({
   t,
   lng,
   view,
@@ -16,11 +16,12 @@ const CateringLayout = ({
   businessId,
   businesses,
   changeCurrentBusiness,
-  children
+  children,
+  eventType
 }) => (
   <AppLayout
     {...{
-      mainIcon: "catering",
+      mainIcon: eventType,
       header: t("header"),
       t,
       lng
@@ -46,7 +47,9 @@ const CateringLayout = ({
           <Select
             value={view}
             items={preparePeriodsList(t)}
-            onChange={p => Router.pushRoute(`/${lng}/app/catering/${p.value}/`)}
+            onChange={p =>
+              Router.pushRoute(`/${lng}/app/${eventType}/${p.value}/`)
+            }
           />
         </Box>
       )}
@@ -57,7 +60,7 @@ const CateringLayout = ({
             icon={["fa", "plus"]}
             white
             onClick={() => {
-              Router.pushRoute(`/${lng}/app/catering/create/`);
+              Router.pushRoute(`/${lng}/app/${eventType}/create/`);
             }}
           />
         </AddIconWrapper>
@@ -67,7 +70,7 @@ const CateringLayout = ({
   </AppLayout>
 );
 
-CateringLayout.propTypes = {
+CalendarLayout.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   view: shape(),
@@ -76,10 +79,11 @@ CateringLayout.propTypes = {
   businessId: string,
   isAddActionHidden: bool,
   changeCurrentBusiness: func.isRequired,
-  businesses: shape()
+  businesses: shape(),
+  eventType: string.isRequired
 };
 
-CateringLayout.defaultProps = {
+CalendarLayout.defaultProps = {
   business: null,
   businesses: null,
   businessId: "",
@@ -87,4 +91,4 @@ CateringLayout.defaultProps = {
   view: null
 };
 
-export default CateringLayout;
+export default CalendarLayout;

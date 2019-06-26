@@ -38,8 +38,9 @@ class EventModal extends PureComponent {
       onClose,
       t,
       lng,
-      setEditedCatering,
-      sendOffer
+      setEditedEvent,
+      sendOffer,
+      eventType
     } = this.props;
     const { event: chosenEvent } = this.state;
     return (
@@ -47,7 +48,14 @@ class EventModal extends PureComponent {
         <ModalContentWrapper>
           {chosenEvent ? (
             <EventDetails
-              {...{ event: chosenEvent, t, lng, setEditedCatering, sendOffer }}
+              {...{
+                event: chosenEvent,
+                eventType,
+                t,
+                lng,
+                setEditedEvent,
+                sendOffer
+              }}
             />
           ) : (
             <EventChooser {...{ event, t, chooseEvent: this.chooseEvent }} />
@@ -64,8 +72,9 @@ EventModal.propTypes = {
   onClose: func.isRequired,
   lng: string.isRequired,
   t: func.isRequired,
-  setEditedCatering: func.isRequired,
-  sendOffer: func.isRequired
+  setEditedEvent: func.isRequired,
+  sendOffer: func.isRequired,
+  eventType: string.isRequired
 };
 
 export default EventModal;

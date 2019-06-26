@@ -2,18 +2,18 @@ import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
-import EditCateringForm from "sections/catering/edit";
+import EditPrivatisationForm from "sections/privatisation/edit";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
 import { Router } from "routes";
 import { timeToNumber, LoadingIndicator, CalendarLayout } from "components";
-import { patchCatering } from "actions/caterings";
+import { patchPrivatisation } from "actions/privatisations";
 import fileToBase64 from "utils/fileToBase64";
 import { convertToCents } from "utils/price";
 
-const namespaces = ["catering", "events", "app", "forms"];
+const namespaces = ["privatisation", "events", "app", "forms"];
 
-class EditCateringPage extends PureComponent {
+class EditPrivatisationPage extends PureComponent {
   static async getInitialProps() {
     return {
       namespacesRequired: namespaces
@@ -25,31 +25,31 @@ class EditCateringPage extends PureComponent {
   };
 
   componentDidMount() {
-    const { editedCatering, lng } = this.props;
-    if (!editedCatering) {
-      Router.pushRoute(`/${lng}/app/catering/month`);
+    const { editedPrivatisation, lng } = this.props;
+    if (!editedPrivatisation) {
+      Router.pushRoute(`/${lng}/app/privatisation/month`);
     }
   }
 
   handleFormSubmit = async ({ menu, currency, priceCents, ...values }, id) => {
-    const { updateCatering, lng } = this.props;
-    const updatedCatering = {
+    const { updatePrivatisation, lng } = this.props;
+    const updatedPrivatisation = {
       ...values,
       from: timeToNumber(values.from),
       to: timeToNumber(values.to)
     };
     if (menu && menu.name) {
-      updatedCatering.menu = await fileToBase64(menu);
+      updatedPrivatisation.menu = await fileToBase64(menu);
     }
     if (currency && currency.value) {
-      updatedCatering.currency = currency.value;
+      updatedPrivatisation.currency = currency.value;
     }
     if (priceCents) {
-      updatedCatering.priceCents = convertToCents(priceCents);
+      updatedPrivatisation.priceCents = convertToCents(priceCents);
     }
     this.setState({ isSending: true });
-    updateCatering(id, updatedCatering)
-      .then(() => Router.pushRoute(`/${lng}/app/catering/month`))
+    updatePrivatisation(id, updatedPrivatisation)
+      .then(() => Router.pushRoute(`/${lng}/app/privatisation/month`))
       .catch(() => this.setState({ isSending: false }));
   };
 
@@ -61,10 +61,10 @@ class EditCateringPage extends PureComponent {
       businessId,
       businesses,
       changeCurrentBusiness,
-      editedCatering
+      editedPrivatisation
     } = this.props;
     const { isSending } = this.state;
-    const isFormShown = !isSending && editedCatering;
+    const isFormShown = !isSending && editedPrivatisation;
     return (
       <CalendarLayout
         {...{
@@ -75,15 +75,15 @@ class EditCateringPage extends PureComponent {
           businesses,
           changeCurrentBusiness,
           isAddActionHidden: true,
-          eventType: "catering"
+          eventType: "privatisation"
         }}
       >
         {isFormShown ? (
-          <EditCateringForm
+          <EditPrivatisationForm
             {...{
               t,
               lng,
-              editedCatering,
+              editedPrivatisation,
               handleFormSubmit: this.handleFormSubmit
             }}
           />
@@ -95,22 +95,22 @@ class EditCateringPage extends PureComponent {
   }
 }
 
-EditCateringPage.propTypes = {
-  editedCatering: shape(),
+EditPrivatisationPage.propTypes = {
+  editedPrivatisation: shape(),
   t: func.isRequired,
   lng: string.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
-  updateCatering: func.isRequired,
+  updatePrivatisation: func.isRequired,
   businesses: shape(),
   businessId: string
 };
 
-EditCateringPage.defaultProps = {
+EditPrivatisationPage.defaultProps = {
   business: null,
   businessId: "",
   businesses: null,
-  editedCatering: null
+  editedPrivatisation: null
 };
 
 export default requireAuth(true)(
@@ -128,13 +128,16 @@ export default requireAuth(true)(
             "data",
             "businesses"
           ]),
-          editedCatering: state.getIn(["caterings", "editedCatering"])
+          editedPrivatisation: state.getIn([
+            "privatisations",
+            "editedPrivatisation"
+          ])
         };
       },
       {
         changeCurrentBusiness: setCurrentBusiness,
-        updateCatering: patchCatering
+        updatePrivatisation: patchPrivatisation
       }
-    )(EditCateringPage)
+    )(EditPrivatisationPage)
   )
 );

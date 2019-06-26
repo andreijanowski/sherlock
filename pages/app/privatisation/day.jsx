@@ -4,11 +4,14 @@ import { func, string, shape } from "prop-types";
 import { CalendarLayout, BigCalendar } from "components";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
-import { setCateringForEditing, sendCateringOffer } from "actions/caterings";
+import {
+  setPrivatisationForEditing,
+  sendPrivatisationOffer
+} from "actions/privatisations";
 
-const namespaces = ["catering", "events", "app"];
+const namespaces = ["privatisation", "events", "app"];
 
-const MonthPage = ({
+const DayPage = ({
   t,
   lng,
   business,
@@ -16,8 +19,8 @@ const MonthPage = ({
   businesses,
   addresses,
   changeCurrentBusiness,
-  caterings,
-  setEditedCatering,
+  privatisations,
+  setEditedPrivatisation,
   sendOffer
 }) => (
   <CalendarLayout
@@ -25,57 +28,57 @@ const MonthPage = ({
       t,
       lng,
       view: {
-        value: "month",
-        label: t("events:month")
+        value: "day",
+        label: t("events:day")
       },
       business,
       businessId,
       businesses,
       changeCurrentBusiness,
-      eventType: "catering"
+      eventType: "privatisation"
     }}
   >
     <BigCalendar
       {...{
         t,
         lng,
-        events: caterings,
+        events: privatisations,
         addresses,
         currency: business && business.get("currency"),
-        setEditedEvent: setEditedCatering,
-        defaultView: "month",
-        timeZone: business && business.get("timezone"),
+        defaultView: "day",
+        setEditedEvent: setEditedPrivatisation,
         sendOffer,
-        height: 620,
-        eventType: "catering"
+        timeZone: business && business.get("timezone"),
+        height: 1500,
+        eventType: "privatisation"
       }}
     />
   </CalendarLayout>
 );
 
-MonthPage.getInitialProps = async () => ({
+DayPage.getInitialProps = async () => ({
   namespacesRequired: namespaces
 });
 
-MonthPage.propTypes = {
+DayPage.propTypes = {
   t: func.isRequired,
-  setEditedCatering: func.isRequired,
+  setEditedPrivatisation: func.isRequired,
   sendOffer: func.isRequired,
   lng: string.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
   businesses: shape(),
-  caterings: shape(),
+  privatisations: shape(),
   addresses: shape(),
   businessId: string
 };
 
-MonthPage.defaultProps = {
+DayPage.defaultProps = {
   business: null,
-  businesses: null,
   businessId: "",
   addresses: null,
-  caterings: null
+  businesses: null,
+  privatisations: null
 };
 
 export default requireAuth(true)(
@@ -93,15 +96,19 @@ export default requireAuth(true)(
             "data",
             "businesses"
           ]),
-          caterings: state.getIn(["caterings", "data", "caterings"]),
-          addresses: state.getIn(["caterings", "data", "addresses"])
+          privatisations: state.getIn([
+            "privatisations",
+            "data",
+            "privatisations"
+          ]),
+          addresses: state.getIn(["privatisations", "data", "addresses"])
         };
       },
       {
         changeCurrentBusiness: setCurrentBusiness,
-        setEditedCatering: setCateringForEditing,
-        sendOffer: sendCateringOffer
+        setEditedPrivatisation: setPrivatisationForEditing,
+        sendOffer: sendPrivatisationOffer
       }
-    )(MonthPage)
+    )(DayPage)
   )
 );

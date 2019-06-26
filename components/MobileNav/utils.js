@@ -1,7 +1,7 @@
 import {
   Delivery,
   Bookings,
-  Privatizations,
+  Privatisations,
   TakeAway,
   Billing,
   ProfileIcon,
@@ -98,8 +98,8 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     route: "/"
   },
   {
-    icon: Privatizations,
-    label: t("app:privatizations"),
+    icon: Privatisations,
+    label: t("app:privatisations"),
     route: "/"
   },
   {

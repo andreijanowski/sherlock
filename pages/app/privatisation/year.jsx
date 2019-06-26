@@ -1,81 +1,71 @@
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
-import { CalendarLayout, BigCalendar } from "components";
+import {
+  CalendarLayout,
+  FullYearCalendar,
+  parseCalendarEvents
+} from "components";
+import moment from "moment";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
-import { setCateringForEditing, sendCateringOffer } from "actions/caterings";
 
-const namespaces = ["catering", "events", "app"];
+const namespaces = ["privatisation", "events", "app"];
 
-const MonthPage = ({
+const YearPage = ({
   t,
   lng,
   business,
   businessId,
   businesses,
-  addresses,
   changeCurrentBusiness,
-  caterings,
-  setEditedCatering,
-  sendOffer
+  privatisations
 }) => (
   <CalendarLayout
     {...{
       t,
       lng,
       view: {
-        value: "month",
-        label: t("events:month")
+        value: "year",
+        label: t("events:year")
       },
       business,
       businessId,
       businesses,
       changeCurrentBusiness,
-      eventType: "catering"
+      eventType: "privatisation"
     }}
   >
-    <BigCalendar
-      {...{
-        t,
-        lng,
-        events: caterings,
-        addresses,
-        currency: business && business.get("currency"),
-        setEditedEvent: setEditedCatering,
-        defaultView: "month",
-        timeZone: business && business.get("timezone"),
-        sendOffer,
-        height: 620,
-        eventType: "catering"
-      }}
+    <FullYearCalendar
+      startDate={moment().startOf("year")}
+      endDate={moment().endOf("year")}
+      events={parseCalendarEvents({
+        events: privatisations,
+        currency: business && business.get("currency")
+      })}
     />
   </CalendarLayout>
 );
 
-MonthPage.getInitialProps = async () => ({
+YearPage.getInitialProps = async () => ({
   namespacesRequired: namespaces
 });
 
-MonthPage.propTypes = {
+YearPage.propTypes = {
   t: func.isRequired,
-  setEditedCatering: func.isRequired,
-  sendOffer: func.isRequired,
   lng: string.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
   businesses: shape(),
-  caterings: shape(),
-  addresses: shape(),
+  privatisations: shape(),
   businessId: string
 };
 
-MonthPage.defaultProps = {
+YearPage.defaultProps = {
   business: null,
-  businesses: null,
   businessId: "",
-  addresses: null,
-  caterings: null
+  businesses: null,
+  privatisations: null
 };
 
 export default requireAuth(true)(
@@ -93,15 +83,16 @@ export default requireAuth(true)(
             "data",
             "businesses"
           ]),
-          caterings: state.getIn(["caterings", "data", "caterings"]),
-          addresses: state.getIn(["caterings", "data", "addresses"])
+          privatisations: state.getIn([
+            "privatisations",
+            "data",
+            "privatisations"
+          ])
         };
       },
       {
-        changeCurrentBusiness: setCurrentBusiness,
-        setEditedCatering: setCateringForEditing,
-        sendOffer: sendCateringOffer
+        changeCurrentBusiness: setCurrentBusiness
       }
-    )(MonthPage)
+    )(YearPage)
   )
 );
