@@ -34,3 +34,7 @@ export const getInitialValues = ({ business, businessGroups }) => {
 };
 
 export const getGroupsValues = groups => groups.map(g => g.value).toString();
+
+export const isSelectValueChanged = (originalValue, checkValue) =>
+  (originalValue && checkValue && checkValue.value !== originalValue.value) ||
+  (originalValue && !checkValue);

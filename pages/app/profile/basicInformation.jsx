@@ -5,7 +5,8 @@ import { func, string, shape } from "prop-types";
 import Form from "sections/profile/basicInformation";
 import {
   getInitialValues,
-  getGroupsValues
+  getGroupsValues,
+  isSelectValueChanged
 } from "sections/profile/basicInformation/utils";
 import { countries } from "utils/iso-3166-2";
 import { getGroupsData } from "sections/profile/utils";
@@ -65,7 +66,15 @@ class BasicInformation extends PureComponent {
       ownerRole,
       bio
     },
-    { types, cuisines, foodsAndDrinks, quirks, diets }
+    {
+      types,
+      cuisines,
+      foodsAndDrinks,
+      quirks,
+      diets,
+      country: countryValue,
+      region: regionValue
+    }
   ) => {
     const { updateBusiness, businessId } = this.props;
     const sendGroupsList =
@@ -79,11 +88,16 @@ class BasicInformation extends PureComponent {
       !postCode &&
       !ownerRole &&
       !bio;
+
     const requestValues = {
       name,
       tagline,
-      countryCode: country ? country.value : undefined,
-      regionCode: region ? region.value : undefined,
+      countryCode: isSelectValueChanged(country, countryValue)
+        ? country.value
+        : undefined,
+      regionCode: isSelectValueChanged(region, regionValue)
+        ? region.value
+        : undefined,
       street,
       streetNumber,
       city,
