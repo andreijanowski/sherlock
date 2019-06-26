@@ -12,10 +12,10 @@ import {
   FETCH_BUSINESS_CATERINGS_FAIL
 } from "types/businesses";
 import { LOGOUT } from "types/auth";
-import { Record, fromJS } from "immutable";
+import { Record, Map, fromJS } from "immutable";
 
-const initialState = Record({
-  data: [],
+export const initialState = Record({
+  data: Map(),
   isFetching: false,
   isFailed: false,
   isSucceeded: false,
@@ -43,7 +43,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       if (meta.page === 1) {
         newState = newState.setIn(["data"], fromJS(payload.data));
       } else {
-        newState = newState.mergeIn(["data"], fromJS(payload.data));
+        newState = newState.mergeDeepIn(["data"], fromJS(payload.data));
       }
       return newState;
     }
@@ -57,7 +57,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       if (meta.page === 1) {
         newState = newState.merge(
           Record({
-            data: null
+            data: Map()
           })()
         );
       }

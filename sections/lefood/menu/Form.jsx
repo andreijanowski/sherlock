@@ -150,6 +150,7 @@ const DishForm = ({
                       { label: t("beer"), value: "beer" },
                       { label: t("wine"), value: "wine" },
                       { label: t("cocktails"), value: "cocktails" },
+                      { label: t("catering"), value: "catering" },
                       { label: t("other"), value: "other" }
                     ]}
                   />

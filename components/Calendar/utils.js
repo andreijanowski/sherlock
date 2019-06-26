@@ -38,16 +38,23 @@ export const parseEvents = ({
               {
                 id: c.get("id"),
                 ...c.get("attributes").toObject(),
-                menu: c.getIn(["attributes", "menu"]).toObject(),
+                menu:
+                  c.getIn(["attributes", "menu"]) &&
+                  c.getIn(["attributes", "menu"]).toObject(),
                 from: 1,
                 date: today.toISOString(),
                 realFrom: c.getIn(["attributes", "from"]),
-                address: addresses
-                  .getIn([
+                address:
+                  addresses.getIn([
                     c.getIn(["relationships", "address", "data", "id"]),
                     "attributes"
-                  ])
-                  .toObject()
+                  ]) &&
+                  addresses
+                    .getIn([
+                      c.getIn(["relationships", "address", "data", "id"]),
+                      "attributes"
+                    ])
+                    .toObject()
               }
             ],
             currency,
@@ -78,15 +85,17 @@ export const parseEvents = ({
           currency,
           id: c.get("id"),
           ...c.get("attributes").toObject(),
-          menu: c.getIn(["attributes", "menu"]).toObject(),
+          menu:
+            c.getIn(["attributes", "menu"]) &&
+            c.getIn(["attributes", "menu"]).toObject(),
           address:
             addresses &&
-            addresses
-              .getIn([
-                c.getIn(["relationships", "address", "data", "id"]),
-                "attributes"
-              ])
-              .toObject()
+              addresses
+                .getIn([
+                  c.getIn(["relationships", "address", "data", "id"]),
+                  "attributes"
+                ])
+                .toObject()
         }
       });
     });
