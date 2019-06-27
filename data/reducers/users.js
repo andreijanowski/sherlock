@@ -24,7 +24,11 @@ import {
   PATCH_BUSINESS_SUCCESS
 } from "types/businesses";
 import { POST_PICTURE_SUCCESS, DELETE_PICTURE_REQUEST } from "types/pictures";
-import { POST_MENU_SUCCESS, DELETE_MENU_REQUEST } from "types/menus";
+import {
+  POST_MENU_SUCCESS,
+  PATCH_MENU_SUCCESS,
+  DELETE_MENU_REQUEST
+} from "types/menus";
 import {
   POST_PRODUCT_SUCCESS,
   PATCH_PRODUCT_SUCCESS,
@@ -235,6 +239,13 @@ const reducer = (state = initialState, { type, payload, meta }) => {
 
     case POST_MENU_SUCCESS: {
       return state.setIn(
+        ["currentBusiness", "data", "menus", payload.rawData.data.id],
+        fromJS(payload.data.menus[payload.rawData.data.id])
+      );
+    }
+
+    case PATCH_MENU_SUCCESS: {
+      return state.mergeIn(
         ["currentBusiness", "data", "menus", payload.rawData.data.id],
         fromJS(payload.data.menus[payload.rawData.data.id])
       );
