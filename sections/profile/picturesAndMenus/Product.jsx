@@ -23,6 +23,8 @@ class Product extends PureComponent {
       this.setState({ saving: false });
     } catch (e) {
       console.log(e);
+      const { name } = this.props;
+      this.setState({ saving: false, value: name });
     }
   };
 

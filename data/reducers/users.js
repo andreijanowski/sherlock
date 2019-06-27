@@ -25,7 +25,11 @@ import {
 } from "types/businesses";
 import { POST_PICTURE_SUCCESS, DELETE_PICTURE_REQUEST } from "types/pictures";
 import { POST_MENU_SUCCESS, DELETE_MENU_REQUEST } from "types/menus";
-import { POST_PRODUCT_SUCCESS, DELETE_PRODUCT_REQUEST } from "types/products";
+import {
+  POST_PRODUCT_SUCCESS,
+  PATCH_PRODUCT_SUCCESS,
+  DELETE_PRODUCT_REQUEST
+} from "types/products";
 import {
   POST_OPEN_PERIOD_SUCCESS,
   PATCH_OPEN_PERIOD_SUCCESS,
@@ -242,6 +246,12 @@ const reducer = (state = initialState, { type, payload, meta }) => {
 
     case POST_PRODUCT_SUCCESS: {
       return state.setIn(
+        ["currentBusiness", "data", "products", payload.rawData.data.id],
+        fromJS(payload.data.products[payload.rawData.data.id])
+      );
+    }
+    case PATCH_PRODUCT_SUCCESS: {
+      return state.mergeIn(
         ["currentBusiness", "data", "products", payload.rawData.data.id],
         fromJS(payload.data.products[payload.rawData.data.id])
       );
