@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { H2, Button, Paragraph } from "components";
+import { Button, Paragraph } from "components";
 import { Flex } from "@rebass/grid";
 
 export const Container = styled(Flex).attrs({
@@ -10,10 +10,6 @@ export const Container = styled(Flex).attrs({
   width: 1
 })`
   height: 100%;
-`;
-
-export const H2Styled = styled(H2)`
-  text-align: center;
 `;
 
 export const ParagraphStyled = styled(Paragraph)`

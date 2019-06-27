@@ -24,8 +24,16 @@ import {
   PATCH_BUSINESS_SUCCESS
 } from "types/businesses";
 import { POST_PICTURE_SUCCESS, DELETE_PICTURE_REQUEST } from "types/pictures";
-import { POST_MENU_SUCCESS, DELETE_MENU_REQUEST } from "types/menus";
-import { POST_PRODUCT_SUCCESS, DELETE_PRODUCT_REQUEST } from "types/products";
+import {
+  POST_MENU_SUCCESS,
+  PATCH_MENU_SUCCESS,
+  DELETE_MENU_REQUEST
+} from "types/menus";
+import {
+  POST_PRODUCT_SUCCESS,
+  PATCH_PRODUCT_SUCCESS,
+  DELETE_PRODUCT_REQUEST
+} from "types/products";
 import {
   POST_OPEN_PERIOD_SUCCESS,
   PATCH_OPEN_PERIOD_SUCCESS,
@@ -236,12 +244,25 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       );
     }
 
+    case PATCH_MENU_SUCCESS: {
+      return state.mergeIn(
+        ["currentBusiness", "data", "menus", payload.rawData.data.id],
+        fromJS(payload.data.menus[payload.rawData.data.id])
+      );
+    }
+
     case DELETE_MENU_REQUEST: {
       return state.deleteIn(["currentBusiness", "data", "menus", meta.id]);
     }
 
     case POST_PRODUCT_SUCCESS: {
       return state.setIn(
+        ["currentBusiness", "data", "products", payload.rawData.data.id],
+        fromJS(payload.data.products[payload.rawData.data.id])
+      );
+    }
+    case PATCH_PRODUCT_SUCCESS: {
+      return state.mergeIn(
         ["currentBusiness", "data", "products", payload.rawData.data.id],
         fromJS(payload.data.products[payload.rawData.data.id])
       );
@@ -275,9 +296,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           v === "minAmountForDeliveryCents" ||
           v === "stripeCurrency" ||
           v === "allowPickup" ||
-          v === "logo"
+          v === "logo" ||
+          v === "name"
         ) {
-          const pathArray = [
+          const currentBusinessPathArray = [
             "currentBusiness",
             "data",
             "businesses",
@@ -285,14 +307,38 @@ const reducer = (state = initialState, { type, payload, meta }) => {
             "attributes",
             v
           ];
+          const profileBusinessesPathArray = [
+            "profileBusinesses",
+            "data",
+            "businesses",
+            payload.rawData.data.id,
+            "attributes",
+            v
+          ];
           if (newState) {
+            if (v === "name" || v === "logo") {
+              newState = newState.setIn(
+                profileBusinessesPathArray,
+                payload.data.businesses[payload.rawData.data.id].attributes[v]
+              );
+            }
             newState = newState.setIn(
-              pathArray,
+              currentBusinessPathArray,
               payload.data.businesses[payload.rawData.data.id].attributes[v]
             );
+          } else if (v === "name" || v === "logo") {
+            newState = state
+              .setIn(
+                profileBusinessesPathArray,
+                payload.data.businesses[payload.rawData.data.id].attributes[v]
+              )
+              .setIn(
+                currentBusinessPathArray,
+                payload.data.businesses[payload.rawData.data.id].attributes[v]
+              );
           } else {
             newState = state.setIn(
-              pathArray,
+              currentBusinessPathArray,
               payload.data.businesses[payload.rawData.data.id].attributes[v]
             );
           }

@@ -8,7 +8,7 @@ import {
   Delivery,
   TakeAway,
   Catering,
-  Privatizations,
+  Privatisations,
   SocialMedia,
   Billing,
   ProfileIcon,
@@ -73,6 +73,20 @@ const NavBar = ({ t, lng, logout }) => (
         <Subitems>
           <Link {...{ lng, route: `/app/catering/month/` }}>
             <Subitem>{t("app:catering")}</Subitem>
+          </Link>
+        </Subitems>
+      </SubitemsWrapper>
+    </Item>
+    <Item>
+      <Link {...{ lng, route: `/app/privatisation/month/` }}>
+        <Icon>
+          <Privatisations />
+        </Icon>
+      </Link>
+      <SubitemsWrapper>
+        <Subitems>
+          <Link {...{ lng, route: `/app/privatisation/month/` }}>
+            <Subitem>{t("app:privatisations")}</Subitem>
           </Link>
         </Subitems>
       </SubitemsWrapper>
@@ -160,16 +174,6 @@ const NavBar = ({ t, lng, logout }) => (
       <SubitemsWrapper>
         <Subitems>
           <Subitem>{t("app:socialMedia")}</Subitem>
-        </Subitems>
-      </SubitemsWrapper>
-    </Item>
-    <Item inactive>
-      <Icon inactive>
-        <Privatizations />
-      </Icon>
-      <SubitemsWrapper>
-        <Subitems>
-          <Subitem>{t("app:privatizations")}</Subitem>
         </Subitems>
       </SubitemsWrapper>
     </Item>

@@ -2,16 +2,15 @@ import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
-import CateringLayout from "sections/catering/Layout";
 import CreateCateringForm from "sections/catering/create";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
 import { postCatering } from "actions/caterings";
 import { Router } from "routes";
 import fileToBase64 from "utils/fileToBase64";
-import { timeToNumber } from "components";
+import { timeToNumber, CalendarLayout } from "components";
 
-const namespaces = ["catering", "app", "forms"];
+const namespaces = ["catering", "events", "app", "forms"];
 
 class CreateCateringPage extends PureComponent {
   static async getInitialProps() {
@@ -21,7 +20,7 @@ class CreateCateringPage extends PureComponent {
   }
 
   state = {
-    sending: false
+    isSending: false
   };
 
   handleFormSubmit = async ({
@@ -50,10 +49,10 @@ class CreateCateringPage extends PureComponent {
       menu: menu && menu.name ? await fileToBase64(menu) : undefined,
       currency: currency ? currency.value : undefined
     };
-    this.setState({ sending: true });
+    this.setState({ isSending: true });
     createCatering(newCatering, businessId)
       .then(() => Router.pushRoute(`/${lng}/app/catering/month`))
-      .catch(() => this.setState({ sending: false }));
+      .catch(() => this.setState({ isSending: false }));
   };
 
   render() {
@@ -65,9 +64,9 @@ class CreateCateringPage extends PureComponent {
       businesses,
       changeCurrentBusiness
     } = this.props;
-    const { sending } = this.state;
+    const { isSending } = this.state;
     return (
-      <CateringLayout
+      <CalendarLayout
         {...{
           t,
           lng,
@@ -75,13 +74,14 @@ class CreateCateringPage extends PureComponent {
           businessId,
           businesses,
           changeCurrentBusiness,
-          isAddActionHidden: true
+          isAddActionHidden: true,
+          eventType: "catering"
         }}
       >
         <CreateCateringForm
-          {...{ t, lng, sending, handleFormSubmit: this.handleFormSubmit }}
+          {...{ t, lng, isSending, handleFormSubmit: this.handleFormSubmit }}
         />
-      </CateringLayout>
+      </CalendarLayout>
     );
   }
 }

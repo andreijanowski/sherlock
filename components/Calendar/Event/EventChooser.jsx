@@ -8,7 +8,7 @@ const EventDetails = ({ t, event, chooseEvent }) => (
   <>
     <Header>
       <MainInfo>
-        <Name>{t("chooseEvent")}</Name>
+        <Name>{t("events:chooseEvent")}</Name>
       </MainInfo>
     </Header>
     <Details>

@@ -2,17 +2,16 @@ import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
-import CateringLayout from "sections/catering/Layout";
 import EditCateringForm from "sections/catering/edit";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
 import { Router } from "routes";
-import { timeToNumber, LoadingIndicator } from "components";
+import { timeToNumber, LoadingIndicator, CalendarLayout } from "components";
 import { patchCatering } from "actions/caterings";
 import fileToBase64 from "utils/fileToBase64";
 import { convertToCents } from "utils/price";
 
-const namespaces = ["catering", "app", "forms"];
+const namespaces = ["catering", "events", "app", "forms"];
 
 class EditCateringPage extends PureComponent {
   static async getInitialProps() {
@@ -22,7 +21,7 @@ class EditCateringPage extends PureComponent {
   }
 
   state = {
-    sending: false
+    isSending: false
   };
 
   componentDidMount() {
@@ -48,10 +47,10 @@ class EditCateringPage extends PureComponent {
     if (priceCents) {
       updatedCatering.priceCents = convertToCents(priceCents);
     }
-    this.setState({ sending: true });
+    this.setState({ isSending: true });
     updateCatering(id, updatedCatering)
       .then(() => Router.pushRoute(`/${lng}/app/catering/month`))
-      .catch(() => this.setState({ sending: false }));
+      .catch(() => this.setState({ isSending: false }));
   };
 
   render() {
@@ -64,10 +63,10 @@ class EditCateringPage extends PureComponent {
       changeCurrentBusiness,
       editedCatering
     } = this.props;
-    const { sending } = this.state;
-    const showForm = !sending && editedCatering;
+    const { isSending } = this.state;
+    const isFormShown = !isSending && editedCatering;
     return (
-      <CateringLayout
+      <CalendarLayout
         {...{
           t,
           lng,
@@ -75,10 +74,11 @@ class EditCateringPage extends PureComponent {
           businessId,
           businesses,
           changeCurrentBusiness,
-          isAddActionHidden: true
+          isAddActionHidden: true,
+          eventType: "catering"
         }}
       >
-        {showForm ? (
+        {isFormShown ? (
           <EditCateringForm
             {...{
               t,
@@ -90,7 +90,7 @@ class EditCateringPage extends PureComponent {
         ) : (
           <LoadingIndicator />
         )}
-      </CateringLayout>
+      </CalendarLayout>
     );
   }
 }

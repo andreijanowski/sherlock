@@ -22,7 +22,7 @@ import { getSubdivisions, countries } from "utils/iso-3166-2";
 import currencies from "utils/currencies";
 import { Form } from "../styled";
 
-const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
+const CreateCateringForm = ({ t, lng, isSending, handleFormSubmit }) => (
   <FinalForm
     initialValues={{
       corporateEvent: false,
@@ -37,47 +37,53 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
     }}
     render={({ handleSubmit, values }) => (
       <Form onSubmit={handleSubmit}>
-        <H3 mt={3}>{t("createEvent.basicInfo")}</H3>
+        <H3 mt={3}>{t("events:createEvent.basicInfo")}</H3>
         <Flex flexWrap="wrap" mx={-2}>
           <Box width={[1, 1 / 2]} px={2}>
-            <FormInput name="name" label={t("createEvent.name")} />
+            <FormInput name="name" label={t("events:createEvent.name")} />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
-            <FormDaypicker name="date" label={t("createEvent.date")} />
+            <FormDaypicker name="date" label={t("events:createEvent.date")} />
           </Box>
           <Box width={[1 / 2, 1 / 2]} px={2}>
             <FormTimePicker
               name="from"
-              label={t("createEvent.from")}
-              placeholder={t("createEvent.from")}
+              label={t("events:createEvent.from")}
+              placeholder={t("events:createEvent.from")}
             />
           </Box>
           <Box width={[1 / 2, 1 / 2]} px={2}>
             <FormTimePicker
               name="to"
-              label={t("createEvent.to")}
-              placeholder={t("createEvent.to")}
+              label={t("events:createEvent.to")}
+              placeholder={t("events:createEvent.to")}
             />
           </Box>
         </Flex>
-        <H3 mt={3}>{t("createEvent.address")}</H3>
+        <H3 mt={3}>{t("events:createEvent.address")}</H3>
         <Flex flexWrap="wrap" mx={-2}>
           <Box width={[1 / 2, 1 / 2]} px={2}>
-            <FormInput name="addressStreet" label={t("createEvent.street")} />
+            <FormInput
+              name="addressStreet"
+              label={t("events:createEvent.street")}
+            />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
             <FormInput
               name="addressStreetNumber"
-              label={t("createEvent.streetNumber")}
+              label={t("events:createEvent.streetNumber")}
             />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
-            <FormInput name="addressCity" label={t("createEvent.city")} />
+            <FormInput
+              name="addressCity"
+              label={t("events:createEvent.city")}
+            />
           </Box>
           <Box width={[1 / 2, 1 / 2]} px={2}>
             <FormInput
               name="addressPostCode"
-              label={t("createEvent.postCode")}
+              label={t("events:createEvent.postCode")}
             />
           </Box>
           <WhenFieldChanges
@@ -89,8 +95,8 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
             <Field
               name="addressCountry"
               component={FormSelect}
-              label={t("createEvent.country")}
-              placeholder={t("createEvent.country")}
+              label={t("events:createEvent.country")}
+              placeholder={t("events:createEvent.country")}
               items={countries}
               showFlag
             />
@@ -99,8 +105,8 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
             <Field
               name="addressRegion"
               component={FormSelect}
-              label={t("createEvent.region")}
-              placeholder={t("createEvent.region")}
+              label={t("events:createEvent.region")}
+              placeholder={t("events:createEvent.region")}
               disabled={!values.addressCountry}
               items={
                 (values.addressCountry &&
@@ -111,59 +117,71 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
             />
           </Box>
           <Box width={1} px={2}>
-            <FormTextarea name="addressNotes" label={t("createEvent.notes")} />
+            <FormTextarea
+              name="addressNotes"
+              label={t("events:createEvent.notes")}
+            />
           </Box>
         </Flex>
-        <H3 mt={3}>{t("createEvent.client")}</H3>
+        <H3 mt={3}>{t("events:createEvent.client")}</H3>
         <Flex flexWrap="wrap" mx={-2}>
           <Box width={[1, 1 / 2]} px={2}>
-            <FormInput name="userName" label={t("createEvent.userName")} />
+            <FormInput
+              name="userName"
+              label={t("events:createEvent.userName")}
+            />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
-            <FormInput name="email" label={t("createEvent.email")} />
+            <FormInput name="email" label={t("events:createEvent.email")} />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
             <Field
               name="phoneCountry"
               component={FormSelect}
-              label={t("createEvent.country")}
-              placeholder={t("createEvent.country")}
+              label={t("events:createEvent.country")}
+              placeholder={t("events:createEvent.country")}
               items={countriesPhoneCodes}
               showFlag
             />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
-            <FormInput name="phone" label={t("createEvent.phone")} />
+            <FormInput name="phone" label={t("events:createEvent.phone")} />
           </Box>
         </Flex>
-        <H3 mt={3}>{t("createEvent.details")}</H3>
+        <H3 mt={3}>{t("events:createEvent.details")}</H3>
         <Flex flexWrap="wrap" mx={-2}>
           <Box width={[1, 1 / 2]} px={2}>
             <FormInput
               name="numberOfServings"
-              label={t("createEvent.numberOfServings")}
+              label={t("events:createEvent.numberOfServings")}
             />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
             <FormInput
               name="typeOfEvent"
-              label={t("createEvent.typeOfEvent")}
+              label={t("events:createEvent.typeOfEvent")}
             />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
             <FormInput
               name="numberOfWaiters"
-              label={t("createEvent.numberOfWaiters")}
+              label={t("events:createEvent.numberOfWaiters")}
             />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
             <Field
               name="outdoors"
               component={FormDropdown}
-              label={t("createEvent.outdoors")}
+              label={t("events:createEvent.outdoors")}
               items={[
-                { label: t("createEvent.outdoorsOption.yes"), value: true },
-                { label: t("createEvent.outdoorsOption.no"), value: false }
+                {
+                  label: t("events:createEvent.outdoorsOption.yes"),
+                  value: true
+                },
+                {
+                  label: t("events:createEvent.outdoorsOption.no"),
+                  value: false
+                }
               ]}
             />
           </Box>
@@ -171,10 +189,16 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
             <Field
               name="cutlery"
               component={FormDropdown}
-              label={t("createEvent.cutlery")}
+              label={t("events:createEvent.cutlery")}
               items={[
-                { label: t("createEvent.cutleryOption.yes"), value: true },
-                { label: t("createEvent.cutleryOption.no"), value: false }
+                {
+                  label: t("events:createEvent.cutleryOption.yes"),
+                  value: true
+                },
+                {
+                  label: t("events:createEvent.cutleryOption.no"),
+                  value: false
+                }
               ]}
             />
           </Box>
@@ -182,14 +206,14 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
             <Field
               name="chefAttendance"
               component={FormDropdown}
-              label={t("createEvent.chefAttendance")}
+              label={t("events:createEvent.chefAttendance")}
               items={[
                 {
-                  label: t("createEvent.chefAttendanceOption.yes"),
+                  label: t("events:createEvent.chefAttendanceOption.yes"),
                   value: true
                 },
                 {
-                  label: t("createEvent.chefAttendanceOption.no"),
+                  label: t("events:createEvent.chefAttendanceOption.no"),
                   value: false
                 }
               ]}
@@ -199,14 +223,14 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
             <Field
               name="corporateEvent"
               component={FormDropdown}
-              label={t("createEvent.corporateEvent")}
+              label={t("events:createEvent.corporateEvent")}
               items={[
                 {
-                  label: t("createEvent.corporateEventOption.yes"),
+                  label: t("events:createEvent.corporateEventOption.yes"),
                   value: true
                 },
                 {
-                  label: t("createEvent.corporateEventOption.no"),
+                  label: t("events:createEvent.corporateEventOption.no"),
                   value: false
                 }
               ]}
@@ -215,13 +239,13 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
           <Box width={[1, 1 / 2]} px={2}>
             <FormInput
               name="companyName"
-              label={t("createEvent.companyName")}
+              label={t("events:createEvent.companyName")}
             />
           </Box>
           <Box width={1} px={2}>
             <FormTextarea
               name="specifications"
-              label={t("createEvent.specifications")}
+              label={t("events:createEvent.specifications")}
             />
           </Box>
           <Box width={1} px={2}>
@@ -229,10 +253,10 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
               {...{
                 name: "menu",
                 accept: ["image/png", "image/jpeg", "application/pdf"],
-                tip: t("createEvent.chooseOrDragFile"),
-                info: t("createEvent.menuInfo"),
-                errorTipType: t("createEvent.invalidFiles"),
-                errorInfoType: t("createEvent.validMenu")
+                tip: t("events:createEvent.chooseOrDragFile"),
+                info: t("events:createEvent.menuInfo"),
+                errorTipType: t("events:createEvent.invalidFiles"),
+                errorInfoType: t("events:createEvent.validMenu")
               }}
             />
           </Box>
@@ -240,15 +264,15 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
             <Box width={1 / 2} px={2}>
               <FormCheckbox
                 name="consentGdpr"
-                label={t("createEvent.consentGdpr")}
+                label={t("events:createEvent.consentGdpr")}
               />
             </Box>
             <Box width={1 / 2} px={2}>
               <Field
                 name="currency"
                 component={FormSelect}
-                label={t("createEvent.currency")}
-                placeholder={t("createEvent.currency")}
+                label={t("events:createEvent.currency")}
+                placeholder={t("events:createEvent.currency")}
                 items={currencies}
               />
             </Box>
@@ -264,16 +288,16 @@ const CreateCateringForm = ({ t, lng, sending, handleFormSubmit }) => (
                 Router.pushRoute(`/${lng}/app/catering/month/`);
               }}
             >
-              {t("forms:cancel")}
+              {t("events:forms:cancel")}
             </Button>
           </Box>
           <Box width={1 / 2} px={2}>
             <Button styleName="formBlue" type="submit" fluid>
-              {t("forms:save")}
+              {t("events:forms:save")}
             </Button>
           </Box>
         </Flex>
-        {sending && <LoadingIndicator />}
+        {isSending && <LoadingIndicator />}
       </Form>
     )}
   />
@@ -283,7 +307,7 @@ CreateCateringForm.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   handleFormSubmit: func.isRequired,
-  sending: bool.isRequired
+  isSending: bool.isRequired
 };
 
 export default CreateCateringForm;

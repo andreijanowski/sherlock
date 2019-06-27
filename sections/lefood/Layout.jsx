@@ -12,7 +12,8 @@ import {
   AutosizeInput,
   ConnectWithStripe,
   LoadingIndicator,
-  RawCheckbox
+  RawCheckbox,
+  H2
 } from "components";
 import {
   Orders,
@@ -33,7 +34,7 @@ import prepareBusinessesList from "utils/prepareBusinessesList";
 import StopOrdersModal from "./StopOrdersModal";
 import FinishOrdersModal from "./FinishOrdersModal";
 import StripeCurrencyModal from "./StripeCurrencyModal";
-import { Orange, StyledH2 } from "./styled";
+import { Orange } from "./styled";
 
 const averageDeliveryTimeList = [
   {
@@ -548,7 +549,7 @@ class LefoodLayout extends PureComponent {
                     flexDirection="column"
                     pt={6}
                   >
-                    <StyledH2>{t("stripeCurrencyNotSet")}</StyledH2>
+                    <H2 textAlign="center">{t("stripeCurrencyNotSet")}</H2>
                     <Box>
                       <Button
                         onClick={() => this.setCurrencyModalVisibility(true)}
@@ -578,11 +579,11 @@ class LefoodLayout extends PureComponent {
               </>
             ) : (
               <Flex justifyContent="center" pt={6}>
-                <StyledH2>
+                <H2 textAlign="center">
                   {t("notApprovedForLefood", {
                     businessName: business && business.get("name")
                   })}
-                </StyledH2>
+                </H2>
               </Flex>
             )}
           </>

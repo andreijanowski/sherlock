@@ -47,73 +47,79 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
     }}
     render={({ handleSubmit }) => (
       <Form onSubmit={handleSubmit}>
-        <H3 mt={3}>{t("createEvent.basicInfo")}</H3>
+        <H3 mt={3}>{t("events:createEvent.basicInfo")}</H3>
         <Flex flexWrap="wrap" mx={-2}>
           <Box width={[1, 1 / 2]} px={2}>
-            <FormInput name="name" label={t("createEvent.name")} />
+            <FormInput name="name" label={t("events:createEvent.name")} />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
-            <FormDaypicker name="date" label={t("createEvent.date")} />
+            <FormDaypicker name="date" label={t("events:createEvent.date")} />
           </Box>
           <Box width={1 / 2} px={2}>
             <FormTimePicker
               name="from"
-              label={t("createEvent.from")}
-              placeholder={t("createEvent.from")}
+              label={t("events:createEvent.from")}
+              placeholder={t("events:createEvent.from")}
             />
           </Box>
           <Box width={1 / 2} px={2}>
             <FormTimePicker
               name="to"
-              label={t("createEvent.to")}
-              placeholder={t("createEvent.to")}
+              label={t("events:createEvent.to")}
+              placeholder={t("events:createEvent.to")}
             />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
             <FormInput
               name="priceCents"
               parse={normalizePrice}
-              label={t("createEvent.price")}
+              label={t("events:createEvent.price")}
             />
           </Box>
           <Box width={1 / 2} px={2}>
             <Field
               name="currency"
               component={FormSelect}
-              label={t("createEvent.currency")}
-              placeholder={t("createEvent.currency")}
+              label={t("events:createEvent.currency")}
+              placeholder={t("events:createEvent.currency")}
               items={currencies}
             />
           </Box>
         </Flex>
-        <H3 mt={3}>{t("createEvent.details")}</H3>
+        <H3 mt={3}>{t("events:createEvent.details")}</H3>
         <Flex flexWrap="wrap" mx={-2}>
           <Box width={[1, 1 / 2]} px={2}>
             <FormInput
               name="numberOfServings"
-              label={t("createEvent.numberOfServings")}
+              label={t("events:createEvent.numberOfServings")}
             />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
             <FormInput
               name="typeOfEvent"
-              label={t("createEvent.typeOfEvent")}
+              label={t("events:createEvent.typeOfEvent")}
             />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
             <FormInput
               name="numberOfWaiters"
-              label={t("createEvent.numberOfWaiters")}
+              label={t("events:createEvent.numberOfWaiters")}
             />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
             <Field
               name="outdoors"
               component={FormDropdown}
-              label={t("createEvent.outdoors")}
+              label={t("events:createEvent.outdoors")}
               items={[
-                { label: t("createEvent.outdoorsOption.yes"), value: true },
-                { label: t("createEvent.outdoorsOption.no"), value: false }
+                {
+                  label: t("events:createEvent.outdoorsOption.yes"),
+                  value: true
+                },
+                {
+                  label: t("events:createEvent.outdoorsOption.no"),
+                  value: false
+                }
               ]}
             />
           </Box>
@@ -121,10 +127,16 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
             <Field
               name="cutlery"
               component={FormDropdown}
-              label={t("createEvent.cutlery")}
+              label={t("events:createEvent.cutlery")}
               items={[
-                { label: t("createEvent.cutleryOption.yes"), value: true },
-                { label: t("createEvent.cutleryOption.no"), value: false }
+                {
+                  label: t("events:createEvent.cutleryOption.yes"),
+                  value: true
+                },
+                {
+                  label: t("events:createEvent.cutleryOption.no"),
+                  value: false
+                }
               ]}
             />
           </Box>
@@ -132,14 +144,14 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
             <Field
               name="chefAttendance"
               component={FormDropdown}
-              label={t("createEvent.chefAttendance")}
+              label={t("events:createEvent.chefAttendance")}
               items={[
                 {
-                  label: t("createEvent.chefAttendanceOption.yes"),
+                  label: t("events:createEvent.chefAttendanceOption.yes"),
                   value: true
                 },
                 {
-                  label: t("createEvent.chefAttendanceOption.no"),
+                  label: t("events:createEvent.chefAttendanceOption.no"),
                   value: false
                 }
               ]}
@@ -149,14 +161,14 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
             <Field
               name="corporateEvent"
               component={FormDropdown}
-              label={t("createEvent.corporateEvent")}
+              label={t("events:createEvent.corporateEvent")}
               items={[
                 {
-                  label: t("createEvent.corporateEventOption.yes"),
+                  label: t("events:createEvent.corporateEventOption.yes"),
                   value: true
                 },
                 {
-                  label: t("createEvent.corporateEventOption.no"),
+                  label: t("events:createEvent.corporateEventOption.no"),
                   value: false
                 }
               ]}
@@ -165,13 +177,13 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
           <Box width={[1, 1 / 2]} px={2}>
             <FormInput
               name="companyName"
-              label={t("createEvent.companyName")}
+              label={t("events:createEvent.companyName")}
             />
           </Box>
           <Box width={1} px={2}>
             <FormTextarea
               name="specifications"
-              label={t("createEvent.specifications")}
+              label={t("events:createEvent.specifications")}
             />
           </Box>
           <Box width={1} px={2}>
@@ -179,10 +191,10 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
               {...{
                 name: "menu",
                 accept: ["image/png", "image/jpeg", "application/pdf"],
-                tip: t("createEvent.chooseOrDragFile"),
-                info: t("createEvent.menuInfo"),
-                errorTipType: t("createEvent.invalidFiles"),
-                errorInfoType: t("createEvent.validMenu")
+                tip: t("events:createEvent.chooseOrDragFile"),
+                info: t("events:createEvent.menuInfo"),
+                errorTipType: t("events:createEvent.invalidFiles"),
+                errorInfoType: t("events:createEvent.validMenu")
               }}
             />
           </Box>

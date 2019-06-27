@@ -7,6 +7,7 @@ import deliveries from "./deliveries";
 import dishes from "./dishes";
 import orders from "./orders";
 import caterings from "./caterings";
+import privatisations from "./privatisations";
 
 export default {
   notifications,
@@ -17,5 +18,6 @@ export default {
   deliveries,
   dishes,
   orders,
-  caterings
+  caterings,
+  privatisations
 };

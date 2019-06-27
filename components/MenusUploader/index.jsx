@@ -20,6 +20,7 @@ class Menus extends PureComponent {
       this.setState({ isAddingFile: false });
     } catch (e) {
       console.log(e);
+      this.setState({ isAddingFile: false });
     }
   };
 

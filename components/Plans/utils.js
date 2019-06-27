@@ -25,7 +25,7 @@ export const generatePlanOptionsList = (planName, t) => {
           discount: "10%"
         },
         {
-          name: t("plans:options.privatization"),
+          name: t("plans:options.privatisation"),
           discount: "10%"
         },
         {
@@ -65,7 +65,7 @@ export const generatePlanOptionsList = (planName, t) => {
           discount: "5%"
         },
         {
-          name: t("plans:options.privatization"),
+          name: t("plans:options.privatisation"),
           discount: "5%"
         },
         {
@@ -115,7 +115,7 @@ export const generatePlanOptionsList = (planName, t) => {
           discount: "3.5%"
         },
         {
-          name: t("plans:options.privatization"),
+          name: t("plans:options.privatisation"),
           discount: "3.5%"
         },
         {
@@ -178,7 +178,7 @@ export const generatePlanOptionsList = (planName, t) => {
           discount: "Free"
         },
         {
-          name: t("plans:options.privatization"),
+          name: t("plans:options.privatisation"),
           discount: "Free"
         },
         {

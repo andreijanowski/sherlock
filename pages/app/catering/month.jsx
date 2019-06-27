@@ -1,13 +1,12 @@
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
-import Month from "sections/catering/month";
-import CateringLayout from "sections/catering/Layout";
+import { CalendarLayout, BigCalendar } from "components";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
 import { setCateringForEditing, sendCateringOffer } from "actions/caterings";
 
-const namespaces = ["catering", "app"];
+const namespaces = ["catering", "events", "app"];
 
 const MonthPage = ({
   t,
@@ -21,33 +20,37 @@ const MonthPage = ({
   setEditedCatering,
   sendOffer
 }) => (
-  <CateringLayout
+  <CalendarLayout
     {...{
       t,
       lng,
       view: {
         value: "month",
-        label: t("month")
+        label: t("events:month")
       },
       business,
       businessId,
       businesses,
-      changeCurrentBusiness
+      changeCurrentBusiness,
+      eventType: "catering"
     }}
   >
-    <Month
+    <BigCalendar
       {...{
         t,
         lng,
-        caterings,
+        events: caterings,
         addresses,
         currency: business && business.get("currency"),
-        setEditedCatering,
+        setEditedEvent: setEditedCatering,
+        defaultView: "month",
+        timeZone: business && business.get("timezone"),
         sendOffer,
-        timeZone: business && business.get("timezone")
+        height: 620,
+        eventType: "catering"
       }}
     />
-  </CateringLayout>
+  </CalendarLayout>
 );
 
 MonthPage.getInitialProps = async () => ({
