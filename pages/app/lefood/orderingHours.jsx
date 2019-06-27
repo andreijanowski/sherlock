@@ -23,10 +23,6 @@ class OrderingHoursPage extends PureComponent {
     };
   }
 
-  state = {
-    copied: undefined
-  };
-
   addOrderPeriod = orderPeriod => {
     const { addOrderPeriod, businessId } = this.props;
     return addOrderPeriod(businessId, parsePeriod(orderPeriod));
@@ -40,18 +36,6 @@ class OrderingHoursPage extends PureComponent {
   removeOrderPeriod = id => {
     const { removeOrderPeriod } = this.props;
     return removeOrderPeriod(id);
-  };
-
-  copy = fields => this.setState({ copied: fields });
-
-  paste = weekday => {
-    const { copied } = this.state;
-    if (copied && copied.length) {
-      copied.forEach(async c => {
-        this.addOrderPeriod({ ...c, weekday });
-      });
-    }
-    return null;
   };
 
   render() {
@@ -95,9 +79,7 @@ class OrderingHoursPage extends PureComponent {
             initialValues,
             addPeriod: this.addOrderPeriod,
             updatePeriod: this.updateOrderPeriod,
-            removePeriod: this.removeOrderPeriod,
-            copy: this.copy,
-            paste: this.paste
+            removePeriod: this.removeOrderPeriod
           }}
         />
       </LefoodLayout>

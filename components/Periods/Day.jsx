@@ -48,6 +48,7 @@ class Day extends PureComponent {
       weekday,
       addPeriod,
       copy,
+      isCopiedDefined,
       paste,
       isLocationVisible,
       mutators
@@ -88,7 +89,7 @@ class Day extends PureComponent {
                     }}
                   />
                 </Box>
-                {fields.value && fields.value.length && (
+                {fields.value && !!fields.value.length && (
                   <Box width="auto" mt={0}>
                     <Action onClick={() => copy(fields.value)}>
                       {t("copy")}
@@ -96,7 +97,9 @@ class Day extends PureComponent {
                   </Box>
                 )}
                 <Box width="auto" mt={0}>
-                  <Action onClick={() => paste(weekday)}>{t("paste")}</Action>
+                  {isCopiedDefined && (
+                    <Action onClick={() => paste(weekday)}>{t("paste")}</Action>
+                  )}
                 </Box>
               </Flex>
               <Flex flexDirection="column" width={[1, 1, 1, 0.6]} mt="12px">
@@ -176,6 +179,7 @@ Day.propTypes = {
   copy: func.isRequired,
   paste: func.isRequired,
   isLocationVisible: bool.isRequired,
+  isCopiedDefined: bool.isRequired,
   mutators: shape().isRequired
 };
 
