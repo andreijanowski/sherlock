@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { func, shape, bool } from "prop-types";
 import { Form as FinalForm } from "react-final-form";
 import { H3, LoadingIndicator } from "components";
@@ -20,11 +21,18 @@ const PeriodsForm = ({
   addPeriod,
   updatePeriod,
   removePeriod,
-  copy,
-  paste,
   isLocationVisible
-}) =>
-  initialValues ? (
+}) => {
+  const [copied, copy] = useState(undefined);
+  const paste = weekday => {
+    if (copied && copied.length) {
+      copied.forEach(async c => {
+        addPeriod({ ...c, weekday });
+      });
+    }
+    return null;
+  };
+  return initialValues ? (
     <FinalForm
       onSubmit={() => null}
       initialValues={initialValues}
@@ -42,6 +50,7 @@ const PeriodsForm = ({
                 updatePeriod,
                 removePeriod,
                 copy,
+                isCopiedDefined: !!copied,
                 paste,
                 isLocationVisible,
                 mutators,
@@ -55,6 +64,7 @@ const PeriodsForm = ({
   ) : (
     <LoadingIndicator />
   );
+};
 
 PeriodsForm.propTypes = {
   t: func.isRequired,
@@ -62,8 +72,6 @@ PeriodsForm.propTypes = {
   updatePeriod: func.isRequired,
   removePeriod: func.isRequired,
   initialValues: shape(),
-  copy: func.isRequired,
-  paste: func.isRequired,
   isLocationVisible: bool
 };
 
