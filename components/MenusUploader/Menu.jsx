@@ -24,7 +24,9 @@ class Menu extends PureComponent {
       await updateMenu(id, value);
       this.setState({ saving: false });
     } catch (e) {
+      const { displayName } = this.props;
       console.log(e);
+      this.setState({ saving: false, value: displayName });
     }
   };
 
