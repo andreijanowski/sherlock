@@ -50,7 +50,7 @@ const Orders = ({
             isOpen: !!pendingRejectionOrderId,
             onClose: () => setRejectModalVisibility(undefined),
             pendingRejectionOrder: orders
-              ? orders.find(o => o.id === pendingRejectionOrderId)
+              ? orders.find(o => o.get("id") === pendingRejectionOrderId)
               : null,
             handleRejectionSubmit,
             t

@@ -140,14 +140,14 @@ class OrdersPage extends PureComponent {
   }) => {
     const { rejectOrder, orders } = this.props;
     const { pendingRejectionOrderId } = this.state;
-    const order = orders.find(o => o.id === pendingRejectionOrderId);
+    this.setRejectModalVisibility(undefined);
+    const order = orders.find(o => o.get("id") === pendingRejectionOrderId);
     const unavailableElementsIds = unavailableElements
-      .map((unavailable, index) => {
-        if (unavailable) {
-          return order.elements[index].id;
-        }
-        return null;
-      })
+      .map((unavailable, index) =>
+        unavailable
+          ? order.getIn(["relationships", "elements", "data", index, "id"])
+          : null
+      )
       .filter(e => !!e)
       .toString();
     rejectOrder(
@@ -162,7 +162,6 @@ class OrdersPage extends PureComponent {
       },
       pendingRejectionOrderId
     ).then(() => this.refreshColumnsContent());
-    this.setRejectModalVisibility(undefined);
   };
 
   toggleOrderDetails = orderId => {
