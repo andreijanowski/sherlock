@@ -75,13 +75,14 @@ const calcProfileCompletedPercents = ({
   dishesLength,
   deliveriesLength,
   orderPeriodsLength,
-  averageDeliveryTime
+  averageDeliveryTime,
+  allowPickup
 }) => {
   let profileCompletedPercents = 0;
   if (dishesLength) {
     profileCompletedPercents += 25;
   }
-  if (deliveriesLength) {
+  if (deliveriesLength || allowPickup) {
     profileCompletedPercents += 25;
   }
   if (orderPeriodsLength) {
@@ -201,7 +202,9 @@ class LefoodLayout extends PureComponent {
             dishesLength,
             deliveriesLength,
             orderPeriodsLength,
-            averageDeliveryTime: business && business.get("averageDeliveryTime")
+            averageDeliveryTime:
+              business && business.get("averageDeliveryTime"),
+            allowPickup: business && business.get("allowPickup")
           })
         : 100;
 
@@ -249,7 +252,7 @@ class LefoodLayout extends PureComponent {
                                 {`${t("completeYourProfile")} `}
                                 <ItalicText>
                                   <Orange>
-                                    ({`${t("deliveryTime")} `}
+                                    ({`${t("deliveryTime")}, `}
                                     <Link route="/app/lefood/menu/" lng={lng}>
                                       <Orange as="a">{t("menu")}</Orange>
                                     </Link>
@@ -271,7 +274,7 @@ class LefoodLayout extends PureComponent {
                                         {t("deliveryArea")}
                                       </Orange>
                                     </Link>
-                                    )
+                                    {` ${t("or")} ${t("allowPickup")}`})
                                   </Orange>
                                 </ItalicText>
                                 {` ${t("toSeeAnyNewOrders")}`}.
