@@ -62,7 +62,7 @@ class AutoSave extends React.Component {
             difference[k] = "";
           }
         });
-        this.promise = save(difference, values);
+        this.promise = save(difference, values, prevValues);
         const res = await this.promise;
         delete this.promise;
         if (res && res.status > 299) {
