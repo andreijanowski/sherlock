@@ -66,15 +66,8 @@ class BasicInformation extends PureComponent {
       ownerRole,
       bio
     },
-    {
-      types,
-      cuisines,
-      foodsAndDrinks,
-      quirks,
-      diets,
-      country: countryValue,
-      region: regionValue
-    }
+    { types, cuisines, foodsAndDrinks, quirks, diets },
+    { country: countryValue, region: regionValue }
   ) => {
     const { updateBusiness, businessId } = this.props;
     const sendGroupsList =
@@ -114,7 +107,10 @@ class BasicInformation extends PureComponent {
       ownerRole,
       bio
     };
-    return updateBusiness(businessId, requestValues);
+    if (Object.values(requestValues).some(v => !!v)) {
+      return updateBusiness(businessId, requestValues);
+    }
+    return null;
   };
 
   render() {
