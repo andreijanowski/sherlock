@@ -9,7 +9,7 @@ import { postDish, patchDish, deleteDish } from "actions/dishes";
 import { postPicture, deletePicture } from "actions/pictures";
 import { patchBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/app";
-import { calcPendingOrders, mergeDishesData } from "sections/lefood/utils";
+import { mergeDishesData } from "sections/lefood/utils";
 import { convertToCents } from "utils/price";
 
 const namespaces = ["lefood", "app", "forms"];
@@ -72,7 +72,6 @@ class MenuPage extends PureComponent {
       dishes,
       loading,
       updateBusiness,
-      orders,
       business,
       businessId,
       dishesLength,
@@ -88,7 +87,6 @@ class MenuPage extends PureComponent {
           t,
           lng,
           page: "menu",
-          pendingOrdersLength: calcPendingOrders(orders),
           updateBusiness,
           currentBusinessId: businessId,
           dishesLength,
@@ -121,7 +119,6 @@ MenuPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   dishes: shape(),
-  orders: shape(),
   business: shape(),
   addDish: func.isRequired,
   updateDish: func.isRequired,
@@ -145,7 +142,6 @@ MenuPage.defaultProps = {
   dishesLength: 0,
   deliveriesLength: 0,
   businessOrderPeriodsLength: 0,
-  orders: null,
   dishes: null
 };
 
@@ -177,8 +173,7 @@ export default requireAuth(true)(
             "profileBusinesses",
             "data",
             "businesses"
-          ]),
-          orders: state.getIn(["orders", "data", "orders"])
+          ])
         };
       },
       {
