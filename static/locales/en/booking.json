@@ -1,0 +1,12 @@
+{
+  "bookings": "Bookings",
+  "tables": "Tables",
+  "addInfo": "Please add info about",
+  "tablesInfo": "tables",
+  "timeSlots": "time slots",
+  "timeOfEarliestReservation": "time of earliest reservation",
+  "timeOfGuestsStayingInRestaurant": "time of guests staying in restaurant",
+  "maxAmountPerBooking": "max number of people per one booking",
+  "and": "and",
+  "toSeeAnyNewBookings": "to see any new bookings"
+}
