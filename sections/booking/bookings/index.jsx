@@ -1,9 +1,16 @@
 import { func, shape } from "prop-types";
 import { DragDropContext } from "react-beautiful-dnd";
-import Column from "./Column";
+import { DndColumn } from "components";
 import { ColumnsWrapper } from "./styled";
 
-const Bookings = ({ onDragEnd, onDragStart, columns, bookings, t }) => (
+const Bookings = ({
+  onDragEnd,
+  onDragStart,
+  // isDropDisabled,
+  columns,
+  bookings
+  // t
+}) => (
   <DragDropContext {...{ onDragStart, onDragEnd }}>
     <ColumnsWrapper>
       {Object.values(columns).map(column => {
@@ -11,12 +18,17 @@ const Bookings = ({ onDragEnd, onDragStart, columns, bookings, t }) => (
           .map(id => bookings.get(id))
           .filter(o => !!o);
         return (
-          <Column
+          <DndColumn
             {...{
-              ...column,
-              t,
-              bookings: columnBookings,
-              key: column.id
+              key: column.id,
+              id: column.id,
+              title: column.title,
+              items: columnBookings,
+              isDropDisabled: false,
+              isColumnGrayedOut: false,
+              handleCardClick: undefined,
+              renderCardHeader: () => "header",
+              renderCardDetails: () => "details"
             }}
           />
         );

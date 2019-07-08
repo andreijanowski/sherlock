@@ -46,6 +46,7 @@ class BookingsPage extends PureComponent {
       business,
       businessId,
       businesses,
+      bookings,
       changeCurrentBusiness
     } = this.props;
 
@@ -68,6 +69,7 @@ class BookingsPage extends PureComponent {
             onDragEnd: this.handleDragEnd,
             onDragStart: this.handleDragStart,
             columns,
+            bookings,
             t
           }}
         />
@@ -99,6 +101,7 @@ export default requireAuth(true)(
       state => {
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
         const business = businessData && businessData.get("businesses").first();
+        const bookings = state.getIn(["bookings", "data", "bookings"]);
 
         return {
           business: business && business.get("attributes"),
@@ -108,7 +111,8 @@ export default requireAuth(true)(
             "profileBusinesses",
             "data",
             "businesses"
-          ])
+          ]),
+          bookings
         };
       },
       {
