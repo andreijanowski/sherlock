@@ -28,7 +28,7 @@ const Bookings = ({
               isColumnGrayedOut: false,
               handleCardClick: undefined,
               renderCardHeader: () => "header",
-              renderCardDetails: () => "details"
+              renderCardDetails: id => `details ${id}`
             }}
           />
         );

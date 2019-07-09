@@ -39,6 +39,52 @@ class BookingsPage extends PureComponent {
     });
   };
 
+  handleDragEnd = ({ destination, source, draggableId }) => {
+    if (
+      !destination ||
+      (destination.droppableId === source.droppableId &&
+        destination.index === source.index)
+    ) {
+      return;
+    }
+
+    this.setState(state => {
+      const sourceColumn = state.columns[source.droppableId];
+      const newSourceBookingIds = Array.from(sourceColumn.bookingIds);
+      newSourceBookingIds.splice(source.index, 1);
+      if (source.droppableId === destination.droppableId) {
+        newSourceBookingIds.splice(destination.index, 0, draggableId);
+        return {
+          ...state,
+          columns: {
+            ...state.columns,
+            [sourceColumn.id]: {
+              ...sourceColumn,
+              bookingIds: newSourceBookingIds
+            }
+          }
+        };
+      }
+      const destinationColumn = state.columns[destination.droppableId];
+      const newDestinationBookingIds = Array.from(destinationColumn.bookingIds);
+      newDestinationBookingIds.splice(destination.index, 0, draggableId);
+      return {
+        ...state,
+        columns: {
+          ...state.columns,
+          [sourceColumn.id]: {
+            ...sourceColumn,
+            bookingIds: newSourceBookingIds
+          },
+          [destinationColumn.id]: {
+            ...destinationColumn,
+            bookingIds: newDestinationBookingIds
+          }
+        }
+      };
+    });
+  };
+
   render() {
     const {
       t,
