@@ -1,16 +1,11 @@
 import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 
-export const ColumnsWrapper = styled(Flex).attrs({ mx: -2 })`
-  overflow: auto;
-`;
-
 export const ColumnWrapper = styled(Flex).attrs({
   flexDirection: "column",
-  width: 1 / 5,
   p: 2
 })`
-  min-width: 280px;
+  width: 280px;
 `;
 
 export const ColumnHeader = styled(Flex).attrs({

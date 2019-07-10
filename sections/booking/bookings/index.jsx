@@ -1,7 +1,8 @@
 import { func, shape } from "prop-types";
 import { DragDropContext } from "react-beautiful-dnd";
-import { DndColumn } from "components";
-import { ColumnsWrapper } from "./styled";
+import { DndColumn, DndTable, Timeline } from "components";
+import { ColumnsWrapper, TablesWrapper } from "./styled";
+import { columnsList } from "../utils";
 
 const Bookings = ({
   onDragEnd,
@@ -9,33 +10,50 @@ const Bookings = ({
   // isDropDisabled,
   columns,
   bookings
+  // openPeriods TODO: parse open periods and use it in timeline
   // t
-}) => (
-  <DragDropContext {...{ onDragStart, onDragEnd }}>
-    <ColumnsWrapper>
-      {Object.values(columns).map(column => {
-        const columnBookings = column.bookingIds
-          .map(id => bookings.get(id))
-          .filter(o => !!o);
-        return (
-          <DndColumn
-            {...{
-              key: column.id,
-              id: column.id,
-              title: column.title,
-              items: columnBookings,
-              isDropDisabled: false,
-              isColumnGrayedOut: false,
-              handleCardClick: undefined,
-              renderCardHeader: () => "header",
-              renderCardDetails: id => `details ${id}`
-            }}
-          />
-        );
-      })}
-    </ColumnsWrapper>
-  </DragDropContext>
-);
+}) => {
+  const newBookings = columns.newBookings.bookingIds
+    .map(id => bookings.get(id))
+    .filter(o => !!o);
+
+  return (
+    <DragDropContext {...{ onDragStart, onDragEnd }}>
+      <ColumnsWrapper>
+        <DndColumn
+          {...{
+            key: columns.newBookings.id,
+            id: columns.newBookings.id,
+            title: columns.newBookings.title,
+            items: newBookings,
+            isDropDisabled: false,
+            isColumnGrayedOut: false,
+            handleCardClick: undefined,
+            renderCardHeader: () => "header",
+            renderCardDetails: id => `details ${id}`
+          }}
+        />
+        <TablesWrapper>
+          <Timeline {...{ from: 32400, to: 86400, slots: 900 }} />
+          {Object.values(columns).map(column =>
+            column.id !== columnsList.newBookings ? (
+              <DndTable
+                {...{
+                  key: column.id,
+                  id: column.id,
+                  seats: column.seats,
+                  name: column.name,
+                  items: [],
+                  isDropDisabled: false
+                }}
+              />
+            ) : null
+          )}
+        </TablesWrapper>
+      </ColumnsWrapper>
+    </DragDropContext>
+  );
+};
 
 Bookings.propTypes = {
   t: func.isRequired,

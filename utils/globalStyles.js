@@ -16,7 +16,9 @@ import {
   faArrowAltCircleRight,
   faEye,
   faLock,
-  faHourglassStart
+  faHourglassStart,
+  faAngleLeft,
+  faAngleRight
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebookF,
@@ -52,7 +54,9 @@ library.add(
   faArrowAltCircleRight,
   faEye,
   faLock,
-  faHourglassStart
+  faHourglassStart,
+  faAngleLeft,
+  faAngleRight
 );
 
 export default createGlobalStyle`

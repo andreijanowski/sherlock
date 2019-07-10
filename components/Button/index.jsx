@@ -101,7 +101,7 @@ const background = css`
 const newOrderButton = css`
   padding: 12px;
   font-weight: ${p => p.theme.fontWeights.bold};
-  font-size: 12px;
+  font-size: ${p => p.theme.fontSizes.f12};
   line-height: 16px;
   text-transform: uppercase;
   border: none;
