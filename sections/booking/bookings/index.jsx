@@ -1,6 +1,7 @@
-import { func, shape } from "prop-types";
+import { func, shape, number, arrayOf } from "prop-types";
 import { DragDropContext } from "react-beautiful-dnd";
-import { DndColumn, DndTable, Timeline } from "components";
+import { DndColumn, DndTable, TimeSlotPicker, DaySwitcher } from "components";
+import { Flex } from "@rebass/grid";
 import { ColumnsWrapper, TablesWrapper } from "./styled";
 import { columnsList } from "../utils";
 
@@ -8,9 +9,11 @@ const Bookings = ({
   onDragEnd,
   onDragStart,
   // isDropDisabled,
+  choosedDate,
   columns,
-  bookings
-  // openPeriods TODO: parse open periods and use it in timeline
+  bookings,
+  slots,
+  changeDate
   // t
 }) => {
   const newBookings = columns.newBookings.bookingIds
@@ -34,21 +37,24 @@ const Bookings = ({
           }}
         />
         <TablesWrapper>
-          <Timeline {...{ from: 32400, to: 86400, slots: 900 }} />
-          {Object.values(columns).map(column =>
-            column.id !== columnsList.newBookings ? (
-              <DndTable
-                {...{
-                  key: column.id,
-                  id: column.id,
-                  seats: column.seats,
-                  name: column.name,
-                  items: [],
-                  isDropDisabled: false
-                }}
-              />
-            ) : null
-          )}
+          <DaySwitcher {...{ choosedDate, changeDate }} />
+          <TimeSlotPicker {...{ slots }} />
+          <Flex width={1} flexWrap="wrap" justifyContent="space-around">
+            {Object.values(columns).map(column =>
+              column.id !== columnsList.newBookings ? (
+                <DndTable
+                  {...{
+                    key: column.id,
+                    id: column.id,
+                    seats: column.seats,
+                    name: column.name,
+                    items: [],
+                    isDropDisabled: false
+                  }}
+                />
+              ) : null
+            )}
+          </Flex>
         </TablesWrapper>
       </ColumnsWrapper>
     </DragDropContext>
@@ -59,8 +65,11 @@ Bookings.propTypes = {
   t: func.isRequired,
   onDragEnd: func.isRequired,
   bookings: shape(),
+  slots: arrayOf(number).isRequired,
   columns: shape().isRequired,
-  onDragStart: func.isRequired
+  onDragStart: func.isRequired,
+  choosedDate: shape().isRequired,
+  changeDate: func.isRequired
 };
 
 Bookings.defaultProps = {

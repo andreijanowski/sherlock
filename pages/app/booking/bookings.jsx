@@ -5,8 +5,9 @@ import { func, string, shape } from "prop-types";
 import BookingLayout from "sections/booking/Layout";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
-import { parseBookings } from "sections/booking/utils";
+import { parseBookings, prepareTimelineSlots } from "sections/booking/utils";
 import Bookings from "sections/booking/bookings";
+import moment from "moment";
 
 const namespaces = ["booking", "app", "forms"];
 
@@ -19,16 +20,27 @@ class BookingsPage extends PureComponent {
 
   constructor(props) {
     super(props);
+    const { bookings, openPeriods, t } = props;
     this.state = {
-      columns: parseBookings(props.bookings, props.t)
+      columns: parseBookings(bookings, t),
+      choosedDate: moment()
     };
+    const { choosedDate } = this.state;
+    this.state.slots = openPeriods
+      ? prepareTimelineSlots({ openPeriods, choosedDate })
+      : [];
   }
 
-  componentDidUpdate(prevProps) {
-    const { bookings } = this.props;
-    const { bookings: prevBookings } = prevProps;
+  componentDidUpdate(prevProps, prevState) {
+    const { bookings, openPeriods } = this.props;
+    const { bookings: prevBookings, openPeriods: prevOpenPeriods } = prevProps;
+    const { choosedDate } = this.state;
+    const { choosedDate: prevChoosedDate } = prevState;
     if (bookings !== prevBookings) {
       this.refreshColumnsContent();
+    }
+    if (openPeriods !== prevOpenPeriods || choosedDate !== prevChoosedDate) {
+      this.refreshPeriods();
     }
   }
 
@@ -36,6 +48,16 @@ class BookingsPage extends PureComponent {
     const { bookings, t } = this.props;
     this.setState({
       columns: parseBookings(bookings, t)
+    });
+  };
+
+  refreshPeriods = () => {
+    const { openPeriods } = this.props;
+    const { choosedDate } = this.state;
+    this.setState({
+      slots: openPeriods
+        ? prepareTimelineSlots({ openPeriods, choosedDate, slotDuration: 900 })
+        : []
     });
   };
 
@@ -85,6 +107,8 @@ class BookingsPage extends PureComponent {
     });
   };
 
+  setDate = choosedDate => this.setState({ choosedDate });
+
   render() {
     const {
       t,
@@ -93,11 +117,10 @@ class BookingsPage extends PureComponent {
       businessId,
       businesses,
       bookings,
-      changeCurrentBusiness,
-      openPeriods
+      changeCurrentBusiness
     } = this.props;
 
-    const { columns } = this.state;
+    const { columns, choosedDate, slots } = this.state;
 
     return (
       <BookingLayout
@@ -117,7 +140,9 @@ class BookingsPage extends PureComponent {
             onDragStart: this.handleDragStart,
             columns,
             bookings,
-            openPeriods,
+            slots,
+            choosedDate,
+            changeDate: this.setDate,
             t
           }}
         />

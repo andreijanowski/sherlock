@@ -1,11 +1,16 @@
-import { createRef, useState } from "react";
-import { number } from "prop-types";
+import { createRef, useState, useEffect } from "react";
+import { number, arrayOf } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
-import { Wrapper, SlotsWrapper, SlotsScroller, Slot, Arrow } from "./styled";
-import { generateSlotsArray } from "./utils";
+import {
+  TimeSlotPickerWrapper,
+  SlotsWrapper,
+  SlotsScroller,
+  Slot,
+  Arrow
+} from "../styled";
 
-const Timeline = ({ from, to, slots }) => {
+const Timeline = ({ slots }) => {
   const slotsWrapper = createRef();
   const slotsScroller = createRef();
   const [scrollPosition, scrollTo] = useState(0);
@@ -24,34 +29,41 @@ const Timeline = ({ from, to, slots }) => {
     });
   };
 
+  useEffect(() => {
+    scrollTo(0);
+  }, [slots]);
+
   return (
-    <Wrapper>
-      <Arrow onClick={() => calculateAllSlotsWidth("prev")}>
+    <TimeSlotPickerWrapper>
+      <Arrow left onClick={() => calculateAllSlotsWidth("prev")}>
         <FontAwesomeIcon icon={["fa", "angle-left"]} />
       </Arrow>
       <SlotsWrapper ref={slotsWrapper}>
         <SlotsScroller ref={slotsScroller} scrollPosition={scrollPosition}>
-          {generateSlotsArray({ from, to, slots }).map(s => (
-            <Slot>
-              {moment({
-                minutes: (s / 60) % 60,
-                hours: (s / 60 / 60) % 24
-              }).format("hh:mm A")}
-            </Slot>
-          ))}
+          {slots.map(s => {
+            const time = moment({
+              minutes: (s / 60) % 60,
+              hours: (s / 60 / 60) % 24
+            });
+            return (
+              <Slot>
+                {time.format("hh:mm")}
+                <br />
+                {time.format("A")}
+              </Slot>
+            );
+          })}
         </SlotsScroller>
       </SlotsWrapper>
       <Arrow onClick={() => calculateAllSlotsWidth("next")}>
         <FontAwesomeIcon icon={["fa", "angle-right"]} />
       </Arrow>
-    </Wrapper>
+    </TimeSlotPickerWrapper>
   );
 };
 
 Timeline.propTypes = {
-  from: number.isRequired,
-  to: number.isRequired,
-  slots: number.isRequired
+  slots: arrayOf(number).isRequired
 };
 
 export default Timeline;
