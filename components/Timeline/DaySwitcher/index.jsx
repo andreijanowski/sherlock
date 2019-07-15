@@ -7,45 +7,48 @@ import DayPicker from "react-day-picker";
 import "react-day-picker/lib/style.css";
 import {
   SlotsWrapper,
+  Wrapper,
   Date,
   Arrow,
   DaySwitcherWrapper,
   DayPickerWrapper
 } from "../styled";
 
-const DaySwitcher = ({ changeDate, choosedDate }) => {
+const DaySwitcher = ({ chooseDate, choosenDate }) => {
   const [isCalendarVisible, setCalendarVisibility] = useState(false);
   DaySwitcher.handleClickOutside = () => setCalendarVisibility(false);
 
   return (
     <DaySwitcherWrapper>
-      <Arrow
-        left
-        onClick={() => changeDate(moment(choosedDate).subtract(1, "d"))}
-      >
-        <FontAwesomeIcon icon={["fa", "angle-left"]} />
-      </Arrow>
-      <SlotsWrapper
-        onClick={() => {
-          setCalendarVisibility(state => !state);
-        }}
-      >
-        <Date>
-          {choosedDate.format("Do MMM")} <br />
-          {choosedDate.format("YYYY")}
-        </Date>
-      </SlotsWrapper>
-      <Arrow onClick={() => changeDate(moment(choosedDate).add(1, "d"))}>
-        <FontAwesomeIcon icon={["fa", "angle-right"]} />
-      </Arrow>
+      <Wrapper>
+        <Arrow
+          left
+          onClick={() => chooseDate(moment(choosenDate).subtract(1, "d"))}
+        >
+          <FontAwesomeIcon icon={["fa", "angle-left"]} />
+        </Arrow>
+        <SlotsWrapper
+          onClick={() => {
+            setCalendarVisibility(state => !state);
+          }}
+        >
+          <Date>
+            {choosenDate.format("Do MMM")} <br />
+            {choosenDate.format("YYYY")}
+          </Date>
+        </SlotsWrapper>
+        <Arrow onClick={() => chooseDate(moment(choosenDate).add(1, "d"))}>
+          <FontAwesomeIcon icon={["fa", "angle-right"]} />
+        </Arrow>
+      </Wrapper>
       {isCalendarVisible && (
         <DayPickerWrapper>
           <DayPicker
             showOutsideDays
-            selectedDays={choosedDate.toDate()}
+            selectedDays={choosenDate.toDate()}
             onDayClick={date => {
               setCalendarVisibility(false);
-              changeDate(moment(date));
+              chooseDate(moment(date));
             }}
           />
         </DayPickerWrapper>
@@ -55,8 +58,8 @@ const DaySwitcher = ({ changeDate, choosedDate }) => {
 };
 
 DaySwitcher.propTypes = {
-  choosedDate: instanceOf(moment).isRequired,
-  changeDate: func.isRequired
+  choosenDate: instanceOf(moment).isRequired,
+  chooseDate: func.isRequired
 };
 
 const clickOutsideConfig = {

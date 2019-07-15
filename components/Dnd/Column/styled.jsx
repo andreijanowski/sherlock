@@ -5,7 +5,7 @@ export const ColumnWrapper = styled(Flex).attrs({
   flexDirection: "column",
   p: 2
 })`
-  width: 280px;
+  width: ${p => p.width || "280px"};
 `;
 
 export const ColumnHeader = styled(Flex).attrs({

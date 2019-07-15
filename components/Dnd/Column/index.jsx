@@ -1,5 +1,5 @@
 import { Droppable } from "react-beautiful-dnd";
-import { shape, string, arrayOf, func, bool } from "prop-types";
+import { shape, string, arrayOf, func, bool, number } from "prop-types";
 import Cards from "../Cards";
 import {
   ColumnWrapper,
@@ -17,9 +17,10 @@ const Column = ({
   isColumnGrayedOut,
   handleCardClick,
   renderCardHeader,
-  renderCardDetails
+  renderCardDetails,
+  width
 }) => (
-  <ColumnWrapper>
+  <ColumnWrapper {...{ width }}>
     <ColumnHeader>
       <ColumnTitle>{title}</ColumnTitle>
       <ItemsNumber isColumnGrayedOut={isColumnGrayedOut}>
@@ -59,13 +60,15 @@ Column.propTypes = {
   isColumnGrayedOut: bool,
   handleCardClick: func,
   renderCardHeader: func.isRequired,
-  renderCardDetails: func.isRequired
+  renderCardDetails: func.isRequired,
+  width: number
 };
 
 Column.defaultProps = {
   isDropDisabled: false,
   isColumnGrayedOut: false,
-  handleCardClick: undefined
+  handleCardClick: undefined,
+  width: undefined
 };
 
 export default Column;

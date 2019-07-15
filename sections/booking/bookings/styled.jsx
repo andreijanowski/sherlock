@@ -8,5 +8,5 @@ export const ColumnsWrapper = styled(Flex).attrs(() => ({
 export const TablesWrapper = styled(Flex).attrs(() => ({
   mx: -2,
   flexWrap: "wrap",
-  width: "calc(100% - 280px)"
+  width: "calc(100% - 200px)"
 }))``;

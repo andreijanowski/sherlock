@@ -2,6 +2,7 @@ import { func, shape, number, arrayOf } from "prop-types";
 import { DragDropContext } from "react-beautiful-dnd";
 import { DndColumn, DndTable, TimeSlotPicker, DaySwitcher } from "components";
 import { Flex } from "@rebass/grid";
+import moment from "moment";
 import { ColumnsWrapper, TablesWrapper } from "./styled";
 import { columnsList } from "../utils";
 
@@ -9,12 +10,14 @@ const Bookings = ({
   onDragEnd,
   onDragStart,
   // isDropDisabled,
-  choosedDate,
+  choosenDate,
+  choosenSlot,
+  chooseSlot,
   columns,
   bookings,
   slots,
-  changeDate
-  // t
+  chooseDate,
+  t
 }) => {
   const newBookings = columns.newBookings.bookingIds
     .map(id => bookings.get(id))
@@ -32,13 +35,27 @@ const Bookings = ({
             isDropDisabled: false,
             isColumnGrayedOut: false,
             handleCardClick: undefined,
-            renderCardHeader: () => "header",
-            renderCardDetails: id => `details ${id}`
+            width: "200px",
+            renderCardHeader: id => {
+              const from = bookings.getIn([id, "attributes", "from"]);
+              return `${moment(
+                bookings.getIn([id, "attributes", "date"])
+              ).format("Do MMMM")}, ${moment({
+                minutes: (from / 60) % 60,
+                hours: (from / 60 / 60) % 24
+              }).format("h:mm A")}`;
+            },
+            renderCardDetails: id =>
+              `${t("partySize")}: ${bookings.getIn([
+                id,
+                "attributes",
+                "partySize"
+              ])}`
           }}
         />
         <TablesWrapper>
-          <DaySwitcher {...{ choosedDate, changeDate }} />
-          <TimeSlotPicker {...{ slots }} />
+          <DaySwitcher {...{ choosenDate, chooseDate }} />
+          <TimeSlotPicker {...{ slots, choosenSlot, chooseSlot }} />
           <Flex width={1} flexWrap="wrap" justifyContent="space-around">
             {Object.values(columns).map(column =>
               column.id !== columnsList.newBookings ? (
@@ -68,12 +85,15 @@ Bookings.propTypes = {
   slots: arrayOf(number).isRequired,
   columns: shape().isRequired,
   onDragStart: func.isRequired,
-  choosedDate: shape().isRequired,
-  changeDate: func.isRequired
+  choosenDate: shape().isRequired,
+  chooseDate: func.isRequired,
+  chooseSlot: func.isRequired,
+  choosenSlot: number
 };
 
 Bookings.defaultProps = {
-  bookings: null
+  bookings: null,
+  choosenSlot: undefined
 };
 
 export default Bookings;

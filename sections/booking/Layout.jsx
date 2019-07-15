@@ -31,7 +31,9 @@ const BookingLayout = ({
   business,
   currentBusinessId,
   businesses,
-  changeCurrentBusiness
+  changeCurrentBusiness,
+  slotDuration,
+  setSlotDuration
 }) => {
   // TODO: pass proper values from business as inital state
   const [maxAmountPerBooking, setMaxAmountPerBooking] = useState(15);
@@ -42,7 +44,7 @@ const BookingLayout = ({
     timeOfGuestsStayingInRestaurant,
     setTimeOfGuestsStayingInRestaurant
   ] = useState(15);
-  const [timeSlots, setTimeSlots] = useState(15);
+  const [timeSlots, setTimeSlots] = useState(slotDuration);
 
   return (
     <AppLayout
@@ -119,11 +121,7 @@ const BookingLayout = ({
                 onChange={e => {
                   setTimeSlots(e.target.value);
                 }}
-                onBlur={() =>
-                  console.log(
-                    "TODO: Here we should update business by API endpoint"
-                  )
-                }
+                onBlur={() => setSlotDuration(timeSlots)}
               />
               <span>{` ${t("min")}`}</span>
             </ButtonWithImageText>
@@ -211,7 +209,9 @@ BookingLayout.propTypes = {
   currentBusinessId: string,
   dishesLength: number,
   deliveriesLength: number,
-  orderPeriodsLength: number
+  orderPeriodsLength: number,
+  slotDuration: number.isRequired,
+  setSlotDuration: func.isRequired
 };
 
 BookingLayout.defaultProps = {

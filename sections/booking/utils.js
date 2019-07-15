@@ -1,4 +1,5 @@
 const ONE_DAY_IN_SECONDS = 86400;
+const ONE_MINUTE_IN_SECONDS = 60;
 
 export const columnsList = {
   newBookings: "newBookings"
@@ -111,14 +112,14 @@ export const parseBookings = (bookings, t) => ({
 
 export const prepareTimelineSlots = ({
   openPeriods,
-  choosedDate,
+  choosenDate,
   slotDuration
 }) => {
   const periods = [];
   const slotsArray = [];
   if (openPeriods && openPeriods.forEach) {
     openPeriods.forEach(p => {
-      if (p.getIn(["attributes", "weekday"]) === choosedDate.day()) {
+      if (p.getIn(["attributes", "weekday"]) === choosenDate.day()) {
         periods.push({
           from: p.getIn(["attributes", "openedFrom"]),
           to: p.getIn(["attributes", "openedTo"])
@@ -127,16 +128,18 @@ export const prepareTimelineSlots = ({
     });
   }
 
+  const slotDurationInSeconds = slotDuration * ONE_MINUTE_IN_SECONDS;
+
   periods.forEach(({ from, to }) => {
     let i = 0;
     if (from < to) {
-      while (from + slotDuration * i < to) {
-        slotsArray.push(from + slotDuration * i);
+      while (from + slotDurationInSeconds * i < to) {
+        slotsArray.push(from + slotDurationInSeconds * i);
         i += 1;
       }
     } else {
-      while (from + slotDuration * i < to + ONE_DAY_IN_SECONDS) {
-        slotsArray.push(from + slotDuration * i);
+      while (from + slotDurationInSeconds * i < to + ONE_DAY_IN_SECONDS) {
+        slotsArray.push(from + slotDurationInSeconds * i);
         i += 1;
       }
     }

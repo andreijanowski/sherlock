@@ -1,5 +1,5 @@
 import { createRef, useState, useEffect } from "react";
-import { number, arrayOf } from "prop-types";
+import { number, arrayOf, func } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import {
@@ -10,7 +10,7 @@ import {
   Arrow
 } from "../styled";
 
-const Timeline = ({ slots }) => {
+const Timeline = ({ slots, choosenSlot, chooseSlot }) => {
   const slotsWrapper = createRef();
   const slotsScroller = createRef();
   const [scrollPosition, scrollTo] = useState(0);
@@ -46,7 +46,7 @@ const Timeline = ({ slots }) => {
               hours: (s / 60 / 60) % 24
             });
             return (
-              <Slot>
+              <Slot isActive={choosenSlot === s} onClick={() => chooseSlot(s)}>
                 {time.format("hh:mm")}
                 <br />
                 {time.format("A")}
@@ -63,7 +63,13 @@ const Timeline = ({ slots }) => {
 };
 
 Timeline.propTypes = {
-  slots: arrayOf(number).isRequired
+  slots: arrayOf(number).isRequired,
+  choosenSlot: number,
+  chooseSlot: func.isRequired
+};
+
+Timeline.defaultProps = {
+  choosenSlot: undefined
 };
 
 export default Timeline;

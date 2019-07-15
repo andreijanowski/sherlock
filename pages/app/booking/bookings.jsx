@@ -21,25 +21,36 @@ class BookingsPage extends PureComponent {
   constructor(props) {
     super(props);
     const { bookings, openPeriods, t } = props;
+    const choosenDate = moment();
+    const slots = openPeriods
+      ? prepareTimelineSlots({ openPeriods, choosenDate })
+      : [];
+
     this.state = {
       columns: parseBookings(bookings, t),
-      choosedDate: moment()
+      choosenDate,
+      slots,
+      choosenSlot: slots[0],
+      slotDuration: 30
     };
-    const { choosedDate } = this.state;
-    this.state.slots = openPeriods
-      ? prepareTimelineSlots({ openPeriods, choosedDate })
-      : [];
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { bookings, openPeriods } = this.props;
     const { bookings: prevBookings, openPeriods: prevOpenPeriods } = prevProps;
-    const { choosedDate } = this.state;
-    const { choosedDate: prevChoosedDate } = prevState;
+    const { choosenDate, slotDuration } = this.state;
+    const {
+      choosenDate: prevChoosenDate,
+      slotDuration: prevSlotDuration
+    } = prevState;
     if (bookings !== prevBookings) {
       this.refreshColumnsContent();
     }
-    if (openPeriods !== prevOpenPeriods || choosedDate !== prevChoosedDate) {
+    if (
+      openPeriods !== prevOpenPeriods ||
+      choosenDate !== prevChoosenDate ||
+      slotDuration !== prevSlotDuration
+    ) {
       this.refreshPeriods();
     }
   }
@@ -53,11 +64,13 @@ class BookingsPage extends PureComponent {
 
   refreshPeriods = () => {
     const { openPeriods } = this.props;
-    const { choosedDate } = this.state;
+    const { choosenDate, slotDuration } = this.state;
+    const slots = openPeriods
+      ? prepareTimelineSlots({ openPeriods, choosenDate, slotDuration })
+      : [];
     this.setState({
-      slots: openPeriods
-        ? prepareTimelineSlots({ openPeriods, choosedDate, slotDuration: 900 })
-        : []
+      slots,
+      choosenSlot: slots[0]
     });
   };
 
@@ -107,7 +120,11 @@ class BookingsPage extends PureComponent {
     });
   };
 
-  setDate = choosedDate => this.setState({ choosedDate });
+  chooseDate = choosenDate => this.setState({ choosenDate });
+
+  chooseSlot = choosenSlot => this.setState({ choosenSlot });
+
+  setSlotDuration = slotDuration => this.setState({ slotDuration });
 
   render() {
     const {
@@ -120,7 +137,13 @@ class BookingsPage extends PureComponent {
       changeCurrentBusiness
     } = this.props;
 
-    const { columns, choosedDate, slots } = this.state;
+    const {
+      columns,
+      choosenDate,
+      slots,
+      choosenSlot,
+      slotDuration
+    } = this.state;
 
     return (
       <BookingLayout
@@ -131,7 +154,9 @@ class BookingsPage extends PureComponent {
           currentBusinessId: businessId,
           business,
           businesses,
-          changeCurrentBusiness
+          changeCurrentBusiness,
+          slotDuration,
+          setSlotDuration: this.setSlotDuration
         }}
       >
         <Bookings
@@ -141,8 +166,10 @@ class BookingsPage extends PureComponent {
             columns,
             bookings,
             slots,
-            choosedDate,
-            changeDate: this.setDate,
+            choosenDate,
+            choosenSlot,
+            chooseDate: this.chooseDate,
+            chooseSlot: this.chooseSlot,
             t
           }}
         />

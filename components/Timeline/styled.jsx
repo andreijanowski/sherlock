@@ -1,21 +1,25 @@
 import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 
-export const DaySwitcherWrapper = styled(Flex).attrs(() => ({
+export const DaySwitcherWrapper = styled.div`
+  position: relative;
+`;
+
+export const Wrapper = styled(Flex).attrs(() => ({
   mx: 2,
   mt: 3
 }))`
   position: relative;
   max-width: 100%;
   height: 42px;
+  overflow: hidden;
   background-color: ${p => `rgb(${p.theme.colors.white})`};
   border-radius: ${p => p.theme.radius.default};
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
 `;
 
-export const TimeSlotPickerWrapper = styled(DaySwitcherWrapper)`
+export const TimeSlotPickerWrapper = styled(Wrapper)`
   max-width: calc(100% - 152px);
-  overflow: hidden;
 `;
 
 export const SlotsWrapper = styled(Flex)`
@@ -32,6 +36,11 @@ export const Slot = styled(Box).attrs(() => ({ p: 2 }))`
   text-align: center;
   border-left: 1px solid rgb(${p => p.theme.colors.linkWater});
   cursor: pointer;
+
+  ${p =>
+    p.isActive &&
+    `color: rgb(${p.theme.colors.white});
+    background-color: rgb(${p.theme.colors.blue});`}
 
   &:last-child {
     border-right: 1px solid rgb(${p => p.theme.colors.linkWater});
@@ -82,7 +91,8 @@ export const CalendarIcon = styled(Flex).attrs(() => ({
 
 export const DayPickerWrapper = styled.div`
   position: absolute;
-  left: 136px;
+  top: 16px;
+  left: 144px;
   z-index: 1;
   background-color: ${p => `rgb(${p.theme.colors.white})`};
   border-radius: ${p => p.theme.radius.default};

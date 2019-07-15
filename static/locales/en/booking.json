@@ -8,5 +8,7 @@
   "timeOfGuestsStayingInRestaurant": "time of guests staying in restaurant",
   "maxAmountPerBooking": "max number of people per one booking",
   "and": "and",
-  "toSeeAnyNewBookings": "to see any new bookings"
+  "toSeeAnyNewBookings": "to see any new bookings",
+  "partySize": "Party size",
+  "newBookings": "New bookings"
 }
