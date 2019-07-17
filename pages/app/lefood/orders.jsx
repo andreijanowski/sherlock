@@ -5,7 +5,6 @@ import { func, string, shape, bool, number } from "prop-types";
 import LefoodLayout from "sections/lefood/Layout";
 import Orders from "sections/lefood/orders";
 import {
-  calcPendingOrders,
   parseOrders,
   columns as columnsNames,
   mergeOrdersData
@@ -204,7 +203,6 @@ class OrdersPage extends PureComponent {
             t,
             lng,
             page: "orders",
-            pendingOrdersLength: calcPendingOrders(orders),
             updateBusiness,
             currentBusinessId: businessId,
             dishesLength,

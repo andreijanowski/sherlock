@@ -89,15 +89,6 @@ export const setIsDropDisabled = (draggedState, droppableId) => {
   return true;
 };
 
-export const calcPendingOrders = orders =>
-  orders
-    ? orders.filter(
-        o =>
-          o.getIn(["attributes", "state"]) !== "completed" &&
-          o.getIn(["attributes", "state"]) !== "rejected"
-      ).size
-    : 0;
-
 export const mergeOrdersData = (orders, elements) =>
   orders
     ? orders.map(order => {
