@@ -106,6 +106,20 @@ const NavBar = ({ t, lng, logout }) => (
       </SubitemsWrapper>
     </Item>
     <Item>
+      <Link {...{ lng, route: `/app/booking/bookings/` }}>
+        <Icon>
+          <Bookings />
+        </Icon>
+      </Link>
+      <SubitemsWrapper>
+        <Subitems>
+          <Link {...{ lng, route: `/app/booking/bookings/` }}>
+            <Subitem>{t("app:bookings")}</Subitem>
+          </Link>
+        </Subitems>
+      </SubitemsWrapper>
+    </Item>
+    <Item>
       <Link {...{ lng, route: `/app/subscriptions/` }}>
         <Icon>
           <Subscriptions />
@@ -144,16 +158,6 @@ const NavBar = ({ t, lng, logout }) => (
       <SubitemsWrapper>
         <Subitems>
           <Subitem>{t("app:controlCenter")}</Subitem>
-        </Subitems>
-      </SubitemsWrapper>
-    </Item>
-    <Item inactive>
-      <Icon inactive>
-        <Bookings />
-      </Icon>
-      <SubitemsWrapper>
-        <Subitems>
-          <Subitem>{t("app:bookings")}</Subitem>
         </Subitems>
       </SubitemsWrapper>
     </Item>
