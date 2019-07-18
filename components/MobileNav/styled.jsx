@@ -36,9 +36,9 @@ export const IconWrapper = styled.div`
   }
 `;
 
-export const ToggledMobileMenu = styled(Flex).attrs({
+export const ToggledMobileMenu = styled(Flex).attrs(() => ({
   flexDirection: "column"
-})`
+}))`
   position: absolute;
   top: 60px;
   left: -150%;
@@ -49,9 +49,9 @@ export const ToggledMobileMenu = styled(Flex).attrs({
   transition: left 0.5s;
 `;
 
-export const MenuScrollContainer = styled(Box).attrs({
+export const MenuScrollContainer = styled(Box).attrs(() => ({
   p: 4
-})`
+}))`
   overflow-y: scroll;
 `;
 
@@ -60,9 +60,9 @@ export const IconLabel = styled.span`
   font-weight: 500;
 `;
 
-export const SubMenuWrapper = styled(Box).attrs({
+export const SubMenuWrapper = styled(Box).attrs(() => ({
   p: 4
-})`
+}))`
   position: absolute;
   top: 0;
   left: -120%;

@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
-export const Wrapper = styled(Flex).attrs({
+export const Wrapper = styled(Flex).attrs(() => ({
   alignItems: "center",
   justifyContent: "center",
   flexDirection: "column",
   width: 1,
   px: 3
-})`
+}))`
   position: relative;
   overflow: hidden;
   text-align: center;

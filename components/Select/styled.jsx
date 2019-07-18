@@ -66,11 +66,11 @@ export const ItemsWrapper = styled(Flex).attrs(p => ({
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
 `;
 
-export const Items = styled(Flex).attrs({
+export const Items = styled(Flex).attrs(() => ({
   flexDirection: "column",
   mt: 2,
   width: 1
-})`
+}))`
   position: relative;
   max-height: 250px;
   overflow: scroll;

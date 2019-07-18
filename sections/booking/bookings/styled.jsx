@@ -9,4 +9,6 @@ export const TablesWrapper = styled(Flex).attrs(() => ({
   mx: -2,
   flexWrap: "wrap",
   width: "calc(100% - 200px)"
-}))``;
+}))`
+  position: relative;
+`;

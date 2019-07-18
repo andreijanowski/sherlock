@@ -1,18 +1,18 @@
 import styled, { createGlobalStyle } from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 
-export const ColumnsWrapper = styled(Flex).attrs({ mx: -2 })`
+export const ColumnsWrapper = styled(Flex).attrs(() => ({ mx: -2 }))`
   overflow: auto;
 `;
 
-export const OrderDetail = styled(Box).attrs({ pb: 2 })`
+export const OrderDetail = styled(Box).attrs(() => ({ pb: 2 }))`
   color: rgba(${p => p.theme.colors.rollingStone});
   font-size: ${p => p.theme.fontSizes.f14};
 `;
 
-export const PaymentConfirmed = styled(Flex).attrs({
+export const PaymentConfirmed = styled(Flex).attrs(() => ({
   mb: 2
-})`
+}))`
   color: rgb(${p => p.theme.colors.greenHaze});
   font-size: ${p => p.theme.fontSizes.f14};
 `;
@@ -91,10 +91,10 @@ export const OrderDetailsSpacer = styled.div`
   background-color: rgb(${p => p.theme.colors.linkWaterDark});
 `;
 
-export const OrderDetailWrapper = styled(Flex).attrs({
+export const OrderDetailWrapper = styled(Flex).attrs(() => ({
   justifyContent: "space-between",
   pb: 3
-})`
+}))`
   color: rgb(
     ${p => (p.isBold ? p.theme.colors.dark : p.theme.colors.rollingStone)}
   );

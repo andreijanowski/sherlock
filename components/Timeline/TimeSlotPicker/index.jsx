@@ -13,12 +13,36 @@ import {
 const Timeline = ({ slots, choosenSlot, chooseSlot }) => {
   const slotsWrapper = createRef();
   const slotsScroller = createRef();
-  const [scrollPosition, scrollTo] = useState(0);
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    const choosenSlotIndex = slots.findIndex(e => e === choosenSlot);
+    if (choosenSlotIndex <= 0) {
+      setScrollPosition(0);
+    } else {
+      const wrapperWidth = slotsWrapper.current.offsetWidth;
+      const scrollerWidth = slotsScroller.current.offsetWidth;
+      const averageSlotWidth = scrollerWidth / slots.length;
+      setScrollPosition(
+        Math.max(
+          Math.min(
+            -(
+              averageSlotWidth * choosenSlotIndex -
+              (wrapperWidth - averageSlotWidth) / 2
+            ),
+            0
+          ),
+          wrapperWidth - scrollerWidth
+        )
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [slots, choosenSlot]);
 
   const calculateAllSlotsWidth = direction => {
     const wrapperWidth = slotsWrapper.current.offsetWidth;
     const scrollerWidth = slotsScroller.current.offsetWidth;
-    scrollTo(prevScrollPosition => {
+    setScrollPosition(prevScrollPosition => {
       if (direction === "prev") {
         return Math.min(prevScrollPosition + (wrapperWidth * 7) / 8, 0);
       }
@@ -28,10 +52,6 @@ const Timeline = ({ slots, choosenSlot, chooseSlot }) => {
       );
     });
   };
-
-  useEffect(() => {
-    scrollTo(0);
-  }, [slots]);
 
   return (
     <TimeSlotPickerWrapper>

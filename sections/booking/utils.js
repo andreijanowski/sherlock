@@ -147,3 +147,13 @@ export const prepareTimelineSlots = ({
 
   return slotsArray;
 };
+
+export const getSlotClosestToPresent = slots => {
+  const now = new Date();
+  const nowInSeconds =
+    now.getHours() * 60 * 60 + now.getMinutes() * 60 + now.getSeconds();
+  return slots.find(s => s >= nowInSeconds) || slots[slots.length - 1];
+};
+
+export const getSlotFromMoment = (slots, moment) =>
+  slots.find(s => s === moment);

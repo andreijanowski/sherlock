@@ -5,6 +5,7 @@ import { Flex } from "@rebass/grid";
 import moment from "moment";
 import { ColumnsWrapper, TablesWrapper } from "./styled";
 import { columnsList } from "../utils";
+import CardDetails from "./CardDetails";
 
 const Bookings = ({
   onDragEnd,
@@ -34,7 +35,7 @@ const Bookings = ({
             items: newBookings,
             isDropDisabled: false,
             isColumnGrayedOut: false,
-            handleCardClick: undefined,
+            handleCardClick: () => console.log("click"),
             width: "200px",
             renderCardHeader: id => {
               const from = bookings.getIn([id, "attributes", "from"]);
@@ -45,12 +46,7 @@ const Bookings = ({
                 hours: (from / 60 / 60) % 24
               }).format("h:mm A")}`;
             },
-            renderCardDetails: id =>
-              `${t("partySize")}: ${bookings.getIn([
-                id,
-                "attributes",
-                "partySize"
-              ])}`
+            renderCardDetails: id => <CardDetails {...{ t, id, bookings }} />
           }}
         />
         <TablesWrapper>
@@ -66,7 +62,7 @@ const Bookings = ({
                     seats: column.seats,
                     name: column.name,
                     items: [],
-                    isDropDisabled: false
+                    isDropDisabled: !choosenSlot
                   }}
                 />
               ) : null

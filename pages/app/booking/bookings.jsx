@@ -5,7 +5,12 @@ import { func, string, shape } from "prop-types";
 import BookingLayout from "sections/booking/Layout";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
-import { parseBookings, prepareTimelineSlots } from "sections/booking/utils";
+import {
+  parseBookings,
+  prepareTimelineSlots,
+  getSlotClosestToPresent,
+  getSlotFromMoment
+} from "sections/booking/utils";
 import Bookings from "sections/booking/bookings";
 import moment from "moment";
 
@@ -22,16 +27,18 @@ class BookingsPage extends PureComponent {
     super(props);
     const { bookings, openPeriods, t } = props;
     const choosenDate = moment();
+    const slotDuration = 30;
     const slots = openPeriods
-      ? prepareTimelineSlots({ openPeriods, choosenDate })
+      ? prepareTimelineSlots({ openPeriods, choosenDate, slotDuration })
       : [];
 
     this.state = {
       columns: parseBookings(bookings, t),
       choosenDate,
       slots,
-      choosenSlot: slots[0],
-      slotDuration: 30
+      choosenSlot: getSlotClosestToPresent(slots),
+      slotDuration,
+      draggableId: undefined
     };
   }
 
@@ -63,14 +70,29 @@ class BookingsPage extends PureComponent {
   };
 
   refreshPeriods = () => {
-    const { openPeriods } = this.props;
-    const { choosenDate, slotDuration } = this.state;
+    const { openPeriods, bookings } = this.props;
+    const { choosenDate, slotDuration, draggableId } = this.state;
     const slots = openPeriods
       ? prepareTimelineSlots({ openPeriods, choosenDate, slotDuration })
       : [];
+    const bookingFrom =
+      bookings && bookings.getIn([draggableId, "attributes", "from"]);
+    const choosenSlot = bookingFrom
+      ? getSlotFromMoment(slots, bookingFrom)
+      : getSlotClosestToPresent(slots);
     this.setState({
       slots,
-      choosenSlot: slots[0]
+      choosenSlot
+    });
+  };
+
+  handleDragStart = ({ draggableId }) => {
+    const { bookings } = this.props;
+    const bookingDate =
+      bookings && bookings.getIn([draggableId, "attributes", "date"]);
+    this.setState({
+      draggableId,
+      choosenDate: moment(bookingDate)
     });
   };
 
@@ -80,6 +102,13 @@ class BookingsPage extends PureComponent {
       (destination.droppableId === source.droppableId &&
         destination.index === source.index)
     ) {
+      this.setState(state => ({
+        draggableId: undefined,
+        choosenSlot:
+          state.choosenSlot !== undefined
+            ? state.choosenSlot
+            : getSlotClosestToPresent(state.slots)
+      }));
       return;
     }
 
@@ -91,6 +120,11 @@ class BookingsPage extends PureComponent {
         newSourceBookingIds.splice(destination.index, 0, draggableId);
         return {
           ...state,
+          draggableId: undefined,
+          choosenSlot:
+            state.choosenSlot !== undefined
+              ? state.choosenSlot
+              : getSlotClosestToPresent(state.slots),
           columns: {
             ...state.columns,
             [sourceColumn.id]: {
@@ -105,6 +139,11 @@ class BookingsPage extends PureComponent {
       newDestinationBookingIds.splice(destination.index, 0, draggableId);
       return {
         ...state,
+        draggableId: undefined,
+        choosenSlot:
+          state.choosenSlot !== undefined
+            ? state.choosenSlot
+            : getSlotClosestToPresent(state.slots),
         columns: {
           ...state.columns,
           [sourceColumn.id]: {

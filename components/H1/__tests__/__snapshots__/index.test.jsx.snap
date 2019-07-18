@@ -6,11 +6,7 @@ exports[`H1 component renders correctly 1`] = `
     Object {
       "$$typeof": Symbol(react.forward_ref),
       "attrs": Array [
-        Object {
-          "as": "h1",
-          "mb": 4,
-          "mt": 0,
-        },
+        [Function],
       ],
       "componentStyle": ComponentStyle {
         "componentId": "H1-sros4y-0",

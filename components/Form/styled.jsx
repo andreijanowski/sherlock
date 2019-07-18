@@ -67,11 +67,11 @@ const FilledInputStyles = css`
   }
 `;
 
-export const FieldWrapper = styled(Flex).attrs({
+export const FieldWrapper = styled(Flex).attrs(() => ({
   width: 1,
   mb: 3,
   alignItems: "center"
-})`
+}))`
   position: relative;
   ${p => p.as === "label" && "cursor:pointer;"}
 
@@ -153,14 +153,14 @@ export const MultipleSelectInput = styled(RawInput)`
   }
 `;
 
-export const MultipleSelectWrapper = styled(FieldWrapper).attrs({
+export const MultipleSelectWrapper = styled(FieldWrapper).attrs(() => ({
   as: "label",
   p: 2,
   mb: 0,
   pb: 0,
   flexWrap: "wrap",
   alignItems: "flex-start"
-})`
+}))`
   position: static;
   border: 1px solid
     rgb(${p => (p.invalid ? p.theme.colors.ruby : p.theme.colors.snuff)});
@@ -168,12 +168,12 @@ export const MultipleSelectWrapper = styled(FieldWrapper).attrs({
   ${p => p.isActive && `border-color:rgb(${p.theme.colors.blue});`}
 `;
 
-export const Tag = styled(Flex).attrs({
+export const Tag = styled(Flex).attrs(() => ({
   px: 3,
   mr: 2,
   mb: 2,
   alignItems: "center"
-})`
+}))`
   color: rgb(${p => p.theme.colors.dark});
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f14};
@@ -194,10 +194,10 @@ export const Tag = styled(Flex).attrs({
 
 export const TagIcon = styled(({ isInvalid, ...p }) => (
   <FontAwesomeIcon {...p} />
-)).attrs({
+)).attrs(() => ({
   size: "sm",
   icon: ["fa", "times"]
-})`
+}))`
   margin-left: 8px;
   color: rgb(${p => p.theme.colors.lavenderGray});
   ${p => p.isInvalid && `color: rgb(${p.theme.colors.white});`}
@@ -244,10 +244,10 @@ export const Items = styled(Flex).attrs(p => ({
   border-radius: ${p => p.theme.radius.small};
 `;
 
-export const Item = styled(Box).attrs({
+export const Item = styled(Box).attrs(() => ({
   px: 3,
   py: 2
-})`
+}))`
   color: rgb(${p => p.theme.colors.dark});
   cursor: pointer;
   ${p => p.isActive && `background-color: rgb(${p.theme.colors.background});`}
@@ -277,13 +277,13 @@ export const ExpandIcon = () => (
   </span>
 );
 
-export const CheckboxLabel = styled(Flex).attrs({
+export const CheckboxLabel = styled(Flex).attrs(() => ({
   as: "label",
   justifyContent: "center",
   alignItems: "center",
   width: 1,
   flexDirection: "column"
-})`
+}))`
   color: rgb(
     ${p =>
       p.disabled || !p.checked ? p.theme.colors.dark : p.theme.colors.blue}
@@ -320,7 +320,7 @@ export const CheckboxLabel = styled(Flex).attrs({
   }
 `;
 
-export const Checkbox = styled.input.attrs({ type: "checkbox" })`
+export const Checkbox = styled.input.attrs(() => ({ type: "checkbox" }))`
   position: absolute;
   width: 0;
   height: 0;
@@ -363,9 +363,9 @@ export const Checkmark = styled(Flex).attrs(p => ({
     rgb(${p.invalid ? p.theme.colors.ruby : p.theme.colors.snuff});`}
 `;
 
-export const HiddenCheckboxInput = styled.input.attrs({
+export const HiddenCheckboxInput = styled.input.attrs(() => ({
   type: "checkbox"
-})`
+}))`
   position: absolute;
   opacity: 0;
 `;

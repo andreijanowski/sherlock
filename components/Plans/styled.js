@@ -10,22 +10,22 @@ const alignCenterMobile = css`
   }
 `;
 
-export const MainWrapper = styled(Flex).attrs({
+export const MainWrapper = styled(Flex).attrs(() => ({
   flexDirection: "column",
   m: 2,
   pb: 3
-})`
+}))`
   position: relative;
   background: rgba(${p => p.theme.colors.dark}, 0.1);
   border-radius: ${p => p.theme.radius.default};
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
 `;
 
-export const NameWrapper = styled(Flex).attrs({
+export const NameWrapper = styled(Flex).attrs(() => ({
   flexDirection: "row",
   m: "-2px",
   flexWrap: "wrap"
-})`
+}))`
   position: absolute;
   top: -10px;
   left: 16px;
@@ -57,10 +57,10 @@ export const MostPopular = styled.div`
   border-radius: ${p => p.theme.radius.default};
 `;
 
-export const PriceWrapper = styled(Flex).attrs({
+export const PriceWrapper = styled(Flex).attrs(() => ({
   flexDirection: "column",
   mb: 3
-})`
+}))`
   position: relative;
   padding: 24px 16px 16px;
   background: rgb(${p => p.theme.colors.white});
@@ -107,7 +107,7 @@ export const BetaPriceText = styled.div`
   font-weight: ${p => p.theme.fontWeights.bold};
 `;
 
-export const Service = styled(Box).attrs({ mb: 1 })`
+export const Service = styled(Box).attrs(() => ({ mb: 1 }))`
   color: ${p =>
     p.isHighlighted
       ? `rgb(${p.theme.colors.dark})`

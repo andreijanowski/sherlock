@@ -15,7 +15,7 @@ export const Wrapper = styled(Flex).attrs(p => ({
   position: relative;
 `;
 
-export const HeaderWrapper = styled(Flex).attrs({
+export const HeaderWrapper = styled(Flex).attrs(() => ({
   width: ["100vw", 1],
   ml: [-3, 0],
   mt: [-3, 0],
@@ -23,7 +23,7 @@ export const HeaderWrapper = styled(Flex).attrs({
   alignItems: "center",
   justifyContent: ["center", "space-between"],
   p: 3
-})`
+}))`
   height: 60px;
   background: rgb(${p => p.theme.colors.white});
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
@@ -34,11 +34,11 @@ export const HeaderWrapper = styled(Flex).attrs({
   }
 `;
 
-export const MainIconWrapper = styled(Flex).attrs({
+export const MainIconWrapper = styled(Flex).attrs(() => ({
   alignItems: "center",
   justifyContent: "center",
   width: [undefined, 32, 32, 48]
-})`
+}))`
   display: none;
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     display: flex;
@@ -59,7 +59,11 @@ export const MainIconWrapper = styled(Flex).attrs({
   }
 `;
 
-export const Header = styled(Flex).attrs({ as: "h1", ml: [0, 3], my: 0 })`
+export const Header = styled(Flex).attrs(() => ({
+  as: "h1",
+  ml: [0, 3],
+  my: 0
+}))`
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f16};
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
@@ -73,12 +77,12 @@ export const Header = styled(Flex).attrs({ as: "h1", ml: [0, 3], my: 0 })`
   }
 `;
 
-export const Icon = styled(Flex).attrs({
+export const Icon = styled(Flex).attrs(() => ({
   width: 32,
   alignItems: "center",
   justifyContent: "center",
   mx: 1
-})`
+}))`
   height: 32px;
   border-radius: 16px;
   cursor: pointer;

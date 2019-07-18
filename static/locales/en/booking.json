@@ -10,5 +10,6 @@
   "and": "and",
   "toSeeAnyNewBookings": "to see any new bookings",
   "partySize": "Party size",
-  "newBookings": "New bookings"
+  "newBookings": "New bookings",
+  "noSuchTimeSlot": "There is no such time slot enabled in choosed date."
 }

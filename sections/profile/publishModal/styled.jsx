@@ -2,18 +2,18 @@ import { Flex } from "@rebass/grid";
 import styled from "styled-components";
 import { H2 as RawH2 } from "components";
 
-export const Wrapper = styled(Flex).attrs({
+export const Wrapper = styled(Flex).attrs(() => ({
   flexDirection: "column"
-})`
+}))`
   max-width: 640px;
   text-align: center;
 `;
 
-export const Header = styled(Flex).attrs({
+export const Header = styled(Flex).attrs(() => ({
   justifyContent: "space-between",
   alignItems: "center",
   flexWrap: "wrap"
-})`
+}))`
   /* stylelint-disable-line no-empty-block */
 `;
 
@@ -21,13 +21,13 @@ export const H2 = styled(RawH2)`
   font-size: ${p => p.theme.fontSizes.f24};
 `;
 
-export const StepWrapper = styled(Flex).attrs({
+export const StepWrapper = styled(Flex).attrs(() => ({
   width: 1,
   p: 3,
   mb: 3,
   alignItems: "center",
   justifyContent: "space-between"
-})`
+}))`
   position: relative;
   text-align: left;
   border: 3px solid rgba(${p => p.theme.colors.dark}, 0.08);
@@ -66,11 +66,11 @@ export const StepName = styled.a`
   }
 `;
 
-export const StepStatus = styled(Flex).attrs({
+export const StepStatus = styled(Flex).attrs(() => ({
   width: [30, 40],
   justifyContent: "center",
   alignItems: "center"
-})`
+}))`
   height: 30px;
   color: ${p =>
     p.isFilled || !p.isValid
