@@ -82,18 +82,17 @@ export const fetchBusinessDishes = (id, page = 1) => ({
   meta: { thunk: true, page }
 });
 
-export const fetchBusinessOrders = (
-  id,
-  page = 1,
-  day = new Date().toISOString()
-) => ({
+export const fetchBusinessOrders = (id, page = 1) => ({
   type: FETCH_BUSINESS_ORDERS_REQUEST,
   payload: {
     endpoint: `/api/v1/businesses/${id}/orders`,
     params: {
       per_page: 200,
       page,
-      filter: { day },
+      filter: {
+        states:
+          "waiting_for_approval,waiting_for_payment,paid,in_preparation,in_delivery"
+      },
       include: "addresses,elements"
     }
   },
