@@ -11,10 +11,10 @@ import {
   PATCH_ORDER_REJECT_SUCCESS
 } from "types/orders";
 
-import { Record, fromJS } from "immutable";
+import { Record, Map, fromJS } from "immutable";
 
 const initialState = Record({
-  data: null,
+  data: Map(),
   isFetching: false,
   isFailed: false,
   isSucceeded: false
@@ -66,7 +66,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       if (meta.page === 1) {
         newState = newState.merge(
           Record({
-            data: null
+            data: Map()
           })()
         );
       }

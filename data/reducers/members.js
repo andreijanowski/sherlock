@@ -5,10 +5,10 @@ import {
   FETCH_BUSINESS_MEMBERS_FAIL
 } from "types/businesses";
 import { LOGOUT } from "types/auth";
-import { Record, fromJS } from "immutable";
+import { Record, Map, fromJS } from "immutable";
 
 const initialState = Record({
-  data: null,
+  data: Map(),
   isFetching: false,
   isFailed: false,
   isSucceeded: false
@@ -33,9 +33,12 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         })()
       );
       if (meta.page === 1) {
-        newState = newState.set("data", fromJS(payload.data.members));
+        newState = newState.set("data", fromJS(payload.data));
       } else {
-        newState = newState.mergeIn(["data"], fromJS(payload.data.members));
+        newState = newState.mergeIn(
+          ["data", "members"],
+          fromJS(payload.data.members)
+        );
       }
       return newState;
     }
@@ -49,7 +52,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       if (meta.page === 1) {
         newState = newState.merge(
           Record({
-            data: null
+            data: Map()
           })()
         );
       }
