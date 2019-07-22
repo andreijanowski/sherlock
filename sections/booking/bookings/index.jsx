@@ -59,8 +59,8 @@ const Bookings = ({
                   {...{
                     key: column.id,
                     id: column.id,
-                    seats: column.seats,
-                    name: column.name,
+                    numberOfSeats: column.numberOfSeats,
+                    tableNumber: column.number,
                     items: [],
                     isDropDisabled: !choosenSlot
                   }}
