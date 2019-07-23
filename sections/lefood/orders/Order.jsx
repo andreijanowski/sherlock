@@ -19,12 +19,16 @@ const Order = ({ order, id, t, setRejectModalVisibility, updateOrder }) => (
       </WaitingForPayment>
     )}
     {order.getIn(["relationships", "elements", "data"]) &&
-      order.getIn(["relationships", "elements", "data"]).map(element => (
-        <OrderDetail key={element.get("id")}>
-          {element.getIn(["attributes", "units"])}x{" "}
-          {element.getIn(["attributes", "dishName"])}
-        </OrderDetail>
-      ))}
+      order
+        .getIn(["relationships", "elements", "data"])
+        .map(element => (
+          <OrderDetail key={element.get("id")}>
+            {`${element.getIn(["attributes", "units"])}x ${element.getIn([
+              "attributes",
+              "dishName"
+            ])}`}
+          </OrderDetail>
+        ))}
     {order.getIn(["attributes", "rejectReason"]) && (
       <Flex mt={3}>
         <Box width={1}>

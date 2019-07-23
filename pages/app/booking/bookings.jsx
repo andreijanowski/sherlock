@@ -5,8 +5,14 @@ import { func, string, shape } from "prop-types";
 import BookingLayout from "sections/booking/Layout";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
-import { parseBookings } from "sections/booking/utils";
+import {
+  parseBookings,
+  prepareTimelineSlots,
+  getSlotClosestToPresent,
+  getSlotFromMoment
+} from "sections/booking/utils";
 import Bookings from "sections/booking/bookings";
+import moment from "moment";
 
 const namespaces = ["booking", "app", "forms"];
 
@@ -19,16 +25,40 @@ class BookingsPage extends PureComponent {
 
   constructor(props) {
     super(props);
+    const { bookings, openPeriods, t } = props;
+    const choosenDate = moment();
+    const slotDuration = 30;
+    const slots = openPeriods
+      ? prepareTimelineSlots({ openPeriods, choosenDate, slotDuration })
+      : [];
+
     this.state = {
-      columns: parseBookings(props.bookings, props.t)
+      columns: parseBookings(bookings, t),
+      choosenDate,
+      slots,
+      choosenSlot: getSlotClosestToPresent(slots),
+      slotDuration,
+      draggableId: undefined
     };
   }
 
-  componentDidUpdate(prevProps) {
-    const { bookings } = this.props;
-    const { bookings: prevBookings } = prevProps;
+  componentDidUpdate(prevProps, prevState) {
+    const { bookings, openPeriods } = this.props;
+    const { bookings: prevBookings, openPeriods: prevOpenPeriods } = prevProps;
+    const { choosenDate, slotDuration } = this.state;
+    const {
+      choosenDate: prevChoosenDate,
+      slotDuration: prevSlotDuration
+    } = prevState;
     if (bookings !== prevBookings) {
       this.refreshColumnsContent();
+    }
+    if (
+      openPeriods !== prevOpenPeriods ||
+      choosenDate !== prevChoosenDate ||
+      slotDuration !== prevSlotDuration
+    ) {
+      this.refreshPeriods();
     }
   }
 
@@ -39,12 +69,46 @@ class BookingsPage extends PureComponent {
     });
   };
 
+  refreshPeriods = () => {
+    const { openPeriods, bookings } = this.props;
+    const { choosenDate, slotDuration, draggableId } = this.state;
+    const slots = openPeriods
+      ? prepareTimelineSlots({ openPeriods, choosenDate, slotDuration })
+      : [];
+    const bookingFrom =
+      bookings && bookings.getIn([draggableId, "attributes", "from"]);
+    const choosenSlot = bookingFrom
+      ? getSlotFromMoment(slots, bookingFrom)
+      : getSlotClosestToPresent(slots);
+    this.setState({
+      slots,
+      choosenSlot
+    });
+  };
+
+  handleDragStart = ({ draggableId }) => {
+    const { bookings } = this.props;
+    const bookingDate =
+      bookings && bookings.getIn([draggableId, "attributes", "date"]);
+    this.setState({
+      draggableId,
+      choosenDate: moment(bookingDate)
+    });
+  };
+
   handleDragEnd = ({ destination, source, draggableId }) => {
     if (
       !destination ||
       (destination.droppableId === source.droppableId &&
         destination.index === source.index)
     ) {
+      this.setState(state => ({
+        draggableId: undefined,
+        choosenSlot:
+          state.choosenSlot !== undefined
+            ? state.choosenSlot
+            : getSlotClosestToPresent(state.slots)
+      }));
       return;
     }
 
@@ -56,6 +120,11 @@ class BookingsPage extends PureComponent {
         newSourceBookingIds.splice(destination.index, 0, draggableId);
         return {
           ...state,
+          draggableId: undefined,
+          choosenSlot:
+            state.choosenSlot !== undefined
+              ? state.choosenSlot
+              : getSlotClosestToPresent(state.slots),
           columns: {
             ...state.columns,
             [sourceColumn.id]: {
@@ -70,6 +139,11 @@ class BookingsPage extends PureComponent {
       newDestinationBookingIds.splice(destination.index, 0, draggableId);
       return {
         ...state,
+        draggableId: undefined,
+        choosenSlot:
+          state.choosenSlot !== undefined
+            ? state.choosenSlot
+            : getSlotClosestToPresent(state.slots),
         columns: {
           ...state.columns,
           [sourceColumn.id]: {
@@ -85,6 +159,12 @@ class BookingsPage extends PureComponent {
     });
   };
 
+  chooseDate = choosenDate => this.setState({ choosenDate });
+
+  chooseSlot = choosenSlot => this.setState({ choosenSlot });
+
+  setSlotDuration = slotDuration => this.setState({ slotDuration });
+
   render() {
     const {
       t,
@@ -96,7 +176,13 @@ class BookingsPage extends PureComponent {
       changeCurrentBusiness
     } = this.props;
 
-    const { columns } = this.state;
+    const {
+      columns,
+      choosenDate,
+      slots,
+      choosenSlot,
+      slotDuration
+    } = this.state;
 
     return (
       <BookingLayout
@@ -107,7 +193,9 @@ class BookingsPage extends PureComponent {
           currentBusinessId: businessId,
           business,
           businesses,
-          changeCurrentBusiness
+          changeCurrentBusiness,
+          slotDuration,
+          setSlotDuration: this.setSlotDuration
         }}
       >
         <Bookings
@@ -116,6 +204,11 @@ class BookingsPage extends PureComponent {
             onDragStart: this.handleDragStart,
             columns,
             bookings,
+            slots,
+            choosenDate,
+            choosenSlot,
+            chooseDate: this.chooseDate,
+            chooseSlot: this.chooseSlot,
             t
           }}
         />
@@ -130,6 +223,7 @@ BookingsPage.propTypes = {
   business: shape(),
   businesses: shape(),
   bookings: shape(),
+  openPeriods: shape(),
   businessId: string,
   changeCurrentBusiness: func.isRequired
 };
@@ -138,7 +232,8 @@ BookingsPage.defaultProps = {
   business: null,
   businessId: "",
   businesses: null,
-  bookings: null
+  bookings: null,
+  openPeriods: null
 };
 
 export default requireAuth(true)(
@@ -152,6 +247,7 @@ export default requireAuth(true)(
         return {
           business: business && business.get("attributes"),
           businessId: business && business.get("id"),
+          openPeriods: businessData && businessData.get("openPeriods"),
           businesses: state.getIn([
             "users",
             "profileBusinesses",

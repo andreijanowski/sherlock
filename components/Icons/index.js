@@ -35,5 +35,5 @@ export {
   Pause,
   RejectModalIcon,
   StopOrdersModalIcon,
-  FinishOrdersModalIcon
+  WarningIcon
 } from "./lefoodNavigation";

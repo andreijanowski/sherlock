@@ -39,10 +39,10 @@ export const Checkmark = styled.span`
   }
 `;
 
-export const CheckboxContainer = styled(Flex).attrs({
+export const CheckboxContainer = styled(Flex).attrs(() => ({
   as: "label",
   alignItems: "center"
-})`
+}))`
   position: relative;
   width: 100%;
   max-width: 558px;
@@ -60,9 +60,9 @@ export const CheckboxContainer = styled(Flex).attrs({
   }
 `;
 
-export const Checkbox = styled.input.attrs({
+export const Checkbox = styled.input.attrs(() => ({
   type: "checkbox"
-})`
+}))`
   position: absolute;
   width: 0;
   height: 0;

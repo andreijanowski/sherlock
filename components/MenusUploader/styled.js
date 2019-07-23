@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
-export const FileIconWrapper = styled(Flex).attrs({
+export const FileIconWrapper = styled(Flex).attrs(() => ({
   width: "60px",
   alignItems: "center",
   justifyContent: "center",
   as: "a",
   target: "_blank",
   rel: "noreferrer noopener"
-})`
+}))`
   height: 60px;
   color: rgb(${p => p.theme.colors.blue});
   background-color: rgb(${p => p.theme.colors.white});

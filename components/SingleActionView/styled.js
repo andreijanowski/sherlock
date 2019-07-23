@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 import { H2, Paragraph } from "components";
 
-export const Wrapper = styled(Flex).attrs({
+export const Wrapper = styled(Flex).attrs(() => ({
   width: 1,
   flexDirection: ["column", "column", "row"],
   p: [3, 3, 0]
-})`
+}))`
   min-height: 100vh;
   background-color: rgb(${p => p.theme.colors.white});
   @media (min-width: ${p => p.theme.breakpoints[1]}) {
@@ -40,10 +40,10 @@ export const RightBoxChildrenWrapper = styled(Box)`
   max-width: 600px;
 `;
 
-export const LeftBox = styled(Flex).attrs({
+export const LeftBox = styled(Flex).attrs(() => ({
   pr: [0, 0, "12%"],
   pl: [0, 0, 80]
-})`
+}))`
   flex-direction: row;
 `;
 
@@ -71,9 +71,9 @@ export const SherlockMark = styled.div`
   }
 `;
 
-export const BackWrapper = styled(Flex).attrs({
+export const BackWrapper = styled(Flex).attrs(() => ({
   justifyContent: ["center", "center", "flex-start"]
-})`
+}))`
   position: relative;
 `;
 

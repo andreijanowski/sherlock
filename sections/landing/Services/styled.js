@@ -12,11 +12,11 @@ export const MainWrapper = styled.div`
   }
 `;
 
-export const ServicesWrapper = styled(Flex).attrs({
+export const ServicesWrapper = styled(Flex).attrs(() => ({
   p: [3, 4],
   flexDirection: "column",
   width: 1
-})`
+}))`
   position: relative;
   z-index: 1;
   background: rgb(${p => p.theme.colors.dark});
@@ -24,9 +24,9 @@ export const ServicesWrapper = styled(Flex).attrs({
   box-shadow: 0 4px 24px 0 rgba(${p => p.theme.colors.dark}, 0.48);
 `;
 
-export const Service = styled(Box).attrs({
+export const Service = styled(Box).attrs(() => ({
   m: 2
-})`
+}))`
   padding: 21px 0;
   color: rgb(${p => p.theme.colors.white});
   font-size: ${p => p.theme.fontSizes.f16};
@@ -45,9 +45,9 @@ export const Service = styled(Box).attrs({
   }
 `;
 
-export const More = styled(Box).attrs({
+export const More = styled(Box).attrs(() => ({
   mt: 4
-})`
+}))`
   color: rgba(${p => p.theme.colors.white}, 0.4);
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 1.5;

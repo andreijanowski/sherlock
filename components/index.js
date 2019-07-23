@@ -73,3 +73,6 @@ export { default as Opacity } from "./Opacity";
 export { default as YoutubeModal } from "./YoutubeModal";
 export { default as Picture } from "./Picture";
 export { default as DndColumn } from "./Dnd/Column";
+export { default as DndTable } from "./Dnd/Table";
+export { default as TimeSlotPicker } from "./Timeline/TimeSlotPicker";
+export { default as DaySwitcher } from "./Timeline/DaySwitcher";

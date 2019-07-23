@@ -44,16 +44,16 @@ export const CustomRadioButtonPlaceholder = styled.span`
   width: 120px;
 `;
 
-export const RadioButtonFieldContainer = styled(Flex).attrs({
+export const RadioButtonFieldContainer = styled(Flex).attrs(() => ({
   width: 0.25
-})`
+}))`
   /* stylelint-disable-line no-empty-block */
 `;
 
-export const RadioButtonsContainer = styled(Flex).attrs({
+export const RadioButtonsContainer = styled(Flex).attrs(() => ({
   width: 1,
   flexWrap: "wrap",
   m: -1
-})`
+}))`
   max-width: 570px;
 `;

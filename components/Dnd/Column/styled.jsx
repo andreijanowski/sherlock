@@ -1,24 +1,19 @@
 import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 
-export const ColumnsWrapper = styled(Flex).attrs({ mx: -2 })`
-  overflow: auto;
-`;
-
-export const ColumnWrapper = styled(Flex).attrs({
+export const ColumnWrapper = styled(Flex).attrs(() => ({
   flexDirection: "column",
-  width: 1 / 5,
   p: 2
-})`
-  min-width: 280px;
+}))`
+  width: ${p => p.width || "280px"};
 `;
 
-export const ColumnHeader = styled(Flex).attrs({
+export const ColumnHeader = styled(Flex).attrs(() => ({
   py: 3,
   px: 2,
   justifyContent: "space-between",
   alignItems: "center"
-})`
+}))`
   /* stylelint-disable-line no-empty-block */
 `;
 
@@ -27,7 +22,7 @@ export const ColumnTitle = styled(Box)`
   font-size: ${p => p.theme.fontSizes.f12};
 `;
 
-export const ItemsNumber = styled(Box).attrs({ width: 32 })`
+export const ItemsNumber = styled(Box).attrs(() => ({ width: 32 }))`
   height: 32px;
   color: rgb(
     ${p => (p.isColumnGrayedOut ? p.theme.colors.ruby : p.theme.colors.blue)}
@@ -43,10 +38,10 @@ export const ItemsNumber = styled(Box).attrs({ width: 32 })`
   border-radius: 16px;
 `;
 
-export const ItemsWrapper = styled(Flex).attrs({
+export const ItemsWrapper = styled(Flex).attrs(() => ({
   flexDirection: "column",
   p: 2
-})`
+}))`
   ${p =>
     p.isColumnGrayedOut
       ? `background: repeating-linear-gradient(45deg,

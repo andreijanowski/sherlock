@@ -9,11 +9,11 @@ export const FlagIcon = styled.img.attrs(({ code }) => ({
   height: 14px;
 `;
 
-export const LanguageSwitcherWrapper = styled(Flex).attrs({
+export const LanguageSwitcherWrapper = styled(Flex).attrs(() => ({
   px: "16px",
   alignItems: "center",
   justifyContent: "space-between"
-})`
+}))`
   position: relative;
   width: 108px;
   height: 40px;
@@ -40,9 +40,9 @@ const LanguageListBottom = css`
   top: 45px;
 `;
 
-export const LanguageList = styled(Flex).attrs({
+export const LanguageList = styled(Flex).attrs(() => ({
   flexDirection: "column"
-})`
+}))`
   position: absolute;
   left: -${p => p.theme.borderWeights.normal};
   width: 108px;
@@ -55,10 +55,10 @@ export const LanguageList = styled(Flex).attrs({
   ${({ listPosition }) => listPosition === "bottom" && LanguageListBottom}
 `;
 
-export const LanguageListItem = styled(Box).attrs({
+export const LanguageListItem = styled(Box).attrs(() => ({
   px: "16px",
   py: "8px"
-})`
+}))`
   width: 100%;
   font-size: ${p => p.theme.fontSizes.f14};
   line-height: ${p => p.theme.fontSizes.f24};
@@ -78,9 +78,9 @@ export const LanguageListItem = styled(Box).attrs({
   }
 `;
 
-export const SelectedLanguageWrapper = styled(Flex).attrs({
+export const SelectedLanguageWrapper = styled(Flex).attrs(() => ({
   alignItems: "center"
-})`
+}))`
   ${FlagIcon} {
     margin-right: 8px;
   }
