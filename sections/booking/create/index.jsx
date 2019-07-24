@@ -29,7 +29,7 @@ const CreateCateringForm = ({ t, lng, isSending, handleFormSubmit }) => (
     }}
     render={({ handleSubmit }) => (
       <Form onSubmit={handleSubmit}>
-        <H3 mt={3}>{t("basicInfo")}</H3>
+        <H3 mt={3}>{t("bookingDetails")}</H3>
         <Flex flexWrap="wrap" mx={-2}>
           <Box width={[1, 1 / 2]} px={2}>
             <FormInput name="partySize" label={t("partySize")} />
@@ -48,7 +48,7 @@ const CreateCateringForm = ({ t, lng, isSending, handleFormSubmit }) => (
             <FormTimePicker name="to" label={t("to")} placeholder={t("to")} />
           </Box>
         </Flex>
-        <H3 mt={3}>{t("client")}</H3>
+        <H3 mt={3}>{t("personalInformation")}</H3>
         <Flex flexWrap="wrap" mx={-2}>
           <Box width={[1, 1 / 2]} px={2}>
             <FormInput name="name" label={t("name")} />
