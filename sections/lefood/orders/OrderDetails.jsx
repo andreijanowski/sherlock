@@ -2,15 +2,16 @@ import Slide from "react-burger-menu/lib/menus/slide";
 import { decorator as reduxBurgerMenu } from "redux-burger-menu/immutable";
 import { func, bool, shape } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
-import { Button, FormDropdown } from "components";
 import {
-  OrderDetailsHeader,
-  OrderDetailsSubheader,
-  OrderDetailsSpacer,
-  OrderDetailsState
-} from "./styled";
+  Button,
+  FormDropdown,
+  SliderDetail,
+  SliderHeader,
+  SliderValue,
+  SliderSubheader,
+  SliderSpacer
+} from "components";
 import OrderDetail from "./OrderDetail";
-import PersonalInformation from "./PersonalInformation";
 
 const OrderDetails = ({
   isOpen,
@@ -30,8 +31,8 @@ const OrderDetails = ({
   >
     {orderDetails && (
       <>
-        <OrderDetailsHeader>{t("orderDetails")}</OrderDetailsHeader>
-        <OrderDetailsState>
+        <SliderHeader>{t("orderDetails")}</SliderHeader>
+        <SliderValue>
           <FormDropdown
             {...{
               input: {
@@ -68,7 +69,7 @@ const OrderDetails = ({
               "attributes",
               "otherRejectionReason"
             ]) || t(orderDetails.getIn(["attributes", "rejectReason"]))}`}
-        </OrderDetailsState>
+        </SliderValue>
         {orderDetails.getIn(["relationships", "elements", "data"]) &&
           orderDetails
             .getIn(["relationships", "elements", "data"])
@@ -102,24 +103,22 @@ const OrderDetails = ({
             isBold: true
           }}
         />
-        <OrderDetailsSpacer />
-        <OrderDetailsSubheader>
-          {t("personalInformation")}
-        </OrderDetailsSubheader>
-        <PersonalInformation
+        <SliderSpacer />
+        <SliderSubheader>{t("personalInformation")}</SliderSubheader>
+        <SliderDetail
           {...{
             name: t("email"),
             value: [orderDetails.getIn(["attributes", "userEmail"])]
           }}
         />
-        <PersonalInformation
+        <SliderDetail
           {...{
             name: t("phone"),
             value: [orderDetails.getIn(["attributes", "userPhone"])]
           }}
         />
         {orderDetails.getIn(["attributes", "pickupAtBusiness"]) && (
-          <PersonalInformation
+          <SliderDetail
             {...{
               name: t("deliveryAddress"),
               value: [t("pickupAtRestaurant")]
@@ -128,7 +127,7 @@ const OrderDetails = ({
         )}
         {!orderDetails.getIn(["attributes", "pickupAtBusiness"]) &&
           orderDetails.addresses.length > 0 && (
-            <PersonalInformation
+            <SliderDetail
               {...{
                 name: t("deliveryAddress"),
                 value: [

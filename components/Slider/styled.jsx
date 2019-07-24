@@ -1,0 +1,33 @@
+import styled from "styled-components";
+
+export const Name = styled.div`
+  color: rgb(${p => p.theme.colors.bombay});
+  font-size: ${p => p.theme.fontSizes.f12};
+  line-height: 1.5;
+`;
+
+export const Value = styled.div`
+  padding-bottom: 16px;
+  color: rgb(${p => p.theme.colors.dark});
+  font-size: ${p => p.theme.fontSizes.f16};
+  line-height: 1.5;
+`;
+
+export const Spacer = styled.div`
+  width: calc(100% + 64px);
+  height: 1px;
+  margin: 8px -32px 24px -32px;
+  background-color: rgb(${p => p.theme.colors.linkWaterDark});
+`;
+
+export const Header = styled.h2`
+  margin: 0;
+  padding-bottom: 32px;
+  color: rgb(${p => p.theme.colors.dark});
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f24};
+`;
+
+export const Subheader = styled(Header)`
+  font-size: ${p => p.theme.fontSizes.f18};
+`;

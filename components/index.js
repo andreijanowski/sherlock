@@ -76,3 +76,12 @@ export { default as DndColumn } from "./Dnd/Column";
 export { default as DndTable } from "./Dnd/Table";
 export { default as TimeSlotPicker } from "./Timeline/TimeSlotPicker";
 export { default as DaySwitcher } from "./Timeline/DaySwitcher";
+export { SliderStyles } from "./Slider";
+export { default as SliderDetail } from "./Slider/Detail";
+export {
+  Header as SliderHeader,
+  Value as SliderValue,
+  Name as SliderName,
+  Subheader as SliderSubheader,
+  Spacer as SliderSpacer
+} from "./Slider/styled";
