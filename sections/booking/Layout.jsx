@@ -192,7 +192,6 @@ const BookingLayout = ({
             </ButtonWithImageText>
           </Button>
         </Box>
-        {/* <AddIconWrapper width={["auto", 5 / 12]}> */}
         <ActionIcon
           size="sm"
           icon={["fa", "plus"]}
@@ -201,7 +200,6 @@ const BookingLayout = ({
             Router.pushRoute(`/${lng}/app/booking/create/`);
           }}
         />
-        {/* </AddIconWrapper> */}
       </Flex>
       {children}
     </AppLayout>

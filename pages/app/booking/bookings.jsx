@@ -167,7 +167,7 @@ class BookingsPage extends PureComponent {
     });
   };
 
-  toggleBookingDetails = bookingDetailsId => {
+  handleToggleBookingDetails = bookingDetailsId => {
     const { toggleBookingDetails } = this.props;
     this.setState({ bookingDetailsId });
     toggleBookingDetails(!!bookingDetailsId);
@@ -225,7 +225,7 @@ class BookingsPage extends PureComponent {
             slots,
             choosenDate,
             choosenSlot,
-            handleCardClick: this.toggleBookingDetails,
+            handleCardClick: this.handleToggleBookingDetails,
             chooseDate: this.chooseDate,
             chooseSlot: this.chooseSlot,
             t

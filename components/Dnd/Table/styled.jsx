@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
-export const Table = styled(Flex).attrs(() => ({
+export const TableWrapper = styled(Flex).attrs(() => ({
   alignItems: "center",
   justifyContent: "center"
 }))`

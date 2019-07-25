@@ -1,4 +1,4 @@
-import { PureComponent } from "react";
+import { useState } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
@@ -9,53 +9,38 @@ import Form from "sections/booking/create";
 
 const namespaces = ["booking", "app", "forms"];
 
-class CreateBookingPage extends PureComponent {
-  static async getInitialProps() {
-    return {
-      namespacesRequired: namespaces
-    };
-  }
+const CreateBookingPage = ({
+  t,
+  lng,
+  business,
+  businessId,
+  businesses,
+  changeCurrentBusiness
+}) => {
+  const [slotDuration, setSlotDuration] = useState(30);
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      slotDuration: 30
-    };
-  }
+  return (
+    <BookingLayout
+      {...{
+        t,
+        lng,
+        page: "bookings",
+        currentBusinessId: businessId,
+        business,
+        businesses,
+        changeCurrentBusiness,
+        slotDuration,
+        setSlotDuration
+      }}
+    >
+      <Form {...{ t, lng, isSending: false, handleFormSubmit: () => null }} />
+    </BookingLayout>
+  );
+};
 
-  setSlotDuration = slotDuration => this.setState({ slotDuration });
-
-  render() {
-    const {
-      t,
-      lng,
-      business,
-      businessId,
-      businesses,
-      changeCurrentBusiness
-    } = this.props;
-
-    const { slotDuration } = this.state;
-
-    return (
-      <BookingLayout
-        {...{
-          t,
-          lng,
-          page: "bookings",
-          currentBusinessId: businessId,
-          business,
-          businesses,
-          changeCurrentBusiness,
-          slotDuration,
-          setSlotDuration: this.setSlotDuration
-        }}
-      >
-        <Form {...{ t, lng, isSending: false, handleFormSubmit: () => null }} />
-      </BookingLayout>
-    );
-  }
-}
+CreateBookingPage.getInitialProps = async () => ({
+  namespacesRequired: namespaces
+});
 
 CreateBookingPage.propTypes = {
   t: func.isRequired,

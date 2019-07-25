@@ -37,14 +37,14 @@ const CreateCateringForm = ({ t, lng, isSending, handleFormSubmit }) => (
           <Box width={[1, 1 / 2]} px={2}>
             <FormDaypicker name="date" label={t("date")} />
           </Box>
-          <Box width={[1 / 2, 1 / 2]} px={2}>
+          <Box width={[1 / 2]} px={2}>
             <FormTimePicker
               name="from"
               label={t("from")}
               placeholder={t("from")}
             />
           </Box>
-          <Box width={[1 / 2, 1 / 2]} px={2}>
+          <Box width={[1 / 2]} px={2}>
             <FormTimePicker name="to" label={t("to")} placeholder={t("to")} />
           </Box>
         </Flex>
