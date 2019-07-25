@@ -8,7 +8,7 @@ import dishes from "./dishes";
 import orders from "./orders";
 import caterings from "./caterings";
 import privatisations from "./privatisations";
-import bookings from "./bookings";
+import reservations from "./reservations";
 import tables from "./tables";
 
 export default {
@@ -22,6 +22,6 @@ export default {
   orders,
   caterings,
   privatisations,
-  bookings,
+  reservations,
   tables
 };

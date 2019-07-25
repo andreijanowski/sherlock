@@ -3,9 +3,13 @@ import { string, shape, func } from "prop-types";
 import { Flex } from "@rebass/grid";
 import Tippy from "@tippy.js/react";
 
-const CardDetails = ({ id, bookings, t }) => (
+const CardDetails = ({ id, reservations, t }) => (
   <Flex alignItems="center" justifyContent="space-between">
-    {`${t("partySize")}: ${bookings.getIn([id, "attributes", "partySize"])}`}
+    {`${t("partySize")}: ${reservations.getIn([
+      id,
+      "attributes",
+      "partySize"
+    ])}`}
     <Tippy content="Hello">
       <div>
         <WarningIcon width="25" height="21" />
@@ -16,7 +20,7 @@ const CardDetails = ({ id, bookings, t }) => (
 
 CardDetails.propTypes = {
   id: string.isRequired,
-  bookings: shape().isRequired,
+  reservations: shape().isRequired,
   t: func.isRequired
 };
 

@@ -2,13 +2,13 @@ import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
-import BookingLayout from "sections/booking/Layout";
+import ReservationLayout from "sections/reservation/Layout";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
-import Tables from "sections/booking/tables";
+import Tables from "sections/reservation/tables";
 import { postTable, patchTable, deleteTable } from "actions/tables";
 
-const namespaces = ["booking", "app", "forms"];
+const namespaces = ["reservation", "app", "forms"];
 
 class TablesPage extends PureComponent {
   static async getInitialProps() {
@@ -61,11 +61,11 @@ class TablesPage extends PureComponent {
     const { slotDuration, editedTableId } = this.state;
 
     return (
-      <BookingLayout
+      <ReservationLayout
         {...{
           t,
           lng,
-          page: "bookings",
+          page: "reservations",
           currentBusinessId: businessId,
           business,
           businesses,
@@ -84,7 +84,7 @@ class TablesPage extends PureComponent {
             addTable: this.addTable
           }}
         />
-      </BookingLayout>
+      </ReservationLayout>
     );
   }
 }

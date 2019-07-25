@@ -25,7 +25,7 @@ import { Flex, Box } from "@rebass/grid";
 import prepareBusinessesList from "utils/prepareBusinessesList";
 import { Orange } from "./styled";
 
-const BookingLayout = ({
+const ReservationLayout = ({
   t,
   lng,
   page,
@@ -38,7 +38,7 @@ const BookingLayout = ({
   setSlotDuration
 }) => {
   // TODO: pass proper values from business as inital state
-  const [maxAmountPerBooking, setMaxAmountPerBooking] = useState(15);
+  const [maxAmountPerReservation, setMaxAmountPerReservation] = useState(15);
   const [timeOfEarliestReservation, setTimeOfEarliestReservation] = useState(
     15
   );
@@ -51,7 +51,7 @@ const BookingLayout = ({
   return (
     <AppLayout
       {...{
-        mainIcon: "booking",
+        mainIcon: "reservation",
         header: t(page),
         t,
         lng
@@ -78,32 +78,32 @@ const BookingLayout = ({
             {`${t("addInfo")} `}
             <ItalicText>
               <Orange>
-                <Link route="/app/booking/tables/" lng={lng}>
+                <Link route="/app/reservation/tables/" lng={lng}>
                   <Orange as="a">{t("tablesInfo")}</Orange>
                 </Link>
                 {`, ${t("timeSlots")}, ${t("timeOfEarliestReservation")}, ${t(
                   "timeOfGuestsStayingInRestaurant"
-                )}, ${t("and")} ${t("maxAmountPerBooking")}`}
+                )}, ${t("and")} ${t("maxAmountPerReservation")}`}
               </Orange>
             </ItalicText>
-            {` ${t("toSeeAnyNewBookings")}`}.
+            {` ${t("toSeeAnyNewreservations")}`}.
           </span>
         }
         complete={`0% ${t("complete")}`}
       />
       <Flex width={1} mt={3} flexWrap="wrap">
         <Box pr={3} mb={2}>
-          <Link route="/app/booking/bookings/" lng={lng}>
+          <Link route="/app/reservation/reservations/" lng={lng}>
             <Button as="a" styleName="withImage" active={page === "orders"}>
               <ButtonWithImageIconWrapper>
                 <ProfileContact />
               </ButtonWithImageIconWrapper>
-              <ButtonWithImageText>{t("bookings")}</ButtonWithImageText>
+              <ButtonWithImageText>{t("reservations")}</ButtonWithImageText>
             </Button>
           </Link>
         </Box>
         <Box pr={3} mb={2}>
-          <Link route="/app/booking/tables/" lng={lng}>
+          <Link route="/app/reservation/tables/" lng={lng}>
             <Button as="a" styleName="withImage" active={page === "orders"}>
               <ButtonWithImageIconWrapper>
                 <ProfileAdditionaInfo />
@@ -178,9 +178,9 @@ const BookingLayout = ({
             </ButtonWithImageIconWrapper>
             <ButtonWithImageText>
               <AutosizeInput
-                value={maxAmountPerBooking}
+                value={maxAmountPerReservation}
                 onChange={e => {
-                  setMaxAmountPerBooking(e.target.value);
+                  setMaxAmountPerReservation(e.target.value);
                 }}
                 onBlur={() =>
                   console.log(
@@ -197,7 +197,7 @@ const BookingLayout = ({
           icon={["fa", "plus"]}
           white
           onClick={() => {
-            Router.pushRoute(`/${lng}/app/booking/create/`);
+            Router.pushRoute(`/${lng}/app/reservation/create/`);
           }}
         />
       </Flex>
@@ -206,7 +206,7 @@ const BookingLayout = ({
   );
 };
 
-BookingLayout.propTypes = {
+ReservationLayout.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   page: string.isRequired,
@@ -223,7 +223,7 @@ BookingLayout.propTypes = {
   setSlotDuration: func.isRequired
 };
 
-BookingLayout.defaultProps = {
+ReservationLayout.defaultProps = {
   dishesLength: 0,
   deliveriesLength: 0,
   orderPeriodsLength: 0,
@@ -232,4 +232,4 @@ BookingLayout.defaultProps = {
   businesses: null
 };
 
-export default BookingLayout;
+export default ReservationLayout;

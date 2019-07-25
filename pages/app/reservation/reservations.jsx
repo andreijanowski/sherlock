@@ -2,24 +2,24 @@ import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
-import BookingLayout from "sections/booking/Layout";
+import ReservationLayout from "sections/reservation/Layout";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
 import {
-  parseBookings,
+  parseReservations,
   prepareTimelineSlots,
   getSlotClosestToPresent,
   getSlotFromMoment
-} from "sections/booking/utils";
-import Bookings from "sections/booking/bookings";
-import BookingDetails from "sections/booking/bookings/BookingDetails";
+} from "sections/reservation/utils";
+import Reservations from "sections/reservation/reservations";
+import ReservationDetails from "sections/reservation/reservations/ReservationDetails";
 import moment from "moment";
 import { SliderStyles } from "components";
 import { action as toggleMenu } from "redux-burger-menu/immutable";
 
-const namespaces = ["booking", "app", "forms"];
+const namespaces = ["reservation", "app", "forms"];
 
-class BookingsPage extends PureComponent {
+class ReservationsPage extends PureComponent {
   static async getInitialProps() {
     return {
       namespacesRequired: namespaces
@@ -28,7 +28,7 @@ class BookingsPage extends PureComponent {
 
   constructor(props) {
     super(props);
-    const { bookings, tables, openPeriods, t } = props;
+    const { reservations, tables, openPeriods, t } = props;
     const choosenDate = moment();
     const slotDuration = 30;
     const slots = openPeriods
@@ -36,20 +36,20 @@ class BookingsPage extends PureComponent {
       : [];
 
     this.state = {
-      columns: parseBookings(bookings, tables, t),
+      columns: parseReservations(reservations, tables, t),
       choosenDate,
       slots,
       choosenSlot: getSlotClosestToPresent(slots),
       slotDuration,
       draggableId: undefined,
-      bookingDetailsId: undefined
+      reservationDetailsId: undefined
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { bookings, tables, openPeriods } = this.props;
+    const { reservations, tables, openPeriods } = this.props;
     const {
-      bookings: prevBookings,
+      reservations: prevReservations,
       tables: prevTables,
       openPeriods: prevOpenPeriods
     } = prevProps;
@@ -58,7 +58,7 @@ class BookingsPage extends PureComponent {
       choosenDate: prevChoosenDate,
       slotDuration: prevSlotDuration
     } = prevState;
-    if (bookings !== prevBookings || tables !== prevTables) {
+    if (reservations !== prevReservations || tables !== prevTables) {
       this.refreshColumnsContent();
     }
     if (
@@ -71,22 +71,22 @@ class BookingsPage extends PureComponent {
   }
 
   refreshColumnsContent = () => {
-    const { bookings, tables, t } = this.props;
+    const { reservations, tables, t } = this.props;
     this.setState({
-      columns: parseBookings(bookings, tables, t)
+      columns: parseReservations(reservations, tables, t)
     });
   };
 
   refreshPeriods = () => {
-    const { openPeriods, bookings } = this.props;
+    const { openPeriods, reservations } = this.props;
     const { choosenDate, slotDuration, draggableId } = this.state;
     const slots = openPeriods
       ? prepareTimelineSlots({ openPeriods, choosenDate, slotDuration })
       : [];
-    const bookingFrom =
-      bookings && bookings.getIn([draggableId, "attributes", "from"]);
-    const choosenSlot = bookingFrom
-      ? getSlotFromMoment(slots, bookingFrom)
+    const reservationFrom =
+      reservations && reservations.getIn([draggableId, "attributes", "from"]);
+    const choosenSlot = reservationFrom
+      ? getSlotFromMoment(slots, reservationFrom)
       : getSlotClosestToPresent(slots);
     this.setState({
       slots,
@@ -95,12 +95,12 @@ class BookingsPage extends PureComponent {
   };
 
   handleDragStart = ({ draggableId }) => {
-    const { bookings } = this.props;
-    const bookingDate =
-      bookings && bookings.getIn([draggableId, "attributes", "date"]);
+    const { reservations } = this.props;
+    const reservationDate =
+      reservations && reservations.getIn([draggableId, "attributes", "date"]);
     this.setState({
       draggableId,
-      choosenDate: moment(bookingDate)
+      choosenDate: moment(reservationDate)
     });
   };
 
@@ -122,10 +122,10 @@ class BookingsPage extends PureComponent {
 
     this.setState(state => {
       const sourceColumn = state.columns[source.droppableId];
-      const newSourceBookingIds = Array.from(sourceColumn.bookingIds);
-      newSourceBookingIds.splice(source.index, 1);
+      const newSourceReservationIds = Array.from(sourceColumn.reservationIds);
+      newSourceReservationIds.splice(source.index, 1);
       if (source.droppableId === destination.droppableId) {
-        newSourceBookingIds.splice(destination.index, 0, draggableId);
+        newSourceReservationIds.splice(destination.index, 0, draggableId);
         return {
           ...state,
           draggableId: undefined,
@@ -137,14 +137,16 @@ class BookingsPage extends PureComponent {
             ...state.columns,
             [sourceColumn.id]: {
               ...sourceColumn,
-              bookingIds: newSourceBookingIds
+              reservationIds: newSourceReservationIds
             }
           }
         };
       }
       const destinationColumn = state.columns[destination.droppableId];
-      const newDestinationBookingIds = Array.from(destinationColumn.bookingIds);
-      newDestinationBookingIds.splice(destination.index, 0, draggableId);
+      const newDestinationReservationIds = Array.from(
+        destinationColumn.reservationIds
+      );
+      newDestinationReservationIds.splice(destination.index, 0, draggableId);
       return {
         ...state,
         draggableId: undefined,
@@ -156,21 +158,21 @@ class BookingsPage extends PureComponent {
           ...state.columns,
           [sourceColumn.id]: {
             ...sourceColumn,
-            bookingIds: newSourceBookingIds
+            reservationIds: newSourceReservationIds
           },
           [destinationColumn.id]: {
             ...destinationColumn,
-            bookingIds: newDestinationBookingIds
+            reservationIds: newDestinationReservationIds
           }
         }
       };
     });
   };
 
-  handleToggleBookingDetails = bookingDetailsId => {
-    const { toggleBookingDetails } = this.props;
-    this.setState({ bookingDetailsId });
-    toggleBookingDetails(!!bookingDetailsId);
+  handleToggleReservationDetails = reservationDetailsId => {
+    const { toggleReservationDetails } = this.props;
+    this.setState({ reservationDetailsId });
+    toggleReservationDetails(!!reservationDetailsId);
   };
 
   chooseDate = choosenDate => this.setState({ choosenDate });
@@ -186,7 +188,7 @@ class BookingsPage extends PureComponent {
       business,
       businessId,
       businesses,
-      bookings,
+      reservations,
       changeCurrentBusiness
     } = this.props;
 
@@ -196,18 +198,20 @@ class BookingsPage extends PureComponent {
       slots,
       choosenSlot,
       slotDuration,
-      bookingDetailsId
+      reservationDetailsId
     } = this.state;
 
-    const bookingDetails =
-      bookingDetailsId && bookings ? bookings.get(bookingDetailsId) : null;
+    const reservationDetails =
+      reservationDetailsId && reservations
+        ? reservations.get(reservationDetailsId)
+        : null;
 
     return (
-      <BookingLayout
+      <ReservationLayout
         {...{
           t,
           lng,
-          page: "bookings",
+          page: "reservations",
           currentBusinessId: businessId,
           business,
           businesses,
@@ -216,16 +220,16 @@ class BookingsPage extends PureComponent {
           setSlotDuration: this.setSlotDuration
         }}
       >
-        <Bookings
+        <Reservations
           {...{
             onDragEnd: this.handleDragEnd,
             onDragStart: this.handleDragStart,
             columns,
-            bookings,
+            reservations,
             slots,
             choosenDate,
             choosenSlot,
-            handleCardClick: this.handleToggleBookingDetails,
+            handleCardClick: this.handleToggleReservationDetails,
             chooseDate: this.chooseDate,
             chooseSlot: this.chooseSlot,
             t
@@ -233,37 +237,37 @@ class BookingsPage extends PureComponent {
         />
         <SliderStyles />
         <div style={{ position: "absolute", left: 0, top: 0 }}>
-          <BookingDetails
+          <ReservationDetails
             {...{
-              bookingDetails,
+              reservationDetails,
               t,
-              updateBooking: this.updateBooking
+              updateReservation: this.updateReservation
             }}
           />
         </div>
-      </BookingLayout>
+      </ReservationLayout>
     );
   }
 }
 
-BookingsPage.propTypes = {
+ReservationsPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   business: shape(),
   businesses: shape(),
-  bookings: shape(),
+  reservations: shape(),
   tables: shape(),
   openPeriods: shape(),
   businessId: string,
   changeCurrentBusiness: func.isRequired,
-  toggleBookingDetails: func.isRequired
+  toggleReservationDetails: func.isRequired
 };
 
-BookingsPage.defaultProps = {
+ReservationsPage.defaultProps = {
   business: null,
   businessId: "",
   businesses: null,
-  bookings: null,
+  reservations: null,
   tables: null,
   openPeriods: null
 };
@@ -274,7 +278,11 @@ export default requireAuth(true)(
       state => {
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
         const business = businessData && businessData.get("businesses").first();
-        const bookings = state.getIn(["bookings", "data", "bookings"]);
+        const reservations = state.getIn([
+          "reservations",
+          "data",
+          "reservations"
+        ]);
         const tables = state.getIn(["tables", "data", "tables"]);
 
         return {
@@ -287,7 +295,7 @@ export default requireAuth(true)(
             "data",
             "businesses"
           ]),
-          bookings,
+          reservations,
           tables: tables
             ? tables.sortBy(table => table.getIn(["attributes", "number"]))
             : tables
@@ -295,8 +303,8 @@ export default requireAuth(true)(
       },
       {
         changeCurrentBusiness: setCurrentBusiness,
-        toggleBookingDetails: toggleMenu
+        toggleReservationDetails: toggleMenu
       }
-    )(BookingsPage)
+    )(ReservationsPage)
   )
 );

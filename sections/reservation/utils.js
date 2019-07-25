@@ -2,17 +2,17 @@ const ONE_DAY_IN_SECONDS = 86400;
 const ONE_MINUTE_IN_SECONDS = 60;
 
 export const columnsList = {
-  newBookings: "newBookings"
+  newReservations: "newReservations"
 };
 
-export const parseBookings = (bookings, tables, t) => {
+export const parseReservations = (reservations, tables, t) => {
   const columns = {
-    newBookings: {
-      id: columnsList.newBookings,
-      title: t("newBookings"),
-      bookingIds:
-        bookings && bookings.size
-          ? bookings
+    newReservations: {
+      id: columnsList.newReservations,
+      title: t("newReservations"),
+      reservationIds:
+        reservations && reservations.size
+          ? reservations
               .filter(o => o)
               .map(o => o.get("id"))
               .toList()
@@ -27,7 +27,7 @@ export const parseBookings = (bookings, tables, t) => {
         id: table.get("id"),
         number: table.getIn(["attributes", "number"]),
         numberOfSeats: table.getIn(["attributes", "numberOfSeats"]),
-        bookingIds: []
+        reservationIds: []
       };
     });
   }

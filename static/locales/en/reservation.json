@@ -1,16 +1,16 @@
 {
-  "bookings": "Bookings",
+  "reservations": "Reservations",
   "tables": "Tables",
   "addInfo": "Please add info about",
   "tablesInfo": "tables",
   "timeSlots": "time slots",
   "timeOfEarliestReservation": "time of earliest reservation",
   "timeOfGuestsStayingInRestaurant": "time of guests staying in restaurant",
-  "maxAmountPerBooking": "max number of people per one booking",
+  "maxAmountPerReservation": "max number of people per one reservation",
   "and": "and",
-  "toSeeAnyNewBookings": "to see any new bookings",
+  "toSeeAnyNewReservations": "to see any new reservations",
   "partySize": "Party size",
-  "newBookings": "New bookings",
+  "newReservations": "New reservations",
   "noSuchTimeSlot": "There is no such time slot enabled in choosed date.",
   "addTable": "Add table",
   "tablesList": "Tables list",
@@ -30,6 +30,6 @@
   "cancel": "Cancel",
   "save": "Save",
   "people": "people",
-  "bookingDetails": "Booking details",
+  "reservationDetails": "Reservation details",
   "personalInformation": "Personal information"
 }

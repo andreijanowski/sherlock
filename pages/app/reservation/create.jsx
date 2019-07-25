@@ -2,14 +2,14 @@ import { useState } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
-import BookingLayout from "sections/booking/Layout";
+import ReservationLayout from "sections/reservation/Layout";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
-import Form from "sections/booking/create";
+import Form from "sections/reservation/create";
 
-const namespaces = ["booking", "app", "forms"];
+const namespaces = ["reservation", "app", "forms"];
 
-const CreateBookingPage = ({
+const CreateReservationPage = ({
   t,
   lng,
   business,
@@ -20,11 +20,11 @@ const CreateBookingPage = ({
   const [slotDuration, setSlotDuration] = useState(30);
 
   return (
-    <BookingLayout
+    <ReservationLayout
       {...{
         t,
         lng,
-        page: "bookings",
+        page: "reservations",
         currentBusinessId: businessId,
         business,
         businesses,
@@ -34,15 +34,15 @@ const CreateBookingPage = ({
       }}
     >
       <Form {...{ t, lng, isSending: false, handleFormSubmit: () => null }} />
-    </BookingLayout>
+    </ReservationLayout>
   );
 };
 
-CreateBookingPage.getInitialProps = async () => ({
+CreateReservationPage.getInitialProps = async () => ({
   namespacesRequired: namespaces
 });
 
-CreateBookingPage.propTypes = {
+CreateReservationPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   business: shape(),
@@ -51,7 +51,7 @@ CreateBookingPage.propTypes = {
   changeCurrentBusiness: func.isRequired
 };
 
-CreateBookingPage.defaultProps = {
+CreateReservationPage.defaultProps = {
   business: null,
   businessId: "",
   businesses: null
@@ -78,6 +78,6 @@ export default requireAuth(true)(
       {
         changeCurrentBusiness: setCurrentBusiness
       }
-    )(CreateBookingPage)
+    )(CreateReservationPage)
   )
 );

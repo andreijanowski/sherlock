@@ -9,7 +9,12 @@ import {
 } from "components";
 import moment from "moment";
 
-const BookingDetails = ({ isOpen, onStateChange, bookingDetails, t }) => (
+const ReservationDetails = ({
+  isOpen,
+  onStateChange,
+  reservationDetails,
+  t
+}) => (
   <Slide
     isOpen={isOpen}
     onStateChange={onStateChange}
@@ -18,14 +23,14 @@ const BookingDetails = ({ isOpen, onStateChange, bookingDetails, t }) => (
     right
     width={400}
   >
-    {bookingDetails && (
+    {reservationDetails && (
       <>
-        <SliderHeader>{t("bookingDetails")}</SliderHeader>
+        <SliderHeader>{t("reservationDetails")}</SliderHeader>
         <SliderDetail
           {...{
             name: t("date"),
             value: [
-              moment(bookingDetails.getIn(["attributes", "date"])).format(
+              moment(reservationDetails.getIn(["attributes", "date"])).format(
                 "Do MMMM YYYY"
               )
             ]
@@ -37,9 +42,10 @@ const BookingDetails = ({ isOpen, onStateChange, bookingDetails, t }) => (
             value: [
               moment({
                 minutes:
-                  (bookingDetails.getIn(["attributes", "from"]) / 60) % 60,
+                  (reservationDetails.getIn(["attributes", "from"]) / 60) % 60,
                 hours:
-                  (bookingDetails.getIn(["attributes", "from"]) / 60 / 60) % 24
+                  (reservationDetails.getIn(["attributes", "from"]) / 60 / 60) %
+                  24
               }).format("h:mm A")
             ]
           }}
@@ -49,9 +55,11 @@ const BookingDetails = ({ isOpen, onStateChange, bookingDetails, t }) => (
             name: t("to"),
             value: [
               moment({
-                minutes: (bookingDetails.getIn(["attributes", "to"]) / 60) % 60,
+                minutes:
+                  (reservationDetails.getIn(["attributes", "to"]) / 60) % 60,
                 hours:
-                  (bookingDetails.getIn(["attributes", "to"]) / 60 / 60) % 24
+                  (reservationDetails.getIn(["attributes", "to"]) / 60 / 60) %
+                  24
               }).format("h:mm A")
             ]
           }}
@@ -60,7 +68,7 @@ const BookingDetails = ({ isOpen, onStateChange, bookingDetails, t }) => (
           {...{
             name: t("partySize"),
             value: [
-              `${bookingDetails.getIn(["attributes", "partySize"])} ${t(
+              `${reservationDetails.getIn(["attributes", "partySize"])} ${t(
                 "people"
               )}`
             ]
@@ -71,23 +79,23 @@ const BookingDetails = ({ isOpen, onStateChange, bookingDetails, t }) => (
         <SliderDetail
           {...{
             name: t("name"),
-            value: [bookingDetails.getIn(["attributes", "name"])]
+            value: [reservationDetails.getIn(["attributes", "name"])]
           }}
         />
         <SliderDetail
           {...{
             name: t("email"),
-            value: [bookingDetails.getIn(["attributes", "email"])]
+            value: [reservationDetails.getIn(["attributes", "email"])]
           }}
         />
         <SliderDetail
           {...{
             name: t("phone"),
             value: [
-              `${bookingDetails.getIn([
+              `${reservationDetails.getIn([
                 "attributes",
                 "phoneCountryPrefix"
-              ])} ${bookingDetails.getIn(["attributes", "phone"])}`
+              ])} ${reservationDetails.getIn(["attributes", "phone"])}`
             ]
           }}
         />
@@ -96,17 +104,17 @@ const BookingDetails = ({ isOpen, onStateChange, bookingDetails, t }) => (
   </Slide>
 );
 
-BookingDetails.propTypes = {
+ReservationDetails.propTypes = {
   isOpen: bool.isRequired,
   onStateChange: func.isRequired,
-  bookingDetails: shape(),
+  reservationDetails: shape(),
   setRejectModalVisibility: func.isRequired,
   updateOrder: func.isRequired,
   t: func.isRequired
 };
 
-BookingDetails.defaultProps = {
-  bookingDetails: null
+ReservationDetails.defaultProps = {
+  reservationDetails: null
 };
 
-export default reduxBurgerMenu(BookingDetails);
+export default reduxBurgerMenu(ReservationDetails);

@@ -45,10 +45,6 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           ["data", "tables"],
           fromJS(payload.data.tables)
         );
-        newState = newState.mergeIn(
-          ["data", "pictures"],
-          fromJS(payload.data.pictures)
-        );
       }
       return newState;
     }
@@ -71,9 +67,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
 
     case POST_TABLE_SUCCESS: {
       if (state.getIn(["data"]) && state.getIn(["data"]).size) {
-        return state
-          .mergeIn(["data", "tables"], fromJS(payload.data.tables))
-          .mergeIn(["data", "pictures"], fromJS(payload.data.pictures));
+        return state.mergeIn(["data", "tables"], fromJS(payload.data.tables));
       }
       return state.setIn(["data"], fromJS(payload.data));
     }
