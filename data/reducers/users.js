@@ -297,7 +297,11 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           v === "stripeCurrency" ||
           v === "allowPickup" ||
           v === "logo" ||
-          v === "name"
+          v === "name" ||
+          v === "timeSlots" ||
+          v === "timeOfStay" ||
+          v === "minTimeBeforeReservation" ||
+          v === "maxReservationSize"
         ) {
           const currentBusinessPathArray = [
             "currentBusiness",

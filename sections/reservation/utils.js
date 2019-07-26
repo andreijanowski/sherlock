@@ -1,5 +1,4 @@
 const ONE_DAY_IN_SECONDS = 86400;
-const ONE_MINUTE_IN_SECONDS = 60;
 
 export const columnsList = {
   newReservations: "newReservations"
@@ -53,18 +52,16 @@ export const prepareTimelineSlots = ({
     });
   }
 
-  const slotDurationInSeconds = slotDuration * ONE_MINUTE_IN_SECONDS;
-
   periods.forEach(({ from, to }) => {
     let i = 0;
     if (from < to) {
-      while (from + slotDurationInSeconds * i < to) {
-        slotsArray.push(from + slotDurationInSeconds * i);
+      while (from + slotDuration * i < to) {
+        slotsArray.push(from + slotDuration * i);
         i += 1;
       }
     } else {
-      while (from + slotDurationInSeconds * i < to + ONE_DAY_IN_SECONDS) {
-        slotsArray.push(from + slotDurationInSeconds * i);
+      while (from + slotDuration * i < to + ONE_DAY_IN_SECONDS) {
+        slotsArray.push(from + slotDuration * i);
         i += 1;
       }
     }

@@ -152,7 +152,7 @@ export const fetchBusinessReservations = (
     params: {
       per_page: 200,
       page,
-      include: "user,tables", // TODO: after API was fixed change to: include: "user,bookings,tables",
+      include: "user,bookings,tables",
       filter: { startDate }
     }
   },

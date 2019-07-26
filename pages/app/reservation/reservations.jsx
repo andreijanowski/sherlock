@@ -16,6 +16,7 @@ import ReservationDetails from "sections/reservation/reservations/ReservationDet
 import moment from "moment";
 import { SliderStyles } from "components";
 import { action as toggleMenu } from "redux-burger-menu/immutable";
+import { patchBusiness } from "actions/businesses";
 
 const namespaces = ["reservation", "app", "forms"];
 
@@ -28,11 +29,14 @@ class ReservationsPage extends PureComponent {
 
   constructor(props) {
     super(props);
-    const { reservations, tables, openPeriods, t } = props;
+    const { reservations, tables, openPeriods, t, business } = props;
     const choosenDate = moment();
-    const slotDuration = 30;
     const slots = openPeriods
-      ? prepareTimelineSlots({ openPeriods, choosenDate, slotDuration })
+      ? prepareTimelineSlots({
+          openPeriods,
+          choosenDate,
+          slotDuration: business.get("timeSlots")
+        })
       : [];
 
     this.state = {
@@ -40,31 +44,29 @@ class ReservationsPage extends PureComponent {
       choosenDate,
       slots,
       choosenSlot: getSlotClosestToPresent(slots),
-      slotDuration,
       draggableId: undefined,
       reservationDetailsId: undefined
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { reservations, tables, openPeriods } = this.props;
+    const { reservations, tables, openPeriods, business } = this.props;
     const {
       reservations: prevReservations,
       tables: prevTables,
-      openPeriods: prevOpenPeriods
+      openPeriods: prevOpenPeriods,
+      business: prevBusiness
     } = prevProps;
-    const { choosenDate, slotDuration } = this.state;
-    const {
-      choosenDate: prevChoosenDate,
-      slotDuration: prevSlotDuration
-    } = prevState;
+    const { choosenDate } = this.state;
+    const { choosenDate: prevChoosenDate } = prevState;
     if (reservations !== prevReservations || tables !== prevTables) {
       this.refreshColumnsContent();
     }
     if (
       openPeriods !== prevOpenPeriods ||
       choosenDate !== prevChoosenDate ||
-      slotDuration !== prevSlotDuration
+      (business && business.get("timeSlots")) !==
+        (prevBusiness && prevBusiness.get("timeSlots"))
     ) {
       this.refreshPeriods();
     }
@@ -78,10 +80,14 @@ class ReservationsPage extends PureComponent {
   };
 
   refreshPeriods = () => {
-    const { openPeriods, reservations } = this.props;
-    const { choosenDate, slotDuration, draggableId } = this.state;
+    const { openPeriods, reservations, business } = this.props;
+    const { choosenDate, draggableId } = this.state;
     const slots = openPeriods
-      ? prepareTimelineSlots({ openPeriods, choosenDate, slotDuration })
+      ? prepareTimelineSlots({
+          openPeriods,
+          choosenDate,
+          slotDuration: business.get("timeSlots")
+        })
       : [];
     const reservationFrom =
       reservations && reservations.getIn([draggableId, "attributes", "from"]);
@@ -179,8 +185,6 @@ class ReservationsPage extends PureComponent {
 
   chooseSlot = choosenSlot => this.setState({ choosenSlot });
 
-  setSlotDuration = slotDuration => this.setState({ slotDuration });
-
   render() {
     const {
       t,
@@ -189,6 +193,7 @@ class ReservationsPage extends PureComponent {
       businessId,
       businesses,
       reservations,
+      updateBusiness,
       changeCurrentBusiness
     } = this.props;
 
@@ -197,7 +202,6 @@ class ReservationsPage extends PureComponent {
       choosenDate,
       slots,
       choosenSlot,
-      slotDuration,
       reservationDetailsId
     } = this.state;
 
@@ -216,8 +220,7 @@ class ReservationsPage extends PureComponent {
           business,
           businesses,
           changeCurrentBusiness,
-          slotDuration,
-          setSlotDuration: this.setSlotDuration
+          updateBusiness
         }}
       >
         <Reservations
@@ -260,7 +263,8 @@ ReservationsPage.propTypes = {
   openPeriods: shape(),
   businessId: string,
   changeCurrentBusiness: func.isRequired,
-  toggleReservationDetails: func.isRequired
+  toggleReservationDetails: func.isRequired,
+  updateBusiness: func.isRequired
 };
 
 ReservationsPage.defaultProps = {
@@ -303,7 +307,8 @@ export default requireAuth(true)(
       },
       {
         changeCurrentBusiness: setCurrentBusiness,
-        toggleReservationDetails: toggleMenu
+        toggleReservationDetails: toggleMenu,
+        updateBusiness: patchBusiness
       }
     )(ReservationsPage)
   )

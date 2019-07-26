@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { func, string, node, number, shape } from "prop-types";
 import AppLayout from "layout/App";
 import {
@@ -22,6 +22,7 @@ import {
   Clock
 } from "icons";
 import { Flex, Box } from "@rebass/grid";
+import Tippy from "@tippy.js/react";
 import prepareBusinessesList from "utils/prepareBusinessesList";
 import { Orange } from "./styled";
 
@@ -33,20 +34,30 @@ const ReservationLayout = ({
   business,
   currentBusinessId,
   businesses,
-  changeCurrentBusiness,
-  slotDuration,
-  setSlotDuration
+  updateBusiness,
+  changeCurrentBusiness
 }) => {
-  // TODO: pass proper values from business as inital state
-  const [maxAmountPerReservation, setMaxAmountPerReservation] = useState(15);
-  const [timeOfEarliestReservation, setTimeOfEarliestReservation] = useState(
-    15
+  const [timeSlots, setTimeSlots] = useState(
+    business && business.get("timeSlots") / 60
   );
-  const [
-    timeOfGuestsStayingInRestaurant,
-    setTimeOfGuestsStayingInRestaurant
-  ] = useState(15);
-  const [timeSlots, setTimeSlots] = useState(slotDuration);
+  const [timeOfStay, setTimeOfStay] = useState(
+    business && business.get("timeOfStay") / 60
+  );
+  const [minTimeBeforeReservation, setMinTimeBeforeReservation] = useState(
+    business && business.get("minTimeBeforeReservation") / 60
+  );
+  const [maxReservationSize, setMaxReservationSize] = useState(
+    business && business.get("maxReservationSize")
+  );
+
+  useEffect(() => {
+    setTimeSlots(business && business.get("timeSlots") / 60);
+    setTimeOfStay(business && business.get("timeOfStay") / 60);
+    setMinTimeBeforeReservation(
+      business && business.get("minTimeBeforeReservation") / 60
+    );
+    setMaxReservationSize(business && business.get("maxReservationSize"));
+  }, [business]);
 
   return (
     <AppLayout
@@ -81,12 +92,12 @@ const ReservationLayout = ({
                 <Link route="/app/reservation/tables/" lng={lng}>
                   <Orange as="a">{t("tablesInfo")}</Orange>
                 </Link>
-                {`, ${t("timeSlots")}, ${t("timeOfEarliestReservation")}, ${t(
-                  "timeOfGuestsStayingInRestaurant"
-                )}, ${t("and")} ${t("maxAmountPerReservation")}`}
+                {`, ${t("timeSlots")}, ${t("minTimeBeforeReservation")}, ${t(
+                  "timeOfStay"
+                )}, ${t("and")} ${t("maxReservationSize")}`}
               </Orange>
             </ItalicText>
-            {` ${t("toSeeAnyNewreservations")}`}.
+            {` ${t("toSeeAnyNewReservations")}`}.
           </span>
         }
         complete={`0% ${t("complete")}`}
@@ -113,84 +124,96 @@ const ReservationLayout = ({
           </Link>
         </Box>
         <Box pr={3} mb={2}>
-          <Button styleName="withImage" as="label">
-            <ButtonWithImageIconWrapper>
-              <Time />
-            </ButtonWithImageIconWrapper>
-            <ButtonWithImageText>
-              <AutosizeInput
-                value={timeSlots}
-                onChange={e => {
-                  setTimeSlots(e.target.value);
-                }}
-                onBlur={() => setSlotDuration(timeSlots)}
-              />
-              <span>{` ${t("min")}`}</span>
-            </ButtonWithImageText>
-          </Button>
+          <Tippy content={t("timeSlots")}>
+            <Button styleName="withImage" as="label">
+              <ButtonWithImageIconWrapper>
+                <Time />
+              </ButtonWithImageIconWrapper>
+              <ButtonWithImageText>
+                <AutosizeInput
+                  value={timeSlots}
+                  onChange={e => {
+                    setTimeSlots(e.target.value);
+                  }}
+                  onBlur={() =>
+                    updateBusiness(currentBusinessId, {
+                      timeSlots: timeSlots * 60
+                    })
+                  }
+                />
+                <span>{` ${t("min")}`}</span>
+              </ButtonWithImageText>
+            </Button>
+          </Tippy>
         </Box>
         <Box pr={3} mb={2}>
-          <Button styleName="withImage" as="label">
-            <ButtonWithImageIconWrapper>
-              <Clock />
-            </ButtonWithImageIconWrapper>
-            <ButtonWithImageText>
-              <AutosizeInput
-                value={timeOfGuestsStayingInRestaurant}
-                onChange={e => {
-                  setTimeOfGuestsStayingInRestaurant(e.target.value);
-                }}
-                onBlur={() =>
-                  console.log(
-                    "TODO: Here we should update business by API endpoint"
-                  )
-                }
-              />
-              <span>{` ${t("min")}`}</span>
-            </ButtonWithImageText>
-          </Button>
+          <Tippy content={t("timeOfStay")}>
+            <Button styleName="withImage" as="label">
+              <ButtonWithImageIconWrapper>
+                <Clock />
+              </ButtonWithImageIconWrapper>
+              <ButtonWithImageText>
+                <AutosizeInput
+                  value={timeOfStay}
+                  onChange={e => {
+                    setTimeOfStay(e.target.value);
+                  }}
+                  onBlur={() =>
+                    updateBusiness(currentBusinessId, {
+                      timeOfStay: timeOfStay * 60
+                    })
+                  }
+                />
+                <span>{` ${t("min")}`}</span>
+              </ButtonWithImageText>
+            </Button>
+          </Tippy>
         </Box>
         <Box pr={3} mb={2}>
-          <Button styleName="withImage" as="label">
-            <ButtonWithImageIconWrapper>
-              <ProfileOpeningHours />
-            </ButtonWithImageIconWrapper>
-            <ButtonWithImageText>
-              <AutosizeInput
-                value={timeOfEarliestReservation}
-                onChange={e => {
-                  setTimeOfEarliestReservation(e.target.value);
-                }}
-                onBlur={() =>
-                  console.log(
-                    "TODO: Here we should update business by API endpoint"
-                  )
-                }
-              />
-              <span>{` ${t("min")}`}</span>
-            </ButtonWithImageText>
-          </Button>
+          <Tippy content={t("minTimeBeforeReservation")}>
+            <Button styleName="withImage" as="label">
+              <ButtonWithImageIconWrapper>
+                <ProfileOpeningHours />
+              </ButtonWithImageIconWrapper>
+              <ButtonWithImageText>
+                <AutosizeInput
+                  value={minTimeBeforeReservation}
+                  onChange={e => {
+                    setMinTimeBeforeReservation(e.target.value);
+                  }}
+                  onBlur={() =>
+                    updateBusiness(currentBusinessId, {
+                      minTimeBeforeReservation: minTimeBeforeReservation * 60
+                    })
+                  }
+                />
+                <span>{` ${t("min")}`}</span>
+              </ButtonWithImageText>
+            </Button>
+          </Tippy>
         </Box>
         <Box pr={3} mb={2}>
-          <Button styleName="withImage" as="label">
-            <ButtonWithImageIconWrapper>
-              <ProfileMembers />
-            </ButtonWithImageIconWrapper>
-            <ButtonWithImageText>
-              <AutosizeInput
-                value={maxAmountPerReservation}
-                onChange={e => {
-                  setMaxAmountPerReservation(e.target.value);
-                }}
-                onBlur={() =>
-                  console.log(
-                    "TODO: Here we should update business by API endpoint"
-                  )
-                }
-              />
-              <span>{` ${t("people")}`}</span>
-            </ButtonWithImageText>
-          </Button>
+          <Tippy content={t("maxReservationSize")}>
+            <Button styleName="withImage" as="label">
+              <ButtonWithImageIconWrapper>
+                <ProfileMembers />
+              </ButtonWithImageIconWrapper>
+              <ButtonWithImageText>
+                <AutosizeInput
+                  value={maxReservationSize}
+                  onChange={e => {
+                    setMaxReservationSize(e.target.value);
+                  }}
+                  onBlur={() =>
+                    updateBusiness(currentBusinessId, {
+                      maxReservationSize
+                    })
+                  }
+                />
+                <span>{` ${t("people")}`}</span>
+              </ButtonWithImageText>
+            </Button>
+          </Tippy>
         </Box>
         <ActionIcon
           size="sm"
@@ -215,12 +238,11 @@ ReservationLayout.propTypes = {
   business: shape(),
   businesses: shape(),
   changeCurrentBusiness: func.isRequired,
+  updateBusiness: func.isRequired,
   currentBusinessId: string,
   dishesLength: number,
   deliveriesLength: number,
-  orderPeriodsLength: number,
-  slotDuration: number.isRequired,
-  setSlotDuration: func.isRequired
+  orderPeriodsLength: number
 };
 
 ReservationLayout.defaultProps = {

@@ -77,7 +77,7 @@ const CreateCateringForm = ({ t, lng, isSending, handleFormSubmit }) => (
               fluid
               type="button"
               onClick={() => {
-                Router.pushRoute(`/${lng}/app/catering/month/`);
+                Router.pushRoute(`/${lng}/app/reservation/reservations/`);
               }}
             >
               {t("cancel")}
