@@ -11,5 +11,13 @@
   "toSeeAnyNewBookings": "to see any new bookings",
   "partySize": "Party size",
   "newBookings": "New bookings",
-  "noSuchTimeSlot": "There is no such time slot enabled in choosed date."
+  "noSuchTimeSlot": "There is no such time slot enabled in choosed date.",
+  "addTable": "Add table",
+  "tablesList": "Tables list",
+  "numberLabel": "Table no.",
+  "numberPlaceholder": "1",
+  "numberOfSeatsLabel": "Seats no.",
+  "tableNo": "Table no.",
+  "seats": "seats",
+  "numberOfSeatsPlaceholder": "2"
 }

@@ -62,10 +62,7 @@ Menu.propTypes = {
 };
 
 Menu.defaultProps = {
-  dishes: null
-};
-
-Menu.defaultProps = {
+  dishes: null,
   editedDishId: null
 };
 
