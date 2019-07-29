@@ -1,4 +1,4 @@
-import { func, shape, bool, string } from "prop-types";
+import { func, shape, string } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import Form from "./Form";
 import List from "./List";
@@ -44,7 +44,6 @@ Tables.propTypes = {
   setEditedTableId: func.isRequired,
   removeTable: func.isRequired,
   addTable: func.isRequired,
-  loading: bool.isRequired,
   editedTableId: string
 };
 

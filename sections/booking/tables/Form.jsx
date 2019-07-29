@@ -3,7 +3,7 @@ import { FormInput, H3, Button, LoadingIndicator } from "components";
 import { Form as FinalForm } from "react-final-form";
 import { func, shape } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
-import { required } from "utils/validators";
+import { isNumber, isPositiveInt } from "utils/validators";
 import { Form } from "./styled";
 
 const TableForm = ({ t, initialValues, setEditedTableId, addTable }) => {
@@ -54,7 +54,7 @@ const TableForm = ({ t, initialValues, setEditedTableId, addTable }) => {
                   <Box width={[1, 1 / 3]} px={2}>
                     <FormInput
                       name="number"
-                      validate={required(t)}
+                      validate={isNumber(t)}
                       label={t("numberLabel")}
                       placeholder={t("numberPlaceholder")}
                     />
@@ -62,7 +62,7 @@ const TableForm = ({ t, initialValues, setEditedTableId, addTable }) => {
                   <Box width={[1, 1 / 3]} px={2}>
                     <FormInput
                       name="numberOfSeats"
-                      validate={required(t)}
+                      validate={isPositiveInt(t)}
                       label={t("numberOfSeatsLabel")}
                       placeholder={t("numberOfSeatsPlaceholder")}
                     />

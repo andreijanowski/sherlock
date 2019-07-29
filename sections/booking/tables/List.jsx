@@ -9,13 +9,12 @@ const List = ({ tables, t, removeTable, setEditedTableId }) => (
     <Flex flexWrap="wrap" mx={-2}>
       {tables &&
         tables.valueSeq().map(item => (
-          <Box px={2} width={[1, 1 / 2, 1 / 3]}>
+          <Box px={2} width={[1, 1 / 2, 1 / 3]} key={item.get("id")}>
             <ListItem
               {...{
                 item,
                 removeTable,
                 t,
-                key: item.get("id"),
                 setEditedTableId
               }}
             />
