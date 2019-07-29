@@ -95,7 +95,6 @@ TablesPage.propTypes = {
   business: shape(),
   businesses: shape(),
   tables: shape(),
-  openPeriods: shape(),
   businessId: string,
   changeCurrentBusiness: func.isRequired,
   createTable: func.isRequired,
@@ -107,8 +106,7 @@ TablesPage.defaultProps = {
   business: null,
   businessId: "",
   businesses: null,
-  tables: null,
-  openPeriods: null
+  tables: null
 };
 
 export default requireAuth(true)(
@@ -122,7 +120,6 @@ export default requireAuth(true)(
         return {
           business: business && business.get("attributes"),
           businessId: business && business.get("id"),
-          openPeriods: businessData && businessData.get("openPeriods"),
           businesses: state.getIn([
             "users",
             "profileBusinesses",

@@ -19,5 +19,17 @@
   "numberOfSeatsLabel": "Seats no.",
   "tableNo": "Table no.",
   "seats": "seats",
-  "numberOfSeatsPlaceholder": "2"
+  "numberOfSeatsPlaceholder": "2",
+  "date": "Date",
+  "from": "From",
+  "to": "To",
+  "name": "Name",
+  "email": "Email",
+  "country": "Country",
+  "phone": "Phone",
+  "cancel": "Cancel",
+  "save": "Save",
+  "people": "people",
+  "bookingDetails": "Booking details",
+  "personalInformation": "Personal information"
 }

@@ -12,7 +12,10 @@ import {
   getSlotFromMoment
 } from "sections/booking/utils";
 import Bookings from "sections/booking/bookings";
+import BookingDetails from "sections/booking/bookings/BookingDetails";
 import moment from "moment";
+import { SliderStyles } from "components";
+import { action as toggleMenu } from "redux-burger-menu/immutable";
 
 const namespaces = ["booking", "app", "forms"];
 
@@ -38,7 +41,8 @@ class BookingsPage extends PureComponent {
       slots,
       choosenSlot: getSlotClosestToPresent(slots),
       slotDuration,
-      draggableId: undefined
+      draggableId: undefined,
+      bookingDetailsId: undefined
     };
   }
 
@@ -163,6 +167,12 @@ class BookingsPage extends PureComponent {
     });
   };
 
+  handleToggleBookingDetails = bookingDetailsId => {
+    const { toggleBookingDetails } = this.props;
+    this.setState({ bookingDetailsId });
+    toggleBookingDetails(!!bookingDetailsId);
+  };
+
   chooseDate = choosenDate => this.setState({ choosenDate });
 
   chooseSlot = choosenSlot => this.setState({ choosenSlot });
@@ -185,8 +195,12 @@ class BookingsPage extends PureComponent {
       choosenDate,
       slots,
       choosenSlot,
-      slotDuration
+      slotDuration,
+      bookingDetailsId
     } = this.state;
+
+    const bookingDetails =
+      bookingDetailsId && bookings ? bookings.get(bookingDetailsId) : null;
 
     return (
       <BookingLayout
@@ -211,11 +225,22 @@ class BookingsPage extends PureComponent {
             slots,
             choosenDate,
             choosenSlot,
+            handleCardClick: this.handleToggleBookingDetails,
             chooseDate: this.chooseDate,
             chooseSlot: this.chooseSlot,
             t
           }}
         />
+        <SliderStyles />
+        <div style={{ position: "absolute", left: 0, top: 0 }}>
+          <BookingDetails
+            {...{
+              bookingDetails,
+              t,
+              updateBooking: this.updateBooking
+            }}
+          />
+        </div>
       </BookingLayout>
     );
   }
@@ -230,7 +255,8 @@ BookingsPage.propTypes = {
   tables: shape(),
   openPeriods: shape(),
   businessId: string,
-  changeCurrentBusiness: func.isRequired
+  changeCurrentBusiness: func.isRequired,
+  toggleBookingDetails: func.isRequired
 };
 
 BookingsPage.defaultProps = {
@@ -268,7 +294,8 @@ export default requireAuth(true)(
         };
       },
       {
-        changeCurrentBusiness: setCurrentBusiness
+        changeCurrentBusiness: setCurrentBusiness,
+        toggleBookingDetails: toggleMenu
       }
     )(BookingsPage)
   )
