@@ -1,13 +1,13 @@
 import { Droppable } from "react-beautiful-dnd";
 import { string, bool, number } from "prop-types";
-import { Table, ChairsSpace, Name } from "./styled";
+import { TableWrapper, ChairsSpace, Name } from "./styled";
 
 const RADIUS = 60;
 
-const Column = ({ id, tableNumber, numberOfSeats, isDropDisabled }) => (
+const Table = ({ id, tableNumber, numberOfSeats, isDropDisabled }) => (
   <Droppable droppableId={id} isDropDisabled={isDropDisabled}>
     {provided => (
-      <Table
+      <TableWrapper
         {...provided.droppableProps}
         ref={provided.innerRef}
         isDropDisabled={isDropDisabled}
@@ -18,20 +18,20 @@ const Column = ({ id, tableNumber, numberOfSeats, isDropDisabled }) => (
           </svg>
         </ChairsSpace>
         <Name>{tableNumber}</Name>
-      </Table>
+      </TableWrapper>
     )}
   </Droppable>
 );
 
-Column.propTypes = {
+Table.propTypes = {
   id: string.isRequired,
   tableNumber: number.isRequired,
   numberOfSeats: number.isRequired,
   isDropDisabled: bool
 };
 
-Column.defaultProps = {
+Table.defaultProps = {
   isDropDisabled: false
 };
 
-export default Column;
+export default Table;

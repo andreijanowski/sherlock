@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { shape, string, arrayOf, func, bool } from "prop-types";
-import Card from "./Card";
+import Card from "../Card";
 
 const Cards = ({
   items,
