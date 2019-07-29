@@ -8,6 +8,7 @@
       "passwordMatch": "The password and repeat password do not match.",
       "number": "The field must be a number",
       "nonNegative": "The field must be a non negative value",
+      "positive": "The field must be a positive value",
       "integer": "The field must be a integer",
       "pixel_dimensions_error-logo": "Avatar size should be less than or equal to {{maxWidth}}x{{maxHeight}}px",
       "pixel_dimensions_error-menu": "Menu size should be less than or equal to {{maxWidth}}x{{maxHeight}}px",
@@ -133,7 +134,8 @@
       "cannot_set_without_dishes-visible_in_lefood": "Add some dishes first",
       "cannot_set_without_order_periods-visible_in_lefood": "Add order periods first",
       "blank-display_name": "Display name can't be blank",
-      "country_not_supported-stripe_currency": "Your country is not supported by stripe."
+      "country_not_supported-stripe_currency": "Your country is not supported by stripe.",
+      "greater_than-number_of_seats": "Number of seats must be greater than 0"
     }
   },
   "placeholder": {

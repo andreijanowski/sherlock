@@ -1,15 +1,16 @@
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, shape, bool } from "prop-types";
+import { func, string, shape } from "prop-types";
 import BookingLayout from "sections/booking/Layout";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
 import Tables from "sections/booking/tables";
+import { postTable, patchTable, deleteTable } from "actions/tables";
 
 const namespaces = ["booking", "app", "forms"];
 
-class BookingsPage extends PureComponent {
+class TablesPage extends PureComponent {
   static async getInitialProps() {
     return {
       namespacesRequired: namespaces
@@ -32,21 +33,19 @@ class BookingsPage extends PureComponent {
   addTable = values => {
     const { editedTableId } = this.state;
     if (editedTableId) {
-      console.log(
-        "TODO: connect patch api enpoint here to update table",
-        values
-      );
+      const { updateTable } = this.props;
+      updateTable(values, editedTableId);
       this.setEditedTableId(undefined);
     } else {
-      console.log("TODO: connect post api enpoint here to add table", values);
+      const { createTable, businessId } = this.props;
+      createTable(values, businessId);
     }
   };
 
-  removeTable = tableId =>
-    console.log(
-      "TODO: connect delete api enpoint here to remove table",
-      tableId
-    );
+  removeTable = tableId => {
+    const { removeTable } = this.props;
+    removeTable(tableId);
+  };
 
   render() {
     const {
@@ -90,24 +89,24 @@ class BookingsPage extends PureComponent {
   }
 }
 
-BookingsPage.propTypes = {
+TablesPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   business: shape(),
   businesses: shape(),
   tables: shape(),
-  openPeriods: shape(),
   businessId: string,
   changeCurrentBusiness: func.isRequired,
-  loading: bool.isRequired
+  createTable: func.isRequired,
+  updateTable: func.isRequired,
+  removeTable: func.isRequired
 };
 
-BookingsPage.defaultProps = {
+TablesPage.defaultProps = {
   business: null,
   businessId: "",
   businesses: null,
-  tables: null,
-  openPeriods: null
+  tables: null
 };
 
 export default requireAuth(true)(
@@ -121,19 +120,23 @@ export default requireAuth(true)(
         return {
           business: business && business.get("attributes"),
           businessId: business && business.get("id"),
-          openPeriods: businessData && businessData.get("openPeriods"),
           businesses: state.getIn([
             "users",
             "profileBusinesses",
             "data",
             "businesses"
           ]),
-          tables
+          tables: tables
+            ? tables.sortBy(table => table.getIn(["attributes", "number"]))
+            : tables
         };
       },
       {
-        changeCurrentBusiness: setCurrentBusiness
+        changeCurrentBusiness: setCurrentBusiness,
+        createTable: postTable,
+        updateTable: patchTable,
+        removeTable: deleteTable
       }
-    )(BookingsPage)
+    )(TablesPage)
   )
 );

@@ -41,11 +41,19 @@ export const isNotNegativeNumber = t =>
     num >= 0 ? undefined : t("forms:validation.error.nonNegative")
   );
 
+export const isPositiveNumber = t =>
+  composeValidators(isNumber(t), num =>
+    num > 0 ? undefined : t("forms:validation.error.positive")
+  );
+
 export const isInteger = t => num =>
   isInt(String(num)) ? undefined : t("forms:validation.error.integer");
 
 export const isNotNegativeInt = t =>
   composeValidators(isInteger(t), isNotNegativeNumber(t));
+
+export const isPositiveInt = t =>
+  composeValidators(isInteger(t), isPositiveNumber(t));
 
 export const validateEmail = t => composeValidators(required(t), isEmail(t));
 

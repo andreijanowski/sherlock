@@ -98,6 +98,7 @@ module.exports = routes()
     "app/booking/bookings",
     `/:lng(${languagesPattern})/app/booking/bookings`
   )
+  .add("app/booking/create", `/:lng(${languagesPattern})/app/booking/create`)
   .add("app/booking/tables", `/:lng(${languagesPattern})/app/booking/tables`)
   .add("app/stripeOauth", `/:lng(${languagesPattern})/stripe-oauth`)
   .add("app/subscriptions", `/:lng(${languagesPattern})/app/subscriptions`);

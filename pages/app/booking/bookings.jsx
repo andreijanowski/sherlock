@@ -12,7 +12,10 @@ import {
   getSlotFromMoment
 } from "sections/booking/utils";
 import Bookings from "sections/booking/bookings";
+import BookingDetails from "sections/booking/bookings/BookingDetails";
 import moment from "moment";
+import { SliderStyles } from "components";
+import { action as toggleMenu } from "redux-burger-menu/immutable";
 
 const namespaces = ["booking", "app", "forms"];
 
@@ -25,7 +28,7 @@ class BookingsPage extends PureComponent {
 
   constructor(props) {
     super(props);
-    const { bookings, openPeriods, t } = props;
+    const { bookings, tables, openPeriods, t } = props;
     const choosenDate = moment();
     const slotDuration = 30;
     const slots = openPeriods
@@ -33,24 +36,29 @@ class BookingsPage extends PureComponent {
       : [];
 
     this.state = {
-      columns: parseBookings(bookings, t),
+      columns: parseBookings(bookings, tables, t),
       choosenDate,
       slots,
       choosenSlot: getSlotClosestToPresent(slots),
       slotDuration,
-      draggableId: undefined
+      draggableId: undefined,
+      bookingDetailsId: undefined
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { bookings, openPeriods } = this.props;
-    const { bookings: prevBookings, openPeriods: prevOpenPeriods } = prevProps;
+    const { bookings, tables, openPeriods } = this.props;
+    const {
+      bookings: prevBookings,
+      tables: prevTables,
+      openPeriods: prevOpenPeriods
+    } = prevProps;
     const { choosenDate, slotDuration } = this.state;
     const {
       choosenDate: prevChoosenDate,
       slotDuration: prevSlotDuration
     } = prevState;
-    if (bookings !== prevBookings) {
+    if (bookings !== prevBookings || tables !== prevTables) {
       this.refreshColumnsContent();
     }
     if (
@@ -63,9 +71,9 @@ class BookingsPage extends PureComponent {
   }
 
   refreshColumnsContent = () => {
-    const { bookings, t } = this.props;
+    const { bookings, tables, t } = this.props;
     this.setState({
-      columns: parseBookings(bookings, t)
+      columns: parseBookings(bookings, tables, t)
     });
   };
 
@@ -159,6 +167,12 @@ class BookingsPage extends PureComponent {
     });
   };
 
+  handleToggleBookingDetails = bookingDetailsId => {
+    const { toggleBookingDetails } = this.props;
+    this.setState({ bookingDetailsId });
+    toggleBookingDetails(!!bookingDetailsId);
+  };
+
   chooseDate = choosenDate => this.setState({ choosenDate });
 
   chooseSlot = choosenSlot => this.setState({ choosenSlot });
@@ -181,8 +195,12 @@ class BookingsPage extends PureComponent {
       choosenDate,
       slots,
       choosenSlot,
-      slotDuration
+      slotDuration,
+      bookingDetailsId
     } = this.state;
+
+    const bookingDetails =
+      bookingDetailsId && bookings ? bookings.get(bookingDetailsId) : null;
 
     return (
       <BookingLayout
@@ -207,11 +225,22 @@ class BookingsPage extends PureComponent {
             slots,
             choosenDate,
             choosenSlot,
+            handleCardClick: this.handleToggleBookingDetails,
             chooseDate: this.chooseDate,
             chooseSlot: this.chooseSlot,
             t
           }}
         />
+        <SliderStyles />
+        <div style={{ position: "absolute", left: 0, top: 0 }}>
+          <BookingDetails
+            {...{
+              bookingDetails,
+              t,
+              updateBooking: this.updateBooking
+            }}
+          />
+        </div>
       </BookingLayout>
     );
   }
@@ -223,9 +252,11 @@ BookingsPage.propTypes = {
   business: shape(),
   businesses: shape(),
   bookings: shape(),
+  tables: shape(),
   openPeriods: shape(),
   businessId: string,
-  changeCurrentBusiness: func.isRequired
+  changeCurrentBusiness: func.isRequired,
+  toggleBookingDetails: func.isRequired
 };
 
 BookingsPage.defaultProps = {
@@ -233,6 +264,7 @@ BookingsPage.defaultProps = {
   businessId: "",
   businesses: null,
   bookings: null,
+  tables: null,
   openPeriods: null
 };
 
@@ -243,6 +275,7 @@ export default requireAuth(true)(
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
         const business = businessData && businessData.get("businesses").first();
         const bookings = state.getIn(["bookings", "data", "bookings"]);
+        const tables = state.getIn(["tables", "data", "tables"]);
 
         return {
           business: business && business.get("attributes"),
@@ -254,11 +287,15 @@ export default requireAuth(true)(
             "data",
             "businesses"
           ]),
-          bookings
+          bookings,
+          tables: tables
+            ? tables.sortBy(table => table.getIn(["attributes", "number"]))
+            : tables
         };
       },
       {
-        changeCurrentBusiness: setCurrentBusiness
+        changeCurrentBusiness: setCurrentBusiness,
+        toggleBookingDetails: toggleMenu
       }
     )(BookingsPage)
   )

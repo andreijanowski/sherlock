@@ -10,6 +10,7 @@ import CardDetails from "./CardDetails";
 const Bookings = ({
   onDragEnd,
   onDragStart,
+  handleCardClick,
   // isDropDisabled,
   choosenDate,
   choosenSlot,
@@ -35,7 +36,7 @@ const Bookings = ({
             items: newBookings,
             isDropDisabled: false,
             isColumnGrayedOut: false,
-            handleCardClick: () => console.log("click"),
+            handleCardClick,
             width: "200px",
             renderCardHeader: id => {
               const from = bookings.getIn([id, "attributes", "from"]);
@@ -59,8 +60,8 @@ const Bookings = ({
                   {...{
                     key: column.id,
                     id: column.id,
-                    seats: column.seats,
-                    name: column.name,
+                    numberOfSeats: column.numberOfSeats,
+                    tableNumber: column.number,
                     items: [],
                     isDropDisabled: !choosenSlot
                   }}
@@ -84,6 +85,7 @@ Bookings.propTypes = {
   choosenDate: shape().isRequired,
   chooseDate: func.isRequired,
   chooseSlot: func.isRequired,
+  handleCardClick: func.isRequired,
   choosenSlot: number
 };
 

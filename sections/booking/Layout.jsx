@@ -9,8 +9,10 @@ import {
   InfoBar,
   ItalicText,
   Select,
-  AutosizeInput
+  AutosizeInput,
+  ActionIcon
 } from "components";
+import { Router } from "routes";
 import {
   ProfileMembers,
   ProfileOpeningHours,
@@ -190,6 +192,14 @@ const BookingLayout = ({
             </ButtonWithImageText>
           </Button>
         </Box>
+        <ActionIcon
+          size="sm"
+          icon={["fa", "plus"]}
+          white
+          onClick={() => {
+            Router.pushRoute(`/${lng}/app/booking/create/`);
+          }}
+        />
       </Flex>
       {children}
     </AppLayout>
@@ -201,8 +211,7 @@ BookingLayout.propTypes = {
   lng: string.isRequired,
   page: string.isRequired,
   children: node.isRequired,
-  pendingOrdersLength: number.isRequired,
-  updateBusiness: func.isRequired,
+  pendingReservationsLength: number.isRequired,
   business: shape(),
   businesses: shape(),
   changeCurrentBusiness: func.isRequired,
