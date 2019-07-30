@@ -17,12 +17,6 @@ import { Form } from "./styled";
 
 const CreateCateringForm = ({ t, lng, isSending, handleFormSubmit }) => (
   <FinalForm
-    initialValues={{
-      corporateEvent: false,
-      outdoors: false,
-      chefAttendance: false,
-      cutlery: false
-    }}
     onSubmit={handleFormSubmit}
     subscription={{
       handleSubmit: true

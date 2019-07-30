@@ -41,24 +41,26 @@ export const isNotNegativeNumber = t =>
     num >= 0 ? undefined : t("forms:validation.error.nonNegative")
   );
 
-export const isPositiveNumber = t =>
-  composeValidators(isNumber(t), num =>
-    num > 0 ? undefined : t("forms:validation.error.positive")
-  );
-
-export const isInteger = t => num =>
-  isInt(String(num)) ? undefined : t("forms:validation.error.integer");
+export const isInteger = (t, options) => num =>
+  isInt(String(num), options)
+    ? undefined
+    : t(
+        options
+          ? "forms:validation.error.integerWithOptions"
+          : "forms:validation.error.integer",
+        options
+      );
 
 export const isNotNegativeInt = t =>
   composeValidators(isInteger(t), isNotNegativeNumber(t));
-
-export const isPositiveInt = t =>
-  composeValidators(isInteger(t), isPositiveNumber(t));
 
 export const validateEmail = t => composeValidators(required(t), isEmail(t));
 
 export const validatePassword = t =>
   composeValidators(required(t), minPasswordLength(t));
+
+export const validateTableName = t =>
+  composeValidators(required(t), maxLength(t, 10));
 
 export const validatePasswordsMatch = t => (
   passwordConfirmation,

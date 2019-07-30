@@ -29,13 +29,15 @@ class CreatePrivatisationPage extends PureComponent {
     addressRegion,
     menu,
     currency,
+    from,
+    to,
     ...values
   }) => {
     const { createPrivatisation, lng, businessId } = this.props;
     const newPrivatisation = {
       ...values,
-      from: values.from ? timeToNumber(values.from) : undefined,
-      to: values.to ? timeToNumber(values.to) : undefined,
+      from: from ? timeToNumber(from) : undefined,
+      to: to ? timeToNumber(to) : undefined,
       phoneCountryPrefix:
         phoneCountry && phoneCountry.value
           ? phoneCountry.value.prefix
