@@ -152,7 +152,7 @@ class SubscriptionsPage extends PureComponent {
 
   render() {
     const { t, lng, subscriptions, cards, notificationError } = this.props;
-    const { billingInterval, view, chosenPlan } = this.state;
+    const { billingInterval, view } = this.state;
 
     return (
       <AppLayout
@@ -185,8 +185,8 @@ class SubscriptionsPage extends PureComponent {
               lng,
               billingInterval,
               cards,
-              chosenPlan,
               notificationError,
+              currentPlan: subscriptions,
               goToPlans: this.goToPlans,
               handleChangeBillngPeriod: this.handleChangeBillngPeriod,
               updateSubscription: this.updateSubscription
