@@ -39,7 +39,7 @@ const PaymentsSection = ({
         </Box>
       </Flex>
       <Line />
-      {(currentPlanName === "premium" || currentPlanName === "basic") && (
+      {currentPlanName && (
         <>
           <Container>
             <Flex
@@ -53,9 +53,12 @@ const PaymentsSection = ({
               />
               <Price>
                 {price}
-                <small>
-                  /{t(`plans:${currentPlanName}.${billingInterval}`)}
-                </small>
+                {(currentPlanName === "premium" ||
+                  currentPlanName === "basic") && (
+                  <small>
+                    /{t(`plans:${currentPlanName}.${billingInterval}`)}
+                  </small>
+                )}
               </Price>
             </Flex>
           </Container>
