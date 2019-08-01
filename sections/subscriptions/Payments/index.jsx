@@ -50,8 +50,10 @@ const PaymentsSection = ({
         <Line />
       </>
     )}
+
     {/* TODO: After MVP use CardsModal for allowing user to choose from saved cards */}
     {/* {cards && <CardsModal {...{ cards, isOpen: false, t }} />} */}
+
     <Elements>
       <CardForm {...{ t, updateSubscription, notificationError }} />
     </Elements>
