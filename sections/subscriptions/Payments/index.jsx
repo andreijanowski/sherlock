@@ -39,7 +39,7 @@ const PaymentsSection = ({
         </Box>
       </Flex>
       <Line />
-      {currentPlanName && (
+      {(currentPlanName === "premium" || currentPlanName === "basic") && (
         <>
           <Container>
             <Flex
