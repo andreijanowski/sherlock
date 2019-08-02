@@ -15,10 +15,12 @@ import {
 import Reservations from "sections/reservation/reservations";
 import ReservationDetails from "sections/reservation/reservations/ReservationDetails";
 import TableDetails from "sections/reservation/reservations/TableDetails";
+import RejectReservationModal from "sections/reservation/reservations/RejectReservationModal";
 import moment from "moment";
 import { SliderStyles } from "components";
 import { action as toggleMenu } from "redux-burger-menu/immutable";
 import { patchBusiness } from "actions/businesses";
+import { deleteReservation } from "actions/reservations";
 
 const namespaces = ["reservation", "app", "forms"];
 
@@ -48,7 +50,8 @@ class ReservationsPage extends PureComponent {
       choosenSlot: getSlotClosestToPresent(slots),
       draggableId: undefined,
       reservationDetailsId: undefined,
-      tableDetailsId: undefined
+      tableDetailsId: undefined,
+      pendingRejectionReservationId: undefined
     };
   }
 
@@ -191,6 +194,18 @@ class ReservationsPage extends PureComponent {
     toggleTableDetails(!!tableDetailsId);
   };
 
+  setRejectModalVisibility = reservationId => {
+    this.handleToggleReservationDetails(undefined);
+    this.setState({ pendingRejectionReservationId: reservationId });
+  };
+
+  removeReservation = () => {
+    const { removeReservation } = this.props;
+    const { pendingRejectionReservationId } = this.state;
+    removeReservation(pendingRejectionReservationId);
+    this.setState({ pendingRejectionReservationId: undefined });
+  };
+
   chooseDate = choosenDate => this.setState({ choosenDate });
 
   chooseSlot = choosenSlot => this.setState({ choosenSlot });
@@ -214,7 +229,8 @@ class ReservationsPage extends PureComponent {
       slots,
       choosenSlot,
       reservationDetailsId,
-      tableDetailsId
+      tableDetailsId,
+      pendingRejectionReservationId
     } = this.state;
 
     const reservationDetails =
@@ -265,7 +281,8 @@ class ReservationsPage extends PureComponent {
             {...{
               reservationDetails,
               t,
-              updateReservation: this.updateReservation
+              updateReservation: this.updateReservation,
+              setRejectModalVisibility: this.setRejectModalVisibility
             }}
           />
         </div>
@@ -278,6 +295,19 @@ class ReservationsPage extends PureComponent {
             }}
           />
         </div>
+        <RejectReservationModal
+          {...{
+            isOpen: !!pendingRejectionReservationId,
+            onClose: () => this.setRejectModalVisibility(undefined),
+            pendingRejectionOrder: reservations
+              ? reservations.find(
+                  o => o.get("id") === pendingRejectionReservationId
+                )
+              : null,
+            removeReservation: this.removeReservation,
+            t
+          }}
+        />
       </ReservationLayout>
     );
   }
@@ -295,7 +325,8 @@ ReservationsPage.propTypes = {
   changeCurrentBusiness: func.isRequired,
   toggleReservationDetails: func.isRequired,
   toggleTableDetails: func.isRequired,
-  updateBusiness: func.isRequired
+  updateBusiness: func.isRequired,
+  removeReservation: func.isRequired
 };
 
 ReservationsPage.defaultProps = {
@@ -341,7 +372,8 @@ export default requireAuth(true)(
         toggleReservationDetails: isOpen =>
           toggleMenu(isOpen, "ReservationDetails"),
         toggleTableDetails: isOpen => toggleMenu(isOpen, "TableDetails"),
-        updateBusiness: patchBusiness
+        updateBusiness: patchBusiness,
+        removeReservation: deleteReservation
       }
     )(ReservationsPage)
   )

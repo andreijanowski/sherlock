@@ -34,5 +34,8 @@
   "personalInformation": "Personal information",
   "tableDetails": "Table details",
   "number": "Table number",
-  "numberOfSeats": "Number of seats"
+  "numberOfSeats": "Number of seats",
+  "rejectReservationHeader": "Are you sure you want to reject this reservation?",
+  "yes": "Yes",
+  "no": "No"
 }

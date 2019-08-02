@@ -41,6 +41,11 @@ export const SliderStyles = createGlobalStyle`
     outline: none;
   }
 
+  .bm-item-list {
+    height: auto !important;
+    min-height: 100% !important;
+  }
+
   .bm-overlay {
     background-color: rgba(${p => p.theme.colors.dark}, 0.16);
   }

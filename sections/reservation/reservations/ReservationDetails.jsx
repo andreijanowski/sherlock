@@ -5,7 +5,8 @@ import {
   SliderDetail,
   SliderHeader,
   SliderSubheader,
-  SliderSpacer
+  SliderSpacer,
+  Button
 } from "components";
 import moment from "moment";
 
@@ -13,6 +14,7 @@ const ReservationDetails = ({
   isOpen,
   onStateChange,
   reservationDetails,
+  setRejectModalVisibility,
   t
 }) => (
   <Slide
@@ -92,13 +94,23 @@ const ReservationDetails = ({
           {...{
             name: t("phone"),
             value: [
-              `${reservationDetails.getIn([
+              `+${reservationDetails.getIn([
                 "attributes",
                 "phoneCountryPrefix"
               ])} ${reservationDetails.getIn(["attributes", "phone"])}`
             ]
           }}
         />
+        <Button
+          fluid
+          styleName="reject"
+          onClick={e => {
+            e.stopPropagation();
+            setRejectModalVisibility(reservationDetails.get("id"));
+          }}
+        >
+          {t("reject")}
+        </Button>
       </>
     )}
   </Slide>
@@ -108,7 +120,8 @@ ReservationDetails.propTypes = {
   isOpen: bool.isRequired,
   onStateChange: func.isRequired,
   reservationDetails: shape(),
-  t: func.isRequired
+  t: func.isRequired,
+  setRejectModalVisibility: func.isRequired
 };
 
 ReservationDetails.defaultProps = {

@@ -3,7 +3,8 @@ import {
   FormDropdown,
   FormCheckbox,
   FormTextarea,
-  Button
+  Button,
+  ModalHeader
 } from "components";
 import { Form as FinalForm, Field } from "react-final-form";
 import { FieldArray } from "react-final-form-arrays";
@@ -12,7 +13,6 @@ import { RejectModalIcon } from "icons";
 import { shape, func, bool } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import { ElementsWrapper } from "./styled";
-import { ModalHeader } from "../styled";
 
 const RejectModal = ({
   isOpen,
