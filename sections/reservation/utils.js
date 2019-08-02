@@ -79,3 +79,7 @@ export const getSlotClosestToPresent = slots => {
 
 export const getSlotFromMoment = (slots, moment) =>
   slots.find(s => s === moment);
+
+export const getTableReservations = (tableId, reservations) => {
+  console.log(tableId, reservations);
+};

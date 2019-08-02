@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const TableWrapper = styled(Flex).attrs(() => ({
   alignItems: "center",
@@ -38,4 +39,17 @@ export const ChairsSpace = styled(Flex)`
 export const Name = styled.span`
   color: rgb(${p => p.theme.colors.blue});
   font-weight: ${p => p.theme.fontWeights.bold};
+`;
+
+export const Chair = styled(FontAwesomeIcon).attrs(() => ({
+  icon: ["fa", "chair"],
+  size: "xs"
+}))`
+  color: rgb(${p => p.theme.colors.blue});
+`;
+
+export const ChairNumber = styled.span`
+  margin-right: 4px;
+  color: rgb(${p => p.theme.colors.blue});
+  font-size: ${p => p.theme.fontSizes.f12};
 `;

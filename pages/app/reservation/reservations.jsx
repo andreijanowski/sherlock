@@ -9,10 +9,12 @@ import {
   parseReservations,
   prepareTimelineSlots,
   getSlotClosestToPresent,
-  getSlotFromMoment
+  getSlotFromMoment,
+  getTableReservations
 } from "sections/reservation/utils";
 import Reservations from "sections/reservation/reservations";
 import ReservationDetails from "sections/reservation/reservations/ReservationDetails";
+import TableDetails from "sections/reservation/reservations/TableDetails";
 import moment from "moment";
 import { SliderStyles } from "components";
 import { action as toggleMenu } from "redux-burger-menu/immutable";
@@ -45,7 +47,8 @@ class ReservationsPage extends PureComponent {
       slots,
       choosenSlot: getSlotClosestToPresent(slots),
       draggableId: undefined,
-      reservationDetailsId: undefined
+      reservationDetailsId: undefined,
+      tableDetailsId: undefined
     };
   }
 
@@ -111,6 +114,7 @@ class ReservationsPage extends PureComponent {
   };
 
   handleDragEnd = ({ destination, source, draggableId }) => {
+    console.log({ destination, source, draggableId });
     if (
       !destination ||
       (destination.droppableId === source.droppableId &&
@@ -181,6 +185,12 @@ class ReservationsPage extends PureComponent {
     toggleReservationDetails(!!reservationDetailsId);
   };
 
+  handleToggleTableDetails = tableDetailsId => {
+    const { toggleTableDetails } = this.props;
+    this.setState({ tableDetailsId });
+    toggleTableDetails(!!tableDetailsId);
+  };
+
   chooseDate = choosenDate => this.setState({ choosenDate });
 
   chooseSlot = choosenSlot => this.setState({ choosenSlot });
@@ -193,6 +203,7 @@ class ReservationsPage extends PureComponent {
       businessId,
       businesses,
       reservations,
+      tables,
       updateBusiness,
       changeCurrentBusiness
     } = this.props;
@@ -202,12 +213,21 @@ class ReservationsPage extends PureComponent {
       choosenDate,
       slots,
       choosenSlot,
-      reservationDetailsId
+      reservationDetailsId,
+      tableDetailsId
     } = this.state;
 
     const reservationDetails =
       reservationDetailsId && reservations
         ? reservations.get(reservationDetailsId)
+        : null;
+
+    const tableDetails =
+      tableDetailsId && tables ? tables.get(tableDetailsId) : null;
+
+    const tableReservations =
+      tableDetailsId && reservations
+        ? getTableReservations(tableDetailsId, reservations)
         : null;
 
     return (
@@ -233,6 +253,7 @@ class ReservationsPage extends PureComponent {
             choosenDate,
             choosenSlot,
             handleCardClick: this.handleToggleReservationDetails,
+            handleTableClick: this.handleToggleTableDetails,
             chooseDate: this.chooseDate,
             chooseSlot: this.chooseSlot,
             t
@@ -245,6 +266,15 @@ class ReservationsPage extends PureComponent {
               reservationDetails,
               t,
               updateReservation: this.updateReservation
+            }}
+          />
+        </div>
+        <div style={{ position: "absolute", left: 0, top: 0 }}>
+          <TableDetails
+            {...{
+              tableDetails,
+              tableReservations,
+              t
             }}
           />
         </div>
@@ -264,6 +294,7 @@ ReservationsPage.propTypes = {
   businessId: string,
   changeCurrentBusiness: func.isRequired,
   toggleReservationDetails: func.isRequired,
+  toggleTableDetails: func.isRequired,
   updateBusiness: func.isRequired
 };
 
@@ -307,7 +338,9 @@ export default requireAuth(true)(
       },
       {
         changeCurrentBusiness: setCurrentBusiness,
-        toggleReservationDetails: toggleMenu,
+        toggleReservationDetails: isOpen =>
+          toggleMenu(isOpen, "ReservationDetails"),
+        toggleTableDetails: isOpen => toggleMenu(isOpen, "TableDetails"),
         updateBusiness: patchBusiness
       }
     )(ReservationsPage)

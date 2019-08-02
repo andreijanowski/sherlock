@@ -108,8 +108,6 @@ ReservationDetails.propTypes = {
   isOpen: bool.isRequired,
   onStateChange: func.isRequired,
   reservationDetails: shape(),
-  setRejectModalVisibility: func.isRequired,
-  updateOrder: func.isRequired,
   t: func.isRequired
 };
 
@@ -117,4 +115,4 @@ ReservationDetails.defaultProps = {
   reservationDetails: null
 };
 
-export default reduxBurgerMenu(ReservationDetails);
+export default reduxBurgerMenu(ReservationDetails, "ReservationDetails");

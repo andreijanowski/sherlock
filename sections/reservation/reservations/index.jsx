@@ -11,6 +11,7 @@ const Reservations = ({
   onDragEnd,
   onDragStart,
   handleCardClick,
+  handleTableClick,
   // isDropDisabled,
   choosenDate,
   choosenSlot,
@@ -65,7 +66,8 @@ const Reservations = ({
                     numberOfSeats: column.numberOfSeats,
                     tableNumber: column.number,
                     items: [],
-                    isDropDisabled: !choosenSlot
+                    isDropDisabled: !choosenSlot,
+                    handleTableClick
                   }}
                 />
               ) : null
@@ -88,6 +90,7 @@ Reservations.propTypes = {
   chooseDate: func.isRequired,
   chooseSlot: func.isRequired,
   handleCardClick: func.isRequired,
+  handleTableClick: func.isRequired,
   choosenSlot: number
 };
 
