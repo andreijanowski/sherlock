@@ -1,7 +1,8 @@
 import {
   POST_RESERVATION_REQUEST,
   PATCH_RESERVATION_REQUEST,
-  DELETE_RESERVATION_REQUEST
+  DELETE_RESERVATION_REQUEST,
+  SET_EDIT_RESERVATION
 } from "types/reservations";
 import { getRelationships } from "./utils";
 
@@ -48,4 +49,11 @@ export const deleteReservation = id => ({
     endpoint: `/api/v1/reservations/${id}`
   },
   meta: { thunk: true, id }
+});
+
+export const setReservationForEditing = editedReservation => ({
+  type: SET_EDIT_RESERVATION,
+  payload: {
+    editedReservation
+  }
 });

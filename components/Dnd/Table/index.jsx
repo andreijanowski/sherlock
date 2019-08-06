@@ -13,25 +13,44 @@ const Table = ({
   handleTableClick
 }) => (
   <Droppable droppableId={id} isDropDisabled={isDropDisabled}>
-    {provided => (
+    {(provided, { isDraggingOver }) => (
       <TableWrapper
         {...provided.droppableProps}
         ref={provided.innerRef}
         isDropDisabled={isDropDisabled}
+        isDraggingOver={isDraggingOver}
         onClick={() => handleTableClick(id)}
       >
-        <ChairsSpace seats={numberOfSeats} radius={RADIUS}>
+        <ChairsSpace
+          seats={numberOfSeats}
+          radius={RADIUS}
+          isDropDisabled={isDropDisabled}
+          isDraggingOver={isDraggingOver}
+        >
           <svg>
             <circle id="circle" cx="50%" cy="50%" r={`${RADIUS}px`} />
           </svg>
         </ChairsSpace>
         <Flex flexDirection="column" alignItems="center">
           <Box>
-            <Name>{tableNumber}</Name>
+            <Name
+              isDropDisabled={isDropDisabled}
+              isDraggingOver={isDraggingOver}
+            >
+              {tableNumber}
+            </Name>
           </Box>
           <Box>
-            <ChairNumber>{numberOfSeats}</ChairNumber>
-            <Chair />
+            <ChairNumber
+              isDropDisabled={isDropDisabled}
+              isDraggingOver={isDraggingOver}
+            >
+              {numberOfSeats}
+            </ChairNumber>
+            <Chair
+              isDropDisabled={isDropDisabled}
+              isDraggingOver={isDraggingOver}
+            />
           </Box>
         </Flex>
       </TableWrapper>

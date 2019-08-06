@@ -45,7 +45,7 @@ const CreateReservationPage = ({
       {...{
         t,
         lng,
-        page: "reservations",
+        page: "create",
         currentBusinessId: businessId,
         business,
         businesses,

@@ -1,6 +1,6 @@
 import Slide from "react-burger-menu/lib/menus/slide";
 import { decorator as reduxBurgerMenu } from "redux-burger-menu/immutable";
-import { func, bool, shape } from "prop-types";
+import { func, bool, shape, string } from "prop-types";
 import {
   SliderDetail,
   SliderHeader,
@@ -8,14 +8,18 @@ import {
   SliderSpacer,
   Button
 } from "components";
+import { Flex, Box } from "@rebass/grid";
 import moment from "moment";
+import { Router } from "routes";
 
 const ReservationDetails = ({
   isOpen,
   onStateChange,
   reservationDetails,
   setRejectModalVisibility,
-  t
+  t,
+  lng,
+  setEditedReservation
 }) => (
   <Slide
     isOpen={isOpen}
@@ -101,16 +105,35 @@ const ReservationDetails = ({
             ]
           }}
         />
-        <Button
-          fluid
-          styleName="reject"
-          onClick={e => {
-            e.stopPropagation();
-            setRejectModalVisibility(reservationDetails.get("id"));
-          }}
-        >
-          {t("reject")}
-        </Button>
+
+        <Flex mx={-1} mt={3} pb={3}>
+          <Box width={1 / 2} px={1}>
+            <Button
+              fluid
+              styleName="reject"
+              onClick={e => {
+                e.stopPropagation();
+                setRejectModalVisibility(reservationDetails.get("id"));
+              }}
+            >
+              {t("reject")}
+            </Button>
+          </Box>
+          <Box width={1 / 2} px={1}>
+            <Button
+              fluid
+              styleName="accept"
+              onClick={e => {
+                e.stopPropagation();
+                onStateChange(false);
+                setEditedReservation(reservationDetails);
+                Router.pushRoute(`/${lng}/app/reservation/edit`);
+              }}
+            >
+              {t("edit")}
+            </Button>
+          </Box>
+        </Flex>
       </>
     )}
   </Slide>
@@ -121,7 +144,9 @@ ReservationDetails.propTypes = {
   onStateChange: func.isRequired,
   reservationDetails: shape(),
   t: func.isRequired,
-  setRejectModalVisibility: func.isRequired
+  lng: string.isRequired,
+  setRejectModalVisibility: func.isRequired,
+  setEditedReservation: func.isRequired
 };
 
 ReservationDetails.defaultProps = {

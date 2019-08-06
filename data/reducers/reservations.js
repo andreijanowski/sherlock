@@ -2,7 +2,8 @@
 import {
   POST_RESERVATION_SUCCESS,
   PATCH_RESERVATION_SUCCESS,
-  DELETE_RESERVATION_REQUEST
+  DELETE_RESERVATION_REQUEST,
+  SET_EDIT_RESERVATION
 } from "types/reservations";
 import {
   FETCH_BUSINESS_RESERVATIONS_REQUEST,
@@ -17,7 +18,8 @@ const initialState = Record({
   data: Map(),
   isFetching: false,
   isFailed: false,
-  isSucceeded: false
+  isSucceeded: false,
+  editedReservation: null
 })();
 
 const reducer = (state = initialState, { type, payload, meta }) => {
@@ -44,6 +46,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         newState = newState.mergeIn(
           ["data", "reservations"],
           fromJS(payload.data.reservations)
+        );
+        newState = newState.mergeIn(
+          ["data", "bookings"],
+          fromJS(payload.data.bookings)
         );
       }
       return newState;
@@ -87,6 +93,13 @@ const reducer = (state = initialState, { type, payload, meta }) => {
 
     case DELETE_RESERVATION_REQUEST: {
       return state.deleteIn(["data", "reservations", meta.id]);
+    }
+
+    case SET_EDIT_RESERVATION: {
+      return state.setIn(
+        ["editedReservation"],
+        fromJS(payload.editedReservation)
+      );
     }
 
     case LOGOUT: {

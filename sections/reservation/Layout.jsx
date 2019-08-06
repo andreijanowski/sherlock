@@ -105,7 +105,11 @@ const ReservationLayout = ({
       <Flex width={1} mt={3} flexWrap="wrap">
         <Box pr={3} mb={2}>
           <Link route="/app/reservation/reservations/" lng={lng}>
-            <Button as="a" styleName="withImage" active={page === "orders"}>
+            <Button
+              as="a"
+              styleName="withImage"
+              active={page === "reservations"}
+            >
               <ButtonWithImageIconWrapper>
                 <ProfileContact />
               </ButtonWithImageIconWrapper>
@@ -115,7 +119,7 @@ const ReservationLayout = ({
         </Box>
         <Box pr={3} mb={2}>
           <Link route="/app/reservation/tables/" lng={lng}>
-            <Button as="a" styleName="withImage" active={page === "orders"}>
+            <Button as="a" styleName="withImage" active={page === "tables"}>
               <ButtonWithImageIconWrapper>
                 <ProfileAdditionaInfo />
               </ButtonWithImageIconWrapper>

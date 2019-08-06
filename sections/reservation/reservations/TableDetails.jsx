@@ -7,12 +7,13 @@ import {
   SliderSubheader,
   SliderSpacer
 } from "components";
+import moment from "moment";
 
 const TableDetails = ({
   isOpen,
   onStateChange,
   tableDetails,
-  // tableReservations,
+  tableReservations,
   t
 }) => (
   <Slide
@@ -40,6 +41,32 @@ const TableDetails = ({
         />
         <SliderSpacer />
         <SliderSubheader>{t("reservations")}</SliderSubheader>
+        {tableReservations
+          .sortBy(r => r.getIn(["attributes", "date"]))
+          .valueSeq()
+          .map(r => {
+            const from = r.getIn(["attributes", "from"]);
+            const to = r.getIn(["attributes", "to"]);
+
+            return (
+              <SliderDetail
+                {...{
+                  name: `${moment(r.getIn(["attributes", "date"])).format(
+                    "Do MMM YYYY"
+                  )}, ${moment({
+                    minutes: (from / 60) % 60,
+                    hours: (from / 60 / 60) % 24
+                  }).format("hh:mm A")} - ${moment({
+                    minutes: (to / 60) % 60,
+                    hours: (to / 60 / 60) % 24
+                  }).format("hh:mm A")}`,
+                  value: [
+                    `${r.getIn(["attributes", "partySize"])} ${t("people")}`
+                  ]
+                }}
+              />
+            );
+          })}
       </>
     )}
   </Slide>

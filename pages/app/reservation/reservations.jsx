@@ -20,7 +20,11 @@ import moment from "moment";
 import { SliderStyles } from "components";
 import { action as toggleMenu } from "redux-burger-menu/immutable";
 import { patchBusiness } from "actions/businesses";
-import { deleteReservation } from "actions/reservations";
+import {
+  deleteReservation,
+  setReservationForEditing,
+  patchReservation
+} from "actions/reservations";
 
 const namespaces = ["reservation", "app", "forms"];
 
@@ -117,7 +121,6 @@ class ReservationsPage extends PureComponent {
   };
 
   handleDragEnd = ({ destination, source, draggableId }) => {
-    console.log({ destination, source, draggableId });
     if (
       !destination ||
       (destination.droppableId === source.droppableId &&
@@ -132,6 +135,36 @@ class ReservationsPage extends PureComponent {
       }));
       return;
     }
+
+    const { updateReservation, reservations } = this.props;
+
+    /* TODO: 
+      IF partySize > seatsNumber
+      DO:
+        - display modal with this info
+        - display three options:
+          * reject (take reservation back to pending reservations column)
+          * continue anyway (this problem will be solved outside our system)
+          * split reservation
+            + set "seatsTaken" as maximum availabe,
+            + create another card for this reservation,
+            + do not let do anything besides choosing another table till all party members will have seats
+    */
+
+    // TODO: improve logic for multiple tables
+
+    updateReservation(draggableId, {
+      tables: [
+        {
+          id: destination.droppableId,
+          seatsTaken: reservations.getIn([
+            draggableId,
+            "attributes",
+            "partySize"
+          ])
+        }
+      ]
+    });
 
     this.setState(state => {
       const sourceColumn = state.columns[source.droppableId];
@@ -220,7 +253,8 @@ class ReservationsPage extends PureComponent {
       reservations,
       tables,
       updateBusiness,
-      changeCurrentBusiness
+      changeCurrentBusiness,
+      setEditedReservation
     } = this.props;
 
     const {
@@ -279,9 +313,10 @@ class ReservationsPage extends PureComponent {
         <div style={{ position: "absolute", left: 0, top: 0 }}>
           <ReservationDetails
             {...{
-              reservationDetails,
               t,
-              updateReservation: this.updateReservation,
+              lng,
+              reservationDetails,
+              setEditedReservation,
               setRejectModalVisibility: this.setRejectModalVisibility
             }}
           />
@@ -326,7 +361,9 @@ ReservationsPage.propTypes = {
   toggleReservationDetails: func.isRequired,
   toggleTableDetails: func.isRequired,
   updateBusiness: func.isRequired,
-  removeReservation: func.isRequired
+  removeReservation: func.isRequired,
+  setEditedReservation: func.isRequired,
+  updateReservation: func.isRequired
 };
 
 ReservationsPage.defaultProps = {
@@ -373,7 +410,9 @@ export default requireAuth(true)(
           toggleMenu(isOpen, "ReservationDetails"),
         toggleTableDetails: isOpen => toggleMenu(isOpen, "TableDetails"),
         updateBusiness: patchBusiness,
-        removeReservation: deleteReservation
+        removeReservation: deleteReservation,
+        updateReservation: patchReservation,
+        setEditedReservation: setReservationForEditing
       }
     )(ReservationsPage)
   )

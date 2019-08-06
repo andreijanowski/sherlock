@@ -1,7 +1,51 @@
+import { Map } from "immutable";
+
 const ONE_DAY_IN_SECONDS = 86400;
 
 export const columnsList = {
   newReservations: "newReservations"
+};
+
+export const getTableReservations = (tableId, reservations) =>
+  (reservations &&
+    reservations.size &&
+    reservations.filter(r => {
+      const reservationTables = r.getIn(["relationships", "tables", "data"]);
+      return (
+        reservationTables &&
+        reservationTables.size &&
+        reservationTables.some(t => t.get("id") === tableId)
+      );
+    })) ||
+  Map();
+
+export const calcReservedPeriodsForTables = reservations => {
+  const reservedPeriodsForTables = {};
+  if (reservations && reservations.size) {
+    reservations.forEach(r => {
+      const reservationTables = r.getIn(["relationships", "tables", "data"]);
+      if (reservationTables && reservationTables.size) {
+        reservationTables.forEach(t => {
+          if (reservedPeriodsForTables[t.get("id")]) {
+            reservedPeriodsForTables[t.get("id")].push({
+              date: r.getIn(["attributes", "date"]),
+              from: r.getIn(["attributes", "from"]),
+              to: r.getIn(["attributes", "to"])
+            });
+          } else {
+            reservedPeriodsForTables[t.get("id")] = [
+              {
+                date: r.getIn(["attributes", "date"]),
+                from: r.getIn(["attributes", "from"]),
+                to: r.getIn(["attributes", "to"])
+              }
+            ];
+          }
+        });
+      }
+    });
+  }
+  return reservedPeriodsForTables;
 };
 
 export const parseReservations = (reservations, tables, t) => {
@@ -12,8 +56,8 @@ export const parseReservations = (reservations, tables, t) => {
       reservationIds:
         reservations && reservations.size
           ? reservations
-              .filter(o => o)
-              .map(o => o.get("id"))
+              .filter(r => r.getIn(["attributes", "state"]) === "placed")
+              .map(r => r.get("id"))
               .toList()
               .toArray()
           : []
@@ -21,12 +65,17 @@ export const parseReservations = (reservations, tables, t) => {
   };
 
   if (tables && tables.size) {
+    const reservedPeriodsForTables = calcReservedPeriodsForTables(reservations);
     tables.forEach(table => {
       columns[table.get("id")] = {
         id: table.get("id"),
         number: table.getIn(["attributes", "number"]),
         numberOfSeats: table.getIn(["attributes", "numberOfSeats"]),
-        reservationIds: []
+        reservationIds: getTableReservations(table.get("id"), reservations)
+          .map(r => r.get("id"))
+          .toList()
+          .toArray(),
+        reservedPeriods: reservedPeriodsForTables[table.get("id")] || []
       };
     });
   }
@@ -80,6 +129,15 @@ export const getSlotClosestToPresent = slots => {
 export const getSlotFromMoment = (slots, moment) =>
   slots.find(s => s === moment);
 
-export const getTableReservations = (tableId, reservations) => {
-  console.log(tableId, reservations);
-};
+export const checkIfTableIsAvailable = ({
+  reservedPeriods,
+  choosenDate,
+  choosenSlot
+}) =>
+  reservedPeriods.some(
+    r =>
+      // TODO: handle case, when restaurant is open in day and night and dates are changing ex. from 23:30 -> 1:30
+      r.date === choosenDate.format("YYYY-MM-DD") &&
+      r.to >= choosenSlot &&
+      r.from <= choosenSlot
+  );
