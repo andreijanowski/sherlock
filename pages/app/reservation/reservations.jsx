@@ -216,15 +216,17 @@ class ReservationsPage extends PureComponent {
   };
 
   handleToggleReservationDetails = reservationDetailsId => {
-    const { toggleReservationDetails } = this.props;
-    this.setState({ reservationDetailsId });
+    const { toggleReservationDetails, toggleTableDetails } = this.props;
+    this.setState({ reservationDetailsId, tableDetailsId: undefined });
     toggleReservationDetails(!!reservationDetailsId);
+    toggleTableDetails(false);
   };
 
   handleToggleTableDetails = tableDetailsId => {
-    const { toggleTableDetails } = this.props;
-    this.setState({ tableDetailsId });
+    const { toggleTableDetails, toggleReservationDetails } = this.props;
+    this.setState({ tableDetailsId, reservationDetailsId: undefined });
     toggleTableDetails(!!tableDetailsId);
+    toggleReservationDetails(false);
   };
 
   setRejectModalVisibility = reservationId => {
@@ -326,7 +328,8 @@ class ReservationsPage extends PureComponent {
             {...{
               tableDetails,
               tableReservations,
-              t
+              t,
+              handleReservationClick: this.handleToggleReservationDetails
             }}
           />
         </div>

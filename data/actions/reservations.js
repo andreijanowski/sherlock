@@ -2,9 +2,20 @@ import {
   POST_RESERVATION_REQUEST,
   PATCH_RESERVATION_REQUEST,
   DELETE_RESERVATION_REQUEST,
+  FETCH_RESERVATION_REQUEST,
   SET_EDIT_RESERVATION
 } from "types/reservations";
 import { getRelationships } from "./utils";
+
+export const fetchReservation = id => ({
+  type: FETCH_RESERVATION_REQUEST,
+  payload: {
+    endpoint: `/api/v1/reservations/${id}`,
+    params: {
+      include: "user,bookings,tables"
+    }
+  }
+});
 
 export const postReservation = (id, values) => ({
   type: POST_RESERVATION_REQUEST,

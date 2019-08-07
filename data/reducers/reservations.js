@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import {
+  FETCH_RESERVATION_SUCCESS,
   POST_RESERVATION_SUCCESS,
   PATCH_RESERVATION_SUCCESS,
   DELETE_RESERVATION_REQUEST,
@@ -69,6 +70,12 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         );
       }
       return newState;
+    }
+
+    case FETCH_RESERVATION_SUCCESS: {
+      return state
+        .mergeIn(["data", "reservations"], fromJS(payload.data.reservations))
+        .mergeIn(["data", "bookings"], fromJS(payload.data.bookings));
     }
 
     case POST_RESERVATION_SUCCESS: {

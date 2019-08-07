@@ -14,6 +14,7 @@ const TableDetails = ({
   onStateChange,
   tableDetails,
   tableReservations,
+  handleReservationClick,
   t
 }) => (
   <Slide
@@ -51,6 +52,7 @@ const TableDetails = ({
             return (
               <SliderDetail
                 {...{
+                  onClick: () => handleReservationClick(r.get("id")),
                   name: `${moment(r.getIn(["attributes", "date"])).format(
                     "Do MMM YYYY"
                   )}, ${moment({
@@ -77,7 +79,8 @@ TableDetails.propTypes = {
   onStateChange: func.isRequired,
   tableDetails: shape(),
   tableReservations: shape(),
-  t: func.isRequired
+  t: func.isRequired,
+  handleReservationClick: func.isRequired
 };
 
 TableDetails.defaultProps = {

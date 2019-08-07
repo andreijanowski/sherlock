@@ -37,7 +37,7 @@ const Reservations = ({
             isDropDisabled: false,
             isColumnGrayedOut: false,
             handleCardClick,
-            width: "220px",
+            width: "250px",
             renderCardHeader: id => {
               const from = reservations.getIn([id, "attributes", "from"]);
               return `${moment(
