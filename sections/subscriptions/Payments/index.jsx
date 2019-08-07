@@ -16,11 +16,15 @@ const PaymentsSection = ({
   // TODO: After MVP use CardsModal for allowing user to choose from saved cards
   // cards,
   currentPlan,
+  chosenPlan,
   goToPlans,
   updateSubscription,
   notificationError
 }) => {
-  const { currentPlanName } = getPlanName(currentPlan);
+  let { currentPlanName } = getPlanName(currentPlan);
+  if (chosenPlan) {
+    currentPlanName = chosenPlan;
+  }
   let price = t(`plans:${currentPlanName}.price.${billingInterval}`);
   if (
     billingInterval === "year" &&
@@ -83,12 +87,14 @@ PaymentsSection.propTypes = {
   currentPlan: shape(),
   goToPlans: func.isRequired,
   updateSubscription: func.isRequired,
-  notificationError: func.isRequired
+  notificationError: func.isRequired,
+  chosenPlan: string
 };
 
 PaymentsSection.defaultProps = {
   cards: null,
-  currentPlan: null
+  currentPlan: null,
+  chosenPlan: null
 };
 
 export default PaymentsSection;
