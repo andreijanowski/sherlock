@@ -136,6 +136,7 @@ class SubscriptionsPage extends PureComponent {
 
   goToPayments = () => {
     this.setState({
+      chosenPlan: null,
       view: "payments"
     });
   };
@@ -185,8 +186,9 @@ class SubscriptionsPage extends PureComponent {
               lng,
               billingInterval,
               cards,
-              chosenPlan,
               notificationError,
+              chosenPlan,
+              currentPlan: subscriptions,
               goToPlans: this.goToPlans,
               handleChangeBillngPeriod: this.handleChangeBillngPeriod,
               updateSubscription: this.updateSubscription

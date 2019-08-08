@@ -6,6 +6,7 @@ import { Wrapper } from "../styled";
 import { Price, Container, Line } from "./styled";
 // TODO: After MVP use CardsModal for allowing user to choose from saved cards
 // import CardsModal from "./CardsModal";
+import { getPlanName } from "../utils";
 import CardForm from "./CardForm";
 
 const PaymentsSection = ({
@@ -14,51 +15,68 @@ const PaymentsSection = ({
   handleChangeBillngPeriod,
   // TODO: After MVP use CardsModal for allowing user to choose from saved cards
   // cards,
+  currentPlan,
   chosenPlan,
   goToPlans,
   updateSubscription,
   notificationError
-}) => (
-  <Wrapper>
-    <Flex mb={4} justifyContent="space-between" alignItems="center">
-      <Box>{t("finishPoweringYouUp")}</Box>
-      <Box>
-        <Button styleName="smallBlue" onClick={goToPlans}>
-          {t("goBackToPlans")}
-        </Button>
-      </Box>
-    </Flex>
-    <Line />
-    {chosenPlan && (
-      <>
-        <Container>
-          <Flex
-            justifyContent="space-between"
-            alignItems="center"
-            mb={3}
-            mt={4}
-          >
-            <PlansBillingInterval
-              {...{ t, billingInterval, handleChangeBillngPeriod }}
-            />
-            <Price>
-              {t(`plans:${chosenPlan}.price.${billingInterval}`)}
-              <small>/{t(`plans:${chosenPlan}.${billingInterval}`)}</small>
-            </Price>
-          </Flex>
-        </Container>
-        <Line />
-      </>
-    )}
-
-    {/* TODO: After MVP use CardsModal for allowing user to choose from saved cards */}
-    {/* {cards && <CardsModal {...{ cards, isOpen: false, t }} />} */}
-
-    <Elements>
-      <CardForm {...{ t, updateSubscription, notificationError }} />
-    </Elements>
-  </Wrapper>
-);
+}) => {
+  let { currentPlanName } = getPlanName(currentPlan);
+  if (chosenPlan) {
+    currentPlanName = chosenPlan;
+  }
+  let price = t(`plans:${currentPlanName}.price.${billingInterval}`);
+  if (
+    billingInterval === "year" &&
+    (currentPlanName === "premium" || currentPlanName === "basic")
+  ) {
+    price = t(`plans:${currentPlanName}.price.beta`);
+  }
+  return (
+    <Wrapper>
+      <Flex mb={4} justifyContent="space-between" alignItems="center">
+        <Box>{t("finishPoweringYouUp")}</Box>
+        <Box>
+          <Button styleName="smallBlue" onClick={goToPlans}>
+            {t("goBackToPlans")}
+          </Button>
+        </Box>
+      </Flex>
+      <Line />
+      {currentPlanName && (
+        <>
+          <Container>
+            <Flex
+              justifyContent="space-between"
+              alignItems="center"
+              mb={3}
+              mt={4}
+            >
+              <PlansBillingInterval
+                {...{ t, billingInterval, handleChangeBillngPeriod }}
+              />
+              <Price>
+                {price}
+                {(currentPlanName === "premium" ||
+                  currentPlanName === "basic") && (
+                  <small>
+                    /{t(`plans:${currentPlanName}.${billingInterval}`)}
+                  </small>
+                )}
+              </Price>
+            </Flex>
+          </Container>
+          <Line />
+        </>
+      )}
+      {/* TODO: After MVP use CardsModal for allowing user to choose from saved cards */}
+      {/* {cards && <CardsModal {...{ cards, isOpen: false, t }} />} */}
+      <Elements>
+        <CardForm {...{ t, updateSubscription, notificationError }} />
+      </Elements>
+    </Wrapper>
+  );
+};
 
 PaymentsSection.propTypes = {
   t: func.isRequired,
@@ -66,14 +84,16 @@ PaymentsSection.propTypes = {
   billingInterval: string.isRequired,
   handleChangeBillngPeriod: func.isRequired,
   cards: arrayOf(shape()),
-  chosenPlan: string,
+  currentPlan: shape(),
   goToPlans: func.isRequired,
   updateSubscription: func.isRequired,
-  notificationError: func.isRequired
+  notificationError: func.isRequired,
+  chosenPlan: string
 };
 
 PaymentsSection.defaultProps = {
   cards: null,
+  currentPlan: null,
   chosenPlan: null
 };
 

@@ -2,7 +2,7 @@ import { func, string, shape, arrayOf } from "prop-types";
 import { Plans, PlansBillingInterval, BoldText, Button } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Wrapper } from "../styled";
-import { getPlanName } from "./utils";
+import { getPlanName } from "../utils";
 import Card from "../Payments/Card";
 import PlanStatus from "./PlanStatus";
 
@@ -49,10 +49,10 @@ const PlansSection = ({
           {...{ t, billingInterval, handleChangeBillngPeriod }}
         />
       </Flex>
-      {currentCard && (
-        <Flex flexDirection="column" mb={4}>
-          <Box mr={2} mb={3}>{`${t("paymentInfo")}: `}</Box>
-          <Flex>
+      <Flex flexDirection="column" mb={4}>
+        <Box mr={2} mb={3}>{`${t("paymentInfo")}: `}</Box>
+        <Flex>
+          {currentCard && (
             <Box mb={-2} mr={2}>
               <Card
                 {...{
@@ -64,14 +64,14 @@ const PlansSection = ({
                 disabled
               />
             </Box>
-            <Box>
-              <Button styleName="smallBlue" onClick={goToPayments}>
-                {currentCard ? t("changeCard") : t("setCard")}
-              </Button>
-            </Box>
-          </Flex>
+          )}
+          <Box>
+            <Button styleName="smallBlue" onClick={goToPayments}>
+              {currentCard ? t("changeCard") : t("setCard")}
+            </Button>
+          </Box>
         </Flex>
-      )}
+      </Flex>
       <Flex mx={-2}>
         <Plans
           {...{
