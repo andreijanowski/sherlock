@@ -1,14 +1,16 @@
-deploy: &deploy
-  working_directory: ~/repo
-  docker:
-    - image: circleci/ruby:2.4.3
+version: 2.0
 
-node_machine: &node_machine
-  working_directory: ~/repo
-  docker:
-    - image: circleci/node:10
+references:
+  deploy: &deploy
+    working_directory: ~/repo
+    docker:
+      - image: circleci/ruby:2.4.3
 
-version: 2
+  node_machine: &node_machine
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:10
+
 jobs:
   checkout_code:
     <<: *node_machine
