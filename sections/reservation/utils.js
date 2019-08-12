@@ -19,6 +19,27 @@ export const getTableReservations = (tableId, reservations) =>
     })) ||
   Map();
 
+export const getReservationTables = (reservationDetails, tables) => {
+  const reservationTablesData = [];
+  const reservationTables = reservationDetails.getIn([
+    "relationships",
+    "tables",
+    "data"
+  ]);
+
+  if (reservationTables && reservationTables.size) {
+    reservationTables.forEach(t => {
+      const table = tables.get(t.get("id"));
+      reservationTablesData.push({
+        tableId: table.get("id"),
+        tableNumber: table.getIn(["attributes", "number"])
+      });
+    });
+  }
+
+  return reservationTablesData;
+};
+
 export const calcReservedPeriodsForTables = reservations => {
   const reservedPeriodsForTables = {};
   if (reservations && reservations.size) {
@@ -132,12 +153,23 @@ export const getSlotFromMoment = (slots, moment) =>
 export const checkIfTableIsAvailable = ({
   reservedPeriods,
   choosenDate,
-  choosenSlot
-}) =>
-  reservedPeriods.some(
+  choosenSlot,
+  draggedReservation
+}) => {
+  if (draggedReservation) {
+    return reservedPeriods.some(
+      r =>
+        // TODO: handle case, when restaurant is open in day and night and dates are changing ex. from 23:30 -> 1:30
+        r.date === choosenDate.format("YYYY-MM-DD") &&
+        r.to >= draggedReservation.getIn(["attributes", "from"]) &&
+        r.from <= draggedReservation.getIn(["attributes", "to"])
+    );
+  }
+  return reservedPeriods.some(
     r =>
       // TODO: handle case, when restaurant is open in day and night and dates are changing ex. from 23:30 -> 1:30
       r.date === choosenDate.format("YYYY-MM-DD") &&
       r.to >= choosenSlot &&
       r.from <= choosenSlot
   );
+};

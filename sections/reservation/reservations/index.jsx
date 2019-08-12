@@ -12,6 +12,7 @@ const Reservations = ({
   onDragStart,
   handleCardClick,
   handleTableClick,
+  draggedReservation,
   // isDropDisabled,
   choosenDate,
   choosenSlot,
@@ -68,7 +69,8 @@ const Reservations = ({
                     isDropDisabled: checkIfTableIsAvailable({
                       reservedPeriods: column.reservedPeriods,
                       choosenDate,
-                      choosenSlot
+                      choosenSlot,
+                      draggedReservation
                     }), // TODO: function to calculate if for chosen period table is avaliable
                     handleTableClick
                   }}
@@ -86,6 +88,7 @@ Reservations.propTypes = {
   t: func.isRequired,
   onDragEnd: func.isRequired,
   reservations: shape(),
+  draggedReservation: shape(),
   slots: arrayOf(number).isRequired,
   columns: shape().isRequired,
   onDragStart: func.isRequired,
@@ -99,7 +102,8 @@ Reservations.propTypes = {
 
 Reservations.defaultProps = {
   reservations: null,
-  choosenSlot: undefined
+  choosenSlot: undefined,
+  draggedReservation: undefined
 };
 
 export default Reservations;

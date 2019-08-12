@@ -10,8 +10,10 @@ import {
   prepareTimelineSlots,
   getSlotClosestToPresent,
   getSlotFromMoment,
-  getTableReservations
+  getTableReservations,
+  getReservationTables
 } from "sections/reservation/utils";
+import { error } from "react-notification-system-redux";
 import Reservations from "sections/reservation/reservations";
 import ReservationDetails from "sections/reservation/reservations/ReservationDetails";
 import TableDetails from "sections/reservation/reservations/TableDetails";
@@ -116,7 +118,8 @@ class ReservationsPage extends PureComponent {
       reservations && reservations.getIn([draggableId, "attributes", "date"]);
     this.setState({
       draggableId,
-      choosenDate: moment(reservationDate)
+      choosenDate: moment(reservationDate),
+      draggedReservation: reservations.get(draggableId)
     });
   };
 
@@ -128,6 +131,7 @@ class ReservationsPage extends PureComponent {
     ) {
       this.setState(state => ({
         draggableId: undefined,
+        draggedReservation: undefined,
         choosenSlot:
           state.choosenSlot !== undefined
             ? state.choosenSlot
@@ -136,7 +140,7 @@ class ReservationsPage extends PureComponent {
       return;
     }
 
-    const { updateReservation, reservations } = this.props;
+    const { updateReservation, reservations, tables } = this.props;
 
     /* TODO: 
       IF partySize > seatsNumber
@@ -151,30 +155,66 @@ class ReservationsPage extends PureComponent {
             + do not let do anything besides choosing another table till all party members will have seats
     */
 
-    // TODO: improve logic for multiple tables
+    const table = tables.get(destination.droppableId);
+    const partySize = reservations.getIn([
+      draggableId,
+      "attributes",
+      "partySize"
+    ]);
 
-    updateReservation(draggableId, {
-      tables: [
-        {
-          id: destination.droppableId,
-          seatsTaken: reservations.getIn([
-            draggableId,
-            "attributes",
-            "partySize"
-          ])
+    if (table && table.getIn(["attirbutes", "numberOfSeats"]) < partySize) {
+      this.setState(state => ({
+        draggableId: undefined,
+        draggedReservation: undefined,
+        choosenSlot:
+          state.choosenSlot !== undefined
+            ? state.choosenSlot
+            : getSlotClosestToPresent(state.slots)
+      }));
+    } else {
+      // TODO: improve logic for multiple tables
+
+      updateReservation(draggableId, {
+        tables: [
+          {
+            id: destination.droppableId,
+            seatsTaken: partySize
+          }
+        ]
+      });
+
+      this.setState(state => {
+        const sourceColumn = state.columns[source.droppableId];
+        const newSourceReservationIds = Array.from(sourceColumn.reservationIds);
+        newSourceReservationIds.splice(source.index, 1);
+        if (source.droppableId === destination.droppableId) {
+          newSourceReservationIds.splice(destination.index, 0, draggableId);
+          return {
+            ...state,
+            draggableId: undefined,
+            draggedReservation: undefined,
+            choosenSlot:
+              state.choosenSlot !== undefined
+                ? state.choosenSlot
+                : getSlotClosestToPresent(state.slots),
+            columns: {
+              ...state.columns,
+              [sourceColumn.id]: {
+                ...sourceColumn,
+                reservationIds: newSourceReservationIds
+              }
+            }
+          };
         }
-      ]
-    });
-
-    this.setState(state => {
-      const sourceColumn = state.columns[source.droppableId];
-      const newSourceReservationIds = Array.from(sourceColumn.reservationIds);
-      newSourceReservationIds.splice(source.index, 1);
-      if (source.droppableId === destination.droppableId) {
-        newSourceReservationIds.splice(destination.index, 0, draggableId);
+        const destinationColumn = state.columns[destination.droppableId];
+        const newDestinationReservationIds = Array.from(
+          destinationColumn.reservationIds
+        );
+        newDestinationReservationIds.splice(destination.index, 0, draggableId);
         return {
           ...state,
           draggableId: undefined,
+          draggedReservation: undefined,
           choosenSlot:
             state.choosenSlot !== undefined
               ? state.choosenSlot
@@ -184,35 +224,15 @@ class ReservationsPage extends PureComponent {
             [sourceColumn.id]: {
               ...sourceColumn,
               reservationIds: newSourceReservationIds
+            },
+            [destinationColumn.id]: {
+              ...destinationColumn,
+              reservationIds: newDestinationReservationIds
             }
           }
         };
-      }
-      const destinationColumn = state.columns[destination.droppableId];
-      const newDestinationReservationIds = Array.from(
-        destinationColumn.reservationIds
-      );
-      newDestinationReservationIds.splice(destination.index, 0, draggableId);
-      return {
-        ...state,
-        draggableId: undefined,
-        choosenSlot:
-          state.choosenSlot !== undefined
-            ? state.choosenSlot
-            : getSlotClosestToPresent(state.slots),
-        columns: {
-          ...state.columns,
-          [sourceColumn.id]: {
-            ...sourceColumn,
-            reservationIds: newSourceReservationIds
-          },
-          [destinationColumn.id]: {
-            ...destinationColumn,
-            reservationIds: newDestinationReservationIds
-          }
-        }
-      };
-    });
+      });
+    }
   };
 
   handleToggleReservationDetails = reservationDetailsId => {
@@ -241,7 +261,20 @@ class ReservationsPage extends PureComponent {
     this.setState({ pendingRejectionReservationId: undefined });
   };
 
-  chooseDate = choosenDate => this.setState({ choosenDate });
+  chooseDate = choosenDate => {
+    const sevenDaysBeforeToday = moment({ h: 0, m: 0, s: 0, ms: 0 }).subtract(
+      7,
+      "d"
+    );
+    if (choosenDate.isBefore(sevenDaysBeforeToday)) {
+      error({ message: "notifications:pastDateError" });
+      this.setState({
+        choosenDate: sevenDaysBeforeToday
+      });
+    } else {
+      this.setState({ choosenDate });
+    }
+  };
 
   chooseSlot = choosenSlot => this.setState({ choosenSlot });
 
@@ -266,12 +299,18 @@ class ReservationsPage extends PureComponent {
       choosenSlot,
       reservationDetailsId,
       tableDetailsId,
-      pendingRejectionReservationId
+      pendingRejectionReservationId,
+      draggedReservation
     } = this.state;
 
     const reservationDetails =
       reservationDetailsId && reservations
         ? reservations.get(reservationDetailsId)
+        : null;
+
+    const reservationTables =
+      reservationDetails && tables
+        ? getReservationTables(reservationDetails, tables)
         : null;
 
     const tableDetails =
@@ -301,6 +340,7 @@ class ReservationsPage extends PureComponent {
             onDragStart: this.handleDragStart,
             columns,
             reservations,
+            draggedReservation,
             slots,
             choosenDate,
             choosenSlot,
@@ -318,7 +358,9 @@ class ReservationsPage extends PureComponent {
               t,
               lng,
               reservationDetails,
+              reservationTables,
               setEditedReservation,
+              handleTableClick: this.handleToggleTableDetails,
               setRejectModalVisibility: this.setRejectModalVisibility
             }}
           />

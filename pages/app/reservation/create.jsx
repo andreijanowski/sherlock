@@ -53,7 +53,15 @@ const CreateReservationPage = ({
         updateBusiness
       }}
     >
-      <Form {...{ t, lng, isSending, handleFormSubmit }} />
+      <Form
+        {...{
+          t,
+          lng,
+          isSending,
+          handleFormSubmit,
+          maxReservationSize: business && business.get("maxReservationSize")
+        }}
+      />
     </ReservationLayout>
   );
 };

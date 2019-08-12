@@ -25,7 +25,7 @@
   "to": "To",
   "name": "Name",
   "email": "Email",
-  "country": "Country",
+  "phoneCountry": "Phone country code",
   "phone": "Phone",
   "cancel": "Cancel",
   "save": "Save",

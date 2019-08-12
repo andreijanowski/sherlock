@@ -16,7 +16,9 @@ const ReservationDetails = ({
   isOpen,
   onStateChange,
   reservationDetails,
+  reservationTables,
   setRejectModalVisibility,
+  handleTableClick,
   t,
   lng,
   setEditedReservation
@@ -81,6 +83,21 @@ const ReservationDetails = ({
           }}
         />
         <SliderSpacer />
+        {reservationTables && reservationTables.length !== 0 && (
+          <>
+            <SliderSubheader>{t("tablesList")}</SliderSubheader>
+            {reservationTables.map(r => (
+              <SliderDetail
+                {...{
+                  onClick: () => handleTableClick(r.tableId),
+                  name: t("numberLabel"),
+                  value: [r.tableNumber]
+                }}
+              />
+            ))}
+            <SliderSpacer />
+          </>
+        )}
         <SliderSubheader>{t("personalInformation")}</SliderSubheader>
         <SliderDetail
           {...{
@@ -105,7 +122,6 @@ const ReservationDetails = ({
             ]
           }}
         />
-
         <Flex mx={-1} mt={3} pb={3}>
           <Box width={1 / 2} px={1}>
             <Button
@@ -143,14 +159,17 @@ ReservationDetails.propTypes = {
   isOpen: bool.isRequired,
   onStateChange: func.isRequired,
   reservationDetails: shape(),
+  reservationTables: shape(),
   t: func.isRequired,
   lng: string.isRequired,
+  handleTableClick: func.isRequired,
   setRejectModalVisibility: func.isRequired,
   setEditedReservation: func.isRequired
 };
 
 ReservationDetails.defaultProps = {
-  reservationDetails: null
+  reservationDetails: null,
+  reservationTables: null
 };
 
 export default reduxBurgerMenu(ReservationDetails, "ReservationDetails");

@@ -43,7 +43,27 @@ const TableDetails = ({
         <SliderSpacer />
         <SliderSubheader>{t("reservations")}</SliderSubheader>
         {tableReservations
-          .sortBy(r => r.getIn(["attributes", "date"]))
+          .sort((a, b) => {
+            if (
+              new Date(a.getIn(["attributes", "date"])).getTime() <
+              new Date(b.getIn(["attributes", "date"])).getTime()
+            ) {
+              return -1;
+            }
+            if (
+              new Date(a.getIn(["attributes", "date"])).getTime() ===
+              new Date(b.getIn(["attributes", "date"])).getTime()
+            ) {
+              if (
+                a.getIn(["attributes", "from"]) <
+                b.getIn(["attributes", "from"])
+              ) {
+                return -1;
+              }
+              return 1;
+            }
+            return 1;
+          })
           .valueSeq()
           .map(r => {
             const from = r.getIn(["attributes", "from"]);
