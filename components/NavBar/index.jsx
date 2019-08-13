@@ -6,7 +6,6 @@ import {
   ControlCenter,
   Bookings,
   Delivery,
-  TakeAway,
   Catering,
   Privatisations,
   SocialMedia,
@@ -94,13 +93,13 @@ const NavBar = ({ t, lng, logout }) => (
     <Item>
       <Link {...{ lng, route: `/app/lefood/orders/` }}>
         <Icon>
-          <TakeAway />
+          <Delivery />
         </Icon>
       </Link>
       <SubitemsWrapper>
         <Subitems>
           <Link {...{ lng, route: `/app/lefood/orders/` }}>
-            <Subitem>{t("app:takeAway")}</Subitem>
+            <Subitem>{t("app:delivery")}</Subitem>
           </Link>
         </Subitems>
       </SubitemsWrapper>
@@ -154,16 +153,6 @@ const NavBar = ({ t, lng, logout }) => (
       <SubitemsWrapper>
         <Subitems>
           <Subitem>{t("app:bookings")}</Subitem>
-        </Subitems>
-      </SubitemsWrapper>
-    </Item>
-    <Item inactive>
-      <Icon inactive>
-        <Delivery />
-      </Icon>
-      <SubitemsWrapper>
-        <Subitems>
-          <Subitem>{t("app:delivery")}</Subitem>
         </Subitems>
       </SubitemsWrapper>
     </Item>
