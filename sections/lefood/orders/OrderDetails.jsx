@@ -130,29 +130,38 @@ const OrderDetails = ({
           orderDetails
             .getIn(["relationships", "addresses", "data"])
             .map(address => (
-              <PersonalInformation
-                {...{
-                  name: t("deliveryAddress"),
-                  value: [
-                    `${address.getIn([
-                      "attributes",
-                      "streetNumber"
-                    ])} ${address.getIn(["attributes", "street"])}`,
-                    address.getIn(["attributes", "region"])
-                      ? `${address.getIn([
-                          "attributes",
-                          "region"
-                        ])} ${address.getIn(["attributes", "regionCode"])}`
-                      : "",
-                    `${address.getIn([
-                      "attributes",
-                      "postCode"
-                    ])} ${address.getIn(["attributes", "city"])}`,
-                    address.getIn(["attributes", "addressLine"]),
-                    address.getIn(["attributes", "notes"])
-                  ]
-                }}
-              />
+              <>
+                <PersonalInformation
+                  {...{
+                    name: t("deliveryAddress"),
+                    value: [
+                      `${address.getIn([
+                        "attributes",
+                        "streetNumber"
+                      ])} ${address.getIn(["attributes", "street"])}`,
+                      address.getIn(["attributes", "region"])
+                        ? `${address.getIn([
+                            "attributes",
+                            "region"
+                          ])} ${address.getIn(["attributes", "regionCode"])}`
+                        : "",
+                      `${address.getIn([
+                        "attributes",
+                        "postCode"
+                      ])} ${address.getIn(["attributes", "city"])}`,
+                      address.getIn(["attributes", "addressLine"])
+                    ]
+                  }}
+                />
+                {address.getIn(["attributes", "notes"]) && (
+                  <PersonalInformation
+                    {...{
+                      name: t("deliveryNotes"),
+                      value: [address.getIn(["attributes", "notes"])]
+                    }}
+                  />
+                )}
+              </>
             ))}
         {orderDetails.getIn(["attributes", "state"]) ===
           "waiting_for_approval" && (
