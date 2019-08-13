@@ -3,13 +3,14 @@ import { func, string } from "prop-types";
 import { logout as logoutAction } from "actions/auth";
 import { connect } from "react-redux";
 import {
-  ControlCenter,
-  Bookings,
+  // Temporary hidden icons:
+  // ControlCenter,
+  // Bookings,
+  // SocialMedia,
+  // Billing,
   Delivery,
   Catering,
   Privatisations,
-  SocialMedia,
-  Billing,
   ProfileIcon,
   Subscriptions,
   SettingsIcon
@@ -136,7 +137,8 @@ const NavBar = ({ t, lng, logout }) => (
         </Subitems>
       </SubitemsWrapper>
     </Item>
-    <Item inactive>
+    {/* Temporary hidden icons */}
+    {/* <Item inactive>
       <Icon inactive>
         <ControlCenter />
       </Icon>
@@ -175,7 +177,7 @@ const NavBar = ({ t, lng, logout }) => (
           <Subitem>{t("app:billing")}</Subitem>
         </Subitems>
       </SubitemsWrapper>
-    </Item>
+    </Item> */}
   </Wrapper>
 );
 
