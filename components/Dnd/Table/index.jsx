@@ -1,7 +1,8 @@
 import { Droppable } from "react-beautiful-dnd";
-import { string, bool, number, func } from "prop-types";
+import { string, shape, number, func } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import { TableWrapper, ChairsSpace, Name, Chair, ChairNumber } from "./styled";
+import { calcTableAvailibilityStatus } from "./utils";
 
 const RADIUS = 60;
 
@@ -9,52 +10,47 @@ const Table = ({
   id,
   tableNumber,
   numberOfSeats,
-  isDropDisabled,
+  currentReservation,
   handleTableClick
 }) => (
-  <Droppable droppableId={id} isDropDisabled={isDropDisabled}>
-    {(provided, { isDraggingOver }) => (
-      <TableWrapper
-        {...provided.droppableProps}
-        ref={provided.innerRef}
-        isDropDisabled={isDropDisabled}
-        isDraggingOver={isDraggingOver}
-        onClick={() => handleTableClick(id)}
-      >
-        <ChairsSpace
-          seats={numberOfSeats}
-          radius={RADIUS}
-          isDropDisabled={isDropDisabled}
-          isDraggingOver={isDraggingOver}
+  <Droppable droppableId={id} isDropDisabled={!!currentReservation}>
+    {(provided, { isDraggingOver }) => {
+      const availibilityStatus = calcTableAvailibilityStatus(
+        currentReservation,
+        numberOfSeats,
+        isDraggingOver
+      );
+      return (
+        <TableWrapper
+          {...provided.droppableProps}
+          ref={provided.innerRef}
+          availibilityStatus={availibilityStatus}
+          onClick={() => handleTableClick(id)}
         >
-          <svg>
-            <circle id="circle" cx="50%" cy="50%" r={`${RADIUS}px`} />
-          </svg>
-        </ChairsSpace>
-        <Flex flexDirection="column" alignItems="center">
-          <Box>
-            <Name
-              isDropDisabled={isDropDisabled}
-              isDraggingOver={isDraggingOver}
-            >
-              {tableNumber}
-            </Name>
-          </Box>
-          <Box>
-            <ChairNumber
-              isDropDisabled={isDropDisabled}
-              isDraggingOver={isDraggingOver}
-            >
-              {numberOfSeats}
-            </ChairNumber>
-            <Chair
-              isDropDisabled={isDropDisabled}
-              isDraggingOver={isDraggingOver}
-            />
-          </Box>
-        </Flex>
-      </TableWrapper>
-    )}
+          <ChairsSpace
+            seats={numberOfSeats}
+            radius={RADIUS}
+            availibilityStatus={availibilityStatus}
+            isDraggingOver={isDraggingOver}
+          >
+            <svg>
+              <circle id="circle" cx="50%" cy="50%" r={`${RADIUS}px`} />
+            </svg>
+          </ChairsSpace>
+          <Flex flexDirection="column" alignItems="center">
+            <Box>
+              <Name availibilityStatus={availibilityStatus}>{tableNumber}</Name>
+            </Box>
+            <Box>
+              <ChairNumber availibilityStatus={availibilityStatus}>
+                {numberOfSeats}
+              </ChairNumber>
+              <Chair availibilityStatus={availibilityStatus} />
+            </Box>
+          </Flex>
+        </TableWrapper>
+      );
+    }}
   </Droppable>
 );
 
@@ -63,11 +59,11 @@ Table.propTypes = {
   tableNumber: number.isRequired,
   numberOfSeats: number.isRequired,
   handleTableClick: func.isRequired,
-  isDropDisabled: bool
+  currentReservation: shape()
 };
 
 Table.defaultProps = {
-  isDropDisabled: false
+  currentReservation: undefined
 };
 
 export default Table;

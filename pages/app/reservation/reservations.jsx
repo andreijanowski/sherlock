@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
@@ -18,6 +19,7 @@ import Reservations from "sections/reservation/reservations";
 import ReservationDetails from "sections/reservation/reservations/ReservationDetails";
 import TableDetails from "sections/reservation/reservations/TableDetails";
 import RejectReservationModal from "sections/reservation/reservations/RejectReservationModal";
+import MultipleTablesModal from "sections/reservation/reservations/MultipleTablesModal";
 import moment from "moment";
 import { SliderStyles } from "components";
 import { action as toggleMenu } from "redux-burger-menu/immutable";
@@ -55,9 +57,12 @@ class ReservationsPage extends PureComponent {
       slots,
       choosenSlot: getSlotClosestToPresent(slots),
       draggableId: undefined,
+      destination: undefined,
+      source: undefined,
       reservationDetailsId: undefined,
       tableDetailsId: undefined,
-      pendingRejectionReservationId: undefined
+      pendingRejectionReservationId: undefined,
+      isMultipleTablesModalVisible: false
     };
   }
 
@@ -162,15 +167,13 @@ class ReservationsPage extends PureComponent {
       "partySize"
     ]);
 
-    if (table && table.getIn(["attirbutes", "numberOfSeats"]) < partySize) {
-      this.setState(state => ({
-        draggableId: undefined,
-        draggedReservation: undefined,
-        choosenSlot:
-          state.choosenSlot !== undefined
-            ? state.choosenSlot
-            : getSlotClosestToPresent(state.slots)
-      }));
+    if (table && table.getIn(["attributes", "numberOfSeats"]) < partySize) {
+      this.setState({
+        isMultipleTablesModalVisible: true,
+        destination,
+        source,
+        draggableId
+      });
     } else {
       // TODO: improve logic for multiple tables
 
@@ -190,7 +193,6 @@ class ReservationsPage extends PureComponent {
         if (source.droppableId === destination.droppableId) {
           newSourceReservationIds.splice(destination.index, 0, draggableId);
           return {
-            ...state,
             draggableId: undefined,
             draggedReservation: undefined,
             choosenSlot:
@@ -212,7 +214,6 @@ class ReservationsPage extends PureComponent {
         );
         newDestinationReservationIds.splice(destination.index, 0, draggableId);
         return {
-          ...state,
           draggableId: undefined,
           draggedReservation: undefined,
           choosenSlot:
@@ -278,6 +279,80 @@ class ReservationsPage extends PureComponent {
 
   chooseSlot = choosenSlot => this.setState({ choosenSlot });
 
+  closeMultipleTablesModal = () =>
+    this.setState(state => ({
+      isMultipleTablesModalVisible: false,
+      draggableId: undefined,
+      destination: undefined,
+      source: undefined,
+      draggedReservation: undefined,
+      choosenSlot:
+        state.choosenSlot !== undefined
+          ? state.choosenSlot
+          : getSlotClosestToPresent(state.slots)
+    }));
+
+  handleForcedReservation = () => {
+    const { reservations, updateReservation } = this.props;
+    const {
+      draggableId: reservationId,
+      destination: { droppableId }
+    } = this.state;
+    const partySize = reservations.getIn([
+      reservationId,
+      "attributes",
+      "partySize"
+    ]);
+    updateReservation(reservationId, {
+      tables: [
+        {
+          id: droppableId,
+          seatsTaken: partySize
+        }
+      ]
+    });
+    this.setState(state => {
+      const {
+        columns,
+        source,
+        destination,
+        draggableId,
+        choosenSlot,
+        slots
+      } = state;
+      const sourceColumn = columns[source.droppableId];
+      const newSourceReservationIds = Array.from(sourceColumn.reservationIds);
+      newSourceReservationIds.splice(source.index, 1);
+      const destinationColumn = columns[destination.droppableId];
+      const newDestinationReservationIds = Array.from(
+        destinationColumn.reservationIds
+      );
+      newDestinationReservationIds.splice(destination.index, 0, draggableId);
+      return {
+        isMultipleTablesModalVisible: false,
+        draggableId: undefined,
+        draggedReservation: undefined,
+        destination: undefined,
+        source: undefined,
+        choosenSlot:
+          choosenSlot !== undefined
+            ? choosenSlot
+            : getSlotClosestToPresent(slots),
+        columns: {
+          ...columns,
+          [sourceColumn.id]: {
+            ...sourceColumn,
+            reservationIds: newSourceReservationIds
+          },
+          [destinationColumn.id]: {
+            ...destinationColumn,
+            reservationIds: newDestinationReservationIds
+          }
+        }
+      };
+    });
+  };
+
   render() {
     const {
       t,
@@ -300,7 +375,8 @@ class ReservationsPage extends PureComponent {
       reservationDetailsId,
       tableDetailsId,
       pendingRejectionReservationId,
-      draggedReservation
+      draggedReservation,
+      isMultipleTablesModalVisible
     } = this.state;
 
     const reservationDetails =
@@ -386,6 +462,14 @@ class ReservationsPage extends PureComponent {
                 )
               : null,
             removeReservation: this.removeReservation,
+            t
+          }}
+        />
+        <MultipleTablesModal
+          {...{
+            isOpen: !!isMultipleTablesModalVisible,
+            onClose: this.closeMultipleTablesModal,
+            onContinue: this.handleForcedReservation,
             t
           }}
         />

@@ -51,14 +51,16 @@ export const calcReservedPeriodsForTables = reservations => {
             reservedPeriodsForTables[t.get("id")].push({
               date: r.getIn(["attributes", "date"]),
               from: r.getIn(["attributes", "from"]),
-              to: r.getIn(["attributes", "to"])
+              to: r.getIn(["attributes", "to"]),
+              partySize: r.getIn(["attributes", "partySize"])
             });
           } else {
             reservedPeriodsForTables[t.get("id")] = [
               {
                 date: r.getIn(["attributes", "date"]),
                 from: r.getIn(["attributes", "from"]),
-                to: r.getIn(["attributes", "to"])
+                to: r.getIn(["attributes", "to"]),
+                partySize: r.getIn(["attributes", "partySize"])
               }
             ];
           }
@@ -159,7 +161,7 @@ export const checkIfTableIsAvailable = ({
   draggedReservation
 }) => {
   if (draggedReservation) {
-    return reservedPeriods.some(
+    return reservedPeriods.find(
       r =>
         // TODO: handle case, when restaurant is open in day and night and dates are changing ex. from 23:30 -> 1:30
         r.date === choosenDate.format("YYYY-MM-DD") &&
@@ -167,7 +169,7 @@ export const checkIfTableIsAvailable = ({
         r.from <= draggedReservation.getIn(["attributes", "to"])
     );
   }
-  return reservedPeriods.some(
+  return reservedPeriods.find(
     r =>
       // TODO: handle case, when restaurant is open in day and night and dates are changing ex. from 23:30 -> 1:30
       r.date === choosenDate.format("YYYY-MM-DD") &&

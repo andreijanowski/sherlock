@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { calcTableColor, calcChairsColor, calcTextColor } from "./utils";
 
 export const TableWrapper = styled(Flex).attrs(() => ({
   alignItems: "center",
@@ -11,15 +12,7 @@ export const TableWrapper = styled(Flex).attrs(() => ({
   height: 120px;
   margin: 30px;
   background-color: rgb(
-    ${p => {
-      if (p.isDropDisabled) {
-        return p.theme.colors.ruby;
-      }
-      if (p.isDraggingOver) {
-        return p.theme.colors.green;
-      }
-      return p.theme.colors.linkWater;
-    }}
+    ${p => calcTableColor(p.availibilityStatus, p.theme.colors)}
   );
   border-radius: 50%;
   cursor: pointer;
@@ -43,27 +36,14 @@ export const ChairsSpace = styled(Flex)`
       stroke-linecap: round;
       fill: none;
       stroke: rgb(
-        ${p => {
-          if (p.isDropDisabled) {
-            return p.theme.colors.ruby;
-          }
-          if (p.isDraggingOver) {
-            return p.theme.colors.green;
-          }
-          return p.theme.colors.blue;
-        }}
+        ${p => calcChairsColor(p.availibilityStatus, p.theme.colors)}
       );
     }
   }
 `;
 
 export const Name = styled.span`
-  color: rgb(
-    ${p =>
-      p.isDraggingOver || p.isDropDisabled
-        ? p.theme.colors.white
-        : p.theme.colors.blue}
-  );
+  color: rgb(${p => calcTextColor(p.availibilityStatus, p.theme.colors)});
   font-weight: ${p => p.theme.fontWeights.bold};
 `;
 
@@ -71,21 +51,11 @@ export const Chair = styled(FontAwesomeIcon).attrs(() => ({
   icon: ["fa", "chair"],
   size: "xs"
 }))`
-  color: rgb(
-    ${p =>
-      p.isDraggingOver || p.isDropDisabled
-        ? p.theme.colors.white
-        : p.theme.colors.blue}
-  );
+  color: rgb(${p => calcTextColor(p.availibilityStatus, p.theme.colors)});
 `;
 
 export const ChairNumber = styled.span`
   margin-right: 4px;
-  color: rgb(
-    ${p =>
-      p.isDraggingOver || p.isDropDisabled
-        ? p.theme.colors.white
-        : p.theme.colors.blue}
-  );
+  color: rgb(${p => calcTextColor(p.availibilityStatus, p.theme.colors)});
   font-size: ${p => p.theme.fontSizes.f12};
 `;

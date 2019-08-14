@@ -66,7 +66,7 @@ const Reservations = ({
                     numberOfSeats: column.numberOfSeats,
                     tableNumber: column.number,
                     items: [],
-                    isDropDisabled: checkIfTableIsAvailable({
+                    currentReservation: checkIfTableIsAvailable({
                       reservedPeriods: column.reservedPeriods,
                       choosenDate,
                       choosenSlot,

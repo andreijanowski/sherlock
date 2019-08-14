@@ -37,5 +37,8 @@
   "numberOfSeats": "Number of seats",
   "rejectReservationHeader": "Are you sure you want to reject this reservation?",
   "yes": "Yes",
-  "no": "No"
+  "no": "No",
+  "multipleTablesHeader": "Party size is greater than number of seats!",
+  "continueAnyway": "Continue anyway",
+  "split": "Split"
 }
