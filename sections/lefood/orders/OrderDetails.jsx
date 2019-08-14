@@ -31,6 +31,7 @@ const OrderDetails = ({
     {orderDetails && (
       <>
         <OrderDetailsHeader>{t("orderDetails")}</OrderDetailsHeader>
+        <p>{`id: ${orderDetails.getIn(["attributes", "shortId"])}`}</p>
         <OrderDetailsState>
           <FormDropdown
             {...{

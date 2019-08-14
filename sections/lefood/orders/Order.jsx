@@ -11,7 +11,8 @@ import {
   OrderDetails,
   OrderDetail,
   PaymentConfirmed,
-  WaitingForPayment
+  WaitingForPayment,
+  Id
 } from "./styled";
 import { columns } from "../utils";
 
@@ -39,6 +40,7 @@ const Order = ({
             {(order.getIn(["attributes", "totalCostCents"]) / 100).toFixed(2)}{" "}
             {currency}
           </OrderPrice>
+          <Id>{`id: ${order.getIn(["attributes", "shortId"])}`}</Id>
           {/* <OrderTime>{TODO: display order time when ready on backend side}</OrderTime> */}
         </OrderHeader>
         <OrderDetails>
