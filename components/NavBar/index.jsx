@@ -3,14 +3,14 @@ import { func, string } from "prop-types";
 import { logout as logoutAction } from "actions/auth";
 import { connect } from "react-redux";
 import {
-  ControlCenter,
-  Bookings,
+  // Temporary hidden icons:
+  // ControlCenter,
+  // Bookings,
+  // SocialMedia,
+  // Billing,
   Delivery,
-  TakeAway,
   Catering,
   Privatisations,
-  SocialMedia,
-  Billing,
   ProfileIcon,
   Subscriptions,
   SettingsIcon
@@ -94,13 +94,13 @@ const NavBar = ({ t, lng, logout }) => (
     <Item>
       <Link {...{ lng, route: `/app/lefood/orders/` }}>
         <Icon>
-          <TakeAway />
+          <Delivery />
         </Icon>
       </Link>
       <SubitemsWrapper>
         <Subitems>
           <Link {...{ lng, route: `/app/lefood/orders/` }}>
-            <Subitem>{t("app:takeAway")}</Subitem>
+            <Subitem>{t("app:delivery")}</Subitem>
           </Link>
         </Subitems>
       </SubitemsWrapper>
@@ -137,7 +137,8 @@ const NavBar = ({ t, lng, logout }) => (
         </Subitems>
       </SubitemsWrapper>
     </Item>
-    <Item inactive>
+    {/* Temporary hidden icons */}
+    {/* <Item inactive>
       <Icon inactive>
         <ControlCenter />
       </Icon>
@@ -154,16 +155,6 @@ const NavBar = ({ t, lng, logout }) => (
       <SubitemsWrapper>
         <Subitems>
           <Subitem>{t("app:bookings")}</Subitem>
-        </Subitems>
-      </SubitemsWrapper>
-    </Item>
-    <Item inactive>
-      <Icon inactive>
-        <Delivery />
-      </Icon>
-      <SubitemsWrapper>
-        <Subitems>
-          <Subitem>{t("app:delivery")}</Subitem>
         </Subitems>
       </SubitemsWrapper>
     </Item>
@@ -186,7 +177,7 @@ const NavBar = ({ t, lng, logout }) => (
           <Subitem>{t("app:billing")}</Subitem>
         </Subitems>
       </SubitemsWrapper>
-    </Item>
+    </Item> */}
   </Wrapper>
 );
 
