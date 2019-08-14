@@ -19,7 +19,7 @@ export const Wrapper = styled(Flex).attrs(() => ({
 `;
 
 export const TimeSlotPickerWrapper = styled(Wrapper)`
-  max-width: calc(100% - 152px);
+  max-width: calc(100% - 157px);
 `;
 
 export const SlotsWrapper = styled(Flex)`
@@ -53,7 +53,7 @@ export const Slot = styled(Box).attrs(() => ({ p: 2 }))`
 `;
 
 export const Date = styled(Slot)`
-  width: 70px;
+  width: 75px;
 `;
 
 export const Arrow = styled(Flex).attrs(() => ({

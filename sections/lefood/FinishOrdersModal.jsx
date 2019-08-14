@@ -1,8 +1,7 @@
-import { Modal, Button } from "components";
+import { Modal, Button, ModalHeader } from "components";
 import { WarningIcon } from "icons";
 import { func, bool } from "prop-types";
 import { Flex } from "@rebass/grid";
-import { ModalHeader } from "./styled";
 
 const FinishOrdersModal = ({ isOpen, onClose, t }) => (
   <Modal {...{ open: isOpen, onClose }}>

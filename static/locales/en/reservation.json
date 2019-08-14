@@ -25,11 +25,17 @@
   "to": "To",
   "name": "Name",
   "email": "Email",
-  "country": "Country",
+  "phoneCountry": "Phone country code",
   "phone": "Phone",
   "cancel": "Cancel",
   "save": "Save",
   "people": "people",
   "reservationDetails": "Reservation details",
-  "personalInformation": "Personal information"
+  "personalInformation": "Personal information",
+  "tableDetails": "Table details",
+  "number": "Table number",
+  "numberOfSeats": "Number of seats",
+  "rejectReservationHeader": "Are you sure you want to reject this reservation?",
+  "yes": "Yes",
+  "no": "No"
 }

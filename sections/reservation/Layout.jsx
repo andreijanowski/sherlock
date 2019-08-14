@@ -30,6 +30,7 @@ const ReservationLayout = ({
   t,
   lng,
   page,
+  tables,
   children,
   business,
   currentBusinessId,
@@ -59,6 +60,13 @@ const ReservationLayout = ({
     setMaxReservationSize(business && business.get("maxReservationSize"));
   }, [business]);
 
+  const isInfoBarVisible =
+    !(tables && tables.size) ||
+    !timeSlots ||
+    !timeOfStay ||
+    !minTimeBeforeReservation ||
+    !maxReservationSize;
+
   return (
     <AppLayout
       {...{
@@ -82,30 +90,42 @@ const ReservationLayout = ({
           onChange={b => changeCurrentBusiness(b.value)}
         />
       </Box>
-      <InfoBar
-        info={
-          // eslint-disable-next-line react/jsx-wrap-multilines
-          <span>
-            {`${t("addInfo")} `}
-            <ItalicText>
-              <Orange>
-                <Link route="/app/reservation/tables/" lng={lng}>
-                  <Orange as="a">{t("tablesInfo")}</Orange>
-                </Link>
-                {`, ${t("timeSlots")}, ${t("minTimeBeforeReservation")}, ${t(
-                  "timeOfStay"
-                )}, ${t("and")} ${t("maxReservationSize")}`}
-              </Orange>
-            </ItalicText>
-            {` ${t("toSeeAnyNewReservations")}`}.
-          </span>
-        }
-        complete={`0% ${t("complete")}`}
-      />
+      {isInfoBarVisible && (
+        <InfoBar
+          info={
+            // eslint-disable-next-line react/jsx-wrap-multilines
+            <span>
+              {`${t("addInfo")} `}
+              <ItalicText>
+                <Orange>
+                  {!(tables && tables.size) && (
+                    <Link route="/app/reservation/tables/" lng={lng}>
+                      <Orange as="a">{t("tablesInfo")},</Orange>
+                    </Link>
+                  )}
+                  {`${timeSlots ? "" : ` ${t("timeSlots")},`}
+                    ${
+                      minTimeBeforeReservation
+                        ? ""
+                        : ` ${t("minTimeBeforeReservation")}, `
+                    }
+                    ${timeOfStay ? "" : ` ${t("timeOfStay")},`}
+                    ${maxReservationSize ? "" : ` ${t("maxReservationSize")}`}`}
+                </Orange>
+              </ItalicText>
+              {` ${t("toSeeAnyNewReservations")}`}.
+            </span>
+          }
+        />
+      )}
       <Flex width={1} mt={3} flexWrap="wrap">
         <Box pr={3} mb={2}>
           <Link route="/app/reservation/reservations/" lng={lng}>
-            <Button as="a" styleName="withImage" active={page === "orders"}>
+            <Button
+              as="a"
+              styleName="withImage"
+              active={page === "reservations"}
+            >
               <ButtonWithImageIconWrapper>
                 <ProfileContact />
               </ButtonWithImageIconWrapper>
@@ -115,7 +135,7 @@ const ReservationLayout = ({
         </Box>
         <Box pr={3} mb={2}>
           <Link route="/app/reservation/tables/" lng={lng}>
-            <Button as="a" styleName="withImage" active={page === "orders"}>
+            <Button as="a" styleName="withImage" active={page === "tables"}>
               <ButtonWithImageIconWrapper>
                 <ProfileAdditionaInfo />
               </ButtonWithImageIconWrapper>
@@ -237,6 +257,7 @@ ReservationLayout.propTypes = {
   pendingReservationsLength: number.isRequired,
   business: shape(),
   businesses: shape(),
+  tables: shape(),
   changeCurrentBusiness: func.isRequired,
   updateBusiness: func.isRequired,
   currentBusinessId: string,
@@ -251,7 +272,8 @@ ReservationLayout.defaultProps = {
   orderPeriodsLength: 0,
   currentBusinessId: "",
   business: null,
-  businesses: null
+  businesses: null,
+  tables: null
 };
 
 export default ReservationLayout;

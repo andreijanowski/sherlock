@@ -1,5 +1,5 @@
 import React from "react";
-import { func, string, bool, number } from "prop-types";
+import { func, string, number } from "prop-types";
 import { Form as FinalForm, Field } from "react-final-form";
 import {
   H3,
@@ -8,7 +8,7 @@ import {
   FormSelect,
   FormDaypicker,
   FormTimePicker,
-  LoadingIndicator
+  parseTime
 } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Router } from "routes";
@@ -16,15 +16,33 @@ import countriesPhoneCodes from "utils/countriesPhoneCodes";
 import { isInteger, required, validateEmail } from "utils/validators";
 import { Form } from "./styled";
 
-const CreateCateringForm = ({
+const UpdateCateringForm = ({
   t,
   lng,
-  isSending,
   handleFormSubmit,
+  editedReservation,
   maxReservationSize
 }) => (
   <FinalForm
-    onSubmit={handleFormSubmit}
+    onSubmit={v => {
+      handleFormSubmit(v, editedReservation.get("id"));
+    }}
+    initialValues={{
+      partySize: editedReservation.getIn(["attributes", "partySize"]),
+      date: editedReservation.getIn(["attributes", "date"]),
+      from: parseTime(editedReservation.getIn(["attributes", "from"])),
+      to: parseTime(editedReservation.getIn(["attributes", "to"])),
+      name: editedReservation.getIn(["attributes", "name"]),
+      email: editedReservation.getIn(["attributes", "email"]),
+      phoneCountry: countriesPhoneCodes.find(
+        ({ value: { code, prefix } }) =>
+          code ===
+            editedReservation.getIn(["attributes", "phoneCountryCode"]) &&
+          prefix ===
+            editedReservation.getIn(["attributes", "phoneCountryPrefix"])
+      ),
+      phone: editedReservation.getIn(["attributes", "phone"])
+    }}
     subscription={{
       handleSubmit: true
     }}
@@ -79,8 +97,8 @@ const CreateCateringForm = ({
             <Field
               name="phoneCountry"
               component={FormSelect}
-              label={t("phoneCountry")}
-              placeholder={t("phoneCountry")}
+              label={t("country")}
+              placeholder={t("country")}
               items={countriesPhoneCodes}
               showFlag
               validate={required(t)}
@@ -109,22 +127,21 @@ const CreateCateringForm = ({
             </Button>
           </Box>
         </Flex>
-        {isSending && <LoadingIndicator />}
       </Form>
     )}
   />
 );
 
-CreateCateringForm.propTypes = {
+UpdateCateringForm.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   handleFormSubmit: func.isRequired,
-  maxReservationSize: number,
-  isSending: bool.isRequired
+  editedReservation: func.isRequired,
+  maxReservationSize: number
 };
 
-CreateCateringForm.defaultProps = {
+UpdateCateringForm.defaultProps = {
   maxReservationSize: 100
 };
 
-export default CreateCateringForm;
+export default UpdateCateringForm;

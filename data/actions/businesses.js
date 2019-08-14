@@ -144,7 +144,14 @@ export const fetchBusinessTables = (id, page = 1) => ({
 export const fetchBusinessReservations = (
   id,
   page = 1,
-  startDate = moment({ h: 0, m: 0, s: 0, ms: 0 }).toISOString()
+  startDate = moment({ h: 0, m: 0, s: 0, ms: 0 })
+    .subtract(7, "d")
+    .toISOString(),
+  endDate = moment({ h: 0, m: 0, s: 0, ms: 0 })
+    .add(1, "y")
+    .toISOString(),
+  from = 0,
+  to = 86400
 ) => ({
   type: FETCH_BUSINESS_RESERVATIONS_REQUEST,
   payload: {
@@ -153,7 +160,7 @@ export const fetchBusinessReservations = (
       per_page: 200,
       page,
       include: "user,bookings,tables",
-      filter: { startDate }
+      filter: { startDate, endDate, from, to }
     }
   },
   meta: { thunk: true, page }

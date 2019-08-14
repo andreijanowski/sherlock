@@ -9,14 +9,24 @@ import {
   parseReservations,
   prepareTimelineSlots,
   getSlotClosestToPresent,
-  getSlotFromMoment
+  getSlotFromMoment,
+  getTableReservations,
+  getReservationTables
 } from "sections/reservation/utils";
+import { error } from "react-notification-system-redux";
 import Reservations from "sections/reservation/reservations";
 import ReservationDetails from "sections/reservation/reservations/ReservationDetails";
+import TableDetails from "sections/reservation/reservations/TableDetails";
+import RejectReservationModal from "sections/reservation/reservations/RejectReservationModal";
 import moment from "moment";
 import { SliderStyles } from "components";
 import { action as toggleMenu } from "redux-burger-menu/immutable";
 import { patchBusiness } from "actions/businesses";
+import {
+  deleteReservation,
+  setReservationForEditing,
+  patchReservation
+} from "actions/reservations";
 
 const namespaces = ["reservation", "app", "forms"];
 
@@ -45,7 +55,9 @@ class ReservationsPage extends PureComponent {
       slots,
       choosenSlot: getSlotClosestToPresent(slots),
       draggableId: undefined,
-      reservationDetailsId: undefined
+      reservationDetailsId: undefined,
+      tableDetailsId: undefined,
+      pendingRejectionReservationId: undefined
     };
   }
 
@@ -106,7 +118,8 @@ class ReservationsPage extends PureComponent {
       reservations && reservations.getIn([draggableId, "attributes", "date"]);
     this.setState({
       draggableId,
-      choosenDate: moment(reservationDate)
+      choosenDate: moment(reservationDate),
+      draggedReservation: reservations.get(draggableId)
     });
   };
 
@@ -118,6 +131,7 @@ class ReservationsPage extends PureComponent {
     ) {
       this.setState(state => ({
         draggableId: undefined,
+        draggedReservation: undefined,
         choosenSlot:
           state.choosenSlot !== undefined
             ? state.choosenSlot
@@ -126,15 +140,81 @@ class ReservationsPage extends PureComponent {
       return;
     }
 
-    this.setState(state => {
-      const sourceColumn = state.columns[source.droppableId];
-      const newSourceReservationIds = Array.from(sourceColumn.reservationIds);
-      newSourceReservationIds.splice(source.index, 1);
-      if (source.droppableId === destination.droppableId) {
-        newSourceReservationIds.splice(destination.index, 0, draggableId);
+    const { updateReservation, reservations, tables } = this.props;
+
+    /* TODO: 
+      IF partySize > seatsNumber
+      DO:
+        - display modal with this info
+        - display three options:
+          * reject (take reservation back to pending reservations column)
+          * continue anyway (this problem will be solved outside our system)
+          * split reservation
+            + set "seatsTaken" as maximum availabe,
+            + create another card for this reservation,
+            + do not let do anything besides choosing another table till all party members will have seats
+    */
+
+    const table = tables.get(destination.droppableId);
+    const partySize = reservations.getIn([
+      draggableId,
+      "attributes",
+      "partySize"
+    ]);
+
+    if (table && table.getIn(["attirbutes", "numberOfSeats"]) < partySize) {
+      this.setState(state => ({
+        draggableId: undefined,
+        draggedReservation: undefined,
+        choosenSlot:
+          state.choosenSlot !== undefined
+            ? state.choosenSlot
+            : getSlotClosestToPresent(state.slots)
+      }));
+    } else {
+      // TODO: improve logic for multiple tables
+
+      updateReservation(draggableId, {
+        tables: [
+          {
+            id: destination.droppableId,
+            seatsTaken: partySize
+          }
+        ]
+      });
+
+      this.setState(state => {
+        const sourceColumn = state.columns[source.droppableId];
+        const newSourceReservationIds = Array.from(sourceColumn.reservationIds);
+        newSourceReservationIds.splice(source.index, 1);
+        if (source.droppableId === destination.droppableId) {
+          newSourceReservationIds.splice(destination.index, 0, draggableId);
+          return {
+            ...state,
+            draggableId: undefined,
+            draggedReservation: undefined,
+            choosenSlot:
+              state.choosenSlot !== undefined
+                ? state.choosenSlot
+                : getSlotClosestToPresent(state.slots),
+            columns: {
+              ...state.columns,
+              [sourceColumn.id]: {
+                ...sourceColumn,
+                reservationIds: newSourceReservationIds
+              }
+            }
+          };
+        }
+        const destinationColumn = state.columns[destination.droppableId];
+        const newDestinationReservationIds = Array.from(
+          destinationColumn.reservationIds
+        );
+        newDestinationReservationIds.splice(destination.index, 0, draggableId);
         return {
           ...state,
           draggableId: undefined,
+          draggedReservation: undefined,
           choosenSlot:
             state.choosenSlot !== undefined
               ? state.choosenSlot
@@ -144,44 +224,57 @@ class ReservationsPage extends PureComponent {
             [sourceColumn.id]: {
               ...sourceColumn,
               reservationIds: newSourceReservationIds
+            },
+            [destinationColumn.id]: {
+              ...destinationColumn,
+              reservationIds: newDestinationReservationIds
             }
           }
         };
-      }
-      const destinationColumn = state.columns[destination.droppableId];
-      const newDestinationReservationIds = Array.from(
-        destinationColumn.reservationIds
-      );
-      newDestinationReservationIds.splice(destination.index, 0, draggableId);
-      return {
-        ...state,
-        draggableId: undefined,
-        choosenSlot:
-          state.choosenSlot !== undefined
-            ? state.choosenSlot
-            : getSlotClosestToPresent(state.slots),
-        columns: {
-          ...state.columns,
-          [sourceColumn.id]: {
-            ...sourceColumn,
-            reservationIds: newSourceReservationIds
-          },
-          [destinationColumn.id]: {
-            ...destinationColumn,
-            reservationIds: newDestinationReservationIds
-          }
-        }
-      };
-    });
+      });
+    }
   };
 
   handleToggleReservationDetails = reservationDetailsId => {
-    const { toggleReservationDetails } = this.props;
-    this.setState({ reservationDetailsId });
+    const { toggleReservationDetails, toggleTableDetails } = this.props;
+    this.setState({ reservationDetailsId, tableDetailsId: undefined });
     toggleReservationDetails(!!reservationDetailsId);
+    toggleTableDetails(false);
   };
 
-  chooseDate = choosenDate => this.setState({ choosenDate });
+  handleToggleTableDetails = tableDetailsId => {
+    const { toggleTableDetails, toggleReservationDetails } = this.props;
+    this.setState({ tableDetailsId, reservationDetailsId: undefined });
+    toggleTableDetails(!!tableDetailsId);
+    toggleReservationDetails(false);
+  };
+
+  setRejectModalVisibility = reservationId => {
+    this.handleToggleReservationDetails(undefined);
+    this.setState({ pendingRejectionReservationId: reservationId });
+  };
+
+  removeReservation = () => {
+    const { removeReservation } = this.props;
+    const { pendingRejectionReservationId } = this.state;
+    removeReservation(pendingRejectionReservationId);
+    this.setState({ pendingRejectionReservationId: undefined });
+  };
+
+  chooseDate = choosenDate => {
+    const sevenDaysBeforeToday = moment({ h: 0, m: 0, s: 0, ms: 0 }).subtract(
+      7,
+      "d"
+    );
+    if (choosenDate.isBefore(sevenDaysBeforeToday)) {
+      error({ message: "notifications:pastDateError" });
+      this.setState({
+        choosenDate: sevenDaysBeforeToday
+      });
+    } else {
+      this.setState({ choosenDate });
+    }
+  };
 
   chooseSlot = choosenSlot => this.setState({ choosenSlot });
 
@@ -193,8 +286,10 @@ class ReservationsPage extends PureComponent {
       businessId,
       businesses,
       reservations,
+      tables,
       updateBusiness,
-      changeCurrentBusiness
+      changeCurrentBusiness,
+      setEditedReservation
     } = this.props;
 
     const {
@@ -202,12 +297,28 @@ class ReservationsPage extends PureComponent {
       choosenDate,
       slots,
       choosenSlot,
-      reservationDetailsId
+      reservationDetailsId,
+      tableDetailsId,
+      pendingRejectionReservationId,
+      draggedReservation
     } = this.state;
 
     const reservationDetails =
       reservationDetailsId && reservations
         ? reservations.get(reservationDetailsId)
+        : null;
+
+    const reservationTables =
+      reservationDetails && tables
+        ? getReservationTables(reservationDetails, tables)
+        : null;
+
+    const tableDetails =
+      tableDetailsId && tables ? tables.get(tableDetailsId) : null;
+
+    const tableReservations =
+      tableDetailsId && reservations
+        ? getTableReservations(tableDetailsId, reservations)
         : null;
 
     return (
@@ -218,6 +329,7 @@ class ReservationsPage extends PureComponent {
           page: "reservations",
           currentBusinessId: businessId,
           business,
+          tables,
           businesses,
           changeCurrentBusiness,
           updateBusiness
@@ -229,10 +341,12 @@ class ReservationsPage extends PureComponent {
             onDragStart: this.handleDragStart,
             columns,
             reservations,
+            draggedReservation,
             slots,
             choosenDate,
             choosenSlot,
             handleCardClick: this.handleToggleReservationDetails,
+            handleTableClick: this.handleToggleTableDetails,
             chooseDate: this.chooseDate,
             chooseSlot: this.chooseSlot,
             t
@@ -242,12 +356,39 @@ class ReservationsPage extends PureComponent {
         <div style={{ position: "absolute", left: 0, top: 0 }}>
           <ReservationDetails
             {...{
-              reservationDetails,
               t,
-              updateReservation: this.updateReservation
+              lng,
+              reservationDetails,
+              reservationTables,
+              setEditedReservation,
+              handleTableClick: this.handleToggleTableDetails,
+              setRejectModalVisibility: this.setRejectModalVisibility
             }}
           />
         </div>
+        <div style={{ position: "absolute", left: 0, top: 0 }}>
+          <TableDetails
+            {...{
+              tableDetails,
+              tableReservations,
+              t,
+              handleReservationClick: this.handleToggleReservationDetails
+            }}
+          />
+        </div>
+        <RejectReservationModal
+          {...{
+            isOpen: !!pendingRejectionReservationId,
+            onClose: () => this.setRejectModalVisibility(undefined),
+            pendingRejectionOrder: reservations
+              ? reservations.find(
+                  o => o.get("id") === pendingRejectionReservationId
+                )
+              : null,
+            removeReservation: this.removeReservation,
+            t
+          }}
+        />
       </ReservationLayout>
     );
   }
@@ -264,7 +405,11 @@ ReservationsPage.propTypes = {
   businessId: string,
   changeCurrentBusiness: func.isRequired,
   toggleReservationDetails: func.isRequired,
-  updateBusiness: func.isRequired
+  toggleTableDetails: func.isRequired,
+  updateBusiness: func.isRequired,
+  removeReservation: func.isRequired,
+  setEditedReservation: func.isRequired,
+  updateReservation: func.isRequired
 };
 
 ReservationsPage.defaultProps = {
@@ -307,8 +452,13 @@ export default requireAuth(true)(
       },
       {
         changeCurrentBusiness: setCurrentBusiness,
-        toggleReservationDetails: toggleMenu,
-        updateBusiness: patchBusiness
+        toggleReservationDetails: isOpen =>
+          toggleMenu(isOpen, "ReservationDetails"),
+        toggleTableDetails: isOpen => toggleMenu(isOpen, "TableDetails"),
+        updateBusiness: patchBusiness,
+        removeReservation: deleteReservation,
+        updateReservation: patchReservation,
+        setEditedReservation: setReservationForEditing
       }
     )(ReservationsPage)
   )

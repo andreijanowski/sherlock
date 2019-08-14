@@ -18,7 +18,8 @@ import {
   faLock,
   faHourglassStart,
   faAngleLeft,
-  faAngleRight
+  faAngleRight,
+  faChair
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebookF,
@@ -56,7 +57,8 @@ library.add(
   faLock,
   faHourglassStart,
   faAngleLeft,
-  faAngleRight
+  faAngleRight,
+  faChair
 );
 
 export default createGlobalStyle`

@@ -103,6 +103,10 @@ module.exports = routes()
     `/:lng(${languagesPattern})/app/reservation/create`
   )
   .add(
+    "app/reservation/edit",
+    `/:lng(${languagesPattern})/app/reservation/edit`
+  )
+  .add(
     "app/reservation/tables",
     `/:lng(${languagesPattern})/app/reservation/tables`
   )

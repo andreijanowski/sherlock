@@ -136,7 +136,9 @@
       "cannot_set_without_order_periods-visible_in_lefood": "Add order periods first",
       "blank-display_name": "Display name can't be blank",
       "country_not_supported-stripe_currency": "Your country is not supported by stripe.",
-      "greater_than-number_of_seats": "Number of seats must be greater than 0"
+      "greater_than-number_of_seats": "Number of seats must be greater than 0",
+      "missing_attributes-Missing attributes": "Missing attributes",
+      "greater_than-party_size": "Party size must be greater than {{count}}. Your value is {{value}}"
     }
   },
   "placeholder": {

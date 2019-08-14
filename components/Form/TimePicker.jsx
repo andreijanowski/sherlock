@@ -114,9 +114,10 @@ RawTimePicker.defaultProps = {
 
 const EnhancedRawTimePicker = onClickOutside(RawTimePicker);
 
-const TimePicker = ({ name, ...rest }) => (
+const TimePicker = ({ name, validate, ...rest }) => (
   <FinalFormField
     name={name}
+    validate={validate}
     render={({ input, meta }) => (
       <EnhancedRawTimePicker {...{ name, input, meta, ...rest }} />
     )}
@@ -124,7 +125,12 @@ const TimePicker = ({ name, ...rest }) => (
 );
 
 TimePicker.propTypes = {
-  name: string.isRequired
+  name: string.isRequired,
+  validate: func
+};
+
+TimePicker.defaultProps = {
+  validate: undefined
 };
 
 export default TimePicker;
