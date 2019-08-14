@@ -16,6 +16,7 @@ const namespaces = ["reservation", "app", "forms"];
 const CreateReservationPage = ({
   t,
   lng,
+  tables,
   business,
   businessId,
   businesses,
@@ -48,6 +49,7 @@ const CreateReservationPage = ({
         page: "create",
         currentBusinessId: businessId,
         business,
+        tables,
         businesses,
         changeCurrentBusiness,
         updateBusiness
@@ -75,6 +77,7 @@ CreateReservationPage.propTypes = {
   lng: string.isRequired,
   business: shape(),
   businesses: shape(),
+  tables: shape(),
   businessId: string,
   changeCurrentBusiness: func.isRequired,
   updateBusiness: func.isRequired,
@@ -84,7 +87,8 @@ CreateReservationPage.propTypes = {
 CreateReservationPage.defaultProps = {
   business: null,
   businessId: "",
-  businesses: null
+  businesses: null,
+  tables: null
 };
 
 export default requireAuth(true)(
@@ -93,10 +97,12 @@ export default requireAuth(true)(
       state => {
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
         const business = businessData && businessData.get("businesses").first();
+        const tables = state.getIn(["tables", "data", "tables"]);
 
         return {
           business: business && business.get("attributes"),
           businessId: business && business.get("id"),
+          tables,
           businesses: state.getIn([
             "users",
             "profileBusinesses",

@@ -111,31 +111,33 @@ export const prepareTimelineSlots = ({
 }) => {
   const periods = [];
   const slotsArray = [];
-  if (openPeriods && openPeriods.forEach) {
-    openPeriods.forEach(p => {
-      if (p.getIn(["attributes", "weekday"]) === choosenDate.day()) {
-        periods.push({
-          from: p.getIn(["attributes", "openedFrom"]),
-          to: p.getIn(["attributes", "openedTo"])
-        });
+  if (slotDuration) {
+    if (openPeriods && openPeriods.forEach) {
+      openPeriods.forEach(p => {
+        if (p.getIn(["attributes", "weekday"]) === choosenDate.day()) {
+          periods.push({
+            from: p.getIn(["attributes", "openedFrom"]),
+            to: p.getIn(["attributes", "openedTo"])
+          });
+        }
+      });
+    }
+
+    periods.forEach(({ from, to }) => {
+      let i = 0;
+      if (from < to) {
+        while (from + slotDuration * i < to) {
+          slotsArray.push(from + slotDuration * i);
+          i += 1;
+        }
+      } else {
+        while (from + slotDuration * i < to + ONE_DAY_IN_SECONDS) {
+          slotsArray.push(from + slotDuration * i);
+          i += 1;
+        }
       }
     });
   }
-
-  periods.forEach(({ from, to }) => {
-    let i = 0;
-    if (from < to) {
-      while (from + slotDuration * i < to) {
-        slotsArray.push(from + slotDuration * i);
-        i += 1;
-      }
-    } else {
-      while (from + slotDuration * i < to + ONE_DAY_IN_SECONDS) {
-        slotsArray.push(from + slotDuration * i);
-        i += 1;
-      }
-    }
-  });
 
   return slotsArray;
 };

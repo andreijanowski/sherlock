@@ -23,8 +23,8 @@ const Reservations = ({
   chooseDate,
   t
 }) => {
-  const newReservations = columns.newReservations.reservationIds.map(id =>
-    reservations.get(id)
+  const newReservations = columns.newReservations.reservationIds.map(
+    id => reservations && reservations.get(id)
   );
   return (
     <DragDropContext {...{ onDragStart, onDragEnd }}>

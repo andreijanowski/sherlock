@@ -62,7 +62,7 @@ const TableForm = ({ t, initialValues, setEditedTableId, addTable }) => {
                   <Box width={[1, 1 / 3]} px={2}>
                     <FormInput
                       name="numberOfSeats"
-                      validate={isInteger(t, { min: 1, max: 100 })}
+                      validate={isInteger(t, { min: 1, max: 99 })}
                       label={t("numberOfSeatsLabel")}
                       placeholder={t("numberOfSeatsPlaceholder")}
                     />

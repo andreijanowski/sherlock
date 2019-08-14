@@ -59,7 +59,8 @@ class EditReservatoinPage extends PureComponent {
       businesses,
       changeCurrentBusiness,
       editedReservation,
-      updateBusiness
+      updateBusiness,
+      tables
     } = this.props;
     const { isSending } = this.state;
     const isFormShown = !isSending && editedReservation;
@@ -71,6 +72,7 @@ class EditReservatoinPage extends PureComponent {
           page: "create",
           currentBusinessId: businessId,
           business,
+          tables,
           businesses,
           changeCurrentBusiness,
           updateBusiness
@@ -98,6 +100,7 @@ EditReservatoinPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   business: shape(),
+  tables: shape(),
   changeCurrentBusiness: func.isRequired,
   updateReservation: func.isRequired,
   updateBusiness: func.isRequired,
@@ -109,7 +112,8 @@ EditReservatoinPage.defaultProps = {
   business: null,
   businessId: "",
   businesses: null,
-  editedReservation: null
+  editedReservation: null,
+  tables: null
 };
 
 export default requireAuth(true)(
@@ -118,6 +122,7 @@ export default requireAuth(true)(
       state => {
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
         const business = businessData && businessData.get("businesses").first();
+        const tables = state.getIn(["tables", "data", "tables"]);
         return {
           business: business && business.get("attributes"),
           businessId: business && business.get("id"),
@@ -127,7 +132,8 @@ export default requireAuth(true)(
             "data",
             "businesses"
           ]),
-          editedReservation: state.getIn(["reservations", "editedReservation"])
+          editedReservation: state.getIn(["reservations", "editedReservation"]),
+          tables
         };
       },
       {

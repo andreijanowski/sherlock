@@ -63,6 +63,7 @@ class TablesPage extends PureComponent {
           page: "tables",
           currentBusinessId: businessId,
           business,
+          tables,
           businesses,
           changeCurrentBusiness,
           updateBusiness

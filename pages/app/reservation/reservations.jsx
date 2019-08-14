@@ -329,6 +329,7 @@ class ReservationsPage extends PureComponent {
           page: "reservations",
           currentBusinessId: businessId,
           business,
+          tables,
           businesses,
           changeCurrentBusiness,
           updateBusiness
