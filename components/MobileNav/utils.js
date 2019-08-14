@@ -1,6 +1,6 @@
 import {
   Delivery,
-  Bookings,
+  Reservations,
   Privatisations,
   TakeAway,
   Billing,
@@ -93,8 +93,8 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     route: "/"
   },
   {
-    icon: Bookings,
-    label: "Bookings",
+    icon: Reservations,
+    label: t("app:reservations"),
     route: "/"
   },
   {

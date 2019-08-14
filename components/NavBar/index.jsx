@@ -4,7 +4,7 @@ import { logout as logoutAction } from "actions/auth";
 import { connect } from "react-redux";
 import {
   ControlCenter,
-  Bookings,
+  Reservations,
   Delivery,
   TakeAway,
   Catering,
@@ -106,15 +106,15 @@ const NavBar = ({ t, lng, logout }) => (
       </SubitemsWrapper>
     </Item>
     <Item>
-      <Link {...{ lng, route: `/app/booking/bookings/` }}>
+      <Link {...{ lng, route: `/app/reservation/reservations/` }}>
         <Icon>
-          <Bookings />
+          <Reservations />
         </Icon>
       </Link>
       <SubitemsWrapper>
         <Subitems>
-          <Link {...{ lng, route: `/app/booking/bookings/` }}>
-            <Subitem>{t("app:bookings")}</Subitem>
+          <Link {...{ lng, route: `/app/reservation/reservations/` }}>
+            <Subitem>{t("app:reservations")}</Subitem>
           </Link>
         </Subitems>
       </SubitemsWrapper>

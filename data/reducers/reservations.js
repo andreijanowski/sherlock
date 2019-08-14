@@ -1,13 +1,15 @@
 /* eslint-disable no-param-reassign */
 import {
-  POST_TABLE_SUCCESS,
-  PATCH_TABLE_SUCCESS,
-  DELETE_TABLE_REQUEST
-} from "types/tables";
+  FETCH_RESERVATION_SUCCESS,
+  POST_RESERVATION_SUCCESS,
+  PATCH_RESERVATION_SUCCESS,
+  DELETE_RESERVATION_REQUEST,
+  SET_EDIT_RESERVATION
+} from "types/reservations";
 import {
-  FETCH_BUSINESS_TABLES_REQUEST,
-  FETCH_BUSINESS_TABLES_SUCCESS,
-  FETCH_BUSINESS_TABLES_FAIL
+  FETCH_BUSINESS_RESERVATIONS_REQUEST,
+  FETCH_BUSINESS_RESERVATIONS_SUCCESS,
+  FETCH_BUSINESS_RESERVATIONS_FAIL
 } from "types/businesses";
 import { LOGOUT } from "types/auth";
 
@@ -17,12 +19,13 @@ const initialState = Record({
   data: Map(),
   isFetching: false,
   isFailed: false,
-  isSucceeded: false
+  isSucceeded: false,
+  editedReservation: null
 })();
 
 const reducer = (state = initialState, { type, payload, meta }) => {
   switch (type) {
-    case FETCH_BUSINESS_TABLES_REQUEST: {
+    case FETCH_BUSINESS_RESERVATIONS_REQUEST: {
       return state.merge(
         Record({
           isFetching: true,
@@ -31,7 +34,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         })()
       );
     }
-    case FETCH_BUSINESS_TABLES_SUCCESS: {
+    case FETCH_BUSINESS_RESERVATIONS_SUCCESS: {
       let newState = state.merge(
         Record({
           isFetching: false,
@@ -42,13 +45,17 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         newState = newState.setIn(["data"], fromJS(payload.data));
       } else {
         newState = newState.mergeIn(
-          ["data", "tables"],
-          fromJS(payload.data.tables)
+          ["data", "reservations"],
+          fromJS(payload.data.reservations)
+        );
+        newState = newState.mergeIn(
+          ["data", "bookings"],
+          fromJS(payload.data.bookings)
         );
       }
       return newState;
     }
-    case FETCH_BUSINESS_TABLES_FAIL: {
+    case FETCH_BUSINESS_RESERVATIONS_FAIL: {
       let newState = state.merge(
         Record({
           isFetching: false,
@@ -65,25 +72,41 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       return newState;
     }
 
-    case POST_TABLE_SUCCESS: {
-      if (state.getIn(["data"]) && state.getIn(["data"]).size) {
-        return state.mergeIn(["data", "tables"], fromJS(payload.data.tables));
-      }
-      return state.setIn(["data"], fromJS(payload.data));
+    case FETCH_RESERVATION_SUCCESS: {
+      return state
+        .mergeIn(["data", "reservations"], fromJS(payload.data.reservations))
+        .mergeIn(["data", "bookings"], fromJS(payload.data.bookings));
     }
 
-    case PATCH_TABLE_SUCCESS: {
+    case POST_RESERVATION_SUCCESS: {
       if (state.getIn(["data"]) && state.getIn(["data"]).size) {
-        return state.mergeDeepIn(
-          ["data", "tables"],
-          fromJS(payload.data.tables)
+        return state.mergeIn(
+          ["data", "reservations"],
+          fromJS(payload.data.reservations)
         );
       }
       return state.setIn(["data"], fromJS(payload.data));
     }
 
-    case DELETE_TABLE_REQUEST: {
-      return state.deleteIn(["data", "tables", meta.id]);
+    case PATCH_RESERVATION_SUCCESS: {
+      if (state.getIn(["data"]) && state.getIn(["data"]).size) {
+        return state.mergeDeepIn(
+          ["data", "reservations"],
+          fromJS(payload.data.reservations)
+        );
+      }
+      return state.setIn(["data"], fromJS(payload.data));
+    }
+
+    case DELETE_RESERVATION_REQUEST: {
+      return state.deleteIn(["data", "reservations", meta.id]);
+    }
+
+    case SET_EDIT_RESERVATION: {
+      return state.setIn(
+        ["editedReservation"],
+        fromJS(payload.editedReservation)
+      );
     }
 
     case LOGOUT: {

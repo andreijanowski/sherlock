@@ -1,6 +1,6 @@
 export {
   ControlCenter,
-  Bookings,
+  Reservations,
   Delivery,
   TakeAway,
   Catering,

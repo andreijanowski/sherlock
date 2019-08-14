@@ -95,10 +95,20 @@ module.exports = routes()
     `/:lng(${languagesPattern})/app/lefood/ordering-hours`
   )
   .add(
-    "app/booking/bookings",
-    `/:lng(${languagesPattern})/app/booking/bookings`
+    "app/reservation/reservations",
+    `/:lng(${languagesPattern})/app/reservation/reservations`
   )
-  .add("app/booking/create", `/:lng(${languagesPattern})/app/booking/create`)
-  .add("app/booking/tables", `/:lng(${languagesPattern})/app/booking/tables`)
+  .add(
+    "app/reservation/create",
+    `/:lng(${languagesPattern})/app/reservation/create`
+  )
+  .add(
+    "app/reservation/edit",
+    `/:lng(${languagesPattern})/app/reservation/edit`
+  )
+  .add(
+    "app/reservation/tables",
+    `/:lng(${languagesPattern})/app/reservation/tables`
+  )
   .add("app/stripeOauth", `/:lng(${languagesPattern})/stripe-oauth`)
   .add("app/subscriptions", `/:lng(${languagesPattern})/app/subscriptions`);

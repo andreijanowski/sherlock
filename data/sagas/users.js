@@ -6,7 +6,8 @@ import {
   fetchBusinessOrders,
   fetchBusinessCaterings,
   fetchBusinessPrivatisations,
-  fetchBusinessTables
+  fetchBusinessTables,
+  fetchBusinessReservations
 } from "actions/businesses";
 import { UPDATE_PROFILE_SUCCESS } from "types/users";
 import { SET_CURRENT_BUSINESS } from "types/app";
@@ -25,6 +26,7 @@ function* fetchBusinessData({ payload: { id } }) {
   yield fetchAllBusinessData(fetchBusinessCaterings, id);
   yield fetchAllBusinessData(fetchBusinessPrivatisations, id);
   yield fetchAllBusinessData(fetchBusinessTables, id);
+  yield fetchAllBusinessData(fetchBusinessReservations, id);
 }
 
 function* showSuccesNotification() {

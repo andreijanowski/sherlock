@@ -2,13 +2,14 @@ import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
-import BookingLayout from "sections/booking/Layout";
+import ReservationLayout from "sections/reservation/Layout";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
-import Tables from "sections/booking/tables";
+import Tables from "sections/reservation/tables";
 import { postTable, patchTable, deleteTable } from "actions/tables";
+import { patchBusiness } from "actions/businesses";
 
-const namespaces = ["booking", "app", "forms"];
+const namespaces = ["reservation", "app", "forms"];
 
 class TablesPage extends PureComponent {
   static async getInitialProps() {
@@ -17,16 +18,9 @@ class TablesPage extends PureComponent {
     };
   }
 
-  constructor() {
-    super();
-
-    this.state = {
-      slotDuration: 30,
-      editedTableId: undefined
-    };
-  }
-
-  setSlotDuration = slotDuration => this.setState({ slotDuration });
+  state = {
+    editedTableId: undefined
+  };
 
   setEditedTableId = editedTableId => this.setState({ editedTableId });
 
@@ -55,23 +49,24 @@ class TablesPage extends PureComponent {
       businessId,
       businesses,
       changeCurrentBusiness,
-      tables
+      tables,
+      updateBusiness
     } = this.props;
 
-    const { slotDuration, editedTableId } = this.state;
+    const { editedTableId } = this.state;
 
     return (
-      <BookingLayout
+      <ReservationLayout
         {...{
           t,
           lng,
-          page: "bookings",
+          page: "tables",
           currentBusinessId: businessId,
           business,
+          tables,
           businesses,
           changeCurrentBusiness,
-          slotDuration,
-          setSlotDuration: this.setSlotDuration
+          updateBusiness
         }}
       >
         <Tables
@@ -84,7 +79,7 @@ class TablesPage extends PureComponent {
             addTable: this.addTable
           }}
         />
-      </BookingLayout>
+      </ReservationLayout>
     );
   }
 }
@@ -99,7 +94,8 @@ TablesPage.propTypes = {
   changeCurrentBusiness: func.isRequired,
   createTable: func.isRequired,
   updateTable: func.isRequired,
-  removeTable: func.isRequired
+  removeTable: func.isRequired,
+  updateBusiness: func.isRequired
 };
 
 TablesPage.defaultProps = {
@@ -135,7 +131,8 @@ export default requireAuth(true)(
         changeCurrentBusiness: setCurrentBusiness,
         createTable: postTable,
         updateTable: patchTable,
-        removeTable: deleteTable
+        removeTable: deleteTable,
+        updateBusiness: patchBusiness
       }
     )(TablesPage)
   )

@@ -1,13 +1,13 @@
 import { Modal, Button, ModalHeader } from "components";
-import { StopOrdersModalIcon } from "icons";
 import { func, bool } from "prop-types";
+import { RejectModalIcon } from "icons";
 import { Flex, Box } from "@rebass/grid";
 
-const StopOrdersModal = ({ isOpen, onClose, stopOrders, t }) => (
+const RejectReservationModal = ({ isOpen, onClose, removeReservation, t }) => (
   <Modal {...{ open: isOpen, onClose }}>
     <Flex flexDirection="column" alignItems="center" width={320}>
-      <StopOrdersModalIcon />
-      <ModalHeader>{t("stopOrdersHeader")}</ModalHeader>
+      <RejectModalIcon />
+      <ModalHeader>{t("rejectReservationHeader")}</ModalHeader>
       <Box width={1}>
         <Flex mx={-2}>
           <Box width={1 / 2} px={2}>
@@ -25,7 +25,7 @@ const StopOrdersModal = ({ isOpen, onClose, stopOrders, t }) => (
               styleName="blue"
               type="submit"
               width="100%"
-              onClick={stopOrders}
+              onClick={removeReservation}
             >
               {t("yes")}
             </Button>
@@ -36,11 +36,11 @@ const StopOrdersModal = ({ isOpen, onClose, stopOrders, t }) => (
   </Modal>
 );
 
-StopOrdersModal.propTypes = {
+RejectReservationModal.propTypes = {
   isOpen: bool.isRequired,
   onClose: func.isRequired,
-  stopOrders: func.isRequired,
+  removeReservation: func.isRequired,
   t: func.isRequired
 };
 
-export default StopOrdersModal;
+export default RejectReservationModal;

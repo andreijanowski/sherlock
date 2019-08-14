@@ -5,6 +5,7 @@
   "updateProfileSuccess": "Profile has been updated",
   "changePasswordSuccess": "Password has been changed",
   "passwordResetSuccess": "Please check your email to see instructions on how to reset your password.",
+  "pastDateError": "Chosen date is too far in the past",
   "errors": {
     "missing_attributes": {
       "Missing attributes": "Missing attributes"

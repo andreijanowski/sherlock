@@ -7,7 +7,6 @@ export const Name = styled.div`
 `;
 
 export const Value = styled.div`
-  padding-bottom: 16px;
   color: rgb(${p => p.theme.colors.dark});
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 1.5;
@@ -30,4 +29,14 @@ export const Header = styled.h2`
 
 export const Subheader = styled(Header)`
   font-size: ${p => p.theme.fontSizes.f18};
+`;
+
+export const DetailWrapper = styled.div`
+  margin: 0 -32px;
+  padding: 8px 32px;
+  ${p =>
+    p.onClick &&
+    `cursor: pointer; &:hover {
+    background-color: rgb(${p.theme.colors.iceBlue});
+  }`}
 `;

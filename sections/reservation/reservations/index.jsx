@@ -4,50 +4,53 @@ import { DndColumn, DndTable, TimeSlotPicker, DaySwitcher } from "components";
 import { Flex } from "@rebass/grid";
 import moment from "moment";
 import { ColumnsWrapper, TablesWrapper } from "./styled";
-import { columnsList } from "../utils";
+import { columnsList, checkIfTableIsAvailable } from "../utils";
 import CardDetails from "./CardDetails";
 
-const Bookings = ({
+const Reservations = ({
   onDragEnd,
   onDragStart,
   handleCardClick,
+  handleTableClick,
+  draggedReservation,
   // isDropDisabled,
   choosenDate,
   choosenSlot,
   chooseSlot,
   columns,
-  bookings,
+  reservations,
   slots,
   chooseDate,
   t
 }) => {
-  const newBookings = columns.newBookings.bookingIds
-    .map(id => bookings.get(id))
-    .filter(o => !!o);
-
+  const newReservations = columns.newReservations.reservationIds.map(
+    id => reservations && reservations.get(id)
+  );
   return (
     <DragDropContext {...{ onDragStart, onDragEnd }}>
       <ColumnsWrapper>
         <DndColumn
           {...{
-            key: columns.newBookings.id,
-            id: columns.newBookings.id,
-            title: columns.newBookings.title,
-            items: newBookings,
+            key: columns.newReservations.id,
+            id: columns.newReservations.id,
+            title: columns.newReservations.title,
+            items: newReservations,
             isDropDisabled: false,
             isColumnGrayedOut: false,
             handleCardClick,
-            width: "200px",
+            width: "250px",
             renderCardHeader: id => {
-              const from = bookings.getIn([id, "attributes", "from"]);
+              const from = reservations.getIn([id, "attributes", "from"]);
               return `${moment(
-                bookings.getIn([id, "attributes", "date"])
+                reservations.getIn([id, "attributes", "date"])
               ).format("Do MMMM")}, ${moment({
                 minutes: (from / 60) % 60,
                 hours: (from / 60 / 60) % 24
               }).format("h:mm A")}`;
             },
-            renderCardDetails: id => <CardDetails {...{ t, id, bookings }} />
+            renderCardDetails: id => (
+              <CardDetails {...{ t, id, reservations }} />
+            )
           }}
         />
         <TablesWrapper>
@@ -55,7 +58,7 @@ const Bookings = ({
           <TimeSlotPicker {...{ slots, choosenSlot, chooseSlot }} />
           <Flex width={1} flexWrap="wrap" justifyContent="space-around">
             {Object.values(columns).map(column =>
-              column.id !== columnsList.newBookings ? (
+              column.id !== columnsList.newReservations ? (
                 <DndTable
                   {...{
                     key: column.id,
@@ -63,7 +66,13 @@ const Bookings = ({
                     numberOfSeats: column.numberOfSeats,
                     tableNumber: column.number,
                     items: [],
-                    isDropDisabled: !choosenSlot
+                    isDropDisabled: checkIfTableIsAvailable({
+                      reservedPeriods: column.reservedPeriods,
+                      choosenDate,
+                      choosenSlot,
+                      draggedReservation
+                    }), // TODO: function to calculate if for chosen period table is avaliable
+                    handleTableClick
                   }}
                 />
               ) : null
@@ -75,10 +84,11 @@ const Bookings = ({
   );
 };
 
-Bookings.propTypes = {
+Reservations.propTypes = {
   t: func.isRequired,
   onDragEnd: func.isRequired,
-  bookings: shape(),
+  reservations: shape(),
+  draggedReservation: shape(),
   slots: arrayOf(number).isRequired,
   columns: shape().isRequired,
   onDragStart: func.isRequired,
@@ -86,12 +96,14 @@ Bookings.propTypes = {
   chooseDate: func.isRequired,
   chooseSlot: func.isRequired,
   handleCardClick: func.isRequired,
+  handleTableClick: func.isRequired,
   choosenSlot: number
 };
 
-Bookings.defaultProps = {
-  bookings: null,
-  choosenSlot: undefined
+Reservations.defaultProps = {
+  reservations: null,
+  choosenSlot: undefined,
+  draggedReservation: undefined
 };
 
-export default Bookings;
+export default Reservations;

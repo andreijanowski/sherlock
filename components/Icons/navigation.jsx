@@ -106,7 +106,7 @@ export const ControlCenter = () => (
   </svg>
 );
 
-export const Bookings = () => (
+export const Reservations = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="20"

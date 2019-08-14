@@ -37,6 +37,7 @@ export { default as Dropzone } from "./Dropzone";
 export { default as DropzoneWithCropper } from "./Form/DropzoneWithCropper";
 export { default as Cropper } from "./Cropper";
 export { default as Modal } from "./Modal";
+export { ModalHeader } from "./Modal/styled";
 export { default as PerfectSquare } from "./PerfectSquare";
 export { default as ActionIcon } from "./ActionIcon";
 export { default as SingleActionView } from "./SingleActionView";
