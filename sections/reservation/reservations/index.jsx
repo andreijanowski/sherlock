@@ -4,7 +4,11 @@ import { DndColumn, DndTable, TimeSlotPicker, DaySwitcher } from "components";
 import { Flex } from "@rebass/grid";
 import moment from "moment";
 import { ColumnsWrapper, TablesWrapper } from "./styled";
-import { columnsList, checkIfTableIsAvailable } from "../utils";
+import {
+  columnsList,
+  checkIfTableIsAvailable,
+  getNewReservations
+} from "../utils";
 import CardDetails from "./CardDetails";
 
 const Reservations = ({
@@ -19,13 +23,20 @@ const Reservations = ({
   chooseSlot,
   columns,
   reservations,
+  splitedReservation,
   slots,
   chooseDate,
   t
 }) => {
-  const newReservations = columns.newReservations.reservationIds.map(
-    id => reservations && reservations.get(id)
-  );
+  const newReservations = getNewReservations({
+    reservationIds: columns.newReservations.reservationIds,
+    reservations,
+    splitedReservation,
+    slots
+  });
+
+  console.log(choosenSlot);
+
   return (
     <DragDropContext {...{ onDragStart, onDragEnd }}>
       <ColumnsWrapper>
@@ -35,21 +46,29 @@ const Reservations = ({
             id: columns.newReservations.id,
             title: columns.newReservations.title,
             items: newReservations,
+            splitedCard: splitedReservation,
+            handleCardClick,
             isDropDisabled: false,
             isColumnGrayedOut: false,
-            handleCardClick,
             width: "250px",
             renderCardHeader: id => {
-              const from = reservations.getIn([id, "attributes", "from"]);
+              const reservation = newReservations.find(r => r.get("id") === id);
               return `${moment(
-                reservations.getIn([id, "attributes", "date"])
+                reservation.getIn(["attributes", "date"])
               ).format("Do MMMM")}, ${moment({
-                minutes: (from / 60) % 60,
-                hours: (from / 60 / 60) % 24
+                minutes: (reservation.getIn(["attributes", "from"]) / 60) % 60,
+                hours:
+                  (reservation.getIn(["attributes", "from"]) / 60 / 60) % 24
               }).format("h:mm A")}`;
             },
-            renderCardDetails: id => (
-              <CardDetails {...{ t, id, reservations }} />
+            renderCardDetails: (id, opt) => (
+              <CardDetails
+                {...{
+                  t,
+                  reservation: newReservations.find(r => r.get("id") === id),
+                  ...opt
+                }}
+              />
             )
           }}
         />
@@ -88,6 +107,7 @@ Reservations.propTypes = {
   t: func.isRequired,
   onDragEnd: func.isRequired,
   reservations: shape(),
+  splitedReservation: shape(),
   draggedReservation: shape(),
   slots: arrayOf(number).isRequired,
   columns: shape().isRequired,
@@ -102,6 +122,7 @@ Reservations.propTypes = {
 
 Reservations.defaultProps = {
   reservations: null,
+  splitedReservation: undefined,
   choosenSlot: undefined,
   draggedReservation: undefined
 };

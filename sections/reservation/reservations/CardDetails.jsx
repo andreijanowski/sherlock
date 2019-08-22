@@ -1,27 +1,33 @@
-import { WarningIcon } from "icons";
-import { string, shape, func } from "prop-types";
+import { WarningIcon, StopOrdersModalIcon } from "icons";
+import { shape, func, bool } from "prop-types";
 import { Flex } from "@rebass/grid";
 import Tippy from "@tippy.js/react";
 
-const CardDetails = ({ id, reservations, t }) => (
-  <Flex alignItems="center" justifyContent="space-between">
-    {`${t("partySize")}: ${reservations.getIn([
-      id,
-      "attributes",
-      "partySize"
-    ])}`}
-    <Tippy content="Hello">
-      <div>
-        <WarningIcon width="25" height="21" />
-      </div>
-    </Tippy>
-  </Flex>
-);
+const CardDetails = ({ reservation, t, isSplited }) =>
+  reservation ? (
+    <Flex alignItems="center" justifyContent="space-between">
+      {`${t("partySize")}: ${reservation.getIn(["attributes", "partySize"])}`}
+      {isSplited && (
+        <Tippy content={t("splitedCardInfo")}>
+          <div>
+            <WarningIcon width="25" height="21" />
+          </div>
+        </Tippy>
+      )}
+      {reservation.get("fitsSlots") === false && (
+        <Tippy content={t("cardNotFitsSlotsInfo")}>
+          <div>
+            <StopOrdersModalIcon width="21" height="21" />
+          </div>
+        </Tippy>
+      )}
+    </Flex>
+  ) : null;
 
 CardDetails.propTypes = {
-  id: string.isRequired,
-  reservations: shape().isRequired,
-  t: func.isRequired
+  reservation: shape().isRequired,
+  t: func.isRequired,
+  isSplited: bool.isRequired
 };
 
 export default CardDetails;

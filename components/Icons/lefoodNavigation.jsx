@@ -156,11 +156,11 @@ export const RejectModalIcon = () => (
   </svg>
 );
 
-export const StopOrdersModalIcon = () => (
+export const StopOrdersModalIcon = ({ width, height }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="71"
-    height="71"
+    width={width}
+    height={height}
     viewBox="0 0 71 71"
   >
     <g fill="none" fillRule="evenodd" transform="translate(1 1)">
@@ -183,6 +183,16 @@ export const StopOrdersModalIcon = () => (
     </g>
   </svg>
 );
+
+StopOrdersModalIcon.propTypes = {
+  width: string,
+  height: string
+};
+
+StopOrdersModalIcon.defaultProps = {
+  width: "71",
+  height: "71"
+};
 
 export const WarningIcon = ({ width, height }) => (
   <svg

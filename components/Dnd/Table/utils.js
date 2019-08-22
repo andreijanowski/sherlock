@@ -1,3 +1,4 @@
+const SPLITED = "SPLITED";
 const OVERLOAD = "OVERLOAD";
 const TAKEN = "TAKEN";
 const HOVER = "HOVER";
@@ -9,6 +10,9 @@ export const calcTableAvailibilityStatus = (
   isDraggingOver
 ) => {
   if (currentReservation) {
+    if (currentReservation.isSplited) {
+      return SPLITED;
+    }
     if (currentReservation.partySize > numberOfSeats) {
       return OVERLOAD;
     }
@@ -22,6 +26,9 @@ export const calcTableAvailibilityStatus = (
 
 export const calcTableColor = (availibilityStatus, colors) => {
   switch (availibilityStatus) {
+    case SPLITED: {
+      return colors.carrotOrange;
+    }
     case OVERLOAD: {
       return colors.ruby;
     }
@@ -39,6 +46,9 @@ export const calcTableColor = (availibilityStatus, colors) => {
 
 export const calcChairsColor = (availibilityStatus, colors) => {
   switch (availibilityStatus) {
+    case SPLITED: {
+      return colors.carrotOrange;
+    }
     case OVERLOAD: {
       return colors.ruby;
     }

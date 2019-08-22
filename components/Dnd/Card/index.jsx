@@ -8,19 +8,22 @@ const Card = ({
   index,
   renderHeader,
   renderDetails,
-  handleCardClick
+  handleCardClick,
+  isDragDisabled,
+  isSplited
 }) => (
-  <Draggable draggableId={id} index={index}>
+  <Draggable draggableId={id} index={index} isDragDisabled={isDragDisabled}>
     {provided => (
       <Wrapper
         ref={provided.innerRef}
         {...provided.draggableProps}
         {...provided.dragHandleProps}
-        isCardGrayedOut={isCardGrayedOut}
+        isCardGrayedOut={isCardGrayedOut || isDragDisabled}
+        isSplited={isSplited}
         onClick={handleCardClick}
       >
-        <Header>{renderHeader()}</Header>
-        <Details>{renderDetails()}</Details>
+        <Header isSplited={isSplited}>{renderHeader()}</Header>
+        <Details isSplited={isSplited}>{renderDetails({ isSplited })}</Details>
       </Wrapper>
     )}
   </Draggable>
@@ -32,12 +35,16 @@ Card.propTypes = {
   renderHeader: func.isRequired,
   renderDetails: func.isRequired,
   handleCardClick: func,
-  isCardGrayedOut: bool
+  isCardGrayedOut: bool,
+  isDragDisabled: bool,
+  isSplited: bool
 };
 
 Card.defaultProps = {
   handleCardClick: undefined,
-  isCardGrayedOut: false
+  isCardGrayedOut: false,
+  isDragDisabled: false,
+  isSplited: false
 };
 
 export default Card;

@@ -16,6 +16,7 @@ const ReservationDetails = ({
   isOpen,
   onStateChange,
   reservationDetails,
+  splitedReservation,
   reservationTables,
   setRejectModalVisibility,
   handleTableClick,
@@ -82,6 +83,21 @@ const ReservationDetails = ({
             ]
           }}
         />
+        {splitedReservation &&
+          splitedReservation.id === reservationDetails.get("id") && (
+            <>
+              <SliderSpacer />
+              <SliderSubheader>{t("ticketsList")}</SliderSubheader>
+              {splitedReservation.tickets.map(ticket => (
+                <SliderDetail
+                  {...{
+                    name: t("partySize"),
+                    value: [ticket.partySize]
+                  }}
+                />
+              ))}
+            </>
+          )}
         <SliderSpacer />
         {reservationTables && reservationTables.length !== 0 && (
           <>
@@ -159,6 +175,7 @@ ReservationDetails.propTypes = {
   isOpen: bool.isRequired,
   onStateChange: func.isRequired,
   reservationDetails: shape(),
+  splitedReservation: shape(),
   reservationTables: shape(),
   t: func.isRequired,
   lng: string.isRequired,
@@ -169,7 +186,8 @@ ReservationDetails.propTypes = {
 
 ReservationDetails.defaultProps = {
   reservationDetails: null,
-  reservationTables: null
+  reservationTables: null,
+  splitedReservation: undefined
 };
 
 export default reduxBurgerMenu(ReservationDetails, "ReservationDetails");
