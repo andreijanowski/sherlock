@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 import { postDelivery, deleteDelivery } from "actions/deliveries";
 import { patchBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/app";
-import { calcPendingOrders } from "sections/lefood/utils";
 import { convertToCents } from "utils/price";
 
 const namespaces = ["lefood", "app", "forms"];
@@ -45,7 +44,6 @@ class DeliveriesPage extends PureComponent {
       deliveries,
       loading,
       updateBusiness,
-      orders,
       business,
       businessId,
       dishesLength,
@@ -60,7 +58,6 @@ class DeliveriesPage extends PureComponent {
           t,
           lng,
           page: "deliveryArea",
-          pendingOrdersLength: calcPendingOrders(orders),
           updateBusiness,
           currentBusinessId: businessId,
           dishesLength,
@@ -94,7 +91,6 @@ DeliveriesPage.propTypes = {
   removeDelivery: func.isRequired,
   loading: bool.isRequired,
   updateBusiness: func.isRequired,
-  orders: shape(),
   businesses: shape(),
   changeCurrentBusiness: func.isRequired,
   businessId: string,
@@ -107,7 +103,6 @@ DeliveriesPage.defaultProps = {
   business: {},
   businesses: null,
   deliveries: null,
-  orders: null,
   businessId: "",
   dishesLength: 0,
   deliveriesLength: 0,
@@ -141,8 +136,7 @@ export default requireAuth(true)(
             "profileBusinesses",
             "data",
             "businesses"
-          ]),
-          orders: state.getIn(["orders", "data", "orders"])
+          ])
         };
       },
       {

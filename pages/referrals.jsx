@@ -19,15 +19,21 @@ class AddManager extends PureComponent {
 
   addReferrals = ({ emails = [] }) => {
     const { addReferrals, lng, query } = this.props;
-    addReferrals(emails.map(e => e.email).filter(e => !!e))
-      .then(() => {
-        if (query.plan === "essential") {
-          Router.pushRoute(`/${lng}/app/`);
-        } else {
-          Router.pushRoute(`/${lng}/app/subscriptions/`);
-        }
-      })
-      .catch(e => console.log(e));
+    if (emails.length) {
+      addReferrals(emails.map(e => e.email).filter(e => !!e))
+        .then(() => {
+          if (query.plan === "essential") {
+            Router.pushRoute(`/${lng}/app/`);
+          } else {
+            Router.pushRoute(`/${lng}/app/subscriptions/`);
+          }
+        })
+        .catch(e => console.log(e));
+    } else if (query.plan === "essential") {
+      Router.pushRoute(`/${lng}/app/`);
+    } else {
+      Router.pushRoute(`/${lng}/app/subscriptions/`);
+    }
   };
 
   render() {
