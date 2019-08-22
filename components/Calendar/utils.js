@@ -16,88 +16,90 @@ export const parseEvents = ({
   const parsedEvents = [];
   if (events && events.size) {
     events.forEach(c => {
-      const start = convertDateTimeToDate(
-        c.getIn(["attributes", "date"]),
-        timeZoneName
-      );
-      start.setSeconds(c.getIn(["attributes", "from"]));
-      let end;
-      if (c.getIn(["attributes", "from"]) >= c.getIn(["attributes", "to"])) {
-        end = new Date(c.getIn(["attributes", "date"]));
-        if (view === "week" || view === "day") {
-          end.setHours(23);
-          end.setMinutes(59);
-          end.setSeconds(59);
-          const today = convertDateTimeToDate(
-            c.getIn(["attributes", "date"]),
-            timeZoneName
-          );
-          today.setHours(24);
-          const secondHalf = parseEvents(
-            [
-              {
-                id: c.get("id"),
-                ...c.get("attributes").toObject(),
-                menu:
-                  c.getIn(["attributes", "menu"]) &&
-                  c.getIn(["attributes", "menu"]).toObject(),
-                from: 1,
-                date: today.toISOString(),
-                realFrom: c.getIn(["attributes", "from"]),
-                address:
-                  addresses.getIn([
-                    c.getIn(["relationships", "address", "data", "id"]),
-                    "attributes"
-                  ]) &&
-                  addresses
-                    .getIn([
-                      c.getIn(["relationships", "address", "data", "id"]),
-                      "attributes"
-                    ])
-                    .toObject()
-              }
-            ],
-            currency,
-            undefined,
-            timeZoneName
-          );
-          parsedEvents.push(secondHalf[0]);
-        } else {
-          end.setHours(24);
-          end.setSeconds(c.getIn(["attributes", "to"]));
-        }
-        end = convertDateTimeToDate(end, timeZoneName);
-      } else {
-        end = convertDateTimeToDate(
+      if (c) {
+        const start = convertDateTimeToDate(
           c.getIn(["attributes", "date"]),
           timeZoneName
         );
-        end.setSeconds(c.getIn(["attributes", "to"]));
-      }
-      parsedEvents.push({
-        title: c.getIn(["attributes", "name"]),
-        start,
-        end,
-        allDay: false,
-        resource: {
+        start.setSeconds(c.getIn(["attributes", "from"]));
+        let end;
+        if (c.getIn(["attributes", "from"]) >= c.getIn(["attributes", "to"])) {
+          end = new Date(c.getIn(["attributes", "date"]));
+          if (view === "week" || view === "day") {
+            end.setHours(23);
+            end.setMinutes(59);
+            end.setSeconds(59);
+            const today = convertDateTimeToDate(
+              c.getIn(["attributes", "date"]),
+              timeZoneName
+            );
+            today.setHours(24);
+            const secondHalf = parseEvents(
+              [
+                {
+                  id: c.get("id"),
+                  ...c.get("attributes").toObject(),
+                  menu:
+                    c.getIn(["attributes", "menu"]) &&
+                    c.getIn(["attributes", "menu"]).toObject(),
+                  from: 1,
+                  date: today.toISOString(),
+                  realFrom: c.getIn(["attributes", "from"]),
+                  address:
+                    addresses.getIn([
+                      c.getIn(["relationships", "address", "data", "id"]),
+                      "attributes"
+                    ]) &&
+                    addresses
+                      .getIn([
+                        c.getIn(["relationships", "address", "data", "id"]),
+                        "attributes"
+                      ])
+                      .toObject()
+                }
+              ],
+              currency,
+              undefined,
+              timeZoneName
+            );
+            parsedEvents.push(secondHalf[0]);
+          } else {
+            end.setHours(24);
+            end.setSeconds(c.getIn(["attributes", "to"]));
+          }
+          end = convertDateTimeToDate(end, timeZoneName);
+        } else {
+          end = convertDateTimeToDate(
+            c.getIn(["attributes", "date"]),
+            timeZoneName
+          );
+          end.setSeconds(c.getIn(["attributes", "to"]));
+        }
+        parsedEvents.push({
+          title: c.getIn(["attributes", "name"]),
           start,
           end,
-          currency,
-          id: c.get("id"),
-          ...c.get("attributes").toObject(),
-          menu:
-            c.getIn(["attributes", "menu"]) &&
-            c.getIn(["attributes", "menu"]).toObject(),
-          address:
-            addresses &&
-            addresses
-              .getIn([
-                c.getIn(["relationships", "address", "data", "id"]),
-                "attributes"
-              ])
-              .toObject()
-        }
-      });
+          allDay: false,
+          resource: {
+            start,
+            end,
+            currency,
+            id: c.get("id"),
+            ...c.get("attributes").toObject(),
+            menu:
+              c.getIn(["attributes", "menu"]) &&
+              c.getIn(["attributes", "menu"]).toObject(),
+            address:
+              addresses &&
+              addresses
+                .getIn([
+                  c.getIn(["relationships", "address", "data", "id"]),
+                  "attributes"
+                ])
+                .toObject()
+          }
+        });
+      }
     });
 
     if (view === "month") {

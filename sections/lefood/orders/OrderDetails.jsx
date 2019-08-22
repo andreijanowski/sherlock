@@ -126,28 +126,42 @@ const OrderDetails = ({
           />
         )}
         {!orderDetails.getIn(["attributes", "pickupAtBusiness"]) &&
-          orderDetails.addresses.length > 0 && (
-            <SliderDetail
-              {...{
-                name: t("deliveryAddress"),
-                value: [
-                  `${orderDetails.addresses[0].streetNumber} ${
-                    orderDetails.addresses[0].street
-                  }`,
-                  orderDetails.addresses[0].region
-                    ? `${orderDetails.addresses[0].region} ${
-                        orderDetails.addresses[0].regionCode
-                      }`
-                    : "",
-                  `${orderDetails.addresses[0].postCode} ${
-                    orderDetails.addresses[0].city
-                  }`,
-                  orderDetails.addresses[0].addressLine,
-                  orderDetails.addresses[0].notes
-                ]
-              }}
-            />
-          )}
+          orderDetails
+            .getIn(["relationships", "addresses", "data"])
+            .map(address => (
+              <>
+                <SliderDetail
+                  {...{
+                    name: t("deliveryAddress"),
+                    value: [
+                      `${address.getIn([
+                        "attributes",
+                        "streetNumber"
+                      ])} ${address.getIn(["attributes", "street"])}`,
+                      address.getIn(["attributes", "region"])
+                        ? `${address.getIn([
+                            "attributes",
+                            "region"
+                          ])} ${address.getIn(["attributes", "regionCode"])}`
+                        : "",
+                      `${address.getIn([
+                        "attributes",
+                        "postCode"
+                      ])} ${address.getIn(["attributes", "city"])}`,
+                      address.getIn(["attributes", "addressLine"])
+                    ]
+                  }}
+                />
+                {address.getIn(["attributes", "notes"]) && (
+                  <SliderDetail
+                    {...{
+                      name: t("deliveryNotes"),
+                      value: [address.getIn(["attributes", "notes"])]
+                    }}
+                  />
+                )}
+              </>
+            ))}
         {orderDetails.getIn(["attributes", "state"]) ===
           "waiting_for_approval" && (
           <Flex mx={-1} mt={3} pb={3}>

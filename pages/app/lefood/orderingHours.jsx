@@ -11,7 +11,6 @@ import {
   deleteOrderPeriod
 } from "actions/orderPeriods";
 import { setCurrentBusiness } from "actions/app";
-import { calcPendingOrders } from "sections/lefood/utils";
 import { patchBusiness } from "actions/businesses";
 
 const namespaces = ["lefood", "app", "forms"];
@@ -43,7 +42,6 @@ class OrderingHoursPage extends PureComponent {
       t,
       lng,
       updateBusiness,
-      orders,
       business,
       businessId,
       dishesLength,
@@ -62,7 +60,6 @@ class OrderingHoursPage extends PureComponent {
           t,
           lng,
           page: "orderingHours",
-          pendingOrdersLength: calcPendingOrders(orders),
           updateBusiness,
           currentBusinessId: businessId,
           dishesLength,
@@ -92,7 +89,6 @@ OrderingHoursPage.propTypes = {
   lng: string.isRequired,
   business: shape(),
   orderingHours: shape(),
-  orders: shape(),
   addOrderPeriod: func.isRequired,
   updateOrderPeriod: func.isRequired,
   removeOrderPeriod: func.isRequired,
@@ -110,7 +106,6 @@ OrderingHoursPage.defaultProps = {
   business: null,
   businesses: null,
   orderingHours: null,
-  orders: null,
   businessId: "",
   dishesLength: 0,
   deliveriesLength: 0,
@@ -145,8 +140,7 @@ export default requireAuth(true)(
             "profileBusinesses",
             "data",
             "businesses"
-          ]),
-          orders: state.getIn(["orders", "data", "orders"])
+          ])
         };
       },
       {

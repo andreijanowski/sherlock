@@ -9,7 +9,7 @@ export const parseTime = time => {
     hour,
     minute,
     meridiem,
-    formatted: `${hour}:${minute} ${meridiem}`
+    formatted: `${hour === 0 ? 12 : hour}:${minute} ${meridiem}`
   };
 };
 

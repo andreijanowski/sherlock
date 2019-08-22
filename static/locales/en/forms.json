@@ -78,9 +78,6 @@
       "elements_not_found-base": "You have to select which dishes are unavailable",
       "already_confirmed-email": "Email has been already confirmed",
       "invalid-confirmation_token": "Invalid confirmation link",
-      "business_is_visible_in_lefood-base": "Action can not be done because business is currently visible in lefood",
-      "business_has_pending_orders-base": "Action can not be done because business has pending orders",
-      "business_not_approved_for_lefood-base": "Action can not be done because business is not approved for lefood",
       "url_params_id_conflict-URL/params ID conflict": "API error: ID in URL is different from ID in params",
       "invalid_range_of_types-groups_list": "'Types' must have between {{min}} and {{max}} entries",
       "invalid_range_of_cuisines-groups_list": "'Cuisines' must have between {{min}} and {{max}} entries",
@@ -123,11 +120,10 @@
       "processing_error-base": "An error occurred while processing your card. Try again in a little bit.",
       "process_error_intransient-base": "An error occurred while processing your card.",
       "unexpected-base": "An unexpected error occurred.",
-      "address_cannot_be_change-base": "The address cannot be changed if the restaurant is already published.",
       "not_a_number-free_from_cents": "Delivery \"Free from\" is missing",
       "too_long-name": "Dish name is too long. Max {{count}} characters.",
       "too_long-description": "Description is too long. Max {{count}} characters.",
-      "owner_not_confirmed-base": "You need to confirm your email in order to publish your business. Please check your mailbox.",
+      "owner_not_confirmed-state": "You need to confirm your email in order to publish your business. Please check your mailbox.",
       "record_not_found-Record not found": "Resource was not found in the database",
       "currency_not_supported-stripe_currency": "Selected currency is not supported by Stripe in country in which your business is placed",
       "currency_cannot_be_change-stripe_currency": "Stripe currency cannot be change",
@@ -138,7 +134,8 @@
       "country_not_supported-stripe_currency": "Your country is not supported by stripe.",
       "greater_than-number_of_seats": "Number of seats must be greater than 0",
       "missing_attributes-Missing attributes": "Missing attributes",
-      "greater_than-party_size": "Party size must be greater than {{count}}. Your value is {{value}}"
+      "greater_than-party_size": "Party size must be greater than {{count}}. Your value is {{value}}",
+      "taken-code": "Code already present in a different delivery"
     }
   },
   "placeholder": {

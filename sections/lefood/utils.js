@@ -89,16 +89,7 @@ export const setIsDropDisabled = (draggedState, droppableId) => {
   return true;
 };
 
-export const calcPendingOrders = orders =>
-  orders
-    ? orders.filter(
-        o =>
-          o.getIn(["attributes", "state"]) !== "completed" &&
-          o.getIn(["attributes", "state"]) !== "rejected"
-      ).size
-    : 0;
-
-export const mergeOrdersData = (orders, elements) =>
+export const mergeOrdersData = (orders, elements, addresses) =>
   orders
     ? orders.map(order => {
         const orderElements = order.getIn([
@@ -106,10 +97,32 @@ export const mergeOrdersData = (orders, elements) =>
           "elements",
           "data"
         ]);
+        const orderAddress = order.getIn([
+          "relationships",
+          "addresses",
+          "data"
+        ]);
+        if (orderAddress && orderElements) {
+          return order
+            .setIn(
+              ["relationships", "addresses", "data"],
+              orderAddress.map(e => addresses.get(e.get("id")))
+            )
+            .setIn(
+              ["relationships", "elements", "data"],
+              orderElements.map(address => elements.get(address.get("id")))
+            );
+        }
         if (orderElements) {
           return order.setIn(
             ["relationships", "elements", "data"],
             orderElements.map(e => elements.get(e.get("id")))
+          );
+        }
+        if (orderAddress) {
+          return order.setIn(
+            ["relationships", "addresses", "data"],
+            orderAddress.map(address => elements.get(address.get("id")))
           );
         }
         return order;

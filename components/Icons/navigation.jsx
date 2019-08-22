@@ -142,34 +142,6 @@ export const Reservations = () => (
   </svg>
 );
 
-export const TakeAway = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
-    viewBox="0 0 20 20"
-  >
-    <g fill="none" fillRule="evenodd">
-      <path
-        style={fillNone}
-        strokeOpacity=".4"
-        strokeWidth="2"
-        d="M10 1a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"
-      />
-      <path
-        style={fillNone}
-        strokeDasharray="1,1.5"
-        strokeLinecap="round"
-        d="M10 10l-4 4"
-        opacity=".4"
-      />
-      <g strokeLinecap="round" strokeWidth="2">
-        <path d="M10 5v5M10 10l4 4" />
-      </g>
-    </g>
-  </svg>
-);
-
 export const Delivery = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

@@ -9,10 +9,10 @@ import {
   Feedback,
   Notifications,
   Catering,
-  TakeAway,
   Subscriptions,
   Privatisations,
-  Reservations
+  Reservations,
+  Delivery
 } from "icons";
 import {
   Wrapper,
@@ -33,7 +33,7 @@ const chooseIcon = icon => {
     case "catering":
       return Catering;
     case "leFood":
-      return TakeAway;
+      return Delivery;
     case "subscriptions":
       return Subscriptions;
     case "privatisations":

@@ -140,7 +140,7 @@ export default requireAuth(true)(
             "data",
             "businesses"
           ]),
-          members: state.getIn(["members", "data"])
+          members: state.getIn(["members", "data", "members"])
         };
       },
       {

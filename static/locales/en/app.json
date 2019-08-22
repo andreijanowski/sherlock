@@ -1,8 +1,9 @@
 {
   "controlCenter": "Control Center (soon)",
   "reservations": "Reservations",
-  "delivery": "Delivery (soon)",
   "takeAway": "Take Away",
+  "bookings": "Bookings (soon)",
+  "delivery": "Delivery / Take away",
   "catering": "Catering",
   "privatisations": "Privatisations",
   "socialMedia": "Social media (soon)",

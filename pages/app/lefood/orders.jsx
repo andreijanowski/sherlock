@@ -5,7 +5,6 @@ import { func, string, shape, bool, number } from "prop-types";
 import LefoodLayout from "sections/lefood/Layout";
 import Orders from "sections/lefood/orders";
 import {
-  calcPendingOrders,
   parseOrders,
   columns as columnsNames,
   mergeOrdersData
@@ -204,7 +203,6 @@ class OrdersPage extends PureComponent {
             t,
             lng,
             page: "orders",
-            pendingOrdersLength: calcPendingOrders(orders),
             updateBusiness,
             currentBusinessId: businessId,
             dishesLength,
@@ -285,13 +283,13 @@ export default requireAuth(true)(
         const business = businessData && businessData.get("businesses").first();
         const orders = state.getIn(["orders", "data", "orders"]);
         const elements = state.getIn(["orders", "data", "elements"]);
-
+        const addresses = state.getIn(["orders", "data", "addresses"]);
         return {
           loading:
             (!state.getIn(["orders", "isFailed"]) &&
               !state.getIn(["orders", "isSucceeded"])) ||
             state.getIn(["orders", "isFetching"]),
-          orders: mergeOrdersData(orders, elements),
+          orders: mergeOrdersData(orders, elements, addresses),
           dishesLength:
             state.getIn(["dishes", "data", "dishes"]) &&
             state.getIn(["dishes", "data", "dishes"]).size,

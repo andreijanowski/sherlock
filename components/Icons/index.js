@@ -2,7 +2,6 @@ export {
   ControlCenter,
   Reservations,
   Delivery,
-  TakeAway,
   Catering,
   Privatisations,
   SocialMedia,
