@@ -51,14 +51,18 @@ export const calcReservedPeriodsForTables = reservations => {
             reservedPeriodsForTables[t.get("id")].push({
               date: r.getIn(["attributes", "date"]),
               from: r.getIn(["attributes", "from"]),
-              to: r.getIn(["attributes", "to"])
+              to: r.getIn(["attributes", "to"]),
+              partySize: r.getIn(["attributes", "partySize"]),
+              isSplited: reservationTables.size > 1
             });
           } else {
             reservedPeriodsForTables[t.get("id")] = [
               {
                 date: r.getIn(["attributes", "date"]),
                 from: r.getIn(["attributes", "from"]),
-                to: r.getIn(["attributes", "to"])
+                to: r.getIn(["attributes", "to"]),
+                partySize: r.getIn(["attributes", "partySize"]),
+                isSplited: reservationTables.size > 1
               }
             ];
           }
@@ -69,7 +73,12 @@ export const calcReservedPeriodsForTables = reservations => {
   return reservedPeriodsForTables;
 };
 
-export const parseReservations = (reservations, tables, t) => {
+export const parseReservations = (
+  reservations,
+  tables,
+  t,
+  splitedReservation
+) => {
   const columns = {
     newReservations: {
       id: columnsList.newReservations,
@@ -77,7 +86,11 @@ export const parseReservations = (reservations, tables, t) => {
       reservationIds:
         reservations && reservations.size
           ? reservations
-              .filter(r => r.getIn(["attributes", "state"]) === "placed")
+              .filter(
+                r =>
+                  r.getIn(["attributes", "state"]) === "placed" ||
+                  (splitedReservation && splitedReservation.id === r.get("id"))
+              )
               .map(r => r.get("id"))
               .toList()
               .toArray()
@@ -159,7 +172,7 @@ export const checkIfTableIsAvailable = ({
   draggedReservation
 }) => {
   if (draggedReservation) {
-    return reservedPeriods.some(
+    return reservedPeriods.find(
       r =>
         // TODO: handle case, when restaurant is open in day and night and dates are changing ex. from 23:30 -> 1:30
         r.date === choosenDate.format("YYYY-MM-DD") &&
@@ -167,11 +180,41 @@ export const checkIfTableIsAvailable = ({
         r.from <= draggedReservation.getIn(["attributes", "to"])
     );
   }
-  return reservedPeriods.some(
+  return reservedPeriods.find(
     r =>
       // TODO: handle case, when restaurant is open in day and night and dates are changing ex. from 23:30 -> 1:30
       r.date === choosenDate.format("YYYY-MM-DD") &&
       r.to >= choosenSlot &&
       r.from <= choosenSlot
+  );
+};
+
+export const getNewReservations = ({
+  reservationIds,
+  reservations,
+  splitedReservation,
+  slots
+}) => {
+  const newReservations = [];
+  reservationIds.forEach(id => {
+    if (reservations) {
+      if (splitedReservation && splitedReservation.id === id) {
+        splitedReservation.tickets.forEach((ticket, index) => {
+          newReservations.push(
+            reservations
+              .get(id)
+              .setIn(["attributes", "partySize"], ticket.partySize)
+              .set("splited", true)
+              .set("id", `${id}@${index}`)
+          );
+        });
+      } else {
+        newReservations.push(reservations.get(id));
+      }
+    }
+  });
+
+  return newReservations.map(r =>
+    r.set("fitsSlots", slots.some(s => s === r.getIn(["attributes", "from"])))
   );
 };

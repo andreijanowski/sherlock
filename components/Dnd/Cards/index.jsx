@@ -4,6 +4,7 @@ import Card from "../Card";
 
 const Cards = ({
   items,
+  splitedCard,
   isColumnGrayedOut,
   handleCardClick,
   renderCardHeader,
@@ -19,8 +20,12 @@ const Cards = ({
                 key: item.get("id"),
                 id: item.get("id"),
                 isCardGrayedOut: isColumnGrayedOut,
+                isDragDisabled:
+                  (splitedCard && !item.get("splited")) ||
+                  item.get("fitsSlots") === false,
+                isSplited: item.get("splited"),
                 renderHeader: () => renderCardHeader(item.get("id")),
-                renderDetails: () => renderCardDetails(item.get("id")),
+                renderDetails: opt => renderCardDetails(item.get("id"), opt),
                 handleCardClick: () => handleCardClick(item.get("id"))
               }}
             />
@@ -33,6 +38,7 @@ Cards.propTypes = {
   t: func.isRequired,
   id: string.isRequired,
   items: arrayOf(shape()).isRequired,
+  splitedCard: shape(),
   isColumnGrayedOut: bool,
   handleCardClick: func,
   renderCardHeader: func.isRequired,
@@ -41,7 +47,8 @@ Cards.propTypes = {
 
 Cards.defaultProps = {
   isColumnGrayedOut: false,
-  handleCardClick: undefined
+  handleCardClick: undefined,
+  splitedCard: undefined
 };
 
 const arePropsEqual = ({ items: prevItems }, { items: nextItems }) =>

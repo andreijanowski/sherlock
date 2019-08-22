@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 import { PureComponent } from "react";
 import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
@@ -18,6 +19,7 @@ import Reservations from "sections/reservation/reservations";
 import ReservationDetails from "sections/reservation/reservations/ReservationDetails";
 import TableDetails from "sections/reservation/reservations/TableDetails";
 import RejectReservationModal from "sections/reservation/reservations/RejectReservationModal";
+import MultipleTablesModal from "sections/reservation/reservations/MultipleTablesModal";
 import moment from "moment";
 import { SliderStyles } from "components";
 import { action as toggleMenu } from "redux-burger-menu/immutable";
@@ -55,9 +57,13 @@ class ReservationsPage extends PureComponent {
       slots,
       choosenSlot: getSlotClosestToPresent(slots),
       draggableId: undefined,
+      destination: undefined,
+      source: undefined,
       reservationDetailsId: undefined,
       tableDetailsId: undefined,
-      pendingRejectionReservationId: undefined
+      pendingRejectionReservationId: undefined,
+      isMultipleTablesModalVisible: false,
+      splitedReservation: undefined
     };
   }
 
@@ -76,7 +82,7 @@ class ReservationsPage extends PureComponent {
     }
     if (
       openPeriods !== prevOpenPeriods ||
-      choosenDate !== prevChoosenDate ||
+      choosenDate.toISOString() !== prevChoosenDate.toISOString() ||
       (business && business.get("timeSlots")) !==
         (prevBusiness && prevBusiness.get("timeSlots"))
     ) {
@@ -86,9 +92,9 @@ class ReservationsPage extends PureComponent {
 
   refreshColumnsContent = () => {
     const { reservations, tables, t } = this.props;
-    this.setState({
-      columns: parseReservations(reservations, tables, t)
-    });
+    this.setState(({ splitedReservation }) => ({
+      columns: parseReservations(reservations, tables, t, splitedReservation)
+    }));
   };
 
   refreshPeriods = () => {
@@ -102,7 +108,9 @@ class ReservationsPage extends PureComponent {
         })
       : [];
     const reservationFrom =
-      reservations && reservations.getIn([draggableId, "attributes", "from"]);
+      reservations &&
+      draggableId &&
+      reservations.getIn([draggableId.split("@")[0], "attributes", "from"]);
     const choosenSlot = reservationFrom
       ? getSlotFromMoment(slots, reservationFrom)
       : getSlotClosestToPresent(slots);
@@ -114,13 +122,19 @@ class ReservationsPage extends PureComponent {
 
   handleDragStart = ({ draggableId }) => {
     const { reservations } = this.props;
+    const realDraggableId = draggableId.split("@")[0];
     const reservationDate =
-      reservations && reservations.getIn([draggableId, "attributes", "date"]);
-    this.setState({
+      reservations &&
+      reservations.getIn([realDraggableId, "attributes", "date"]);
+    const reservationFrom =
+      reservations &&
+      reservations.getIn([realDraggableId, "attributes", "from"]);
+    this.setState(({ slots }) => ({
       draggableId,
+      choosenSlot: reservationFrom && getSlotFromMoment(slots, reservationFrom),
       choosenDate: moment(reservationDate),
-      draggedReservation: reservations.get(draggableId)
-    });
+      draggedReservation: reservations.get(realDraggableId)
+    }));
   };
 
   handleDragEnd = ({ destination, source, draggableId }) => {
@@ -141,56 +155,85 @@ class ReservationsPage extends PureComponent {
     }
 
     const { updateReservation, reservations, tables } = this.props;
+    const { splitedReservation } = this.state;
 
-    /* TODO: 
-      IF partySize > seatsNumber
-      DO:
-        - display modal with this info
-        - display three options:
-          * reject (take reservation back to pending reservations column)
-          * continue anyway (this problem will be solved outside our system)
-          * split reservation
-            + set "seatsTaken" as maximum availabe,
-            + create another card for this reservation,
-            + do not let do anything besides choosing another table till all party members will have seats
-    */
+    if (splitedReservation) {
+      if (source.droppableId !== destination.droppableId) {
+        const [reservationId, ticketIndex] = draggableId.split("@");
+        const seatsTaken = splitedReservation.tickets[ticketIndex].partySize;
 
-    const table = tables.get(destination.droppableId);
-    const partySize = reservations.getIn([
-      draggableId,
-      "attributes",
-      "partySize"
-    ]);
+        const newReservationTable = {
+          id: destination.droppableId,
+          seatsTaken
+        };
 
-    if (table && table.getIn(["attirbutes", "numberOfSeats"]) < partySize) {
-      this.setState(state => ({
-        draggableId: undefined,
-        draggedReservation: undefined,
-        choosenSlot:
-          state.choosenSlot !== undefined
-            ? state.choosenSlot
-            : getSlotClosestToPresent(state.slots)
-      }));
-    } else {
-      // TODO: improve logic for multiple tables
+        updateReservation(reservationId, {
+          tables: [...splitedReservation.tables, newReservationTable]
+        });
 
-      updateReservation(draggableId, {
-        tables: [
-          {
-            id: destination.droppableId,
-            seatsTaken: partySize
+        this.setState(state => {
+          const sourceColumn = state.columns[source.droppableId];
+          const newSourceReservationIds = Array.from(
+            sourceColumn.reservationIds
+          );
+          const newSplitedReservationTickets = Array.from(
+            state.splitedReservation.tickets
+          );
+          newSplitedReservationTickets.splice(ticketIndex, 1);
+          if (!newSplitedReservationTickets.length) {
+            newSourceReservationIds.splice(source.index, 1);
           }
-        ]
-      });
+          return {
+            draggableId: undefined,
+            draggedReservation: undefined,
+            splitedReservation: newSplitedReservationTickets.length
+              ? {
+                  ...state.splitedReservation,
+                  tickets: newSplitedReservationTickets,
+                  tables: [
+                    ...state.splitedReservation.tables,
+                    newReservationTable
+                  ]
+                }
+              : undefined,
+            choosenSlot:
+              state.choosenSlot !== undefined
+                ? state.choosenSlot
+                : getSlotClosestToPresent(state.slots),
+            columns: {
+              ...state.columns,
+              [sourceColumn.id]: {
+                ...sourceColumn,
+                reservationIds: newSourceReservationIds
+              }
+            }
+          };
+        });
+      }
+    } else {
+      const table = tables.get(destination.droppableId);
+      const seatsTaken = reservations.getIn([
+        draggableId,
+        "attributes",
+        "partySize"
+      ]);
 
-      this.setState(state => {
-        const sourceColumn = state.columns[source.droppableId];
-        const newSourceReservationIds = Array.from(sourceColumn.reservationIds);
-        newSourceReservationIds.splice(source.index, 1);
-        if (source.droppableId === destination.droppableId) {
+      if (table && table.getIn(["attributes", "numberOfSeats"]) < seatsTaken) {
+        this.setState({
+          isMultipleTablesModalVisible: true,
+          destination,
+          source,
+          draggableId
+        });
+      } else if (source.droppableId === destination.droppableId) {
+        this.setState(state => {
+          const sourceColumn = state.columns[source.droppableId];
+          const newSourceReservationIds = Array.from(
+            sourceColumn.reservationIds
+          );
+          newSourceReservationIds.splice(source.index, 1);
           newSourceReservationIds.splice(destination.index, 0, draggableId);
           return {
-            ...state,
             draggableId: undefined,
             draggedReservation: undefined,
             choosenSlot:
@@ -205,33 +248,40 @@ class ReservationsPage extends PureComponent {
               }
             }
           };
-        }
-        const destinationColumn = state.columns[destination.droppableId];
-        const newDestinationReservationIds = Array.from(
-          destinationColumn.reservationIds
-        );
-        newDestinationReservationIds.splice(destination.index, 0, draggableId);
-        return {
-          ...state,
-          draggableId: undefined,
-          draggedReservation: undefined,
-          choosenSlot:
-            state.choosenSlot !== undefined
-              ? state.choosenSlot
-              : getSlotClosestToPresent(state.slots),
-          columns: {
-            ...state.columns,
-            [sourceColumn.id]: {
-              ...sourceColumn,
-              reservationIds: newSourceReservationIds
-            },
-            [destinationColumn.id]: {
-              ...destinationColumn,
-              reservationIds: newDestinationReservationIds
+        });
+      } else {
+        updateReservation(draggableId, {
+          tables: [
+            {
+              id: destination.droppableId,
+              seatsTaken
             }
-          }
-        };
-      });
+          ]
+        });
+
+        this.setState(state => {
+          const sourceColumn = state.columns[source.droppableId];
+          const newSourceReservationIds = Array.from(
+            sourceColumn.reservationIds
+          );
+          newSourceReservationIds.splice(source.index, 1);
+          return {
+            draggableId: undefined,
+            draggedReservation: undefined,
+            choosenSlot:
+              state.choosenSlot !== undefined
+                ? state.choosenSlot
+                : getSlotClosestToPresent(state.slots),
+            columns: {
+              ...state.columns,
+              [sourceColumn.id]: {
+                ...sourceColumn,
+                reservationIds: newSourceReservationIds
+              }
+            }
+          };
+        });
+      }
     }
   };
 
@@ -278,6 +328,99 @@ class ReservationsPage extends PureComponent {
 
   chooseSlot = choosenSlot => this.setState({ choosenSlot });
 
+  closeMultipleTablesModal = () =>
+    this.setState(state => ({
+      isMultipleTablesModalVisible: false,
+      draggableId: undefined,
+      destination: undefined,
+      source: undefined,
+      draggedReservation: undefined,
+      choosenSlot:
+        state.choosenSlot !== undefined
+          ? state.choosenSlot
+          : getSlotClosestToPresent(state.slots)
+    }));
+
+  handleForcedReservation = () => {
+    const { reservations, updateReservation } = this.props;
+    const {
+      draggableId: reservationId,
+      destination: { droppableId }
+    } = this.state;
+    const partySize = reservations.getIn([
+      reservationId,
+      "attributes",
+      "partySize"
+    ]);
+    updateReservation(reservationId, {
+      tables: [
+        {
+          id: droppableId,
+          seatsTaken: partySize
+        }
+      ]
+    });
+    this.setState(state => {
+      const {
+        columns,
+        source,
+        destination,
+        draggableId,
+        choosenSlot,
+        slots
+      } = state;
+      const sourceColumn = columns[source.droppableId];
+      const newSourceReservationIds = Array.from(sourceColumn.reservationIds);
+      newSourceReservationIds.splice(source.index, 1);
+      const destinationColumn = columns[destination.droppableId];
+      const newDestinationReservationIds = Array.from(
+        destinationColumn.reservationIds
+      );
+      newDestinationReservationIds.splice(destination.index, 0, draggableId);
+      return {
+        isMultipleTablesModalVisible: false,
+        draggableId: undefined,
+        draggedReservation: undefined,
+        destination: undefined,
+        source: undefined,
+        choosenSlot:
+          choosenSlot !== undefined
+            ? choosenSlot
+            : getSlotClosestToPresent(slots),
+        columns: {
+          ...columns,
+          [sourceColumn.id]: {
+            ...sourceColumn,
+            reservationIds: newSourceReservationIds
+          },
+          [destinationColumn.id]: {
+            ...destinationColumn,
+            reservationIds: newDestinationReservationIds
+          }
+        }
+      };
+    });
+  };
+
+  handleReservationSplit = ({ tickets }) => {
+    this.setState(state => ({
+      splitedReservation: {
+        id: state.draggableId,
+        tickets,
+        tables: []
+      },
+      isMultipleTablesModalVisible: false,
+      draggableId: undefined,
+      destination: undefined,
+      source: undefined,
+      draggedReservation: undefined,
+      choosenSlot:
+        state.choosenSlot !== undefined
+          ? state.choosenSlot
+          : getSlotClosestToPresent(state.slots)
+    }));
+  };
+
   render() {
     const {
       t,
@@ -300,12 +443,15 @@ class ReservationsPage extends PureComponent {
       reservationDetailsId,
       tableDetailsId,
       pendingRejectionReservationId,
-      draggedReservation
+      draggedReservation,
+      isMultipleTablesModalVisible,
+      draggableId,
+      splitedReservation
     } = this.state;
 
     const reservationDetails =
       reservationDetailsId && reservations
-        ? reservations.get(reservationDetailsId)
+        ? reservations.get(reservationDetailsId.split("@")[0])
         : null;
 
     const reservationTables =
@@ -341,6 +487,7 @@ class ReservationsPage extends PureComponent {
             onDragStart: this.handleDragStart,
             columns,
             reservations,
+            splitedReservation,
             draggedReservation,
             slots,
             choosenDate,
@@ -359,6 +506,7 @@ class ReservationsPage extends PureComponent {
               t,
               lng,
               reservationDetails,
+              splitedReservation,
               reservationTables,
               setEditedReservation,
               handleTableClick: this.handleToggleTableDetails,
@@ -386,6 +534,18 @@ class ReservationsPage extends PureComponent {
                 )
               : null,
             removeReservation: this.removeReservation,
+            t
+          }}
+        />
+        <MultipleTablesModal
+          {...{
+            isOpen: !!isMultipleTablesModalVisible,
+            onClose: this.closeMultipleTablesModal,
+            onContinue: this.handleForcedReservation,
+            onSplit: this.handleReservationSplit,
+            partySize: reservations
+              ? reservations.getIn([draggableId, "attributes", "partySize"])
+              : 0,
             t
           }}
         />

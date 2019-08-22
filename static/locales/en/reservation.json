@@ -13,7 +13,8 @@
   "newReservations": "New reservations",
   "noSuchTimeSlot": "There is no such time slot enabled in choosed date.",
   "addTable": "Add table",
-  "tablesList": "Tables list",
+  "ticketsList": "Unassigned tickets list",
+  "tablesList": "Assigned tables list",
   "numberLabel": "Table no.",
   "numberPlaceholder": "1",
   "numberOfSeatsLabel": "Seats no.",
@@ -37,5 +38,12 @@
   "numberOfSeats": "Number of seats",
   "rejectReservationHeader": "Are you sure you want to reject this reservation?",
   "yes": "Yes",
-  "no": "No"
+  "no": "No",
+  "multipleTablesHeader": "Party size is greater than number of seats!",
+  "continueAnyway": "Continue anyway",
+  "split": "Split",
+  "invalidSplit": "Sum of party sizes in new tickets is not equal original party size. Original value: {{partySize}}, new: {{newPartySize}}",
+  "splitFormHeader": "Please split ticket into multiple by setting new party size for each ticket. \n Original party size: {{partySize}}.",
+  "splitedCardInfo": "This is part of reservation that was splited into multiple tickets",
+  "cardNotFitsSlotsInfo": "This reservation not fits in time slots.Click to  go to reservation details and edit"
 }

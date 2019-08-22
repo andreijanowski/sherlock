@@ -59,5 +59,6 @@ export const ModalHeader = styled.h3`
   font-weight: ${p => p.theme.fontWeights.regular};
   font-size: ${p => p.theme.fontSizes.f18};
   line-height: 1.5;
+  white-space: pre-line;
   text-align: center;
 `;

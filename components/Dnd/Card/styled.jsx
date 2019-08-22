@@ -17,11 +17,15 @@ export const Header = styled(Flex).attrs(() => ({
   alignItems: "center",
   justifyContent: "space-between"
 }))`
-  color: rgb(${p => p.theme.colors.dark});
+  color: rgb(
+    ${p => (p.isSplited ? p.theme.colors.white : p.theme.colors.dark)}
+  );
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.f14};
   line-height: 24px;
-  background-color: rgb(${p => p.theme.colors.titanWhite});
+  background-color: rgb(
+    ${p => (p.isSplited ? p.theme.colors.blue : p.theme.colors.titanWhite)}
+  );
   border-bottom: 1px solid rgb(${p => p.theme.colors.linkWaterDark});
 `;
 

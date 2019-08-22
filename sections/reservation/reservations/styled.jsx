@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Flex } from "@rebass/grid";
+import { Flex, Box } from "@rebass/grid";
 
 export const ColumnsWrapper = styled(Flex).attrs(() => ({
   mx: -2,
@@ -12,4 +12,10 @@ export const TablesWrapper = styled(Flex).attrs(() => ({
   width: "calc(100% - 250px)"
 }))`
   position: relative;
+`;
+
+export const Error = styled(Box).attrs(() => ({
+  pt: 2
+}))`
+  color: rgb(${p => p.theme.colors.ruby});
 `;

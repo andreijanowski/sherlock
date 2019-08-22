@@ -18,6 +18,7 @@ const Column = ({
   handleCardClick,
   renderCardHeader,
   renderCardDetails,
+  splitedCard,
   width
 }) => (
   <ColumnWrapper {...{ width }}>
@@ -38,6 +39,7 @@ const Column = ({
           <Cards
             {...{
               items,
+              splitedCard,
               isColumnGrayedOut,
               handleCardClick,
               renderCardHeader,
@@ -56,6 +58,7 @@ Column.propTypes = {
   id: string.isRequired,
   title: string.isRequired,
   items: arrayOf(shape()).isRequired,
+  splitedCard: shape(),
   isDropDisabled: bool,
   isColumnGrayedOut: bool,
   handleCardClick: func,
@@ -68,7 +71,8 @@ Column.defaultProps = {
   isDropDisabled: false,
   isColumnGrayedOut: false,
   handleCardClick: undefined,
-  width: undefined
+  width: undefined,
+  splitedCard: undefined
 };
 
 export default Column;
