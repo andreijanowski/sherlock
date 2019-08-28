@@ -27,7 +27,7 @@ const PeriodsForm = ({
   const paste = weekday => {
     if (copied && copied.length) {
       copied.forEach(async c => {
-        addPeriod({ ...c, weekday });
+        addPeriod(parsePeriod({ ...c, weekday }));
       });
     }
     return null;

@@ -17,7 +17,6 @@ const Reservations = ({
   handleCardClick,
   handleTableClick,
   draggedReservation,
-  // isDropDisabled,
   choosenDate,
   choosenSlot,
   chooseSlot,
@@ -34,8 +33,6 @@ const Reservations = ({
     splitedReservation,
     slots
   });
-
-  console.log(choosenSlot);
 
   return (
     <DragDropContext {...{ onDragStart, onDragEnd }}>

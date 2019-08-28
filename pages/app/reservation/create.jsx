@@ -29,8 +29,8 @@ const CreateReservationPage = ({
     setIsSending(true);
     addReservation(businessId, {
       ...values,
-      from: from ? timeToNumber(from) : undefined,
-      to: to ? timeToNumber(to) : undefined,
+      from: from ? timeToNumber(from, "start") : undefined,
+      to: to ? timeToNumber(to, "end") : undefined,
       phoneCountryPrefix:
         phoneCountry && phoneCountry.value
           ? phoneCountry.value.prefix
