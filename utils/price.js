@@ -1,1 +1,1 @@
-export const convertToCents = price => Number(price) * 100;
+export const convertToCents = price => Math.round(Number(price) * 100);
