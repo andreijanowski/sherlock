@@ -159,7 +159,7 @@ export const fetchBusinessReservations = (
       per_page: 200,
       page,
       include: "user,bookings,tables",
-      filter: { startDate, endDate, from, to }
+      filter: { start_date: startDate, end_date: endDate, from, to }
     }
   },
   meta: { thunk: true, page }
