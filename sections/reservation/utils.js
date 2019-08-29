@@ -198,18 +198,20 @@ export const getNewReservations = ({
   const newReservations = [];
   reservationIds.forEach(id => {
     if (reservations) {
-      if (splitedReservation && splitedReservation.id === id) {
-        splitedReservation.tickets.forEach((ticket, index) => {
-          newReservations.push(
-            reservations
-              .get(id)
-              .setIn(["attributes", "partySize"], ticket.partySize)
-              .set("splited", true)
-              .set("id", `${id}@${index}`)
-          );
-        });
-      } else {
-        newReservations.push(reservations.get(id));
+      const reservation = reservations.get(id);
+      if (reservation) {
+        if (splitedReservation && splitedReservation.id === id) {
+          splitedReservation.tickets.forEach((ticket, index) => {
+            newReservations.push(
+              reservation
+                .setIn(["attributes", "partySize"], ticket.partySize)
+                .set("splited", true)
+                .set("id", `${id}@${index}`)
+            );
+          });
+        } else {
+          newReservations.push(reservation);
+        }
       }
     }
   });
