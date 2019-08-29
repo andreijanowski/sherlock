@@ -17,10 +17,6 @@ export const generatePlanOptionsList = (planName, t) => {
           discount: "7%"
         },
         {
-          name: t("plans:options.takeAway"),
-          discount: "7%"
-        },
-        {
           name: t("plans:options.catering"),
           discount: "10%"
         },
@@ -54,10 +50,6 @@ export const generatePlanOptionsList = (planName, t) => {
         },
         {
           name: t("plans:options.delivery"),
-          discount: "3.5%"
-        },
-        {
-          name: t("plans:options.takeAway"),
           discount: "3.5%"
         },
         {
@@ -104,10 +96,6 @@ export const generatePlanOptionsList = (planName, t) => {
         },
         {
           name: t("plans:options.delivery"),
-          discount: "2%"
-        },
-        {
-          name: t("plans:options.takeAway"),
           discount: "2%"
         },
         {
@@ -167,10 +155,6 @@ export const generatePlanOptionsList = (planName, t) => {
         },
         {
           name: t("plans:options.delivery"),
-          discount: "Free"
-        },
-        {
-          name: t("plans:options.takeAway"),
           discount: "Free"
         },
         {

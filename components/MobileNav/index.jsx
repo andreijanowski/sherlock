@@ -7,7 +7,7 @@ import { setCurrentBusiness } from "actions/app";
 import prepareBusinessesList from "utils/prepareBusinessesList";
 import {
   ControlCenter,
-  TakeAway,
+  Delivery,
   Catering,
   LiveStream,
   Hamburger
@@ -40,7 +40,7 @@ const MobileNav = ({
     >
       <MainIcon Icon={ControlCenter} {...{ lng, route: "/" }} />
       <MainIcon Icon={Catering} {...{ lng, route: "/app/catering/month/" }} />
-      <MainIcon Icon={TakeAway} {...{ lng, route: "/" }} />
+      <MainIcon Icon={Delivery} {...{ lng, route: "/" }} />
       <MainIcon Icon={LiveStream} {...{ lng, route: "/" }} />
       <MainIcon
         Icon={Hamburger}
