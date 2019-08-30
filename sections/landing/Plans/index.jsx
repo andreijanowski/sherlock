@@ -31,7 +31,15 @@ const PlansMainComponent = ({
       {/* <PromotionBoard {...{ t }} /> */}
     </TextWrapper>
     <PlansWrapper>
-      <Plans {...{ t, lng, billingInterval, isAuthenticated: false }} />
+      <Plans
+        {...{
+          t,
+          lng,
+          billingInterval,
+          isAuthenticated: false,
+          isSubscriptionView: false
+        }}
+      />
     </PlansWrapper>
   </Flex>
 );
