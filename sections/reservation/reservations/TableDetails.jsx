@@ -42,53 +42,54 @@ const TableDetails = ({
         />
         <SliderSpacer />
         <SliderSubheader>{t("reservations")}</SliderSubheader>
-        {tableReservations
-          .sort((a, b) => {
-            if (
-              new Date(a.getIn(["attributes", "date"])).getTime() <
-              new Date(b.getIn(["attributes", "date"])).getTime()
-            ) {
-              return -1;
-            }
-            if (
-              new Date(a.getIn(["attributes", "date"])).getTime() ===
-              new Date(b.getIn(["attributes", "date"])).getTime()
-            ) {
+        {tableReservations &&
+          tableReservations
+            .sort((a, b) => {
               if (
-                a.getIn(["attributes", "from"]) <
-                b.getIn(["attributes", "from"])
+                new Date(a.getIn(["attributes", "date"])).getTime() <
+                new Date(b.getIn(["attributes", "date"])).getTime()
               ) {
                 return -1;
               }
+              if (
+                new Date(a.getIn(["attributes", "date"])).getTime() ===
+                new Date(b.getIn(["attributes", "date"])).getTime()
+              ) {
+                if (
+                  a.getIn(["attributes", "from"]) <
+                  b.getIn(["attributes", "from"])
+                ) {
+                  return -1;
+                }
+                return 1;
+              }
               return 1;
-            }
-            return 1;
-          })
-          .valueSeq()
-          .map(r => {
-            const from = r.getIn(["attributes", "from"]);
-            const to = r.getIn(["attributes", "to"]);
+            })
+            .valueSeq()
+            .map(r => {
+              const from = r.getIn(["attributes", "from"]);
+              const to = r.getIn(["attributes", "to"]);
 
-            return (
-              <SliderDetail
-                {...{
-                  onClick: () => handleReservationClick(r.get("id")),
-                  name: `${moment(r.getIn(["attributes", "date"])).format(
-                    "Do MMM YYYY"
-                  )}, ${moment({
-                    minutes: (from / 60) % 60,
-                    hours: (from / 60 / 60) % 24
-                  }).format("hh:mm A")} - ${moment({
-                    minutes: (to / 60) % 60,
-                    hours: (to / 60 / 60) % 24
-                  }).format("hh:mm A")}`,
-                  value: [
-                    `${r.getIn(["attributes", "partySize"])} ${t("people")}`
-                  ]
-                }}
-              />
-            );
-          })}
+              return (
+                <SliderDetail
+                  {...{
+                    onClick: () => handleReservationClick(r.get("id")),
+                    name: `${moment(r.getIn(["attributes", "date"])).format(
+                      "Do MMM YYYY"
+                    )}, ${moment({
+                      minutes: (from / 60) % 60,
+                      hours: (from / 60 / 60) % 24
+                    }).format("hh:mm A")} - ${moment({
+                      minutes: (to / 60) % 60,
+                      hours: (to / 60 / 60) % 24
+                    }).format("hh:mm A")}`,
+                    value: [
+                      `${r.getIn(["attributes", "partySize"])} ${t("people")}`
+                    ]
+                  }}
+                />
+              );
+            })}
       </>
     )}
   </Slide>

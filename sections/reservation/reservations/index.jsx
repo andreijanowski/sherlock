@@ -35,8 +35,6 @@ const Reservations = ({
     slots
   });
 
-  console.log(choosenSlot);
-
   return (
     <DragDropContext {...{ onDragStart, onDragEnd }}>
       <ColumnsWrapper>
