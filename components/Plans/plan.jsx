@@ -9,7 +9,6 @@ import {
   PriceDescription,
   Price,
   BetaPrice,
-  BetaPriceText,
   RegularPrice
 } from "./styled";
 import List from "./list";
@@ -42,18 +41,12 @@ const Plan = ({
             <MostPopular color={color}>
               {t(`plans:${name}.mostPopular`)}
             </MostPopular>
-            <MostPopular color="ruby">
-              {t(`plans:${name}.promoPrice`)}
-            </MostPopular>
           </>
         )}
         {name === "premium" && (
           <>
             <MostPopular color={color}>
               {t(`plans:${name}.bestValue`)}
-            </MostPopular>
-            <MostPopular color="ruby">
-              {t(`plans:${name}.promoPrice`)}
             </MostPopular>
           </>
         )}
@@ -74,7 +67,6 @@ const Plan = ({
                   {t(`plans:${name}.price.beta`)}
                   <small>/{t(`plans:${name}.${billingInterval}`)}</small>
                 </BetaPrice>
-                <BetaPriceText> {t("plans:betaPrice")}</BetaPriceText>
               </>
             ) : (
               <Price>
@@ -91,7 +83,7 @@ const Plan = ({
           styleName={isChosen ? "background" : color}
         >
           {buttonText}
-          {name === "premium" &&
+          {(name === "premium" || name === "basic") &&
             !isSubscriptionView &&
             t(
               `plans:${name}.price.${

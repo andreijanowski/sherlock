@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { func, string, shape, object } from "prop-types";
+import { func, string } from "prop-types";
 import { Router } from "routes";
 import {
   Button,
@@ -20,7 +20,7 @@ import {
 } from "./styled";
 import { ParagraphStyled } from "../sharedStyled";
 
-const TopSection = ({ t, lng, plansRef }) => {
+const TopSection = ({ t, lng }) => {
   const [isVideoVisible, setIsVideoVisible] = useState(false);
 
   return (
@@ -48,20 +48,6 @@ const TopSection = ({ t, lng, plansRef }) => {
         </H1Styled>
         <ParagraphStyled>{t("topSection.paragraph")}</ParagraphStyled>
         <Flex flexDirection="row" flexWrap="wrap" m={["-2px", -1]}>
-          <Box width={[1, "auto"]} p={["2px", 1]}>
-            <Button
-              styleName="blue"
-              fluid
-              fullHeight
-              onClick={() =>
-                plansRef.current.scrollIntoView({
-                  behavior: "smooth"
-                })
-              }
-            >
-              {t("topSection.getStartedForFree")}
-            </Button>
-          </Box>
           <Box width={[1 / 2, "auto"]} p={["2px", 1]}>
             <Button
               styleName="blue"
@@ -69,7 +55,7 @@ const TopSection = ({ t, lng, plansRef }) => {
               fullHeight
               onClick={() => Router.pushRoute(`/${lng}/register/?plan=basic`)}
             >
-              {t("topSection.addYourBusiness")}
+              {t("topSection.getStartedForFree")}
             </Button>
           </Box>
           <Box width={[1, "auto"]} p={["2px", 1]}>
@@ -98,8 +84,7 @@ const TopSection = ({ t, lng, plansRef }) => {
 
 TopSection.propTypes = {
   t: func.isRequired,
-  lng: string.isRequired,
-  plansRef: shape({ current: object }).isRequired
+  lng: string.isRequired
 };
 
 export default TopSection;
