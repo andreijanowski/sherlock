@@ -105,13 +105,12 @@ Plan.propTypes = {
   onClickActionButton: func.isRequired,
   nextPlanName: string,
   currentPlanInterval: string,
-  isSubscriptionView: bool
+  isSubscriptionView: bool.isRequired
 };
 
 Plan.defaultProps = {
   nextPlanName: null,
-  currentPlanInterval: null,
-  isSubscriptionView: false
+  currentPlanInterval: null
 };
 
 export default Plan;

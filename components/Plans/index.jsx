@@ -20,6 +20,7 @@ const Plans = ({
           billingInterval,
           nextPlanName,
           currentPlanInterval,
+          isSubscriptionView,
           color: "limeade",
           name: "essential",
           onClickActionButton: () =>
@@ -36,6 +37,7 @@ const Plans = ({
           billingInterval,
           nextPlanName,
           currentPlanInterval,
+          isSubscriptionView,
           color: "deepSkyBlue",
           name: "basic",
           onClickActionButton: () =>
@@ -69,6 +71,7 @@ const Plans = ({
           billingInterval,
           nextPlanName,
           currentPlanInterval,
+          isSubscriptionView,
           color: "hanPurple",
           name: "professional",
           onClickActionButton: () => {
@@ -87,14 +90,13 @@ Plans.propTypes = {
   choosePlan: func,
   nextPlanName: string,
   currentPlanInterval: string,
-  isSubscriptionView: bool
+  isSubscriptionView: bool.isRequired
 };
 
 Plans.defaultProps = {
   choosePlan: null,
   nextPlanName: null,
-  currentPlanInterval: null,
-  isSubscriptionView: false
+  currentPlanInterval: null
 };
 
 export default Plans;
