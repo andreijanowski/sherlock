@@ -100,13 +100,6 @@ export const BetaPrice = styled(Price)`
   margin-bottom: 20px;
 `;
 
-export const BetaPriceText = styled.div`
-  position: absolute;
-  bottom: 70px;
-  color: rgb(${p => p.theme.colors.ruby});
-  font-weight: ${p => p.theme.fontWeights.bold};
-`;
-
 export const Service = styled(Box).attrs({ mb: 1 })`
   color: ${p =>
     p.isHighlighted

@@ -16,7 +16,6 @@ class Home extends PureComponent {
 
   constructor(props) {
     super(props);
-    this.plansRef = React.createRef();
     this.state = {
       billingInterval: "month"
     };
@@ -32,15 +31,14 @@ class Home extends PureComponent {
     const { billingInterval } = this.state;
     return (
       <>
-        <TopSection {...{ t, lng, plansRef: this.plansRef }} />
+        <TopSection {...{ t, lng }} />
         <Services {...{ t }} />
         <Plans
           {...{
             t,
             lng,
             billingInterval,
-            handleChangeBillngPeriod: this.handleChangeBillngPeriod,
-            ref: this.plansRef
+            handleChangeBillngPeriod: this.handleChangeBillngPeriod
           }}
         />
         <Footer />
