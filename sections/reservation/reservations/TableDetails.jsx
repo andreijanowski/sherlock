@@ -8,12 +8,14 @@ import {
   SliderSpacer
 } from "components";
 import moment from "moment";
+import { getReservationBookings } from "../utils";
 
 const TableDetails = ({
   isOpen,
   onStateChange,
   tableDetails,
   tableReservations,
+  bookings,
   handleReservationClick,
   t
 }) => (
@@ -69,6 +71,17 @@ const TableDetails = ({
             .map(r => {
               const from = r.getIn(["attributes", "from"]);
               const to = r.getIn(["attributes", "to"]);
+              const reservationBookings = getReservationBookings(r);
+              const tableReservationBooking =
+                bookings &&
+                reservationBookings
+                  .map(b => bookings.get(b.get("id")))
+                  .find(
+                    b =>
+                      b &&
+                      b.getIn(["relationships", "table", "data", "id"]) ===
+                        tableDetails.get("id")
+                  );
 
               return (
                 <SliderDetail
@@ -84,7 +97,15 @@ const TableDetails = ({
                       hours: (to / 60 / 60) % 24
                     }).format("hh:mm A")}`,
                     value: [
-                      `${r.getIn(["attributes", "partySize"])} ${t("people")}`
+                      `${r.getIn(["attributes", "name"])}`,
+                      `${tableReservationBooking &&
+                        tableReservationBooking.getIn([
+                          "attributes",
+                          "seatsTaken"
+                        ])} ${t("seatsTaken")} (${t("partySize")}: ${r.getIn([
+                        "attributes",
+                        "partySize"
+                      ])})`
                     ]
                   }}
                 />
@@ -100,13 +121,15 @@ TableDetails.propTypes = {
   onStateChange: func.isRequired,
   tableDetails: shape(),
   tableReservations: shape(),
+  bookings: shape(),
   t: func.isRequired,
   handleReservationClick: func.isRequired
 };
 
 TableDetails.defaultProps = {
   tableDetails: null,
-  tableReservations: null
+  tableReservations: null,
+  bookings: null
 };
 
 export default reduxBurgerMenu(TableDetails, "TableDetails");
