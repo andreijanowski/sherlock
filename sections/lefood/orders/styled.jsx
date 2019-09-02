@@ -73,7 +73,6 @@ export const OrderWrapper = styled(Flex).attrs({
 export const OrderHeader = styled(Flex).attrs({
   px: 3,
   py: 2,
-  alignItems: "center",
   justifyContent: "space-between"
 })`
   line-height: 24px;
@@ -167,13 +166,13 @@ export const SliderStyles = createGlobalStyle`
 
 export const OrderDetailsHeader = styled.h2`
   margin: 0;
-  padding-bottom: 32px;
   color: rgb(${p => p.theme.colors.dark});
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f24};
 `;
 
 export const OrderDetailsSubheader = styled(OrderDetailsHeader)`
+  padding-bottom: 32px;
   font-size: ${p => p.theme.fontSizes.f18};
 `;
 
@@ -209,4 +208,8 @@ export const PersonalInformationValue = styled.div`
 
 export const OrderDetailsState = styled(PersonalInformationValue)`
   /* stylelint-disable-line no-empty-block */
+`;
+
+export const Id = styled.span`
+  font-size: 14px;
 `;
