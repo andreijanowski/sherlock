@@ -68,8 +68,7 @@ export const patchReservationReject = (id, values) => ({
         }
       }
     }
-  },
-  meta: { thunk: true }
+  }
 });
 
 export const deleteReservation = id => ({
