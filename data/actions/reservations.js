@@ -1,6 +1,7 @@
 import {
   POST_RESERVATION_REQUEST,
   PATCH_RESERVATION_REQUEST,
+  PATCH_RESERVATION_REJECT_REQUEST,
   DELETE_RESERVATION_REQUEST,
   FETCH_RESERVATION_REQUEST,
   SET_EDIT_RESERVATION
@@ -40,6 +41,24 @@ export const patchReservation = (id, values) => ({
   payload: {
     method: "PATCH",
     endpoint: `/api/v1/reservations/${id}`,
+    data: {
+      data: {
+        id,
+        type: "reservations",
+        attributes: {
+          ...values
+        }
+      }
+    }
+  },
+  meta: { thunk: true }
+});
+
+export const patchReservationReject = (id, values) => ({
+  type: PATCH_RESERVATION_REJECT_REQUEST,
+  payload: {
+    method: "PATCH",
+    endpoint: `/api/v1/reservations/${id}/reject`,
     data: {
       data: {
         id,
