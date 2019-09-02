@@ -45,7 +45,7 @@
   "invalidSplit": "Sum of party sizes in new tickets is not equal original party size. Original value: {{partySize}}, new: {{newPartySize}}",
   "splitFormHeader": "Please split ticket into multiple by setting new party size for each ticket. \n Original party size: {{partySize}}.",
   "splitedCardInfo": "This is part of reservation that was splited into multiple tickets",
-  "cardNotFitsSlotsInfo": "This reservation not fits in time slots.Click to  go to reservation details and edit",
+  "cardNotFitsSlotsInfo": "This reservation doesn't fit in time slots. Click to  go to reservation details and edit",
   "total": "total",
   "of": "of"
 }
