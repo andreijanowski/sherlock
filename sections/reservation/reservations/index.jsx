@@ -17,7 +17,6 @@ const Reservations = ({
   handleCardClick,
   handleTableClick,
   draggedReservation,
-  // isDropDisabled,
   choosenDate,
   choosenSlot,
   chooseSlot,

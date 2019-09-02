@@ -35,8 +35,8 @@ class EditReservatoinPage extends PureComponent {
     const { updateReservation, lng } = this.props;
     const updatedReservation = {
       ...values,
-      from: from ? timeToNumber(from) : undefined,
-      to: to ? timeToNumber(to) : undefined,
+      from: from ? timeToNumber(from, "start") : undefined,
+      to: to ? timeToNumber(to, "end") : undefined,
       phoneCountryPrefix:
         phoneCountry && phoneCountry.value
           ? phoneCountry.value.prefix

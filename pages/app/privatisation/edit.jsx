@@ -35,8 +35,8 @@ class EditPrivatisationPage extends PureComponent {
     const { updatePrivatisation, lng } = this.props;
     const updatedPrivatisation = {
       ...values,
-      from: timeToNumber(values.from),
-      to: timeToNumber(values.to)
+      from: timeToNumber(values.from, "start"),
+      to: timeToNumber(values.to, "end")
     };
     if (menu && menu.name) {
       updatedPrivatisation.menu = await fileToBase64(menu);

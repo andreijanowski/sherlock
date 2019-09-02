@@ -3,12 +3,7 @@ import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
 import ProfileLayout from "sections/profile/Layout";
-import {
-  Periods,
-  parsePeriods,
-  parsePeriod,
-  isMovableBusiness
-} from "components";
+import { Periods, parsePeriods, isMovableBusiness } from "components";
 import { connect } from "react-redux";
 import {
   postOpenPeriod,
@@ -30,12 +25,12 @@ class OpeningHours extends PureComponent {
 
   addOpenPeriod = openPeriod => {
     const { addOpenPeriod, businessId } = this.props;
-    return addOpenPeriod(businessId, parsePeriod(openPeriod));
+    return addOpenPeriod(businessId, openPeriod);
   };
 
   updateOpenPeriod = openPeriod => {
     const { updateOpenPeriod } = this.props;
-    return updateOpenPeriod(openPeriod.id, parsePeriod(openPeriod));
+    return updateOpenPeriod(openPeriod.id, openPeriod);
   };
 
   removeOpenPeriod = id => {
