@@ -362,14 +362,14 @@ class ReservationsPage extends PureComponent {
       precalculatedReservations || (id && reservations)
         ? getTableReservations(id, reservations)
         : null;
-
     if (tableReservations) {
       tableReservations.forEach(r => {
         const reservationBookings = getReservationBookings(r);
-        reservationBookings.forEach(
-          b =>
-            !(bookings && bookings.get(b.get("id"))) && getBooking(b.get("id"))
-        );
+        reservationBookings.forEach(b => {
+          if (!(bookings && bookings.get(b.get("id")))) {
+            getBooking(b.get("id"));
+          }
+        });
       });
     }
   };
