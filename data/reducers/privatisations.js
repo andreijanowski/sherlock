@@ -14,7 +14,7 @@ import {
 import { LOGOUT } from "types/auth";
 import { Record, fromJS } from "immutable";
 
-const initialState = Record({
+export const initialState = Record({
   data: [],
   isFetching: false,
   isFailed: false,
