@@ -62,7 +62,7 @@ const fieldsThatShouldBeUpdatedImmediatly = [
   "maxReservationSize"
 ];
 
-const initialState = Record({
+export const initialState = Record({
   profile: Record({
     data: null,
     isFetching: false,

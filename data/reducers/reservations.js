@@ -15,7 +15,7 @@ import { LOGOUT } from "types/auth";
 
 import { Record, Map, fromJS } from "immutable";
 
-const initialState = Record({
+export const initialState = Record({
   data: Map(),
   isFetching: false,
   isFailed: false,
@@ -103,10 +103,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     }
 
     case SET_EDIT_RESERVATION: {
-      return state.setIn(
-        ["editedReservation"],
-        fromJS(payload.editedReservation)
-      );
+      return state.set("editedReservation", fromJS(payload.editedReservation));
     }
 
     case LOGOUT: {
