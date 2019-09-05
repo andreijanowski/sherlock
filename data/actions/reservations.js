@@ -17,7 +17,7 @@ export const fetchReservation = id => ({
   }
 });
 
-export const postReservation = (id, values) => ({
+export const postReservation = (businessId, values, userId) => ({
   type: POST_RESERVATION_REQUEST,
   payload: {
     method: "POST",
@@ -28,7 +28,10 @@ export const postReservation = (id, values) => ({
         attributes: {
           ...values
         },
-        relationships: getRelationships("business", id)
+        relationships: {
+          ...getRelationships("business", businessId),
+          ...getRelationships("user", userId)
+        }
       }
     }
   },
