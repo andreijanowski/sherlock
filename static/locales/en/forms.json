@@ -135,7 +135,9 @@
       "greater_than-number_of_seats": "Number of seats must be greater than 0",
       "missing_attributes-Missing attributes": "Missing attributes",
       "greater_than-party_size": "Party size must be greater than {{count}}. Your value is {{value}}",
-      "taken-code": "Code already present in a different delivery"
+      "taken-code": "Code already present in a different delivery",
+      "not_between_open_periods-base": "Reservation must take place between business open periods",
+      "not_enough_time_before_start-from": "Not enough time before start"
     }
   },
   "placeholder": {
