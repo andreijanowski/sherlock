@@ -107,7 +107,8 @@ export default requireAuth(true)(
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
         const business = businessData && businessData.get("businesses").first();
         const tables = state.getIn(["tables", "data", "tables"]);
-        const user = state.getIn(["users", "profile", "data", "users"]).first();
+        const users = state.getIn(["users", "profile", "data", "users"]);
+        const user = users && users.first();
 
         return {
           business: business && business.get("attributes"),
