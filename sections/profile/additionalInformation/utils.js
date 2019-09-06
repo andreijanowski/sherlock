@@ -28,6 +28,8 @@ export const getInitialValues = business => {
         currencies.find(c => c.value === business.get("currency")) || {},
       pricePerPerson: business.get("pricePerPerson"),
       hasCatering: business.get("hasCatering"),
+      hasReservations: business.get("hasReservations"),
+      hasPrivateEvents: business.get("hasPrivateEvents"),
       deliveryUrl: business.get("deliveryUrl"),
       onlineBookingUrl: business.get("onlineBookingUrl"),
       takeawayUrl: business.get("takeawayUrl"),
