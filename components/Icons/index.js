@@ -1,6 +1,6 @@
 export {
   ControlCenter,
-  Bookings,
+  Reservations,
   Delivery,
   Catering,
   Privatisations,
@@ -34,5 +34,5 @@ export {
   Pause,
   RejectModalIcon,
   StopOrdersModalIcon,
-  FinishOrdersModalIcon
+  WarningIcon
 } from "./lefoodNavigation";

@@ -14,6 +14,8 @@
   "pricePerPersonPlaceholder": "40",
   "services": "Services",
   "hasCatering": "Catering",
+  "hasReservations": "Reservations",
+  "hasPrivateEvents": "Privatizations",
   "deliveryUrlLabel": "Delivery url",
   "deliveryUrlPlaceholder": "https://business.co/delivery",
   "onlineBookingUrlLabel": "Online booking url",

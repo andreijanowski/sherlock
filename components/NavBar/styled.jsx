@@ -1,42 +1,42 @@
 import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 
-export const Wrapper = styled(Flex).attrs({
+export const Wrapper = styled(Flex).attrs(() => ({
   width: 80,
   flexDirection: "column",
   alignItems: "center",
   py: 4
-})`
+}))`
   position: relative;
   z-index: 100;
   min-height: 100vh;
   background-color: rgb(${p => p.theme.colors.white});
 `;
 
-export const Logo = styled.img.attrs({
+export const Logo = styled.img.attrs(() => ({
   src: "/static/LogoFoodetectiveSmall.svg"
-})`
+}))`
   width: 24px;
   height: 32px;
 `;
 
-export const LogoWrapper = styled(Flex).attrs({
+export const LogoWrapper = styled(Flex).attrs(() => ({
   alignItems: "center",
   justifyContent: "center",
   mb: 4,
   width: 48
-})`
+}))`
   height: 48px;
   border-radius: 24px;
   box-shadow: 0 3px 8px 0 rgba(${p => p.theme.colors.dark}, 0.16);
 `;
 
-export const Item = styled(Flex).attrs({
+export const Item = styled(Flex).attrs(() => ({
   alignItems: "center",
   justifyContent: "center",
   width: 40,
   mb: 3
-})`
+}))`
   position: relative;
   height: 40px;
   border-radius: 20px;
@@ -73,11 +73,11 @@ export const Item = styled(Flex).attrs({
   }
 `;
 
-export const Icon = styled(Flex).attrs({
+export const Icon = styled(Flex).attrs(() => ({
   width: 40,
   alignItems: "center",
   justifyContent: "center"
-})`
+}))`
   position: absolute;
   top: 0;
   left: 0;
@@ -88,7 +88,7 @@ export const Icon = styled(Flex).attrs({
   ${p => p.inactive && "opacity: 0.5;"}
 `;
 
-export const SubitemsWrapper = styled(Flex).attrs({ pl: 3, as: "nav" })`
+export const SubitemsWrapper = styled(Flex).attrs(() => ({ pl: 3, as: "nav" }))`
   position: absolute;
   left: 100%;
   z-index: 2;
@@ -107,10 +107,10 @@ export const SubitemsWrapper = styled(Flex).attrs({ pl: 3, as: "nav" })`
   }
 `;
 
-export const Subitems = styled(Flex).attrs({
+export const Subitems = styled(Flex).attrs(() => ({
   flexDirection: "column",
   p: 2
-})`
+}))`
   position: relative;
   background-color: rgb(${p => p.theme.colors.dark});
   border-radius: ${p => p.theme.radius.default};
@@ -130,7 +130,7 @@ export const Subitems = styled(Flex).attrs({
   }
 `;
 
-export const Subitem = styled(Box).attrs({ as: "a", p: 3 })`
+export const Subitem = styled(Box).attrs(() => ({ as: "a", p: 3 }))`
   color: rgb(${p => p.theme.colors.white});
   white-space: nowrap;
   text-decoration: none;

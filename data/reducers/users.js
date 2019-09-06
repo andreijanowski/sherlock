@@ -47,7 +47,22 @@ import {
 import { LOGOUT } from "types/auth";
 import { Record, fromJS } from "immutable";
 
-const initialState = Record({
+const fieldsThatShouldBeUpdatedImmediatly = [
+  "visibleInLefood",
+  "state",
+  "averageDeliveryTime",
+  "minAmountForDeliveryCents",
+  "stripeCurrency",
+  "allowPickup",
+  "logo",
+  "name",
+  "timeSlots",
+  "timeOfStay",
+  "minTimeBeforeReservation",
+  "maxReservationSize"
+];
+
+export const initialState = Record({
   profile: Record({
     data: null,
     isFetching: false,
@@ -289,16 +304,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     case PATCH_BUSINESS_SUCCESS: {
       let newState = null;
       meta.updatedValues.forEach(v => {
-        if (
-          v === "visibleInLefood" ||
-          v === "state" ||
-          v === "averageDeliveryTime" ||
-          v === "minAmountForDeliveryCents" ||
-          v === "stripeCurrency" ||
-          v === "allowPickup" ||
-          v === "logo" ||
-          v === "name"
-        ) {
+        if (fieldsThatShouldBeUpdatedImmediatly.includes(v)) {
           const currentBusinessPathArray = [
             "currentBusiness",
             "data",

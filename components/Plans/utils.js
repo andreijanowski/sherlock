@@ -9,7 +9,7 @@ export const generatePlanOptionsList = (planName, t) => {
           name: t("plans:options.mobileApp")
         },
         {
-          name: t("plans:options.paidBooking"),
+          name: t("plans:options.paidReservation"),
           discount: "1€"
         },
         {
@@ -45,7 +45,7 @@ export const generatePlanOptionsList = (planName, t) => {
           name: t("plans:options.mobileApp")
         },
         {
-          name: t("plans:options.bookings"),
+          name: t("plans:options.reservations"),
           discount: "Free"
         },
         {
@@ -91,7 +91,7 @@ export const generatePlanOptionsList = (planName, t) => {
           name: t("plans:options.mobileApp")
         },
         {
-          name: t("plans:options.bookings"),
+          name: t("plans:options.reservations"),
           discount: "Free"
         },
         {
@@ -150,7 +150,7 @@ export const generatePlanOptionsList = (planName, t) => {
           name: t("plans:options.mobileApp")
         },
         {
-          name: t("plans:options.bookings"),
+          name: t("plans:options.reservations"),
           discount: "Free"
         },
         {

@@ -1,5 +1,5 @@
 export const parseTime = time => {
-  const hour24 = Math.floor(time / 60 / 60);
+  const hour24 = Math.floor(time / 60 / 60) % 24;
   const hour = hour24 > 12 ? hour24 - 12 : hour24;
   const minute = `0${(time / 60) % 60}`.slice(-2);
   const meridiem = hour24 !== hour ? "pm" : "am";
@@ -13,8 +13,13 @@ export const parseTime = time => {
   };
 };
 
-export const timeToNumber = ({ hour24, minute }) =>
-  hour24 * 60 * 60 + minute * 60;
+export const timeToNumber = ({ hour24, minute }, startOrEnd) => {
+  const timeInSeconds = hour24 * 60 * 60 + minute * 60;
+  if (startOrEnd === "end" && timeInSeconds === 0) {
+    return 86400;
+  }
+  return timeInSeconds;
+};
 
 export const parsePeriods = periods => {
   const days = {};
@@ -41,6 +46,19 @@ export const parsePeriods = periods => {
       }
     });
   }
+  Object.entries(days).forEach(([key, value]) => {
+    days[key] = value.sort((a, b) => {
+      const aFrom = timeToNumber(a.openedFrom);
+      const bFrom = timeToNumber(b.openedFrom);
+      if (aFrom > bFrom) {
+        return 1;
+      }
+      if (aFrom < bFrom) {
+        return -1;
+      }
+      return 0;
+    });
+  });
   return days;
 };
 
@@ -48,8 +66,8 @@ export const weekdays = [1, 2, 3, 4, 5, 6, 0];
 
 export const parsePeriod = period => ({
   location: period.location,
-  openedFrom: timeToNumber(period.openedFrom),
-  openedTo: timeToNumber(period.openedTo),
+  openedFrom: timeToNumber(period.openedFrom, "start"),
+  openedTo: timeToNumber(period.openedTo, "end"),
   weekday: period.weekday
 });
 
@@ -68,7 +86,28 @@ export const addNewPeriod = (addPeriod, weekday) => {
     openedTo: defaultTime,
     weekday
   };
-  addPeriod(newPeriod);
+  addPeriod(parsePeriod(newPeriod));
+};
+
+export const preparePeriodUpdate = value => {
+  let newPeriod;
+  let updatedPeriod = parsePeriod(value);
+  if (updatedPeriod.openedFrom > updatedPeriod.openedTo) {
+    newPeriod = {
+      ...updatedPeriod,
+      openedFrom: 0,
+      weekday: (updatedPeriod.weekday + 1) % 7
+    };
+    updatedPeriod = {
+      ...updatedPeriod,
+      openedTo: 86400
+    };
+  }
+  updatedPeriod = {
+    ...updatedPeriod,
+    id: value.id
+  };
+  return { newPeriod, updatedPeriod };
 };
 
 export const isMovableBusiness = groups =>

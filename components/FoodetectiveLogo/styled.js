@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const Brandmark = styled.img.attrs({
+export const Brandmark = styled.img.attrs(() => ({
   src: "/static/LogoFoodetective.svg"
-})`
+}))`
   max-width: 100%;
   max-height: 100%;
 `;

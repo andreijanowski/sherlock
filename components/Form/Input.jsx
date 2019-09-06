@@ -16,6 +16,7 @@ const InputField = ({
 }) => (
   <FinalFormField
     name={name}
+    type={type}
     render={({ input, meta }) => {
       const error = getError(meta, isErrorVisibilityRequired);
       return (
@@ -23,7 +24,6 @@ const InputField = ({
           <RawInput
             invalid={error ? "true" : undefined}
             autoComplete="nope"
-            type={type}
             disabled={!error && disabled}
             placeholder={placeholder}
             {...input}

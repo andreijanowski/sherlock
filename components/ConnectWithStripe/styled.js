@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { Button, Paragraph } from "components";
 import { Flex } from "@rebass/grid";
 
-export const Container = styled(Flex).attrs({
+export const Container = styled(Flex).attrs(() => ({
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "column",
   p: [3, 4],
   width: 1
-})`
+}))`
   height: 100%;
 `;
 

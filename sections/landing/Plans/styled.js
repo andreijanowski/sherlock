@@ -9,28 +9,28 @@ const alignCenterMobile = css`
   }
 `;
 
-export const PlansWrapper = styled(Flex).attrs({
+export const PlansWrapper = styled(Flex).attrs(() => ({
   flexDirection: "row",
   flexWrap: "wrap",
   m: -2,
   width: 1,
   alignSelf: "center"
-})`
+}))`
   max-width: 1184px;
 `;
 
-export const TextWrapper = styled(Flex).attrs({
+export const TextWrapper = styled(Flex).attrs(() => ({
   width: 1,
   flexDirection: "column",
   alignSelf: "center",
   mb: 90
-})`
+}))`
   max-width: 896px;
 `;
 
-export const PromotionWrapper = styled(Box).attrs({
+export const PromotionWrapper = styled(Box).attrs(() => ({
   p: 32
-})`
+}))`
   background-color: white;
   border: ${p => p.theme.borderWeights.tiny} solid
     rgb(${p => p.theme.colors.navyBlue});

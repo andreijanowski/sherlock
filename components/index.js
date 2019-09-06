@@ -37,6 +37,7 @@ export { default as Dropzone } from "./Dropzone";
 export { default as DropzoneWithCropper } from "./Form/DropzoneWithCropper";
 export { default as Cropper } from "./Cropper";
 export { default as Modal } from "./Modal";
+export { ModalHeader } from "./Modal/styled";
 export { default as PerfectSquare } from "./PerfectSquare";
 export { default as ActionIcon } from "./ActionIcon";
 export { default as SingleActionView } from "./SingleActionView";
@@ -72,3 +73,16 @@ export { default as Plans, PlansBillingInterval } from "./Plans";
 export { default as Opacity } from "./Opacity";
 export { default as YoutubeModal } from "./YoutubeModal";
 export { default as Picture } from "./Picture";
+export { default as DndColumn } from "./Dnd/Column";
+export { default as DndTable } from "./Dnd/Table";
+export { default as TimeSlotPicker } from "./Timeline/TimeSlotPicker";
+export { default as DaySwitcher } from "./Timeline/DaySwitcher";
+export { SliderStyles } from "./Slider";
+export { default as SliderDetail } from "./Slider/Detail";
+export {
+  Header as SliderHeader,
+  Value as SliderValue,
+  Name as SliderName,
+  Subheader as SliderSubheader,
+  Spacer as SliderSpacer
+} from "./Slider/styled";

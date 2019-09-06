@@ -2,7 +2,7 @@ import { Modal, Button, FormSelect, Paragraph, H3 } from "components";
 import { func, bool, string } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import currencies from "utils/currencies";
-import { FinishOrdersModalIcon } from "icons";
+import { WarningIcon } from "icons";
 import { Form as FinalForm, Field } from "react-final-form";
 
 const StripeCurrencyModal = ({
@@ -29,7 +29,7 @@ const StripeCurrencyModal = ({
           alignItems="center"
           width={[1, 510]}
         >
-          <FinishOrdersModalIcon />
+          <WarningIcon />
           <H3 mt={4}>{t("setStripeCurrencyHeader")}</H3>
           <Paragraph>{t("setStripeCurrencyParagraph")}</Paragraph>
           <Box width={1}>

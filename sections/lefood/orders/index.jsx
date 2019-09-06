@@ -1,9 +1,10 @@
 import { func, shape, bool, string } from "prop-types";
 import { DragDropContext } from "react-beautiful-dnd";
-import { LoadingIndicator } from "components";
-import Column from "./Column";
+import { LoadingIndicator, DndColumn } from "components";
 import { ColumnsWrapper } from "./styled";
 import RejectModal from "./RejectModal";
+import { columns as columnsList, setIsDropDisabled } from "../utils";
+import Order from "./Order";
 
 const Orders = ({
   onDragEnd,
@@ -30,17 +31,36 @@ const Orders = ({
             .map(id => orders.get(id))
             .filter(o => !!o);
           return (
-            <Column
+            <DndColumn
               {...{
-                ...column,
-                t,
-                currency,
-                draggedOrderState,
-                updateOrder,
-                setRejectModalVisibility,
-                toggleOrderDetails,
-                orders: columnOrders,
-                key: column.id
+                key: column.id,
+                id: column.id,
+                title: column.title,
+                items: columnOrders,
+                isDropDisabled: setIsDropDisabled(draggedOrderState, column.id),
+                isColumnGrayedOut: column.id === columnsList.rejected,
+                handleCardClick: toggleOrderDetails,
+                renderCardHeader: id => (
+                  <>
+                    {`${(
+                      orders.getIn([id, "attributes", "totalCostCents"]) / 100
+                    ).toFixed(2)} ${currency}`}
+                    <span>
+                      ID: {orders.getIn([id, "attributes", "shortId"])}
+                    </span>
+                  </>
+                ),
+                renderCardDetails: id => (
+                  <Order
+                    {...{
+                      order: orders.get(id),
+                      id,
+                      t,
+                      setRejectModalVisibility,
+                      updateOrder
+                    }}
+                  />
+                )
               }}
             />
           );

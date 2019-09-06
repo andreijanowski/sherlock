@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { Box } from "@rebass/grid";
 
-const H1 = styled(Box).attrs({
+const H1 = styled(Box).attrs(() => ({
   as: "h1",
   mb: 4,
   mt: 0
-})`
+}))`
   color: rgb(${p => p.theme.colors.dark});
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f32};
