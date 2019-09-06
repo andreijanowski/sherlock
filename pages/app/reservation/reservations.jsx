@@ -19,7 +19,7 @@ import { error } from "react-notification-system-redux";
 import Reservations from "sections/reservation/reservations";
 import ReservationDetails from "sections/reservation/reservations/ReservationDetails";
 import TableDetails from "sections/reservation/reservations/TableDetails";
-import RejectReservationModal from "sections/reservation/reservations/RejectReservationModal";
+import RejectModal from "sections/reservation/reservations/RejectModal";
 import MultipleTablesModal from "sections/reservation/reservations/MultipleTablesModal";
 import moment from "moment";
 import { SliderStyles } from "components";
@@ -27,9 +27,9 @@ import { action as toggleMenu } from "redux-burger-menu/immutable";
 import { patchBusiness } from "actions/businesses";
 import { fetchBooking } from "actions/bookings";
 import {
-  deleteReservation,
   setReservationForEditing,
-  patchReservation
+  patchReservation,
+  patchReservationReject
 } from "actions/reservations";
 
 const namespaces = ["reservation", "app", "forms"];
@@ -379,10 +379,10 @@ class ReservationsPage extends PureComponent {
     this.setState({ pendingRejectionReservationId: reservationId });
   };
 
-  removeReservation = () => {
-    const { removeReservation } = this.props;
+  handleRejectionSubmit = values => {
+    const { rejectReservation } = this.props;
     const { pendingRejectionReservationId } = this.state;
-    removeReservation(pendingRejectionReservationId);
+    rejectReservation(pendingRejectionReservationId, values);
     this.setState({ pendingRejectionReservationId: undefined });
   };
 
@@ -587,16 +587,11 @@ class ReservationsPage extends PureComponent {
             }}
           />
         </div>
-        <RejectReservationModal
+        <RejectModal
           {...{
             isOpen: !!pendingRejectionReservationId,
             onClose: () => this.setRejectModalVisibility(undefined),
-            pendingRejectionOrder: reservations
-              ? reservations.find(
-                  o => o.get("id") === pendingRejectionReservationId
-                )
-              : null,
-            removeReservation: this.removeReservation,
+            handleRejectionSubmit: this.handleRejectionSubmit,
             t
           }}
         />
@@ -631,7 +626,7 @@ ReservationsPage.propTypes = {
   toggleReservationDetails: func.isRequired,
   toggleTableDetails: func.isRequired,
   updateBusiness: func.isRequired,
-  removeReservation: func.isRequired,
+  rejectReservation: func.isRequired,
   setEditedReservation: func.isRequired,
   updateReservation: func.isRequired,
   getBooking: func.isRequired
@@ -684,7 +679,7 @@ export default requireAuth(true)(
           toggleMenu(isOpen, "ReservationDetails"),
         toggleTableDetails: isOpen => toggleMenu(isOpen, "TableDetails"),
         updateBusiness: patchBusiness,
-        removeReservation: deleteReservation,
+        rejectReservation: patchReservationReject,
         updateReservation: patchReservation,
         setEditedReservation: setReservationForEditing,
         getBooking: fetchBooking

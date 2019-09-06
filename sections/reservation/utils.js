@@ -1,4 +1,5 @@
 import { Map } from "immutable";
+import moment from "moment";
 
 const ONE_DAY_IN_SECONDS = 86400;
 
@@ -51,24 +52,35 @@ export const calcReservedPeriodsForTables = reservations => {
       const reservationTables = r.getIn(["relationships", "tables", "data"]);
       if (reservationTables && reservationTables.size) {
         reservationTables.forEach(t => {
-          if (reservedPeriodsForTables[t.get("id")]) {
-            reservedPeriodsForTables[t.get("id")].push({
-              date: r.getIn(["attributes", "date"]),
-              from: r.getIn(["attributes", "from"]),
-              to: r.getIn(["attributes", "to"]),
-              partySize: r.getIn(["attributes", "partySize"]),
-              isSplited: reservationTables.size > 1
-            });
+          const reservedPeriod = {
+            date: r.getIn(["attributes", "date"]),
+            from: r.getIn(["attributes", "from"]),
+            to: r.getIn(["attributes", "to"]),
+            partySize: r.getIn(["attributes", "partySize"]),
+            isSplited: reservationTables.size > 1
+          };
+          if (reservedPeriod.from > reservedPeriod.to) {
+            const reservedPeriodAfterMidnight = { ...reservedPeriod };
+            reservedPeriodAfterMidnight.from = 0;
+            reservedPeriodAfterMidnight.date = moment(reservedPeriod.date)
+              .add(1, "d")
+              .format("YYYY-MM-DD");
+            reservedPeriod.to = 86400;
+            if (reservedPeriodsForTables[t.get("id")]) {
+              reservedPeriodsForTables[t.get("id")].push(reservedPeriod);
+              reservedPeriodsForTables[t.get("id")].push(
+                reservedPeriodAfterMidnight
+              );
+            } else {
+              reservedPeriodsForTables[t.get("id")] = [
+                reservedPeriod,
+                reservedPeriodAfterMidnight
+              ];
+            }
+          } else if (reservedPeriodsForTables[t.get("id")]) {
+            reservedPeriodsForTables[t.get("id")].push(reservedPeriod);
           } else {
-            reservedPeriodsForTables[t.get("id")] = [
-              {
-                date: r.getIn(["attributes", "date"]),
-                from: r.getIn(["attributes", "from"]),
-                to: r.getIn(["attributes", "to"]),
-                partySize: r.getIn(["attributes", "partySize"]),
-                isSplited: reservationTables.size > 1
-              }
-            ];
+            reservedPeriodsForTables[t.get("id")] = [reservedPeriod];
           }
         });
       }
@@ -140,6 +152,16 @@ export const prepareTimelineSlots = ({
       });
     }
 
+    periods.sort((a, b) => {
+      if (a.from > b.from) {
+        return 1;
+      }
+      if (a.from < b.from) {
+        return -1;
+      }
+      return 0;
+    });
+
     periods.forEach(({ from, to }) => {
       let i = 0;
       if (from < to) {
@@ -166,8 +188,7 @@ export const getSlotClosestToPresent = slots => {
   return slots.find(s => s >= nowInSeconds) || slots[slots.length - 1];
 };
 
-export const getSlotFromMoment = (slots, moment) =>
-  slots.find(s => s === moment);
+export const getSlotFromMoment = (slots, m) => slots.find(s => s === m);
 
 export const checkIfTableIsAvailable = ({
   reservedPeriods,
@@ -176,17 +197,26 @@ export const checkIfTableIsAvailable = ({
   draggedReservation
 }) => {
   if (draggedReservation) {
-    return reservedPeriods.find(
-      r =>
-        // TODO: handle case, when restaurant is open in day and night and dates are changing ex. from 23:30 -> 1:30
-        r.date === choosenDate.format("YYYY-MM-DD") &&
-        r.to >= draggedReservation.getIn(["attributes", "from"]) &&
-        r.from <= draggedReservation.getIn(["attributes", "to"])
-    );
+    return reservedPeriods.find(r => {
+      const from = draggedReservation.getIn(["attributes", "from"]);
+      const to = draggedReservation.getIn(["attributes", "to"]);
+      const date = draggedReservation.getIn(["attributes", "date"]);
+      if (from > to) {
+        return (
+          (r.date === date && r.to >= from && r.from <= 86400) ||
+          (r.date ===
+            moment(date)
+              .add(1, "d")
+              .format("YYYY-MM-DD") &&
+            r.to >= 0 &&
+            r.from <= from)
+        );
+      }
+      return r.date === date && r.to >= from && r.from <= to;
+    });
   }
   return reservedPeriods.find(
     r =>
-      // TODO: handle case, when restaurant is open in day and night and dates are changing ex. from 23:30 -> 1:30
       r.date === choosenDate.format("YYYY-MM-DD") &&
       r.to >= choosenSlot &&
       r.from <= choosenSlot

@@ -3,6 +3,7 @@ import {
   FETCH_RESERVATION_SUCCESS,
   POST_RESERVATION_SUCCESS,
   PATCH_RESERVATION_SUCCESS,
+  PATCH_RESERVATION_REJECT_SUCCESS,
   DELETE_RESERVATION_REQUEST,
   SET_EDIT_RESERVATION
 } from "types/reservations";
@@ -15,7 +16,7 @@ import { LOGOUT } from "types/auth";
 
 import { Record, Map, fromJS } from "immutable";
 
-const initialState = Record({
+export const initialState = Record({
   data: Map(),
   isFetching: false,
   isFailed: false,
@@ -88,7 +89,8 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       return state.setIn(["data"], fromJS(payload.data));
     }
 
-    case PATCH_RESERVATION_SUCCESS: {
+    case PATCH_RESERVATION_SUCCESS:
+    case PATCH_RESERVATION_REJECT_SUCCESS: {
       if (state.getIn(["data"]) && state.getIn(["data"]).size) {
         return state.mergeDeepIn(
           ["data", "reservations"],
@@ -103,10 +105,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     }
 
     case SET_EDIT_RESERVATION: {
-      return state.setIn(
-        ["editedReservation"],
-        fromJS(payload.editedReservation)
-      );
+      return state.set("editedReservation", fromJS(payload.editedReservation));
     }
 
     case LOGOUT: {

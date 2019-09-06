@@ -16,6 +16,7 @@ const namespaces = ["reservation", "app", "forms"];
 const CreateReservationPage = ({
   t,
   lng,
+  userId,
   tables,
   business,
   businessId,
@@ -27,17 +28,23 @@ const CreateReservationPage = ({
   const [isSending, setIsSending] = useState(false);
   const handleFormSubmit = ({ phoneCountry, from, to, ...values }) => {
     setIsSending(true);
-    addReservation(businessId, {
-      ...values,
-      from: from ? timeToNumber(from) : undefined,
-      to: to ? timeToNumber(to) : undefined,
-      phoneCountryPrefix:
-        phoneCountry && phoneCountry.value
-          ? phoneCountry.value.prefix
-          : undefined,
-      phoneCountryCode:
-        phoneCountry && phoneCountry.value ? phoneCountry.value.code : undefined
-    })
+    addReservation(
+      businessId,
+      {
+        ...values,
+        from: from ? timeToNumber(from, "start") : undefined,
+        to: to ? timeToNumber(to, "end") : undefined,
+        phoneCountryPrefix:
+          phoneCountry && phoneCountry.value
+            ? phoneCountry.value.prefix
+            : undefined,
+        phoneCountryCode:
+          phoneCountry && phoneCountry.value
+            ? phoneCountry.value.code
+            : undefined
+      },
+      userId
+    )
       .then(() => Router.pushRoute(`/${lng}/app/reservation/reservations`))
       .finally(() => setIsSending(false));
   };
@@ -79,6 +86,7 @@ CreateReservationPage.propTypes = {
   businesses: shape(),
   tables: shape(),
   businessId: string,
+  userId: string,
   changeCurrentBusiness: func.isRequired,
   updateBusiness: func.isRequired,
   addReservation: func.isRequired
@@ -87,6 +95,7 @@ CreateReservationPage.propTypes = {
 CreateReservationPage.defaultProps = {
   business: null,
   businessId: "",
+  userId: "",
   businesses: null,
   tables: null
 };
@@ -98,11 +107,14 @@ export default requireAuth(true)(
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
         const business = businessData && businessData.get("businesses").first();
         const tables = state.getIn(["tables", "data", "tables"]);
+        const users = state.getIn(["users", "profile", "data", "users"]);
+        const user = users && users.first();
 
         return {
           business: business && business.get("attributes"),
           businessId: business && business.get("id"),
           tables,
+          userId: user && user.get("id"),
           businesses: state.getIn([
             "users",
             "profileBusinesses",

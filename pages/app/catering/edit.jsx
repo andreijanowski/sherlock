@@ -35,8 +35,8 @@ class EditCateringPage extends PureComponent {
     const { updateCatering, lng } = this.props;
     const updatedCatering = {
       ...values,
-      from: timeToNumber(values.from),
-      to: timeToNumber(values.to)
+      from: timeToNumber(values.from, "start"),
+      to: timeToNumber(values.to, "end")
     };
     if (menu && menu.name) {
       updatedCatering.menu = await fileToBase64(menu);

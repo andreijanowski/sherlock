@@ -47,5 +47,13 @@
   "splitedCardInfo": "This is part of reservation that was splited into multiple tickets",
   "cardNotFitsSlotsInfo": "This reservation doesn't fit in time slots. Click to  go to reservation details and edit",
   "total": "total",
-  "of": "of"
+  "of": "of",
+  "rejectReasonHeader": "Choose the reason for canceling the order",
+  "rejectReasonLabel": "Reason",
+  "other": "Other",
+  "restaurant_full": "Restaurant full",
+  "almost_closing_time": "Almost closing time",
+  "confirm": "Confirm",
+  "otherRejectionReasonLabel": "Other reason",
+  "otherRejectionReasonPlaceholder": "The reason is..."
 }
