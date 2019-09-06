@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 export const ModalStyles = createGlobalStyle`
   .modal-overlay {
@@ -52,4 +52,13 @@ export const ModalStyles = createGlobalStyle`
     height: 100%;
     padding: 2px;
   }
+`;
+
+export const ModalHeader = styled.h3`
+  color: rgb(${p => p.theme.colors.dark});
+  font-weight: ${p => p.theme.fontWeights.regular};
+  font-size: ${p => p.theme.fontSizes.f18};
+  line-height: 1.5;
+  white-space: pre-line;
+  text-align: center;
 `;

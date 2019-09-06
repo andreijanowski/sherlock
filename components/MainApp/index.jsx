@@ -10,8 +10,9 @@ import {
   Notifications,
   Catering,
   Subscriptions,
-  Delivery,
-  Privatisations
+  Privatisations,
+  Reservations,
+  Delivery
 } from "icons";
 import {
   Wrapper,
@@ -37,6 +38,8 @@ const chooseIcon = icon => {
       return Subscriptions;
     case "privatisations":
       return Privatisations;
+    case "reservation":
+      return Reservations;
     default:
       return () => <></>;
   }

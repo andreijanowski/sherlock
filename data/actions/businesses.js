@@ -1,3 +1,4 @@
+import moment from "moment";
 import {
   POST_BUSINESS_REQUEST,
   PATCH_BUSINESS_REQUEST,
@@ -6,7 +7,9 @@ import {
   FETCH_BUSINESS_DISHES_REQUEST,
   FETCH_BUSINESS_ORDERS_REQUEST,
   FETCH_BUSINESS_CATERINGS_REQUEST,
-  FETCH_BUSINESS_PRIVATISATIONS_REQUEST
+  FETCH_BUSINESS_PRIVATISATIONS_REQUEST,
+  FETCH_BUSINESS_TABLES_REQUEST,
+  FETCH_BUSINESS_RESERVATIONS_REQUEST
 } from "types/businesses";
 
 export const postBusiness = () => ({
@@ -120,6 +123,43 @@ export const fetchBusinessPrivatisations = (id, page = 1) => ({
       per_page: 200,
       page,
       include: "user,address"
+    }
+  },
+  meta: { thunk: true, page }
+});
+
+export const fetchBusinessTables = (id, page = 1) => ({
+  type: FETCH_BUSINESS_TABLES_REQUEST,
+  payload: {
+    endpoint: `/api/v1/businesses/${id}/tables`,
+    params: {
+      per_page: 200,
+      page
+    }
+  },
+  meta: { thunk: true, page }
+});
+
+export const fetchBusinessReservations = (
+  id,
+  page = 1,
+  startDate = moment({ h: 0, m: 0, s: 0, ms: 0 })
+    .subtract(7, "d")
+    .toISOString(),
+  endDate = moment({ h: 0, m: 0, s: 0, ms: 0 })
+    .add(1, "y")
+    .toISOString(),
+  from = 0,
+  to = 86400
+) => ({
+  type: FETCH_BUSINESS_RESERVATIONS_REQUEST,
+  payload: {
+    endpoint: `/api/v1/businesses/${id}/reservations`,
+    params: {
+      per_page: 200,
+      page,
+      include: "user,bookings,tables",
+      filter: { start_date: startDate, end_date: endDate, from, to }
     }
   },
   meta: { thunk: true, page }

@@ -60,6 +60,8 @@ const AdditionalInformationForm = ({ t, initialValues, handleSubmit }) =>
           </Flex>
           <H3 mt={3}>{t("services")}</H3>
           <FormCheckbox name="hasCatering" label={t("hasCatering")} />
+          <FormCheckbox name="hasReservations" label={t("hasReservations")} />
+          <FormCheckbox name="hasPrivateEvents" label={t("hasPrivateEvents")} />
           <FormInput
             name="deliveryUrl"
             label={t("deliveryUrlLabel")}

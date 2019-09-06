@@ -1,9 +1,9 @@
 import styled, { createGlobalStyle } from "styled-components";
 import { Flex } from "@rebass/grid";
 
-export const Wrapper = styled(Flex).attrs({
+export const Wrapper = styled(Flex).attrs(() => ({
   flexDirection: "column"
-})`
+}))`
   width: calc(100vw - 128px);
   max-width: 100vw;
   height: calc(100vh - 128px);

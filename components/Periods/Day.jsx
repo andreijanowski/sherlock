@@ -10,7 +10,7 @@ import { Flex, Box } from "@rebass/grid";
 import { FieldArray } from "react-final-form-arrays";
 import { func, number, bool, shape } from "prop-types";
 import { Actions, Action, Line } from "./styled";
-import { addNewPeriod } from "./utils";
+import { addNewPeriod, preparePeriodUpdate } from "./utils";
 
 class Day extends PureComponent {
   state = {
@@ -30,9 +30,13 @@ class Day extends PureComponent {
   };
 
   handleBlur = value => {
-    const { updatePeriod } = this.props;
-    return updatePeriod({
-      ...value[0]
+    const { updatePeriod, addPeriod } = this.props;
+    value.forEach(v => {
+      const { updatedPeriod, newPeriod } = preparePeriodUpdate(v);
+      if (newPeriod) {
+        addPeriod(newPeriod);
+      }
+      updatePeriod(updatedPeriod);
     });
   };
 

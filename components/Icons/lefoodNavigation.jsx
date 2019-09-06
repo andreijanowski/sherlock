@@ -1,3 +1,5 @@
+import { string } from "prop-types";
+
 const fillNone = { fill: "none" };
 const strokeNone = { stroke: "none" };
 
@@ -154,11 +156,11 @@ export const RejectModalIcon = () => (
   </svg>
 );
 
-export const StopOrdersModalIcon = () => (
+export const StopOrdersModalIcon = ({ width, height }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="71"
-    height="71"
+    width={width}
+    height={height}
     viewBox="0 0 71 71"
   >
     <g fill="none" fillRule="evenodd" transform="translate(1 1)">
@@ -182,11 +184,21 @@ export const StopOrdersModalIcon = () => (
   </svg>
 );
 
-export const FinishOrdersModalIcon = () => (
+StopOrdersModalIcon.propTypes = {
+  width: string,
+  height: string
+};
+
+StopOrdersModalIcon.defaultProps = {
+  width: "71",
+  height: "71"
+};
+
+export const WarningIcon = ({ width, height }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="73"
-    height="63"
+    width={width}
+    height={height}
     viewBox="0 0 73 63"
   >
     <g fill="none" fillRule="evenodd">
@@ -203,3 +215,13 @@ export const FinishOrdersModalIcon = () => (
     </g>
   </svg>
 );
+
+WarningIcon.propTypes = {
+  width: string,
+  height: string
+};
+
+WarningIcon.defaultProps = {
+  width: "73",
+  height: "63"
+};

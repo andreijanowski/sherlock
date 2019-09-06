@@ -2,15 +2,15 @@ import Slide from "react-burger-menu/lib/menus/slide";
 import { decorator as reduxBurgerMenu } from "redux-burger-menu/immutable";
 import { func, bool, shape } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
-import { Button, FormDropdown } from "components";
 import {
-  OrderDetailsHeader,
-  OrderDetailsSubheader,
-  OrderDetailsSpacer,
-  OrderDetailsState
-} from "./styled";
+  Button,
+  FormDropdown,
+  SliderDetail,
+  SliderHeader,
+  SliderSubheader,
+  SliderSpacer
+} from "components";
 import OrderDetail from "./OrderDetail";
-import PersonalInformation from "./PersonalInformation";
 
 const OrderDetails = ({
   isOpen,
@@ -30,46 +30,46 @@ const OrderDetails = ({
   >
     {orderDetails && (
       <>
-        <OrderDetailsHeader>{t("orderDetails")}</OrderDetailsHeader>
-        <p>{`id: ${orderDetails.getIn(["attributes", "shortId"])}`}</p>
-        <OrderDetailsState>
-          <FormDropdown
-            {...{
-              input: {
-                value: orderDetails.getIn(["attributes", "state"]),
-                onChange: state => {
-                  if (state === "rejected") {
-                    setRejectModalVisibility(orderDetails.get("id"));
-                  } else {
-                    updateOrder(state, orderDetails.get("id"));
-                  }
+        <SliderHeader>{t("orderDetails")}</SliderHeader>
+        <SliderSubheader>
+          {`ID: ${orderDetails.getIn(["attributes", "shortId"])}`}
+        </SliderSubheader>
+        <FormDropdown
+          {...{
+            input: {
+              value: orderDetails.getIn(["attributes", "state"]),
+              onChange: state => {
+                if (state === "rejected") {
+                  setRejectModalVisibility(orderDetails.get("id"));
+                } else {
+                  updateOrder(state, orderDetails.get("id"));
                 }
+              }
+            },
+            meta: { data: {} },
+            items: [
+              {
+                label: t("waiting_for_approval"),
+                value: "waiting_for_approval"
               },
-              meta: { data: {} },
-              items: [
-                {
-                  label: t("waiting_for_approval"),
-                  value: "waiting_for_approval"
-                },
-                {
-                  label: t("waiting_for_payment"),
-                  value: "waiting_for_payment"
-                },
-                { label: t("paid"), value: "paid" },
-                { label: t("in_preparation"), value: "in_preparation" },
-                { label: t("in_delivery"), value: "in_delivery" },
-                { label: t("completed"), value: "completed" },
-                { label: t("rejected"), value: "rejected" }
-              ],
-              label: t("orderState")
-            }}
-          />
-          {orderDetails.getIn(["attributes", "state"]) === "rejected" &&
-            `${t("rejectReason")}: ${orderDetails.getIn([
-              "attributes",
-              "otherRejectionReason"
-            ]) || t(orderDetails.getIn(["attributes", "rejectReason"]))}`}
-        </OrderDetailsState>
+              {
+                label: t("waiting_for_payment"),
+                value: "waiting_for_payment"
+              },
+              { label: t("paid"), value: "paid" },
+              { label: t("in_preparation"), value: "in_preparation" },
+              { label: t("in_delivery"), value: "in_delivery" },
+              { label: t("completed"), value: "completed" },
+              { label: t("rejected"), value: "rejected" }
+            ],
+            label: t("orderState")
+          }}
+        />
+        {orderDetails.getIn(["attributes", "state"]) === "rejected" &&
+          `${t("rejectReason")}: ${orderDetails.getIn([
+            "attributes",
+            "otherRejectionReason"
+          ]) || t(orderDetails.getIn(["attributes", "rejectReason"]))}`}
         {orderDetails.getIn(["relationships", "elements", "data"]) &&
           orderDetails
             .getIn(["relationships", "elements", "data"])
@@ -103,24 +103,22 @@ const OrderDetails = ({
             isBold: true
           }}
         />
-        <OrderDetailsSpacer />
-        <OrderDetailsSubheader>
-          {t("personalInformation")}
-        </OrderDetailsSubheader>
-        <PersonalInformation
+        <SliderSpacer />
+        <SliderSubheader>{t("personalInformation")}</SliderSubheader>
+        <SliderDetail
           {...{
             name: t("email"),
             value: [orderDetails.getIn(["attributes", "userEmail"])]
           }}
         />
-        <PersonalInformation
+        <SliderDetail
           {...{
             name: t("phone"),
             value: [orderDetails.getIn(["attributes", "userPhone"])]
           }}
         />
         {orderDetails.getIn(["attributes", "pickupAtBusiness"]) && (
-          <PersonalInformation
+          <SliderDetail
             {...{
               name: t("deliveryAddress"),
               value: [t("pickupAtRestaurant")]
@@ -132,7 +130,7 @@ const OrderDetails = ({
             .getIn(["relationships", "addresses", "data"])
             .map(address => (
               <>
-                <PersonalInformation
+                <SliderDetail
                   {...{
                     name: t("deliveryAddress"),
                     value: [
@@ -155,7 +153,7 @@ const OrderDetails = ({
                   }}
                 />
                 {address.getIn(["attributes", "notes"]) && (
-                  <PersonalInformation
+                  <SliderDetail
                     {...{
                       name: t("deliveryNotes"),
                       value: [address.getIn(["attributes", "notes"])]

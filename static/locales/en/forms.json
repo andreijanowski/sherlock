@@ -9,6 +9,8 @@
       "number": "The field must be a number",
       "nonNegative": "The field must be a non negative value",
       "integer": "The field must be a integer",
+      "maxLength": "The field can have maximum {{length}} characters.",
+      "integerWithOptions": "The field must be a integer from {{min}} to {{max}}",
       "pixel_dimensions_error-logo": "Avatar size should be less than or equal to {{maxWidth}}x{{maxHeight}}px",
       "pixel_dimensions_error-menu": "Menu size should be less than or equal to {{maxWidth}}x{{maxHeight}}px",
       "cannot_delete_published-base": "Cannot delete published businesses",
@@ -130,7 +132,12 @@
       "cannot_set_without_order_periods-visible_in_lefood": "Add order periods first",
       "blank-display_name": "Display name can't be blank",
       "country_not_supported-stripe_currency": "Your country is not supported by stripe.",
-      "taken-code": "Code already present in a different delivery"
+      "greater_than-number_of_seats": "Number of seats must be greater than 0",
+      "missing_attributes-Missing attributes": "Missing attributes",
+      "greater_than-party_size": "Party size must be greater than {{count}}. Your value is {{value}}",
+      "taken-code": "Code already present in a different delivery",
+      "not_between_open_periods-base": "Reservation must take place between business open periods",
+      "not_enough_time_before_start-from": "Not enough time before start"
     }
   },
   "placeholder": {

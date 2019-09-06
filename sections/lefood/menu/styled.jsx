@@ -1,17 +1,20 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
-export const Wrapper = styled(Flex).attrs({ flexDirection: "column", p: 4 })`
+export const Wrapper = styled(Flex).attrs(() => ({
+  flexDirection: "column",
+  p: 4
+}))`
   background-color: rgb(${p => p.theme.colors.white});
 `;
 
-export const Dish = styled(Flex).attrs({
+export const Dish = styled(Flex).attrs(() => ({
   p: 2,
   pr: 3,
   mb: 2,
   alignItems: "center",
   justifyContent: "space-between"
-})`
+}))`
   background-color: rgb(${p => p.theme.colors.white});
   border: 1px solid rgb(${p => p.theme.colors.snuff});
   border-radius: ${p => p.theme.radius.default};

@@ -3,7 +3,7 @@ import { withNamespaces } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape, number } from "prop-types";
 import LefoodLayout from "sections/lefood/Layout";
-import { Periods, parsePeriods, parsePeriod } from "components";
+import { Periods, parsePeriods } from "components";
 import { connect } from "react-redux";
 import {
   postOrderPeriod,
@@ -24,12 +24,12 @@ class OrderingHoursPage extends PureComponent {
 
   addOrderPeriod = orderPeriod => {
     const { addOrderPeriod, businessId } = this.props;
-    return addOrderPeriod(businessId, parsePeriod(orderPeriod));
+    return addOrderPeriod(businessId, orderPeriod);
   };
 
   updateOrderPeriod = orderPeriod => {
     const { updateOrderPeriod } = this.props;
-    return updateOrderPeriod(orderPeriod.id, parsePeriod(orderPeriod));
+    return updateOrderPeriod(orderPeriod.id, orderPeriod);
   };
 
   removeOrderPeriod = id => {

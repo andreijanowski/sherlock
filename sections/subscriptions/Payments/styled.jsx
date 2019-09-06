@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 import { RawInput } from "components";
 
-export const Label = styled(Box).attrs({
+export const Label = styled(Box).attrs(() => ({
   mb: 2
-})`
+}))`
   color: ${props => props.theme.colors.manatee};
   font-size: ${props => props.theme.fontSizes[1]};
 `;
@@ -15,11 +15,11 @@ export const Input = styled(RawInput)`
   }
 `;
 
-export const CardWrapper = styled(Flex).attrs({
+export const CardWrapper = styled(Flex).attrs(() => ({
   alignItems: "center",
   p: 2,
   mb: 2
-})`
+}))`
   color: rgb(${p => (p.selected ? p.theme.colors.white : p.theme.colors.blue)});
   background-color: rgba(
     ${p => `${p.theme.colors.blue}, ${p.selected ? 1 : 0.1}`}
@@ -52,10 +52,10 @@ export const Price = styled.div`
   }
 `;
 
-export const Container = styled(Flex).attrs({
+export const Container = styled(Flex).attrs(() => ({
   width: 1,
   flexDirection: "column"
-})`
+}))`
   max-width: 600px;
 `;
 

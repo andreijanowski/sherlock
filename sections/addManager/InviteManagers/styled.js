@@ -32,9 +32,9 @@ export const FieldsContainer = styled.div`
   overflow-y: auto;
 `;
 
-export const RemoveButton = styled.button.attrs({
+export const RemoveButton = styled.button.attrs(() => ({
   type: "button"
-})`
+}))`
   position: absolute;
   top: 13px;
   right: 15px;

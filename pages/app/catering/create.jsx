@@ -34,8 +34,8 @@ class CreateCateringPage extends PureComponent {
     const { createCatering, lng, businessId } = this.props;
     const newCatering = {
       ...values,
-      from: values.from ? timeToNumber(values.from) : undefined,
-      to: values.to ? timeToNumber(values.to) : undefined,
+      from: values.from ? timeToNumber(values.from, "start") : undefined,
+      to: values.to ? timeToNumber(values.to, "end") : undefined,
       phoneCountryPrefix:
         phoneCountry && phoneCountry.value
           ? phoneCountry.value.prefix

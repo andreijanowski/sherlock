@@ -32,9 +32,9 @@ export const EventWrapper = styled(Wrapper)`
   }
 `;
 
-export const Header = styled(Flex).attrs({
+export const Header = styled(Flex).attrs(() => ({
   justifyContent: "space-between"
-})`
+}))`
   padding-bottom: 24px;
 `;
 export const MainInfo = styled.div`
@@ -55,10 +55,10 @@ export const Price = styled.div`
   font-size: ${p => p.theme.fontSizes.f21};
   line-height: 32px;
 `;
-export const IconWrapper = styled(Flex).attrs({
+export const IconWrapper = styled(Flex).attrs(() => ({
   justifyContent: "center",
   alignItems: "center"
-})`
+}))`
   width: 40px;
   height: 40px;
   color: rgb(${p => p.theme.colors.blue});
@@ -72,9 +72,9 @@ export const IconWrapper = styled(Flex).attrs({
   }
 `;
 
-export const EditIcon = styled(FontAwesomeIcon).attrs({
+export const EditIcon = styled(FontAwesomeIcon).attrs(() => ({
   icon: ["fa", "pen"]
-})`
+}))`
   /* stylelint-disable-line no-empty-block */
 `;
 
@@ -84,10 +84,13 @@ export const Details = styled.div`
   border-top: 1px solid rgba(${p => p.theme.colors.blue}, 0.08);
   border-bottom: 1px solid rgba(${p => p.theme.colors.blue}, 0.08);
 `;
-export const Detail = styled(Flex).attrs({ width: 1, alignItems: "center" })`
+export const Detail = styled(Flex).attrs(() => ({
+  width: 1,
+  alignItems: "center"
+}))`
   /* stylelint-disable-line no-empty-block */
 `;
-export const DetailContent = styled(Box).attrs({ width: 1 / 2, mb: 2 })`
+export const DetailContent = styled(Box).attrs(() => ({ width: 1 / 2, mb: 2 }))`
   color: rgb(${p => p.theme.colors.dark});
   font-size: ${p => p.theme.fontSizes.f14};
   line-height: 24px;

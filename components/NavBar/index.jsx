@@ -3,11 +3,7 @@ import { func, string } from "prop-types";
 import { logout as logoutAction } from "actions/auth";
 import { connect } from "react-redux";
 import {
-  // Temporary hidden icons:
-  // ControlCenter,
-  // Bookings,
-  // SocialMedia,
-  // Billing,
+  Reservations,
   Delivery,
   Catering,
   Privatisations,
@@ -106,6 +102,20 @@ const NavBar = ({ t, lng, logout }) => (
       </SubitemsWrapper>
     </Item>
     <Item>
+      <Link {...{ lng, route: `/app/reservation/reservations/` }}>
+        <Icon>
+          <Reservations />
+        </Icon>
+      </Link>
+      <SubitemsWrapper>
+        <Subitems>
+          <Link {...{ lng, route: `/app/reservation/reservations/` }}>
+            <Subitem>{t("app:reservations")}</Subitem>
+          </Link>
+        </Subitems>
+      </SubitemsWrapper>
+    </Item>
+    <Item>
       <Link {...{ lng, route: `/app/subscriptions/` }}>
         <Icon>
           <Subscriptions />
@@ -137,47 +147,6 @@ const NavBar = ({ t, lng, logout }) => (
         </Subitems>
       </SubitemsWrapper>
     </Item>
-    {/* Temporary hidden icons */}
-    {/* <Item inactive>
-      <Icon inactive>
-        <ControlCenter />
-      </Icon>
-      <SubitemsWrapper>
-        <Subitems>
-          <Subitem>{t("app:controlCenter")}</Subitem>
-        </Subitems>
-      </SubitemsWrapper>
-    </Item>
-    <Item inactive>
-      <Icon inactive>
-        <Bookings />
-      </Icon>
-      <SubitemsWrapper>
-        <Subitems>
-          <Subitem>{t("app:bookings")}</Subitem>
-        </Subitems>
-      </SubitemsWrapper>
-    </Item>
-    <Item inactive>
-      <Icon inactive>
-        <SocialMedia />
-      </Icon>
-      <SubitemsWrapper>
-        <Subitems>
-          <Subitem>{t("app:socialMedia")}</Subitem>
-        </Subitems>
-      </SubitemsWrapper>
-    </Item>
-    <Item inactive>
-      <Icon inactive>
-        <Billing />
-      </Icon>
-      <SubitemsWrapper>
-        <Subitems>
-          <Subitem>{t("app:billing")}</Subitem>
-        </Subitems>
-      </SubitemsWrapper>
-    </Item> */}
   </Wrapper>
 );
 

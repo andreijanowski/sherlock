@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
-export const Period = styled(Flex).attrs({
+export const Period = styled(Flex).attrs(() => ({
   justifyContent: "space-between",
   alignItems: "center"
-})`
+}))`
   padding: 16px;
   color: rgb(${p => p.theme.colors.dark});
   font-size: ${p => p.theme.fontSizes.f18};

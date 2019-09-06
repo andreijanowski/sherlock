@@ -13,21 +13,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const namespaces = ["stripe", "forms", "app"];
 
-const Container = styled(Flex).attrs({
+const Container = styled(Flex).attrs(() => ({
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "column",
   p: [3, 4],
   width: 1
-})`
+}))`
   height: 100%;
 `;
 
-const Icon = styled(Flex).attrs({
+const Icon = styled(Flex).attrs(() => ({
   justifyContent: "center",
   alignItems: "center",
   mt: 4
-})`
+}))`
   width: 100px;
   height: 100px;
   color: rgb(${p => p.theme.colors.white});

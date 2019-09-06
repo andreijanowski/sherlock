@@ -14,7 +14,7 @@ import { patchOrder, patchOrderReject } from "actions/orders";
 import { patchBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/app";
 import OrderDetails from "sections/lefood/orders/OrderDetails";
-import { SliderStyles } from "sections/lefood/orders/styled";
+import { SliderStyles } from "components";
 import { action as toggleMenu } from "redux-burger-menu/immutable";
 
 const namespaces = ["lefood", "app", "forms"];
