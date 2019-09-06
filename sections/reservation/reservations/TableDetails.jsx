@@ -67,6 +67,7 @@ const TableDetails = ({
               }
               return 1;
             })
+            .filter(a => a.getIn(["attributes", "state"]) === "booked")
             .valueSeq()
             .map(r => {
               const from = r.getIn(["attributes", "from"]);
