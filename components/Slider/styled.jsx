@@ -28,6 +28,7 @@ export const Header = styled.h2`
 `;
 
 export const Subheader = styled(Header)`
+  padding-bottom: 16px;
   font-size: ${p => p.theme.fontSizes.f18};
 `;
 

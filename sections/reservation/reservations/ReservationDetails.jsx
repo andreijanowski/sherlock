@@ -11,6 +11,7 @@ import {
 import { Flex, Box } from "@rebass/grid";
 import moment from "moment";
 import { Router } from "routes";
+import { getReservationBookings } from "../utils";
 
 const ReservationDetails = ({
   isOpen,
@@ -22,6 +23,7 @@ const ReservationDetails = ({
   handleTableClick,
   t,
   lng,
+  bookings,
   setEditedReservation
 }) => (
   <Slide
@@ -102,15 +104,39 @@ const ReservationDetails = ({
         {reservationTables && reservationTables.length !== 0 && (
           <>
             <SliderSubheader>{t("tablesList")}</SliderSubheader>
-            {reservationTables.map(r => (
-              <SliderDetail
-                {...{
-                  onClick: () => handleTableClick(r.tableId),
-                  name: t("numberLabel"),
-                  value: [r.tableNumber]
-                }}
-              />
-            ))}
+            {reservationTables.map(table => {
+              const reservationBookings = getReservationBookings(
+                reservationDetails
+              );
+              const tableReservationBooking =
+                bookings &&
+                reservationBookings
+                  .map(b => bookings.get(b.get("id")))
+                  .find(
+                    b =>
+                      b &&
+                      b.getIn(["relationships", "table", "data", "id"]) ===
+                        table.tableId
+                  );
+              return (
+                <SliderDetail
+                  {...{
+                    onClick: () => handleTableClick(table.tableId),
+                    name: t("numberLabel"),
+                    value: [
+                      table.tableNumber,
+                      `${tableReservationBooking &&
+                        tableReservationBooking.getIn([
+                          "attributes",
+                          "seatsTaken"
+                        ])} ${t("of")} ${table.numberOfSeats} ${t(
+                        "seatsTaken"
+                      )} `
+                    ]
+                  }}
+                />
+              );
+            })}
             <SliderSpacer />
           </>
         )}
@@ -177,6 +203,7 @@ ReservationDetails.propTypes = {
   reservationDetails: shape(),
   splitedReservation: shape(),
   reservationTables: shape(),
+  bookings: shape(),
   t: func.isRequired,
   lng: string.isRequired,
   handleTableClick: func.isRequired,
@@ -187,7 +214,8 @@ ReservationDetails.propTypes = {
 ReservationDetails.defaultProps = {
   reservationDetails: null,
   reservationTables: null,
-  splitedReservation: undefined
+  splitedReservation: undefined,
+  bookings: null
 };
 
 export default reduxBurgerMenu(ReservationDetails, "ReservationDetails");

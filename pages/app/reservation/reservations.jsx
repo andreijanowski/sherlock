@@ -12,6 +12,7 @@ import {
   getSlotClosestToPresent,
   getSlotFromMoment,
   getTableReservations,
+  getReservationBookings,
   getReservationTables
 } from "sections/reservation/utils";
 import { error } from "react-notification-system-redux";
@@ -24,6 +25,7 @@ import moment from "moment";
 import { SliderStyles } from "components";
 import { action as toggleMenu } from "redux-burger-menu/immutable";
 import { patchBusiness } from "actions/businesses";
+import { fetchBooking } from "actions/bookings";
 import {
   setReservationForEditing,
   patchReservation,
@@ -59,8 +61,10 @@ class ReservationsPage extends PureComponent {
       draggableId: undefined,
       destination: undefined,
       source: undefined,
-      reservationDetailsId: undefined,
-      tableDetailsId: undefined,
+      tableDetails: undefined,
+      tableReservations: undefined,
+      reservationDetails: undefined,
+      reservationTables: undefined,
       pendingRejectionReservationId: undefined,
       isMultipleTablesModalVisible: false,
       splitedReservation: undefined
@@ -286,17 +290,88 @@ class ReservationsPage extends PureComponent {
   };
 
   handleToggleReservationDetails = reservationDetailsId => {
-    const { toggleReservationDetails, toggleTableDetails } = this.props;
-    this.setState({ reservationDetailsId, tableDetailsId: undefined });
+    const {
+      toggleReservationDetails,
+      toggleTableDetails,
+      reservations,
+      tables,
+      bookings,
+      getBooking
+    } = this.props;
+
+    const reservationDetails =
+      reservationDetailsId && reservations
+        ? reservations.get(reservationDetailsId.split("@")[0])
+        : null;
+
+    if (reservationDetails) {
+      const reservationBookings = getReservationBookings(reservationDetails);
+      reservationBookings.forEach(
+        b => !(bookings && bookings.get(b.get("id"))) && getBooking(b.get("id"))
+      );
+    }
+
+    const reservationTables =
+      reservationDetails && tables
+        ? getReservationTables(reservationDetails, tables)
+        : null;
+
+    this.setState({
+      reservationDetails,
+      reservationTables,
+      tableDetails: undefined,
+      tableReservations: undefined
+    });
+
     toggleReservationDetails(!!reservationDetailsId);
     toggleTableDetails(false);
   };
 
   handleToggleTableDetails = tableDetailsId => {
-    const { toggleTableDetails, toggleReservationDetails } = this.props;
-    this.setState({ tableDetailsId, reservationDetailsId: undefined });
+    const {
+      toggleTableDetails,
+      toggleReservationDetails,
+      reservations,
+      tables
+    } = this.props;
+
+    const tableDetails =
+      tableDetailsId && tables ? tables.get(tableDetailsId) : null;
+
+    const tableReservations =
+      tableDetailsId && reservations
+        ? getTableReservations(tableDetailsId, reservations)
+        : null;
+
+    this.loadTableBookings(tableDetailsId, tableReservations);
+
+    this.setState({
+      tableDetails,
+      tableReservations,
+      reservationDetails: undefined,
+      reservationTables: undefined
+    });
+
     toggleTableDetails(!!tableDetailsId);
     toggleReservationDetails(false);
+  };
+
+  loadTableBookings = (id, precalculatedReservations) => {
+    const { reservations, bookings, getBooking } = this.props;
+    const tableReservations =
+      precalculatedReservations || (id && reservations)
+        ? getTableReservations(id, reservations)
+        : null;
+    if (tableReservations) {
+      tableReservations.forEach(r => {
+        const reservationBookings = getReservationBookings(r);
+        reservationBookings.forEach(b => {
+          if (!(bookings && bookings.get(b.get("id")))) {
+            getBooking(b.get("id"));
+          }
+        });
+      });
+    }
   };
 
   setRejectModalVisibility = reservationId => {
@@ -430,6 +505,7 @@ class ReservationsPage extends PureComponent {
       businesses,
       reservations,
       tables,
+      bookings,
       updateBusiness,
       changeCurrentBusiness,
       setEditedReservation
@@ -440,32 +516,16 @@ class ReservationsPage extends PureComponent {
       choosenDate,
       slots,
       choosenSlot,
-      reservationDetailsId,
-      tableDetailsId,
+      reservationDetails,
+      reservationTables,
+      tableDetails,
+      tableReservations,
       pendingRejectionReservationId,
       draggedReservation,
       isMultipleTablesModalVisible,
       draggableId,
       splitedReservation
     } = this.state;
-
-    const reservationDetails =
-      reservationDetailsId && reservations
-        ? reservations.get(reservationDetailsId.split("@")[0])
-        : null;
-
-    const reservationTables =
-      reservationDetails && tables
-        ? getReservationTables(reservationDetails, tables)
-        : null;
-
-    const tableDetails =
-      tableDetailsId && tables ? tables.get(tableDetailsId) : null;
-
-    const tableReservations =
-      tableDetailsId && reservations
-        ? getTableReservations(tableDetailsId, reservations)
-        : null;
 
     return (
       <ReservationLayout
@@ -494,6 +554,7 @@ class ReservationsPage extends PureComponent {
             choosenSlot,
             handleCardClick: this.handleToggleReservationDetails,
             handleTableClick: this.handleToggleTableDetails,
+            handleTableMouseEnter: this.loadTableBookings,
             chooseDate: this.chooseDate,
             chooseSlot: this.chooseSlot,
             t
@@ -505,6 +566,7 @@ class ReservationsPage extends PureComponent {
             {...{
               t,
               lng,
+              bookings,
               reservationDetails,
               splitedReservation,
               reservationTables,
@@ -519,6 +581,7 @@ class ReservationsPage extends PureComponent {
             {...{
               tableDetails,
               tableReservations,
+              bookings,
               t,
               handleReservationClick: this.handleToggleReservationDetails
             }}
@@ -556,6 +619,7 @@ ReservationsPage.propTypes = {
   businesses: shape(),
   reservations: shape(),
   tables: shape(),
+  bookings: shape(),
   openPeriods: shape(),
   businessId: string,
   changeCurrentBusiness: func.isRequired,
@@ -564,7 +628,8 @@ ReservationsPage.propTypes = {
   updateBusiness: func.isRequired,
   rejectReservation: func.isRequired,
   setEditedReservation: func.isRequired,
-  updateReservation: func.isRequired
+  updateReservation: func.isRequired,
+  getBooking: func.isRequired
 };
 
 ReservationsPage.defaultProps = {
@@ -573,6 +638,7 @@ ReservationsPage.defaultProps = {
   businesses: null,
   reservations: null,
   tables: null,
+  bookings: null,
   openPeriods: null
 };
 
@@ -588,6 +654,7 @@ export default requireAuth(true)(
           "reservations"
         ]);
         const tables = state.getIn(["tables", "data", "tables"]);
+        const bookings = state.getIn(["bookings", "data", "bookings"]);
 
         return {
           business: business && business.get("attributes"),
@@ -600,6 +667,7 @@ export default requireAuth(true)(
             "businesses"
           ]),
           reservations,
+          bookings,
           tables: tables
             ? tables.sortBy(table => table.getIn(["attributes", "number"]))
             : tables
@@ -613,7 +681,8 @@ export default requireAuth(true)(
         updateBusiness: patchBusiness,
         rejectReservation: patchReservationReject,
         updateReservation: patchReservation,
-        setEditedReservation: setReservationForEditing
+        setEditedReservation: setReservationForEditing,
+        getBooking: fetchBooking
       }
     )(ReservationsPage)
   )

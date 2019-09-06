@@ -20,6 +20,9 @@ export const getTableReservations = (tableId, reservations) =>
     })) ||
   Map();
 
+export const getReservationBookings = reservation =>
+  reservation.getIn(["relationships", "bookings", "data"]);
+
 export const getReservationTables = (reservationDetails, tables) => {
   const reservationTablesData = [];
   const reservationTables = reservationDetails.getIn([
@@ -33,7 +36,8 @@ export const getReservationTables = (reservationDetails, tables) => {
       const table = tables.get(t.get("id"));
       reservationTablesData.push({
         tableId: table.get("id"),
-        tableNumber: table.getIn(["attributes", "number"])
+        tableNumber: table.getIn(["attributes", "number"]),
+        numberOfSeats: table.getIn(["attributes", "numberOfSeats"])
       });
     });
   }

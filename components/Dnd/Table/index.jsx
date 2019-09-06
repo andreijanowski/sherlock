@@ -11,7 +11,8 @@ const Table = ({
   tableNumber,
   numberOfSeats,
   currentReservation,
-  handleTableClick
+  handleTableClick,
+  handleTableMouseEnter
 }) => (
   <Droppable droppableId={id} isDropDisabled={!!currentReservation}>
     {(provided, { isDraggingOver }) => {
@@ -26,6 +27,7 @@ const Table = ({
           ref={provided.innerRef}
           availibilityStatus={availibilityStatus}
           onClick={() => handleTableClick(id)}
+          onMouseEnter={() => handleTableMouseEnter(id)}
         >
           <ChairsSpace
             seats={numberOfSeats}
@@ -59,6 +61,7 @@ Table.propTypes = {
   tableNumber: number.isRequired,
   numberOfSeats: number.isRequired,
   handleTableClick: func.isRequired,
+  handleTableMouseEnter: func.isRequired,
   currentReservation: shape()
 };
 
