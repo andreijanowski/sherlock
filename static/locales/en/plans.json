@@ -31,7 +31,6 @@
   },
   "billingYearly": "Billing Yearly (save up to 30%)",
   "billingMonthly": "Billing Monthly",
-  "betaPrice": "Beta price!",
   "options": {
     "website": "Webpage",
     "widget": "Widget - coming soon",
@@ -70,7 +69,6 @@
   "basic": {
     "name": "Basic",
     "mostPopular": "Most popular",
-    "promoPrice": "Limited beta",
     "priceDescription": "Starting at",
     "price": {
       "month": "€29.90",
@@ -79,12 +77,11 @@
     },
     "month": "month",
     "year": "year",
-    "buttonText": "Start a 3 months trial"
+    "buttonText": "Get started at "
   },
   "premium": {
     "name": "Premium",
     "bestValue": "Best Value",
-    "promoPrice": "Limited beta",
     "priceDescription": "Starting at",
     "price": {
       "month": "€59.90",

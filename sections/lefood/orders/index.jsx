@@ -40,10 +40,16 @@ const Orders = ({
                 isDropDisabled: setIsDropDisabled(draggedOrderState, column.id),
                 isColumnGrayedOut: column.id === columnsList.rejected,
                 handleCardClick: toggleOrderDetails,
-                renderCardHeader: id =>
-                  `${(
-                    orders.getIn([id, "attributes", "totalCostCents"]) / 100
-                  ).toFixed(2)} ${currency}`,
+                renderCardHeader: id => (
+                  <>
+                    {`${(
+                      orders.getIn([id, "attributes", "totalCostCents"]) / 100
+                    ).toFixed(2)} ${currency}`}
+                    <span>
+                      ID: {orders.getIn([id, "attributes", "shortId"])}
+                    </span>
+                  </>
+                ),
                 renderCardDetails: id => (
                   <Order
                     {...{

@@ -6,8 +6,8 @@ const namespaces = ["common"];
 
 const Wordmark = ({ t, inline }) => (
   <WordmarkWrapper>
-    Sherlock
-    <Tagline {...{ inline }}>{t("foodetectiveCompany")}</Tagline>
+    Foodetective
+    <Tagline {...{ inline }}>{t("forBusiness")}</Tagline>
   </WordmarkWrapper>
 );
 

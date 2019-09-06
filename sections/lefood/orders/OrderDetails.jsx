@@ -7,7 +7,6 @@ import {
   FormDropdown,
   SliderDetail,
   SliderHeader,
-  SliderValue,
   SliderSubheader,
   SliderSpacer
 } from "components";
@@ -32,44 +31,45 @@ const OrderDetails = ({
     {orderDetails && (
       <>
         <SliderHeader>{t("orderDetails")}</SliderHeader>
-        <SliderValue>
-          <FormDropdown
-            {...{
-              input: {
-                value: orderDetails.getIn(["attributes", "state"]),
-                onChange: state => {
-                  if (state === "rejected") {
-                    setRejectModalVisibility(orderDetails.get("id"));
-                  } else {
-                    updateOrder(state, orderDetails.get("id"));
-                  }
+        <SliderSubheader>
+          {`ID: ${orderDetails.getIn(["attributes", "shortId"])}`}
+        </SliderSubheader>
+        <FormDropdown
+          {...{
+            input: {
+              value: orderDetails.getIn(["attributes", "state"]),
+              onChange: state => {
+                if (state === "rejected") {
+                  setRejectModalVisibility(orderDetails.get("id"));
+                } else {
+                  updateOrder(state, orderDetails.get("id"));
                 }
+              }
+            },
+            meta: { data: {} },
+            items: [
+              {
+                label: t("waiting_for_approval"),
+                value: "waiting_for_approval"
               },
-              meta: { data: {} },
-              items: [
-                {
-                  label: t("waiting_for_approval"),
-                  value: "waiting_for_approval"
-                },
-                {
-                  label: t("waiting_for_payment"),
-                  value: "waiting_for_payment"
-                },
-                { label: t("paid"), value: "paid" },
-                { label: t("in_preparation"), value: "in_preparation" },
-                { label: t("in_delivery"), value: "in_delivery" },
-                { label: t("completed"), value: "completed" },
-                { label: t("rejected"), value: "rejected" }
-              ],
-              label: t("orderState")
-            }}
-          />
-          {orderDetails.getIn(["attributes", "state"]) === "rejected" &&
-            `${t("rejectReason")}: ${orderDetails.getIn([
-              "attributes",
-              "otherRejectionReason"
-            ]) || t(orderDetails.getIn(["attributes", "rejectReason"]))}`}
-        </SliderValue>
+              {
+                label: t("waiting_for_payment"),
+                value: "waiting_for_payment"
+              },
+              { label: t("paid"), value: "paid" },
+              { label: t("in_preparation"), value: "in_preparation" },
+              { label: t("in_delivery"), value: "in_delivery" },
+              { label: t("completed"), value: "completed" },
+              { label: t("rejected"), value: "rejected" }
+            ],
+            label: t("orderState")
+          }}
+        />
+        {orderDetails.getIn(["attributes", "state"]) === "rejected" &&
+          `${t("rejectReason")}: ${orderDetails.getIn([
+            "attributes",
+            "otherRejectionReason"
+          ]) || t(orderDetails.getIn(["attributes", "rejectReason"]))}`}
         {orderDetails.getIn(["relationships", "elements", "data"]) &&
           orderDetails
             .getIn(["relationships", "elements", "data"])
