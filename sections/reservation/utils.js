@@ -15,7 +15,8 @@ export const getTableReservations = (tableId, reservations) =>
       return (
         reservationTables &&
         reservationTables.size &&
-        reservationTables.some(t => t.get("id") === tableId)
+        reservationTables.some(t => t.get("id") === tableId) &&
+        r.getIn(["attributes", "state"]) === "booked"
       );
     })) ||
   Map();
@@ -48,43 +49,45 @@ export const getReservationTables = (reservationDetails, tables) => {
 export const calcReservedPeriodsForTables = reservations => {
   const reservedPeriodsForTables = {};
   if (reservations && reservations.size) {
-    reservations.forEach(r => {
-      const reservationTables = r.getIn(["relationships", "tables", "data"]);
-      if (reservationTables && reservationTables.size) {
-        reservationTables.forEach(t => {
-          const reservedPeriod = {
-            date: r.getIn(["attributes", "date"]),
-            from: r.getIn(["attributes", "from"]),
-            to: r.getIn(["attributes", "to"]),
-            partySize: r.getIn(["attributes", "partySize"]),
-            isSplited: reservationTables.size > 1
-          };
-          if (reservedPeriod.from > reservedPeriod.to) {
-            const reservedPeriodAfterMidnight = { ...reservedPeriod };
-            reservedPeriodAfterMidnight.from = 0;
-            reservedPeriodAfterMidnight.date = moment(reservedPeriod.date)
-              .add(1, "d")
-              .format("YYYY-MM-DD");
-            reservedPeriod.to = 86400;
-            if (reservedPeriodsForTables[t.get("id")]) {
+    reservations
+      .filter(a => a.getIn(["attributes", "state"]) === "booked")
+      .forEach(r => {
+        const reservationTables = r.getIn(["relationships", "tables", "data"]);
+        if (reservationTables && reservationTables.size) {
+          reservationTables.forEach(t => {
+            const reservedPeriod = {
+              date: r.getIn(["attributes", "date"]),
+              from: r.getIn(["attributes", "from"]),
+              to: r.getIn(["attributes", "to"]),
+              partySize: r.getIn(["attributes", "partySize"]),
+              isSplited: reservationTables.size > 1
+            };
+            if (reservedPeriod.from > reservedPeriod.to) {
+              const reservedPeriodAfterMidnight = { ...reservedPeriod };
+              reservedPeriodAfterMidnight.from = 0;
+              reservedPeriodAfterMidnight.date = moment(reservedPeriod.date)
+                .add(1, "d")
+                .format("YYYY-MM-DD");
+              reservedPeriod.to = 86400;
+              if (reservedPeriodsForTables[t.get("id")]) {
+                reservedPeriodsForTables[t.get("id")].push(reservedPeriod);
+                reservedPeriodsForTables[t.get("id")].push(
+                  reservedPeriodAfterMidnight
+                );
+              } else {
+                reservedPeriodsForTables[t.get("id")] = [
+                  reservedPeriod,
+                  reservedPeriodAfterMidnight
+                ];
+              }
+            } else if (reservedPeriodsForTables[t.get("id")]) {
               reservedPeriodsForTables[t.get("id")].push(reservedPeriod);
-              reservedPeriodsForTables[t.get("id")].push(
-                reservedPeriodAfterMidnight
-              );
             } else {
-              reservedPeriodsForTables[t.get("id")] = [
-                reservedPeriod,
-                reservedPeriodAfterMidnight
-              ];
+              reservedPeriodsForTables[t.get("id")] = [reservedPeriod];
             }
-          } else if (reservedPeriodsForTables[t.get("id")]) {
-            reservedPeriodsForTables[t.get("id")].push(reservedPeriod);
-          } else {
-            reservedPeriodsForTables[t.get("id")] = [reservedPeriod];
-          }
-        });
-      }
-    });
+          });
+        }
+      });
   }
   return reservedPeriodsForTables;
 };
