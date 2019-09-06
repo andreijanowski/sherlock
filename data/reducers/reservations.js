@@ -3,6 +3,7 @@ import {
   FETCH_RESERVATION_SUCCESS,
   POST_RESERVATION_SUCCESS,
   PATCH_RESERVATION_SUCCESS,
+  PATCH_RESERVATION_REJECT_SUCCESS,
   DELETE_RESERVATION_REQUEST,
   SET_EDIT_RESERVATION
 } from "types/reservations";
@@ -88,7 +89,8 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       return state.setIn(["data"], fromJS(payload.data));
     }
 
-    case PATCH_RESERVATION_SUCCESS: {
+    case PATCH_RESERVATION_SUCCESS:
+    case PATCH_RESERVATION_REJECT_SUCCESS: {
       if (state.getIn(["data"]) && state.getIn(["data"]).size) {
         return state.mergeDeepIn(
           ["data", "reservations"],
