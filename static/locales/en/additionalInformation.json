@@ -16,6 +16,7 @@
   "hasCatering": "Catering",
   "hasReservations": "Reservations",
   "hasPrivateEvents": "Privatizations",
+  "availableInLefood": "Available in lefood",
   "deliveryUrlLabel": "Delivery url",
   "deliveryUrlPlaceholder": "https://business.co/delivery",
   "onlineBookingUrlLabel": "Online booking url",
