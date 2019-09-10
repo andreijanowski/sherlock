@@ -2,7 +2,7 @@ export const parseTime = time => {
   const hour24 = Math.floor(time / 60 / 60) % 24;
   const hour = hour24 > 12 ? hour24 - 12 : hour24;
   const minute = `0${(time / 60) % 60}`.slice(-2);
-  const meridiem = hour24 !== hour ? "pm" : "am";
+  const meridiem = hour24 !== hour || hour === 12 ? "pm" : "am";
 
   return {
     hour24,
