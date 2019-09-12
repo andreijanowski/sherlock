@@ -20,6 +20,7 @@ import Reservations from "sections/reservation/reservations";
 import ReservationDetails from "sections/reservation/reservations/ReservationDetails";
 import TableDetails from "sections/reservation/reservations/TableDetails";
 import RejectModal from "sections/reservation/reservations/RejectModal";
+import CancelModal from "sections/reservation/reservations/CancelModal";
 import MultipleTablesModal from "sections/reservation/reservations/MultipleTablesModal";
 import moment from "moment";
 import { SliderStyles } from "components";
@@ -29,7 +30,8 @@ import { fetchBooking } from "actions/bookings";
 import {
   setReservationForEditing,
   patchReservation,
-  patchReservationReject
+  patchReservationReject,
+  patchReservationCancel
 } from "actions/reservations";
 
 const namespaces = ["reservation", "app", "forms"];
@@ -66,6 +68,7 @@ class ReservationsPage extends PureComponent {
       reservationDetails: undefined,
       reservationTables: undefined,
       pendingRejectionReservationId: undefined,
+      pendingCancelReservationId: undefined,
       isMultipleTablesModalVisible: false,
       splitedReservation: undefined
     };
@@ -379,11 +382,23 @@ class ReservationsPage extends PureComponent {
     this.setState({ pendingRejectionReservationId: reservationId });
   };
 
+  setCancelModalVisibility = reservationId => {
+    this.handleToggleReservationDetails(undefined);
+    this.setState({ pendingCancelReservationId: reservationId });
+  };
+
   handleRejectionSubmit = values => {
     const { rejectReservation } = this.props;
     const { pendingRejectionReservationId } = this.state;
     rejectReservation(pendingRejectionReservationId, values);
     this.setState({ pendingRejectionReservationId: undefined });
+  };
+
+  handleCancelSubmit = () => {
+    const { cancelReservation } = this.props;
+    const { pendingCancelReservationId } = this.state;
+    cancelReservation(pendingCancelReservationId);
+    this.setState({ pendingCancelReservationId: undefined });
   };
 
   chooseDate = choosenDate => {
@@ -521,6 +536,7 @@ class ReservationsPage extends PureComponent {
       tableDetails,
       tableReservations,
       pendingRejectionReservationId,
+      pendingCancelReservationId,
       draggedReservation,
       isMultipleTablesModalVisible,
       draggableId,
@@ -572,7 +588,8 @@ class ReservationsPage extends PureComponent {
               reservationTables,
               setEditedReservation,
               handleTableClick: this.handleToggleTableDetails,
-              setRejectModalVisibility: this.setRejectModalVisibility
+              setRejectModalVisibility: this.setRejectModalVisibility,
+              setCancelModalVisibility: this.setCancelModalVisibility
             }}
           />
         </div>
@@ -592,6 +609,14 @@ class ReservationsPage extends PureComponent {
             isOpen: !!pendingRejectionReservationId,
             onClose: () => this.setRejectModalVisibility(undefined),
             handleRejectionSubmit: this.handleRejectionSubmit,
+            t
+          }}
+        />
+        <CancelModal
+          {...{
+            isOpen: !!pendingCancelReservationId,
+            onClose: () => this.setCancelModalVisibility(undefined),
+            handleCancelSubmit: this.handleCancelSubmit,
             t
           }}
         />
@@ -627,6 +652,7 @@ ReservationsPage.propTypes = {
   toggleTableDetails: func.isRequired,
   updateBusiness: func.isRequired,
   rejectReservation: func.isRequired,
+  cancelReservation: func.isRequired,
   setEditedReservation: func.isRequired,
   updateReservation: func.isRequired,
   getBooking: func.isRequired
@@ -680,6 +706,7 @@ export default requireAuth(true)(
         toggleTableDetails: isOpen => toggleMenu(isOpen, "TableDetails"),
         updateBusiness: patchBusiness,
         rejectReservation: patchReservationReject,
+        cancelReservation: patchReservationCancel,
         updateReservation: patchReservation,
         setEditedReservation: setReservationForEditing,
         getBooking: fetchBooking
