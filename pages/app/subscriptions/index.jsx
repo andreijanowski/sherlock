@@ -14,6 +14,7 @@ import {
   postSubscription
 } from "actions/subscriptions";
 import { fetchProfileSubscriptions, fetchProfileCards } from "actions/users";
+import { fetchBusinessSetupIntent } from "actions/businesses";
 
 const namespaces = ["plans", "forms", "app"];
 
@@ -128,6 +129,11 @@ class SubscriptionsPage extends PureComponent {
     }
   };
 
+  getBusinessSetupIntent = () => {
+    const { getBusinessSetupIntent, businessId } = this.props;
+    return getBusinessSetupIntent(businessId);
+  };
+
   goToPlans = () => {
     this.setState({
       view: "plans"
@@ -188,6 +194,7 @@ class SubscriptionsPage extends PureComponent {
               cards,
               notificationError,
               chosenPlan,
+              getBusinessSetupIntent: this.getBusinessSetupIntent,
               currentPlan: subscriptions,
               goToPlans: this.goToPlans,
               handleChangeBillngPeriod: this.handleChangeBillngPeriod,
@@ -214,7 +221,9 @@ SubscriptionsPage.propTypes = {
   createSubscription: func.isRequired,
   getProfileSubscriptions: func.isRequired,
   getProfileCards: func.isRequired,
-  notificationError: func.isRequired
+  getBusinessSetupIntent: func.isRequired,
+  notificationError: func.isRequired,
+  businessId: string.isRequired
 };
 
 SubscriptionsPage.defaultProps = {
@@ -232,9 +241,12 @@ export default requireAuth(true)(
           "data",
           "subscriptions"
         ]);
+        const businessData = state.getIn(["users", "currentBusiness", "data"]);
+        const business = businessData && businessData.get("businesses").first();
         return {
           subscriptions: subscriptions ? subscriptions.first() : subscriptions,
-          cards: state.getIn(["users", "cards", "data", "cards"])
+          cards: state.getIn(["users", "cards", "data", "cards"]),
+          businessId: business && business.get("id")
         };
       },
       {
@@ -244,6 +256,7 @@ export default requireAuth(true)(
         createSubscription: postSubscription,
         getProfileSubscriptions: fetchProfileSubscriptions,
         getProfileCards: fetchProfileCards,
+        getBusinessSetupIntent: fetchBusinessSetupIntent,
         notificationError: error
       }
     )(SubscriptionsPage)

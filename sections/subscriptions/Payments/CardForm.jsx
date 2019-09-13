@@ -33,15 +33,31 @@ class Form extends PureComponent {
   };
 
   handleSubmit = () => {
-    const { stripe, updateSubscription, notificationError } = this.props;
+    const {
+      stripe,
+      updateSubscription,
+      notificationError,
+      getBusinessSetupIntent
+    } = this.props;
     if (stripe) {
       this.setState({ loading: true });
-      stripe.createSource({ type: "card" }).then(payload => {
-        if (payload.error) {
+      getBusinessSetupIntent().then(({ status, rawData, errors }) => {
+        if (status === 200) {
+          stripe
+            .handleCardSetup(rawData.data.attributes.clientSecret)
+            .then(({ error, setupIntent }) => {
+              if (setupIntent) {
+                updateSubscription(setupIntent.id);
+              } else {
+                this.setState({ loading: false });
+                notificationError({ message: error.message });
+              }
+            });
+        } else {
           this.setState({ loading: false });
-          notificationError({ message: payload.error.message });
-        } else if (payload.source) {
-          updateSubscription(payload.source.id);
+          if (errors && errors.length) {
+            notificationError({ message: errors[0].title });
+          }
         }
       });
     } else {
@@ -107,6 +123,7 @@ Form.propTypes = {
   stripe: shape().isRequired,
   t: func.isRequired,
   updateSubscription: func.isRequired,
+  getBusinessSetupIntent: func.isRequired,
   notificationError: func.isRequired
 };
 
