@@ -30,6 +30,7 @@ export const getInitialValues = business => {
       hasCatering: business.get("hasCatering"),
       hasReservations: business.get("hasReservations"),
       hasPrivateEvents: business.get("hasPrivateEvents"),
+      availableInLefood: business.get("availableInLefood"),
       deliveryUrl: business.get("deliveryUrl"),
       onlineBookingUrl: business.get("onlineBookingUrl"),
       takeawayUrl: business.get("takeawayUrl"),
