@@ -28,6 +28,16 @@ const port = process.env.PORT || 3000;
 
   // use next.js
   server.get(/^((?!^\/locales\/).)*$/, (req, res) => {
+    const host = req.header("host");
+
+    if (
+      host &&
+      host.match(/^sherlock.foodetective.co|^www.sherlock.foodetective.co/i)
+    ) {
+      res.redirect(301, `https://business.foodetective.co${req.url}`);
+      next();
+    }
+
     resetServerContext();
     return handler(req, res);
   });
