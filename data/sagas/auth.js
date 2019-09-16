@@ -76,7 +76,7 @@ function* fetchUserData({
   } = yield putResolve(fetchProfile());
   yield fetchAllUserData(fetchProfileCards);
   yield put(fetchProfileSubscriptions());
-  yield put(fetchGroups());
+  yield fetchAllUserData(fetchGroups);
   yield fetchAllUserData(fetchProfileBusinesses);
   const profileBusinesses = yield select(state =>
     state.getIn(["users", "profileBusinesses", "data", "businesses"])
