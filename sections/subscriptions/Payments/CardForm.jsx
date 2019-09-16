@@ -8,7 +8,7 @@ import {
 } from "react-stripe-elements";
 import { Flex, Box } from "@rebass/grid";
 import { Button, BlueText, Opacity, LoadingIndicator } from "components";
-import { shape, func } from "prop-types";
+import { shape, func, string } from "prop-types";
 import { theme } from "utils/theme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Label, Input, Line, Container } from "./styled";
@@ -37,6 +37,7 @@ class Form extends PureComponent {
       stripe,
       updateSubscription,
       notificationError,
+      nextPlanName,
       getBusinessSetupIntent
     } = this.props;
     if (stripe) {
@@ -47,7 +48,7 @@ class Form extends PureComponent {
             .handleCardSetup(rawData.data.attributes.clientSecret)
             .then(({ error, setupIntent }) => {
               if (setupIntent) {
-                updateSubscription(setupIntent.id);
+                updateSubscription(setupIntent.id, nextPlanName);
               } else {
                 this.setState({ loading: false });
                 notificationError({ message: error.message });
@@ -124,7 +125,8 @@ Form.propTypes = {
   t: func.isRequired,
   updateSubscription: func.isRequired,
   getBusinessSetupIntent: func.isRequired,
-  notificationError: func.isRequired
+  notificationError: func.isRequired,
+  nextPlanName: string.isRequired
 };
 
 export default injectStripe(Form);

@@ -22,7 +22,8 @@ const PaymentsSection = ({
   notificationError,
   getBusinessSetupIntent
 }) => {
-  let { currentPlanName } = getPlanName(currentPlan);
+  // eslint-disable-next-line prefer-const
+  let { currentPlanName, nextPlanName } = getPlanName(currentPlan);
   if (chosenPlan) {
     currentPlanName = chosenPlan;
   }
@@ -76,6 +77,7 @@ const PaymentsSection = ({
         <CardForm
           {...{
             t,
+            nextPlanName,
             updateSubscription,
             notificationError,
             getBusinessSetupIntent
