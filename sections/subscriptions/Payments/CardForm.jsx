@@ -47,6 +47,7 @@ class Form extends PureComponent {
           stripe
             .handleCardSetup(rawData.data.attributes.clientSecret)
             .then(({ error, setupIntent }) => {
+              console.log({ error, setupIntent });
               if (setupIntent) {
                 updateSubscription(setupIntent.id, nextPlanName);
               } else {
