@@ -104,7 +104,8 @@ class SubscriptionsPage extends PureComponent {
       updateSubscriptionCard,
       subscriptions
     } = this.props;
-    const { billingInterval } = this.state;
+    const { billingInterval, chosenPlan } = this.state;
+    const plan = chosenPlan || planName;
     if (subscriptions) {
       this.setState({
         view: "loading"
@@ -114,13 +115,13 @@ class SubscriptionsPage extends PureComponent {
           this.goToSuccess();
         })
         .catch(() => this.goToPayments());
-    } else if (planName !== "essential") {
+    } else if (plan !== "essential") {
       this.setState({
         view: "loading"
       });
       createSubscription(
         stripeToken,
-        `sherlock-${planName}-${billingInterval}ly-eur`
+        `sherlock-${plan}-${billingInterval}ly-eur`
       )
         .then(() => {
           this.goToSuccess();
