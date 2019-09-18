@@ -14,6 +14,7 @@ import { Flex, Box } from "@rebass/grid";
 import { Router } from "routes";
 import countriesPhoneCodes from "utils/countriesPhoneCodes";
 import { isInteger, required, validateEmail } from "utils/validators";
+import { normalizePhone } from "utils/normalizers";
 import { Form } from "./styled";
 
 const UpdateCateringForm = ({
@@ -105,7 +106,12 @@ const UpdateCateringForm = ({
             />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
-            <FormInput name="phone" label={t("phone")} validate={required(t)} />
+            <FormInput
+              name="phone"
+              label={t("phone")}
+              validate={required(t)}
+              parse={normalizePhone}
+            />
           </Box>
         </Flex>
         <Flex flexWrap="wrap" justifyContent="center" mx={-2} mt={3}>

@@ -17,6 +17,7 @@ import {
 import { Flex, Box } from "@rebass/grid";
 import { Router } from "routes";
 import countriesPhoneCodes from "utils/countriesPhoneCodes";
+import { normalizePhone } from "utils/normalizers";
 import { Form } from "../styled";
 
 const CreatePrivatisationForm = ({ t, lng, isSending, handleFormSubmit }) => (
@@ -76,7 +77,11 @@ const CreatePrivatisationForm = ({ t, lng, isSending, handleFormSubmit }) => (
             />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
-            <FormInput name="phone" label={t("events:createEvent.phone")} />
+            <FormInput
+              name="phone"
+              label={t("events:createEvent.phone")}
+              parse={normalizePhone}
+            />
           </Box>
         </Flex>
         <H3 mt={3}>{t("events:createEvent.details")}</H3>
