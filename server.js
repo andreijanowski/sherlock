@@ -21,6 +21,17 @@ const port = process.env.PORT || 3000;
   }
 
   const server = express();
+
+  if (!dev) {
+    server.get(
+      /^\/_next\/static\/(emoji|favicon|flags|fonts|img)\//,
+      (_, res, nextHandler) => {
+        res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+        nextHandler();
+      }
+    );
+  }
+
   server.use(nextI18NextMiddleware(nextI18next));
 
   // serve locales for client
