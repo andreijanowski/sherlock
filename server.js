@@ -2,7 +2,7 @@
 const express = require("express");
 const path = require("path");
 const next = require("next");
-const nextI18NextMiddleware = require("next-i18next/middleware");
+const nextI18NextMiddleware = require("next-i18next/middleware").default;
 const { resetServerContext } = require("react-beautiful-dnd");
 const nextI18next = require("./i18n");
 const routes = require("./routes");

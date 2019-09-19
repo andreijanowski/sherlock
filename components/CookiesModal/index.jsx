@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { withNamespaces } from "i18n";
+import { withTranslation } from "i18n";
 import { Modal, H3, Paragraph, Button } from "components";
 import { func } from "prop-types";
 import isServer from "utils/isServer";
@@ -61,4 +61,4 @@ CookiesModal.propTypes = {
   t: func.isRequired
 };
 
-export default withNamespaces(namespaces)(CookiesModal);
+export default withTranslation(namespaces)(CookiesModal);

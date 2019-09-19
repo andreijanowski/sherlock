@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import { withNamespaces } from "i18n";
+import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape, number } from "prop-types";
 import LefoodLayout from "sections/lefood/Layout";
@@ -114,9 +114,9 @@ OrderingHoursPage.defaultProps = {
 };
 
 export default requireAuth(true)(
-  withNamespaces(namespaces)(
+  withTranslation(namespaces)(
     connect(
-      state => {
+      (state, { i18n }) => {
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
         const business = businessData && businessData.get("businesses").first();
         const businessOrderPeriods =
@@ -140,7 +140,8 @@ export default requireAuth(true)(
             "profileBusinesses",
             "data",
             "businesses"
-          ])
+          ]),
+          lng: (i18n && i18n.language) || "en"
         };
       },
       {

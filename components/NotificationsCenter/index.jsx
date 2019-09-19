@@ -1,7 +1,7 @@
 import Notifications from "react-notification-system-redux";
 import { connect } from "react-redux";
 import { instanceOf } from "prop-types";
-import { withNamespaces } from "i18n";
+import { withTranslation } from "i18n";
 import { List } from "immutable";
 
 const namespaces = ["notifications", "forms"];
@@ -23,7 +23,7 @@ NotificationCenter.propTypes = {
   notifications: instanceOf(List).isRequired
 };
 
-export default withNamespaces(namespaces)(
+export default withTranslation(namespaces)(
   connect((state, { t }) => ({
     notifications: state.get("notifications").map(n => ({
       ...n,
