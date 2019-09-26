@@ -36,19 +36,24 @@ export const generateMenuItems = (t, active, showPublishModal, state) => {
       isActive: active === "liveInfo"
     },
     {
+      route: `/app/profile/widgets/`,
+      label: t("app:manageProfile.widgets"),
+      isActive: active === "widgets"
+    },
+    {
       onClick: showPublishModal,
       label: t("app:manageProfile.publish"),
       color: "ruby"
     }
   ];
   if (state === "published") {
-    menuItems[7] = {
+    menuItems[8] = {
       label: t("app:manageProfile.published"),
       color: "green"
     };
   }
   if (state === "waiting_for_approval") {
-    menuItems[7] = {
+    menuItems[8] = {
       label: t("app:manageProfile.waitingForApproval"),
       color: "carrotOrange"
     };

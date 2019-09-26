@@ -11,6 +11,7 @@ import privatisations from "./privatisations";
 import reservations from "./reservations";
 import tables from "./tables";
 import bookings from "./bookings";
+import widgets from "./widgets";
 
 export default {
   notifications,
@@ -25,5 +26,6 @@ export default {
   privatisations,
   reservations,
   tables,
-  bookings
+  bookings,
+  widgets
 };

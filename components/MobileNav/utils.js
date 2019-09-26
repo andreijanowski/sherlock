@@ -82,6 +82,12 @@ const generateProfileMobileSubmenu = (t, active) => [
     label: t("app:manageProfile.liveInfo"),
     isActive: active === "liveInfo",
     SubmenuIcon: ProfileAdditionaInfo
+  },
+  {
+    route: `/app/profile/widgets/`,
+    label: t("app:manageProfile.widgets"),
+    isActive: active === "widgets",
+    SubmenuIcon: ProfileAdditionaInfo
   }
 ];
 

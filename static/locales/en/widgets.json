@@ -1,0 +1,6 @@
+{
+  "header": "Widgets",
+  "addWidget": "Add widget",
+  "domainsLabel": "Domains (separated by comma)",
+  "domainsPlaceholder": "foodetective.co, google.com"
+}
