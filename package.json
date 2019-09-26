@@ -44,7 +44,7 @@
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.25",
     "next": "^8.1.0",
-    "next-i18next": "^0.40.1",
+    "next-i18next": "^1.2.1",
     "next-redux-saga": "^4.0.2",
     "next-redux-wrapper": "^3.0.0-alpha.2",
     "next-routes": "^1.4.2",

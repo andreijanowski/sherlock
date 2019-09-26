@@ -1,37 +1,29 @@
-import { PureComponent } from "react";
-import { withNamespaces } from "i18n";
-import { func, string } from "prop-types";
+import { withTranslation } from "i18n";
+import { func, string, shape } from "prop-types";
 import { SingleActionView } from "components";
 import VenueForm from "sections/addVenue/VenueForm";
 
 const namespaces = ["addVenue", "forms"];
 
-class addVenue extends PureComponent {
-  static async getInitialProps() {
-    return {
-      namespacesRequired: namespaces
-    };
-  }
+const AddVenue = ({ t, i18n }) => (
+  <SingleActionView
+    {...{
+      lng: (i18n && i18n.language) || "en",
+      actionTitle: t("title"),
+      actionDescription: t("description")
+    }}
+  >
+    <VenueForm {...{ t }} />
+  </SingleActionView>
+);
 
-  render() {
-    const { t, lng } = this.props;
-    return (
-      <SingleActionView
-        {...{
-          lng,
-          actionTitle: t("title"),
-          actionDescription: t("description")
-        }}
-      >
-        <VenueForm {...{ t }} />
-      </SingleActionView>
-    );
-  }
-}
+AddVenue.getInitialProps = async () => ({
+  namespacesRequired: namespaces
+});
 
-addVenue.propTypes = {
+AddVenue.propTypes = {
   t: func.isRequired,
-  lng: string.isRequired
+  i18n: shape({ language: string.isRequired }).isRequired
 };
 
-export default withNamespaces(namespaces)(addVenue);
+export default withTranslation(namespaces)(AddVenue);
