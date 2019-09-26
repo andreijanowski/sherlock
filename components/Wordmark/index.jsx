@@ -1,4 +1,4 @@
-import { withNamespaces } from "i18n";
+import { withTranslation } from "i18n";
 import { func, bool } from "prop-types";
 import { WordmarkWrapper, Tagline } from "./styled";
 
@@ -20,4 +20,4 @@ Wordmark.defaultProps = {
   inline: false
 };
 
-export default withNamespaces(namespaces)(Wordmark);
+export default withTranslation(namespaces)(Wordmark);

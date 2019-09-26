@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import { withNamespaces } from "i18n";
+import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, bool } from "prop-types";
 import AppLayout from "layout/App";
@@ -56,11 +56,12 @@ AppLanding.propTypes = {
 };
 
 export default requireAuth(true)(
-  withNamespaces(namespaces)(
-    connect(state => ({
+  withTranslation(namespaces)(
+    connect((state, { i18n }) => ({
       canRedirect:
         !state.getIn(["users", "currentBusiness", "isFetching"]) &&
-        state.getIn(["users", "currentBusiness", "isSucceeded"])
+        state.getIn(["users", "currentBusiness", "isSucceeded"]),
+      lng: (i18n && i18n.language) || "en"
     }))(AppLanding)
   )
 );

@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import { withNamespaces } from "i18n";
+import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
 import { connect } from "react-redux";
@@ -144,9 +144,9 @@ StripeOauth.propTypes = {
 };
 
 export default requireAuth(true)(
-  withNamespaces(namespaces)(
+  withTranslation(namespaces)(
     connect(
-      null,
+      (state, { i18n }) => ({ lng: (i18n && i18n.language) || "en" }),
       {
         connectWithStripe: connectStripe,
         getBusiness: fetchProfileBusiness

@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import { withNamespaces } from "i18n";
+import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
 import { connect } from "react-redux";
@@ -223,9 +223,9 @@ SubscriptionsPage.defaultProps = {
 };
 
 export default requireAuth(true)(
-  withNamespaces(namespaces)(
+  withTranslation(namespaces)(
     connect(
-      state => {
+      (state, { i18n }) => {
         const subscriptions = state.getIn([
           "users",
           "subscriptions",
@@ -234,7 +234,8 @@ export default requireAuth(true)(
         ]);
         return {
           subscriptions: subscriptions ? subscriptions.first() : subscriptions,
-          cards: state.getIn(["users", "cards", "data", "cards"])
+          cards: state.getIn(["users", "cards", "data", "cards"]),
+          lng: (i18n && i18n.language) || "en"
         };
       },
       {

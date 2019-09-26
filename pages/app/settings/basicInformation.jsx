@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import SettingsLayout from "sections/settings/Layout";
 import Form from "sections/settings/basicInformation";
-import { withNamespaces } from "i18n";
+import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, shape, string } from "prop-types";
 import { connect } from "react-redux";
@@ -37,20 +37,17 @@ BasicInformation.defaultProps = {
   profile: null
 };
 
-const mapStateToProps = state => {
-  const profile = state.getIn(["users", "profile", "data", "users"]);
-  return {
-    profile: profile ? profile.first() : profile
-  };
-};
-
-const mapDispatchToProps = { updateProfileHandler: updateProfile };
-
 export default requireAuth(true)(
-  withNamespaces(namespaces)(
+  withTranslation(namespaces)(
     connect(
-      mapStateToProps,
-      mapDispatchToProps
+      (state, { i18n }) => {
+        const profile = state.getIn(["users", "profile", "data", "users"]);
+        return {
+          profile: profile ? profile.first() : profile,
+          lng: (i18n && i18n.language) || "en"
+        };
+      },
+      { updateProfileHandler: updateProfile }
     )(BasicInformation)
   )
 );

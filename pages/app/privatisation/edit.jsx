@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import { withNamespaces } from "i18n";
+import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
 import EditPrivatisationForm from "sections/privatisation/edit";
@@ -114,9 +114,9 @@ EditPrivatisationPage.defaultProps = {
 };
 
 export default requireAuth(true)(
-  withNamespaces(namespaces)(
+  withTranslation(namespaces)(
     connect(
-      state => {
+      (state, { i18n }) => {
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
         const business = businessData && businessData.get("businesses").first();
         return {
@@ -131,7 +131,8 @@ export default requireAuth(true)(
           editedPrivatisation: state.getIn([
             "privatisations",
             "editedPrivatisation"
-          ])
+          ]),
+          lng: (i18n && i18n.language) || "en"
         };
       },
       {
