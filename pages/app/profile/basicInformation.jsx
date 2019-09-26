@@ -43,7 +43,10 @@ class BasicInformation extends PureComponent {
   componentDidUpdate(prevProps) {
     const { groups } = this.props;
     const { groups: prevGroups } = prevProps;
-    if (!(prevGroups && prevGroups.size) && (groups && groups.size)) {
+    if (
+      (!(prevGroups && prevGroups.size) && (groups && groups.size)) ||
+      (prevGroups && groups && prevGroups.size !== groups.size)
+    ) {
       this.loadGroups();
     }
   }

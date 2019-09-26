@@ -37,6 +37,9 @@ export const fetchGroupsSuccessAction = () => ({
         }
       }
     }
+  },
+  meta: {
+    page: 1
   }
 });
 
