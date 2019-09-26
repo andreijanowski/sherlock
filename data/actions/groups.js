@@ -5,7 +5,7 @@ export const fetchGroups = (page = 1) => ({
   payload: {
     endpoint: "/api/v1/groups",
     params: {
-      per_page: 20,
+      per_page: 500,
       page
     }
   },
