@@ -22,7 +22,6 @@ import {
   faChair
 } from "@fortawesome/free-solid-svg-icons";
 import {
-  faFacebookF,
   faCcAmex,
   faCcDinersClub,
   faCcDiscover,
@@ -41,7 +40,6 @@ library.add(
   faTimes,
   faArrowLeft,
   faCircleNotch,
-  faFacebookF,
   faFileAlt,
   faPen,
   faCreditCard,

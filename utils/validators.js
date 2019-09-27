@@ -1,5 +1,4 @@
 import { isEmail as isValidEmail, isInt, isNumeric } from "validator";
-import { formValidation } from "consts";
 
 export const composeValidators = (...validators) => (...values) =>
   validators.reduce(
@@ -22,13 +21,6 @@ export const validateLength = (t, min, max) => value =>
   value && (value.length > max || value.length < min)
     ? t("forms:validation.error.length", { min, max })
     : undefined;
-
-export const minPasswordLength = t => (value = "") =>
-  value.length >= formValidation.MINIMUM_PASSWORD_LENGTH
-    ? undefined
-    : t("forms:validation.error.password", {
-        length: formValidation.MINIMUM_PASSWORD_LENGTH
-      });
 
 export const isEmail = t => value =>
   value && !isValidEmail(value) ? t("forms:validation.error.email") : undefined;
@@ -56,24 +48,5 @@ export const isNotNegativeInt = t =>
 
 export const validateEmail = t => composeValidators(required(t), isEmail(t));
 
-export const validatePassword = t =>
-  composeValidators(required(t), minPasswordLength(t));
-
 export const validateTableName = t =>
   composeValidators(required(t), maxLength(t, 10));
-
-export const validatePasswordsMatch = t => (
-  passwordConfirmation,
-  { password }
-) => {
-  if (!passwordConfirmation) return t("forms:validation.error.required");
-  if (passwordConfirmation !== password)
-    return t("forms:validation.error.passwordMatch");
-
-  if (passwordConfirmation.length < formValidation.MINIMUM_PASSWORD_LENGTH)
-    return t("forms:validation.error.password", {
-      length: formValidation.MINIMUM_PASSWORD_LENGTH
-    });
-
-  return undefined;
-};

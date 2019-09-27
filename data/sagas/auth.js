@@ -8,23 +8,12 @@ import {
 import { fetchGroups } from "actions/groups";
 import { postBusiness } from "actions/businesses";
 import {
-  LOGIN_SUCCESS,
-  REGISTER_SUCCESS,
-  FACEBOOK_LOGIN_SUCCESS,
   REFRESH_TOKEN_SUCCESS,
-  CHANGE_PASSWORD_SUCCESS,
-  RESET_PASSWORD_SUCCESS,
-  CHANGE_PASSWORD_BY_TOKEN_SUCCESS,
-  DELETE_BY_TOKEN_SUCCESS,
   REFRESH_TOKEN_REQUEST,
-  LOGIN_FAIL,
-  REGISTER_FAIL,
-  FACEBOOK_LOGIN_FAIL,
   REFRESH_TOKEN_FAIL,
   LOGOUT
 } from "types/auth";
-import Notifications from "react-notification-system-redux";
-import { logout as logoutAction, refreshToken as refresh } from "actions/auth";
+import { refreshToken as refresh } from "actions/auth";
 import { setCurrentBusiness, saveCurrentUserId } from "actions/app";
 import isServer from "utils/isServer";
 import { fetchAllUserData } from "./utils";
@@ -96,34 +85,6 @@ function* fetchUserData({
   yield put(saveCurrentUserId(userId));
 }
 
-function* showSuccessPasswordChangeMsg() {
-  yield put(
-    Notifications.success({
-      message: "changePasswordSuccess"
-    })
-  );
-}
-
-function* showSuccessResetPasswordMsg() {
-  yield put(
-    Notifications.success({
-      message: "passwordResetSuccess"
-    })
-  );
-}
-
-function* onSuccessPasswordChangeByToken() {
-  yield put(
-    Notifications.success({
-      message: "changePasswordSuccess"
-    })
-  );
-}
-
-function* logout() {
-  yield put(logoutAction());
-}
-
 function* setRefreshing() {
   if (!isServer) {
     yield window.localStorage.setItem("areCredentialsRefreshing", "true");
@@ -137,37 +98,8 @@ function* removeToken() {
 }
 
 export default all([
-  takeEvery(
-    [
-      LOGIN_SUCCESS,
-      REGISTER_SUCCESS,
-      FACEBOOK_LOGIN_SUCCESS,
-      REFRESH_TOKEN_SUCCESS
-    ],
-    fetchUserData
-  ),
-  takeEvery(
-    [
-      LOGIN_SUCCESS,
-      REGISTER_SUCCESS,
-      FACEBOOK_LOGIN_SUCCESS,
-      REFRESH_TOKEN_SUCCESS
-    ],
-    subscribeForRefresh
-  ),
-  takeEvery(CHANGE_PASSWORD_SUCCESS, showSuccessPasswordChangeMsg),
-  takeEvery(RESET_PASSWORD_SUCCESS, showSuccessResetPasswordMsg),
-  takeEvery(CHANGE_PASSWORD_BY_TOKEN_SUCCESS, onSuccessPasswordChangeByToken),
-  takeEvery(DELETE_BY_TOKEN_SUCCESS, logout),
+  takeEvery([REFRESH_TOKEN_SUCCESS], fetchUserData),
+  takeEvery([REFRESH_TOKEN_SUCCESS], subscribeForRefresh),
   takeEvery([REFRESH_TOKEN_REQUEST], setRefreshing),
-  takeEvery(
-    [
-      LOGIN_FAIL,
-      REGISTER_FAIL,
-      FACEBOOK_LOGIN_FAIL,
-      REFRESH_TOKEN_FAIL,
-      LOGOUT
-    ],
-    removeToken
-  )
+  takeEvery([REFRESH_TOKEN_FAIL, LOGOUT], removeToken)
 ]);

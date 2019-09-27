@@ -15,7 +15,6 @@ import {
   Docs,
   Feedback,
   SettingsBasicInfo,
-  SettingsPassword,
   SettingsLogout
 } from "icons";
 
@@ -25,12 +24,6 @@ const generateSettingsMobileSubmenu = (t, active, logout) => [
     label: t("app:userSettings.basicInformation"),
     isActive: active === "basicInformation",
     SubmenuIcon: SettingsBasicInfo
-  },
-  {
-    route: `/app/settings/password/`,
-    label: t("app:userSettings.password"),
-    isActive: active === "password",
-    SubmenuIcon: SettingsPassword
   },
   {
     onClick: logout,

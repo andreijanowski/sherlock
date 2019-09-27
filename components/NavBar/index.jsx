@@ -140,9 +140,6 @@ const NavBar = ({ t, lng, logout }) => (
           <Link {...{ lng, route: `/app/settings/basic-information/` }}>
             <Subitem>{t("app:userSettings.basicInformation")}</Subitem>
           </Link>
-          <Link {...{ lng, route: `/app/settings/password/` }}>
-            <Subitem>{t("app:userSettings.password")}</Subitem>
-          </Link>
           <Subitem onClick={logout}>{t("app:userSettings.logout")}</Subitem>
         </Subitems>
       </SubitemsWrapper>

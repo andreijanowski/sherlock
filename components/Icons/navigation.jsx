@@ -518,30 +518,6 @@ export const SettingsBasicInfo = () => (
   </svg>
 );
 
-export const SettingsPassword = () => (
-  <svg
-    width="17px"
-    height="22px"
-    viewBox="0 0 17 22"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <g
-      strokeWidth="2"
-      fillRule="evenodd"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      transform="translate(1.000000, 1.000000)"
-    >
-      <path d="M3,9.33333333 L3,4.33333333 C3,1.94009942 4.94009942,2.22044605e-15 7.33333333,1.77635684e-15 C9.72656725,1.77635684e-15 11.6666667,1.94009942 11.6666667,4.33333333 L11.6666667,9.33333333" />
-      <polygon points="0 9.33333333 14.6666667 9.33333333 14.6666667 20 0 20" />
-      <path
-        d="M7.33333333,13 L7.33333333,16.3333333 L7.33333333,13 Z"
-        strokeOpacity="0.4"
-      />
-    </g>
-  </svg>
-);
-
 export const SettingsLogout = () => (
   <svg
     width="22px"
