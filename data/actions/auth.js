@@ -13,7 +13,6 @@ export const refreshToken = data => ({
       grant_type: "refresh_token"
     },
     endpoint: "/oauth/token",
-    authRequired: false,
     method: "POST"
   },
   meta: { thunk: true }
