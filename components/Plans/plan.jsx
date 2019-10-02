@@ -29,9 +29,10 @@ const Plan = ({
   let buttonText = t(`plans:${name}.buttonText`);
   if (isChosen) {
     buttonText = t(`plans:chosen`);
-  } else if (nextPlanName !== null && name !== "professional") {
+  } else if (nextPlanName !== null) {
     buttonText = t(`plans:choose`);
   }
+
   return (
     <MainWrapper>
       <NameWrapper>
@@ -43,19 +44,12 @@ const Plan = ({
             </MostPopular>
           </>
         )}
-        {name === "premium" && (
-          <>
-            <MostPopular color={color}>
-              {t(`plans:${name}.bestValue`)}
-            </MostPopular>
-          </>
-        )}
       </NameWrapper>
       <PriceWrapper>
         <PriceDescription>
           {t(`plans:${name}.priceDescription`)}
         </PriceDescription>
-        {name === "basic" || name === "premium" ? (
+        {name === "basic" ? (
           <>
             {billingInterval === "year" ? (
               <>
@@ -83,7 +77,7 @@ const Plan = ({
           styleName={isChosen ? "background" : color}
         >
           {buttonText}
-          {(name === "premium" || name === "basic") &&
+          {name === "basic" &&
             !isSubscriptionView &&
             t(
               `plans:${name}.price.${
