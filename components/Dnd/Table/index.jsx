@@ -1,7 +1,14 @@
 import { Droppable } from "react-beautiful-dnd";
 import { string, shape, number, func } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
-import { TableWrapper, ChairsSpace, Name, Chair, ChairNumber } from "./styled";
+import {
+  TableWrapper,
+  ChairsSpace,
+  Name,
+  Chair,
+  ChairNumber,
+  ReservedBy
+} from "./styled";
 import { calcTableAvailibilityStatus } from "./utils";
 
 const RADIUS = 60;
@@ -49,6 +56,13 @@ const Table = ({
               </ChairNumber>
               <Chair availibilityStatus={availibilityStatus} />
             </Box>
+            {currentReservation && (
+              <Flex justifyContent="center">
+                <ReservedBy availibilityStatus={availibilityStatus}>
+                  {currentReservation.name}
+                </ReservedBy>
+              </Flex>
+            )}
           </Flex>
         </TableWrapper>
       );
