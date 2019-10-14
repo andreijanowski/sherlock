@@ -14,7 +14,8 @@ export const PlansWrapper = styled(Flex).attrs(() => ({
   flexWrap: "wrap",
   m: -2,
   width: 1,
-  alignSelf: "center"
+  alignSelf: "center",
+  justifyContent: "center"
 }))`
   max-width: 1184px;
 `;
