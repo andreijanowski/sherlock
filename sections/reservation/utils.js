@@ -109,6 +109,7 @@ export const parseReservations = (
               .filter(
                 r =>
                   r.getIn(["attributes", "state"]) === "placed" ||
+                  r.getIn(["attributes", "state"]) === "canceled" ||
                   (splitedReservation && splitedReservation.id === r.get("id"))
               )
               .map(r => r.get("id"))
