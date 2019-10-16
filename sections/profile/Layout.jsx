@@ -57,7 +57,6 @@ class ProfileLayout extends PureComponent {
     } = this.props;
 
     const { isPublishModalVisible } = this.state;
-    // console.log(business.get("approvedForLefood"));
     return (
       <AppLayout
         {...{
