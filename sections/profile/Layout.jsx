@@ -22,12 +22,20 @@ class ProfileLayout extends PureComponent {
   hidePublishModal = () => this.setState({ isPublishModalVisible: false });
 
   publish = () => {
-    const { lng, updateBusiness, businessId } = this.props;
-    updateBusiness(businessId, { state: "waiting_for_approval" }).catch(() =>
+    const { lng, updateBusiness, businessId, business } = this.props;
+    const state = business.get("approvedForLefood")
+      ? "published"
+      : "waiting_for_approval";
+    updateBusiness(businessId, { state }).catch(() =>
       Router.pushRoute(
         `/${lng}/app/profile/basic-information/?isErrorVisibilityRequired=true`
       )
     );
+  };
+
+  unpublishBusiness = () => {
+    const { updateBusiness, businessId } = this.props;
+    updateBusiness(businessId, { state: "draft" });
   };
 
   render() {
@@ -49,7 +57,7 @@ class ProfileLayout extends PureComponent {
     } = this.props;
 
     const { isPublishModalVisible } = this.state;
-
+    // console.log(business.get("approvedForLefood"));
     return (
       <AppLayout
         {...{
@@ -62,7 +70,8 @@ class ProfileLayout extends PureComponent {
             t,
             currentPage,
             this.showPublishModal,
-            business && business.get("state")
+            business && business.get("state"),
+            this.unpublishBusiness
           ),
           select: {
             value: {
