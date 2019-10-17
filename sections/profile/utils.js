@@ -1,4 +1,10 @@
-export const generateMenuItems = (t, active, showPublishModal, state) => {
+export const generateMenuItems = (
+  t,
+  active,
+  showPublishModal,
+  state,
+  unpublishBusiness
+) => {
   const menuItems = [
     {
       route: `/app/profile/basic-information/`,
@@ -45,6 +51,11 @@ export const generateMenuItems = (t, active, showPublishModal, state) => {
     menuItems[7] = {
       label: t("app:manageProfile.published"),
       color: "green"
+    };
+    menuItems[8] = {
+      onClick: unpublishBusiness,
+      label: t("app:manageProfile.unPublish"),
+      color: "ruby"
     };
   }
   if (state === "waiting_for_approval") {
