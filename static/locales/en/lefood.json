@@ -4,7 +4,7 @@
   "accept": "Accept",
   "reject": "Reject",
   "orders": "Orders",
-  "deliveryTime": "Delivery Time",
+  "notSpecified": "Not specified",
   "menu": "Menu",
   "orderingHours": "Ordering Hours",
   "deliveryArea": "Delivery Area",
