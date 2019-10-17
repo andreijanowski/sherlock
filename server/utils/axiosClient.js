@@ -1,7 +1,8 @@
 const axios = require("axios");
 const humps = require("humps");
+const qs = require("qs");
 
-const axiosOauthClient = axios.create({
+const axiosClient = axios.create({
   baseURL: `${process.env.PUBLIC_API_URL}`,
   method: "GET",
   headers: {
@@ -18,7 +19,8 @@ const axiosOauthClient = axios.create({
   transformRequest: [
     data => humps.decamelizeKeys(data),
     ...axios.defaults.transformRequest
-  ]
+  ],
+  paramsSerializer: params => qs.stringify(params, { arrayFormat: "brackets" })
 });
 
-module.exports = axiosOauthClient;
+module.exports = axiosClient;

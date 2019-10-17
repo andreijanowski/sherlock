@@ -1,32 +1,64 @@
-const bodyParser = require("body-parser");
-const qs = require("qs");
-const axiosClient = require("./axiosClient");
+const axiosClient = require("./utils/axiosClient");
+const oauthClient = require("./utils/oauthClient");
+const setAuthCookies = require("./utils/setAuthCookies");
+const clearAuthCookies = require("./utils/clearAuthCookies");
 
-function apiMiddleware(server) {
-  // the middleware for authorized API calls
-  // used as a safe proxy between a client (browser) and our backend API
-  const parser = bodyParser.raw({ type: "application/vnd.api+json" });
-  server.use("/api", parser, (req, res) => {
-    const { url, method, body, query } = req;
-    axiosClient({
-      method,
-      url: `/${url}`,
-      headers: {
-        Authorization: `Bearer ${req.cookies.accessToken}`
-      },
-      paramsSerializer: params =>
-        qs.stringify(params, { arrayFormat: "brackets" }),
-      data: body,
-      params: query
-    })
-      .then(d => {
-        res.send(d.data);
-      })
-      .catch(err => {
-        res.status(err.response.status);
-        res.send(err.response.data);
+let appAuth = {
+  isAuthorized: false
+};
+
+const apiMiddleware = async (req, res, next) => {
+  try {
+    if (
+      !appAuth.isAuthorized ||
+      appAuth.createdAt * 1000 + appAuth.expiresIn * 1000 < Date.now()
+    ) {
+      const payload = await oauthClient({
+        grantType: "client_credentials",
+        scope: "public"
       });
-  });
-}
+      const { accessToken, expiresIn, createdAt } = payload.data;
+      appAuth = { accessToken, expiresIn, createdAt, isAuthorized: true };
+    }
+
+    let refreshedAccessToken = null;
+
+    if (req.cookies.isAuthenticated && !req.cookies.isAuthorized) {
+      try {
+        const payload = await oauthClient({
+          grantType: "refresh_token",
+          refreshToken: req.cookies.refreshToken
+        });
+        setAuthCookies(res, payload.data);
+        refreshedAccessToken = payload.data.accessToken;
+      } catch (e) {
+        clearAuthCookies(res);
+      }
+    }
+
+    const token =
+      refreshedAccessToken || req.cookies.accessToken || appAuth.accessToken;
+
+    const { url, method, body, query } = req;
+
+    try {
+      const payload = await axiosClient({
+        method,
+        url: `/api${url}`,
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        data: body,
+        params: query
+      });
+      res.send(payload.data);
+    } catch (e) {
+      res.status(e.response.status);
+      res.send(e.response.data);
+    }
+  } catch (e) {
+    next();
+  }
+};
 
 module.exports = apiMiddleware;

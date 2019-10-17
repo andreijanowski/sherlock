@@ -6,7 +6,7 @@ class CustomPusher {
     this.socket = null;
   }
 
-  init = (token, userId) => {
+  init = userId => {
     if (!this.socket) {
       this.socket = new Pusher(PUSHER_APP_KEY, {
         cluster: PUSHER_APP_CLUSTER,
@@ -16,6 +16,9 @@ class CustomPusher {
             authentication_for: "user",
             record_id: userId,
             user_channel: "notifications"
+          },
+          headers: {
+            Accept: "application/vnd.api+json"
           }
         }
       });

@@ -14,7 +14,8 @@ import { StripeProvider } from "react-stripe-elements";
 import { STRIPE_API_KEY, GOOGLE_ANALYTICS_ID } from "consts";
 import ReactGA from "react-ga";
 import { fromJS } from "immutable";
-import { refreshToken as refreshTokenAction } from "actions/auth";
+import Cookies from "js-cookie";
+import { loadUserData as loadUserDataAction } from "actions/auth";
 import { appWithTranslation } from "../i18n";
 import createStore from "../data/store";
 
@@ -53,6 +54,10 @@ class MyApp extends App {
   };
 
   componentDidMount() {
+    if (Cookies.get("isAuthenticated")) {
+      const { loadUserData } = this.props;
+      loadUserData();
+    }
     if (window.Stripe) {
       this.setState({ stripe: window.Stripe(STRIPE_API_KEY) });
     } else {
@@ -60,15 +65,6 @@ class MyApp extends App {
         this.setState({ stripe: window.Stripe(STRIPE_API_KEY) });
       });
     }
-    try {
-      const credentials = JSON.parse(
-        window.localStorage.getItem("credentials")
-      );
-      if (credentials.refreshToken) {
-        this.props.refreshToken({ refreshToken: credentials.refreshToken });
-      }
-      // eslint-disable-next-line no-empty
-    } catch (e) {}
   }
 
   componentDidUpdate(prevProps) {
@@ -107,7 +103,7 @@ export default withRedux(createStore, {
       state => ({ state }),
       {
         pathChanged: pathChangedAction,
-        refreshToken: refreshTokenAction
+        loadUserData: loadUserDataAction
       }
     )(appWithTranslation(MyApp))
   )

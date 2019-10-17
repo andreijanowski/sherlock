@@ -1,13 +1,12 @@
-function setCacheForStaticAssets(dev, server) {
-  if (!dev) {
-    server.get(
-      /^\/_next\/static\/(emoji|favicon|flags|fonts|img)\//,
-      (_, res, nextHandler) => {
-        res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
-        nextHandler();
-      }
-    );
-  }
+/* eslint-disable func-names */
+
+function setCacheForStaticAssets(dev) {
+  return function(_, res, next) {
+    if (!dev) {
+      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+      next();
+    }
+  };
 }
 
 module.exports = setCacheForStaticAssets;

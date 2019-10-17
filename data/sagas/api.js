@@ -6,23 +6,40 @@ import getErrorMessage from "utils/getErrorMessage";
 import { takeEvery, call, put } from "redux-saga/effects";
 import { logout } from "actions/auth";
 import { contentTypes, APP_URL } from "consts";
+import qs from "qs";
+import humps from "humps";
 
 export const client = axios.create({
   baseURL: APP_URL,
-  method: "GET"
+  method: "GET",
+  headers: {
+    "Content-Type": contentTypes.JSONAPI
+  },
+  paramsSerializer: params => qs.stringify(params, { arrayFormat: "brackets" }),
+  transformResponse: [
+    ...axios.defaults.transformResponse,
+    data => humps.camelizeKeys(data)
+  ],
+  transformRequest: [
+    data => humps.decamelizeKeys(data),
+    ...axios.defaults.transformRequest
+  ]
 });
 
-function* handleApiCall({ type, payload: { endpoint } = {}, meta }) {
+function* handleApiCall({
+  type,
+  payload: { endpoint, ...options } = {},
+  meta
+}) {
   const [HEAD] = type.split("_REQUEST");
   try {
-    const response = yield call(client, endpoint);
-    const isJsonapi = response.headers["content-type"] === contentTypes.JSONAPI;
+    const response = yield call(client, endpoint, options);
 
     yield put({
       type: `${HEAD}_SUCCESS`,
       payload: {
         ...response,
-        data: isJsonapi ? normalize(response.data) : response.data,
+        data: normalize(response.data),
         rawData: response.data
       },
       meta
