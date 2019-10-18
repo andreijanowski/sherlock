@@ -21,6 +21,7 @@
     "addNewBusiness": "Add new business",
     "publish": "Publish business",
     "published": "Published",
+    "unPublish": "Unpublish business",
     "waitingForApproval": "Waiting for approval"
   },
   "subscriptions": "Subscriptions",
