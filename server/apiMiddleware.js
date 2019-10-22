@@ -1,11 +1,20 @@
 const axiosClient = require("./utils/axiosClient");
 const oauthClient = require("./utils/oauthClient");
-const setAuthCookies = require("./utils/setAuthCookies");
-const clearAuthCookies = require("./utils/clearAuthCookies");
 
 let appAuth = {
   isAuthorized: false
 };
+
+let isAppTokenRefreshing = false;
+
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
+function waitForToken() {
+  delay(1000);
+  if (isAppTokenRefreshing) {
+    waitForToken();
+  }
+}
 
 const apiMiddleware = async (req, res, next) => {
   try {
@@ -13,31 +22,21 @@ const apiMiddleware = async (req, res, next) => {
       !appAuth.isAuthorized ||
       appAuth.createdAt * 1000 + appAuth.expiresIn * 1000 < Date.now()
     ) {
-      const payload = await oauthClient({
-        grantType: "client_credentials",
-        scope: "public"
-      });
-      const { accessToken, expiresIn, createdAt } = payload.data;
-      appAuth = { accessToken, expiresIn, createdAt, isAuthorized: true };
-    }
-
-    let refreshedAccessToken = null;
-
-    if (req.cookies.isAuthenticated && !req.cookies.isAuthorized) {
-      try {
+      if (!isAppTokenRefreshing) {
+        isAppTokenRefreshing = true;
         const payload = await oauthClient({
-          grantType: "refresh_token",
-          refreshToken: req.cookies.refreshToken
+          grantType: "client_credentials",
+          scope: "public"
         });
-        setAuthCookies(res, payload.data);
-        refreshedAccessToken = payload.data.accessToken;
-      } catch (e) {
-        clearAuthCookies(res);
+        const { accessToken, expiresIn, createdAt } = payload.data;
+        appAuth = { accessToken, expiresIn, createdAt, isAuthorized: true };
+        isAppTokenRefreshing = false;
+      } else {
+        waitForToken();
       }
     }
 
-    const token =
-      refreshedAccessToken || req.cookies.accessToken || appAuth.accessToken;
+    const token = req.cookies.accessToken || appAuth.accessToken;
 
     const { url, method, body, query } = req;
 
@@ -51,6 +50,7 @@ const apiMiddleware = async (req, res, next) => {
         data: body,
         params: query
       });
+      res.status(payload.status);
       res.send(payload.data);
     } catch (e) {
       res.status(e.response.status);

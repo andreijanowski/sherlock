@@ -9,6 +9,7 @@ const nextI18next = require("../i18n");
 const routes = require("../routes");
 const setCacheForStaticAssets = require("./setCacheForStaticAssets");
 const handleOauthCallback = require("./handleOauthCallback");
+const handleTokenRefresh = require("./handleTokenRefresh");
 const apiMiddleware = require("./apiMiddleware");
 const handleNextjs = require("./handleNextjs");
 const startServer = require("./startServer");
@@ -37,6 +38,7 @@ const pusherParser = bodyParser.urlencoded({
     setCacheForStaticAssets(dev)
   );
   server.get("/oauth-callback", handleOauthCallback);
+  server.post("/refresh-token", handleTokenRefresh);
   server.use(pusherParser);
   server.use("/api", apiParser, apiMiddleware);
   handleNextjs(handler, server);

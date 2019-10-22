@@ -15,7 +15,10 @@ import { STRIPE_API_KEY, GOOGLE_ANALYTICS_ID } from "consts";
 import ReactGA from "react-ga";
 import { fromJS } from "immutable";
 import Cookies from "js-cookie";
-import { loadUserData as loadUserDataAction } from "actions/auth";
+import {
+  loadUserData as loadUserDataAction,
+  refreshToken as refreshTokenAction
+} from "actions/auth";
 import { appWithTranslation } from "../i18n";
 import createStore from "../data/store";
 
@@ -55,7 +58,8 @@ class MyApp extends App {
 
   componentDidMount() {
     if (Cookies.get("isAuthenticated")) {
-      const { loadUserData } = this.props;
+      const { loadUserData, refreshToken } = this.props;
+      refreshToken();
       loadUserData();
     }
     if (window.Stripe) {
@@ -103,7 +107,8 @@ export default withRedux(createStore, {
       state => ({ state }),
       {
         pathChanged: pathChangedAction,
-        loadUserData: loadUserDataAction
+        loadUserData: loadUserDataAction,
+        refreshToken: refreshTokenAction
       }
     )(appWithTranslation(MyApp))
   )

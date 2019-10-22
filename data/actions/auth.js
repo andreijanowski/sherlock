@@ -2,7 +2,8 @@ import {
   LOGOUT,
   LOAD_USER_DATA,
   CONNECT_STRIPE_REQUEST,
-  SET_STRIPE_DATA
+  SET_STRIPE_DATA,
+  REFRESH_TOKEN_REQUEST
 } from "types/auth";
 
 export const logout = () => ({ type: LOGOUT });
@@ -23,6 +24,15 @@ export const connectStripe = (authCode, id) => ({
       }
     },
     method: "PATCH"
+  },
+  meta: { thunk: true }
+});
+
+export const refreshToken = () => ({
+  type: REFRESH_TOKEN_REQUEST,
+  payload: {
+    endpoint: `/refresh-token`,
+    method: "POST"
   },
   meta: { thunk: true }
 });

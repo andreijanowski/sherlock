@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { takeEvery, put, putResolve, all, select } from "redux-saga/effects";
 import {
   fetchProfile,
@@ -7,10 +8,11 @@ import {
 } from "actions/users";
 import { fetchGroups } from "actions/groups";
 import { postBusiness } from "actions/businesses";
-import { LOAD_USER_DATA } from "types/auth";
+import { LOAD_USER_DATA, REFRESH_TOKEN_SUCCESS } from "types/auth";
 import { setCurrentBusiness, saveCurrentUserId } from "actions/app";
+import { refreshToken } from "actions/auth";
 import isServer from "utils/isServer";
-import { fetchAllUserData } from "./utils";
+import fetchAllUserData from "./utils/fetchAllUserData";
 
 function* fetchUserData() {
   let lastBusinessId;
@@ -46,4 +48,17 @@ function* fetchUserData() {
   yield put(saveCurrentUserId(userId));
 }
 
-export default all([takeEvery([LOAD_USER_DATA], fetchUserData)]);
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
+function* subscribeForRefreshToken() {
+  if (!isServer && Cookies.get("isAuthenticated")) {
+    const msBeforeExpires = 30000;
+    yield delay(Cookies.get("accessTokenExpiresIn") * 1000 - msBeforeExpires);
+    yield put(refreshToken());
+  }
+}
+
+export default all([
+  takeEvery([LOAD_USER_DATA], fetchUserData),
+  takeEvery([REFRESH_TOKEN_SUCCESS], subscribeForRefreshToken)
+]);

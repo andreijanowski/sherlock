@@ -5,9 +5,21 @@ import isLoginRequest from "utils/isLoginRequest";
 import getErrorMessage from "utils/getErrorMessage";
 import { takeEvery, call, put } from "redux-saga/effects";
 import { logout } from "actions/auth";
+import { REFRESH_TOKEN_REQUEST } from "types/auth";
+import isServer from "utils/isServer";
 import { contentTypes, APP_URL } from "consts";
 import qs from "qs";
 import humps from "humps";
+
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
+function* waitForToken() {
+  yield delay(1000);
+  const isTokenRefreshing = window.localStorage.getItem("refreshingToken");
+  if (isTokenRefreshing === "true") {
+    yield waitForToken();
+  }
+}
 
 export const client = axios.create({
   baseURL: APP_URL,
@@ -26,14 +38,14 @@ export const client = axios.create({
   ]
 });
 
-function* handleApiCall({
-  type,
-  payload: { endpoint, ...options } = {},
-  meta
-}) {
+function* makeApiCall({ type, payload: { endpoint, ...options } = {}, meta }) {
   const [HEAD] = type.split("_REQUEST");
   try {
     const response = yield call(client, endpoint, options);
+
+    if (type === REFRESH_TOKEN_REQUEST) {
+      yield window.localStorage.setItem("refreshingToken", "false");
+    }
 
     yield put({
       type: `${HEAD}_SUCCESS`,
@@ -80,11 +92,51 @@ function* handleApiCall({
       yield put(Notifications.error({ message: error.message }));
     }
 
+    if (type === REFRESH_TOKEN_REQUEST) {
+      yield window.localStorage.setItem("refreshingToken", "false");
+    }
+
     yield put({
       type: `${HEAD}_FAIL`,
       payload: error,
       meta,
       error: true
+    });
+  }
+}
+
+function* handleApiCall({ type, payload, meta }) {
+  const [HEAD] = type.split("_REQUEST");
+  if (!isServer) {
+    const isTokenRefreshing = window.localStorage.getItem("refreshingToken");
+    if (isTokenRefreshing === "true") {
+      if (type === REFRESH_TOKEN_REQUEST) {
+        yield put({
+          type: `${HEAD}_CANCEL`
+        });
+      } else {
+        yield waitForToken();
+        yield makeApiCall({
+          type,
+          payload,
+          meta
+        });
+      }
+    } else {
+      if (type === REFRESH_TOKEN_REQUEST) {
+        yield window.localStorage.setItem("refreshingToken", "true");
+      }
+      yield makeApiCall({
+        type,
+        payload,
+        meta
+      });
+    }
+  } else {
+    yield makeApiCall({
+      type,
+      payload,
+      meta
     });
   }
 }
