@@ -5,9 +5,8 @@ import {
   Button,
   FoodetectiveLogo,
   BlueText,
-  YoutubeModal
-  // uncomment after translations are ready
-  // LanguageSwitcher
+  YoutubeModal,
+  LanguageSwitcher
 } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,8 +25,7 @@ const TopSection = ({ t, lng }) => {
   return (
     <Flex flexDirection="column" mt={4} width={1} px={3}>
       <Flex alignSelf="flex-end" alignItems="center">
-        {/* uncomment after translations are ready */}
-        {/* <LanguageSwitcher /> */}
+        <LanguageSwitcher />
         <Button
           styleName="login"
           onClick={() => Router.pushRoute(`/${lng}/login/`)}

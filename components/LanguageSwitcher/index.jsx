@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { oneOf, bool } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import i18n from "../../i18n";
+import { i18n } from "i18n";
 import {
   LanguageSwitcherWrapper,
   LanguageList,
