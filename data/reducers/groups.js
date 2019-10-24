@@ -13,7 +13,7 @@ export const initialState = Record({
   isSucceeded: false
 })();
 
-const reducer = (state = initialState, { type, payload }) => {
+const reducer = (state = initialState, { type, payload, meta }) => {
   switch (type) {
     case FETCH_GROUPS_REQUEST: {
       return state.merge(
@@ -25,13 +25,18 @@ const reducer = (state = initialState, { type, payload }) => {
       );
     }
     case FETCH_GROUPS_SUCCESS: {
-      return state.merge(
+      let newState = state.merge(
         Record({
           isFetching: false,
-          isSucceeded: true,
-          data: fromJS(payload.data)
+          isSucceeded: true
         })()
       );
+      if (meta.page === 1) {
+        newState = newState.setIn(["data"], fromJS(payload.data));
+      } else {
+        newState = newState.mergeDeepIn(["data"], fromJS(payload.data));
+      }
+      return newState;
     }
     case FETCH_GROUPS_FAIL: {
       return state.merge(

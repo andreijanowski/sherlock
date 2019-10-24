@@ -22,7 +22,7 @@ test/**/out
 #env files
 .env
 localhost-key.pem
-localhost.pem 
+localhost.pem
 
 # IDEs
 .vscode

@@ -60,6 +60,7 @@ export const calcReservedPeriodsForTables = reservations => {
               from: r.getIn(["attributes", "from"]),
               to: r.getIn(["attributes", "to"]),
               partySize: r.getIn(["attributes", "partySize"]),
+              name: r.getIn(["attributes", "name"]),
               isSplited: reservationTables.size > 1
             };
             if (reservedPeriod.from > reservedPeriod.to) {
@@ -108,6 +109,7 @@ export const parseReservations = (
               .filter(
                 r =>
                   r.getIn(["attributes", "state"]) === "placed" ||
+                  r.getIn(["attributes", "state"]) === "canceled" ||
                   (splitedReservation && splitedReservation.id === r.get("id"))
               )
               .map(r => r.get("id"))
