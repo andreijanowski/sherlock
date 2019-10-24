@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { withNamespaces } from "i18n";
+import { withTranslation } from "i18n";
 import { Modal, H3, Paragraph, Button } from "components";
 import { func } from "prop-types";
 import isServer from "utils/isServer";
-import { Flex } from "@rebass/grid";
 import { privacyPolicyLink, termsAndConditionsLink } from "consts";
+import { Wrapper } from "./styled";
 
 const namespaces = ["cookies"];
 
@@ -21,7 +21,7 @@ const CookiesModal = ({ t }) => {
           setIsOpen(false);
         }}
       >
-        <Flex width={450} flexDirection="column">
+        <Wrapper>
           <H3>{t("header")}</H3>
           <Paragraph>
             {`${t("paragraph")} `}
@@ -50,7 +50,7 @@ const CookiesModal = ({ t }) => {
           >
             {t("ok")}
           </Button>
-        </Flex>
+        </Wrapper>
       </Modal>
     );
   }
@@ -61,4 +61,4 @@ CookiesModal.propTypes = {
   t: func.isRequired
 };
 
-export default withNamespaces(namespaces)(CookiesModal);
+export default withTranslation(namespaces)(CookiesModal);

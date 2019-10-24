@@ -1,38 +1,28 @@
-import { PureComponent } from "react";
-import { withNamespaces } from "i18n";
+import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string } from "prop-types";
+import { func, string, shape } from "prop-types";
 import { SingleActionView } from "components";
 import SignInForm from "sections/login/SignInForm";
 
 const namespaces = ["login", "forms"];
 
-class Login extends PureComponent {
-  static async getInitialProps() {
-    return {
-      namespacesRequired: namespaces
-    };
-  }
+const Login = ({ t, i18n }) => (
+  <SingleActionView
+    {...{
+      lng: (i18n && i18n.language) || "en",
+      actionTitle: t("title"),
+      actionDescription: t("description")
+    }}
+  >
+    <SignInForm {...{ t, lng: (i18n && i18n.language) || "en" }} />
+  </SingleActionView>
+);
 
-  render() {
-    const { t, lng } = this.props;
-    return (
-      <SingleActionView
-        {...{
-          lng,
-          actionTitle: t("title"),
-          actionDescription: t("description")
-        }}
-      >
-        <SignInForm {...{ t, lng }} />
-      </SingleActionView>
-    );
-  }
-}
+Login.getInitialProps = async () => ({ namespacesRequired: namespaces });
 
 Login.propTypes = {
   t: func.isRequired,
-  lng: string.isRequired
+  i18n: shape({ lng: string.isRequired }).isRequired
 };
 
-export default requireAuth(false)(withNamespaces(namespaces)(Login));
+export default requireAuth(false)(withTranslation(namespaces)(Login));

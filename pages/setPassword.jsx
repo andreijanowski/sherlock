@@ -1,41 +1,31 @@
-import { PureComponent } from "react";
-import { withNamespaces } from "i18n";
+import { withTranslation } from "i18n";
 import { func, string, shape } from "prop-types";
 import { SingleActionView } from "components";
 import ChangePasswordForm from "sections/changePassword/ChangePasswordForm";
 
 const namespaces = ["setPassword", "forms"];
 
-class SetPassword extends PureComponent {
-  static async getInitialProps() {
-    return {
-      namespacesRequired: namespaces
-    };
-  }
+const SetPassword = ({ t, i18n, query: { token } }) => (
+  <SingleActionView
+    {...{
+      lng: (i18n && i18n.language) || "en",
+      actionTitle: t("title")
+    }}
+  >
+    <ChangePasswordForm
+      {...{ t, lng: (i18n && i18n.language) || "en", token }}
+    />
+  </SingleActionView>
+);
 
-  render() {
-    const {
-      t,
-      lng,
-      query: { token }
-    } = this.props;
-    return (
-      <SingleActionView
-        {...{
-          lng,
-          actionTitle: t("title")
-        }}
-      >
-        <ChangePasswordForm {...{ t, lng, token }} />
-      </SingleActionView>
-    );
-  }
-}
+SetPassword.getInitialProps = async () => ({
+  namespacesRequired: namespaces
+});
 
 SetPassword.propTypes = {
   t: func.isRequired,
-  lng: string.isRequired,
+  i18n: shape({ lng: string.isRequired }).isRequired,
   query: shape().isRequired
 };
 
-export default withNamespaces(namespaces)(SetPassword);
+export default withTranslation(namespaces)(SetPassword);

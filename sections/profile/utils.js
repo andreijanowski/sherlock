@@ -1,4 +1,10 @@
-export const generateMenuItems = (t, active, showPublishModal, state) => {
+export const generateMenuItems = (
+  t,
+  active,
+  showPublishModal,
+  state,
+  unpublishBusiness
+) => {
   const menuItems = [
     {
       route: `/app/profile/basic-information/`,
@@ -46,6 +52,11 @@ export const generateMenuItems = (t, active, showPublishModal, state) => {
       label: t("app:manageProfile.published"),
       color: "green"
     };
+    menuItems[8] = {
+      onClick: unpublishBusiness,
+      label: t("app:manageProfile.unPublish"),
+      color: "ruby"
+    };
   }
   if (state === "waiting_for_approval") {
     menuItems[7] = {
@@ -69,6 +80,15 @@ const getGroupsByParentGroups = (groups, parentGroups) =>
           label: g.getIn(["attributes", "name"]),
           value: g.getIn(["attributes", "slug"])
         }))
+        .sort((a, b) => {
+          if (a.label > b.label) {
+            return 1;
+          }
+          if (a.label < b.label) {
+            return -1;
+          }
+          return 0;
+        })
         .toList()
         .toArray()
     : [];

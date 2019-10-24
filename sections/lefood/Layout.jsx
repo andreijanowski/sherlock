@@ -36,7 +36,11 @@ import FinishOrdersModal from "./FinishOrdersModal";
 import StripeCurrencyModal from "./StripeCurrencyModal";
 import { Orange } from "./styled";
 
-const averageDeliveryTimeList = [
+const averageDeliveryTimeList = t => [
+  {
+    value: 0,
+    label: t("notSpecified")
+  },
   {
     value: 15,
     label: "15 min"
@@ -75,23 +79,20 @@ const calcProfileCompletedPercents = ({
   dishesLength,
   deliveriesLength,
   orderPeriodsLength,
-  averageDeliveryTime,
   allowPickup
 }) => {
-  let profileCompletedPercents = 0;
+  let profileCompletedSteps = 0;
   if (dishesLength) {
-    profileCompletedPercents += 25;
+    profileCompletedSteps += 1;
   }
   if (deliveriesLength || allowPickup) {
-    profileCompletedPercents += 25;
+    profileCompletedSteps += 1;
   }
   if (orderPeriodsLength) {
-    profileCompletedPercents += 25;
+    profileCompletedSteps += 1;
   }
-  if (averageDeliveryTime) {
-    profileCompletedPercents += 25;
-  }
-  return profileCompletedPercents;
+  const profileCompletedPercents = [0, 33, 67, 100];
+  return profileCompletedPercents[profileCompletedSteps];
 };
 
 class LefoodLayout extends PureComponent {
@@ -198,13 +199,11 @@ class LefoodLayout extends PureComponent {
             dishesLength,
             deliveriesLength,
             orderPeriodsLength,
-            averageDeliveryTime:
-              business && business.get("averageDeliveryTime"),
             allowPickup: business && business.get("allowPickup")
           })
         : 100;
 
-    const currentAverageDeliveryTime = averageDeliveryTimeList.find(
+    const currentAverageDeliveryTime = averageDeliveryTimeList(t).find(
       i => i.value === (business && business.get("averageDeliveryTime"))
     ) || { value: undefined };
     return (
@@ -246,9 +245,8 @@ class LefoodLayout extends PureComponent {
                             {`${t("completeYourProfile")} `}
                             <ItalicText>
                               <Orange>
-                                ({`${t("deliveryTime")}, `}
                                 <Link route="/app/lefood/menu/" lng={lng}>
-                                  <Orange as="a">{t("menu")}</Orange>
+                                  <Orange as="a">{`(${t("menu")}`}</Orange>
                                 </Link>
                                 {", "}
                                 <Link
@@ -294,7 +292,7 @@ class LefoodLayout extends PureComponent {
                       </Box>
                       <Box pr={3} mb={2}>
                         <Select
-                          items={averageDeliveryTimeList}
+                          items={averageDeliveryTimeList(t)}
                           value={currentAverageDeliveryTime}
                           onChange={({ value }) =>
                             this.updateBusiness({

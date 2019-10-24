@@ -2,7 +2,7 @@
 const express = require("express");
 const path = require("path");
 const next = require("next");
-const nextI18NextMiddleware = require("next-i18next/middleware");
+const nextI18NextMiddleware = require("next-i18next/middleware").default;
 const { resetServerContext } = require("react-beautiful-dnd");
 const nextI18next = require("./i18n");
 const routes = require("./routes");
@@ -21,6 +21,17 @@ const port = process.env.PORT || 3000;
   }
 
   const server = express();
+
+  if (!dev) {
+    server.get(
+      /^\/_next\/static\/(emoji|favicon|flags|fonts|img)\//,
+      (_, res, nextHandler) => {
+        res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+        nextHandler();
+      }
+    );
+  }
+
   server.use(nextI18NextMiddleware(nextI18next));
 
   // serve locales for client
@@ -28,6 +39,16 @@ const port = process.env.PORT || 3000;
 
   // use next.js
   server.get(/^((?!^\/locales\/).)*$/, (req, res) => {
+    const host = req.header("host");
+
+    if (
+      host &&
+      host.match(/^sherlock.foodetective.co|^www.sherlock.foodetective.co/i)
+    ) {
+      res.redirect(301, `https://business.foodetective.co${req.url}`);
+      next();
+    }
+
     resetServerContext();
     return handler(req, res);
   });

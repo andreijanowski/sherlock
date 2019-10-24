@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import SettingsLayout from "sections/settings/Layout";
 import ChangePasswordForm from "sections/settings/password";
-import { withNamespaces } from "i18n";
+import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string } from "prop-types";
 import { connect } from "react-redux";
@@ -35,9 +35,9 @@ Password.propTypes = {
 const mapDispatchToProps = { changePasswordHandler: changePassword };
 
 export default requireAuth(true)(
-  withNamespaces(namespaces)(
+  withTranslation(namespaces)(
     connect(
-      null,
+      (state, { i18n }) => ({ lng: (i18n && i18n.language) || "en" }),
       mapDispatchToProps
     )(Password)
   )

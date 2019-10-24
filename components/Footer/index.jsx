@@ -1,4 +1,4 @@
-import { withNamespaces } from "i18n";
+import { withTranslation } from "i18n";
 import { func } from "prop-types";
 import {
   FoodetectiveLogo
@@ -146,4 +146,4 @@ Footer.propTypes = {
   t: func.isRequired
 };
 
-export default withNamespaces(namespaces)(Footer);
+export default withTranslation(namespaces)(Footer);

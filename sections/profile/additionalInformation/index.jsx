@@ -62,6 +62,10 @@ const AdditionalInformationForm = ({ t, initialValues, handleSubmit }) =>
           <FormCheckbox name="hasCatering" label={t("hasCatering")} />
           <FormCheckbox name="hasReservations" label={t("hasReservations")} />
           <FormCheckbox name="hasPrivateEvents" label={t("hasPrivateEvents")} />
+          <FormCheckbox
+            name="availableInLefood"
+            label={t("availableInLefood")}
+          />
           <FormInput
             name="deliveryUrl"
             label={t("deliveryUrlLabel")}

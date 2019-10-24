@@ -2,9 +2,11 @@ import {
   POST_RESERVATION_REQUEST,
   PATCH_RESERVATION_REQUEST,
   PATCH_RESERVATION_REJECT_REQUEST,
+  PATCH_RESERVATION_CANCEL_REQUEST,
   DELETE_RESERVATION_REQUEST,
   FETCH_RESERVATION_REQUEST,
-  SET_EDIT_RESERVATION
+  SET_EDIT_RESERVATION,
+  HANDLE_RESERVATION_UPDATE
 } from "types/reservations";
 import { getRelationships } from "./utils";
 
@@ -74,6 +76,20 @@ export const patchReservationReject = (id, values) => ({
   }
 });
 
+export const patchReservationCancel = id => ({
+  type: PATCH_RESERVATION_CANCEL_REQUEST,
+  payload: {
+    method: "PATCH",
+    endpoint: `/api/v1/reservations/${id}/cancel`,
+    data: {
+      data: {
+        id,
+        type: "reservations"
+      }
+    }
+  }
+});
+
 export const deleteReservation = id => ({
   type: DELETE_RESERVATION_REQUEST,
   payload: {
@@ -88,4 +104,9 @@ export const setReservationForEditing = editedReservation => ({
   payload: {
     editedReservation
   }
+});
+
+export const handleReservationUpdate = data => ({
+  type: HANDLE_RESERVATION_UPDATE,
+  payload: data
 });

@@ -117,6 +117,12 @@ const OrderDetails = ({
             value: [orderDetails.getIn(["attributes", "userPhone"])]
           }}
         />
+        <SliderDetail
+          {...{
+            name: t("deliveryTimeWish"),
+            value: [orderDetails.getIn(["attributes", "timeWish"])]
+          }}
+        />
         {orderDetails.getIn(["attributes", "pickupAtBusiness"]) && (
           <SliderDetail
             {...{

@@ -59,3 +59,9 @@ export const ChairNumber = styled.span`
   color: rgb(${p => calcTextColor(p.availibilityStatus, p.theme.colors)});
   font-size: ${p => p.theme.fontSizes.f12};
 `;
+
+export const ReservedBy = styled.span`
+  color: rgb(${p => calcTextColor(p.availibilityStatus, p.theme.colors)});
+  font-size: ${p => p.theme.fontSizes.f12};
+  text-align: center;
+`;

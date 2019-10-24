@@ -11,6 +11,7 @@ import {
 import { Flex, Box } from "@rebass/grid";
 import setFieldData from "final-form-set-field-data";
 import countriesPhoneCodes from "utils/countriesPhoneCodes";
+import { normalizePhone } from "utils/normalizers";
 import { Form } from "../styled";
 
 const ContactInformationForm = ({ t, initialValues, handleSubmit }) =>
@@ -51,6 +52,7 @@ const ContactInformationForm = ({ t, initialValues, handleSubmit }) =>
                 name="phone"
                 label={t("phoneLabel")}
                 placeholder={t("phonePlaceholder")}
+                parse={normalizePhone}
               />
             </Box>
           </Flex>

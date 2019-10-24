@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import { withNamespaces } from "i18n";
+import { withTranslation } from "i18n";
 import { func, string, shape } from "prop-types";
 import { SingleActionView, LoadingIndicator } from "components";
 import { connect } from "react-redux";
@@ -68,9 +68,9 @@ ConfirmAccount.propTypes = {
   confirmMail: func.isRequired
 };
 
-export default withNamespaces(namespaces)(
+export default withTranslation(namespaces)(
   connect(
-    null,
+    (state, { i18n }) => ({ lng: (i18n && i18n.language) || "en" }),
     {
       confirmMail: confirmMailAction
     }

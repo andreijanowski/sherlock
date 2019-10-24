@@ -20,6 +20,7 @@ const ReservationDetails = ({
   splitedReservation,
   reservationTables,
   setRejectModalVisibility,
+  setCancelModalVisibility,
   handleTableClick,
   t,
   lng,
@@ -171,10 +172,16 @@ const ReservationDetails = ({
               styleName="reject"
               onClick={e => {
                 e.stopPropagation();
-                setRejectModalVisibility(reservationDetails.get("id"));
+                if (reservationTables && reservationTables.length !== 0) {
+                  setCancelModalVisibility(reservationDetails.get("id"));
+                } else {
+                  setRejectModalVisibility(reservationDetails.get("id"));
+                }
               }}
             >
-              {t("reject")}
+              {reservationTables && reservationTables.length !== 0
+                ? t("cancel")
+                : t("reject")}
             </Button>
           </Box>
           <Box width={1 / 2} px={1}>
@@ -208,6 +215,7 @@ ReservationDetails.propTypes = {
   lng: string.isRequired,
   handleTableClick: func.isRequired,
   setRejectModalVisibility: func.isRequired,
+  setCancelModalVisibility: func.isRequired,
   setEditedReservation: func.isRequired
 };
 
