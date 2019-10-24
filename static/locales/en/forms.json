@@ -133,7 +133,11 @@
       "greater_than-party_size": "Party size must be greater than {{count}}. Your value is {{value}}",
       "taken-code": "Code already present in a different delivery",
       "not_between_open_periods-base": "Reservation must take place between business open periods",
-      "not_enough_time_before_start-from": "Not enough time before start"
+      "not_enough_time_before_start-from": "Not enough time before start",
+      "password": "Passwords must be at least {{length}} characters.",
+      "passwordMatch": "The password and repeat password do not match.",
+      "incorrect_password-current_password": "Password is incorrect",
+      "same_password-password": "Password is the same as current password"
     }
   },
   "placeholder": {

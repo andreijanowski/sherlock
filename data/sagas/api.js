@@ -1,9 +1,8 @@
 import axios from "axios";
 import normalize from "json-api-normalizer";
 import Notifications from "react-notification-system-redux";
-import isLoginRequest from "utils/isLoginRequest";
 import getErrorMessage from "utils/getErrorMessage";
-import { takeEvery, call, put } from "redux-saga/effects";
+import { takeEvery, call, put, select } from "redux-saga/effects";
 import { logout } from "actions/auth";
 import { REFRESH_TOKEN_REQUEST } from "types/auth";
 import isServer from "utils/isServer";
@@ -45,6 +44,7 @@ function* makeApiCall({ type, payload: { endpoint, ...options } = {}, meta }) {
 
     if (type === REFRESH_TOKEN_REQUEST) {
       yield window.localStorage.setItem("refreshingToken", "false");
+      yield window.localStorage.setItem("refreshingTokenAppInstance", null);
     }
 
     yield put({
@@ -58,29 +58,13 @@ function* makeApiCall({ type, payload: { endpoint, ...options } = {}, meta }) {
     });
   } catch (error) {
     if (error.response && error.response.status === 401) {
-      if (isLoginRequest(error.response)) {
-        if (error.response.data.error === "terms_agreement_error") {
-          yield put(
-            Notifications.error({
-              message: "termsAgreementError"
-            })
-          );
-        } else {
-          yield put(
-            Notifications.error({
-              message: "loginFailed"
-            })
-          );
-        }
-      } else {
-        yield put(logout());
-        yield put(
-          Notifications.error({
-            message: "loggedOut",
-            uid: "logout"
-          })
-        );
-      }
+      yield put(logout());
+      yield put(
+        Notifications.error({
+          message: "loggedOut",
+          uid: "logout"
+        })
+      );
     } else if (
       error.response &&
       error.response.data &&
@@ -94,6 +78,7 @@ function* makeApiCall({ type, payload: { endpoint, ...options } = {}, meta }) {
 
     if (type === REFRESH_TOKEN_REQUEST) {
       yield window.localStorage.setItem("refreshingToken", "false");
+      yield window.localStorage.setItem("refreshingTokenAppInstance", null);
     }
 
     yield put({
@@ -124,7 +109,11 @@ function* handleApiCall({ type, payload, meta }) {
       }
     } else {
       if (type === REFRESH_TOKEN_REQUEST) {
+        const uuid = yield select(state =>
+          state.getIn(["app", "instanceUuid"])
+        );
         yield window.localStorage.setItem("refreshingToken", "true");
+        yield window.localStorage.setItem("refreshingTokenAppInstance", uuid);
       }
       yield makeApiCall({
         type,

@@ -1,7 +1,7 @@
 {
-  "termsAgreementError": "You have to register first and accept our terms and conditions and privacy policy.",
   "mustBeLoggedIn": "You must be logged in to continue",
   "pastDateError": "Chosen date is too far in the past",
+  "changePasswordSuccess": "Password has been changed",
   "errors": {
     "missing_attributes": {
       "Missing attributes": "Missing attributes"

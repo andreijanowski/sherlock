@@ -35,6 +35,10 @@ module.exports = routes()
     "app/settings/basicInformation",
     `/:lng(${languagesPattern})/app/settings/basic-information`
   )
+  .add(
+    "app/settings/password",
+    `/:lng(${languagesPattern})/app/settings/password`
+  )
   .add("app/catering/day", `/:lng(${languagesPattern})/app/catering/day`)
   .add("app/catering/week", `/:lng(${languagesPattern})/app/catering/week`)
   .add("app/catering/month", `/:lng(${languagesPattern})/app/catering/month`)

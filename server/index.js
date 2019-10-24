@@ -10,6 +10,7 @@ const routes = require("../routes");
 const setCacheForStaticAssets = require("./setCacheForStaticAssets");
 const handleOauthCallback = require("./handleOauthCallback");
 const handleTokenRefresh = require("./handleTokenRefresh");
+const handleUserLogout = require("./handleUserLogout");
 const apiMiddleware = require("./apiMiddleware");
 const handleNextjs = require("./handleNextjs");
 const startServer = require("./startServer");
@@ -37,6 +38,7 @@ const pusherParser = bodyParser.urlencoded({
     /^\/_next\/static\/(emoji|favicon|flags|fonts|img)\//,
     setCacheForStaticAssets(dev)
   );
+  server.get("/logout-user", handleUserLogout);
   server.get("/oauth-callback", handleOauthCallback);
   server.post("/refresh-token", handleTokenRefresh);
   server.use(pusherParser);

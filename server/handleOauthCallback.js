@@ -16,11 +16,12 @@ function handleOauthCallback(req, res) {
         res.redirect("/");
       })
       .catch(err => {
-        console.log(err);
+        res.status(err.response.status);
+        res.redirect("/");
       });
   } else {
     res.clearCookie("loginStateParam");
-    clearAuthCookies();
+    clearAuthCookies(res);
     res.redirect("/");
   }
 }

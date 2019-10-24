@@ -8,9 +8,16 @@ import {
 } from "actions/users";
 import { fetchGroups } from "actions/groups";
 import { postBusiness } from "actions/businesses";
-import { LOAD_USER_DATA, REFRESH_TOKEN_SUCCESS } from "types/auth";
+import {
+  LOAD_USER_DATA,
+  REFRESH_TOKEN_SUCCESS,
+  LOGOUT,
+  CHANGE_PASSWORD_SUCCESS
+} from "types/auth";
+import { API_URL, APP_URL } from "consts";
 import { setCurrentBusiness, saveCurrentUserId } from "actions/app";
 import { refreshToken } from "actions/auth";
+import Notifications from "react-notification-system-redux";
 import isServer from "utils/isServer";
 import fetchAllUserData from "./utils/fetchAllUserData";
 
@@ -58,7 +65,21 @@ function* subscribeForRefreshToken() {
   }
 }
 
+function* showSuccessPasswordChangeMsg() {
+  yield put(
+    Notifications.success({
+      message: "changePasswordSuccess"
+    })
+  );
+}
+
+function* handleLogout() {
+  yield (window.location.href = `${API_URL}/logout_user?origin_url=${APP_URL}`);
+}
+
 export default all([
   takeEvery([LOAD_USER_DATA], fetchUserData),
-  takeEvery([REFRESH_TOKEN_SUCCESS], subscribeForRefreshToken)
+  takeEvery([REFRESH_TOKEN_SUCCESS], subscribeForRefreshToken),
+  takeEvery([CHANGE_PASSWORD_SUCCESS], showSuccessPasswordChangeMsg),
+  takeEvery([LOGOUT], handleLogout)
 ]);

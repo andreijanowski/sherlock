@@ -36,7 +36,7 @@ const TopSection = ({ t, lng }) => {
           onClick={() => {
             const state = uuid();
             Cookies.set("loginStateParam", state);
-            window.location.href = `${API_URL}/oauth/authorize?client_id=${OAUTH_PUBLIC_CLIENT_ID}&redirect_uri=${OAUTH_CALLBACK_URL}&response_type=code&scope=trusted+refresh_token+public&state=${state}`; // TODO: implement state
+            window.location.href = `${API_URL}/oauth/authorize?client_id=${OAUTH_PUBLIC_CLIENT_ID}&redirect_uri=${OAUTH_CALLBACK_URL}&response_type=code&scope=trusted+refresh_token+public&state=${state}`;
           }}
         >
           {t("common:login")}

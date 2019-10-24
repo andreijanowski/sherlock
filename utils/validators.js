@@ -22,6 +22,16 @@ export const validateLength = (t, min, max) => value =>
     ? t("forms:validation.error.length", { min, max })
     : undefined;
 
+export const minPasswordLength = t => (value = "") =>
+  value.length >= 8
+    ? undefined
+    : t("forms:validation.error.password", {
+        length: 8
+      });
+
+export const validatePassword = t =>
+  composeValidators(required(t), minPasswordLength(t));
+
 export const isEmail = t => value =>
   value && !isValidEmail(value) ? t("forms:validation.error.email") : undefined;
 
