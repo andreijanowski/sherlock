@@ -24,7 +24,7 @@
   "goBackToPlans": "Go back to plans",
   "promotion": {
     "startFirstLine": "Get ",
-    "promotionPlan": "Sherlock Basic",
+    "promotionPlan": "Foodetective for business Basic",
     "startLastLine": " for 3 months for free.",
     "endFirstLine": "Just complete your profile online. The offer is very limited, we have only ",
     "endLastLine": "1000 slots left."
@@ -33,10 +33,9 @@
   "billingMonthly": "Billing Monthly",
   "options": {
     "website": "Webpage",
-    "widget": "Widget - coming soon",
+    "widget": "Widget",
     "mobileApp": "Mobile App",
-    "proFeedback": "Pro Feedback",
-    "paidReservation": "Reservation",
+    "paidReservation": "Booking",
     "reservations": "Reservations",
     "takeAway": "Take Away",
     "paidBooking": "Reservation",
@@ -44,18 +43,7 @@
     "catering": "Catering",
     "privatisation": "Privatisation",
     "delivery": "Delivery / Take away",
-    "monthlyData": "Monthly Data",
-    "weeklyData": "Weekly Data",
-    "dailyData": "Daily Data",
-    "payments": "Payments",
-    "posIntegration": "POS integration",
-    "archivedData": "Archived Data",
-    "hrAndPeopleManagement": "HR & People Management",
-    "loyaltyProgram": "Loyalty Program",
-    "clientInteraction": "Client Interaction",
-    "photoshoot": "Photoshoot",
-    "mysteryShopping": "Mystery Shopping - coming soon",
-    "supplyAutomation": "Supply Automation"
+    "digitalMarketing": "Digital marketing"
   },
   "essential": {
     "name": "Essential",
@@ -78,27 +66,5 @@
     "month": "month",
     "year": "year",
     "buttonText": "Get started at "
-  },
-  "premium": {
-    "name": "Premium",
-    "bestValue": "Best Value",
-    "priceDescription": "Starting at",
-    "price": {
-      "month": "€59.90",
-      "year": "€718.80",
-      "beta": "€549.90"
-    },
-    "month": "month",
-    "year": "year",
-    "buttonText": "Get started at "
-  },
-  "professional": {
-    "name": "Professional",
-    "priceDescription": "Diversely",
-    "price": {
-      "month": "Enterprise",
-      "year": "Enterprise"
-    },
-    "buttonText": "Request a Demo"
   }
 }

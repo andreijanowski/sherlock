@@ -16,7 +16,7 @@ import { POST_BUSINESS_SUCCESS } from "types/businesses";
 import { takeEvery, all, put } from "redux-saga/effects";
 import Notifications from "react-notification-system-redux";
 import { setCurrentBusiness } from "actions/app";
-import { fetchAllBusinessData } from "./utils";
+import fetchAllBusinessData from "./utils/fetchAllBusinessData";
 
 function* fetchBusinessData({ payload: { id } }) {
   yield put(fetchProfileBusiness(id));

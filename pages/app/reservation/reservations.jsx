@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unused-state */
 import { PureComponent } from "react";
-import { withNamespaces } from "i18n";
+import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
 import ReservationLayout from "sections/reservation/Layout";
@@ -669,11 +669,14 @@ ReservationsPage.defaultProps = {
 };
 
 export default requireAuth(true)(
-  withNamespaces(namespaces)(
+  withTranslation(namespaces)(
     connect(
-      state => {
+      (state, { i18n }) => {
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
-        const business = businessData && businessData.get("businesses").first();
+        const business =
+          businessData &&
+          businessData.get("businesses") &&
+          businessData.get("businesses").first();
         const reservations = state.getIn([
           "reservations",
           "data",
@@ -696,7 +699,8 @@ export default requireAuth(true)(
           bookings,
           tables: tables
             ? tables.sortBy(table => table.getIn(["attributes", "number"]))
-            : tables
+            : tables,
+          lng: (i18n && i18n.language) || "en"
         };
       },
       {

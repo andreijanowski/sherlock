@@ -1,4 +1,4 @@
-import { withNamespaces } from "i18n";
+import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
 import {
@@ -69,11 +69,14 @@ YearPage.defaultProps = {
 };
 
 export default requireAuth(true)(
-  withNamespaces(namespaces)(
+  withTranslation(namespaces)(
     connect(
-      state => {
+      (state, { i18n }) => {
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
-        const business = businessData && businessData.get("businesses").first();
+        const business =
+          businessData &&
+          businessData.get("businesses") &&
+          businessData.get("businesses").first();
         return {
           business: business && business.get("attributes"),
           businessId: business && business.get("id"),
@@ -87,7 +90,8 @@ export default requireAuth(true)(
             "privatisations",
             "data",
             "privatisations"
-          ])
+          ]),
+          lng: (i18n && i18n.language) || "en"
         };
       },
       {

@@ -47,39 +47,6 @@ const Plans = ({
         }}
       />
     </Box>
-    <Box mb={[40, 0]} width={[1, 1 / 2, 1 / 4]}>
-      <Plan
-        {...{
-          t,
-          billingInterval,
-          nextPlanName,
-          currentPlanInterval,
-          color: "navyBlue",
-          name: "premium",
-          isSubscriptionView,
-          onClickActionButton: () =>
-            choosePlan
-              ? choosePlan("premium")
-              : Router.pushRoute(`/${lng}/register/?plan=premium`)
-        }}
-      />
-    </Box>
-    <Box mb={[40, 0]} width={[1, 1 / 2, 1 / 4]}>
-      <Plan
-        {...{
-          t,
-          billingInterval,
-          nextPlanName,
-          currentPlanInterval,
-          isSubscriptionView,
-          color: "hanPurple",
-          name: "professional",
-          onClickActionButton: () => {
-            window.open("mailto:hello@foodetective.co", "_self");
-          }
-        }}
-      />
-    </Box>
   </>
 );
 

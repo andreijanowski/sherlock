@@ -15,8 +15,8 @@ import {
   Docs,
   Feedback,
   SettingsBasicInfo,
-  SettingsPassword,
-  SettingsLogout
+  SettingsLogout,
+  SettingsPassword
 } from "icons";
 
 const generateSettingsMobileSubmenu = (t, active, logout) => [

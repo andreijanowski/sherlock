@@ -1,5 +1,6 @@
 import { reducer as notifications } from "react-notification-system-redux";
 import { reducer as burgerMenu } from "redux-burger-menu/immutable";
+import app from "./app";
 import users from "./users";
 import groups from "./groups";
 import members from "./members";
@@ -14,6 +15,7 @@ import bookings from "./bookings";
 import widgets from "./widgets";
 
 export default {
+  app,
   notifications,
   burgerMenu,
   users,

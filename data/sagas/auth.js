@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { takeEvery, put, putResolve, all, select } from "redux-saga/effects";
 import {
   fetchProfile,
@@ -8,64 +9,22 @@ import {
 import { fetchGroups } from "actions/groups";
 import { postBusiness } from "actions/businesses";
 import {
-  LOGIN_SUCCESS,
-  REGISTER_SUCCESS,
-  FACEBOOK_LOGIN_SUCCESS,
+  LOAD_USER_DATA,
   REFRESH_TOKEN_SUCCESS,
-  CHANGE_PASSWORD_SUCCESS,
-  RESET_PASSWORD_SUCCESS,
-  CHANGE_PASSWORD_BY_TOKEN_SUCCESS,
-  DELETE_BY_TOKEN_SUCCESS,
-  REFRESH_TOKEN_REQUEST,
-  LOGIN_FAIL,
-  REGISTER_FAIL,
-  FACEBOOK_LOGIN_FAIL,
-  REFRESH_TOKEN_FAIL,
-  LOGOUT
+  LOGOUT,
+  CHANGE_PASSWORD_SUCCESS
 } from "types/auth";
-import Notifications from "react-notification-system-redux";
-import { logout as logoutAction, refreshToken as refresh } from "actions/auth";
+import { API_URL, APP_URL } from "consts";
 import { setCurrentBusiness, saveCurrentUserId } from "actions/app";
+import { refreshToken } from "actions/auth";
+import Notifications from "react-notification-system-redux";
 import isServer from "utils/isServer";
-import { fetchAllUserData } from "./utils";
+import fetchAllUserData from "./utils/fetchAllUserData";
 
-const delay = ms => new Promise(res => setTimeout(res, ms));
-
-function* subscribeForRefresh() {
-  if (!isServer) {
-    try {
-      const credentials = JSON.parse(
-        window.localStorage.getItem("credentials")
-      );
-      if (credentials.expiresIn && credentials.refreshToken) {
-        const { expiresIn, refreshToken } = credentials;
-        const msBeforeExpires = 300000;
-        yield delay(expiresIn * 1000 - msBeforeExpires);
-        yield put(refresh({ refreshToken }));
-      }
-      // eslint-disable-next-line no-empty
-    } catch (e) {}
-  }
-}
-
-function* fetchUserData({
-  payload: {
-    rawData: { accessToken, refreshToken, createdAt, expiresIn }
-  }
-}) {
+function* fetchUserData() {
   let lastBusinessId;
   let lastUserId;
   if (!isServer) {
-    window.localStorage.setItem("areCredentialsRefreshing", "false");
-    window.localStorage.setItem(
-      "credentials",
-      JSON.stringify({
-        accessToken,
-        refreshToken,
-        createdAt,
-        expiresIn
-      })
-    );
     lastBusinessId = window.localStorage.getItem("currentBusinessId");
     lastUserId = window.localStorage.getItem("currentUserId");
   }
@@ -76,7 +35,7 @@ function* fetchUserData({
   } = yield putResolve(fetchProfile());
   yield fetchAllUserData(fetchProfileCards);
   yield put(fetchProfileSubscriptions());
-  yield put(fetchGroups());
+  yield fetchAllUserData(fetchGroups);
   yield fetchAllUserData(fetchProfileBusinesses);
   const profileBusinesses = yield select(state =>
     state.getIn(["users", "profileBusinesses", "data", "businesses"])
@@ -96,6 +55,16 @@ function* fetchUserData({
   yield put(saveCurrentUserId(userId));
 }
 
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
+function* subscribeForRefreshToken() {
+  if (!isServer && Cookies.get("isAuthenticated")) {
+    const msBeforeExpires = 30000;
+    yield delay(Cookies.get("accessTokenExpiresIn") * 1000 - msBeforeExpires);
+    yield put(refreshToken());
+  }
+}
+
 function* showSuccessPasswordChangeMsg() {
   yield put(
     Notifications.success({
@@ -104,70 +73,13 @@ function* showSuccessPasswordChangeMsg() {
   );
 }
 
-function* showSuccessResetPasswordMsg() {
-  yield put(
-    Notifications.success({
-      message: "passwordResetSuccess"
-    })
-  );
-}
-
-function* onSuccessPasswordChangeByToken() {
-  yield put(
-    Notifications.success({
-      message: "changePasswordSuccess"
-    })
-  );
-}
-
-function* logout() {
-  yield put(logoutAction());
-}
-
-function* setRefreshing() {
-  if (!isServer) {
-    yield window.localStorage.setItem("areCredentialsRefreshing", "true");
-  }
-}
-
-function* removeToken() {
-  if (!isServer) {
-    yield window.localStorage.removeItem("credentials");
-  }
+function* handleLogout() {
+  yield (window.location.href = `${API_URL}/logout_user?origin_url=${APP_URL}`);
 }
 
 export default all([
-  takeEvery(
-    [
-      LOGIN_SUCCESS,
-      REGISTER_SUCCESS,
-      FACEBOOK_LOGIN_SUCCESS,
-      REFRESH_TOKEN_SUCCESS
-    ],
-    fetchUserData
-  ),
-  takeEvery(
-    [
-      LOGIN_SUCCESS,
-      REGISTER_SUCCESS,
-      FACEBOOK_LOGIN_SUCCESS,
-      REFRESH_TOKEN_SUCCESS
-    ],
-    subscribeForRefresh
-  ),
-  takeEvery(CHANGE_PASSWORD_SUCCESS, showSuccessPasswordChangeMsg),
-  takeEvery(RESET_PASSWORD_SUCCESS, showSuccessResetPasswordMsg),
-  takeEvery(CHANGE_PASSWORD_BY_TOKEN_SUCCESS, onSuccessPasswordChangeByToken),
-  takeEvery(DELETE_BY_TOKEN_SUCCESS, logout),
-  takeEvery([REFRESH_TOKEN_REQUEST], setRefreshing),
-  takeEvery(
-    [
-      LOGIN_FAIL,
-      REGISTER_FAIL,
-      FACEBOOK_LOGIN_FAIL,
-      REFRESH_TOKEN_FAIL,
-      LOGOUT
-    ],
-    removeToken
-  )
+  takeEvery([LOAD_USER_DATA], fetchUserData),
+  takeEvery([REFRESH_TOKEN_SUCCESS], subscribeForRefreshToken),
+  takeEvery([CHANGE_PASSWORD_SUCCESS], showSuccessPasswordChangeMsg),
+  takeEvery([LOGOUT], handleLogout)
 ]);
