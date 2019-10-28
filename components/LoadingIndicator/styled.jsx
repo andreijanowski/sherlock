@@ -9,6 +9,7 @@ export const LoadingWrapper = styled(Flex).attrs(() => ({
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
   height: 100%;
   background-color: ${p =>
     p.hasTransparentBackground ? "none" : `rgb(${p.theme.colors.background})`};

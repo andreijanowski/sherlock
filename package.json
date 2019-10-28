@@ -77,7 +77,7 @@
     "react-responsive-modal": "^4.0.1",
     "react-select": "^3.0.4",
     "react-spinners": "^0.5.4",
-    "react-stripe-elements": "^3.0.0",
+    "react-stripe-elements": "^5.0.0",
     "react-switch": "^5.0.0",
     "react-timekeeper": "^1.1.0",
     "react-youtube": "^7.9.0",

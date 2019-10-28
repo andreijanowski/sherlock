@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import { withNamespaces } from "i18n";
+import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape, bool } from "prop-types";
 import Widgets from "sections/profile/widgets";
@@ -131,9 +131,9 @@ WidgetsPage.defaultProps = {
 };
 
 export default requireAuth(true)(
-  withNamespaces(namespaces)(
+  withTranslation(namespaces)(
     connect(
-      state => {
+      (state, { i18n }) => {
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
         const business = businessData && businessData.get("businesses").first();
 
@@ -155,7 +155,8 @@ export default requireAuth(true)(
             (!state.getIn(["widgets", "isFailed"]) &&
               !state.getIn(["widgets", "isSucceeded"])) ||
             state.getIn(["widgets", "isFetching"]),
-          widgets: state.getIn(["widgets", "data", "widgets"])
+          widgets: state.getIn(["widgets", "data", "widgets"]),
+          lng: (i18n && i18n.language) || "en"
         };
       },
       {

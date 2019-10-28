@@ -8,7 +8,7 @@ import {
 } from "react-stripe-elements";
 import { Flex, Box } from "@rebass/grid";
 import { Button, BlueText, Opacity, LoadingIndicator } from "components";
-import { shape, func } from "prop-types";
+import { shape, func, string } from "prop-types";
 import { theme } from "utils/theme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Label, Input, Line, Container } from "./styled";
@@ -33,15 +33,33 @@ class Form extends PureComponent {
   };
 
   handleSubmit = () => {
-    const { stripe, updateSubscription, notificationError } = this.props;
+    const {
+      stripe,
+      updateSubscription,
+      notificationError,
+      nextPlanName,
+      getBusinessSetupIntent
+    } = this.props;
     if (stripe) {
       this.setState({ loading: true });
-      stripe.createSource({ type: "card" }).then(payload => {
-        if (payload.error) {
+      getBusinessSetupIntent().then(({ status, rawData, errors }) => {
+        if (status === 200) {
+          stripe
+            .handleCardSetup(rawData.data.attributes.clientSecret)
+            .then(({ error, setupIntent }) => {
+              if (setupIntent) {
+                updateSubscription(setupIntent.id, nextPlanName);
+                this.setState({ loading: true });
+              } else {
+                this.setState({ loading: false });
+                notificationError({ message: error.message });
+              }
+            });
+        } else {
           this.setState({ loading: false });
-          notificationError({ message: payload.error.message });
-        } else if (payload.source) {
-          updateSubscription(payload.source.id);
+          if (errors && errors.length) {
+            notificationError({ message: errors[0].title });
+          }
         }
       });
     } else {
@@ -107,7 +125,9 @@ Form.propTypes = {
   stripe: shape().isRequired,
   t: func.isRequired,
   updateSubscription: func.isRequired,
-  notificationError: func.isRequired
+  getBusinessSetupIntent: func.isRequired,
+  notificationError: func.isRequired,
+  nextPlanName: string.isRequired
 };
 
 export default injectStripe(Form);
