@@ -5,15 +5,16 @@
     "stylelint-config-styled-components",
     "stylelint-config-rational-order"
   ],
-  "plugins": [
-    "stylelint-order",
-    "stylelint-config-rational-order/plugin"
-  ],
+  "plugins": ["stylelint-order", "stylelint-config-rational-order/plugin"],
   "rules": {
     "order/properties-order": [],
-    "plugin/rational-order": [true, {
-      "border-in-box-model": false,
-      "empty-line-between-groups": false
-    }]
-  }
+    "plugin/rational-order": [
+      true,
+      {
+        "border-in-box-model": false,
+        "empty-line-between-groups": false
+      }
+    ]
+  },
+  "ignoreFiles": ["node_modules/**", "static/widget/**"]
 }
