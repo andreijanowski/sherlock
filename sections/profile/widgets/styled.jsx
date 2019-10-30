@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
+import { Button } from "components";
 
 export const Wrapper = styled(Flex).attrs(() => ({
   flexDirection: "column",
@@ -18,6 +19,11 @@ export const Widget = styled(Flex).attrs(() => ({
   background-color: rgb(${p => p.theme.colors.white});
   border: 1px solid rgb(${p => p.theme.colors.snuff});
   border-radius: ${p => p.theme.radius.default};
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(${p => p.theme.colors.snuff}, 0.25);
+  }
 `;
 
 export const Domain = styled.div`
@@ -26,6 +32,7 @@ export const Domain = styled.div`
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 24px;
+  word-wrap: break-word;
 `;
 export const ApiKey = styled.div`
   width: 100%;
@@ -33,9 +40,16 @@ export const ApiKey = styled.div`
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes.f14};
   line-height: 24px;
+  word-wrap: break-word;
 `;
 
 export const Form = styled.form`
   position: relative;
   width: 100%;
+`;
+
+export const StyledButton = styled(Button)`
+  font-family: monospace;
+  word-wrap: break-word;
+  cursor: text;
 `;

@@ -3,6 +3,7 @@ import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape, bool } from "prop-types";
 import Widgets from "sections/profile/widgets";
+import RemoveModal from "sections/profile/widgets/RemoveModal";
 import { connect } from "react-redux";
 import { postBusiness, patchBusiness } from "actions/businesses";
 import { postWidget, patchWidget, deleteWidget } from "actions/widgets";
@@ -19,9 +20,7 @@ class WidgetsPage extends PureComponent {
     };
   }
 
-  state = { editedWidgetId: undefined };
-
-  removeWidget = () => {};
+  state = { editedWidgetId: undefined, widgetForRemoval: null };
 
   addWidget = values => {
     const { addWidget, updateWidget, businessId } = this.props;
@@ -56,10 +55,11 @@ class WidgetsPage extends PureComponent {
       updateBusiness,
       getProfileBusiness,
       widgets,
+      removeWidget,
       loading
     } = this.props;
 
-    const { editedWidgetId } = this.state;
+    const { editedWidgetId, widgetForRemoval } = this.state;
 
     return (
       <ProfileLayout
@@ -84,12 +84,23 @@ class WidgetsPage extends PureComponent {
         <Widgets
           {...{
             widgets,
-            removeWidget: this.removeWidget,
+            removeWidget: id => this.setState({ widgetForRemoval: id }),
             addWidget: this.addWidget,
             setEditedWidgetId: id => this.setState({ editedWidgetId: id }),
             editedWidgetId,
             t,
             loading
+          }}
+        />
+        <RemoveModal
+          {...{
+            isOpen: !!widgetForRemoval,
+            onClose: () => this.setState({ widgetForRemoval: null }),
+            handleRemove: () => {
+              removeWidget(widgetForRemoval);
+              this.setState({ widgetForRemoval: null });
+            },
+            t
           }}
         />
       </ProfileLayout>
@@ -113,6 +124,7 @@ WidgetsPage.propTypes = {
   addBusiness: func.isRequired,
   addWidget: func.isRequired,
   updateWidget: func.isRequired,
+  removeWidget: func.isRequired,
   businesses: shape(),
   widgets: shape(),
   loading: bool.isRequired

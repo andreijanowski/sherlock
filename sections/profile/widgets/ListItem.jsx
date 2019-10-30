@@ -1,39 +1,32 @@
-import { Flex, Box } from "@rebass/grid";
+import { Flex } from "@rebass/grid";
 import { Button, ButtonWithImageIconWrapper } from "components";
 import { func, shape } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Widget, Domain, ApiKey } from "./styled";
 
 const ListItem = ({ item, removeWidget, setEditedWidgetId }) => (
-  <Widget>
-    <Flex alignItems="center" width="calc(100% - 90px)">
+  <Widget onClick={() => setEditedWidgetId(item.get("id"))}>
+    <Flex alignItems="center" width="calc(100% - 50px)">
       <Flex flexDirection="column" width={1}>
-        <Domain>{item.getIn(["attributes", "domains"])}</Domain>
-        <ApiKey>{item.getIn(["attributes", "apiKey"])}</ApiKey>
+        <Domain>
+          {item.getIn(["attributes", "domains"]) &&
+            item
+              .getIn(["attributes", "domains"])
+              .toArray()
+              .toString()}
+        </Domain>
+        <ApiKey>API_KEY: {item.getIn(["attributes", "apiKey"])}</ApiKey>
       </Flex>
     </Flex>
-    <Flex alignItems="center">
-      <Button
-        styleName="withImage"
-        blue
-        onClick={() => setEditedWidgetId(item.get("id"))}
-      >
-        <ButtonWithImageIconWrapper>
-          <FontAwesomeIcon icon={["fa", "pen"]} />
-        </ButtonWithImageIconWrapper>
-      </Button>
-      <Box ml={1}>
-        <Button
-          styleName="withImage"
-          red
-          onClick={() => removeWidget(item.get("id"))}
-        >
-          <ButtonWithImageIconWrapper>
-            <FontAwesomeIcon icon={["fa", "times"]} />
-          </ButtonWithImageIconWrapper>
-        </Button>
-      </Box>
-    </Flex>
+    <Button
+      styleName="withImage"
+      red
+      onClick={() => removeWidget(item.get("id"))}
+    >
+      <ButtonWithImageIconWrapper>
+        <FontAwesomeIcon icon={["fa", "times"]} />
+      </ButtonWithImageIconWrapper>
+    </Button>
   </Widget>
 );
 

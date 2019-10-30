@@ -15,15 +15,10 @@ const Widgets = ({
   t,
   loading
 }) => {
-  const initialValues = getInitialValues({
+  const { initialValues, apiKey } = getInitialValues({
     editedWidgetId,
     widgets
   });
-
-  console.log(
-    { initialValues, editedWidgetId, widgets },
-    widgets && widgets.get(editedWidgetId)
-  );
 
   return (
     <Wrapper>
@@ -36,6 +31,7 @@ const Widgets = ({
               {...{
                 addWidget,
                 initialValues,
+                apiKey,
                 setEditedWidgetId,
                 t
               }}
