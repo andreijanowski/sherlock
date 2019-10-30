@@ -8,7 +8,7 @@ export const Wrapper = styled(Flex).attrs(() => ({
   background-color: rgb(${p => p.theme.colors.white});
 `;
 
-export const Dish = styled(Flex).attrs(() => ({
+export const Widget = styled(Flex).attrs(() => ({
   p: 2,
   pr: 3,
   mb: 2,
@@ -20,29 +20,22 @@ export const Dish = styled(Flex).attrs(() => ({
   border-radius: ${p => p.theme.radius.default};
 `;
 
-export const Name = styled.div`
+export const Domain = styled.div`
   width: 100%;
-  overflow: hidden;
   color: rgb(${p => p.theme.colors.dark});
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 24px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 `;
-export const Description = styled.div`
+export const ApiKey = styled.div`
   width: 100%;
-  overflow: hidden;
   color: rgb(${p => p.theme.colors.bombay});
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes.f14};
   line-height: 24px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 `;
 
 export const Form = styled.form`
   position: relative;
   width: 100%;
-  min-height: 540px;
 `;

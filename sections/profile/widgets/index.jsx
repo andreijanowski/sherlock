@@ -15,17 +15,23 @@ const Widgets = ({
   t,
   loading
 }) => {
-  const { initialValues } = getInitialValues({
+  const initialValues = getInitialValues({
     editedWidgetId,
     widgets
   });
+
+  console.log(
+    { initialValues, editedWidgetId, widgets },
+    widgets && widgets.get(editedWidgetId)
+  );
+
   return (
     <Wrapper>
       {loading ? (
         <LoadingIndicator />
       ) : (
-        <Flex mx={-3}>
-          <Box width={1 / 2} px={3}>
+        <Flex mx={-3} flexDirection="column">
+          <Box width={1} px={3}>
             <Form
               {...{
                 addWidget,
@@ -35,7 +41,7 @@ const Widgets = ({
               }}
             />
           </Box>
-          <Box width={1 / 2} px={3}>
+          <Box width={1} px={3}>
             <List
               {...{ widgets, removeWidget, t, loading, setEditedWidgetId }}
             />

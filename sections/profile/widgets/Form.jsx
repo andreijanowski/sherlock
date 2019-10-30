@@ -9,6 +9,8 @@ import { Form } from "./styled";
 const WidgetForm = ({ t, initialValues, setEditedWidgetId, addWidget }) => {
   const [isSending, setIsSending] = useState(false);
 
+  console.log({ initialValues });
+
   return (
     <FinalForm
       initialValues={initialValues}

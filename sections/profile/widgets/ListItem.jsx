@@ -2,14 +2,14 @@ import { Flex, Box } from "@rebass/grid";
 import { Button, ButtonWithImageIconWrapper } from "components";
 import { func, shape } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Dish, Name, Description } from "./styled";
+import { Widget, Domain, ApiKey } from "./styled";
 
 const ListItem = ({ item, removeWidget, setEditedWidgetId }) => (
-  <Dish>
-    <Flex alignItems="center" width="calc(100% - 200px)">
-      <Flex flexDirection="column" width="calc(100% - 80px)">
-        <Name>{item.getIn(["attributes", "domains"])}</Name>
-        <Description>{item.getIn(["attributes", "settings"])}</Description>
+  <Widget>
+    <Flex alignItems="center" width="calc(100% - 90px)">
+      <Flex flexDirection="column" width={1}>
+        <Domain>{item.getIn(["attributes", "domains"])}</Domain>
+        <ApiKey>{item.getIn(["attributes", "apiKey"])}</ApiKey>
       </Flex>
     </Flex>
     <Flex alignItems="center">
@@ -34,7 +34,7 @@ const ListItem = ({ item, removeWidget, setEditedWidgetId }) => (
         </Button>
       </Box>
     </Flex>
-  </Dish>
+  </Widget>
 );
 
 ListItem.propTypes = {

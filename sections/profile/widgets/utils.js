@@ -1,6 +1,10 @@
 export const getInitialValues = ({ editedWidgetId, widgets }) => {
   if (editedWidgetId && widgets) {
-    return widgets.get(editedWidgetId);
+    return {
+      domains: widgets
+        .getIn([editedWidgetId, "attributes", "domains"])
+        .toArray()
+    };
   }
   return {};
 };
