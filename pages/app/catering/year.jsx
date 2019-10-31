@@ -6,7 +6,6 @@ import {
   FullYearCalendar,
   parseCalendarEvents
 } from "components";
-import moment from "moment";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
 
@@ -37,13 +36,12 @@ const YearPage = ({
     }}
   >
     <FullYearCalendar
-      startDate={moment().startOf("year")}
-      endDate={moment().endOf("year")}
       events={parseCalendarEvents({
         events: caterings,
         currency: business && business.get("currency"),
         view: "year"
       })}
+      lng={lng}
     />
   </CalendarLayout>
 );

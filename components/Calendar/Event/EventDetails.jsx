@@ -10,8 +10,6 @@ import {
   Time,
   Name,
   Price,
-  IconWrapper,
-  EditIcon,
   Details,
   Detail,
   DetailContent,
@@ -44,14 +42,17 @@ const EventDetails = ({
             .currency || ""}`}</Price>
         )}
       </MainInfo>
-      <IconWrapper
-        onClick={() => {
-          setEditedEvent(event.resource);
-          Router.pushRoute(`/${lng}/app/${eventType}/edit/`);
-        }}
-      >
-        <EditIcon />
-      </IconWrapper>
+      <Flex alignItems="center">
+        <Button
+          styleName="smallBlue"
+          onClick={() => {
+            setEditedEvent(event.resource);
+            Router.pushRoute(`/${lng}/app/${eventType}/edit/`);
+          }}
+        >
+          {t("events:prepareOfer")}
+        </Button>
+      </Flex>
     </Header>
     <Details>
       <Detail>

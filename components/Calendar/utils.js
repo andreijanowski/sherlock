@@ -1,4 +1,6 @@
 import moment from "moment";
+import qs from "qs";
+import isServer from "utils/isServer";
 
 const convertDateTimeToDate = (datetime, timeZoneName) => {
   const m = moment.tz(datetime, timeZoneName);
@@ -91,6 +93,10 @@ export const parseEvents = ({
               c.getIn(["attributes", "menu"]).toObject(),
             address:
               addresses &&
+              addresses.getIn([
+                c.getIn(["relationships", "address", "data", "id"]),
+                "attributes"
+              ]) &&
               addresses
                 .getIn([
                   c.getIn(["relationships", "address", "data", "id"]),
@@ -156,3 +162,16 @@ export const preparePeriodsList = t => [
     label: t("events:year")
   }
 ];
+
+export const getDefaultDate = () => {
+  if (!isServer) {
+    const { date } = qs.parse(window.location.search.slice(1));
+    if (date) {
+      const dateObject = new Date(date);
+      if (!Number.isNaN(dateObject.getTime())) {
+        return dateObject;
+      }
+    }
+  }
+  return new Date();
+};
