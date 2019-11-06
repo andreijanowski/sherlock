@@ -3,7 +3,13 @@ import { monthEdges, weeksOfMonth, daysOfWeek } from "./dateUtils";
 import Week from "./Week";
 import { WeekDay, WeekDays, Month, MonthName } from "./styled";
 
-const CalendarMonth = ({ date, events, weekdayFormat, monthNameFormat }) => (
+const CalendarMonth = ({
+  date,
+  events,
+  weekdayFormat,
+  monthNameFormat,
+  lng
+}) => (
   <Month>
     <MonthName>{date.format(monthNameFormat)}</MonthName>
     <WeekDays>
@@ -19,6 +25,7 @@ const CalendarMonth = ({ date, events, weekdayFormat, monthNameFormat }) => (
         date={w.date}
         events={w.events}
         edges={monthEdges(date)}
+        lng={lng}
       />
     ))}
   </Month>
@@ -28,6 +35,7 @@ CalendarMonth.propTypes = {
   monthNameFormat: string,
   weekdayFormat: string,
   date: shape().isRequired,
+  lng: string.isRequired,
   events: arrayOf(shape()).isRequired
 };
 

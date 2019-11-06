@@ -177,7 +177,11 @@ const EditPrivatisationForm = ({
               fluid
               type="button"
               onClick={() => {
-                Router.pushRoute(`/${lng}/app/privatisation/month/`);
+                Router.pushRoute(
+                  `/${lng}/app/privatisation/month?date=${editedPrivatisation.get(
+                    "date"
+                  )}`
+                );
               }}
             >
               {t("forms:cancel")}
@@ -185,7 +189,7 @@ const EditPrivatisationForm = ({
           </Box>
           <Box width={1 / 2} px={2}>
             <Button styleName="formBlue" type="submit" fluid>
-              {t("forms:save")}
+              {t("events:sendOffer")}
             </Button>
           </Box>
         </Flex>

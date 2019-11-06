@@ -5,7 +5,7 @@ import { func, string, shape } from "prop-types";
 import CreateCateringForm from "sections/catering/create";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
-import { postCatering } from "actions/caterings";
+import { postCatering, sendCateringOffer } from "actions/caterings";
 import { Router } from "routes";
 import fileToBase64 from "utils/fileToBase64";
 import { timeToNumber, CalendarLayout } from "components";
@@ -31,7 +31,7 @@ class CreateCateringPage extends PureComponent {
     currency,
     ...values
   }) => {
-    const { createCatering, lng, businessId } = this.props;
+    const { createCatering, lng, businessId, sendOffer } = this.props;
     const newCatering = {
       ...values,
       from: values.from ? timeToNumber(values.from, "start") : undefined,
@@ -51,7 +51,10 @@ class CreateCateringPage extends PureComponent {
     };
     this.setState({ isSending: true });
     createCatering(newCatering, businessId)
-      .then(() => Router.pushRoute(`/${lng}/app/catering/month`))
+      .then(res => {
+        sendOffer(res.rawData.data.id);
+        Router.pushRoute(`/${lng}/app/catering/month?date=${values.date}`);
+      })
       .catch(() => this.setState({ isSending: false }));
   };
 
@@ -93,6 +96,7 @@ CreateCateringPage.propTypes = {
   changeCurrentBusiness: func.isRequired,
   businesses: shape(),
   createCatering: func.isRequired,
+  sendOffer: func.isRequired,
   businessId: string
 };
 
@@ -122,7 +126,8 @@ export default requireAuth(true)(
       },
       {
         changeCurrentBusiness: setCurrentBusiness,
-        createCatering: postCatering
+        createCatering: postCatering,
+        sendOffer: sendCateringOffer
       }
     )(CreateCateringPage)
   )

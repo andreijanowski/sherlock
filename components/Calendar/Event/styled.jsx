@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Text = styled.div`
   overflow: hidden;
@@ -54,28 +53,6 @@ export const Price = styled.div`
   color: rgb(${p => p.theme.colors.dark});
   font-size: ${p => p.theme.fontSizes.f21};
   line-height: 32px;
-`;
-export const IconWrapper = styled(Flex).attrs(() => ({
-  justifyContent: "center",
-  alignItems: "center"
-}))`
-  width: 40px;
-  height: 40px;
-  color: rgb(${p => p.theme.colors.blue});
-  background-color: rgba(${p => p.theme.colors.blue}, 0.1);
-  border-radius: 20px;
-  cursor: pointer;
-
-  &:hover {
-    color: rgb(${p => p.theme.colors.white});
-    background-color: rgba(${p => p.theme.colors.blue}, 1);
-  }
-`;
-
-export const EditIcon = styled(FontAwesomeIcon).attrs(() => ({
-  icon: ["fa", "pen"]
-}))`
-  /* stylelint-disable-line no-empty-block */
 `;
 
 export const Details = styled.div`

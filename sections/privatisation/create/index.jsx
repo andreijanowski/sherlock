@@ -186,7 +186,7 @@ const CreatePrivatisationForm = ({ t, lng, isSending, handleFormSubmit }) => (
           </Box>
           <Box width={1 / 2} px={2}>
             <Button styleName="formBlue" type="submit" fluid>
-              {t("forms:save")}
+              {t("events:sendOffer")}
             </Button>
           </Box>
         </Flex>

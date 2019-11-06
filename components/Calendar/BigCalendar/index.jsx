@@ -5,7 +5,7 @@ import moment from "moment-timezone";
 import CalendarEvent from "../Event";
 import CalendarToolbar from "../Toolbar";
 import CalendarStyles from "./calendarStyles";
-import { parseEvents } from "../utils";
+import { parseEvents, getDefaultDate } from "../utils";
 import EventModal from "../Event/EventModal";
 import { CalendarWrapper } from "../styled";
 import TimezoneNotDefined from "./TimezoneNotDefined";
@@ -64,6 +64,7 @@ const CustomBigCalendar = ({
               () => null /* TODO: After MVP add navigation between views */
             }
             defaultView={defaultView}
+            defaultDate={getDefaultDate()}
             showMultiDayTimes={false}
             events={parseEvents({
               events,

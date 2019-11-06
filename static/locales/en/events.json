@@ -76,8 +76,9 @@
   "contactPerson": "Contact person",
   "email": "E-mail",
   "phoneNumber": "Phone number",
-  "sendOffer": "Send offer",
-  "resendOffer": "Resend offer",
+  "sendOffer": "Send an offer",
+  "resendOffer": "Resend an offer",
+  "prepareOfer": "Prepare an offer",
   "offerWasSentAt": "Offer was sent at ",
   "timezoneNotDefined": "Can not read timezone. Please check if you set valid address of your business"
 }
