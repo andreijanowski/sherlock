@@ -6,6 +6,7 @@ import {
   FETCH_BUSINESS_DELIVERIES_REQUEST,
   FETCH_BUSINESS_DISHES_REQUEST,
   FETCH_BUSINESS_ORDERS_REQUEST,
+  FETCH_BUSINESS_ORDERS_HISTORY_REQUEST,
   FETCH_BUSINESS_CATERINGS_REQUEST,
   FETCH_BUSINESS_PRIVATISATIONS_REQUEST,
   FETCH_BUSINESS_TABLES_REQUEST,
@@ -98,6 +99,21 @@ export const fetchBusinessOrders = (id, page = 1) => ({
           "waiting_for_approval,waiting_for_payment,paid,in_preparation,in_delivery"
       },
       include: "addresses,elements"
+    }
+  },
+  meta: { thunk: true, page }
+});
+
+export const fetchBusinessOrdersHistory = (id, page = 1, filter = {}) => ({
+  type: FETCH_BUSINESS_ORDERS_HISTORY_REQUEST,
+  payload: {
+    endpoint: `/api/v1/businesses/${id}/orders`,
+    params: {
+      per_page: 15,
+      page,
+      include: "addresses,elements",
+      sort: "-placed_at",
+      filter
     }
   },
   meta: { thunk: true, page }

@@ -23,7 +23,8 @@ import {
   Clock,
   Location,
   Pause,
-  ExpandIcon
+  ExpandIcon,
+  Reservations
 } from "icons";
 import { normalizePrice } from "utils/normalizers";
 import { Flex, Box } from "@rebass/grid";
@@ -216,7 +217,10 @@ class LefoodLayout extends PureComponent {
         }}
       >
         {!business || business.get("stripeUserId") === undefined ? (
-          <LoadingIndicator />
+          <>
+            <LoadingIndicator />
+            {console.log("Layout indicator")}
+          </>
         ) : (
           <>
             <Box width={[1, 1 / 2]} mb={3}>
@@ -446,6 +450,22 @@ class LefoodLayout extends PureComponent {
                             </ButtonWithImageIconWrapper>
                           </Button>
                         )}
+                      </Box>
+                      <Box pr={3} mb={2}>
+                        <Link route="/app/lefood/orders-history/" lng={lng}>
+                          <Button
+                            as="a"
+                            styleName="withImage"
+                            active={page === "ordersHistory"}
+                          >
+                            <ButtonWithImageIconWrapper>
+                              <Reservations />
+                            </ButtonWithImageIconWrapper>
+                            <ButtonWithImageText>
+                              {t("ordersHistory")}
+                            </ButtonWithImageText>
+                          </Button>
+                        </Link>
                       </Box>
                     </Flex>
                     {children}
