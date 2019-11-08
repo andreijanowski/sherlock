@@ -21,7 +21,17 @@ const MultipleTablesModal = ({
           <>
             <RejectModalIcon />
             <ModalHeader>{t("splitFormHeader", { partySize })}</ModalHeader>
-            <SplitForm {...{ t, partySize, onClose, onSplit }} />
+            <SplitForm
+              {...{
+                t,
+                partySize,
+                onClose: () => setIsSplitFormVisible(false),
+                onSplit: values => {
+                  onSplit(values);
+                  setIsSplitFormVisible(false);
+                }
+              }}
+            />
           </>
         ) : (
           <>

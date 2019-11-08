@@ -141,3 +141,18 @@ export const Subitem = styled(Box).attrs(() => ({ as: "a", p: 3 }))`
     background-color: rgb(${p => p.theme.colors.brightGray});
   }
 `;
+
+export const BadgeNumber = styled.div`
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  z-index: 3;
+  width: 20px;
+  height: 20px;
+  color: rgb(${p => p.theme.colors.white});
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  background: rgb(${p => p.theme.colors.blue});
+  border-radius: 100%;
+`;

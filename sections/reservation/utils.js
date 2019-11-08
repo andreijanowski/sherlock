@@ -232,7 +232,8 @@ export const getNewReservations = ({
   reservationIds,
   reservations,
   splitedReservation,
-  slots
+  openPeriods,
+  slotDuration
 }) => {
   const newReservations = [];
   reservationIds.forEach(id => {
@@ -255,7 +256,18 @@ export const getNewReservations = ({
     }
   });
 
-  return newReservations.map(r =>
-    r.set("fitsSlots", slots.some(s => s === r.getIn(["attributes", "from"])))
-  );
+  return newReservations.map(r => {
+    const slots =
+      openPeriods && slotDuration
+        ? prepareTimelineSlots({
+            openPeriods,
+            choosenDate: moment(r.getIn(["attributes", "date"])),
+            slotDuration
+          })
+        : [];
+    return r.set(
+      "fitsSlots",
+      slots.some(s => s === r.getIn(["attributes", "from"]))
+    );
+  });
 };

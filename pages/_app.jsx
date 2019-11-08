@@ -53,6 +53,11 @@ class MyApp extends App {
   };
 
   componentDidMount() {
+    const {
+      pageProps: { pathname },
+      pathChanged
+    } = this.props;
+    pathChanged(pathname);
     if (window.Stripe) {
       this.setState({ stripe: window.Stripe(STRIPE_API_KEY) });
     } else {
