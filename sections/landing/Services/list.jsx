@@ -1,6 +1,21 @@
 import { Flex, Box } from "@rebass/grid";
 import { func } from "prop-types";
-import { Service } from "./styled";
+import { Service, ServiceIcon } from "./styled";
+
+const iconsNames = [
+  "bookings",
+  "delivery",
+  "take-away",
+  "restaurants",
+  "privatization",
+  "caterings",
+  "analytics",
+  "le-food",
+  "marketing",
+  "salad-bar",
+  "billing",
+  "rooftop"
+];
 
 const List = ({ t }) => {
   const listLength = t("services.list.length");
@@ -9,7 +24,10 @@ const List = ({ t }) => {
     const serviceName = t(`services.list.${i}`);
     listArray.push(
       <Box width={[1 / 2, 1 / 4]} key={serviceName}>
-        <Service>{serviceName}</Service>
+        <Service>
+          <ServiceIcon name={iconsNames[i]} />
+          <span>{serviceName}</span>
+        </Service>
       </Box>
     );
   }

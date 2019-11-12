@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="112px" height="112px" viewBox="0 0 112 112" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>butcher</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="48" cy="48" r="48"></circle>
+        <filter x="-14.1%" y="-10.9%" width="128.1%" height="128.1%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.298039216   0 0 0 0 0.407843137   0 0 0 0 1  0 0 0 0.48 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-1390.000000, -348.000000)">
+            <g id="butcher" transform="translate(1398.000000, 353.000000)">
+                <g id="Group-6">
+                    <g id="Oval">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#4C68FF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <g id="Orion_ham-2" transform="translate(26.000000, 22.000000)" stroke-linecap="round" stroke-linejoin="round">
+                        <ellipse id="Oval" stroke="#93A4FF" stroke-width="2" transform="translate(27.654559, 19.007206) rotate(-45.000000) translate(-27.654559, -19.007206) " cx="27.6545588" cy="19.0072059" rx="3.42661765" ry="4.79580882"></ellipse>
+                        <path d="M6.47536765,35.9239706 L5.12867647,37.2713235 C4.00134442,36.3430424 2.34348292,36.464701 1.36373743,37.5476055 C0.383991937,38.6305101 0.428355472,40.2922373 1.46448529,41.3213235 C2.88198529,42.7394853 3.40610294,42.2947794 3.88522059,42.7772059 C4.54698529,43.4389706 4.16713235,44.0259559 5.34110294,45.1992647 C6.41601482,46.2420821 8.1289248,46.2291031 9.18791101,45.1701169 C10.2468972,44.1111307 10.2598762,42.3982207 9.21705882,41.3233088 C9.14620961,41.2644822 9.07243949,41.209265 8.99602941,41.1578676 L10.125,40.0236029" id="Path" stroke="#FFFFFF" stroke-width="4"></path>
+                        <ellipse id="Oval" stroke="#FFFFFF" stroke-width="4" transform="translate(27.655027, 19.007012) rotate(-45.000000) translate(-27.655027, -19.007012) " cx="27.6550268" cy="19.0070121" rx="10.2772059" ry="16.4428676"></ellipse>
+                        <path d="M16.0280147,7.38 C12.0382353,11.3711029 6.86919118,19.5333088 8.27941176,28.6934559 C8.27941176,28.6934559 8.91801471,31.9314706 8.27941176,32.5694118 C7.21028854,33.6404794 7.21028854,35.3749618 8.27941176,36.4460294 L10.2157353,38.3823529 C10.729534,38.896179 11.426411,39.1848458 12.1530515,39.1848458 C12.8796919,39.1848458 13.5765689,38.896179 14.0903676,38.3823529 C14.7289706,37.74375 17.9663235,38.3823529 17.9663235,38.3823529 C27.1264706,39.79125 35.2886765,34.6222059 39.2811029,30.6324265" id="Path" stroke="#FFFFFF" stroke-width="4"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

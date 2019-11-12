@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="112px" height="112px" viewBox="0 0 112 112" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>delivery</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="48" cy="48" r="48"></circle>
+        <filter x="-14.1%" y="-10.9%" width="128.1%" height="128.1%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.298039216   0 0 0 0 0.407843137   0 0 0 0 1  0 0 0 0.48 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-334.000000, -158.000000)">
+            <g id="delivery" transform="translate(342.000000, 163.000000)">
+                <g id="Group-6">
+                    <g id="Oval">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#4C68FF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <g id="Icon" transform="translate(16.000000, 16.000000)">
+                        <path d="M32,14 C22.0588745,14 14,22.0588745 14,32 C14,41.9411255 22.0588745,50 32,50 C41.9411255,50 50,41.9411255 50,32 C50,22.0588745 41.9411255,14 32,14 Z" id="Rectangle" stroke="#FFFFFF" stroke-width="4"></path>
+                        <g id="Line-4" transform="translate(24.000000, 32.000000)" stroke="#93A4FF" stroke-dasharray="2,3" stroke-linecap="round" stroke-width="2">
+                            <path d="M8,0 L7.10542736e-15,8" id="Line-3"></path>
+                        </g>
+                        <g id="Group" transform="translate(31.000000, 22.000000)" stroke="#FFFFFF" stroke-linecap="round" stroke-width="4">
+                            <path d="M1,0 L1,10" id="Line"></path>
+                            <path d="M1,10 L9,18" id="Line-2"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
