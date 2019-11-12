@@ -1,9 +1,9 @@
-import { shape, arrayOf } from "prop-types";
+import { shape, arrayOf, string } from "prop-types";
 import { daysOfWeek } from "./dateUtils";
 import Day from "./Day";
 import { Week } from "./styled";
 
-const CalendarWeek = ({ date, events, edges }) => (
+const CalendarWeek = ({ date, events, edges, lng }) => (
   <Week>
     {daysOfWeek(date, events).map(d => (
       <Day
@@ -13,6 +13,7 @@ const CalendarWeek = ({ date, events, edges }) => (
         key={d.date.toString()}
         date={d.date}
         events={d.events}
+        lng={lng}
       />
     ))}
   </Week>
@@ -21,7 +22,8 @@ const CalendarWeek = ({ date, events, edges }) => (
 CalendarWeek.propTypes = {
   date: shape().isRequired,
   events: arrayOf(shape()).isRequired,
-  edges: arrayOf(shape()).isRequired
+  edges: arrayOf(shape()).isRequired,
+  lng: string.isRequired
 };
 
 export default CalendarWeek;
