@@ -7,6 +7,7 @@ import OrdersHistory from "sections/lefood/ordersHistory";
 import { mergeOrdersData } from "sections/lefood/utils";
 import { connect } from "react-redux";
 import { patchBusiness, fetchBusinessOrdersHistory } from "actions/businesses";
+import { patchOrder, patchOrderReject } from "actions/orders";
 import { setCurrentBusiness } from "actions/app";
 import OrderDetails from "sections/lefood/orders/OrderDetails";
 import { SliderStyles } from "components";
@@ -38,7 +39,8 @@ class OrdersPage extends PureComponent {
     loading: false,
     totalPages: 1,
     currentPage: 1,
-    filter: {}
+    filter: {},
+    pendingRejectionOrderId: ""
   };
 
   componentDidMount() {
@@ -96,12 +98,66 @@ class OrdersPage extends PureComponent {
     this.setState({ filter }, () => this.getOrdersHistory());
   };
 
+  updateOrder = (state, draggableId) => {
+    const { updateOrder } = this.props;
+    updateOrder({ state }, draggableId).then(res => {
+      this.setState(s => ({
+        orders: s.orders.mergeDeep(res.data.orders)
+      }));
+    });
+  };
+
+  setRejectModalVisibility = orderId => {
+    const { toggleOrderDetails } = this.props;
+    toggleOrderDetails(false);
+    this.setState({
+      pendingRejectionOrderId: orderId,
+      orderDetailsId: undefined
+    });
+  };
+
   toggleOrderDetails = orderId => {
     const { toggleOrderDetails } = this.props;
     this.setState({
       orderDetailsId: orderId
     });
     toggleOrderDetails(!!orderId);
+  };
+
+  handleRejectionSubmit = ({
+    rejectReason,
+    unavailableElements,
+    otherRejectionReason
+  }) => {
+    const { rejectOrder } = this.props;
+    const { pendingRejectionOrderId, orders } = this.state;
+    this.setRejectModalVisibility(undefined);
+    const order = orders.get(pendingRejectionOrderId);
+    const unavailableElementsIds = unavailableElements
+      .map((unavailable, index) =>
+        unavailable
+          ? order.getIn(["relationships", "elements", "data", index, "id"])
+          : null
+      )
+      .filter(e => !!e)
+      .toString();
+    rejectOrder(
+      {
+        rejectReason,
+        unavailableElements:
+          rejectReason === "dishes_unavailable"
+            ? unavailableElementsIds || undefined
+            : undefined,
+        otherRejectionReason:
+          rejectReason === "other" ? otherRejectionReason : undefined
+      },
+      pendingRejectionOrderId
+    ).then(res => {
+      this.setState(state => ({
+        pendingRejectionOrderId: "",
+        orders: state.orders.mergeDeep(res.data.orders)
+      }));
+    });
   };
 
   render() {
@@ -124,7 +180,8 @@ class OrdersPage extends PureComponent {
       totalPages,
       currentPage,
       isNextPageLoading,
-      filter
+      filter,
+      pendingRejectionOrderId
     } = this.state;
 
     const orderDetails =
@@ -136,7 +193,7 @@ class OrdersPage extends PureComponent {
           {...{
             t,
             lng,
-            page: "orders",
+            page: "ordersHistory",
             updateBusiness,
             currentBusinessId: businessId,
             dishesLength,
@@ -157,7 +214,10 @@ class OrdersPage extends PureComponent {
               loadNextPage: () => this.getOrdersHistory(currentPage + 1),
               onFilterSubmit: this.onFilterSubmit,
               filter,
-              t
+              t,
+              handleRejectionSubmit: this.handleRejectionSubmit,
+              setRejectModalVisibility: this.setRejectModalVisibility,
+              pendingRejectionOrderId
             }}
           />
         </LefoodLayout>
@@ -166,7 +226,9 @@ class OrdersPage extends PureComponent {
           <OrderDetails
             {...{
               orderDetails,
-              t
+              t,
+              updateOrder: this.updateOrder,
+              setRejectModalVisibility: this.setRejectModalVisibility
             }}
           />
         </div>
@@ -187,7 +249,9 @@ OrdersPage.propTypes = {
   businessId: string,
   businessOrderPeriodsLength: number,
   changeCurrentBusiness: func.isRequired,
-  getBusinessOrdersHistory: func.isRequired
+  getBusinessOrdersHistory: func.isRequired,
+  updateOrder: func.isRequired,
+  rejectOrder: func.isRequired
 };
 
 OrdersPage.defaultProps = {
@@ -228,6 +292,8 @@ export default requireAuth(true)(
         };
       },
       {
+        updateOrder: patchOrder,
+        rejectOrder: patchOrderReject,
         updateBusiness: patchBusiness,
         toggleOrderDetails: toggleMenu,
         changeCurrentBusiness: setCurrentBusiness,

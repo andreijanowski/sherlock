@@ -408,6 +408,22 @@ class LefoodLayout extends PureComponent {
                           </Button>
                         </Link>
                       </Box>
+                      <Box pr={3} mb={2}>
+                        <Link route="/app/lefood/orders-history/" lng={lng}>
+                          <Button
+                            as="a"
+                            styleName="withImage"
+                            active={page === "ordersHistory"}
+                          >
+                            <ButtonWithImageIconWrapper>
+                              <Reservations />
+                            </ButtonWithImageIconWrapper>
+                            <ButtonWithImageText>
+                              {t("ordersHistory")}
+                            </ButtonWithImageText>
+                          </Button>
+                        </Link>
+                      </Box>
                       <Box pr={4}>
                         <RawCheckbox
                           hasCloserText
@@ -450,22 +466,6 @@ class LefoodLayout extends PureComponent {
                             </ButtonWithImageIconWrapper>
                           </Button>
                         )}
-                      </Box>
-                      <Box pr={3} mb={2}>
-                        <Link route="/app/lefood/orders-history/" lng={lng}>
-                          <Button
-                            as="a"
-                            styleName="withImage"
-                            active={page === "ordersHistory"}
-                          >
-                            <ButtonWithImageIconWrapper>
-                              <Reservations />
-                            </ButtonWithImageIconWrapper>
-                            <ButtonWithImageText>
-                              {t("ordersHistory")}
-                            </ButtonWithImageText>
-                          </Button>
-                        </Link>
                       </Box>
                     </Flex>
                     {children}

@@ -17,7 +17,7 @@ const Filters = ({ t, onFilterSubmit, filter }) => (
           label={t("day")}
           withCleanButton
         />
-        <Box mb={3}>
+        <Box mb={3} width={[1, 1, 1 / 3, 1 / 3, 1]}>
           <Field
             name="states"
             placeholder={t("states")}

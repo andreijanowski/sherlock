@@ -22,7 +22,8 @@ export const TableWrapper = styled(Flex).attrs({
 })`
   position: relative;
   min-height: 457px;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   color: rgb(${p => p.theme.colors.dark});
   font-weight: ${p => p.theme.fontWeights.regular};
   background-color: ${p => `rgb(${p.theme.colors.white})`};
@@ -31,9 +32,13 @@ export const TableWrapper = styled(Flex).attrs({
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
 `;
 
-export const TableHeader = styled(Flex).attrs({ justifyContent: "center" })``;
+export const TableHeader = styled(Flex).attrs({ justifyContent: "center" })`
+  min-width: 620px;
+`;
 
-export const TableBody = styled(Flex).attrs({ justifyContent: "center" })``;
+export const TableBody = styled(Flex).attrs({ justifyContent: "center" })`
+  min-width: 620px;
+`;
 
 export const TableRow = styled(Flex).attrs({
   alignItems: "center",

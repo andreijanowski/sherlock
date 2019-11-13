@@ -140,7 +140,9 @@ export const RawTextarea = styled(({ smallLabel, ...p }) => (
 export const MultipleSelectInput = styled(RawInput)`
   width: auto;
   height: 42px;
-  margin-top: -8px;
+  margin-top: -9px;
+  margin-bottom: -1px;
+  margin-left: -8px;
   padding: 8px 16px;
   border: 0;
 

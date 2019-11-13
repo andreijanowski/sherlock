@@ -1,10 +1,11 @@
 import { useMemo } from "react";
-import { func, shape, bool } from "prop-types";
+import { func, shape, bool, string } from "prop-types";
 import { normalizePrice } from "utils/normalizers";
 import moment from "moment";
 import Table from "./Table";
 import Filters from "./Filters";
 import { Wrapper } from "./styled";
+import RejectModal from "../orders/RejectModal";
 
 const OrdersHistory = ({
   orders,
@@ -15,13 +16,16 @@ const OrdersHistory = ({
   isNextPageLoading,
   loadNextPage,
   onFilterSubmit,
-  filter
+  filter,
+  pendingRejectionOrderId,
+  setRejectModalVisibility,
+  handleRejectionSubmit
 }) => {
   const columns = useMemo(
     () => [
       {
         Header: t("index"),
-        accessor: (row, i) => i,
+        accessor: (row, i) => i + 1,
         width: 50
       },
       {
@@ -100,6 +104,17 @@ const OrdersHistory = ({
         }}
       />
       <Filters {...{ t, onFilterSubmit, filter }} />
+      <RejectModal
+        {...{
+          isOpen: !!pendingRejectionOrderId,
+          onClose: () => setRejectModalVisibility(undefined),
+          pendingRejectionOrder: orders
+            ? orders.find(o => o.get("id") === pendingRejectionOrderId)
+            : null,
+          handleRejectionSubmit,
+          t
+        }}
+      />
     </Wrapper>
   );
 };
@@ -113,11 +128,15 @@ OrdersHistory.propTypes = {
   isNextPageLoading: bool.isRequired,
   loadNextPage: func.isRequired,
   onFilterSubmit: func.isRequired,
-  filter: shape().isRequired
+  filter: shape().isRequired,
+  pendingRejectionOrderId: string,
+  setRejectModalVisibility: func.isRequired,
+  handleRejectionSubmit: func.isRequired
 };
 
 OrdersHistory.defaultProps = {
-  orders: null
+  orders: null,
+  pendingRejectionOrderId: ""
 };
 
 export default OrdersHistory;
