@@ -18,7 +18,9 @@ export const ParagraphStyled = styled(Paragraph)`
 `;
 
 export const LandingWrapper = styled(Box).attrs(() => ({
-  px: [2, 3]
+  px: 3
 }))`
+  z-index: 1;
+  width: 100%;
   max-width: 960px;
 `;

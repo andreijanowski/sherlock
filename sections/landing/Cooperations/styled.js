@@ -8,8 +8,8 @@ export const LogosContainer = styled(Flex).attrs(() => ({
   mb: [3, 5]
 }))`
   padding: 8px;
-  background: white;
-  border: 1px solid gray;
+  background: rgb(${p => p.theme.colors.white});
+  border: 1px solid rgb(${p => p.theme.colors.lavenderGray});
   border-radius: 10px;
 `;
 
@@ -35,7 +35,10 @@ export const IndustryLogo = styled.img.attrs(({ name }) => ({
 }))`
   width: auto;
   max-width: 100%;
-  max-height: 80px;
+  max-height: 60px;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    max-height: 80px;
+  }
 `;
 
 export const H2Styled = styled(H2)`

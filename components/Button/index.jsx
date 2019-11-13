@@ -72,6 +72,12 @@ const navyBlue = css`
   ${planButton};
 `;
 
+const white = css`
+  ${planButton};
+  color: rgb(${p => p.theme.colors.blue});
+  background-color: rgb(${p => p.theme.colors.white});
+`;
+
 const hanPurple = css`
   background-color: rgb(${p => p.theme.colors.hanPurple});
   ${planButton};
@@ -163,12 +169,12 @@ const withImage = css`
   border-radius: ${p => p.theme.radius.default};
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
   fill: rgb(${p => p.theme.colors.dark});
-  ${p => p.red && `fill: rgb(${p.theme.colors.ruby});`} 
-  ${p => p.blue && `fill: rgb(${p.theme.colors.blue});`} 
+  ${p => p.red && `fill: rgb(${p.theme.colors.ruby});`}
+  ${p => p.blue && `fill: rgb(${p.theme.colors.blue});`}
   stroke: rgb(${p => p.theme.colors.dark});
-  ${p => p.red && `stroke: rgb(${p.theme.colors.ruby});`} 
-  ${p => p.blue && `stroke: rgb(${p.theme.colors.blue});`} 
-  
+  ${p => p.red && `stroke: rgb(${p.theme.colors.ruby});`}
+  ${p => p.blue && `stroke: rgb(${p.theme.colors.blue});`}
+
 
   ${p => p.active && withImageActive}
 
@@ -203,6 +209,7 @@ const Button = styled.button`
   ${p => p.styleName === "orange" && orange};
   ${p => p.styleName === "deepSkyBlue" && deepSkyBlue};
   ${p => p.styleName === "navyBlue" && navyBlue};
+  ${p => p.styleName === "white" && white};
   ${p => p.styleName === "hanPurple" && hanPurple};
   ${p => p.styleName === "smallBlue" && smallBlue};
   ${p => p.styleName === "transparent" && transparent};

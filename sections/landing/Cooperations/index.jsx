@@ -48,7 +48,7 @@ const industriesNames = [
 const Cooperations = ({ t }) => (
   <>
     <Box mb={3}>
-      <H2Styled>{t("clients")}</H2Styled>
+      <H2Styled>{t("cooperations.clients")}</H2Styled>
     </Box>
     <LogosContainer>
       {clientsNames.map(name => (
@@ -83,7 +83,7 @@ const Cooperations = ({ t }) => (
           justifyContent="center"
           alignItems="center"
           flexDirection="column"
-          p={[1, 2]}
+          p={[2, 3]}
         >
           <p>{t(`cooperations.industries.names.${name}`)}</p>
           <IndustryLogo name={name} />

@@ -57,5 +57,48 @@
         "bars": "Wineries"
       }
     }
+  },
+  "features": {
+    "header": "Features",
+    "navItems": {
+      "visibility": "Visibility",
+      "analytics": "Analytics",
+      "bookings": "Bookings",
+      "deliveryAndTakeaway": "Delivery & Take away",
+      "cateringAndPrivatization": "Catering & Privatization",
+      "reviews": "Reviews",
+      "payments": "Payments"
+    },
+    "registerForFree": "Register for free now",
+    "subsections": {
+      "visibility": {
+        "header": "Increase Your Visibility",
+        "paragraph": "Marketing is easier than ever with Foodetective. Capture all guest visit details, notes, tags, and display your services into a unified profile available on all formats for targeted marketing and world-class eaters."
+      },
+      "analytics": {
+        "header": "Manage Your Business Easily",
+        "paragraph": "Know how your business is doing anywhere, any time, in real-time. Be notified when important events happen. Enforce industry best practices in every service experience to improve outcomes"
+      },
+      "bookings": {
+        "header": "Reservations",
+        "paragraph": "Reservations. Foodetective helps you take control of your business by offering fully customizable reservations for everyday tables, special tastings, and everything in between."
+      },
+      "deliveryAndTakeaway": {
+        "header": "Set Up Your Own Delivery",
+        "paragraph": "Why pay high delivery fees, when you can do your own deliveries? Offer your clients a higher quality, the best service, hot meals and manage all of your orders easily."
+      },
+      "cateringAndPrivatization": {
+        "header": "Receive Special Requests",
+        "paragraph": "Receive Special Requests Manage your catering & privatisations requests like never before, send offers, change menus, assign people to offer your client the best and easiest experience ever."
+      },
+      "reviews": {
+        "header": "6 Pillars Reviews",
+        "paragraph": "At Foodetective all reviews are made by professionals who provide outstanding content creating constructive feedback to help businesses to constantly improve their offer, products & services."
+      },
+      "payments": {
+        "header": "Connect your Bank account",
+        "paragraph": "Receive payments instantly, connect your bank account and manage your payments from a single view."
+      }
+    }
   }
 }
