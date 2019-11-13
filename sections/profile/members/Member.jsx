@@ -1,5 +1,5 @@
 import { required, validateEmail } from "utils/validators";
-import { FormInput, ActionIcon } from "components";
+import { FormInput, FormCheckbox, ActionIcon } from "components";
 import { Box } from "@rebass/grid";
 import { func, shape, string, number } from "prop-types";
 import { Wrapper } from "./styled";
@@ -27,6 +27,12 @@ const Member = ({ name, fields, index, t, removeMember }) => (
         name={`${name}.role`}
         isErrorVisibilityRequired={!!fields.value[index].email}
         validate={fields.value[index].email && required(t)}
+      />
+    </Box>
+    <Box width={[2 / 3, 1 / 3]} pl={[0, 2]}>
+      <FormCheckbox
+        name={`${name}.businessManager`}
+        label={t("businessManagerLabel")}
       />
     </Box>
     <Box width={[1 / 3, 1 / 6]}>
