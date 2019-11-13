@@ -13,7 +13,7 @@ import YoutubeVideo from "./YoutubeVideo";
 import { ParagraphStyled } from "../sharedStyled";
 
 const TopSection = ({ t, lng }) => (
-  <Flex flexDirection="column" mt={4} width={1} px={3}>
+  <Flex flexDirection="column" mt={4} width={1}>
     <Flex alignSelf="flex-end" alignItems="center">
       {/* uncomment after translations are ready */}
       {/* <LanguageSwitcher /> */}
@@ -31,14 +31,14 @@ const TopSection = ({ t, lng }) => (
       <LogoMobileWrapper>
         <FoodetectiveLogo />
       </LogoMobileWrapper>
-      <Flex alignItems="center" flexWrap="wrap" margin={-2}>
+      <Flex alignItems="center" flexWrap="wrap" m={-2}>
         <Box width={[1, 1 / 2]} p={2}>
           <H1Styled>
             {t("topSection.header.start")}
             <BlueText>{t("topSection.header.end")}</BlueText>
           </H1Styled>
           <ParagraphStyled>{t("topSection.paragraph")}</ParagraphStyled>
-          <Box width={[1, "auto"]} p={["2px", 1]}>
+          <Box width={[1, "auto"]}>
             <Button
               styleName="blue"
               fluid

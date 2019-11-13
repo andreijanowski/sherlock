@@ -3,10 +3,7 @@ import { Flex, Box } from "@rebass/grid";
 
 export const MainWrapper = styled.div`
   position: relative;
-  max-width: 960px;
-  margin-right: 16px;
   margin-bottom: 40px;
-  margin-left: 16px;
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     margin-bottom: 80px;
   }

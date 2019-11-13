@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { H2, Paragraph } from "components";
+import { Box } from "@rebass/grid";
 
 export const alignCenterMobile = css`
   text-align: center;
@@ -14,4 +15,10 @@ export const H2Styled = styled(H2)`
 
 export const ParagraphStyled = styled(Paragraph)`
   ${alignCenterMobile}
+`;
+
+export const LandingWrapper = styled(Box).attrs(() => ({
+  px: [2, 3]
+}))`
+  max-width: 960px;
 `;

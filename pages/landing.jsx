@@ -2,7 +2,8 @@ import React, { PureComponent } from "react";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
 import { Footer } from "components";
-import { TopSection, Services, Plans } from "sections/landing";
+import { TopSection, Services, Plans, Cooperations } from "sections/landing";
+import { LandingWrapper } from "sections/landing/sharedStyled";
 import { withTranslation } from "i18n";
 
 const namespaces = ["landing", "plans", "common"];
@@ -31,16 +32,19 @@ class Home extends PureComponent {
     const { billingInterval } = this.state;
     return (
       <>
-        <TopSection {...{ t, lng: (i18n && i18n.language) || "en" }} />
-        <Services {...{ t }} />
-        <Plans
-          {...{
-            t,
-            lng: (i18n && i18n.language) || "en",
-            billingInterval,
-            handleChangeBillngPeriod: this.handleChangeBillngPeriod
-          }}
-        />
+        <LandingWrapper>
+          <TopSection {...{ t, lng: (i18n && i18n.language) || "en" }} />
+          <Services {...{ t }} />
+          <Cooperations {...{ t }} />
+          <Plans
+            {...{
+              t,
+              lng: (i18n && i18n.language) || "en",
+              billingInterval,
+              handleChangeBillngPeriod: this.handleChangeBillngPeriod
+            }}
+          />
+        </LandingWrapper>
         <Footer />
       </>
     );

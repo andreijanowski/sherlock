@@ -9,7 +9,6 @@ export const Content = styled(Box).attrs(() => ({
   mt: [28, 0]
 }))`
   position: static;
-  max-width: 996px;
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     position: relative;
   }
@@ -35,4 +34,7 @@ export const LogoMobileWrapper = styled.div`
 
 export const H1Styled = styled(H1)`
   ${alignCenterMobile}
+  @media (min-width: ${p => p.theme.breakpoints[2]}) {
+    font-size: ${p => p.theme.fontSizes.f52};
+  }
 `;

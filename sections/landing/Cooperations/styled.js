@@ -1,0 +1,35 @@
+import styled from "styled-components";
+import { Flex } from "@rebass/grid";
+import { H2 } from "components";
+
+export const LogosContainer = styled(Flex).attrs(() => ({
+  flexWrap: "wrap",
+  justifyContent: ["center", "space-between"],
+  mb: [3, 5]
+}))`
+  padding: 8px;
+  background: white;
+  border: 1px solid gray;
+  border-radius: 10px;
+`;
+
+export const ClientLogo = styled.img.attrs(({ name }) => ({
+  src: `/static/img/clients/${name}.png`
+}))`
+  width: auto;
+  max-width: 100%;
+  max-height: 100px;
+  padding: 8px;
+`;
+
+export const PartnerLogo = styled.img.attrs(({ name }) => ({
+  src: `/static/img/partners/${name}.png`
+}))`
+  width: auto;
+  max-width: 100%;
+  max-height: 60px;
+`;
+
+export const H2Styled = styled(H2)`
+  margin: 0;
+`;
