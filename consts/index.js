@@ -1,7 +1,6 @@
 const { languages, languagesPattern } = require("./languages");
 /* eslint-disable prefer-destructuring */
-// const API_URL = process.env.PUBLIC_API_URL;
-const API_URL = "https://595.thefooddetective.integration.devguru.co";
+const API_URL = process.env.PUBLIC_API_URL;
 const GOOGLE_MAPS_API_KEY = process.env.PUBLIC_GOOGLE_MAPS_API_KEY;
 const NETGURU_DEV_PASSWORD = process.env.NETGURU_DEV_PASSWORD;
 const PUBLIC_FACEBOOK_APP_FIELDS = process.env.PUBLIC_FACEBOOK_APP_FIELDS;
