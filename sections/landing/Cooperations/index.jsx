@@ -2,7 +2,13 @@ import React from "react";
 import { Flex, Box } from "@rebass/grid";
 import { func } from "prop-types";
 import { Button } from "components";
-import { LogosContainer, ClientLogo, PartnerLogo, H2Styled } from "./styled";
+import {
+  LogosContainer,
+  ClientLogo,
+  PartnerLogo,
+  IndustryLogo,
+  H2Styled
+} from "./styled";
 
 const clientsNames = ["inglewood", "luigia", "re", "black-tap"];
 const partnersNames = [
@@ -24,6 +30,20 @@ const partnersNames = [
   "boom",
   "backbone"
 ];
+const industriesNames = [
+  "restaurants",
+  "hotel",
+  "coffee-shops",
+  "food-trucks",
+  "salad-bar",
+  "ice-cream-shop",
+  "caterings",
+  "brewery",
+  "street-food",
+  "fromagerie",
+  "butcher",
+  "bars"
+];
 
 const Cooperations = ({ t }) => (
   <>
@@ -36,20 +56,37 @@ const Cooperations = ({ t }) => (
       ))}
     </LogosContainer>
     <Flex justifyContent="space-between" alignItems="center" mb={3}>
-      <H2Styled>{t("partners")}</H2Styled>
+      <H2Styled>{t("cooperations.partners")}</H2Styled>
       <Button
         styleName="blue"
         onClick={() => {
           window.open("https://foodetective.typeform.com/to/tzqu8b");
         }}
       >
-        {t("becomePartner")}
+        {t("cooperations.becomePartner")}
       </Button>
     </Flex>
     <LogosContainer>
       {partnersNames.map(name => (
         <Flex width={[1 / 2, 1 / 4]} justifyContent="center" p={[1, 3]}>
           <PartnerLogo name={name} />
+        </Flex>
+      ))}
+    </LogosContainer>
+    <Box mb={3}>
+      <H2Styled>{t("cooperations.industries.header")}</H2Styled>
+    </Box>
+    <LogosContainer>
+      {industriesNames.map(name => (
+        <Flex
+          width={[1 / 2, 1 / 4, 1 / 6]}
+          justifyContent="center"
+          alignItems="center"
+          flexDirection="column"
+          p={[1, 2]}
+        >
+          <p>{t(`cooperations.industries.names.${name}`)}</p>
+          <IndustryLogo name={name} />
         </Flex>
       ))}
     </LogosContainer>

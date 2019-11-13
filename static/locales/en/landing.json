@@ -36,7 +36,26 @@
     ],
     "more": "One app/website to rule them all..."
   },
-  "clients": "Clients",
-  "partners": "Partners",
-  "becomePartner": "Become a partner"
+  "cooperations": {
+    "clients": "Clients",
+    "partners": "Partners",
+    "becomePartner": "Become a partner",
+    "industries": {
+      "header": "Industries",
+      "names": {
+        "restaurants": "Restaurants",
+        "hotel": "Hotels",
+        "coffee-shops": "Cafés",
+        "food-trucks": "Food trucks",
+        "salad-bar": "Markets",
+        "ice-cream-shop": "Ice cream shops",
+        "caterings": "Caterers",
+        "brewery": "Pubs",
+        "street-food": "Food stand",
+        "fromagerie": "Fromageries",
+        "butcher": "Butchers",
+        "bars": "Wineries"
+      }
+    }
+  }
 }

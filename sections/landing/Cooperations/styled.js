@@ -30,6 +30,14 @@ export const PartnerLogo = styled.img.attrs(({ name }) => ({
   max-height: 60px;
 `;
 
+export const IndustryLogo = styled.img.attrs(({ name }) => ({
+  src: `/static/icons/${name}.svg`
+}))`
+  width: auto;
+  max-width: 100%;
+  max-height: 80px;
+`;
+
 export const H2Styled = styled(H2)`
   margin: 0;
 `;
