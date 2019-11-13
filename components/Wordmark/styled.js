@@ -12,7 +12,6 @@ export const WordmarkWrapper = styled.p`
 
 export const Tagline = styled.small`
   display: ${({ inline }) => (inline ? "inline" : "block")};
-  margin-left: 8px;
   color: rgba(${p => p.theme.colors.dark}, 0.4);
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f16};
