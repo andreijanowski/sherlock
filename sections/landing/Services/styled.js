@@ -1,14 +1,6 @@
 import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 
-export const MainWrapper = styled.div`
-  position: relative;
-  margin-bottom: 40px;
-  @media (min-width: ${p => p.theme.breakpoints[0]}) {
-    margin-bottom: 80px;
-  }
-`;
-
 export const ServicesWrapper = styled(Flex).attrs(() => ({
   p: [3, 4],
   flexDirection: "column",
@@ -19,6 +11,10 @@ export const ServicesWrapper = styled(Flex).attrs(() => ({
   background: rgb(${p => p.theme.colors.dark});
   border-radius: ${p => p.theme.radius.double};
   box-shadow: 0 4px 24px 0 rgba(${p => p.theme.colors.dark}, 0.48);
+
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    margin-bottom: 80px;
+  }
 `;
 
 export const Service = styled(Flex).attrs(() => ({
