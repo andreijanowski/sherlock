@@ -15,8 +15,8 @@ import {
   Docs,
   Feedback,
   SettingsBasicInfo,
-  SettingsPassword,
-  SettingsLogout
+  SettingsLogout,
+  SettingsPassword
 } from "icons";
 
 const generateSettingsMobileSubmenu = (t, active, logout) => [
@@ -81,6 +81,12 @@ const generateProfileMobileSubmenu = (t, active) => [
     route: `/app/profile/live-info/`,
     label: t("app:manageProfile.liveInfo"),
     isActive: active === "liveInfo",
+    SubmenuIcon: ProfileAdditionaInfo
+  },
+  {
+    route: `/app/profile/widgets/`,
+    label: t("app:manageProfile.widgets"),
+    isActive: active === "widgets",
     SubmenuIcon: ProfileAdditionaInfo
   }
 ];

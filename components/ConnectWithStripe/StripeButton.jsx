@@ -29,6 +29,9 @@ StripeButton.propTypes = {
 
 export default connect(state => {
   const businessData = state.getIn(["users", "currentBusiness", "data"]);
-  const business = businessData && businessData.get("businesses").first();
+  const business =
+    businessData &&
+    businessData.get("businesses") &&
+    businessData.get("businesses").first();
   return { businessId: business && business.get("id") };
 })(StripeButton);
