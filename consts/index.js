@@ -1,8 +1,10 @@
 const { languages, languagesPattern } = require("./languages");
 /* eslint-disable prefer-destructuring */
+
 const API_URL = process.env.PUBLIC_API_URL;
 const APP_URL = process.env.APP_URL;
 const FOODETECTIVE_URL = process.env.PUBLIC_FOODETECTIVE_URL;
+
 const NETGURU_DEV_PASSWORD = process.env.NETGURU_DEV_PASSWORD;
 const OAUTH_CALLBACK_URL = process.env.OAUTH_CALLBACK_URL;
 const OAUTH_PUBLIC_CLIENT_ID = process.env.OAUTH_PUBLIC_CLIENT_ID;

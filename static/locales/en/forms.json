@@ -137,7 +137,8 @@
       "password": "Passwords must be at least {{length}} characters.",
       "passwordMatch": "The password and repeat password do not match.",
       "incorrect_password-current_password": "Password is incorrect",
-      "same_password-password": "Password is the same as current password"
+      "same_password-password": "Password is the same as current password",
+      "is not a fully qualified domain name-domains": "Domains is not a fully qualified domain name"
     }
   },
   "placeholder": {

@@ -19,9 +19,11 @@ const PaymentsSection = ({
   chosenPlan,
   goToPlans,
   updateSubscription,
-  notificationError
+  notificationError,
+  getBusinessSetupIntent
 }) => {
-  let { currentPlanName } = getPlanName(currentPlan);
+  // eslint-disable-next-line prefer-const
+  let { currentPlanName, nextPlanName } = getPlanName(currentPlan);
   if (chosenPlan) {
     currentPlanName = chosenPlan;
   }
@@ -72,7 +74,15 @@ const PaymentsSection = ({
       {/* TODO: After MVP use CardsModal for allowing user to choose from saved cards */}
       {/* {cards && <CardsModal {...{ cards, isOpen: false, t }} />} */}
       <Elements>
-        <CardForm {...{ t, updateSubscription, notificationError }} />
+        <CardForm
+          {...{
+            t,
+            nextPlanName,
+            updateSubscription,
+            notificationError,
+            getBusinessSetupIntent
+          }}
+        />
       </Elements>
     </Wrapper>
   );
@@ -88,6 +98,7 @@ PaymentsSection.propTypes = {
   goToPlans: func.isRequired,
   updateSubscription: func.isRequired,
   notificationError: func.isRequired,
+  getBusinessSetupIntent: func.isRequired,
   chosenPlan: string
 };
 

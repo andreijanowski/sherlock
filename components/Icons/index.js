@@ -15,6 +15,7 @@ export {
   ProfileMembers,
   Subscriptions,
   SettingsIcon,
+  SettingsPassword,
   BackArrow,
   LiveStream,
   Hamburger,

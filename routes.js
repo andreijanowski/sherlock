@@ -31,6 +31,7 @@ module.exports = routes()
     "app/profile/liveInfo",
     `/:lng(${languagesPattern})/app/profile/live-info`
   )
+  .add("app/profile/widgets", `/:lng(${languagesPattern})/app/profile/widgets`)
   .add(
     "app/settings/basicInformation",
     `/:lng(${languagesPattern})/app/settings/basic-information`
