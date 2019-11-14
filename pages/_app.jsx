@@ -2,7 +2,6 @@ import App, { Container } from "next/app";
 import { Provider, connect } from "react-redux";
 import withRedux from "next-redux-wrapper";
 import withReduxSaga from "next-redux-saga";
-import { pathChanged as pathChangedAction } from "actions/app";
 import forceLanguageInUrl from "utils/forceLanguageInUrl";
 import Layout from "layout";
 import { ThemeProvider } from "styled-components";
@@ -14,7 +13,13 @@ import { StripeProvider } from "react-stripe-elements";
 import { STRIPE_API_KEY, GOOGLE_ANALYTICS_ID } from "consts";
 import ReactGA from "react-ga";
 import { fromJS } from "immutable";
-import { refreshToken as refreshTokenAction } from "actions/auth";
+import Cookies from "js-cookie";
+import uuid from "uuid/v1";
+import {
+  loadUserData as loadUserDataAction,
+  refreshToken as refreshTokenAction
+} from "actions/auth";
+import { pathChanged as pathChangedAction, setInstanceUuid } from "actions/app";
 import { appWithTranslation } from "../i18n";
 import createStore from "../data/store";
 
@@ -58,6 +63,12 @@ class MyApp extends App {
       pathChanged
     } = this.props;
     pathChanged(pathname);
+    if (Cookies.get("isAuthenticated")) {
+      const { loadUserData, refreshToken, setAppInstanceUuid } = this.props;
+      setAppInstanceUuid(uuid());
+      refreshToken();
+      loadUserData();
+    }
     if (window.Stripe) {
       this.setState({ stripe: window.Stripe(STRIPE_API_KEY) });
     } else {
@@ -65,15 +76,17 @@ class MyApp extends App {
         this.setState({ stripe: window.Stripe(STRIPE_API_KEY) });
       });
     }
-    try {
-      const credentials = JSON.parse(
-        window.localStorage.getItem("credentials")
-      );
-      if (credentials.refreshToken) {
-        this.props.refreshToken({ refreshToken: credentials.refreshToken });
-      }
-      // eslint-disable-next-line no-empty
-    } catch (e) {}
+  }
+
+  componentWillUnmount() {
+    if (
+      window.localStorage.getItem("refreshingToken") === "true" &&
+      window.localStorage.getItem("refreshingTokenAppInstance") ===
+        this.props.state.getIn(["app", "instanceUuid"])
+    ) {
+      window.localStorage.setItem("refreshingToken", "false");
+      window.localStorage.setItem("refreshingTokenAppInstance", null);
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -112,7 +125,9 @@ export default withRedux(createStore, {
       state => ({ state }),
       {
         pathChanged: pathChangedAction,
-        refreshToken: refreshTokenAction
+        loadUserData: loadUserDataAction,
+        refreshToken: refreshTokenAction,
+        setAppInstanceUuid: setInstanceUuid
       }
     )(appWithTranslation(MyApp))
   )

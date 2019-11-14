@@ -3,7 +3,8 @@ import {
   SET_CURRENT_BUSINESS,
   SET_CURRENT_USER_ID,
   SET_ORDERS_BADGE_NUMBER,
-  SET_RESERVATIONS_BADGE_NUMBER
+  SET_RESERVATIONS_BADGE_NUMBER,
+  SET_INSTANCE_UUID
 } from "types/app";
 
 export const pathChanged = path => ({
@@ -36,5 +37,12 @@ export const setReservationsUpdates = number => ({
   type: SET_RESERVATIONS_BADGE_NUMBER,
   payload: {
     number
+  }
+});
+
+export const setInstanceUuid = uuid => ({
+  type: SET_INSTANCE_UUID,
+  payload: {
+    uuid
   }
 });

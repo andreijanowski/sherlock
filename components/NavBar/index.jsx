@@ -57,6 +57,9 @@ const NavBar = ({ t, lng, logout, ordersUpdates, reservationsUpdates }) => (
           <Link {...{ lng, route: `/app/profile/live-info/` }}>
             <Subitem>{t("app:manageProfile.liveInfo")}</Subitem>
           </Link>
+          <Link {...{ lng, route: `/app/profile/widgets/` }}>
+            <Subitem>{t("app:manageProfile.widgets")}</Subitem>
+          </Link>
         </Subitems>
       </SubitemsWrapper>
     </Item>
