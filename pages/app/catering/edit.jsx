@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
 import { Router } from "routes";
 import { timeToNumber, LoadingIndicator, CalendarLayout } from "components";
-import { patchCatering } from "actions/caterings";
+import { patchCatering, sendCateringOffer } from "actions/caterings";
 import fileToBase64 from "utils/fileToBase64";
 import { convertToCents } from "utils/price";
 
@@ -32,7 +32,7 @@ class EditCateringPage extends PureComponent {
   }
 
   handleFormSubmit = async ({ menu, currency, priceCents, ...values }, id) => {
-    const { updateCatering, lng } = this.props;
+    const { updateCatering, lng, sendOffer } = this.props;
     const updatedCatering = {
       ...values,
       from: timeToNumber(values.from, "start"),
@@ -49,7 +49,10 @@ class EditCateringPage extends PureComponent {
     }
     this.setState({ isSending: true });
     updateCatering(id, updatedCatering)
-      .then(() => Router.pushRoute(`/${lng}/app/catering/month`))
+      .then(res => {
+        sendOffer(res.rawData.data.id);
+        Router.pushRoute(`/${lng}/app/catering/month?date=${values.date}`);
+      })
       .catch(() => this.setState({ isSending: false }));
   };
 
@@ -102,6 +105,7 @@ EditCateringPage.propTypes = {
   business: shape(),
   changeCurrentBusiness: func.isRequired,
   updateCatering: func.isRequired,
+  sendOffer: func.isRequired,
   businesses: shape(),
   businessId: string
 };
@@ -118,7 +122,10 @@ export default requireAuth(true)(
     connect(
       (state, { i18n }) => {
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
-        const business = businessData && businessData.get("businesses").first();
+        const business =
+          businessData &&
+          businessData.get("businesses") &&
+          businessData.get("businesses").first();
         return {
           business: business && business.get("attributes"),
           businessId: business && business.get("id"),
@@ -134,7 +141,8 @@ export default requireAuth(true)(
       },
       {
         changeCurrentBusiness: setCurrentBusiness,
-        updateCatering: patchCatering
+        updateCatering: patchCatering,
+        sendOffer: sendCateringOffer
       }
     )(EditCateringPage)
   )

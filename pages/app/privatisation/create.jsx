@@ -5,7 +5,10 @@ import { func, string, shape } from "prop-types";
 import CreatePrivatisationForm from "sections/privatisation/create";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
-import { postPrivatisation } from "actions/privatisations";
+import {
+  postPrivatisation,
+  sendPrivatisationOffer
+} from "actions/privatisations";
 import { Router } from "routes";
 import fileToBase64 from "utils/fileToBase64";
 import { timeToNumber, CalendarLayout } from "components";
@@ -33,7 +36,7 @@ class CreatePrivatisationPage extends PureComponent {
     to,
     ...values
   }) => {
-    const { createPrivatisation, lng, businessId } = this.props;
+    const { createPrivatisation, lng, businessId, sendOffer } = this.props;
     const newPrivatisation = {
       ...values,
       from: from ? timeToNumber(from, "start") : undefined,
@@ -53,7 +56,10 @@ class CreatePrivatisationPage extends PureComponent {
     };
     this.setState({ isSending: true });
     createPrivatisation(newPrivatisation, businessId)
-      .then(() => Router.pushRoute(`/${lng}/app/privatisation/month`))
+      .then(res => {
+        sendOffer(res.rawData.data.id);
+        Router.pushRoute(`/${lng}/app/privatisation/month?date=${values.date}`);
+      })
       .catch(() => this.setState({ isSending: false }));
   };
 
@@ -95,6 +101,7 @@ CreatePrivatisationPage.propTypes = {
   changeCurrentBusiness: func.isRequired,
   businesses: shape(),
   createPrivatisation: func.isRequired,
+  sendOffer: func.isRequired,
   businessId: string
 };
 
@@ -109,7 +116,10 @@ export default requireAuth(true)(
     connect(
       (state, { i18n }) => {
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
-        const business = businessData && businessData.get("businesses").first();
+        const business =
+          businessData &&
+          businessData.get("businesses") &&
+          businessData.get("businesses").first();
         return {
           business: business && business.get("attributes"),
           businessId: business && business.get("id"),
@@ -124,7 +134,8 @@ export default requireAuth(true)(
       },
       {
         changeCurrentBusiness: setCurrentBusiness,
-        createPrivatisation: postPrivatisation
+        createPrivatisation: postPrivatisation,
+        sendOffer: sendPrivatisationOffer
       }
     )(CreatePrivatisationPage)
   )

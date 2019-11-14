@@ -1,24 +1,20 @@
 import { Router } from "routes";
 import isServer from "utils/isServer";
 import { shape, string } from "prop-types";
+import Cookies from "js-cookie";
 
 export default requireAuth => ComposedComponent => {
   const Extended = ({ query, ...rest }) => {
     const { lng } = query;
     if (!isServer) {
-      try {
-        const credentials = JSON.parse(
-          window.localStorage.getItem("credentials")
-        );
-        if (credentials.accessToken && !requireAuth) {
-          Router.pushRoute(`/${lng}/app/`);
-          return null;
-        }
-      } catch (e) {
-        if (requireAuth) {
-          Router.pushRoute(`/${lng}/login/`);
-          return null;
-        }
+      const isAuthenticated = !!Cookies.get("isAuthenticated");
+      if (isAuthenticated && !requireAuth) {
+        Router.pushRoute(`/${lng}/app/`);
+        return null;
+      }
+      if (!isAuthenticated && requireAuth) {
+        Router.pushRoute(`/${lng}/`);
+        return null;
       }
     }
     return <ComposedComponent {...{ query, ...rest }} />;

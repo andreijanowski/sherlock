@@ -280,7 +280,10 @@ export default requireAuth(true)(
     connect(
       (state, { i18n }) => {
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
-        const business = businessData && businessData.get("businesses").first();
+        const business =
+          businessData &&
+          businessData.get("businesses") &&
+          businessData.get("businesses").first();
         const orders = state.getIn(["orders", "data", "orders"]);
         const elements = state.getIn(["orders", "data", "elements"]);
         const addresses = state.getIn(["orders", "data", "addresses"]);

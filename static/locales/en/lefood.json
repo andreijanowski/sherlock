@@ -122,5 +122,7 @@
   "filters": "Filters",
   "day": "Day",
   "filter": "Filter",
-  "reset": "Reset filters"
+  "reset": "Reset filters",
+  "averageDeliveryTime": "Average delivery time",
+  "minAmountForDelivery": "Minimum amount for delivery"
 }
