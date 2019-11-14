@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex, Box } from "@rebass/grid";
-import { func } from "prop-types";
+import { func, oneOfType, any, shape } from "prop-types";
 import { Button } from "components";
 import {
   LogosContainer,
@@ -45,7 +45,7 @@ const industriesNames = [
   "bars"
 ];
 
-const Cooperations = ({ t }) => (
+const Cooperations = ({ t, industriesRef }) => (
   <>
     <Box mb={3}>
       <H2Styled>{t("cooperations.clients")}</H2Styled>
@@ -73,7 +73,7 @@ const Cooperations = ({ t }) => (
         </Flex>
       ))}
     </LogosContainer>
-    <Box mb={3}>
+    <Box mb={3} ref={industriesRef}>
       <H2Styled>{t("cooperations.industries.header")}</H2Styled>
     </Box>
     <LogosContainer>
@@ -94,7 +94,8 @@ const Cooperations = ({ t }) => (
 );
 
 Cooperations.propTypes = {
-  t: func.isRequired
+  t: func.isRequired,
+  industriesRef: oneOfType([func, shape({ current: any })]).isRequired
 };
 
 export default Cooperations;

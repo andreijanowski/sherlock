@@ -24,3 +24,16 @@ export const LandingWrapper = styled(Box).attrs(() => ({
   width: 100%;
   max-width: 960px;
 `;
+
+export const LogoWrapper = styled(Box)`
+  display: none;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    display: block;
+  }
+`;
+
+export const LogoMobileWrapper = styled.div`
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    display: none;
+  }
+`;

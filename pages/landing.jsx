@@ -1,8 +1,10 @@
 import React, { PureComponent } from "react";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
+// import { Flex, Box } from "@rebass/grid";
 import { Footer } from "components";
 import {
+  Navigation,
   TopSection,
   Services,
   Plans,
@@ -24,10 +26,20 @@ class Home extends PureComponent {
 
   constructor(props) {
     super(props);
+    this.servicesRef = React.createRef();
+    this.industriesRef = React.createRef();
+    this.featuresRef = React.createRef();
     this.state = {
       billingInterval: "month"
     };
   }
+
+  scrollTo = section => {
+    window.scrollTo({
+      top: this[`${section}Ref`].current.offsetTop,
+      behavior: "smooth"
+    });
+  };
 
   handleChangeBillngPeriod = () =>
     this.setState(({ billingInterval }) => ({
@@ -35,16 +47,19 @@ class Home extends PureComponent {
     }));
 
   render() {
+    const { servicesRef, industriesRef, featuresRef, scrollTo } = this;
     const { t, i18n } = this.props;
     const { billingInterval } = this.state;
+    const lng = (i18n && i18n.language) || "en";
     return (
       <>
+        <Navigation {...{ t, lng, scrollTo }} />
         <LandingWrapper>
-          <TopSection {...{ t, lng: (i18n && i18n.language) || "en" }} />
-          <Services {...{ t }} />
-          <Cooperations {...{ t }} />
+          <TopSection {...{ t, lng }} />
+          <Services {...{ t, servicesRef }} />
+          <Cooperations {...{ t, industriesRef }} />
         </LandingWrapper>
-        <Features {...{ t }} />
+        <Features {...{ t, featuresRef }} />
         <LandingWrapper>
           <Testimonials {...{ t }} />
           <Plans

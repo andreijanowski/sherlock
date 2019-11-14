@@ -2,12 +2,18 @@ import styled, { css } from "styled-components";
 import { Flex } from "@rebass/grid";
 
 const login = css`
-  margin-left: 16px;
   padding: 5px 13px;
   color: rgba(${p => p.theme.colors.dark}, 0.64);
   background: transparent;
   border: ${p => p.theme.borderWeights.normal} solid
     rgba(${p => p.theme.colors.dark}, 0.16);
+`;
+
+const signIn = css`
+  ${login}
+  color: rgb(${p => p.theme.colors.blue});
+  border: ${p => p.theme.borderWeights.normal} solid
+    rgb(${p => p.theme.colors.blue});
 `;
 
 const blue = css`
@@ -204,6 +210,7 @@ const Button = styled.button`
   ${p => p.width && `width: ${p.width};`};
 
   ${p => p.styleName === "login" && login};
+  ${p => p.styleName === "signIn" && signIn};
   ${p => p.styleName === "blue" && blue};
   ${p => p.styleName === "formBlue" && formBlue};
   ${p => p.styleName === "orange" && orange};

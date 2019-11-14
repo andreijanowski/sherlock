@@ -1,12 +1,12 @@
-import { func } from "prop-types";
+import { func, oneOfType, shape, any } from "prop-types";
 import { BlueText, BoldText, ItalicText } from "components";
 import { ServicesWrapper, MainWrapper, More } from "./styled";
 import { H2Styled, ParagraphStyled } from "../sharedStyled";
 import List from "./list";
 import BackgroundCircle from "./backgroundCircle";
 
-const Services = ({ t }) => (
-  <MainWrapper>
+const Services = ({ t, servicesRef }) => (
+  <MainWrapper ref={servicesRef}>
     <ServicesWrapper>
       <H2Styled white>{t("services.header")}</H2Styled>
       <ParagraphStyled white>
@@ -43,7 +43,8 @@ const Services = ({ t }) => (
 );
 
 Services.propTypes = {
-  t: func.isRequired
+  t: func.isRequired,
+  servicesRef: oneOfType([func, shape({ current: any })]).isRequired
 };
 
 export default Services;
