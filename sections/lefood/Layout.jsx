@@ -31,6 +31,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Router } from "routes";
 import { convertToCents } from "utils/price";
 import prepareBusinessesList from "utils/prepareBusinessesList";
+import Tippy from "@tippy.js/react";
 import StopOrdersModal from "./StopOrdersModal";
 import FinishOrdersModal from "./FinishOrdersModal";
 import StripeCurrencyModal from "./StripeCurrencyModal";
@@ -290,71 +291,75 @@ class LefoodLayout extends PureComponent {
                           </Button>
                         </Link>
                       </Box>
-                      <Box pr={3} mb={2}>
-                        <Select
-                          items={averageDeliveryTimeList(t)}
-                          value={currentAverageDeliveryTime}
-                          onChange={({ value }) =>
-                            this.updateBusiness({
-                              averageDeliveryTime: value
-                            })
-                          }
-                          ButtonComponent={p => (
-                            <Button styleName="withImage" {...p}>
-                              <ButtonWithImageIconWrapper>
-                                <Time />
-                              </ButtonWithImageIconWrapper>
-                              <ButtonWithImageText>
-                                {currentAverageDeliveryTime
-                                  ? currentAverageDeliveryTime.label
-                                  : "-"}
-                              </ButtonWithImageText>
-                              <Box pr={3}>
-                                <ExpandIcon />
-                              </Box>
-                            </Button>
-                          )}
-                        />
-                      </Box>
-                      <Box pr={3} mb={2}>
-                        <Button styleName="withImage">
-                          <ButtonWithImageIconWrapper
-                            onClick={() =>
-                              this.setCurrencyModalVisibility(true)
+                      <Tippy content={t("averageDeliveryTime")}>
+                        <Box pr={3} mb={2}>
+                          <Select
+                            items={averageDeliveryTimeList(t)}
+                            value={currentAverageDeliveryTime}
+                            onChange={({ value }) =>
+                              this.updateBusiness({
+                                averageDeliveryTime: value
+                              })
                             }
-                          >
-                            <Price />
-                          </ButtonWithImageIconWrapper>
-                          <ButtonWithImageText>
-                            <AutosizeInput
-                              value={minAmountForDeliveryCents}
-                              onChange={e => {
-                                this.setState({
-                                  minAmountForDeliveryCents: normalizePrice(
-                                    e.target.value
-                                  )
-                                });
-                              }}
-                              onBlur={() =>
-                                this.updateBusiness({
-                                  minAmountForDeliveryCents: convertToCents(
-                                    minAmountForDeliveryCents
-                                  )
-                                })
-                              }
-                            />
-                            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
-                            <span
+                            ButtonComponent={p => (
+                              <Button styleName="withImage" {...p}>
+                                <ButtonWithImageIconWrapper>
+                                  <Time />
+                                </ButtonWithImageIconWrapper>
+                                <ButtonWithImageText>
+                                  {currentAverageDeliveryTime
+                                    ? currentAverageDeliveryTime.label
+                                    : "-"}
+                                </ButtonWithImageText>
+                                <Box pr={3}>
+                                  <ExpandIcon />
+                                </Box>
+                              </Button>
+                            )}
+                          />
+                        </Box>
+                      </Tippy>
+                      <Tippy content={t("minAmountForDelivery")}>
+                        <Box pr={3} mb={2}>
+                          <Button styleName="withImage">
+                            <ButtonWithImageIconWrapper
                               onClick={() =>
                                 this.setCurrencyModalVisibility(true)
                               }
-                              role="dialog"
                             >
-                              {business.get("stripeCurrency")}
-                            </span>
-                          </ButtonWithImageText>
-                        </Button>
-                      </Box>
+                              <Price />
+                            </ButtonWithImageIconWrapper>
+                            <ButtonWithImageText>
+                              <AutosizeInput
+                                value={minAmountForDeliveryCents}
+                                onChange={e => {
+                                  this.setState({
+                                    minAmountForDeliveryCents: normalizePrice(
+                                      e.target.value
+                                    )
+                                  });
+                                }}
+                                onBlur={() =>
+                                  this.updateBusiness({
+                                    minAmountForDeliveryCents: convertToCents(
+                                      minAmountForDeliveryCents
+                                    )
+                                  })
+                                }
+                              />
+                              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
+                              <span
+                                onClick={() =>
+                                  this.setCurrencyModalVisibility(true)
+                                }
+                                role="dialog"
+                              >
+                                {business.get("stripeCurrency")}
+                              </span>
+                            </ButtonWithImageText>
+                          </Button>
+                        </Box>
+                      </Tippy>
                       <Box pr={3} mb={2}>
                         <Link route="/app/lefood/menu/" lng={lng}>
                           <Button

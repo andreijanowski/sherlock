@@ -9,7 +9,9 @@ import {
   FETCH_BUSINESS_CATERINGS_REQUEST,
   FETCH_BUSINESS_PRIVATISATIONS_REQUEST,
   FETCH_BUSINESS_TABLES_REQUEST,
-  FETCH_BUSINESS_RESERVATIONS_REQUEST
+  FETCH_BUSINESS_RESERVATIONS_REQUEST,
+  FETCH_BUSINESS_WIDGETS_REQUEST,
+  FETCH_BUSINESS_SETUP_INTENT_REQUEST
 } from "types/businesses";
 
 export const postBusiness = () => ({
@@ -163,4 +165,27 @@ export const fetchBusinessReservations = (
     }
   },
   meta: { thunk: true, page }
+});
+
+export const fetchBusinessWidgets = (id, page = 1) => ({
+  type: FETCH_BUSINESS_WIDGETS_REQUEST,
+  payload: {
+    endpoint: `/api/v1/businesses/${id}/widgets`,
+    params: {
+      per_page: 200,
+      page
+    }
+  },
+  meta: { thunk: true, page }
+});
+
+export const fetchBusinessSetupIntent = id => ({
+  type: FETCH_BUSINESS_SETUP_INTENT_REQUEST,
+  payload: {
+    endpoint: `/api/v1/businesses/${id}/setup_intent`,
+    params: {
+      purpose: "subscription"
+    }
+  },
+  meta: { thunk: true }
 });

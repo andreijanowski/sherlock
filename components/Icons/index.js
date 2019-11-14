@@ -15,15 +15,14 @@ export {
   ProfileMembers,
   Subscriptions,
   SettingsIcon,
+  SettingsPassword,
   BackArrow,
   LiveStream,
   Hamburger,
   SettingsBasicInfo,
-  SettingsPassword,
   SettingsLogout
 } from "./navigation";
 export { Docs, Feedback, Notifications, ExpandIcon } from "./mainControls";
-export { FacebookIcon } from "./facebook";
 export {
   Orders,
   Time,

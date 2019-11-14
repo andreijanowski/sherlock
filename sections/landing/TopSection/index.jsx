@@ -8,8 +8,11 @@ import {
   YoutubeModal,
   LanguageSwitcher
 } from "components";
+import Cookies from "js-cookie";
 import { Flex, Box } from "@rebass/grid";
+import { API_URL, OAUTH_PUBLIC_CLIENT_ID, OAUTH_CALLBACK_URL } from "consts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import uuid from "uuid/v1";
 import {
   Content,
   LogoWrapper,
@@ -28,7 +31,11 @@ const TopSection = ({ t, lng }) => {
         <LanguageSwitcher />
         <Button
           styleName="login"
-          onClick={() => Router.pushRoute(`/${lng}/login/`)}
+          onClick={() => {
+            const state = uuid();
+            Cookies.set("loginStateParam", state);
+            window.location.href = `${API_URL}/oauth/authorize?client_id=${OAUTH_PUBLIC_CLIENT_ID}&redirect_uri=${OAUTH_CALLBACK_URL}&response_type=code&scope=trusted+refresh_token+public&state=${state}`;
+          }}
         >
           {t("common:login")}
         </Button>

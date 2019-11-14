@@ -206,7 +206,11 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
               fluid
               type="button"
               onClick={() => {
-                Router.pushRoute(`/${lng}/app/catering/month/`);
+                Router.pushRoute(
+                  `/${lng}/app/catering/month?date=${editedCatering.get(
+                    "date"
+                  )}`
+                );
               }}
             >
               {t("forms:cancel")}
@@ -214,7 +218,7 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
           </Box>
           <Box width={1 / 2} px={2}>
             <Button styleName="formBlue" type="submit" fluid>
-              {t("forms:save")}
+              {t("events:sendOffer")}
             </Button>
           </Box>
         </Flex>

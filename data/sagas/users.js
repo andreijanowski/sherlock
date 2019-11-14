@@ -7,7 +7,8 @@ import {
   fetchBusinessCaterings,
   fetchBusinessPrivatisations,
   fetchBusinessTables,
-  fetchBusinessReservations
+  fetchBusinessReservations,
+  fetchBusinessWidgets
 } from "actions/businesses";
 import { UPDATE_PROFILE_SUCCESS } from "types/users";
 import { SET_CURRENT_BUSINESS } from "types/app";
@@ -15,7 +16,7 @@ import { POST_BUSINESS_SUCCESS } from "types/businesses";
 import { takeEvery, all, put } from "redux-saga/effects";
 import Notifications from "react-notification-system-redux";
 import { setCurrentBusiness } from "actions/app";
-import { fetchAllBusinessData } from "./utils";
+import fetchAllBusinessData from "./utils/fetchAllBusinessData";
 
 function* fetchBusinessData({ payload: { id } }) {
   yield put(fetchProfileBusiness(id));
@@ -27,6 +28,7 @@ function* fetchBusinessData({ payload: { id } }) {
   yield fetchAllBusinessData(fetchBusinessPrivatisations, id);
   yield fetchAllBusinessData(fetchBusinessTables, id);
   yield fetchAllBusinessData(fetchBusinessReservations, id);
+  yield fetchAllBusinessData(fetchBusinessWidgets, id);
 }
 
 function* showSuccesNotification() {

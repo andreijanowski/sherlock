@@ -49,29 +49,31 @@ const PlansSection = ({
           {...{ t, billingInterval, handleChangeBillngPeriod }}
         />
       </Flex>
-      <Flex flexDirection="column" mb={4}>
-        <Box mr={2} mb={3}>{`${t("paymentInfo")}: `}</Box>
-        <Flex>
-          {currentCard && (
-            <Box mb={-2} mr={2}>
-              <Card
-                {...{
-                  id: currentCard.get("id"),
-                  last4: currentCard.getIn(["attributes", "last4"]),
-                  brand: currentCard.getIn(["attributes", "brand"]),
-                  disabled: currentCard.getIn(["attributes", "disabled"])
-                }}
-                disabled
-              />
+      {nextPlanName !== "essential" && (
+        <Flex flexDirection="column" mb={4}>
+          <Box mr={2} mb={3}>{`${t("paymentInfo")}: `}</Box>
+          <Flex>
+            {currentCard && (
+              <Box mb={-2} mr={2}>
+                <Card
+                  {...{
+                    id: currentCard.get("id"),
+                    last4: currentCard.getIn(["attributes", "last4"]),
+                    brand: currentCard.getIn(["attributes", "brand"]),
+                    disabled: currentCard.getIn(["attributes", "disabled"])
+                  }}
+                  disabled
+                />
+              </Box>
+            )}
+            <Box>
+              <Button styleName="smallBlue" onClick={goToPayments}>
+                {currentCard ? t("changeCard") : t("setCard")}
+              </Button>
             </Box>
-          )}
-          <Box>
-            <Button styleName="smallBlue" onClick={goToPayments}>
-              {currentCard ? t("changeCard") : t("setCard")}
-            </Button>
-          </Box>
+          </Flex>
         </Flex>
-      </Flex>
+      )}
       <Flex mx={-2}>
         <Plans
           {...{
