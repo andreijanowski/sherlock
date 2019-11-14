@@ -1,5 +1,5 @@
 {
-  "header": "My plan",
+  "header": "Pay as you grow",
   "paragraph": "Choose the plan that suits your business goals. If you are a big business owner or chain manager, please add your manager in charge.",
   "yourCurrentPlan": "Your current plan",
   "paymentInfo": "Payment informations",
@@ -42,8 +42,9 @@
     "bookings": "Reservations",
     "catering": "Catering",
     "privatisation": "Privatisation",
-    "delivery": "Delivery / Take away",
-    "digitalMarketing": "Digital marketing"
+    "delivery": "Delivery",
+    "digitalMarketing": "Digital marketing",
+    "redirections": "Redirections"
   },
   "essential": {
     "name": "Essential",

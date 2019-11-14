@@ -13,7 +13,7 @@ const Plans = ({
   isSubscriptionView
 }) => (
   <>
-    <Box mb={[40, 0]} width={[1, 1 / 2, 1 / 4]}>
+    <Box mb={[40, 0]} width={[1, 1 / 2]}>
       <Plan
         {...{
           t,
@@ -30,7 +30,7 @@ const Plans = ({
         }}
       />
     </Box>
-    <Box mb={[40, 0]} width={[1, 1 / 2, 1 / 4]}>
+    <Box mb={[40, 0]} width={[1, 1 / 2]}>
       <Plan
         {...{
           t,

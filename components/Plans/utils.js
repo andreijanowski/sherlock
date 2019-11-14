@@ -17,12 +17,19 @@ export const generatePlanOptionsList = (planName, t) => {
           discount: "10%"
         },
         {
+          name: t("plans:options.takeAway"),
+          discount: "10%"
+        },
+        {
           name: t("plans:options.catering"),
           discount: "10%"
         },
         {
           name: t("plans:options.privatisation"),
           discount: "10%"
+        },
+        {
+          name: t("plans:options.redirections")
         }
       ];
     case "basic":
@@ -42,6 +49,10 @@ export const generatePlanOptionsList = (planName, t) => {
           discount: "5%"
         },
         {
+          name: t("plans:options.takeAway"),
+          discount: "5%"
+        },
+        {
           name: t("plans:options.catering"),
           discount: "5%"
         },
@@ -54,6 +65,9 @@ export const generatePlanOptionsList = (planName, t) => {
         },
         {
           name: t("plans:options.digitalMarketing")
+        },
+        {
+          name: t("plans:options.redirections")
         }
       ];
     default:
