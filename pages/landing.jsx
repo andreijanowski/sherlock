@@ -7,7 +7,8 @@ import {
   Services,
   Plans,
   Cooperations,
-  Features
+  Features,
+  Testimonials
 } from "sections/landing";
 import { LandingWrapper } from "sections/landing/sharedStyled";
 import { withTranslation } from "i18n";
@@ -45,6 +46,7 @@ class Home extends PureComponent {
         </LandingWrapper>
         <Features {...{ t }} />
         <LandingWrapper>
+          <Testimonials {...{ t }} />
           <Plans
             {...{
               t,

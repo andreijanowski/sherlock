@@ -100,5 +100,28 @@
         "paragraph": "Receive payments instantly, connect your bank account and manage your payments from a single view."
       }
     }
+  },
+  "testimonials": {
+    "header": "Testimonials",
+    "list": [
+      {
+        "position": "Owner",
+        "company": "Cipollino",
+        "increase": "29% Revenues increase",
+        "quote": "Revolutionary! Easy to set up, to use and manage. The entire team loves it because of its simplicity and unique interface."
+      },
+      {
+        "position": "Owner",
+        "company": "Inglewood",
+        "increase": "13% Revenues increase",
+        "quote": "We’ve seen an improvement in efficiency within every department of our company. We’ve been able to take more steps toward being paperless using Foodetective"
+      },
+      {
+        "position": "Owner",
+        "company": "Relais de l’Entrecôte",
+        "increase": "19% Revenues increase",
+        "quote": "Foodetective helped us increase our online visibility, to analyze our entire online offer as well as provide our clients unique services that we’ve integrated into our website."
+      }
+    ]
   }
 }
