@@ -1,21 +1,16 @@
 import Pusher from "pusher-js";
-import {
-  API_URL,
-  NETGURU_DEV_PASSWORD,
-  PUSHER_APP_KEY,
-  PUSHER_APP_CLUSTER
-} from "consts";
+import { APP_URL, PUSHER_APP_KEY, PUSHER_APP_CLUSTER } from "consts";
 
 class CustomPusher {
   constructor() {
     this.socket = null;
   }
 
-  init = (token, userId) => {
+  init = userId => {
     if (!this.socket) {
       this.socket = new Pusher(PUSHER_APP_KEY, {
         cluster: PUSHER_APP_CLUSTER,
-        authEndpoint: `${API_URL}/api/v1/users/me/authenticate_pusher`,
+        authEndpoint: `${APP_URL}/api/v1/users/me/authenticate_pusher`,
         auth: {
           params: {
             authentication_for: "user",
@@ -23,9 +18,7 @@ class CustomPusher {
             user_channel: "notifications"
           },
           headers: {
-            NETGURU: NETGURU_DEV_PASSWORD,
-            Accept: "application/vnd.api+json",
-            Authorization: `Bearer ${token}`
+            Accept: "application/vnd.api+json"
           }
         }
       });
