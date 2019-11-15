@@ -35,7 +35,8 @@ const partnersNames = [
   "kitro",
   "winde-n-dine",
   "boom",
-  "backbone"
+  "backbone",
+  "uber-eats"
 ];
 const industriesNames = [
   "restaurants",
