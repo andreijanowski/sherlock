@@ -2,6 +2,7 @@ import React from "react";
 import { Flex, Box } from "@rebass/grid";
 import { H2, Button, Paragraph } from "components";
 import { func, string } from "prop-types";
+import { Screen } from "./Template.styled";
 
 const Template = ({ t, activeNavItem }) => (
   <Flex flexWrap="wrap" m={-2}>
@@ -13,12 +14,8 @@ const Template = ({ t, activeNavItem }) => (
       <Button styleName="white">{t("features.registerForFree")}</Button>
     </Box>
     <Box width={[1, 1 / 2]} p={2}>
-      {/* TODO: replace a placeholder, create a separate component */}
-      <img
-        width="100%"
-        src="/static/img/features/placeholder.png"
-        alt="Feature"
-      />
+      {/* TODO: optimize visibility.png */}
+      <Screen activeNavItem={activeNavItem} />
     </Box>
   </Flex>
 );
