@@ -15,22 +15,15 @@ const runPusher = dispatch =>
   }) {
     if (!isServer) {
       try {
-        const credentials = JSON.parse(
-          window.localStorage.getItem("credentials")
+        Pusher.init(id);
+        Pusher.subscribe(`private-users-${id}-notifications`);
+        Pusher.bind("order.update", data => dispatch(handleOrderUpdate(data)));
+        Pusher.bind("reservation.create", data =>
+          dispatch(handleReservationUpdate(data))
         );
-        if (credentials.accessToken) {
-          Pusher.init(credentials.accessToken, id);
-          Pusher.subscribe(`private-users-${id}-notifications`);
-          Pusher.bind("order.update", data =>
-            dispatch(handleOrderUpdate(data))
-          );
-          Pusher.bind("reservation.create", data =>
-            dispatch(handleReservationUpdate(data))
-          );
-          Pusher.bind("reservation.update", data =>
-            dispatch(handleReservationUpdate(data))
-          );
-        }
+        Pusher.bind("reservation.update", data =>
+          dispatch(handleReservationUpdate(data))
+        );
       } catch (e) {
         console.log(e);
       }

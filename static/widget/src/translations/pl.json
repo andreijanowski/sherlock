@@ -1,0 +1,13 @@
+{
+  "takeAwayOrDelivery": "Dostawa jedzenia / Jedzenie na wynos",
+  "takeAway": "Jedzenie na wynos",
+  "delivery": "Dostawa jedzenia",
+  "bill": "Zapłać / podziel rachunek",
+  "catering": "Zamów catering",
+  "privatisation": "Wynajmij lokal",
+  "reservation": "Zarezerwuj stolik",
+  "missingApiKey": "Api key is missing",
+  "notAuthorized": "Can not authorize widget with this api key",
+  "canNotFetchWidget": "Can not fetch widget data",
+  "invalidOrigin": "Your origin is not whitelisted for this widget"
+}

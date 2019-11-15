@@ -109,5 +109,7 @@
   "stripeCurrencyPlaceholder": "EUR",
   "setStripeCurrency": "Set stripe currency",
   "stripeCurrencyNotSet": "Currency for stripe is not set",
-  "allowPickup": "Allow pickup"
+  "allowPickup": "Allow pickup",
+  "averageDeliveryTime": "Average delivery time",
+  "minAmountForDelivery": "Minimum amount for delivery"
 }
