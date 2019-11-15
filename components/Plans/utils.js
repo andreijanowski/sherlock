@@ -9,7 +9,7 @@ export const generatePlanOptionsList = (planName, t) => {
           name: t("plans:options.mobileApp")
         },
         {
-          name: t("plans:options.paidReservation"),
+          name: t("plans:options.paidBooking"),
           discount: "1€"
         },
         {
