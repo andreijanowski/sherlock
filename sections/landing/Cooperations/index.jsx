@@ -10,7 +10,14 @@ import {
   H2Styled
 } from "./styled";
 
-const clientsNames = ["inglewood", "luigia", "re", "black-tap"];
+const clientsNames = [
+  "inglewood",
+  "cipollino",
+  "re",
+  "zaza",
+  "max",
+  "roadrunner"
+];
 const partnersNames = [
   "google",
   "stripe",
@@ -52,7 +59,9 @@ const Cooperations = ({ t, industriesRef }) => (
     </Box>
     <LogosContainer>
       {clientsNames.map(name => (
-        <ClientLogo name={name} />
+        <Flex width={[1 / 2, 1 / 3]} justifyContent="center" p={[1, 3]}>
+          <ClientLogo name={name} />
+        </Flex>
       ))}
     </LogosContainer>
     <Flex justifyContent="space-between" alignItems="center" mb={3}>
