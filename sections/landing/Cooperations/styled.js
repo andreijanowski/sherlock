@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Flex } from "@rebass/grid";
 import { H2 } from "components";
 
@@ -12,35 +12,31 @@ export const LogosContainer = styled(Flex).attrs(() => ({
   border-radius: 10px;
 `;
 
+const logoMixin = css`
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+`;
+
 export const ClientLogo = styled.img.attrs(({ name }) => ({
   src: `/static/img/clients/${name}.png`
 }))`
-  width: auto;
-  max-width: 100%;
-  max-height: 100px;
-  padding: 8px;
-  object-fit: contain;
+  ${logoMixin}
+  max-height: 60px;
 `;
 
 export const PartnerLogo = styled.img.attrs(({ name }) => ({
   src: `/static/img/partners/${name}.png`
 }))`
-  width: auto;
-  max-width: 100%;
-  max-height: 60px;
-  object-fit: contain;
+  ${logoMixin}
+  max-height: 40px;
 `;
 
 export const IndustryLogo = styled.img.attrs(({ name }) => ({
   src: `/static/icons/${name}.svg`
 }))`
-  width: auto;
-  max-width: 100%;
+  ${logoMixin}
   max-height: 60px;
-  object-fit: contain;
-  @media (min-width: ${p => p.theme.breakpoints[0]}) {
-    max-height: 80px;
-  }
 `;
 
 export const H2Styled = styled(H2)`

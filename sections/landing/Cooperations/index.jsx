@@ -60,7 +60,7 @@ const Cooperations = ({ t, industriesRef }) => (
     </Box>
     <LogosContainer>
       {clientsNames.map(name => (
-        <Flex width={[1 / 2, 1 / 3]} justifyContent="center" p={[1, 3]}>
+        <Flex width={[1 / 2, 1 / 6]} justifyContent="center" p={[1, 3]}>
           <ClientLogo name={name} />
         </Flex>
       ))}
@@ -78,7 +78,7 @@ const Cooperations = ({ t, industriesRef }) => (
     </Flex>
     <LogosContainer>
       {partnersNames.map(name => (
-        <Flex width={[1 / 2, 1 / 4]} justifyContent="center" p={[1, 3]}>
+        <Flex width={[1 / 2, 1 / 4, 1 / 6]} justifyContent="center" p={[2, 3]}>
           <PartnerLogo name={name} />
         </Flex>
       ))}
