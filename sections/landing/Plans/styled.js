@@ -22,7 +22,7 @@ export const TextWrapper = styled(Flex).attrs(() => ({
   width: 1,
   flexDirection: "column",
   alignSelf: "center",
-  mb: 90
+  mb: [10, 20]
 }))``;
 
 export const PromotionWrapper = styled(Box).attrs(() => ({
