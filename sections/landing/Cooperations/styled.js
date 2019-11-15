@@ -19,6 +19,7 @@ export const ClientLogo = styled.img.attrs(({ name }) => ({
   max-width: 100%;
   max-height: 100px;
   padding: 8px;
+  object-fit: contain;
 `;
 
 export const PartnerLogo = styled.img.attrs(({ name }) => ({
@@ -27,6 +28,7 @@ export const PartnerLogo = styled.img.attrs(({ name }) => ({
   width: auto;
   max-width: 100%;
   max-height: 60px;
+  object-fit: contain;
 `;
 
 export const IndustryLogo = styled.img.attrs(({ name }) => ({
@@ -35,6 +37,7 @@ export const IndustryLogo = styled.img.attrs(({ name }) => ({
   width: auto;
   max-width: 100%;
   max-height: 60px;
+  object-fit: contain;
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     max-height: 80px;
   }
