@@ -36,7 +36,7 @@ export const Service = styled(Flex).attrs(() => ({
   }
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     padding: 20px 0;
-    font-size: ${p => p.theme.fontSizes.f24};
+    font-size: ${p => p.theme.fontSizes.f18};
   }
 `;
 

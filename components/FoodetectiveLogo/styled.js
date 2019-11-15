@@ -13,8 +13,4 @@ export const BrandmarkWrapper = styled.div`
   background: rgb(${p => p.theme.colors.white});
   border-radius: 32px;
   box-shadow: 0 4px 24px rgba(${p => p.theme.colors.dark}, 0.16);
-  @media (min-width: ${p => p.theme.breakpoints[1]}) {
-    width: 64px;
-    height: 64px;
-  }
 `;

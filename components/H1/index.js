@@ -13,9 +13,6 @@ const H1 = styled(Box).attrs(() => ({
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     font-size: ${p => p.theme.fontSizes.f48};
   }
-  @media (min-width: ${p => p.theme.breakpoints[2]}) {
-    font-size: ${p => p.theme.fontSizes.f56};
-  }
 `;
 
 export default H1;
