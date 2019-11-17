@@ -1,8 +1,0 @@
-{
-  "title": "Conferma account",
-  "description": "Accedi per iniziare a utilizzare tutte le belle funzionalità di Sherlock!",
-  "succeedConfirmation": "Il tuo account è stato confermato con successo.",
-  "toLoginPage": "Fai clic qui per andare alla pagina di accesso.",
-  "failedConfirmation-already_confirmed": "Il tuo account è già stato confermato.",
-  "failedConfirmation-invalid": "Il tuo link di conferma non è valido."
-}

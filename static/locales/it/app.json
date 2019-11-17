@@ -1,9 +1,9 @@
 {
-  "controlCenter": "Control Center (soon)",
-  "reservations": "Reservations",
+  "controlCenter": "?",
+  "reservations": "Prenotazioni",
   "takeAway": "Porta via/Da Asporto",
   "bookings": "Prenotazioni (presto)",
-  "delivery": "Consegna",
+  "delivery": "Consegna (presto)",
   "catering": "Ristorazione/catering",
   "privatisations": "Privatizzazioni",
   "socialMedia": "Social media (presto)",
@@ -18,7 +18,7 @@
     "inviteYourTeam": "Invita la tua squadra",
     "unnamedBusiness": "Attività senza nome",
     "addNewBusiness": "Aggiungi nuova attività",
-    "publish": "pubblicare attività commercial",
+    "publish": "Pubblicare attività commercial",
     "published": "Pubblicato",
     "waitingForApproval": "In attesa di approvazione"
   },

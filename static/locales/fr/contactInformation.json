@@ -1,0 +1,18 @@
+{
+  "header": "Informations de contact",
+  "contactInformation": "Informations de contact",
+  "nameLabel": "Nom",
+  "namePlaceholder": "John Smith",
+  "emailLabel": "E-mail",
+  "emailPlaceholder": "nom@entreprise.com",
+  "countryLabel": "Indicatif international",
+  "countryPlaceholder": "+48",
+  "phoneLabel": "Téléphone",
+  "phonePlaceholder": "543 423 534",
+  "websiteLabel": "Site Internet (optionnel, par exemple http://example.com)",
+  "websitePlaceholder": "http://example.com",
+  "facebookLabel": "Facebook (optionnel, par exemple https://facebook.com/profile/)",
+  "facebookPlaceholder": "https://facebook.com/profile/",
+  "instagramLabel": "Instagram (optionnel, par exemple https://instagram.com/profile)",
+  "instagramPlaceholder": "https://instagram.com/profile"
+}

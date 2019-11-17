@@ -1,0 +1,38 @@
+{
+  "controlCenter": "Centre de contrôle (bientôt)",
+  "reservations": "Réservations",
+  "takeAway": "A Emporter",
+  "bookings": "Réservations (bientôt)",
+  "delivery": "Livraison (bientôt)",
+  "catering": "Restauration/catering",
+  "privatisations": "Privatisations",
+  "socialMedia": "Les médias sociaux (bientôt)",
+  "billing": "Facturation (bientôt)",
+  "manageProfile": {
+    "manageProfile": "Gérer le profil",
+    "basicInformation": "Informations de base",
+    "contactInformation": "Informations de contact",
+    "openingHours": "Heures d'ouverture",
+    "picturesAndMenus": "Images et Menus",
+    "additionalInformation": "Information additionnelle",
+    "inviteYourTeam": "Invitez votre équipe",
+    "unnamedBusiness": "Entreprise sans nom",
+    "addNewBusiness": "Ajouter une nouvelle entreprise",
+    "publish": "Publier l'activité commerciale",
+    "published": "Publié",
+    "waitingForApproval": "En attente d'approbation"
+  },
+  "subscriptions": "Abonnements",
+  "userSettings": {
+    "userSettings": "Paramètres",
+    "basicInformation": "Informations de base",
+    "password": "Mot de passe",
+    "logout": "Se déconnecter"
+  },
+  "feedback": "Commentaire",
+  "docs": "Documents",
+  "back": "Retour",
+  "crop": "Recadrer",
+  "cancel": "Annuler",
+  "confirmAccount": "Nous vous avons envoyé un message de confirmation par e-mail. Veuillez confirmer votre compte dans les 3 jours."
+}

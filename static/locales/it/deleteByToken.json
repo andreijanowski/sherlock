@@ -1,8 +1,0 @@
-{
-  "title": "Rimozione dell'account",
-  "description": "Forse cambierai idea? Vai alla homepage e leggi tutte le belle funzionalità di Sherlock!",
-  "succeedRemoval": "Il tuo account è stato rimosso con successo.",
-  "toHomePage": "Clicca qui per andare alla home page.",
-  "failedRemoval-already_deleted": "Il tuo account è già stato rimosso.",
-  "failedRemoval-record_not_found": "Il tuo link per la rimozione dell'account non è valido."
-}

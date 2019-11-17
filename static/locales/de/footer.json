@@ -1,0 +1,30 @@
+{
+  "navigation": {
+    "columnOne": {
+      "title": "Begleiten Sie uns",
+      "links": [
+        "Warum registrieren",
+        "Partner mit uns",
+        "Reseller werden",
+        "Integrationen"
+      ]
+    },
+    "columnTwo": {
+      "title": "Hilfe",
+      "links": ["FAQ", "?", "Blog"]
+    },
+    "columnThree": {
+      "title": "Legal",
+      "links": ["Datenschutzbestimmungen", "Allgemeine Geschäftsbedingungen"]
+    },
+    "columnFour": {
+      "title": "Folge uns",
+      "links": ["Facebook", "Linkedin", "Twitter", "Instagram"]
+    },
+    "columnFive": {
+      "title": "Lade App herunter",
+      "links": ["Apple", "Android"]
+    }
+  },
+  "copyrightNote": "© {{currentYear}} The Food Detective SA. Alle Rechte vorbehalten."
+}
