@@ -125,7 +125,9 @@
     ]
   },
   "widget": {
-    "header": "Widget"
+    "header": "Website integration",
+    "navLink": "Widget",
+    "paragraph": "Offer clients a world class experience, additional interactions & services. Integrate all kind of services into your website easily with our widget."
   },
   "pricing": "Pricing"
 }

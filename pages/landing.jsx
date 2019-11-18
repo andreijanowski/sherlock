@@ -10,7 +10,8 @@ import {
   Plans,
   Cooperations,
   Features,
-  Testimonials
+  Testimonials,
+  Widget
 } from "sections/landing";
 import { LandingWrapper } from "sections/landing/sharedStyled";
 import { withTranslation } from "i18n";
@@ -29,6 +30,7 @@ class Home extends PureComponent {
     this.servicesRef = React.createRef();
     this.industriesRef = React.createRef();
     this.featuresRef = React.createRef();
+    this.widgetRef = React.createRef();
     this.plansRef = React.createRef();
     this.state = {
       billingInterval: "month"
@@ -53,7 +55,8 @@ class Home extends PureComponent {
       industriesRef,
       featuresRef,
       scrollTo,
-      plansRef
+      plansRef,
+      widgetRef
     } = this;
     const { t, i18n } = this.props;
     const { billingInterval } = this.state;
@@ -69,6 +72,7 @@ class Home extends PureComponent {
         <Features {...{ t, featuresRef }} />
         <LandingWrapper>
           <Testimonials {...{ t }} />
+          <Widget {...{ t, widgetRef }} />
           <Plans
             {...{
               t,

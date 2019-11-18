@@ -12,7 +12,7 @@ const navSections = [
   { name: "services", translationKey: "services.header" },
   { name: "industries", translationKey: "cooperations.industries.header" },
   { name: "features", translationKey: "features.header" },
-  { name: "widget", translationKey: "widget.header" },
+  { name: "widget", translationKey: "widget.navLink" },
   { name: "plans", translationKey: "pricing" }
 ];
 
