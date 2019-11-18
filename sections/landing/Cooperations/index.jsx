@@ -16,7 +16,8 @@ const clientsNames = [
   "re",
   "zaza",
   "max",
-  "roadrunner"
+  "roadrunner",
+  "le5emejour"
 ];
 const partnersNames = [
   "google",
@@ -36,7 +37,12 @@ const partnersNames = [
   "winde-n-dine",
   "boom",
   "backbone",
-  "uber-eats"
+  "uber-eats",
+  "bexio",
+  "batmaid",
+  "brigad",
+  "square-pos",
+  "options"
 ];
 const industriesNames = [
   "restaurants",
@@ -60,7 +66,7 @@ const Cooperations = ({ t, industriesRef }) => (
     </Box>
     <LogosContainer>
       {clientsNames.map(name => (
-        <Flex width={[1 / 2, 1 / 6]} justifyContent="center" p={[1, 3]}>
+        <Flex width={[1 / 2, 1 / 7]} justifyContent="center" p={[1, 3]}>
           <ClientLogo name={name} />
         </Flex>
       ))}
