@@ -69,7 +69,7 @@ class Home extends PureComponent {
           <Services {...{ t, servicesRef }} />
           <Cooperations {...{ t, industriesRef }} />
         </LandingWrapper>
-        <Features {...{ t, featuresRef }} />
+        <Features {...{ t, lng, featuresRef }} />
         <LandingWrapper>
           <Testimonials {...{ t }} />
           <Widget {...{ t, widgetRef }} />
