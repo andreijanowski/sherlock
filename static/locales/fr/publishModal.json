@@ -1,17 +1,17 @@
 {
-  "cancel": "annulla",
-  "header": "Completa il tuo profilo",
+  "cancel": "annuler",
+  "header": "Complète ton profil",
   "paragraph": [
-    "Devi aggiungere ",
-    "dettagli importanti",
-    " per vedere i dati."
+    "Vous devez ajouter ",
+    "détails importants",
+    " pour voir les données."
   ],
-  "step": "Passo",
-  "publish": "Pubblica affari",
-  "basicInformationTip": "Inizia con le basi",
-  "contactInformationTip": "Inizia con le basi",
-  "openingHoursTip": "Preparati per gli ospiti",
-  "picturesAndMenusTip": "Riconoscimento semplice",
-  "additionalInformationTip": "Dati più precisi",
-  "inviteYourTeamTip": "Aggiungi membri dell'attività"
+  "step": "Étape",
+  "publish": "publier Entreprise",
+  "basicInformationTip": "Commencez par les bases",
+  "contactInformationTip": "Commencez par les bases",
+  "openingHoursTip": "Préparez-vous pour les invités",
+  "picturesAndMenusTip": "Reconnaissance facile",
+  "additionalInformationTip": "Données plus précises",
+  "inviteYourTeamTip": "Ajouter des membres de l'entreprise"
 }

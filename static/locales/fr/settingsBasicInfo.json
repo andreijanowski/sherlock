@@ -1,15 +1,15 @@
 {
-  "name": "Nome",
+  "name": "Nom",
   "email": "E-mail",
-  "updatePhoto": "Aggiorna foto",
+  "updatePhoto": "Mettre à jour la photo",
   "avatarInfo": "jpg/png",
-  "invalidFileType": "Tipo di file non valido",
-  "update": "Aggiornare",
-  "validFileTypeInfo": "Accetta jpg / png",
-  "confirmEmailChange": "Un'e-mail di conferma è stata inviata al tuo nuovo indirizzo e-mail {{e-mail}}. Per confermare la modifica dell'e-mail, fai clic sul link di verifica nell'e-mail.",
+  "invalidFileType": "Type de fichier invalide",
+  "update": "mettre à jour",
+  "validFileTypeInfo": "Accepter jpg / png",
+  "confirmEmailChange": "Un e-mail de confirmation a été envoyé à votre nouvelle adresse e-mail {{email}}. Pour confirmer la modification de l'e-mail, cliquez sur le lien de vérification qui se trouve dans l'e-mail.",
   "password": {
-    "currentPassword": "Password attuale",
-    "newPassword": "Nuova password",
-    "passwordConfirmation": "Conferma la nuova password"
+    "currentPassword": "Mot de passe actuel",
+    "newPassword": "Nouveau mot de passe",
+    "passwordConfirmation": "Confirmer le nouveau mot de passe"
   }
 }

@@ -1,38 +1,25 @@
 {
-  "loginFailed": "Accesso fallito, credenziali errate o email non confermata.",
-  "termsAgreementError": "Devi prima registrarti e accettare i nostri termini e condizioni e l'informativa sulla privacy.",
-  "mustBeLoggedIn": "Devi accedere per continuare",
-  "updateProfileSuccess": "Il profilo è stato aggiornato",
-  "changePasswordSuccess": "La password è stata cambiata",
-  "passwordResetSuccess": "Controlla la tua email per vedere le istruzioni su come reimpostare la password.",
+  "mustBeLoggedIn": "Vous devez être connecté pour continuer",
   "pastDateError": "Chosen date is too far in the past",
+  "changePasswordSuccess": "Le mot de passe a été changé",
   "errors": {
     "missing_attributes": {
-      "Missing attributes": "Attributi mancanti"
-    },
-    "incorrect_password": {
-      "current_password": "La password non è corretta"
-    },
-    "same_password": {
-      "password": "La password è uguale alla password corrente"
-    },
-    "confirmation": {
-      "password_confirmation": "La conferma della password non corrisponde"
+      "Missing attributes": "Attributs manquants"
     },
     "business_is_visible_in_lefood": {
-      "base": "Impossibile aggiornare il valore perché il business è attualmente visibile in lefood"
+      "base": "Impossible de mettre à jour la valeur car l'entreprise est actuellement visible dans lefood"
     },
     "business_has_pending_orders": {
-      "base": "Impossibile aggiornare il valore perché l'azienda ha ordini in sospeso"
+      "base": "Impossible de mettre à jour la valeur, car l'entreprise a des commandes en attente"
     },
     "blank": {
-      "other_rejection_reason": "L'altro motivo di rifiuto non può essere vuoto se scelto"
+      "other_rejection_reason": "Toute autre raison de rejet ne peut être vide si elle est choisie"
     },
     "coerce": {
-      "data[attributes][unavailable_elements] is invalid": "I piatti non disponibili non possono essere vuoti"
+      "data[attributes][unavailable_elements] is invalid": "Les plats indisponibles ne peuvent pas être vides"
     },
     "elements_not_found": {
-      "base": "Impossibile trovare gli elementi dati per questo ordine"
+      "base": "Impossible de trouver les éléments donnés pour cette commande"
     }
   }
 }

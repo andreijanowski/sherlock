@@ -1,5 +1,5 @@
 {
-  "header": "Conectar con stripe",
+  "header": "Connetti con stripe",
   "success": "Connessione con Stripe riuscita",
   "fail": "Connessione con Stripe fallita",
   "goToOrders": "Vai agli ordini"

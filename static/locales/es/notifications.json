@@ -1,38 +1,25 @@
 {
-  "loginFailed": "Accesso fallito, credenziali errate o email non confermata.",
-  "termsAgreementError": "Devi prima registrarti e accettare i nostri termini e condizioni e l'informativa sulla privacy.",
-  "mustBeLoggedIn": "Devi accedere per continuare",
-  "updateProfileSuccess": "Il profilo è stato aggiornato",
-  "changePasswordSuccess": "La password è stata cambiata",
-  "passwordResetSuccess": "Controlla la tua email per vedere le istruzioni su come reimpostare la password.",
+  "mustBeLoggedIn": "Usted debe haber iniciado sesión para continuar",
   "pastDateError": "Chosen date is too far in the past",
+  "changePasswordSuccess": "La contraseña ha sido cambiada",
   "errors": {
     "missing_attributes": {
-      "Missing attributes": "Attributi mancanti"
-    },
-    "incorrect_password": {
-      "current_password": "La password non è corretta"
-    },
-    "same_password": {
-      "password": "La password è uguale alla password corrente"
-    },
-    "confirmation": {
-      "password_confirmation": "La conferma della password non corrisponde"
+      "Missing attributes": "Atributos faltantes"
     },
     "business_is_visible_in_lefood": {
-      "base": "Impossibile aggiornare il valore perché il business è attualmente visibile in lefood"
+      "base": "No se puede actualizar el valor porque la empresa está actualmente visible en lefood"
     },
     "business_has_pending_orders": {
-      "base": "Impossibile aggiornare il valore perché l'azienda ha ordini in sospeso"
+      "base": "No se puede actualizar el valor porque la empresa tiene pedidos pendientes"
     },
     "blank": {
-      "other_rejection_reason": "L'altro motivo di rifiuto non può essere vuoto se scelto"
+      "other_rejection_reason": "Otro motivo de rechazo no puede quedar en blanco si se elige"
     },
     "coerce": {
-      "data[attributes][unavailable_elements] is invalid": "I piatti non disponibili non possono essere vuoti"
+      "data[attributes][unavailable_elements] is invalid": "Los platos no disponibles no pueden estar en blanco"
     },
     "elements_not_found": {
-      "base": "Impossibile trovare gli elementi dati per questo ordine"
+      "base": "No se pudieron encontrar elementos dados para este pedido"
     }
   }
 }

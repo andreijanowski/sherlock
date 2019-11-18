@@ -1,6 +1,6 @@
 {
   "header": "Conectar con stripe",
-  "success": "Connessione con Stripe riuscita",
-  "fail": "Connessione con Stripe fallita",
-  "goToOrders": "Vai agli ordini"
+  "success": "Verbindung mit Stripe erfolgreich",
+  "fail": "Verbindung mit Stripe fehlgeschlagen",
+  "goToOrders": "Gehe zu Bestellungen"
 }

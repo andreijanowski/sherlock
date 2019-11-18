@@ -1,21 +1,21 @@
 {
-  "header": "Orari di apertura",
-  "openingHours": "Orari di apertura",
-  "openedFromLabel": "A partire dal",
+  "header": "Heures d'ouverture",
+  "openingHours": "Heures d'ouverture",
+  "openedFromLabel": "De",
   "openedFromPlaceholder": "10:00 AM",
-  "openedToLabel": "per",
+  "openedToLabel": "Ā",
   "openedToPlaceholder": "08:00 PM",
   "weekdays": [
-    "Domenica",
-    "lunedi",
-    "martedì",
-    "mercoledì",
-    "giovedì",
-    "venerdì",
-    "sabato"
+    "Dimanche",
+    "Lundi",
+    "Mardi",
+    "Mercredi",
+    "Jeudi",
+    "Vendredi",
+    "Samedi"
   ],
-  "copy": "copia",
-  "paste": "paste",
-  "locationLabel": "Posizione",
-  "locationPlaceholder": "Vicino a Rue des Deux-Ponts 124, Ginevra"
+  "copy": "copie",
+  "paste": "pegar",
+  "locationLabel": "Emplacement",
+  "locationPlaceholder": "Près de la rue des Deux-Ponts 124, Genève"
 }
