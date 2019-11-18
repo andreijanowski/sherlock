@@ -1,39 +1,39 @@
 {
   "topSection": {
     "header": {
-      "start": "Facciamo la vita del ristorante",
-      "end": " molto più facile"
+      "start": "Wir machen das Leben im Restaurant",
+      "end": " viel einfacher"
     },
-    "paragraph": "Facile da usare e integrare aggregatore software di tutti i servizi di F&B a un prezzo competitivo.",
-    "getStartedForFree": "Inizia gratuitamente",
-    "addYourBusiness": "Aggiungi la tua attività",
-    "addManager": "Aggiungi gestore",
-    "watchVideo": "Guarda un video",
-    "testimonials": "testimonianze"
+    "paragraph": "Einfach zu verwendender und integrierender Software-Aggregator für alle F & B-Services zu einem wettbewerbsfähigen Preis.",
+    "getStartedForFree": "Kostenlos loslegen",
+    "addYourBusiness": "Fügen Sie Ihr Unternehmen hinzu",
+    "addManager": "Manager hinzufügen",
+    "watchVideo": "Schau Video",
+    "testimonials": "Referenzen"
   },
   "services": {
-    "header": "Servizi",
+    "header": "Dienstleistungen",
     "paragraph": {
-      "start": "Progettato per il tuo/la tua/le tue/i tuoi ",
-      "firstKeyword": "esigenze",
-      "middle": " e ",
-      "secondKeyword": "tipo di affare",
-      "end": ". Puoi facilmente aggiungere e rimuovere qualsiasi servizio in qualsiasi momento, assicurandoti che il nostro servizio sia adeguato alle tue mutevoli esigenze."
+      "start": "Entworfen für Ihre ",
+      "firstKeyword": "Bedürfnisse",
+      "middle": " und ",
+      "secondKeyword": "Geschäftsart",
+      "end": ". Sie können jeden Service jederzeit problemlos hinzufügen und entfernen, um sicherzustellen, dass unser Service auf Ihre sich ändernden Anforderungen zugeschnitten ist."
     },
     "list": [
-      "Prenotazioni",
-      "Consegna",
-      "da portare via/da asporto",
-      "Pagamenti",
-      "ePOS",
-      "Catering",
-      "Privatizzazione",
+      "Reservierungen",
+      "Lieferung",
+      "Wegbringen",
+      "Zahlungen",
+      "EPOS",
+      "Gastronomie/catering",
+      "Privatisierung",
       "Analytics",
-      "Risorse umane e stipendi",
-      "Fornitura",
+      "Humanressourcen Lohn-und Gehaltsabrechnung",
+      "Liefern",
       "Marketing",
-      "Riscontro"
+      "Feedback"
     ],
-    "more": "Un'app / sito Web per regolamentarli tutti ..."
+    "more": "Eine App / Website, um sie alle zu regulieren ..."
   }
 }
