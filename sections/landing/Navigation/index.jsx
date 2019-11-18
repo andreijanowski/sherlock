@@ -3,6 +3,9 @@ import { Flex, Box } from "@rebass/grid";
 import { Paragraph, Button, FoodetectiveLogo } from "components";
 import { Router } from "routes";
 import { func, string } from "prop-types";
+import uuid from "uuid/v1";
+import Cookies from "js-cookie";
+import { API_URL, OAUTH_PUBLIC_CLIENT_ID, OAUTH_CALLBACK_URL } from "consts";
 import { LogoWrapper, LogoMobileWrapper } from "../sharedStyled";
 
 const navSections = [
@@ -74,7 +77,12 @@ const Navigation = ({ t, lng, scrollTo }) => (
       <Box mx={1}>
         <Button
           styleName="login"
-          onClick={() => Router.pushRoute(`/${lng}/login/`)}
+          onClick={() => {
+            // Router.pushRoute(`/${lng}/login/`)
+            const state = uuid();
+            Cookies.set("loginStateParam", state);
+            window.location.href = `${API_URL}/oauth/authorize?client_id=${OAUTH_PUBLIC_CLIENT_ID}&redirect_uri=${OAUTH_CALLBACK_URL}&response_type=code&scope=trusted+refresh_token+public&state=${state}`;
+          }}
         >
           {t("common:login")}
         </Button>

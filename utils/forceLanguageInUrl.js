@@ -12,12 +12,7 @@ export default ctx => {
     ) {
       const language = languages.find(l => l === firstUrlParam);
       const shouldRedirect = !regex.test(language);
-      console.log({
-        shouldRedirect,
-        language,
-        url: ctx.req.url,
-        firstUrlParam
-      });
+
       if (shouldRedirect) {
         const supportedLanguage = ctx.req.acceptsLanguages(languages) || "en";
         ctx.res.writeHead(302, {
