@@ -71,8 +71,8 @@ class Home extends PureComponent {
         </LandingWrapper>
         <Features {...{ t, lng, featuresRef }} />
         <LandingWrapper>
-          <Testimonials {...{ t }} />
           <Widget {...{ t, widgetRef }} />
+          <Testimonials {...{ t }} />
           <Plans
             {...{
               t,
