@@ -29,6 +29,7 @@ class Home extends PureComponent {
     this.servicesRef = React.createRef();
     this.industriesRef = React.createRef();
     this.featuresRef = React.createRef();
+    this.plansRef = React.createRef();
     this.state = {
       billingInterval: "month"
     };
@@ -47,7 +48,13 @@ class Home extends PureComponent {
     }));
 
   render() {
-    const { servicesRef, industriesRef, featuresRef, scrollTo } = this;
+    const {
+      servicesRef,
+      industriesRef,
+      featuresRef,
+      scrollTo,
+      plansRef
+    } = this;
     const { t, i18n } = this.props;
     const { billingInterval } = this.state;
     const lng = (i18n && i18n.language) || "en";
@@ -65,6 +72,7 @@ class Home extends PureComponent {
           <Plans
             {...{
               t,
+              plansRef,
               lng: (i18n && i18n.language) || "en",
               billingInterval,
               handleChangeBillngPeriod: this.handleChangeBillngPeriod
