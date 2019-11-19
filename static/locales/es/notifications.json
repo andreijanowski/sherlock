@@ -1,6 +1,6 @@
 {
   "mustBeLoggedIn": "Usted debe haber iniciado sesión para continuar",
-  "pastDateError": "Chosen date is too far in the past",
+  "pastDateError": "La fecha elegida está demasiado lejos en el pasado",
   "changePasswordSuccess": "La contraseña ha sido cambiada",
   "errors": {
     "missing_attributes": {

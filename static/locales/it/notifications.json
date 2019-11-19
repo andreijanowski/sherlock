@@ -1,6 +1,6 @@
 {
   "mustBeLoggedIn": "Devi accedere per continuare",
-  "pastDateError": "Chosen date is too far in the past",
+  "pastDateError": "La data scelta è troppo lontana nel passato",
   "changePasswordSuccess": "La password è stata cambiata",
   "errors": {
     "missing_attributes": {
