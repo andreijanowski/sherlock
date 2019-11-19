@@ -93,7 +93,7 @@
       "blank-post_code": "El código postal No puede ser vacío",
       "blank-street": "La vía no puede ser vacío",
       "greater_than-price_per_item_cents": "El precio por centavos de artículo debe ser mayor que {{count}}. Su valor es {{value}}",
-      "coerce-data[attributes][number_of_servings] is invalid": "?",
+      "coerce-data[attributes][number_of_servings] is invalid": "'Número de porciones' tiene un valor no válido",
       "card_declined-base": "Su tarjeta ha sido rechazada",
       "customer_canceled_authentication-base": "Debe autenticarse para completar transacción",
       "email_invalid-base": "Dirección de correo electrónico no válida",
@@ -131,13 +131,13 @@
       "cannot_set_without_dishes-visible_in_lefood": "Agregue algunos platos primero",
       "cannot_set_without_order_periods-visible_in_lefood": "Agregar períodos de pedido primero",
       "blank-display_name": "El nombre para mostrar no puede estar vacío",
-      "country_not_supported-stripe_currency": "Your country is not supported by stripe.",
-      "greater_than-number_of_seats": "Number of seats must be greater than 0",
-      "missing_attributes-Missing attributes": "Missing attributes",
-      "greater_than-party_size": "Party size must be greater than {{count}}. Your value is {{value}}",
-      "taken-code": "Code already present in a different delivery",
-      "not_between_open_periods-base": "Reservation must take place between business open periods",
-      "not_enough_time_before_start-from": "Not enough time before start"
+      "country_not_supported-stripe_currency": "Su país no es compatible con stripe.",
+      "greater_than-number_of_seats": "El número de asientos debe ser mayor que 0",
+      "missing_attributes-Missing attributes": "Atributos faltantes",
+      "greater_than-party_size": "El tamaño del grupo debe ser mayor que {{count}}. Su valor es {{value}}",
+      "taken-code": "Código ya presente en una entrega diferente",
+      "not_between_open_periods-base": "La reserva debe realizarse entre períodos de apertura comercial",
+      "not_enough_time_before_start-from": "No hay suficiente tiempo antes de comenzar"
     }
   },
   "placeholder": {

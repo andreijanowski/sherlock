@@ -131,13 +131,13 @@
       "cannot_set_without_dishes-visible_in_lefood": "Fügen Sie zuerst einige Gerichte hinzu",
       "cannot_set_without_order_periods-visible_in_lefood": "Bestellperioden zuerst hinzufügen",
       "blank-display_name": "Der Anzeigename darf nicht leer sein",
-      "country_not_supported-stripe_currency": "Your country is not supported by stripe.",
-      "greater_than-number_of_seats": "Number of seats must be greater than 0",
-      "missing_attributes-Missing attributes": "Missing attributes",
-      "greater_than-party_size": "Party size must be greater than {{count}}. Your value is {{value}}",
-      "taken-code": "Code already present in a different delivery",
-      "not_between_open_periods-base": "Reservation must take place between business open periods",
-      "not_enough_time_before_start-from": "Not enough time before start"
+      "country_not_supported-stripe_currency": "Ihr Land wird von Stripe nicht unterstützt.",
+      "greater_than-number_of_seats": "Die Anzahl der Sitze muss größer als 0 sein",
+      "missing_attributes-Missing attributes": "Fehlende Attribute",
+      "greater_than-party_size": "Die Gruppengröße muss größer als {{count}} sein. Dein Wert ist {{value}}",
+      "taken-code": "Code bereits in einer anderen Lieferung vorhanden",
+      "not_between_open_periods-base": "Die Reservierung muss zwischen den Geschäftsöffnungszeiten erfolgen",
+      "not_enough_time_before_start-from": "Nicht genug Zeit vor dem Start"
     }
   },
   "placeholder": {

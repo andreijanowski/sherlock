@@ -1,7 +1,7 @@
 {
   "title": "Siège",
   "description": "Ajoutons quelques informations de base",
-  "accountName": "?",
+  "accountName": "Quel est le nom de votre compte?",
   "managerName": "Quel est le nom de votre manager?",
   "venueName": "Quel est le nom de votre lieu?",
   "venueAddress": "Quelle est votre adresse de site?",

@@ -47,7 +47,7 @@
       "greater_than_or_equal_to-price_per_person": "Il prezzo a persona deve essere maggiore o uguale a 0",
       "url-delivery_url": "Indirizzo URL di consegna non è valido",
       "url-online_booking_url": "L'URL della prenotazione online non è valido",
-      "url-takeaway_url": "Takeaway url is invalid",
+      "url-takeaway_url": "Takeaway url non è valido",
       "too_long-secret_code": "Il codice segreto è troppo lungo",
       "invalid-email": "L'email non è valida",
       "blank-email": "L'email non può essere vuota",
@@ -131,13 +131,13 @@
       "cannot_set_without_dishes-visible_in_lefood": "prima, aggiungere alcuni piatti",
       "cannot_set_without_order_periods-visible_in_lefood": "Aggiungi prima i periodi dell'ordine",
       "blank-display_name": "Il nome visualizzato non può essere vuoto",
-      "country_not_supported-stripe_currency": "Your country is not supported by stripe.",
-      "greater_than-number_of_seats": "Number of seats must be greater than 0",
-      "missing_attributes-Missing attributes": "Missing attributes",
-      "greater_than-party_size": "Party size must be greater than {{count}}. Your value is {{value}}",
-      "taken-code": "Code already present in a different delivery",
-      "not_between_open_periods-base": "Reservation must take place between business open periods",
-      "not_enough_time_before_start-from": "Not enough time before start"
+      "country_not_supported-stripe_currency": "Il tuo paese non è supportato da stripe.",
+      "greater_than-number_of_seats": "Il numero di posti deve essere maggiore di 0",
+      "missing_attributes-Missing attributes": "Attributi mancanti",
+      "greater_than-party_size": "La dimensione del gruppo deve essere maggiore di {{count}}. Il tuo valore è {{value}}",
+      "taken-code": "Codice già presente in una consegna diversa",
+      "not_between_open_periods-base": "La prenotazione deve avvenire tra periodi di apertura dell'attività",
+      "not_enough_time_before_start-from": "Non abbastanza tempo prima dell'inizio"
     }
   },
   "placeholder": {

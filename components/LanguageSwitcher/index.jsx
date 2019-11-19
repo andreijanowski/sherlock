@@ -2,6 +2,7 @@ import { Component } from "react";
 import { oneOf, bool } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { i18n } from "i18n";
+import isServer from "utils/isServer";
 import {
   LanguageSwitcherWrapper,
   LanguageList,
@@ -11,7 +12,7 @@ import {
 } from "./styled";
 
 /* Temporary list of available languages, remove after provide valid locales data */
-const LANGUAGES = ["en", "fr", "de", "it"];
+const LANGUAGES = ["en", "fr", "de", "it", "es"];
 
 class LanguageSwitcher extends Component {
   state = {
@@ -20,6 +21,13 @@ class LanguageSwitcher extends Component {
       ? i18n.language
       : "en"
   };
+
+  componentDidMount() {
+    this.setState({
+      selectedLanguage: i18n.language
+    });
+    console.log(i18n.language);
+  }
 
   toggleLanguageListVisible = () => {
     this.setState(state => ({
@@ -53,8 +61,12 @@ class LanguageSwitcher extends Component {
         {...{ withBorder }}
       >
         <SelectedLanguageWrapper>
-          <FlagIcon code={selectedLanguage} />
-          {selectedLanguage}
+          {!isServer && (
+            <>
+              <FlagIcon code={selectedLanguage} />
+              {selectedLanguage}
+            </>
+          )}
         </SelectedLanguageWrapper>
         <FontAwesomeIcon
           flip={this.setProperIconPosition()}
