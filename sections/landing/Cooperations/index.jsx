@@ -99,7 +99,7 @@ const Cooperations = ({ t, industriesRef }) => (
           justifyContent="center"
           alignItems="center"
           flexDirection="column"
-          p={2}
+          p={[1, 2]}
         >
           <p>{t(`cooperations.industries.names.${name}`)}</p>
           <IndustryLogo name={name} />

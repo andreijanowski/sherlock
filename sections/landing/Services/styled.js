@@ -8,6 +8,7 @@ export const ServicesWrapper = styled(Flex).attrs(() => ({
 }))`
   position: relative;
   z-index: 1;
+  margin-bottom: 20px;
   background: rgb(${p => p.theme.colors.dark});
   border-radius: ${p => p.theme.radius.double};
   box-shadow: 0 4px 24px 0 rgba(${p => p.theme.colors.dark}, 0.48);
