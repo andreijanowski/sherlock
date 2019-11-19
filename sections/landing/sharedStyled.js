@@ -22,7 +22,7 @@ export const LandingWrapper = styled(Box).attrs(() => ({
 }))`
   z-index: 1;
   width: 100%;
-  max-width: 960px;
+  max-width: 1050px;
 `;
 
 export const LogoWrapper = styled(Box)`
