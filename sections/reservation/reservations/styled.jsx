@@ -12,6 +12,7 @@ export const TablesWrapper = styled(Flex).attrs(() => ({
   width: "calc(100% - 250px)"
 }))`
   position: relative;
+  min-width: 180px;
 `;
 
 export const Error = styled(Box).attrs(() => ({

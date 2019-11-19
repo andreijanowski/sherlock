@@ -2,7 +2,7 @@ import {
   Delivery,
   Reservations,
   Privatisations,
-  Billing,
+  Catering,
   ProfileIcon,
   ProfileBasicInfo,
   ProfileContact,
@@ -12,8 +12,6 @@ import {
   ProfileMembers,
   Subscriptions,
   SettingsIcon,
-  Docs,
-  Feedback,
   SettingsBasicInfo,
   SettingsLogout,
   SettingsPassword
@@ -93,50 +91,35 @@ const generateProfileMobileSubmenu = (t, active) => [
 
 export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
   {
-    icon: Delivery,
-    label: t("app:delivery"),
-    route: "/"
-  },
-  {
-    icon: Reservations,
-    label: t("app:reservations"),
-    route: "/"
-  },
-  {
-    icon: Privatisations,
-    label: t("app:privatisations"),
-    route: "/"
-  },
-  {
-    icon: Delivery,
-    label: t("app:delivery"),
-    route: "/"
-  },
-  {
-    icon: Billing,
-    label: t("app:billing"),
-    route: "/"
-  },
-  {
     icon: ProfileIcon,
     label: t("app:manageProfile.manageProfile"),
     withSubmenu: true,
     submenuItems: generateProfileMobileSubmenu(t, lng)
   },
   {
+    icon: Catering,
+    label: t("app:catering"),
+    route: "/app/catering/month/"
+  },
+  {
+    icon: Privatisations,
+    label: t("app:privatisations"),
+    route: "/app/privatisation/month/"
+  },
+  {
+    icon: Delivery,
+    label: t("app:delivery"),
+    route: "/app/lefood/orders/"
+  },
+  {
+    icon: Reservations,
+    label: t("app:reservations"),
+    route: "/app/reservation/reservations/"
+  },
+  {
     icon: Subscriptions,
     label: t("app:subscriptions"),
-    route: "/"
-  },
-  {
-    icon: Feedback,
-    label: t("app:feedback"),
-    route: "/"
-  },
-  {
-    icon: Docs,
-    label: t("app:docs"),
-    route: "/"
+    route: "/app/subscriptions/"
   },
   {
     icon: SettingsIcon,
