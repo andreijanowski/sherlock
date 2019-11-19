@@ -4,7 +4,6 @@ import { Paragraph } from "components";
 export const Avatar = styled.div`
   width: 80px;
   height: 80px;
-  /* background: url("/static/img/testimonials/avatar.jpg"); */
   background: ${({ i }) =>
     `url("/static/img/testimonials/avatar${i + 1}.png")`};
   background-position: center;
