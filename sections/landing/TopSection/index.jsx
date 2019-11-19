@@ -8,8 +8,8 @@ import { ParagraphStyled } from "../sharedStyled";
 
 const TopSection = ({ t, lng }) => (
   <Box mb={[1, 140]} mt={[2, 80]} width={1}>
-    <Flex alignItems="center" flexWrap="wrap" m={-2}>
-      <Box width={[1, 1 / 2]} p={2}>
+    <Flex alignItems="center" flexWrap="wrap" m={[-2, -3]}>
+      <Box width={[1, 1 / 2]} p={[2, 3]}>
         <H1Styled>
           {t("topSection.header.start")}
           <BlueText>{t("topSection.header.end")}</BlueText>
@@ -26,7 +26,7 @@ const TopSection = ({ t, lng }) => (
           </Button>
         </Box>
       </Box>
-      <Box width={[1, 1 / 2]} p={2}>
+      <Box width={[1, 1 / 2]} p={[2, 3]}>
         <YoutubeVideo />
       </Box>
     </Flex>

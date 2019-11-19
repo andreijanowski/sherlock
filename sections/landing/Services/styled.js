@@ -57,3 +57,7 @@ export const ServiceIcon = styled.img.attrs(({ name }) => ({
   max-height: 50px;
   margin-bottom: 4px;
 `;
+
+export const WhiteText = styled.span`
+  color: rgb(${p => p.theme.colors.white});
+`;

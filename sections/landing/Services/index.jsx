@@ -1,6 +1,6 @@
 import { func, oneOfType, shape, any } from "prop-types";
-import { BlueText, BoldText, ItalicText } from "components";
-import { ServicesWrapper, More } from "./styled";
+import { BoldText, ItalicText } from "components";
+import { ServicesWrapper, More, WhiteText } from "./styled";
 import { H2Styled, ParagraphStyled } from "../sharedStyled";
 import List from "./list";
 
@@ -9,17 +9,17 @@ const Services = ({ t, servicesRef }) => (
     <H2Styled white>{t("services.header")}</H2Styled>
     <ParagraphStyled white>
       {t("services.paragraph.start")}
-      <BlueText>
+      <WhiteText>
         <BoldText>
           <ItalicText>{t("services.paragraph.firstKeyword")}</ItalicText>
         </BoldText>
-      </BlueText>
+      </WhiteText>
       {t("services.paragraph.middle")}
-      <BlueText>
+      <WhiteText>
         <BoldText>
           <ItalicText>{t("services.paragraph.secondKeyword")}</ItalicText>
         </BoldText>
-      </BlueText>
+      </WhiteText>
       {t("services.paragraph.end")}
     </ParagraphStyled>
     <List {...{ t }} />

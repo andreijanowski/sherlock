@@ -18,7 +18,7 @@
       "firstKeyword": "needs",
       "middle": " & ",
       "secondKeyword": "business size",
-      "end": ". You can easily add and remove any of our services at any point, ensuring tailored to your growth."
+      "end": ". You can easily add and remove any of our services at any point, ensuring we are tailored to your growth."
     },
     "list": [
       "Reservations",
@@ -34,7 +34,7 @@
       "Accounting",
       "Integrations"
     ],
-    "more": "One app/website to rule them all..."
+    "more": "We centralize all your services into a single dashboard"
   },
   "cooperations": {
     "clients": "Clients",
@@ -81,11 +81,11 @@
       },
       "bookings": {
         "header": "Reservations",
-        "paragraph": "Reservations. Foodetective helps you take control of your business by offering fully customizable reservations for everyday tables, special tastings, and everything in between."
+        "paragraph": "Foodetective helps you take control of your business by offering fully customizable reservations for everyday tables, special tastings, and everything in between."
       },
       "deliveryAndTakeaway": {
         "header": "Set Up Your Own Delivery",
-        "paragraph": "Why pay high delivery fees, when you can do your own deliveries? Offer your clients a higher quality, the best service, hot meals and manage all of your orders easily."
+        "paragraph": "Manage all your online deliveries and take-away order from one single platform. Offer your clients a higher quality, the best service, hot meals and manage all of your orders easily."
       },
       "cateringAndPrivatization": {
         "header": "Receive Special Requests",
@@ -118,7 +118,7 @@
       },
       {
         "position": "Owner",
-        "company": "Relais de l’Entrecôte",
+        "company": "Osteria Zaza",
         "increase": "19% Revenues increase",
         "quote": "Foodetective helped us increase our online visibility, to analyze our entire online offer as well as provide our clients unique services that we’ve integrated into our website."
       }

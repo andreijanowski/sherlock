@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex } from "@rebass/grid";
+import { Flex, Box } from "@rebass/grid";
 import { func } from "prop-types";
 import { H2 } from "components";
 import SingleTestimonial from "./SingleTestimonial";
@@ -14,12 +14,12 @@ const Testimonials = ({ t }) => {
   };
 
   return (
-    <>
+    <Box mt={[0, 5]}>
       <H2>{t("testimonials.header")}</H2>
       <Flex flexWrap="wrap" m={-3}>
         {renderTestimonials()}
       </Flex>
-    </>
+    </Box>
   );
 };
 
