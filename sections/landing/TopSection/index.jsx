@@ -7,7 +7,7 @@ import YoutubeVideo from "./YoutubeVideo";
 import { ParagraphStyled } from "../sharedStyled";
 
 const TopSection = ({ t, lng }) => (
-  <Box mb={[1, 5]} mt={4} width={1}>
+  <Box mb={[1, 140]} mt={[2, 80]} width={1}>
     <Flex alignItems="center" flexWrap="wrap" m={-2}>
       <Box width={[1, 1 / 2]} p={2}>
         <H1Styled>
