@@ -68,6 +68,9 @@ export const generatePlanOptionsList = (planName, t) => {
         },
         {
           name: t("plans:options.redirections")
+        },
+        {
+          name: t("plans:options.integrations")
         }
       ];
     default:
