@@ -10,12 +10,12 @@
   "invalidMultiple": "Impossibile scegliere più file",
   "validMultiple": "qui è accettato solo un file",
   "uploadCoverPicture": "Carica immagine di copertina",
-  "uploadCoverPictureTip": "per favore,Inserisci un'immagine / foto di alta qualità che mostri l'atmosfera della tua attività (preferibilmente l'interno).",
+  "uploadCoverPictureTip": "Per favore,Inserisci un'immagine / foto di alta qualità che mostri l'atmosfera della tua attività (preferibilmente l'interno).",
   "menu": "Menu",
-  "products": "deve/da provare",
+  "products": "Deve/da provare",
   "productsTip": "Se ritieni che ci sia un piatto che consiglieresti di avere in questo particolare posto, ti preghiamo di farcelo sapere e condividere una sua foto.",
   "productLabel": "Must Try Nome da visualizzare",
-  "productPlaceholder": "Pizza capricciosa",
+  "productPlaceholder": "Pizza Capricciosa",
   "menuLabel": "Nome menu",
   "menuPlaceholder": "Bevande"
 }

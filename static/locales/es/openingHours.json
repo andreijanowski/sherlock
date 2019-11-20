@@ -2,8 +2,8 @@
   "header": "Horario de apertura",
   "openingHours": "Horario de apertura",
   "openedFromLabel": "De",
-  "openedFromPlaceholder": "10:00 AM",
-  "openedToLabel": "per",
+  "openedFromPlaceholder": "10:00 A.M",
+  "openedToLabel": "Per",
   "openedToPlaceholder": "08:00 PM",
   "weekdays": [
     "Domingo",

@@ -9,8 +9,8 @@
       "number": "Dieses Feld muss ein Zahl sein",
       "nonNegative": "Dieses Feld muss ein Wert nicht-negative sein",
       "integer": "Das Feld muss eine ganze Zahl sein",
-      "maxLength": "The field can have maximum {{length}} characters.",
-      "integerWithOptions": "The field must be a integer from {{min}} to {{max}}",
+      "maxLength": "Das Feld darf maximal {{length}} Zeichen enthalten.",
+      "integerWithOptions": "Das Feld muss eine Ganzzahl von {{min}} bis {{max}} sein",
       "pixel_dimensions_error-logo": "Avatar-Größe sollte kleiner oder gleich {{maxWidth}} x {{maxHeight}} px sein",
       "pixel_dimensions_error-menu": "Die Menügröße sollte kleiner oder gleich {{maxWidth}} x {{maxHeight}} px sein",
       "cannot_delete_published-base": "Veröffentlichte Unternehmen können nicht gelöscht werden",
@@ -137,14 +137,15 @@
       "greater_than-party_size": "Die Gruppengröße muss größer als {{count}} sein. Dein Wert ist {{value}}",
       "taken-code": "Code bereits in einer anderen Lieferung vorhanden",
       "not_between_open_periods-base": "Die Reservierung muss zwischen den Geschäftsöffnungszeiten erfolgen",
-      "not_enough_time_before_start-from": "Nicht genug Zeit vor dem Start"
+      "not_enough_time_before_start-from": "Nicht genug Zeit vor dem Start",
+      "is not a fully qualified domain name-domains": "Domains ist kein vollständig qualifizierter Domainname"
     }
   },
   "placeholder": {
-    "custom": "personalisiert/auf bestellung",
+    "custom": "Personalisiert/auf bestellung",
     "location": "Ort",
-    "egAccount": "e.g. Acme Corp"
+    "egAccount": "zB Acme Corp."
   },
-  "save": "speichern",
-  "cancel": "stornieren"
+  "save": "Speichern",
+  "cancel": "Stornieren"
 }

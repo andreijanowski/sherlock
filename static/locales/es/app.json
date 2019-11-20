@@ -20,7 +20,10 @@
     "addNewBusiness": "Agregar nuevo negocio",
     "publish": "Publicar negocios",
     "published": "Publicado",
-    "waitingForApproval": "A la espera de la aprobación"
+    "waitingForApproval": "A la espera de la aprobación",
+    "liveInfo": "Información en vivo",
+    "widgets": "Widgets",
+    "unPublish": "Negocio no publicado"
   },
   "subscriptions": "Suscripciones",
   "userSettings": {

@@ -20,13 +20,16 @@
     "addNewBusiness": "Aggiungi nuova attività",
     "publish": "Pubblicare attività commercial",
     "published": "Pubblicato",
-    "waitingForApproval": "In attesa di approvazione"
+    "waitingForApproval": "In attesa di approvazione",
+    "liveInfo": "Informazioni in diretta",
+    "widgets": "Widget",
+    "unPublish": "Affari non pubblicati"
   },
   "subscriptions": "Sottoscrizioni",
   "userSettings": {
     "userSettings": "Impostazioni",
     "basicInformation": "Informazioni di base",
-    "password": "Password",
+    "password": "Parola d'ordine",
     "logout": "Disconnettersi"
   },
   "feedback": "Risposta/commenti",
