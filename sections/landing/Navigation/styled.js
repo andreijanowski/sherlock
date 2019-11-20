@@ -3,7 +3,7 @@ import { Box } from "@rebass/grid";
 
 export const SectionItem = styled(Box).attrs(() => ({
   as: "li",
-  px: 3,
+  p: 2,
   width: [1 / 2, "auto"]
 }))`
   display: none;

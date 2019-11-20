@@ -46,6 +46,7 @@ const Navigation = ({ t, lng, scrollTo }) => (
       justifyContent="flex-end"
       alignItems="center"
       flexWrap="wrap"
+      m={[-1, -2]}
       css={{
         paddingInlineStart: "0"
       }}
@@ -65,7 +66,7 @@ const Navigation = ({ t, lng, scrollTo }) => (
           </Paragraph>
         </SectionItem>
       ))}
-      <Box my={[1, 0]} mx={1}>
+      <Box p={[1, 2]}>
         <Button
           styleName="signIn"
           onClick={() => {
@@ -75,7 +76,7 @@ const Navigation = ({ t, lng, scrollTo }) => (
           {t("common:signIn")}
         </Button>
       </Box>
-      <Box my={[1, 0]} mx={1}>
+      <Box p={[1, 2]}>
         <Button
           styleName="login"
           onClick={() => {
@@ -87,7 +88,7 @@ const Navigation = ({ t, lng, scrollTo }) => (
           {t("common:login")}
         </Button>
       </Box>
-      <Box my={[1, 0]} mx={1}>
+      <Box p={[1, 2]}>
         <LanguageSwitcher />
       </Box>
     </Flex>
