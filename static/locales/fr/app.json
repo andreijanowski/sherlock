@@ -5,7 +5,7 @@
   "bookings": "Réservations (bientôt)",
   "delivery": "Livraison (bientôt)",
   "catering": "Restauration/catering",
-  "privatisations": "Privatisations",
+  "privatisations": "Les privatisations",
   "socialMedia": "Les médias sociaux (bientôt)",
   "billing": "Facturation (bientôt)",
   "manageProfile": {
@@ -20,7 +20,10 @@
     "addNewBusiness": "Ajouter une nouvelle entreprise",
     "publish": "Publier l'activité commerciale",
     "published": "Publié",
-    "waitingForApproval": "En attente d'approbation"
+    "waitingForApproval": "En attente d'approbation",
+    "liveInfo": "Infos en direct",
+    "widgets": "Widgets",
+    "unPublish": "Annuler la publication des affaires"
   },
   "subscriptions": "Abonnements",
   "userSettings": {

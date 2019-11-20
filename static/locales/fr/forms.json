@@ -9,8 +9,8 @@
       "number": "Ce champ doit être un numéro",
       "nonNegative": "Ce champ doit avoir une valeur non-négative",
       "integer": "Ce champ doit être/avoir un numéro entier",
-      "maxLength": "The field can have maximum {{length}} characters.",
-      "integerWithOptions": "The field must be a integer from {{min}} to {{max}}",
+      "maxLength": "Le champ peut comporter un maximum de {{longueur}} caractères.",
+      "integerWithOptions": "Le champ doit être un entier compris entre {{min}} et {{max}}.",
       "pixel_dimensions_error-logo": "La taille de l'avatar doit être inférieure ou égale à {{maxWidth}}x{{maxHeight}}px",
       "pixel_dimensions_error-menu": "La taille du Menu doit être inférieure ou égale à {{maxWidth}}x{{maxHeight}}px",
       "cannot_delete_published-base": "Impossible de supprimer les entreprises publiées",
@@ -18,7 +18,7 @@
       "change_not_allowed-secret_code": "Modification interdite",
       "not_existing-secret_code": "N'est associé à aucun Food Detective actif",
       "invalid-facebook": "N'est pas une adresse URL de Facebook",
-      "invalid-instagram": "ça n'est pas une adresse URL de instagram",
+      "invalid-instagram": "Ça n'est pas une adresse URL de instagram",
       "url-facebook": "N'est pas une adresse URL de Facebook",
       "too_many_types-groups_list": "Peut avoir 3 entrées 'types' max",
       "too_many_types-groups": "Peut avoir 3 entrées 'types' max",
@@ -30,12 +30,12 @@
       "too_many_specializations-specializations_list": "Peut avoir jusqu'à 3 spécialisations",
       "too_many_specializations-specializations": "Peut avoir jusqu'à 3 spécialisations",
       "invalid-facebook_url": "N'est pas une adresse URL de Facebook",
-      "invalid-instagram_url": "ça n'est pas une adresse URL de instagram",
-      "invalid-twitter_url": "ça n'est pas une adresse URL de twitter",
+      "invalid-instagram_url": "Ça n'est pas une adresse URL de instagram",
+      "invalid-twitter_url": "Ça n'est pas une adresse URL de twitter",
       "already_a_food_detective-base": "L'utilisateur est déjà détective alimentaire",
       "is_rejected-base": "L'entreprise à été rejetée",
       "is_waiting_for_approval-base": "L'entreprise est en attente d'approbation",
-      "is_draft-base": "l'Entreprise est en projet",
+      "is_draft-base": "L'Entreprise est en projet",
       "published-base": "Les commentaires publiés ne peuvent pas être modifiés",
       "incorrect_password-current_password": "Le mot de passe est incorrect",
       "same_password-password": "Le mot de passe est le même que le mot de passe actuel",
@@ -112,9 +112,9 @@
       "invalid_expiry_month_past-base": "La date d'expiration de votre carte est dépassée",
       "invalid_expiry_year-base": "L'année d'échéance de votre carte est non valable",
       "invalid_expiry_year_past-base": "L'année d'échéance de votre carte est échue",
-      "invalid_iban-base": "l'IBAN introduit n'est pas valable",
+      "invalid_iban-base": "L'IBAN introduit n'est pas valable",
       "invalid_iban_country_code-base": "L'IBAN introduit n'est pas valable, \"{code}\" code du pays non supporté",
-      "invalid_iban_start-base": "l'IBAN doit commencer par un code du pays de deux lettres",
+      "invalid_iban_start-base": "L'IBAN doit commencer par un code du pays de deux lettres",
       "invalid_number-base": "Le numéro de la carte n'est pas valable",
       "payment_intent_authentication_failure-base": "Nous ne pouvons pas authentifier votre méthode de paiement. Choisissez une autre méthode de paiement et réessayez",
       "processing_error-base": "Une erreur s'est produite lors du traitement de votre carte. Réessayez un peu",
@@ -137,14 +137,15 @@
       "greater_than-party_size": "Le nombre de places doit être supérieur à {{count}}. Vous avez entré {{value}}",
       "taken-code": "Le code est déjà présent dans une auter livraison",
       "not_between_open_periods-base": "La réservation doit etre placée pendant les horaires d'ouverture de l'établissement",
-      "not_enough_time_before_start-from": "Pas assez tôt avant le début"
+      "not_enough_time_before_start-from": "Pas assez tôt avant le début",
+      "is not a fully qualified domain name-domains": "Domaines n'est pas un nom de domaine complet."
     }
   },
   "placeholder": {
-    "custom": "personnalisé/sur commande",
-    "location": "position",
-    "egAccount": "e.g. Acme Corp"
+    "custom": "Personnalisé/sur commande",
+    "location": "Position",
+    "egAccount": "par exemple Acme Corp"
   },
-  "save": "sauver",
-  "cancel": "effacer"
+  "save": "Sauver",
+  "cancel": "Effacer"
 }

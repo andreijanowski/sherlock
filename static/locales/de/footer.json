@@ -11,19 +11,34 @@
     },
     "columnTwo": {
       "title": "Hilfe",
-      "links": ["FAQ", "Kontaktiere uns", "Blog"]
+      "links": [
+        "FAQ",
+        "Kontaktiere uns",
+        "Blog"
+      ]
     },
     "columnThree": {
       "title": "Legal",
-      "links": ["Datenschutzbestimmungen", "Allgemeine Geschäftsbedingungen"]
+      "links": [
+        "Datenschutzbestimmungen",
+        "Allgemeine Geschäftsbedingungen"
+      ]
     },
     "columnFour": {
       "title": "Folge uns",
-      "links": ["Facebook", "Linkedin", "Twitter", "Instagram"]
+      "links": [
+        "Facebook",
+        "Linkedin",
+        "Twitter",
+        "Instagram"
+      ]
     },
     "columnFive": {
       "title": "Lade App herunter",
-      "links": ["Apple", "Android"]
+      "links": [
+        "Apfel",
+        "Android"
+      ]
     }
   },
   "copyrightNote": "© {{currentYear}} The Food Detective SA. Alle Rechte vorbehalten."

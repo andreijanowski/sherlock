@@ -20,7 +20,10 @@
     "addNewBusiness": "Neues Unternehmen hinzufügen",
     "publish": "Geschäft veröffentlichen",
     "published": "Veröffentlicht",
-    "waitingForApproval": "Warten auf die Bestätigung"
+    "waitingForApproval": "Warten auf die Bestätigung",
+    "liveInfo": "Live-Infos",
+    "widgets": "Widgets",
+    "unPublish": "Veröffentlichung des Geschäfts aufheben"
   },
   "subscriptions": "Abonnements",
   "userSettings": {

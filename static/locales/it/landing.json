@@ -9,7 +9,7 @@
     "addYourBusiness": "Aggiungi la tua attività",
     "addManager": "Aggiungi gestore",
     "watchVideo": "Guarda un video",
-    "testimonials": "testimonianze"
+    "testimonials": "Testimonianze"
   },
   "services": {
     "header": "Servizi",
@@ -23,12 +23,12 @@
     "list": [
       "Prenotazioni",
       "Consegna",
-      "da portare via/da asporto",
+      "Da portare via/da asporto",
       "Pagamenti",
       "ePOS",
       "Catering",
       "Privatizzazione",
-      "Analytics",
+      "Analitica",
       "Risorse umane e stipendi",
       "Fornitura",
       "Marketing",
