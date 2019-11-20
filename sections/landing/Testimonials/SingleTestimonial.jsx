@@ -1,8 +1,12 @@
 import React from "react";
 import { Flex } from "@rebass/grid";
-import { Paragraph } from "components";
 import { number, func } from "prop-types";
-import { Avatar, ParagraphStyled, Name } from "./SingleTestimonial.styled";
+import {
+  Avatar,
+  ParagraphStyled,
+  Name,
+  Increase
+} from "./SingleTestimonial.styled";
 
 const SingleTestimonial = ({ index, t }) => {
   const translationKey = `testimonials.list.${index}`;
@@ -13,9 +17,9 @@ const SingleTestimonial = ({ index, t }) => {
         {`${t(`${translationKey}.position`)}, `}
         <span>{t(`${translationKey}.company`)}</span>
       </Name>
-      <Paragraph app mb={3}>
+      <Increase app mb={3}>
         {t(`${translationKey}.increase`)}
-      </Paragraph>
+      </Increase>
       <ParagraphStyled>“{t(`${translationKey}.quote`)}“</ParagraphStyled>
     </Flex>
   );

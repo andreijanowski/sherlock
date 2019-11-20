@@ -19,10 +19,10 @@ export const ServicesWrapper = styled(Flex).attrs(() => ({
 `;
 
 export const Service = styled(Flex).attrs(() => ({
-  m: 2,
   flexDirection: "column",
   alignItems: "center"
 }))`
+  height: 100%;
   padding: 10px 0;
   color: rgb(${p => p.theme.colors.white});
   font-size: ${p => p.theme.fontSizes.f16};

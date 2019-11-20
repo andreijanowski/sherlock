@@ -22,6 +22,10 @@ export const ParagraphStyled = styled(Paragraph)`
   }
 `;
 
+export const Increase = styled(Paragraph)`
+  text-align: center;
+`;
+
 export const Name = styled.p`
   font-size: ${p => p.theme.fontSizes.f16};
 
