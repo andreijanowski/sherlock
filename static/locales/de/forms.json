@@ -9,7 +9,7 @@
       "number": "Dieses Feld muss ein Zahl sein",
       "nonNegative": "Dieses Feld muss ein Wert nicht-negative sein",
       "integer": "Das Feld muss eine ganze Zahl sein",
-      "maxLength": "Das Feld darf maximal {{Länge}} Zeichen enthalten.",
+      "maxLength": "Das Feld darf maximal {{length}} Zeichen enthalten.",
       "integerWithOptions": "Das Feld muss eine Ganzzahl von {{min}} bis {{max}} sein",
       "pixel_dimensions_error-logo": "Avatar-Größe sollte kleiner oder gleich {{maxWidth}} x {{maxHeight}} px sein",
       "pixel_dimensions_error-menu": "Die Menügröße sollte kleiner oder gleich {{maxWidth}} x {{maxHeight}} px sein",

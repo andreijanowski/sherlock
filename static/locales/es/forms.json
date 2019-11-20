@@ -9,7 +9,7 @@
       "number": "Este campo debe ser un número",
       "nonNegative": "Este campo debe tener un valor no negativo",
       "integer": "Este campo debe ser un entero",
-      "maxLength": "El campo puede tener un máximo de {{longitud}} caracteres.",
+      "maxLength": "El campo puede tener un máximo de {{length}} caracteres.",
       "integerWithOptions": "El campo debe ser un entero de {{min}} a {{max}}",
       "pixel_dimensions_error-logo": "El tamaño de Avatar debe ser inferior o igual a{{maxWidth}}x{{maxHeight}}px",
       "pixel_dimensions_error-menu": "El Menú Tamaño debe ser inferior o igual a {{maxWidth}}x{{maxHeight}}px",

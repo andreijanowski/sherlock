@@ -9,7 +9,7 @@
       "number": "Ce champ doit être un numéro",
       "nonNegative": "Ce champ doit avoir une valeur non-négative",
       "integer": "Ce champ doit être/avoir un numéro entier",
-      "maxLength": "Le champ peut comporter un maximum de {{longueur}} caractères.",
+      "maxLength": "Le champ peut comporter un maximum de {{length}} caractères.",
       "integerWithOptions": "Le champ doit être un entier compris entre {{min}} et {{max}}.",
       "pixel_dimensions_error-logo": "La taille de l'avatar doit être inférieure ou égale à {{maxWidth}}x{{maxHeight}}px",
       "pixel_dimensions_error-menu": "La taille du Menu doit être inférieure ou égale à {{maxWidth}}x{{maxHeight}}px",
