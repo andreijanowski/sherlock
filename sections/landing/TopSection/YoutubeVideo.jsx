@@ -10,7 +10,7 @@ class YoutubeVideo extends PureComponent {
         autoplay: 1
       }
     },
-    videoId: "anlGRnk3UCo"
+    videoId: "6jcUTbGqSYw"
   };
 
   render() {
