@@ -1,0 +1,30 @@
+{
+  "navigation": {
+    "columnOne": {
+      "title": "Únete a nosotros",
+      "links": [
+        "¿Por qué registrarse?",
+        "Asociarse con nosotros",
+        "Conviértase en revendedor",
+        "Integraciones"
+      ]
+    },
+    "columnTwo": {
+      "title": "Ayuda",
+      "links": ["FAQ", "Contáctenos", "Blog"]
+    },
+    "columnThree": {
+      "title": "Legal",
+      "links": ["Política de privacidad", "Términos y condiciones"]
+    },
+    "columnFour": {
+      "title": "Síguenos",
+      "links": ["Facebook", "Linkedin", "Twitter", "Instagram"]
+    },
+    "columnFive": {
+      "title": "Descargar aplicación",
+      "links": ["Apple", "Android"]
+    }
+  },
+  "copyrightNote": "© {{currentYear}} The Food Detective SA. Todos los derechos reservados."
+}

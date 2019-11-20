@@ -1,0 +1,39 @@
+{
+  "topSection": {
+    "header": {
+      "start": "Nous faisons la vie du restaurant",
+      "end": " beaucoup plus facile"
+    },
+    "paragraph": "Facile à utiliser et à intégrer le logiciel agrégateur de tous les services F & B à un prix compétitif.",
+    "getStartedForFree": "Commencez gratuitement",
+    "addYourBusiness": "Ajoutez votre entreprise",
+    "addManager": "Ajouter un gestionnaire",
+    "watchVideo": "Regarder la vidéo",
+    "testimonials": "Témoignages"
+  },
+  "services": {
+    "header": "Prestations de service",
+    "paragraph": {
+      "start": "Conçu pour votre ",
+      "firstKeyword": "Besoins",
+      "middle": " et ",
+      "secondKeyword": "type de commerce",
+      "end": ". Vous pouvez facilement ajouter et supprimer n'importe quel service à tout moment, garantissant ainsi que notre service est adapté à vos besoins en constante évolution."
+    },
+    "list": [
+      "Réservations",
+      "Livraison",
+      "À emporter",
+      "Paiements",
+      "ePOS",
+      "Restauration/catering",
+      "Privatisation",
+      "Analytique",
+      "RH & Paie",
+      "Fourniture",
+      "Marketing",
+      "Commentaire"
+    ],
+    "more": "Une application / un site web pour les réglementer tous ..."
+  }
+}

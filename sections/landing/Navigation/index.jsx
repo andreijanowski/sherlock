@@ -1,6 +1,11 @@
 import React from "react";
 import { Flex, Box } from "@rebass/grid";
-import { Paragraph, Button, FoodetectiveLogo } from "components";
+import {
+  Paragraph,
+  Button,
+  FoodetectiveLogo,
+  LanguageSwitcher
+} from "components";
 import { func, string } from "prop-types";
 import uuid from "uuid/v1";
 import Cookies from "js-cookie";
@@ -60,6 +65,7 @@ const Navigation = ({ t, lng, scrollTo }) => (
           </Paragraph>
         </SectionItem>
       ))}
+      <LanguageSwitcher />
       <Box mx={1}>
         <Button
           styleName="signIn"

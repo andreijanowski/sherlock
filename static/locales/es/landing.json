@@ -1,0 +1,39 @@
+{
+  "topSection": {
+    "header": {
+      "start": "Hacemos la vida del restaurante",
+      "end": " más fácil"
+    },
+    "paragraph": "Agregador de software fácil de usar e integrar de todos los servicios F&B a un precio competitivo",
+    "getStartedForFree": "Comienza gratis",
+    "addYourBusiness": "Agregue su negocio",
+    "addManager": "Agregar administrador",
+    "watchVideo": "Ver video",
+    "testimonials": "Testimonios"
+  },
+  "services": {
+    "header": "Servicios",
+    "paragraph": {
+      "start": "Diseñado para tu ",
+      "firstKeyword": "necesariamente",
+      "middle": " y ",
+      "secondKeyword": "tipo de negocio",
+      "end": ". Puede agregar y eliminar fácilmente cualquiera de los servicios en cualquier momento, asegurando que nuestro servicio se adapte a sus necesidades cambiantes"
+    },
+    "list": [
+      "Reservas",
+      "Entrega",
+      "Para llevar",
+      "Pagos",
+      "ePOS",
+      "Abastecimiento/catering",
+      "Privatización",
+      "Analítica",
+      "Recursos humanos y nómina/salario",
+      "Suministro",
+      "Márketing",
+      "Comentario"
+    ],
+    "more": "Una aplicación / sitio web para regularlos a todos ..."
+  }
+}
