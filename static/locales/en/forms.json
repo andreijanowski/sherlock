@@ -138,7 +138,8 @@
       "passwordMatch": "The password and repeat password do not match.",
       "incorrect_password-current_password": "Password is incorrect",
       "same_password-password": "Password is the same as current password",
-      "is not a fully qualified domain name-domains": "Domains is not a fully qualified domain name"
+      "is not a fully qualified domain name-domains": "Domains is not a fully qualified domain name",
+      "unauthorized-Not allowed to create? this Widget": "You are not allowed to create this Widget. Only users with paid plan can use widgets."
     }
   },
   "placeholder": {
