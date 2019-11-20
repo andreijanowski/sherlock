@@ -97,12 +97,18 @@ const Cooperations = ({ t, industriesRef }) => (
       {industriesNames.map(name => (
         <Flex
           width={[1 / 2, 1 / 4, 1 / 6]}
-          justifyContent="center"
+          justifyContent="space-between"
           alignItems="center"
           flexDirection="column"
           p={[1, 2]}
         >
-          <p>{t(`cooperations.industries.names.${name}`)}</p>
+          <p
+            style={{
+              textAlign: "center"
+            }}
+          >
+            {t(`cooperations.industries.names.${name}`)}
+          </p>
           <IndustryLogo name={name} />
         </Flex>
       ))}

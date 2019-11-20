@@ -4,6 +4,7 @@ import { H2 } from "components";
 
 export const LogosContainer = styled(Flex).attrs(() => ({
   flexWrap: "wrap",
+  alignItems: "stretch",
   mb: [3, 5]
 }))`
   padding: 8px;
