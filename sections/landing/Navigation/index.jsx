@@ -25,7 +25,7 @@ const Navigation = ({ t, lng, scrollTo }) => (
   <Flex
     width={1}
     px={3}
-    mt={4}
+    mt={[2, 4]}
     as="header"
     alignItems="center"
     style={{
@@ -65,8 +65,7 @@ const Navigation = ({ t, lng, scrollTo }) => (
           </Paragraph>
         </SectionItem>
       ))}
-      <LanguageSwitcher />
-      <Box mx={1}>
+      <Box my={[1, 0]} mx={1}>
         <Button
           styleName="signIn"
           onClick={() => {
@@ -76,7 +75,7 @@ const Navigation = ({ t, lng, scrollTo }) => (
           {t("common:signIn")}
         </Button>
       </Box>
-      <Box mx={1}>
+      <Box my={[1, 0]} mx={1}>
         <Button
           styleName="login"
           onClick={() => {
@@ -87,6 +86,9 @@ const Navigation = ({ t, lng, scrollTo }) => (
         >
           {t("common:login")}
         </Button>
+      </Box>
+      <Box my={[1, 0]} mx={1}>
+        <LanguageSwitcher />
       </Box>
     </Flex>
   </Flex>
