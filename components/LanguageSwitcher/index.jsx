@@ -26,7 +26,6 @@ class LanguageSwitcher extends Component {
     this.setState({
       selectedLanguage: i18n.language
     });
-    console.log(i18n.language);
   }
 
   toggleLanguageListVisible = () => {
