@@ -1,0 +1,21 @@
+{
+  "header": "Heures d'ouverture",
+  "openingHours": "Heures d'ouverture",
+  "openedFromLabel": "De",
+  "openedFromPlaceholder": "10:00 AM",
+  "openedToLabel": "Ā",
+  "openedToPlaceholder": "08:00 PM",
+  "weekdays": [
+    "Dimanche",
+    "Lundi",
+    "Mardi",
+    "Mercredi",
+    "Jeudi",
+    "Vendredi",
+    "Samedi"
+  ],
+  "copy": "copie",
+  "paste": "pegar",
+  "locationLabel": "Emplacement",
+  "locationPlaceholder": "Près de la rue des Deux-Ponts 124, Genève"
+}

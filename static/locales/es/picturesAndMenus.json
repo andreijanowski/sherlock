@@ -1,0 +1,21 @@
+{
+  "header": "Imágenes y menús",
+  "logo": "Logo",
+  "chooseOrDragFile": "Elija un archivo o arrástrelo aquí",
+  "picturesInfo": "archivo png o jpeg",
+  "menusInfo": "archivo png o jpeg o pdf",
+  "invalidFiles": "Algunos de los archivos arrastrados no tienen un tipo válido",
+  "validImages": "los tipos de archivo válidos son png y jpeg",
+  "validMenus": "los tipos de archivo válidos son png, jpeg y pdf",
+  "invalidMultiple": "No se pueden elegir varios archivos",
+  "validMultiple": "aquí solo se acepta un archivo",
+  "uploadCoverPicture": "Subir imagen de portada",
+  "uploadCoverPictureTip": "por favor, Inserte una imagen / foto de alta calidad que muestre la atmósfera de su negocio (preferiblemente el interior)",
+  "menu": "Menú",
+  "products": "Deberías/para intentar",
+  "productsTip": "Si cree que hay un plato que recomendaría tener en este lugar en particular, háganoslo saber y comparta una foto de él",
+  "productLabel": "Nombre para mostrar",
+  "productPlaceholder": "Pizza capricciosa",
+  "menuLabel": "Nombre del menú",
+  "menuPlaceholder": "Bebidas"
+}

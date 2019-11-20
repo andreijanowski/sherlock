@@ -49,7 +49,7 @@ class Home extends PureComponent {
 
 Home.propTypes = {
   t: func.isRequired,
-  i18n: shape({ lng: string.isRequired }).isRequired
+  i18n: shape({ language: string.isRequired }).isRequired
 };
 
 export default requireAuth(false)(withTranslation(namespaces)(Home));

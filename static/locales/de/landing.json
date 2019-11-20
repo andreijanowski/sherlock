@@ -1,0 +1,39 @@
+{
+  "topSection": {
+    "header": {
+      "start": "Wir machen das Leben im Restaurant",
+      "end": " viel einfacher"
+    },
+    "paragraph": "Einfach zu verwendender und integrierender Software-Aggregator für alle F & B-Services zu einem wettbewerbsfähigen Preis.",
+    "getStartedForFree": "Kostenlos loslegen",
+    "addYourBusiness": "Fügen Sie Ihr Unternehmen hinzu",
+    "addManager": "Manager hinzufügen",
+    "watchVideo": "Schau Video",
+    "testimonials": "Referenzen"
+  },
+  "services": {
+    "header": "Dienstleistungen",
+    "paragraph": {
+      "start": "Entworfen für Ihre ",
+      "firstKeyword": "Bedürfnisse",
+      "middle": " und ",
+      "secondKeyword": "Geschäftsart",
+      "end": ". Sie können jeden Service jederzeit problemlos hinzufügen und entfernen, um sicherzustellen, dass unser Service auf Ihre sich ändernden Anforderungen zugeschnitten ist."
+    },
+    "list": [
+      "Reservierungen",
+      "Lieferung",
+      "Wegbringen",
+      "Zahlungen",
+      "EPOS",
+      "Gastronomie/catering",
+      "Privatisierung",
+      "Analytics",
+      "Humanressourcen Lohn-und Gehaltsabrechnung",
+      "Liefern",
+      "Marketing",
+      "Feedback"
+    ],
+    "more": "Eine App / Website, um sie alle zu regulieren ..."
+  }
+}

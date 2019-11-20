@@ -1,0 +1,15 @@
+{
+  "name": "Nombre",
+  "email": "E-mail",
+  "updatePhoto": "Actualizar foto",
+  "avatarInfo": "jpg/png",
+  "invalidFileType": "Tipo de archivo invalido",
+  "update": "Actualizar",
+  "validFileTypeInfo": "Aceptar jpg / png",
+  "confirmEmailChange": "Se ha enviado un correo electrónico de confirmación a su nueva dirección de correo electrónico {{email}}. Para confirmar el cambio de correo electrónico, haga clic en el enlace de verificación en el correo electrónico",
+  "password": {
+    "currentPassword": "Contraseña actual",
+    "newPassword": "Nueva contraseña",
+    "passwordConfirmation": "Confirmar nueva contraseña"
+  }
+}

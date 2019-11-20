@@ -1,0 +1,21 @@
+{
+  "header": "Horario de apertura",
+  "openingHours": "Horario de apertura",
+  "openedFromLabel": "De",
+  "openedFromPlaceholder": "10:00 AM",
+  "openedToLabel": "per",
+  "openedToPlaceholder": "08:00 PM",
+  "weekdays": [
+    "Domingo",
+    "Lunes",
+    "Martes",
+    "Miércoles",
+    "Jueves",
+    "Viernes",
+    "Sábado"
+  ],
+  "copy": "Copiar",
+  "paste": "incolla",
+  "locationLabel": "Ubicación",
+  "locationPlaceholder": "Cerca de la Rue des Deux-Ponts 124, Ginebra"
+}

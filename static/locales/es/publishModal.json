@@ -1,0 +1,17 @@
+{
+  "cancel": "Cancelar",
+  "header": "Completa tu perfil",
+  "paragraph": [
+    "Necesitas agregar ",
+    "detalles importantes",
+    " para ver los datos."
+  ],
+  "step": "Paso",
+  "publish": "publicar negocios",
+  "basicInformationTip": "Comience con lo básico",
+  "contactInformationTip": "Comience con lo básico",
+  "openingHoursTip": "Prepárate para los invitados",
+  "picturesAndMenusTip": "Fácil reconocimiento",
+  "additionalInformationTip": "Datos más precisos",
+  "inviteYourTeamTip": "Agregar miembros comerciales"
+}

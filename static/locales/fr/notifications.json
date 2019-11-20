@@ -1,0 +1,25 @@
+{
+  "mustBeLoggedIn": "Vous devez être connecté pour continuer",
+  "pastDateError": "La date choisie est trop loin dans le passé",
+  "changePasswordSuccess": "Le mot de passe a été changé",
+  "errors": {
+    "missing_attributes": {
+      "Missing attributes": "Attributs manquants"
+    },
+    "business_is_visible_in_lefood": {
+      "base": "Impossible de mettre à jour la valeur car l'entreprise est actuellement visible dans lefood"
+    },
+    "business_has_pending_orders": {
+      "base": "Impossible de mettre à jour la valeur, car l'entreprise a des commandes en attente"
+    },
+    "blank": {
+      "other_rejection_reason": "Toute autre raison de rejet ne peut être vide si elle est choisie"
+    },
+    "coerce": {
+      "data[attributes][unavailable_elements] is invalid": "Les plats indisponibles ne peuvent pas être vides"
+    },
+    "elements_not_found": {
+      "base": "Impossible de trouver les éléments donnés pour cette commande"
+    }
+  }
+}
