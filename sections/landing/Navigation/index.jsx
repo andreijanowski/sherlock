@@ -1,7 +1,6 @@
 import React from "react";
 import { Flex, Box } from "@rebass/grid";
 import { Paragraph, Button, FoodetectiveLogo } from "components";
-import { Router } from "routes";
 import { func, string } from "prop-types";
 import uuid from "uuid/v1";
 import Cookies from "js-cookie";
@@ -64,7 +63,9 @@ const Navigation = ({ t, lng, scrollTo }) => (
       <Box mx={1}>
         <Button
           styleName="signIn"
-          onClick={() => Router.pushRoute(`/${lng}/register/?plan=basic`)}
+          onClick={() => {
+            window.location.href = `${API_URL}users/sign_up?locale=${lng}&plan=basic`;
+          }}
         >
           {t("common:signIn")}
         </Button>

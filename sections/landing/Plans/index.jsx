@@ -2,7 +2,6 @@ import { Flex, Box } from "@rebass/grid";
 import { func, string, oneOfType, shape, any } from "prop-types";
 import { Plans, PlansBillingInterval } from "components";
 import { H2Styled, ParagraphStyled, PlansWrapper, TextWrapper } from "./styled";
-// import PromotionBoard from "./promotionBoard";
 
 const PlansMainComponent = ({
   t,
@@ -28,8 +27,6 @@ const PlansMainComponent = ({
         <Box />
       </Flex>
       <ParagraphStyled>{t("plans:paragraph")}</ParagraphStyled>
-      {/* Hiden for now */}
-      {/* <PromotionBoard {...{ t }} /> */}
     </TextWrapper>
     <PlansWrapper>
       <Plans

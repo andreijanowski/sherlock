@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
-// import { Flex, Box } from "@rebass/grid";
 import { Footer } from "components";
 import {
   Navigation,

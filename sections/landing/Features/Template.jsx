@@ -2,7 +2,7 @@ import React from "react";
 import { Flex, Box } from "@rebass/grid";
 import { H2, Button, Paragraph } from "components";
 import { func, string } from "prop-types";
-import { Router } from "routes";
+import { API_URL } from "consts";
 import { Screen, DescriptionWrapper } from "./Template.styled";
 
 const Template = ({ t, lng, activeNavItem }) => (
@@ -14,7 +14,9 @@ const Template = ({ t, lng, activeNavItem }) => (
       </Paragraph>
       <Flex flex={1} alignItems="flex-end">
         <Button
-          onClick={() => Router.pushRoute(`/${lng}/register/?plan=basic`)}
+          onClick={() => {
+            window.location.href = `${API_URL}users/sign_up?locale=${lng}&plan=basic`;
+          }}
           styleName="white"
         >
           {t("features.registerForFree")}

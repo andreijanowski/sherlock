@@ -1,6 +1,6 @@
 import { func, string, bool } from "prop-types";
 import { Box } from "@rebass/grid";
-import { Router } from "routes";
+import { API_URL } from "consts";
 import Plan from "./plan";
 
 const Plans = ({
@@ -23,10 +23,13 @@ const Plans = ({
           isSubscriptionView,
           color: "limeade",
           name: "essential",
-          onClickActionButton: () =>
-            choosePlan
-              ? choosePlan("essential")
-              : Router.pushRoute(`/${lng}/register/?plan=essential`)
+          onClickActionButton: () => {
+            if (choosePlan) {
+              choosePlan("essential");
+            } else {
+              window.location.href = `${API_URL}users/sign_up?locale=${lng}&plan=essential`;
+            }
+          }
         }}
       />
     </Box>
@@ -40,10 +43,13 @@ const Plans = ({
           isSubscriptionView,
           color: "deepSkyBlue",
           name: "basic",
-          onClickActionButton: () =>
-            choosePlan
-              ? choosePlan("basic")
-              : Router.pushRoute(`/${lng}/register/?plan=basic`)
+          onClickActionButton: () => {
+            if (choosePlan) {
+              choosePlan("basic");
+            } else {
+              window.location.href = `${API_URL}users/sign_up?locale=${lng}&plan=basic`;
+            }
+          }
         }}
       />
     </Box>

@@ -1,7 +1,7 @@
 import { func, string } from "prop-types";
-import { Router } from "routes";
 import { Button, BlueText } from "components";
 import { Flex, Box } from "@rebass/grid";
+import { API_URL } from "consts";
 import { H1Styled } from "./styled";
 import YoutubeVideo from "./YoutubeVideo";
 import { ParagraphStyled } from "../sharedStyled";
@@ -20,7 +20,9 @@ const TopSection = ({ t, lng }) => (
             styleName="blue"
             fluid
             fullHeight
-            onClick={() => Router.pushRoute(`/${lng}/register/?plan=basic`)}
+            onClick={() => {
+              window.location.href = `${API_URL}users/sign_up?locale=${lng}&plan=basic`;
+            }}
           >
             {t("topSection.getStartedForFree")}
           </Button>
