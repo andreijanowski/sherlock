@@ -1,10 +1,10 @@
 {
   "topSection": {
     "header": {
-      "start": "Hacemos la vida del restaurante",
-      "end": " más fácil"
+      "start": "Facilitamos",
+      "end": " la vida de los restaurantes"
     },
-    "paragraph": "Agregador de software fácil de usar e integrar de todos los servicios F&B a un precio competitivo",
+    "paragraph": "El primero software todo en uno en el mundo para restaurantes.",
     "getStartedForFree": "Comienza gratis",
     "addYourBusiness": "Agregue su negocio",
     "addManager": "Agregar administrador",
@@ -14,26 +14,120 @@
   "services": {
     "header": "Servicios",
     "paragraph": {
-      "start": "Diseñado para tu ",
-      "firstKeyword": "necesariamente",
+      "start": "Diseñado para sus ",
+      "firstKeyword": "necesidades cambiantes",
       "middle": " y ",
-      "secondKeyword": "tipo de negocio",
-      "end": ". Puede agregar y eliminar fácilmente cualquiera de los servicios en cualquier momento, asegurando que nuestro servicio se adapte a sus necesidades cambiantes"
+      "secondKeyword": "el tamaño de su negocio",
+      "end": ". Puede fácilmente añadir y quitar servicios en cualquier momento, asegurándose que nos adaptemos a su crecimiento."
     },
     "list": [
       "Reservas",
       "Entrega",
       "Para llevar",
       "Pagos",
-      "ePOS",
-      "Abastecimiento/catering",
       "Privatización",
+      "Abastecimiento/catering",
       "Analítica",
+      "Márketing",
       "Recursos humanos y nómina/salario",
       "Suministro",
-      "Márketing",
-      "Comentario"
+      "Contabilidad",
+      "Integraciones"
     ],
-    "more": "Una aplicación / sitio web para regularlos a todos ..."
-  }
+    "more": "Centralizamos todos sus servicios en un solo tablero."
+  },
+  "cooperations": {
+    "clients": "Clientela",
+    "partners": "Fogonadura",
+    "becomePartner": "Convertirse en un compañero",
+    "industries": {
+      "header": "Industrias",
+      "names": {
+        "restaurants": "Restaurantes",
+        "hotel": "Hoteles",
+        "coffee-shops": "Cafeterías",
+        "food-trucks": "Camiones de comida",
+        "salad-bar": "Mercados",
+        "ice-cream-shop": "Heladerías",
+        "caterings": "Catering",
+        "brewery": "Pubs",
+        "street-food": "Puestos de comida",
+        "fromagerie": "Queso",
+        "butcher": "Carnicería",
+        "bars": "Bodegas"
+      }
+    }
+  },
+  "features": {
+    "header": "Caracteristicas",
+    "navItems": {
+      "visibility": "Visibilidad",
+      "analytics": "Analítica",
+      "bookings": "Reservas",
+      "deliveryAndTakeaway": "Entrega y para llevar",
+      "cateringAndPrivatization": "Catering y privatización",
+      "reviews": "Comentarios",
+      "payments": "Pagos"
+    },
+    "registerForFree": "Regístrese ahora de forma gratuita",
+    "subsections": {
+      "visibility": {
+        "header": "Aumenta tu visibilidad",
+        "paragraph": "Con Foodetective, el marketing es más fácil que nunca. Capture todo los detalles de sus invitados, notas, tags y enseñe sus servicios dentro de un perfil unificado disponible en todos los formatos."
+      },
+      "analytics": {
+        "header": "Lleve su gestión de una manera fácil",
+        "paragraph": "Sepa cómo va su negocio en cualquier lugar, en cualquier momento, en tiempo real. Ser notificado cuando ocurran eventos importantes. Hacer cumplir las mejores prácticas de la industria en cada experiencia de servicio para mejorar los resultados."
+      },
+      "bookings": {
+        "header": "Reservas",
+        "paragraph": "Foodetective le ayuda a tomar el control de su negocio ofreciendo reservas personalizables para las mesas de cada día, degustaciones especiales y todo en el medio."
+      },
+      "deliveryAndTakeaway": {
+        "header": "Configure su propio servicio de entrega",
+        "paragraph": "Porque pagar honorarios elevados cuando puede hacer su propio servicio de entrega? Ofrezca a sus clientes una mejor cualidad, un mejor servicio, platos calientes y gestione sus pedidos fácilmente."
+      },
+      "cateringAndPrivatization": {
+        "header": "Reciba solicitudes especiales",
+        "paragraph": "Gestione su servicio de catering y demandas de eventos privados como nunca, envie ofertas, cambie los menús, asigne personas par ofrecer a sus clientes la mejor y más sencilla experiencia."
+      },
+      "reviews": {
+        "header": "Reseñas en base a 6 criterios",
+        "paragraph": "En Foodetective, todas la reseñas están hechas por profesionales que aportan contenido excepcional, comentarios constructivos para ayudar su empresa a mejorar constantemente su oferta, productos y servicios."
+      },
+      "payments": {
+        "header": "Conecte su cuenta bancaria",
+        "paragraph": "Reciba pagos al instante, conecte su cuenta bancaria y gestione sus pagos de una sola mano."
+      }
+    }
+  },
+  "testimonials": {
+    "header": "Testimonios",
+    "list": [
+      {
+        "position": "Propietario",
+        "company": "Cipollino",
+        "increase": "Aumenta tus ingresos en un 29%",
+        "quote": "Revolucionario! Fácil de configurar, de utilizar y de gestionar. A todo el equipo le encanta por su simplicidad y interfaz única."
+      },
+      {
+        "position": "Propietario",
+        "company": "Molokaï",
+        "increase": "Aumenta tus ingresos en un 17%",
+        "quote": "Hemos notado un aumento de la eficiencia en cada departamento de nuestra empresa. Hemos conseguido a adoptar medidas hacia una administración electrónica gracias a Foodetective."
+      },
+      {
+        "position": "Propietario",
+        "company": "Osteria Zaza",
+        "increase": "Aumenta tus ingresos en un 19%",
+        "quote": "Foodetective nos ha ayudado a aumentar nuestra visibilidad en línea, analizar nuestra oferta completa así como  ofrecer a nuestros clientes servicios únicos que hemos integrado en nuestra pagina web."
+      }
+    ]
+  },
+  "widget": {
+    "header": "Integración de widget",
+    "navLink": "Widget",
+    "paragraph": "Integre su widget en su pagina web para ofrecer a sus clientes una experiencia de clase mundial."
+  },
+  "pricing": "Precios"
 }

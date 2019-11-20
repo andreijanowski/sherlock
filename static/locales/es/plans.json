@@ -1,6 +1,6 @@
 {
-  "header": "Mi plan",
-  "paragraph": "Elija el plan que se adapte a sus objetivos comerciales. Si es propietario de una gran empresa o gerente de cadena, agregue a su gerente a cargo",
+  "header": "Pague en función de su crecimiento",
+  "paragraph": "Elija el plan el mas adaptado a sus objetivos comerciales, tamaño y planes de crecimiento. Si tiene una gran franquicia o grupo, póngase en contacto con nuestro equipo para obtener nuestra opción a medida.",
   "yourCurrentPlan": "tu Plan actual",
   "paymentInfo": "Informaciones de pago",
   "changeCard": "cambiar tarjeta",
@@ -43,7 +43,9 @@
     "catering": "Catering",
     "privatisation": "Privatización",
     "delivery": "Entrega / para llevar",
-    "digitalMarketing": "Digital marketing"
+    "digitalMarketing": "Digital marketing",
+    "redirections": "Redirecciones",
+    "integrations": "Integraciones"
   },
   "essential": {
     "name": "Esencial",

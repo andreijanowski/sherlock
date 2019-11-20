@@ -34,7 +34,7 @@
       "Accounting",
       "Integrations"
     ],
-    "more": "We centralize all your services into a single dashboard"
+    "more": "We centralize all your services into a single dashboard."
   },
   "cooperations": {
     "clients": "Clients",
@@ -72,11 +72,11 @@
     "registerForFree": "Register for free now",
     "subsections": {
       "visibility": {
-        "header": "Increase Your Visibility",
+        "header": "Increase your visibility",
         "paragraph": "Marketing is easier than ever with Foodetective. Capture all guest visit details, notes, tags, and display your services into a unified profile available on all formats for targeted marketing and world-class eaters."
       },
       "analytics": {
-        "header": "Manage Your Business Easily",
+        "header": "Manage your business easily",
         "paragraph": "Know how your business is doing anywhere, any time, in real-time. Be notified when important events happen. Enforce industry best practices in every service experience to improve outcomes"
       },
       "bookings": {
@@ -84,19 +84,19 @@
         "paragraph": "Foodetective helps you take control of your business by offering fully customizable reservations for everyday tables, special tastings, and everything in between."
       },
       "deliveryAndTakeaway": {
-        "header": "Set Up Your Own Delivery",
+        "header": "Set up your own delivery",
         "paragraph": "Manage all your online deliveries and take-away order from one single platform. Offer your clients a higher quality, the best service, hot meals and manage all of your orders easily."
       },
       "cateringAndPrivatization": {
-        "header": "Receive Special Requests",
+        "header": "Receive special requests",
         "paragraph": "Receive Special Requests Manage your catering & privatisations requests like never before, send offers, change menus, assign people to offer your client the best and easiest experience ever."
       },
       "reviews": {
-        "header": "6 Pillars Reviews",
+        "header": "6 pillars reviews",
         "paragraph": "At Foodetective all reviews are made by professionals who provide outstanding content creating constructive feedback to help businesses to constantly improve their offer, products & services."
       },
       "payments": {
-        "header": "Connect your Bank account",
+        "header": "Connect your bank account",
         "paragraph": "Receive payments instantly, connect your bank account and manage your payments from a single view."
       }
     }
@@ -125,7 +125,7 @@
     ]
   },
   "widget": {
-    "header": "Website integration",
+    "header": "Widget integration",
     "navLink": "Widget",
     "paragraph": "Offer clients a world class experience, additional interactions & services. Integrate all kind of services into your website easily with our widget."
   },
