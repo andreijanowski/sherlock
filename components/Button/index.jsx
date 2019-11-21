@@ -9,7 +9,7 @@ const login = css`
     rgba(${p => p.theme.colors.dark}, 0.16);
 `;
 
-const signIn = css`
+const signUp = css`
   ${login}
   color: rgb(${p => p.theme.colors.blue});
   border: ${p => p.theme.borderWeights.normal} solid
@@ -210,7 +210,7 @@ const Button = styled.button`
   ${p => p.width && `width: ${p.width};`};
 
   ${p => p.styleName === "login" && login};
-  ${p => p.styleName === "signIn" && signIn};
+  ${p => p.styleName === "signUp" && signUp};
   ${p => p.styleName === "blue" && blue};
   ${p => p.styleName === "formBlue" && formBlue};
   ${p => p.styleName === "orange" && orange};

@@ -73,12 +73,12 @@ const Navigation = ({ t, lng, scrollTo }) => (
       ))}
       <Box p={[1, 2]}>
         <Button
-          styleName="signIn"
+          styleName="signUp"
           onClick={() => {
             window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=essential`;
           }}
         >
-          {t("common:signIn")}
+          {t("common:signUp")}
         </Button>
       </Box>
       <Box p={[1, 2]}>
