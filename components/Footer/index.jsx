@@ -1,9 +1,9 @@
 import { withTranslation } from "i18n";
 import { func } from "prop-types";
 import {
-  FoodetectiveLogo
+  FoodetectiveLogo,
   // uncomment after translations are ready
-  // LanguageSwitcher
+  LanguageSwitcher
 } from "components";
 import { Box } from "@rebass/grid";
 import { privacyPolicyLink, termsAndConditionsLink } from "consts";
@@ -36,7 +36,7 @@ const Footer = ({ t }) => {
                 t,
                 columnName: "columnOne",
                 hrefs: {
-                  "1": {
+                  "0": {
                     href: "https://foodetective.typeform.com/to/tzqu8b",
                     target: "_blank",
                     rel: "noreferrer noopener"
@@ -52,7 +52,7 @@ const Footer = ({ t }) => {
                 t,
                 columnName: "columnTwo",
                 hrefs: {
-                  "2": {
+                  "0": {
                     href: "https://medium.com/@GetSherlockNow",
                     target: "_blank",
                     rel: "noreferrer noopener"
@@ -136,7 +136,7 @@ const Footer = ({ t }) => {
       <CopyrightWrapper>
         <CopyrightNote>{t("copyrightNote", { currentYear })}</CopyrightNote>
         {/* uncomment after translations are ready */}
-        {/* <LanguageSwitcher withBorder={false} listPosition="top" /> */}
+        <LanguageSwitcher withBorder={false} listPosition="top" />
       </CopyrightWrapper>
     </FooterWrapper>
   );

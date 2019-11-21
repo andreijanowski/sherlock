@@ -3,17 +3,12 @@
     "columnOne": {
       "title": "Begleiten Sie uns",
       "links": [
-        "Warum registrieren",
-        "Partner mit uns",
-        "Reseller werden",
-        "Integrationen"
+        "Partner mit uns"
       ]
     },
     "columnTwo": {
       "title": "Hilfe",
       "links": [
-        "FAQ",
-        "Kontaktiere uns",
         "Blog"
       ]
     },

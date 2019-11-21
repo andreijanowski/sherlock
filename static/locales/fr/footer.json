@@ -3,17 +3,12 @@
     "columnOne": {
       "title": "Rejoignez-nous",
       "links": [
-        "Pourquoi s'inscrire",
-        "Devenir partenaire",
-        "Devenir revendeur",
-        "Intégrations"
+        "Devenir partenaire"
       ]
     },
     "columnTwo": {
       "title": "Aidez-moi/Aide",
       "links": [
-        "FAQ",
-        "Contactez-nous",
         "Blog"
       ]
     },
