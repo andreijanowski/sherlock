@@ -19,6 +19,7 @@ export const Wrapper = styled(Flex).attrs(() => ({
 `;
 
 export const TimeSlotPickerWrapper = styled(Wrapper)`
+  min-width: 164px;
   max-width: calc(100% - 157px);
 `;
 
