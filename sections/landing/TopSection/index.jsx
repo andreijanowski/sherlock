@@ -5,9 +5,8 @@ import {
   Button,
   FoodetectiveLogo,
   BlueText,
-  YoutubeModal
-  // uncomment after translations are ready
-  // LanguageSwitcher
+  YoutubeModal,
+  LanguageSwitcher
 } from "components";
 import Cookies from "js-cookie";
 import { Flex, Box } from "@rebass/grid";
@@ -29,8 +28,7 @@ const TopSection = ({ t, lng }) => {
   return (
     <Flex flexDirection="column" mt={4} width={1} px={3}>
       <Flex alignSelf="flex-end" alignItems="center">
-        {/* uncomment after translations are ready */}
-        {/* <LanguageSwitcher /> */}
+        <LanguageSwitcher />
         <Button
           styleName="login"
           onClick={() => {

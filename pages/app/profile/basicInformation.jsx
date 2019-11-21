@@ -30,7 +30,8 @@ class BasicInformation extends PureComponent {
     cuisines: [],
     foodsAndDrinks: [],
     quirks: [],
-    diets: []
+    diets: [],
+    michelinStars: []
   };
 
   componentDidMount() {
@@ -69,7 +70,7 @@ class BasicInformation extends PureComponent {
       ownerRole,
       bio
     },
-    { types, cuisines, foodsAndDrinks, quirks, diets },
+    { types, cuisines, foodsAndDrinks, quirks, diets, michelinStars },
     { country: countryValue, region: regionValue }
   ) => {
     const { updateBusiness, businessId } = this.props;
@@ -104,7 +105,8 @@ class BasicInformation extends PureComponent {
             ...cuisines.slice(0, 5),
             ...foodsAndDrinks.slice(0, 6),
             ...quirks.slice(0, 10),
-            ...diets
+            ...diets,
+            ...michelinStars.slice(0, 1)
           ])
         : undefined,
       ownerRole,
@@ -134,7 +136,14 @@ class BasicInformation extends PureComponent {
       getProfileBusiness,
       query
     } = this.props;
-    const { types, cuisines, foodsAndDrinks, quirks, diets } = this.state;
+    const {
+      types,
+      cuisines,
+      foodsAndDrinks,
+      quirks,
+      diets,
+      michelinStars
+    } = this.state;
     const initialValues = getInitialValues({ business, businessGroups });
     return (
       <ProfileLayout
@@ -166,6 +175,7 @@ class BasicInformation extends PureComponent {
             foodsAndDrinks,
             quirks,
             diets,
+            michelinStars,
             isErrorVisibilityRequired: !!query.isErrorVisibilityRequired,
             handleSubmit: this.handleSubmit
           }}

@@ -1,0 +1,14 @@
+{
+  "header": "Widgets",
+  "addWidget": "Agregar widget",
+  "editWidget": "Editar widget",
+  "addNewWidget": "Agregar nuevo widget",
+  "domainsLabel": "Dominios (separados por comas)",
+  "domainsPlaceholder": "foodetective.co, google.com",
+  "widgetsList": "Lista de widgets",
+  "widgetScript": "Script de widgets",
+  "widgetScriptDescription": "El script de widgets Foodetecive se puede agregar al final de su documento HTML. La cadena 'YOUR_WRAPPER_ID_HERE' debe reemplazarse con el ID del elemento contenedor. El idioma del widget se establecerá de acuerdo con el valor navigator.language de forma predeterminada. Puede configurar el idioma del widget configurando el tercer parámetro de la función window.foodetectiveWidget.init. El idioma de reserva es el inglés.",
+  "removeModalHeader": "¿Seguro que quieres eliminar este widget? Si lo hace, dejará de funcionar en su sitio web.",
+  "confirm": "Confirmar",
+  "cancel": "Cancelar"
+}

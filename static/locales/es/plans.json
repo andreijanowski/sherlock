@@ -1,0 +1,70 @@
+{
+  "header": "Mi plan",
+  "paragraph": "Elija el plan que se adapte a sus objetivos comerciales. Si es propietario de una gran empresa o gerente de cadena, agregue a su gerente a cargo",
+  "yourCurrentPlan": "Tu Plan actual",
+  "paymentInfo": "Informaciones de pago",
+  "changeCard": "Cambiar tarjeta",
+  "setCard": "Establecer tarjeta",
+  "nextPaymentAt": "Prossimo pagamento a",
+  "trialEndsAt": "Prueba termina a las",
+  "cancelAt": "Cancelar en",
+  "finishPoweringYouUp": "¡Terminemos de energizarte!",
+  "addCard": "Agregar una nueva tarjeta",
+  "cardNumber": "Número de tarjeta",
+  "expirationDate": "Fecha de caducidad",
+  "ccv": "CCV",
+  "postalCode": "Código postal",
+  "upgradeMyPlan": "Actualiza mi plan",
+  "choose": "Escoger",
+  "chosen": "Elegido",
+  "selectCardForPayment": "Seleccionar tarjeta para pago",
+  "secureCreditCardPayment": "Pago seguro con tarjeta de crédito",
+  "success": "Éxito",
+  "successMessage": "¡Su suscripción se actualizó correctamente!",
+  "goBackToPlans": "Volver a los planes",
+  "promotion": {
+    "startFirstLine": "Obtener ",
+    "promotionPlan": "Foodetective for business Basic",
+    "startLastLine": " por 3 meses gratis.",
+    "endFirstLine": "La oferta es muy limitada, solo tenemos ",
+    "endLastLine": "Quedan 1000 espacios"
+  },
+  "billingYearly": "Facturación anual (ahorre hasta un 30%)",
+  "billingMonthly": "Facturación mensual",
+  "options": {
+    "website": "Página web",
+    "widget": "Widget",
+    "mobileApp": "Aplicación de teléfono móvil",
+    "paidReservation": "Reserva",
+    "reservations": "Reservaciones",
+    "takeAway": "Para llevar",
+    "paidBooking": "Reserva",
+    "bookings": "Reservas",
+    "catering": "Abastecimiento",
+    "privatisation": "Privatización",
+    "delivery": "Entrega / para llevar",
+    "digitalMarketing": "Publicidad digital"
+  },
+  "essential": {
+    "name": "Esencial",
+    "priceDescription": "Siempre",
+    "price": {
+      "month": "Gratis",
+      "year": "Gratis"
+    },
+    "buttonText": "Crear perfil"
+  },
+  "basic": {
+    "name": "Básico",
+    "mostPopular": "Más popular",
+    "priceDescription": "A partir de",
+    "price": {
+      "month": "€ 29,90",
+      "year": "€ 358,80",
+      "beta": "€ 249,90"
+    },
+    "month": "mes",
+    "year": "año",
+    "buttonText": "Comience a las"
+  }
+}

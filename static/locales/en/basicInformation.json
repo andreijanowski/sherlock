@@ -27,6 +27,8 @@
   "quirksPlaceholder": "First Dates",
   "diets": "Diets (optional)",
   "dietsPlaceholder": "Vegan",
+  "michelinStars": "Michelin Stars",
+  "michelinStarsPlaceholder": "1 Michelin Star",
   "additionalInformation": "Additional information:",
   "ownerRoleLabel": "What is your role? (optional)",
   "ownerRolePlaceholder": "Owner",

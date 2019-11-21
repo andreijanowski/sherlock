@@ -1,0 +1,14 @@
+{
+  "header": "Widgets",
+  "addWidget": "Widget hinzufügen",
+  "editWidget": "Widget bearbeiten",
+  "addNewWidget": "Neues Widget hinzufügen",
+  "domainsLabel": "Domains (durch Komma getrennt)",
+  "domainsPlaceholder": "foodetective.co, google.com",
+  "widgetsList": "Widgets-Liste",
+  "widgetScript": "Widget-Skript",
+  "widgetScriptDescription": "Das Foodetecive Widget-Skript kann am unteren Rand Ihres HTML-Dokuments hinzugefügt werden. Die Zeichenfolge 'YOUR_WRAPPER_ID_HERE' sollte durch die Wrapperelement-ID ersetzt werden. Die Sprache des Widgets wird standardmäßig gemäß dem Wert von navigator.language festgelegt. Sie können die Widget-Sprache festlegen, indem Sie den dritten Parameter der Funktion window.foodetectiveWidget.init festlegen. Fallback-Sprache ist Englisch.",
+  "removeModalHeader": "Möchten Sie dieses Widget wirklich löschen? Wenn Sie dies tun, funktioniert Ihre Website nicht mehr.",
+  "confirm": "Bestätigen",
+  "cancel": "Stornieren"
+}

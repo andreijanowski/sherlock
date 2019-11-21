@@ -1,0 +1,25 @@
+{
+  "mustBeLoggedIn": "Sie müssen angemeldet sein, um fortzufahren",
+  "pastDateError": "Das gewählte Datum liegt zu weit in der Vergangenheit",
+  "changePasswordSuccess": "Das Passwort wurde geändert",
+  "errors": {
+    "missing_attributes": {
+      "Missing attributes": "Fehlende Attribute"
+    },
+    "business_is_visible_in_lefood": {
+      "base": "Wert kann nicht aktualisiert werden, weil das Geschäft derzeit in Lefood sichtbar ist"
+    },
+    "business_has_pending_orders": {
+      "base": "Wert kann nicht aktualisiert werden, weil das Geschäft ausstehende Bestellungen hat "
+    },
+    "blank": {
+      "other_rejection_reason": "Anderer Ablehnungsgrund darf nicht leer sein, wenn ausgewählt"
+    },
+    "coerce": {
+      "data[attributes][unavailable_elements] is invalid": "Nicht verfügbare Gerichte dürfen nicht leer sein"
+    },
+    "elements_not_found": {
+      "base": "Konnte keine angegebenen Elemente für diese Bestellung finden"
+    }
+  }
+}

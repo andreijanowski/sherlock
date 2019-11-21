@@ -54,9 +54,9 @@ const MobileNav = ({
           value={{
             value: business && business.get("id"),
             label:
-              (business && business.get("name")) ||
+              (business && business.getIn(["attributes", "name"])) ||
               t("app:manageProfile.unnamedBusiness"),
-            src: business && business.getIn(["logo", "url"])
+            src: business && business.getIn(["attributes", "logo", "url"])
           }}
           items={prepareBusinessesList(t, businesses)}
           onChange={b => changeCurrentBusiness(b.value)}
@@ -108,15 +108,22 @@ MobileNav.defaultProps = {
 };
 
 export default connect(
-  state => ({
-    business: state.getIn(["users", "currentBusiness", "data"]),
-    businesses: state.getIn([
-      "users",
-      "profileBusinesses",
-      "data",
-      "businesses"
-    ])
-  }),
+  state => {
+    const businessData = state.getIn(["users", "currentBusiness", "data"]);
+    const business =
+      businessData &&
+      businessData.get("businesses") &&
+      businessData.get("businesses").first();
+    return {
+      business,
+      businesses: state.getIn([
+        "users",
+        "profileBusinesses",
+        "data",
+        "businesses"
+      ])
+    };
+  },
   {
     addBusiness: postBusiness,
     changeCurrentBusiness: setCurrentBusiness,

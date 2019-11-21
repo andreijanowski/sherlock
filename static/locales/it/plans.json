@@ -1,0 +1,70 @@
+{
+  "header": "Il mio piano",
+  "paragraph": "Scegliere un piano adatto agli obiettivi aziendali. Se sei un grande imprenditore o un direttore di catena , si prega di aggiungere il direttore responsabile",
+  "yourCurrentPlan": "'il vostro piano attuale",
+  "paymentInfo": "Informazioni sul pagamento",
+  "changeCard": "Cambiare carta",
+  "setCard": "Impostare la carta",
+  "nextPaymentAt": "Prochain paiement pour",
+  "trialEndsAt": "La prova termina alle",
+  "cancelAt": "Annulla alle",
+  "finishPoweringYouUp": "Finiamo di potenziarti!",
+  "addCard": "Aggiungi una nuova carta",
+  "cardNumber": "Numero di carta",
+  "expirationDate": "Data di scadenza",
+  "ccv": "CCV",
+  "postalCode": "Codice postale",
+  "upgradeMyPlan": "Aggiorna il mio piano",
+  "choose": "Scegliere",
+  "chosen": "Scelto",
+  "selectCardForPayment": "Seleziona la carta per il pagamento",
+  "secureCreditCardPayment": "Pagamento sicuro con carta di credito",
+  "success": "Successo",
+  "successMessage": "La tua iscrizione è stata aggiornata con successo!",
+  "goBackToPlans": "Torna ai piani",
+  "promotion": {
+    "startFirstLine": "Ottenere ",
+    "promotionPlan": "Foodetective per affari Basic",
+    "startLastLine": " per 3 mesi gratis.",
+    "endFirstLine": "Completa il tuo profilo online. L'offerta è molto limitata, abbiamo solo ",
+    "endLastLine": "1000 slot/spazi rimasti."
+  },
+  "billingYearly": "Fatturazione annuale (risparmia fino al 30%)",
+  "billingMonthly": "Fatturazione mensile",
+  "options": {
+    "website": "Pagina web",
+    "widget": "Widget",
+    "mobileApp": "App per telefono mobile",
+    "paidReservation": "Prenotazione",
+    "reservations": "Prenotazioni",
+    "takeAway": "Da asporto",
+    "paidBooking": "Prenotazione",
+    "bookings": "Prenotazioni",
+    "catering": "Catering",
+    "privatisation": "Privatizzazione",
+    "delivery": "Consegna / da asporto",
+    "digitalMarketing": "Marketing digitale"
+  },
+  "essential": {
+    "name": "Essenziale",
+    "priceDescription": "Per sempre",
+    "price": {
+      "month": "Gratuito",
+      "year": "Gratuito"
+    },
+    "buttonText": "Crea un profilo"
+  },
+  "basic": {
+    "name": "Di base",
+    "mostPopular": "Più popolare",
+    "priceDescription": "A partire da",
+    "price": {
+      "month": "€ 29,90",
+      "year": "€ 358.80",
+      "beta": "€ 249,90"
+    },
+    "month": "mese",
+    "year": "anno",
+    "buttonText": "Inizia da"
+  }
+}

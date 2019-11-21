@@ -14,7 +14,8 @@ import {
 class FormDropdown extends PureComponent {
   render() {
     const { input, meta, label, items } = this.props;
-
+    const inputData = items.find(i => i.value === input.value);
+    const labelContent = inputData ? inputData.label : "";
     return (
       <Downshift
         id={`form-dropdown-${input.name}`}
@@ -33,7 +34,7 @@ class FormDropdown extends PureComponent {
             <FieldWrapper>
               <ToggleButton {...getToggleButtonProps({ isOpen })}>
                 <DropdownLabel>{label}</DropdownLabel>
-                {items.find(i => i.value === input.value).label}
+                {labelContent}
                 <ExpandIcon />
                 {meta.data.saving && !meta.active && <LoadingIndicator />}
               </ToggleButton>

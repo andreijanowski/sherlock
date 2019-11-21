@@ -1,5 +1,5 @@
 import { required, validateEmail } from "utils/validators";
-import { FormInput, ActionIcon } from "components";
+import { FormInput, FormCheckbox, ActionIcon } from "components";
 import { Box } from "@rebass/grid";
 import { func, shape, string, number } from "prop-types";
 import { Wrapper } from "./styled";
@@ -7,7 +7,7 @@ import { Actions } from "../styled";
 
 const Member = ({ name, fields, index, t, removeMember }) => (
   <Wrapper key={name}>
-    <Box width={[1, 1 / 2]} pr={2}>
+    <Box width={[1, 1, 1, "calc(33% - 32px)"]} pr={[0, 0, 0, 2]}>
       <FormInput
         label={t("emailLabel")}
         placeholder={t("emailPlaceholder")}
@@ -20,7 +20,7 @@ const Member = ({ name, fields, index, t, removeMember }) => (
         type="text"
       />
     </Box>
-    <Box width={[2 / 3, 1 / 3]} pl={[0, 2]}>
+    <Box width={[1, 1 / 3, 1 / 3, "calc(33% - 32px)"]} pl={[0, 0, 0, 2]}>
       <FormInput
         label={t("roleLabel")}
         placeholder={t("rolePlaceholder")}
@@ -29,7 +29,16 @@ const Member = ({ name, fields, index, t, removeMember }) => (
         validate={fields.value[index].email && required(t)}
       />
     </Box>
-    <Box width={[1 / 3, 1 / 6]}>
+    <Box
+      width={["calc(100% - 96px)", 1 / 3, 1 / 3, "calc(33% - 32px)"]}
+      pl={[0, 2]}
+    >
+      <FormCheckbox
+        name={`${name}.businessManager`}
+        label={t("businessManagerLabel")}
+      />
+    </Box>
+    <Box width={96}>
       <Actions justifyContent="center">
         <ActionIcon
           size="sm"

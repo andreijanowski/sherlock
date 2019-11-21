@@ -1,0 +1,41 @@
+{
+  "controlCenter": "Centro de control (pronto)",
+  "reservations": "Reservas",
+  "takeAway": "Para Llevar",
+  "bookings": "Reservas (pronto)",
+  "delivery": "Entrega (pronto)",
+  "catering": "Abastecimiento/catering",
+  "privatisations": "Privatizaciones",
+  "socialMedia": "Redes sociales (pronto)",
+  "billing": "Facturación (pronto)",
+  "manageProfile": {
+    "manageProfile": "Administrar perfil",
+    "basicInformation": "Información básica",
+    "contactInformation": "Información del contacto",
+    "openingHours": "Horario de apertura",
+    "picturesAndMenus": "Imágenes y menús",
+    "additionalInformation": "Información Adicional",
+    "inviteYourTeam": "Invita a tu equipo",
+    "unnamedBusiness": "Negocio sin nombre",
+    "addNewBusiness": "Agregar nuevo negocio",
+    "publish": "Publicar negocios",
+    "published": "Publicado",
+    "waitingForApproval": "A la espera de la aprobación",
+    "liveInfo": "Información en vivo",
+    "widgets": "Widgets",
+    "unPublish": "Negocio no publicado"
+  },
+  "subscriptions": "Suscripciones",
+  "userSettings": {
+    "userSettings": "Configuración",
+    "basicInformation": "Información básica",
+    "password": "Contraseña",
+    "logout": "Cerrar sesión"
+  },
+  "feedback": "Realimentación/comentario",
+  "docs": "Documentos",
+  "back": "Atrás",
+  "crop": "Cortar",
+  "cancel": "Cancelar",
+  "confirmAccount": "Le enviamos un mensaje de confirmación a su correo electrónico. Confirme su cuenta dentro de 3 días"
+}

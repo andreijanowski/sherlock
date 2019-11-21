@@ -1,0 +1,6 @@
+{
+  "header": "Conectar con stripe",
+  "success": "Verbindung mit Stripe erfolgreich",
+  "fail": "Verbindung mit Stripe fehlgeschlagen",
+  "goToOrders": "Gehe zu Bestellungen"
+}

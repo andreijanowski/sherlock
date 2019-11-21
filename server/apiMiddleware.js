@@ -1,3 +1,4 @@
+const humps = require("humps");
 const axiosClient = require("./utils/axiosClient");
 const oauthClient = require("./utils/oauthClient");
 
@@ -51,7 +52,11 @@ const apiMiddleware = async (req, res, next) => {
         params: query
       });
       res.status(payload.status);
-      res.send(payload.data);
+      if (url === "/v1/users/me/authenticate_pusher") {
+        res.send(humps.decamelizeKeys(payload.data));
+      } else {
+        res.send(payload.data);
+      }
     } catch (e) {
       res.status(e.response.status);
       res.send(e.response.data);
