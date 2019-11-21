@@ -5,7 +5,8 @@ export const Wrapper = styled(Flex).attrs(() => ({
   width: 1,
   alignItems: "center",
   justifyContent: "space-between",
-  flexWrap: "wrap"
+  flexWrap: "wrap",
+  mb: 4
 }))`
   position: relative;
 `;
