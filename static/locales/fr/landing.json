@@ -12,7 +12,7 @@
     "testimonials": "Témoignages"
   },
   "services": {
-    "header": "Prestations de service",
+    "header": "Services",
     "paragraph": {
       "start": "Conçu pour s'adapter à l'évolution de vos ",
       "firstKeyword": "besoins",
@@ -26,10 +26,10 @@
       "À emporter",
       "Paiements",
       "Privatisation",
-      "Restauration/catering",
-      "Analytique",
+      "Service traiteur",
+      "Statistiques",
       "Marketing",
-      "RH & Paie",
+      "RH & Salaires",
       "Fourniture",
       "Comptabilité",
       "Intégrations"
@@ -41,7 +41,7 @@
     "partners": "Les partenaires",
     "becomePartner": "Devenir un partenaire",
     "industries": {
-      "header": "Les industries",
+      "header": "Industries",
       "names": {
         "restaurants": "Restaurants",
         "hotel": "Hôtels",
@@ -59,13 +59,13 @@
     }
   },
   "features": {
-    "header": "Traits",
+    "header": "Fonctionnalités",
     "navItems": {
       "visibility": "Visibilité",
-      "analytics": "Analytique",
+      "analytics": "Statistiques",
       "bookings": "Réservations",
-      "deliveryAndTakeaway": "Livraison et emporter",
-      "cateringAndPrivatization": "Restauration et privatisation",
+      "deliveryAndTakeaway": "Livraisons et à l'emporter",
+      "cateringAndPrivatization": "Service traiteur et privatisation",
       "reviews": "Avis",
       "payments": "Paiements"
     },
@@ -107,27 +107,27 @@
       {
         "position": "Propriétaire",
         "company": "Cipollino",
-        "increase": "Augmentation de vos revenus de 29%",
+        "increase": "Augmentation des revenus de 29%",
         "quote": "Révolutionnaire! Facile à configurer, à utiliser et à gérez. Toute l'équipe en est satisfaite par sa simplicité et son interface unique."
       },
       {
         "position": "Propriétaire",
         "company": "Molokaï",
-        "increase": "Augmentation de vos revenus de 17%",
+        "increase": "Augmentation des revenus de 17%",
         "quote": "Nous avons vu une amélioration de l'efficacité dans chaque département de notre entreprise. Nous avons réussi à prendre davantage de mesures afin de ne plus utiliser de papier grâce à Foodetective."
       },
       {
         "position": "Propriétaire",
         "company": "Osteria Zaza",
-        "increase": "Augmentation de vos revenus de 19%",
+        "increase": "Augmentation des revenus de 19%",
         "quote": "Foodetective nous a aidé à augmenter notre visibilité en ligne, analyser l'entièreté de notre offre en ligne ainsi qu'à fournir à nos clients des services uniques que nous avons intégré sur notre site."
       }
     ]
   },
   "widget": {
-    "header": "Intégration de Widget",
+    "header": "Intégration de widget",
     "navLink": "Widget",
-    "paragraph": "Integrez notre widget sur notre site internet afin d'offir à nos clients une expérience hors du commun."
+    "paragraph": "Integrez notre widget sur votre site internet afin d'offir à vos clients une expérience hors du commun."
   },
-  "pricing": "Prix"
+  "pricing": "Tarifs"
 }
