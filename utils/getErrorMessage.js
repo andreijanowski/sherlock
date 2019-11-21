@@ -8,7 +8,10 @@ const isInvalidStateTransitionError = error =>
 export const getErrorMessageKey = errors => ({
   message: isInvalidStateTransitionError(errors[0])
     ? `forms:validation.error.server_error-Cannot transition state via`
-    : `forms:validation.error.${errors[0].code}-${errors[0].title}`,
+    : `forms:validation.error.${errors[0].code.replace(
+        /\\|:/g,
+        ""
+      )}-${errors[0].title.replace(/\\|:/g, "")}`,
   meta: errors[0].meta
 });
 
