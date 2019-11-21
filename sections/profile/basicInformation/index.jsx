@@ -26,6 +26,7 @@ class BasicInformationForm extends PureComponent {
     this.validateCuisinesLength = validateLength(props.t, 1, 5);
     this.validateFoodsAndDrinksLength = validateLength(props.t, 1, 6);
     this.validateQuirksLength = validateLength(props.t, 3, 10);
+    this.validateMichelinStarsLength = validateLength(props.t, 0, 1);
     this.requiredCountry = requiredProperty(props.t, "value");
     this.required = required(props.t);
   }
@@ -40,6 +41,7 @@ class BasicInformationForm extends PureComponent {
       foodsAndDrinks,
       quirks,
       diets,
+      michelinStars,
       handleSubmit,
       isErrorVisibilityRequired
     } = this.props;
@@ -203,6 +205,17 @@ class BasicInformationForm extends PureComponent {
               items={diets}
               isErrorVisibilityRequired={isErrorVisibilityRequired}
             />
+            <H3 mt={4}>{t("michelinStars")}</H3>
+            <Field
+              name="michelinStars"
+              placeholder={t("michelinStarsPlaceholder")}
+              component={FormMultipleSelect}
+              items={michelinStars}
+              isErrorVisibilityRequired={isErrorVisibilityRequired}
+              max={1}
+              min={0}
+              validate={this.validateMichelinStarsLength}
+            />
             <H3 mt={4}>{t("additionalInformation")}</H3>
             <FormInput
               name="ownerRole"
@@ -243,6 +256,9 @@ BasicInformationForm.propTypes = {
     .isRequired,
   diets: arrayOf(shape({ value: string.isRequired, label: string.isRequired }))
     .isRequired,
+  michelinStars: arrayOf(
+    shape({ value: string.isRequired, label: string.isRequired })
+  ).isRequired,
   handleSubmit: func.isRequired,
   isErrorVisibilityRequired: bool
 };

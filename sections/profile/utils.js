@@ -104,7 +104,8 @@ export const getGroupsData = groups => {
   const foodsAndDrinks = getGroupsByParentGroups(groups, ["foods", "drinks"]);
   const quirks = getGroupsByParentGroups(groups, ["quirks"]);
   const diets = getGroupsByParentGroups(groups, ["diets"]);
-  return { types, cuisines, foodsAndDrinks, quirks, diets };
+  const michelinStars = getGroupsByParentGroups(groups, ["michelin_stars"]);
+  return { types, cuisines, foodsAndDrinks, quirks, diets, michelinStars };
 };
 
 const checkLengthRange = (array, minLength, maxLength) =>

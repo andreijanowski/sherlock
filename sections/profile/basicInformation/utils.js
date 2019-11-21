@@ -2,9 +2,14 @@ import { getGroupsData } from "../utils";
 
 export const getInitialValues = ({ business, businessGroups }) => {
   if (business) {
-    const { types, cuisines, foodsAndDrinks, quirks, diets } = getGroupsData(
-      businessGroups
-    );
+    const {
+      types,
+      cuisines,
+      foodsAndDrinks,
+      quirks,
+      diets,
+      michelinStars
+    } = getGroupsData(businessGroups);
 
     return {
       name: business.get("name"),
@@ -27,7 +32,8 @@ export const getInitialValues = ({ business, businessGroups }) => {
       cuisines,
       foodsAndDrinks,
       quirks,
-      diets
+      diets,
+      michelinStars
     };
   }
   return undefined;
