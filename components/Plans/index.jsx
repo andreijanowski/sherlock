@@ -1,6 +1,6 @@
 import { func, string, bool } from "prop-types";
 import { Box } from "@rebass/grid";
-import { API_URL } from "consts";
+import { API_URL, APP_URL } from "consts";
 import Plan from "./plan";
 
 const Plans = ({
@@ -27,7 +27,7 @@ const Plans = ({
             if (choosePlan) {
               choosePlan("essential");
             } else {
-              window.location.href = `${API_URL}users/sign_up?locale=${lng}&plan=essential`;
+              window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=essential`;
             }
           }
         }}
@@ -47,7 +47,7 @@ const Plans = ({
             if (choosePlan) {
               choosePlan("basic");
             } else {
-              window.location.href = `${API_URL}users/sign_up?locale=${lng}&plan=basic`;
+              window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=basic`;
             }
           }
         }}

@@ -2,7 +2,7 @@ import React from "react";
 import { Flex, Box } from "@rebass/grid";
 import { H2, Button, Paragraph } from "components";
 import { func, string } from "prop-types";
-import { API_URL } from "consts";
+import { API_URL, APP_URL } from "consts";
 import { Screen, DescriptionWrapper } from "./Template.styled";
 
 const Template = ({ t, lng, activeNavItem }) => (
@@ -15,7 +15,7 @@ const Template = ({ t, lng, activeNavItem }) => (
       <Flex flex={1} alignItems="flex-end">
         <Button
           onClick={() => {
-            window.location.href = `${API_URL}users/sign_up?locale=${lng}&plan=basic`;
+            window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=essential`;
           }}
           styleName="white"
         >

@@ -9,7 +9,12 @@ import {
 import { func, string } from "prop-types";
 import uuid from "uuid/v1";
 import Cookies from "js-cookie";
-import { API_URL, OAUTH_PUBLIC_CLIENT_ID, OAUTH_CALLBACK_URL } from "consts";
+import {
+  API_URL,
+  APP_URL,
+  OAUTH_PUBLIC_CLIENT_ID,
+  OAUTH_CALLBACK_URL
+} from "consts";
 import { SectionItem } from "./styled";
 import { LogoWrapper, LogoMobileWrapper } from "../sharedStyled";
 
@@ -70,7 +75,7 @@ const Navigation = ({ t, lng, scrollTo }) => (
         <Button
           styleName="signIn"
           onClick={() => {
-            window.location.href = `${API_URL}users/sign_up?locale=${lng}&plan=basic`;
+            window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=essential`;
           }}
         >
           {t("common:signIn")}

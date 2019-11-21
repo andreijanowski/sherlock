@@ -1,7 +1,7 @@
 import { func, string } from "prop-types";
 import { Button, BlueText } from "components";
 import { Flex, Box } from "@rebass/grid";
-import { API_URL } from "consts";
+import { API_URL, APP_URL } from "consts";
 import { H1Styled } from "./styled";
 import YoutubeVideo from "./YoutubeVideo";
 import { ParagraphStyled } from "../sharedStyled";
@@ -21,7 +21,7 @@ const TopSection = ({ t, lng }) => (
             fluid
             fullHeight
             onClick={() => {
-              window.location.href = `${API_URL}users/sign_up?locale=${lng}&plan=basic`;
+              window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=essential`;
             }}
           >
             {t("topSection.getStartedForFree")}

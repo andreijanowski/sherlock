@@ -11,6 +11,7 @@ const setCacheForStaticAssets = require("./setCacheForStaticAssets");
 const handleOauthCallback = require("./handleOauthCallback");
 const handleTokenRefresh = require("./handleTokenRefresh");
 const handleUserLogout = require("./handleUserLogout");
+const handleInstantLogin = require("./handleInstantLogin");
 const apiMiddleware = require("./apiMiddleware");
 const handleNextjs = require("./handleNextjs");
 const startServer = require("./startServer");
@@ -39,6 +40,7 @@ const pusherParser = bodyParser.urlencoded({
     setCacheForStaticAssets(dev)
   );
   server.get("/logout-user", handleUserLogout);
+  server.get("/instant-login", handleInstantLogin);
   server.get("/oauth-callback", handleOauthCallback);
   server.post("/refresh-token", handleTokenRefresh);
   server.use(pusherParser);
