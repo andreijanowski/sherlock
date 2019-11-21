@@ -111,5 +111,18 @@
   "stripeCurrencyNotSet": "Währung für Stripe ist nicht festgelegt",
   "allowPickup": "Abholung zulassen",
   "averageDeliveryTime": "Durchschnittliche Lieferzeit",
-  "minAmountForDelivery": "Mindestbetrag für die Lieferung"
+  "minAmountForDelivery": "Mindestbetrag für die Lieferung",
+  "reset": "Filter zurücksetzen",
+  "ordersHistory": "Auftragsverlauf",
+  "index": "Index",
+  "time": "Zeit",
+  "filter": "Filter",
+  "filters": "Filter",
+  "day": "Tag",
+  "shortId": "ICH WÜRDE",
+  "totalCostCents": "Gesamtkosten",
+  "date": "Datum",
+  "canceled": "Abgesagt",
+  "state": "Zustand",
+  "states": "Zustände"
 }

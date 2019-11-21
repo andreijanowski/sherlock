@@ -27,7 +27,7 @@
       "Pagamenti",
       "Privatizzazione",
       "Catering",
-      "Analytics",
+      "analitica",
       "Marketing",
       "Risorse umane e stipendi",
       "Fornitura",
@@ -106,7 +106,7 @@
     "list": [
       {
         "position": "Proprietario",
-        "company": "Cipollino",
+        "company": "cipollino",
         "increase": "Aumenta le tue entrate del 29%",
         "quote": "Revoluzionario! Facile da configurare, utilizzare e gestire. L'intero team lo adora per la sua semplicità e la sua interfaccia unica."
       },
@@ -126,7 +126,7 @@
   },
   "widget": {
     "header": "Integrazione di Widget",
-    "navLink": "Widget",
+    "navLink": "widget",
     "paragraph": "Integra il nostro widget sul tuo sito Web per offrire ai tuoi clienti un'esperienza di prima classe."
   },
   "pricing": "Prezzi"

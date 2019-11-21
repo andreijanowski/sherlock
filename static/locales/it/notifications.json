@@ -21,5 +21,7 @@
     "elements_not_found": {
       "base": "Impossibile trovare gli elementi dati per questo ordine"
     }
-  }
+  },
+  "orderUpdate": "L'ordine è stato appena aggiornato. Per ulteriori dettagli, consultare la pagina Consegna / da asporto.",
+  "reservationUpdate": "La prenotazione è stata appena aggiornata. Si prega di controllare la pagina delle prenotazioni per maggiori dettagli."
 }

@@ -33,9 +33,8 @@
   "billingMonthly": "Fatturazione mensile",
   "options": {
     "website": "Pagina web",
-    "widget": "Widget",
+    "widget": "widget",
     "mobileApp": "App per telefono mobile",
-    "paidReservation": "Prenotazione",
     "reservations": "Prenotazioni",
     "takeAway": "Da asporto",
     "paidBooking": "Prenotazione",

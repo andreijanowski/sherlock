@@ -111,5 +111,18 @@
   "stripeCurrencyNotSet": "La moneda para stripe no está configurada",
   "allowPickup": "Permitir recolección",
   "averageDeliveryTime": "Tiempo de entrega promedio",
-  "minAmountForDelivery": "Cantidad mínima para entrega"
+  "minAmountForDelivery": "Cantidad mínima para entrega",
+  "filter": "Filtrar",
+  "ordersHistory": "Historial de pedidos",
+  "date": "Fecha",
+  "filters": "Filtros",
+  "reset": "Restablecer filtros",
+  "states": "Estados",
+  "totalCostCents": "Coste total",
+  "day": "Día",
+  "state": "Estado",
+  "index": "Índice",
+  "canceled": "Cancelado",
+  "time": "Hora",
+  "shortId": "CARNÉ DE IDENTIDAD"
 }
