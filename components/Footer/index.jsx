@@ -1,10 +1,6 @@
 import { withTranslation } from "i18n";
 import { func } from "prop-types";
-import {
-  FoodetectiveLogo,
-  // uncomment after translations are ready
-  LanguageSwitcher
-} from "components";
+import { FoodetectiveLogo, LanguageSwitcher } from "components";
 import { Box } from "@rebass/grid";
 import { privacyPolicyLink, termsAndConditionsLink } from "consts";
 import {
@@ -135,7 +131,6 @@ const Footer = ({ t }) => {
       </TextWrapper>
       <CopyrightWrapper>
         <CopyrightNote>{t("copyrightNote", { currentYear })}</CopyrightNote>
-        {/* uncomment after translations are ready */}
         <LanguageSwitcher withBorder={false} listPosition="top" />
       </CopyrightWrapper>
     </FooterWrapper>
