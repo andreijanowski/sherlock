@@ -1,8 +1,8 @@
 {
-  "header": "inviter votre équipe",
+  "header": "Inviter votre équipe",
   "members": "Membres",
-  "emailLabel": "E-mail",
-  "emailPlaceholder": "name@company.com",
-  "roleLabel": "fonction/rôle",
-  "rolePlaceholder": "Manager"
+  "emailLabel": "Email",
+  "emailPlaceholder": "nom@entreprise.com",
+  "roleLabel": "Fonction/rôle",
+  "rolePlaceholder": "Directeur"
 }

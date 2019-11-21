@@ -4,5 +4,6 @@
   "highlightedDescription": "3 meses libre",
   "emailHelperTitle": "¿Cuál es el correo electrónico del administrador?",
   "inviteButton": "Invitación",
-  "addEmailButton": "Agregar más direcciones de correo"
+  "addEmailButton": "Agregar más direcciones de correo",
+  "skip": "Omitir"
 }

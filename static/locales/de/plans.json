@@ -24,7 +24,7 @@
   "goBackToPlans": "Gehe zurück zu den Plänen",
   "promotion": {
     "startFirstLine": "Bekommen ",
-    "promotionPlan": "Foodetective for business Basic",
+    "promotionPlan": "Foodetective für Unternehmen Basic",
     "startLastLine": " für 3 Monate kostenlos.",
     "endFirstLine": "Vervollständigen Sie einfach Ihr Profil online. Das Angebot ist sehr begrenzt, wir haben nur ",
     "endLastLine": "1000 slots/Plätze übrig."
@@ -35,17 +35,17 @@
     "website": "Website",
     "widget": "Widget",
     "mobileApp": "Handy-App",
-    "paidReservation": "Booking",
-    "reservations": "Reservations",
-    "takeAway": "zum Mitnehmen",
+    "paidReservation": "Buchung",
+    "reservations": "Reservierungen",
+    "takeAway": "Zum Mitnehmen",
     "paidBooking": "Reservierung",
     "bookings": "Reservierungen",
-    "catering": "Catering",
+    "catering": "Gastronomie",
     "privatisation": "Privatisierung",
     "delivery": "Lieferung / zum Mitnehmen",
-    "digitalMarketing": "Digital marketing",
     "redirections": "Weiterleitungen",
-    "integrations": "Integrationen"
+    "integrations": "Integrationen",
+    "digitalMarketing": "Digitales Marketing"
   },
   "essential": {
     "name": "Wesentlich",
@@ -61,9 +61,9 @@
     "mostPopular": "Am beliebtesten",
     "priceDescription": "Beginnt um",
     "price": {
-      "month": "€29.90",
-      "year": "€358.80",
-      "beta": "€249.90"
+      "month": "29,90 €",
+      "year": "358,80 €",
+      "beta": "249,90 €"
     },
     "month": "Monat",
     "year": "Yahr",

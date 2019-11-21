@@ -1,15 +1,10 @@
 {
   "name": "Name",
-  "email": "E-mail",
+  "email": "Email",
   "updatePhoto": "Aktualisieren foto",
-  "avatarInfo": "jpg/png",
+  "avatarInfo": "jpg / png",
   "invalidFileType": "Ungültiger Dateityp",
   "update": "Aktualisieren",
   "validFileTypeInfo": "Akzeptiere jpg / png",
-  "confirmEmailChange": "Eine Bestätigungs-E-Mail wurde an Ihre neue E-Mail-Adresse {{email}} gesendet. Um die Änderung der E-Mail zu bestätigen, klicken Sie auf den Bestätigungs-Link in der E-Mail.",
-  "password": {
-    "currentPassword": "Aktuelles Passwort",
-    "newPassword": "Neues Passwort",
-    "passwordConfirmation": "Bestätige neues Passwort"
-  }
+  "confirmEmailChange": "Eine Bestätigungs-E-Mail wurde an Ihre neue E-Mail-Adresse {{email}} gesendet. Um die Änderung der E-Mail zu bestätigen, klicken Sie auf den Bestätigungs-Link in der E-Mail."
 }

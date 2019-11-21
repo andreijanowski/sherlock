@@ -4,5 +4,6 @@
   "highlightedDescription": "3 mois gratuits",
   "emailHelperTitle": "Quel est le courrier électronique du gestionnaire?",
   "inviteButton": "Invitez",
-  "addEmailButton": "Ajouter plus d'adresses email"
+  "addEmailButton": "Ajouter plus d'adresses email",
+  "skip": "Sauter"
 }

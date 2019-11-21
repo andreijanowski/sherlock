@@ -2,9 +2,9 @@
   "header": "Öffnungszeiten",
   "openingHours": "Öffnungszeiten",
   "openedFromLabel": "Von",
-  "openedFromPlaceholder": "10:00 AM",
-  "openedToLabel": "zu",
-  "openedToPlaceholder": "08:00 PM",
+  "openedFromPlaceholder": "10:00 UHR",
+  "openedToLabel": "Zu",
+  "openedToPlaceholder": "20:00 Uhr",
   "weekdays": [
     "Sonntag",
     "Montag",
