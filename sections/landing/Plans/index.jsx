@@ -1,16 +1,16 @@
 import { Flex, Box } from "@rebass/grid";
-import { func, string } from "prop-types";
+import { func, string, oneOfType, shape, any } from "prop-types";
 import { Plans, PlansBillingInterval } from "components";
 import { H2Styled, ParagraphStyled, PlansWrapper, TextWrapper } from "./styled";
-// import PromotionBoard from "./promotionBoard";
 
 const PlansMainComponent = ({
   t,
+  plansRef,
   lng,
   billingInterval,
   handleChangeBillngPeriod
 }) => (
-  <Flex flexDirection="column" width={1} mb={6} px={3}>
+  <Flex ref={plansRef} flexDirection="column" width={1} mb={6} mt={[0, 4]}>
     <TextWrapper>
       <Flex
         flexDirection="row"
@@ -27,8 +27,6 @@ const PlansMainComponent = ({
         <Box />
       </Flex>
       <ParagraphStyled>{t("plans:paragraph")}</ParagraphStyled>
-      {/* Hiden for now */}
-      {/* <PromotionBoard {...{ t }} /> */}
     </TextWrapper>
     <PlansWrapper>
       <Plans
@@ -48,7 +46,8 @@ PlansMainComponent.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   billingInterval: string.isRequired,
-  handleChangeBillngPeriod: func.isRequired
+  handleChangeBillngPeriod: func.isRequired,
+  plansRef: oneOfType([func, shape({ current: any })]).isRequired
 };
 
 export default PlansMainComponent;

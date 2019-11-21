@@ -16,7 +16,7 @@ const Paragraph = styled(Box).attrs(p => ({
   font-size: ${p => (p.app ? p.theme.fontSizes.f14 : p.theme.fontSizes.f16)};
   line-height: 1.5;
   @media (min-width: ${p => p.theme.breakpoints[1]}) {
-    font-size: ${p => p.theme.fontSizes.f21};
+    font-size: ${p => p.theme.fontSizes.f18};
   }
 `;
 

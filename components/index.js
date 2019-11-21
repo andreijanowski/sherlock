@@ -67,7 +67,6 @@ export { default as ConnectWithStripe } from "./ConnectWithStripe";
 export { default as CookiesModal } from "./CookiesModal";
 export { default as Plans, PlansBillingInterval } from "./Plans";
 export { default as Opacity } from "./Opacity";
-export { default as YoutubeModal } from "./YoutubeModal";
 export { default as Picture } from "./Picture";
 export { default as DndColumn } from "./Dnd/Column";
 export { default as DndTable } from "./Dnd/Table";

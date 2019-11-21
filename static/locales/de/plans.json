@@ -1,6 +1,6 @@
 {
-  "header": "Mein Plan",
-  "paragraph": "Wählen Sie den Plan, der Ihren Geschäftszielen entspricht. Wenn Sie ein Großunternehmer oder Kettenmanager sind, fügen Sie bitte Ihren zuständigen Manager hinzu.",
+  "header": "Zahlen Sie, wenn Sie wachsen",
+  "paragraph": "Wählen Sie den Plan, der Ihren Geschäftszielen, Größen- und Wachstumsplänen entspricht. Wenn Sie eine große Franchise oder Gruppe leiten, wenden Sie sich bitte an unser Team, um unsere maßgeschneiderte Option zu erhalten.",
   "yourCurrentPlan": "Ihr aktueller Plan",
   "paymentInfo": "Zahlungsinformationen",
   "changeCard": "Karte wechseln",
@@ -43,6 +43,8 @@
     "catering": "Gastronomie",
     "privatisation": "Privatisierung",
     "delivery": "Lieferung / zum Mitnehmen",
+    "redirections": "Weiterleitungen",
+    "integrations": "Integrationen",
     "digitalMarketing": "Digitales Marketing"
   },
   "essential": {

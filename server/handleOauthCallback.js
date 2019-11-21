@@ -5,6 +5,14 @@ const clearAuthCookies = require("./utils/clearAuthCookies");
 
 function handleOauthCallback(req, res) {
   if (req.query.state === req.cookies.loginStateParam) {
+    let redirectTo = "/";
+    if (req.cookies.chosenPlan === "basic") {
+      redirectTo = "/app/subscriptions";
+      res.clearCookie("chosenPlan");
+    } else if (req.cookies.chosenPlan === "essential") {
+      redirectTo = "/referrals";
+      res.clearCookie("chosenPlan");
+    }
     res.clearCookie("loginStateParam");
     oauthClient({
       grantType: "authorization_code",
@@ -13,7 +21,7 @@ function handleOauthCallback(req, res) {
     })
       .then(payload => {
         setAuthCookies(res, payload.data);
-        res.redirect("/");
+        res.redirect(redirectTo);
       })
       .catch(err => {
         res.status(err.response.status);

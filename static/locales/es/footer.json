@@ -3,17 +3,12 @@
     "columnOne": {
       "title": "Únete a nosotros",
       "links": [
-        "¿Por qué registrarse?",
-        "Asociarse con nosotros",
-        "Conviértase en revendedor",
-        "Integraciones"
+        "Asociarse con nosotros"
       ]
     },
     "columnTwo": {
       "title": "Ayuda",
       "links": [
-        "Preguntas más frecuentes",
-        "Contáctenos",
         "Blog"
       ]
     },

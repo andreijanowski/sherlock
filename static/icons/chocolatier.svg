@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="112px" height="112px" viewBox="0 0 112 112" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>chocolatier</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="48" cy="48" r="48"></circle>
+        <filter x="-14.1%" y="-10.9%" width="128.1%" height="128.1%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.298039216   0 0 0 0 0.407843137   0 0 0 0 1  0 0 0 0.48 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-510.000000, -538.000000)">
+            <g id="chocolatier" transform="translate(518.000000, 543.000000)">
+                <g id="Group-6">
+                    <g id="Oval">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#4C68FF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <g id="Orion_chocolate-bar" transform="translate(23.000000, 23.000000)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+                        <polyline id="Path" stroke="#93A4FF" points="31.3934426 27.3770492 18.2786885 22.9508197 18.2786885 14.2622951"></polyline>
+                        <path d="M36.8852459,6.55737705 L23.7704918,19.6721311 M43.442623,13.1147541 L30.3278689,26.2295082 M23.7704918,6.55737705 L43.442623,26.2295082 M36.8852459,32.7868852 L50,19.6721311 L30.3278689,0 L17.2131148,13.1147541" id="Shape" stroke="#FFFFFF"></path>
+                        <polygon id="Path" stroke="#FFFFFF" points="0.790163934 29.4778689 17.1918033 13.0754098 36.8639344 32.747541 20.4614754 49.1491803"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

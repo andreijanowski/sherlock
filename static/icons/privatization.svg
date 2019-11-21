@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="112px" height="112px" viewBox="0 0 112 112" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>privatization</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="48" cy="48" r="48"></circle>
+        <filter x="-14.1%" y="-10.9%" width="128.1%" height="128.1%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.298039216   0 0 0 0 0.407843137   0 0 0 0 1  0 0 0 0.48 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-1038.000000, -158.000000)">
+            <g id="privatization" transform="translate(1046.000000, 163.000000)">
+                <g id="Group-6">
+                    <g id="Oval">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#4C68FF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <g id="Icon" transform="translate(16.000000, 16.000000)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+                        <g id="pocket" transform="translate(12.000000, 14.000000)">
+                            <path d="M4,0 L36,0 C38.209139,0 40,1.790861 40,4 L40,16 C40,27.045695 31.045695,36 20,36 C14.6956702,36 9.60859195,33.8928632 5.85786438,30.1421356 C2.10713681,26.3914081 4.4408921e-16,21.3043298 0,16 L0,4 C-4.4408921e-16,1.790861 1.790861,0 4,0 Z" id="Path" stroke="#93A4FF"></path>
+                            <polyline id="Path" stroke="#FFFFFF" points="12 14 20 22 28 14"></polyline>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

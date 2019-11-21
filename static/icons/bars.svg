@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="112px" height="112px" viewBox="0 0 112 112" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>bars</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="48" cy="48" r="48"></circle>
+        <filter x="-14.1%" y="-10.9%" width="128.1%" height="128.1%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.298039216   0 0 0 0 0.407843137   0 0 0 0 1  0 0 0 0.48 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-510.000000, -348.000000)">
+            <g id="bars" transform="translate(518.000000, 353.000000)">
+                <g id="Group-6">
+                    <g id="Oval">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#4C68FF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <g id="Orion_wine-glass" transform="translate(38.000000, 28.000000)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+                        <path d="M10.4918033,24.3278689 L10.4918033,39.3442623" id="Path" stroke="#93A4FF"></path>
+                        <path d="M20.852459,10.4918033 C20.5245902,6.09836066 19.6721311,0 19.6721311,0 L1.31147541,0 C1.31147541,0 0.459016393,6.09836066 0.131147541,10.4918033 M3.93442623,39.3442623 L17.0491803,39.3442623" id="Shape" stroke="#FFFFFF"></path>
+                        <path d="M0.131147541,10.4918033 C0.0655737705,11.4754098 0,12.3934426 0,13.1147541 C0,17.0491803 3.60655738,23.6065574 10.6229508,23.6065574 C17.6393443,23.6065574 20.9836066,17.0491803 20.9836066,13.1147541 C20.9836066,12.3934426 20.9180328,11.4754098 20.852459,10.4918033 L0.131147541,10.4918033 Z" id="Path" stroke="#FFFFFF"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

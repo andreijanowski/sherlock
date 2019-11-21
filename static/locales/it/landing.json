@@ -1,10 +1,10 @@
 {
   "topSection": {
     "header": {
-      "start": "Facciamo la vita del ristorante",
-      "end": " molto più facile"
+      "start": "Semplifichiamo",
+      "end": " la vita dei ristoratori"
     },
-    "paragraph": "Facile da usare e integrare aggregatore software di tutti i servizi di F&B a un prezzo competitivo.",
+    "paragraph": "Il primo all-in-one Software a livello mondiale per i ristoranti.",
     "getStartedForFree": "Inizia gratuitamente",
     "addYourBusiness": "Aggiungi la tua attività",
     "addManager": "Aggiungi gestore",
@@ -14,26 +14,120 @@
   "services": {
     "header": "Servizi",
     "paragraph": {
-      "start": "Progettato per il tuo/la tua/le tue/i tuoi ",
+      "start": "Progettato per le tue mutevoli ",
       "firstKeyword": "esigenze",
       "middle": " e ",
-      "secondKeyword": "tipo di affare",
-      "end": ". Puoi facilmente aggiungere e rimuovere qualsiasi servizio in qualsiasi momento, assicurandoti che il nostro servizio sia adeguato alle tue mutevoli esigenze."
+      "secondKeyword": "dimensioni aziendali",
+      "end": ". Puoi facilmente aggiungere e rimuovere tuoi servizi in qualsiasi momento, assicurandoci che il nostro software sia fatto su misura per la tua crescita."
     },
     "list": [
       "Prenotazioni",
       "Consegna",
       "Da portare via/da asporto",
       "Pagamenti",
-      "ePOS",
-      "Catering",
       "Privatizzazione",
-      "Analitica",
+      "Catering",
+      "Analytics",
+      "Marketing",
       "Risorse umane e stipendi",
       "Fornitura",
-      "Marketing",
-      "Riscontro"
+      "Contabilità",
+      "Integrazioni"
     ],
-    "more": "Un'app / sito Web per regolamentarli tutti ..."
-  }
+    "more": "Centralizziamo tutti i tuoi servizi in un'unica dashboard."
+  },
+  "cooperations": {
+    "clients": "Clienti",
+    "partners": "Partner",
+    "becomePartner": "Diventa socio",
+    "industries": {
+      "header": "Industrie",
+      "names": {
+        "restaurants": "Ristoranti",
+        "hotel": "Alberghi",
+        "coffee-shops": "Caffè",
+        "food-trucks": "Camion di cibo",
+        "salad-bar": "Mercati",
+        "ice-cream-shop": "Gelaterie",
+        "caterings": "Catering",
+        "brewery": "Pub",
+        "street-food": "Stand gastronomici",
+        "fromagerie": "Formaggio",
+        "butcher": "Macellaie",
+        "bars": "Cantine"
+      }
+    }
+  },
+  "features": {
+    "header": "Caratteristiche",
+    "navItems": {
+      "visibility": "Visibilità",
+      "analytics": "Analitica",
+      "bookings": "Prenotazioni",
+      "deliveryAndTakeaway": "Consegna e ritiro",
+      "cateringAndPrivatization": "Ristorazione e privatizzazione",
+      "reviews": "Recensioni",
+      "payments": "Pagamenti"
+    },
+    "registerForFree": "Iscriviti gratuitamente ora",
+    "subsections": {
+      "visibility": {
+        "header": "Aumenta la tua visibilità",
+        "paragraph": "Il marketing non è mai stato cosi facile con Foodetective. Cattura tutti i dettagli, le note, i tag delle visite degli ospiti e visualizza i tuoi servizi in un profilo unificato disponibile in tutti i formati per marketing mirato e clienti di prima classe."
+      },
+      "analytics": {
+        "header": "Gestisci facilmente la tua attività",
+        "paragraph": "Scopri come sta andando la tua attività ovunque, in qualsiasi momento, in tempo reale."
+      },
+      "bookings": {
+        "header": "Prenotazioni",
+        "paragraph": "Foodetective ti aiuta a prendere il controllo della tua attività offrendoti un sistema di prenotazione completamente personalizzabile per i tuoi tavoli quotidiani, degustazioni speciali e tutto il resto."
+      },
+      "deliveryAndTakeaway": {
+        "header": "Configura il tuo servizio di consegna",
+        "paragraph": "Perché pagare commissioni di consegna elevate quando puoi effettuare le tue consegne? Offri ai tuoi clienti una migliore qualità, un servizio migliore, cibi caldi e gestisci facilmente i tuoi ordini."
+      },
+      "cateringAndPrivatization": {
+        "header": "Ricevi richieste speciali",
+        "paragraph": "Gestisci il tuo servizio di catering e le richieste di privatizzazione come mai prima d'ora, invia offerte, cambia menu, assegna persone per offrire ai tuoi clienti la migliore esperienza e supporto possibile."
+      },
+      "reviews": {
+        "header": "Opinioni basate su 6 criteri",
+        "paragraph": "Da Foodetective, tutte le recensioni sono scritte da professionisti che forniscono contenuti eccezionali, garantendo feedback costruttivi per aiutare le aziende a migliorare costantemente la loro offerta, prodotti e servizi."
+      },
+      "payments": {
+        "header": "Collega il tuo conto bancario",
+        "paragraph": "Ricevi i tuoi pagamenti all'istante, collega il tuo conto bancario e gestisci i pagamenti a colpo d'occhio."
+      }
+    }
+  },
+  "testimonials": {
+    "header": "Testimonianze",
+    "list": [
+      {
+        "position": "Proprietario",
+        "company": "Cipollino",
+        "increase": "Aumenta le tue entrate del 29%",
+        "quote": "Revoluzionario! Facile da configurare, utilizzare e gestire. L'intero team lo adora per la sua semplicità e la sua interfaccia unica."
+      },
+      {
+        "position": "Propietario",
+        "company": "Molokaï",
+        "increase": "Aumenta le tue entrate del 17%",
+        "quote": "Abbiamo visto un miglioramento dell'efficienza in ogni reparto della nostra azienda. Siamo riusciti a intraprendere ulteriori azioni per smettere di usare la carta con Foodetective."
+      },
+      {
+        "position": "Propietario",
+        "company": "Osteria Zaza",
+        "increase": "Aumenta le tue entrate del 19%",
+        "quote": "Ci ha aiutato a Foodetective aumentare la nostra visibilità online, per analizzare tutta la nostra offerta online, così come fornire ai nostri clienti unici servizi che abbiamo integrato nel nostro sito web."
+      }
+    ]
+  },
+  "widget": {
+    "header": "Integrazione di Widget",
+    "navLink": "Widget",
+    "paragraph": "Integra il nostro widget sul tuo sito Web per offrire ai tuoi clienti un'esperienza di prima classe."
+  },
+  "pricing": "Prezzi"
 }
