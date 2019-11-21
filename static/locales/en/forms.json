@@ -139,7 +139,8 @@
       "incorrect_password-current_password": "Password is incorrect",
       "same_password-password": "Password is the same as current password",
       "is not a fully qualified domain name-domains": "Domains is not a fully qualified domain name",
-      "unauthorized-Not allowed to create? this Widget": "You are not allowed to create this Widget. Only users with paid plan can use widgets."
+      "unauthorized-Not allowed to create? this Widget": "You are not allowed to create this Widget. Only users with paid plan can use widgets.",
+      "contains invalid characters (valid characters [a-z0-9-])-domains": "Domains contains invalid characters (valid characters: [a-z0-9\\-])"
     }
   },
   "placeholder": {
