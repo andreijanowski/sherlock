@@ -7,11 +7,11 @@ Sherlock application for business owners who wants to publish their businesses i
 
 The all product includes:
 
-[Backend](https://github.com/netguru/thefooddetective)
-[Foodetective](https://github.com/netguru/thefooddetective-front)
-[Lefood (Foodetective orders)](https://github.com/netguru/lefood)
-[Sherlock (Foodetective for business)](https://github.com/netguru/sherlock)
-[Widget](https://github.com/netguru/foodetective-widget)
+- [Backend](https://github.com/netguru/thefooddetective)
+- [Foodetective](https://github.com/netguru/thefooddetective-front)
+- [Lefood (Foodetective orders)](https://github.com/netguru/lefood)
+- [Sherlock (Foodetective for business)](https://github.com/netguru/sherlock)
+- [Widget](https://github.com/netguru/foodetective-widget)
 
   
 
