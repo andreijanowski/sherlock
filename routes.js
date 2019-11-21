@@ -81,6 +81,10 @@ module.exports = routes()
     `/:lng(${languagesPattern})/app/lefood/ordering-hours`
   )
   .add(
+    "app/lefood/ordersHistory",
+    `/:lng(${languagesPattern})/app/lefood/orders-history`
+  )
+  .add(
     "app/reservation/reservations",
     `/:lng(${languagesPattern})/app/reservation/reservations`
   )

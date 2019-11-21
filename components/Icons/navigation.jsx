@@ -113,7 +113,7 @@ export const Reservations = () => (
     height="21"
     viewBox="0 0 20 21"
   >
-    <g fill="none" fillRule="evenodd">
+    <g fillRule="evenodd">
       <path
         style={fillNone}
         strokeWidth="2"

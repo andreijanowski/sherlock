@@ -9,6 +9,7 @@ const InputStyles = css`
   box-sizing: border-box;
   width: 100%;
   padding: ${p => p.padding || "16px"};
+  background: rgb(${p => p.theme.colors.white});
   border: 1px solid
     rgb(${p => (p.invalid ? p.theme.colors.ruby : p.theme.colors.snuff)});
   border-radius: ${p => p.theme.radius.small};
@@ -139,7 +140,9 @@ export const RawTextarea = styled(({ smallLabel, ...p }) => (
 export const MultipleSelectInput = styled(RawInput)`
   width: auto;
   height: 42px;
-  margin-top: -8px;
+  margin-top: -9px;
+  margin-bottom: -1px;
+  margin-left: -8px;
   padding: 8px 16px;
   border: 0;
 
@@ -162,6 +165,8 @@ export const MultipleSelectWrapper = styled(FieldWrapper).attrs(() => ({
   alignItems: "flex-start"
 }))`
   position: static;
+  overflow: hidden;
+  background: rgb(${p => p.theme.colors.white});
   border: 1px solid
     rgb(${p => (p.invalid ? p.theme.colors.ruby : p.theme.colors.snuff)});
   border-radius: ${p => p.theme.radius.small};

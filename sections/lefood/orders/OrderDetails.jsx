@@ -60,6 +60,7 @@ const OrderDetails = ({
               { label: t("in_preparation"), value: "in_preparation" },
               { label: t("in_delivery"), value: "in_delivery" },
               { label: t("completed"), value: "completed" },
+              { label: t("canceled"), value: "canceled" },
               { label: t("rejected"), value: "rejected" }
             ],
             label: t("orderState")
