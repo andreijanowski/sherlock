@@ -4,6 +4,7 @@ export const generateMembersArray = m => {
         .map(i => ({
           email: i.getIn(["attributes", "email"]),
           role: i.getIn(["attributes", "role"]),
+          businessManager: i.getIn(["attributes", "businessManager"]),
           id: i.get("id")
         }))
         .toList()
