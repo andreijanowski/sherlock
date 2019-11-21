@@ -21,5 +21,7 @@
     "elements_not_found": {
       "base": "Impossible de trouver les éléments donnés pour cette commande"
     }
-  }
+  },
+  "reservationUpdate": "La réservation vient d'être mise à jour. Veuillez vérifier la page des réservations pour plus de détails.",
+  "orderUpdate": "La commande vient d'être mise à jour. Veuillez consulter la page Livraison / A emporter pour plus de détails."
 }

@@ -33,5 +33,7 @@
   "roleLabel": "Quel est votre rôle? (Facultatif)",
   "rolePlaceholder": "Propriétaire",
   "bioLabel": "Restaurant bio (facultatif)",
-  "bioPlaceholder": "C'est un petit endroit à ..."
+  "bioPlaceholder": "C'est un petit endroit à ...",
+  "michelinStars": "Étoiles Michelin",
+  "michelinStarsPlaceholder": "1 étoile Michelin"
 }

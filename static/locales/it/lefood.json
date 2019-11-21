@@ -111,5 +111,18 @@
   "stripeCurrencyNotSet": "La valuta per stripe non è impostata",
   "allowPickup": "Consenti il ​​ritiro",
   "averageDeliveryTime": "Tempi medi di consegna",
-  "minAmountForDelivery": "Importo minimo per la consegna"
+  "minAmountForDelivery": "Importo minimo per la consegna",
+  "time": "Tempo",
+  "shortId": "ID",
+  "states": "stati",
+  "reset": "Ripristina filtri",
+  "totalCostCents": "Costo totale",
+  "filter": "Filtro",
+  "canceled": "Annullato",
+  "index": "Indice",
+  "state": "Stato",
+  "date": "Data",
+  "filters": "filtri",
+  "day": "Giorno",
+  "ordersHistory": "Cronologia ordini"
 }

@@ -4,5 +4,6 @@
   "emailLabel": "E-mail",
   "emailPlaceholder": "name@company.com",
   "roleLabel": "Ruolo",
-  "rolePlaceholder": "Manager"
+  "rolePlaceholder": "Manager",
+  "businessManagerLabel": "Direttore aziendale"
 }

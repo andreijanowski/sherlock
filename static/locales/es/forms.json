@@ -138,7 +138,9 @@
       "taken-code": "Código ya presente en una entrega diferente",
       "not_between_open_periods-base": "La reserva debe realizarse entre períodos de apertura comercial",
       "not_enough_time_before_start-from": "No hay suficiente tiempo antes de comenzar",
-      "is not a fully qualified domain name-domains": "Dominios no es un nombre de dominio completo"
+      "is not a fully qualified domain name-domains": "Dominios no es un nombre de dominio completo",
+      "unauthorized-Not allowed to create? this Widget": "No tienes permiso para crear este widget. Solo los usuarios con plan pagado pueden usar widgets.",
+      "contains invalid characters (valid characters [a-z0-9-])-domains": "Los dominios contienen caracteres no válidos (caracteres válidos: [a-z0-9 \\ -])"
     }
   },
   "placeholder": {

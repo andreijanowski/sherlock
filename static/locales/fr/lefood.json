@@ -111,5 +111,18 @@
   "stripeCurrencyNotSet": "La devise pour stripe n'est pas définie",
   "allowPickup": "Autoriser le ramassage",
   "averageDeliveryTime": "Délai de livraison moyen",
-  "minAmountForDelivery": "Montant minimum pour la livraison"
+  "minAmountForDelivery": "Montant minimum pour la livraison",
+  "canceled": "Annulé",
+  "ordersHistory": "Historique des commandes",
+  "date": "Rendez-vous amoureux",
+  "filter": "Filtre",
+  "day": "journée",
+  "states": "États",
+  "state": "Etat",
+  "shortId": "ID",
+  "index": "Indice",
+  "totalCostCents": "Coût total",
+  "filters": "Les filtres",
+  "time": "Temps",
+  "reset": "Réinitialiser les filtres"
 }
