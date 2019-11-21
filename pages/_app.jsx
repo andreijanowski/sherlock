@@ -58,6 +58,11 @@ class MyApp extends App {
   };
 
   componentDidMount() {
+    const {
+      pageProps: { pathname },
+      pathChanged
+    } = this.props;
+    pathChanged(pathname);
     if (Cookies.get("isAuthenticated")) {
       const { loadUserData, refreshToken, setAppInstanceUuid } = this.props;
       setAppInstanceUuid(uuid());
