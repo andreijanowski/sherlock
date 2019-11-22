@@ -12,10 +12,10 @@ const AppContainer = styled(Flex)`
 
 const MainLayout = ({ pageProps, Component }) => (
   <AppContainer flexDirection="column" alignItems="center" id="layout">
+    <Component {...{ ...pageProps }} />
     <GlobalStyles />
     <NotificationsCenter />
     <CookiesModal />
-    <Component {...{ ...pageProps }} />
   </AppContainer>
 );
 
