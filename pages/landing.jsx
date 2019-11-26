@@ -14,6 +14,7 @@ import {
 } from "sections/landing";
 import { LandingWrapper } from "sections/landing/sharedStyled";
 import { withTranslation } from "i18n";
+import { Flex } from "@rebass/grid";
 
 const namespaces = ["landing", "plans", "common"];
 
@@ -61,7 +62,7 @@ class Home extends PureComponent {
     const { billingInterval } = this.state;
     const lng = (i18n && i18n.language) || "en";
     return (
-      <div>
+      <Flex width={1} alignItems="center" flexDirection="column">
         <Navigation {...{ t, lng, scrollTo }} />
         <LandingWrapper>
           <TopSection {...{ t, lng }} />
@@ -83,7 +84,7 @@ class Home extends PureComponent {
           />
         </LandingWrapper>
         <Footer />
-      </div>
+      </Flex>
     );
   }
 }
