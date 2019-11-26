@@ -12,7 +12,7 @@
     "testimonials": "Témoignages"
   },
   "services": {
-    "header": "Prestations de service",
+    "header": "Services",
     "paragraph": {
       "start": "Conçu pour s'adapter à l'évolution de vos ",
       "firstKeyword": "besoins",
@@ -25,10 +25,10 @@
       "Livraison",
       "À emporter",
       "Paiements",
-      "La privatisation",
+      "Privatisation",
       "Service traiteur",
       "Statistiques",
-      "Commercialisation",
+      "Marketing",
       "RH & Salaires",
       "Fourniture",
       "Comptabilité",
@@ -41,7 +41,7 @@
     "partners": "Les partenaires",
     "becomePartner": "Devenir un partenaire",
     "industries": {
-      "header": "les industries",
+      "header": "Industries",
       "names": {
         "restaurants": "Restaurants",
         "hotel": "Hôtels",
