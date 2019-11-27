@@ -1,0 +1,133 @@
+{
+  "topSection": {
+    "header": {
+      "start": "Wir machen das Leben im Restaurant",
+      "end": " viel einfacher"
+    },
+    "paragraph": "Weltweit führende All-in-One-Software für Restaurants.",
+    "getStartedForFree": "Kostenlos loslegen",
+    "addYourBusiness": "Fügen Sie Ihr Unternehmen hinzu",
+    "addManager": "Manager hinzufügen",
+    "watchVideo": "Schau Video",
+    "testimonials": "Referenzen"
+  },
+  "services": {
+    "header": "Dienstleistungen",
+    "paragraph": {
+      "start": "Entworfen für Ihre ",
+      "firstKeyword": "Bedürfnisse",
+      "middle": " und ",
+      "secondKeyword": "Geschäftsgröße",
+      "end": ". Sie können unsere Services jederzeit problemlos hinzufügen und entfernen, um sicherzustellen, dass wir auf Ihr Wachstum zugeschnitten sind."
+    },
+    "list": [
+      "Reservierungen",
+      "Lieferung",
+      "Wegbringen",
+      "Zahlungen",
+      "Privatisierung",
+      "Gastronomie/catering",
+      "Analytics",
+      "Marketing",
+      "Humanressourcen Lohn-und Gehaltsabrechnung",
+      "Liefern",
+      "Buchhaltung",
+      "Integrationen"
+    ],
+    "more": "Wir zentralisieren alle Ihre Dienste in einem einzigen Dashboard."
+  },
+  "cooperations": {
+    "clients": "Kunden",
+    "partners": "Partner",
+    "becomePartner": "Ein Partner werden",
+    "industries": {
+      "header": "Branchen",
+      "names": {
+        "restaurants": "Restaurants",
+        "hotel": "Hotels",
+        "coffee-shops": "Cafés",
+        "food-trucks": "Imbisswagen",
+        "salad-bar": "Märkte",
+        "ice-cream-shop": "Eisdielen",
+        "caterings": "Caterer",
+        "brewery": "Pubs",
+        "street-food": "Essen steht",
+        "fromagerie": "Käse",
+        "butcher": "Metzgerei",
+        "bars": "Weingüter"
+      }
+    }
+  },
+  "features": {
+    "header": "Eigenschaften",
+    "navItems": {
+      "visibility": "Sichtweite",
+      "analytics": "Analytics",
+      "bookings": "Reservierungen",
+      "deliveryAndTakeaway": "Lieferung & Take away",
+      "cateringAndPrivatization": "Catering & Privatisierung",
+      "reviews": "Bewertungen",
+      "payments": "Zahlungen"
+    },
+    "registerForFree": "Jetzt kostenlos registrieren",
+    "subsections": {
+      "visibility": {
+        "header": "Erhöhen Sie Ihre Sichtbarkeit",
+        "paragraph": "Mit Foodetective ist Marketing so einfach wie nie zuvor. Erfassen Sie alle Besuchsdetails, Notizen und Tags Ihrer Gäste und zeigen Sie Ihre Services in einem einheitlichen Profil an, das in allen Formaten für gezieltes Marketing und erstklassige Esser verfügbar ist."
+      },
+      "analytics": {
+        "header": "Verwalten Sie Ihr Geschäft einfach",
+        "paragraph": "Wissen, wie sich Ihr Unternehmen überall und jederzeit in Echtzeit entwickelt. Seien Sie benachrichtigt, wenn wichtige Ereignisse eintreten. Erzwingen Sie branchenweit bewährte Methoden in jedem Service, um die Ergebnisse zu verbessern."
+      },
+      "bookings": {
+        "header": "Reservierungen",
+        "paragraph": "Foodetective hilft Ihnen dabei, die Kontrolle über Ihr Unternehmen zu übernehmen, indem es vollständig anpassbare Reservierungen für alltägliche Tische, spezielle Verkostungen und alles dazwischen anbietet."
+      },
+      "deliveryAndTakeaway": {
+        "header": "Richten Sie Ihre eigene Lieferung ein",
+        "paragraph": "Warum hohe Versandkosten bezahlen, wenn Sie auch selbst liefern können? Bieten Sie Ihren Kunden eine höhere Qualität, den besten Service, warme Mahlzeiten und verwalten Sie alle Ihre Bestellungen auf einfache Weise."
+      },
+      "cateringAndPrivatization": {
+        "header": "Erhalten Sie Sonderwünsche",
+        "paragraph": "Verwalten Sie Ihre Catering- und Privatisierungsanfragen wie nie zuvor, senden Sie Angebote, ändern Sie Menüs und beauftragen Sie Mitarbeiter, Ihren Kunden die beste und einfachste Erfahrung aller Zeiten zu bieten."
+      },
+      "reviews": {
+        "header": "6 Säulen Bewertungen",
+        "paragraph": "Bei Foodetective werden alle Bewertungen von Fachleuten abgegeben, die herausragende Inhalte bereitstellen und konstruktives Feedback geben, um Unternehmen dabei zu helfen, ihr Angebot, ihre Produkte und Dienstleistungen ständig zu verbessern."
+      },
+      "payments": {
+        "header": "Verbinden Sie Ihr Bankkonto",
+        "paragraph": "Erhalten Sie Zahlungen sofort, verbinden Sie Ihr Bankkonto und verwalten Sie Ihre Zahlungen von einer einzigen Ansicht aus."
+      }
+    }
+  },
+  "testimonials": {
+    "header": "Referenzen",
+    "list": [
+      {
+        "position": "Inhaber",
+        "company": "Cipollino",
+        "increase": "29% Umsatzsteigerung",
+        "quote": "Revolutionär! Einfach einzurichten, zu verwenden und zu verwalten. Das gesamte Team ist begeistert von der Einfachheit und der einzigartigen Benutzeroberfläche."
+      },
+      {
+        "position": "Inhaber",
+        "company": "Molokaï",
+        "increase": "17% Umsatzsteigerung",
+        "quote": "Wir haben in jeder Abteilung unseres Unternehmens eine Verbesserung der Effizienz festgestellt. Mit Foodetective konnten wir weitere Schritte unternehmen, um papierlos zu werden."
+      },
+      {
+        "position": "Inhaber",
+        "company": "Osteria Zaza",
+        "increase": "19% Umsatzsteigerung",
+        "quote": "Foodetective hat uns geholfen, unsere Online-Sichtbarkeit zu verbessern, unser gesamtes Online-Angebot zu analysieren und unseren Kunden einzigartige Dienstleistungen zu bieten, die wir in unsere Website integriert haben."
+      }
+    ]
+  },
+  "widget": {
+    "header": "Widget-Integration",
+    "navLink": "Widget",
+    "paragraph": "Integrieren Sie unser Widget in Ihre Website, um Ihren Kunden ein erstklassiges Erlebnis zu bieten."
+  },
+  "pricing": "Preisgestaltung"
+}

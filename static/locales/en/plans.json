@@ -1,6 +1,6 @@
 {
-  "header": "My plan",
-  "paragraph": "Choose the plan that suits your business goals. If you are a big business owner or chain manager, please add your manager in charge.",
+  "header": "Pay as you grow",
+  "paragraph": "Choose the plan that suits your business goals, size & growth plans. If you run a large franchise or group please get in touch with our team for our tailor made option.",
   "yourCurrentPlan": "Your current plan",
   "paymentInfo": "Payment informations",
   "changeCard": "Change card",
@@ -24,7 +24,7 @@
   "goBackToPlans": "Go back to plans",
   "promotion": {
     "startFirstLine": "Get ",
-    "promotionPlan": "Foodetective for business Basic",
+    "promotionPlan": "Foodetective for business Premium",
     "startLastLine": " for 3 months for free.",
     "endFirstLine": "Just complete your profile online. The offer is very limited, we have only ",
     "endLastLine": "1000 slots left."
@@ -35,15 +35,16 @@
     "website": "Webpage",
     "widget": "Widget",
     "mobileApp": "Mobile App",
-    "paidReservation": "Booking",
     "reservations": "Reservations",
     "takeAway": "Take Away",
     "paidBooking": "Reservation",
     "bookings": "Reservations",
     "catering": "Catering",
     "privatisation": "Privatisation",
-    "delivery": "Delivery / Take away",
-    "digitalMarketing": "Digital marketing"
+    "delivery": "Delivery",
+    "digitalMarketing": "Digital marketing",
+    "redirections": "Redirections",
+    "integrations": "Integrations"
   },
   "essential": {
     "name": "Essential",
@@ -55,7 +56,7 @@
     "buttonText": "Create Profile"
   },
   "basic": {
-    "name": "Basic",
+    "name": "Premium",
     "mostPopular": "Most popular",
     "priceDescription": "Starting at",
     "price": {

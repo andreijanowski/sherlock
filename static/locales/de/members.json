@@ -1,0 +1,9 @@
+{
+  "header": "Laden Sie Ihr Team ein",
+  "members": "Mitglieder",
+  "emailLabel": "Email",
+  "emailPlaceholder": "name@company.com",
+  "roleLabel": "Folle/Funktion",
+  "rolePlaceholder": "Manager",
+  "businessManagerLabel": "Geschäftsführer"
+}

@@ -1,17 +1,6 @@
 import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 
-export const MainWrapper = styled.div`
-  position: relative;
-  max-width: 960px;
-  margin-right: 16px;
-  margin-bottom: 40px;
-  margin-left: 16px;
-  @media (min-width: ${p => p.theme.breakpoints[0]}) {
-    margin-bottom: 80px;
-  }
-`;
-
 export const ServicesWrapper = styled(Flex).attrs(() => ({
   p: [3, 4],
   flexDirection: "column",
@@ -19,15 +8,22 @@ export const ServicesWrapper = styled(Flex).attrs(() => ({
 }))`
   position: relative;
   z-index: 1;
+  margin-bottom: 20px;
   background: rgb(${p => p.theme.colors.dark});
   border-radius: ${p => p.theme.radius.double};
   box-shadow: 0 4px 24px 0 rgba(${p => p.theme.colors.dark}, 0.48);
+
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    margin-bottom: 80px;
+  }
 `;
 
-export const Service = styled(Box).attrs(() => ({
-  m: 2
+export const Service = styled(Flex).attrs(() => ({
+  flexDirection: "column",
+  alignItems: "center"
 }))`
-  padding: 21px 0;
+  height: 100%;
+  padding: 10px 0;
   color: rgb(${p => p.theme.colors.white});
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 1.333;
@@ -40,8 +36,8 @@ export const Service = styled(Box).attrs(() => ({
     margin-right: 0;
   }
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
-    padding: 41px 0;
-    font-size: ${p => p.theme.fontSizes.f24};
+    padding: 20px 0;
+    font-size: ${p => p.theme.fontSizes.f18};
   }
 `;
 
@@ -52,4 +48,16 @@ export const More = styled(Box).attrs(() => ({
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 1.5;
   text-align: center;
+`;
+
+export const ServiceIcon = styled.img.attrs(({ name }) => ({
+  src: `/static/icons/${name}.svg`
+}))`
+  max-width: 50px;
+  max-height: 50px;
+  margin-bottom: 4px;
+`;
+
+export const WhiteText = styled.span`
+  color: rgb(${p => p.theme.colors.white});
 `;

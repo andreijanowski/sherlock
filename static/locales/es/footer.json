@@ -1,0 +1,40 @@
+{
+  "navigation": {
+    "columnOne": {
+      "title": "Únete a nosotros",
+      "links": [
+        "Asociarse con nosotros"
+      ]
+    },
+    "columnTwo": {
+      "title": "Ayuda",
+      "links": [
+        "Blog"
+      ]
+    },
+    "columnThree": {
+      "title": "Legal",
+      "links": [
+        "Política de privacidad",
+        "Términos y condiciones"
+      ]
+    },
+    "columnFour": {
+      "title": "Síguenos",
+      "links": [
+        "Facebook",
+        "Linkedin",
+        "Gorjeo",
+        "Instagram"
+      ]
+    },
+    "columnFive": {
+      "title": "Descargar aplicación",
+      "links": [
+        "Manzana",
+        "Androide"
+      ]
+    }
+  },
+  "copyrightNote": "© {{currentYear}} The Food Detective SA. Todos los derechos reservados."
+}

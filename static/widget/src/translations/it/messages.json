@@ -1,0 +1,13 @@
+{
+  "delivery": "Consegna",
+  "privatisation": "Privatizzazione",
+  "reservation": "Prenota un tavolo",
+  "catering": "Richiedi catering",
+  "takeAwayOrDelivery": "Consegna / Take away",
+  "takeAway": "Porta via",
+  "canNotFetchWidget": "Impossibile recuperare i dati del widget",
+  "missingApiKey": "Chiave Api mancante",
+  "bill": "Paga / dividi il conto",
+  "notAuthorized": "Impossibile autorizzare il widget con questo tasto API",
+  "invalidOrigin": "La tua origine non è nella whitelist per questo widget"
+}

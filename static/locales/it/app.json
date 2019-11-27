@@ -1,0 +1,41 @@
+{
+  "controlCenter": "Control Center (presto)",
+  "reservations": "Prenotazioni",
+  "takeAway": "Porta via/Da Asporto",
+  "bookings": "Prenotazioni (presto)",
+  "delivery": "Consegna (presto)",
+  "catering": "Ristorazione/catering",
+  "privatisations": "Privatizzazioni",
+  "socialMedia": "Social media (presto)",
+  "billing": "Fatturazione (presto)",
+  "manageProfile": {
+    "manageProfile": "Gestisci profilo",
+    "basicInformation": "Informazioni di base",
+    "contactInformation": "Informazioni sui contatti",
+    "openingHours": "Orari di apertura",
+    "picturesAndMenus": "Immagini e menu",
+    "additionalInformation": "Informazioni aggiuntive",
+    "inviteYourTeam": "Invita la tua squadra",
+    "unnamedBusiness": "Attività senza nome",
+    "addNewBusiness": "Aggiungi nuova attività",
+    "publish": "Pubblicare attività commercial",
+    "published": "Pubblicato",
+    "waitingForApproval": "In attesa di approvazione",
+    "liveInfo": "Informazioni in diretta",
+    "widgets": "Widget",
+    "unPublish": "Affari non pubblicati"
+  },
+  "subscriptions": "Sottoscrizioni",
+  "userSettings": {
+    "userSettings": "Impostazioni",
+    "basicInformation": "Informazioni di base",
+    "password": "Parola d'ordine",
+    "logout": "Disconnettersi"
+  },
+  "feedback": "Risposta/commenti",
+  "docs": "Documenti",
+  "back": "Indietro",
+  "crop": "Ritaglia",
+  "cancel": "Annulla",
+  "confirmAccount": "Ti abbiamo inviato un messaggio di conferma alla tua email. Conferma il tuo account entro 3 giorni."
+}

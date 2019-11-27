@@ -1,0 +1,41 @@
+{
+  "controlCenter": "Kontrollzentrum (bald)",
+  "reservations": "Buchungen",
+  "takeAway": "Zum Mitnehmen",
+  "bookings": "Buchungen (bald)",
+  "delivery": "Lieferung (bald)",
+  "catering": "Gastronomie/catering",
+  "privatisations": "Privatisierungen",
+  "socialMedia": "Social Media (bald)",
+  "billing": "Abrechnung (bald)",
+  "manageProfile": {
+    "manageProfile": "Profil verwalten",
+    "basicInformation": "Grundinformation",
+    "contactInformation": "Kontakt Informationen",
+    "openingHours": "Öffnungszeiten",
+    "picturesAndMenus": "Bilder und Menüs",
+    "additionalInformation": "Zusätzliche Information",
+    "inviteYourTeam": "Lade dein Team ein",
+    "unnamedBusiness": "Unbenanntes Geschäft",
+    "addNewBusiness": "Neues Unternehmen hinzufügen",
+    "publish": "Geschäft veröffentlichen",
+    "published": "Veröffentlicht",
+    "waitingForApproval": "Warten auf die Bestätigung",
+    "liveInfo": "Live-Infos",
+    "widgets": "Widgets",
+    "unPublish": "Veröffentlichung des Geschäfts aufheben"
+  },
+  "subscriptions": "Abonnements",
+  "userSettings": {
+    "userSettings": "Die Einstellungen",
+    "basicInformation": "Grundinformation",
+    "password": "Passwort",
+    "logout": "Ausloggen"
+  },
+  "feedback": "Meinung/feedback",
+  "docs": "Unterlagen",
+  "back": "Zurück",
+  "crop": "Ernte",
+  "cancel": "Stornieren",
+  "confirmAccount": "Wir haben Ihnen eine Bestätigungsnachricht an Ihre E-Mail gesendet. Bitte bestätigen Sie Ihr Konto innerhalb von 3 Tagen."
+}

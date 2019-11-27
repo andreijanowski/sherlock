@@ -21,12 +21,19 @@ class Members extends PureComponent {
 
   handleSubmit = members => {
     const { addMember, updateMember, businessId } = this.props;
-    const { id, email, role } = members[0];
+    const { id, email, role, businessManager } = members[0];
     if (id) {
-      return updateMember(id, { email, role });
+      return updateMember(id, {
+        email,
+        role,
+        businessManager: !!businessManager
+      });
     }
     if (email && role) {
-      return addMember({ email, role }, businessId);
+      return addMember(
+        { email, role, businessManager: !!businessManager },
+        businessId
+      );
     }
     return null;
   };
@@ -125,7 +132,10 @@ export default requireAuth(true)(
     connect(
       (state, { i18n }) => {
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
-        const business = businessData && businessData.get("businesses").first();
+        const business =
+          businessData &&
+          businessData.get("businesses") &&
+          businessData.get("businesses").first();
         return {
           business: business && business.get("attributes"),
           businessId: business && business.get("id"),

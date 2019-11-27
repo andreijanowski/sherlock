@@ -1,0 +1,13 @@
+{
+  "privatisation": "Privatisierung",
+  "takeAway": "Wegbringen",
+  "reservation": "Einen Tisch reservieren",
+  "delivery": "Lieferung",
+  "catering": "Catering anfragen",
+  "takeAwayOrDelivery": "Lieferung / Take away",
+  "canNotFetchWidget": "Widget-Daten können nicht abgerufen werden",
+  "missingApiKey": "API-Schlüssel fehlt",
+  "bill": "Rechnung bezahlen / teilen",
+  "invalidOrigin": "Ihr Ursprung ist für dieses Widget nicht in der Whitelist aufgeführt",
+  "notAuthorized": "Widget kann mit diesem API-Schlüssel nicht autorisiert werden"
+}

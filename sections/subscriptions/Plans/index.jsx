@@ -74,7 +74,7 @@ const PlansSection = ({
           </Flex>
         </Flex>
       )}
-      <Flex mx={-2}>
+      <Flex mx={-2} flexWrap="wrap">
         <Plans
           {...{
             t,

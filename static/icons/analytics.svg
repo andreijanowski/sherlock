@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="112px" height="112px" viewBox="0 0 112 112" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>analytics</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="48" cy="48" r="48"></circle>
+        <filter x="-14.1%" y="-10.9%" width="128.1%" height="128.1%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.298039216   0 0 0 0 0.407843137   0 0 0 0 1  0 0 0 0.48 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-1566.000000, -158.000000)">
+            <g id="analytics" transform="translate(1574.000000, 163.000000)">
+                <g id="Group-6">
+                    <g id="Oval">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#4C68FF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <g id="Orion_statistic" transform="translate(27.000000, 27.000000)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+                        <path d="M17.3333333,7.33333333 C7.76039767,7.33333333 1.18423789e-15,15.093731 0,24.6666667 C-1.18423789e-15,34.2396023 7.76039767,42 17.3333333,42 C26.906269,42 34.6666667,34.2396023 34.6666667,24.6666667 L17.3333333,24.6666667 L17.3333333,7.33333333 Z" id="Path" stroke="#FFFFFF"></path>
+                        <path d="M24.6666667,0 L24.6666667,17.3333333 L42,17.3333333 C42,12.7362475 40.1738148,8.32744635 36.9231842,5.07681579 C33.6725536,1.82618523 29.2637525,2.96059473e-16 24.6666667,0 Z" id="Path" stroke="#93A4FF"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,17 @@
+{
+  "cancel": "Stornieren",
+  "header": "Vervollständige dein Profil",
+  "paragraph": [
+    "Sie müssen hinzufügen ",
+    "wichtige Details",
+    " um Daten zu sehen."
+  ],
+  "step": "Schritt",
+  "publish": "Veröffentlichen Geschäft",
+  "basicInformationTip": "Beginnen Sie mit den Grundlagen",
+  "contactInformationTip": "Beginnen Sie mit den Grundlagen",
+  "openingHoursTip": "Machen Sie sich bereit für die Gäste",
+  "picturesAndMenusTip": "Einfache Erkennung",
+  "additionalInformationTip": "Genauere Daten",
+  "inviteYourTeamTip": "Geschäftsmitglieder hinzufügen"
+}

@@ -1,0 +1,9 @@
+{
+  "header": "Invita il tuo team",
+  "members": "Membri",
+  "emailLabel": "E-mail",
+  "emailPlaceholder": "name@company.com",
+  "roleLabel": "Ruolo",
+  "rolePlaceholder": "Manager",
+  "businessManagerLabel": "Direttore aziendale"
+}

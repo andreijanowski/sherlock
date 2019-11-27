@@ -5,12 +5,14 @@ import { Field as FinalFormField } from "react-final-form";
 import { formatDate } from "react-day-picker/moment";
 import onClickOutside from "react-onclickoutside";
 import { shape, string, bool, func } from "prop-types";
+import { ActionIcon } from "components";
 import {
   DaypickerWrapper,
   Label,
   FieldWrapper,
   RawInput,
-  Error
+  Error,
+  ActionIconWrapper
 } from "./styled";
 import { getError } from "./utils";
 
@@ -43,13 +45,23 @@ class RawFormDayPicker extends PureComponent {
     input.onChange(formatDate(day, "YYYY-MM-DD"));
   };
 
+  clean = () => {
+    const { input } = this.props;
+    this.setState({
+      selectedDate: undefined
+    });
+    input.onChange(undefined);
+  };
+
   render() {
     const {
       input,
       label,
       placeholder,
       meta,
-      isErrorVisibilityRequired
+      isErrorVisibilityRequired,
+      arePastDaysDisabled,
+      withCleanButton
     } = this.props;
     const { isPickerOpen, selectedDate } = this.state;
     const error = getError(meta, isErrorVisibilityRequired);
@@ -63,13 +75,21 @@ class RawFormDayPicker extends PureComponent {
             value={input.value}
             onFocus={this.handleFocus}
             readOnly
+            padding={withCleanButton && "16px 60px 16px 16px"}
           />
           <Label>{label}</Label>
+          {withCleanButton && (
+            <ActionIconWrapper onClick={this.clean}>
+              <ActionIcon size="sm" icon={["fa", "times"]} red />
+            </ActionIconWrapper>
+          )}
           {error && <Error>{error}</Error>}
           {isPickerOpen && (
             <DayPicker
               showOutsideDays
-              disabledDays={[{ before: new Date() }]}
+              disabledDays={
+                arePastDaysDisabled ? [{ before: new Date() }] : undefined
+              }
               selectedDays={selectedDate}
               onDayClick={this.handleDayChange}
             />
@@ -85,7 +105,9 @@ RawFormDayPicker.propTypes = {
   meta: shape().isRequired,
   label: string.isRequired,
   placeholder: string,
-  isErrorVisibilityRequired: bool
+  isErrorVisibilityRequired: bool,
+  arePastDaysDisabled: bool.isRequired,
+  withCleanButton: bool.isRequired
 };
 
 RawFormDayPicker.defaultProps = {
@@ -95,12 +117,28 @@ RawFormDayPicker.defaultProps = {
 
 const EnhancedRawFormDayPicker = onClickOutside(RawFormDayPicker);
 
-const FormDayPicker = ({ name, label, placeholder, validate }) => (
+const FormDayPicker = ({
+  name,
+  label,
+  placeholder,
+  validate,
+  arePastDaysDisabled,
+  withCleanButton
+}) => (
   <FinalFormField
     name={name}
     validate={validate}
     render={({ input, meta }) => (
-      <EnhancedRawFormDayPicker {...{ input, meta, label, placeholder }} />
+      <EnhancedRawFormDayPicker
+        {...{
+          input,
+          meta,
+          label,
+          placeholder,
+          arePastDaysDisabled,
+          withCleanButton
+        }}
+      />
     )}
   />
 );
@@ -109,12 +147,16 @@ FormDayPicker.propTypes = {
   name: string.isRequired,
   label: string.isRequired,
   validate: func,
-  placeholder: string
+  placeholder: string,
+  arePastDaysDisabled: bool,
+  withCleanButton: bool
 };
 
 FormDayPicker.defaultProps = {
   placeholder: null,
-  validate: undefined
+  validate: undefined,
+  arePastDaysDisabled: true,
+  withCleanButton: false
 };
 
 export default FormDayPicker;

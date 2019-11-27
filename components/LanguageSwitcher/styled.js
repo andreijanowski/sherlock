@@ -15,6 +15,7 @@ export const LanguageSwitcherWrapper = styled(Flex).attrs(() => ({
   justifyContent: "space-between"
 }))`
   position: relative;
+  z-index: 2;
   width: 108px;
   height: 40px;
   color: rgba(${p => p.theme.colors.dark}, 0.64);

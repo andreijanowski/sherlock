@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="112px" height="112px" viewBox="0 0 112 112" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>restaurants</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="48" cy="48" r="48"></circle>
+        <filter x="-14.1%" y="-10.9%" width="128.1%" height="128.1%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.298039216   0 0 0 0 0.407843137   0 0 0 0 1  0 0 0 0.48 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-158.000000, -348.000000)">
+            <g id="restaurants" transform="translate(166.000000, 353.000000)">
+                <g id="Group-6">
+                    <g id="Oval">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#4C68FF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <g id="Orion_store" transform="translate(28.000000, 31.000000)" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline id="Path" stroke="#FFFFFF" stroke-width="4" points="36 16 36 34.6666667 4 34.6666667 4 16"></polyline>
+                        <path d="M20,0 L20,11 L20,0 Z M10,11 L13.3333333,0 L10,11 Z M30,11 L26.6666667,0 L30,11 Z" id="Shape" stroke="#93A4FF" stroke-width="3"></path>
+                        <path d="M33.7333333,0 L6.26666667,0 L0,11 C0,13.7614237 2.23857625,16 5,16 C7.76142375,16 10,13.7614237 10,11 C10,13.7614237 12.2385763,16 15,16 C17.7614237,16 20,13.7614237 20,11 C20,13.7614237 22.2385763,16 25,16 C27.7614237,16 30,13.7614237 30,11 C30.0000001,13.7614237 32.2385763,15.9999999 35,15.9999999 C37.7614237,15.9999999 39.9999999,13.7614237 40,11 L33.7333333,0 Z" id="Path" stroke="#FFFFFF" stroke-width="4"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

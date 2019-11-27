@@ -1,5 +1,5 @@
 import { Link } from "components";
-import { func, string } from "prop-types";
+import { func, string, number } from "prop-types";
 import { logout as logoutAction } from "actions/auth";
 import { connect } from "react-redux";
 import {
@@ -19,10 +19,11 @@ import {
   SubitemsWrapper,
   Subitems,
   Subitem,
-  Icon
+  Icon,
+  BadgeNumber
 } from "./styled";
 
-const NavBar = ({ t, lng, logout }) => (
+const NavBar = ({ t, lng, logout, ordersUpdates, reservationsUpdates }) => (
   <Wrapper>
     <LogoWrapper>
       <Logo />
@@ -55,6 +56,9 @@ const NavBar = ({ t, lng, logout }) => (
           </Link>
           <Link {...{ lng, route: `/app/profile/live-info/` }}>
             <Subitem>{t("app:manageProfile.liveInfo")}</Subitem>
+          </Link>
+          <Link {...{ lng, route: `/app/profile/widgets/` }}>
+            <Subitem>{t("app:manageProfile.widgets")}</Subitem>
           </Link>
         </Subitems>
       </SubitemsWrapper>
@@ -93,6 +97,9 @@ const NavBar = ({ t, lng, logout }) => (
           <Delivery />
         </Icon>
       </Link>
+      {ordersUpdates > 0 && (
+        <BadgeNumber>{ordersUpdates < 10 ? ordersUpdates : "9+"}</BadgeNumber>
+      )}
       <SubitemsWrapper>
         <Subitems>
           <Link {...{ lng, route: `/app/lefood/orders/` }}>
@@ -107,6 +114,11 @@ const NavBar = ({ t, lng, logout }) => (
           <Reservations />
         </Icon>
       </Link>
+      {reservationsUpdates > 0 && (
+        <BadgeNumber>
+          {reservationsUpdates < 10 ? reservationsUpdates : "9+"}
+        </BadgeNumber>
+      )}
       <SubitemsWrapper>
         <Subitems>
           <Link {...{ lng, route: `/app/reservation/reservations/` }}>
@@ -153,10 +165,15 @@ const NavBar = ({ t, lng, logout }) => (
 NavBar.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  logout: func.isRequired
+  logout: func.isRequired,
+  ordersUpdates: number.isRequired,
+  reservationsUpdates: number.isRequired
 };
 
 export default connect(
-  null,
+  state => ({
+    ordersUpdates: state.getIn(["app", "ordersUpdates"]).size,
+    reservationsUpdates: state.getIn(["app", "reservationsUpdates"]).size
+  }),
   { logout: logoutAction }
 )(NavBar);

@@ -45,6 +45,7 @@ const fontSizes = {
   f36: "36px",
   f46: "46px",
   f48: "48px",
+  f52: "52px",
   f56: "56px"
 };
 

@@ -1,0 +1,10 @@
+{
+  "title": "Ort",
+  "description": "Fügen wir mehrere basisinformationen hinzu",
+  "accountName": "Wie lautet Ihr Kontoname?",
+  "managerName": "Wie heißt Ihr Manager?",
+  "venueName": "Wie heißt Ihr Veranstaltungsort?",
+  "venueAddress": "Wie lautet Ihre Veranstaltungsortadresse?",
+  "venueNumber": "Wie viele Veranstaltungsorte?",
+  "startButton": "Jetzt loslegen"
+}

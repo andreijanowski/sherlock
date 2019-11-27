@@ -1,0 +1,10 @@
+{
+  "title": "Sede",
+  "description": "Agreguemos varias información de base",
+  "accountName": "¿Cual es El nombre de account?",
+  "managerName": "¿Cómo se llama su gerente?",
+  "venueName": "¿Cuál es su nombre de lugar?",
+  "venueAddress": "¿Cuál es su dirección del lugar?",
+  "venueNumber": "¿Cuántos lugares?",
+  "startButton": "Empieza ahora"
+}

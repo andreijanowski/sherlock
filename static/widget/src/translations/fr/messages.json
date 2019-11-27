@@ -1,0 +1,13 @@
+{
+  "delivery": "Livraison",
+  "reservation": "Réserver une table",
+  "takeAway": "À emporter",
+  "catering": "Demande de restauration",
+  "canNotFetchWidget": "Impossible de récupérer les données du widget",
+  "takeAwayOrDelivery": "Livraison / À emporter",
+  "privatisation": "La privatisation",
+  "invalidOrigin": "Votre origine n'est pas sur la liste blanche pour ce widget",
+  "bill": "Payer / scinder la facture",
+  "missingApiKey": "La clé Api est manquante",
+  "notAuthorized": "Impossible d'autoriser un widget avec cette clé api"
+}

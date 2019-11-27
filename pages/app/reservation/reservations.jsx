@@ -523,7 +523,8 @@ class ReservationsPage extends PureComponent {
       bookings,
       updateBusiness,
       changeCurrentBusiness,
-      setEditedReservation
+      setEditedReservation,
+      openPeriods
     } = this.props;
 
     const {
@@ -568,6 +569,8 @@ class ReservationsPage extends PureComponent {
             slots,
             choosenDate,
             choosenSlot,
+            openPeriods,
+            slotDuration: business && business.get("timeSlots"),
             handleCardClick: this.handleToggleReservationDetails,
             handleTableClick: this.handleToggleTableDetails,
             handleTableMouseEnter: this.loadTableBookings,
@@ -673,7 +676,10 @@ export default requireAuth(true)(
     connect(
       (state, { i18n }) => {
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
-        const business = businessData && businessData.get("businesses").first();
+        const business =
+          businessData &&
+          businessData.get("businesses") &&
+          businessData.get("businesses").first();
         const reservations = state.getIn([
           "reservations",
           "data",

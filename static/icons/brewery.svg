@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="112px" height="112px" viewBox="0 0 112 112" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>brewery</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="48" cy="48" r="48"></circle>
+        <filter x="-14.1%" y="-10.9%" width="128.1%" height="128.1%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="3" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.298039216   0 0 0 0 0.407843137   0 0 0 0 1  0 0 0 0.48 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-1566.000000, -348.000000)">
+            <g id="brewery" transform="translate(1574.000000, 353.000000)">
+                <g id="Group-6">
+                    <g id="Oval">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#4C68FF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <g id="Orion_beer-pint" transform="translate(29.000000, 23.000000)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+                        <path d="M32.4528302,15.6226415 C34.7972701,14.2471947 35.9335902,11.4747271 35.2288431,8.84954445 C34.5240961,6.22436181 32.1520469,4.39373828 29.4339623,4.37735849 C28.8435884,4.39146709 28.2585862,4.49320662 27.6981132,4.67924528 C27.2579207,3.32045359 26.2024511,2.24898966 24.8504331,1.78841211 C23.4984151,1.32783455 22.0083441,1.53213627 20.8301887,2.33962264 C18.9390907,0.523474316 16.3011823,-0.292577235 13.7149021,0.138469454 C11.128622,0.569516143 8.89796856,2.19699468 7.69811321,4.52830189 L7.54716981,4.52830189 C4.22662432,4.51271543 1.38155231,6.90016155 0.820494099,10.1730011 C0.259435883,13.4458407 2.14687699,16.6445748 5.28301887,17.7358491" id="Path" stroke="#FFFFFF"></path>
+                        <path d="M32.4528302,15.0943396 L32.4528302,43.0188679 C32.4528302,44.269324 31.4391353,45.2830189 30.1886792,45.2830189 L7.54716981,45.2830189 C6.29671377,45.2830189 5.28301887,44.269324 5.28301887,43.0188679 L5.28301887,15.0943396 L32.4528302,15.0943396 Z" id="Shape" stroke="#FFFFFF"></path>
+                        <path d="M34.4528302,32.2075472 L37.4716981,32.2075472 C38.3053355,32.2075472 38.9811321,31.5317506 38.9811321,30.6981132 L38.9811321,21.6415094 C38.9811321,20.8078721 38.3053355,20.1320755 37.4716981,20.1320755 L34.4528302,20.1320755" id="Path" stroke="#FFFFFF"></path>
+                        <path d="M15.8679245,22.6415094 L15.8679245,37.7358491 L15.8679245,22.6415094 Z" id="Path" stroke="#93A4FF"></path>
+                        <path d="M22.4150943,22.6415094 L22.4150943,37.7358491 L22.4150943,22.6415094 Z" id="Path" stroke="#93A4FF"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

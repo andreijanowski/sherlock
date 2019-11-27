@@ -1,0 +1,10 @@
+{
+  "name": "Nome",
+  "email": "E-mail",
+  "updatePhoto": "Aggiorna foto",
+  "avatarInfo": "jpg / png",
+  "invalidFileType": "Tipo di file non valido",
+  "update": "Aggiornare",
+  "validFileTypeInfo": "Accetta jpg / png",
+  "confirmEmailChange": "Un'e-mail di conferma è stata inviata al tuo nuovo indirizzo e-mail {{email}}. Per confermare la modifica dell'e-mail, fai clic sul link di verifica nell'e-mail."
+}

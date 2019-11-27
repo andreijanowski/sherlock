@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { func, shape, number, arrayOf } from "prop-types";
 import { DragDropContext } from "react-beautiful-dnd";
 import { DndColumn, DndTable, TimeSlotPicker, DaySwitcher } from "components";
@@ -26,14 +27,27 @@ const Reservations = ({
   splitedReservation,
   slots,
   chooseDate,
-  t
+  t,
+  openPeriods,
+  slotDuration
 }) => {
-  const newReservations = getNewReservations({
-    reservationIds: columns.newReservations.reservationIds,
-    reservations,
-    splitedReservation,
-    slots
-  });
+  const newReservations = useMemo(
+    () =>
+      getNewReservations({
+        reservationIds: columns.newReservations.reservationIds,
+        reservations,
+        splitedReservation,
+        openPeriods,
+        slotDuration
+      }),
+    [
+      columns.newReservations.reservationIds,
+      reservations,
+      splitedReservation,
+      openPeriods,
+      slotDuration
+    ]
+  );
 
   return (
     <DragDropContext {...{ onDragStart, onDragEnd }}>
@@ -117,14 +131,18 @@ Reservations.propTypes = {
   handleCardClick: func.isRequired,
   handleTableClick: func.isRequired,
   handleTableMouseEnter: func.isRequired,
-  choosenSlot: number
+  choosenSlot: number,
+  openPeriods: shape(),
+  slotDuration: number
 };
 
 Reservations.defaultProps = {
   reservations: null,
   splitedReservation: undefined,
   choosenSlot: undefined,
-  draggedReservation: undefined
+  draggedReservation: undefined,
+  openPeriods: null,
+  slotDuration: 300
 };
 
 export default Reservations;

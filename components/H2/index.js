@@ -14,9 +14,6 @@ const H2 = styled(Box).attrs(p => ({
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     font-size: ${p => p.theme.fontSizes.f32};
   }
-  @media (min-width: ${p => p.theme.breakpoints[1]}) {
-    font-size: ${p => p.theme.fontSizes.f46};
-  }
 `;
 
 export default H2;
