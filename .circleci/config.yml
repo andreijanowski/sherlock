@@ -74,7 +74,7 @@ jobs:
           command: $(aws ecr get-login --no-include-email --region eu-central-1)
       - run:
           name: Build docker image
-          command: docker build --build-arg PUBLIC_API_URL --build-arg PUBLIC_GOOGLE_MAPS_API_KEY --build-arg PUBLIC_PUSHER_APP_CLUSTER --build-arg PUBLIC_PUSHER_APP_KEY --build-arg STRIPE_CLIENT_ID --build-arg PUBLIC_STRIPE_API_KEY --build-arg PUBLIC_GOOGLE_TAG_MANAGER_ID --build-arg PUBLIC_FACEBOOK_PIXEL_ID --build-arg PUBLIC_GOOGLE_ANALYTICS_ID --build-arg PUBLIC_FOODETECTIVE_URL -t ${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-${CIRCLE_SHA1} -f docker/Dockerfile.production .
+          command: docker build --build-arg APP_URL --build-arg OAUTH_PUBLIC_CLIENT_ID --build-arg PUBLIC_FOODETECTIVE_URL --build-arg OAUTH_SECRET_CLIENT_ID --build-arg PUBLIC_API_URL --build-arg PUBLIC_GOOGLE_MAPS_API_KEY --build-arg PUBLIC_PUSHER_APP_CLUSTER --build-arg PUBLIC_PUSHER_APP_KEY --build-arg STRIPE_CLIENT_ID --build-arg PUBLIC_STRIPE_API_KEY --build-arg PUBLIC_GOOGLE_TAG_MANAGER_ID --build-arg PUBLIC_FACEBOOK_PIXEL_ID --build-arg PUBLIC_GOOGLE_ANALYTICS_ID --build-arg PUBLIC_FOODETECTIVE_URL -t ${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-${CIRCLE_SHA1} -f docker/Dockerfile.production .
       - run:
           name: Push image to AWS ECR
           command: |
