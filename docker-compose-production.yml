@@ -11,10 +11,6 @@ services:
     environment:
       - NODE_ENV=production
       - APP_URL=https://sherlock.foodetective.co
-      - OAUTH_SECRET_CLIENT_ID=$OAUTH_SECRET_CLIENT_ID
-      - OAUTH_PUBLIC_CLIENT_ID=$OAUTH_PUBLIC_CLIENT_ID
-      - OAUTH_CALLBACK_URL=$OAUTH_CALLBACK_URL
-      - PUBLIC_API_URL=$PUBLIC_API_URL
       # - LETSENCRYPT_HOST=sherlock.foodetective.co
       # - LETSENCRYPT_EMAIL=devops-team@netguru.co
     # networks:
