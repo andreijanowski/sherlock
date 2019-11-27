@@ -24,7 +24,8 @@ function handleOauthCallback(req, res) {
         res.redirect(redirectTo);
       })
       .catch(err => {
-        res.status(err.response.status);
+        res.status(err.response ? err.response.status : 500);
+        console.log(err);
         res.redirect("/");
       });
   } else {
