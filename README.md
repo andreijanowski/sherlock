@@ -78,6 +78,10 @@ PUBLIC_GOOGLE_MAPS_API_KEY=
 
 You can find all envs in 1pass for foodetective project.
 
+### "Env hell"
+
+On the production some environmets are needed for build, and some are used by node.js. We had some issues with that during first oauth deploy, so please be aware that some envs (used for build process) are located in CircleCi and loaded in [Dockerfile](https://github.com/netguru/sherlock/blob/master/docker/Dockerfile.production), and some (used by node.js server) are located in the [files](https://github.com/netguru/sherlock/blob/master/docker-compose-production.yml#L10) on production server.
+
   
 
 ## Setup
