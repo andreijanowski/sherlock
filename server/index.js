@@ -19,7 +19,10 @@ const startServer = require("./startServer");
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handler = routes.getRequestHandler(app);
-const apiParser = bodyParser.json({ type: "application/vnd.api+json", limit: "20MB" });
+const apiParser = bodyParser.json({
+  type: "application/vnd.api+json",
+  limit: "20MB"
+});
 const pusherParser = bodyParser.urlencoded({
   extended: true,
   type: "application/x-www-form-urlencoded"
