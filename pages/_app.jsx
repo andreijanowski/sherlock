@@ -58,6 +58,12 @@ class MyApp extends App {
   };
 
   componentDidMount() {
+    window.addEventListener("beforeunload", () => {
+      if (window.localStorage.getItem("refreshingToken") === "true") {
+        window.localStorage.setItem("refreshingToken", "false");
+        window.localStorage.setItem("refreshingTokenAppInstance", null);
+      }
+    });
     const {
       pageProps: { pathname },
       pathChanged
@@ -75,17 +81,6 @@ class MyApp extends App {
       document.querySelector("#stripe-js").addEventListener("load", () => {
         this.setState({ stripe: window.Stripe(STRIPE_API_KEY) });
       });
-    }
-  }
-
-  componentWillUnmount() {
-    if (
-      window.localStorage.getItem("refreshingToken") === "true" &&
-      window.localStorage.getItem("refreshingTokenAppInstance") ===
-        this.props.state.getIn(["app", "instanceUuid"])
-    ) {
-      window.localStorage.setItem("refreshingToken", "false");
-      window.localStorage.setItem("refreshingTokenAppInstance", null);
     }
   }
 
