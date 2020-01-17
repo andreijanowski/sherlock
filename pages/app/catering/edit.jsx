@@ -10,6 +10,7 @@ import { timeToNumber, LoadingIndicator, CalendarLayout } from "components";
 import { patchCatering, sendCateringOffer } from "actions/caterings";
 import fileToBase64 from "utils/fileToBase64";
 import { convertToCents } from "utils/price";
+import { patchBusiness } from "actions/businesses";
 
 const namespaces = ["catering", "events", "app", "forms"];
 
@@ -64,7 +65,8 @@ class EditCateringPage extends PureComponent {
       businessId,
       businesses,
       changeCurrentBusiness,
-      editedCatering
+      editedCatering,
+      updateBusiness
     } = this.props;
     const { isSending } = this.state;
     const isFormShown = !isSending && editedCatering;
@@ -77,6 +79,8 @@ class EditCateringPage extends PureComponent {
           businessId,
           businesses,
           changeCurrentBusiness,
+          updateBusiness,
+          serviceActivationFieldName: "hasCatering",
           isAddActionHidden: true,
           eventType: "catering"
         }}
@@ -106,6 +110,7 @@ EditCateringPage.propTypes = {
   changeCurrentBusiness: func.isRequired,
   updateCatering: func.isRequired,
   sendOffer: func.isRequired,
+  updateBusiness: func.isRequired,
   businesses: shape(),
   businessId: string
 };
@@ -142,7 +147,8 @@ export default requireAuth(true)(
       {
         changeCurrentBusiness: setCurrentBusiness,
         updateCatering: patchCatering,
-        sendOffer: sendCateringOffer
+        sendOffer: sendCateringOffer,
+        updateBusiness: patchBusiness
       }
     )(EditCateringPage)
   )

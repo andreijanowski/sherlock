@@ -304,7 +304,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     case PATCH_BUSINESS_SUCCESS: {
       let newState = null;
       meta.updatedValues.forEach(v => {
-        if (fieldsThatShouldBeUpdatedImmediatly.includes(v)) {
+        if (
+          meta.updateImmediatly ||
+          fieldsThatShouldBeUpdatedImmediatly.includes(v)
+        ) {
           const currentBusinessPathArray = [
             "currentBusiness",
             "data",

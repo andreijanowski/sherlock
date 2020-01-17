@@ -8,6 +8,7 @@ import {
   setPrivatisationForEditing,
   sendPrivatisationOffer
 } from "actions/privatisations";
+import { patchBusiness } from "actions/businesses";
 
 const namespaces = ["privatisation", "events", "app"];
 
@@ -21,7 +22,8 @@ const DayPage = ({
   changeCurrentBusiness,
   privatisations,
   setEditedPrivatisation,
-  sendOffer
+  sendOffer,
+  updateBusiness
 }) => (
   <CalendarLayout
     {...{
@@ -35,6 +37,8 @@ const DayPage = ({
       businessId,
       businesses,
       changeCurrentBusiness,
+      updateBusiness,
+      serviceActivationFieldName: "hasPrivateEvents",
       eventType: "privatisation"
     }}
   >
@@ -70,7 +74,8 @@ DayPage.propTypes = {
   businesses: shape(),
   privatisations: shape(),
   addresses: shape(),
-  businessId: string
+  businessId: string,
+  updateBusiness: func.isRequired
 };
 
 DayPage.defaultProps = {
@@ -111,7 +116,8 @@ export default requireAuth(true)(
       {
         changeCurrentBusiness: setCurrentBusiness,
         setEditedPrivatisation: setPrivatisationForEditing,
-        sendOffer: sendPrivatisationOffer
+        sendOffer: sendPrivatisationOffer,
+        updateBusiness: patchBusiness
       }
     )(DayPage)
   )

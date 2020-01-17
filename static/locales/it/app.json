@@ -37,5 +37,6 @@
   "back": "Indietro",
   "crop": "Ritaglia",
   "cancel": "Annulla",
-  "confirmAccount": "Ti abbiamo inviato un messaggio di conferma alla tua email. Conferma il tuo account entro 3 giorni."
+  "confirmAccount": "Ti abbiamo inviato un messaggio di conferma alla tua email. Conferma il tuo account entro 3 giorni.",
+  "active": "Attivo"
 }
