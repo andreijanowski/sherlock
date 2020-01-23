@@ -29,7 +29,7 @@ export const postBusiness = () => ({
   meta: { thunk: true }
 });
 
-export const patchBusiness = (id, values) => ({
+export const patchBusiness = (id, values, updateImmediatly) => ({
   type: PATCH_BUSINESS_REQUEST,
   payload: {
     method: "PATCH",
@@ -47,6 +47,7 @@ export const patchBusiness = (id, values) => ({
   meta: {
     thunk: true,
     updatedValues: Object.keys(values),
+    updateImmediatly,
     timestamp: Date.now()
   }
 });

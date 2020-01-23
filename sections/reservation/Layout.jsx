@@ -10,7 +10,8 @@ import {
   ItalicText,
   Select,
   AutosizeInput,
-  ActionIcon
+  ActionIcon,
+  ServiceStatusCheckbox
 } from "components";
 import { Router } from "routes";
 import {
@@ -76,19 +77,34 @@ const ReservationLayout = ({
         lng
       }}
     >
-      <Box width={[1, 1 / 2]} mb={3}>
-        <Select
-          value={{
-            value: currentBusinessId,
-            label:
-              (business && business.get("name")) ||
-              t("app:manageProfile.unnamedBusiness"),
-            src: business && business.getIn(["logo", "url"])
-          }}
-          withImage
-          items={prepareBusinessesList(t, businesses)}
-          onChange={b => changeCurrentBusiness(b.value)}
-        />
+      <Box width={1} mb={3}>
+        <Flex justifyContent="space-between">
+          <Box>
+            <Select
+              value={{
+                value: currentBusinessId,
+                label:
+                  (business && business.get("name")) ||
+                  t("app:manageProfile.unnamedBusiness"),
+                src: business && business.getIn(["logo", "url"])
+              }}
+              withImage
+              items={prepareBusinessesList(t, businesses)}
+              onChange={b => changeCurrentBusiness(b.value)}
+            />
+          </Box>
+          <Box>
+            <ServiceStatusCheckbox
+              {...{
+                t,
+                serviceActivationFieldName: "hasReservations",
+                business,
+                updateBusiness,
+                businessId: currentBusinessId
+              }}
+            />
+          </Box>
+        </Flex>
       </Box>
       {isInfoBarVisible && (
         <InfoBar

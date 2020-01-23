@@ -8,6 +8,7 @@ import {
 } from "components";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
+import { patchBusiness } from "actions/businesses";
 
 const namespaces = ["privatisation", "events", "app"];
 
@@ -18,7 +19,8 @@ const YearPage = ({
   businessId,
   businesses,
   changeCurrentBusiness,
-  privatisations
+  privatisations,
+  updateBusiness
 }) => (
   <CalendarLayout
     {...{
@@ -32,6 +34,8 @@ const YearPage = ({
       businessId,
       businesses,
       changeCurrentBusiness,
+      updateBusiness,
+      serviceActivationFieldName: "hasPrivateEvents",
       eventType: "privatisation"
     }}
   >
@@ -56,6 +60,7 @@ YearPage.propTypes = {
   changeCurrentBusiness: func.isRequired,
   businesses: shape(),
   privatisations: shape(),
+  updateBusiness: func.isRequired,
   businessId: string
 };
 
@@ -93,7 +98,8 @@ export default requireAuth(true)(
         };
       },
       {
-        changeCurrentBusiness: setCurrentBusiness
+        changeCurrentBusiness: setCurrentBusiness,
+        updateBusiness: patchBusiness
       }
     )(YearPage)
   )

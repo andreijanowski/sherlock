@@ -5,6 +5,7 @@ import { func, string, shape } from "prop-types";
 import CreateCateringForm from "sections/catering/create";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
+import { patchBusiness } from "actions/businesses";
 import { postCatering, sendCateringOffer } from "actions/caterings";
 import { Router } from "routes";
 import fileToBase64 from "utils/fileToBase64";
@@ -65,7 +66,8 @@ class CreateCateringPage extends PureComponent {
       business,
       businessId,
       businesses,
-      changeCurrentBusiness
+      changeCurrentBusiness,
+      updateBusiness
     } = this.props;
     const { isSending } = this.state;
     return (
@@ -77,6 +79,8 @@ class CreateCateringPage extends PureComponent {
           businessId,
           businesses,
           changeCurrentBusiness,
+          updateBusiness,
+          serviceActivationFieldName: "hasCatering",
           isAddActionHidden: true,
           eventType: "catering"
         }}
@@ -97,6 +101,7 @@ CreateCateringPage.propTypes = {
   businesses: shape(),
   createCatering: func.isRequired,
   sendOffer: func.isRequired,
+  updateBusiness: func.isRequired,
   businessId: string
 };
 
@@ -130,7 +135,8 @@ export default requireAuth(true)(
       {
         changeCurrentBusiness: setCurrentBusiness,
         createCatering: postCatering,
-        sendOffer: sendCateringOffer
+        sendOffer: sendCateringOffer,
+        updateBusiness: patchBusiness
       }
     )(CreateCateringPage)
   )

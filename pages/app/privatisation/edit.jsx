@@ -13,6 +13,7 @@ import {
 } from "actions/privatisations";
 import fileToBase64 from "utils/fileToBase64";
 import { convertToCents } from "utils/price";
+import { patchBusiness } from "actions/businesses";
 
 const namespaces = ["privatisation", "events", "app", "forms"];
 
@@ -67,7 +68,8 @@ class EditPrivatisationPage extends PureComponent {
       businessId,
       businesses,
       changeCurrentBusiness,
-      editedPrivatisation
+      editedPrivatisation,
+      updateBusiness
     } = this.props;
     const { isSending } = this.state;
     const isFormShown = !isSending && editedPrivatisation;
@@ -80,6 +82,8 @@ class EditPrivatisationPage extends PureComponent {
           businessId,
           businesses,
           changeCurrentBusiness,
+          updateBusiness,
+          serviceActivationFieldName: "hasPrivateEvents",
           isAddActionHidden: true,
           eventType: "privatisation"
         }}
@@ -110,6 +114,7 @@ EditPrivatisationPage.propTypes = {
   updatePrivatisation: func.isRequired,
   sendOffer: func.isRequired,
   businesses: shape(),
+  updateBusiness: func.isRequired,
   businessId: string
 };
 
@@ -148,7 +153,8 @@ export default requireAuth(true)(
       {
         changeCurrentBusiness: setCurrentBusiness,
         updatePrivatisation: patchPrivatisation,
-        sendOffer: sendPrivatisationOffer
+        sendOffer: sendPrivatisationOffer,
+        updateBusiness: patchBusiness
       }
     )(EditPrivatisationPage)
   )

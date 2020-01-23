@@ -12,6 +12,7 @@ import {
 import { Router } from "routes";
 import fileToBase64 from "utils/fileToBase64";
 import { timeToNumber, CalendarLayout } from "components";
+import { patchBusiness } from "actions/businesses";
 
 const namespaces = ["privatisation", "events", "app", "forms"];
 
@@ -70,7 +71,8 @@ class CreatePrivatisationPage extends PureComponent {
       business,
       businessId,
       businesses,
-      changeCurrentBusiness
+      changeCurrentBusiness,
+      updateBusiness
     } = this.props;
     const { isSending } = this.state;
     return (
@@ -82,6 +84,8 @@ class CreatePrivatisationPage extends PureComponent {
           businessId,
           businesses,
           changeCurrentBusiness,
+          updateBusiness,
+          serviceActivationFieldName: "hasPrivateEvents",
           isAddActionHidden: true,
           eventType: "privatisation"
         }}
@@ -102,6 +106,7 @@ CreatePrivatisationPage.propTypes = {
   businesses: shape(),
   createPrivatisation: func.isRequired,
   sendOffer: func.isRequired,
+  updateBusiness: func.isRequired,
   businessId: string
 };
 
@@ -135,7 +140,8 @@ export default requireAuth(true)(
       {
         changeCurrentBusiness: setCurrentBusiness,
         createPrivatisation: postPrivatisation,
-        sendOffer: sendPrivatisationOffer
+        sendOffer: sendPrivatisationOffer,
+        updateBusiness: patchBusiness
       }
     )(CreatePrivatisationPage)
   )

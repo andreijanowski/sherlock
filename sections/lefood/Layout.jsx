@@ -13,7 +13,8 @@ import {
   ConnectWithStripe,
   LoadingIndicator,
   RawCheckbox,
-  H2
+  H2,
+  ServiceStatusCheckbox
 } from "components";
 import {
   Orders,
@@ -187,7 +188,8 @@ class LefoodLayout extends PureComponent {
       business,
       currentBusinessId,
       businesses,
-      changeCurrentBusiness
+      changeCurrentBusiness,
+      updateBusiness
     } = this.props;
     const {
       minAmountForDeliveryCents,
@@ -220,23 +222,37 @@ class LefoodLayout extends PureComponent {
         {!business || business.get("stripeUserId") === undefined ? (
           <>
             <LoadingIndicator />
-            {console.log("Layout indicator")}
           </>
         ) : (
           <>
-            <Box width={[1, 1 / 2]} mb={3}>
-              <Select
-                value={{
-                  value: currentBusinessId,
-                  label:
-                    (business && business.get("name")) ||
-                    t("app:manageProfile.unnamedBusiness"),
-                  src: business && business.getIn(["logo", "url"])
-                }}
-                withImage
-                items={prepareBusinessesList(t, businesses)}
-                onChange={b => changeCurrentBusiness(b.value)}
-              />
+            <Box width={1} mb={3}>
+              <Flex justifyContent="space-between">
+                <Box>
+                  <Select
+                    value={{
+                      value: currentBusinessId,
+                      label:
+                        (business && business.get("name")) ||
+                        t("app:manageProfile.unnamedBusiness"),
+                      src: business && business.getIn(["logo", "url"])
+                    }}
+                    withImage
+                    items={prepareBusinessesList(t, businesses)}
+                    onChange={b => changeCurrentBusiness(b.value)}
+                  />
+                </Box>
+                <Box>
+                  <ServiceStatusCheckbox
+                    {...{
+                      t,
+                      serviceActivationFieldName: "availableInLefood",
+                      business,
+                      updateBusiness,
+                      businessId: currentBusinessId
+                    }}
+                  />
+                </Box>
+              </Flex>
             </Box>
             {business.get("stripeCurrency") ? (
               <>

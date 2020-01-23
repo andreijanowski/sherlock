@@ -8,6 +8,7 @@ import {
 } from "components";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
+import { patchBusiness } from "actions/businesses";
 
 const namespaces = ["catering", "events", "app"];
 
@@ -18,7 +19,8 @@ const YearPage = ({
   businessId,
   businesses,
   changeCurrentBusiness,
-  caterings
+  caterings,
+  updateBusiness
 }) => (
   <CalendarLayout
     {...{
@@ -32,6 +34,8 @@ const YearPage = ({
       businessId,
       businesses,
       changeCurrentBusiness,
+      updateBusiness,
+      serviceActivationFieldName: "hasCatering",
       eventType: "catering"
     }}
   >
@@ -55,6 +59,7 @@ YearPage.propTypes = {
   lng: string.isRequired,
   business: shape(),
   changeCurrentBusiness: func.isRequired,
+  updateBusiness: func.isRequired,
   businesses: shape(),
   caterings: shape(),
   businessId: string
@@ -90,7 +95,8 @@ export default requireAuth(true)(
         };
       },
       {
-        changeCurrentBusiness: setCurrentBusiness
+        changeCurrentBusiness: setCurrentBusiness,
+        updateBusiness: patchBusiness
       }
     )(YearPage)
   )

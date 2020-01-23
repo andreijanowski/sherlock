@@ -81,3 +81,4 @@ export {
   Subheader as SliderSubheader,
   Spacer as SliderSpacer
 } from "./Slider/styled";
+export { default as ServiceStatusCheckbox } from "./ServiceStatusCheckbox";
