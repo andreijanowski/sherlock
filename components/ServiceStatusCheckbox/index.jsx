@@ -9,6 +9,7 @@ const ServiceStatusCheckbox = ({
   businessId
 }) => (
   <RawCheckbox
+    hasCloserText
     label={t("app:active")}
     input={{
       onChange: ({ target: { name, checked } }) =>
