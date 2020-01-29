@@ -3,22 +3,7 @@ import { Flex } from "@rebass/grid";
 import { H3 } from "components";
 import { func, shape } from "prop-types";
 import ListItem from "./ListItem";
-
-const categories = [
-  "mains",
-  "desserts",
-  "softs",
-  "formulas",
-  "starters",
-  "sides",
-  "pastries",
-  "coffee",
-  "beer",
-  "wine",
-  "cocktails",
-  "catering",
-  "other"
-];
+import { categories } from "./utils";
 
 const List = ({ dishes, removeDish, t, setEditedDishId }) =>
   categories.map(c => {

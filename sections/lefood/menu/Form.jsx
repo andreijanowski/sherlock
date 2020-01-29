@@ -17,6 +17,7 @@ import { Flex, Box } from "@rebass/grid";
 import { normalizePrice } from "utils/normalizers";
 import { required } from "utils/validators";
 import { Form } from "./styled";
+import { categories } from "./utils";
 
 const DishForm = ({
   t,
@@ -138,21 +139,7 @@ const DishForm = ({
                     name="category"
                     component={FormDropdown}
                     label={t("categoryLabel")}
-                    items={[
-                      { label: t("mains"), value: "mains" },
-                      { label: t("desserts"), value: "desserts" },
-                      { label: t("softs"), value: "softs" },
-                      { label: t("formulas"), value: "formulas" },
-                      { label: t("starters"), value: "starters" },
-                      { label: t("sides"), value: "sides" },
-                      { label: t("pastries"), value: "pastries" },
-                      { label: t("coffee"), value: "coffee" },
-                      { label: t("beer"), value: "beer" },
-                      { label: t("wine"), value: "wine" },
-                      { label: t("cocktails"), value: "cocktails" },
-                      { label: t("catering"), value: "catering" },
-                      { label: t("other"), value: "other" }
-                    ]}
+                    items={categories.map(c => ({ label: t(c), value: c }))}
                   />
                 </Box>
                 <Box my={4}>
