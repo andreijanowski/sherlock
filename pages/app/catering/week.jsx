@@ -5,6 +5,7 @@ import { CalendarLayout, BigCalendar } from "components";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
 import { setCateringForEditing, sendCateringOffer } from "actions/caterings";
+import { patchBusiness } from "actions/businesses";
 
 const namespaces = ["catering", "events", "app"];
 
@@ -18,7 +19,8 @@ const WeekPage = ({
   changeCurrentBusiness,
   caterings,
   setEditedCatering,
-  sendOffer
+  sendOffer,
+  updateBusiness
 }) => (
   <CalendarLayout
     {...{
@@ -32,6 +34,8 @@ const WeekPage = ({
       businessId,
       businesses,
       changeCurrentBusiness,
+      updateBusiness,
+      serviceActivationFieldName: "hasCatering",
       eventType: "catering"
     }}
   >
@@ -63,6 +67,7 @@ WeekPage.propTypes = {
   sendOffer: func.isRequired,
   lng: string.isRequired,
   business: shape(),
+  updateBusiness: func.isRequired,
   changeCurrentBusiness: func.isRequired,
   businesses: shape(),
   caterings: shape(),
@@ -104,7 +109,8 @@ export default requireAuth(true)(
       {
         changeCurrentBusiness: setCurrentBusiness,
         setEditedCatering: setCateringForEditing,
-        sendOffer: sendCateringOffer
+        sendOffer: sendCateringOffer,
+        updateBusiness: patchBusiness
       }
     )(WeekPage)
   )

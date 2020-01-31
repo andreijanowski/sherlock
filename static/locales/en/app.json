@@ -37,5 +37,6 @@
   "back": "Back",
   "crop": "Crop",
   "cancel": "Cancel",
-  "confirmAccount": "We sent you confirmation message to your email. Please confirm your account within 3 days."
+  "confirmAccount": "We sent you confirmation message to your email. Please confirm your account within 3 days.",
+  "active": "Active"
 }

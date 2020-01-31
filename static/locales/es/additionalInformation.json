@@ -16,7 +16,7 @@
   "hasCatering": "Abastecimiento",
   "hasReservations": "Reservaciones",
   "hasPrivateEvents": "Privatizaciones",
-  "availableInLefood": "Disponible en lefood",
+  "availableInLefood": "Órdenes",
   "deliveryUrlLabel": "URL de entrega",
   "deliveryUrlPlaceholder": "https://business.co/delivery",
   "onlineBookingUrlLabel": "URL de reserva en línea",
