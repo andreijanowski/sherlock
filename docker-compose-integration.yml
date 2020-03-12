@@ -1,20 +1,28 @@
 version: "3.4"
 services:
   front:
-    build:
-      context: .
-      dockerfile: ./docker/Dockerfile.staging
+    image: ${IMAGE}
     hostname: "sherlock.integration.front"
     command: ash -c 'yarn build && yarn start'
     labels:
       - "netguru.appname=sherlock"
       - "netguru.stage=integration"
-    env_file: /home/deploy/apps/sherlock-front/shared/secrets.env
     environment:
       - NODE_ENV=integration
-      - APP_URL=https://$PULL_REQUEST_NUMBER.sherlock.integration.devguru.co
-      - VIRTUAL_HOST=$PULL_REQUEST_NUMBER.sherlock.integration.devguru.co
-      - PULL_REQUEST_ID=netguru/sherlock#$PULL_REQUEST_NUMBER
+      - APP_URL=VIRTUAL_HOST
+      - VIRTUAL_HOST
+      - PUBLIC_API_URL
+      - PUBLIC_FOODETECTIVE_URL
+      - NETGURU_DEV_PASSWORD
+      - OAUTH_CALLBACK_URL
+      - OAUTH_PUBLIC_CLIENT_ID
+      - OAUTH_SECRET_CLIENT_ID
+      - PUBLIC_PUSHER_APP_KEY
+      - PUBLIC_PUSHER_APP_CLUSTER
+      - STRIPE_CLIENT_ID
+      - PUBLIC_STRIPE_API_KEY
+      - PUBLIC_GOOGLE_ANALYTICS_ID
+      - PUBLIC_GOOGLE_MAPS_API_KEY
     networks:
       - frontend
     expose:

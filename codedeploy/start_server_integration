@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Treat unset variables and parameters [...] as an error when performing parameter expansion (substituting).
+set -u
+# Print a trace of simple commands
+set -x
+
+REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r ".region")
+VARS=$(aws --region $REGION ssm get-parameters-by-path --recursive --path /calluna/sherlock/staging --with-decryption | jq -r '.Parameters | .[] | .Name + "=" + .Value' | sed -e s#/calluna/sherlock/staging/##g)
+
+for envvar in ${VARS}; do
+  export $envvar;
+done
+
+export PUBLIC_API_URL=$(echo $PUBLIC_API_URL | base64 -d)
+export PUBLIC_FOODETECTIVE_URL=$(echo $PUBLIC_FOODETECTIVE_URL | base64 -d)
+export NETGURU_DEV_PASSWORD=$(echo $NETGURU_DEV_PASSWORD | base64 -d)
+export OAUTH_CALLBACK_URL=$(echo $OAUTH_CALLBACK_URL | base64 -d)
+
+cd /opt/codedeploy-agent/deployment-root/${DEPLOYMENT_GROUP_ID}/${DEPLOYMENT_ID}/deployment-archive
+
+cp codedeploy/nginx/001-healthcheck.conf /etc/nginx/conf.d/
+
+echo $(docker ps) | grep "nginx_proxy" &> /dev/null
+if [[ ! $? -eq 0 ]]; then
+  docker-compose -f codedeploy/nginx/docker-compose-staging.yml up -d
+fi
+
+export $(cat codedeploy/parameters | xargs)
+
+docker network create frontend
+
+COMPOSE_PROJECT_NAME=$(echo $VIRTUAL_HOST | cut -d. -f1)
+
+$(aws ecr get-login --region eu-central-1 --no-include-email)
+
+docker-compose -p $COMPOSE_PROJECT_NAME -f docker-compose-integration.yml up -d --force-recreate
+
+# Remove unused data, do not prompt for confirmation
+docker image prune -f
+docker container prune -f
