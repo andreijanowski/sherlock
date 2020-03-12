@@ -19,6 +19,8 @@ export OAUTH_CALLBACK_URL=$(echo $OAUTH_CALLBACK_URL | base64 -d)
 
 cd /opt/codedeploy-agent/deployment-root/${DEPLOYMENT_GROUP_ID}/${DEPLOYMENT_ID}/deployment-archive
 
+mkdir /etc/nginx
+mkdir /etc/nginx/conf.d
 cp codedeploy/nginx/001-healthcheck.conf /etc/nginx/conf.d/
 
 echo $(docker ps) | grep "nginx_proxy" &> /dev/null
