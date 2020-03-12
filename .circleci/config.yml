@@ -65,7 +65,7 @@ jobs:
           account-url: STAGING_AWS_ECR_ACCOUNT_URL
           repo: calluna-ecr-sherlock-staging
           tag: ${CIRCLE_SHA1}
-          dockerfile: docker/Dockerfile
+          dockerfile: docker/Dockerfile.staging
           setup-remote-docker: true
 
   deploy_staging:
