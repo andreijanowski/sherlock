@@ -1,4 +1,9 @@
-version: 2.0
+version: 2.1
+
+orbs:
+  aws-cli: circleci/aws-cli@0.1.13
+  aws-code-deploy: circleci/aws-code-deploy@0.0.7
+  aws-ecr: circleci/aws-ecr@6.3.0
 
 references:
   deploy: &deploy
@@ -44,18 +49,89 @@ jobs:
           name: Run CSS Linter
           command: yarn lint:css
 
-  deploy_staging_front:
-    <<: *deploy
-    working_directory: ~/repo/deployment
+  build_image:
+    <<: *node_machine
     steps:
-      - attach_workspace:
-          at: ~/repo
       - run:
-          name: bundle config
-          command: bundle config --local path ~/repo/deployment/vendor/bundle
+          name: 'set ENV for deploying staging'
+          command: |
+            echo 'export AWS_ACCESS_KEY_ID=$STAGING_AWS_ACCESS_KEY_ID' >> $BASH_ENV;
+            echo 'export AWS_SECRET_ACCESS_KEY=$STAGING_AWS_SECRET_ACCESS_KEY' >> $BASH_ENV;
+            source $BASH_ENV
+      - aws-ecr/build-and-push-image:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          region: STAGING_AWS_DEFAULT_REGION
+          account-url: STAGING_AWS_ECR_ACCOUNT_URL
+          repo: calluna-ecr-sherlock-staging
+          tag: ${CIRCLE_SHA1}
+          dockerfile: docker/Dockerfile.staging
+          setup-remote-docker: true
+
+  deploy_staging:
+    working_directory: ~/repo
+    executor: aws-cli/default
+    steps:
       - run:
-          name: Deploy to staging
-          command: bundle install; bundle exec cap staging deploy
+          name: 'set ENV for deploying staging'
+          command: |
+            echo 'export AWS_ACCESS_KEY_ID=$STAGING_AWS_ACCESS_KEY_ID' >> $BASH_ENV;
+            echo 'export AWS_SECRET_ACCESS_KEY=$STAGING_AWS_SECRET_ACCESS_KEY' >> $BASH_ENV;
+            source $BASH_ENV
+      - checkout
+      - run:
+          name: Configure deployment
+          command: |
+            echo IMAGE=${STAGING_AWS_ECR_ACCOUNT_URL}/calluna-ecr-sherlock-staging:${CIRCLE_SHA1} >> codedeploy/parameters
+      - aws-cli/install
+      - aws-cli/configure
+      - aws-code-deploy/push-bundle:
+          application-name: calluna-sherlock-staging-main_app
+          bundle-bucket: calluna-bucket-sherlock-staging
+          bundle-key: codedeploy/$CIRCLE_PROJECT_REPONAME-$CIRCLE_BUILD_NUM
+      - aws-code-deploy/deploy-bundle:
+          application-name: calluna-sherlock-staging-main_app
+          deployment-group: calluna-sherlock-staging-main_app-group
+          bundle-bucket: calluna-bucket-sherlock-staging
+          bundle-key: codedeploy/$CIRCLE_PROJECT_REPONAME-$CIRCLE_BUILD_NUM
+
+  deploy_dynamic_staging:
+    working_directory: ~/repo
+    executor: aws-cli/default
+    steps:
+      - run:
+          name: 'set ENV for deploying staging'
+          command: |
+            echo 'export AWS_ACCESS_KEY_ID=$STAGING_AWS_ACCESS_KEY_ID' >> $BASH_ENV;
+            echo 'export AWS_SECRET_ACCESS_KEY=$STAGING_AWS_SECRET_ACCESS_KEY' >> $BASH_ENV;
+            source $BASH_ENV
+      - checkout
+      - run:
+          name: Configure deployment
+          command: |
+            echo VIRTUAL_HOST=$(echo ${CIRCLE_BRANCH} | cut -d '/' -f 2- | sed 's/[^ a-zA-Z0-9]/-/g' | cut -d '-' -f -3).sherlock.calluna.devguru.co >> codedeploy/parameters
+            echo IMAGE=${STAGING_AWS_ECR_ACCOUNT_URL}/calluna-ecr-sherlock-staging:${CIRCLE_SHA1} >> codedeploy/parameters
+      - aws-cli/install
+      - aws-cli/configure
+      - aws-code-deploy/push-bundle:
+          application-name: calluna-sherlock-staging-dynamic_main_app
+          bundle-bucket: calluna-bucket-sherlock-staging
+          bundle-key: codedeploy/$CIRCLE_PROJECT_REPONAME-$CIRCLE_BUILD_NUM
+      - aws-code-deploy/deploy-bundle:
+          application-name: calluna-sherlock-staging-dynamic_main_app
+          deployment-group: calluna-sherlock-staging-dynamic_main_app-group
+          bundle-bucket: calluna-bucket-sherlock-staging
+          bundle-key: codedeploy/$CIRCLE_PROJECT_REPONAME-$CIRCLE_BUILD_NUM
+
+  mark_integration_as_deployed:
+    docker:
+      - image: quay.io/netguru/deployer
+    steps:
+      - run:
+          name: Mark Dynamic as Deployed
+          command: |
+            export VIRTUAL_HOST=$(echo ${CIRCLE_BRANCH} | cut -d '/' -f 2- | sed 's/[^ a-zA-Z0-9]/-/g' | cut -d '-' -f -3).sherlock.calluna.devguru.co
+            ruby /deployment.rb ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME} ${CIRCLE_SHA1} ${CIRCLE_PULL_REQUEST##*/} https://${VIRTUAL_HOST}/
 
   build_push_docker:
     docker:
@@ -110,15 +186,32 @@ workflows:
   build-and-deploy:
     jobs:
       - checkout_code
-      # - yarn_lint:
-      #     requires:
-      #       - checkout_code
-      - deploy_staging_front:
+      - build_image:
+          filters:
+            branches:
+              ignore: production
+      - deploy_staging:
           requires:
-            - checkout_code
+            - build_image
           filters:
             branches:
               only: master
+      - deploy_dynamic_staging:
+          requires:
+            - build_image
+          filters:
+            branches:
+              ignore:
+                - master
+                - production
+      - mark_integration_as_deployed:
+          requires:
+            - deploy_dynamic_staging
+          filters:
+            branches:
+              ignore:
+                - master
+                - production
       - build_push_docker:
           requires:
             - checkout_code
