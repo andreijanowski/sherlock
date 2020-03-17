@@ -16,6 +16,7 @@ export PUBLIC_API_URL=$(echo $PUBLIC_API_URL | base64 -d)
 export PUBLIC_FOODETECTIVE_URL=$(echo $PUBLIC_FOODETECTIVE_URL | base64 -d)
 export NETGURU_DEV_PASSWORD=$(echo $NETGURU_DEV_PASSWORD | base64 -d)
 export OAUTH_CALLBACK_URL=$(echo $OAUTH_CALLBACK_URL | base64 -d)
+export STAGING_AUTH=$(echo $STAGING_AUTH | base64 -d)
 
 cd /opt/codedeploy-agent/deployment-root/${DEPLOYMENT_GROUP_ID}/${DEPLOYMENT_ID}/deployment-archive
 
