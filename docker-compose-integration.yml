@@ -23,6 +23,7 @@ services:
       - PUBLIC_STRIPE_API_KEY
       - PUBLIC_GOOGLE_ANALYTICS_ID
       - PUBLIC_GOOGLE_MAPS_API_KEY
+      - STAGING_AUTH
     networks:
       - frontend
     expose:

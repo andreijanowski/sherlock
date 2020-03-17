@@ -25,6 +25,7 @@ services:
       - PUBLIC_GOOGLE_MAPS_API_KEY
       - LETSENCRYPT_HOST=sherlock.staging.devguru.co
       - LETSENCRYPT_EMAIL=devops-team@netguru.co
+      - STAGING_AUTH
     networks:
       - frontend
     expose:
