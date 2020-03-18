@@ -9,10 +9,10 @@
   "countryPlaceholder": "+48",
   "phoneLabel": "Telefon",
   "phonePlaceholder": "543 423 534",
-  "websiteLabel": "Webseite (optional, z.B. http://example.com)",
+  "websiteLabel": "Webseite (optional)",
   "websitePlaceholder": "http://example.com",
-  "facebookLabel": "Facebook (optional, z.B. https://facebook.com/profile/)",
+  "facebookLabel": "Facebook (optional)",
   "facebookPlaceholder": "https://facebook.com/profile/",
-  "instagramLabel": "Instagram (optional, z.B. https://instagram.com/profile)",
+  "instagramLabel": "Instagram (optional)",
   "instagramPlaceholder": "https://instagram.com/profile"
 }

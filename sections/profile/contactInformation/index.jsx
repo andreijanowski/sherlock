@@ -37,7 +37,7 @@ const ContactInformationForm = ({ t, initialValues, handleSubmit }) =>
             placeholder={t("emailPlaceholder")}
           />
           <Flex mx={-2} flexWrap="wrap">
-            <Box width={[1, 1 / 3]} px={2}>
+            <Box width={[1, 1 / 2, 1 / 3]} px={2}>
               <Field
                 name="phoneCountry"
                 component={FormSelect}
@@ -47,7 +47,7 @@ const ContactInformationForm = ({ t, initialValues, handleSubmit }) =>
                 showFlag
               />
             </Box>
-            <Box width={[1, 2 / 3]} px={2}>
+            <Box width={[1, 1 / 2, 2 / 3]} px={2}>
               <FormInput
                 name="phone"
                 label={t("phoneLabel")}

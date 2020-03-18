@@ -86,7 +86,7 @@ const Footer = ({ t }) => {
                 columnName: "columnFour",
                 hrefs: {
                   "0": {
-                    href: "https://www.facebook.com/sherlock.foodetective/",
+                    href: "https://www.facebook.com/business.foodetective/",
                     target: "_blank",
                     rel: "noreferrer noopener"
                   },
@@ -96,12 +96,12 @@ const Footer = ({ t }) => {
                     rel: "noreferrer noopener"
                   },
                   "2": {
-                    href: "https://twitter.com/GetSherlockNow",
+                    href: "https://twitter.com/FoodetectivePro",
                     target: "_blank",
                     rel: "noreferrer noopener"
                   },
                   "3": {
-                    href: "https://www.instagram.com/sherlock.foodetective.co",
+                    href: "https://www.instagram.com/business.foodetective/",
                     target: "_blank",
                     rel: "noreferrer noopener"
                   }

@@ -26,6 +26,13 @@ export default class MyDocument extends Document {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
+          <title>
+            Foodetective For Business ∙ We make restaurants’ lives much easier !
+          </title>
+          <meta
+            name="description"
+            content="We're not just another restaurants software, Foodetective For Business is the best all in one platform that has everything you need to sell online, on social media, or in person."
+          />
           {this.props.styleTags}
           <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
           <link rel="stylesheet" type="text/css" href="/static/fonts.css" />
@@ -52,7 +59,7 @@ export default class MyDocument extends Document {
             href="/static/favicon/safari-pinned-tab.svg"
             color="#5bbad5"
           />
-          <link rel="shortcut icon" href="/static/favicon/favicon.ico" />
+          <link rel="shortcut icon" href="/static/favicon.ico" />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta
             name="msapplication-config"

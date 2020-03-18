@@ -30,7 +30,11 @@ class AutosizeInput extends PureComponent {
         <Sizer ref={this.sizer}>{value}</Sizer>
         <ReactResizeDetector handleWidth onResize={this.handleResize} />
         <input
-          {...{ ...this.props, value, style: { width: `${inputWidth + 2}px` } }}
+          {...{
+            ...this.props,
+            value,
+            style: { width: `${inputWidth + 16}px` }
+          }}
         />
       </>
     );
