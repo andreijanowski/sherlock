@@ -46,19 +46,19 @@ export const generatePlanOptionsList = (planName, t) => {
         },
         {
           name: t("plans:options.delivery"),
-          discount: "5%"
+          discount: "Free"
         },
         {
           name: t("plans:options.takeAway"),
-          discount: "5%"
+          discount: "Free"
         },
         {
           name: t("plans:options.catering"),
-          discount: "5%"
+          discount: "Free"
         },
         {
           name: t("plans:options.privatisation"),
-          discount: "5%"
+          discount: "Free"
         },
         {
           name: t("plans:options.widget")
