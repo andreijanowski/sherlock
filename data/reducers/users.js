@@ -59,7 +59,11 @@ const fieldsThatShouldBeUpdatedImmediatly = [
   "timeSlots",
   "timeOfStay",
   "minTimeBeforeReservation",
-  "maxReservationSize"
+  "maxReservationSize",
+  "hasCatering",
+  "hasReservations",
+  "hasPrivateEvents",
+  "availableInLefood"
 ];
 
 export const initialState = Record({
