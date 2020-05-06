@@ -3,9 +3,9 @@
   "reservations": "Réservations",
   "takeAway": "A Emporter",
   "bookings": "Réservations (bientôt)",
-  "delivery": "Vente à l’emporté",
-  "catering": "Restauration/catering",
-  "privatisations": "Les privatisations",
+  "delivery": "Commandes",
+  "catering": "Service traiteur",
+  "privatisations": "Privatisations",
   "socialMedia": "Les médias sociaux (bientôt)",
   "billing": "Facturation (bientôt)",
   "manageProfile": {

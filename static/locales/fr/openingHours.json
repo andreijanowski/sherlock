@@ -14,8 +14,8 @@
     "Vendredi",
     "Samedi"
   ],
-  "copy": "copie",
-  "paste": "pegar",
+  "copy": "Copie",
+  "paste": "Coller and not Pegar",
   "locationLabel": "Emplacement",
   "locationPlaceholder": "Près de la rue des Deux-Ponts 124, Genève"
 }

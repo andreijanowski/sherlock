@@ -43,15 +43,15 @@
     "reservations": "Réservations",
     "paidBooking": "Réservation",
     "bookings": "Réservations",
-    "privatisation": "La privatisation",
+    "privatisation": "Privatisation",
     "digitalMarketing": "Le marketing numérique"
   },
   "essential": {
     "name": "Essentiel",
     "priceDescription": "Pour toujours",
     "price": {
-      "month": "Gratuita",
-      "year": "Gratuita"
+      "month": "Gratuit",
+      "year": "Gratuit"
     },
     "buttonText": "Créer un profil"
   },
