@@ -16,7 +16,7 @@ export const LanguageSwitcherWrapper = styled(Flex).attrs(() => ({
 }))`
   position: relative;
   z-index: 2;
-  width: 108px;
+  width: auto;
   height: 40px;
   color: rgba(${p => p.theme.colors.dark}, 0.64);
   font-weight: ${p => p.theme.fontWeights.semiBold};
@@ -45,8 +45,8 @@ export const LanguageList = styled(Flex).attrs(() => ({
   flexDirection: "column"
 }))`
   position: absolute;
-  left: -${p => p.theme.borderWeights.normal};
-  width: 108px;
+  right: -${p => p.theme.borderWeights.normal};
+  width: auto;
   color: rgba(${p => p.theme.colors.dark}, 0.64);
   background-color: rgb(${p => p.theme.colors.background});
   border: ${p => p.theme.borderWeights.normal} solid
@@ -60,7 +60,7 @@ export const LanguageListItem = styled(Box).attrs(() => ({
   px: "16px",
   py: "8px"
 }))`
-  width: 100%;
+  width: 150px;
   font-size: ${p => p.theme.fontSizes.f14};
   line-height: ${p => p.theme.fontSizes.f24};
   border-bottom: ${p => p.theme.borderWeights.normal} solid
@@ -82,6 +82,8 @@ export const LanguageListItem = styled(Box).attrs(() => ({
 export const SelectedLanguageWrapper = styled(Flex).attrs(() => ({
   alignItems: "center"
 }))`
+  margin-right: 8px;
+
   ${FlagIcon} {
     margin-right: 8px;
   }

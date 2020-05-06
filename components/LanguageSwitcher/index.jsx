@@ -1,7 +1,7 @@
 import { Component } from "react";
-import { oneOf, bool } from "prop-types";
+import { oneOf, bool, func } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { i18n } from "i18n";
+import { i18n, withTranslation } from "i18n";
 import isServer from "utils/isServer";
 import {
   LanguageSwitcherWrapper,
@@ -51,7 +51,8 @@ class LanguageSwitcher extends Component {
 
   render() {
     const { listIsVisible, selectedLanguage } = this.state;
-    const { withBorder, listPosition } = this.props;
+    const { withBorder, listPosition, t } = this.props;
+
     return (
       <LanguageSwitcherWrapper
         onBlur={() => this.setState({ listIsVisible: false })}
@@ -63,7 +64,7 @@ class LanguageSwitcher extends Component {
           {!isServer && (
             <>
               <FlagIcon code={selectedLanguage} />
-              {selectedLanguage}
+              {t(selectedLanguage)}
             </>
           )}
         </SelectedLanguageWrapper>
@@ -80,7 +81,7 @@ class LanguageSwitcher extends Component {
                   onClick={() => this.changeLanguage(language)}
                 >
                   <FlagIcon code={language} />
-                  {language}
+                  {t(language)}
                 </LanguageListItem>
               )
             )}
@@ -93,7 +94,8 @@ class LanguageSwitcher extends Component {
 
 LanguageSwitcher.propTypes = {
   withBorder: bool,
-  listPosition: oneOf(["top", "bottom"])
+  listPosition: oneOf(["top", "bottom"]),
+  t: func.isRequired
 };
 
 LanguageSwitcher.defaultProps = {
@@ -101,4 +103,4 @@ LanguageSwitcher.defaultProps = {
   listPosition: "bottom"
 };
 
-export default LanguageSwitcher;
+export default withTranslation("languages")(LanguageSwitcher);

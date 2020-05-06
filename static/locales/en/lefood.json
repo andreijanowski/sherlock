@@ -90,7 +90,7 @@
   "or": "or",
   "toSeeAnyNewOrders": "to see any new orders",
   "complete": "complete",
-  "connectWithStripe": "Connect with stripe",
+  "connectWithStripe": "Connect to your bank account",
   "connectWithStripeSubheading": "Connect your account to stripe in order to access all the payment features.",
   "setStripeCurrencyHeader": "Set stripe currency",
   "setStripeCurrencyParagraph": "All dishes and deliveries related to current business will be removed after this change.",
