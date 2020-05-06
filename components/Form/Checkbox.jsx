@@ -25,7 +25,7 @@ export class RawCheckbox extends PureComponent {
   };
 
   render() {
-    const { input, meta, error, label, hasCloserText } = this.props;
+    const { input, meta, error, label, hasCloserText, disabled } = this.props;
     return (
       <Flex>
         <Box>
@@ -34,13 +34,15 @@ export class RawCheckbox extends PureComponent {
               {...{
                 ...input,
                 ref: this.checkbox,
-                onChange: e => this.handleChange(e, input)
+                onChange: e => this.handleChange(e, input),
+                disabled
               }}
             />
             <Checkmark
               isChecked={input.value}
               invalid={error ? "true" : undefined}
               hasCloserText={hasCloserText}
+              disabled={disabled}
             >
               {input.value && <Icon icon={["fa", "check"]} />}
             </Checkmark>
@@ -59,29 +61,37 @@ RawCheckbox.propTypes = {
   input: shape().isRequired,
   meta: shape(),
   error: string,
-  hasCloserText: bool
+  hasCloserText: bool,
+  disabled: bool
 };
 
 RawCheckbox.defaultProps = {
   error: "",
   meta: null,
-  hasCloserText: false
+  hasCloserText: false,
+  disabled: false
 };
 
-const Checkbox = ({ name, label }) => (
+const Checkbox = ({ name, label, disabled }) => (
   <FinalFormField
     name={name}
     type="checkbox"
     render={({ input, meta }) => {
       const error = getError(meta);
-      return <RawCheckbox {...{ input, meta, error, label }} />;
+
+      return <RawCheckbox {...{ input, meta, error, label, disabled }} />;
     }}
   />
 );
 
 Checkbox.propTypes = {
   label: string.isRequired,
-  name: string.isRequired
+  name: string.isRequired,
+  disabled: bool
+};
+
+Checkbox.defaultProps = {
+  disabled: false
 };
 
 export default Checkbox;

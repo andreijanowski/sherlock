@@ -41,7 +41,15 @@ class MembersForm extends PureComponent {
               {({ fields }) => {
                 const membersArray = fields.map((name, index) => (
                   <Member
-                    {...{ name, fields, index, t, removeMember, key: name }}
+                    {...{
+                      name,
+                      fields,
+                      index,
+                      t,
+                      removeMember,
+                      key: name,
+                      checkboxDisabled: !fields.value[index].id
+                    }}
                   />
                 ));
                 return [
