@@ -1,4 +1,4 @@
-import { PureComponent, createRef } from "react";
+import { useRef } from "react";
 import { string, shape, bool } from "prop-types";
 import { Field as FinalFormField } from "react-final-form";
 import { FontAwesomeIcon as Icon } from "@fortawesome/react-fontawesome";
@@ -13,48 +13,50 @@ import {
   CheckboxText
 } from "./styled";
 
-export class RawCheckbox extends PureComponent {
-  checkbox = createRef();
+export const RawCheckbox = ({
+  input,
+  meta,
+  error,
+  label,
+  hasCloserText,
+  disabled
+}) => {
+  const checkbox = useRef();
 
-  handleChange = (e, input) => {
+  const handleChange = e => {
     Promise.all([input.onChange(e)]).then(() =>
-      Promise.all([this.checkbox.current.focus()]).then(() =>
-        this.checkbox.current.blur()
+      Promise.all([checkbox.current.focus()]).then(() =>
+        checkbox.current.blur()
       )
     );
   };
 
-  render() {
-    const { input, meta, error, label, hasCloserText, disabled } = this.props;
-    return (
-      <Flex>
-        <Box>
-          <FieldWrapper as="label">
-            <HiddenCheckboxInput
-              {...{
-                ...input,
-                ref: this.checkbox,
-                onChange: e => this.handleChange(e, input),
-                disabled
-              }}
-            />
-            <Checkmark
-              isChecked={input.value}
-              invalid={error ? "true" : undefined}
-              hasCloserText={hasCloserText}
-              disabled={disabled}
-            >
-              {input.value && <Icon icon={["fa", "check"]} />}
-            </Checkmark>
-            <CheckboxText hasCloserText={hasCloserText}>{label}</CheckboxText>
-            {error && <Error>{error}</Error>}
-            {meta && meta.data.saving && !meta.active && <LoadingIndicator />}
-          </FieldWrapper>
-        </Box>
-      </Flex>
-    );
-  }
-}
+  return (
+    <Flex>
+      <Box>
+        <FieldWrapper as="label">
+          <HiddenCheckboxInput
+            {...input}
+            ref={checkbox}
+            onChange={disabled ? null : e => handleChange(e)}
+            disabled={disabled}
+          />
+          <Checkmark
+            isChecked={input.value}
+            invalid={error ? "true" : undefined}
+            hasCloserText={hasCloserText}
+            disabled={disabled}
+          >
+            {input.value && <Icon icon={["fa", "check"]} />}
+          </Checkmark>
+          <CheckboxText hasCloserText={hasCloserText}>{label}</CheckboxText>
+          {error && <Error>{error}</Error>}
+          {meta && meta.data.saving && !meta.active && <LoadingIndicator />}
+        </FieldWrapper>
+      </Box>
+    </Flex>
+  );
+};
 
 RawCheckbox.propTypes = {
   label: string.isRequired,
@@ -79,7 +81,15 @@ const Checkbox = ({ name, label, disabled }) => (
     render={({ input, meta }) => {
       const error = getError(meta);
 
-      return <RawCheckbox {...{ input, meta, error, label, disabled }} />;
+      return (
+        <RawCheckbox
+          input={input}
+          meta={meta}
+          error={error}
+          label={label}
+          disabled={disabled}
+        />
+      );
     }}
   />
 );
