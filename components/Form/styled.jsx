@@ -366,6 +366,13 @@ export const Checkmark = styled(Flex).attrs(p => ({
     !p.isChecked &&
     `border: 1px solid
     rgb(${p.invalid ? p.theme.colors.ruby : p.theme.colors.snuff});`}
+
+  ${p =>
+    p.disabled &&
+    `
+      background-color: rgb(${p.theme.colors.iceBlue});
+      cursor: not-allowed;
+  `}
 `;
 
 export const HiddenCheckboxInput = styled.input.attrs(() => ({

@@ -1,11 +1,11 @@
 import { required, validateEmail } from "utils/validators";
 import { FormInput, FormCheckbox, ActionIcon } from "components";
 import { Box } from "@rebass/grid";
-import { func, shape, string, number } from "prop-types";
+import { func, shape, string, number, bool } from "prop-types";
 import { Wrapper } from "./styled";
 import { Actions } from "../styled";
 
-const Member = ({ name, fields, index, t, removeMember }) => (
+const Member = ({ name, fields, index, t, removeMember, checkboxDisabled }) => (
   <Wrapper key={name}>
     <Box width={[1, 1, 1, "calc(33% - 32px)"]} pr={[0, 0, 0, 2]}>
       <FormInput
@@ -36,6 +36,7 @@ const Member = ({ name, fields, index, t, removeMember }) => (
       <FormCheckbox
         name={`${name}.businessManager`}
         label={t("businessManagerLabel")}
+        disabled={checkboxDisabled}
       />
     </Box>
     <Box width={96}>
@@ -79,7 +80,8 @@ Member.propTypes = {
   fields: shape().isRequired,
   index: number.isRequired,
   t: func.isRequired,
-  removeMember: func.isRequired
+  removeMember: func.isRequired,
+  checkboxDisabled: bool.isRequired
 };
 
 export default Member;

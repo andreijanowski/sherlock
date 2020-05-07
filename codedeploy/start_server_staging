@@ -34,6 +34,8 @@ export $(cat codedeploy/parameters | xargs)
 
 docker network create frontend
 
+$(aws ecr get-login --region eu-central-1 --no-include-email)
+
 docker-compose -p sherlock -f docker-compose-staging.yml up -d --force-recreate
 
 # Remove unused data, do not prompt for confirmation
