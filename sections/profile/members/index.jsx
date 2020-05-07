@@ -1,4 +1,4 @@
-import { PureComponent } from "react";
+import React from "react";
 import { func, arrayOf, shape, string } from "prop-types";
 import { FieldArray } from "react-final-form-arrays";
 import arrayMutators from "final-form-arrays";
@@ -9,10 +9,10 @@ import Member from "./Member";
 import { Form } from "../styled";
 import { generateMembersArray } from "./utils";
 
-class MembersForm extends PureComponent {
-  save = async (values, fields) => {
-    const { handleSubmit } = this.props;
+const MembersForm = ({ t, members, removeMember, handleSubmit }) => {
+  const save = async (values, fields) => {
     const res = await handleSubmit(values);
+
     if (res && res.status === 201) {
       const member = res.rawData.data;
       const index = fields.value.findIndex(
@@ -22,46 +22,50 @@ class MembersForm extends PureComponent {
     }
   };
 
-  render() {
-    const { t, members, removeMember, handleSubmit } = this.props;
-    return (
-      <FinalForm
-        onSubmit={handleSubmit}
-        initialValues={{
-          members: generateMembersArray(members)
-        }}
-        mutators={{ ...arrayMutators, setFieldData }}
-        subscription={{
-          form: true
-        }}
-        render={({ form: { mutators } }) => (
-          <Form>
-            <H3>{t("members")}</H3>
-            <FieldArray name="members">
-              {({ fields }) => {
-                const membersArray = fields.map((name, index) => (
-                  <Member
-                    {...{ name, fields, index, t, removeMember, key: name }}
-                  />
-                ));
-                return [
-                  <AutoSave
-                    setFieldData={mutators.setFieldData}
-                    save={v => this.save(v, fields)}
-                    t={t}
-                    arrayName="members"
-                    key="autoSave"
-                  />,
-                  ...membersArray
-                ];
-              }}
-            </FieldArray>
-          </Form>
-        )}
-      />
-    );
-  }
-}
+  return (
+    <FinalForm
+      onSubmit={handleSubmit}
+      initialValues={{
+        members: generateMembersArray(members)
+      }}
+      mutators={{ ...arrayMutators, setFieldData }}
+      subscription={{
+        form: true
+      }}
+      render={({ form: { mutators } }) => (
+        <Form>
+          <H3>{t("members")}</H3>
+          <FieldArray name="members">
+            {({ fields }) => {
+              const membersArray = fields.map((name, index) => (
+                <Member
+                  name={name}
+                  fields={fields}
+                  index={index}
+                  t={t}
+                  removeMember={removeMember}
+                  key={name}
+                  checkboxDisabled={!fields.value[index].id}
+                />
+              ));
+
+              return [
+                <AutoSave
+                  setFieldData={mutators.setFieldData}
+                  save={v => save(v, fields)}
+                  t={t}
+                  arrayName="members"
+                  key="autoSave"
+                />,
+                ...membersArray
+              ];
+            }}
+          </FieldArray>
+        </Form>
+      )}
+    />
+  );
+};
 
 MembersForm.propTypes = {
   t: func.isRequired,
