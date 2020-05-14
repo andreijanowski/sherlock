@@ -45,6 +45,9 @@ class BasicInformationForm extends PureComponent {
       handleSubmit,
       isErrorVisibilityRequired
     } = this.props;
+    const regionItems = country =>
+      (country && country.value && getSubdivisions(country.value)) || [];
+
     return initialValues ? (
       <FinalForm
         initialValues={initialValues}
@@ -58,7 +61,15 @@ class BasicInformationForm extends PureComponent {
               save={handleSubmit}
               t={t}
             />
-            <WhenFieldChanges field="country" set="region" to={undefined} />
+            <WhenFieldChanges
+              field="country"
+              set="region"
+              to={undefined}
+              shouldChange={
+                values.region &&
+                !values.region.value.includes(values.country.value)
+              }
+            />
             <H3>{t("basicInformation")}</H3>
             <FormInput
               name="name"
@@ -94,12 +105,7 @@ class BasicInformationForm extends PureComponent {
                   isErrorVisibilityRequired={isErrorVisibilityRequired}
                   placeholder={t("regionPlaceholder")}
                   disabled={!values.country}
-                  items={
-                    (values.country &&
-                      values.country.value &&
-                      getSubdivisions(values.country.value)) ||
-                    []
-                  }
+                  items={regionItems(values.country)}
                 />
               </Box>
             </Flex>
