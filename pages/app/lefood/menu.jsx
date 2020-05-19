@@ -85,7 +85,7 @@ class MenuPage extends PureComponent {
       changeCurrentBusiness,
       categories
     } = this.props;
-    const { editedDishId, editedCategoryId } = this.state;
+    const { editedDishId } = this.state;
 
     return (
       <LefoodLayout
@@ -110,7 +110,6 @@ class MenuPage extends PureComponent {
             categories,
             loading,
             editedDishId,
-            editedCategoryId,
             addDish: this.addDish,
             setEditedDishId: this.setEditedDishId,
             setEditedCategoryId: this.setEditedCategoryId,
