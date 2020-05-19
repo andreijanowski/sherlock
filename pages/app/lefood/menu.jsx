@@ -24,18 +24,15 @@ class MenuPage extends PureComponent {
   constructor() {
     super();
     this.state = {
-      editedDishId: null,
-      editedCategoryId: null
+      editedDishId: null
     };
   }
 
   setEditedDishId = editedDishId => this.setState({ editedDishId });
 
-  setEditedCategoryId = editedCategoryId => this.setState({ editedCategoryId });
-
   addDish = values => {
     const { addDish, updateDish, businessId } = this.props;
-    const { editedDishId, editedCategoryId } = this.state;
+    const { editedDishId } = this.state;
     const { available, name, description, category } = values;
     const dish = {
       name,
@@ -43,8 +40,8 @@ class MenuPage extends PureComponent {
       unavailable: !available,
       pricePerItemCents: convertToCents(values.pricePerItemCents)
     };
-    if (editedDishId && editedCategoryId) {
-      return updateDish(dish, editedDishId, editedCategoryId);
+    if (editedDishId) {
+      return updateDish(dish, editedDishId, category);
     }
     return addDish(dish, businessId, category);
   };
@@ -112,7 +109,6 @@ class MenuPage extends PureComponent {
             editedDishId,
             addDish: this.addDish,
             setEditedDishId: this.setEditedDishId,
-            setEditedCategoryId: this.setEditedCategoryId,
             removeDish: this.removeDish,
             addPicture: this.addPicture,
             removePicture: this.removePicture

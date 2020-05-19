@@ -1,41 +1,37 @@
 import { Fragment } from "react";
 import { Flex } from "@rebass/grid";
 import { H3 } from "components";
-import { func, shape } from "prop-types";
+import { func, shape, arrayOf } from "prop-types";
 import ListItem from "./ListItem";
 
-const List = ({ categories, dishes, removeDish, setEditedDishId }) =>
-  categories.map(c => {
-    const items =
-      dishes &&
-      dishes.filter(i => i.getIn(["relationships", "category"]) === c);
-
-    return items && items.size ? (
-      <Fragment key={c}>
-        <H3>{c.label}</H3>
-        <Flex flexDirection="column">
-          {items.valueSeq().map(item => (
-            <ListItem
-              item={item}
-              removeDish={removeDish}
-              key={item.get("id")}
-              setEditedDishId={setEditedDishId}
-            />
-          ))}
-        </Flex>
-      </Fragment>
-    ) : null;
-  });
+const List = ({ items, removeDish, setEditedDishId }) =>
+  items.map(
+    ({ dishes, label }) =>
+      dishes.size > 0 && (
+        <Fragment key={label}>
+          <H3>{label}</H3>
+          <Flex flexDirection="column">
+            {dishes.valueSeq().map(i => (
+              <ListItem
+                item={i}
+                removeDish={removeDish}
+                key={i.get("id")}
+                setEditedDishId={setEditedDishId}
+              />
+            ))}
+          </Flex>
+        </Fragment>
+      )
+  );
 
 List.propTypes = {
-  dishes: shape(),
+  items: arrayOf(shape()),
   removeDish: func.isRequired,
-  setEditedDishId: func.isRequired,
-  t: func.isRequired
+  setEditedDishId: func.isRequired
 };
 
 List.defaultProps = {
-  dishes: null
+  item: null
 };
 
 export default List;

@@ -25,7 +25,6 @@ const DishForm = ({
   initialValues,
   initialPicture,
   setEditedDishId,
-  setEditedCategoryId,
   addDish,
   categories
 }) => {
@@ -46,7 +45,6 @@ const DishForm = ({
           if (shouldRemoveData) {
             setPicture(null);
             setEditedDishId(null);
-            setEditedCategoryId(null);
             reset();
           }
         };
@@ -167,7 +165,6 @@ DishForm.propTypes = {
   addPicture: func.isRequired,
   removePicture: func.isRequired,
   setEditedDishId: func.isRequired,
-  setEditedCategoryId: func.isRequired,
   initialValues: shape({}).isRequired,
   initialPicture: shape({}),
   categories: shape().isRequired

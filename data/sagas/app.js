@@ -10,10 +10,8 @@ import { HANDLE_RESERVATION_UPDATE } from "types/reservations";
 import { setOrdersUpdates, setReservationsUpdates } from "actions/app";
 import { fetchProfileBusiness } from "actions/users";
 import { fetchBusinessMembers } from "actions/businesses";
-import { fetchCategories } from "actions/categories";
 import Notifications from "react-notification-system-redux";
 import { Map } from "immutable";
-import { i18n } from "i18n";
 
 function* handlePatchChangeSaga({ payload: { path } }) {
   switch (path) {
@@ -44,11 +42,6 @@ function* handlePatchChangeSaga({ payload: { path } }) {
     }
     case "/app/lefood/orders": {
       yield put(setOrdersUpdates(Map()));
-      break;
-    }
-    case "/app/lefood/menu": {
-      const lang = i18n.language;
-      yield put(fetchCategories(lang));
       break;
     }
     case "/app/reservation/reservations": {

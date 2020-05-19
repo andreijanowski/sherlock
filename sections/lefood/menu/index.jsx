@@ -11,7 +11,6 @@ const Menu = ({
   removeDish,
   addDish,
   setEditedDishId,
-  setEditedCategoryId,
   editedDishId,
   addPicture,
   removePicture,
@@ -24,6 +23,18 @@ const Menu = ({
     dishes
   });
   const preparedCategories = categories ? prepareCategories(categories) : [];
+  const preparedList = preparedCategories.map(c => {
+    const items =
+      dishes &&
+      dishes.filter(
+        i => i.getIn(["relationships", "category", "data", "id"]) === c.value
+      );
+
+    return {
+      dishes: items,
+      label: c.label
+    };
+  });
 
   return (
     <Wrapper>
@@ -39,15 +50,13 @@ const Menu = ({
               addPicture={addPicture}
               removePicture={removePicture}
               setEditedDishId={setEditedDishId}
-              setEditedCategoryId={setEditedCategoryId}
               t={t}
               categories={preparedCategories}
             />
           </Box>
           <Box width={1 / 2} px={3}>
             <List
-              dishes={dishes}
-              categories={preparedCategories}
+              items={preparedList}
               removeDish={removeDish}
               loading={loading}
               setEditedDishId={setEditedDishId}
@@ -64,7 +73,6 @@ Menu.propTypes = {
   dishes: shape(),
   categories: shape(),
   setEditedDishId: func.isRequired,
-  setEditedCategoryId: func.isRequired,
   removeDish: func.isRequired,
   addDish: func.isRequired,
   addPicture: func.isRequired,
