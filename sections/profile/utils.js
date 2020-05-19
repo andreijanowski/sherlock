@@ -47,28 +47,22 @@ export const generateMenuItems = (
       isActive: active === "widgets"
     },
     {
-      onClick: showPublishModal,
-      label: t("app:manageProfile.publish"),
-      color: "ruby"
+      onClick: state === "published" ? unpublishBusiness : showPublishModal,
+      label:
+        state === "published"
+          ? t("app:manageProfile.unPublish")
+          : t("app:manageProfile.publish"),
+      color: state === "published" ? "ruby" : "green"
     }
   ];
-  if (state === "published") {
-    menuItems[8] = {
-      label: t("app:manageProfile.published"),
-      color: "green"
-    };
-    menuItems[8] = {
-      onClick: unpublishBusiness,
-      label: t("app:manageProfile.unPublish"),
-      color: "ruby"
-    };
-  }
+
   if (state === "waiting_for_approval") {
     menuItems[8] = {
       label: t("app:manageProfile.waitingForApproval"),
       color: "carrotOrange"
     };
   }
+
   return menuItems;
 };
 
