@@ -5,7 +5,7 @@ import {
 } from "types/dishes";
 import { getRelationships } from "./utils";
 
-export const postDish = (values, id) => ({
+export const postDish = (values, bussinessId, categoryId) => ({
   type: POST_DISH_REQUEST,
   payload: {
     method: "POST",
@@ -16,7 +16,10 @@ export const postDish = (values, id) => ({
         attributes: {
           ...values
         },
-        relationships: getRelationships("business", id)
+        relationships: {
+          ...getRelationships("business", bussinessId),
+          ...getRelationships("category", categoryId)
+        }
       }
     }
   },

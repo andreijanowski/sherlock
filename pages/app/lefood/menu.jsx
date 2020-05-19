@@ -24,25 +24,29 @@ class MenuPage extends PureComponent {
   constructor() {
     super();
     this.state = {
-      editedDishId: null
+      editedDishId: null,
+      editedCategoryId: null
     };
   }
 
   setEditedDishId = editedDishId => this.setState({ editedDishId });
 
+  setEditedCategoryId = editedCategoryId => this.setState({ editedCategoryId });
+
   addDish = values => {
     const { addDish, updateDish, businessId } = this.props;
-    const { editedDishId } = this.state;
-    const { available, ...rest } = values;
+    const { editedDishId, editedCategoryId } = this.state;
+    const { available, name, description, category } = values;
     const dish = {
-      ...rest,
-      unavailable: !values.available,
+      name,
+      description,
+      unavailable: !available,
       pricePerItemCents: convertToCents(values.pricePerItemCents)
     };
-    if (editedDishId) {
-      return updateDish(dish, editedDishId);
+    if (editedDishId && editedCategoryId) {
+      return updateDish(dish, editedDishId, editedCategoryId);
     }
-    return addDish(dish, businessId);
+    return addDish(dish, businessId, category);
   };
 
   removeDish = id => {
@@ -78,9 +82,11 @@ class MenuPage extends PureComponent {
       deliveriesLength,
       businessOrderPeriodsLength,
       businesses,
-      changeCurrentBusiness
+      changeCurrentBusiness,
+      categories
     } = this.props;
-    const { editedDishId } = this.state;
+    const { editedDishId, editedCategoryId } = this.state;
+
     return (
       <LefoodLayout
         {...{
@@ -101,10 +107,13 @@ class MenuPage extends PureComponent {
           {...{
             t,
             dishes,
+            categories,
             loading,
             editedDishId,
+            editedCategoryId,
             addDish: this.addDish,
             setEditedDishId: this.setEditedDishId,
+            setEditedCategoryId: this.setEditedCategoryId,
             removeDish: this.removeDish,
             addPicture: this.addPicture,
             removePicture: this.removePicture
@@ -120,6 +129,7 @@ MenuPage.propTypes = {
   lng: string.isRequired,
   dishes: shape(),
   business: shape(),
+  categories: shape(),
   addDish: func.isRequired,
   updateDish: func.isRequired,
   removeDish: func.isRequired,
@@ -137,6 +147,7 @@ MenuPage.propTypes = {
 
 MenuPage.defaultProps = {
   business: {},
+  categories: {},
   businessId: "",
   businesses: null,
   dishesLength: 0,
@@ -157,12 +168,20 @@ export default requireAuth(true)(
         const dishes = state.getIn(["dishes", "data", "dishes"]);
         const pictures = state.getIn(["dishes", "data", "pictures"]);
         const deliveries = state.getIn(["deliveries", "data", "deliveries"]);
+        const categories = state.getIn(["categories", "data", "categories"]);
+        const loadingDishes =
+          (!state.getIn(["dishes", "isFailed"]) &&
+            !state.getIn(["dishes", "isSucceeded"])) ||
+          state.getIn(["dishes", "isFetching"]);
+        const loadingCategories =
+          (!state.getIn(["categories", "isFailed"]) &&
+            !state.getIn(["categories", "isSucceeded"])) ||
+          state.getIn(["categories", "isFetching"]);
+
         return {
-          loading:
-            (!state.getIn(["dishes", "isFailed"]) &&
-              !state.getIn(["dishes", "isSucceeded"])) ||
-            state.getIn(["dishes", "isFetching"]),
+          loading: loadingDishes || loadingCategories,
           dishes: mergeDishesData(dishes, pictures),
+          categories,
           dishesLength: dishes && dishes.size,
           deliveriesLength: deliveries && deliveries.size,
           business: business && business.get("attributes"),

@@ -3,19 +3,23 @@ import { Flex } from "@rebass/grid";
 import { H3 } from "components";
 import { func, shape } from "prop-types";
 import ListItem from "./ListItem";
-import { categories } from "./utils";
 
-const List = ({ dishes, removeDish, t, setEditedDishId }) =>
+const List = ({ categories, dishes, removeDish, setEditedDishId }) =>
   categories.map(c => {
     const items =
-      dishes && dishes.filter(i => i.getIn(["attributes", "category"]) === c);
+      dishes &&
+      dishes.filter(i => i.getIn(["relationships", "category"]) === c);
+
     return items && items.size ? (
       <Fragment key={c}>
-        <H3>{t(c)}</H3>
+        <H3>{c.label}</H3>
         <Flex flexDirection="column">
           {items.valueSeq().map(item => (
             <ListItem
-              {...{ item, removeDish, key: item.get("id"), setEditedDishId }}
+              item={item}
+              removeDish={removeDish}
+              key={item.get("id")}
+              setEditedDishId={setEditedDishId}
             />
           ))}
         </Flex>

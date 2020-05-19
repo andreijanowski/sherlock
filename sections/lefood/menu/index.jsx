@@ -4,23 +4,27 @@ import { LoadingIndicator } from "components";
 import Form from "./Form";
 import List from "./List";
 import { Wrapper } from "./styled";
-import { getInitialValues } from "./utils";
+import { getInitialValues, prepareCategories } from "./utils";
 
 const Menu = ({
   dishes,
   removeDish,
   addDish,
   setEditedDishId,
+  setEditedCategoryId,
   editedDishId,
   addPicture,
   removePicture,
   t,
-  loading
+  loading,
+  categories
 }) => {
   const { initialValues, initialPicture } = getInitialValues({
     editedDishId,
     dishes
   });
+  const preparedCategories = categories ? prepareCategories(categories) : [];
+
   return (
     <Wrapper>
       {loading ? (
@@ -29,19 +33,25 @@ const Menu = ({
         <Flex mx={-3}>
           <Box width={1 / 2} px={3}>
             <Form
-              {...{
-                addDish,
-                initialValues,
-                initialPicture,
-                addPicture,
-                removePicture,
-                setEditedDishId,
-                t
-              }}
+              addDish={addDish}
+              initialValues={initialValues}
+              initialPicture={initialPicture}
+              addPicture={addPicture}
+              removePicture={removePicture}
+              setEditedDishId={setEditedDishId}
+              setEditedCategoryId={setEditedCategoryId}
+              t={t}
+              categories={preparedCategories}
             />
           </Box>
           <Box width={1 / 2} px={3}>
-            <List {...{ dishes, removeDish, t, loading, setEditedDishId }} />
+            <List
+              dishes={dishes}
+              categories={preparedCategories}
+              removeDish={removeDish}
+              loading={loading}
+              setEditedDishId={setEditedDishId}
+            />
           </Box>
         </Flex>
       )}
@@ -52,7 +62,9 @@ const Menu = ({
 Menu.propTypes = {
   t: func.isRequired,
   dishes: shape(),
+  categories: shape(),
   setEditedDishId: func.isRequired,
+  setEditedCategoryId: func.isRequired,
   removeDish: func.isRequired,
   addDish: func.isRequired,
   addPicture: func.isRequired,
@@ -63,6 +75,7 @@ Menu.propTypes = {
 
 Menu.defaultProps = {
   dishes: null,
+  categories: null,
   editedDishId: null
 };
 
