@@ -12,9 +12,9 @@ services:
     ports:
       - "80:80"
     volumes:
-      - /etc/nginx/conf.d/:/etc/nginx/conf.d/
+      - ./conf.d/001-healthcheck.conf:/etc/nginx/conf.d/001-healthcheck.conf
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./vhost.d:/etc/nginx/vhost.d
+      - ./conf.d/htpasswd:/etc/nginx/htpasswd/sherlock.calluna.devguru.co
     networks:
       - frontend
 
