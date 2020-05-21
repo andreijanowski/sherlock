@@ -1,7 +1,8 @@
 import { Flex } from "@rebass/grid";
-import { bool, node, string, func } from "prop-types";
+import { bool, node, string, func, arrayOf, shape } from "prop-types";
 import { connect } from "react-redux";
-import { InfoBar } from "components";
+import { i18n } from "i18n";
+import { InfoBar, Link, Button } from "components";
 import {
   ProfileIcon,
   SettingsIcon,
@@ -52,11 +53,27 @@ const MainApp = ({
   header,
   children,
   avatar,
-  isAccountConfirmed
+  isAccountConfirmed,
+  menuItems
 }) => {
+  const lng = (i18n && i18n.language) || "en";
   const MainIcon = chooseIcon(mainIcon);
+  let prevRoute = null;
+  let nextRoute = null;
+
+  if (menuItems && mainIcon === "profile") {
+    const [activeTab] = menuItems.filter(item => item.isActive);
+    const activeTabIndex = activeTab && menuItems.indexOf(activeTab);
+    prevRoute =
+      activeTabIndex > 0 ? menuItems[activeTabIndex - 1].route || null : null;
+    nextRoute =
+      activeTabIndex + 1 < menuItems.length - 1
+        ? menuItems[activeTabIndex + 1].route || null
+        : null;
+  }
+
   return (
-    <Wrapper {...{ withMenu }}>
+    <Wrapper withMenu={withMenu}>
       {!isAccountConfirmed && <InfoBar info={t("app:confirmAccount")} />}
       <HeaderWrapper>
         <Flex alignItems="center">
@@ -81,11 +98,33 @@ const MainApp = ({
         </IconsWrapper>
       </HeaderWrapper>
       {children}
+      <Flex
+        py="4"
+        justifyContent={nextRoute && !prevRoute ? "flex-end" : "space-between"}
+      >
+        {prevRoute && (
+          <Link lng={lng} route={prevRoute}>
+            <Button styleName="blue">{t("common:prev")}</Button>
+          </Link>
+        )}
+        {nextRoute && (
+          <Link lng={lng} route={nextRoute}>
+            <Button styleName="blue">{t("common:next")}</Button>
+          </Link>
+        )}
+      </Flex>
     </Wrapper>
   );
 };
 
 MainApp.propTypes = {
+  menuItems: arrayOf(
+    shape({
+      route: string,
+      label: string,
+      isActive: bool
+    })
+  ),
   withMenu: bool.isRequired,
   mainIcon: string,
   header: string,
@@ -96,6 +135,7 @@ MainApp.propTypes = {
 };
 
 MainApp.defaultProps = {
+  menuItems: [],
   mainIcon: "",
   header: "",
   avatar: "",
