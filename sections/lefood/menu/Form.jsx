@@ -17,7 +17,6 @@ import { Flex, Box } from "@rebass/grid";
 import { normalizePrice } from "utils/normalizers";
 import { required } from "utils/validators";
 import { Form } from "./styled";
-import { categories } from "./utils";
 
 const DishForm = ({
   t,
@@ -26,7 +25,8 @@ const DishForm = ({
   initialValues,
   initialPicture,
   setEditedDishId,
-  addDish
+  addDish,
+  categories
 }) => {
   const [picture, setPicture] = useState(null);
   const [isSending, setIsSending] = useState(false);
@@ -139,7 +139,7 @@ const DishForm = ({
                     name="category"
                     component={FormDropdown}
                     label={t("categoryLabel")}
-                    items={categories.map(c => ({ label: t(c), value: c }))}
+                    items={categories}
                   />
                 </Box>
                 <Box my={4}>
@@ -166,7 +166,8 @@ DishForm.propTypes = {
   removePicture: func.isRequired,
   setEditedDishId: func.isRequired,
   initialValues: shape({}).isRequired,
-  initialPicture: shape({})
+  initialPicture: shape({}),
+  categories: shape().isRequired
 };
 
 DishForm.defaultProps = {

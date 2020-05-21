@@ -1,3 +1,4 @@
+import { i18n } from "i18n";
 import { fetchProfileBusiness } from "actions/users";
 import {
   fetchBusinessMembers,
@@ -16,10 +17,13 @@ import { POST_BUSINESS_SUCCESS } from "types/businesses";
 import { takeEvery, all, put } from "redux-saga/effects";
 import Notifications from "react-notification-system-redux";
 import { setCurrentBusiness } from "actions/app";
+import { fetchCategories } from "actions/categories";
 import fetchAllBusinessData from "./utils/fetchAllBusinessData";
 
 function* fetchBusinessData({ payload: { id } }) {
+  const lang = i18n.language;
   yield put(fetchProfileBusiness(id));
+  yield put(fetchCategories(lang));
   yield fetchAllBusinessData(fetchBusinessMembers, id);
   yield fetchAllBusinessData(fetchBusinessDeliveries, id);
   yield fetchAllBusinessData(fetchBusinessDishes, id);
