@@ -1,20 +1,10 @@
 import { Flex } from "@rebass/grid";
 import { bool, node, string, func, arrayOf, shape } from "prop-types";
 import { connect } from "react-redux";
+
 import { i18n } from "i18n";
 import { InfoBar, Link, Button } from "components";
-import {
-  ProfileIcon,
-  SettingsIcon,
-  Docs,
-  Feedback,
-  Notifications,
-  Catering,
-  Subscriptions,
-  Privatisations,
-  Reservations,
-  Delivery
-} from "icons";
+import { Docs, Feedback, Notifications } from "icons";
 import {
   Wrapper,
   HeaderWrapper,
@@ -24,27 +14,7 @@ import {
   Avatar,
   IconsWrapper
 } from "./styled";
-
-const chooseIcon = icon => {
-  switch (icon) {
-    case "profile":
-      return ProfileIcon;
-    case "settings":
-      return SettingsIcon;
-    case "catering":
-      return Catering;
-    case "leFood":
-      return Delivery;
-    case "subscriptions":
-      return Subscriptions;
-    case "privatisations":
-      return Privatisations;
-    case "reservation":
-      return Reservations;
-    default:
-      return () => <></>;
-  }
-};
+import { chooseIcon, getButtonRoutes } from "./utils";
 
 const MainApp = ({
   t,
@@ -58,19 +28,7 @@ const MainApp = ({
 }) => {
   const lng = (i18n && i18n.language) || "en";
   const MainIcon = chooseIcon(mainIcon);
-  let prevRoute = null;
-  let nextRoute = null;
-
-  if (menuItems && mainIcon === "profile") {
-    const [activeTab] = menuItems.filter(item => item.isActive);
-    const activeTabIndex = activeTab && menuItems.indexOf(activeTab);
-    prevRoute =
-      activeTabIndex > 0 ? menuItems[activeTabIndex - 1].route || null : null;
-    nextRoute =
-      activeTabIndex + 1 < menuItems.length - 1
-        ? menuItems[activeTabIndex + 1].route || null
-        : null;
-  }
+  const { prevRoute, nextRoute } = getButtonRoutes(menuItems, mainIcon);
 
   return (
     <Wrapper withMenu={withMenu}>
