@@ -3,7 +3,8 @@ import { ServerStyleSheet } from "styled-components";
 import {
   FacebookPixelScript,
   GoogleTagManagerScript,
-  GoogleTagManagerNoscript
+  GoogleTagManagerNoscript,
+  HubspotChatScript
 } from "scripts";
 
 export default class MyDocument extends Document {
@@ -67,6 +68,7 @@ export default class MyDocument extends Document {
           />
           <meta name="theme-color" content="#ffffff" />
           <FacebookPixelScript />
+          <HubspotChatScript />
         </Head>
         <body>
           <GoogleTagManagerNoscript />
