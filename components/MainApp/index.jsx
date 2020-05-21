@@ -1,19 +1,10 @@
 import { Flex } from "@rebass/grid";
-import { bool, node, string, func } from "prop-types";
+import { bool, node, string, func, arrayOf, shape } from "prop-types";
 import { connect } from "react-redux";
-import { InfoBar } from "components";
-import {
-  ProfileIcon,
-  SettingsIcon,
-  Docs,
-  Feedback,
-  Notifications,
-  Catering,
-  Subscriptions,
-  Privatisations,
-  Reservations,
-  Delivery
-} from "icons";
+
+import { i18n } from "i18n";
+import { InfoBar, Link, Button } from "components";
+import { Docs, Feedback, Notifications } from "icons";
 import {
   Wrapper,
   HeaderWrapper,
@@ -23,27 +14,7 @@ import {
   Avatar,
   IconsWrapper
 } from "./styled";
-
-const chooseIcon = icon => {
-  switch (icon) {
-    case "profile":
-      return ProfileIcon;
-    case "settings":
-      return SettingsIcon;
-    case "catering":
-      return Catering;
-    case "leFood":
-      return Delivery;
-    case "subscriptions":
-      return Subscriptions;
-    case "privatisations":
-      return Privatisations;
-    case "reservation":
-      return Reservations;
-    default:
-      return () => <></>;
-  }
-};
+import { chooseIcon, getButtonRoutes } from "./utils";
 
 const MainApp = ({
   t,
@@ -52,11 +23,15 @@ const MainApp = ({
   header,
   children,
   avatar,
-  isAccountConfirmed
+  isAccountConfirmed,
+  menuItems
 }) => {
+  const lng = (i18n && i18n.language) || "en";
   const MainIcon = chooseIcon(mainIcon);
+  const { prevRoute, nextRoute } = getButtonRoutes(menuItems, mainIcon);
+
   return (
-    <Wrapper {...{ withMenu }}>
+    <Wrapper withMenu={withMenu}>
       {!isAccountConfirmed && <InfoBar info={t("app:confirmAccount")} />}
       <HeaderWrapper>
         <Flex alignItems="center">
@@ -81,11 +56,33 @@ const MainApp = ({
         </IconsWrapper>
       </HeaderWrapper>
       {children}
+      <Flex
+        py="4"
+        justifyContent={nextRoute && !prevRoute ? "flex-end" : "space-between"}
+      >
+        {prevRoute && (
+          <Link lng={lng} route={prevRoute}>
+            <Button styleName="blue">{t("common:prev")}</Button>
+          </Link>
+        )}
+        {nextRoute && (
+          <Link lng={lng} route={nextRoute}>
+            <Button styleName="blue">{t("common:next")}</Button>
+          </Link>
+        )}
+      </Flex>
     </Wrapper>
   );
 };
 
 MainApp.propTypes = {
+  menuItems: arrayOf(
+    shape({
+      route: string,
+      label: string,
+      isActive: bool
+    })
+  ),
   withMenu: bool.isRequired,
   mainIcon: string,
   header: string,
@@ -96,6 +93,7 @@ MainApp.propTypes = {
 };
 
 MainApp.defaultProps = {
+  menuItems: [],
   mainIcon: "",
   header: "",
   avatar: "",
