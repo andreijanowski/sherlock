@@ -71,16 +71,17 @@ export const parsePeriod = period => ({
   weekday: period.weekday
 });
 
+export const defaultTime = {
+  formatted: "12:00 am",
+  formatted24: "0:00",
+  formattedSimple: "12:00",
+  hour: 12,
+  hour24: 0,
+  meridiem: "am",
+  minute: 0
+};
+
 export const addNewPeriod = (addPeriod, weekday) => {
-  const defaultTime = {
-    formatted: "12:00 am",
-    formatted24: "0:00",
-    formattedSimple: "12:00",
-    hour: 12,
-    hour24: 0,
-    meridiem: "am",
-    minute: 0
-  };
   const newPeriod = {
     openedFrom: defaultTime,
     openedTo: defaultTime,
@@ -120,3 +121,24 @@ export const isMovableBusiness = groups =>
       g.name === "Ice Cream Stand" ||
       g.name === "Street Food"
   );
+
+export const checkIfAlwaysOpen = values => {
+  let isAlwaysOpen = false;
+
+  if (Object.keys(values).length === 0 || Object.keys(values).length < 7) {
+    return isAlwaysOpen;
+  }
+
+  weekdays.forEach(weekday => {
+    if (
+      values[`day-${weekday}`][0].openedFrom.hour === 0 &&
+      values[`day-${weekday}`][0].openedTo.hour === 0
+    ) {
+      isAlwaysOpen = true;
+    } else {
+      isAlwaysOpen = false;
+    }
+  });
+
+  return isAlwaysOpen;
+};
