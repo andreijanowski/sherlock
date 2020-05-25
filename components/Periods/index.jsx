@@ -71,7 +71,6 @@ const PeriodsForm = ({
           <Flex alignItems="center" justifyContent="space-between">
             <H3>{t("openingHours")}</H3>
             <RawCheckbox
-              name="isAlwaysOpen"
               label="24/7"
               input={{
                 onChange: () => {
@@ -84,20 +83,17 @@ const PeriodsForm = ({
           </Flex>
           {weekdays.map(weekday => (
             <Day
-              {...{
-                t,
-                weekday,
-                addPeriod,
-                updatePeriod,
-                removePeriod,
-                copy,
-                isCopiedDefined: !!copied,
-                paste,
-                isLocationVisible,
-                mutators,
-                key: weekday,
-                setIsAlwaysOpen
-              }}
+              t={t}
+              weekday={weekday}
+              addPeriod={addPeriod}
+              updatePeriod={updatePeriod}
+              removePeriod={removePeriod}
+              copy={copy}
+              isCopiedDefined={!!copied}
+              paste={paste}
+              isLocationVisible={isLocationVisible}
+              mutators={mutators}
+              key={weekday}
             />
           ))}
         </Form>
