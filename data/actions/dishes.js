@@ -21,6 +21,9 @@ export const postDish = (values, bussinessId, categoryId) => ({
           ...getRelationships("category", categoryId)
         }
       }
+    },
+    params: {
+      include: "category"
     }
   },
   meta: { thunk: true }
