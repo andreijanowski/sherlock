@@ -67,6 +67,9 @@ class BasicInformationForm extends PureComponent {
               to={undefined}
               shouldChange={
                 values.region &&
+                values.region.value &&
+                values.country &&
+                values.country.value &&
                 !values.region.value.includes(values.country.value)
               }
             />
