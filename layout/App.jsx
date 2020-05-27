@@ -13,14 +13,19 @@ const AppLayout = ({
   select
 }) => (
   <Flex flexDirection={["column", "row"]} width={1} id="app">
-    <NavigationContainer {...{ t, lng, withMenu, menuItems, select }} />
+    <NavigationContainer
+      t={t}
+      lng={lng}
+      withMenu={withMenu}
+      menuItems={menuItems}
+      select={select}
+    />
     <MainApp
-      {...{
-        withMenu,
-        mainIcon,
-        header,
-        t
-      }}
+      withMenu={withMenu}
+      mainIcon={mainIcon}
+      header={header}
+      t={t}
+      menuItems={menuItems}
     >
       {children}
     </MainApp>

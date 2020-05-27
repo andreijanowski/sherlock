@@ -5,7 +5,7 @@ import {
 } from "types/dishes";
 import { getRelationships } from "./utils";
 
-export const postDish = (values, id) => ({
+export const postDish = (values, bussinessId, categoryId) => ({
   type: POST_DISH_REQUEST,
   payload: {
     method: "POST",
@@ -16,26 +16,39 @@ export const postDish = (values, id) => ({
         attributes: {
           ...values
         },
-        relationships: getRelationships("business", id)
+        relationships: {
+          ...getRelationships("business", bussinessId),
+          ...getRelationships("category", categoryId)
+        }
       }
+    },
+    params: {
+      include: "category"
     }
   },
   meta: { thunk: true }
 });
 
-export const patchDish = (values, id) => ({
+export const patchDish = (values, bussinessId, categoryId) => ({
   type: PATCH_DISH_REQUEST,
   payload: {
     method: "PATCH",
-    endpoint: `/api/v1/dishes/${id}`,
+    endpoint: `/api/v1/dishes/${bussinessId}`,
     data: {
       data: {
-        id,
+        id: bussinessId,
         type: "dishes",
         attributes: {
           ...values
+        },
+        relationships: {
+          ...getRelationships("business", bussinessId),
+          ...getRelationships("category", categoryId)
         }
       }
+    },
+    params: {
+      include: "category"
     }
   },
   meta: { thunk: true }
