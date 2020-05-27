@@ -57,7 +57,7 @@ const Navigation = ({ t, lng, scrollTo }) => (
       }}
     >
       {navSections.map(({ name, translationKey }) => (
-        <SectionItem>
+        <SectionItem key={name}>
           <Paragraph
             onClick={() => {
               scrollTo(name);
