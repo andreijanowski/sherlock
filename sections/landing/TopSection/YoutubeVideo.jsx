@@ -19,9 +19,15 @@ class YoutubeVideo extends PureComponent {
 }
 
 YoutubeVideo.propTypes = {
-  videoId: string.isRequired,
-  close: func.isRequired,
-  isVisible: bool.isRequired
+  videoId: string,
+  close: func,
+  isVisible: bool
+};
+
+YoutubeVideo.defaultProps = {
+  videoId: "",
+  close: () => null,
+  isVisible: false
 };
 
 export default YoutubeVideo;
