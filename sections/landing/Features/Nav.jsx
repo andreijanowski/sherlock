@@ -7,6 +7,7 @@ const Nav = ({ t, activeNavItem, setActiveNavItem }) => (
   <NavContainer>
     {navItems.map(item => (
       <NavItem
+        key={item}
         onClick={() => {
           setActiveNavItem(item);
         }}

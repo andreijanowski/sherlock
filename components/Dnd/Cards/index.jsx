@@ -35,8 +35,8 @@ const Cards = ({
     : null;
 
 Cards.propTypes = {
-  t: func.isRequired,
-  id: string.isRequired,
+  t: func,
+  id: string,
   items: arrayOf(shape()).isRequired,
   splitedCard: shape(),
   isColumnGrayedOut: bool,
@@ -46,6 +46,8 @@ Cards.propTypes = {
 };
 
 Cards.defaultProps = {
+  t: () => null,
+  id: "",
   isColumnGrayedOut: false,
   handleCardClick: undefined,
   splitedCard: undefined
