@@ -7,6 +7,7 @@ import ListItem from "./ListItem";
 const List = ({ items, removeDish, setEditedDishId }) =>
   items.map(
     ({ dishes, label }) =>
+      dishes &&
       dishes.size > 0 && (
         <Fragment key={label}>
           <H3>{label}</H3>
