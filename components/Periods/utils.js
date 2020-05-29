@@ -123,22 +123,22 @@ export const isMovableBusiness = groups =>
   );
 
 export const checkIfAlwaysOpen = values => {
-  let isAlwaysOpen = false;
+  let counter = 0;
 
   if (Object.keys(values).length === 0 || Object.keys(values).length < 7) {
-    return isAlwaysOpen;
+    return false;
   }
 
   weekdays.forEach(weekday => {
     if (
       values[`day-${weekday}`][0].openedFrom.hour === 0 &&
-      values[`day-${weekday}`][0].openedTo.hour === 0
+      values[`day-${weekday}`][0].openedFrom.minute === "00" &&
+      values[`day-${weekday}`][0].openedTo.hour === 0 &&
+      values[`day-${weekday}`][0].openedTo.minute === "00"
     ) {
-      isAlwaysOpen = true;
-    } else {
-      isAlwaysOpen = false;
+      counter += 1;
     }
   });
 
-  return isAlwaysOpen;
+  return counter === 7;
 };
