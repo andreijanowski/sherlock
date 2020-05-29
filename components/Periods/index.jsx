@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { func, shape, bool } from "prop-types";
+import { func, shape, bool, string } from "prop-types";
 import { Form as FinalForm } from "react-final-form";
 import { Flex } from "@rebass/grid";
 
@@ -25,7 +25,8 @@ const PeriodsForm = ({
   addPeriod,
   updatePeriod,
   removePeriod,
-  isLocationVisible
+  isLocationVisible,
+  currentPage
 }) => {
   const [copied, copy] = useState(undefined);
   const [isAlwaysOpen, setIsAlwaysOpen] = useState(
@@ -70,16 +71,18 @@ const PeriodsForm = ({
         <Form>
           <Flex alignItems="center" justifyContent="space-between">
             <H3>{t("openingHours")}</H3>
-            <RawCheckbox
-              label="24/7"
-              input={{
-                onChange: () => {
-                  handleOnChange(values);
-                  setIsAlwaysOpen(!isAlwaysOpen);
-                },
-                value: isAlwaysOpen
-              }}
-            />
+            {currentPage === "orderingHours" && (
+              <RawCheckbox
+                label="24/7"
+                input={{
+                  onChange: () => {
+                    handleOnChange(values);
+                    setIsAlwaysOpen(!isAlwaysOpen);
+                  },
+                  value: isAlwaysOpen
+                }}
+              />
+            )}
           </Flex>
           {weekdays.map(weekday => (
             <Day
@@ -110,7 +113,8 @@ PeriodsForm.propTypes = {
   updatePeriod: func.isRequired,
   removePeriod: func.isRequired,
   initialValues: shape(),
-  isLocationVisible: bool
+  isLocationVisible: bool,
+  currentPage: string.isRequired
 };
 
 PeriodsForm.defaultProps = {
