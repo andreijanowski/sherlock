@@ -3,7 +3,8 @@ import {
   PATH_CHANGED,
   SET_ORDERS_BADGE_NUMBER,
   SET_RESERVATIONS_BADGE_NUMBER,
-  SET_INSTANCE_UUID
+  SET_INSTANCE_UUID,
+  TOGGLE_PLAY_NOTIFICATION
 } from "types/app";
 import { LOGOUT } from "types/auth";
 import { Record, Map } from "immutable";
@@ -12,7 +13,8 @@ const initialState = Record({
   currentPath: "/",
   ordersUpdates: Map(),
   reservationsUpdates: Map(),
-  instanceUuid: null
+  instanceUuid: null,
+  playNotification: false
 })();
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -31,6 +33,10 @@ const reducer = (state = initialState, { type, payload }) => {
 
     case SET_INSTANCE_UUID: {
       return state.set("instanceUuid", payload.uuid);
+    }
+
+    case TOGGLE_PLAY_NOTIFICATION: {
+      return state.set("playNotification", payload.state);
     }
 
     case LOGOUT: {

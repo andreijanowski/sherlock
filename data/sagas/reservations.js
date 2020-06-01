@@ -7,6 +7,7 @@ import {
   HANDLE_RESERVATION_UPDATE
 } from "types/reservations";
 import { fetchReservation } from "actions/reservations";
+import { togglePlayNotification } from "actions/app";
 
 function* getReservation({
   payload: {
@@ -18,9 +19,11 @@ function* getReservation({
   yield put(fetchReservation(id));
 }
 
-function* updateReservation({ payload: { business_uuid, reservation_uuid } }) {
-  const id = yield select(state =>
-    state
+function* updateReservation({
+  payload: { business_uuid, reservation_uuid, state }
+}) {
+  const id = yield select(appState =>
+    appState
       .getIn(["users", "currentBusiness", "data", "businesses"])
       .first()
       .get("id")
@@ -28,6 +31,10 @@ function* updateReservation({ payload: { business_uuid, reservation_uuid } }) {
 
   if (business_uuid === id) {
     yield put(fetchReservation(reservation_uuid));
+  }
+
+  if (business_uuid === id && state === "placed") {
+    yield put(togglePlayNotification());
   }
 }
 
