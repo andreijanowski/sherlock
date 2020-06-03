@@ -34,7 +34,7 @@ export const getInitialValues = ({ editedDishId, dishes }) => {
 };
 
 export const prepareCategories = categories =>
-  categories
+  categories.size > 0
     ? categories
         .map(b => ({
           value: b.get("id"),
