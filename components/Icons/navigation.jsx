@@ -568,3 +568,46 @@ export const SettingsLogout = () => (
     </g>
   </svg>
 );
+
+export const Integrations = () => (
+  <svg
+    width="40"
+    height="40"
+    viewBox="-10 -10 40 40"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <filter
+        id="prefix__a"
+        width="156.2%"
+        height="156.2%"
+        x="-28.1%"
+        y="-21.9%"
+        filterUnits="objectBoundingBox"
+      >
+        <feOffset dy="3" in="SourceAlpha" result="shadowOffsetOuter1" />
+        <feGaussianBlur
+          in="shadowOffsetOuter1"
+          result="shadowBlurOuter1"
+          stdDeviation="4"
+        />
+        <feColorMatrix
+          in="shadowBlurOuter1"
+          values="0 0 0 0 0.298039216 0 0 0 0 0.407843137 0 0 0 0 1 0 0 0 0.48 0"
+        />
+      </filter>
+      <circle id="prefix__b" cx="24" cy="24" r="24" />
+    </defs>
+    <g stroke="#FFF" strokeWidth="2">
+      <path
+        style={fillNone}
+        strokeOpacity=".4"
+        d="M4.5 10C2.567 10 1 11.567 1 13.5S2.567 17 4.5 17 8 15.433 8 13.5 6.433 10 4.5 10zM10.5 1C8.567 1 7 2.567 7 4.5S8.567 8 10.5 8 14 6.433 14 4.5 12.433 1 10.5 1z"
+      />
+      <path
+        style={fillNone}
+        d="M15.5 10c-1.933 0-3.5 1.567-3.5 3.5s1.567 3.5 3.5 3.5 3.5-1.567 3.5-3.5-1.567-3.5-3.5-3.5z"
+      />
+    </g>
+  </svg>
+);

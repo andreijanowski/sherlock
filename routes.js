@@ -101,4 +101,5 @@ module.exports = routes()
     `/:lng(${languagesPattern})/app/reservation/tables`
   )
   .add("app/stripeOauth", `/:lng(${languagesPattern})/stripe-oauth`)
-  .add("app/subscriptions", `/:lng(${languagesPattern})/app/subscriptions`);
+  .add("app/subscriptions", `/:lng(${languagesPattern})/app/subscriptions`)
+  .add("app/integrations", `/:lng(${languagesPattern})/app/integrations`);

@@ -1,5 +1,3 @@
-import React from "react";
-
 import {
   ProfileIcon,
   SettingsIcon,
@@ -7,7 +5,8 @@ import {
   Subscriptions,
   Privatisations,
   Reservations,
-  Delivery
+  Delivery,
+  Integrations
 } from "icons";
 
 export const chooseIcon = icon => {
@@ -22,12 +21,14 @@ export const chooseIcon = icon => {
       return Delivery;
     case "subscriptions":
       return Subscriptions;
+    case "integrations":
+      return Integrations;
     case "privatisations":
       return Privatisations;
     case "reservation":
       return Reservations;
     default:
-      return () => <></>;
+      return () => "";
   }
 };
 

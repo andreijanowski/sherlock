@@ -14,7 +14,8 @@ import {
   SettingsIcon,
   SettingsBasicInfo,
   SettingsLogout,
-  SettingsPassword
+  SettingsPassword,
+  Integrations
 } from "icons";
 
 const generateSettingsMobileSubmenu = (t, active, logout) => [
@@ -115,6 +116,11 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     icon: Reservations,
     label: t("app:reservations"),
     route: "/app/reservation/reservations/"
+  },
+  {
+    icon: Integrations,
+    label: t("app:integrations"),
+    route: "/app/integrations/"
   },
   {
     icon: Subscriptions,

@@ -10,6 +10,7 @@ import { HANDLE_RESERVATION_UPDATE } from "types/reservations";
 import { setOrdersUpdates, setReservationsUpdates } from "actions/app";
 import { fetchProfileBusiness } from "actions/users";
 import { fetchBusinessMembers } from "actions/businesses";
+import { fetchPartners } from "actions/partners";
 import Notifications from "react-notification-system-redux";
 import { Map } from "immutable";
 
@@ -46,6 +47,10 @@ function* handlePatchChangeSaga({ payload: { path } }) {
     }
     case "/app/reservation/reservations": {
       yield put(setReservationsUpdates(Map()));
+      break;
+    }
+    case "/app/integrations": {
+      yield put(fetchPartners());
       break;
     }
     default: {
