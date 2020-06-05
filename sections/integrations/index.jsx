@@ -1,5 +1,5 @@
 import React from "react";
-import { shape, func } from "prop-types";
+import { oneOfType, arrayOf, shape, func } from "prop-types";
 
 import PartnerTile from "components/PartnerTile";
 import { Wrapper, NoPartners } from "./styled";
@@ -25,7 +25,7 @@ const IntegrationsList = ({ partners, t }) => (
 );
 
 IntegrationsList.propTypes = {
-  partners: shape().isRequired,
+  partners: oneOfType([shape(), arrayOf()]).isRequired,
   t: func.isRequired
 };
 

@@ -5,7 +5,16 @@ import { arrayOf, shape, func, string, bool } from "prop-types";
 import { BackArrow } from "icons";
 import { IconWrapper, IconLabel, SubMenuWrapper } from "./styled";
 
-const SubItem = ({ t, lng, route, label, Icon, withSubmenu, submenuItems }) => {
+const SubItem = ({
+  t,
+  lng,
+  route,
+  label,
+  Icon,
+  withSubmenu,
+  submenuItems,
+  toggleMenu
+}) => {
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
 
   return !withSubmenu ? (
@@ -47,7 +56,7 @@ const SubItem = ({ t, lng, route, label, Icon, withSubmenu, submenuItems }) => {
           submenuItems.map(item =>
             item.route ? (
               <Link {...{ lng, route: item.route, key: item.label }}>
-                <Flex mb={4}>
+                <Flex mb={4} onClick={() => toggleMenu(false)}>
                   <IconWrapper dark noFill>
                     {item.SubmenuIcon && <item.SubmenuIcon />}
                   </IconWrapper>
@@ -75,14 +84,16 @@ SubItem.propTypes = {
   Icon: func,
   t: func.isRequired,
   withSubmenu: bool,
-  submenuItems: arrayOf(shape())
+  submenuItems: arrayOf(shape()),
+  toggleMenu: func
 };
 
 SubItem.defaultProps = {
   route: null,
   Icon: null,
   withSubmenu: false,
-  submenuItems: null
+  submenuItems: null,
+  toggleMenu: () => null
 };
 
 export default SubItem;

@@ -61,7 +61,6 @@ const MobileNav = ({
           items={prepareBusinessesList(t, businesses)}
           onChange={b => {
             changeCurrentBusiness(b.value);
-            setIsMobileNavOpen(false);
           }}
           bottomAction={{
             text: t("app:manageProfile.addNewBusiness"),
@@ -80,7 +79,8 @@ const MobileNav = ({
                 label: subitem.label,
                 withSubmenu: subitem.withSubmenu,
                 submenuItems: subitem.submenuItems,
-                key: subitem.label
+                key: subitem.label,
+                toggleMenu: setIsMobileNavOpen
               }}
             />
           ))}
