@@ -76,7 +76,8 @@ class OrderingHoursPage extends PureComponent {
             initialValues,
             addPeriod: this.addOrderPeriod,
             updatePeriod: this.updateOrderPeriod,
-            removePeriod: this.removeOrderPeriod
+            removePeriod: this.removeOrderPeriod,
+            currentPage: "orderingHours"
           }}
         />
       </LefoodLayout>

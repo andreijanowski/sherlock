@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Flex } from "@rebass/grid";
 import { bool, node, string, func, arrayOf, shape } from "prop-types";
 import { connect } from "react-redux";
@@ -5,6 +6,8 @@ import { connect } from "react-redux";
 import { i18n } from "i18n";
 import { InfoBar, Link, Button } from "components";
 import { Docs, Feedback, Notifications } from "icons";
+import isServer from "utils/isServer";
+import { togglePlayNotification } from "actions/app";
 import {
   Wrapper,
   HeaderWrapper,
@@ -24,11 +27,26 @@ const MainApp = ({
   children,
   avatar,
   isAccountConfirmed,
-  menuItems
+  menuItems,
+  shouldPlayNotification,
+  toggleSound
 }) => {
   const lng = (i18n && i18n.language) || "en";
   const MainIcon = chooseIcon(mainIcon);
   const { prevRoute, nextRoute } = getButtonRoutes(menuItems, mainIcon);
+
+  useEffect(() => {
+    let notification = new Audio("/static/sounds/notification.mp3");
+
+    if (!isServer && shouldPlayNotification) {
+      notification.play();
+      toggleSound(false);
+    }
+
+    return () => {
+      notification = undefined;
+    };
+  }, [shouldPlayNotification, toggleSound]);
 
   return (
     <Wrapper withMenu={withMenu}>
@@ -89,7 +107,9 @@ MainApp.propTypes = {
   children: node.isRequired,
   avatar: string,
   t: func.isRequired,
-  isAccountConfirmed: bool
+  isAccountConfirmed: bool,
+  shouldPlayNotification: bool,
+  toggleSound: func.isRequired
 };
 
 MainApp.defaultProps = {
@@ -97,14 +117,19 @@ MainApp.defaultProps = {
   mainIcon: "",
   header: "",
   avatar: "",
-  isAccountConfirmed: false
+  isAccountConfirmed: false,
+  shouldPlayNotification: false
 };
 
-export default connect(state => {
-  const users = state.getIn(["users", "profile", "data", "users"]);
-  const user = users && users.first();
-  return {
-    avatar: user && user.getIn(["attributes", "avatar", "url"]),
-    isAccountConfirmed: user && user.getIn(["attributes", "confirmed"])
-  };
-})(MainApp);
+export default connect(
+  state => {
+    const users = state.getIn(["users", "profile", "data", "users"]);
+    const user = users && users.first();
+    return {
+      avatar: user && user.getIn(["attributes", "avatar", "url"]),
+      isAccountConfirmed: user && user.getIn(["attributes", "confirmed"]),
+      shouldPlayNotification: state.getIn(["app", "playNotification"])
+    };
+  },
+  { toggleSound: togglePlayNotification }
+)(MainApp);

@@ -39,7 +39,7 @@ const pusherParser = bodyParser.urlencoded({
   server.use(cookieParser());
   server.use(nextI18NextMiddleware(nextI18next));
   server.get(
-    /^\/_next\/static\/(emoji|favicon|flags|fonts|img)\//,
+    /^\/_next\/static\/(emoji|favicon|flags|fonts|img|sounds)\//,
     setCacheForStaticAssets(dev)
   );
   server.get("/logout-user", handleUserLogout);

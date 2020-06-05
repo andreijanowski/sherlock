@@ -4,7 +4,8 @@ import {
   SET_CURRENT_USER_ID,
   SET_ORDERS_BADGE_NUMBER,
   SET_RESERVATIONS_BADGE_NUMBER,
-  SET_INSTANCE_UUID
+  SET_INSTANCE_UUID,
+  TOGGLE_PLAY_NOTIFICATION
 } from "types/app";
 
 export const pathChanged = path => ({
@@ -44,5 +45,12 @@ export const setInstanceUuid = uuid => ({
   type: SET_INSTANCE_UUID,
   payload: {
     uuid
+  }
+});
+
+export const togglePlayNotification = (state = true) => ({
+  type: TOGGLE_PLAY_NOTIFICATION,
+  payload: {
+    state
   }
 });

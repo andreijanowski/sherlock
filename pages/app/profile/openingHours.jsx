@@ -89,7 +89,8 @@ class OpeningHours extends PureComponent {
             isLocationVisible,
             addPeriod: this.addOpenPeriod,
             updatePeriod: this.updateOpenPeriod,
-            removePeriod: this.removeOpenPeriod
+            removePeriod: this.removeOpenPeriod,
+            currentPage: "openingHours"
           }}
         />
       </ProfileLayout>
