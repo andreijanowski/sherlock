@@ -1,19 +1,27 @@
 export const categories = [
-  "POS",
-  "Delivery & Take away",
-  "Booking",
-  "Community Management",
-  "Delivery Management",
-  "Fiances & Payments",
-  "Food Waste",
-  "HR & Shift Planning",
-  "Hygiene Solutions",
-  "Logistics",
-  "Mystery Shopping",
-  "Packaging",
-  "Social Media",
-  "Stock Management",
-  "Wholesaler",
-  "Photography",
-  "Hardware"
+  "pos",
+  "delivery_and_take_away",
+  "booking",
+  "community_management",
+  "delivery_management",
+  "fiances_and_payments",
+  "food_waste",
+  "hr_and_shift_planning",
+  "hygiene_solutions",
+  "logistics",
+  "mystery_shopping",
+  "packaging",
+  "socials_medias",
+  "stock_management",
+  "wholesaler",
+  "photography",
+  "hardware",
+  "other"
 ];
+
+export const generateMenuItems = (t, activeTab) =>
+  categories.map(category => ({
+    route: `/app/integrations?category=${category}`,
+    label: t(`app:manageIntegrations.${category}`),
+    isActive: activeTab === category
+  }));

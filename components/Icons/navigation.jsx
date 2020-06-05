@@ -570,12 +570,7 @@ export const SettingsLogout = () => (
 );
 
 export const Integrations = () => (
-  <svg
-    width="40"
-    height="40"
-    viewBox="-10 -10 40 40"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <filter
         id="prefix__a"

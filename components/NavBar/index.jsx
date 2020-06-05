@@ -129,14 +129,14 @@ const NavBar = ({ t, lng, logout, ordersUpdates, reservationsUpdates }) => (
       </SubitemsWrapper>
     </Item>
     <Item>
-      <Link {...{ lng, route: `/app/integrations/` }}>
+      <Link {...{ lng, route: `/app/integrations?category=pos` }}>
         <Icon>
           <Integrations />
         </Icon>
       </Link>
       <SubitemsWrapper>
         <Subitems>
-          <Link {...{ lng, route: `/app/integrations/` }}>
+          <Link {...{ lng, route: `/app/integrations?category=pos` }}>
             <Subitem>{t("app:integrations")}</Subitem>
           </Link>
         </Subitems>
