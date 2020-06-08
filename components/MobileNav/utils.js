@@ -14,8 +14,10 @@ import {
   SettingsIcon,
   SettingsBasicInfo,
   SettingsLogout,
-  SettingsPassword
+  SettingsPassword,
+  Integrations
 } from "icons";
+import { categories } from "sections/integrations/utils";
 
 const generateSettingsMobileSubmenu = (t, active, logout) => [
   {
@@ -89,6 +91,13 @@ const generateProfileMobileSubmenu = (t, active) => [
   }
 ];
 
+const generateIntegrationsMobileSubmenu = (t, activeTab) =>
+  categories.map(category => ({
+    route: `/app/integrations?category=${category}`,
+    label: t(`app:manageIntegrations.${category}`),
+    isActive: activeTab === category
+  }));
+
 export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
   {
     icon: ProfileIcon,
@@ -115,6 +124,12 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     icon: Reservations,
     label: t("app:reservations"),
     route: "/app/reservation/reservations/"
+  },
+  {
+    icon: Integrations,
+    label: t("app:integrations"),
+    withSubmenu: true,
+    submenuItems: generateIntegrationsMobileSubmenu(t, lng)
   },
   {
     icon: Subscriptions,

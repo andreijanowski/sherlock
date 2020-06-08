@@ -9,7 +9,8 @@ import {
   Privatisations,
   ProfileIcon,
   Subscriptions,
-  SettingsIcon
+  SettingsIcon,
+  Integrations
 } from "icons";
 import {
   Wrapper,
@@ -123,6 +124,20 @@ const NavBar = ({ t, lng, logout, ordersUpdates, reservationsUpdates }) => (
         <Subitems>
           <Link {...{ lng, route: `/app/reservation/reservations/` }}>
             <Subitem>{t("app:reservations")}</Subitem>
+          </Link>
+        </Subitems>
+      </SubitemsWrapper>
+    </Item>
+    <Item>
+      <Link {...{ lng, route: `/app/integrations?category=pos` }}>
+        <Icon>
+          <Integrations />
+        </Icon>
+      </Link>
+      <SubitemsWrapper>
+        <Subitems>
+          <Link {...{ lng, route: `/app/integrations?category=pos` }}>
+            <Subitem>{t("app:integrations")}</Subitem>
           </Link>
         </Subitems>
       </SubitemsWrapper>

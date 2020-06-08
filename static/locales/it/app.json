@@ -6,6 +6,7 @@
   "delivery": "Consegna (presto)",
   "catering": "Ristorazione/catering",
   "privatisations": "Privatizzazioni",
+  "integrations": "Integrazioni",
   "socialMedia": "Social media (presto)",
   "billing": "Fatturazione (presto)",
   "manageProfile": {
@@ -24,6 +25,29 @@
     "liveInfo": "Informazioni in diretta",
     "widgets": "Widget",
     "unPublish": "Affari non pubblicati"
+  },
+  "manageIntegrations": {
+    "pos": "POS",
+    "delivery_and_take_away": "Consegna e ritiro",
+    "booking": "Prenotazione",
+    "community_management": "Gestione della comunità",
+    "delivery_management": "Gestione delle consegne",
+    "finances_and_payments": "Finanze e pagamenti",
+    "food_waste": "Spreco di cibo",
+    "hr_and_shift_planning": "Pianificazione risorse umane e turni",
+    "hygiene_solutions": "Soluzioni igieniche",
+    "logistics": "La logistica",
+    "mystery_shopping": "Mystery shopping",
+    "packaging": "Confezione",
+    "social_media": "Social media",
+    "stock_management": "Gestione delle scorte",
+    "wholesaler": "Grossista",
+    "photography": "Fotografia",
+    "hardware": "Hardware",
+    "other": "Altro",
+    "connect": "Collegare",
+    "integrated": "Integrato",
+    "noPartners": "Nessun partner per questa categoria."
   },
   "subscriptions": "Sottoscrizioni",
   "userSettings": {
