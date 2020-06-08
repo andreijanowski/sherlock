@@ -20,6 +20,29 @@ class IntegrationsPage extends PureComponent {
     };
   }
 
+  state = {
+    activeTab: ""
+  };
+
+  componentDidMount() {
+    this.setActiveTab();
+  }
+
+  componentDidUpdate() {
+    this.setActiveTab();
+  }
+
+  setActiveTab = () => {
+    if (!isServer) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const getParam = urlParams.get("category");
+
+      this.setState({
+        activeTab: categories.includes(getParam) ? getParam : "pos"
+      });
+    }
+  };
+
   render() {
     const {
       t,
@@ -31,16 +54,7 @@ class IntegrationsPage extends PureComponent {
       businesses,
       partners
     } = this.props;
-    let activeTab = "pos";
-
-    if (!isServer) {
-      const urlParams = new URLSearchParams(window.location.search);
-      const getParam = urlParams.get("category");
-
-      if (categories.includes(getParam)) {
-        activeTab = getParam;
-      }
-    }
+    const { activeTab } = this.state;
 
     const preparedPartners = partners
       ? partners.filter(
@@ -73,7 +87,9 @@ class IntegrationsPage extends PureComponent {
           withImage: true
         }}
       >
-        <IntegrationsList partners={preparedPartners} t={t} />
+        {partners && partners.size > 0 && (
+          <IntegrationsList partners={preparedPartners} t={t} />
+        )}
       </AppLayout>
     );
   }
