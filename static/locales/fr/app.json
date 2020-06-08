@@ -6,6 +6,7 @@
   "delivery": "Commandes",
   "catering": "Service traiteur",
   "privatisations": "Privatisations",
+  "integrations": "Intégrations",
   "socialMedia": "Les médias sociaux (bientôt)",
   "billing": "Facturation (bientôt)",
   "manageProfile": {
@@ -24,6 +25,29 @@
     "liveInfo": "Infos en direct",
     "widgets": "Widgets",
     "unPublish": "Annuler la publication des affaires"
+  },
+  "manageIntegrations": {
+    "pos": "POS",
+    "delivery_and_take_away": "Livraison et emporter",
+    "booking": "Réservation",
+    "community_management": "Gestionnaire de communauté",
+    "delivery_management": "Gestion des livraisons",
+    "fiances_and_payments": "Finances et paiements",
+    "food_waste": "Déchets alimentaires",
+    "hr_and_shift_planning": "Planification des RH et des équipes",
+    "hygiene_solutions": "Solutions d'hygiène",
+    "logistics": "Logistique",
+    "mystery_shopping": "Achats mystère",
+    "packaging": "Emballage",
+    "socials_medias": "Des médias sociaux",
+    "stock_management": "Gestion de stock",
+    "wholesaler": "Grossistes",
+    "photography": "La photographie",
+    "hardware": "Matériel",
+    "other": "Autre",
+    "connect": "Relier",
+    "integrated": "Intégré",
+    "noPartners": "Aucun partenaire pour cette catégorie."
   },
   "subscriptions": "Abonnements",
   "userSettings": {

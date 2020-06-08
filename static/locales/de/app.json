@@ -6,6 +6,7 @@
   "delivery": "Lieferung (bald)",
   "catering": "Gastronomie/catering",
   "privatisations": "Privatisierungen",
+  "integrations": "Integrationen",
   "socialMedia": "Social Media (bald)",
   "billing": "Abrechnung (bald)",
   "manageProfile": {
@@ -24,6 +25,29 @@
     "liveInfo": "Live-Infos",
     "widgets": "Widgets",
     "unPublish": "Veröffentlichung des Geschäfts aufheben"
+  },
+  "manageIntegrations": {
+    "pos": "POS",
+    "delivery_and_take_away": "Lieferung & Mitnehmen",
+    "booking": "Buchung",
+    "community_management": "Community management",
+    "delivery_management": "Liefermanagement",
+    "fiances_and_payments": "Finanzen & Zahlungen",
+    "food_waste": "Lebensmittelverschwendung",
+    "hr_and_shift_planning": "Personal & Schichtplanung",
+    "hygiene_solutions": "Hygienelösungen",
+    "logistics": "Logistik",
+    "mystery_shopping": "Mystery shopping",
+    "packaging": "Verpackung",
+    "socials_medias": "Sozialen medien",
+    "stock_management": "Lagerverwaltung",
+    "wholesaler": "Großhändler",
+    "photography": "Fotografie",
+    "hardware": "Hardware",
+    "other": "Andere",
+    "connect": "Verbinden",
+    "integrated": "Integrated",
+    "noPartners": "Keine partner für diese kategorie."
   },
   "subscriptions": "Abonnements",
   "userSettings": {

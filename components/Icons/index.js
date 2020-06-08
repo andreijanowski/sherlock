@@ -20,7 +20,8 @@ export {
   LiveStream,
   Hamburger,
   SettingsBasicInfo,
-  SettingsLogout
+  SettingsLogout,
+  Integrations
 } from "./navigation";
 export { Docs, Feedback, Notifications, ExpandIcon } from "./mainControls";
 export {

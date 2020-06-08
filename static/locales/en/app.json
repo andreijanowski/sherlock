@@ -6,6 +6,7 @@
   "delivery": "Delivery / Take away",
   "catering": "Catering",
   "privatisations": "Privatisations",
+  "integrations": "Integrations",
   "socialMedia": "Social media (soon)",
   "billing": "Billing (soon)",
   "manageProfile": {
@@ -24,6 +25,29 @@
     "published": "Published",
     "unPublish": "Unpublish business",
     "waitingForApproval": "Waiting for approval"
+  },
+  "manageIntegrations": {
+    "pos": "POS",
+    "delivery_and_take_away": "Delivery & Take away",
+    "booking": "Booking",
+    "community_management": "Community management",
+    "delivery_management": "Delivery management",
+    "fiances_and_payments": "Finances & payments",
+    "food_waste": "Food waste",
+    "hr_and_shift_planning": "HR & shift planning",
+    "hygiene_solutions": "Hygene solutions",
+    "logistics": "Logistics",
+    "mystery_shopping": "Mystery shopping",
+    "packaging": "Packaging",
+    "socials_medias": "Social media",
+    "stock_management": "Stock management",
+    "wholesaler": "Wholesalers",
+    "photography": "Photography",
+    "hardware": "Hardware",
+    "other": "Other",
+    "connect": "Connect",
+    "integrated": "Integrated",
+    "noPartners": "No partners for this category."
   },
   "subscriptions": "Subscriptions",
   "userSettings": {

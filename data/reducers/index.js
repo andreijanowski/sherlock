@@ -14,6 +14,7 @@ import reservations from "./reservations";
 import tables from "./tables";
 import bookings from "./bookings";
 import widgets from "./widgets";
+import partners from "./partners";
 
 export default {
   app,
@@ -31,5 +32,6 @@ export default {
   reservations,
   tables,
   bookings,
-  widgets
+  widgets,
+  partners
 };

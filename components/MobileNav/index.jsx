@@ -59,7 +59,9 @@ const MobileNav = ({
             src: business && business.getIn(["attributes", "logo", "url"])
           }}
           items={prepareBusinessesList(t, businesses)}
-          onChange={b => changeCurrentBusiness(b.value)}
+          onChange={b => {
+            changeCurrentBusiness(b.value);
+          }}
           bottomAction={{
             text: t("app:manageProfile.addNewBusiness"),
             handleClick: () => addBusiness()
@@ -77,7 +79,8 @@ const MobileNav = ({
                 label: subitem.label,
                 withSubmenu: subitem.withSubmenu,
                 submenuItems: subitem.submenuItems,
-                key: subitem.label
+                key: subitem.label,
+                toggleMenu: setIsMobileNavOpen
               }}
             />
           ))}
