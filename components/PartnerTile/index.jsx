@@ -1,12 +1,31 @@
-import { shape, arrayOf, oneOfType, func } from "prop-types";
+import { shape, arrayOf, oneOfType, func, node } from "prop-types";
 
 import { Container, ContentWrapper, Image, Link, StyledButton } from "./styled";
 
+const UpdatedLink = ({ partner, children }) => (
+  <Link
+    href={partner.get("websiteUrl")}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    {children}
+  </Link>
+);
+
+UpdatedLink.propTypes = {
+  partner: oneOfType([arrayOf(), shape()]).isRequired,
+  children: node.isRequired
+};
+
 const PartnerTile = ({ partner, t }) => {
   const isActive = partner.get("active");
-  const buttonLabel = isActive
-    ? t("app:manageIntegrations.connect")
-    : t("app:manageIntegrations.integrated");
+  const buttonLabel = isActive ? (
+    <UpdatedLink partner={partner}>
+      {t("app:manageIntegrations.connect")}
+    </UpdatedLink>
+  ) : (
+    t("app:manageIntegrations.integrated")
+  );
 
   return (
     <Container
@@ -21,7 +40,7 @@ const PartnerTile = ({ partner, t }) => {
         p={[3, 4]}
         flex={1}
       >
-        <Link href={partner.get("websiteUrl")}>{partner.get("name")}</Link>
+        <UpdatedLink partner={partner}>{partner.get("name")}</UpdatedLink>
         <StyledButton styleName={!isActive ? "signUp" : "navyBlue"}>
           {buttonLabel}
         </StyledButton>

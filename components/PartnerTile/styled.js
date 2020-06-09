@@ -32,4 +32,8 @@ export const StyledButton = styled(Button)`
     cursor: default;
     ${p => p.styleName === "signUp" && "border-width: 2px;"}
   }
+
+  ${Link} {
+    color: white;
+  }
 `;
