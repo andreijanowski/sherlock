@@ -26,3 +26,4 @@ localhost.pem
 
 # IDEs
 .vscode
+.idea
