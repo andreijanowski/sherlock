@@ -13,6 +13,10 @@ const IntegrationsList = ({ partners, t }) => (
           <PartnerTile
             key={partner.get("id")}
             partner={partner.get("attributes")}
+            partnerId={partner.toJS().id}
+            partnerRelationships={partner
+              .getIn(["relationships", "users", "data"])
+              .toJS()}
             t={t}
           />
         ))
