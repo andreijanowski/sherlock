@@ -6,7 +6,8 @@ import {
   Privatisations,
   Reservations,
   Delivery,
-  Integrations
+  Integrations,
+  Wholesalers
 } from "icons";
 
 export const chooseIcon = icon => {
@@ -23,6 +24,8 @@ export const chooseIcon = icon => {
       return Subscriptions;
     case "integrations":
       return Integrations;
+    case "wholesalers":
+      return Wholesalers;
     case "privatisations":
       return Privatisations;
     case "reservation":

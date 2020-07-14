@@ -21,7 +21,8 @@ export {
   Hamburger,
   SettingsBasicInfo,
   SettingsLogout,
-  Integrations
+  Integrations,
+  Wholesalers
 } from "./navigation";
 export { Docs, Feedback, Notifications, ExpandIcon } from "./mainControls";
 export {
