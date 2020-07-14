@@ -117,6 +117,10 @@ Those comands should create `localhsot.pem` and `localhsot-key.pem` files inside
 
 See more in [development](./docs/setup.md) document.
 
+
+
+Login as `Staging-front business owner` (1pass)
+
   
 
 ### Production build
@@ -128,6 +132,12 @@ See more in [development](./docs/setup.md) document.
   
 
 See more in [development](./docs/setup.md) document.
+
+
+
+### API
+
+Api documentation can be found [here](https://api.foodetective.co/api/v1/docs) and the login details are in 1pass (use `PRODUCTION - Super BO`). 
 
 ## OAuth
 
