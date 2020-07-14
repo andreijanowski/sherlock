@@ -4,7 +4,10 @@ import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
 import { connect } from "react-redux";
 import AppLayout from "layout/App";
-import { generateMenuItems, categories } from "sections/integrations/utils";
+import {
+  generatePartnersMenuItems,
+  PARTNERS_CATEGORIES
+} from "sections/integrations/utils";
 import prepareBusinessesList from "utils/prepareBusinessesList";
 import { setCurrentBusiness } from "actions/app";
 import { postBusiness } from "actions/businesses";
@@ -38,7 +41,7 @@ class IntegrationsPage extends PureComponent {
       const getParam = urlParams.get("category");
 
       this.setState({
-        activeTab: categories.includes(getParam) ? getParam : "pos"
+        activeTab: PARTNERS_CATEGORIES.includes(getParam) ? getParam : "pos"
       });
     }
   };
@@ -69,7 +72,7 @@ class IntegrationsPage extends PureComponent {
         mainIcon="integrations"
         header={t("app:integrations")}
         withMenu
-        menuItems={generateMenuItems(t, activeTab)}
+        menuItems={generatePartnersMenuItems(t, activeTab)}
         select={{
           value: {
             value: businessId,

@@ -1,12 +1,12 @@
 export default (t, businesses) =>
   businesses
     ? businesses
-        .map(b => ({
-          value: b.get("id"),
+        .map(business => ({
+          value: business.get("id"),
           label:
-            b.getIn(["attributes", "name"]) ||
+            business.getIn(["attributes", "name"]) ||
             t("app:manageProfile.unnamedBusiness"),
-          src: b.getIn(["attributes", "logo", "url"])
+          src: business.getIn(["attributes", "logo", "url"])
         }))
         .toList()
         .toArray()
