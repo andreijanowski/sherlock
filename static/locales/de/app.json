@@ -7,6 +7,7 @@
   "catering": "Gastronomie/catering",
   "privatisations": "Privatisierungen",
   "integrations": "Integrationen",
+  "wholesaler": "Großhändler",
   "socialMedia": "Social Media (bald)",
   "billing": "Abrechnung (bald)",
   "manageProfile": {
@@ -62,5 +63,19 @@
   "crop": "Ernte",
   "cancel": "Stornieren",
   "confirmAccount": "Wir haben Ihnen eine Bestätigungsnachricht an Ihre E-Mail gesendet. Bitte bestätigen Sie Ihr Konto innerhalb von 3 Tagen.",
-  "active": "Aktiv"
+  "active": "Aktiv",
+  "wholesalersCategories": {
+    "new": "New",
+    "vegetables": "Vegetables",
+    "meat": "Meat",
+    "fish": "Fish",
+    "bread": "Bread",
+    "sauces": "Sauces",
+    "beers": "Beers",
+    "wine_and_alcohol": "Wine & Alcohol",
+    "soft_drinks": "Soft Drinks",
+    "packaging": "Packaging",
+    "tableware": "Tableware",
+    "other": "Other"
+  }
 }

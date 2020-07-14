@@ -7,6 +7,7 @@
   "catering": "Abastecimiento/catering",
   "privatisations": "Privatizaciones",
   "integrations": "Integraciones",
+  "wholesaler": "Mayoristas",
   "socialMedia": "Redes sociales (pronto)",
   "billing": "Facturación (pronto)",
   "manageProfile": {
@@ -62,5 +63,19 @@
   "crop": "Cortar",
   "cancel": "Cancelar",
   "confirmAccount": "Le enviamos un mensaje de confirmación a su correo electrónico. Confirme su cuenta dentro de 3 días",
-  "active": "Activo"
+  "active": "Activo",
+  "wholesalersCategories": {
+    "new": "New",
+    "vegetables": "Vegetables",
+    "meat": "Meat",
+    "fish": "Fish",
+    "bread": "Bread",
+    "sauces": "Sauces",
+    "beers": "Beers",
+    "wine_and_alcohol": "Wine & Alcohol",
+    "soft_drinks": "Soft Drinks",
+    "packaging": "Packaging",
+    "tableware": "Tableware",
+    "other": "Other"
+  }
 }
