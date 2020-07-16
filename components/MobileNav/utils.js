@@ -105,7 +105,7 @@ const generateIntegrationsMobileSubmenu = (t, activeTab) =>
 const generateWholesalersMobileSubmenu = (t, activeTab) =>
   WHOLESALERS_CATEGORIES.map(category => ({
     route: `/app/wholesalers?category=${category}`,
-    label: t(`app:manageWholesalers.${category}`),
+    label: t(`app:wholesalersCategories.${category}`),
     isActive: activeTab === category
   }));
 
