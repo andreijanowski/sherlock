@@ -19,16 +19,20 @@ export const PARTNERS_CATEGORIES = [
 
 export const WHOLESALERS_CATEGORIES = [
   "new",
-  "vegetables",
+  "fruits_and_vegetables",
   "meat",
   "fish",
-  "bread",
-  "sauces",
+  "bread_and_flour",
+  "diary_products",
+  "sweets_and_desserts",
+  "frozen_products",
+  "sauces_and_oils",
   "beers",
   "wine_and_alcohol",
   "soft_drinks",
-  "packaging",
+  "food_packaging",
   "tableware",
+  "hygiene",
   "other"
 ];
 

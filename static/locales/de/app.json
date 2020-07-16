@@ -65,17 +65,21 @@
   "confirmAccount": "Wir haben Ihnen eine Bestätigungsnachricht an Ihre E-Mail gesendet. Bitte bestätigen Sie Ihr Konto innerhalb von 3 Tagen.",
   "active": "Aktiv",
   "wholesalersCategories": {
-    "new": "New",
-    "vegetables": "Vegetables",
-    "meat": "Meat",
-    "fish": "Fish",
-    "bread": "Bread",
-    "sauces": "Sauces",
-    "beers": "Beers",
-    "wine_and_alcohol": "Wine & Alcohol",
-    "soft_drinks": "Soft Drinks",
-    "packaging": "Packaging",
-    "tableware": "Tableware",
-    "other": "Other"
+    "new": "Neu",
+    "fruits_and_vegetables": "Obst & Vegetables",
+    "meat": "Fleish",
+    "fish": "Fisch",
+    "bread_and_flour": "Brot & Mehl",
+    "diary_products": "Milchprodukte",
+    "sweets_and_desserts": "Süßigkeiten & Desserts",
+    "frozen_products": "Tiefkühlprodukte",
+    "sauces_and_oils": "Sauzen & Oli",
+    "beers": "Biere",
+    "wine_and_alcohol": "Wein & Alkohol",
+    "soft_drinks": "Alkoholfreie Getränke",
+    "food_packaging": "Lebensmittelverpackung",
+    "tableware": "Küchenmaterial",
+    "hygiene": "Hygiene",
+    "other": "Andere"
   }
 }

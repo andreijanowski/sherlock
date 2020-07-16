@@ -62,7 +62,7 @@ class IntegrationsPage extends PureComponent {
     const preparedWholesalers = wholesalers
       ? wholesalers.filter(
           wholesaler =>
-            wholesaler.getIn(["attributes", "category"]) === activeTab
+            wholesaler.getIn(["attributes", "wholesalerCategory"]) === activeTab
         )
       : [];
 
