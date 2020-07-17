@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { shape, arrayOf, oneOfType, func, string } from "prop-types";
 
 import { connectPartner } from "actions/partners";
+import { connectWholesaler } from "actions/wholesalers";
 
 import IntegrationLink from "./IntegrationLink";
 import { getIntegrationButtonLabel, getIsIntegrationPending } from "./utils";
@@ -14,8 +15,11 @@ import {
   InfoButton
 } from "./styled";
 
+const WHOLESALER = "wholesaler";
+
 const PartnerTile = ({
   integratePartner,
+  integrateWholesaler,
   partner,
   partnerId,
   partnerRelationships,
@@ -37,11 +41,16 @@ const PartnerTile = ({
     isIntegrated,
     t
   );
+  const partnerCategory = partner.get("category");
+  const isPartnerWholesaler = partnerCategory === WHOLESALER;
 
   const requestIntegration = () => {
     if (isIntegrationNotRequested) setIsPending(true);
-
-    integratePartner(partnerId);
+    if (isPartnerWholesaler) {
+      integrateWholesaler(partnerId);
+    } else {
+      integratePartner(partnerId);
+    }
   };
 
   return (
@@ -82,6 +91,7 @@ const PartnerTile = ({
 
 PartnerTile.propTypes = {
   integratePartner: func.isRequired,
+  integrateWholesaler: func.isRequired,
   partner: oneOfType([arrayOf(), shape()]).isRequired,
   partnerId: string.isRequired,
   partnerRelationships: oneOfType([arrayOf(), shape({})]).isRequired,
@@ -94,5 +104,8 @@ PartnerTile.defaultValue = {
 
 export default connect(
   null,
-  { integratePartner: connectPartner }
+  {
+    integratePartner: connectPartner,
+    integrateWholesaler: connectWholesaler
+  }
 )(PartnerTile);
