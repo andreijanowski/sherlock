@@ -6,10 +6,22 @@ import users from "./users";
 import pusher from "./pusher";
 import orders from "./orders";
 import reservations from "./reservations";
+import partners from "./partners";
+import wholesalers from "./wholesalers";
 
 export default function* rootSaga(dispatch) {
   try {
-    yield all([app, api, auth, users, pusher(dispatch), orders, reservations]);
+    yield all([
+      app,
+      api,
+      auth,
+      users,
+      pusher(dispatch),
+      orders,
+      reservations,
+      partners,
+      wholesalers
+    ]);
   } catch (e) {
     // eslint-disable-next-line  no-console
     console.warn(e.message);

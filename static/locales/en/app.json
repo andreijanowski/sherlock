@@ -46,9 +46,11 @@
     "photography": "Photography",
     "hardware": "Hardware",
     "other": "Other",
-    "connect": "Connect",
+    "requestIntegration": "Request integration",
+    "pending": "Pending",
     "integrated": "Integrated",
-    "noPartners": "No partners for this category."
+    "noPartners": "No partners for this category.",
+    "moreInfo": "More info"
   },
   "subscriptions": "Subscriptions",
   "userSettings": {
