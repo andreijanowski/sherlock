@@ -46,7 +46,8 @@
     "photography": "La photographie",
     "hardware": "Matériel",
     "other": "Autre",
-    "connect": "Connecter",
+    "requestIntegration": "Demander l'intégration",
+    "pending": "En attente",
     "integrated": "Intégré",
     "noPartners": "Aucun partenaire pour cette catégorie."
   },

@@ -46,7 +46,8 @@
     "photography": "Fotografía",
     "hardware": "Hardware",
     "other": "Otro",
-    "connect": "Conectar",
+    "requestIntegration": "Solicitar integración",
+    "pending": "Pendiente",
     "integrated": "Integrado",
     "noPartners": "No hay socios para esta categoría."
   },
