@@ -11,6 +11,7 @@ import { setOrdersUpdates, setReservationsUpdates } from "actions/app";
 import { fetchProfileBusiness } from "actions/users";
 import { fetchBusinessMembers } from "actions/businesses";
 import { fetchPartners } from "actions/partners";
+import { fetchWholesalers } from "actions/wholesalers";
 import Notifications from "react-notification-system-redux";
 import { Map } from "immutable";
 
@@ -51,6 +52,10 @@ function* handlePatchChangeSaga({ payload: { path } }) {
     }
     case "/app/integrations": {
       yield put(fetchPartners());
+      break;
+    }
+    case "/app/wholesalers": {
+      yield put(fetchWholesalers());
       break;
     }
     default: {

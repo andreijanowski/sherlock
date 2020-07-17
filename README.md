@@ -54,7 +54,7 @@ Optional:
 
   
 
-Create `.env` file inside the main directory.
+Create `.env` file inside the main directory. You can find all envs in 1pass for foodetective project.
 
   
 
@@ -76,7 +76,6 @@ PUBLIC_GOOGLE_MAPS_API_KEY=
 
   
 
-You can find all envs in 1pass for foodetective project.
 
 ### "Env hell"
 
@@ -112,7 +111,15 @@ Those comands should create `localhsot.pem` and `localhsot-key.pem` files inside
 
   
 
-`yarn dev` to start development mode. App is now running on `https://localhost:3000`.
+`yarn dev` to start development mode. App is now running on `https://localhost:3000`. 
+
+
+
+See more in [development](./docs/setup.md) document.
+
+
+
+Login as `Staging-front business owner` (1pass)
 
   
 
@@ -124,7 +131,13 @@ Those comands should create `localhsot.pem` and `localhsot-key.pem` files inside
 
   
 
-See more in docs: [development](./docs/setup.md).
+See more in [development](./docs/setup.md) document.
+
+
+
+### API
+
+Api documentation can be found [here](https://api.foodetective.co/api/v1/docs) and the login details are in 1pass (use `PRODUCTION - Super BO`). 
 
 ## OAuth
 

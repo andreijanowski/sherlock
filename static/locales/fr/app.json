@@ -7,6 +7,7 @@
   "catering": "Service traiteur",
   "privatisations": "Privatisations",
   "integrations": "Intégrations",
+  "wholesaler": "Grossistes",
   "socialMedia": "Les médias sociaux (bientôt)",
   "billing": "Facturation (bientôt)",
   "manageProfile": {
@@ -62,5 +63,23 @@
   "crop": "Recadrer",
   "cancel": "Annuler",
   "confirmAccount": "Nous vous avons envoyé un message de confirmation par e-mail. Veuillez confirmer votre compte dans les 3 jours.",
-  "active": "Actif"
+  "active": "Actif",
+  "wholesalersCategories": {
+    "new": "Nouveautés",
+    "fruits_and_vegetables": "Fruits & Légumes",
+    "meat": "Viande",
+    "fish": "Poissons",
+    "bread_and_flour": "Pains & Farines",
+    "diary_products": "Produits Laitiers",
+    "sweets_and_desserts": "Desserts & Bonbons",
+    "frozen_products": "Produtis congelés",
+    "sauces_and_oils": "Sauces & Huiles",
+    "beers": "Bières",
+    "wine_and_alcohol": "Vins & Spiritueux",
+    "soft_drinks": "Boissons",
+    "food_packaging": "Emballages",
+    "tableware": "Vaisselle & materiel de cuisine",
+    "hygiene": "Hygiène",
+    "other": "Autres"
+  }
 }

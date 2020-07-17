@@ -7,6 +7,7 @@
   "catering": "Catering",
   "privatisations": "Privatisations",
   "integrations": "Integrations",
+  "wholesaler": "Wholesalers",
   "socialMedia": "Social media (soon)",
   "billing": "Billing (soon)",
   "manageProfile": {
@@ -64,5 +65,23 @@
   "crop": "Crop",
   "cancel": "Cancel",
   "confirmAccount": "We sent you confirmation message to your email. Please confirm your account within 3 days.",
-  "active": "Active"
+  "active": "Active",
+  "wholesalersCategories": {
+    "new": "New",
+    "fruits_and_vegetables": "Fruits & vegetables",
+    "meat": "Meat",
+    "fish": "Fish",
+    "bread_and_flour": "Bread & flour",
+    "diary_products": "Diary products",
+    "sweets_and_desserts": "Sweets & desserts",
+    "frozen_products": "Frozen products",
+    "sauces_and_oils": "Sauces & oils",
+    "beers": "Beers",
+    "wine_and_alcohol": "Wine & alcohol",
+    "soft_drinks": "Soft drinks",
+    "food_packaging": "Food & packaging",
+    "tableware": "Tableware",
+    "hygiene": "Hygiene",
+    "other": "Other"
+  }
 }
