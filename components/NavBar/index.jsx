@@ -10,7 +10,8 @@ import {
   ProfileIcon,
   Subscriptions,
   SettingsIcon,
-  Integrations
+  Integrations,
+  Wholesalers
 } from "icons";
 import {
   Wrapper,
@@ -138,6 +139,20 @@ const NavBar = ({ t, lng, logout, ordersUpdates, reservationsUpdates }) => (
         <Subitems>
           <Link {...{ lng, route: `/app/integrations?category=pos` }}>
             <Subitem>{t("app:integrations")}</Subitem>
+          </Link>
+        </Subitems>
+      </SubitemsWrapper>
+    </Item>
+    <Item>
+      <Link {...{ lng, route: `/app/wholesalers?category=new` }}>
+        <Icon>
+          <Wholesalers />
+        </Icon>
+      </Link>
+      <SubitemsWrapper>
+        <Subitems>
+          <Link {...{ lng, route: `/app/wholesalers?category=new` }}>
+            <Subitem>{t("app:wholesaler")}</Subitem>
           </Link>
         </Subitems>
       </SubitemsWrapper>

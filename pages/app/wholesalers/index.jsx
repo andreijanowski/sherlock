@@ -5,8 +5,8 @@ import { func, string, shape } from "prop-types";
 import { connect } from "react-redux";
 import AppLayout from "layout/App";
 import {
-  generatePartnersMenuItems,
-  PARTNERS_CATEGORIES
+  generateWholesalersMenuItems,
+  WHOLESALERS_CATEGORIES
 } from "sections/integrations/utils";
 import prepareBusinessesList from "utils/prepareBusinessesList";
 import { setCurrentBusiness } from "actions/app";
@@ -41,7 +41,7 @@ class IntegrationsPage extends PureComponent {
       const getParam = urlParams.get("category");
 
       this.setState({
-        activeTab: PARTNERS_CATEGORIES.includes(getParam) ? getParam : "pos"
+        activeTab: WHOLESALERS_CATEGORIES.includes(getParam) ? getParam : "pos"
       });
     }
   };
@@ -55,13 +55,14 @@ class IntegrationsPage extends PureComponent {
       changeCurrentBusiness,
       addBusiness,
       businesses,
-      partners
+      wholesalers
     } = this.props;
     const { activeTab } = this.state;
 
-    const preparedPartners = partners
-      ? partners.filter(
-          partner => partner.getIn(["attributes", "category"]) === activeTab
+    const preparedWholesalers = wholesalers
+      ? wholesalers.filter(
+          wholesaler =>
+            wholesaler.getIn(["attributes", "wholesalerCategory"]) === activeTab
         )
       : [];
 
@@ -69,10 +70,10 @@ class IntegrationsPage extends PureComponent {
       <AppLayout
         t={t}
         lng={lng}
-        mainIcon="integrations"
-        header={t("app:integrations")}
+        mainIcon="wholesalers"
+        header={t("app:wholesaler")}
         withMenu
-        menuItems={generatePartnersMenuItems(t, activeTab)}
+        menuItems={generateWholesalersMenuItems(t, activeTab)}
         select={{
           value: {
             value: businessId,
@@ -90,8 +91,8 @@ class IntegrationsPage extends PureComponent {
           withImage: true
         }}
       >
-        {partners && partners.size > 0 && (
-          <IntegrationsList partners={preparedPartners} t={t} />
+        {wholesalers && wholesalers.size > 0 && (
+          <IntegrationsList partners={preparedWholesalers} t={t} />
         )}
       </AppLayout>
     );
@@ -106,14 +107,14 @@ IntegrationsPage.propTypes = {
   business: shape(),
   businessId: string,
   businesses: shape(),
-  partners: shape()
+  wholesalers: shape()
 };
 
 IntegrationsPage.defaultProps = {
   businesses: null,
   business: null,
   businessId: "",
-  partners: null
+  wholesalers: null
 };
 
 export default requireAuth(true)(
@@ -134,7 +135,12 @@ export default requireAuth(true)(
         ]),
         changeCurrentBusiness: setCurrentBusiness,
         addBusiness: postBusiness,
-        partners: state.getIn(["partners", "data", "partners", "partners"])
+        wholesalers: state.getIn([
+          "wholesalers",
+          "data",
+          "wholesalers",
+          "partners"
+        ])
       };
     })(IntegrationsPage)
   )
