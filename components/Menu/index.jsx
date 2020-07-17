@@ -4,7 +4,7 @@ import { Flex } from "@rebass/grid";
 import { Button, Link, Select } from "components";
 import { Wrapper, Items, Item } from "./styled";
 
-const Menu = ({ lng, menuItems, select }) => (
+const Menu = ({ lng, menuItems, select, t }) => (
   <Wrapper>
     {select && (
       <Flex px={3} py={4} width={1}>
@@ -19,17 +19,10 @@ const Menu = ({ lng, menuItems, select }) => (
     )}
     <Items>
       {menuItems.map(i => {
-        if (i.route) {
-          return (
-            <Link {...{ lng, route: i.route, key: i.route }}>
-              <Item isActive={i.isActive} color={i.color}>
-                <span>{i.label}</span>
-              </Item>
-            </Link>
-          );
-        }
+        const isPublishBusinessButton =
+          i.label === t("app:manageProfile.publish");
 
-        if (i.label === "Publish business") {
+        if (isPublishBusinessButton) {
           return (
             <Flex p={1}>
               <Button
@@ -41,6 +34,16 @@ const Menu = ({ lng, menuItems, select }) => (
                 {i.label}
               </Button>
             </Flex>
+          );
+        }
+
+        if (i.route) {
+          return (
+            <Link {...{ lng, route: i.route, key: i.route }}>
+              <Item isActive={i.isActive} color={i.color}>
+                <span>{i.label}</span>
+              </Item>
+            </Link>
           );
         }
 
@@ -69,6 +72,7 @@ Menu.propTypes = {
       isActive: bool
     })
   ).isRequired,
+  t: func.isRequired,
   select: shape()
 };
 
