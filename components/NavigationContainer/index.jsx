@@ -7,7 +7,7 @@ const NavigationContainer = ({ withMenu, menuItems, t, lng, select }) => (
   <>
     <Wrapper>
       <NavBar {...{ t, lng, withMenu }} />
-      {withMenu && <Menu {...{ lng, menuItems, select }} />}
+      {withMenu && <Menu {...{ lng, menuItems, select, t }} />}
     </Wrapper>
     <MobileWrapper>
       <MobileNav {...{ t, lng }} />

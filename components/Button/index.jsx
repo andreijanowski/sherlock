@@ -144,6 +144,7 @@ const accept = css`
     box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.greenHaze}, 0.48);
   }
 `;
+
 const withImageActive = css`
   color: rgb(${p => p.theme.colors.white});
   background-color: rgb(${p => p.theme.colors.blue});

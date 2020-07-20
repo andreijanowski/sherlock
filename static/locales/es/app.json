@@ -7,6 +7,7 @@
   "catering": "Abastecimiento/catering",
   "privatisations": "Privatizaciones",
   "integrations": "Integraciones",
+  "wholesaler": "Mayoristas",
   "socialMedia": "Redes sociales (pronto)",
   "billing": "Facturación (pronto)",
   "manageProfile": {
@@ -45,7 +46,8 @@
     "photography": "Fotografía",
     "hardware": "Hardware",
     "other": "Otro",
-    "connect": "Conectar",
+    "requestIntegration": "Solicitar integración",
+    "pending": "Pendiente",
     "integrated": "Integrado",
     "noPartners": "No hay socios para esta categoría."
   },
@@ -62,5 +64,23 @@
   "crop": "Cortar",
   "cancel": "Cancelar",
   "confirmAccount": "Le enviamos un mensaje de confirmación a su correo electrónico. Confirme su cuenta dentro de 3 días",
-  "active": "Activo"
+  "active": "Activo",
+  "wholesalersCategories": {
+    "new": "Nuevo",
+    "fruits_and_vegetables": "Fruttas y Verduras",
+    "meat": "Carne",
+    "fish": "Pescado",
+    "bread_and_flour": "Pan y Harina",
+    "diary_products": "Productos lácteos",
+    "sweets_and_desserts": "Dulces y Postres",
+    "frozen_products": "Congelados",
+    "sauces_and_oils": "Salsas y Aceites",
+    "beers": "Cervezas",
+    "wine_and_alcohol": "Vine y rebids alcoholicas",
+    "soft_drinks": "Refrescos",
+    "food_packaging": "Embalaje",
+    "tableware": "Vajilla y Cuberteria",
+    "hygiene": "Higiene",
+    "other": "Otros"
+  }
 }

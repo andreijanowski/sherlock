@@ -15,9 +15,13 @@ import {
   SettingsBasicInfo,
   SettingsLogout,
   SettingsPassword,
-  Integrations
+  Integrations,
+  Wholesalers
 } from "icons";
-import { categories } from "sections/integrations/utils";
+import {
+  PARTNERS_CATEGORIES,
+  WHOLESALERS_CATEGORIES
+} from "sections/integrations/utils";
 
 const generateSettingsMobileSubmenu = (t, active, logout) => [
   {
@@ -92,9 +96,16 @@ const generateProfileMobileSubmenu = (t, active) => [
 ];
 
 const generateIntegrationsMobileSubmenu = (t, activeTab) =>
-  categories.map(category => ({
+  PARTNERS_CATEGORIES.map(category => ({
     route: `/app/integrations?category=${category}`,
     label: t(`app:manageIntegrations.${category}`),
+    isActive: activeTab === category
+  }));
+
+const generateWholesalersMobileSubmenu = (t, activeTab) =>
+  WHOLESALERS_CATEGORIES.map(category => ({
+    route: `/app/wholesalers?category=${category}`,
+    label: t(`app:wholesalersCategories.${category}`),
     isActive: activeTab === category
   }));
 
@@ -130,6 +141,12 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     label: t("app:integrations"),
     withSubmenu: true,
     submenuItems: generateIntegrationsMobileSubmenu(t, lng)
+  },
+  {
+    icon: Wholesalers,
+    label: t("app:wholesaler"),
+    withSubmenu: true,
+    submenuItems: generateWholesalersMobileSubmenu(t, lng)
   },
   {
     icon: Subscriptions,

@@ -7,6 +7,7 @@
   "catering": "Ristorazione/catering",
   "privatisations": "Privatizzazioni",
   "integrations": "Integrazioni",
+  "wholesaler": "Grossista",
   "socialMedia": "Social media (presto)",
   "billing": "Fatturazione (presto)",
   "manageProfile": {
@@ -45,7 +46,8 @@
     "photography": "Fotografia",
     "hardware": "Hardware",
     "other": "Altro",
-    "connect": "Collegare",
+    "requestIntegration": "Richiedi integrazione",
+    "pending": "In sospeso",
     "integrated": "Integrato",
     "noPartners": "Nessun partner per questa categoria."
   },
@@ -62,5 +64,23 @@
   "crop": "Ritaglia",
   "cancel": "Annulla",
   "confirmAccount": "Ti abbiamo inviato un messaggio di conferma alla tua email. Conferma il tuo account entro 3 giorni.",
-  "active": "Attivo"
+  "active": "Attivo",
+  "wholesalersCategories": {
+    "new": "Novità",
+    "fruits_and_vegetables": "Frutta e Verdura",
+    "meat": "Carne",
+    "fish": "Pesce",
+    "bread_and_flour": "Pane e Farine",
+    "diary_products": "Latticini",
+    "sweets_and_desserts": "Docli e Caramelle",
+    "frozen_products": "Prodotti surgelati",
+    "sauces_and_oils": "Salse e Olio",
+    "beers": "Birra",
+    "wine_and_alcohol": "Vini & Alcolici",
+    "soft_drinks": "Bibite",
+    "food_packaging": "Confezioni",
+    "tableware": "Prodotti da cucina",
+    "hygiene": "Igiene",
+    "other": "Altri"
+  }
 }

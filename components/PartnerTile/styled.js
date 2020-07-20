@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
+
 import Button from "components/Button";
 
 export const Container = styled(Flex)`
@@ -25,15 +26,26 @@ export const Link = styled.a`
   color: black;
 `;
 
-export const StyledButton = styled(Button)`
+export const IntegrationButton = styled(Button)`
   && {
-    width: 112px;
-    padding: 8px 0;
+    width: auto;
+    margin-left: 16px;
+    padding: 8px 16px;
     cursor: default;
-    ${p => p.styleName === "signUp" && "border-width: 2px;"}
+    ${p => p.styleName === "signUp" && "border-width: 2px"}
+    ${p => p.styleName === "navyBlue" && "cursor: pointer"}
   }
+`;
 
-  ${Link} {
-    color: white;
+export const InfoButton = styled(Button)`
+  && {
+    width: auto;
+    margin-left: 16px;
+    padding: 8px 16px;
+    cursor: default;
+
+    ${Link} {
+      color: white;
+    }
   }
 `;
