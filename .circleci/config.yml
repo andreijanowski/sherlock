@@ -53,7 +53,7 @@ jobs:
     <<: *node_machine
     steps:
       - run:
-          name: 'set ENV for deploying staging'
+          name: "set ENV for deploying staging"
           command: |
             echo 'export AWS_ACCESS_KEY_ID=$STAGING_AWS_ACCESS_KEY_ID' >> $BASH_ENV;
             echo 'export AWS_SECRET_ACCESS_KEY=$STAGING_AWS_SECRET_ACCESS_KEY' >> $BASH_ENV;
@@ -73,7 +73,7 @@ jobs:
     executor: aws-cli/default
     steps:
       - run:
-          name: 'set ENV for deploying staging'
+          name: "set ENV for deploying staging"
           command: |
             echo 'export AWS_ACCESS_KEY_ID=$STAGING_AWS_ACCESS_KEY_ID' >> $BASH_ENV;
             echo 'export AWS_SECRET_ACCESS_KEY=$STAGING_AWS_SECRET_ACCESS_KEY' >> $BASH_ENV;
@@ -94,44 +94,6 @@ jobs:
           deployment-group: calluna-sherlock-staging-main_app-group
           bundle-bucket: calluna-bucket-sherlock-staging
           bundle-key: codedeploy/$CIRCLE_PROJECT_REPONAME-$CIRCLE_BUILD_NUM
-
-  deploy_dynamic_staging:
-    working_directory: ~/repo
-    executor: aws-cli/default
-    steps:
-      - run:
-          name: 'set ENV for deploying staging'
-          command: |
-            echo 'export AWS_ACCESS_KEY_ID=$STAGING_AWS_ACCESS_KEY_ID' >> $BASH_ENV;
-            echo 'export AWS_SECRET_ACCESS_KEY=$STAGING_AWS_SECRET_ACCESS_KEY' >> $BASH_ENV;
-            source $BASH_ENV
-      - checkout
-      - run:
-          name: Configure deployment
-          command: |
-            echo VIRTUAL_HOST=$(echo ${CIRCLE_BRANCH} | cut -d '/' -f 2- | sed 's/[^ a-zA-Z0-9]/-/g' | cut -d '-' -f -3).sherlock.calluna.devguru.co >> codedeploy/parameters
-            echo IMAGE=${STAGING_AWS_ECR_ACCOUNT_URL}/calluna-ecr-sherlock-staging:${CIRCLE_SHA1} >> codedeploy/parameters
-      - aws-cli/install
-      - aws-cli/configure
-      - aws-code-deploy/push-bundle:
-          application-name: calluna-sherlock-staging-dynamic_main_app
-          bundle-bucket: calluna-bucket-sherlock-staging
-          bundle-key: codedeploy/$CIRCLE_PROJECT_REPONAME-$CIRCLE_BUILD_NUM
-      - aws-code-deploy/deploy-bundle:
-          application-name: calluna-sherlock-staging-dynamic_main_app
-          deployment-group: calluna-sherlock-staging-dynamic_main_app-group
-          bundle-bucket: calluna-bucket-sherlock-staging
-          bundle-key: codedeploy/$CIRCLE_PROJECT_REPONAME-$CIRCLE_BUILD_NUM
-
-  mark_integration_as_deployed:
-    docker:
-      - image: quay.io/netguru/deployer
-    steps:
-      - run:
-          name: Mark Dynamic as Deployed
-          command: |
-            export VIRTUAL_HOST=$(echo ${CIRCLE_BRANCH} | cut -d '/' -f 2- | sed 's/[^ a-zA-Z0-9]/-/g' | cut -d '-' -f -3).sherlock.calluna.devguru.co
-            ruby /deployment.rb ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME} ${CIRCLE_SHA1} ${CIRCLE_PULL_REQUEST##*/} https://${VIRTUAL_HOST}/
 
   build_push_docker:
     docker:
@@ -196,22 +158,6 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy_dynamic_staging:
-          requires:
-            - build_image
-          filters:
-            branches:
-              ignore:
-                - master
-                - production
-      - mark_integration_as_deployed:
-          requires:
-            - deploy_dynamic_staging
-          filters:
-            branches:
-              ignore:
-                - master
-                - production
       - build_push_docker:
           requires:
             - checkout_code
