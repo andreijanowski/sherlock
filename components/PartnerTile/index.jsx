@@ -8,11 +8,13 @@ import { connectWholesaler } from "actions/wholesalers";
 import IntegrationLink from "./IntegrationLink";
 import { getIntegrationButtonLabel, getIsIntegrationPending } from "./utils";
 import {
+  ButtonContainer,
   Container,
   ContentWrapper,
   Image,
   IntegrationButton,
-  InfoButton
+  InfoButton,
+  LinkContainer
 } from "./styled";
 
 const WHOLESALER = "wholesaler";
@@ -54,11 +56,7 @@ const PartnerTile = ({
   };
 
   return (
-    <Container
-      mb={3}
-      width={["100%", null, null, null, null]}
-      alignItems="center"
-    >
+    <Container mb={3} width={["100%"]} alignItems="center">
       <Image src={partner.getIn(["logo", "url"])} />
       <ContentWrapper
         alignItems="center"
@@ -66,10 +64,12 @@ const PartnerTile = ({
         p={[3, 4]}
         flex={1}
       >
-        <IntegrationLink partner={partner}>
-          {partner.get("name")}
-        </IntegrationLink>
-        <div>
+        <LinkContainer width={["auto", "auto", "35%", "30", "40%"]}>
+          <IntegrationLink partner={partner}>
+            {partner.get("name")}
+          </IntegrationLink>
+        </LinkContainer>
+        <ButtonContainer width={["100%", "100%", "65%", "70", "60%"]}>
           <IntegrationButton
             styleName={
               !isIntegrationNotRequested || isPending ? "signUp" : "navyBlue"
@@ -83,7 +83,7 @@ const PartnerTile = ({
               {t("app:manageIntegrations.moreInfo")}
             </IntegrationLink>
           </InfoButton>
-        </div>
+        </ButtonContainer>
       </ContentWrapper>
     </Container>
   );
