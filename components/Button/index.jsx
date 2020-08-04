@@ -2,18 +2,20 @@ import styled, { css } from "styled-components";
 import { Flex } from "@rebass/grid";
 
 const login = css`
+  display: flex;
+  align-items: center;
   padding: 5px 13px;
-  color: rgba(${p => p.theme.colors.dark}, 0.64);
-  background: transparent;
-  border: ${p => p.theme.borderWeights.normal} solid
-    rgba(${p => p.theme.colors.dark}, 0.16);
+  color: rgb(${p => p.theme.colors.white});
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f15};
+  background: rgba(${p => p.theme.colors.white}, 0.5);
+  border: none;
+  border-radius: ${p => p.theme.radius.biggest};
 `;
 
 const signUp = css`
   ${login}
-  color: rgb(${p => p.theme.colors.blue});
-  border: ${p => p.theme.borderWeights.normal} solid
-    rgb(${p => p.theme.colors.blue});
+  background: rgba(${p => p.theme.colors.white}, 0.2);
 `;
 
 const blue = css`

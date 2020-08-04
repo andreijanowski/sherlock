@@ -36,6 +36,9 @@
     ],
     "more": "Centralizamos todos sus servicios en un solo tablero."
   },
+  "developerAndApi": {
+    "header": "developer & API"
+  },
   "cooperations": {
     "clients": "Clientela",
     "partners": "Fogonadura",

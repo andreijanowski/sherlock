@@ -19,6 +19,7 @@ import {
   faHourglassStart,
   faAngleLeft,
   faAngleRight,
+  faChevronRight,
   faChair
 } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -56,6 +57,7 @@ library.add(
   faHourglassStart,
   faAngleLeft,
   faAngleRight,
+  faChevronRight,
   faChair
 );
 
@@ -67,7 +69,7 @@ export default createGlobalStyle`
     }
 
     body {
-        font-family: Inter UI, sans-serif;
+        font-family: Poppins, sans-serif;
         background-color: rgb(${p => p.theme.colors.background});
     }
 

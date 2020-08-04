@@ -1,28 +1,28 @@
 import React from "react";
 import { Flex, Box } from "@rebass/grid";
-import {
-  Paragraph,
-  Button,
-  FoodetectiveLogo,
-  LanguageSwitcher
-} from "components";
+import { Button, LanguageSwitcher } from "components";
 import { func, string } from "prop-types";
 import uuid from "uuid/v1";
 import Cookies from "js-cookie";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   API_URL,
   APP_URL,
   OAUTH_PUBLIC_CLIENT_ID,
   OAUTH_CALLBACK_URL
 } from "consts";
-import { SectionItem } from "./styled";
-import { LogoWrapper, LogoMobileWrapper } from "../sharedStyled";
+import {
+  SectionItem,
+  StyledParagraph,
+  StyledHeaderParagraph,
+  StyledNavigationLink
+} from "./styled";
 
 const navSections = [
   { name: "services", translationKey: "services.header" },
-  { name: "industries", translationKey: "cooperations.industries.header" },
+  { name: "developersAndApi", translationKey: "developersAndApi.header" },
   { name: "features", translationKey: "features.header" },
-  { name: "widget", translationKey: "widget.navLink" },
   { name: "plans", translationKey: "pricing" }
 ];
 
@@ -32,70 +32,103 @@ const Navigation = ({ t, lng, scrollTo }) => (
     px={3}
     mt={[2, 4]}
     as="header"
-    alignItems="center"
-    style={{
-      maxWidth: "1200px"
-    }}
+    alignItems="flex-start"
+    flexDirection="column"
+    style={{ maxWidth: "1124px" }}
   >
-    <Box>
-      <LogoWrapper>
-        <FoodetectiveLogo withTagline />
-      </LogoWrapper>
-      <LogoMobileWrapper>
-        <FoodetectiveLogo />
-      </LogoMobileWrapper>
-    </Box>
-    <Flex
-      as="ul"
-      flex="1"
-      justifyContent="flex-end"
-      alignItems="center"
-      flexWrap="wrap"
-      m={[-1, -2]}
-      css={{
-        paddingInlineStart: "0"
-      }}
-    >
-      {navSections.map(({ name, translationKey }) => (
-        <SectionItem key={name}>
-          <Paragraph
+    <Flex justifyContent="space-between" width={1}>
+      <Flex
+        as="ul"
+        width={1}
+        justifyContent="flex-start"
+        alignItems="flex-end"
+        flexWrap="wrap"
+        css={{
+          paddingInlineStart: "0",
+          color: "white"
+        }}
+      >
+        <SectionItem>
+          <StyledNavigationLink
             onClick={() => {
-              scrollTo(name);
-            }}
-            mb={0}
-            style={{
-              cursor: "pointer"
+              window.location.href = "http://foodetective.co";
             }}
           >
-            {t(translationKey)}
-          </Paragraph>
+            {t("common:personal")}
+          </StyledNavigationLink>
         </SectionItem>
-      ))}
-      <Box p={[1, 2]}>
-        <Button
-          styleName="signUp"
-          onClick={() => {
-            window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=essential`;
-          }}
-        >
-          {t("common:signUp")}
-        </Button>
-      </Box>
-      <Box p={[1, 2]}>
-        <Button
-          styleName="login"
-          onClick={() => {
-            const state = uuid();
-            Cookies.set("loginStateParam", state);
-            window.location.href = `${API_URL}/oauth/authorize?client_id=${OAUTH_PUBLIC_CLIENT_ID}&redirect_uri=${OAUTH_CALLBACK_URL}&response_type=code&scope=trusted+refresh_token+public&state=${state}`;
-          }}
-        >
-          {t("common:login")}
-        </Button>
-      </Box>
-      <Box p={[1, 2]}>
+        <SectionItem>
+          <StyledNavigationLink active>
+            {t("common:buissnes")}
+          </StyledNavigationLink>
+        </SectionItem>
+      </Flex>
+      <Box>
         <LanguageSwitcher />
       </Box>
+    </Flex>
+    <Flex
+      width={1}
+      flexDirection="row"
+      justifyContent="space-between"
+      alignItems="flex-start"
+    >
+      <StyledHeaderParagraph>
+        Foodetective <span> For Business</span>
+      </StyledHeaderParagraph>
+
+      <Flex
+        as="ul"
+        width={1}
+        justifyContent="center"
+        alignItems="center"
+        flexWrap="wrap"
+        mt={[1, 1]}
+        css={{
+          paddingInlineStart: "0",
+          color: "white"
+        }}
+      >
+        {navSections.map(({ name, translationKey }) => (
+          <SectionItem key={name}>
+            <StyledParagraph
+              onClick={() => {
+                scrollTo(name);
+              }}
+            >
+              {t(translationKey)}
+            </StyledParagraph>
+          </SectionItem>
+        ))}
+      </Flex>
+      <Flex flexDirection="row" justifyContent="flex-end">
+        <Box p={[1, 2]}>
+          <Button
+            styleName="login"
+            onClick={() => {
+              const state = uuid();
+              Cookies.set("loginStateParam", state);
+              window.location.href = `${API_URL}/oauth/authorize?client_id=${OAUTH_PUBLIC_CLIENT_ID}&redirect_uri=${OAUTH_CALLBACK_URL}&response_type=code&scope=trusted+refresh_token+public&state=${state}`;
+            }}
+          >
+            {t("common:login")}
+            <FontAwesomeIcon
+              icon={["fa", "chevron-right"]}
+              style={{ marginLeft: 8 }}
+            />
+          </Button>
+        </Box>
+        <Box p={[1, 0, 1, 2]}>
+          <Button
+            styleName="signUp"
+            onClick={() => {
+              window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=essential`;
+            }}
+          >
+            {t("common:signUp")}
+          </Button>
+        </Box>
+      </Flex>
     </Flex>
   </Flex>
 );

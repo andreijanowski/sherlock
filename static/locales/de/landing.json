@@ -20,6 +20,7 @@
       "secondKeyword": "Geschäftsgröße",
       "end": ". Sie können unsere Services jederzeit problemlos hinzufügen und entfernen, um sicherzustellen, dass wir auf Ihr Wachstum zugeschnitten sind."
     },
+
     "list": [
       "Reservierungen",
       "Lieferung",
@@ -35,6 +36,9 @@
       "Integrationen"
     ],
     "more": "Wir zentralisieren alle Ihre Dienste in einem einzigen Dashboard."
+  },
+  "developerAndApi": {
+    "header": "developer & API"
   },
   "cooperations": {
     "clients": "Kunden",

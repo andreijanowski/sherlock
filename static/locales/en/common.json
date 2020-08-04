@@ -1,6 +1,8 @@
 {
   "login": "Login",
   "signUp": "Register",
+  "personal": "Personal",
+  "buissnes": "Buissnes",
   "forBusiness": "for business",
   "accept": "accept",
   "cancel": "cancel",

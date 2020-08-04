@@ -11,8 +11,9 @@
     "watchVideo": "Guarda un video",
     "testimonials": "Testimonianze"
   },
+
   "services": {
-    "header": "Servizi",
+    "header": "test",
     "paragraph": {
       "start": "Progettato per le tue mutevoli ",
       "firstKeyword": "esigenze",
@@ -35,6 +36,9 @@
       "Integrazioni"
     ],
     "more": "Centralizziamo tutti i tuoi servizi in un'unica dashboard."
+  },
+  "developerAndApi": {
+    "header": "developer & API"
   },
   "cooperations": {
     "clients": "Clienti",

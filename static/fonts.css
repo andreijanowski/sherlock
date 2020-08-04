@@ -1,4 +1,18 @@
 @font-face {
+    font-family: 'Poppins';
+    font-style:  normal;
+    font-weight: 400;
+    src: url("/static/fonts/Poppins-Regular.woff2") format("woff2"),
+         url("/static/fonts/Poppins-Regular.woff") format("woff");
+}
+@font-face {
+    font-family: 'Poppins';
+    font-style:  normal;
+    font-weight: 600;
+    src: url("/static/fonts/Poppins-SemiBold.woff2") format("woff2"),
+         url("/static/fonts/Poppins-SemiBold.woff") format("woff");
+}
+@font-face {
     font-family: 'Inter UI';
     font-style:  normal;
     font-weight: 400;

@@ -3,7 +3,6 @@ import { Button, BlueText } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { API_URL, APP_URL } from "consts";
 import { H1Styled } from "./styled";
-import YoutubeVideo from "./YoutubeVideo";
 import { ParagraphStyled } from "../sharedStyled";
 
 const TopSection = ({ t, lng }) => (
@@ -27,9 +26,6 @@ const TopSection = ({ t, lng }) => (
             {t("topSection.getStartedForFree")}
           </Button>
         </Box>
-      </Box>
-      <Box width={[1, 1 / 2]} p={[2, 3]}>
-        <YoutubeVideo />
       </Box>
     </Flex>
   </Box>

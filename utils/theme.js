@@ -33,11 +33,14 @@ export const colors = {
   greenHaze: "3, 160, 79",
   ghostWhite: "238, 240, 255"
 };
+// 26,31,103
+// 2, 0 , 37
 
 const fontSizes = {
   f10: "10px",
   f12: "12px",
   f14: "14px",
+  f15: "15px",
   f16: "16px",
   f18: "18px",
   f21: "21px",
@@ -54,7 +57,8 @@ export const radius = {
   tiny: "2px",
   small: "4px",
   default: "6px",
-  double: "12px"
+  double: "12px",
+  biggest: "20px"
 };
 
 const fontWeights = {

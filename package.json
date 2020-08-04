@@ -11,6 +11,7 @@
     "lint:jsx": "eslint --ext .jsx ./",
     "lint:stylelint": "stylelint './**/*.js' './**/*.jsx'",
     "lint": "yarn lint:js && yarn lint:jsx && yarn lint:stylelint",
+    "lint:fix": "yarn lint:js --fix && yarn lint:jsx --fix  && yarn lint:stylelint --fix",
     "test": "NODE_ENV=test jest"
   },
   "husky": {

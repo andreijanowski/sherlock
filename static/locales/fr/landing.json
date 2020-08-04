@@ -36,6 +36,9 @@
     ],
     "more": "Nous centralisons tous vos services dans un tableau de bord unique."
   },
+  "developerAndApi": {
+    "header": "developer & API"
+  },
   "cooperations": {
     "clients": "Les clients",
     "partners": "Les partenaires",

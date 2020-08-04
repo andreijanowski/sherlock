@@ -1,6 +1,5 @@
 import { Component } from "react";
 import { oneOf, bool, func } from "prop-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { i18n, withTranslation } from "i18n";
 import isServer from "utils/isServer";
 import {
@@ -68,10 +67,6 @@ class LanguageSwitcher extends Component {
             </>
           )}
         </SelectedLanguageWrapper>
-        <FontAwesomeIcon
-          flip={this.setProperIconPosition()}
-          icon="angle-down"
-        />
         {listIsVisible && (
           <LanguageList {...{ listPosition }}>
             {LANGUAGES.filter(language => language !== selectedLanguage).map(

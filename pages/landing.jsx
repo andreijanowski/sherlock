@@ -6,13 +6,10 @@ import {
   Navigation,
   TopSection,
   Services,
-  Plans,
-  Cooperations,
+  DevelopersAndApi,
   Features,
-  Testimonials,
-  Widget
+  Plans
 } from "sections/landing";
-import { LandingWrapper } from "sections/landing/sharedStyled";
 import { withTranslation } from "i18n";
 import { Flex } from "@rebass/grid";
 
@@ -28,9 +25,8 @@ class Home extends PureComponent {
   constructor(props) {
     super(props);
     this.servicesRef = React.createRef();
-    this.industriesRef = React.createRef();
+    this.developersAndApiRef = React.createRef();
     this.featuresRef = React.createRef();
-    this.widgetRef = React.createRef();
     this.plansRef = React.createRef();
     this.state = {
       billingInterval: "month"
@@ -52,37 +48,44 @@ class Home extends PureComponent {
   render() {
     const {
       servicesRef,
-      industriesRef,
-      featuresRef,
+      developersAndApiRef,
       scrollTo,
-      plansRef,
-      widgetRef
+      featuresRef,
+      plansRef
     } = this;
     const { t, i18n } = this.props;
     const { billingInterval } = this.state;
     const lng = (i18n && i18n.language) || "en";
     return (
-      <Flex width={1} alignItems="center" flexDirection="column">
+      <Flex
+        width={1}
+        alignItems="center"
+        flexDirection="column"
+        style={{ background: "#1a1f67" }}
+      >
         <Navigation {...{ t, lng, scrollTo }} />
-        <LandingWrapper>
+
+        <div
+          style={{
+            width: "100%",
+            background: "linear-gradient(170deg , #1a1f67 50%, #020025 50%)"
+          }}
+        >
           <TopSection {...{ t, lng }} />
-          <Services {...{ t, servicesRef }} />
-          <Cooperations {...{ t, industriesRef }} />
-        </LandingWrapper>
+        </div>
+
+        <Services {...{ t, servicesRef }} />
+        <DevelopersAndApi {...{ t, lng, developersAndApiRef }} />
         <Features {...{ t, lng, featuresRef }} />
-        <LandingWrapper>
-          <Widget {...{ t, widgetRef }} />
-          <Testimonials {...{ t }} />
-          <Plans
-            {...{
-              t,
-              plansRef,
-              lng: (i18n && i18n.language) || "en",
-              billingInterval,
-              handleChangeBillngPeriod: this.handleChangeBillngPeriod
-            }}
-          />
-        </LandingWrapper>
+        <Plans
+          {...{
+            t,
+            plansRef,
+            lng: (i18n && i18n.language) || "en",
+            billingInterval,
+            handleChangeBillngPeriod: this.handleChangeBillngPeriod
+          }}
+        />
         <Footer />
       </Flex>
     );
