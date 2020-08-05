@@ -33,8 +33,6 @@ export const colors = {
   greenHaze: "3, 160, 79",
   ghostWhite: "238, 240, 255"
 };
-// 26,31,103
-// 2, 0 , 37
 
 const fontSizes = {
   f10: "10px",
