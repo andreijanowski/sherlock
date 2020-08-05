@@ -4,7 +4,7 @@ import { Flex } from "@rebass/grid";
 const login = css`
   display: flex;
   align-items: center;
-  padding: 5px 13px;
+  padding: 5px 17px;
   color: rgb(${p => p.theme.colors.white});
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f15};
