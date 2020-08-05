@@ -14,6 +14,7 @@ export const H2Styled = styled(H2)`
 `;
 
 export const ParagraphStyled = styled(Paragraph)`
+  color: white;
   ${alignCenterMobile}
 `;
 

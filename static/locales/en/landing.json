@@ -1,16 +1,18 @@
 {
   "topSection": {
     "header": {
-      "start": "We make restaurants’ lives",
+      "start": "We make restaurants lives'",
       "end": " much easier"
     },
-    "paragraph": "World's leading all-in-one software for Restaurants.",
-    "getStartedForFree": "Get started for free",
+    "paragraph": "Thousands of F&B businesses use the products & API of Foodetective to manage their entire tech stack from one single platform online",
+    "getStartedForFree": "Register now in two minutes",
+    "contactSales": "Contact our sales team ",
     "addYourBusiness": "Add your business",
     "addManager": "Add manager",
     "watchVideo": "Watch video",
     "testimonials": "Testimonials"
   },
+
   "services": {
     "header": "Products",
     "paragraph": {
