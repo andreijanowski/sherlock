@@ -8,6 +8,7 @@ const login = css`
   color: rgb(${p => p.theme.colors.white});
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f15};
+  line-height: 28px;
   background: rgba(${p => p.theme.colors.white}, 0.5);
   border: none;
   border-radius: ${p => p.theme.radius.biggest};

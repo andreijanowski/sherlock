@@ -30,13 +30,18 @@ const Navigation = ({ t, lng, scrollTo }) => (
   <Flex
     width={1}
     px={3}
-    mt={[2, 4]}
     as="header"
     alignItems="flex-start"
     flexDirection="column"
     style={{ maxWidth: "1124px" }}
+    mt={[4, 2]}
   >
-    <Flex justifyContent="space-between" width={1}>
+    <Flex
+      justifyContent="space-between"
+      width={1}
+      alignItems="center"
+      mt={[4, 2]}
+    >
       <Flex
         as="ul"
         width={1}
@@ -63,15 +68,13 @@ const Navigation = ({ t, lng, scrollTo }) => (
           </StyledNavigationLink>
         </SectionItem>
       </Flex>
-      <Box>
-        <LanguageSwitcher />
-      </Box>
+      <LanguageSwitcher />
     </Flex>
     <Flex
       width={1}
       flexDirection="row"
       justifyContent="space-between"
-      alignItems="flex-start"
+      alignItems="center"
     >
       <StyledHeaderParagraph>
         Foodetective <span> For Business</span>
@@ -81,9 +84,9 @@ const Navigation = ({ t, lng, scrollTo }) => (
         as="ul"
         width={1}
         justifyContent="center"
-        alignItems="center"
+        alignItems="flex-start"
         flexWrap="wrap"
-        mt={[1, 1]}
+        m={0}
         css={{
           paddingInlineStart: "0",
           color: "white"
@@ -102,7 +105,7 @@ const Navigation = ({ t, lng, scrollTo }) => (
         ))}
       </Flex>
       <Flex flexDirection="row" justifyContent="flex-end">
-        <Box p={[1, 2]}>
+        <Box p={[1, 2]} height={40}>
           <Button
             styleName="login"
             onClick={() => {
@@ -118,7 +121,7 @@ const Navigation = ({ t, lng, scrollTo }) => (
             />
           </Button>
         </Box>
-        <Box p={[1, 0, 1, 2]}>
+        <Box py={2} pr={0} pl={2} height={40}>
           <Button
             styleName="signUp"
             onClick={() => {

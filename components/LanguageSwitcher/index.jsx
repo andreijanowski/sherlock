@@ -50,14 +50,13 @@ class LanguageSwitcher extends Component {
 
   render() {
     const { listIsVisible, selectedLanguage } = this.state;
-    const { withBorder, listPosition, t } = this.props;
+    const { listPosition, t } = this.props;
 
     return (
       <LanguageSwitcherWrapper
         onBlur={() => this.setState({ listIsVisible: false })}
         onClick={this.toggleLanguageListVisible}
         tabIndex="0"
-        {...{ withBorder }}
       >
         <SelectedLanguageWrapper>
           {!isServer && (

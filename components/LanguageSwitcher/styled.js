@@ -5,8 +5,8 @@ import { Flex, Box } from "@rebass/grid";
 export const FlagIcon = styled.img.attrs(({ code }) => ({
   src: `/static/flags/${code}.svg`
 }))`
-  width: 22px;
-  height: 14px;
+  width: 17px;
+  height: 12px;
 `;
 
 export const LanguageSwitcherWrapper = styled(Flex).attrs(() => ({
