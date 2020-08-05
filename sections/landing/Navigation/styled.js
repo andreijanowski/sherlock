@@ -38,7 +38,7 @@ export const StyledNavigationLink = styled(Box).attrs(() => ({
 export const StyledHeaderParagraph = styled(Box).attrs(() => ({
   as: "p"
 }))`
-  margin-top: 26px;
+  margin-top: ${p => (p.theme.breakpoints[0] ? "12px" : "26px")};
   margin-bottom: 0;
   color: rgb(${p => p.theme.colors.white});
   font-weight: ${p => p.theme.fontWeights.semiBold};

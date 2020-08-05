@@ -53,20 +53,16 @@ const Navigation = ({ t, lng, scrollTo }) => (
           color: "white"
         }}
       >
-        <SectionItem>
-          <StyledNavigationLink
-            onClick={() => {
-              window.location.href = "http://foodetective.co";
-            }}
-          >
-            {t("common:personal")}
-          </StyledNavigationLink>
-        </SectionItem>
-        <SectionItem>
-          <StyledNavigationLink active>
-            {t("common:buissnes")}
-          </StyledNavigationLink>
-        </SectionItem>
+        <StyledNavigationLink
+          onClick={() => {
+            window.location.href = "http://foodetective.co";
+          }}
+        >
+          {t("common:personal")}
+        </StyledNavigationLink>
+        <StyledNavigationLink active>
+          {t("common:buissnes")}
+        </StyledNavigationLink>
       </Flex>
       <LanguageSwitcher />
     </Flex>
@@ -105,7 +101,7 @@ const Navigation = ({ t, lng, scrollTo }) => (
         ))}
       </Flex>
       <Flex flexDirection="row" justifyContent="flex-end">
-        <Box p={[1, 2]} height={40}>
+        <Box p={[2, 2]} height={40}>
           <Button
             styleName="login"
             onClick={() => {
