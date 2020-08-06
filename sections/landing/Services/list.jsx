@@ -22,8 +22,9 @@ const List = ({ t }) => {
   const listArray = [];
   for (let i = 0; i < listLength; i += 1) {
     const serviceName = t(`services.list.${i}`);
+
     listArray.push(
-      <Box width={[1 / 2, 1 / 4]} p={2} key={serviceName}>
+      <Box width={[1 / 2, 1 / 4, 1 / 6, 1 / 6]} p={2} key={serviceName}>
         <Service>
           <ServiceIcon name={iconsNames[i]} />
           <span
@@ -38,7 +39,7 @@ const List = ({ t }) => {
     );
   }
   return (
-    <Flex m={-2} flexWrap="wrap">
+    <Flex my={5} mx={2} flexWrap="wrap">
       {listArray}
     </Flex>
   );

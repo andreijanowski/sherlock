@@ -1,29 +1,20 @@
 import { func, oneOfType, shape, any } from "prop-types";
-import { BoldText, ItalicText } from "components";
-import { ServicesWrapper, More, WhiteText } from "./styled";
-import { H2Styled, ParagraphStyled } from "../sharedStyled";
+import { ServicesWrapper, BlueText, H2Styled, ParagraphStyled } from "./styled";
 import List from "./list";
 
 const Services = ({ t, servicesRef }) => (
   <ServicesWrapper ref={servicesRef}>
-    <H2Styled white>{t("services.header")}</H2Styled>
-    <ParagraphStyled white>
+    <H2Styled>{t("services.header")}</H2Styled>
+    <ParagraphStyled>
       {t("services.paragraph.start")}
-      <WhiteText>
-        <BoldText>
-          <ItalicText>{t("services.paragraph.firstKeyword")}</ItalicText>
-        </BoldText>
-      </WhiteText>
-      {t("services.paragraph.middle")}
-      <WhiteText>
-        <BoldText>
-          <ItalicText>{t("services.paragraph.secondKeyword")}</ItalicText>
-        </BoldText>
-      </WhiteText>
-      {t("services.paragraph.end")}
+      <BlueText>
+        {t("services.paragraph.firstKeyword")}
+        {t("services.paragraph.middle")}
+        {t("services.paragraph.secondKeyword")}
+      </BlueText>
     </ParagraphStyled>
+    <ParagraphStyled>{t("services.paragraph.end")}</ParagraphStyled>
     <List {...{ t }} />
-    <More>{t("services.more")}</More>
   </ServicesWrapper>
 );
 

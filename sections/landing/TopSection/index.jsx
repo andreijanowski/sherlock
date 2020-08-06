@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { H1Styled, ParagraphStyled, Image } from "./styled";
 
 const TopSection = ({ t, lng }) => (
-  <Box mb={[1, 140]} mt={[2, 80]} width={1}>
+  <Box mb={[1, 1]} mt={[2, 80]} width={1}>
     <Flex alignItems="center" flexWrap="wrap" m="auto" width={1050}>
-      <Box width={[1, 1 / 2]} p={[2, 3]}>
+      <Box width={[1, 1 / 2]}>
         <H1Styled>{`${t("topSection.header.start")}${t(
           "topSection.header.end"
         )}`}</H1Styled>
@@ -48,7 +48,7 @@ const TopSection = ({ t, lng }) => (
           </Box>
         </Flex>
       </Box>
-      <Box width={[1, 1 / 2]} p={[2, 3]}>
+      <Box width={[1, 1 / 2]}>
         <Image />
       </Box>
     </Flex>

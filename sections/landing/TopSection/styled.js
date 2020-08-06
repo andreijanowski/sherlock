@@ -23,11 +23,17 @@ export const ParagraphStyled = styled(Paragraph)`
 `;
 
 export const Image = styled.div`
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  background: url("/static/img/topsection/dashboard.png") no-repeat top;
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  max-height: 500px;
+  background-image: url("/static/img/topsection/dashboard.png");
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: contain;
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
-    background: url("/static/img/topsection/dashboard.png") no-repeat;
+    width: 100vw;
+    min-height: 600px;
+    max-height: 800px;
   }
 `;
