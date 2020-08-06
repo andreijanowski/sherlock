@@ -13,6 +13,6 @@ export default function* fetchAllBusinessData(action, id) {
       }
     }
   } catch (err) {
-    console.warn(err);
+    console.log(err);
   }
 }
