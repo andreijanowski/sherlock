@@ -66,6 +66,12 @@ export const ProductsWrapper = styled(Box)`
     #12154d 100%
   );
 `;
+export const DevelopersAndApiWrapper = styled(Box).attrs()`
+  z-index: 2;
+  width: 100%;
+  height: 500px;
+  background: linear-gradient(170deg, #000 90%, #fff 90%);
+`;
 
 export const DevelopersAndApiWrapper = styled(Box)`
   width: 100%;
