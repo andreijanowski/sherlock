@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { H1Styled, ParagraphStyled, Image } from "./styled";
 
 const TopSection = ({ t, lng }) => (
-  <Box mb={[1, 1]} mt={[2, 80]} width={1}>
-    <Flex alignItems="center" flexWrap="wrap" m="auto" width={1050}>
-      <Box width={[1, 1 / 2]}>
+  <Box mb={[1, 1]} mt={[60, 80]} width={1}>
+    <Flex alignItems="start" flexWrap="wrap" m="auto" width={[1, 1150]} px={3}>
+      <Box width={[1, 1 / 2]} p={[3, 0]}>
         <H1Styled>{`${t("topSection.header.start")}${t(
           "topSection.header.end"
         )}`}</H1Styled>
@@ -36,7 +36,7 @@ const TopSection = ({ t, lng }) => (
             <Button
               styleName="signUpContactSales"
               onClick={() => {
-                window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=essential`;
+                window.location.href = `https://share.hsforms.com/1UW67s4YOTTKvC2NIum5X0w3cpmu`;
               }}
             >
               {t("topSection.contactSales")}
