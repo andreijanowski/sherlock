@@ -71,8 +71,6 @@ class Home extends PureComponent {
           <TopSection {...{ t, lng }} />
         </TopSectionWrapper>
 
-        <Services {...{ t, servicesRef }} />
-
         <div
           style={{
             display: "flex",
