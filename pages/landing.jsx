@@ -15,7 +15,8 @@ import {
   TopSectionWrapper,
   LandingWrapper,
   NavigationWrapper,
-  ProductsWrapper
+  ProductsWrapper,
+  DevelopersAndApiWrapper
 } from "sections/landing/sharedStyled";
 
 const namespaces = ["landing", "plans", "common"];
@@ -72,9 +73,11 @@ class Home extends PureComponent {
         <ProductsWrapper>
           <Services {...{ t, servicesRef }} />
         </ProductsWrapper>
-
-        <DevelopersAndApi {...{ t, lng, developersAndApiRef }} />
+        <DevelopersAndApiWrapper>
+          <DevelopersAndApi {...{ t, lng, developersAndApiRef }} />
+        </DevelopersAndApiWrapper>
         <Features {...{ t, lng, featuresRef }} />
+
         <Plans
           {...{
             t,
