@@ -11,7 +11,9 @@
     "watchVideo": "Guarda un video",
     "testimonials": "Testimonianze"
   },
-
+  "developersAndApi": {
+    "header": "Developer & API"
+  },
   "services": {
     "header": "test",
     "paragraph": {

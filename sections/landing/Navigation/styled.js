@@ -21,6 +21,9 @@ export const StyledParagraph = styled(Box).attrs(() => ({
   line-height: 28px;
   letter-spacing: 0.36px;
   cursor: pointer;
+  &:hover {
+    color: rgba(${p => p.theme.colors.white}, 0.35);
+  }
 `;
 export const StyledNavigationLink = styled(Box).attrs(() => ({
   as: "p",
@@ -33,6 +36,9 @@ export const StyledNavigationLink = styled(Box).attrs(() => ({
   font-size: ${p => p.theme.fontSizes.f14};
   letter-spacing: 0.3px;
   cursor: ${p => (p.active ? "auto" : "pointer")};
+  &:hover {
+    color: rgba(${p => p.theme.colors.white}, 0.35);
+  }
 `;
 
 export const StyledHeaderParagraph = styled(Box).attrs(() => ({

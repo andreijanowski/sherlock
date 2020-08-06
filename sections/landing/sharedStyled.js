@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { H2, Paragraph } from "components";
-import { Box } from "@rebass/grid";
+import { Box, Flex } from "@rebass/grid";
 
 export const alignCenterMobile = css`
   text-align: center;
@@ -17,12 +17,23 @@ export const ParagraphStyled = styled(Paragraph)`
   ${alignCenterMobile}
 `;
 
-export const LandingWrapper = styled(Box).attrs(() => ({
+export const LandingWrapper = styled(Flex)`
+  width: 100%;
+  background: rgb(${p => p.theme.colors.darkBlue});
+`;
+
+export const NavigationWrapper = styled(Box).attrs(() => ({
   px: 3
 }))`
-  z-index: 1;
   width: 100%;
   max-width: 1050px;
+`;
+
+export const TopSectionWrapper = styled(Box).attrs(() => ({
+  px: 3
+}))`
+  width: 100%;
+  background: linear-gradient(170deg, #1a1f67 50%, #020025 50%);
 `;
 
 export const LogoWrapper = styled(Box)`

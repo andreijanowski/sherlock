@@ -12,6 +12,10 @@ const login = css`
   background: rgba(${p => p.theme.colors.white}, 0.5);
   border: none;
   border-radius: ${p => p.theme.radius.biggest};
+  &:hover {
+    background-color: rgba(${p => p.theme.colors.white}, 0.35);
+    box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.white}, 0.7);
+  }
 `;
 
 const signUp = css`

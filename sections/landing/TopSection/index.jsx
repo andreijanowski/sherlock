@@ -7,7 +7,7 @@ import { ParagraphStyled } from "../sharedStyled";
 
 const TopSection = ({ t, lng }) => (
   <Box mb={[1, 140]} mt={[2, 80]} width={1}>
-    <Flex alignItems="center" flexWrap="wrap" m={[-2, -3]}>
+    <Flex alignItems="center" flexWrap="wrap" m="auto" width={1050}>
       <Box width={[1, 1 / 2]} p={[2, 3]}>
         <H1Styled>
           {t("topSection.header.start")}

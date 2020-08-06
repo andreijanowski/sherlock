@@ -29,11 +29,9 @@ const navSections = [
 const Navigation = ({ t, lng, scrollTo }) => (
   <Flex
     width={1}
-    px={3}
     as="header"
     alignItems="flex-start"
     flexDirection="column"
-    style={{ maxWidth: "1124px" }}
     mt={[4, 2]}
   >
     <Flex

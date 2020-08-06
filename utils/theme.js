@@ -8,6 +8,7 @@ const borderWeights = {
 export const colors = {
   dark: "42, 47, 56",
   blue: "76, 104, 255",
+  darkBlue: "26, 31, 103",
   facebookBlue: "66, 103, 178",
   white: "255, 255, 255",
   background: "248, 249, 255",
