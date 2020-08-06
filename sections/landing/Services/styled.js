@@ -15,10 +15,9 @@ export const ServicesWrapper = styled(Flex).attrs(() => ({
 }))`
   position: relative;
   z-index: 1;
-  background: rgb(${p => p.theme.colors.dark});
-  border-radius: ${p => p.theme.radius.double};
-  box-shadow: 0 4px 24px 0 rgba(${p => p.theme.colors.dark}, 0.48);
-
+  justify-content: center;
+  width: 1150px;
+  margin: auto;
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     margin-bottom: 80px;
   }
@@ -34,9 +33,6 @@ export const Service = styled(Flex).attrs(() => ({
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 1.333;
   text-align: center;
-  border: ${p => p.theme.borderWeights.normal} solid
-    rgba(${p => p.theme.colors.white}, 0.04);
-  border-radius: ${p => p.theme.radius.default};
 
   &:nth-child(3) {
     margin-right: 0;
