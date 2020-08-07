@@ -6,6 +6,7 @@ export const Screen = styled.img.attrs(p => ({
 }))`
   width: 100%;
   max-width: 512px;
+  color: black;
 `;
 
 export const DescriptionWrapper = styled(Flex).attrs(() => ({

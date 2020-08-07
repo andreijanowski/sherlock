@@ -32,7 +32,8 @@ export const colors = {
   titanWhite: "251, 251, 255",
   rollingStone: "119, 122, 128",
   greenHaze: "3, 160, 79",
-  ghostWhite: "238, 240, 255"
+  ghostWhite: "238, 240, 255",
+  purpleBlue: "69, 90, 248"
 };
 
 const fontSizes = {

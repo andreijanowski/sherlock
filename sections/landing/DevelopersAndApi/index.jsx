@@ -15,7 +15,7 @@ const DevelopersAndApi = ({ t, developersAndApiRef }) => (
       </H2Styled>
       <ParagraphStyled>{t("developersAndApi.paragraph")}</ParagraphStyled>
     </Box>
-    <Flex width={[1, 1 / 2]} alignSelf="center">
+    <Flex width={1} justifyContent="center" mt={[40, 80]}>
       <Button
         styleName="goToApiDocs"
         onClick={() => {

@@ -2,6 +2,7 @@ import { Flex, Box } from "@rebass/grid";
 import { func, string, oneOfType, shape, any } from "prop-types";
 import { Plans, PlansBillingInterval } from "components";
 import { H2Styled, ParagraphStyled, PlansWrapper, TextWrapper } from "./styled";
+import { BlueText } from "../sharedStyled";
 
 const PlansMainComponent = ({
   t,
@@ -20,6 +21,10 @@ const PlansMainComponent = ({
       >
         <Box width={[1, "auto"]}>
           <H2Styled>{t("plans:header")}</H2Styled>
+          <H2Styled>
+            {t("plans:subHeader.start")}{" "}
+            <BlueText>{t("plans:subHeader.end")}</BlueText>
+          </H2Styled>
         </Box>
         <PlansBillingInterval
           {...{ t, billingInterval, handleChangeBillngPeriod }}

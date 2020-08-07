@@ -1,31 +1,36 @@
-import React, { useState } from "react";
-import { H2 } from "components";
-import { func, oneOfType, shape, any, string } from "prop-types";
-import { FeaturesWrapper } from "./styled";
-import Template from "./Template";
-import Nav from "./Nav";
-import { navItems } from "./Nav.config";
-import { LandingWrapper } from "../sharedStyled";
+import React from "react";
+import { func, oneOfType, shape, any } from "prop-types";
+import { Flex, Box } from "@rebass/grid";
+import { Button } from "components";
+import { FeaturesWrapper, Image, H2Styled } from "./styled";
+import { BlueText } from "../sharedStyled";
 
-const Features = ({ t, lng, featuresRef }) => {
-  const [activeNavItem, setActiveNavItem] = useState(navItems[0]);
-  return (
-    <FeaturesWrapper>
-      <LandingWrapper>
-        <H2 ref={featuresRef} white>
-          {t("features.header")}
-        </H2>
-        <Nav {...{ t, activeNavItem, setActiveNavItem }} />
-        <Template {...{ t, lng, activeNavItem }} />
-      </LandingWrapper>
-    </FeaturesWrapper>
-  );
-};
+const Features = ({ t, featuresRef }) => (
+  <FeaturesWrapper ref={featuresRef} width="auto">
+    <Box my={[80, 100]} width={[1]}>
+      <H2Styled>{t("features.header")}</H2Styled>
+      <H2Styled>
+        {t("features.subHeader.start")}
+        <BlueText>{t("features.subHeader.end")}</BlueText>
+      </H2Styled>
+    </Box>
+    <Image />
+    <Flex width={1} justifyContent="center" mt={[0, 40]}>
+      <Button
+        styleName="becomePartner"
+        onClick={() => {
+          window.location.href = `https://api.foodetective.co/static_pages/api-auth-guide`;
+        }}
+      >
+        {t("cooperations.becomePartner")}
+      </Button>
+    </Flex>
+  </FeaturesWrapper>
+);
 
 Features.propTypes = {
   t: func.isRequired,
-  featuresRef: oneOfType([func, shape({ current: any })]).isRequired,
-  lng: string.isRequired
+  featuresRef: oneOfType([func, shape({ current: any })]).isRequired
 };
 
 export default Features;

@@ -16,14 +16,18 @@ export const PlansWrapper = styled(Flex).attrs(() => ({
   width: 1,
   alignSelf: "center",
   justifyContent: "center"
-}))``;
+}))`
+  max-width: 1150px;
+`;
 
 export const TextWrapper = styled(Flex).attrs(() => ({
   width: 1,
   flexDirection: "column",
   alignSelf: "center",
   mb: [10, 20]
-}))``;
+}))`
+  max-width: 1150px;
+`;
 
 export const PromotionWrapper = styled(Box).attrs(() => ({
   p: 32

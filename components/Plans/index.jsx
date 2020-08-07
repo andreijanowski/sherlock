@@ -21,6 +21,26 @@ const Plans = ({
           nextPlanName,
           currentPlanInterval,
           isSubscriptionView,
+          color: "deepSkyBlue",
+          name: "basic",
+          onClickActionButton: () => {
+            if (choosePlan) {
+              choosePlan("basic");
+            } else {
+              window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=basic`;
+            }
+          }
+        }}
+      />
+    </Box>
+    <Box mb={[40, 0]} width={[1, 1 / 2]}>
+      <Plan
+        {...{
+          t,
+          billingInterval,
+          nextPlanName,
+          currentPlanInterval,
+          isSubscriptionView,
           color: "limeade",
           name: "essential",
           onClickActionButton: () => {
@@ -41,13 +61,31 @@ const Plans = ({
           nextPlanName,
           currentPlanInterval,
           isSubscriptionView,
-          color: "deepSkyBlue",
-          name: "basic",
+          color: "limeade",
+          name: "tailored",
           onClickActionButton: () => {
             if (choosePlan) {
-              choosePlan("basic");
+              choosePlan("tailored");
             } else {
-              window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=basic`;
+              window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=essential`;
+            }
+          }
+        }}
+      />
+      <Plan
+        {...{
+          t,
+          billingInterval,
+          nextPlanName,
+          currentPlanInterval,
+          isSubscriptionView,
+          color: "limeade",
+          name: "special",
+          onClickActionButton: () => {
+            if (choosePlan) {
+              choosePlan("special");
+            } else {
+              window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=essential`;
             }
           }
         }}

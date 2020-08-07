@@ -1,5 +1,9 @@
 {
-  "header": "Pay as you grow",
+  "header": "Pricing",
+  "subHeader": {
+    "start": "Pay",
+    "end": " as you grow"
+  },
   "paragraph": "Choose the plan that suits your business goals, size & growth plans. If you run a large franchise or group please get in touch with our team for our tailor made option.",
   "yourCurrentPlan": "Your current plan",
   "paymentInfo": "Payment informations",
@@ -46,23 +50,42 @@
     "redirections": "Redirections",
     "integrations": "Integrations"
   },
+
   "essential": {
     "name": "Essential",
-    "priceDescription": "Forever",
+    "priceDescription": "Starting at",
     "price": {
-      "month": "Free",
-      "year": "Free"
+      "month": "price",
+      "year": "price"
+    },
+    "buttonText": "Create Profile"
+  },
+  "tailored": {
+    "name": "Tailored Made",
+    "priceDescription": "Starting at",
+    "price": {
+      "month": "29",
+      "year": "how much"
+    },
+    "buttonText": "Create Profile"
+  },
+  "special": {
+    "name": "Special Requests",
+    "priceDescription": "",
+    "price": {
+      "month": "",
+      "year": ""
     },
     "buttonText": "Create Profile"
   },
   "basic": {
-    "name": "Premium",
+    "name": "Basic",
     "mostPopular": "Most popular",
-    "priceDescription": "Starting at",
+    "priceDescription": "Forever",
     "price": {
-      "month": "€29.90",
-      "year": "€358.80",
-      "beta": "€249.90"
+      "month": "Free",
+      "year": "Free",
+      "beta": "Free"
     },
     "month": "month",
     "year": "year",

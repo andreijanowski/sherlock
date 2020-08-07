@@ -16,7 +16,10 @@ import {
   LandingWrapper,
   NavigationWrapper,
   ProductsWrapper,
-  DevelopersAndApiWrapper
+  DevelopersAndApiWrapper,
+  FeaturesWrapper,
+  PlansWrapper,
+  FooterWrapper
 } from "sections/landing/sharedStyled";
 
 const namespaces = ["landing", "plans", "common"];
@@ -76,18 +79,23 @@ class Home extends PureComponent {
         <DevelopersAndApiWrapper>
           <DevelopersAndApi {...{ t, lng, developersAndApiRef }} />
         </DevelopersAndApiWrapper>
-        <Features {...{ t, lng, featuresRef }} />
-
-        <Plans
-          {...{
-            t,
-            plansRef,
-            lng: (i18n && i18n.language) || "en",
-            billingInterval,
-            handleChangeBillngPeriod: this.handleChangeBillngPeriod
-          }}
-        />
-        <Footer />
+        <FeaturesWrapper>
+          <Features {...{ t, lng, featuresRef }} />
+        </FeaturesWrapper>
+        <PlansWrapper>
+          <Plans
+            {...{
+              t,
+              plansRef,
+              lng: (i18n && i18n.language) || "en",
+              billingInterval,
+              handleChangeBillngPeriod: this.handleChangeBillngPeriod
+            }}
+          />
+        </PlansWrapper>
+        <FooterWrapper>
+          <Footer />
+        </FooterWrapper>
       </LandingWrapper>
     );
   }
