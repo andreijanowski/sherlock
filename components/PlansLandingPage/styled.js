@@ -10,17 +10,6 @@ const alignCenterMobile = css`
   }
 `;
 
-export const MainWrapper = styled(Flex).attrs(() => ({
-  flexDirection: "column",
-  m: 2,
-  pb: 3
-}))`
-  position: relative;
-  background: rgba(${p => p.theme.colors.dark}, 0.1);
-  border-radius: ${p => p.theme.radius.default};
-  box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
-`;
-
 export const NameWrapper = styled(Flex).attrs(() => ({
   flexDirection: "row",
   m: "-2px",
@@ -32,16 +21,12 @@ export const NameWrapper = styled(Flex).attrs(() => ({
   z-index: 1;
 `;
 
-export const Name = styled.div`
-  margin: 2px;
-  padding: 2px 8px;
-  color: rgb(${p => p.theme.colors[p.color]});
-  font-weight: ${p => p.theme.fontWeights.bold};
-  font-size: ${p => p.theme.fontSizes.f12};
-  line-height: 1.15;
-  background: rgb(${p => p.theme.colors.white});
-  border-radius: ${p => p.theme.radius.default};
-  box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.dark}, 0.08);
+export const Name = styled(Flex)`
+  margin-bottom: 20px;
+  color: #828282;
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes.f15};
+  letter-spacing: 0.3px;
 `;
 
 export const MostPopular = styled.div`
@@ -62,28 +47,35 @@ export const PriceWrapper = styled(Flex).attrs(() => ({
   mb: 3
 }))`
   position: relative;
-  padding: 24px 16px 16px;
-  background: rgb(${p => p.theme.colors.white});
-  border-radius: ${p => p.theme.radius.default};
-  box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
+  min-height: 130px;
 `;
 
-export const PriceDescription = styled.div`
+export const PriceDescription = styled(Box)`
+  ${alignCenterMobile};
   margin-top: 20px;
   color: rgba(${p => p.theme.colors.dark}, 0.8);
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: ${p => p.theme.fontSizes.f16};
-  line-height: 1.5;
-  ${alignCenterMobile};
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes.f30};
+  line-height: 32px;
+  letter-spacing: 0.6px;
 `;
 
-export const Price = styled.div`
-  margin-bottom: 40px;
-  color: rgb(${p => p.theme.colors.dark});
-  font-weight: ${p => p.theme.fontWeights.semiBold};
-  font-size: ${p => p.theme.fontSizes.f36};
-  line-height: 1.333;
+export const Billing = styled.span`
+  color: rgba(${p => p.theme.colors.dark}, 0.8);
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes.f15};
+  line-height: 32px;
+  white-space: nowrap;
+`;
+
+export const Price = styled(Box)`
   ${alignCenterMobile};
+  margin-bottom: 40px;
+  color: rgb(${p => p.theme.colors.blue});
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes.f30};
+  line-height: 32px;
+  white-space: nowrap;
   small {
     font-size: ${p => p.theme.fontSizes.f16};
   }
@@ -107,7 +99,7 @@ export const BetaPriceText = styled.div`
   font-weight: ${p => p.theme.fontWeights.bold};
 `;
 
-export const Service = styled(Box).attrs(() => ({ mb: 1 }))`
+export const Service = styled(Flex).attrs(() => ({ mb: 1 }))`
   color: ${p =>
     p.isHighlighted
       ? `rgb(${p.theme.colors.dark})`
@@ -133,24 +125,22 @@ export const Badge = styled.span`
 export const Option = styled(Box)`
   color: ${p =>
     p.dark
-      ? `rgba(${p.theme.colors.dark}, 0.8)`
+      ? `rgba(${p.theme.colors.dark}, 0.4)`
       : `rgb(${p.theme.colors.blue})`};
   font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: ${p => p.theme.fontSizes.f15};
-  line-height: 20px;
-  letter-spacing: 0.3px;
-  opacity: 0.8;
+  font-size: ${p => p.theme.fontSizes.f16};
+  line-height: 1.5;
 `;
 
 export const SwitchWrapper = styled(Box)`
-  height: 39px;
-  padding: 4px;
+  height: 26px;
+  padding: 2px;
   background: linear-gradient(
     to right,
     rgba(${p => p.theme.colors.dark}, 0.4),
     rgb(${p => p.theme.colors.blue})
   );
-  border-radius: 45px;
+  border-radius: 13px;
 `;
 
 export const Design = styled.img`
@@ -164,5 +154,19 @@ export const Tooltip = styled(Tippy)`
 
   .tippy-backdrop {
     background: transparent;
+  }
+`;
+
+export const MainWrapper = styled(Flex).attrs(() => ({
+  flexDirection: "column"
+}))`
+  position: relative;
+  &:hover {
+    ${Service} {
+      color: rgba(${p => p.theme.colors.blue}, 0.8);
+    }
+    ${Name} {
+      color: rgba(${p => p.theme.colors.blue}, 0.8);
+    }
   }
 `;

@@ -2,7 +2,7 @@
   "header": "Pricing",
   "subHeader": {
     "start": "Pay",
-    "end": " as you grow"
+    "end": " as you grow."
   },
   "paragraph": "Choose the plan that suits your business goals, size & growth plans. If you run a large franchise or group please get in touch with our team for our tailor made option.",
   "yourCurrentPlan": "Your current plan",
@@ -48,36 +48,13 @@
     "delivery": "Delivery",
     "digitalMarketing": "Digital marketing",
     "redirections": "Redirections",
-    "integrations": "Integrations"
+    "integrations": "Integrations",
+    "reviews": "Reviews",
+    "suppliers": "Suppliers",
+    "widgets": "Widgets",
+    "dashboard": "Dashboard"
   },
 
-  "essential": {
-    "name": "Essential",
-    "priceDescription": "Starting at",
-    "price": {
-      "month": "price",
-      "year": "price"
-    },
-    "buttonText": "Create Profile"
-  },
-  "tailored": {
-    "name": "Tailored Made",
-    "priceDescription": "Starting at",
-    "price": {
-      "month": "29",
-      "year": "how much"
-    },
-    "buttonText": "Create Profile"
-  },
-  "special": {
-    "name": "Special Requests",
-    "priceDescription": "",
-    "price": {
-      "month": "",
-      "year": ""
-    },
-    "buttonText": "Create Profile"
-  },
   "basic": {
     "name": "Basic",
     "mostPopular": "Most popular",
@@ -89,6 +66,40 @@
     },
     "month": "month",
     "year": "year",
-    "buttonText": "Get started at "
+    "buttonText": "Create profile "
+  },
+  "essential": {
+    "name": "Essential",
+    "priceDescription": "Starting at",
+    "price": {
+      "month": "29",
+      "year": "299",
+      "beta": "29"
+    },
+    "month": "month",
+    "year": "year",
+    "buttonText": "Get started at"
+  },
+  "tailored": {
+    "name": "Tailored Made",
+    "priceDescription": "Starting at",
+    "price": {
+      "month": "299",
+      "year": "3000",
+      "beta": "beta"
+    },
+    "month": "month",
+    "year": "year",
+    "buttonText": "Get started at"
+  },
+  "special": {
+    "name": "Special Requests",
+    "priceDescription": "",
+    "price": {
+      "month": "",
+      "year": "",
+      "beta": ""
+    },
+    "buttonText": "Contact our Sales Team"
   }
 }

@@ -40,8 +40,18 @@ export const PromotionWrapper = styled(Box).attrs(() => ({
 
 export const H2Styled = styled(H2)`
   ${alignCenterMobile}
+  color: #333;
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes.f30};
+  letter-spacing: 0.6px;
 `;
 
 export const ParagraphStyled = styled(Paragraph)`
   ${alignCenterMobile}
+  color: #828282;
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes.f15};
+  line-height: 20px;
+  letter-spacing: 0.3px;
+  opacity: 0.8;
 `;
