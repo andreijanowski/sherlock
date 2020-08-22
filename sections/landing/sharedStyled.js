@@ -81,18 +81,19 @@ export const PlansWrapper = styled(Box)`
   width: 100%;
   background: white;
 `;
+
+export const InstallAppWrapper = styled(Box)`
+  width: 100%;
+  background: linear-gradient(transparent 0%, transparent 85%, #eff2ff 100%),
+    linear-gradient(170deg, white 65%, #a6b4ff 65%, #eff2ff 85%);
+`;
+
 export const FooterWrapper = styled(Flex)`
   align-items: flex-end;
   justify-content: center;
   width: 100%;
   height: 800px;
-  background: linear-gradient(
-    170deg,
-    white 0%,
-    white 40%,
-    #a6b4ff 40%,
-    #eff2ff 100%
-  );
+  background: linear-gradient(#eff2ff 0%, #eff2ff 100%);
 `;
 export const DevelopersAndApiWrapper = styled(Box).attrs()`
   z-index: 2;

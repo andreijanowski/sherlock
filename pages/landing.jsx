@@ -8,7 +8,8 @@ import {
   Services,
   DevelopersAndApi,
   Features,
-  Plans
+  Plans,
+  InstallApp
 } from "sections/landing";
 import { withTranslation } from "i18n";
 import {
@@ -19,7 +20,8 @@ import {
   DevelopersAndApiWrapper,
   FeaturesWrapper,
   PlansWrapper,
-  FooterWrapper
+  FooterWrapper,
+  InstallAppWrapper
 } from "sections/landing/sharedStyled";
 
 const namespaces = ["landing", "plans", "common"];
@@ -93,6 +95,9 @@ class Home extends PureComponent {
             }}
           />
         </PlansWrapper>
+        <InstallAppWrapper>
+          <InstallApp {...{ t }} />
+        </InstallAppWrapper>
         <FooterWrapper>
           <Footer />
         </FooterWrapper>

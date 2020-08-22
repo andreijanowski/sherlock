@@ -12,7 +12,12 @@
     "watchVideo": "Watch video",
     "testimonials": "Testimonials"
   },
-
+  "installApp": {
+    "header": {
+      "start": "Download our app today.",
+      "end": " Fooddetective For Buisness."
+    }
+  },
   "services": {
     "header": "Products",
     "paragraph": {
