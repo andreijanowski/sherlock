@@ -6,21 +6,21 @@ const iconsNames = [
   "bookings",
   "delivery",
   "take-away",
-  "temp",
+  "payments",
   "privatization",
   "caterings",
   "analytics",
   "le-food",
   "marketing",
   "salad-bar",
-  "billing"
-  // food waste
-  // hygebe
-  // packeging
-  // photography
-  // social media
-  // stocks
-  // reviews
+  "billing",
+  "food-waste",
+  "hygiene",
+  "packaging",
+  "photography",
+  "social-media",
+  "stocks",
+  "reviews"
 ];
 
 const List = ({ t }) => {
