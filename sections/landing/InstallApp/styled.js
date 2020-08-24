@@ -3,18 +3,13 @@ import { H2 } from "components";
 import { alignCenterMobile } from "../sharedStyled";
 
 export const Image = styled.div`
-  width: 100%;
+  width: 100vh;
   height: 100%;
   min-height: 755px;
   background-image: url("/static/img/phoneApp.png");
   background-repeat: no-repeat;
-  background-position: center top;
+  background-position: center center;
   background-size: contain;
-  /* @media (min-width: ${p => p.theme.breakpoints[0]}) {
-    width: 100vw;
-    min-height: 600px;
-    max-height: 800px;
-  } */
 `;
 
 export const AppPlatformLogo = styled.img`
@@ -39,4 +34,5 @@ export const H2Styled = styled(H2)`
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f30};
   letter-spacing: 0.6px;
+  white-space: wrap;
 `;
