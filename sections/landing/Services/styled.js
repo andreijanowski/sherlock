@@ -10,7 +10,6 @@ export const alignCenterMobile = css`
 
 export const ServicesWrapper = styled(Flex).attrs(() => ({
   flexDirection: "column",
-
   width: 1
 }))`
   position: relative;
