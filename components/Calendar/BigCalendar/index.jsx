@@ -43,7 +43,7 @@ const CustomBigCalendar = ({
           );
       setEvent(updatedEvent);
     }
-  }, [addresses, currency, defaultView, event, events, t, timeZone]);
+  }, [events]);
 
   const toggleModal = newEvent =>
     setEvent(oldEvent => (oldEvent ? null : newEvent));
