@@ -74,7 +74,7 @@ export const DevelopersAndApiWrapper = styled(Box)`
 
 export const FeaturesWrapper = styled(Box)`
   width: 100%;
-  background: linear-gradient(170deg, #0f113d 20%, #f7f8fe 20%);
+  background: linear-gradient(170deg, #0f113d 22%, #f7f8fe 22%);
 `;
 
 export const PlansWrapper = styled(Box)`

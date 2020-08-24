@@ -6,7 +6,7 @@ import { FeaturesWrapper, Image, H2Styled } from "./styled";
 import { BlueText } from "../sharedStyled";
 
 const Features = ({ t, featuresRef }) => (
-  <FeaturesWrapper ref={featuresRef} width="auto">
+  <FeaturesWrapper ref={featuresRef} width="auto" py={75}>
     <Box my={[80, 100]} width={[1]}>
       <H2Styled>{t("features.header")}</H2Styled>
       <H2Styled>
