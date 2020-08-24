@@ -17,11 +17,11 @@ const Plan = ({
   color,
   name,
   billingInterval,
-  isSubscriptionView,
   onClickActionButton,
   nextPlanName,
   currentPlanInterval
 }) => {
+  const shouldShowPlanPrice = name === "essential" || name === "tailored";
   const isChosen =
     nextPlanName === name &&
     (currentPlanInterval === billingInterval || nextPlanName === "essential");
@@ -57,13 +57,9 @@ const Plan = ({
       >
         <Button onClick={onClickActionButton} styleName="signUpCTA">
           {buttonText}
-          {name === "basic" &&
-            !isSubscriptionView &&
-            t(
-              `plans:${name}.price.${
-                billingInterval === "year" ? "beta" : billingInterval
-              }`
-            )}
+          {shouldShowPlanPrice && (
+            <> &euro;{t(`plans:${name}.price.${billingInterval}`)} </>
+          )}
           <FontAwesomeIcon
             icon={["fa", "chevron-right"]}
             style={{ marginLeft: 12 }}
