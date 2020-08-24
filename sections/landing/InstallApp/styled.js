@@ -3,7 +3,7 @@ import { H2 } from "components";
 import { alignCenterMobile } from "../sharedStyled";
 
 export const Image = styled.div`
-  width: 100vh;
+  width: 100%;
   height: 100%;
   min-height: 755px;
   background-image: url("/static/img/phoneApp.png");

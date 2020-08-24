@@ -7,18 +7,18 @@ import { BlueText } from "../sharedStyled";
 const InstallApp = ({ t }) => (
   <Flex
     mx="auto"
-    width={[1150, 1]}
+    width={1}
     justifyContent="space-around"
     flexDirection={["column", "row"]}
   >
-    <Image width={[1 / 1 / 2]} />
+    <Image width={[1, 1 / 2]} />
     <Flex
       flexDirection="column"
       alignItems={["center", "flex-start"]}
       mt={[0, 140]}
       mb={[600, 0]}
       p={3}
-      width={[1 / 2]}
+      width={1}
     >
       <FoodetectiveLogo squared />
       <H2Styled my={30}>
