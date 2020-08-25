@@ -24,6 +24,24 @@ const signUp = css`
   background: rgba(${p => p.theme.colors.white}, 0.2);
 `;
 
+const signUpCTA = css`
+  ${login}
+  background: rgb(${p => p.theme.colors.blue});
+  &:hover:enabled {
+    background-color: rgba(${p => p.theme.colors.facebookBlue}, 1);
+    box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.facebookBlue}, 0.48);
+  }
+`;
+
+const signUpContactSales = css`
+  ${login}
+  background:  rgba(${p => p.theme.colors.white}, 0.3);
+  &:hover:enabled {
+    background-color: rgba(${p => p.theme.colors.white}, 0.6);
+    box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.white}, 0.48);
+  }
+`;
+
 const blue = css`
   padding: 8px 20px;
   color: rgb(${p => p.theme.colors.blue});
@@ -220,6 +238,8 @@ const Button = styled.button`
 
   ${p => p.styleName === "login" && login};
   ${p => p.styleName === "signUp" && signUp};
+  ${p => p.styleName === "signUpCTA" && signUpCTA};
+  ${p => p.styleName === "signUpContactSales" && signUpContactSales};
   ${p => p.styleName === "blue" && blue};
   ${p => p.styleName === "formBlue" && formBlue};
   ${p => p.styleName === "orange" && orange};

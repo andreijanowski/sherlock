@@ -1,14 +1,20 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Flex, Box } from "@rebass/grid";
+import { H2 } from "components";
+
+export const alignCenterMobile = css`
+  text-align: center;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    text-align: start;
+  }
+`;
 
 export const ServicesWrapper = styled(Flex).attrs(() => ({
-  p: [3, 4],
   flexDirection: "column",
   width: 1
 }))`
   position: relative;
   z-index: 1;
-  margin-bottom: 20px;
   background: rgb(${p => p.theme.colors.dark});
   border-radius: ${p => p.theme.radius.double};
   box-shadow: 0 4px 24px 0 rgba(${p => p.theme.colors.dark}, 0.48);
@@ -53,11 +59,37 @@ export const More = styled(Box).attrs(() => ({
 export const ServiceIcon = styled.img.attrs(({ name }) => ({
   src: `/static/icons/${name}.svg`
 }))`
-  max-width: 50px;
-  max-height: 50px;
+  max-width: 95px;
+  max-height: 95px;
   margin-bottom: 4px;
 `;
 
+export const BlueText = styled.span`
+  color: rgb(${p => p.theme.colors.blue});
+  white-space: nowrap;
+`;
 export const WhiteText = styled.span`
+  color: rgb(${p => p.theme.colors.blue});
+`;
+
+export const H2Styled = styled(H2)`
+  ${alignCenterMobile}
   color: rgb(${p => p.theme.colors.white});
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f30};
+  letter-spacing: 0.6px;
+`;
+
+export const ParagraphStyled = styled("p")`
+  ${alignCenterMobile}
+  margin: 0;
+  color: rgb(${p => p.theme.colors.white});
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f16};
+  line-height: 24px;
+  letter-spacing: 1.2px;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    font-size: ${p => p.theme.fontSizes.f30};
+    line-height: 40px;
+  }
 `;

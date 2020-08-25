@@ -16,6 +16,7 @@ import {
   LandingWrapper,
   NavigationWrapper
 } from "sections/landing/sharedStyled";
+import { Flex } from "@rebass/grid";
 
 const namespaces = ["landing", "plans", "common"];
 
@@ -70,7 +71,27 @@ class Home extends PureComponent {
           <TopSection {...{ t, lng }} />
         </TopSectionWrapper>
 
-        <Services {...{ t, servicesRef }} />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+            background:
+              "linear-gradient(180deg, #00002B 0%, #222F8C 60%, #1A2375 70%, #0D1237 92%, #0A0E2A 95%, #000 100%)"
+          }}
+        >
+          <Flex
+            width={1}
+            px={3}
+            alignItems="flex-start"
+            flexDirection="column"
+            style={{ maxWidth: "1124px" }}
+            mt={[14, 22]}
+          >
+            <Services {...{ t, servicesRef }} />
+          </Flex>
+        </div>
+
         <DevelopersAndApi {...{ t, lng, developersAndApiRef }} />
         <Features {...{ t, lng, featuresRef }} />
         <Plans

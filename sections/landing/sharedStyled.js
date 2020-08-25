@@ -14,6 +14,7 @@ export const H2Styled = styled(H2)`
 `;
 
 export const ParagraphStyled = styled(Paragraph)`
+  color: white;
   ${alignCenterMobile}
 `;
 
@@ -26,12 +27,10 @@ export const NavigationWrapper = styled(Box).attrs(() => ({
   px: 3
 }))`
   width: 100%;
-  max-width: 1050px;
+  max-width: 1150px;
 `;
 
-export const TopSectionWrapper = styled(Box).attrs(() => ({
-  px: 3
-}))`
+export const TopSectionWrapper = styled(Box).attrs()`
   width: 100%;
   background: linear-gradient(170deg, #1a1f67 50%, #020025 50%);
 `;
