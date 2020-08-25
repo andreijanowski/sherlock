@@ -92,7 +92,6 @@ export const FooterWrapper = styled(Flex)`
   align-items: flex-end;
   justify-content: center;
   width: 100%;
-  height: 800px;
   background: linear-gradient(#eff2ff 0%, #eff2ff 100%);
 `;
 
