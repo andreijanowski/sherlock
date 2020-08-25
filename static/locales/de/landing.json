@@ -36,12 +36,24 @@
       "Humanressourcen Lohn-und Gehaltsabrechnung",
       "Liefern",
       "Buchhaltung",
-      "Integrationen"
+      "Food Waste",
+      "Hygiene",
+      "Packaging",
+      "Photography",
+      "Social Media",
+      "Stocks",
+      "Reviews"
     ],
     "more": "Wir zentralisieren alle Ihre Dienste in einem einzigen Dashboard."
   },
   "developerAndApi": {
     "header": "developer & API"
+  },
+  "installApp": {
+    "header": {
+      "start": "Download our app today.",
+      "end": " Fooddetective For Buisness."
+    }
   },
   "cooperations": {
     "clients": "Kunden",

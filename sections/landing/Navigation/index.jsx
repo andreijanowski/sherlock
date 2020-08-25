@@ -59,7 +59,7 @@ const Navigation = ({ t, lng, scrollTo }) => (
           {t("common:personal")}
         </StyledNavigationLink>
         <StyledNavigationLink active>
-          {t("common:buissnes")}
+          {t("common:business")}
         </StyledNavigationLink>
       </Flex>
       <LanguageSwitcher />

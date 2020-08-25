@@ -44,28 +44,55 @@
     "delivery": "Entrega / para llevar",
     "digitalMarketing": "Publicidad digital",
     "redirections": "Redirecciones",
-    "integrations": "Integraciones"
-  },
-  "essential": {
-    "name": "Esencial",
-    "priceDescription": "Siempre",
-    "price": {
-      "month": "Gratis",
-      "year": "Gratis"
-    },
-    "buttonText": "Crear perfil"
+    "integrations": "Integraciones",
+    "widgets": "Widgets",
+    "dashboard": "Dashboard"
   },
   "basic": {
     "name": "Básico",
     "mostPopular": "Más popular",
     "priceDescription": "A partir de",
     "price": {
-      "month": "€ 29,90",
-      "year": "€ 358,80",
-      "beta": "€ 249,90"
+      "month": "Free",
+      "year": "Free",
+      "beta": "Free"
+    },
+    "month": "mes",
+    "year": "año",
+    "buttonText": "Crear perfil"
+  },
+  "essential": {
+    "name": "Esencial",
+    "priceDescription": "Siempre",
+    "price": {
+      "month": "29,90",
+      "year": "358,80",
+      "beta": "249,90"
     },
     "month": "mes",
     "year": "año",
     "buttonText": "Comience a las"
+  },
+  "tailored": {
+    "name": "Tailored Made",
+    "priceDescription": "Siempre",
+    "price": {
+      "month": "29,90",
+      "year": "358,80",
+      "beta": "249,90"
+    },
+    "month": "mes",
+    "year": "año",
+    "buttonText": "Comience a las"
+  },
+  "special": {
+    "name": "Special Requests",
+    "priceDescription": "",
+    "price": {
+      "month": "",
+      "year": "",
+      "beta": ""
+    },
+    "buttonText": "Contact our Sales Team"
   }
 }

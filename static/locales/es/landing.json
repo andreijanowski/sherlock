@@ -11,6 +11,12 @@
     "watchVideo": "Ver video",
     "testimonials": "Testimonios"
   },
+  "installApp": {
+    "header": {
+      "start": "Download our app today.",
+      "end": " Fooddetective For Buisness."
+    }
+  },
   "services": {
     "header": "Servicios",
     "paragraph": {
@@ -32,7 +38,13 @@
       "Recursos humanos y nómina/salario",
       "Suministro",
       "Contabilidad",
-      "Integraciones"
+      "Food Waste",
+      "Hygiene",
+      "Packaging",
+      "Photography",
+      "Social Media",
+      "Stocks",
+      "Reviews"
     ],
     "more": "Centralizamos todos sus servicios en un solo tablero."
   },

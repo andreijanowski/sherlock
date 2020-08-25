@@ -14,6 +14,12 @@
   "developersAndApi": {
     "header": "Developer & API"
   },
+  "installApp": {
+    "header": {
+      "start": "Download our app today.",
+      "end": " Fooddetective For Buisness."
+    }
+  },
   "services": {
     "header": "Servizi",
     "paragraph": {
@@ -35,7 +41,13 @@
       "Risorse umane e stipendi",
       "Fornitura",
       "Contabilità",
-      "Integrazioni"
+      "Food Waste",
+      "Hygiene",
+      "Packaging",
+      "Photography",
+      "Social Media",
+      "Stocks",
+      "Reviews"
     ],
     "more": "Centralizziamo tutti i tuoi servizi in un'unica dashboard."
   },
