@@ -91,6 +91,7 @@ const planButton = css`
 
 const goToApiDocs = css`
   width: 100%;
+  max-width: 400px;
   height: 60px;
   padding: 12px;
   color: white;
@@ -104,6 +105,15 @@ const goToApiDocs = css`
   box-shadow: inset 0 1px 20px 0 #595d75;
   &:hover {
     background: rgba(${p => p.theme.colors.blue}, 0.6);
+  }
+`;
+
+const becomePartner = css`
+  ${goToApiDocs};
+  background: rgba(${p => p.theme.colors.purpleBlue}, 1);
+  box-shadow: none;
+  &:hover {
+    background: rgba(${p => p.theme.colors.purpleBlue}, 0.6);
   }
 `;
 
@@ -274,6 +284,7 @@ const Button = styled.button`
   ${p => p.styleName === "accept" && accept};
   ${p => p.styleName === "withImage" && withImage};
   ${p => p.styleName === "goToApiDocs" && goToApiDocs};
+  ${p => p.styleName === "becomePartner" && becomePartner};
   ${p => p.fluid && fluid};
   ${p => p.fullHeight && fullHeight};
 

@@ -76,7 +76,11 @@
     }
   },
   "features": {
-    "header": "Integrations",
+    "header": "Integrations & Partnerships",
+    "subHeader": {
+      "start": "Create and run your restaurant with Foodetective and our partners.",
+      "end": " No code required."
+    },
     "navItems": {
       "visibility": "Visibility",
       "analytics": "Analytics",

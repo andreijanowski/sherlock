@@ -4,7 +4,7 @@ import {
   MainWrapper,
   NameWrapper,
   Name,
-  MostPopular,
+  // MostPopular,
   PriceWrapper,
   PriceDescription,
   Price,
@@ -37,13 +37,13 @@ const Plan = ({
     <MainWrapper>
       <NameWrapper>
         <Name color={color}>{t(`plans:${name}.name`)}</Name>
-        {name === "basic" && (
+        {/* {name === "basic" && (
           <>
             <MostPopular color={color}>
               {t(`plans:${name}.mostPopular`)}
             </MostPopular>
           </>
-        )}
+        )} */}
       </NameWrapper>
       <PriceWrapper>
         <PriceDescription>

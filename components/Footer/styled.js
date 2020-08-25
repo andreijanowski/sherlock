@@ -4,14 +4,14 @@ import { Flex, Box } from "@rebass/grid";
 export const FooterWrapper = styled(Flex).attrs(() => ({
   as: "footer",
   flexDirection: "column",
+  justifyContent: "start",
   pt: [4, 50],
   pb: 20,
-  px: 4,
-  width: 1,
-  alignItems: "center",
-  justifyContent: "center"
+  px: 3,
+  alignItems: "center"
 }))`
-  background-color: white;
+  max-width: 1150;
+  margin: auto;
 `;
 
 export const FoodetectiveLogoWrapper = styled(Box).attrs(() => ({
@@ -28,7 +28,7 @@ export const CopyrightWrapper = styled(Flex).attrs(() => ({
   width: 1,
   pt: 20,
   alignItems: "center",
-  justifyContent: ["center", "flex-start"]
+  justifyContent: ["flex-end", "flex-end"]
 }))`
   max-width: 920px;
   border-top: 1px solid rgba(${p => p.theme.colors.mischka}, 0.1);

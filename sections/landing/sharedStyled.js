@@ -51,28 +51,48 @@ export const NavigationWrapper = styled(Box).attrs(() => ({
   max-width: 1150px;
 `;
 
-export const TopSectionWrapper = styled(Box).attrs()`
+export const TopSectionWrapper = styled(Box)`
   width: 100%;
   background: linear-gradient(170deg, #1a1f67 50%, #020025 50%);
 `;
 
-export const ProductsWrapper = styled(Box).attrs()`
+export const ProductsWrapper = styled(Box)`
   width: 100%;
   background: linear-gradient(
     180deg,
     #00002b 0%,
-    #222f8c 60%,
-    #1a2375 70%,
-    #0d1237 92%,
-    #0a0e2a 95%,
-    #000 100%
+    #111247 60%,
+    #12154d 70%,
+    #12154d 100%
   );
 `;
-export const DevelopersAndApiWrapper = styled(Box).attrs()`
-  z-index: 2;
+
+export const DevelopersAndApiWrapper = styled(Box)`
   width: 100%;
-  height: 500px;
-  background: linear-gradient(170deg, #000 90%, #fff 90%);
+  background: linear-gradient(#12154d 0%, #0f113d 30%);
+`;
+
+export const FeaturesWrapper = styled(Box)`
+  width: 100%;
+  background: linear-gradient(170deg, #0f113d 22%, #f7f8fe 22%);
+`;
+
+export const PlansWrapper = styled(Box)`
+  width: 100%;
+  background: white;
+`;
+export const FooterWrapper = styled(Flex)`
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 800px;
+  background: linear-gradient(
+    170deg,
+    white 0%,
+    white 40%,
+    #a6b4ff 40%,
+    #eff2ff 100%
+  );
 `;
 
 export const LogoWrapper = styled(Box)`

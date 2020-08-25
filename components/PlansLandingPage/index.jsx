@@ -1,9 +1,9 @@
 import { func, string, bool } from "prop-types";
-import { Box } from "@rebass/grid";
+import { Box, Flex } from "@rebass/grid";
 import { API_URL, APP_URL } from "consts";
 import Plan from "./plan";
 
-const Plans = ({
+const PlansLandingPage = ({
   t,
   lng,
   billingInterval,
@@ -12,7 +12,11 @@ const Plans = ({
   currentPlanInterval,
   isSubscriptionView
 }) => (
-  <>
+  <Flex
+    justifyContent="space-between"
+    width={1}
+    flexDirection={["column", "row"]}
+  >
     <Box mb={[40, 0]} width={[1, 1 / 2]}>
       <Plan
         {...{
@@ -67,11 +71,14 @@ const Plans = ({
             if (choosePlan) {
               choosePlan("tailored");
             } else {
-              window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=essential`;
+              window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=tailored`;
             }
           }
         }}
       />
+    </Box>
+
+    <Box mb={[40, 0]} width={[1, 1 / 2]}>
       <Plan
         {...{
           t,
@@ -85,16 +92,16 @@ const Plans = ({
             if (choosePlan) {
               choosePlan("special");
             } else {
-              window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=essential`;
+              window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=special`;
             }
           }
         }}
       />
     </Box>
-  </>
+  </Flex>
 );
 
-Plans.propTypes = {
+PlansLandingPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   billingInterval: string.isRequired,
@@ -104,11 +111,11 @@ Plans.propTypes = {
   isSubscriptionView: bool.isRequired
 };
 
-Plans.defaultProps = {
+PlansLandingPage.defaultProps = {
   choosePlan: null,
   nextPlanName: null,
   currentPlanInterval: null
 };
 
-export default Plans;
+export default PlansLandingPage;
 export { default as PlansBillingInterval } from "./BillingInterval";
