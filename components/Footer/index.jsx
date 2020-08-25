@@ -16,11 +16,11 @@ const namespaces = ["footer"];
 const Footer = ({ t }) => (
   // const currentYear = new Date().getFullYear();
   <FooterWrapper width={["auto", 1150]} mt={[-400, 0]}>
-    <FoodetectiveLogoWrapper>
+    <FoodetectiveLogoWrapper px={4}>
       <FoodetectiveLogo />
     </FoodetectiveLogoWrapper>
     <MenuWrapper>
-      <NavItem width={[1 / 2, 1]} p={2}>
+      <NavItem width={[1 / 2, 1 / 4]} p={4}>
         <ColumnTitle>{t("navigation.columnOne.title")}</ColumnTitle>
         <NavigationList
           {...{
@@ -36,7 +36,7 @@ const Footer = ({ t }) => (
           }}
         />
       </NavItem>
-      <NavItem width={[1 / 2, 1]} p={2}>
+      <NavItem width={[1 / 2, 1 / 4]} p={4}>
         <ColumnTitle>{t("navigation.columnTwo.title")}</ColumnTitle>
         <NavigationList
           {...{
@@ -52,7 +52,7 @@ const Footer = ({ t }) => (
           }}
         />
       </NavItem>
-      <NavItem width={[1 / 2, 1]} p={2}>
+      <NavItem width={[1 / 2, 1 / 4]} p={4}>
         <ColumnTitle>{t("navigation.columnThree.title")}</ColumnTitle>
         <NavigationList
           {...{
@@ -73,7 +73,7 @@ const Footer = ({ t }) => (
           }}
         />
       </NavItem>
-      <NavItem width={[1 / 2, 1]} p={2}>
+      <NavItem width={[1 / 2, 1 / 4]} p={4}>
         <ColumnTitle>{t("navigation.columnFour.title")}</ColumnTitle>
         <NavigationList
           {...{

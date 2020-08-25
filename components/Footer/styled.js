@@ -57,9 +57,7 @@ export const MenuWrapper = styled(Flex).attrs(() => ({
 export const NavItem = styled(Flex).attrs(() => ({
   flexDirection: "column",
   justifyContent: "flex-start"
-}))`
-  flex: 1 0 0;
-`;
+}))``;
 
 export const ColumnTitle = styled.p`
   margin: 0 0 15px 0;
