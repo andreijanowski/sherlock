@@ -45,7 +45,13 @@
     "more": "We centralize all your services into a single dashboard."
   },
   "developersAndApi": {
-    "header": "Developer & API"
+    "header": "Developer & API",
+    "subHeader": {
+      "start": "Get access to our ",
+      "end": "API."
+    },
+    "paragraph": "Our partners build technology and software that bring more businesses online, enable new types of businesses, and help them work more effectively. We’ve designed a program to help accelerate and amplify their impact.",
+    "goToApiDocs": "Read the docs"
   },
   "cooperations": {
     "clients": "Clients",

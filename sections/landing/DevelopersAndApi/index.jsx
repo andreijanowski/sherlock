@@ -1,17 +1,31 @@
 import React from "react";
-import { H2 } from "components";
 import { func, oneOfType, shape, any } from "prop-types";
-import { DeveloperWrapper } from "./styled";
-import { LandingWrapper } from "../sharedStyled";
+import { Box, Flex } from "@rebass/grid";
+import { Button } from "components";
+import { DevelopersAndApiWrapper, ParagraphStyled } from "./styled";
+import { BlueText, H2Styled } from "../sharedStyled";
 
 const DevelopersAndApi = ({ t, developersAndApiRef }) => (
-  <DeveloperWrapper>
-    <LandingWrapper>
-      <H2 ref={developersAndApiRef} white>
-        {t("developersAndApi.header")}
-      </H2>
-    </LandingWrapper>
-  </DeveloperWrapper>
+  <DevelopersAndApiWrapper ref={developersAndApiRef}>
+    <Box width={[1, 1 / 2]}>
+      <H2Styled>{t("developersAndApi.header")}</H2Styled>
+      <H2Styled>
+        {t("developersAndApi.subHeader.start")}
+        <BlueText>{t("developersAndApi.subHeader.end")}</BlueText>
+      </H2Styled>
+      <ParagraphStyled>{t("developersAndApi.paragraph")}</ParagraphStyled>
+    </Box>
+    <Flex width={[1, 1 / 2]} alignSelf="center">
+      <Button
+        styleName="goToApiDocs"
+        onClick={() => {
+          window.location.href = `https://api.foodetective.co/static_pages/api-auth-guide`;
+        }}
+      >
+        {t("developersAndApi.goToApiDocs")}
+      </Button>
+    </Flex>
+  </DevelopersAndApiWrapper>
 );
 
 DevelopersAndApi.propTypes = {

@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import { Flex, Box } from "@rebass/grid";
-import { H2 } from "components";
 
 export const alignCenterMobile = css`
   text-align: center;
@@ -11,12 +10,13 @@ export const alignCenterMobile = css`
 
 export const ServicesWrapper = styled(Flex).attrs(() => ({
   flexDirection: "column",
+
   width: 1
 }))`
   position: relative;
   z-index: 1;
   justify-content: center;
-  width: 1150px;
+  max-width: 1150px;
   margin: auto;
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     margin-bottom: 80px;
@@ -58,34 +58,4 @@ export const ServiceIcon = styled.img.attrs(({ name }) => ({
   max-width: 95px;
   max-height: 95px;
   margin-bottom: 4px;
-`;
-
-export const BlueText = styled.span`
-  color: rgb(${p => p.theme.colors.blue});
-  white-space: nowrap;
-`;
-export const WhiteText = styled.span`
-  color: rgb(${p => p.theme.colors.blue});
-`;
-
-export const H2Styled = styled(H2)`
-  ${alignCenterMobile}
-  color: rgb(${p => p.theme.colors.white});
-  font-weight: ${p => p.theme.fontWeights.semiBold};
-  font-size: ${p => p.theme.fontSizes.f30};
-  letter-spacing: 0.6px;
-`;
-
-export const ParagraphStyled = styled("p")`
-  ${alignCenterMobile}
-  margin: 0;
-  color: rgb(${p => p.theme.colors.white});
-  font-weight: ${p => p.theme.fontWeights.semiBold};
-  font-size: ${p => p.theme.fontSizes.f16};
-  line-height: 24px;
-  letter-spacing: 1.2px;
-  @media (min-width: ${p => p.theme.breakpoints[0]}) {
-    font-size: ${p => p.theme.fontSizes.f30};
-    line-height: 40px;
-  }
 `;

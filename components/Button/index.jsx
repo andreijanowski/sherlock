@@ -89,6 +89,24 @@ const planButton = css`
   }
 `;
 
+const goToApiDocs = css`
+  width: 100%;
+  height: 60px;
+  padding: 12px;
+  color: white;
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f24};
+  line-height: 28px;
+  letter-spacing: 0.5px;
+  background: rgba(${p => p.theme.colors.blue}, 0.3);
+  border: none;
+  border-radius: 45px;
+  box-shadow: inset 0 1px 20px 0 #595d75;
+  &:hover {
+    background: rgba(${p => p.theme.colors.blue}, 0.6);
+  }
+`;
+
 const orange = css`
   background-color: rgb(${p => p.theme.colors.carrotOrange});
   ${planButton};
@@ -255,6 +273,7 @@ const Button = styled.button`
   ${p => p.styleName === "reject" && reject};
   ${p => p.styleName === "accept" && accept};
   ${p => p.styleName === "withImage" && withImage};
+  ${p => p.styleName === "goToApiDocs" && goToApiDocs};
   ${p => p.fluid && fluid};
   ${p => p.fullHeight && fullHeight};
 

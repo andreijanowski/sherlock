@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { H2, Paragraph } from "components";
+import { H2 } from "components";
 import { Box, Flex } from "@rebass/grid";
 
 export const alignCenterMobile = css`
@@ -9,13 +9,34 @@ export const alignCenterMobile = css`
   }
 `;
 
-export const H2Styled = styled(H2)`
-  ${alignCenterMobile}
+export const BlueText = styled.span`
+  color: rgb(${p => p.theme.colors.blue});
+  white-space: nowrap;
+`;
+export const WhiteText = styled.span`
+  color: rgb(${p => p.theme.colors.blue});
 `;
 
-export const ParagraphStyled = styled(Paragraph)`
-  color: white;
+export const H2Styled = styled(H2)`
   ${alignCenterMobile}
+  color: rgb(${p => p.theme.colors.white});
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f30};
+  letter-spacing: 0.6px;
+`;
+
+export const ParagraphStyled = styled("p")`
+  ${alignCenterMobile}
+  margin: 0;
+  color: rgb(${p => p.theme.colors.white});
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f16};
+  line-height: 24px;
+  letter-spacing: 1.2px;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    font-size: ${p => p.theme.fontSizes.f30};
+    line-height: 40px;
+  }
 `;
 
 export const LandingWrapper = styled(Flex)`
@@ -46,6 +67,12 @@ export const ProductsWrapper = styled(Box).attrs()`
     #0a0e2a 95%,
     #000 100%
   );
+`;
+export const DevelopersAndApiWrapper = styled(Box).attrs()`
+  z-index: 2;
+  width: 100%;
+  height: 500px;
+  background: linear-gradient(170deg, #000 90%, #fff 90%);
 `;
 
 export const LogoWrapper = styled(Box)`
