@@ -3,7 +3,7 @@ import { ServicesWrapper, BlueText, H2Styled, ParagraphStyled } from "./styled";
 import List from "./list";
 
 const Services = ({ t, servicesRef }) => (
-  <ServicesWrapper ref={servicesRef}>
+  <ServicesWrapper ref={servicesRef} px={3}>
     <H2Styled>{t("services.header")}</H2Styled>
     <ParagraphStyled>
       {t("services.paragraph.start")}

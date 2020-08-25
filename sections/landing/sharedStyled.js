@@ -35,6 +35,19 @@ export const TopSectionWrapper = styled(Box).attrs()`
   background: linear-gradient(170deg, #1a1f67 50%, #020025 50%);
 `;
 
+export const ProductsWrapper = styled(Box).attrs()`
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    #00002b 0%,
+    #222f8c 60%,
+    #1a2375 70%,
+    #0d1237 92%,
+    #0a0e2a 95%,
+    #000 100%
+  );
+`;
+
 export const LogoWrapper = styled(Box)`
   display: none;
   @media (min-width: ${p => p.theme.breakpoints[0]}) {

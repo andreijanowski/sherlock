@@ -6,7 +6,7 @@ const iconsNames = [
   "bookings",
   "delivery",
   "take-away",
-  "restaurants",
+  "payments",
   "privatization",
   "caterings",
   "analytics",
@@ -14,7 +14,13 @@ const iconsNames = [
   "marketing",
   "salad-bar",
   "billing",
-  "rooftop"
+  "food-waste",
+  "hygiene",
+  "packaging",
+  "photography",
+  "social-media",
+  "stocks",
+  "reviews"
 ];
 
 const List = ({ t }) => {
