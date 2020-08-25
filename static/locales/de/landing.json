@@ -11,6 +11,9 @@
     "watchVideo": "Schau Video",
     "testimonials": "Referenzen"
   },
+  "developersAndApi": {
+    "header": "Developer & API"
+  },
   "services": {
     "header": "Dienstleistungen",
     "paragraph": {
@@ -20,6 +23,7 @@
       "secondKeyword": "Geschäftsgröße",
       "end": ". Sie können unsere Services jederzeit problemlos hinzufügen und entfernen, um sicherzustellen, dass wir auf Ihr Wachstum zugeschnitten sind."
     },
+
     "list": [
       "Reservierungen",
       "Lieferung",
@@ -32,9 +36,24 @@
       "Humanressourcen Lohn-und Gehaltsabrechnung",
       "Liefern",
       "Buchhaltung",
-      "Integrationen"
+      "Food Waste",
+      "Hygiene",
+      "Packaging",
+      "Photography",
+      "Social Media",
+      "Stocks",
+      "Reviews"
     ],
     "more": "Wir zentralisieren alle Ihre Dienste in einem einzigen Dashboard."
+  },
+  "developerAndApi": {
+    "header": "developer & API"
+  },
+  "installApp": {
+    "header": {
+      "start": "Download our app today.",
+      "end": " Fooddetective For Buisness."
+    }
   },
   "cooperations": {
     "clients": "Kunden",

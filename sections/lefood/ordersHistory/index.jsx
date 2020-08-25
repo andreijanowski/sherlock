@@ -87,7 +87,7 @@ const OrdersHistory = ({
           .toList()
           .toArray()) ||
       [],
-    [orders]
+    [orders, t]
   );
 
   return (

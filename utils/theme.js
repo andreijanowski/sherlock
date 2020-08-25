@@ -8,6 +8,7 @@ const borderWeights = {
 export const colors = {
   dark: "42, 47, 56",
   blue: "76, 104, 255",
+  darkBlue: "26, 31, 103",
   facebookBlue: "66, 103, 178",
   white: "255, 255, 255",
   background: "248, 249, 255",
@@ -38,6 +39,7 @@ const fontSizes = {
   f10: "10px",
   f12: "12px",
   f14: "14px",
+  f15: "15px",
   f16: "16px",
   f18: "18px",
   f21: "21px",
@@ -54,7 +56,8 @@ export const radius = {
   tiny: "2px",
   small: "4px",
   default: "6px",
-  double: "12px"
+  double: "12px",
+  biggest: "20px"
 };
 
 const fontWeights = {

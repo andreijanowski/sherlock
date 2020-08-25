@@ -44,28 +44,55 @@
     "delivery": "Lieferung / zum Mitnehmen",
     "redirections": "Weiterleitungen",
     "integrations": "Integrationen",
-    "digitalMarketing": "Digitales Marketing"
-  },
-  "essential": {
-    "name": "Wesentlich",
-    "priceDescription": "Für immer",
-    "price": {
-      "month": "Kostenlos",
-      "year": "Kostenlos"
-    },
-    "buttonText": "Profil erstellen"
+    "digitalMarketing": "Digitales Marketing",
+    "widgets": "Widgets",
+    "dashboard": "Dashboard"
   },
   "basic": {
     "name": "Basic",
     "mostPopular": "Am beliebtesten",
-    "priceDescription": "Beginnt um",
+    "priceDescription": "Forever",
     "price": {
-      "month": "29,90 €",
-      "year": "358,80 €",
-      "beta": "249,90 €"
+      "month": "Frei",
+      "year": "Frei",
+      "beta": "Frei"
     },
     "month": "Monat",
     "year": "Yahr",
-    "buttonText": "Fangen Sie an bei"
+    "buttonText": "Profil erstellen"
+  },
+  "essential": {
+    "name": "Wesentlich",
+    "priceDescription": "Beginnt um",
+    "price": {
+      "month": "29,90",
+      "year": "358,80",
+      "beta": "249,90"
+    },
+    "month": "Monat",
+    "year": "Yahr",
+    "buttonText": "Beginnt um"
+  },
+  "tailored": {
+    "name": "Tailored Made",
+    "priceDescription": "Beginnt um",
+    "price": {
+      "month": "299",
+      "year": "3000",
+      "beta": "beta"
+    },
+    "month": "Monat",
+    "year": "Yahr",
+    "buttonText": "Beginnt um"
+  },
+  "special": {
+    "name": "Special Requests",
+    "priceDescription": "",
+    "price": {
+      "month": "",
+      "year": "",
+      "beta": ""
+    },
+    "buttonText": "Contact our Sales Team"
   }
 }

@@ -11,6 +11,15 @@
     "watchVideo": "Regarder la vidéo",
     "testimonials": "Témoignages"
   },
+  "developersAndApi": {
+    "header": "Developer & API"
+  },
+  "installApp": {
+    "header": {
+      "start": "Download our app today.",
+      "end": " Fooddetective For Buisness."
+    }
+  },
   "services": {
     "header": "Services",
     "paragraph": {
@@ -32,9 +41,18 @@
       "RH & Salaires",
       "Fourniture",
       "Comptabilité",
-      "Intégrations"
+      "Food Waste",
+      "Hygiene",
+      "Packaging",
+      "Photography",
+      "Social Media",
+      "Stocks",
+      "Reviews"
     ],
     "more": "Nous centralisons tous vos services dans un tableau de bord unique."
+  },
+  "developerAndApi": {
+    "header": "developer & API"
   },
   "cooperations": {
     "clients": "Les clients",

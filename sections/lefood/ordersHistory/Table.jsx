@@ -39,7 +39,9 @@ const Table = ({
   const listRef = useRef(null);
   const itemCount = hasNextPage ? rows.length + 1 : rows.length;
   const loadMoreItems = isNextPageLoading ? () => {} : loadNextPage;
-  const isItemLoaded = index => !hasNextPage || index < rows.length;
+  const isItemLoaded = useCallback(
+    index => !hasNextPage || index < rows.length
+  );
 
   const RenderRow = useCallback(
     ({ index, style }) => {
@@ -69,7 +71,7 @@ const Table = ({
         </TableRow>
       );
     },
-    [rows]
+    [isItemLoaded, prepareRow, rows, toggleOrderDetails]
   );
 
   return (

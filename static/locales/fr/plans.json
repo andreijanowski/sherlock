@@ -44,28 +44,56 @@
     "paidBooking": "Réservation",
     "bookings": "Réservations",
     "privatisation": "Privatisation",
-    "digitalMarketing": "Le marketing numérique"
+    "digitalMarketing": "Le marketing numérique",
+    "widgets": "Widgets",
+    "dashboard": "Dashboard"
   },
-  "essential": {
-    "name": "Essentiel",
-    "priceDescription": "Pour toujours",
-    "price": {
-      "month": "Gratuit",
-      "year": "Gratuit"
-    },
-    "buttonText": "Créer un profil"
-  },
+
   "basic": {
     "name": "De base",
     "mostPopular": "Le plus populaire",
+    "priceDescription": "Forever",
+    "price": {
+      "month": "Free",
+      "year": "Free",
+      "beta": "Free"
+    },
+    "month": "mois",
+    "year": "année",
+    "buttonText": "Créer un profil"
+  },
+  "essential": {
+    "name": "Essentiel",
     "priceDescription": "À partir de",
     "price": {
-      "month": "29,90 €",
-      "year": "358,80 €",
-      "beta": "249,90 €"
+      "month": "29,90",
+      "year": "358,80",
+      "beta": "249,90"
     },
     "month": "mois",
     "year": "année",
     "buttonText": "Commencez à"
+  },
+  "tailored": {
+    "name": "Tailored Made",
+    "priceDescription": "À partir de",
+    "price": {
+      "month": "29,90",
+      "year": "358,80",
+      "beta": "249,90"
+    },
+    "month": "mois",
+    "year": "année",
+    "buttonText": "Commencez à"
+  },
+  "special": {
+    "name": "Special Requests",
+    "priceDescription": "",
+    "price": {
+      "month": "",
+      "year": "",
+      "beta": ""
+    },
+    "buttonText": "Contact our Sales Team"
   }
 }

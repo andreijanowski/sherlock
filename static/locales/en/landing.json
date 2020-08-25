@@ -12,7 +12,7 @@
     "testimonials": "Testimonials"
   },
   "services": {
-    "header": "Services",
+    "header": "Products",
     "paragraph": {
       "start": "Designed for your changing ",
       "firstKeyword": "needs",
@@ -35,6 +35,9 @@
       "Integrations"
     ],
     "more": "We centralize all your services into a single dashboard."
+  },
+  "developersAndApi": {
+    "header": "Developer & API"
   },
   "cooperations": {
     "clients": "Clients",
@@ -59,7 +62,7 @@
     }
   },
   "features": {
-    "header": "Features",
+    "header": "Integrations",
     "navItems": {
       "visibility": "Visibility",
       "analytics": "Analytics",
