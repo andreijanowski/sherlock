@@ -34,11 +34,15 @@ const Plan = ({
 
   return (
     <MainWrapper>
-      <Name color={color} justifyContent={["center", "flex-start"]}>
+      <Name
+        color={color}
+        justifyContent={["center", "flex-start"]}
+        mb={[0, 20]}
+      >
         {t(`plans:${name}.name`)}
       </Name>
-      <PriceWrapper>
-        <PriceDescription>
+      <PriceWrapper special={name === "special"}>
+        <PriceDescription mt={[0, 20]}>
           {t(`plans:${name}.priceDescription`)}
         </PriceDescription>
         {name === "basic" || name === "special" ? (
@@ -66,7 +70,7 @@ const Plan = ({
           />
         </Button>
       </Flex>
-      <Box mt={5}>
+      <Box mt={[1, 5]}>
         <List {...{ t, name }} />
       </Box>
     </MainWrapper>

@@ -23,8 +23,8 @@ export const PlansWrapper = styled(Flex).attrs(() => ({
 export const TextWrapper = styled(Flex).attrs(() => ({
   width: 1,
   flexDirection: "column",
-  alignSelf: "center",
-  mb: [10, 20]
+  alignSelf: "center"
+  /* mb: [10, 20] */
 }))`
   max-width: 1150px;
 `;
