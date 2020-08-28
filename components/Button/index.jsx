@@ -92,7 +92,8 @@ const planButton = css`
 const goToApiDocs = css`
   width: 100%;
   max-width: 400px;
-  height: 60px;
+  height: 100%;
+  min-height: 60px;
   padding: 12px;
   color: white;
   font-weight: ${p => p.theme.fontWeights.semiBold};
@@ -110,6 +111,7 @@ const goToApiDocs = css`
 
 const becomePartner = css`
   ${goToApiDocs};
+  margin: 12px 0;
   background: rgba(${p => p.theme.colors.purpleBlue}, 1);
   box-shadow: none;
   &:hover {

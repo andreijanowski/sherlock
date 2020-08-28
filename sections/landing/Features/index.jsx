@@ -6,15 +6,15 @@ import { FeaturesWrapper, Image, H2Styled } from "./styled";
 import { BlueText } from "../sharedStyled";
 
 const Features = ({ t, featuresRef }) => (
-  <FeaturesWrapper ref={featuresRef} width="auto" py={75}>
-    <Box my={[80, 100]} width={[1]}>
+  <FeaturesWrapper ref={featuresRef} width="auto" pt={75} pb={[0, 75]}>
+    <Box mt={[80, 100]} mb={[0, 60]} width={[1]}>
       <H2Styled>{t("features.header")}</H2Styled>
       <H2Styled>
         {t("features.subHeader.start")}
         <BlueText>{t("features.subHeader.end")}</BlueText>
       </H2Styled>
     </Box>
-    <Image />
+    <Image src="/static/img/features/integrations.png" />
     <Flex width={1} justifyContent="center" mt={[0, 40]}>
       <Button
         styleName="becomePartner"
