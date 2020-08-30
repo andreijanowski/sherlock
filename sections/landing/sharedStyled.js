@@ -11,7 +11,6 @@ export const alignCenterMobile = css`
 
 export const BlueText = styled.span`
   color: rgb(${p => p.theme.colors.blue});
-  white-space: nowrap;
 `;
 export const WhiteText = styled.span`
   color: rgb(${p => p.theme.colors.blue});

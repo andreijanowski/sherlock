@@ -22,7 +22,6 @@ export const NameWrapper = styled(Flex).attrs(() => ({
 `;
 
 export const Name = styled(Flex)`
-  margin-bottom: 20px;
   color: #828282;
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes.f15};
@@ -47,12 +46,16 @@ export const PriceWrapper = styled(Flex).attrs(() => ({
   mb: 3
 }))`
   position: relative;
-  min-height: 130px;
+  display: ${p => (p.special ? "none" : "flex")};
+
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    display: flex;
+    min-height: 130px;
+  }
 `;
 
 export const PriceDescription = styled(Box)`
   ${alignCenterMobile};
-  margin-top: 20px;
   color: rgba(${p => p.theme.colors.dark}, 0.8);
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.f30};
@@ -70,7 +73,6 @@ export const Billing = styled.span`
 
 export const Price = styled(Box)`
   ${alignCenterMobile};
-  margin-bottom: 40px;
   color: rgb(${p => p.theme.colors.blue});
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.f30};

@@ -66,9 +66,10 @@ const Navigation = ({ t, lng, scrollTo }) => (
     </Flex>
     <Flex
       width={1}
-      flexDirection="row"
+      flexDirection={["column", "row"]}
       justifyContent="space-between"
       alignItems="center"
+      mt={[20, 0]}
     >
       <StyledHeaderParagraph>
         Foodetective <span> For Business</span>

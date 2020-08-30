@@ -27,15 +27,11 @@ export const H2Styled = styled(H2)`
   letter-spacing: 0.6px;
 `;
 
-export const Image = styled.div`
-  width: 100vw;
-  min-height: 400px;
-  background-image: url("/static/img/features/integrations.png");
-  background-repeat: no-repeat;
-  background-position: top left;
-  background-size: contain;
+export const Image = styled.img`
+  height: 50vh;
+  object-fit: contain;
+
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
-    width: 100vw;
-    min-height: 600px;
+    height: 100vh;
   }
 `;

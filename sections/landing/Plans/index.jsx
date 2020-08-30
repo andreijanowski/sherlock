@@ -11,7 +11,7 @@ const PlansMainComponent = ({
   billingInterval,
   handleChangeBillngPeriod
 }) => (
-  <Flex ref={plansRef} flexDirection="column" width={1} mb={6} mt={4} px={3}>
+  <Flex ref={plansRef} flexDirection="column" width={1} mt={3} px={3}>
     <TextWrapper>
       <Flex
         flexDirection="row"
