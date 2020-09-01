@@ -22,10 +22,12 @@ export const NameWrapper = styled(Flex).attrs(() => ({
 `;
 
 export const Name = styled(Flex)`
-  color: #828282;
+  color: black;
+
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes.f15};
   letter-spacing: 0.3px;
+  text-decoration: underline;
 `;
 
 export const MostPopular = styled.div`

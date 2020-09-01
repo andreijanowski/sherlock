@@ -4,7 +4,7 @@
     "start": "Pay",
     "end": " as you grow."
   },
-  "paragraph": "Choose the plan that suits your business goals, size & growth plans. If you run a large franchise or group please get in touch with our team for our tailor made option.",
+  "paragraph": " Choose the plan that suits your business goals, size & growth plans. If you run a large franchise or group please get in touch with our team for our tailor made option.",
   "yourCurrentPlan": "Your current plan",
   "paymentInfo": "Payment informations",
   "changeCard": "Change card",
@@ -33,7 +33,7 @@
     "endFirstLine": "Just complete your profile online. The offer is very limited, we have only ",
     "endLastLine": "1000 slots left."
   },
-  "billingYearly": "Billing Yearly (save up to 30%)",
+  "billingYearly": "Billing Yearly (save 30%)",
   "billingMonthly": "Billing Monthly",
   "options": {
     "website": "Webpage",
@@ -52,7 +52,10 @@
     "reviews": "Reviews",
     "suppliers": "Suppliers",
     "widgets": "Widgets",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "payments": "Payments",
+    "wholesalers": "Wholesalers",
+    "visibility": "Premium Visibility"
   },
 
   "basic": {
@@ -66,40 +69,40 @@
     },
     "month": "month",
     "year": "year",
-    "buttonText": "Create profile"
+    "buttonText": "Start today"
   },
   "essential": {
-    "name": "Essential",
+    "name": "Essential (Most Popular)",
     "priceDescription": "Starting at",
     "price": {
-      "month": "29",
-      "year": "299",
-      "beta": "29"
+      "month": "29.90",
+      "year": "249",
+      "beta": "29.90"
     },
     "month": "month",
     "year": "year",
-    "buttonText": "Get started at"
+    "buttonText": "Starting at"
   },
   "tailored": {
-    "name": "Tailored Made",
+    "name": "Premium",
     "priceDescription": "Starting at",
     "price": {
       "month": "299",
-      "year": "3000",
+      "year": "2499",
       "beta": "beta"
     },
     "month": "month",
     "year": "year",
-    "buttonText": "Get started at"
+    "buttonText": "Starting at"
   },
   "special": {
-    "name": "Special Requests",
-    "priceDescription": "",
+    "name": "Enterprise",
+    "priceDescription": "Let's Talk",
     "price": {
       "month": "",
       "year": "",
       "beta": ""
     },
-    "buttonText": "Contact our Sales Team"
+    "buttonText": "Book a Meeting"
   }
 }

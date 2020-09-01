@@ -70,9 +70,11 @@ const Plan = ({
           />
         </Button>
       </Flex>
-      <Box mt={[1, 5]}>
-        <List {...{ t, name }} />
-      </Box>
+      {name !== "special" && (
+        <Box mt={[1, 5]}>
+          <List {...{ t, name }} />
+        </Box>
+      )}
     </MainWrapper>
   );
 };

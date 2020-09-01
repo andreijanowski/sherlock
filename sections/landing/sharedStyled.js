@@ -10,7 +10,9 @@ export const alignCenterMobile = css`
 `;
 
 export const BlueText = styled.span`
+  display: inline-block;
   color: rgb(${p => p.theme.colors.blue});
+  text-align: center;
 `;
 export const WhiteText = styled.span`
   color: rgb(${p => p.theme.colors.blue});
@@ -27,14 +29,13 @@ export const H2Styled = styled(H2)`
 export const ParagraphStyled = styled("p")`
   ${alignCenterMobile}
   margin: 0;
-  color: rgb(${p => p.theme.colors.white});
-  font-weight: ${p => p.theme.fontWeights.semiBold};
+  color: #e0e0e0;
+  font-weight: 500;
   font-size: ${p => p.theme.fontSizes.f16};
-  line-height: 24px;
-  letter-spacing: 1.2px;
-  @media (min-width: ${p => p.theme.breakpoints[0]}) {
-    font-size: ${p => p.theme.fontSizes.f30};
-    line-height: 40px;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+  @media (min-width: ${p => p.theme.breakpoints[2]}) {
+    font-size: ${p => p.theme.fontSizes.f16};
   }
 `;
 
@@ -52,7 +53,7 @@ export const NavigationWrapper = styled(Box).attrs(() => ({
 
 export const TopSectionWrapper = styled(Box)`
   width: 100%;
-  background: linear-gradient(170deg, #1a1f67 50%, #020025 50%);
+  background: linear-gradient(170deg, #1a1f67 47%, #020025 47%);
 `;
 
 export const ProductsWrapper = styled(Box)`
@@ -84,7 +85,7 @@ export const PlansWrapper = styled(Box)`
 export const InstallAppWrapper = styled(Box)`
   width: 100%;
   background: linear-gradient(transparent 0%, transparent 85%, #eff2ff 100%),
-    linear-gradient(170deg, white 65%, #a6b4ff 65%, #eff2ff 85%);
+    linear-gradient(170deg, white 62%, #a6b4ff 62%, #eff2ff 85%);
 `;
 
 export const FooterWrapper = styled(Flex)`

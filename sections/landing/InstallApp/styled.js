@@ -30,6 +30,7 @@ export const NavigationLink = styled.a`
 
 export const H2Styled = styled(H2)`
   ${alignCenterMobile}
+  margin: 0;
   color: black;
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f30};

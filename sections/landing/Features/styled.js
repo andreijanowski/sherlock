@@ -28,10 +28,19 @@ export const H2Styled = styled(H2)`
 `;
 
 export const Image = styled.img`
-  height: 50vh;
-  object-fit: contain;
+  width: auto;
+  object-fit: fill;
+`;
 
-  @media (min-width: ${p => p.theme.breakpoints[0]}) {
-    height: 100vh;
+export const ParagraphStyled = styled("p")`
+  ${alignCenterMobile}
+  margin: 0;
+  color: black;
+  font-weight: 500;
+  font-size: ${p => p.theme.fontSizes.f16};
+  line-height: 20px;
+  letter-spacing: 0.3px;
+  @media (min-width: ${p => p.theme.breakpoints[2]}) {
+    font-size: ${p => p.theme.fontSizes.f16};
   }
 `;
