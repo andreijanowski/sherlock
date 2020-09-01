@@ -21,10 +21,12 @@ const InstallApp = ({ t }) => (
       width={1}
     >
       <FoodetectiveLogo squared />
-      <H2Styled my={30}>
-        {t("installApp.header.start")}
-        <BlueText>{t("installApp.header.end")}</BlueText>
-      </H2Styled>
+      <Box my={30}>
+        <H2Styled mt={30}>{t("installApp.header.start")}</H2Styled>
+        <H2Styled>
+          <BlueText>{t("installApp.header.end")}</BlueText>
+        </H2Styled>
+      </Box>
       <Box>
         <NavigationLink href="#">
           <AppPlatformLogo src="/static/img/applestore.png" />

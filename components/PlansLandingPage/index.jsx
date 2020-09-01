@@ -92,7 +92,7 @@ const PlansLandingPage = ({
             if (choosePlan) {
               choosePlan("special");
             } else {
-              window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=special`;
+              window.location.href = `https://share.hsforms.com/1UW67s4YOTTKvC2NIum5X0w3cpmu`;
             }
           }
         }}

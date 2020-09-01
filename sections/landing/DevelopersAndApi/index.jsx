@@ -9,11 +9,11 @@ const DevelopersAndApi = ({ t, developersAndApiRef }) => (
   <DevelopersAndApiWrapper ref={developersAndApiRef}>
     <Box width={[1, 1 / 2]}>
       <H2Styled>{t("developersAndApi.header")}</H2Styled>
-      <H2Styled>
+      <ParagraphStyled>
         {t("developersAndApi.subHeader.start")}
         <BlueText>{t("developersAndApi.subHeader.end")}</BlueText>
-      </H2Styled>
-      <ParagraphStyled>{t("developersAndApi.paragraph")}</ParagraphStyled>
+        {t("developersAndApi.paragraph")}
+      </ParagraphStyled>
     </Box>
     <Flex width={1} justifyContent="center" mt={[40, 80]}>
       <Button

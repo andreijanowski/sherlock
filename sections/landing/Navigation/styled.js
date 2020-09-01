@@ -16,7 +16,7 @@ export const StyledParagraph = styled(Box).attrs(() => ({
   my: 0,
   px: 18
 }))`
-  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-weight: ${p => p.theme.fontWeights.regular};
   font-size: ${p => p.theme.fontSizes.f18};
   line-height: 28px;
   letter-spacing: 0.36px;
@@ -36,6 +36,7 @@ export const StyledNavigationLink = styled(Box).attrs(() => ({
   font-size: ${p => p.theme.fontSizes.f14};
   letter-spacing: 0.3px;
   cursor: ${p => (p.active ? "auto" : "pointer")};
+  opacity: ${p => (p.active ? 1 : 0.5)};
   &:hover {
     color: rgba(${p => p.theme.colors.white}, 0.35);
   }

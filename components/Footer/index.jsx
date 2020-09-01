@@ -1,14 +1,7 @@
 import { withTranslation } from "i18n";
 import { func } from "prop-types";
-import { FoodetectiveLogo } from "components";
 import { privacyPolicyLink, termsAndConditionsLink } from "consts";
-import {
-  FooterWrapper,
-  MenuWrapper,
-  ColumnTitle,
-  FoodetectiveLogoWrapper,
-  NavItem
-} from "./styled";
+import { FooterWrapper, MenuWrapper, ColumnTitle, NavItem } from "./styled";
 import NavigationList from "./navigationList";
 
 const namespaces = ["footer"];
@@ -16,9 +9,6 @@ const namespaces = ["footer"];
 const Footer = ({ t }) => (
   // const currentYear = new Date().getFullYear();
   <FooterWrapper width={["auto", 1150]} mt={[-400, 0]}>
-    <FoodetectiveLogoWrapper px={4}>
-      <FoodetectiveLogo />
-    </FoodetectiveLogoWrapper>
     <MenuWrapper>
       <NavItem width={[1 / 2, 1 / 4]} p={4}>
         <ColumnTitle>{t("navigation.columnOne.title")}</ColumnTitle>
