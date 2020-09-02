@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Service, Design, Tooltip } from "./styled";
+import { Service, Design, Tooltip, Badge } from "./styled";
 import { generatePlanOptionsList } from "./utils";
 
-const List = ({ t, name: listName }) =>
+const List = ({ t, name: listName, color }) =>
   generatePlanOptionsList(listName, t).map(
-    ({ name, isHighlighted, isLighter, tooltipImage }) => {
+    ({ name, isHighlighted, isLighter, tooltipImage, discount }) => {
       const item = (
         <Service
           key={name}
@@ -12,6 +12,7 @@ const List = ({ t, name: listName }) =>
           justifyContent={["center", "flex-start"]}
         >
           {name}
+          {discount && <Badge color={color}>{discount}</Badge>}
           {tooltipImage && (
             <>
               {" "}
