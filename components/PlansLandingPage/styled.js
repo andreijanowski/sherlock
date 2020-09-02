@@ -27,18 +27,25 @@ export const Name = styled(Flex)`
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes.f15};
   letter-spacing: 0.3px;
-  text-decoration: underline;
+  p {
+    padding: 10px 30px;
+    border: ${p => p.theme.borderWeights.normal} solid
+      rgb(${p => p.theme.colors.blue});
+    border-radius: ${p => p.theme.radius.default};
+  }
 `;
 
 export const MostPopular = styled.div`
-  margin: 2px;
+  display: flex;
+  align-items: center;
+  margin: 15px 2px;
   padding: 2px 6px;
   color: rgb(${p => p.theme.colors[p.color]});
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.f12};
   line-height: 1.15;
   background: rgb(${p => p.theme.colors.white});
-  border: ${p => p.theme.borderWeights.tiny} solid
+  border: ${p => p.theme.borderWeights.normal} solid
     rgb(${p => p.theme.colors[p.color]});
   border-radius: ${p => p.theme.radius.default};
 `;

@@ -8,6 +8,7 @@ import {
   PriceWrapper,
   PriceDescription,
   Price,
+  MostPopular,
   Billing
 } from "./styled";
 import List from "./list";
@@ -39,8 +40,16 @@ const Plan = ({
         justifyContent={["center", "flex-start"]}
         mb={[0, 20]}
       >
-        {t(`plans:${name}.name`)}
+        <p>{t(`plans:${name}.name`)}</p>
+        {name === "essential" && (
+          <>
+            <MostPopular color={color}>
+              {t(`plans:${name}.mostPopular`)}
+            </MostPopular>
+          </>
+        )}
       </Name>
+
       <PriceWrapper special={name === "special"}>
         <PriceDescription mt={[0, 20]}>
           {t(`plans:${name}.priceDescription`)}
