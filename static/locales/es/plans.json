@@ -1,5 +1,9 @@
 {
   "header": "Pague en función de su crecimiento",
+  "subHeader": {
+    "start": "Paga",
+    "end": " a medida que creces."
+  },
   "paragraph": "Elija el plan el mas adaptado a sus objetivos comerciales, tamaño y planes de crecimiento. Si tiene una gran franquicia o grupo, póngase en contacto con nuestro equipo para obtener nuestra opción a medida.",
   "yourCurrentPlan": "Tu Plan actual",
   "paymentInfo": "Informaciones de pago",
@@ -46,12 +50,17 @@
     "redirections": "Redirecciones",
     "integrations": "Integraciones",
     "widgets": "Widgets",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "reviews": "Reviews",
+    "suppliers": "Proveedores",
+    "payments": "Payments",
+    "wholesalers": "Wholesalers",
+    "visibility": "Premium Visibility"
   },
   "basic": {
     "name": "Básico",
     "mostPopular": "Más popular",
-    "priceDescription": "A partir de",
+    "priceDescription": "Para siempre",
     "price": {
       "month": "Free",
       "year": "Free",
@@ -65,9 +74,9 @@
     "name": "Esencial",
     "priceDescription": "Siempre",
     "price": {
-      "month": "29,90",
-      "year": "358,80",
-      "beta": "249,90"
+      "month": "29.90",
+      "year": "249",
+      "beta": "29.90"
     },
     "month": "mes",
     "year": "año",
@@ -75,24 +84,24 @@
   },
   "tailored": {
     "name": "Tailored Made",
-    "priceDescription": "Siempre",
+    "priceDescription": "Premium",
     "price": {
-      "month": "29,90",
-      "year": "358,80",
-      "beta": "249,90"
+      "month": "299",
+      "year": "2499",
+      "beta": "beta"
     },
     "month": "mes",
     "year": "año",
     "buttonText": "Comience a las"
   },
   "special": {
-    "name": "Special Request",
-    "priceDescription": "",
+    "name": "Enterprise",
+    "priceDescription": "Let's Talk",
     "price": {
       "month": "",
       "year": "",
       "beta": ""
     },
-    "buttonText": "Contact our Sales Team"
+    "buttonText": "Book a Meeting"
   }
 }

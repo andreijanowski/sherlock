@@ -14,7 +14,7 @@
   },
   "installApp": {
     "header": {
-      "start": "Download our app today.",
+      "start": "Descarga nuestra aplicación hoy.",
       "end": " Foodtective For Business."
     }
   },
@@ -41,16 +41,22 @@
       "Contabilidad",
       "Desechos alimentarios",
       "Higiene",
-      "Packaging",
-      "Photography",
-      "Social Media",
-      "Stocks",
-      "Reviews"
+      "Empaquetado",
+      "Fotografía",
+      "Redes Sociales",
+      "Inventario",
+      "Reseñas"
     ],
     "more": "Centralizamos todos sus servicios en un solo tablero."
   },
-  "developerAndApi": {
-    "header": "developer & API"
+  "developersAndApi": {
+    "header": "Developer & API",
+    "subHeader": {
+      "start": "Obtenga acceso a nuestra  ",
+      "end": "API."
+    },
+    "paragraph": " Nuestros socios están desarrollando tecnología y software para incrementar el negocio online, facilitar nuevos tipos de negocios y ayudarles a trabajar de una manera más eficiente. Además, hemos diseñado un programa para ayudar a acelerar y amplificar su impacto.",
+    "goToApiDocs": "Lee los documentos"
   },
   "cooperations": {
     "clients": "Clientela",
@@ -76,6 +82,10 @@
   },
   "features": {
     "header": "Caracteristicas",
+    "subHeader": {
+      "start": "Registra y gestiona tu restaurante con Foodetective y nuestros socios. ",
+      "end": " No se requiere escribir código."
+    },
     "navItems": {
       "visibility": "Visibilidad",
       "analytics": "Analítica",

@@ -13,11 +13,17 @@
     "testimonials": "Témoignages"
   },
   "developersAndApi": {
-    "header": "Developer & API"
+    "header": "Developer & API",
+    "subHeader": {
+      "start": "Accédez à notre ",
+      "end": "API."
+    },
+    "paragraph": " Nos partenaires développent des technologies et des logiciels qui permettent de mettre en ligne un plus grand nombre d'entreprises, de créer de nouveaux types d'entreprises et de les aider à travailler plus efficacement. Nous avons conçu un programme pour aider à accélérer et à amplifier leur impact.",
+    "goToApiDocs": "Lire les documents"
   },
   "installApp": {
     "header": {
-      "start": "Download our app today.",
+      "start": "Téléchargez notre application dès aujourd'hui.",
       "end": " Foodetective For Business."
     }
   },
@@ -44,11 +50,11 @@
       "Comptabilité",
       "Déchets alimentaires",
       "Hygiène",
-      "Packaging",
-      "Photography",
-      "Social Media",
-      "Stocks",
-      "Reviews"
+      "Emballage",
+      "Photographe",
+      "Les réseaux sociaux",
+      "Les stocks",
+      "Nos avis"
     ],
     "more": "Nous centralisons tous vos services dans un tableau de bord unique."
   },
@@ -79,6 +85,10 @@
   },
   "features": {
     "header": "Fonctionnalités",
+    "subHeader": {
+      "start": "Créez et gérez votre restaurant avec Foodetective et nos partenaires. ",
+      "end": " Aucun code requis."
+    },
     "navItems": {
       "visibility": "Visibilité",
       "analytics": "Statistiques",

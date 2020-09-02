@@ -13,10 +13,20 @@
     "testimonials": "Referenzen"
   },
   "developersAndApi": {
-    "header": "Developer & API"
+    "header": "Developer & API",
+    "subHeader": {
+      "start": "Erhalten Sie Zugriff auf unsere ",
+      "end": "API."
+    },
+    "paragraph": " Unsere Partner entwickeln Technologien und Software, die mehr Unternehmen online bringen, neue Arten von Unternehmen ermöglichen und ihnen helfen, effektiver zu arbeiten. Wir haben ein Programm entwickelt, um deren Wirkung zu beschleunigen und zu verstärken.",
+    "goToApiDocs": "Lesen Sie die Dokumente"
   },
   "services": {
     "header": "Dienstleistungen",
+    "subHeader": {
+      "start": "Erstellen und betreiben Sie Ihr Restaurant mit Foodetective und unseren Partnern. ",
+      "end": " Kein Code erforderlich."
+    },
     "paragraph": {
       "start": "Entworfen für Ihre ",
       "firstKeyword": "Bedürfnisse",
@@ -39,11 +49,11 @@
       "Buchhaltung",
       "Lebensittelverschwendung",
       "Hygiene",
-      "Packaging",
-      "Photography",
+      "Verpackung",
+      "Fotografie",
       "Social Media",
-      "Stocks",
-      "Reviews"
+      "Aktien",
+      "Bewertungen"
     ],
     "more": "Wir zentralisieren alle Ihre Dienste in einem einzigen Dashboard."
   },
@@ -52,7 +62,7 @@
   },
   "installApp": {
     "header": {
-      "start": "Download our app today.",
+      "start": "Laden Sie unsere App noch Heute herunter.",
       "end": " Foodetective For Business."
     }
   },

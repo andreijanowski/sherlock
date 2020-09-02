@@ -1,5 +1,9 @@
 {
   "header": "Zahlen Sie, wenn Sie wachsen",
+  "subHeader": {
+    "start": "Zahlen Sie",
+    "end": " en grandissant."
+  },
   "paragraph": "Wählen Sie den Plan, der Ihren Geschäftszielen, Größen- und Wachstumsplänen entspricht. Wenn Sie eine große Franchise oder Gruppe leiten, wenden Sie sich bitte an unser Team, um unsere maßgeschneiderte Option zu erhalten.",
   "yourCurrentPlan": "Ihr aktueller Plan",
   "paymentInfo": "Zahlungsinformationen",
@@ -46,12 +50,17 @@
     "integrations": "Integrationen",
     "digitalMarketing": "Digitales Marketing",
     "widgets": "Widgets",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "reviews": "Reviews",
+    "suppliers": "Lieferanten",
+    "payments": "Payments",
+    "wholesalers": "Wholesalers",
+    "visibility": "Premium Visibility"
   },
   "basic": {
     "name": "Basic",
     "mostPopular": "Am beliebtesten",
-    "priceDescription": "Forever",
+    "priceDescription": "Ewig",
     "price": {
       "month": "Frei",
       "year": "Frei",
@@ -65,20 +74,20 @@
     "name": "Wesentlich",
     "priceDescription": "Beginnt um",
     "price": {
-      "month": "29,90",
-      "year": "358,80",
-      "beta": "249,90"
+      "month": "29.90",
+      "year": "249",
+      "beta": "29.90"
     },
     "month": "Monat",
     "year": "Yahr",
     "buttonText": "Beginnt um"
   },
   "tailored": {
-    "name": "Tailored Made",
+    "name": "Premium",
     "priceDescription": "Beginnt um",
     "price": {
       "month": "299",
-      "year": "3000",
+      "year": "2499",
       "beta": "beta"
     },
     "month": "Monat",
@@ -86,13 +95,13 @@
     "buttonText": "Beginnt um"
   },
   "special": {
-    "name": "Special Request",
-    "priceDescription": "",
+    "name": "Enterprise",
+    "priceDescription": "Let's Talk",
     "price": {
       "month": "",
       "year": "",
       "beta": ""
     },
-    "buttonText": "Contact our Sales Team"
+    "buttonText": "Book a Meeting"
   }
 }
