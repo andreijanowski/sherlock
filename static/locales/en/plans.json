@@ -72,8 +72,9 @@
     "buttonText": "Start today"
   },
   "essential": {
-    "name": "Essential (Most Popular)",
+    "name": "Essential",
     "priceDescription": "Starting at",
+    "mostPopular": "Most popular",
     "price": {
       "month": "29.90",
       "year": "249",
