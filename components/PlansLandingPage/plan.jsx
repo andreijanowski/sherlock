@@ -72,7 +72,7 @@ const Plan = ({
       </Flex>
       {name !== "special" && (
         <Box mt={[1, 5]}>
-          <List {...{ t, name }} />
+          <List {...{ t, name, color }} />
         </Box>
       )}
     </MainWrapper>

@@ -48,7 +48,6 @@ export const PriceWrapper = styled(Flex).attrs(() => ({
   mb: 3
 }))`
   position: relative;
-  display: ${p => (p.special ? "none" : "flex")};
 
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     display: flex;

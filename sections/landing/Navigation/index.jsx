@@ -32,44 +32,45 @@ const Navigation = ({ t, lng, scrollTo }) => (
     as="header"
     alignItems="flex-start"
     flexDirection="column"
-    mt={[4, 2]}
+    mt={0}
   >
     <Flex
-      justifyContent="space-between"
-      width={1}
-      alignItems="center"
-      mt={[4, 2]}
+      css={{ background: "#27378e", width: "100%", margin: "0" }}
+      justifyContent="center"
     >
-      <Flex
-        as="ul"
-        width={1}
-        justifyContent="flex-start"
-        alignItems="flex-end"
-        flexWrap="wrap"
-        css={{
-          paddingInlineStart: "0",
-          color: "white"
-        }}
-      >
-        <StyledNavigationLink
-          onClick={() => {
-            window.location.href = "http://foodetective.co";
+      <Flex justifyContent="space-between" width={1150} alignItems="center">
+        <Flex
+          as="ul"
+          width={1}
+          css={{
+            paddingInlineStart: "0",
+            color: "white"
           }}
         >
-          {t("common:personal")}
-        </StyledNavigationLink>
-        <StyledNavigationLink active>
-          {t("common:business")}
-        </StyledNavigationLink>
+          <StyledNavigationLink
+            onClick={() => {
+              window.location.href = "http://foodetective.co";
+            }}
+          >
+            {t("common:personal")}
+          </StyledNavigationLink>
+          <StyledNavigationLink active>
+            {t("common:business")}
+          </StyledNavigationLink>
+        </Flex>
+        <LanguageSwitcher />
       </Flex>
-      <LanguageSwitcher />
     </Flex>
     <Flex
       width={1}
       flexDirection={["column", "row"]}
       justifyContent="space-between"
       alignItems="center"
+      alignSelf="center"
       mt={[20, 0]}
+      css={{
+        maxWidth: "1150px"
+      }}
     >
       <StyledHeaderParagraph>
         Foodetective <span> For Business</span>

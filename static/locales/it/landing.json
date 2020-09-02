@@ -12,12 +12,9 @@
     "watchVideo": "Guarda un video",
     "testimonials": "Testimonianze"
   },
-  "developersAndApi": {
-    "header": "Developer & API"
-  },
   "installApp": {
     "header": {
-      "start": "Download our app today.",
+      "start": "Scarica la nostra app.",
       "end": " Foodetective For Business."
     }
   },
@@ -45,15 +42,21 @@
       "Rifiuti alimentari",
       "Igiene",
       "Packaging",
-      "Photography",
+      "Fotografie",
       "Social Media",
-      "Stocks",
-      "Reviews"
+      "Inventario",
+      "Recensioni"
     ],
     "more": "Centralizziamo tutti i tuoi servizi in un'unica dashboard."
   },
-  "developerAndApi": {
-    "header": "developer & API"
+  "developersAndApi": {
+    "header": "Developer & API",
+    "subHeader": {
+      "start": "Ottenere l'accesso alle nostra ",
+      "end": "API."
+    },
+    "paragraph": " I nostri partner costruiscono tecnologie e software che portano più aziende online, consentono nuovi tipi di attività e le aiutano a lavorare in modo più efficace. Abbiamo progettato un programma che aiuta ad accelerare e ad amplificare il loro impatto.",
+    "goToApiDocs": " Leggi i documenti"
   },
   "cooperations": {
     "clients": "Clienti",
@@ -79,6 +82,10 @@
   },
   "features": {
     "header": "Caratteristiche",
+    "subHeader": {
+      "start": "Crea e gestisci il tuo ristorante con Foodetective e i nostri partner. ",
+      "end": " Nessun codice richiesto."
+    },
     "navItems": {
       "visibility": "Visibilità",
       "analytics": "Analitica",

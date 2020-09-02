@@ -28,8 +28,10 @@ export const H2Styled = styled(H2)`
 `;
 
 export const Image = styled.img`
-  width: auto;
-  object-fit: fill;
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 20px 0;
 `;
 
 export const ParagraphStyled = styled("p")`
