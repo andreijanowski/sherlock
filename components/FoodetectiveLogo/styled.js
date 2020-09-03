@@ -9,8 +9,8 @@ export const Brandmark = styled.img.attrs(() => ({
 export const SquaredBrandmark = styled.img.attrs(() => ({
   src: "/static/img/logoFoodetectiveSquared.png"
 }))`
-  min-width: 78px;
-  min-height: 78px;
+  width: 78px;
+  height: 78px;
 `;
 
 export const BrandmarkWrapper = styled.div`
