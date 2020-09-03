@@ -15,10 +15,15 @@ export const NameWrapper = styled(Flex).attrs(() => ({
   m: "-2px",
   flexWrap: "wrap"
 }))`
-  position: absolute;
-  top: -10px;
-  left: 16px;
+  position: relative;
   z-index: 1;
+  justify-content: center;
+
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    position: absolute;
+    top: -10px;
+    left: 16px;
+  }
 `;
 
 export const Name = styled(Flex)`
@@ -27,11 +32,11 @@ export const Name = styled(Flex)`
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes.f15};
   letter-spacing: 0.3px;
+
   p {
-    padding: 10px 30px;
-    border: ${p => p.theme.borderWeights.normal} solid
-      rgb(${p => p.theme.colors.blue});
-    border-radius: ${p => p.theme.radius.default};
+    padding: 6px 12px;
+    border-radius: 45px;
+    box-shadow: 8px 14px 12px -12px rgba(176, 176, 176, 1);
   }
 `;
 
@@ -43,11 +48,10 @@ export const MostPopular = styled.div`
   color: rgb(${p => p.theme.colors[p.color]});
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.f12};
-  line-height: 1.15;
   background: rgb(${p => p.theme.colors.white});
   border: ${p => p.theme.borderWeights.normal} solid
     rgb(${p => p.theme.colors[p.color]});
-  border-radius: ${p => p.theme.radius.default};
+  border-radius: 45px;
 `;
 
 export const PriceWrapper = styled(Flex).attrs(() => ({
@@ -124,7 +128,7 @@ export const Service = styled(Flex).attrs(() => ({ mb: 1 }))`
 export const Badge = styled.span`
   margin-right: 4px;
   padding: 2px 8px;
-  color: rgb(${p => p.theme.colors[p.color]});
+  color: rgb(${p => p.theme.colors.blue});
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.f14};
   line-height: 1.15;
@@ -171,6 +175,9 @@ export const MainWrapper = styled(Flex).attrs(() => ({
   flexDirection: "column"
 }))`
   position: relative;
+  margin: 0 10px;
+  padding: 30px;
+  box-shadow: 8px 14px 12px -12px rgba(176, 176, 176, 1);
   &:hover {
     ${Service} {
       color: rgba(${p => p.theme.colors.blue}, 0.8);

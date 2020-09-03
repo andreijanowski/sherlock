@@ -25,7 +25,7 @@ export const generatePlanOptionsList = (planName, t) => {
         },
         {
           name: t("plans:options.payments"),
-          discount: "*"
+          discount: ""
         },
         {
           name: t("plans:options.reviews")
@@ -70,7 +70,7 @@ export const generatePlanOptionsList = (planName, t) => {
         },
         {
           name: t("plans:options.payments"),
-          discount: "*"
+          discount: ""
         },
         {
           name: t("plans:options.reviews")
@@ -109,10 +109,6 @@ export const generatePlanOptionsList = (planName, t) => {
         {
           name: t("plans:options.reservations"),
           discount: "1€"
-        },
-        {
-          name: t("plans:options.payments"),
-          discount: "*"
         },
         {
           name: t("plans:options.reviews")

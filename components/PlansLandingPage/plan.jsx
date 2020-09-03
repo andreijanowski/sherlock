@@ -9,7 +9,8 @@ import {
   PriceDescription,
   Price,
   MostPopular,
-  Billing
+  Billing,
+  NameWrapper
 } from "./styled";
 import List from "./list";
 
@@ -35,20 +36,22 @@ const Plan = ({
 
   return (
     <MainWrapper>
-      <Name
-        color={color}
-        justifyContent={["center", "flex-start"]}
-        mb={[0, 20]}
-      >
-        <p>{t(`plans:${name}.name`)}</p>
-        {name === "essential" && (
-          <>
-            <MostPopular color={color}>
-              {t(`plans:${name}.mostPopular`)}
-            </MostPopular>
-          </>
-        )}
-      </Name>
+      <NameWrapper>
+        <Name
+          color={color}
+          justifyContent={["center", "flex-start"]}
+          mb={[0, 20]}
+        >
+          <p>{t(`plans:${name}.name`)}</p>
+          {name === "essential" && (
+            <>
+              <MostPopular color={color}>
+                {t(`plans:${name}.mostPopular`)}
+              </MostPopular>
+            </>
+          )}
+        </Name>
+      </NameWrapper>
 
       <PriceWrapper special={name === "special"}>
         <PriceDescription mt={[0, 20]}>

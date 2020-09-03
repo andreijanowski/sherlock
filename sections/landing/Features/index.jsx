@@ -2,7 +2,8 @@ import React from "react";
 import { func, oneOfType, shape, any } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import { Button } from "components";
-import { FeaturesWrapper, Image, H2Styled, ParagraphStyled } from "./styled";
+import ReactPlayer from "react-player";
+import { FeaturesWrapper, H2Styled, ParagraphStyled } from "./styled";
 import { BlueText } from "../sharedStyled";
 
 const Features = ({ t, featuresRef }) => (
@@ -14,7 +15,28 @@ const Features = ({ t, featuresRef }) => (
         <BlueText>{t("features.subHeader.end")}</BlueText>
       </ParagraphStyled>
     </Box>
-    <Image src="/static/img/features/integrations.png" />
+    <div
+      style={{
+        position: "relative",
+        paddingTop: "56.25%",
+        height: "100%",
+        width: "100%"
+      }}
+    >
+      <ReactPlayer
+        style={{
+          position: "absolute",
+          top: "0",
+          left: "0",
+          padding: "20px 0"
+        }}
+        width="100%"
+        height="100%"
+        url="https://www.youtube.com/watch?v=XW2Hffcne60"
+        light="/static/img/features/integrations.png"
+        controls
+      />
+    </div>
     <Flex width={1} justifyContent="center" mt={[0, 40]}>
       <Button
         styleName="becomePartner"
