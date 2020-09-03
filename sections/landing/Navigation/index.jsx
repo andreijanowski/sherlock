@@ -38,7 +38,12 @@ const Navigation = ({ t, lng, scrollTo }) => (
       css={{ background: "#27378e", width: "100%", margin: "0" }}
       justifyContent="center"
     >
-      <Flex justifyContent="space-between" width={1150} alignItems="center">
+      <Flex
+        justifyContent="space-between"
+        width={1150}
+        alignItems="center"
+        px={3}
+      >
         <Flex
           as="ul"
           width={1}
@@ -68,6 +73,7 @@ const Navigation = ({ t, lng, scrollTo }) => (
       alignItems="center"
       alignSelf="center"
       mt={[20, 0]}
+      px={3}
       css={{
         maxWidth: "1150px"
       }}
