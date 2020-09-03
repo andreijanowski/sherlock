@@ -5,23 +5,23 @@ export const generatePlanOptionsList = (planName, t) => {
       return [
         {
           name: t("plans:options.delivery"),
-          discount: "Free"
+          discount: "0%"
         },
         {
           name: t("plans:options.takeAway"),
-          discount: "Free"
+          discount: "0%"
         },
         {
           name: t("plans:options.catering"),
-          discount: "Free"
+          discount: "0%"
         },
         {
           name: t("plans:options.privatisation"),
-          discount: "Free"
+          discount: "0%"
         },
         {
           name: t("plans:options.reservations"),
-          discount: "Free"
+          discount: "0%"
         },
         {
           name: t("plans:options.payments"),

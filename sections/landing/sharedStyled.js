@@ -51,13 +51,13 @@ export const NavigationWrapper = styled(Box).attrs(() => ({}))`
 
 export const TopSectionWrapper = styled(Box)`
   width: 100%;
-  background: linear-gradient(170deg, #1a1f67 47%, #020025 47%);
+  background: linear-gradient(170deg, #1a1f67 calc(47% - 1px), #020025 47%);
 `;
 
 export const ProductsWrapper = styled(Box)`
   width: 100%;
   background: linear-gradient(
-    180deg,
+    170deg,
     #00002b 0%,
     #111247 60%,
     #12154d 70%,
@@ -72,7 +72,7 @@ export const DevelopersAndApiWrapper = styled(Box)`
 
 export const FeaturesWrapper = styled(Box)`
   width: 100%;
-  background: linear-gradient(170deg, #0f113d 22%, #f7f8fe 22%);
+  background: linear-gradient(170deg, #0f113d calc(22% - 2px), #f7f8fe 22%);
 `;
 
 export const PlansWrapper = styled(Box)`
@@ -83,7 +83,7 @@ export const PlansWrapper = styled(Box)`
 export const InstallAppWrapper = styled(Box)`
   width: 100%;
   background: linear-gradient(transparent 0%, transparent 85%, #eff2ff 100%),
-    linear-gradient(170deg, white 62%, #a6b4ff 62%, #eff2ff 85%);
+    linear-gradient(170deg, white calc(62% - 2px), #a6b4ff 62%, #eff2ff 85%);
 `;
 
 export const FooterWrapper = styled(Flex)`
