@@ -7,8 +7,8 @@ import { FeaturesWrapper, H2Styled, ParagraphStyled } from "./styled";
 import { BlueText } from "../sharedStyled";
 
 const Features = ({ t, featuresRef }) => (
-  <FeaturesWrapper ref={featuresRef} width="auto" pt={75} pb={[0, 75]}>
-    <Box mt={[180, 280]} mb={[0, 60]} width={[1]}>
+  <FeaturesWrapper width="auto" pt={75} pb={[0, 75]}>
+    <Box ref={featuresRef} mt={[180, 280]} mb={[0, 60]} width={[1]}>
       <H2Styled>{t("features.header")}</H2Styled>
       <ParagraphStyled>
         {t("features.subHeader.start")}
