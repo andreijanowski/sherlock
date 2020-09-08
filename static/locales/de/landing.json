@@ -6,20 +6,35 @@
     },
     "paragraph": "Weltweit führende All-in-One-Software für Restaurants.",
     "getStartedForFree": "Kostenlos loslegen",
+    "contactSales": "Kontaktieren Sie unser Vertriebsteam ",
     "addYourBusiness": "Fügen Sie Ihr Unternehmen hinzu",
     "addManager": "Manager hinzufügen",
     "watchVideo": "Schau Video",
     "testimonials": "Referenzen"
   },
+  "developersAndApi": {
+    "header": "Developer & API",
+    "subHeader": {
+      "start": "Erhalten Sie Zugriff auf unsere ",
+      "end": "API."
+    },
+    "paragraph": " Unsere Partner entwickeln Technologien und Software, die mehr Unternehmen online bringen, neue Arten von Unternehmen ermöglichen und ihnen helfen, effektiver zu arbeiten. Wir haben ein Programm entwickelt, um deren Wirkung zu beschleunigen und zu verstärken.",
+    "goToApiDocs": "Lesen Sie die Dokumente"
+  },
   "services": {
     "header": "Dienstleistungen",
+    "subHeader": {
+      "start": "Erstellen und betreiben Sie Ihr Restaurant mit Foodetective und unseren Partnern. ",
+      "end": " Kein Code erforderlich."
+    },
     "paragraph": {
       "start": "Entworfen für Ihre ",
       "firstKeyword": "Bedürfnisse",
       "middle": " und ",
-      "secondKeyword": "Geschäftsgröße",
-      "end": ". Sie können unsere Services jederzeit problemlos hinzufügen und entfernen, um sicherzustellen, dass wir auf Ihr Wachstum zugeschnitten sind."
+      "secondKeyword": "Geschäftsgröße.",
+      "end": " Sie können unsere Services jederzeit problemlos hinzufügen und entfernen, um sicherzustellen, dass wir auf Ihr Wachstum zugeschnitten sind."
     },
+
     "list": [
       "Reservierungen",
       "Lieferung",
@@ -32,9 +47,24 @@
       "Humanressourcen Lohn-und Gehaltsabrechnung",
       "Liefern",
       "Buchhaltung",
-      "Integrationen"
+      "Lebensittelverschwendung",
+      "Hygiene",
+      "Verpackung",
+      "Fotografie",
+      "Social Media",
+      "Aktien",
+      "Bewertungen"
     ],
     "more": "Wir zentralisieren alle Ihre Dienste in einem einzigen Dashboard."
+  },
+  "developerAndApi": {
+    "header": "developer & API"
+  },
+  "installApp": {
+    "header": {
+      "start": "Laden Sie unsere App noch Heute herunter.",
+      "end": " Foodetective For Business."
+    }
   },
   "cooperations": {
     "clients": "Kunden",

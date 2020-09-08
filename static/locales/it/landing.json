@@ -6,10 +6,17 @@
     },
     "paragraph": "Il primo all-in-one Software a livello mondiale per i ristoranti.",
     "getStartedForFree": "Inizia gratuitamente",
+    "contactSales": "Contatta il nostro team commerciale ",
     "addYourBusiness": "Aggiungi la tua attività",
     "addManager": "Aggiungi gestore",
     "watchVideo": "Guarda un video",
     "testimonials": "Testimonianze"
+  },
+  "installApp": {
+    "header": {
+      "start": "Scarica la nostra app.",
+      "end": " Foodetective For Business."
+    }
   },
   "services": {
     "header": "Servizi",
@@ -17,8 +24,8 @@
       "start": "Progettato per le tue mutevoli ",
       "firstKeyword": "esigenze",
       "middle": " e ",
-      "secondKeyword": "dimensioni aziendali",
-      "end": ". Puoi facilmente aggiungere e rimuovere tuoi servizi in qualsiasi momento, assicurandoci che il nostro software sia fatto su misura per la tua crescita."
+      "secondKeyword": "dimensioni aziendali.",
+      "end": " Puoi facilmente aggiungere e rimuovere tuoi servizi in qualsiasi momento, assicurandoci che il nostro software sia fatto su misura per la tua crescita."
     },
     "list": [
       "Prenotazioni",
@@ -32,9 +39,24 @@
       "Risorse umane e stipendi",
       "Fornitura",
       "Contabilità",
-      "Integrazioni"
+      "Rifiuti alimentari",
+      "Igiene",
+      "Packaging",
+      "Fotografie",
+      "Social Media",
+      "Inventario",
+      "Recensioni"
     ],
     "more": "Centralizziamo tutti i tuoi servizi in un'unica dashboard."
+  },
+  "developersAndApi": {
+    "header": "Developer & API",
+    "subHeader": {
+      "start": "Ottenere l'accesso alle nostra ",
+      "end": "API."
+    },
+    "paragraph": " I nostri partner costruiscono tecnologie e software che portano più aziende online, consentono nuovi tipi di attività e le aiutano a lavorare in modo più efficace. Abbiamo progettato un programma che aiuta ad accelerare e ad amplificare il loro impatto.",
+    "goToApiDocs": " Leggi i documenti"
   },
   "cooperations": {
     "clients": "Clienti",
@@ -60,6 +82,10 @@
   },
   "features": {
     "header": "Caratteristiche",
+    "subHeader": {
+      "start": "Crea e gestisci il tuo ristorante con Foodetective e i nostri partner. ",
+      "end": " Nessun codice richiesto."
+    },
     "navItems": {
       "visibility": "Visibilità",
       "analytics": "Analitica",

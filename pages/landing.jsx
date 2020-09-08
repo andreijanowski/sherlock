@@ -6,15 +6,23 @@ import {
   Navigation,
   TopSection,
   Services,
-  Plans,
-  Cooperations,
+  DevelopersAndApi,
   Features,
-  Testimonials,
-  Widget
+  Plans,
+  InstallApp
 } from "sections/landing";
-import { LandingWrapper } from "sections/landing/sharedStyled";
 import { withTranslation } from "i18n";
-import { Flex } from "@rebass/grid";
+import {
+  TopSectionWrapper,
+  LandingWrapper,
+  NavigationWrapper,
+  ProductsWrapper,
+  DevelopersAndApiWrapper,
+  FeaturesWrapper,
+  PlansWrapper,
+  FooterWrapper,
+  InstallAppWrapper
+} from "sections/landing/sharedStyled";
 
 const namespaces = ["landing", "plans", "common"];
 
@@ -28,9 +36,8 @@ class Home extends PureComponent {
   constructor(props) {
     super(props);
     this.servicesRef = React.createRef();
-    this.industriesRef = React.createRef();
+    this.developersAndApiRef = React.createRef();
     this.featuresRef = React.createRef();
-    this.widgetRef = React.createRef();
     this.plansRef = React.createRef();
     this.state = {
       billingInterval: "month"
@@ -52,27 +59,32 @@ class Home extends PureComponent {
   render() {
     const {
       servicesRef,
-      industriesRef,
-      featuresRef,
+      developersAndApiRef,
       scrollTo,
-      plansRef,
-      widgetRef
+      featuresRef,
+      plansRef
     } = this;
     const { t, i18n } = this.props;
     const { billingInterval } = this.state;
     const lng = (i18n && i18n.language) || "en";
     return (
-      <Flex width={1} alignItems="center" flexDirection="column">
-        <Navigation {...{ t, lng, scrollTo }} />
-        <LandingWrapper>
+      <LandingWrapper width={1} alignItems="center" flexDirection="column">
+        <NavigationWrapper>
+          <Navigation {...{ t, lng, scrollTo }} />
+        </NavigationWrapper>
+        <TopSectionWrapper>
           <TopSection {...{ t, lng }} />
+        </TopSectionWrapper>
+        <ProductsWrapper>
           <Services {...{ t, servicesRef }} />
-          <Cooperations {...{ t, industriesRef }} />
-        </LandingWrapper>
-        <Features {...{ t, lng, featuresRef }} />
-        <LandingWrapper>
-          <Widget {...{ t, widgetRef }} />
-          <Testimonials {...{ t }} />
+        </ProductsWrapper>
+        <DevelopersAndApiWrapper>
+          <DevelopersAndApi {...{ t, lng, developersAndApiRef }} />
+        </DevelopersAndApiWrapper>
+        <FeaturesWrapper>
+          <Features {...{ t, lng, featuresRef }} />
+        </FeaturesWrapper>
+        <PlansWrapper>
           <Plans
             {...{
               t,
@@ -82,9 +94,14 @@ class Home extends PureComponent {
               handleChangeBillngPeriod: this.handleChangeBillngPeriod
             }}
           />
-        </LandingWrapper>
-        <Footer />
-      </Flex>
+        </PlansWrapper>
+        <InstallAppWrapper>
+          <InstallApp {...{ t }} />
+        </InstallAppWrapper>
+        <FooterWrapper>
+          <Footer />
+        </FooterWrapper>
+      </LandingWrapper>
     );
   }
 }

@@ -1,5 +1,9 @@
 {
   "header": "Zahlen Sie, wenn Sie wachsen",
+  "subHeader": {
+    "start": "Zahlen Sie",
+    "end": " en grandissant."
+  },
   "paragraph": "Wählen Sie den Plan, der Ihren Geschäftszielen, Größen- und Wachstumsplänen entspricht. Wenn Sie eine große Franchise oder Gruppe leiten, wenden Sie sich bitte an unser Team, um unsere maßgeschneiderte Option zu erhalten.",
   "yourCurrentPlan": "Ihr aktueller Plan",
   "paymentInfo": "Zahlungsinformationen",
@@ -44,28 +48,60 @@
     "delivery": "Lieferung / zum Mitnehmen",
     "redirections": "Weiterleitungen",
     "integrations": "Integrationen",
-    "digitalMarketing": "Digitales Marketing"
-  },
-  "essential": {
-    "name": "Wesentlich",
-    "priceDescription": "Für immer",
-    "price": {
-      "month": "Kostenlos",
-      "year": "Kostenlos"
-    },
-    "buttonText": "Profil erstellen"
+    "digitalMarketing": "Digitales Marketing",
+    "widgets": "Widgets",
+    "dashboard": "Dashboard",
+    "reviews": "Reviews",
+    "suppliers": "Lieferanten",
+    "payments": "Payments",
+    "wholesalers": "Wholesalers",
+    "visibility": "Premium Visibility"
   },
   "basic": {
     "name": "Basic",
     "mostPopular": "Am beliebtesten",
-    "priceDescription": "Beginnt um",
+    "priceDescription": "Ewig",
     "price": {
-      "month": "29,90 €",
-      "year": "358,80 €",
-      "beta": "249,90 €"
+      "month": "Frei",
+      "year": "Frei",
+      "beta": "Frei"
     },
     "month": "Monat",
     "year": "Yahr",
-    "buttonText": "Fangen Sie an bei"
+    "buttonText": "Profil erstellen"
+  },
+  "essential": {
+    "name": "Wesentlich",
+    "priceDescription": "Beginnt um",
+    "price": {
+      "month": "29.90",
+      "year": "249",
+      "beta": "29.90"
+    },
+    "month": "Monat",
+    "year": "Yahr",
+    "buttonText": "Beginnt um"
+  },
+  "tailored": {
+    "name": "Premium",
+    "priceDescription": "Beginnt um",
+    "price": {
+      "month": "299",
+      "year": "2499",
+      "beta": "beta"
+    },
+    "month": "Monat",
+    "year": "Yahr",
+    "buttonText": "Beginnt um"
+  },
+  "special": {
+    "name": "Enterprise",
+    "priceDescription": "Let's talk",
+    "price": {
+      "month": "",
+      "year": "",
+      "beta": ""
+    },
+    "buttonText": "Book a Meeting"
   }
 }

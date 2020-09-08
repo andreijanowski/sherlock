@@ -1,6 +1,10 @@
 {
-  "header": "Pay as you grow",
-  "paragraph": "Choose the plan that suits your business goals, size & growth plans. If you run a large franchise or group please get in touch with our team for our tailor made option.",
+  "header": "Pricing",
+  "subHeader": {
+    "start": "Pay",
+    "end": " as you grow."
+  },
+  "paragraph": " Choose the plan that suits your business goals, size & growth plans. If you run a large franchise or group please get in touch with our team for our tailor made option.",
   "yourCurrentPlan": "Your current plan",
   "paymentInfo": "Payment informations",
   "changeCard": "Change card",
@@ -29,7 +33,7 @@
     "endFirstLine": "Just complete your profile online. The offer is very limited, we have only ",
     "endLastLine": "1000 slots left."
   },
-  "billingYearly": "Billing Yearly (save up to 30%)",
+  "billingYearly": "Billing Yearly (save 30%)",
   "billingMonthly": "Billing Monthly",
   "options": {
     "website": "Webpage",
@@ -44,28 +48,62 @@
     "delivery": "Delivery",
     "digitalMarketing": "Digital marketing",
     "redirections": "Redirections",
-    "integrations": "Integrations"
+    "integrations": "Integrations",
+    "reviews": "Reviews",
+    "suppliers": "Suppliers",
+    "widgets": "Widgets",
+    "dashboard": "Dashboard",
+    "payments": "Payments",
+    "wholesalers": "Wholesalers",
+    "visibility": "Premium Visibility"
   },
-  "essential": {
-    "name": "Essential",
+
+  "basic": {
+    "name": "Basic",
+    "mostPopular": "Most popular",
     "priceDescription": "Forever",
     "price": {
       "month": "Free",
-      "year": "Free"
-    },
-    "buttonText": "Create Profile"
-  },
-  "basic": {
-    "name": "Premium",
-    "mostPopular": "Most popular",
-    "priceDescription": "Starting at",
-    "price": {
-      "month": "€29.90",
-      "year": "€358.80",
-      "beta": "€249.90"
+      "year": "Free",
+      "beta": "Free"
     },
     "month": "month",
     "year": "year",
-    "buttonText": "Get started at "
+    "buttonText": "Start today"
+  },
+  "essential": {
+    "name": "Essential",
+    "priceDescription": "Starting at",
+    "mostPopular": "Most popular",
+    "price": {
+      "month": "29.90",
+      "year": "249",
+      "beta": "29.90"
+    },
+    "month": "month",
+    "year": "year",
+    "buttonText": "Starting at"
+  },
+  "tailored": {
+    "name": "Premium",
+    "priceDescription": "Starting at",
+    "price": {
+      "month": "299",
+      "year": "2499",
+      "beta": "beta"
+    },
+    "month": "month",
+    "year": "year",
+    "buttonText": "Starting at"
+  },
+  "special": {
+    "name": "Enterprise",
+    "priceDescription": "Let's talk",
+    "price": {
+      "month": "",
+      "year": "",
+      "beta": ""
+    },
+    "buttonText": "Book a Meeting"
   }
 }

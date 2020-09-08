@@ -5,12 +5,11 @@ import { Flex, Box } from "@rebass/grid";
 export const FlagIcon = styled.img.attrs(({ code }) => ({
   src: `/static/flags/${code}.svg`
 }))`
-  width: 22px;
-  height: 14px;
+  width: 17px;
+  height: 12px;
 `;
 
 export const LanguageSwitcherWrapper = styled(Flex).attrs(() => ({
-  px: "16px",
   alignItems: "center",
   justifyContent: "space-between"
 }))`
@@ -18,10 +17,11 @@ export const LanguageSwitcherWrapper = styled(Flex).attrs(() => ({
   z-index: 2;
   width: auto;
   height: 40px;
-  color: rgba(${p => p.theme.colors.dark}, 0.64);
+  color: rgb(${p => p.theme.colors.white});
   font-weight: ${p => p.theme.fontWeights.semiBold};
-  font-size: ${p => p.theme.fontSizes.f14};
+  font-size: ${p => p.theme.fontSizes.f12};
   line-height: ${p => p.theme.fontSizes.f24};
+  letter-spacing: 0.22px;
   text-transform: capitalize;
   border: ${({ withBorder, theme }) =>
     withBorder
@@ -82,8 +82,6 @@ export const LanguageListItem = styled(Box).attrs(() => ({
 export const SelectedLanguageWrapper = styled(Flex).attrs(() => ({
   alignItems: "center"
 }))`
-  margin-right: 8px;
-
   ${FlagIcon} {
     margin-right: 8px;
   }

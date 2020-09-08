@@ -6,10 +6,17 @@
     },
     "paragraph": "El primero software todo en uno en el mundo para restaurantes.",
     "getStartedForFree": "Comienza gratis",
+    "contactSales": "Contacta con nuestro equipo comercial ",
     "addYourBusiness": "Agregue su negocio",
     "addManager": "Agregar administrador",
     "watchVideo": "Ver video",
     "testimonials": "Testimonios"
+  },
+  "installApp": {
+    "header": {
+      "start": "Descarga nuestra aplicación hoy.",
+      "end": " Foodtective For Business."
+    }
   },
   "services": {
     "header": "Servicios",
@@ -17,8 +24,8 @@
       "start": "Diseñado para sus ",
       "firstKeyword": "necesidades cambiantes",
       "middle": " y ",
-      "secondKeyword": "el tamaño de su negocio",
-      "end": ". Puede fácilmente añadir y quitar servicios en cualquier momento, asegurándose que nos adaptemos a su crecimiento."
+      "secondKeyword": "el tamaño de su negocio.",
+      "end": " Puede fácilmente añadir y quitar servicios en cualquier momento, asegurándose que nos adaptemos a su crecimiento."
     },
     "list": [
       "Reservas",
@@ -32,9 +39,24 @@
       "Recursos humanos y nómina/salario",
       "Suministro",
       "Contabilidad",
-      "Integraciones"
+      "Desechos alimentarios",
+      "Higiene",
+      "Empaquetado",
+      "Fotografía",
+      "Redes Sociales",
+      "Inventario",
+      "Reseñas"
     ],
     "more": "Centralizamos todos sus servicios en un solo tablero."
+  },
+  "developersAndApi": {
+    "header": "Developer & API",
+    "subHeader": {
+      "start": "Obtenga acceso a nuestra  ",
+      "end": "API."
+    },
+    "paragraph": " Nuestros socios están desarrollando tecnología y software para incrementar el negocio online, facilitar nuevos tipos de negocios y ayudarles a trabajar de una manera más eficiente. Además, hemos diseñado un programa para ayudar a acelerar y amplificar su impacto.",
+    "goToApiDocs": "Lee los documentos"
   },
   "cooperations": {
     "clients": "Clientela",
@@ -60,6 +82,10 @@
   },
   "features": {
     "header": "Caracteristicas",
+    "subHeader": {
+      "start": "Registra y gestiona tu restaurante con Foodetective y nuestros socios. ",
+      "end": " No se requiere escribir código."
+    },
     "navItems": {
       "visibility": "Visibilidad",
       "analytics": "Analítica",

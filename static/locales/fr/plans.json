@@ -1,5 +1,9 @@
 {
   "header": "Payez en fonction de votre croissance",
+  "subHeader": {
+    "start": "Payer",
+    "end": " en grandissant."
+  },
   "paragraph": "Choisissez le plan le mieux adaptés à vos objectifs commerciaux, à votre taille et à votre croissance. Si vous exploitez une grande franchise ou un groupe, veuillez contacter notre équipe pour connaître notre option sur mesure.",
   "yourCurrentPlan": "Votre plan actuel",
   "paymentInfo": "Information de payement",
@@ -44,28 +48,61 @@
     "paidBooking": "Réservation",
     "bookings": "Réservations",
     "privatisation": "Privatisation",
-    "digitalMarketing": "Le marketing numérique"
+    "digitalMarketing": "Le marketing numérique",
+    "widgets": "Widgets",
+    "dashboard": "Dashboard",
+    "reviews": "Reviews",
+    "suppliers": "Fournisseurs",
+    "payments": "Payments",
+    "wholesalers": "Wholesalers",
+    "visibility": "Premium Visibility"
   },
-  "essential": {
-    "name": "Essentiel",
-    "priceDescription": "Pour toujours",
-    "price": {
-      "month": "Gratuit",
-      "year": "Gratuit"
-    },
-    "buttonText": "Créer un profil"
-  },
+
   "basic": {
     "name": "De base",
     "mostPopular": "Le plus populaire",
+    "priceDescription": "Pour toujours",
+    "price": {
+      "month": "Free",
+      "year": "Free",
+      "beta": "Free"
+    },
+    "month": "mois",
+    "year": "année",
+    "buttonText": "Créer un profil"
+  },
+  "essential": {
+    "name": "Essentiel",
     "priceDescription": "À partir de",
     "price": {
-      "month": "29,90 €",
-      "year": "358,80 €",
-      "beta": "249,90 €"
+      "month": "29.90",
+      "year": "249",
+      "beta": "29.90"
     },
     "month": "mois",
     "year": "année",
     "buttonText": "Commencez à"
+  },
+  "tailored": {
+    "name": "Premium",
+    "priceDescription": "À partir de",
+    "price": {
+      "month": "299",
+      "year": "2499",
+      "beta": "beta"
+    },
+    "month": "mois",
+    "year": "année",
+    "buttonText": "Commencez à"
+  },
+  "special": {
+    "name": "Enterprise",
+    "priceDescription": "Let's talk",
+    "price": {
+      "month": "",
+      "year": "",
+      "beta": ""
+    },
+    "buttonText": "Book a Meeting"
   }
 }

@@ -3,18 +3,17 @@ import { Flex, Box } from "@rebass/grid";
 
 export const FooterWrapper = styled(Flex).attrs(() => ({
   as: "footer",
-  flexDirection: "column",
-  pt: [4, 50],
-  pb: 20,
-  px: 4,
   width: 1,
-  alignItems: "center",
-  justifyContent: "center"
+  flexDirection: "column",
+  pb: 20,
+  px: 3,
+  alignItems: "flex-start"
 }))`
-  background-color: white;
+  max-width: 1150px;
 `;
 
 export const FoodetectiveLogoWrapper = styled(Box).attrs(() => ({
+  my: 25,
   width: 120
 }))`
   display: none;
@@ -28,9 +27,9 @@ export const CopyrightWrapper = styled(Flex).attrs(() => ({
   width: 1,
   pt: 20,
   alignItems: "center",
-  justifyContent: ["center", "flex-start"]
+  justifyContent: ["flex-end", "flex-end"]
 }))`
-  max-width: 920px;
+  max-width: 1150px;
   border-top: 1px solid rgba(${p => p.theme.colors.mischka}, 0.1);
 `;
 
@@ -40,27 +39,33 @@ export const TextWrapper = styled(Flex).attrs(() => ({
   alignSelf: "center",
   justifyContent: "space-between"
 }))`
-  max-width: 920px;
+  max-width: 1150px;
 `;
 
 export const MenuWrapper = styled(Flex).attrs(() => ({
-  flexDirection: "row",
   alignSelf: "center",
-  justifyContent: "space-between",
+  justifyContent: "flex-start",
   mb: 50,
   flexWrap: "wrap",
-  m: -2
+  m: -2,
+  width: 1
 }))`
   flex: 1;
-  max-width: 920px;
+  max-width: 1150px;
 `;
+
+export const NavItem = styled(Flex).attrs(() => ({
+  flexDirection: "column",
+  justifyContent: "flex-start"
+}))``;
 
 export const ColumnTitle = styled.p`
   margin: 0 0 15px 0;
-  color: ${p => p.theme.colors.abbey};
-  font-weight: ${p => p.theme.fontWeights.semiBold};
-  font-size: ${p => p.theme.fontSizes.f14};
-  line-height: 24px;
+  color: #333;
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes.f15};
+  line-height: 35px;
+  letter-spacing: 0.3px;
 `;
 
 export const ListWrapper = styled.ul`
@@ -70,9 +75,11 @@ export const ListWrapper = styled.ul`
 `;
 
 export const NavigationLink = styled.a`
-  color: rgb(${p => p.theme.colors.mischka});
-  font-size: ${p => p.theme.fontSizes.f14};
-  line-height: 35px;
+  color: #828282;
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes.f15};
+  line-height: 45px;
+  letter-spacing: 0.3px;
   text-decoration: none;
   &:hover {
     color: rgb(${p => p.theme.colors.abbey});

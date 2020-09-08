@@ -6,10 +6,26 @@
     },
     "paragraph": "Le premier logiciel tout-en-un pour les restaurants.",
     "getStartedForFree": "Commencez gratuitement",
+    "contactSales": "Contactez notre équipe commerciale ",
     "addYourBusiness": "Ajoutez votre entreprise",
     "addManager": "Ajouter un gestionnaire",
     "watchVideo": "Regarder la vidéo",
     "testimonials": "Témoignages"
+  },
+  "developersAndApi": {
+    "header": "Developer & API",
+    "subHeader": {
+      "start": "Accédez à notre ",
+      "end": "API."
+    },
+    "paragraph": " Nos partenaires développent des technologies et des logiciels qui permettent de mettre en ligne un plus grand nombre d'entreprises, de créer de nouveaux types d'entreprises et de les aider à travailler plus efficacement. Nous avons conçu un programme pour aider à accélérer et à amplifier leur impact.",
+    "goToApiDocs": "Lire les documents"
+  },
+  "installApp": {
+    "header": {
+      "start": "Téléchargez notre application dès aujourd'hui.",
+      "end": " Foodetective For Business."
+    }
   },
   "services": {
     "header": "Services",
@@ -17,8 +33,8 @@
       "start": "Conçu pour s'adapter à l'évolution de vos ",
       "firstKeyword": "besoins",
       "middle": " et ",
-      "secondKeyword": "la taille de votre entreprise",
-      "end": ". Vous pouvez facilement ajouter ou supprimer n'importe lequel de vos services à tout moment, de manière à prendre en compte votre développement."
+      "secondKeyword": "la taille de votre entreprise.",
+      "end": " Vous pouvez facilement ajouter ou supprimer n'importe lequel de vos services à tout moment, de manière à prendre en compte votre développement."
     },
     "list": [
       "Réservations",
@@ -32,9 +48,18 @@
       "RH & Salaires",
       "Fourniture",
       "Comptabilité",
-      "Intégrations"
+      "Déchets alimentaires",
+      "Hygiène",
+      "Emballage",
+      "Photographe",
+      "Les réseaux sociaux",
+      "Les stocks",
+      "Nos avis"
     ],
     "more": "Nous centralisons tous vos services dans un tableau de bord unique."
+  },
+  "developerAndApi": {
+    "header": "developer & API"
   },
   "cooperations": {
     "clients": "Les clients",
@@ -60,6 +85,10 @@
   },
   "features": {
     "header": "Fonctionnalités",
+    "subHeader": {
+      "start": "Créez et gérez votre restaurant avec Foodetective et nos partenaires. ",
+      "end": " Aucun code requis."
+    },
     "navItems": {
       "visibility": "Visibilité",
       "analytics": "Statistiques",

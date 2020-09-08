@@ -2,18 +2,44 @@ import styled, { css } from "styled-components";
 import { Flex } from "@rebass/grid";
 
 const login = css`
-  padding: 5px 13px;
-  color: rgba(${p => p.theme.colors.dark}, 0.64);
-  background: transparent;
-  border: ${p => p.theme.borderWeights.normal} solid
-    rgba(${p => p.theme.colors.dark}, 0.16);
+  display: flex;
+  align-items: center;
+  padding: 5px 17px;
+  color: rgb(${p => p.theme.colors.white});
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f15};
+  line-height: 28px;
+  white-space: nowrap;
+  background: rgba(${p => p.theme.colors.white}, 0.5);
+  border: none;
+  border-radius: ${p => p.theme.radius.biggest};
+  &:hover {
+    background-color: rgba(${p => p.theme.colors.white}, 0.35);
+    box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.white}, 0.7);
+  }
 `;
 
 const signUp = css`
   ${login}
-  color: rgb(${p => p.theme.colors.blue});
-  border: ${p => p.theme.borderWeights.normal} solid
-    rgb(${p => p.theme.colors.blue});
+  background: rgba(${p => p.theme.colors.white}, 0.2);
+`;
+
+const signUpCTA = css`
+  ${login}
+  background: rgb(${p => p.theme.colors.blue});
+  &:hover:enabled {
+    background-color: rgba(${p => p.theme.colors.facebookBlue}, 1);
+    box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.facebookBlue}, 0.48);
+  }
+`;
+
+const signUpContactSales = css`
+  ${login}
+  background:  rgba(${p => p.theme.colors.white}, 0.3);
+  &:hover:enabled {
+    background-color: rgba(${p => p.theme.colors.white}, 0.6);
+    box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.white}, 0.48);
+  }
 `;
 
 const blue = css`
@@ -60,6 +86,36 @@ const planButton = css`
 
   &:hover:enabled {
     box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.blue}, 0.48);
+  }
+`;
+
+const goToApiDocs = css`
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  min-height: 60px;
+  padding: 12px;
+  color: white;
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f24};
+  line-height: 28px;
+  letter-spacing: 0.5px;
+  background: rgba(${p => p.theme.colors.blue}, 0.3);
+  border: none;
+  border-radius: 45px;
+  box-shadow: inset 0 1px 20px 0 #595d75;
+  &:hover {
+    background: rgba(${p => p.theme.colors.blue}, 0.6);
+  }
+`;
+
+const becomePartner = css`
+  ${goToApiDocs};
+  margin: 12px 0;
+  background: rgba(${p => p.theme.colors.purpleBlue}, 1);
+  box-shadow: none;
+  &:hover {
+    background: rgba(${p => p.theme.colors.purpleBlue}, 0.6);
   }
 `;
 
@@ -212,6 +268,8 @@ const Button = styled.button`
 
   ${p => p.styleName === "login" && login};
   ${p => p.styleName === "signUp" && signUp};
+  ${p => p.styleName === "signUpCTA" && signUpCTA};
+  ${p => p.styleName === "signUpContactSales" && signUpContactSales};
   ${p => p.styleName === "blue" && blue};
   ${p => p.styleName === "formBlue" && formBlue};
   ${p => p.styleName === "orange" && orange};
@@ -227,6 +285,8 @@ const Button = styled.button`
   ${p => p.styleName === "reject" && reject};
   ${p => p.styleName === "accept" && accept};
   ${p => p.styleName === "withImage" && withImage};
+  ${p => p.styleName === "goToApiDocs" && goToApiDocs};
+  ${p => p.styleName === "becomePartner" && becomePartner};
   ${p => p.fluid && fluid};
   ${p => p.fullHeight && fullHeight};
 

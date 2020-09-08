@@ -1,6 +1,8 @@
 {
   "login": "Accesso",
   "signUp": "Registrati",
+  "personal": "Personal",
+  "business": "Business",
   "forBusiness": "per affari",
   "accept": "Accettare",
   "cancel": "Annulla",

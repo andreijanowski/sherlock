@@ -14,7 +14,7 @@ export const NavContainer = styled(Flex).attrs(() => ({
 
 export const NavItem = styled.li`
   display: block;
-  color: rgb(${p => p.theme.colors.white});
+  color: rgb(${p => p.theme.colors.black});
   font-size: ${p => p.theme.fontSizes.f16};
   cursor: pointer;
 
@@ -25,7 +25,7 @@ export const NavItem = styled.li`
 
 export const NavItemText = styled.span`
   ${p =>
-    p.isActive && `border-bottom: 3px solid rgb(${p.theme.colors.white});`};
+    p.isActive && `border-bottom: 3px solid rgb(${p.theme.colors.black});`};
   display: inline-block;
   margin: 4px 0;
   padding-bottom: 4px;

@@ -39,6 +39,7 @@
                 "*.jsx"
             ],
             "rules": {
+                "no-console": "off",
                 "import/no-unresolved": "off",
                 "import/prefer-default-export": "off"
             }

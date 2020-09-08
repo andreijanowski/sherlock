@@ -8,8 +8,8 @@ import { Screen, DescriptionWrapper } from "./Template.styled";
 const Template = ({ t, lng, activeNavItem }) => (
   <Flex flexWrap="wrap" m={-2}>
     <DescriptionWrapper>
-      <H2 white>{t(`features.subsections.${activeNavItem}.header`)}</H2>
-      <Paragraph white>
+      <H2>{t(`features.subsections.${activeNavItem}.header`)}</H2>
+      <Paragraph>
         {t(`features.subsections.${activeNavItem}.paragraph`)}
       </Paragraph>
       <Flex flex={1} alignItems="flex-end">
@@ -17,7 +17,7 @@ const Template = ({ t, lng, activeNavItem }) => (
           onClick={() => {
             window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=essential`;
           }}
-          styleName="white"
+          styleName="blue"
         >
           {t("features.registerForFree")}
         </Button>
