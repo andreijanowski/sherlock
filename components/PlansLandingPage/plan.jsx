@@ -62,7 +62,7 @@ const Plan = ({
         ) : (
           <Price>
             &euro;{t(`plans:${name}.price.${billingInterval}`)}
-            <Billing>/{billingInterval}</Billing>
+            <Billing>/{t(`plans:${name}.${billingInterval}`)}</Billing>
           </Price>
         )}
       </PriceWrapper>
