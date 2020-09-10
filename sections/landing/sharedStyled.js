@@ -57,12 +57,14 @@ export const TopSectionWrapper = styled(Box)`
 export const ProductsWrapper = styled(Box)`
   width: 100%;
   background: linear-gradient(
-    170deg,
-    #00002b 0%,
-    #111247 60%,
-    #12154d 70%,
-    #12154d 100%
-  );
+      170deg,
+      #020025 0%,
+      #00002b 30%,
+      #111247 60%,
+      #12154d 70%,
+      #12154d 100%
+    ),
+    linear-gradient(#020025 0%, #111247 60%, transparent 60%, transparent 100%);
 `;
 
 export const DevelopersAndApiWrapper = styled(Box)`
