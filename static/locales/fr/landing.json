@@ -13,13 +13,13 @@
     "testimonials": "Témoignages"
   },
   "developersAndApi": {
-    "header": "Developer & API",
+    "header": "Développeur & API",
     "subHeader": {
       "start": "Accédez à notre ",
       "end": "API."
     },
-    "paragraph": " Nos partenaires développent des technologies et des logiciels qui permettent de mettre en ligne un plus grand nombre d'entreprises, de créer de nouveaux types d'entreprises et de les aider à travailler plus efficacement. Nous avons conçu un programme pour aider à accélérer et à amplifier leur impact.",
-    "goToApiDocs": "Lire les documents"
+    "paragraph": " Nos partenaires développent des technologies et des logiciels permettant d’accroître le commerce en ligne, de faciliter l’émergence de nouvelles entreprises et de les aider à travailler d’une manière plus efficace. Nous avons donc conçu un programme pour accélérer et amplifier l’impact de ces entreprises.",
+    "goToApiDocs": "En savoir plus"
   },
   "installApp": {
     "header": {
@@ -34,7 +34,7 @@
       "firstKeyword": "besoins",
       "middle": " et ",
       "secondKeyword": "la taille de votre entreprise.",
-      "end": " Vous pouvez facilement ajouter ou supprimer n'importe lequel de vos services à tout moment, de manière à prendre en compte votre développement."
+      "end": " Vous pouvez facilement ajouter ou supprimer n'importe lequel de vos services à tout moment, de manière à ’adapter à votre développement."
     },
     "list": [
       "Réservations",
@@ -42,19 +42,19 @@
       "À emporter",
       "Paiements",
       "Privatisation",
-      "Service traiteur",
+      "Service Traiteur",
       "Statistiques",
       "Marketing",
       "RH & Salaires",
-      "Fourniture",
+      "Grossiste",
       "Comptabilité",
-      "Déchets alimentaires",
+      "Déchets Alimentaires",
       "Hygiène",
       "Emballage",
-      "Photographe",
-      "Les réseaux sociaux",
-      "Les stocks",
-      "Nos avis"
+      "Photos",
+      "Réseaux Sociaux",
+      "Stocks",
+      "Nos Avis"
     ],
     "more": "Nous centralisons tous vos services dans un tableau de bord unique."
   },
@@ -84,7 +84,7 @@
     }
   },
   "features": {
-    "header": "Fonctionnalités",
+    "header": "Intégration et Partenariat",
     "subHeader": {
       "start": "Créez et gérez votre restaurant avec Foodetective et nos partenaires. ",
       "end": " Aucun code requis."

@@ -17,7 +17,7 @@ export const StyledParagraph = styled(Box).attrs(() => ({
   px: 18
 }))`
   font-weight: ${p => p.theme.fontWeights.regular};
-  font-size: ${p => p.theme.fontSizes.f18};
+  font-size: ${p => p.theme.fontSizes.f16};
   line-height: 28px;
   letter-spacing: 0.36px;
   cursor: pointer;

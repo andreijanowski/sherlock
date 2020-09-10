@@ -46,7 +46,7 @@ class Home extends PureComponent {
 
   scrollTo = section => {
     window.scrollTo({
-      top: this[`${section}Ref`].current.offsetTop,
+      top: this[`${section}Ref`].current.offsetTop - 100,
       behavior: "smooth"
     });
   };
