@@ -34,7 +34,7 @@ const Footer = ({ t }) => (
             columnName: "columnTwo",
             hrefs: {
               "0": {
-                href: "https://medium.com/@GetSherlockNow",
+                href: "https://medium.com/@foodetective",
                 target: "_blank",
                 rel: "noreferrer noopener"
               }
