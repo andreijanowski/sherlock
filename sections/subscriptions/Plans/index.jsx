@@ -1,10 +1,16 @@
 import { func, string, shape, arrayOf } from "prop-types";
-import { Plans, PlansBillingInterval, BoldText, Button } from "components";
+import {
+  PlansBillingInterval,
+  BoldText,
+  Button,
+  PlansLandingPage
+} from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Wrapper } from "../styled";
 import { getPlanName } from "../utils";
 import Card from "../Payments/Card";
 import PlanStatus from "./PlanStatus";
+import { PlansWrapper } from "./styled";
 
 const PlansSection = ({
   t,
@@ -74,8 +80,8 @@ const PlansSection = ({
           </Flex>
         </Flex>
       )}
-      <Flex mx={-2} flexWrap="wrap">
-        <Plans
+      <PlansWrapper>
+        <PlansLandingPage
           {...{
             t,
             lng,
@@ -84,10 +90,11 @@ const PlansSection = ({
             nextPlanName,
             currentPlanInterval:
               currentPlan && currentPlan.getIn(["attributes", "interval"]),
+            isAuthenticated: false,
             isSubscriptionView: true
           }}
         />
-      </Flex>
+      </PlansWrapper>
     </Wrapper>
   );
 };
