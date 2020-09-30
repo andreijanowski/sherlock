@@ -1,6 +1,6 @@
 export const generatePlanOptionsList = (planName, t) => {
   switch (planName) {
-    case "tailored":
+    case "premium":
     case "special":
       return [
         {

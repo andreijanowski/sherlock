@@ -66,12 +66,12 @@ const PlansLandingPage = ({
           currentPlanInterval,
           isSubscriptionView,
           color: "limeade",
-          name: "tailored",
+          name: "premium",
           onClickActionButton: () => {
             if (choosePlan) {
-              choosePlan("tailored");
+              choosePlan("premium");
             } else {
-              window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=tailored`;
+              window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=premium`;
             }
           }
         }}

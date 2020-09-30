@@ -23,7 +23,7 @@ const Plan = ({
   nextPlanName,
   currentPlanInterval
 }) => {
-  const shouldShowPlanPrice = name === "essential" || name === "tailored";
+  const shouldShowPlanPrice = name === "essential" || name === "premium";
   const isChosen =
     nextPlanName === name &&
     (currentPlanInterval === billingInterval || nextPlanName === "essential");
