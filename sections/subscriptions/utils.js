@@ -1,10 +1,10 @@
 const getCurrentPlanNameBySlug = slug => {
   switch (slug) {
     case "sherlock-basic-monthly-eur":
-    case "sherlock-basic-yearly-eur": {
+    case "sherlock-basic-yearly-new-eur": {
       return "basic";
     }
-    case "sherlock-premium-monthly-eur":
+    case "sherlock-premium-monthly-new-eur":
     case "sherlock-premium-yearly-eur": {
       return "premium";
     }

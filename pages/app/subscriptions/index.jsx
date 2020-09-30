@@ -17,6 +17,16 @@ import { fetchProfileSubscriptions, fetchProfileCards } from "actions/users";
 import { fetchBusinessSetupIntent } from "actions/businesses";
 
 const namespaces = ["plans", "forms", "app"];
+const getNewPlanSlug = (planName, billingInterval) => {
+  let newPlanSlug = `sherlock-${planName}-${billingInterval}ly-eur`;
+  const isBasicYearly = planName === "basic" && billingInterval === "year";
+  const isPremiumMonthly =
+    planName === "premium" && billingInterval === "month";
+  if (isBasicYearly || isPremiumMonthly) {
+    newPlanSlug = `sherlock-${planName}-${billingInterval}ly-new-eur`;
+  }
+  return newPlanSlug;
+};
 
 class SubscriptionsPage extends PureComponent {
   static async getInitialProps() {
@@ -71,7 +81,7 @@ class SubscriptionsPage extends PureComponent {
             );
         }
       } else {
-        const newPlanSlug = `sherlock-${planName}-${billingInterval}ly-eur`;
+        const newPlanSlug = getNewPlanSlug(planName, billingInterval);
         if (
           subscriptions.getIn(["attributes", "slug"]) !== newPlanSlug ||
           subscriptions.getIn(["attributes", "cancelAt"])
@@ -119,10 +129,7 @@ class SubscriptionsPage extends PureComponent {
       this.setState({
         view: "loading"
       });
-      createSubscription(
-        stripeToken,
-        `sherlock-${plan}-${billingInterval}ly-eur`
-      )
+      createSubscription(stripeToken, getNewPlanSlug(plan, billingInterval))
         .then(() => {
           this.goToSuccess();
         })
