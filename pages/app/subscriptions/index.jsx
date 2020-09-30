@@ -56,7 +56,7 @@ class SubscriptionsPage extends PureComponent {
     } = this.props;
     if (subscriptions) {
       if (planName === "essential") {
-        if (!subscriptions.getIn(["attribues", "cancelAt"])) {
+        if (!subscriptions.getIn(["attributes", "cancelAt"])) {
           this.setState({
             view: "loading"
           });
@@ -73,8 +73,8 @@ class SubscriptionsPage extends PureComponent {
       } else {
         const newPlanSlug = `sherlock-${planName}-${billingInterval}ly-eur`;
         if (
-          subscriptions.getIn(["attribues", "slug"]) !== newPlanSlug ||
-          subscriptions.getIn(["attribues", "cancelAt"])
+          subscriptions.getIn(["attributes", "slug"]) !== newPlanSlug ||
+          subscriptions.getIn(["attributes", "cancelAt"])
         ) {
           this.setState({
             view: "loading"
