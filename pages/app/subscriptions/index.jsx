@@ -19,10 +19,9 @@ import { fetchBusinessSetupIntent } from "actions/businesses";
 const namespaces = ["plans", "forms", "app"];
 const getNewPlanSlug = (planName, billingInterval) => {
   let newPlanSlug = `sherlock-${planName}-${billingInterval}ly-eur`;
-  const isBasicYearly = planName === "basic" && billingInterval === "year";
   const isPremiumMonthly =
     planName === "premium" && billingInterval === "month";
-  if (isBasicYearly || isPremiumMonthly) {
+  if (isPremiumMonthly) {
     newPlanSlug = `sherlock-${planName}-${billingInterval}ly-new-eur`;
   }
   return newPlanSlug;
@@ -65,7 +64,7 @@ class SubscriptionsPage extends PureComponent {
       cancelSubscriptionPlan
     } = this.props;
     if (subscriptions) {
-      if (planName === "essential") {
+      if (planName === "basic") {
         if (!subscriptions.getIn(["attributes", "cancelAt"])) {
           this.setState({
             view: "loading"
@@ -100,7 +99,7 @@ class SubscriptionsPage extends PureComponent {
             );
         }
       }
-    } else if (planName !== "essential") {
+    } else if (planName !== "basic") {
       this.setState({
         chosenPlan: planName,
         view: "payments"

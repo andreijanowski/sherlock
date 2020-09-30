@@ -89,11 +89,7 @@ const PlansLandingPage = ({
           color: "limeade",
           name: "special",
           onClickActionButton: () => {
-            if (choosePlan) {
-              choosePlan("special");
-            } else {
-              window.location.href = `https://share.hsforms.com/1UW67s4YOTTKvC2NIum5X0w3cpmu`;
-            }
+            window.location.href = `https://share.hsforms.com/1UW67s4YOTTKvC2NIum5X0w3cpmu`;
           }
         }}
       />
