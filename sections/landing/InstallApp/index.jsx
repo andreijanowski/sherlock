@@ -6,6 +6,7 @@ import { BlueText } from "../sharedStyled";
 
 const InstallApp = ({ t }) => (
   <Flex
+    style={{ maxWidth: "1150px" }}
     mx="auto"
     width={1}
     justifyContent="space-around"

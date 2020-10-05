@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, shape } from "prop-types";
+import { func, string, shape, bool } from "prop-types";
 import { connect } from "react-redux";
 import AppLayout from "layout/App";
 import { LoadingIndicator } from "components";
@@ -188,7 +188,9 @@ class SubscriptionsPage extends PureComponent {
               choosePlan: this.choosePlan,
               goToPayments: this.goToPayments,
               currentPlan: subscriptions,
-              handleChangeBillngPeriod: this.handleChangeBillngPeriod
+              handleChangeBillngPeriod: this.handleChangeBillngPeriod,
+              isCanceled:
+                subscriptions && subscriptions.getIn(["attributes", "cancelAt"])
             }}
           />
         )}
@@ -230,12 +232,14 @@ SubscriptionsPage.propTypes = {
   getProfileCards: func.isRequired,
   getBusinessSetupIntent: func.isRequired,
   notificationError: func.isRequired,
-  businessId: string.isRequired
+  businessId: string.isRequired,
+  isCanceled: bool
 };
 
 SubscriptionsPage.defaultProps = {
   subscriptions: null,
-  cards: null
+  cards: null,
+  isCanceled: false
 };
 
 export default requireAuth(true)(

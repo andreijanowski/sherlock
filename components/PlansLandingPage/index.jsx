@@ -10,7 +10,8 @@ const PlansLandingPage = ({
   choosePlan,
   nextPlanName,
   currentPlanInterval,
-  isSubscriptionView
+  isSubscriptionView,
+  isCanceled
 }) => (
   <Flex
     justifyContent="space-between"
@@ -27,6 +28,7 @@ const PlansLandingPage = ({
           isSubscriptionView,
           color: "deepSkyBlue",
           name: "basic",
+          isCanceled,
           onClickActionButton: () => {
             if (choosePlan) {
               choosePlan("basic");
@@ -104,13 +106,15 @@ PlansLandingPage.propTypes = {
   choosePlan: func,
   nextPlanName: string,
   currentPlanInterval: string,
-  isSubscriptionView: bool.isRequired
+  isSubscriptionView: bool.isRequired,
+  isCanceled: bool
 };
 
 PlansLandingPage.defaultProps = {
   choosePlan: null,
   nextPlanName: null,
-  currentPlanInterval: null
+  currentPlanInterval: null,
+  isCanceled: false
 };
 
 export default PlansLandingPage;
