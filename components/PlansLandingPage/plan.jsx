@@ -21,12 +21,11 @@ const Plan = ({
   billingInterval,
   onClickActionButton,
   nextPlanName,
-  currentPlanInterval
+  isCanceled
 }) => {
+  const isBasicAndCanceled = isCanceled && name === "basic";
   const shouldShowPlanPrice = name === "essential" || name === "premium";
-  const isChosen =
-    nextPlanName === name &&
-    (currentPlanInterval === billingInterval || nextPlanName === "essential");
+  const isChosen = nextPlanName === name;
   let buttonText = t(`plans:${name}.buttonText`);
   if (isChosen) {
     buttonText = t(`plans:chosen`);
@@ -71,7 +70,11 @@ const Plan = ({
         justifyContent={["center", "flex-start"]}
         mx={[0, -3]}
       >
-        <Button onClick={onClickActionButton} styleName="signUpCTA">
+        <Button
+          onClick={onClickActionButton}
+          disabled={isBasicAndCanceled}
+          styleName="signUpCTA"
+        >
           {buttonText}
           {shouldShowPlanPrice && (
             <> &euro;{t(`plans:${name}.price.${billingInterval}`)} </>
@@ -99,12 +102,14 @@ Plan.propTypes = {
   onClickActionButton: func.isRequired,
   nextPlanName: string,
   currentPlanInterval: string,
-  isSubscriptionView: bool.isRequired
+  isSubscriptionView: bool.isRequired,
+  isCanceled: bool
 };
 
 Plan.defaultProps = {
   nextPlanName: null,
-  currentPlanInterval: null
+  currentPlanInterval: null,
+  isCanceled: false
 };
 
 export default Plan;

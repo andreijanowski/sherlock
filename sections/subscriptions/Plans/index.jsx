@@ -1,4 +1,4 @@
-import { func, string, shape, arrayOf } from "prop-types";
+import { func, string, shape, arrayOf, bool } from "prop-types";
 import {
   PlansBillingInterval,
   BoldText,
@@ -20,7 +20,8 @@ const PlansSection = ({
   choosePlan,
   currentPlan,
   cards,
-  goToPayments
+  goToPayments,
+  isCanceled
 }) => {
   const { currentPlanName, nextPlanName } = getPlanName(currentPlan);
   const currentCard =
@@ -55,7 +56,7 @@ const PlansSection = ({
           {...{ t, billingInterval, handleChangeBillngPeriod }}
         />
       </Flex>
-      {nextPlanName !== "essential" && (
+      {nextPlanName !== "basic" && (
         <Flex flexDirection="column" mb={4}>
           <Box mr={2} mb={3}>{`${t("paymentInfo")}: `}</Box>
           <Flex>
@@ -91,7 +92,8 @@ const PlansSection = ({
             currentPlanInterval:
               currentPlan && currentPlan.getIn(["attributes", "interval"]),
             isAuthenticated: false,
-            isSubscriptionView: true
+            isSubscriptionView: true,
+            isCanceled
           }}
         />
       </PlansWrapper>
@@ -107,12 +109,14 @@ PlansSection.propTypes = {
   choosePlan: func.isRequired,
   goToPayments: func.isRequired,
   currentPlan: shape(),
-  cards: arrayOf(shape())
+  cards: arrayOf(shape()),
+  isCanceled: bool
 };
 
 PlansSection.defaultProps = {
   currentPlan: null,
-  cards: null
+  cards: null,
+  isCanceled: false
 };
 
 export default PlansSection;
