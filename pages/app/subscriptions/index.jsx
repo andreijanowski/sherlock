@@ -124,7 +124,7 @@ class SubscriptionsPage extends PureComponent {
           this.goToSuccess();
         })
         .catch(() => this.goToPayments());
-    } else if (plan !== "essential") {
+    } else if (plan !== "basic") {
       this.setState({
         view: "loading"
       });
