@@ -1,22 +1,22 @@
 const getCurrentPlanNameBySlug = slug => {
   switch (slug) {
-    case "sherlock-basic-monthly-eur":
-    case "sherlock-basic-yearly-eur": {
-      return "basic";
+    case "sherlock-essential-monthly-eur":
+    case "sherlock-essential-yearly-eur": {
+      return "essential";
     }
-    case "sherlock-premium-monthly-eur":
+    case "sherlock-premium-monthly-new-eur":
     case "sherlock-premium-yearly-eur": {
       return "premium";
     }
     default: {
-      return "professional";
+      return "basic";
     }
   }
 };
 
-const essentialPlan = {
-  currentPlanName: "essential",
-  nextPlanName: "essential"
+const basicPlan = {
+  currentPlanName: "basic",
+  nextPlanName: "basic"
 };
 
 export const getPlanName = plan => {
@@ -24,22 +24,10 @@ export const getPlanName = plan => {
     const currentPlan = getCurrentPlanNameBySlug(
       plan.getIn(["attributes", "slug"])
     );
-    if (plan.getIn(["attributes", "cancelAt"])) {
-      if (
-        new Date(plan.getIn(["attributes", "cancelAt"])).getTime() <
-        new Date().getTime()
-      ) {
-        return essentialPlan;
-      }
-      return {
-        currentPlanName: currentPlan,
-        nextPlanName: "essential"
-      };
-    }
     return {
       currentPlanName: currentPlan,
       nextPlanName: currentPlan
     };
   }
-  return essentialPlan;
+  return basicPlan;
 };

@@ -10,7 +10,8 @@ const PlansLandingPage = ({
   choosePlan,
   nextPlanName,
   currentPlanInterval,
-  isSubscriptionView
+  isSubscriptionView,
+  isCanceled
 }) => (
   <Flex
     justifyContent="space-between"
@@ -27,6 +28,7 @@ const PlansLandingPage = ({
           isSubscriptionView,
           color: "deepSkyBlue",
           name: "basic",
+          isCanceled,
           onClickActionButton: () => {
             if (choosePlan) {
               choosePlan("basic");
@@ -66,12 +68,12 @@ const PlansLandingPage = ({
           currentPlanInterval,
           isSubscriptionView,
           color: "limeade",
-          name: "tailored",
+          name: "premium",
           onClickActionButton: () => {
             if (choosePlan) {
-              choosePlan("tailored");
+              choosePlan("premium");
             } else {
-              window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=tailored`;
+              window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=premium`;
             }
           }
         }}
@@ -89,11 +91,7 @@ const PlansLandingPage = ({
           color: "limeade",
           name: "special",
           onClickActionButton: () => {
-            if (choosePlan) {
-              choosePlan("special");
-            } else {
-              window.location.href = `https://share.hsforms.com/1UW67s4YOTTKvC2NIum5X0w3cpmu`;
-            }
+            window.location.href = `https://share.hsforms.com/1UW67s4YOTTKvC2NIum5X0w3cpmu`;
           }
         }}
       />
@@ -108,13 +106,15 @@ PlansLandingPage.propTypes = {
   choosePlan: func,
   nextPlanName: string,
   currentPlanInterval: string,
-  isSubscriptionView: bool.isRequired
+  isSubscriptionView: bool.isRequired,
+  isCanceled: bool
 };
 
 PlansLandingPage.defaultProps = {
   choosePlan: null,
   nextPlanName: null,
-  currentPlanInterval: null
+  currentPlanInterval: null,
+  isCanceled: false
 };
 
 export default PlansLandingPage;

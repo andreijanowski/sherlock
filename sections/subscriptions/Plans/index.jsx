@@ -1,10 +1,16 @@
-import { func, string, shape, arrayOf } from "prop-types";
-import { Plans, PlansBillingInterval, BoldText, Button } from "components";
+import { func, string, shape, arrayOf, bool } from "prop-types";
+import {
+  PlansBillingInterval,
+  BoldText,
+  Button,
+  PlansLandingPage
+} from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Wrapper } from "../styled";
 import { getPlanName } from "../utils";
 import Card from "../Payments/Card";
 import PlanStatus from "./PlanStatus";
+import { PlansWrapper } from "./styled";
 
 const PlansSection = ({
   t,
@@ -14,7 +20,8 @@ const PlansSection = ({
   choosePlan,
   currentPlan,
   cards,
-  goToPayments
+  goToPayments,
+  isCanceled
 }) => {
   const { currentPlanName, nextPlanName } = getPlanName(currentPlan);
   const currentCard =
@@ -49,7 +56,7 @@ const PlansSection = ({
           {...{ t, billingInterval, handleChangeBillngPeriod }}
         />
       </Flex>
-      {nextPlanName !== "essential" && (
+      {nextPlanName !== "basic" && (
         <Flex flexDirection="column" mb={4}>
           <Box mr={2} mb={3}>{`${t("paymentInfo")}: `}</Box>
           <Flex>
@@ -74,8 +81,8 @@ const PlansSection = ({
           </Flex>
         </Flex>
       )}
-      <Flex mx={-2} flexWrap="wrap">
-        <Plans
+      <PlansWrapper>
+        <PlansLandingPage
           {...{
             t,
             lng,
@@ -84,10 +91,12 @@ const PlansSection = ({
             nextPlanName,
             currentPlanInterval:
               currentPlan && currentPlan.getIn(["attributes", "interval"]),
-            isSubscriptionView: true
+            isAuthenticated: false,
+            isSubscriptionView: true,
+            isCanceled
           }}
         />
-      </Flex>
+      </PlansWrapper>
     </Wrapper>
   );
 };
@@ -100,12 +109,14 @@ PlansSection.propTypes = {
   choosePlan: func.isRequired,
   goToPayments: func.isRequired,
   currentPlan: shape(),
-  cards: arrayOf(shape())
+  cards: arrayOf(shape()),
+  isCanceled: bool
 };
 
 PlansSection.defaultProps = {
   currentPlan: null,
-  cards: null
+  cards: null,
+  isCanceled: false
 };
 
 export default PlansSection;

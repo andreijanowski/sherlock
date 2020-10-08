@@ -1,7 +1,7 @@
 import { PureComponent } from "react";
 import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, shape } from "prop-types";
+import { func, string, shape, bool } from "prop-types";
 import { connect } from "react-redux";
 import AppLayout from "layout/App";
 import { LoadingIndicator } from "components";
@@ -17,6 +17,15 @@ import { fetchProfileSubscriptions, fetchProfileCards } from "actions/users";
 import { fetchBusinessSetupIntent } from "actions/businesses";
 
 const namespaces = ["plans", "forms", "app"];
+const getNewPlanSlug = (planName, billingInterval) => {
+  let newPlanSlug = `sherlock-${planName}-${billingInterval}ly-eur`;
+  const isPremiumMonthly =
+    planName === "premium" && billingInterval === "month";
+  if (isPremiumMonthly) {
+    newPlanSlug = `sherlock-${planName}-${billingInterval}ly-new-eur`;
+  }
+  return newPlanSlug;
+};
 
 class SubscriptionsPage extends PureComponent {
   static async getInitialProps() {
@@ -55,8 +64,8 @@ class SubscriptionsPage extends PureComponent {
       cancelSubscriptionPlan
     } = this.props;
     if (subscriptions) {
-      if (planName === "essential") {
-        if (!subscriptions.getIn(["attribues", "cancelAt"])) {
+      if (planName === "basic") {
+        if (!subscriptions.getIn(["attributes", "cancelAt"])) {
           this.setState({
             view: "loading"
           });
@@ -71,10 +80,10 @@ class SubscriptionsPage extends PureComponent {
             );
         }
       } else {
-        const newPlanSlug = `sherlock-${planName}-${billingInterval}ly-eur`;
+        const newPlanSlug = getNewPlanSlug(planName, billingInterval);
         if (
-          subscriptions.getIn(["attribues", "slug"]) !== newPlanSlug ||
-          subscriptions.getIn(["attribues", "cancelAt"])
+          subscriptions.getIn(["attributes", "slug"]) !== newPlanSlug ||
+          subscriptions.getIn(["attributes", "cancelAt"])
         ) {
           this.setState({
             view: "loading"
@@ -90,7 +99,7 @@ class SubscriptionsPage extends PureComponent {
             );
         }
       }
-    } else if (planName !== "essential") {
+    } else if (planName !== "basic") {
       this.setState({
         chosenPlan: planName,
         view: "payments"
@@ -115,14 +124,11 @@ class SubscriptionsPage extends PureComponent {
           this.goToSuccess();
         })
         .catch(() => this.goToPayments());
-    } else if (plan !== "essential") {
+    } else if (plan !== "basic") {
       this.setState({
         view: "loading"
       });
-      createSubscription(
-        stripeToken,
-        `sherlock-${plan}-${billingInterval}ly-eur`
-      )
+      createSubscription(stripeToken, getNewPlanSlug(plan, billingInterval))
         .then(() => {
           this.goToSuccess();
         })
@@ -182,7 +188,9 @@ class SubscriptionsPage extends PureComponent {
               choosePlan: this.choosePlan,
               goToPayments: this.goToPayments,
               currentPlan: subscriptions,
-              handleChangeBillngPeriod: this.handleChangeBillngPeriod
+              handleChangeBillngPeriod: this.handleChangeBillngPeriod,
+              isCanceled:
+                subscriptions && subscriptions.getIn(["attributes", "cancelAt"])
             }}
           />
         )}
@@ -224,12 +232,14 @@ SubscriptionsPage.propTypes = {
   getProfileCards: func.isRequired,
   getBusinessSetupIntent: func.isRequired,
   notificationError: func.isRequired,
-  businessId: string.isRequired
+  businessId: string.isRequired,
+  isCanceled: bool
 };
 
 SubscriptionsPage.defaultProps = {
   subscriptions: null,
-  cards: null
+  cards: null,
+  isCanceled: false
 };
 
 export default requireAuth(true)(
