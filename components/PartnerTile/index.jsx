@@ -5,6 +5,7 @@ import { shape, arrayOf, oneOfType, func, string } from "prop-types";
 import { connectPartner } from "actions/partners";
 import { connectWholesaler } from "actions/wholesalers";
 
+import { OrchestroIntegrationSwitch } from "components";
 import IntegrationLink from "./IntegrationLink";
 import { getIntegrationButtonLabel, getIsIntegrationPending } from "./utils";
 import {
@@ -32,11 +33,12 @@ const PartnerTile = ({
     partnerRelationships,
     currentUserId
   );
+
   const isIntegrationNotRequested = partner.get("active");
   const isIntegrated = !partner.get("active");
+  const isOrkestroIntegration = partner.get("name") === "Orkestro";
 
   const [isPending, setIsPending] = useState(isIntegrationPending);
-
   const integrationButtonLabel = getIntegrationButtonLabel(
     isIntegrationNotRequested,
     isPending,
@@ -70,14 +72,18 @@ const PartnerTile = ({
           </IntegrationLink>
         </LinkContainer>
         <ButtonContainer width={["100%", "100%", "65%", "70", "60%"]}>
-          <IntegrationButton
-            styleName={
-              !isIntegrationNotRequested || isPending ? "signUp" : "navyBlue"
-            }
-            onClick={requestIntegration}
-          >
-            {integrationButtonLabel}
-          </IntegrationButton>
+          {!isOrkestroIntegration ? (
+            <IntegrationButton
+              styleName={
+                !isIntegrationNotRequested || isPending ? "signUp" : "navyBlue"
+              }
+              onClick={requestIntegration}
+            >
+              {integrationButtonLabel}
+            </IntegrationButton>
+          ) : (
+            <OrchestroIntegrationSwitch t={t} />
+          )}
           <InfoButton styleName="navyBlue">
             <IntegrationLink partner={partner}>
               {t("app:manageIntegrations.moreInfo")}
