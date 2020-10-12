@@ -458,6 +458,21 @@ class LefoodLayout extends PureComponent {
                           }}
                         />
                       </Box>
+                      <Box pr={4}>
+                        <RawCheckbox
+                          hasCloserText
+                          label={t("deliverWithOrkestro")}
+                          // input={
+                          //   {
+                          //     onChange: () =>
+                          //       this.updateBusiness({
+                          //         allowPickup: !business.get("allowPickup")
+                          //       }),
+                          //     value: business.get("allowPickup")
+                          //   }
+                          // }
+                        />
+                      </Box>
                       <Box pr={3} mb={2}>
                         {business.get("visibleInLefood") ? (
                           <Button

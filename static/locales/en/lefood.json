@@ -99,6 +99,7 @@
   "setStripeCurrency": "Set stripe currency",
   "stripeCurrencyNotSet": "Currency for stripe is not set",
   "allowPickup": "Allow pickup",
+  "deliverWithOrkestro": "Deliver with Orkestro",
   "index": "Index",
   "shortId": "ID",
   "state": "State",
