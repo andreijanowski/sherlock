@@ -11,6 +11,7 @@ import { setOrdersUpdates, setReservationsUpdates } from "actions/app";
 import { fetchProfileBusiness } from "actions/users";
 import { fetchBusinessMembers } from "actions/businesses";
 import { fetchPartners } from "actions/partners";
+import { fetchBusinessPartnerships } from "actions/integrations";
 import { fetchWholesalers } from "actions/wholesalers";
 import Notifications from "react-notification-system-redux";
 import { Map } from "immutable";
@@ -51,6 +52,13 @@ function* handlePatchChangeSaga({ payload: { path } }) {
       break;
     }
     case "/app/integrations": {
+      const business = yield select(state =>
+        state.getIn(["users", "currentBusiness", "data", "businesses"])
+      );
+      if (business) {
+        const id = business.first().get("id");
+        yield put(fetchBusinessPartnerships(id));
+      }
       yield put(fetchPartners());
       break;
     }
