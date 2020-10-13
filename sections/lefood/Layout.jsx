@@ -191,6 +191,7 @@ class LefoodLayout extends PureComponent {
       changeCurrentBusiness,
       updateBusiness
     } = this.props;
+    console.log(this.props);
     const {
       minAmountForDeliveryCents,
       isStopOrdersModalVisible,
@@ -462,15 +463,15 @@ class LefoodLayout extends PureComponent {
                         <RawCheckbox
                           hasCloserText
                           label={t("deliverWithOrkestro")}
-                          // input={
-                          //   {
-                          //     onChange: () =>
-                          //       this.updateBusiness({
-                          //         allowPickup: !business.get("allowPickup")
-                          //       }),
-                          //     value: business.get("allowPickup")
-                          //   }
-                          // }
+                          input={{
+                            onChange: () =>
+                              this.updateBusiness({
+                                deliverWithOrkestro: !business.get(
+                                  "deliverWithOrkestro"
+                                )
+                              }),
+                            value: business.get("deliverWithOrkestro")
+                          }}
                         />
                       </Box>
                       <Box pr={3} mb={2}>
