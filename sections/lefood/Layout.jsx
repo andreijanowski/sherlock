@@ -1,6 +1,7 @@
 import { PureComponent } from "react";
-import { func, string, node, number, shape } from "prop-types";
+import { func, string, node, number, shape, bool } from "prop-types";
 import AppLayout from "layout/App";
+import { connect } from "react-redux";
 import {
   Button,
   ButtonWithImageText,
@@ -34,6 +35,10 @@ import { Router } from "routes";
 import { convertToCents } from "utils/price";
 import prepareBusinessesList from "utils/prepareBusinessesList";
 import Tippy from "@tippy.js/react";
+import {
+  connectPartnerWithOrkestro,
+  disconnectPartnerFromOrkestro
+} from "actions/integrations";
 import StopOrdersModal from "./StopOrdersModal";
 import FinishOrdersModal from "./FinishOrdersModal";
 import StripeCurrencyModal from "./StripeCurrencyModal";
@@ -176,6 +181,19 @@ class LefoodLayout extends PureComponent {
       });
   };
 
+  handleOrkestroIntegrationChange = value => {
+    const {
+      integrateWithOrkestro,
+      disconnectFromOrkestro,
+      currentBusinessId
+    } = this.props;
+    if (value) {
+      integrateWithOrkestro(currentBusinessId);
+    } else {
+      disconnectFromOrkestro(currentBusinessId);
+    }
+  };
+
   render() {
     const {
       t,
@@ -189,9 +207,9 @@ class LefoodLayout extends PureComponent {
       currentBusinessId,
       businesses,
       changeCurrentBusiness,
-      updateBusiness
+      updateBusiness,
+      connectedWithOrkestro
     } = this.props;
-    console.log(this.props);
     const {
       minAmountForDeliveryCents,
       isStopOrdersModalVisible,
@@ -417,9 +435,10 @@ class LefoodLayout extends PureComponent {
                       <Box pr={3} mb={2}>
                         <Link route="/app/lefood/delivery-area/" lng={lng}>
                           <Button
-                            as="a"
+                            as={connectedWithOrkestro ? "button" : "a"}
                             styleName="withImage"
                             active={page === "deliveryArea"}
+                            disabled={connectedWithOrkestro}
                           >
                             <ButtonWithImageIconWrapper>
                               <Location />
@@ -465,12 +484,10 @@ class LefoodLayout extends PureComponent {
                           label={t("deliverWithOrkestro")}
                           input={{
                             onChange: () =>
-                              this.updateBusiness({
-                                deliverWithOrkestro: !business.get(
-                                  "deliverWithOrkestro"
-                                )
-                              }),
-                            value: business.get("deliverWithOrkestro")
+                              this.handleOrkestroIntegrationChange(
+                                !connectedWithOrkestro
+                              ),
+                            value: connectedWithOrkestro
                           }}
                         />
                       </Box>
@@ -574,6 +591,9 @@ class LefoodLayout extends PureComponent {
 LefoodLayout.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
+  connectedWithOrkestro: bool.isRequired,
+  integrateWithOrkestro: func.isRequired,
+  disconnectFromOrkestro: func.isRequired,
   page: string.isRequired,
   children: node.isRequired,
   updateBusiness: func.isRequired,
@@ -595,4 +615,18 @@ LefoodLayout.defaultProps = {
   businesses: null
 };
 
-export default LefoodLayout;
+export default connect(
+  state => {
+    const isConnectedWithOrkestro = state.getIn([
+      "integrations",
+      "isConnectedToOrkestro"
+    ]);
+    return {
+      connectedWithOrkestro: isConnectedWithOrkestro
+    };
+  },
+  {
+    integrateWithOrkestro: connectPartnerWithOrkestro,
+    disconnectFromOrkestro: disconnectPartnerFromOrkestro
+  }
+)(LefoodLayout);
