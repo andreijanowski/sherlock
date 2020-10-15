@@ -1,5 +1,5 @@
 import { Modal, Button, ModalHeader } from "components";
-import { WarningIcon } from "icons";
+import { RejectModalIcon } from "icons";
 import { func, bool } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 
@@ -11,7 +11,7 @@ const ConfirmOrkestroDeliveryModal = ({ isOpen, onClose, onConfirm, t }) => (
       justifyContent="space-between"
       width={320}
     >
-      <WarningIcon />
+      <RejectModalIcon />
       <ModalHeader>{t("confirmOrkestroDelivery")}</ModalHeader>
       <Box width={1}>
         <Flex mx={-2}>
