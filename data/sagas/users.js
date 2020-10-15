@@ -18,6 +18,7 @@ import { takeEvery, all, put } from "redux-saga/effects";
 import Notifications from "react-notification-system-redux";
 import { setCurrentBusiness } from "actions/app";
 import { fetchCategories } from "actions/categories";
+import { fetchBusinessPartnerships } from "actions/integrations";
 import fetchAllBusinessData from "./utils/fetchAllBusinessData";
 
 function* fetchBusinessData({ payload: { id } }) {
@@ -33,6 +34,7 @@ function* fetchBusinessData({ payload: { id } }) {
   yield fetchAllBusinessData(fetchBusinessTables, id);
   yield fetchAllBusinessData(fetchBusinessReservations, id);
   yield fetchAllBusinessData(fetchBusinessWidgets, id);
+  yield put(fetchBusinessPartnerships(id));
 }
 
 function* showSuccesNotification() {

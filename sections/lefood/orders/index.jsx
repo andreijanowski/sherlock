@@ -1,5 +1,6 @@
 import { func, shape, bool, string } from "prop-types";
 import { DragDropContext } from "react-beautiful-dnd";
+import { connect } from "react-redux";
 import { LoadingIndicator, DndColumn } from "components";
 import { ColumnsWrapper } from "./styled";
 import RejectModal from "./RejectModal";
@@ -19,6 +20,8 @@ const Orders = ({
   pendingRejectionOrderId,
   handleRejectionSubmit,
   toggleOrderDetails,
+  connectedWithOrkestro,
+  allowPickup,
   t
 }) =>
   loading ? (
@@ -37,7 +40,12 @@ const Orders = ({
                 id: column.id,
                 title: column.title,
                 items: columnOrders,
-                isDropDisabled: setIsDropDisabled(draggedOrderState, column.id),
+                isDropDisabled: setIsDropDisabled(
+                  draggedOrderState,
+                  column.id,
+                  connectedWithOrkestro,
+                  allowPickup
+                ),
                 isColumnGrayedOut: column.id === columnsList.rejected,
                 handleCardClick: toggleOrderDetails,
                 renderCardHeader: id => (
@@ -86,6 +94,8 @@ Orders.propTypes = {
   orders: shape(),
   columns: shape().isRequired,
   loading: bool.isRequired,
+  connectedWithOrkestro: bool.isRequired,
+  allowPickup: bool.isRequired,
   currency: string,
   updateOrder: func.isRequired,
   draggedOrderState: string,
@@ -103,4 +113,19 @@ Orders.defaultProps = {
   orders: null
 };
 
-export default Orders;
+export default connect(state => {
+  const isConnectedWithOrkestro = state.getIn([
+    "integrations",
+    "isConnectedToOrkestro"
+  ]);
+  const businessData = state.getIn(["users", "currentBusiness", "data"]);
+  const business =
+    businessData &&
+    businessData.get("businesses") &&
+    businessData.get("businesses").first();
+  const allowPickup = business && business.getIn(["attributes", "allowPickup"]);
+  return {
+    connectedWithOrkestro: isConnectedWithOrkestro,
+    allowPickup
+  };
+})(Orders);
