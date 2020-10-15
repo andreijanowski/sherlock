@@ -16,6 +16,7 @@ import { setCurrentBusiness } from "actions/app";
 import OrderDetails from "sections/lefood/orders/OrderDetails";
 import { SliderStyles } from "components";
 import { action as toggleMenu } from "redux-burger-menu/immutable";
+import ConfirmOrkestroDeliveryModal from "./ConfirmOrkestroDeliveryModal";
 
 const namespaces = ["lefood", "app", "forms"];
 
@@ -32,7 +33,11 @@ class OrdersPage extends PureComponent {
       columns: parseOrders(props.orders, props.t),
       draggedOrderState: null,
       pendingRejectionOrderId: undefined,
-      orderDetailsId: undefined
+      orderDetailsId: undefined,
+      orkestroDeliveryConfirmationModalOpen: false,
+      draggableId: undefined,
+      destination: undefined,
+      source: undefined
     };
   }
 
@@ -52,16 +57,8 @@ class OrdersPage extends PureComponent {
   };
 
   handleDragEnd = ({ destination, source, draggableId }) => {
-    if (
-      !destination ||
-      (destination.droppableId === source.droppableId &&
-        destination.index === source.index)
-    ) {
-      this.setState({ draggedOrderState: null });
-      return;
-    }
-
     const { updateOrder } = this.props;
+
     if (destination.droppableId === columnsNames.inProgress) {
       updateOrder({ state: "in_preparation" }, draggableId);
     } else if (destination.droppableId === columnsNames.inDelivery) {
@@ -110,6 +107,56 @@ class OrdersPage extends PureComponent {
         }
       };
     });
+  };
+
+  handleOrkestroDeliveryAccept = () => {
+    const { draggableId, destination, source } = this.state;
+
+    this.setState({
+      orkestroDeliveryConfirmationModalOpen: false
+    });
+    this.handleDragEnd({ destination, source, draggableId });
+  };
+
+  handleOrkestroDeliveryReject = () => {
+    this.setState({
+      orkestroDeliveryConfirmationModalOpen: false
+    });
+  };
+
+  handleDragEndAndOrkestro = ({ destination, source, draggableId }) => {
+    const { connectedWithOrkestro } = this.props;
+    if (
+      !destination ||
+      (destination.droppableId === source.droppableId &&
+        destination.index === source.index)
+    ) {
+      this.setState({ draggedOrderState: null });
+      return;
+    }
+
+    if (
+      destination.droppableId === columnsNames.newOrders &&
+      source.droppableId === columnsNames.inProgress &&
+      connectedWithOrkestro
+    ) {
+      return;
+    }
+
+    if (
+      destination.droppableId === columnsNames.inProgress &&
+      source.droppableId === columnsNames.newOrders &&
+      connectedWithOrkestro
+    ) {
+      this.setState({
+        orkestroDeliveryConfirmationModalOpen: true,
+        draggableId,
+        destination,
+        source
+      });
+    } else {
+      this.handleDragEnd({ destination, source, draggableId });
+    }
   };
 
   updateOrder = (state, draggableId) => {
@@ -190,7 +237,8 @@ class OrdersPage extends PureComponent {
       columns,
       draggedOrderState,
       pendingRejectionOrderId,
-      orderDetailsId
+      orderDetailsId,
+      orkestroDeliveryConfirmationModalOpen
     } = this.state;
 
     const orderDetails =
@@ -215,7 +263,7 @@ class OrdersPage extends PureComponent {
         >
           <Orders
             {...{
-              onDragEnd: this.handleDragEnd,
+              onDragEnd: this.handleDragEndAndOrkestro,
               onDragStart: this.handleDragStart,
               updateOrder: this.updateOrder,
               toggleOrderDetails: this.toggleOrderDetails,
@@ -242,6 +290,14 @@ class OrdersPage extends PureComponent {
             }}
           />
         </div>
+        <ConfirmOrkestroDeliveryModal
+          {...{
+            isOpen: orkestroDeliveryConfirmationModalOpen,
+            onClose: this.handleOrkestroDeliveryReject,
+            onConfirm: this.handleOrkestroDeliveryAccept,
+            t
+          }}
+        />
       </>
     );
   }
@@ -253,6 +309,10 @@ OrdersPage.propTypes = {
   orders: shape(),
   business: shape(),
   loading: bool.isRequired,
+  connectedWithOrkestro: bool.isRequired,
+  draggableId: string.isRequired,
+  destination: shape().isRequired,
+  source: shape().isRequired,
   updateOrder: func.isRequired,
   rejectOrder: func.isRequired,
   updateBusiness: func.isRequired,
@@ -287,6 +347,10 @@ export default requireAuth(true)(
         const orders = state.getIn(["orders", "data", "orders"]);
         const elements = state.getIn(["orders", "data", "elements"]);
         const addresses = state.getIn(["orders", "data", "addresses"]);
+        const isConnectedWithOrkestro = state.getIn([
+          "integrations",
+          "isConnectedToOrkestro"
+        ]);
         return {
           loading:
             (!state.getIn(["orders", "isFailed"]) &&
@@ -311,6 +375,8 @@ export default requireAuth(true)(
             "data",
             "businesses"
           ]),
+          connectedWithOrkestro: isConnectedWithOrkestro,
+
           lng: (i18n && i18n.language) || "en"
         };
       },

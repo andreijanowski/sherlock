@@ -123,7 +123,7 @@ export default connect(state => {
     businessData &&
     businessData.get("businesses") &&
     businessData.get("businesses").first();
-  const allowPickup = business.get(["attributes", "allowPickup"]);
+  const allowPickup = business && business.getIn(["attributes", "allowPickup"]);
   return {
     connectedWithOrkestro: isConnectedWithOrkestro,
     allowPickup

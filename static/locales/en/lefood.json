@@ -64,6 +64,7 @@
   "yes": "Yes",
   "no": "No",
   "finishOrdersHeader": "You need to stop receiving new orders and finish the ones in progress in order to change this setting",
+  "confirmOrkestroDelivery": "Confirming will start delivery process with Orkestro. Are you sure?",
   "back": "Back",
   "orderDetails": "Order details",
   "total": "Total",
