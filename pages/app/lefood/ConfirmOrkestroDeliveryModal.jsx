@@ -14,10 +14,10 @@ const ConfirmOrkestroDeliveryModal = ({ isOpen, onClose, onConfirm, t }) => (
       <WarningIcon />
       <ModalHeader>{t("confirmOrkestroDelivery")}</ModalHeader>
       <Button onClick={onConfirm} styleName="blue" type="submit" width="100%">
-        {t("yes")}
+        {t("confirm")}
       </Button>
       <Button onClick={onClose} styleName="blue" type="submit" width="100%">
-        {t("back")}
+        {t("cancel")}
       </Button>
     </Flex>
   </Modal>
