@@ -1,7 +1,7 @@
 import { Modal, Button, ModalHeader } from "components";
 import { WarningIcon } from "icons";
 import { func, bool } from "prop-types";
-import { Flex } from "@rebass/grid";
+import { Flex, Box } from "@rebass/grid";
 
 const ConfirmOrkestroDeliveryModal = ({ isOpen, onClose, onConfirm, t }) => (
   <Modal {...{ open: isOpen, onClose }}>
@@ -13,12 +13,31 @@ const ConfirmOrkestroDeliveryModal = ({ isOpen, onClose, onConfirm, t }) => (
     >
       <WarningIcon />
       <ModalHeader>{t("confirmOrkestroDelivery")}</ModalHeader>
-      <Button onClick={onConfirm} styleName="blue" type="submit" width="100%">
-        {t("confirm")}
-      </Button>
-      <Button onClick={onClose} styleName="blue" type="submit" width="100%">
-        {t("cancel")}
-      </Button>
+      <Box width={1}>
+        <Flex mx={-2}>
+          <Box width={1 / 2} px={2}>
+            <Button
+              onClick={onConfirm}
+              styleName="blue"
+              type="submit"
+              width="100%"
+            >
+              {t("confirm")}
+            </Button>
+          </Box>
+          <Box width={1 / 2} px={2}>
+            <Button
+              onClick={onClose}
+              styleName="blue"
+              type="submit"
+              width="100%"
+            >
+              {t("cancel")}
+            </Button>
+          </Box>
+        </Flex>
+      </Box>
+      <Flex />
     </Flex>
   </Modal>
 );
