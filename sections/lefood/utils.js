@@ -79,7 +79,11 @@ export const setIsDropDisabled = (
   isConnectedWithOrkestro,
   allowPickup
 ) => {
-  if (droppableId === columns.done && isConnectedWithOrkestro && !allowPickup) {
+  if (
+    (droppableId === columns.done || droppableId === columns.inDelivery) &&
+    isConnectedWithOrkestro &&
+    !allowPickup
+  ) {
     return true;
   }
   if (

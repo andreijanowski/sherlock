@@ -125,7 +125,12 @@ class OrdersPage extends PureComponent {
   };
 
   handleDragEndAndOrkestro = ({ destination, source, draggableId }) => {
-    const { connectedWithOrkestro } = this.props;
+    const { connectedWithOrkestro, orders } = this.props;
+    const orderDetails = draggableId && orders ? orders.get(draggableId) : null;
+    const state = orderDetails && orderDetails.getIn(["attributes", "state"]);
+    const pickupAtBusiness =
+      orderDetails && orderDetails.getIn(["attributes", "pickupAtBusiness"]);
+
     if (
       !destination ||
       (destination.droppableId === source.droppableId &&
@@ -136,9 +141,19 @@ class OrdersPage extends PureComponent {
     }
 
     if (
-      destination.droppableId === columnsNames.newOrders &&
-      source.droppableId === columnsNames.inProgress &&
-      connectedWithOrkestro
+      (destination.droppableId === columnsNames.newOrders &&
+        source.droppableId === columnsNames.inProgress &&
+        connectedWithOrkestro &&
+        !pickupAtBusiness) ||
+      (destination.droppableId === columnsNames.inDelivery &&
+        source.droppableId === columnsNames.inProgress &&
+        connectedWithOrkestro &&
+        !pickupAtBusiness) ||
+      (destination.droppableId === columnsNames.done &&
+        source.droppableId === columnsNames.inDelivery &&
+        connectedWithOrkestro &&
+        !pickupAtBusiness) ||
+      state === "waiting_for_approval"
     ) {
       return;
     }
@@ -146,7 +161,8 @@ class OrdersPage extends PureComponent {
     if (
       destination.droppableId === columnsNames.inProgress &&
       source.droppableId === columnsNames.newOrders &&
-      connectedWithOrkestro
+      connectedWithOrkestro &&
+      !pickupAtBusiness
     ) {
       this.setState({
         orkestroDeliveryConfirmationModalOpen: true,
