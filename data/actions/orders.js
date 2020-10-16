@@ -2,7 +2,8 @@ import {
   FETCH_ORDER_REQUEST,
   PATCH_ORDER_REQUEST,
   PATCH_ORDER_REJECT_REQUEST,
-  HANDLE_ORDER_UPDATE
+  HANDLE_ORDER_UPDATE,
+  FETCH_ORKESTRO_STATUS_REQUEST
 } from "types/orders";
 
 export const fetchOrder = id => ({
@@ -56,4 +57,15 @@ export const patchOrderReject = (values, id) => ({
 export const handleOrderUpdate = data => ({
   type: HANDLE_ORDER_UPDATE,
   payload: data
+});
+
+export const fetchOrkestroOrder = id => ({
+  type: FETCH_ORKESTRO_STATUS_REQUEST,
+  payload: {
+    endpoint: `/api/v1/orders/${id}/orkestro`,
+    params: {
+      id
+    }
+  },
+  meta: { thunk: true }
 });
