@@ -8,10 +8,13 @@ import {
 import {
   FETCH_ORDER_SUCCESS,
   PATCH_ORDER_SUCCESS,
-  PATCH_ORDER_REJECT_SUCCESS
+  PATCH_ORDER_REJECT_SUCCESS,
+  FETCH_ORKESTRO_STATUS_REQUEST,
+  FETCH_ORKESTRO_STATUS_SUCCESS
 } from "types/orders";
 
 import { Record, Map, fromJS } from "immutable";
+import { FETCH_ORKESTRO_STATUS_FAIL } from "../types/orders";
 
 export const initialState = Record({
   data: Map(),
@@ -22,6 +25,15 @@ export const initialState = Record({
 
 const reducer = (state = initialState, { type, payload, meta }) => {
   switch (type) {
+    case FETCH_ORKESTRO_STATUS_REQUEST:
+      return state.merge(
+        Record({
+          isFailed: false,
+          isSucceeded: false,
+          isFetching: false
+        })()
+      );
+
     case FETCH_BUSINESS_ORDERS_REQUEST: {
       return state.merge(
         Record({
@@ -31,6 +43,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         })()
       );
     }
+
     case FETCH_BUSINESS_ORDERS_SUCCESS: {
       let newState = state.merge(
         Record({
@@ -56,6 +69,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       }
       return newState;
     }
+
     case FETCH_BUSINESS_ORDERS_FAIL: {
       let newState = state.merge(
         Record({
@@ -72,6 +86,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       }
       return newState;
     }
+
     case FETCH_ORDER_SUCCESS: {
       if (state.get("data") && state.get("data").size) {
         let newState = state.mergeIn(
@@ -97,6 +112,40 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         ["data", "orders", payload.rawData.data.id, "attributes"],
         fromJS(payload.data.orders[payload.rawData.data.id].attributes)
       );
+    }
+
+    case FETCH_ORKESTRO_STATUS_SUCCESS: {
+      const newState = state.merge(
+        Record({
+          isFetching: false,
+          isSucceeded: true
+        })()
+      );
+      console.log(
+        payload.config.params.id,
+        payload.rawData.data.attributes.status
+      );
+      return newState.setIn(
+        [
+          "data",
+          "orders",
+          payload.config.params.id,
+          "attributes",
+          "orkestroStatus"
+        ],
+        payload.rawData.data.attributes.status
+      );
+    }
+
+    case FETCH_ORKESTRO_STATUS_FAIL: {
+      const newState = state.merge(
+        Record({
+          isFetching: false,
+          isFailed: true
+        })()
+      );
+
+      return newState;
     }
 
     case LOGOUT: {
