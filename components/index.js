@@ -76,6 +76,9 @@ export { default as DaySwitcher } from "./Timeline/DaySwitcher";
 export { SliderStyles } from "./Slider";
 export { default as SliderDetail } from "./Slider/Detail";
 export {
+  default as OrchestroIntegrationSwitch
+} from "./OrchestroIntegrationSwitch";
+export {
   Header as SliderHeader,
   Value as SliderValue,
   Name as SliderName,

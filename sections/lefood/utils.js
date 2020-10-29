@@ -73,7 +73,19 @@ export const parseOrders = (orders, t) => ({
   }
 });
 
-export const setIsDropDisabled = (draggedState, droppableId) => {
+export const setIsDropDisabled = (
+  draggedState,
+  droppableId,
+  isConnectedWithOrkestro,
+  allowPickup
+) => {
+  if (
+    (droppableId === columns.done || droppableId === columns.inDelivery) &&
+    isConnectedWithOrkestro &&
+    !allowPickup
+  ) {
+    return true;
+  }
   if (
     (draggedState === "waiting_for_approval" &&
       (droppableId === columns.rejected ||
@@ -81,6 +93,7 @@ export const setIsDropDisabled = (draggedState, droppableId) => {
     (draggedState === "paid" && droppableId === columns.inProgress) ||
     (draggedState === "in_preparation" && droppableId === columns.inDelivery) ||
     (draggedState === "in_delivery" && droppableId === columns.done) ||
+    droppableId === columns.inDelivery ||
     draggedState === droppableId ||
     !draggedState
   ) {
