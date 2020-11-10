@@ -50,7 +50,8 @@
     "pending": "Pending",
     "integrated": "Integrated",
     "noPartners": "No partners for this category.",
-    "moreInfo": "More info"
+    "moreInfo": "More info",
+    "orderNow": "Order now"
   },
   "subscriptions": "Subscriptions",
   "userSettings": {
