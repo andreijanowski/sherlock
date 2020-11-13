@@ -83,6 +83,7 @@
     "food_packaging": "Food & packaging",
     "tableware": "Tableware",
     "hygiene": "Hygiene",
-    "other": "Other"
+    "other": "Other",
+    "allProducts": "All products"
   }
 }
