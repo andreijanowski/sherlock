@@ -108,29 +108,30 @@ IntegrationsPage.defaultProps = {
 
 export default requireAuth(true)(
   withTranslation(namespaces)(
-    connect((state, { i18n }) => {
-      const businessData = state.getIn(["users", "currentBusiness", "data"]);
-      const business = businessData && businessData.get("businesses").first();
+    connect(
+      (state, { i18n }) => {
+        const businessData = state.getIn(["users", "currentBusiness", "data"]);
+        const business = businessData && businessData.get("businesses").first();
 
-      return {
-        lng: (i18n && i18n.language) || "en",
-        business: business && business.get("attributes"),
-        businessId: business && business.get("id"),
-        businesses: state.getIn([
-          "users",
-          "profileBusinesses",
-          "data",
-          "businesses"
-        ]),
-        changeCurrentBusiness: setCurrentBusiness,
-        addBusiness: postBusiness,
-        wholesalers: state.getIn([
-          "wholesalers",
-          "data",
-          "wholesalers",
-          "partners"
-        ])
-      };
-    })(IntegrationsPage)
+        return {
+          lng: (i18n && i18n.language) || "en",
+          business: business && business.get("attributes"),
+          businessId: business && business.get("id"),
+          businesses: state.getIn([
+            "users",
+            "profileBusinesses",
+            "data",
+            "businesses"
+          ]),
+          wholesalers: state.getIn([
+            "wholesalers",
+            "data",
+            "wholesalers",
+            "partners"
+          ])
+        };
+      },
+      { changeCurrentBusiness: setCurrentBusiness, addBusiness: postBusiness }
+    )(IntegrationsPage)
   )
 );
