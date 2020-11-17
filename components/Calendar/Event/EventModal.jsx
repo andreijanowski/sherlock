@@ -13,18 +13,21 @@ class EventModal extends PureComponent {
     };
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const { event: prevEvent } = prevProps;
     const { event } = this.props;
     const { event: chosenEvent } = this.state;
-    if (event !== prevEvent) {
-      if (event.resource.id) {
-        this.chooseEvent(event);
-      } else {
-        const updatedEvent = event.resource.find(
-          e => e.resource.id === chosenEvent.resource.id
-        );
-        this.chooseEvent(updatedEvent);
+
+    if (prevState.event !== chosenEvent) {
+      if (event !== prevEvent) {
+        if (event.resource.id) {
+          this.chooseEvent(event);
+        } else {
+          const updatedEvent = event.resource.find(
+            e => e.resource.id === chosenEvent.resource.id
+          );
+          this.chooseEvent(updatedEvent);
+        }
       }
     }
   }
