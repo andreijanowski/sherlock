@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 import { GOOGLE_MAPS_API_KEY } from "consts";
 import { shape, arrayOf } from "prop-types";
