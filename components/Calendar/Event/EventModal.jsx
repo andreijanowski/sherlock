@@ -1,73 +1,58 @@
-import { PureComponent } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal } from "components";
 import { shape, func, bool, string } from "prop-types";
 import EventDetails from "./EventDetails";
 import EventChooser from "./EventChooser";
 import { ModalContentWrapper } from "./styled";
 
-class EventModal extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      event: props.event.resource.length ? undefined : props.event
-    };
-  }
+const EventModal = ({
+  event,
+  isOpen,
+  onClose,
+  t,
+  lng,
+  setEditedEvent,
+  sendOffer,
+  eventType
+}) => {
+  const [chosenEvent, setChoosenEvent] = useState(
+    event.resource.length ? undefined : event
+  );
 
-  componentDidUpdate(prevProps, prevState) {
-    const { event: prevEvent } = prevProps;
-    const { event } = this.props;
-    const { event: chosenEvent } = this.state;
+  const chooseEvent = newEvent => setChoosenEvent(newEvent);
 
-    if (prevState.event !== chosenEvent) {
-      if (event !== prevEvent) {
-        if (event.resource.id) {
-          this.chooseEvent(event);
-        } else {
-          const updatedEvent = event.resource.find(
-            e => e.resource.id === chosenEvent.resource.id
-          );
-          this.chooseEvent(updatedEvent);
-        }
-      }
+  useEffect(() => {
+    if (event.resource.id) {
+      chooseEvent(event);
+    } else {
+      const updatedEvent = event.resource.find(
+        e => e.resource.id === chosenEvent.resource.id
+      );
+      chooseEvent(updatedEvent);
     }
-  }
+  }, [event, chosenEvent]);
 
-  chooseEvent = event => this.setState({ event });
-
-  render() {
-    const {
-      event,
-      isOpen,
-      onClose,
-      t,
-      lng,
-      setEditedEvent,
-      sendOffer,
-      eventType
-    } = this.props;
-    const { event: chosenEvent } = this.state;
-    return (
-      <Modal {...{ open: isOpen, onClose }}>
-        <ModalContentWrapper>
-          {chosenEvent ? (
-            <EventDetails
-              {...{
-                event: chosenEvent,
-                eventType,
-                t,
-                lng,
-                setEditedEvent,
-                sendOffer
-              }}
-            />
-          ) : (
-            <EventChooser {...{ event, t, chooseEvent: this.chooseEvent }} />
-          )}
-        </ModalContentWrapper>
-      </Modal>
-    );
-  }
-}
+  return (
+    <Modal {...{ open: isOpen, onClose }}>
+      <ModalContentWrapper>
+        {chosenEvent ? (
+          <EventDetails
+            {...{
+              event: chosenEvent,
+              eventType,
+              t,
+              lng,
+              setEditedEvent,
+              sendOffer
+            }}
+          />
+        ) : (
+          <EventChooser {...{ event, t, chooseEvent }} />
+        )}
+      </ModalContentWrapper>
+    </Modal>
+  );
+};
 
 EventModal.propTypes = {
   event: shape().isRequired,
