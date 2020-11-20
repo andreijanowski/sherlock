@@ -18,6 +18,7 @@ export const PARTNERS_CATEGORIES = [
 ];
 
 export const WHOLESALERS_CATEGORIES = [
+  "allProducts",
   "new",
   "fruits_and_vegetables",
   "meat",

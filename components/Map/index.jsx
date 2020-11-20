@@ -9,7 +9,6 @@ const GoogleMap = ({ google, center, points }) => (
     style={{ width: "100%", height: "100%" }}
     styles={mapStyles}
     initialCenter={center}
-    center={center}
     mapTypeControl={false}
     fullscreenControl={false}
     scaleControl={false}
