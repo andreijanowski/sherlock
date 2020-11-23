@@ -147,7 +147,7 @@ const DishForm = ({
                 </Box>
                 <Box mb={3}>
                   <Button fluid styleName="blue" type="submit">
-                    {t("addToMenu")}
+                    {!initialValues.name ? t("addToMenu") : t("Save")}
                   </Button>
                 </Box>
               </>
