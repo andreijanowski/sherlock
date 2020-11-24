@@ -140,6 +140,8 @@ const DishForm = ({
                     component={FormDropdown}
                     label={t("categoryLabel")}
                     items={categories}
+                    validate={required(t)}
+                    value=""
                   />
                 </Box>
                 <Box my={4}>

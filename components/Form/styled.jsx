@@ -97,6 +97,7 @@ export const ToggleButton = styled.button`
   ${p => !p.rows && "height: 60px;"}
   padding: 27px 16px 12px;
   text-align: left;
+  background-color: #ffffff;
   border: 1px solid
     rgb(
       ${p =>
@@ -259,7 +260,6 @@ export const Item = styled(Box).attrs(() => ({
   ${p =>
     p.isSelected && `background-color: rgb(${p.theme.colors.linkWaterLight});`}
 `;
-
 export const ExpandIcon = () => (
   <span className="ExpandIcon">
     <svg
