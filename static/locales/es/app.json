@@ -25,7 +25,7 @@
     "waitingForApproval": "A la espera de la aprobación",
     "liveInfo": "Información en vivo",
     "widgets": "Widgets",
-    "unPublish": "Negocio no publicado"
+    "unPublish": "Anular la publicación"
   },
   "manageIntegrations": {
     "pos": "POS",
