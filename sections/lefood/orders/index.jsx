@@ -68,6 +68,15 @@ const Orders = ({
                       updateOrder
                     }}
                   />
+                ),
+                renderCardFooter: id => (
+                  <>
+                    {`${
+                      orders.get(id).getIn(["attributes", "pickupAtBusiness"])
+                        ? "Pick up"
+                        : "Delivery"
+                    } `}
+                  </>
                 )
               }}
             />

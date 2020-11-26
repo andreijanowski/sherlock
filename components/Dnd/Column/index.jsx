@@ -18,6 +18,7 @@ const Column = ({
   handleCardClick,
   renderCardHeader,
   renderCardDetails,
+  renderCardFooter,
   splitedCard,
   width
 }) => (
@@ -43,7 +44,8 @@ const Column = ({
               isColumnGrayedOut,
               handleCardClick,
               renderCardHeader,
-              renderCardDetails
+              renderCardDetails,
+              renderCardFooter
             }}
           />
           {provided.placeholder}
@@ -64,6 +66,7 @@ Column.propTypes = {
   handleCardClick: func,
   renderCardHeader: func.isRequired,
   renderCardDetails: func.isRequired,
+  renderCardFooter: func.isRequired,
   width: number
 };
 
