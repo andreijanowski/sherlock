@@ -74,7 +74,7 @@ const PartnerTile = ({
         <ButtonContainer width={["100%", "100%", "65%", "70", "60%"]}>
           {!isOrkestroIntegration ? (
             <IntegrationButton
-              styleName={
+              className={
                 !isIntegrationNotRequested || isPending ? "signUp" : "navyBlue"
               }
               onClick={requestIntegration}
@@ -84,6 +84,7 @@ const PartnerTile = ({
           ) : (
             <OrchestroIntegrationSwitch t={t} />
           )}
+
           <InfoButton styleName="navyBlue">
             <IntegrationLink partner={partner}>
               {isPartnerWholesaler
