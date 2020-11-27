@@ -109,7 +109,6 @@ class BasicInformationForm extends PureComponent {
                   placeholder={t("regionPlaceholder")}
                   disabled={!values.country}
                   items={regionItems(values.country)}
-                  validate={this.required}
                 />
               </Box>
             </Flex>
@@ -129,7 +128,6 @@ class BasicInformationForm extends PureComponent {
                   label={t("streetNumberLabel")}
                   isErrorVisibilityRequired={isErrorVisibilityRequired}
                   placeholder={t("streetNumberPlaceholder")}
-                  validate={this.required}
                 />
               </Box>
               <Box width={[1, 1 / 2]} px={2}>
