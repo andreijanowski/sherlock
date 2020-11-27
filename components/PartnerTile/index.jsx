@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { useState } from "react";
 import { connect } from "react-redux";
 import { shape, arrayOf, oneOfType, func, string } from "prop-types";
@@ -72,17 +73,23 @@ const PartnerTile = ({
           </IntegrationLink>
         </LinkContainer>
         <ButtonContainer width={["100%", "100%", "65%", "70", "60%"]}>
-          {!isOrkestroIntegration ? (
-            <IntegrationButton
-              className={
-                !isIntegrationNotRequested || isPending ? "signUp" : "navyBlue"
-              }
-              onClick={requestIntegration}
-            >
-              {integrationButtonLabel}
-            </IntegrationButton>
+          {!isPartnerWholesaler ? (
+            !isOrkestroIntegration ? (
+              <IntegrationButton
+                styleName={
+                  !isIntegrationNotRequested || isPending
+                    ? "orange"
+                    : "navyBlue"
+                }
+                onClick={requestIntegration}
+              >
+                {integrationButtonLabel}
+              </IntegrationButton>
+            ) : (
+              <OrchestroIntegrationSwitch t={t} />
+            )
           ) : (
-            <OrchestroIntegrationSwitch t={t} />
+            ""
           )}
 
           <InfoButton styleName="navyBlue">
