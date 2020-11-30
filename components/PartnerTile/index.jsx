@@ -1,22 +1,61 @@
+import { useState } from "react";
 import { connect } from "react-redux";
-import { shape, arrayOf, oneOfType, func } from "prop-types";
+import { shape, arrayOf, oneOfType, func, string } from "prop-types";
 
 import { connectPartner } from "actions/partners";
 import { connectWholesaler } from "actions/wholesalers";
 
 import { OrchestroIntegrationSwitch } from "components";
 import IntegrationLink from "./IntegrationLink";
+import { getIntegrationButtonLabel, getIsIntegrationPending } from "./utils";
 import {
   ButtonContainer,
   Container,
   ContentWrapper,
   Image,
+  IntegrationButton,
   InfoButton,
   LinkContainer
 } from "./styled";
 
-const PartnerTile = ({ partner, t }) => {
+const PartnerTile = ({
+  integratePartner,
+  integrateWholesaler,
+  partner,
+  partnerId,
+  partnerRelationships,
+  t
+}) => {
   const isOrkestroIntegration = partner.get("name") === "Orkestro";
+  const WHOLESALER = "wholesaler";
+
+  const currentUserId = window.localStorage.getItem("currentUserId");
+  const isIntegrationPending = getIsIntegrationPending(
+    partnerRelationships,
+    currentUserId
+  );
+
+  const isIntegrationNotRequested = partner.get("active");
+  const isIntegrated = !partner.get("active");
+
+  const [isPending, setIsPending] = useState(isIntegrationPending);
+  const integrationButtonLabel = getIntegrationButtonLabel(
+    isIntegrationNotRequested,
+    isPending,
+    isIntegrated,
+    t
+  );
+  const partnerCategory = partner.get("category");
+  const isPartnerWholesaler = partnerCategory === WHOLESALER;
+
+  const requestIntegration = () => {
+    if (isIntegrationNotRequested) setIsPending(true);
+    if (isPartnerWholesaler) {
+      integrateWholesaler(partnerId);
+    } else {
+      integratePartner(partnerId);
+    }
+  };
 
   return (
     <Container mb={3} width={["100%"]} alignItems="center">
@@ -33,10 +72,27 @@ const PartnerTile = ({ partner, t }) => {
           </IntegrationLink>
         </LinkContainer>
         <ButtonContainer width={["100%", "100%", "65%", "70", "60%"]}>
-          {isOrkestroIntegration && <OrchestroIntegrationSwitch t={t} />}
+          {!isPartnerWholesaler &&
+            (!isOrkestroIntegration ? (
+              <IntegrationButton
+                styleName={
+                  !isIntegrationNotRequested || isPending
+                    ? "orange"
+                    : "navyBlue"
+                }
+                onClick={requestIntegration}
+              >
+                {integrationButtonLabel}
+              </IntegrationButton>
+            ) : (
+              <OrchestroIntegrationSwitch t={t} />
+            ))}
+
           <InfoButton styleName="navyBlue">
             <IntegrationLink partner={partner}>
-              {t("app:manageIntegrations.orderNow")}
+              {isPartnerWholesaler
+                ? t("app:manageIntegrations.orderNow")
+                : t("app:manageIntegrations.moreInfo")}
             </IntegrationLink>
           </InfoButton>
         </ButtonContainer>
@@ -46,7 +102,11 @@ const PartnerTile = ({ partner, t }) => {
 };
 
 PartnerTile.propTypes = {
+  integratePartner: func.isRequired,
+  integrateWholesaler: func.isRequired,
   partner: oneOfType([arrayOf(), shape()]).isRequired,
+  partnerId: string.isRequired,
+  partnerRelationships: oneOfType([arrayOf(), shape({})]).isRequired,
   t: func.isRequired
 };
 

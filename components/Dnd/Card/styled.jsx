@@ -29,6 +29,24 @@ export const Header = styled(Flex).attrs(() => ({
   border-bottom: 1px solid rgb(${p => p.theme.colors.linkWaterDark});
 `;
 
+export const Footer = styled(Flex).attrs(() => ({
+  px: 1,
+  py: 1,
+  alignItems: "center",
+  justifyContent: "center"
+}))`
+  color: rgb(
+    ${p => (p.isSplited ? p.theme.colors.white : p.theme.colors.blue)}
+  );
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes.f14};
+  line-height: 24px;
+  background-color: rgb(
+    ${p => (p.isSplited ? p.theme.colors.blue : p.theme.colors.titanWhite)}
+  );
+  border-top: 1px solid rgb(${p => p.theme.colors.linkWaterDark});
+`;
+
 export const Details = styled(Flex).attrs(() => ({
   flexDirection: "column",
   p: 3

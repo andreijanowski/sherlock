@@ -8,7 +8,8 @@ const Cards = ({
   isColumnGrayedOut,
   handleCardClick,
   renderCardHeader,
-  renderCardDetails
+  renderCardDetails,
+  renderCardFooter
 }) =>
   items && items.length !== 0
     ? items.map(
@@ -26,6 +27,7 @@ const Cards = ({
                 isSplited: item.get("splited"),
                 renderHeader: () => renderCardHeader(item.get("id")),
                 renderDetails: opt => renderCardDetails(item.get("id"), opt),
+                renderFooter: () => renderCardFooter(item.get("id")),
                 handleCardClick: () => handleCardClick(item.get("id"))
               }}
             />
@@ -42,7 +44,8 @@ Cards.propTypes = {
   isColumnGrayedOut: bool,
   handleCardClick: func,
   renderCardHeader: func.isRequired,
-  renderCardDetails: func.isRequired
+  renderCardDetails: func.isRequired,
+  renderCardFooter: func.isRequired
 };
 
 Cards.defaultProps = {

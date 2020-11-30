@@ -27,9 +27,7 @@ export const getInitialValues = ({ editedDishId, dishes }) => {
     }
   }
   return {
-    initialValues: {
-      category: "mains"
-    }
+    initialValues: {}
   };
 };
 

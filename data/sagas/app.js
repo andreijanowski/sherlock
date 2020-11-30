@@ -9,7 +9,7 @@ import { HANDLE_ORDER_UPDATE } from "types/orders";
 import { HANDLE_RESERVATION_UPDATE } from "types/reservations";
 import { setOrdersUpdates, setReservationsUpdates } from "actions/app";
 import { fetchProfileBusiness } from "actions/users";
-import { fetchBusinessMembers } from "actions/businesses";
+import { fetchBusinessMembers, fetchBusinessDishes } from "actions/businesses";
 import { fetchPartners } from "actions/partners";
 import { fetchWholesalers } from "actions/wholesalers";
 import Notifications from "react-notification-system-redux";
@@ -39,6 +39,16 @@ function* handlePatchChangeSaga({ payload: { path } }) {
       if (business) {
         const id = business.first().get("id");
         yield put(fetchBusinessMembers(id));
+      }
+      break;
+    }
+    case "/app/lefood/menu": {
+      const business = yield select(state =>
+        state.getIn(["users", "currentBusiness", "data", "businesses"])
+      );
+      if (business) {
+        const id = business.first().get("id");
+        yield put(fetchBusinessDishes(id));
       }
       break;
     }

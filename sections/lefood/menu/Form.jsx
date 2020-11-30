@@ -140,6 +140,8 @@ const DishForm = ({
                     component={FormDropdown}
                     label={t("categoryLabel")}
                     items={categories}
+                    validate={required(t)}
+                    value=""
                   />
                 </Box>
                 <Box my={4}>
@@ -147,7 +149,7 @@ const DishForm = ({
                 </Box>
                 <Box mb={3}>
                   <Button fluid styleName="blue" type="submit">
-                    {t("addToMenu")}
+                    {!initialValues.name ? t("addToMenu") : t("Save")}
                   </Button>
                 </Box>
               </>
