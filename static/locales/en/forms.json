@@ -115,6 +115,7 @@
       "payment_intent_authentication_failure-base": "We are unable to authenticate your payment method. Please choose a different payment method and try again.",
       "processing_error-base": "An error occurred while processing your card. Try again in a little bit.",
       "process_error_intransient-base": "An error occurred while processing your card.",
+      "resource_missing-base": "The ID provided is not valid. Either the resource does not exist, or an ID for a different resource has been provided.",
       "unexpected-base": "An unexpected error occurred.",
       "not_a_number-free_from_cents": "Delivery \"Free from\" is missing",
       "too_long-name": "Dish name is too long. Max {{count}} characters.",
