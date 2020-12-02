@@ -29,5 +29,7 @@
   "canPayWithMobile": "Can pay with mobile",
   "secretCode": "Secret code",
   "secretCodeLabel": "Secret code",
-  "secretCodePlaceholder": "32543cdsSD4ewcbwt6654"
+  "secretCodePlaceholder": "32543cdsSD4ewcbwt6654",
+  "redirectionLinks": "Redirection Links",
+  "redirectionLinksTooltip": "Enter links to your external services/profiles"
 }

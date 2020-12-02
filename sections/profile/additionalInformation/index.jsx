@@ -7,7 +7,8 @@ import {
   FormSelect,
   FormInput,
   AutoSave,
-  LoadingIndicator
+  LoadingIndicator,
+  Tooltip
 } from "components";
 import { Flex, Box } from "@rebass/grid";
 import setFieldData from "final-form-set-field-data";
@@ -58,6 +59,7 @@ const AdditionalInformationForm = ({ t, initialValues, handleSubmit }) =>
               />
             </Box>
           </Flex>
+
           <H3 mt={3}>{t("services")}</H3>
           <FormCheckbox name="hasCatering" label={t("hasCatering")} />
           <FormCheckbox name="hasReservations" label={t("hasReservations")} />
@@ -66,21 +68,30 @@ const AdditionalInformationForm = ({ t, initialValues, handleSubmit }) =>
             name="availableInLefood"
             label={t("availableInLefood")}
           />
-          <FormInput
-            name="deliveryUrl"
-            label={t("deliveryUrlLabel")}
-            placeholder={t("deliveryUrlPlaceholder")}
-          />
-          <FormInput
-            name="onlineBookingUrl"
-            label={t("onlineBookingUrlLabel")}
-            placeholder={t("onlineBookingUrlPlaceholder")}
-          />
-          <FormInput
-            name="takeawayUrl"
-            label={t("takeawayUrlLabel")}
-            placeholder={t("takeawayUrlPlaceholder")}
-          />
+
+          <H3 mt={3}>{t("redirectionLinks")}</H3>
+          <Tooltip content={t("redirectionLinksTooltip")}>
+            <FormInput
+              name="deliveryUrl"
+              label={t("deliveryUrlLabel")}
+              placeholder={t("deliveryUrlPlaceholder")}
+            />
+          </Tooltip>
+          <Tooltip content={t("redirectionLinksTooltip")}>
+            <FormInput
+              name="onlineBookingUrl"
+              label={t("onlineBookingUrlLabel")}
+              placeholder={t("onlineBookingUrlPlaceholder")}
+            />
+          </Tooltip>
+          <Tooltip content={t("redirectionLinksTooltip")}>
+            <FormInput
+              name="takeawayUrl"
+              label={t("takeawayUrlLabel")}
+              placeholder={t("takeawayUrlPlaceholder")}
+            />
+          </Tooltip>
+
           <H3 mt={3}>{t("paymentMethods")}</H3>
           <Flex flexWrap="wrap">
             {paymentMethods.map(method => (
