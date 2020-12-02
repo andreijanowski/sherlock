@@ -9,8 +9,7 @@ export const fetchWholesalers = (page = 1) => ({
     endpoint: "/api/v1/partners/wholesalers",
     params: {
       include: "users",
-      page,
-      per_page: 200
+      page
     }
   },
   meta: { thunk: true }
