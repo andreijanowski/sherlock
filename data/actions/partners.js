@@ -9,6 +9,7 @@ export const fetchPartners = (page = 1) => ({
     endpoint: "/api/v1/partners",
     params: {
       include: "users",
+      per_page: 500,
       page
     }
   },
