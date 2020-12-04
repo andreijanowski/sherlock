@@ -29,5 +29,7 @@
   "canPayWithMobile": "Kann mit Handy bezahlen",
   "secretCode": "Geheim Code",
   "secretCodeLabel": "Geheim Code",
-  "secretCodePlaceholder": "32543cdsSD4ewcbwt6654"
+  "secretCodePlaceholder": "32543cdsSD4ewcbwt6654",
+  "redirectionLinks": "Umleitungs-Links",
+  "redirectionLinksTooltip": "Geben Sie Links zu Ihren externen Dienstleistungen/Profilen ein"
 }
