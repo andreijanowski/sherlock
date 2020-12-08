@@ -140,7 +140,8 @@
       "not_enough_time_before_start-from": "Pas assez tôt avant le début",
       "is not a fully qualified domain name-domains": "Domaines n'est pas un nom de domaine complet.",
       "unauthorized-Not allowed to create? this Widget": "Vous n'êtes pas autorisé à créer ce widget. Seuls les utilisateurs disposant d'un forfait payant peuvent utiliser des widgets.",
-      "contains invalid characters (valid characters [a-z0-9-])-domains": "Les domaines contiennent des caractères non valides (caractères valides: [a-z0-9 \\ -])"
+      "contains invalid characters (valid characters [a-z0-9-])-domains": "Les domaines contiennent des caractères non valides (caractères valides: [a-z0-9 \\ -])",
+      "unsupported_business_city-base": "Orkestro n'est pas compatible avec votre ville."
     }
   },
   "placeholder": {

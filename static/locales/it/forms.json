@@ -140,7 +140,8 @@
       "not_enough_time_before_start-from": "Non abbastanza tempo prima dell'inizio",
       "is not a fully qualified domain name-domains": "Domini non è un nome di dominio completo",
       "unauthorized-Not allowed to create? this Widget": "Non ti è permesso creare questo Widget. Solo gli utenti con piano a pagamento possono utilizzare i widget.",
-      "contains invalid characters (valid characters [a-z0-9-])-domains": "I domini contengono caratteri non validi (caratteri validi: [a-z0-9 \\ -])"
+      "contains invalid characters (valid characters [a-z0-9-])-domains": "I domini contengono caratteri non validi (caratteri validi: [a-z0-9 \\ -])",
+      "unsupported_business_city-base": "Orkestro non è compatibile con la tua città."
     }
   },
   "placeholder": {
