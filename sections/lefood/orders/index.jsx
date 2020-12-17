@@ -70,13 +70,13 @@ const Orders = ({
                   />
                 ),
                 renderCardFooter: id => (
-                  <>
+                  <span>
                     {`${
                       orders.get(id).getIn(["attributes", "pickupAtBusiness"])
                         ? "Pick up"
                         : "Delivery"
                     } `}
-                  </>
+                  </span>
                 )
               }}
             />

@@ -700,6 +700,7 @@ export default requireAuth(true)(
             "data",
             "businesses"
           ]),
+          orders: state.getIn(["attributes", "pickupAtBusiness"]),
           reservations,
           bookings,
           tables: tables

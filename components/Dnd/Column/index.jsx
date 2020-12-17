@@ -66,7 +66,7 @@ Column.propTypes = {
   handleCardClick: func,
   renderCardHeader: func.isRequired,
   renderCardDetails: func.isRequired,
-  renderCardFooter: func.isRequired,
+  renderCardFooter: func,
   width: number
 };
 
@@ -75,7 +75,8 @@ Column.defaultProps = {
   isColumnGrayedOut: false,
   handleCardClick: undefined,
   width: undefined,
-  splitedCard: undefined
+  splitedCard: undefined,
+  renderCardFooter: () => {}
 };
 
 export default Column;
