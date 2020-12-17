@@ -309,9 +309,11 @@ class ReservationsPage extends PureComponent {
 
     if (reservationDetails) {
       const reservationBookings = getReservationBookings(reservationDetails);
-      reservationBookings.forEach(
-        b => !(bookings && bookings.get(b.get("id"))) && getBooking(b.get("id"))
-      );
+      if (reservationBookings)
+        reservationBookings.forEach(
+          b =>
+            !(bookings && bookings.get(b.get("id"))) && getBooking(b.get("id"))
+        );
     }
 
     const reservationTables =
