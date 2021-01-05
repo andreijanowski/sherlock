@@ -14,6 +14,7 @@ import { connect } from "react-redux";
 import { fetchOrkestroOrder } from "actions/orders";
 import { useEffect } from "react";
 import OrderDetail from "./OrderDetail";
+import LogoIcon from "./LogoIcon";
 
 const OrderDetails = ({
   isOpen,
@@ -25,12 +26,16 @@ const OrderDetails = ({
   t
 }) => {
   const orderId = orderDetails && orderDetails.get("id");
+  const orderOrigin =
+    orderDetails && orderDetails.getIn(["attributes", "origin"]);
 
   useEffect(() => {
     if (isOpen) {
       fetchOrkestroOrderStatus(orderId);
     }
   }, [fetchOrkestroOrderStatus, isOpen, orderId]);
+
+  console.log(orderDetails);
 
   return (
     <Slide
@@ -44,8 +49,16 @@ const OrderDetails = ({
       {orderDetails && (
         <>
           <SliderHeader>{t("orderDetails")}</SliderHeader>
-          <SliderSubheader>
-            {`ID: ${orderDetails.getIn(["attributes", "shortId"])}`}
+          <SliderSubheader isDetails>
+            {`ID: ${orderDetails.getIn(["attributes", "shortId"])}
+            `}
+            <LogoIcon
+              icon={
+                orderOrigin === null
+                  ? "logoFoodetectiveSquared"
+                  : "uber_eats_logo"
+              }
+            />
           </SliderSubheader>
           <FormDropdown
             {...{

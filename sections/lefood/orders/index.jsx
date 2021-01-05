@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { LoadingIndicator, DndColumn } from "components";
 import { ColumnsWrapper } from "./styled";
 import RejectModal from "./RejectModal";
+import LogoIcon from "./LogoIcon";
 import { columns as columnsList, setIsDropDisabled } from "../utils";
 import Order from "./Order";
 
@@ -23,8 +24,9 @@ const Orders = ({
   connectedWithOrkestro,
   allowPickup,
   t
-}) =>
-  loading ? (
+}) => {
+  const orderOrigin = id => orders.get(id).getIn(["attributes", "origin"]);
+  return loading ? (
     <LoadingIndicator />
   ) : (
     <DragDropContext {...{ onDragStart, onDragEnd }}>
@@ -50,6 +52,13 @@ const Orders = ({
                 handleCardClick: toggleOrderDetails,
                 renderCardHeader: id => (
                   <>
+                    <LogoIcon
+                      icon={
+                        orderOrigin(id) === null
+                          ? "logoFoodetectiveSquared"
+                          : "uber_eats_logo"
+                      }
+                    />
                     {`${(
                       orders.getIn([id, "attributes", "totalCostCents"]) / 100
                     ).toFixed(2)} ${currency}`}
@@ -96,6 +105,7 @@ const Orders = ({
       </ColumnsWrapper>
     </DragDropContext>
   );
+};
 
 Orders.propTypes = {
   t: func.isRequired,
