@@ -17,6 +17,7 @@ import {
   InfoButton,
   LinkContainer
 } from "./styled";
+import UberIntegrationSwitch from "../OrchestroIntegrationSwitch/UberIntegrationSwitch";
 
 const PartnerTile = ({
   integratePartner,
@@ -27,6 +28,8 @@ const PartnerTile = ({
   t
 }) => {
   const isOrkestroIntegration = partner.get("name") === "Orkestro";
+  const isUberIntegration = partner.get("name") === "Uber Eats";
+  const isIntegratedWithServices = isOrkestroIntegration || isUberIntegration;
   const WHOLESALER = "wholesaler";
 
   const currentUserId = window.localStorage.getItem("currentUserId");
@@ -73,7 +76,7 @@ const PartnerTile = ({
         </LinkContainer>
         <ButtonContainer width={["100%", "100%", "65%", "70", "60%"]}>
           {!isPartnerWholesaler &&
-            (!isOrkestroIntegration ? (
+            (!isIntegratedWithServices && (
               <IntegrationButton
                 styleName={
                   !isIntegrationNotRequested || isPending
@@ -84,10 +87,13 @@ const PartnerTile = ({
               >
                 {integrationButtonLabel}
               </IntegrationButton>
-            ) : (
-              <OrchestroIntegrationSwitch t={t} />
             ))}
-
+          {!isPartnerWholesaler && isOrkestroIntegration && (
+            <OrchestroIntegrationSwitch t={t} />
+          )}
+          {!isPartnerWholesaler && isUberIntegration && (
+            <UberIntegrationSwitch t={t} />
+          )}
           <InfoButton styleName="navyBlue">
             <IntegrationLink partner={partner}>
               {isPartnerWholesaler
