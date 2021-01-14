@@ -424,6 +424,9 @@ export const SelectInput = styled.input`
   ::-ms-input-placeholder {
     color: rgb(170, 172, 175);
   }
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const SelectInputWrapper = styled.div`
@@ -442,7 +445,7 @@ export const SearchIcon = styled.img.attrs(() => ({
 }))`
   position: absolute;
   top: 12px;
-  right: 16px;
+  right: 21px;
   width: 20px;
   height: 20px;
 `;
