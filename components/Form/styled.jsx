@@ -78,6 +78,7 @@ export const FieldWrapper = styled(Flex).attrs(() => ({
 
   .ExpandIcon {
     position: absolute;
+    top: 18px;
     right: 24px;
     stroke: rgb(${p => p.theme.colors.dark});
   }
@@ -234,6 +235,10 @@ export const Label = styled.label`
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     font-size: ${p => p.theme.fontSizes.f16};
   }
+`;
+
+export const SelectLabel = styled.span`
+  color: rgb(170, 172, 175);
 `;
 
 export const Items = styled(Flex).attrs(p => ({
@@ -417,4 +422,45 @@ export const DaypickerWrapper = styled.div`
 
 export const FileWrapper = styled(Flex)`
   height: 60px;
+`;
+
+export const SelectInput = styled.input`
+  position: relative;
+  display: block;
+  width: 96%;
+  height: 40px;
+  margin: 4px 8px;
+  padding: 4px;
+  border: 1px solid rgb(221, 223, 239);
+  border-radius: 4px;
+  ::placeholder {
+    color: rgb(170, 172, 175);
+  }
+  ::-ms-input-placeholder {
+    color: rgb(170, 172, 175);
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const SelectInputWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  padding: 8px 16px;
+  border: 1px solid rgb(221, 223, 239);
+  border-radius: 4px;
+`;
+
+export const SearchIcon = styled.img.attrs(() => ({
+  src: "/static/icons/search.svg"
+}))`
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
 `;
