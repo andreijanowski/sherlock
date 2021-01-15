@@ -460,7 +460,7 @@ export const SearchIcon = styled.img.attrs(() => ({
 }))`
   position: absolute;
   top: 12px;
-  right: 10px;
+  right: 20px;
   width: 20px;
   height: 20px;
 `;
