@@ -11,7 +11,7 @@ import {
   Error,
   SelectInput,
   SearchIcon,
-  Label
+  SelectLabel
 } from "./styled";
 import { getError } from "./utils";
 
@@ -47,7 +47,7 @@ const FormDropdown = ({
         <div style={{ position: "relative" }}>
           <FieldWrapper>
             <SelectInputWrapper {...getToggleButtonProps({ isOpen })}>
-              {labelContent || <Label>{label}</Label>}
+              {labelContent || <SelectLabel>{label}</SelectLabel>}
               <ExpandIcon />
               {meta.data.saving && !meta.active && <LoadingIndicator />}
             </SelectInputWrapper>

@@ -223,7 +223,21 @@ export const Error = styled.span`
   font-size: ${p => p.theme.fontSizes.f12};
 `;
 
-export const Label = styled.span`
+export const Label = styled.label`
+  position: absolute;
+  top: ${p => (p.textarea ? "30px" : "50%")};
+  margin-left: 16px;
+  color: rgb(${p => p.theme.colors.bombay});
+  font-size: ${p => p.theme.fontSizes.f14};
+  transform: translateY(-50%);
+  transform-origin: left;
+  pointer-events: none;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    font-size: ${p => p.theme.fontSizes.f16};
+  }
+`;
+
+export const SelectLabel = styled.span`
   color: rgb(170, 172, 175);
 `;
 
