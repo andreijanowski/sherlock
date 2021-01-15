@@ -425,6 +425,7 @@ export const FileWrapper = styled(Flex)`
 `;
 
 export const SelectInput = styled.input`
+  position: relative;
   display: block;
   width: 96%;
   height: 40px;
@@ -459,7 +460,7 @@ export const SearchIcon = styled.img.attrs(() => ({
 }))`
   position: absolute;
   top: 12px;
-  right: 21px;
+  right: 10px;
   width: 20px;
   height: 20px;
 `;
