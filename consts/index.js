@@ -27,8 +27,8 @@ const contentTypes = {
   MULTIPART: "multipart/form-data"
 };
 
-const privacyPolicyLink = `${FOODETECTIVE_URL}/sherlock-privacy-policy`;
-const termsAndConditionsLink = `${FOODETECTIVE_URL}/sherlock-terms-of-use`;
+const privacyPolicyLink = `${FOODETECTIVE_URL}/foodetective-for-business-privacy-policy`;
+const termsAndConditionsLink = `${FOODETECTIVE_URL}/foodetective-for-business-terms-of-use`;
 
 module.exports = {
   contentTypes,
