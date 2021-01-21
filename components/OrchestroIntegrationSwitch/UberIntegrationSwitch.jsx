@@ -7,29 +7,55 @@ import { Modal, InputField, Button } from "components";
 import { connect } from "react-redux";
 import { Form } from "react-final-form";
 
+import {
+  connectPartnerWithUberEats,
+  disconnectPartnerWithUberEats
+} from "actions/integrations";
+
 import { Option, SwitchWrapper, ModalHeader } from "./styled";
 
 const UberIntegrationSwitch = ({
   t,
   isFetching,
   isSucceeded,
-  isConnectedToUber
+  isConnectedToUber,
+  businessId
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
+  const handleUberEatsIntegrationChange = e => {
+    if (e) {
+      connectPartnerWithUberEats(businessId);
+    } else {
+      disconnectPartnerWithUberEats(businessId);
+    }
+  };
   return (
     <Flex alignItems="center" mx={3}>
       {isOpen && (
         <Modal {...{ open: true, onClose: closeModal }}>
           <ModalHeader>Uber Eats Integration</ModalHeader>
           <Form
-            onSubmit={() => {}}
+            onSubmit={() => handleUberEatsIntegrationChange()}
             render={() => (
-              <form>
-                <InputField name="id" placeholder="id" type="text" />
-                <InputField name="secret" placeholder="secret" type="text" />
-                <InputField name="other" placeholder="other" type="text" />
-                <Button>Submit</Button>
+              <form style={{ width: "100%" }}>
+                <InputField
+                  name="client_id"
+                  placeholder="Client ID"
+                  type="text"
+                />
+                <InputField
+                  name="client_secret"
+                  placeholder="Client Secret"
+                  type="text"
+                />
+                <InputField
+                  name="store_id"
+                  placeholder="Store ID"
+                  type="text"
+                />
+                <input type="hidden" name="business_id" />
+                <Button styleName="blue">Submit</Button>
               </form>
             )}
           />
