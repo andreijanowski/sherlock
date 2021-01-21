@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Flex } from "@rebass/grid";
 import { bool, node, string, func, arrayOf, shape } from "prop-types";
 import { connect } from "react-redux";
+import { useRouter } from "next/router";
 
 import { i18n } from "i18n";
-import { InfoBar, Link, Button } from "components";
+import { InfoBar, Link, Button, Modal } from "components";
 import { Docs, Feedback, Notifications } from "icons";
 import isServer from "utils/isServer";
 import { togglePlayNotification } from "actions/app";
@@ -15,7 +16,9 @@ import {
   Header,
   Icon,
   Avatar,
-  IconsWrapper
+  IconsWrapper,
+  TutorialButton,
+  YoutubeWrapper
 } from "./styled";
 import { chooseIcon, getButtonRoutes } from "./utils";
 
@@ -31,10 +34,12 @@ const MainApp = ({
   shouldPlayNotification,
   toggleSound
 }) => {
+  const router = useRouter();
   const lng = (i18n && i18n.language) || "en";
   const MainIcon = chooseIcon(mainIcon);
   const { prevRoute, nextRoute } = getButtonRoutes(menuItems, mainIcon);
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const isProfile = router.pathname.includes("profile");
   useEffect(() => {
     let notification = new Audio("/static/sounds/notification.mp3");
 
@@ -60,13 +65,39 @@ const MainApp = ({
           )}
           {header && <Header>{header}</Header>}
         </Flex>
+        <Modal {...{ open: isModalOpen, onClose: () => setIsModalOpen(false) }}>
+          <YoutubeWrapper>
+            <iframe
+              title="tutorial 2"
+              width="560"
+              height="315"
+              src={
+                isProfile
+                  ? "https://www.youtube.com/embed/bYsks2vFq1E"
+                  : "https://www.youtube.com/embed/LpF218nrIMs"
+              }
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </YoutubeWrapper>
+        </Modal>
         <IconsWrapper>
+          <TutorialButton
+            role="button"
+            tabIndex="0"
+            onClick={() => setIsModalOpen(true)}
+            onKeyDown={() => setIsModalOpen(true)}
+          >
+            Watch tutorials
+          </TutorialButton>
           <Icon>
             <Feedback />
           </Icon>
           <Icon>
             <Docs />
           </Icon>
+
           <Icon>
             <Notifications />
           </Icon>

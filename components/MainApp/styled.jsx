@@ -125,3 +125,16 @@ export const Avatar = styled.div`
   cursor: pointer;
   ${p => p.src && `background-image: url(${p.src});`}
 `;
+
+export const TutorialButton = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+  color: rgb(76, 104, 255);
+  font-size: 14px;
+  cursor: pointer;
+`;
+
+export const YoutubeWrapper = styled.div`
+  padding: 16px;
+`;
