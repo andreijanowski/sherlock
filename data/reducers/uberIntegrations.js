@@ -8,7 +8,7 @@ import { LOGOUT } from "types/auth";
 import { Record } from "immutable";
 
 export const initialState = Record({
-  isConnectedToOrkestro: false,
+  isConnectedToUberEats: false,
   isFetching: false,
   isFailed: false,
   isSucceeded: true

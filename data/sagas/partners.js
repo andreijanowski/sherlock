@@ -1,10 +1,16 @@
 import { CONNECT_PARTNER_SUCCESS } from "types/partners";
-import { put, takeEvery } from "redux-saga/effects";
+import { put, takeEvery, select } from "redux-saga/effects";
 
 import { fetchPartners } from "actions/partners";
 
 function* fetchIntegrations() {
-  yield put(fetchPartners());
+  const business = yield select(state =>
+    state.getIn(["users", "currentBusiness", "data", "businesses"])
+  );
+  if (business) {
+    const id = business.first().get("id");
+    yield put(fetchPartners(id));
+  }
 }
 
 export default takeEvery(CONNECT_PARTNER_SUCCESS, fetchIntegrations);

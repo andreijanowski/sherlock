@@ -8,8 +8,8 @@ import { connect } from "react-redux";
 import { Form } from "react-final-form";
 
 import {
-  connectPartnerWithUberEats,
-  disconnectPartnerWithUberEats
+  connectPartnerWithUberEats
+  // disconnectPartnerFromUberEats
 } from "actions/integrations";
 
 import { Option, SwitchWrapper, ModalHeader } from "./styled";
@@ -25,10 +25,12 @@ const UberIntegrationSwitch = ({
   const closeModal = () => setIsOpen(false);
   const handleUberEatsIntegrationChange = e => {
     if (e) {
-      connectPartnerWithUberEats(businessId);
-    } else {
-      disconnectPartnerWithUberEats(businessId);
+      console.log(e);
+      connectPartnerWithUberEats();
     }
+    // } else {
+    //   disconnectPartnerFromUberEats(businessId);
+    // }
   };
   return (
     <Flex alignItems="center" mx={3}>
@@ -36,8 +38,15 @@ const UberIntegrationSwitch = ({
         <Modal {...{ open: true, onClose: closeModal }}>
           <ModalHeader>Uber Eats Integration</ModalHeader>
           <Form
-            onSubmit={() => handleUberEatsIntegrationChange()}
-            render={() => (
+            initialValues={{ business_id: businessId }}
+            onSubmit={() => {}}
+            //   connectPartnerWithUberEats
+            //   // values.businessId,
+            //   // values.clientId,
+            //   // values.clientSecret,
+            //   // values.storeId
+            // }
+            render={({ values }) => (
               <form style={{ width: "100%" }}>
                 <InputField
                   name="client_id"
@@ -54,11 +63,16 @@ const UberIntegrationSwitch = ({
                   placeholder="Store ID"
                   type="text"
                 />
-                <input type="hidden" name="business_id" />
-                <Button styleName="blue">Submit</Button>
+                <InputField type="hidden" name="business_id" />
+                <Button
+                  onClick={() => handleUberEatsIntegrationChange(values)}
+                  styleName="blue"
+                >
+                  Submit
+                </Button>
               </form>
             )}
-          />
+          />{" "}
         </Modal>
       )}
       <Option dark={isConnectedToUber} mr={3}>
