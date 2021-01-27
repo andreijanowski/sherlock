@@ -23,3 +23,20 @@ export const SwitchWrapper = styled(Box)`
   );
   border-radius: 45px;
 `;
+
+export const ModalHeader = styled.h1`
+  font-size: 18px;
+`;
+
+export const Label = styled.label`
+  position: absolute;
+  top: 10px;
+  margin-left: 16px;
+  font-size: 12px;
+  transform: translateY(-50%);
+  transform-origin: left;
+  pointer-events: none;
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    font-size: ${p => p.theme.fontSizes.f16};
+  }
+`;

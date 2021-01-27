@@ -72,6 +72,7 @@ OrchestroIntegrationSwitch.propTypes = {
 OrchestroIntegrationSwitch.defaultValue = {
   businessId: string,
   isConnectedToOrkestro: false,
+  isConnectedToUber: false,
   isFetching: false,
   isSucceeded: true
 };
@@ -85,12 +86,14 @@ export default connect(
       "businesses"
     ]);
     const isConnected = state.getIn(["integrations", "isConnectedToOrkestro"]);
+    const isUberConnected = state.getIn(["integrations", "isConnectedToUber"]);
     const fetching = state.getIn(["integrations", "isFetching"]);
     const success = state.getIn(["integrations", "isSucceeded"]);
     const id = buissnes && buissnes.first().get("id");
     return {
       businessId: id,
       isConnectedToOrkestro: isConnected,
+      isConnectedToUber: isUberConnected,
       isFetching: fetching,
       isSucceeded: success
     };

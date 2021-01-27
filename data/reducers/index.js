@@ -11,6 +11,7 @@ import caterings from "./caterings";
 import categories from "./categories";
 import privatisations from "./privatisations";
 import integrations from "./integrations";
+import uberIntegrations from "./uberIntegrations";
 import reservations from "./reservations";
 import tables from "./tables";
 import bookings from "./bookings";
@@ -32,6 +33,7 @@ export default {
   categories,
   privatisations,
   integrations,
+  uberIntegrations,
   reservations,
   tables,
   bookings,

@@ -61,7 +61,15 @@ function* handlePatchChangeSaga({ payload: { path } }) {
       break;
     }
     case "/app/integrations": {
-      yield put(fetchPartners());
+      const business = yield select(state =>
+        state.getIn(["users", "currentBusiness", "data", "businesses"])
+      );
+      if (business) {
+        console.log("bus");
+        console.log(business);
+        const id = business.first().get("id");
+        yield put(fetchPartners(id));
+      }
       break;
     }
     case "/app/wholesalers": {
