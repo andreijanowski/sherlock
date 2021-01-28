@@ -61,14 +61,11 @@ function* handlePatchChangeSaga({ payload: { path } }) {
       break;
     }
     case "/app/integrations": {
-      const business = yield select(state =>
-        state.getIn(["users", "currentBusiness", "data", "businesses"])
+      const bussinessId = yield window.localStorage.getItem(
+        "currentBusinessId"
       );
-      if (business) {
-        console.log("bus");
-        console.log(business);
-        const id = business.first().get("id");
-        yield put(fetchPartners(id));
+      if (bussinessId) {
+        yield put(fetchPartners(bussinessId));
       }
       break;
     }
