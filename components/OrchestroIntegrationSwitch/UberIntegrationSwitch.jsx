@@ -34,7 +34,7 @@ const UberIntegrationSwitch = ({
           <ModalHeader>Uber Eats Integration</ModalHeader>
           {isConnectedToUber ? (
             <div>
-              <p>You have been successfully connected withh Uber Eats</p>
+              <p>You have been successfully connected with Uber Eats</p>
               <Button onClick={() => closeModal()}>Close</Button>
             </div>
           ) : (
@@ -54,7 +54,6 @@ const UberIntegrationSwitch = ({
       </Option>
       <SwitchWrapper>
         <Switch
-          // disabled={isFetching || !isSucceeded}
           checked={isConnectedToUber}
           onChange={() => handleSwitch()}
           uncheckedIcon={false}
