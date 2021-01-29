@@ -3,76 +3,48 @@ import { useState } from "react";
 import Switch from "react-switch";
 import { Flex } from "@rebass/grid";
 import { theme } from "utils/theme";
-import { Modal, InputField, Button } from "components";
+import { Modal, Button } from "components";
 import { connect } from "react-redux";
-import { Form } from "react-final-form";
 
 import {
-  connectPartnerWithUberEats
-  // disconnectPartnerFromUberEats
+  connectPartnerWithUberEats,
+  disconnectPartnerFromUberEats
 } from "actions/integrations";
 
 import { Option, SwitchWrapper, ModalHeader } from "./styled";
+import { UberIntegrationForm } from "./UberIntegrationForm";
 
 const UberIntegrationSwitch = ({
   t,
   isFetching,
-  isSucceeded,
   isConnectedToUber,
-  businessId
+  businessId,
+  connectToUber,
+  disconnectFromUber
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
-  const handleUberEatsIntegrationChange = e => {
-    if (e) {
-      console.log(e);
-      connectPartnerWithUberEats();
-    }
-    // } else {
-    //   disconnectPartnerFromUberEats(businessId);
-    // }
-  };
+
+  const handleSwitch = () =>
+    isConnectedToUber ? disconnectFromUber(businessId) : setIsOpen(true);
   return (
     <Flex alignItems="center" mx={3}>
       {isOpen && (
         <Modal {...{ open: true, onClose: closeModal }}>
           <ModalHeader>Uber Eats Integration</ModalHeader>
-          <Form
-            initialValues={{ business_id: businessId }}
-            onSubmit={() => {}}
-            //   connectPartnerWithUberEats
-            //   // values.businessId,
-            //   // values.clientId,
-            //   // values.clientSecret,
-            //   // values.storeId
-            // }
-            render={({ values }) => (
-              <form style={{ width: "100%" }}>
-                <InputField
-                  name="client_id"
-                  placeholder="Client ID"
-                  type="text"
-                />
-                <InputField
-                  name="client_secret"
-                  placeholder="Client Secret"
-                  type="text"
-                />
-                <InputField
-                  name="store_id"
-                  placeholder="Store ID"
-                  type="text"
-                />
-                <InputField type="hidden" name="business_id" />
-                <Button
-                  onClick={() => handleUberEatsIntegrationChange(values)}
-                  styleName="blue"
-                >
-                  Submit
-                </Button>
-              </form>
-            )}
-          />{" "}
+          {isConnectedToUber ? (
+            <div>
+              <p>You have been successfully connected with Uber Eats</p>
+              <Button onClick={() => closeModal()}>Close</Button>
+            </div>
+          ) : (
+            <UberIntegrationForm
+              isFetching={isFetching}
+              connectToUber={connectToUber}
+              t={t}
+              businessId={businessId}
+            />
+          )}
         </Modal>
       )}
       <Option dark={isConnectedToUber} mr={3}>
@@ -82,9 +54,8 @@ const UberIntegrationSwitch = ({
       </Option>
       <SwitchWrapper>
         <Switch
-          disabled={isFetching || !isSucceeded}
           checked={isConnectedToUber}
-          onChange={() => setIsOpen(true)}
+          onChange={() => handleSwitch()}
           uncheckedIcon={false}
           checkedIcon={false}
           handleDiameter={21}
@@ -111,7 +82,9 @@ UberIntegrationSwitch.propTypes = {
   isConnectedToUber: bool.isRequired,
   isFetching: bool.isRequired,
   isSucceeded: bool.isRequired,
-  t: func.isRequired
+  t: func.isRequired,
+  connectToUber: func.isRequired,
+  disconnectFromUber: func.isRequired
 };
 
 UberIntegrationSwitch.defaultValue = {
@@ -121,23 +94,32 @@ UberIntegrationSwitch.defaultValue = {
   isSucceeded: true
 };
 
-export default connect(state => {
-  const buissnes = state.getIn([
-    "users",
-    "currentBusiness",
-    "data",
-    "businesses"
-  ]);
-  const isConnected = state.getIn(["integrations", "isConnectedToOrkestro"]);
-  const isUberConnected = state.getIn(["integrations", "isConnectedToUber"]);
-  const fetching = state.getIn(["integrations", "isFetching"]);
-  const success = state.getIn(["integrations", "isSucceeded"]);
-  const id = buissnes && buissnes.first().get("id");
-  return {
-    businessId: id,
-    isConnectedToOrkestro: isConnected,
-    isConnectedToUber: isUberConnected,
-    isFetching: fetching,
-    isSucceeded: success
-  };
-})(UberIntegrationSwitch);
+export default connect(
+  state => {
+    const buissnes = state.getIn([
+      "users",
+      "currentBusiness",
+      "data",
+      "businesses"
+    ]);
+    const isConnected = state.getIn(["integrations", "isConnectedToOrkestro"]);
+    const isUberConnected = state.getIn([
+      "uberIntegrations",
+      "isConnectedToUberEats"
+    ]);
+    const fetching = state.getIn(["uberIntegrations", "isFetching"]);
+    const success = state.getIn(["integrations", "isSucceeded"]);
+    const id = buissnes && buissnes.first().get("id");
+    return {
+      businessId: id,
+      isConnectedToOrkestro: isConnected,
+      isConnectedToUber: isUberConnected,
+      isFetching: fetching,
+      isSucceeded: success
+    };
+  },
+  {
+    connectToUber: connectPartnerWithUberEats,
+    disconnectFromUber: disconnectPartnerFromUberEats
+  }
+)(UberIntegrationSwitch);
