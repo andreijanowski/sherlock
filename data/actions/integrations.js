@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 import {
   CONNECT_PARTNER_WITH_ORKESTRO_REQUEST,
   DISCONNECT_PARTNER_FROM_ORKESTRO_REQUEST,
@@ -7,28 +9,28 @@ import {
 } from "types/integrations";
 import { getRelationships } from "./utils";
 
-export const connectPartnerWithUberEats = (
-  id,
-  clientId,
-  clientSecret,
-  storeId
-) => ({
-  type: CONNECT_PARTNER_WITH_UBER_EATS_REQUEST,
-  payload: {
-    method: "POST",
-    endpoint: `/api/v1/partner_integrations/uber_eats/connect`,
-    data: {
+export const connectPartnerWithUberEats = values => {
+  const { business_id, client_id, client_secret, store_id } = values;
+  return {
+    type: CONNECT_PARTNER_WITH_UBER_EATS_REQUEST,
+    payload: {
+      method: "POST",
+      endpoint: `/api/v1/partner_integrations/uber_eats/connect`,
       data: {
-        type: "partner_integrations",
-        relationships: getRelationships("business", id),
-        client_id: clientId,
-        client_secret: clientSecret,
-        store_id: storeId
+        data: {
+          type: "partner_integrations",
+          relationships: getRelationships("business", business_id),
+          attributes: {
+            client_id,
+            client_secret,
+            store_id
+          }
+        }
       }
-    }
-  },
-  meta: { thunk: true }
-});
+    },
+    meta: { thunk: true }
+  };
+};
 
 export const connectPartnerWithOrkestro = id => ({
   type: CONNECT_PARTNER_WITH_ORKESTRO_REQUEST,

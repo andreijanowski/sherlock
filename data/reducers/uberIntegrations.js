@@ -2,7 +2,9 @@ import {
   FETCH_BUSINESS_PARTNERSHIPS_REQUEST,
   FETCH_BUSINESS_PARTNERSHIPS_SUCCESS,
   CONNECT_PARTNER_WITH_UBER_EATS_SUCCESS,
-  DISCONNECT_PARTNER_FROM_UBER_EATS_SUCCESS
+  DISCONNECT_PARTNER_FROM_UBER_EATS_SUCCESS,
+  CONNECT_PARTNER_WITH_UBER_EATS_REQUEST,
+  CONNECT_PARTNER_WITH_UBER_EATS_FAIL
 } from "types/integrations";
 import { LOGOUT } from "types/auth";
 import { Record } from "immutable";
@@ -50,6 +52,23 @@ const reducer = (state = initialState, { type, payload }) => {
         })()
       );
     }
+
+    case CONNECT_PARTNER_WITH_UBER_EATS_REQUEST: {
+      return state.merge(
+        Record({
+          isFetching: true
+        })()
+      );
+    }
+
+    case CONNECT_PARTNER_WITH_UBER_EATS_FAIL: {
+      return state.merge(
+        Record({
+          isFetching: false
+        })()
+      );
+    }
+
     case CONNECT_PARTNER_WITH_UBER_EATS_SUCCESS: {
       return state.merge(
         Record({
