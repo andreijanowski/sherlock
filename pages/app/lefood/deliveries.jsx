@@ -118,6 +118,7 @@ export default requireAuth(true)(
           businessData &&
           businessData.get("businesses") &&
           businessData.get("businesses").first();
+
         const dishes = state.getIn(["dishes", "data", "dishes"]);
         const deliveries = state.getIn(["deliveries", "data", "deliveries"]);
         return {

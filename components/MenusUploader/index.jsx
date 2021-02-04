@@ -25,7 +25,7 @@ class Menus extends PureComponent {
   };
 
   render() {
-    const { t, menus, updateMenu, removeMenu } = this.props;
+    const { t, menus, updateMenu, removeMenu, addToUber } = this.props;
     const { isAddingFile } = this.state;
     return (
       <>
@@ -43,7 +43,9 @@ class Menus extends PureComponent {
           />
         </DropzoneWrapper>
         {menus.map(m => (
-          <Menu {...{ ...m, t, updateMenu, removeMenu, key: m.id }} />
+          <Menu
+            {...{ ...m, t, addToUber, updateMenu, removeMenu, key: m.id }}
+          />
         ))}
       </>
     );
@@ -55,7 +57,8 @@ Menus.propTypes = {
   menus: arrayOf(shape({ id: string, displayName: string, url: string })),
   addMenu: func.isRequired,
   updateMenu: func.isRequired,
-  removeMenu: func.isRequired
+  removeMenu: func.isRequired,
+  addToUber: func.isRequired
 };
 
 Menus.defaultProps = {

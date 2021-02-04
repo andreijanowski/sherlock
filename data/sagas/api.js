@@ -39,6 +39,7 @@ export const client = axios.create({
 
 function* makeApiCall({ type, payload: { endpoint, ...options } = {}, meta }) {
   const [HEAD] = type.split("_REQUEST");
+
   try {
     const response = yield call(client, endpoint, options);
 
@@ -57,7 +58,11 @@ function* makeApiCall({ type, payload: { endpoint, ...options } = {}, meta }) {
       meta
     });
   } catch (error) {
-    if (error.response && error.response.status === 401) {
+    if (
+      `${HEAD}` !== "CONNECT_PARTNER_WITH_UBER_EATS" &&
+      error.response &&
+      error.response.status === 401
+    ) {
       yield put(logout());
       yield put(
         Notifications.error({

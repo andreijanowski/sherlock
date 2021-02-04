@@ -367,6 +367,7 @@ export default requireAuth(true)(
           "integrations",
           "isConnectedToOrkestro"
         ]);
+
         return {
           loading:
             (!state.getIn(["orders", "isFailed"]) &&
@@ -392,7 +393,6 @@ export default requireAuth(true)(
             "businesses"
           ]),
           connectedWithOrkestro: isConnectedWithOrkestro,
-
           lng: (i18n && i18n.language) || "en"
         };
       },
