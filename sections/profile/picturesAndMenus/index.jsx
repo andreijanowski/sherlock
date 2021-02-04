@@ -16,7 +16,8 @@ const PicturesAndMenusForm = ({
   removeMenu,
   addProduct,
   updateProduct,
-  removeProduct
+  removeProduct,
+  addToUber
 }) =>
   initialValues ? (
     <Form>
@@ -30,7 +31,14 @@ const PicturesAndMenusForm = ({
         }}
       />
       <MenusUploader
-        {...{ t, menus: initialValues.menus, addMenu, updateMenu, removeMenu }}
+        {...{
+          t,
+          menus: initialValues.menus,
+          addMenu,
+          updateMenu,
+          removeMenu,
+          addToUber
+        }}
       />
       <Products
         {...{
@@ -57,7 +65,8 @@ PicturesAndMenusForm.propTypes = {
   removeMenu: func.isRequired,
   addProduct: func.isRequired,
   updateProduct: func.isRequired,
-  removeProduct: func.isRequired
+  removeProduct: func.isRequired,
+  addToUber: func.isRequired
 };
 
 PicturesAndMenusForm.defaultProps = {

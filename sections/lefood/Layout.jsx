@@ -39,10 +39,19 @@ import {
   connectPartnerWithOrkestro,
   disconnectPartnerFromOrkestro
 } from "actions/integrations";
+import { patchBusiness } from "actions/businesses";
 import StopOrdersModal from "./StopOrdersModal";
 import FinishOrdersModal from "./FinishOrdersModal";
 import StripeCurrencyModal from "./StripeCurrencyModal";
 import { Orange } from "./styled";
+
+const splitRatioList = [
+  { value: 0, label: 0 },
+  { value: 0.25, label: 0.25 },
+  { value: 0.5, label: 0.5 },
+  { value: 0.75, label: 0.75 },
+  { value: 1, label: 1 }
+];
 
 const averageDeliveryTimeList = t => [
   {
@@ -122,10 +131,12 @@ class LefoodLayout extends PureComponent {
   componentDidUpdate(prevProps) {
     const { business: prevBusiness } = prevProps;
     const { business } = this.props;
+
     if (
       (prevBusiness && prevBusiness.get("minAmountForDeliveryCents")) !==
       (business && business.get("minAmountForDeliveryCents"))
     ) {
+      console.log("cdu");
       this.updateMinAmountForDeliveryCents();
     }
     if (!prevBusiness && business) {
@@ -168,7 +179,7 @@ class LefoodLayout extends PureComponent {
       currentBusinessId,
       changeCurrentBusiness
     } = this.props;
-    updateBusiness(currentBusinessId, values)
+    updateBusiness(currentBusinessId, values, true)
       .then(() => {
         if (values.stripeCurrency) {
           changeCurrentBusiness(currentBusinessId);
@@ -216,6 +227,7 @@ class LefoodLayout extends PureComponent {
       isFinishOrdersModalVisible,
       isCurrencyModalVisible
     } = this.state;
+    console.log(business);
     const profileCompletedPercents =
       page === "orders"
         ? calcProfileCompletedPercents({
@@ -229,6 +241,7 @@ class LefoodLayout extends PureComponent {
     const currentAverageDeliveryTime = averageDeliveryTimeList(t).find(
       i => i.value === (business && business.get("averageDeliveryTime"))
     ) || { value: undefined };
+
     return (
       <AppLayout
         {...{
@@ -521,6 +534,36 @@ class LefoodLayout extends PureComponent {
                           </Button>
                         )}
                       </Box>
+                      <Box>
+                        <Flex alignItems="center" width="1">
+                          <div style={{ width: "8em" }}>Split Fee</div>
+
+                          {business &&
+                            business.get("deliveryPriceParticipationRatio") && (
+                              <Select
+                                value={{
+                                  value:
+                                    business &&
+                                    business.get(
+                                      "deliveryPriceParticipationRatio"
+                                    ),
+
+                                  label:
+                                    business &&
+                                    business.get(
+                                      "deliveryPriceParticipationRatio"
+                                    )
+                                }}
+                                onChange={({ value }) =>
+                                  this.updateBusiness({
+                                    deliveryPriceParticipationRatio: value
+                                  })
+                                }
+                                items={splitRatioList}
+                              />
+                            )}
+                        </Flex>
+                      </Box>
                     </Flex>
                     {children}
                     <StopOrdersModal
@@ -627,6 +670,7 @@ export default connect(
   },
   {
     integrateWithOrkestro: connectPartnerWithOrkestro,
-    disconnectFromOrkestro: disconnectPartnerFromOrkestro
+    disconnectFromOrkestro: disconnectPartnerFromOrkestro,
+    patchBusiness
   }
 )(LefoodLayout);

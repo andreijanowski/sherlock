@@ -28,6 +28,7 @@
   "categoryPlaceholder": "Category",
   "addToMenu": "Add to menu",
   "availability": "Availability",
+  "uber_availability": "Avalible in Uber Eats",
   "chooseOrDragFile": "Choose a file or drag it here",
   "picturesInfo": "png or jpeg file",
   "invalidFiles": "Some of dragged files has not valid type",
