@@ -35,8 +35,6 @@ const OrderDetails = ({
     }
   }, [fetchOrkestroOrderStatus, isOpen, orderId]);
 
-  console.log(orderDetails);
-
   return (
     <Slide
       isOpen={isOpen}

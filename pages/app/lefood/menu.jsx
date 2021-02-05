@@ -153,7 +153,7 @@ MenuPage.propTypes = {
   deliveriesLength: number,
   businessOrderPeriodsLength: number,
   uploadMenu: func.isRequired,
-  isUberAvailable: bool.isRequired
+  isUberAvailable: bool
 };
 
 MenuPage.defaultProps = {
@@ -164,7 +164,8 @@ MenuPage.defaultProps = {
   dishesLength: 0,
   deliveriesLength: 0,
   businessOrderPeriodsLength: 0,
-  dishes: null
+  dishes: null,
+  isUberAvailable: false
 };
 
 export default requireAuth(true)(
