@@ -220,7 +220,8 @@ class LefoodLayout extends PureComponent {
       updateBusiness,
       connectedWithOrkestro,
       ratio,
-      uploadMenu
+      uploadMenu,
+      isUberAvailable
     } = this.props;
     const {
       minAmountForDeliveryCents,
@@ -228,6 +229,7 @@ class LefoodLayout extends PureComponent {
       isFinishOrdersModalVisible,
       isCurrencyModalVisible
     } = this.state;
+
     const profileCompletedPercents =
       page === "orders"
         ? calcProfileCompletedPercents({
@@ -241,6 +243,9 @@ class LefoodLayout extends PureComponent {
     const currentAverageDeliveryTime = averageDeliveryTimeList(t).find(
       i => i.value === (business && business.get("averageDeliveryTime"))
     ) || { value: undefined };
+
+    const currentSplitRatio =
+      ratio && splitRatioList.find(item => item.value === ratio).label;
 
     return (
       <AppLayout
@@ -534,21 +539,15 @@ class LefoodLayout extends PureComponent {
                           </Button>
                         )}
                       </Box>
-                      <Box>
-                        <Flex alignItems="center" width="1">
-                          <SplitFee>Split Fee</SplitFee>
-                          {business &&
-                            business.get("deliveryPriceParticipationRatio") && (
+                      {ratio && currentSplitRatio !== undefined && (
+                        <Box>
+                          <Flex alignItems="center" width="1">
+                            <SplitFee>Split Fee</SplitFee>
+                            {ratio !== null && (
                               <Select
                                 value={{
-                                  value:
-                                    business &&
-                                    business.get(
-                                      "deliveryPriceParticipationRatio"
-                                    ),
-                                  label: splitRatioList.filter(
-                                    item => item.value === ratio
-                                  )[0].label
+                                  value: ratio || "0.0",
+                                  label: currentSplitRatio
                                 }}
                                 onChange={({ value }) =>
                                   this.updateBusiness({
@@ -558,18 +557,21 @@ class LefoodLayout extends PureComponent {
                                 items={splitRatioList}
                               />
                             )}
-                        </Flex>
-                      </Box>
-                      <Box>
-                        <Button
-                          onClick={() => uploadMenu(currentBusinessId)}
-                          styleName="withImage"
-                        >
-                          <ButtonWithImageText>
-                            Upload Menu to Uber Eats
-                          </ButtonWithImageText>
-                        </Button>
-                      </Box>
+                          </Flex>
+                        </Box>
+                      )}
+                      {isUberAvailable && (
+                        <Box>
+                          <Button
+                            onClick={() => uploadMenu(currentBusinessId)}
+                            styleName="withImage"
+                          >
+                            <ButtonWithImageText>
+                              Upload Menu to Uber Eats
+                            </ButtonWithImageText>
+                          </Button>
+                        </Box>
+                      )}
                     </Flex>
                     {children}
                     <StopOrdersModal
@@ -653,8 +655,9 @@ LefoodLayout.propTypes = {
   dishesLength: number,
   deliveriesLength: number,
   orderPeriodsLength: number,
-  ratio: string.isRequired,
-  uploadMenu: func
+  ratio: string,
+  uploadMenu: func,
+  isUberAvailable: bool
 };
 
 LefoodLayout.defaultProps = {
@@ -664,7 +667,9 @@ LefoodLayout.defaultProps = {
   orderPeriodsLength: 0,
   currentBusinessId: "",
   business: null,
-  businesses: null
+  businesses: null,
+  isUberAvailable: false,
+  ratio: "0.0"
 };
 
 export default connect(
