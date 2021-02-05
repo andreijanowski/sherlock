@@ -105,7 +105,9 @@ class MenuPage extends PureComponent {
           orderPeriodsLength: businessOrderPeriodsLength,
           business,
           businesses,
-          changeCurrentBusiness
+          changeCurrentBusiness,
+          addToUber: this.uploadMenu,
+          isUberAvailable
         }}
       >
         <Menu

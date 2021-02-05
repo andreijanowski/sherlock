@@ -9,3 +9,7 @@ export const Orange = styled.span`
 export const StyledH2 = styled(H2)`
   text-align: center;
 `;
+
+export const SplitFee = styled.div`
+  width: 8em;
+`;
