@@ -27,8 +27,6 @@ const DishForm = ({
   setEditedDishId,
   addDish,
   categories,
-  addToUber,
-  businessId,
   isUberAvailable
 }) => {
   const [picture, setPicture] = useState(null);
@@ -148,6 +146,7 @@ const DishForm = ({
                   />
                 </Box>
                 <Box my={4}>
+                  <H3>Available in: </H3>
                   <FormCheckbox name="available" label={t("availability")} />
                   {isUberAvailable && (
                     <FormCheckbox
@@ -161,18 +160,6 @@ const DishForm = ({
                     {!initialValues.name ? t("addToMenu") : t("Save")}
                   </Button>
                 </Box>
-                {initialValues.name && (
-                  <Box mb={3}>
-                    <Button
-                      type="button"
-                      onClick={() => addToUber(businessId)}
-                      fluid
-                      styleName="blue"
-                    >
-                      Add to Uber Eats
-                    </Button>
-                  </Box>
-                )}
               </>
             )}
           </Form>
@@ -185,7 +172,6 @@ const DishForm = ({
 DishForm.propTypes = {
   t: func.isRequired,
   businessId: string.isRequired,
-  addToUber: func.isRequired,
   addDish: func.isRequired,
   addPicture: func.isRequired,
   removePicture: func.isRequired,

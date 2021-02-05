@@ -43,14 +43,14 @@ import { patchBusiness } from "actions/businesses";
 import StopOrdersModal from "./StopOrdersModal";
 import FinishOrdersModal from "./FinishOrdersModal";
 import StripeCurrencyModal from "./StripeCurrencyModal";
-import { Orange } from "./styled";
+import { Orange, SplitFee } from "./styled";
 
 const splitRatioList = [
-  { value: 0, label: 0 },
-  { value: 0.25, label: 0.25 },
-  { value: 0.5, label: 0.5 },
-  { value: 0.75, label: 0.75 },
-  { value: 1, label: 1 }
+  { value: "0.0", label: "0%" },
+  { value: "0.25", label: "25%" },
+  { value: "0.5", label: "50%" },
+  { value: "0.75", label: "75%" },
+  { value: "1", label: "100%" }
 ];
 
 const averageDeliveryTimeList = t => [
@@ -136,7 +136,6 @@ class LefoodLayout extends PureComponent {
       (prevBusiness && prevBusiness.get("minAmountForDeliveryCents")) !==
       (business && business.get("minAmountForDeliveryCents"))
     ) {
-      console.log("cdu");
       this.updateMinAmountForDeliveryCents();
     }
     if (!prevBusiness && business) {
@@ -219,7 +218,9 @@ class LefoodLayout extends PureComponent {
       businesses,
       changeCurrentBusiness,
       updateBusiness,
-      connectedWithOrkestro
+      connectedWithOrkestro,
+      ratio,
+      uploadMenu
     } = this.props;
     const {
       minAmountForDeliveryCents,
@@ -227,7 +228,6 @@ class LefoodLayout extends PureComponent {
       isFinishOrdersModalVisible,
       isCurrencyModalVisible
     } = this.state;
-    console.log(business);
     const profileCompletedPercents =
       page === "orders"
         ? calcProfileCompletedPercents({
@@ -536,8 +536,7 @@ class LefoodLayout extends PureComponent {
                       </Box>
                       <Box>
                         <Flex alignItems="center" width="1">
-                          <div style={{ width: "8em" }}>Split Fee</div>
-
+                          <SplitFee>Split Fee</SplitFee>
                           {business &&
                             business.get("deliveryPriceParticipationRatio") && (
                               <Select
@@ -547,12 +546,9 @@ class LefoodLayout extends PureComponent {
                                     business.get(
                                       "deliveryPriceParticipationRatio"
                                     ),
-
-                                  label:
-                                    business &&
-                                    business.get(
-                                      "deliveryPriceParticipationRatio"
-                                    )
+                                  label: splitRatioList.filter(
+                                    item => item.value === ratio
+                                  )[0].label
                                 }}
                                 onChange={({ value }) =>
                                   this.updateBusiness({
@@ -563,6 +559,16 @@ class LefoodLayout extends PureComponent {
                               />
                             )}
                         </Flex>
+                      </Box>
+                      <Box>
+                        <Button
+                          onClick={() => uploadMenu(currentBusinessId)}
+                          styleName="withImage"
+                        >
+                          <ButtonWithImageText>
+                            Upload Menu to Uber Eats
+                          </ButtonWithImageText>
+                        </Button>
                       </Box>
                     </Flex>
                     {children}
@@ -646,10 +652,13 @@ LefoodLayout.propTypes = {
   currentBusinessId: string,
   dishesLength: number,
   deliveriesLength: number,
-  orderPeriodsLength: number
+  orderPeriodsLength: number,
+  ratio: string.isRequired,
+  uploadMenu: func
 };
 
 LefoodLayout.defaultProps = {
+  uploadMenu: () => {},
   dishesLength: 0,
   deliveriesLength: 0,
   orderPeriodsLength: 0,
@@ -664,8 +673,19 @@ export default connect(
       "integrations",
       "isConnectedToOrkestro"
     ]);
+    const businessData = state.getIn(["users", "currentBusiness", "data"]);
+    const business =
+      businessData &&
+      businessData.get("businesses") &&
+      businessData.get("businesses").first();
+    const ratio =
+      business &&
+      business.get("attributes").get("deliveryPriceParticipationRatio");
+
     return {
-      connectedWithOrkestro: isConnectedWithOrkestro
+      connectedWithOrkestro: isConnectedWithOrkestro,
+      ratio,
+      busData: business
     };
   },
   {
