@@ -61,7 +61,12 @@ function* handlePatchChangeSaga({ payload: { path } }) {
       break;
     }
     case "/app/integrations": {
-      yield put(fetchPartners());
+      const bussinessId = yield window.localStorage.getItem(
+        "currentBusinessId"
+      );
+      if (bussinessId) {
+        yield put(fetchPartners(bussinessId));
+      }
       break;
     }
     case "/app/wholesalers": {

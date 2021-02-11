@@ -7,6 +7,7 @@ import Menu from "sections/lefood/menu";
 import { connect } from "react-redux";
 import { postDish, patchDish, deleteDish } from "actions/dishes";
 import { postPicture, deletePicture } from "actions/pictures";
+import { uploadMenuToUberEats } from "actions/integrations";
 import { patchBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/app";
 import { mergeDishesData } from "sections/lefood/utils";
@@ -33,10 +34,11 @@ class MenuPage extends PureComponent {
   addDish = values => {
     const { addDish, updateDish, businessId } = this.props;
     const { editedDishId } = this.state;
-    const { available, name, description, category } = values;
+    const { available, name, description, category, onUberEats } = values;
     const dish = {
       name,
       description,
+      onUberEats,
       unavailable: !available,
       pricePerItemCents: convertToCents(values.pricePerItemCents)
     };
@@ -44,6 +46,11 @@ class MenuPage extends PureComponent {
       return updateDish(dish, editedDishId, category);
     }
     return addDish(dish, businessId, category);
+  };
+
+  uploadMenu = id => {
+    const { uploadMenu } = this.props;
+    return uploadMenu(id);
   };
 
   removeDish = id => {
@@ -80,7 +87,8 @@ class MenuPage extends PureComponent {
       businessOrderPeriodsLength,
       businesses,
       changeCurrentBusiness,
-      categories
+      categories,
+      isUberAvailable
     } = this.props;
     const { editedDishId } = this.state;
 
@@ -97,7 +105,9 @@ class MenuPage extends PureComponent {
           orderPeriodsLength: businessOrderPeriodsLength,
           business,
           businesses,
-          changeCurrentBusiness
+          changeCurrentBusiness,
+          addToUber: this.uploadMenu,
+          isUberAvailable
         }}
       >
         <Menu
@@ -108,10 +118,13 @@ class MenuPage extends PureComponent {
             loading,
             editedDishId,
             addDish: this.addDish,
+            businessId,
             setEditedDishId: this.setEditedDishId,
             removeDish: this.removeDish,
             addPicture: this.addPicture,
-            removePicture: this.removePicture
+            removePicture: this.removePicture,
+            addToUber: this.uploadMenu,
+            isUberAvailable
           }}
         />
       </LefoodLayout>
@@ -126,6 +139,7 @@ MenuPage.propTypes = {
   business: shape(),
   categories: shape(),
   addDish: func.isRequired,
+  addToUber: func.isRequired,
   updateDish: func.isRequired,
   removeDish: func.isRequired,
   addPicture: func.isRequired,
@@ -137,7 +151,9 @@ MenuPage.propTypes = {
   changeCurrentBusiness: func.isRequired,
   dishesLength: number,
   deliveriesLength: number,
-  businessOrderPeriodsLength: number
+  businessOrderPeriodsLength: number,
+  uploadMenu: func.isRequired,
+  isUberAvailable: bool
 };
 
 MenuPage.defaultProps = {
@@ -148,13 +164,17 @@ MenuPage.defaultProps = {
   dishesLength: 0,
   deliveriesLength: 0,
   businessOrderPeriodsLength: 0,
-  dishes: null
+  dishes: null,
+  isUberAvailable: false
 };
 
 export default requireAuth(true)(
   withTranslation(namespaces)(
     connect(
       (state, { i18n }) => {
+        const isUberConnected = state.getIn(["uberIntegrations"]);
+        const isUberAvailable =
+          isUberConnected && isUberConnected.get("isConnectedToUberEats");
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
         const business =
           businessData &&
@@ -174,6 +194,7 @@ export default requireAuth(true)(
           state.getIn(["categories", "isFetching"]);
 
         return {
+          isUberAvailable,
           loading: loadingDishes || loadingCategories,
           dishes: mergeDishesData(dishes, pictures),
           categories,
@@ -201,7 +222,8 @@ export default requireAuth(true)(
         addPicture: postPicture,
         removePicture: deletePicture,
         updateBusiness: patchBusiness,
-        changeCurrentBusiness: setCurrentBusiness
+        changeCurrentBusiness: setCurrentBusiness,
+        uploadMenu: uploadMenuToUberEats
       }
     )(MenuPage)
   )

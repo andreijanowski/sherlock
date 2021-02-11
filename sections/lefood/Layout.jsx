@@ -39,10 +39,19 @@ import {
   connectPartnerWithOrkestro,
   disconnectPartnerFromOrkestro
 } from "actions/integrations";
+import { patchBusiness } from "actions/businesses";
 import StopOrdersModal from "./StopOrdersModal";
 import FinishOrdersModal from "./FinishOrdersModal";
 import StripeCurrencyModal from "./StripeCurrencyModal";
-import { Orange } from "./styled";
+import { Orange, SplitFee } from "./styled";
+
+const splitRatioList = [
+  { value: "0.0", label: "0%" },
+  { value: "0.25", label: "25%" },
+  { value: "0.5", label: "50%" },
+  { value: "0.75", label: "75%" },
+  { value: "1.0", label: "100%" }
+];
 
 const averageDeliveryTimeList = t => [
   {
@@ -122,6 +131,7 @@ class LefoodLayout extends PureComponent {
   componentDidUpdate(prevProps) {
     const { business: prevBusiness } = prevProps;
     const { business } = this.props;
+
     if (
       (prevBusiness && prevBusiness.get("minAmountForDeliveryCents")) !==
       (business && business.get("minAmountForDeliveryCents"))
@@ -168,7 +178,7 @@ class LefoodLayout extends PureComponent {
       currentBusinessId,
       changeCurrentBusiness
     } = this.props;
-    updateBusiness(currentBusinessId, values)
+    updateBusiness(currentBusinessId, values, true)
       .then(() => {
         if (values.stripeCurrency) {
           changeCurrentBusiness(currentBusinessId);
@@ -208,7 +218,10 @@ class LefoodLayout extends PureComponent {
       businesses,
       changeCurrentBusiness,
       updateBusiness,
-      connectedWithOrkestro
+      connectedWithOrkestro,
+      ratio,
+      uploadMenu,
+      isUberAvailable
     } = this.props;
     const {
       minAmountForDeliveryCents,
@@ -216,6 +229,7 @@ class LefoodLayout extends PureComponent {
       isFinishOrdersModalVisible,
       isCurrencyModalVisible
     } = this.state;
+
     const profileCompletedPercents =
       page === "orders"
         ? calcProfileCompletedPercents({
@@ -229,6 +243,10 @@ class LefoodLayout extends PureComponent {
     const currentAverageDeliveryTime = averageDeliveryTimeList(t).find(
       i => i.value === (business && business.get("averageDeliveryTime"))
     ) || { value: undefined };
+
+    const currentSplitRatio =
+      ratio && splitRatioList.find(item => item.value === ratio).label;
+
     return (
       <AppLayout
         {...{
@@ -521,6 +539,39 @@ class LefoodLayout extends PureComponent {
                           </Button>
                         )}
                       </Box>
+                      {ratio && currentSplitRatio !== undefined && (
+                        <Box>
+                          <Flex alignItems="center" width="1">
+                            <SplitFee>Split Fee</SplitFee>
+                            {ratio !== null && (
+                              <Select
+                                value={{
+                                  value: ratio || "0.0",
+                                  label: currentSplitRatio
+                                }}
+                                onChange={({ value }) =>
+                                  this.updateBusiness({
+                                    deliveryPriceParticipationRatio: value
+                                  })
+                                }
+                                items={splitRatioList}
+                              />
+                            )}
+                          </Flex>
+                        </Box>
+                      )}
+                      {isUberAvailable && (
+                        <Box>
+                          <Button
+                            onClick={() => uploadMenu(currentBusinessId)}
+                            styleName="withImage"
+                          >
+                            <ButtonWithImageText>
+                              Upload Menu to Uber Eats
+                            </ButtonWithImageText>
+                          </Button>
+                        </Box>
+                      )}
                     </Flex>
                     {children}
                     <StopOrdersModal
@@ -603,16 +654,22 @@ LefoodLayout.propTypes = {
   currentBusinessId: string,
   dishesLength: number,
   deliveriesLength: number,
-  orderPeriodsLength: number
+  orderPeriodsLength: number,
+  ratio: string,
+  uploadMenu: func,
+  isUberAvailable: bool
 };
 
 LefoodLayout.defaultProps = {
+  uploadMenu: () => {},
   dishesLength: 0,
   deliveriesLength: 0,
   orderPeriodsLength: 0,
   currentBusinessId: "",
   business: null,
-  businesses: null
+  businesses: null,
+  isUberAvailable: false,
+  ratio: "0.0"
 };
 
 export default connect(
@@ -621,12 +678,24 @@ export default connect(
       "integrations",
       "isConnectedToOrkestro"
     ]);
+    const businessData = state.getIn(["users", "currentBusiness", "data"]);
+    const business =
+      businessData &&
+      businessData.get("businesses") &&
+      businessData.get("businesses").first();
+    const ratio =
+      business &&
+      business.get("attributes").get("deliveryPriceParticipationRatio");
+
     return {
-      connectedWithOrkestro: isConnectedWithOrkestro
+      connectedWithOrkestro: isConnectedWithOrkestro,
+      ratio,
+      busData: business
     };
   },
   {
     integrateWithOrkestro: connectPartnerWithOrkestro,
-    disconnectFromOrkestro: disconnectPartnerFromOrkestro
+    disconnectFromOrkestro: disconnectPartnerFromOrkestro,
+    patchBusiness
   }
 )(LefoodLayout);

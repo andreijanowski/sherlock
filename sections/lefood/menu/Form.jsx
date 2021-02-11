@@ -12,7 +12,7 @@ import {
   LoadingIndicator
 } from "components";
 import { Form as FinalForm, Field } from "react-final-form";
-import { func, shape } from "prop-types";
+import { func, shape, string, bool } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import { normalizePrice } from "utils/normalizers";
 import { required } from "utils/validators";
@@ -26,7 +26,8 @@ const DishForm = ({
   initialPicture,
   setEditedDishId,
   addDish,
-  categories
+  categories,
+  isUberAvailable
 }) => {
   const [picture, setPicture] = useState(null);
   const [isSending, setIsSending] = useState(false);
@@ -145,7 +146,14 @@ const DishForm = ({
                   />
                 </Box>
                 <Box my={4}>
+                  <H3>Available in: </H3>
                   <FormCheckbox name="available" label={t("availability")} />
+                  {isUberAvailable && (
+                    <FormCheckbox
+                      name="onUberEats"
+                      label={t("uber_availability")}
+                    />
+                  )}
                 </Box>
                 <Box mb={3}>
                   <Button fluid styleName="blue" type="submit">
@@ -163,13 +171,15 @@ const DishForm = ({
 
 DishForm.propTypes = {
   t: func.isRequired,
+  businessId: string.isRequired,
   addDish: func.isRequired,
   addPicture: func.isRequired,
   removePicture: func.isRequired,
   setEditedDishId: func.isRequired,
   initialValues: shape({}).isRequired,
   initialPicture: shape({}),
-  categories: shape().isRequired
+  categories: shape().isRequired,
+  isUberAvailable: bool.isRequired
 };
 
 DishForm.defaultProps = {

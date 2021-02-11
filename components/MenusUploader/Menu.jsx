@@ -35,6 +35,7 @@ class Menu extends PureComponent {
     const { value, saving } = this.state;
     return (
       <Flex width={1} alignItems="center">
+        tutaj
         <FileIconWrapper href={url}>
           <FontAwesomeIcon size="2x" icon={["fa", "file-alt"]} />
         </FileIconWrapper>

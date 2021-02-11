@@ -16,7 +16,10 @@ const Menu = ({
   removePicture,
   t,
   loading,
-  categories
+  categories,
+  addToUber,
+  businessId,
+  isUberAvailable
 }) => {
   const { initialValues, initialPicture } = getInitialValues({
     editedDishId,
@@ -52,6 +55,9 @@ const Menu = ({
               setEditedDishId={setEditedDishId}
               t={t}
               categories={preparedCategories}
+              addToUber={addToUber}
+              businessId={businessId}
+              isUberAvailable={isUberAvailable}
             />
           </Box>
           <Box width={1 / 2} px={3}>
@@ -78,7 +84,10 @@ Menu.propTypes = {
   addPicture: func.isRequired,
   removePicture: func.isRequired,
   loading: bool.isRequired,
-  editedDishId: string
+  editedDishId: string,
+  addToUber: func.isRequired,
+  businessId: string.isRequired,
+  isUberAvailable: bool.isRequired
 };
 
 Menu.defaultProps = {

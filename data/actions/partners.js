@@ -3,11 +3,12 @@ import {
   FETCH_PARTNERS_REQUEST
 } from "types/partners";
 
-export const fetchPartners = (page = 1) => ({
+export const fetchPartners = (id, page = 1) => ({
   type: FETCH_PARTNERS_REQUEST,
   payload: {
     endpoint: "/api/v1/partners",
     params: {
+      business_uuid: id,
       include: "users",
       per_page: 500,
       page

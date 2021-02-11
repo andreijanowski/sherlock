@@ -8,6 +8,7 @@ import Form from "sections/profile/picturesAndMenus";
 import { connect } from "react-redux";
 import { postBusiness, patchBusiness } from "actions/businesses";
 import { postPicture, deletePicture } from "actions/pictures";
+import { uploadMenuToUberEats } from "actions/integrations";
 import { postMenu, patchMenu, deleteMenu } from "actions/menus";
 import { postProduct, patchProduct, deleteProduct } from "actions/products";
 import { getInitialValues } from "sections/profile/picturesAndMenus/utils";
@@ -84,6 +85,8 @@ class PicturesAndMenus extends PureComponent {
     return removeProduct(id);
   };
 
+  uploadMenu = id => uploadMenuToUberEats(id);
+
   render() {
     const {
       t,
@@ -140,7 +143,8 @@ class PicturesAndMenus extends PureComponent {
             removeMenu: this.removeMenu,
             addProduct: this.addProduct,
             updateProduct: this.updateProduct,
-            removeProduct: this.removeProduct
+            removeProduct: this.removeProduct,
+            addToUber: this.uploadMenu
           }}
         />
       </ProfileLayout>
@@ -222,7 +226,8 @@ export default requireAuth(true)(
         updateProduct: patchProduct,
         removeProduct: deleteProduct,
         changeCurrentBusiness: setCurrentBusiness,
-        getProfileBusiness: fetchProfileBusiness
+        getProfileBusiness: fetchProfileBusiness,
+        uploadMenuToUberEats
       }
     )(PicturesAndMenus)
   )
