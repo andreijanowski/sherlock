@@ -220,7 +220,7 @@ class LefoodLayout extends PureComponent {
       updateBusiness,
       connectedWithOrkestro,
       ratio,
-      uploadMenu,
+      addToUber,
       isUberAvailable
     } = this.props;
     const {
@@ -563,7 +563,7 @@ class LefoodLayout extends PureComponent {
                       {isUberAvailable && (
                         <Box>
                           <Button
-                            onClick={() => uploadMenu(currentBusinessId)}
+                            onClick={() => addToUber(currentBusinessId)}
                             styleName="withImage"
                           >
                             <ButtonWithImageText>
@@ -656,12 +656,12 @@ LefoodLayout.propTypes = {
   deliveriesLength: number,
   orderPeriodsLength: number,
   ratio: string,
-  uploadMenu: func,
+  addToUber: func,
   isUberAvailable: bool
 };
 
 LefoodLayout.defaultProps = {
-  uploadMenu: () => {},
+  addToUber: () => {},
   dishesLength: 0,
   deliveriesLength: 0,
   orderPeriodsLength: 0,
