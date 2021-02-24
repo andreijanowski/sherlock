@@ -6,7 +6,9 @@ import {
   CONNECT_PARTNER_WITH_UBER_EATS_REQUEST,
   CONNECT_PARTNER_WITH_UBER_EATS_FAIL,
   UPLOAD_MENU_TO_UBER_EATS_SUCCESS,
-  UPLOAD_MENU_TO_UBER_EATS_REQUEST
+  UPLOAD_MENU_TO_UBER_EATS_REQUEST,
+  DOWNLOAD_MENU_FROM_UBER_EATS_REQUEST,
+  DOWNLOAD_MENU_FROM_UBER_EATS_SUCCESS
 } from "types/integrations";
 import { LOGOUT } from "types/auth";
 import { Record } from "immutable";
@@ -91,6 +93,23 @@ const reducer = (state = initialState, { type, payload }) => {
     }
 
     case UPLOAD_MENU_TO_UBER_EATS_SUCCESS: {
+      return state.merge(
+        Record({
+          isFetching: false,
+          isSucceeded: true
+        })()
+      );
+    }
+
+    case DOWNLOAD_MENU_FROM_UBER_EATS_REQUEST: {
+      return state.merge(
+        Record({
+          isFetching: true
+        })()
+      );
+    }
+
+    case DOWNLOAD_MENU_FROM_UBER_EATS_SUCCESS: {
       return state.merge(
         Record({
           isFetching: false,
