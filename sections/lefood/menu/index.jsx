@@ -18,6 +18,7 @@ const Menu = ({
   loading,
   categories,
   addToUber,
+  donwloadFromUber,
   businessId,
   isUberAvailable
 }) => {
@@ -56,6 +57,7 @@ const Menu = ({
               t={t}
               categories={preparedCategories}
               addToUber={addToUber}
+              donwloadFromUber={donwloadFromUber}
               businessId={businessId}
               isUberAvailable={isUberAvailable}
             />
@@ -86,6 +88,7 @@ Menu.propTypes = {
   loading: bool.isRequired,
   editedDishId: string,
   addToUber: func.isRequired,
+  donwloadFromUber: func.isRequired,
   businessId: string.isRequired,
   isUberAvailable: bool.isRequired
 };
