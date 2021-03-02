@@ -1,5 +1,5 @@
 {
-  "paymentConfimed": "Payment confimed",
+  "paymentConfimed": "Payment confirmed",
   "waitingForPayment": "Waiting for payment",
   "accept": "Accept",
   "reject": "Reject",
@@ -86,6 +86,8 @@
   "deliveryAddress": "Delivery address",
   "deliveryTimeWish": "Delivery time",
   "deliveryNotes": "Delivery notes",
+  "disposableItems": "Disposable Items",
+  "sepcialInstructions": "Special Instructions",
   "pickupAtRestaurant": "Pickup at restaurant",
   "completeYourProfile": "Complete your Profile",
   "and": "and",

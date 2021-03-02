@@ -29,6 +29,14 @@ const OrderDetails = ({
   const orderOrigin =
     orderDetails && orderDetails.getIn(["attributes", "origin"]);
 
+  const notes = orderDetails && orderDetails.getIn(["attributes", "notes"]);
+  const deliveryNotes = notes && notes.get("deliveryNotes");
+  const disposableItems = notes && notes.get("disposableItems");
+  const specialInstructions = notes && notes.get("specialInstructions");
+  console.log(specialInstructions);
+  console.log(disposableItems);
+  console.log(deliveryNotes);
+
   useEffect(() => {
     if (isOpen) {
       fetchOrkestroOrderStatus(orderId);
@@ -110,6 +118,7 @@ const OrderDetails = ({
                       "attributes",
                       "dishPricePerItemCents"
                     ]),
+                    notes: element.getIn(["attributes", "notes"]),
                     currency:
                       element.getIn(["attributes", "currency"]) ||
                       orderDetails.getIn(["attributes", "currency"])
@@ -168,6 +177,31 @@ const OrderDetails = ({
               }}
             />
           )}
+          {deliveryNotes && (
+            <SliderDetail
+              {...{
+                name: t("deliveryNotes"),
+                value: [deliveryNotes]
+              }}
+            />
+          )}
+          {disposableItems && (
+            <SliderDetail
+              {...{
+                name: t("disposableItems"),
+                value: [disposableItems]
+              }}
+            />
+          )}
+          {specialInstructions && (
+            <SliderDetail
+              {...{
+                name: t("specialInstructions"),
+                value: [specialInstructions]
+              }}
+            />
+          )}
+
           {!orderDetails.getIn(["attributes", "pickupAtBusiness"]) &&
             orderDetails
               .getIn(["relationships", "addresses", "data"])
@@ -195,14 +229,6 @@ const OrderDetails = ({
                       ]
                     }}
                   />
-                  {address.getIn(["attributes", "notes"]) && (
-                    <SliderDetail
-                      {...{
-                        name: t("deliveryNotes"),
-                        value: [address.getIn(["attributes", "notes"])]
-                      }}
-                    />
-                  )}
                 </>
               ))}
           {orderDetails.getIn(["attributes", "state"]) ===
