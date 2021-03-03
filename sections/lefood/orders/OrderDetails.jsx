@@ -2,6 +2,7 @@ import Slide from "react-burger-menu/lib/menus/slide";
 import { decorator as reduxBurgerMenu } from "redux-burger-menu/immutable";
 import { func, bool, shape } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
+import { Map } from "immutable";
 import {
   Button,
   FormDropdown,
@@ -28,11 +29,12 @@ const OrderDetails = ({
   const orderId = orderDetails && orderDetails.get("id");
   const orderOrigin =
     orderDetails && orderDetails.getIn(["attributes", "origin"]);
-
   const notes = orderDetails && orderDetails.getIn(["attributes", "notes"]);
-  const deliveryNotes = notes && notes.get("deliveryNotes");
-  const disposableItems = notes && notes.get("disposableItems");
-  const specialInstructions = notes && notes.get("specialInstructions");
+
+  const deliveryNotes = Map.isMap(notes) && notes.get("deliveryNotes");
+  const disposableItems = Map.isMap(notes) && notes.get("disposableItems");
+  const specialInstructions =
+    Map.isMap(notes) && notes.get("specialInstructions");
 
   useEffect(() => {
     if (isOpen) {
