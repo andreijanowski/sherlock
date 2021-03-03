@@ -33,9 +33,6 @@ const OrderDetails = ({
   const deliveryNotes = notes && notes.get("deliveryNotes");
   const disposableItems = notes && notes.get("disposableItems");
   const specialInstructions = notes && notes.get("specialInstructions");
-  console.log(specialInstructions);
-  console.log(disposableItems);
-  console.log(deliveryNotes);
 
   useEffect(() => {
     if (isOpen) {
@@ -189,7 +186,7 @@ const OrderDetails = ({
             <SliderDetail
               {...{
                 name: t("disposableItems"),
-                value: [disposableItems]
+                value: [t("includeCutlery")]
               }}
             />
           )}
