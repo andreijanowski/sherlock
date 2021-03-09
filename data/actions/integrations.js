@@ -12,7 +12,7 @@ import {
 import { getRelationships } from "./utils";
 
 export const connectPartnerWithUberEats = values => {
-  const { business_id, client_id, client_secret, store_id } = values;
+  const { business_id, store_id } = values;
   return {
     type: CONNECT_PARTNER_WITH_UBER_EATS_REQUEST,
     payload: {
@@ -23,8 +23,6 @@ export const connectPartnerWithUberEats = values => {
           type: "partner_integrations",
           relationships: getRelationships("business", business_id),
           attributes: {
-            client_id,
-            client_secret,
             store_id
           }
         }
