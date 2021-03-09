@@ -7,7 +7,10 @@ import Menu from "sections/lefood/menu";
 import { connect } from "react-redux";
 import { postDish, patchDish, deleteDish } from "actions/dishes";
 import { postPicture, deletePicture } from "actions/pictures";
-import { uploadMenuToUberEats } from "actions/integrations";
+import {
+  uploadMenuToUberEats,
+  downloadMenuFromUberEats
+} from "actions/integrations";
 import { patchBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/app";
 import { mergeDishesData } from "sections/lefood/utils";
@@ -51,6 +54,11 @@ class MenuPage extends PureComponent {
   uploadMenu = id => {
     const { uploadMenu } = this.props;
     return uploadMenu(id);
+  };
+
+  downloadMenu = id => {
+    const { downloadMenu } = this.props;
+    return downloadMenu(id);
   };
 
   removeDish = id => {
@@ -107,6 +115,7 @@ class MenuPage extends PureComponent {
           businesses,
           changeCurrentBusiness,
           addToUber: this.uploadMenu,
+          donwloadFromUber: this.downloadMenu,
           isUberAvailable
         }}
       >
@@ -124,6 +133,7 @@ class MenuPage extends PureComponent {
             addPicture: this.addPicture,
             removePicture: this.removePicture,
             addToUber: this.uploadMenu,
+            donwloadFromUber: this.downloadMenu,
             isUberAvailable
           }}
         />
@@ -153,6 +163,7 @@ MenuPage.propTypes = {
   deliveriesLength: number,
   businessOrderPeriodsLength: number,
   uploadMenu: func.isRequired,
+  downloadMenu: func.isRequired,
   isUberAvailable: bool
 };
 
@@ -223,7 +234,8 @@ export default requireAuth(true)(
         removePicture: deletePicture,
         updateBusiness: patchBusiness,
         changeCurrentBusiness: setCurrentBusiness,
-        uploadMenu: uploadMenuToUberEats
+        uploadMenu: uploadMenuToUberEats,
+        downloadMenu: downloadMenuFromUberEats
       }
     )(MenuPage)
   )

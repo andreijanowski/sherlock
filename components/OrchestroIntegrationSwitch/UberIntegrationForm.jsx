@@ -23,18 +23,6 @@ export const UberIntegrationForm = ({
       render={form => (
         <form onSubmit={form.handleSubmit} style={{ width: "100%" }}>
           <InputField
-            name="client_id"
-            placeholder="Client ID"
-            type="text"
-            validate={required(t)}
-          />
-          <InputField
-            name="client_secret"
-            placeholder="Client Secret"
-            type="text"
-            validate={required(t)}
-          />
-          <InputField
             name="store_id"
             placeholder="Store ID"
             type="text"

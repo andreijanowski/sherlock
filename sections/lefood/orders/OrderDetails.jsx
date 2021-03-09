@@ -2,6 +2,7 @@ import Slide from "react-burger-menu/lib/menus/slide";
 import { decorator as reduxBurgerMenu } from "redux-burger-menu/immutable";
 import { func, bool, shape } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
+import { Map } from "immutable";
 import {
   Button,
   FormDropdown,
@@ -28,6 +29,12 @@ const OrderDetails = ({
   const orderId = orderDetails && orderDetails.get("id");
   const orderOrigin =
     orderDetails && orderDetails.getIn(["attributes", "origin"]);
+  const notes = orderDetails && orderDetails.getIn(["attributes", "notes"]);
+
+  const deliveryNotes = Map.isMap(notes) && notes.get("deliveryNotes");
+  const disposableItems = Map.isMap(notes) && notes.get("disposableItems");
+  const specialInstructions =
+    Map.isMap(notes) && notes.get("specialInstructions");
 
   useEffect(() => {
     if (isOpen) {
@@ -110,6 +117,7 @@ const OrderDetails = ({
                       "attributes",
                       "dishPricePerItemCents"
                     ]),
+                    notes: element.getIn(["attributes", "notes"]),
                     currency:
                       element.getIn(["attributes", "currency"]) ||
                       orderDetails.getIn(["attributes", "currency"])
@@ -168,6 +176,31 @@ const OrderDetails = ({
               }}
             />
           )}
+          {deliveryNotes && (
+            <SliderDetail
+              {...{
+                name: t("deliveryNotes"),
+                value: [deliveryNotes]
+              }}
+            />
+          )}
+          {disposableItems && (
+            <SliderDetail
+              {...{
+                name: t("disposableItems"),
+                value: [t("includeCutlery")]
+              }}
+            />
+          )}
+          {specialInstructions && (
+            <SliderDetail
+              {...{
+                name: t("specialInstructions"),
+                value: [specialInstructions]
+              }}
+            />
+          )}
+
           {!orderDetails.getIn(["attributes", "pickupAtBusiness"]) &&
             orderDetails
               .getIn(["relationships", "addresses", "data"])
@@ -195,14 +228,6 @@ const OrderDetails = ({
                       ]
                     }}
                   />
-                  {address.getIn(["attributes", "notes"]) && (
-                    <SliderDetail
-                      {...{
-                        name: t("deliveryNotes"),
-                        value: [address.getIn(["attributes", "notes"])]
-                      }}
-                    />
-                  )}
                 </>
               ))}
           {orderDetails.getIn(["attributes", "state"]) ===

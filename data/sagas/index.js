@@ -8,6 +8,7 @@ import orders from "./orders";
 import reservations from "./reservations";
 import partners from "./partners";
 import wholesalers from "./wholesalers";
+import integrations from "./integrations";
 
 export default function* rootSaga(dispatch) {
   try {
@@ -16,6 +17,7 @@ export default function* rootSaga(dispatch) {
       api,
       auth,
       users,
+      integrations,
       pusher(dispatch),
       orders,
       reservations,
