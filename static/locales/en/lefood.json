@@ -10,6 +10,8 @@
   "orderingHours": "Ordering Hours",
   "deliveryArea": "Delivery Area",
   "delivery": "Delivery",
+  "deliveryForCustomer": "Delivery for Customer",
+  "deliveryForBusiness": "Delivery for Business",
   "codeLabel": "ZIP code",
   "codePlaceholder": "64105",
   "priceCentsLabel": "Delivery Price",
