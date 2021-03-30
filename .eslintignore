@@ -1,2 +1,4 @@
 /static/widget/*.js
 /static/widget/**/*.js
+**/__tests__/**
+**/*.test.js
