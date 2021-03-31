@@ -5,7 +5,7 @@ export const fetchCategories = (language = "en", page = 1) => ({
   payload: {
     endpoint: "/api/v1/categories",
     params: {
-      per_page: 200,
+      per_page: 500,
       page,
       language
     }
