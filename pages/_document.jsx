@@ -7,6 +7,8 @@ import {
   HubspotChatScript
 } from "scripts";
 
+const { FACEBOOK_DOMAIN_VERIFICATION } = process.env;
+
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
     const sheet = new ServerStyleSheet();
@@ -33,6 +35,10 @@ export default class MyDocument extends Document {
           <meta
             name="description"
             content="We're not just another restaurants software, Foodetective For Business is the best all in one platform that has everything you need to sell online, on social media, or in person."
+          />
+          <meta
+            content={FACEBOOK_DOMAIN_VERIFICATION}
+            name="facebook-domain-verification"
           />
           {this.props.styleTags}
           <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
