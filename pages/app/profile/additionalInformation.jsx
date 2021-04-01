@@ -9,6 +9,7 @@ import { fetchProfileBusiness } from "actions/users";
 import { setCurrentBusiness } from "actions/app";
 import { getInitialValues } from "sections/profile/additionalInformation/utils";
 import ProfileLayout from "sections/profile/Layout";
+import { addProtocol } from "utils/urls";
 
 const namespaces = ["additionalInformation", "app", "publishModal", "forms"];
 
@@ -54,14 +55,15 @@ class AdditionalInformation extends PureComponent {
       hasReservations,
       hasPrivateEvents,
       availableInLefood,
-      deliveryUrl,
-      onlineBookingUrl,
-      takeawayUrl,
+      deliveryUrl: addProtocol(deliveryUrl),
+      onlineBookingUrl: addProtocol(onlineBookingUrl),
+      takeawayUrl: addProtocol(takeawayUrl),
       canPayWithCards,
       canPayWithCash,
       canPayWithMobile,
       secretCode
     };
+
     return updateBusiness(businessId, requestValues);
   };
 
