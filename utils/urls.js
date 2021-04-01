@@ -1,7 +1,11 @@
 /**
  * @param {String} url
  */
-export const addProtocol = (url = "") => {
+export const addProtocol = url => {
+  if (!url) {
+    return url;
+  }
+
   const divider = "://";
   const hasNoDivider = url.indexOf(divider) < 0;
 

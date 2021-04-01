@@ -1,22 +1,21 @@
+import { addProtocol } from "../urls";
 
-import { addProtocol } from '../urls'
+describe("addProtocol", () => {
+  it("defaults", () => {
+    const res = addProtocol();
 
-describe('addProtocol', () => {
-  it('defaults', () => {
-    const res = addProtocol()
+    expect(res).toBe(undefined);
+  });
 
-    expect(res).toBe('https://')
-  })
+  it("adds https:// to the beginning of the URL", () => {
+    const res = addProtocol("site.com");
 
-  it('adds https:// to the beginning of the URL', () => {
-    const res = addProtocol('site.com')
-
-    expect(res).toBe('https://site.com')
-  })
+    expect(res).toBe("https://site.com");
+  });
 
   it('processes strings beginning with "://"', () => {
-    const res = addProtocol('://site.com')
+    const res = addProtocol("://site.com");
 
-    expect(res).toBe('https://site.com')
-  })
-})
+    expect(res).toBe("https://site.com");
+  });
+});
