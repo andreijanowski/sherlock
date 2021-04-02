@@ -1,3 +1,4 @@
+import { Confirm } from "components/modals";
 import { PureComponent } from "react";
 import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
@@ -16,6 +17,10 @@ import { setCurrentBusiness } from "actions/app";
 import { mergeDishesData } from "sections/lefood/utils";
 import { convertToCents } from "utils/price";
 
+const MENU_ACTION = {
+  DOWNLOAD_UBER_EATS: "DOWNLOAD_UBER_EATS",
+  UPLOAD_UBER_EATS: "UPLOAD_UBER_EATS"
+};
 const namespaces = ["lefood", "app", "forms"];
 
 class MenuPage extends PureComponent {
@@ -28,7 +33,11 @@ class MenuPage extends PureComponent {
   constructor() {
     super();
     this.state = {
-      editedDishId: null
+      editedDishId: null,
+      menuAction: "",
+      menuId: "",
+      modalMessage: "",
+      showModal: false
     };
   }
 
@@ -51,14 +60,71 @@ class MenuPage extends PureComponent {
     return addDish(dish, businessId, category);
   };
 
-  uploadMenu = id => {
-    const { uploadMenu } = this.props;
-    return uploadMenu(id);
+  closeMenu = () => {
+    this.setState({
+      menuId: "",
+      modalMessage: "",
+      showModal: false
+    });
   };
 
-  downloadMenu = id => {
+  menuConfirm = () => {
+    const { DOWNLOAD_UBER_EATS, UPLOAD_UBER_EATS } = MENU_ACTION;
+    const { menuAction } = this.state;
+
+    if (menuAction === DOWNLOAD_UBER_EATS) {
+      this.downloadMenu();
+    }
+
+    if (menuAction === UPLOAD_UBER_EATS) {
+      this.uploadMenu();
+    }
+  };
+
+  uploadMenu = () => {
+    const { menuId } = this.state;
+
+    if (!menuId) {
+      return;
+    }
+
+    const { uploadMenu } = this.props;
+
+    uploadMenu(menuId);
+    this.closeMenu();
+  };
+
+  uploadMenuAsk = id => {
+    this.setState({
+      menuAction: MENU_ACTION.UPLOAD_UBER_EATS,
+      menuId: id,
+      modalMessage:
+        "Are you sure you want to send menu to Uber Eats? It will replace your current menu in Uber.",
+      showModal: true
+    });
+  };
+
+  downloadMenu = () => {
+    const { menuId } = this.state;
+
+    if (!menuId) {
+      return;
+    }
+
     const { downloadMenu } = this.props;
-    return downloadMenu(id);
+
+    downloadMenu(menuId);
+    this.closeMenu();
+  };
+
+  downloadMenuAsk = id => {
+    this.setState({
+      menuAction: MENU_ACTION.DOWNLOAD_UBER_EATS,
+      menuId: id,
+      modalMessage:
+        "Are you sure you want to download menu from Uber Eats? It will ADD all new dishes from Uber to your current menu.",
+      showModal: true
+    });
   };
 
   removeDish = id => {
@@ -98,7 +164,7 @@ class MenuPage extends PureComponent {
       categories,
       isUberAvailable
     } = this.props;
-    const { editedDishId } = this.state;
+    const { editedDishId, modalMessage, showModal } = this.state;
 
     return (
       <LefoodLayout
@@ -114,8 +180,8 @@ class MenuPage extends PureComponent {
           business,
           businesses,
           changeCurrentBusiness,
-          addToUber: this.uploadMenu,
-          donwloadFromUber: this.downloadMenu,
+          addToUber: this.uploadMenuAsk,
+          donwloadFromUber: this.downloadMenuAsk,
           isUberAvailable
         }}
       >
@@ -137,6 +203,15 @@ class MenuPage extends PureComponent {
             isUberAvailable
           }}
         />
+        {showModal && (
+          <Confirm
+            open={showModal}
+            onClose={this.closeMenu}
+            onConfirm={this.menuConfirm}
+          >
+            {modalMessage}
+          </Confirm>
+        )}
       </LefoodLayout>
     );
   }
