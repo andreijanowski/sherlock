@@ -9,14 +9,10 @@ const Confirm = ({ children, open, onConfirm, onClose }) => (
     <Body>
       {children}
       <ButtonsWrap>
-        <Button
-          styleName="deepSkyBlue"
-          width="100px !important"
-          onClick={onConfirm}
-        >
+        <Button styleName="blue" width="100px !important" onClick={onConfirm}>
           Ok
         </Button>
-        <Button styleName="orange" width="100px !important" onClick={onClose}>
+        <Button styleName="reject" width="100px !important" onClick={onClose}>
           Cancel
         </Button>
       </ButtonsWrap>
