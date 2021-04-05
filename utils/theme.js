@@ -33,7 +33,11 @@ export const colors = {
   rollingStone: "119, 122, 128",
   greenHaze: "3, 160, 79",
   ghostWhite: "238, 240, 255",
-  purpleBlue: "69, 90, 248"
+  purpleBlue: "69, 90, 248",
+  greyBorder: "224, 224, 224",
+  darkText: "51, 51, 51",
+  bombayDark: "69, 71, 75",
+  menuDarkBlue: "147, 164, 255"
 };
 
 const fontSizes = {

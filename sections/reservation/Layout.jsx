@@ -8,7 +8,6 @@ import {
   Link,
   InfoBar,
   ItalicText,
-  Select,
   AutosizeInput,
   ActionIcon,
   ServiceStatusCheckbox
@@ -24,7 +23,6 @@ import {
 } from "icons";
 import { Flex, Box } from "@rebass/grid";
 import Tippy from "@tippy.js/react";
-import prepareBusinessesList from "utils/prepareBusinessesList";
 import { Orange } from "./styled";
 
 const ReservationLayout = ({
@@ -35,9 +33,7 @@ const ReservationLayout = ({
   children,
   business,
   currentBusinessId,
-  businesses,
-  updateBusiness,
-  changeCurrentBusiness
+  updateBusiness
 }) => {
   const [timeSlots, setTimeSlots] = useState(
     business && business.get("timeSlots") / 60
@@ -78,33 +74,15 @@ const ReservationLayout = ({
       }}
     >
       <Box width={1} mb={3}>
-        <Flex justifyContent="space-between">
-          <Box>
-            <Select
-              value={{
-                value: currentBusinessId,
-                label:
-                  (business && business.get("name")) ||
-                  t("app:manageProfile.unnamedBusiness"),
-                src: business && business.getIn(["logo", "url"])
-              }}
-              withImage
-              items={prepareBusinessesList(t, businesses)}
-              onChange={b => changeCurrentBusiness(b.value)}
-            />
-          </Box>
-          <Box>
-            <ServiceStatusCheckbox
-              {...{
-                t,
-                serviceActivationFieldName: "hasReservations",
-                business,
-                updateBusiness,
-                businessId: currentBusinessId
-              }}
-            />
-          </Box>
-        </Flex>
+        <ServiceStatusCheckbox
+          {...{
+            t,
+            serviceActivationFieldName: "hasReservations",
+            business,
+            updateBusiness,
+            businessId: currentBusinessId
+          }}
+        />
       </Box>
       {isInfoBarVisible && (
         <InfoBar
@@ -274,7 +252,6 @@ ReservationLayout.propTypes = {
   business: shape(),
   businesses: shape(),
   tables: shape(),
-  changeCurrentBusiness: func.isRequired,
   updateBusiness: func.isRequired,
   currentBusinessId: string,
   dishesLength: number,

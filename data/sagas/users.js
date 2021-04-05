@@ -14,7 +14,7 @@ import {
 import { UPDATE_PROFILE_SUCCESS } from "types/users";
 import { SET_CURRENT_BUSINESS } from "types/app";
 import { POST_BUSINESS_SUCCESS } from "types/businesses";
-import { takeEvery, all, put } from "redux-saga/effects";
+import { takeEvery, all, put, call } from "redux-saga/effects";
 import Notifications from "react-notification-system-redux";
 import { setCurrentBusiness } from "actions/app";
 import { fetchCategories } from "actions/categories";
@@ -55,8 +55,18 @@ function* setBusiness({
   yield put(setCurrentBusiness(id));
 }
 
+function* onBusinessCreated(data) {
+  yield setBusiness(data);
+  const {
+    meta: { onSuccess }
+  } = data;
+  if (onSuccess) {
+    yield call(onSuccess);
+  }
+}
+
 export default all([
-  takeEvery([POST_BUSINESS_SUCCESS], setBusiness),
+  takeEvery([POST_BUSINESS_SUCCESS], onBusinessCreated),
   takeEvery([SET_CURRENT_BUSINESS], fetchBusinessData),
   takeEvery(UPDATE_PROFILE_SUCCESS, showSuccesNotification)
 ]);

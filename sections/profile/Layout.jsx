@@ -2,7 +2,6 @@ import { PureComponent } from "react";
 import { func, string, shape, node } from "prop-types";
 import AppLayout from "layout/App";
 import { generateMenuItems } from "sections/profile/utils";
-import prepareBusinessesList from "utils/prepareBusinessesList";
 import { Modal, ActionIcon } from "components";
 import PublishModal from "sections/profile/publishModal";
 import { Router } from "routes";
@@ -43,15 +42,11 @@ class ProfileLayout extends PureComponent {
       t,
       lng,
       business,
-      businessId,
       businessGroups,
       businessMenus,
       businessPictures,
       businessProducts,
       businessOpenPeriods,
-      businesses,
-      changeCurrentBusiness,
-      addBusiness,
       currentPage,
       children
     } = this.props;
@@ -71,23 +66,7 @@ class ProfileLayout extends PureComponent {
             this.showPublishModal,
             business && business.get("state"),
             this.unpublishBusiness
-          ),
-          select: {
-            value: {
-              value: businessId,
-              label:
-                (business && business.get("name")) ||
-                t("app:manageProfile.unnamedBusiness"),
-              src: business && business.getIn(["logo", "url"])
-            },
-            items: prepareBusinessesList(t, businesses),
-            handleChange: b => changeCurrentBusiness(b.value),
-            bottomAction: {
-              text: t("app:manageProfile.addNewBusiness"),
-              handleClick: () => addBusiness()
-            },
-            withImage: true
-          }
+          )
         }}
       >
         {business && business.get("state") !== "published" && (

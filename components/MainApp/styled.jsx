@@ -43,19 +43,21 @@ export const MainIconWrapper = styled(Flex).attrs(() => ({
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     display: flex;
     height: 32px;
+    font-size: 32px;
     background-color: rgb(${p => p.theme.colors.blue});
     border-radius: 24px;
     box-shadow: 0 3px 8px 0 rgba(${p => p.theme.colors.blue}, 0.48);
-
-    path,
-    circle,
-    rect {
-      fill: rgb(${p => p.theme.colors.white});
-      stroke: rgb(${p => p.theme.colors.white});
-    }
   }
   @media (min-width: ${p => p.theme.breakpoints[2]}) {
     height: 48px;
+    font-size: 48px;
+  }
+
+  svg .primary {
+    color: rgb(${p => p.theme.colors.white});
+  }
+  svg .secondary {
+    color: rgb(${p => p.theme.colors.menuDarkBlue});
   }
 `;
 

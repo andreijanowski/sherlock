@@ -145,50 +145,94 @@ export const Reservations = () => (
 export const Delivery = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="22"
-    viewBox="0 0 20 22"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
   >
-    <g fill="none" fillRule="evenodd" strokeWidth="2">
-      <path
-        style={fillNone}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M6 3.5l8 4"
-      />
-      <path
-        style={fillNone}
-        strokeOpacity="0.4"
-        d="M10.444 1.345a.999.999 0 0 0-.887 0l-8.002 4A1 1 0 0 0 1 6.24v9.527c-.003.38.21.729.547.899l8 4a1 1 0 0 0 .896 0l8.002-4.002A1 1 0 0 0 19 15.77V6.24a1 1 0 0 0-.557-.896l-7.999-3.999z"
-      />
-      <path
-        style={fillNone}
-        strokeOpacity="0.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M1.32 6.16L10 10l8.68-3.84M10 20.76V10"
-      />
-    </g>
+    <defs>
+      <style>{`
+      .svg-delivery-cls-1,
+      .svg-delivery-cls-2,
+      .svg-delivery-cls-3 {
+        fill: none;
+        stroke-width: 4px;
+      }
+      
+      .svg-delivery-cls-1 {
+        stroke: currentColor;
+      }
+      
+      .svg-delivery-cls-1,
+      .svg-delivery-cls-3 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      
+      .svg-delivery-cls-2,
+      .svg-delivery-cls-3 {
+        stroke: currentColor;
+      }
+      `}</style>
+    </defs>
+    <path className="svg-delivery-cls-1 secondary" d="M48.14,41l16,8" />
+    <path
+      className="svg-delivery-cls-2 primary"
+      d="M57,36.69a2,2,0,0,0-1.77,0l-16,8a2,2,0,0,0-1.11,1.79V65.53a2,2,0,0,0,1.09,1.8l16,8a2,2,0,0,0,1.79,0l16-8a2,2,0,0,0,1.11-1.79V46.48A2,2,0,0,0,73,44.69Z"
+    />
+    <polyline
+      className="svg-delivery-cls-3 primary"
+      points="38.78 46.32 56.14 54 73.5 46.32"
+    />
+    <path className="svg-delivery-cls-3 primary" d="M56.14,75.52V54" />
   </svg>
 );
 
 export const Catering = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="14"
-    viewBox="0 0 20 14"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
   >
-    <g fill="none" fillRule="evenodd" transform="translate(0 2)">
-      <path
-        style={fillNone}
-        strokeOpacity="0.4"
-        strokeWidth="2"
-        d="M2 11h16c0-3.882-.993-10-7.997-10C3 1 2 7.112 2 11z"
-      />
-      <rect width="20" height="2" y="10" style={strokeNone} rx="1" />
-      <circle cx="10" cy="1" r="2" style={fillNone} strokeWidth="2" />
-    </g>
+    <defs>
+      <style>{`
+      .svg-catering-cls-1,
+      .svg-catering-cls-4 {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 4px;
+      }
+      
+      .svg-catering-cls-2,
+      .svg-catering-cls-3 {
+        fill: currentColor;
+      }
+      
+      .svg-catering-cls-2 {
+        fill-rule: evenodd;
+      }
+      `}</style>
+    </defs>
+    <path
+      className="svg-catering-cls-1 secondary"
+      d="M40,67H72c0-7.76-2-20-16-20S40,59.25,40,67Z"
+    />
+    <path
+      className="svg-catering-cls-2 primary"
+      d="M38,65H74a2,2,0,0,1,2,2h0a2,2,0,0,1-2,2H38a2,2,0,0,1-2-2h0A2,2,0,0,1,38,65Z"
+    />
+    <circle
+      className="svg-catering-cls-3 primary"
+      cx="56.02"
+      cy="47.02"
+      r="4"
+    />
+    <circle
+      className="svg-catering-cls-4 secondary"
+      cx="56.02"
+      cy="47.02"
+      r="4"
+    />
   </svg>
 );
 
@@ -463,11 +507,12 @@ export const Subscriptions = () => (
       strokeWidth="2"
     >
       <path
-        style={fillNone}
+        stroke="currentColor"
+        className="secondary"
         strokeOpacity="0.4"
         d="M18.49 13a9 9 0 1 1-2.12-9.36L21 9"
       />
-      <path style={fillNone} d="M21 3v6h-6" />
+      <path stroke="currentColor" className="primary" d="M21 3v6h-6" />
     </g>
   </svg>
 );
@@ -488,9 +533,16 @@ export const SettingsIcon = () => (
       strokeWidth="2"
       transform="translate(1 1)"
     >
-      <circle cx="10" cy="10" r="2.727" style={fillNone} />
+      <circle
+        cx="10"
+        cy="10"
+        r="2.727"
+        stroke="currentColor"
+        className="primary"
+      />
       <path
-        style={fillNone}
+        stroke="currentColor"
+        className="secondary"
         strokeOpacity=".4"
         d="M16.727 12.727a1.5 1.5 0 0 0 .3 1.655l.055.054a1.818 1.818 0 1 1-2.573 2.573l-.054-.054a1.5 1.5 0 0 0-1.655-.3 1.5 1.5 0 0 0-.91 1.372v.155a1.818 1.818 0 1 1-3.635 0V18.1a1.5 1.5 0 0 0-.982-1.373 1.5 1.5 0 0 0-1.655.3l-.054.055a1.818 1.818 0 1 1-2.573-2.573l.054-.054a1.5 1.5 0 0 0 .3-1.655 1.5 1.5 0 0 0-1.372-.91h-.155a1.818 1.818 0 1 1 0-3.635H1.9a1.5 1.5 0 0 0 1.373-.982 1.5 1.5 0 0 0-.3-1.655l-.055-.054A1.818 1.818 0 1 1 5.491 2.99l.054.054a1.5 1.5 0 0 0 1.655.3h.073a1.5 1.5 0 0 0 .909-1.372v-.155a1.818 1.818 0 0 1 3.636 0V1.9a1.5 1.5 0 0 0 .91 1.373 1.5 1.5 0 0 0 1.654-.3l.054-.055a1.818 1.818 0 1 1 2.573 2.573l-.054.054a1.5 1.5 0 0 0-.3 1.655v.073a1.5 1.5 0 0 0 1.372.909h.155a1.818 1.818 0 1 1 0 3.636H18.1a1.5 1.5 0 0 0-1.373.91z"
       />
@@ -608,12 +660,727 @@ export const Integrations = () => (
 );
 
 export const Wholesalers = () => (
-  <svg width="21" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
+  >
+    <defs>
+      <style>{`
+      .svg-wholesalers-cls-1,
+      .svg-wholesalers-cls-2 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .svg-wholesalers-cls-1 {
+        stroke: currentColor;
+        stroke-width: 3px;
+      }
+
+      .svg-wholesalers-cls-2 {
+        stroke: currentColor;
+        stroke-width: 4px;
+      }
+      `}</style>
+    </defs>
+    <path className="svg-wholesalers-cls-1 secondary" d="M75.8,53.71H61.74" />
     <path
-      clipRule="evenodd"
-      d="M13.654.086a.91.91 0 011.029.18c.53.53 1.01 1.55 1.209 2.567l.476-.475a.91.91 0 111.285 1.286l-.475.475c1.016.199 2.038.68 2.567 1.21a.91.91 0 01-1.286 1.285c-.195-.195-.846-.56-1.642-.712a3.08 3.08 0 00-.887-.053c.483.657.834 1.372.986 2.11.237 1.152-.026 2.327-.958 3.26-1.77 1.786-5.218 4.152-8.282 5.948-1.541.904-3.023 1.686-4.187 2.19-.578.251-1.112.449-1.553.553a2.766 2.766 0 01-.686.086c-.204-.004-.585-.046-.887-.348-.294-.294-.343-.665-.35-.87a2.71 2.71 0 01.075-.681c.098-.436.287-.962.528-1.53.486-1.145 1.244-2.602 2.132-4.127a64.638 64.638 0 012.234-3.565C6.253 6.988 7.595 5.23 8.757 4.058l.002-.003c.935-.934 2.111-1.197 3.266-.96.46.094.912.266 1.347.498l-.238-2.6a.91.91 0 01.52-.907zM5.857 10.85l.817.802a.91.91 0 001.274-1.298L6.886 9.312c.473-.684.949-1.338 1.413-1.938l1.73 1.752a.91.91 0 001.294-1.278l-1.86-1.884c.2-.225.395-.434.584-.624.46-.459.995-.59 1.613-.463.66.135 1.424.576 2.161 1.313l.006.006c.734.72 1.173 1.476 1.308 2.13.126.613-.005 1.15-.465 1.61l-.003.002c-.52.524-1.217 1.119-2.027 1.743l-1.322-1.321a.91.91 0 00-1.285 1.286l1.125 1.125a60.937 60.937 0 01-2.498 1.667L7.1 12.9a.91.91 0 00-1.276 1.296l1.24 1.22-.308.181c-1.508.885-2.92 1.627-3.991 2.091-.285.124-.537.224-.753.3.072-.205.164-.442.278-.71.445-1.05 1.162-2.434 2.03-3.925.48-.825 1-1.673 1.537-2.504z"
-      fill="#fff"
-      fillRule="evenodd"
+      className="svg-wholesalers-cls-2 primary"
+      d="M66.48,64.05H61.74m0-17.24H72l3.8,6.9h3.36c.69,0,1.55.17,1.55,1.2v9.14H74.24"
+    />
+    <polyline
+      className="svg-wholesalers-cls-2 primary"
+      points="35.45 64.05 30.71 64.05 30.71 39.91 61.74 39.91 61.74 64.05 43.21 64.05"
+    />
+    <circle
+      className="svg-wholesalers-cls-2 primary"
+      cx="39.33"
+      cy="67.5"
+      r="5.17"
+    />
+    <circle
+      className="svg-wholesalers-cls-2 primary"
+      cx="70.36"
+      cy="67.5"
+      r="5.17"
+    />
+  </svg>
+);
+
+export const Restaurant = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
+  >
+    <defs>
+      <style>{`
+        .svg-restaurant-cls-1,
+        .svg-restaurant-cls-2 {
+          fill: none;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        
+        .svg-restaurant-cls-1 {
+          stroke: currentColor;
+          stroke-width: 4px;
+        }
+        
+        .svg-restaurant-cls-2 {
+          stroke: currentColor;
+          stroke-width: 3px;
+        }
+      `}</style>
+    </defs>
+    <polyline
+      className="svg-restaurant-cls-1 primary"
+      points="72.07 55.41 72.07 74.07 40.07 74.07 40.07 55.41"
+    />
+    <path
+      className="svg-restaurant-cls-2 secondary"
+      d="M56.07,39.41v0Zm-10,11,3.33-11Zm20,0-3.33-11Z"
+    />
+    <path
+      className="svg-restaurant-cls-1 primary"
+      d="M69.8,39.41H42.34l-6.27,11a5,5,0,0,0,10,0,5,5,0,0,0,10,0,5,5,0,0,0,10,0,5,5,0,0,0,10,0Z"
+    />
+  </svg>
+);
+
+export const Dashboard = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
+  >
+    <defs>
+      <style>{`
+      .svg-dashboard-cls-1,
+      .svg-dashboard-cls-2 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 4px;
+        stroke: currentColor;
+      }
+      `}</style>
+    </defs>
+    <path
+      className="svg-dashboard-cls-1 primary"
+      d="M52.33,39.33A17.34,17.34,0,1,0,69.67,56.67H52.33Z"
+    />
+    <path
+      className="svg-dashboard-cls-2 secondary"
+      d="M59.67,32V49.33H77A17.34,17.34,0,0,0,59.67,32Z"
+    />
+  </svg>
+);
+
+export const IntegrationHub = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
+  >
+    <defs>
+      <style>{`
+      .svg-integration-hub-cls-1,
+      .svg-integration-hub-cls-2 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 3.5px;
+      }
+      
+      .svg-integration-hub-cls-1,
+      .svg-integration-hub-cls-2,
+      .svg-integration-hub-cls-3,
+      .svg-integration-hub-cls-4
+      {
+        stroke: currentColor;
+      }
+
+      .svg-integration-hub-cls-3, .svg-integration-hub-cls-4 {
+        fill: currentColor;
+      }
+      `}</style>
+    </defs>
+    <path
+      className="svg-integration-hub-cls-1 primary"
+      d="M42.78,32.81V47.66a8.08,8.08,0,0,0,1.73,5L55,66"
+    />
+    <path
+      className="svg-integration-hub-cls-1 primary"
+      d="M67.08,39.13l0,22.23a4.26,4.26,0,0,1-1.68,3.38L55.15,73.43"
+    />
+    <path
+      className="svg-integration-hub-cls-2 secondary"
+      d="M67.08,32.81V44.73a4.24,4.24,0,0,1-1.69,3.39L55.05,56"
+    />
+    <line
+      className="svg-integration-hub-cls-2 secondary"
+      x1="54.97"
+      y1="32.81"
+      x2="54.97"
+      y2="87.14"
+    />
+    <ellipse
+      className="svg-integration-hub-cls-3 primary"
+      cx="42.82"
+      cy="30.25"
+      rx="3.43"
+      ry="3.39"
+    />
+    <ellipse
+      className="svg-integration-hub-cls-4 secondary"
+      cx="54.95"
+      cy="30.25"
+      rx="3.43"
+      ry="3.39"
+    />
+    <ellipse
+      className="svg-integration-hub-cls-4 secondary"
+      cx="67.18"
+      cy="30.25"
+      rx="3.43"
+      ry="3.39"
+    />
+  </svg>
+);
+
+export const AppManager = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
+  >
+    <defs>
+      <style>{`
+      .svg-app-manager-cls-1,
+      .svg-app-manager-cls-2 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 4px;
+      }
+      
+      .svg-app-manager-cls-1 {
+        stroke: currentColor;
+      }
+      
+      .svg-app-manager-cls-2 {
+        stroke: currentColor;
+      }
+    `}</style>
+    </defs>
+    <path
+      className="svg-app-manager-cls-1 primary"
+      d="M40.18,38.13h32a4,4,0,0,1,4,4v12a20,20,0,0,1-40,0v-12A4,4,0,0,1,40.18,38.13Z"
+    />
+    <polyline
+      className="svg-app-manager-cls-2 secondary"
+      points="48.18 52.13 56.18 60.13 64.18 52.13"
+    />
+  </svg>
+);
+
+export const Payments = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
+  >
+    <defs>
+      <style>{`
+      .svg-payments-cls-1 {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 4px;
+      }
+      .svg-payments-cls-1,
+      .svg-payments-cls-2,
+      .svg-payments-cls-3 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .svg-payments-cls-2,
+      .svg-payments-cls-3 {
+        fill: currentColor;
+        stroke: currentColor;
+      }
+      .svg-payments-cls-2 {
+        stroke-width: 3px;
+      }
+      .svg-payments-cls-3 {
+        stroke-width: 2px;
+      }
+    `}</style>
+    </defs>
+    <rect
+      className="svg-payments-cls-1 primary"
+      x="32.49"
+      y="39.47"
+      width="47.02"
+      height="33.06"
+      rx="5.39"
+    />
+    <rect
+      className="svg-payments-cls-2 secondary"
+      x="38.46"
+      y="53.97"
+      width="3.91"
+      height="4.09"
+    />
+    <line
+      className="svg-payments-cls-2 secondary"
+      x1="39.36"
+      y1="65.09"
+      x2="54.95"
+      y2="65.09"
+    />
+    <line
+      className="svg-payments-cls-2 secondary"
+      x1="62.3"
+      y1="65.09"
+      x2="71.96"
+      y2="65.09"
+    />
+    <circle
+      className="svg-payments-cls-3 secondary"
+      cx="71.27"
+      cy="47.61"
+      r="1.87"
+    />
+  </svg>
+);
+
+export const Bookings = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
+  >
+    <defs>
+      <style>{`
+      .svg-bookings-cls-1 {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 4px;
+      }
+        
+      .svg-bookings-cls-2,
+      .svg-bookings-cls-3 {
+        fill: currentColor;
+      }
+    `}</style>
+    </defs>
+    <path
+      className="svg-bookings-cls-1 secondary"
+      d="M51.38,38c-4.57,0-6.4.35-8.3,1.37a9,9,0,0,0-3.71,3.71c-1,1.9-1.37,3.73-1.37,8.3v9.24c0,4.57.35,6.4,1.37,8.3a9,9,0,0,0,3.71,3.71c1.9,1,3.73,1.37,8.3,1.37h9.24c4.57,0,6.4-.35,8.3-1.37a9,9,0,0,0,3.71-3.71c1-1.9,1.37-3.73,1.37-8.3V51.38c0-4.57-.35-6.4-1.37-8.3a9,9,0,0,0-3.71-3.71c-1.9-1-3.73-1.37-8.3-1.37Z"
+    />
+    <path
+      className="svg-bookings-cls-2 secondary"
+      d="M46.56,48h2.88a2.85,2.85,0,0,1,1.54.27,1.81,1.81,0,0,1,.75.75A2.85,2.85,0,0,1,52,50.56v2.88A2.85,2.85,0,0,1,51.73,55a1.81,1.81,0,0,1-.75.75,2.85,2.85,0,0,1-1.54.27H46.56A2.85,2.85,0,0,1,45,55.73a1.81,1.81,0,0,1-.75-.75A2.85,2.85,0,0,1,44,53.44V50.56A2.85,2.85,0,0,1,44.27,49a1.81,1.81,0,0,1,.75-.75A2.85,2.85,0,0,1,46.56,48Z"
+    />
+    <path
+      className="svg-bookings-cls-3 primary"
+      d="M50.56,60h2.88a2.85,2.85,0,0,1,1.54.27,1.81,1.81,0,0,1,.75.75A2.85,2.85,0,0,1,56,62.56v2.88A2.85,2.85,0,0,1,55.73,67a1.81,1.81,0,0,1-.75.75,2.85,2.85,0,0,1-1.54.27H50.56A2.85,2.85,0,0,1,49,67.73a1.81,1.81,0,0,1-.75-.75A2.85,2.85,0,0,1,48,65.44V62.56A2.85,2.85,0,0,1,48.27,61a1.81,1.81,0,0,1,.75-.75A2.85,2.85,0,0,1,50.56,60Z"
+    />
+    <path
+      className="svg-bookings-cls-3 primary"
+      d="M58.56,48h2.88a2.85,2.85,0,0,1,1.54.27,1.81,1.81,0,0,1,.75.75A2.85,2.85,0,0,1,64,50.56v2.88A2.85,2.85,0,0,1,63.73,55a1.81,1.81,0,0,1-.75.75,2.85,2.85,0,0,1-1.54.27H58.56A2.85,2.85,0,0,1,57,55.73a1.81,1.81,0,0,1-.75-.75A2.85,2.85,0,0,1,56,53.44V50.56A2.85,2.85,0,0,1,56.27,49a1.81,1.81,0,0,1,.75-.75A2.85,2.85,0,0,1,58.56,48Z"
+    />
+    <path
+      className="svg-bookings-cls-2 secondary"
+      d="M62.56,60h2.88a2.85,2.85,0,0,1,1.54.27,1.81,1.81,0,0,1,.75.75A2.85,2.85,0,0,1,68,62.56v2.88A2.85,2.85,0,0,1,67.73,67a1.81,1.81,0,0,1-.75.75,2.85,2.85,0,0,1-1.54.27H62.56A2.85,2.85,0,0,1,61,67.73a1.81,1.81,0,0,1-.75-.75A2.85,2.85,0,0,1,60,65.44V62.56A2.85,2.85,0,0,1,60.27,61a1.81,1.81,0,0,1,.75-.75A2.85,2.85,0,0,1,62.56,60Z"
+    />
+    <path
+      className="svg-bookings-cls-3 primary"
+      d="M50,34h0a2,2,0,0,1,2,2v6a2,2,0,0,1-2,2h0a2,2,0,0,1-2-2V36A2,2,0,0,1,50,34Z"
+    />
+    <path
+      className="svg-bookings-cls-3 primary"
+      d="M62,34h0a2,2,0,0,1,2,2v6a2,2,0,0,1-2,2h0a2,2,0,0,1-2-2V36A2,2,0,0,1,62,34Z"
+    />
+  </svg>
+);
+
+export const PrivateEvents = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
+  >
+    <defs>
+      <style>{`
+      .svg-private-events-cls-1 {
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 4px;
+      }
+      
+      .svg-private-events-cls-2 {
+        fill: currentColor;
+        fill-rule: evenodd;
+      }
+    `}</style>
+    </defs>
+    <polyline
+      className="svg-private-events-cls-1 primary"
+      points="69.16 54.73 69.16 74.73 41.16 74.73 41.16 54.73 41.16 54.73"
+    />
+    <path
+      className="svg-private-events-cls-2 secondary"
+      d="M63.15,37.73h0a2,2,0,0,1,2,2v7a2,2,0,0,1-2,2h0a2,2,0,0,1-2-2v-7A2,2,0,0,1,63.15,37.73Z"
+    />
+    <polyline
+      className="svg-private-events-cls-1 primary"
+      points="35.16 59.73 55.16 39.73 75.16 59.73"
+    />
+  </svg>
+);
+
+export const Reviews = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
+  >
+    <defs>
+      <style>{`
+      .svg-reviews-cls-1,
+      .svg-reviews-cls-2 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      
+      .svg-reviews-cls-1 {
+        stroke: currentColor;
+        stroke-width: 4px;
+      }
+      
+      .svg-reviews-cls-2 {
+        stroke: currentColor;
+        stroke-width: 3px;
+      }
+    `}</style>
+    </defs>
+    <path
+      className="svg-reviews-cls-1 primary"
+      d="M74.39,40.15H39.61a6,6,0,0,0-6,6V58.93a6,6,0,0,0,6,6H50l7,11,6.07-11H74.39a6,6,0,0,0,6-6V46.11A6,6,0,0,0,74.39,40.15Z"
+    />
+    <path
+      className="svg-reviews-cls-2 secondary"
+      d="M62.05,48.29c-2.81-1.7-5,1.31-5,1.31s-2.24-3-5-1.31c-3.28,2-.91,5.91,0,7.16A48,48,0,0,0,57,60a48,48,0,0,0,5-4.55C63,54.2,65.33,50.29,62.05,48.29Z"
+    />
+  </svg>
+);
+
+export const Detectives = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
+  >
+    <defs>
+      <style>{`
+      .svg-detectives-cls-1 {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 4px;
+      }
+      
+      .svg-detectives-cls-1,
+      .svg-detectives-cls-2 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      
+      .svg-detectives-cls-2 {
+        fill: currentColor;
+        stroke: currentColor;
+        stroke-width: 2px;
+      }
+    `}</style>
+    </defs>
+    <ellipse
+      className="svg-detectives-cls-1 secondary"
+      cx="42.02"
+      cy="51.54"
+      rx="9.73"
+      ry="8.96"
+    />
+    <ellipse
+      className="svg-detectives-cls-1 secondary"
+      cx="69.98"
+      cy="51.54"
+      rx="9.73"
+      ry="8.96"
+    />
+    <path
+      className="svg-detectives-cls-1 secondary"
+      d="M51.53,53.46s4.31-4.13,8.94,0"
+    />
+    <path
+      className="svg-detectives-cls-2 primary"
+      d="M68.75,69.42a.31.31,0,0,0,.19-.58A26.5,26.5,0,0,0,55.87,65a26.36,26.36,0,0,0-12.75,3.64.41.41,0,0,0,.25.77Z"
+    />
+  </svg>
+);
+
+export const CommunityManagement = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
+  >
+    <defs>
+      <style>{`
+      .svg-community-management-cls-1,
+      .svg-community-management-cls-2 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 3px;
+      }
+      
+      .svg-community-management-cls-1 {
+        stroke: currentColor;
+      }
+      
+      .svg-community-management-cls-2 {
+        stroke: currentColor;
+      }
+    `}</style>
+    </defs>
+    <path
+      className="svg-community-management-cls-1 secondary"
+      d="M40.72,75.07s.53-6.17-6.93-6.17S26.73,75,26.73,75"
+    />
+    <circle
+      className="svg-community-management-cls-1 secondary"
+      cx="33.73"
+      cy="62.08"
+      r="2.75"
+    />
+    <path
+      className="svg-community-management-cls-1 secondary"
+      d="M87.76,74.31s.54-6.16-6.93-6.16-7.06,6.13-7.06,6.13"
+    />
+    <circle
+      className="svg-community-management-cls-1 secondary"
+      cx="80.77"
+      cy="61.33"
+      r="2.75"
+    />
+    <path
+      className="svg-community-management-cls-1 secondary"
+      d="M64,39.66s.54-6.17-6.93-6.17S50,39.62,50,39.62"
+    />
+    <circle
+      className="svg-community-management-cls-1 secondary"
+      cx="57.02"
+      cy="26.67"
+      r="2.75"
+    />
+    <path
+      className="svg-community-management-cls-2 primary"
+      d="M26.89,52.64C28.62,41,35.62,35.07,40.78,31.5"
+    />
+    <polyline
+      className="svg-community-management-cls-2 primary"
+      points="38.69 29.05 42.41 30.11 42.12 34.04"
+    />
+    <polyline
+      className="svg-community-management-cls-2 primary"
+      points="29.91 52.6 27.01 55.14 23.86 52.76"
+    />
+    <path
+      className="svg-community-management-cls-2 primary"
+      d="M73.5,31.87C83.4,38.19,86,47,87.12,53.18"
+    />
+    <polyline
+      className="svg-community-management-cls-2 primary"
+      points="90.21 52.26 87.73 55.23 84.26 53.36"
+    />
+    <polyline
+      className="svg-community-management-cls-2 primary"
+      points="72.3 34.65 71.16 30.95 74.62 29.05"
+    />
+    <path
+      className="svg-community-management-cls-2 primary"
+      d="M69.71,84.73c-10.61,5-19.45,2.54-25.29.25"
+    />
+    <polyline
+      className="svg-community-management-cls-2 primary"
+      points="43.55 88.08 42.35 84.41 45.78 82.45"
+    />
+    <polyline
+      className="svg-community-management-cls-2 primary"
+      points="67.99 82.24 71.72 83.24 71.5 87.17"
+    />
+  </svg>
+);
+
+export const Marketing = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
+  >
+    <defs>
+      <style>{`
+      .svg-marketing-cls-1,
+      .svg-marketing-cls-2 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 4px;
+      }
+      
+      .svg-marketing-cls-1 {
+        stroke: currentColor;
+      }
+      
+      .svg-marketing-cls-2 {
+        stroke: currentColor;
+      }
+      
+      .svg-marketing-cls-3 {
+        fill: currentColor;
+        fill-rule: evenodd;
+      }
+    `}</style>
+    </defs>
+    <path className="svg-marketing-cls-1 secondary" d="M44.71,61.82l6,10" />
+    <path
+      className="svg-marketing-cls-2 primary"
+      d="M42.71,47.29c-4,0-6,3.13-6,7s2.13,7,6,7q1.62,0,16.45,4h0A6,6,0,0,0,66.51,61a6.28,6.28,0,0,0,.2-1.55V47.82a6,6,0,0,0-6-6,5.94,5.94,0,0,0-2,.35Q44.32,47.29,42.71,47.29Z"
+    />
+    <path
+      className="svg-marketing-cls-3 secondary"
+      d="M72.71,49.82h0a2,2,0,0,1,2,2v4a2,2,0,0,1-2,2h0a2,2,0,0,1-2-2v-4A2,2,0,0,1,72.71,49.82Z"
+    />
+  </svg>
+);
+
+export const Clients = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
+  >
+    <defs>
+      <style>{`
+      .svg-clients-cls-1,
+      .svg-clients-cls-2 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      
+      .svg-clients-cls-1 {
+        stroke: currentColor;
+        stroke-width: 2px;
+      }
+      
+      .svg-clients-cls-2 {
+        stroke: currentColor;
+        stroke-width: 4px;
+      }
+    `}</style>
+    </defs>
+    <path
+      className="svg-clients-cls-1 secondary"
+      d="M58.44,63.63l3.14.48a2.07,2.07,0,0,1,1.17,3.51L60.43,70,61,73.18a2.09,2.09,0,0,1-1.71,2.39,2,2,0,0,1-1.34-.23l-2.68-1.46-2.68,1.46a2.07,2.07,0,0,1-2.81-.82,2,2,0,0,1-.23-1.34L50,70l-2.32-2.35a2.06,2.06,0,0,1,0-2.93,2.08,2.08,0,0,1,1.14-.58L52,63.63l1.34-2.8a2.08,2.08,0,0,1,3.75,0Z"
+    />
+    <path
+      className="svg-clients-cls-2 primary"
+      d="M60.85,46.15l6.36.9a3,3,0,0,1,1.63,5.16l-4.52,4.24,1.09,6.13a3,3,0,0,1-4.31,3.2l-5.87-3-5.86,3a3,3,0,0,1-4.31-3.2l1.09-6.13-4.53-4.24A3,3,0,0,1,41.49,48a3,3,0,0,1,1.77-.92l6.36-.9,2.94-5.75a3,3,0,0,1,4-1.3,3,3,0,0,1,1.3,1.3Z"
+    />
+  </svg>
+);
+
+export const StockManagement = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
+  >
+    <defs>
+      <style>{`
+      .svg-stock-management-cls-1,
+      .svg-stock-management-cls-2,
+      .svg-stock-management-cls-3 {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      
+      .svg-stock-management-cls-1,
+      .svg-stock-management-cls-3 {
+        stroke: currentColor;
+      }
+      
+      .svg-stock-management-cls-1,
+      .svg-stock-management-cls-2 {
+        stroke-width: 3px;
+      }
+      
+      .svg-stock-management-cls-2 {
+        stroke: currentColor;
+      }
+      
+      .svg-stock-management-cls-3 {
+        stroke-width: 4px;
+      }
+      `}</style>
+    </defs>
+    <line
+      className="svg-stock-management-cls-1 secondary"
+      x1="59.76"
+      y1="59.48"
+      x2="45.82"
+      y2="51.97"
+    />
+    <polygon
+      className="svg-stock-management-cls-2 primary"
+      points="66.98 73.11 66.98 56.01 52.58 63.52 52.54 80.97 66.98 73.11"
+    />
+    <polyline
+      className="svg-stock-management-cls-2 primary"
+      points="66.98 56.01 52.54 48.41 46.42 51.65 38.17 56.01 52.58 63.52 38.17 56.01 38.17 72.3 52.54 80.97"
+    />
+    <polyline
+      className="svg-stock-management-cls-3 secondary"
+      points="32.37 50.74 52.5 38.59 64.41 45.13 79.63 33.06 70.31 33.35"
+    />
+    <line
+      className="svg-stock-management-cls-3 secondary"
+      x1="78.32"
+      y1="40.92"
+      x2="79.63"
+      y2="33.06"
     />
   </svg>
 );

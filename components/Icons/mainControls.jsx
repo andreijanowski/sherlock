@@ -107,3 +107,22 @@ export const ExpandIcon = () => (
     </svg>
   </span>
 );
+
+export const ExpandIconRestyled = () => (
+  <span className="ExpandIcon">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="12"
+      height="8"
+      viewBox="0 0 10 6"
+    >
+      <path
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M1 1l4 4 4-4"
+      />
+    </svg>
+  </span>
+);
