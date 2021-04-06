@@ -7,9 +7,9 @@ import { connect } from "react-redux";
 
 import AppLayout from "layout/App";
 import TypeformContainer from "components/TypeformContainer";
+import { TYPEFORM_IDS } from "consts";
 
 const namespaces = ["app"];
-const FORM_ID = "xDcBPKaR";
 
 const CommunityManagement = ({ t, lng }) => (
   <AppLayout
@@ -18,7 +18,7 @@ const CommunityManagement = ({ t, lng }) => (
     mainIcon="community-management"
     header={t("app:manageIntegrations.community_management")}
   >
-    <TypeformContainer formId={FORM_ID} />
+    <TypeformContainer formId={TYPEFORM_IDS.COMMUNITY_MANAGEMENT} />
   </AppLayout>
 );
 

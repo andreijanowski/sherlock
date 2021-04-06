@@ -1,7 +1,10 @@
 const NextI18Next = require("next-i18next").default;
 
+const defaultLanguage = "en";
+
 const NextI18NextInstance = new NextI18Next({
-  defaultLanguage: "en",
+  fallbackLng: defaultLanguage,
+  defaultLanguage,
   otherLanguages: ["it", "de", "es", "fr"]
 });
 

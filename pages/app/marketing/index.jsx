@@ -7,9 +7,9 @@ import { connect } from "react-redux";
 
 import AppLayout from "layout/App";
 import TypeformContainer from "components/TypeformContainer";
+import { TYPEFORM_IDS } from "consts";
 
 const namespaces = ["app"];
-const FORM_ID = "JcFCFNIl";
 
 const Marketing = ({ t, lng }) => (
   <AppLayout
@@ -18,7 +18,7 @@ const Marketing = ({ t, lng }) => (
     mainIcon="marketing"
     header={t("app:adsAndMarketing")}
   >
-    <TypeformContainer formId={FORM_ID} />
+    <TypeformContainer formId={TYPEFORM_IDS.MARKETING} />
   </AppLayout>
 );
 
