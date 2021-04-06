@@ -9,24 +9,12 @@ import {
   generateWholesalersMenuItems,
   WHOLESALERS_CATEGORIES
 } from "sections/integrations/utils";
-import prepareBusinessesList from "utils/prepareBusinessesList";
-import { setCurrentBusiness } from "actions/app";
-import { postBusiness } from "actions/businesses";
 import isServer from "utils/isServer";
 import IntegrationsList from "sections/integrations";
 
 const namespaces = ["forms", "app"];
 
-const IntegrationsPage = ({
-  t,
-  lng,
-  business,
-  businessId,
-  changeCurrentBusiness,
-  addBusiness,
-  businesses,
-  wholesalers
-}) => {
+const IntegrationsPage = ({ t, lng, wholesalers }) => {
   const [tab, setTab] = useState("");
 
   const setActiveTab = () => {
@@ -60,22 +48,6 @@ const IntegrationsPage = ({
       header={t("app:wholesaler")}
       withMenu
       menuItems={generateWholesalersMenuItems(t, tab)}
-      select={{
-        value: {
-          value: businessId,
-          label:
-            (business && business.get("name")) ||
-            t("app:manageProfile.unnamedBusiness"),
-          src: business && business.getIn(["logo", "url"])
-        },
-        items: prepareBusinessesList(t, businesses),
-        handleChange: b => changeCurrentBusiness(b.value),
-        bottomAction: {
-          text: t("app:manageProfile.addNewBusiness"),
-          handleClick: () => addBusiness()
-        },
-        withImage: true
-      }}
     >
       {wholesalers && wholesalers.size > 0 && (
         <IntegrationsList partners={preparedWholesalers} t={t} />
@@ -91,47 +63,23 @@ IntegrationsPage.getInitialProps = async () => ({
 IntegrationsPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  changeCurrentBusiness: func.isRequired,
-  addBusiness: func.isRequired,
-  business: shape(),
-  businessId: string,
-  businesses: shape(),
   wholesalers: shape()
 };
 
 IntegrationsPage.defaultProps = {
-  businesses: null,
-  business: null,
-  businessId: "",
   wholesalers: null
 };
 
 export default requireAuth(true)(
   withTranslation(namespaces)(
-    connect(
-      (state, { i18n }) => {
-        const businessData = state.getIn(["users", "currentBusiness", "data"]);
-        const business = businessData && businessData.get("businesses").first();
-
-        return {
-          lng: (i18n && i18n.language) || "en",
-          business: business && business.get("attributes"),
-          businessId: business && business.get("id"),
-          businesses: state.getIn([
-            "users",
-            "profileBusinesses",
-            "data",
-            "businesses"
-          ]),
-          wholesalers: state.getIn([
-            "wholesalers",
-            "data",
-            "wholesalers",
-            "partners"
-          ])
-        };
-      },
-      { changeCurrentBusiness: setCurrentBusiness, addBusiness: postBusiness }
-    )(IntegrationsPage)
+    connect((state, { i18n }) => ({
+      lng: (i18n && i18n.language) || "en",
+      wholesalers: state.getIn([
+        "wholesalers",
+        "data",
+        "wholesalers",
+        "partners"
+      ])
+    }))(IntegrationsPage)
   )
 );

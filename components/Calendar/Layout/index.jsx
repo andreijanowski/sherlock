@@ -1,6 +1,5 @@
 import { func, string, node, shape, bool } from "prop-types";
 import AppLayout from "layout/App";
-import prepareBusinessesList from "utils/prepareBusinessesList";
 import { Select, ActionIcon, ServiceStatusCheckbox } from "components";
 import { Box, Flex } from "@rebass/grid";
 import { Router } from "routes";
@@ -14,8 +13,6 @@ const CalendarLayout = ({
   isAddActionHidden,
   business,
   businessId,
-  businesses,
-  changeCurrentBusiness,
   children,
   eventType,
   serviceActivationFieldName,
@@ -37,20 +34,6 @@ const CalendarLayout = ({
     >
       <Box width={1}>
         <Flex width={1} flexWrap="wrap">
-          <Box width={[1, 1 / 3]} pr={[0, 3]} pb={[1, 0]}>
-            <Select
-              value={{
-                value: businessId,
-                label:
-                  (business && business.get("name")) ||
-                  t("app:manageProfile.unnamedBusiness"),
-                src: business && business.getIn(["logo", "url"])
-              }}
-              withImage
-              items={prepareBusinessesList(t, businesses)}
-              onChange={b => changeCurrentBusiness(b.value)}
-            />
-          </Box>
           {view && (
             <Box width={[1, 1 / 4]}>
               <Select
@@ -100,8 +83,6 @@ CalendarLayout.propTypes = {
   business: shape(),
   businessId: string,
   isAddActionHidden: bool,
-  changeCurrentBusiness: func.isRequired,
-  businesses: shape(),
   eventType: string.isRequired,
   serviceActivationFieldName: string.isRequired,
   updateBusiness: func.isRequired
@@ -109,7 +90,6 @@ CalendarLayout.propTypes = {
 
 CalendarLayout.defaultProps = {
   business: null,
-  businesses: null,
   businessId: "",
   isAddActionHidden: false,
   view: null
