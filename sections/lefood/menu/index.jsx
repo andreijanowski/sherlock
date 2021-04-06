@@ -1,3 +1,4 @@
+import React, { useMemo } from "react";
 import { func, shape, bool, string } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import { LoadingIndicator } from "components";
@@ -26,7 +27,10 @@ const Menu = ({
     editedDishId,
     dishes
   });
-  const preparedCategories = categories ? prepareCategories(categories) : [];
+  const preparedCategories = useMemo(
+    () => (categories ? prepareCategories(categories) : []),
+    [categories]
+  );
   const preparedList = preparedCategories.map(c => {
     const items =
       dishes &&
