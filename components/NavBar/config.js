@@ -1,5 +1,4 @@
 import {
-  ProfileIcon,
   Restaurant,
   Dashboard,
   IntegrationHub,
@@ -15,7 +14,9 @@ import {
   Marketing,
   Clients,
   Wholesalers,
-  StockManagement
+  StockManagement,
+  Subscriptions,
+  SettingsIcon
 } from "components/Icons";
 
 const prepareBadge = updates => {
@@ -125,13 +126,13 @@ export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
   {
     basePath: "/app/subscriptions",
     route: "/app/subscriptions/",
-    Icon: ProfileIcon,
+    Icon: Subscriptions,
     label: t("app:subscriptions")
   },
   {
     basePath: "/app/settings",
     route: "/app/settings/basic-information/",
-    Icon: ProfileIcon,
+    Icon: SettingsIcon,
     label: t("app:settings")
   }
 ];

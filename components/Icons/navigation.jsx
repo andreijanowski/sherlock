@@ -495,21 +495,14 @@ export const ProfileMembers = () => (
 export const Subscriptions = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="22"
-    height="20"
-    viewBox="0 0 22 20"
+    width="1em"
+    height="1em"
+    viewBox="-11 -10 44 40"
   >
-    <g
-      fill="none"
-      fillRule="evenodd"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-    >
+    <g fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
       <path
         stroke="currentColor"
         className="secondary"
-        strokeOpacity="0.4"
         d="M18.49 13a9 9 0 1 1-2.12-9.36L21 9"
       />
       <path stroke="currentColor" className="primary" d="M21 3v6h-6" />
@@ -520,19 +513,11 @@ export const Subscriptions = () => (
 export const SettingsIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="22"
-    height="22"
-    viewBox="0 0 22 22"
+    width="1em"
+    height="1em"
+    viewBox="-11 -11 44 44"
   >
-    <g
-      fill="none"
-      fillRule="evenodd"
-      stroke="#2A2F38"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
-      transform="translate(1 1)"
-    >
+    <g fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
       <circle
         cx="10"
         cy="10"
@@ -543,7 +528,6 @@ export const SettingsIcon = () => (
       <path
         stroke="currentColor"
         className="secondary"
-        strokeOpacity=".4"
         d="M16.727 12.727a1.5 1.5 0 0 0 .3 1.655l.055.054a1.818 1.818 0 1 1-2.573 2.573l-.054-.054a1.5 1.5 0 0 0-1.655-.3 1.5 1.5 0 0 0-.91 1.372v.155a1.818 1.818 0 1 1-3.635 0V18.1a1.5 1.5 0 0 0-.982-1.373 1.5 1.5 0 0 0-1.655.3l-.054.055a1.818 1.818 0 1 1-2.573-2.573l.054-.054a1.5 1.5 0 0 0 .3-1.655 1.5 1.5 0 0 0-1.372-.91h-.155a1.818 1.818 0 1 1 0-3.635H1.9a1.5 1.5 0 0 0 1.373-.982 1.5 1.5 0 0 0-.3-1.655l-.055-.054A1.818 1.818 0 1 1 5.491 2.99l.054.054a1.5 1.5 0 0 0 1.655.3h.073a1.5 1.5 0 0 0 .909-1.372v-.155a1.818 1.818 0 0 1 3.636 0V1.9a1.5 1.5 0 0 0 .91 1.373 1.5 1.5 0 0 0 1.654-.3l.054-.055a1.818 1.818 0 1 1 2.573 2.573l-.054.054a1.5 1.5 0 0 0-.3 1.655v.073a1.5 1.5 0 0 0 1.372.909h.155a1.818 1.818 0 1 1 0 3.636H18.1a1.5 1.5 0 0 0-1.373.91z"
       />
     </g>

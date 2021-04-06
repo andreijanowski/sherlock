@@ -10,7 +10,6 @@ const TypeformContainer = ({ formId }) => {
   useEffect(() => {
     if (containerRef.current) {
       createWidget(formId, { container: containerRef.current });
-      console.log(containerRef.current, formId);
     }
   }, [formId]);
   return <Container ref={containerRef} />;
