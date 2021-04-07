@@ -33,7 +33,6 @@ import { Flex, Box } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Router } from "routes";
 import { convertToCents } from "utils/price";
-import prepareBusinessesList from "utils/prepareBusinessesList";
 import Tippy from "@tippy.js/react";
 import {
   connectPartnerWithOrkestro,
@@ -215,8 +214,6 @@ class LefoodLayout extends PureComponent {
       orderPeriodsLength,
       business,
       currentBusinessId,
-      businesses,
-      changeCurrentBusiness,
       updateBusiness,
       connectedWithOrkestro,
       ratio,
@@ -264,33 +261,15 @@ class LefoodLayout extends PureComponent {
         ) : (
           <>
             <Box width={1} mb={3}>
-              <Flex justifyContent="space-between">
-                <Box>
-                  <Select
-                    value={{
-                      value: currentBusinessId,
-                      label:
-                        (business && business.get("name")) ||
-                        t("app:manageProfile.unnamedBusiness"),
-                      src: business && business.getIn(["logo", "url"])
-                    }}
-                    withImage
-                    items={prepareBusinessesList(t, businesses)}
-                    onChange={b => changeCurrentBusiness(b.value)}
-                  />
-                </Box>
-                <Box>
-                  <ServiceStatusCheckbox
-                    {...{
-                      t,
-                      serviceActivationFieldName: "availableInLefood",
-                      business,
-                      updateBusiness,
-                      businessId: currentBusinessId
-                    }}
-                  />
-                </Box>
-              </Flex>
+              <ServiceStatusCheckbox
+                {...{
+                  t,
+                  serviceActivationFieldName: "availableInLefood",
+                  business,
+                  updateBusiness,
+                  businessId: currentBusinessId
+                }}
+              />
             </Box>
             {business.get("stripeCurrency") ? (
               <>
@@ -662,7 +641,6 @@ LefoodLayout.propTypes = {
   children: node.isRequired,
   updateBusiness: func.isRequired,
   business: shape(),
-  businesses: shape(),
   changeCurrentBusiness: func.isRequired,
   currentBusinessId: string,
   dishesLength: number,
@@ -682,7 +660,6 @@ LefoodLayout.defaultProps = {
   orderPeriodsLength: 0,
   currentBusinessId: "",
   business: null,
-  businesses: null,
   isUberAvailable: false,
   ratio: "0.0"
 };

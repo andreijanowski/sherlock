@@ -39,6 +39,7 @@ export const prepareCategories = categories =>
           value: b.get("id"),
           label: b.getIn(["attributes", "name"])
         }))
+        .sort((opt1, opt2) => opt1.label.localeCompare(opt2.label))
         .toList()
         .toArray()
     : [];
