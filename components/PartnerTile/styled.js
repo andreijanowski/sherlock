@@ -53,6 +53,7 @@ export const Link = styled.a`
 export const IntegrationButton = styled(Button)`
   && {
     width: auto;
+    flex: none;
     margin-right: 16px;
     padding: 8px 16px;
     cursor: default;
@@ -67,6 +68,7 @@ export const IntegrationButton = styled(Button)`
 export const InfoButton = styled(Button)`
   && {
     width: auto;
+    flex: none;
     padding: 8px 16px;
     cursor: default;
 

@@ -2,12 +2,7 @@ import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
 export const Wrapper = styled(Flex).attrs(p => ({
-  width: [
-    1,
-    p.withMenu ? "calc(100% - 241px)" : "calc(100% - 80px)",
-    p.withMenu ? "calc(100% - 321px)" : "calc(100% - 80px)",
-    p.withMenu ? "calc(100% - 361px)" : "calc(100% - 80px)"
-  ],
+  width: [1, p.withMenu ? "calc(100% - 605px)" : "calc(100% - 325px)"],
   flexDirection: "column",
   p: 3,
   mt: [60, 0]

@@ -56,7 +56,7 @@ export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
     label: t("app:payments")
   },
   {
-    basePath: "/app/lefood/orders/",
+    basePath: "/app/lefood/",
     route: "/app/lefood/orders/",
     Icon: Delivery,
     label: t("app:delivery"),
