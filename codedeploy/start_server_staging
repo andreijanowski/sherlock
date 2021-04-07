@@ -12,6 +12,7 @@ for envvar in ${VARS}; do
   export $envvar;
 done
 
+export FACEBOOK_DOMAIN_VERIFICATION=$(echo $FACEBOOK_DOMAIN_VERIFICATION | base64 -d)
 export PUBLIC_API_URL=$(echo $PUBLIC_API_URL | base64 -d)
 export PUBLIC_FOODETECTIVE_URL=$(echo $PUBLIC_FOODETECTIVE_URL | base64 -d)
 export NETGURU_DEV_PASSWORD=$(echo $NETGURU_DEV_PASSWORD | base64 -d)
