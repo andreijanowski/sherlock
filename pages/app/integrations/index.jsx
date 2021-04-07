@@ -55,6 +55,7 @@ class IntegrationsPage extends PureComponent {
 
     return (
       <AppLayout
+        showChosenWholesalers
         t={t}
         lng={lng}
         mainIcon="integrations"

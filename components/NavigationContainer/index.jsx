@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import { bool, func, string, arrayOf, shape } from "prop-types";
 import { connect } from "react-redux";
-
 import { NavBar, Menu, MobileNav } from "components";
 import { setNestedMenuVisibility } from "actions/app";
 import { Wrapper, MobileWrapper } from "./styled";
