@@ -497,7 +497,7 @@ export const Subscriptions = () => (
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
     height="1em"
-    viewBox="-11 -10 44 40"
+    viewBox="-16 -15 54 50"
   >
     <g fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
       <path
@@ -515,7 +515,7 @@ export const SettingsIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
     height="1em"
-    viewBox="-11 -11 44 44"
+    viewBox="-16 -16 54 54"
   >
     <g fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
       <circle
@@ -1133,7 +1133,7 @@ export const CommunityManagement = () => (
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
     height="1em"
-    viewBox="0 0 112 112"
+    viewBox="-10 -10 132 132"
   >
     <defs>
       <style>{`
