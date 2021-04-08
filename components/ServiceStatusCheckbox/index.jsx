@@ -1,5 +1,6 @@
-import { RawCheckbox } from "components";
 import { string, shape, func } from "prop-types";
+
+import { Checkbox } from "./styled";
 
 const ServiceStatusCheckbox = ({
   t,
@@ -8,7 +9,7 @@ const ServiceStatusCheckbox = ({
   updateBusiness,
   businessId
 }) => (
-  <RawCheckbox
+  <Checkbox
     hasCloserText
     label={t("app:active")}
     input={{

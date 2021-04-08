@@ -61,6 +61,8 @@ export const Header = styled(Flex).attrs(() => ({
   ml: [0, 3],
   my: 0
 }))`
+  display: flex;
+  align-items: center;
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f16};
   @media (min-width: ${p => p.theme.breakpoints[0]}) {

@@ -18,8 +18,6 @@ export PUBLIC_FOODETECTIVE_URL=$(echo $PUBLIC_FOODETECTIVE_URL | base64 -d)
 export NETGURU_DEV_PASSWORD=$(echo $NETGURU_DEV_PASSWORD | base64 -d)
 export OAUTH_CALLBACK_URL=$(echo $OAUTH_CALLBACK_URL | base64 -d)
 export STAGING_AUTH=$(echo $STAGING_AUTH | base64 -d)
-export COMMUNITY_MANAGEMENT_TYPEFORM_ID=$(echo $COMMUNITY_MANAGEMENT_TYPEFORM_ID | base64 -d)
-export MARKETING_TYPEFORM_ID=$(echo $MARKETING_TYPEFORM_ID | base64 -d)
 
 cd /opt/codedeploy-agent/deployment-root/${DEPLOYMENT_GROUP_ID}/${DEPLOYMENT_ID}/deployment-archive
 

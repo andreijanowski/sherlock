@@ -2,10 +2,16 @@ import styled, { css } from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 
 export const IconMain = css`
+  font-size: 60px;
   stroke-opacity: 0.4;
   fill-opacity: 0.4;
-  fill: rgb(${p => p.theme.colors.white});
-  stroke: rgb(${p => p.theme.colors.white});
+  svg .primary {
+    color: white;
+  }
+
+  svg .secondary {
+    color: white;
+  }
 `;
 
 export const IconMainActive = css`
@@ -15,6 +21,13 @@ export const IconMainActive = css`
 `;
 
 export const IconSub = css`
+  font-size: 45px;
+  svg .primary {
+    color: rgb(${p => p.theme.colors.bombay});
+  }
+  svg .secondary {
+    color: rgb(${p => p.theme.colors.bombayDark});
+  }
   fill: rgb(${p => p.theme.colors.dark});
   stroke: rgb(${p => p.theme.colors.dark});
 `;
@@ -24,16 +37,16 @@ export const NoFill = css`
 `;
 
 export const IconWrapper = styled.div`
-  path,
-  circle,
-  rect,
-  g {
-    ${p => p.main && IconMain};
-    ${p => p.mainActive && IconMainActive};
-    ${p => p.dark && IconSub};
-    ${p => p.dark && IconSub};
-    ${p => p.noFill && NoFill};
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 45px;
+  line-height: 0;
+
+  ${p => p.main && IconMain};
+  ${p => p.mainActive && IconMainActive};
+  ${p => p.dark && IconSub}
+  ${p => p.noFill && NoFill};
 `;
 
 export const ToggledMobileMenu = styled(Flex).attrs(() => ({
@@ -56,7 +69,9 @@ export const MenuScrollContainer = styled(Box).attrs(() => ({
 `;
 
 export const IconLabel = styled.span`
-  padding-left: 16px;
+  display: flex;
+  align-items: center;
+  padding: 15px 0 15px 16px;
   font-weight: 500;
 `;
 

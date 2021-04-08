@@ -245,32 +245,41 @@ class LefoodLayout extends PureComponent {
     const currentSplitRatio =
       ratio && splitRatioList.find(item => item.value === ratio).label;
 
+    const isBusinessLoading =
+      !business || business.get("stripeUserId") === undefined;
+
     return (
       <AppLayout
         {...{
           mainIcon: "leFood",
-          header: t(page),
+          header: (
+            <>
+              {t(page)}
+              {!isBusinessLoading && (
+                <Box ml={3}>
+                  <ServiceStatusCheckbox
+                    {...{
+                      t,
+                      serviceActivationFieldName: "availableInLefood",
+                      business,
+                      updateBusiness,
+                      businessId: currentBusinessId
+                    }}
+                  />
+                </Box>
+              )}
+            </>
+          ),
           t,
           lng
         }}
       >
-        {!business || business.get("stripeUserId") === undefined ? (
+        {isBusinessLoading ? (
           <>
             <LoadingIndicator />
           </>
         ) : (
           <>
-            <Box width={1} mb={3}>
-              <ServiceStatusCheckbox
-                {...{
-                  t,
-                  serviceActivationFieldName: "availableInLefood",
-                  business,
-                  updateBusiness,
-                  businessId: currentBusinessId
-                }}
-              />
-            </Box>
             {business.get("stripeCurrency") ? (
               <>
                 {business.get("stripeUserId") ? (

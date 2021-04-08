@@ -24,6 +24,8 @@ services:
       - PUBLIC_GOOGLE_ANALYTICS_ID
       - PUBLIC_GOOGLE_MAPS_API_KEY
       - STAGING_AUTH
+      - COMMUNITY_MANAGEMENT_TYPEFORM_ID
+      - MARKETING_TYPEFORM_ID
     networks:
       - frontend
     expose:

@@ -1,9 +1,9 @@
 import {
   Delivery,
-  Reservations,
-  Privatisations,
+  Bookings,
+  PrivateEvents,
   Catering,
-  ProfileIcon,
+  Restaurant,
   ProfileBasicInfo,
   ProfileContact,
   ProfileOpeningHours,
@@ -15,7 +15,7 @@ import {
   SettingsBasicInfo,
   SettingsLogout,
   SettingsPassword,
-  Integrations,
+  IntegrationHub,
   Wholesalers
 } from "icons";
 import {
@@ -111,7 +111,7 @@ const generateWholesalersMobileSubmenu = (t, activeTab) =>
 
 export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
   {
-    icon: ProfileIcon,
+    icon: Restaurant,
     label: t("app:manageProfile.manageProfile"),
     withSubmenu: true,
     submenuItems: generateProfileMobileSubmenu(t, lng)
@@ -122,8 +122,8 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     route: "/app/catering/month/"
   },
   {
-    icon: Privatisations,
-    label: t("app:privatisations"),
+    icon: PrivateEvents,
+    label: t("app:privateEvents"),
     route: "/app/privatisation/month/"
   },
   {
@@ -132,12 +132,12 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     route: "/app/lefood/orders/"
   },
   {
-    icon: Reservations,
+    icon: Bookings,
     label: t("app:reservations"),
     route: "/app/reservation/reservations/"
   },
   {
-    icon: Integrations,
+    icon: IntegrationHub,
     label: t("app:integrations"),
     withSubmenu: true,
     submenuItems: generateIntegrationsMobileSubmenu(t, lng)

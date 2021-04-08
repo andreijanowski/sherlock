@@ -26,6 +26,8 @@ services:
       - LETSENCRYPT_HOST=sherlock.staging.devguru.co
       - LETSENCRYPT_EMAIL=devops-team@netguru.co
       - STAGING_AUTH
+      - COMMUNITY_MANAGEMENT_TYPEFORM_ID
+      - MARKETING_TYPEFORM_ID
     networks:
       - frontend
     expose:

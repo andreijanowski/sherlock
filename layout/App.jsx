@@ -42,7 +42,7 @@ AppLayout.propTypes = {
     })
   ),
   mainIcon: string,
-  header: string,
+  header: node,
   t: func.isRequired,
   lng: string.isRequired
 };
