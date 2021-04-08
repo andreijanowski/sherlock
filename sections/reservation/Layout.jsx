@@ -68,22 +68,26 @@ const ReservationLayout = ({
     <AppLayout
       {...{
         mainIcon: "reservation",
-        header: t(page),
+        header: (
+          <>
+            {t(page)}
+            <Box ml={3}>
+              <ServiceStatusCheckbox
+                {...{
+                  t,
+                  serviceActivationFieldName: "hasReservations",
+                  business,
+                  updateBusiness,
+                  businessId: currentBusinessId
+                }}
+              />
+            </Box>
+          </>
+        ),
         t,
         lng
       }}
     >
-      <Box width={1} mb={3}>
-        <ServiceStatusCheckbox
-          {...{
-            t,
-            serviceActivationFieldName: "hasReservations",
-            business,
-            updateBusiness,
-            businessId: currentBusinessId
-          }}
-        />
-      </Box>
       {isInfoBarVisible && (
         <InfoBar
           info={
