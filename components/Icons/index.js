@@ -42,7 +42,8 @@ export {
   Feedback,
   Notifications,
   ExpandIcon,
-  ExpandIconRestyled
+  ExpandIconRestyled,
+  SidebarExpandIcon
 } from "./mainControls";
 export {
   Orders,

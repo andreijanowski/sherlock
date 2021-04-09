@@ -1,20 +1,63 @@
 import styled from "styled-components";
 
+const SIDEBAR_WIDTH = 300;
+
 export const Wrapper = styled.div`
   background: white;
   border-right: 1px solid rgb(${p => p.theme.colors.greyBorder});
   padding: 0 10px;
-  width: 325px;
+  width: ${SIDEBAR_WIDTH}px;
   min-height: 100vh;
+  overflow-x: hidden;
 `;
 
 export const SelectWrapper = styled.div`
   margin: 35px 0;
 `;
 
+export const TransitionContainer = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0 -10px;
+`;
+
+export const NavTransitionContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+  width: 100%;
+  transition: max-width 0.3s;
+  flex: none;
+
+  &.rightSlide-enter {
+    max-width: 0;
+    white-space: nowrap;
+  }
+
+  &.rightSlide-enter-active {
+    max-width: 100%;
+  }
+
+  &.rightSlide-exit {
+    max-width: 100%;
+    white-space: nowrap;
+  }
+
+  &.rightSlide-exit-active {
+    max-width: 0;
+  }
+`;
+
 export const NavList = styled.ul`
-  padding: 0;
+  width: ${SIDEBAR_WIDTH}px;
+  padding: 0 10px;
   margin: 0;
+`;
+
+export const ChildrenWrapper = styled.div`
+  width: 100%;
+  padding: 0 10px;
+  flex: none;
 `;
 
 export const NavItem = styled.li`
@@ -47,7 +90,7 @@ export const NavItemLink = styled.a`
   overflow: hidden;
   padding: 12px 25px 12px 60px;
   font-weight: ${p => p.theme.fontWeights.semiBold};
-  font-size: ${p => p.theme.fontSizes.f15};
+  font-size: ${p => p.theme.fontSizes.f13};
   line-height: 21px;
   letter-spacing: 0.3px;
   &:hover {

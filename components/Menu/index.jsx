@@ -2,11 +2,16 @@ import { string, bool, arrayOf, shape, func } from "prop-types";
 import { Flex } from "@rebass/grid";
 
 import { Button, Link } from "components";
-import { Wrapper, Items, Item } from "./styled";
+import MenuArrowIcon from "components/MenuArrowIcon";
+import { Items, Item } from "./styled";
 
-const Menu = ({ lng, menuItems, t }) => (
-  <Wrapper>
+const Menu = ({ lng, toggleNestedMenu, menuItems, t }) => (
+  <>
     <Items>
+      <Item bigPadding onClick={toggleNestedMenu}>
+        <MenuArrowIcon back />
+        <span>{t("app:backToMainMenu")}</span>
+      </Item>
       {menuItems.map(i => {
         const isPublishBusinessButton =
           i.label === t("app:manageProfile.publish");
@@ -48,7 +53,7 @@ const Menu = ({ lng, menuItems, t }) => (
         );
       })}
     </Items>
-  </Wrapper>
+  </>
 );
 
 Menu.propTypes = {
@@ -61,7 +66,8 @@ Menu.propTypes = {
       isActive: bool
     })
   ).isRequired,
-  t: func.isRequired
+  t: func.isRequired,
+  toggleNestedMenu: func.isRequired
 };
 
 export default Menu;

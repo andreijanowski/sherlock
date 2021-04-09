@@ -37,12 +37,14 @@ export const colors = {
   greyBorder: "224, 224, 224",
   darkText: "51, 51, 51",
   bombayDark: "69, 71, 75",
-  menuDarkBlue: "147, 164, 255"
+  menuDarkBlue: "147, 164, 255",
+  boxShadow: "189, 189, 189"
 };
 
 const fontSizes = {
   f10: "10px",
   f12: "12px",
+  f13: "13px",
   f14: "14px",
   f15: "15px",
   f16: "16px",
