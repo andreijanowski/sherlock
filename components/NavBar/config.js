@@ -16,7 +16,8 @@ import {
   Wholesalers,
   StockManagement,
   Subscriptions,
-  SettingsIcon
+  SettingsIcon,
+  Photography
 } from "components/Icons";
 
 const prepareBadge = updates => {
@@ -106,6 +107,12 @@ export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
     route: "/app/marketing/",
     Icon: Marketing,
     label: t("app:adsAndMarketing")
+  },
+  {
+    basePath: "/app/photography",
+    route: "/app/photography/",
+    Icon: Photography,
+    label: t("app:photography")
   },
   {
     basePath: "/app/clients",
