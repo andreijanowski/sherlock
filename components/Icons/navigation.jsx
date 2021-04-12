@@ -1412,3 +1412,66 @@ export const StockManagement = () => (
     />
   </svg>
 );
+
+export const Photography = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
+  >
+    <defs>
+      <style>{`
+      .svg-photography-cls-1,
+      .svg-photography-cls-2 {
+        fill: none;
+        stroke-width: 4px;
+      }
+      
+      .svg-photography-cls-1 {
+        stroke: currentColor;
+      }
+      
+      .svg-photography-cls-1,
+      .svg-photography-cls-2,
+      .svg-photography-cls-3 {
+        stroke - linecap: round;
+        stroke-linejoin: round;
+      }
+      
+      .svg-photography-cls-2,
+      .svg-photography-cls-3 {
+        stroke: currentColor;
+      }
+      
+      .svg-photography-cls-3 {
+        fill: currentColor;
+      }`}</style>
+    </defs>
+    <rect
+      className="svg-photography-cls-1 primary"
+      x="31.84"
+      y="40.24"
+      width="48.31"
+      height="33.97"
+      rx="5.54"
+    />
+    <path
+      className="svg-photography-cls-1 primary"
+      d="M75.43,40.24V35.89a2.1,2.1,0,0,0-2.09-2.1h-4a2.1,2.1,0,0,0-2.1,2.1v4.35"
+    />
+    <circle
+      className="svg-photography-cls-2 secondary"
+      cx="55"
+      cy="58.11"
+      r="8.58"
+    />
+    <rect
+      className="svg-photography-cls-3 secondary"
+      x="68.31"
+      y="47.45"
+      width="5.01"
+      height="3.52"
+    />
+  </svg>
+);

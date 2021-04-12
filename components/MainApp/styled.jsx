@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
-export const Wrapper = styled(Flex).attrs(p => ({
-  width: [1, p.withMenu ? "calc(100% - 605px)" : "calc(100% - 325px)"],
+export const Wrapper = styled(Flex).attrs(() => ({
+  width: [1, "calc(100% - 300px)"],
   flexDirection: "column",
   p: 3,
   mt: [60, 0]

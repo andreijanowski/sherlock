@@ -16,7 +16,8 @@ import {
   Wholesalers,
   StockManagement,
   Subscriptions,
-  SettingsIcon
+  SettingsIcon,
+  Photography
 } from "components/Icons";
 
 const prepareBadge = updates => {
@@ -29,7 +30,8 @@ export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
     basePath: "/app/profile",
     route: "/app/profile/basic-information/",
     Icon: Restaurant,
-    label: t("app:manageProfile.myProfile")
+    label: t("app:manageProfile.myProfile"),
+    hasNested: true
   },
   {
     basePath: "/app/dashboard",
@@ -41,7 +43,8 @@ export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
     basePath: "/app/integrations",
     route: "/app/integrations?category=pos",
     Icon: IntegrationHub,
-    label: t("app:integrationHub")
+    label: t("app:integrationHub"),
+    hasNested: true
   },
   {
     basePath: "/app/app-manager",
@@ -106,6 +109,12 @@ export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
     label: t("app:adsAndMarketing")
   },
   {
+    basePath: "/app/photography",
+    route: "/app/photography/",
+    Icon: Photography,
+    label: t("app:photography")
+  },
+  {
     basePath: "/app/clients",
     route: "/app/clients/",
     Icon: Clients,
@@ -115,7 +124,8 @@ export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
     basePath: "/app/wholesalers",
     route: "/app/wholesalers?category=new",
     Icon: Wholesalers,
-    label: t("app:wholesaler")
+    label: t("app:wholesaler"),
+    hasNested: true
   },
   {
     basePath: "/app/stock-management",
@@ -133,6 +143,7 @@ export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
     basePath: "/app/settings",
     route: "/app/settings/basic-information/",
     Icon: SettingsIcon,
-    label: t("app:settings")
+    label: t("app:settings"),
+    hasNested: true
   }
 ];

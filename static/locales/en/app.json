@@ -101,5 +101,7 @@
   "comingSoon": {
     "title": "A bit like you we’re cooking something very special here.",
     "caption": "Bear with us it’s coming very soon."
-  }
+  },
+  "backToMainMenu": "Back to main menu",
+  "photography": "Photography"
 }

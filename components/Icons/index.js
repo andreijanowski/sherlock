@@ -35,14 +35,16 @@ export {
   CommunityManagement,
   Marketing,
   Clients,
-  StockManagement
+  StockManagement,
+  Photography
 } from "./navigation";
 export {
   Docs,
   Feedback,
   Notifications,
   ExpandIcon,
-  ExpandIconRestyled
+  ExpandIconRestyled,
+  SidebarExpandIcon
 } from "./mainControls";
 export {
   Orders,

@@ -9,7 +9,8 @@ import {
   IntegrationHub,
   Wholesalers,
   Marketing,
-  CommunityManagement
+  CommunityManagement,
+  Photography
 } from "icons";
 
 export const chooseIcon = icon => {
@@ -36,6 +37,8 @@ export const chooseIcon = icon => {
       return Marketing;
     case "community-management":
       return CommunityManagement;
+    case "photography":
+      return Photography;
     default:
       return () => "";
   }

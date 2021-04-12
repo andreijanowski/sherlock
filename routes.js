@@ -109,6 +109,7 @@ module.exports = routes()
     "app/communityManagement",
     `/:lng(${languagesPattern})/app/community-management`
   )
+  .add("app/photography", `/:lng(${languagesPattern})/app/photography`)
   .add("app/comingSoon", [
     `/:lng(${languagesPattern})/app/dashboard`,
     `/:lng(${languagesPattern})/app/app-manager`,

@@ -16,7 +16,17 @@ import {
   SettingsLogout,
   SettingsPassword,
   IntegrationHub,
-  Wholesalers
+  Wholesalers,
+  AppManager,
+  Clients,
+  CommunityManagement,
+  Dashboard,
+  Detectives,
+  Marketing,
+  Payments,
+  Photography,
+  Reviews,
+  StockManagement
 } from "icons";
 import {
   PARTNERS_CATEGORIES,
@@ -117,14 +127,28 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     submenuItems: generateProfileMobileSubmenu(t, lng)
   },
   {
-    icon: Catering,
-    label: t("app:catering"),
-    route: "/app/catering/month/"
+    basePath: "/app/dashboard",
+    route: "/app/dashboard/",
+    icon: Dashboard,
+    label: t("app:dashboard")
   },
   {
-    icon: PrivateEvents,
-    label: t("app:privateEvents"),
-    route: "/app/privatisation/month/"
+    icon: IntegrationHub,
+    label: t("app:integrationHub"),
+    withSubmenu: true,
+    submenuItems: generateIntegrationsMobileSubmenu(t, lng)
+  },
+  {
+    basePath: "/app/app-manager",
+    route: "/app/app-manager",
+    icon: AppManager,
+    label: t("app:appManager")
+  },
+  {
+    basePath: "/app/payments",
+    route: "/app/payments",
+    icon: Payments,
+    label: t("app:payments")
   },
   {
     icon: Delivery,
@@ -137,16 +161,62 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     route: "/app/reservation/reservations/"
   },
   {
-    icon: IntegrationHub,
-    label: t("app:integrations"),
-    withSubmenu: true,
-    submenuItems: generateIntegrationsMobileSubmenu(t, lng)
+    icon: Catering,
+    label: t("app:catering"),
+    route: "/app/catering/month/"
+  },
+  {
+    icon: PrivateEvents,
+    label: t("app:privateEvents"),
+    route: "/app/privatisation/month/"
+  },
+  {
+    basePath: "/app/reviews",
+    route: "/app/reviews/",
+    icon: Reviews,
+    label: t("app:reviews")
+  },
+  {
+    basePath: "/app/detectives",
+    route: "/app/detectives/",
+    icon: Detectives,
+    label: t("app:detectives")
+  },
+  {
+    basePath: "/app/community-management",
+    route: "/app/community-management/",
+    icon: CommunityManagement,
+    label: t("app:manageIntegrations.community_management")
+  },
+  {
+    basePath: "/app/marketing",
+    route: "/app/marketing/",
+    icon: Marketing,
+    label: t("app:adsAndMarketing")
+  },
+  {
+    basePath: "/app/photography",
+    route: "/app/photography/",
+    icon: Photography,
+    label: t("app:photography")
+  },
+  {
+    basePath: "/app/clients",
+    route: "/app/clients/",
+    icon: Clients,
+    label: t("app:clients")
   },
   {
     icon: Wholesalers,
     label: t("app:wholesaler"),
     withSubmenu: true,
     submenuItems: generateWholesalersMobileSubmenu(t, lng)
+  },
+  {
+    basePath: "/app/stock-management",
+    route: "/app/stock-management/",
+    icon: StockManagement,
+    label: t("app:stockManagement")
   },
   {
     icon: Subscriptions,

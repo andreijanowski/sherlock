@@ -28,6 +28,7 @@ services:
       - STAGING_AUTH
       - COMMUNITY_MANAGEMENT_TYPEFORM_ID
       - MARKETING_TYPEFORM_ID
+      - PHOTOGRAPHY_TYPEFORM_ID
     networks:
       - frontend
     expose:
