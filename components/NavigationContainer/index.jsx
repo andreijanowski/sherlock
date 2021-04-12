@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import { bool, func, string, arrayOf, shape } from "prop-types";
-import { useSelector, connect } from "react-redux";
+import { connect } from "react-redux";
 
 import { NavBar, Menu, MobileNav } from "components";
 import { setNestedMenuVisibility } from "actions/app";
@@ -11,12 +11,9 @@ const NavigationContainer = ({
   menuItems,
   t,
   lng,
-  updateNestedMenuVisibility
+  updateNestedMenuVisibility,
+  isNestedMenuVisible
 }) => {
-  const isNestedMenuVisible = useSelector(state =>
-    state.getIn(["app", "isNestedMenuVisible"])
-  );
-
   const toggleNestedMenu = useCallback(() => {
     updateNestedMenuVisibility(!isNestedMenuVisible);
   }, [isNestedMenuVisible, updateNestedMenuVisibility]);
@@ -57,6 +54,7 @@ NavigationContainer.propTypes = {
   mainIcon: string,
   t: func.isRequired,
   lng: string.isRequired,
+  isNestedMenuVisible: bool.isRequired,
   updateNestedMenuVisibility: func.isRequired
 };
 
@@ -67,6 +65,8 @@ NavigationContainer.defaultProps = {
 };
 
 export default connect(
-  null,
+  state => ({
+    isNestedMenuVisible: state.getIn(["app", "isNestedMenuVisible"])
+  }),
   { updateNestedMenuVisibility: setNestedMenuVisibility }
 )(NavigationContainer);
