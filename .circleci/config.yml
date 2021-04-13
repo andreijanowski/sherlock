@@ -134,7 +134,7 @@ jobs:
           name: Install AWSCLI
           command: |
             sudo apt install -qq -y python python-pip python-dev
-            sudo pip install awscli
+            sudo pip install awscli==1.19.23
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
