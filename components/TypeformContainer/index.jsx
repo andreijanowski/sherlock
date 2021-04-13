@@ -7,10 +7,9 @@ import { Container } from "./styled";
 
 const TypeformContainer = ({ formId }) => {
   const containerRef = useRef(null);
-  console.log(formId);
   useEffect(() => {
     if (containerRef.current) {
-      createWidget(formId, { container: containerRef.current });
+      createWidget(atob(formId), { container: containerRef.current });
     }
   }, [formId]);
   return <Container ref={containerRef} />;
