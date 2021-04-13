@@ -9,6 +9,7 @@ import { getInitialValues } from "sections/profile/contactInformation/utils";
 import { fetchProfileBusiness } from "actions/users";
 import { setCurrentBusiness } from "actions/app";
 import ProfileLayout from "sections/profile/Layout";
+import { addProtocol } from "utils/urls";
 
 const namespaces = ["contactInformation", "app", "publishModal", "forms"];
 
@@ -39,10 +40,11 @@ class ContactInformation extends PureComponent {
         phoneCountry && phoneCountry.value
           ? phoneCountry.value.code
           : undefined,
-      website,
+      website: addProtocol(website),
       facebook,
       instagram
     };
+
     return updateBusiness(businessId, requestValues);
   };
 

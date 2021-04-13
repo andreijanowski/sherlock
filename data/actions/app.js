@@ -5,12 +5,18 @@ import {
   SET_ORDERS_BADGE_NUMBER,
   SET_RESERVATIONS_BADGE_NUMBER,
   SET_INSTANCE_UUID,
-  TOGGLE_PLAY_NOTIFICATION
+  TOGGLE_PLAY_NOTIFICATION,
+  SET_NESTED_MENU_VISIBILITY
 } from "types/app";
 
 export const pathChanged = path => ({
   type: PATH_CHANGED,
   payload: { path }
+});
+
+export const setNestedMenuVisibility = visible => ({
+  type: SET_NESTED_MENU_VISIBILITY,
+  payload: { visible }
 });
 
 export const setCurrentBusiness = id => ({

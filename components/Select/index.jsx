@@ -1,14 +1,15 @@
 import { shape, arrayOf, func, string, bool } from "prop-types";
 import Downshift from "downshift";
 import { LoadingIndicator } from "components";
-import { ExpandIcon } from "icons";
+import { ExpandIcon, ExpandIconRestyled } from "icons";
 import {
   ToggleButtonWrapper,
   Items,
   Item,
   Avatar,
   Action,
-  ItemsWrapper
+  ItemsWrapper,
+  ButtonLabel
 } from "./styled";
 
 const Select = ({
@@ -17,7 +18,8 @@ const Select = ({
   onChange,
   bottomAction,
   withImage,
-  ButtonComponent
+  ButtonComponent,
+  restyled
 }) => (
   <Downshift
     id="select-single"
@@ -37,10 +39,13 @@ const Select = ({
         {ButtonComponent ? (
           <ButtonComponent {...getToggleButtonProps()} />
         ) : (
-          <ToggleButtonWrapper {...getToggleButtonProps({ withImage })}>
+          <ToggleButtonWrapper
+            {...getToggleButtonProps({ withImage })}
+            restyled={restyled}
+          >
             {withImage && <Avatar src={value.src} />}
-            {value.label}
-            <ExpandIcon />
+            <ButtonLabel>{value.label}</ButtonLabel>
+            {restyled ? <ExpandIconRestyled /> : <ExpandIcon />}
             {!value.value && <LoadingIndicator />}
           </ToggleButtonWrapper>
         )}
@@ -85,6 +90,7 @@ Select.propTypes = {
   onChange: func.isRequired,
   withImage: bool,
   ButtonComponent: func,
+  restyled: bool,
   bottomAction: shape({
     onClick: func,
     text: string
@@ -94,7 +100,8 @@ Select.propTypes = {
 Select.defaultProps = {
   bottomAction: null,
   withImage: false,
-  ButtonComponent: null
+  ButtonComponent: null,
+  restyled: false
 };
 
 export default Select;

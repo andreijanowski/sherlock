@@ -1,19 +1,22 @@
 import {
-  ProfileIcon,
+  Restaurant,
   SettingsIcon,
   Catering,
   Subscriptions,
-  Privatisations,
-  Reservations,
+  PrivateEvents,
+  Bookings,
   Delivery,
-  Integrations,
-  Wholesalers
+  IntegrationHub,
+  Wholesalers,
+  Marketing,
+  CommunityManagement,
+  Photography
 } from "icons";
 
 export const chooseIcon = icon => {
   switch (icon) {
     case "profile":
-      return ProfileIcon;
+      return Restaurant;
     case "settings":
       return SettingsIcon;
     case "catering":
@@ -23,13 +26,19 @@ export const chooseIcon = icon => {
     case "subscriptions":
       return Subscriptions;
     case "integrations":
-      return Integrations;
+      return IntegrationHub;
     case "wholesalers":
       return Wholesalers;
-    case "privatisations":
-      return Privatisations;
+    case "privatisation":
+      return PrivateEvents;
     case "reservation":
-      return Reservations;
+      return Bookings;
+    case "marketing":
+      return Marketing;
+    case "community-management":
+      return CommunityManagement;
+    case "photography":
+      return Photography;
     default:
       return () => "";
   }

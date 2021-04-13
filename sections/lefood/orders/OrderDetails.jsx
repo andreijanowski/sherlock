@@ -126,8 +126,21 @@ const OrderDetails = ({
               ))}
           <OrderDetail
             {...{
-              name: t("delivery"),
-              price: orderDetails.getIn(["attributes", "shippingCostCents"]),
+              name: t("deliveryForCustomer"),
+              price: orderDetails.getIn([
+                "attributes",
+                "shippingCostForCustomerCents"
+              ]),
+              currency: orderDetails.getIn(["attributes", "currency"])
+            }}
+          />
+          <OrderDetail
+            {...{
+              name: t("deliveryForBusiness"),
+              price: orderDetails.getIn([
+                "attributes",
+                "shippingCostForBusinessCents"
+              ]),
               currency: orderDetails.getIn(["attributes", "currency"])
             }}
           />

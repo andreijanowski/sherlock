@@ -1,13 +1,8 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
-export const Wrapper = styled(Flex).attrs(p => ({
-  width: [
-    1,
-    p.withMenu ? "calc(100% - 241px)" : "calc(100% - 80px)",
-    p.withMenu ? "calc(100% - 321px)" : "calc(100% - 80px)",
-    p.withMenu ? "calc(100% - 361px)" : "calc(100% - 80px)"
-  ],
+export const Wrapper = styled(Flex).attrs(() => ({
+  width: [1, "calc(100% - 300px)"],
   flexDirection: "column",
   p: 3,
   mt: [60, 0]
@@ -43,19 +38,21 @@ export const MainIconWrapper = styled(Flex).attrs(() => ({
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     display: flex;
     height: 32px;
+    font-size: 32px;
     background-color: rgb(${p => p.theme.colors.blue});
     border-radius: 24px;
     box-shadow: 0 3px 8px 0 rgba(${p => p.theme.colors.blue}, 0.48);
-
-    path,
-    circle,
-    rect {
-      fill: rgb(${p => p.theme.colors.white});
-      stroke: rgb(${p => p.theme.colors.white});
-    }
   }
   @media (min-width: ${p => p.theme.breakpoints[2]}) {
     height: 48px;
+    font-size: 48px;
+  }
+
+  svg .primary {
+    color: rgb(${p => p.theme.colors.white});
+  }
+  svg .secondary {
+    color: rgb(${p => p.theme.colors.menuDarkBlue});
   }
 `;
 
@@ -64,6 +61,8 @@ export const Header = styled(Flex).attrs(() => ({
   ml: [0, 3],
   my: 0
 }))`
+  display: flex;
+  align-items: center;
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f16};
   @media (min-width: ${p => p.theme.breakpoints[0]}) {

@@ -1,23 +1,17 @@
 import { string, bool, arrayOf, shape, func } from "prop-types";
 import { Flex } from "@rebass/grid";
 
-import { Button, Link, Select } from "components";
-import { Wrapper, Items, Item } from "./styled";
+import { Button, Link } from "components";
+import MenuArrowIcon from "components/MenuArrowIcon";
+import { Items, Item } from "./styled";
 
-const Menu = ({ lng, menuItems, select, t }) => (
-  <Wrapper>
-    {select && (
-      <Flex px={3} py={4} width={1}>
-        <Select
-          value={select.value}
-          items={select.items}
-          onChange={select.handleChange}
-          bottomAction={select.bottomAction}
-          withImage={select.withImage}
-        />
-      </Flex>
-    )}
+const Menu = ({ lng, toggleNestedMenu, menuItems, t }) => (
+  <>
     <Items>
+      <Item bigPadding onClick={toggleNestedMenu}>
+        <MenuArrowIcon back />
+        <span>{t("app:backToMainMenu")}</span>
+      </Item>
       {menuItems.map(i => {
         const isPublishBusinessButton =
           i.label === t("app:manageProfile.publish");
@@ -59,7 +53,7 @@ const Menu = ({ lng, menuItems, select, t }) => (
         );
       })}
     </Items>
-  </Wrapper>
+  </>
 );
 
 Menu.propTypes = {
@@ -73,11 +67,7 @@ Menu.propTypes = {
     })
   ).isRequired,
   t: func.isRequired,
-  select: shape()
-};
-
-Menu.defaultProps = {
-  select: null
+  toggleNestedMenu: func.isRequired
 };
 
 export default Menu;

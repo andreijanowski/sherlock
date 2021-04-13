@@ -87,3 +87,4 @@ export {
 } from "./Slider/styled";
 export { default as ServiceStatusCheckbox } from "./ServiceStatusCheckbox";
 export { default as Tooltip } from "./Tooltip";
+export { default as BusinessSelect } from "./BusinessSelect";

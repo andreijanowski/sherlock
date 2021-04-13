@@ -103,4 +103,19 @@ module.exports = routes()
   .add("app/stripeOauth", `/:lng(${languagesPattern})/stripe-oauth`)
   .add("app/subscriptions", `/:lng(${languagesPattern})/app/subscriptions`)
   .add("app/integrations", `/:lng(${languagesPattern})/app/integrations`)
-  .add("app/wholesalers", `/:lng(${languagesPattern})/app/wholesalers`);
+  .add("app/wholesalers", `/:lng(${languagesPattern})/app/wholesalers`)
+  .add("app/marketing", `/:lng(${languagesPattern})/app/marketing`)
+  .add(
+    "app/communityManagement",
+    `/:lng(${languagesPattern})/app/community-management`
+  )
+  .add("app/photography", `/:lng(${languagesPattern})/app/photography`)
+  .add("app/comingSoon", [
+    `/:lng(${languagesPattern})/app/dashboard`,
+    `/:lng(${languagesPattern})/app/app-manager`,
+    `/:lng(${languagesPattern})/app/payments`,
+    `/:lng(${languagesPattern})/app/reviews`,
+    `/:lng(${languagesPattern})/app/detectives`,
+    `/:lng(${languagesPattern})/app/clients`,
+    `/:lng(${languagesPattern})/app/stock-management`
+  ]);

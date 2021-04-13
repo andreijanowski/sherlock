@@ -19,7 +19,7 @@ const SubItem = ({
 
   return !withSubmenu ? (
     <Link {...{ lng, route }}>
-      <Flex mb={4}>
+      <Flex align="center">
         <IconWrapper dark>
           <Icon />
         </IconWrapper>
@@ -28,7 +28,7 @@ const SubItem = ({
     </Link>
   ) : (
     <Flex
-      mb={4}
+      align="center"
       onClick={() => setIsSubmenuOpen(prevIsSubmenuOpen => !prevIsSubmenuOpen)}
     >
       <IconWrapper dark>
@@ -42,7 +42,7 @@ const SubItem = ({
         }}
       >
         <Flex
-          mb={4}
+          align="center"
           onClick={() =>
             setIsSubmenuOpen(prevIsSubmenuOpen => !prevIsSubmenuOpen)
           }
@@ -56,7 +56,7 @@ const SubItem = ({
           submenuItems.map(item =>
             item.route ? (
               <Link {...{ lng, route: item.route, key: item.label }}>
-                <Flex mb={4} onClick={() => toggleMenu(false)}>
+                <Flex align="center" onClick={() => toggleMenu(false)}>
                   <IconWrapper dark noFill>
                     {item.SubmenuIcon && <item.SubmenuIcon />}
                   </IconWrapper>
@@ -64,7 +64,7 @@ const SubItem = ({
                 </Flex>
               </Link>
             ) : (
-              <Flex mb={4} key={item.label} onClick={item.onClick}>
+              <Flex align="center" key={item.label} onClick={item.onClick}>
                 <IconWrapper dark noFill>
                   {item.SubmenuIcon && <item.SubmenuIcon />}
                 </IconWrapper>

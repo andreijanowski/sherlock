@@ -22,9 +22,30 @@ export {
   SettingsBasicInfo,
   SettingsLogout,
   Integrations,
-  Wholesalers
+  Wholesalers,
+  Restaurant,
+  Dashboard,
+  IntegrationHub,
+  AppManager,
+  Payments,
+  Bookings,
+  PrivateEvents,
+  Reviews,
+  Detectives,
+  CommunityManagement,
+  Marketing,
+  Clients,
+  StockManagement,
+  Photography
 } from "./navigation";
-export { Docs, Feedback, Notifications, ExpandIcon } from "./mainControls";
+export {
+  Docs,
+  Feedback,
+  Notifications,
+  ExpandIcon,
+  ExpandIconRestyled,
+  SidebarExpandIcon
+} from "./mainControls";
 export {
   Orders,
   Time,

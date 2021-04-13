@@ -107,3 +107,47 @@ export const ExpandIcon = () => (
     </svg>
   </span>
 );
+
+export const ExpandIconRestyled = () => (
+  <span className="ExpandIcon">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="12"
+      height="8"
+      viewBox="0 0 10 6"
+    >
+      <path
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M1 1l4 4 4-4"
+      />
+    </svg>
+  </span>
+);
+
+export const SidebarExpandIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
+  >
+    <defs>
+      <style>{`
+        .svg-sidebar-expand-cls-1 {
+          fill: none;
+          stroke: currentColor;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          stroke-width: 8px;
+        }
+      `}</style>
+    </defs>
+    <polyline
+      className="svg-sidebar-expand-cls-1"
+      points="49.52 42.14 62.48 56 49.7 69.86"
+    />
+  </svg>
+);

@@ -1,151 +1,122 @@
 import styled from "styled-components";
-import { Flex, Box } from "@rebass/grid";
 
-export const Wrapper = styled(Flex).attrs(() => ({
-  width: 80,
-  flexDirection: "column",
-  alignItems: "center",
-  py: 4
-}))`
-  position: relative;
-  z-index: 100;
+const SIDEBAR_WIDTH = 300;
+
+export const Wrapper = styled.div`
+  background: white;
+  border-right: 1px solid rgb(${p => p.theme.colors.greyBorder});
+  padding: 0 10px;
+  width: ${SIDEBAR_WIDTH}px;
   min-height: 100vh;
-  background-color: rgb(${p => p.theme.colors.white});
+  overflow-x: hidden;
 `;
 
-export const Logo = styled.img.attrs(() => ({
-  src: "/static/LogoFoodetectiveSmall.svg"
-}))`
-  width: 24px;
-  height: 32px;
+export const SelectWrapper = styled.div`
+  margin: 35px 0;
 `;
 
-export const LogoWrapper = styled(Flex).attrs(() => ({
-  alignItems: "center",
-  justifyContent: "center",
-  mb: 4,
-  width: 48
-}))`
-  height: 48px;
-  border-radius: 24px;
-  box-shadow: 0 3px 8px 0 rgba(${p => p.theme.colors.dark}, 0.16);
+export const TransitionContainer = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0 -10px;
 `;
 
-export const Item = styled(Flex).attrs(() => ({
-  alignItems: "center",
-  justifyContent: "center",
-  width: 40,
-  mb: 3
-}))`
-  position: relative;
-  height: 40px;
-  border-radius: 20px;
+export const NavTransitionContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+  width: 100%;
+  transition: max-width 0.3s;
+  flex: none;
 
-  > nav {
-    display: none;
+  &.rightSlide-enter {
+    max-width: 0;
+    white-space: nowrap;
   }
 
-  path,
-  circle,
-  rect {
-    fill: rgb(${p => (p.active ? p.theme.colors.blue : p.theme.colors.dark)});
-    stroke: rgb(${p => (p.active ? p.theme.colors.blue : p.theme.colors.dark)});
+  &.rightSlide-enter-active {
+    max-width: 100%;
   }
 
-  &:hover {
-    > nav {
-      display: flex;
-    }
+  &.rightSlide-exit {
+    max-width: 100%;
+    white-space: nowrap;
+  }
 
-    ${p =>
-      !p.inactive &&
-      `
-    background-color: rgb(${p.theme.colors.dark});
-    box-shadow: 0 2px 6px 0 rgba(${p.theme.colors.dark}, 0.48);
-
-    path,
-    circle,
-    rect {
-      stroke: rgb(${p.theme.colors.white});
-      fill: rgb(${p.theme.colors.white});
-    }
-    `}
+  &.rightSlide-exit-active {
+    max-width: 0;
   }
 `;
 
-export const Icon = styled(Flex).attrs(() => ({
-  width: 40,
-  alignItems: "center",
-  justifyContent: "center"
-}))`
+export const NavList = styled.ul`
+  width: ${SIDEBAR_WIDTH}px;
+  padding: 0 10px;
+  margin: 0;
+`;
+
+export const ChildrenWrapper = styled.div`
+  width: 100%;
+  padding: 0 10px;
+  flex: none;
+`;
+
+export const NavItem = styled.li`
+  list-style: none;
+  &:not(:last-child) {
+    border-bottom: 1px solid rgb(${p => p.theme.colors.greyBorder});
+  }
+`;
+
+export const NavItemIcon = styled.span`
+  display: inline-flex;
   position: absolute;
-  top: 0;
   left: 0;
-  z-index: 3;
-  height: 40px;
-  border-radius: 20px;
-  cursor: pointer;
-  ${p => p.inactive && "opacity: 0.5;"}
-`;
-
-export const SubitemsWrapper = styled(Flex).attrs(() => ({ pl: 3, as: "nav" }))`
-  position: absolute;
-  left: 100%;
-  z-index: 2;
-  ${p => p.top !== undefined && `top: ${p.top}px;`}
-
-  &:after {
-    position: absolute;
-    top: ${p =>
-      p.arrowTop !== undefined ? `${p.arrowTop}px` : "calc(50% - 20px)"};
-    left: -20px;
-    z-index: 2;
-    width: 40px;
-    height: 40px;
-    transform: rotate(45deg);
-    content: "";
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 55px;
+  justify-content: center;
+  svg .primary {
+    color: rgb(${p => p.theme.colors.bombay});
+  }
+  svg .secondary {
+    color: rgb(${p => p.theme.colors.bombayDark});
   }
 `;
 
-export const Subitems = styled(Flex).attrs(() => ({
-  flexDirection: "column",
-  p: 2
-}))`
+export const NavItemLink = styled.a`
+  display: flex;
+  align-items: center;
   position: relative;
-  background-color: rgb(${p => p.theme.colors.dark});
-  border-radius: ${p => p.theme.radius.default};
-  box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.dark}, 0.48);
-
-  &:after {
-    position: absolute;
-    top: ${p =>
-      p.arrowTop !== undefined ? `${p.arrowTop}px` : "calc(50% - 6px)"};
-    left: -6px;
-    width: 12px;
-    height: 12px;
-    background-color: rgb(${p => p.theme.colors.dark});
-    box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.dark}, 0.48);
-    transform: rotate(45deg);
-    content: "";
-  }
-`;
-
-export const Subitem = styled(Box).attrs(() => ({ as: "a", p: 3 }))`
-  color: rgb(${p => p.theme.colors.white});
-  white-space: nowrap;
-  text-decoration: none;
-  border-radius: ${p => p.theme.radius.default};
-  cursor: pointer;
-
+  overflow: hidden;
+  padding: 12px 25px 12px 60px;
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f13};
+  line-height: 21px;
+  letter-spacing: 0.3px;
   &:hover {
-    background-color: rgb(${p => p.theme.colors.brightGray});
+    background-color: rgb(${p => p.theme.colors.background});
   }
+  color: rgb(${p => p.theme.colors.darkText});
+  ${p =>
+    p.isActive &&
+    `
+  color: rgb(${p.theme.colors.blue});
+  ${NavItemIcon} {
+      svg .primary {
+        color: rgb(${p.theme.colors.blue});
+      }
+      svg .secondary {
+        color: rgb(${p.theme.colors.menuDarkBlue});
+      }
+    }
+  `}
 `;
 
 export const BadgeNumber = styled.div`
   position: absolute;
-  right: -5px;
-  bottom: -5px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 3;
   width: 20px;
   height: 20px;
@@ -154,5 +125,5 @@ export const BadgeNumber = styled.div`
   line-height: 20px;
   text-align: center;
   background: rgb(${p => p.theme.colors.blue});
-  border-radius: 100%;
+  border-radius: 50%;
 `;

@@ -19,7 +19,8 @@ export const RawCheckbox = ({
   error,
   label,
   hasCloserText,
-  disabled
+  disabled,
+  className
 }) => {
   const checkbox = useRef();
 
@@ -34,7 +35,7 @@ export const RawCheckbox = ({
   return (
     <Flex>
       <Box>
-        <FieldWrapper as="label">
+        <FieldWrapper as="label" className={className}>
           <HiddenCheckboxInput
             {...input}
             ref={checkbox}
@@ -64,14 +65,16 @@ RawCheckbox.propTypes = {
   meta: shape(),
   error: string,
   hasCloserText: bool,
-  disabled: bool
+  disabled: bool,
+  className: string
 };
 
 RawCheckbox.defaultProps = {
   error: "",
   meta: null,
   hasCloserText: false,
-  disabled: false
+  disabled: false,
+  className: undefined
 };
 
 const Checkbox = ({ name, label, disabled }) => (

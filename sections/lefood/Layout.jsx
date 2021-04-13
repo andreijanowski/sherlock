@@ -33,7 +33,6 @@ import { Flex, Box } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Router } from "routes";
 import { convertToCents } from "utils/price";
-import prepareBusinessesList from "utils/prepareBusinessesList";
 import Tippy from "@tippy.js/react";
 import {
   connectPartnerWithOrkestro,
@@ -215,8 +214,6 @@ class LefoodLayout extends PureComponent {
       orderPeriodsLength,
       business,
       currentBusinessId,
-      businesses,
-      changeCurrentBusiness,
       updateBusiness,
       connectedWithOrkestro,
       ratio,
@@ -248,38 +245,18 @@ class LefoodLayout extends PureComponent {
     const currentSplitRatio =
       ratio && splitRatioList.find(item => item.value === ratio).label;
 
+    const isBusinessLoading =
+      !business || business.get("stripeUserId") === undefined;
+
     return (
       <AppLayout
         {...{
           mainIcon: "leFood",
-          header: t(page),
-          t,
-          lng
-        }}
-      >
-        {!business || business.get("stripeUserId") === undefined ? (
-          <>
-            <LoadingIndicator />
-          </>
-        ) : (
-          <>
-            <Box width={1} mb={3}>
-              <Flex justifyContent="space-between">
-                <Box>
-                  <Select
-                    value={{
-                      value: currentBusinessId,
-                      label:
-                        (business && business.get("name")) ||
-                        t("app:manageProfile.unnamedBusiness"),
-                      src: business && business.getIn(["logo", "url"])
-                    }}
-                    withImage
-                    items={prepareBusinessesList(t, businesses)}
-                    onChange={b => changeCurrentBusiness(b.value)}
-                  />
-                </Box>
-                <Box>
+          header: (
+            <>
+              {t(page)}
+              {!isBusinessLoading && (
+                <Box ml={3}>
                   <ServiceStatusCheckbox
                     {...{
                       t,
@@ -290,8 +267,19 @@ class LefoodLayout extends PureComponent {
                     }}
                   />
                 </Box>
-              </Flex>
-            </Box>
+              )}
+            </>
+          ),
+          t,
+          lng
+        }}
+      >
+        {isBusinessLoading ? (
+          <>
+            <LoadingIndicator />
+          </>
+        ) : (
+          <>
             {business.get("stripeCurrency") ? (
               <>
                 {business.get("stripeUserId") ? (
@@ -662,7 +650,6 @@ LefoodLayout.propTypes = {
   children: node.isRequired,
   updateBusiness: func.isRequired,
   business: shape(),
-  businesses: shape(),
   changeCurrentBusiness: func.isRequired,
   currentBusinessId: string,
   dishesLength: number,
@@ -682,7 +669,6 @@ LefoodLayout.defaultProps = {
   orderPeriodsLength: 0,
   currentBusinessId: "",
   business: null,
-  businesses: null,
   isUberAvailable: false,
   ratio: "0.0"
 };

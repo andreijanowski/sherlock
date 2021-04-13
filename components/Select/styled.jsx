@@ -6,7 +6,7 @@ export const ToggleButtonWrapper = styled(Flex).attrs(p => ({
   alignItems: "center",
   pl: p.withImage ? 48 : 3,
   pr: 40,
-  py: 2
+  py: p.restyled ? 1 : 2
 }))`
   position: relative;
   min-height: 40px;
@@ -15,12 +15,22 @@ export const ToggleButtonWrapper = styled(Flex).attrs(p => ({
   border-radius: ${p => p.theme.radius.default};
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
   appearance: none !important;
+  overflow: hidden;
 
   .ExpandIcon {
     position: absolute;
     right: 16px;
-    stroke: rgb(${p => p.theme.colors.dark});
+    stroke: rgb(${p => (p.restyled ? "0, 0, 0" : p.theme.colors.dark)});
   }
+
+  ${p =>
+    p.restyled &&
+    `
+    font-weight: ${p.theme.fontWeights.semiBold};
+    border-radius: 20px;
+    box-shadow: 0 0 5px 0 rgb(${p.theme.colors.greyBorder});
+    min-height: 35px;
+  `}
 `;
 
 export const Avatar = styled.div`
@@ -73,7 +83,7 @@ export const Items = styled(Flex).attrs(() => ({
 }))`
   position: relative;
   max-height: 250px;
-  overflow: scroll;
+  overflow: auto;
 `;
 
 export const Item = styled(Box).attrs(p => ({
@@ -84,4 +94,10 @@ export const Item = styled(Box).attrs(p => ({
   line-height: 24px;
   cursor: pointer;
   ${p => p.isActive && `background-color: rgb(${p.theme.colors.background});`}
+`;
+
+export const ButtonLabel = styled.span`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;

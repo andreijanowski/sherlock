@@ -8,9 +8,6 @@ import {
   generatePartnersMenuItems,
   PARTNERS_CATEGORIES
 } from "sections/integrations/utils";
-import prepareBusinessesList from "utils/prepareBusinessesList";
-import { setCurrentBusiness } from "actions/app";
-import { postBusiness } from "actions/businesses";
 import isServer from "utils/isServer";
 import IntegrationsList from "sections/integrations";
 
@@ -47,16 +44,7 @@ class IntegrationsPage extends PureComponent {
   };
 
   render() {
-    const {
-      t,
-      lng,
-      business,
-      businessId,
-      changeCurrentBusiness,
-      addBusiness,
-      businesses,
-      partners
-    } = this.props;
+    const { t, lng, partners } = this.props;
     const { activeTab } = this.state;
 
     const preparedPartners = partners
@@ -73,22 +61,6 @@ class IntegrationsPage extends PureComponent {
         header={t("app:integrations")}
         withMenu
         menuItems={generatePartnersMenuItems(t, activeTab)}
-        select={{
-          value: {
-            value: businessId,
-            label:
-              (business && business.get("name")) ||
-              t("app:manageProfile.unnamedBusiness"),
-            src: business && business.getIn(["logo", "url"])
-          },
-          items: prepareBusinessesList(t, businesses),
-          handleChange: b => changeCurrentBusiness(b.value),
-          bottomAction: {
-            text: t("app:manageProfile.addNewBusiness"),
-            handleClick: () => addBusiness()
-          },
-          withImage: true
-        }}
       >
         {partners && partners.size > 0 && (
           <IntegrationsList partners={preparedPartners} t={t} />
@@ -101,41 +73,18 @@ class IntegrationsPage extends PureComponent {
 IntegrationsPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  changeCurrentBusiness: func.isRequired,
-  addBusiness: func.isRequired,
-  business: shape(),
-  businessId: string,
-  businesses: shape(),
   partners: shape()
 };
 
 IntegrationsPage.defaultProps = {
-  businesses: null,
-  business: null,
-  businessId: "",
   partners: null
 };
 
 export default requireAuth(true)(
   withTranslation(namespaces)(
-    connect((state, { i18n }) => {
-      const businessData = state.getIn(["users", "currentBusiness", "data"]);
-      const business = businessData && businessData.get("businesses").first();
-
-      return {
-        lng: (i18n && i18n.language) || "en",
-        business: business && business.get("attributes"),
-        businessId: business && business.get("id"),
-        businesses: state.getIn([
-          "users",
-          "profileBusinesses",
-          "data",
-          "businesses"
-        ]),
-        changeCurrentBusiness: setCurrentBusiness,
-        addBusiness: postBusiness,
-        partners: state.getIn(["partners", "data", "partners", "partners"])
-      };
-    })(IntegrationsPage)
+    connect((state, { i18n }) => ({
+      lng: (i18n && i18n.language) || "en",
+      partners: state.getIn(["partners", "data", "partners", "partners"])
+    }))(IntegrationsPage)
   )
 );

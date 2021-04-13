@@ -1,9 +1,9 @@
 {
   "controlCenter": "Control Center (soon)",
-  "reservations": "Reservations",
+  "reservations": "Bookings",
   "takeAway": "Take Away",
   "bookings": "Bookings (soon)",
-  "delivery": "Delivery / Take away",
+  "delivery": "Delivery & Take away",
   "catering": "Catering",
   "privatisations": "Privatisations",
   "integrations": "Integrations",
@@ -25,7 +25,8 @@
     "publish": "Publish business",
     "published": "Published",
     "unPublish": "Unpublish business",
-    "waitingForApproval": "Waiting for approval"
+    "waitingForApproval": "Waiting for approval",
+    "myProfile": "My profile"
   },
   "manageIntegrations": {
     "pos": "POS",
@@ -85,5 +86,22 @@
     "hygiene": "Hygiene",
     "other": "Other",
     "allProducts": "All products"
-  }
+  },
+  "dashboard": "Dashboard",
+  "integrationHub": "Integration Hub",
+  "appManager": "App Manager",
+  "payments": "Payments",
+  "privateEvents": "Private Events",
+  "reviews": "Reviews",
+  "detectives": "Detectives",
+  "adsAndMarketing": "Ads & Marketing",
+  "clients": "Clients",
+  "settings": "Settings",
+  "stockManagement": "Stock Management",
+  "comingSoon": {
+    "title": "A bit like you we’re cooking something very special here.",
+    "caption": "Bear with us it’s coming very soon."
+  },
+  "backToMainMenu": "Back to main menu",
+  "photography": "Photography"
 }

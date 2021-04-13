@@ -9,8 +9,7 @@ const AppLayout = ({
   mainIcon,
   header,
   t,
-  lng,
-  select
+  lng
 }) => (
   <Flex flexDirection={["column", "row"]} width={1} id="app">
     <NavigationContainer
@@ -18,7 +17,6 @@ const AppLayout = ({
       lng={lng}
       withMenu={withMenu}
       menuItems={menuItems}
-      select={select}
     />
     <MainApp
       withMenu={withMenu}
@@ -44,18 +42,16 @@ AppLayout.propTypes = {
     })
   ),
   mainIcon: string,
-  header: string,
+  header: node,
   t: func.isRequired,
-  lng: string.isRequired,
-  select: shape()
+  lng: string.isRequired
 };
 
 AppLayout.defaultProps = {
   menuItems: null,
   withMenu: false,
   mainIcon: null,
-  header: null,
-  select: null
+  header: null
 };
 
 export default AppLayout;

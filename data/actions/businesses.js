@@ -15,7 +15,7 @@ import {
   FETCH_BUSINESS_SETUP_INTENT_REQUEST
 } from "types/businesses";
 
-export const postBusiness = () => ({
+export const postBusiness = onSuccess => ({
   type: POST_BUSINESS_REQUEST,
   payload: {
     method: "POST",
@@ -26,7 +26,7 @@ export const postBusiness = () => ({
       }
     }
   },
-  meta: { thunk: true }
+  meta: { thunk: true, onSuccess }
 });
 
 export const patchBusiness = (id, values, updateImmediatly) => ({
