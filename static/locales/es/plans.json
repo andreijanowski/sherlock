@@ -36,25 +36,40 @@
   "billingYearly": "Facturación anual (ahorre hasta un 30%)",
   "billingMonthly": "Facturación mensual",
   "options": {
+    "adsMarketing": "Anuncios y Marketing",
+    "appManager": "Control de aplicaciones",
+    "bookings": "Reservaciones",
+    "catering": "Abastecimiento",
+    "clients": "Clientela",
+    "communityManagement": "Gestión Comunitaria",
+    "dashboard": "Tablero",
+    "deliveryManagement": "Gestión de Entrega",
+    "deliveryTakeAway": "Entrega y Llevar",
+    "detectives": "Detectives",
+    "enterprise": "¿Eres mayorista, fabricante, distribuidor o multinacional? Permítanos hacerle una oferta a medida. Reserve uno de nuestros especialistas hoy.",
+    "integrationHub": "Centro de Integración",
+    "myProfile": "Mi Perfil",
+    "payments": "Pagos",
+    "photography": "Fotografía",
+    "privateEvents": "Eventos Privados",
+    "reviews": "Reseñas",
+    "smartBackend": "Back-end inteligente",
+    "stockManagement": "Gestion de Stocks",
+    "wholesalers": "Mayoristas",
+
     "website": "Página web",
     "widget": "Widget",
     "mobileApp": "Aplicación de teléfono móvil",
     "reservations": "Reservaciones",
     "takeAway": "Para llevar",
     "paidBooking": "Reserva",
-    "bookings": "Reservas",
-    "catering": "Abastecimiento",
     "privatisation": "Privatización",
     "delivery": "Entrega / para llevar",
     "digitalMarketing": "Publicidad digital",
     "redirections": "Redirecciones",
     "integrations": "Integraciones",
     "widgets": "Widgets",
-    "dashboard": "Dashboard",
-    "reviews": "Reviews",
     "suppliers": "Proveedores",
-    "payments": "Payments",
-    "wholesalers": "Wholesalers",
     "visibility": "Premium Visibility"
   },
   "basic": {
@@ -102,6 +117,7 @@
       "year": "",
       "beta": ""
     },
-    "buttonText": "Book a Meeting"
+    "buttonText": "Book a Meeting",
+    "buttonText2": "Reserve una Demo"
   }
 }

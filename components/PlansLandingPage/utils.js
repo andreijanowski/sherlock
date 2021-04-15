@@ -1,122 +1,169 @@
 export const generatePlanOptionsList = (planName, t) => {
   switch (planName) {
-    case "premium":
-    case "special":
+    case "basic":
       return [
         {
-          name: t("plans:options.delivery"),
-          discount: "0%"
+          name: t("plans:options.myProfile")
         },
         {
-          name: t("plans:options.takeAway"),
-          discount: "0%"
+          name: t("plans:options.integrationHub")
         },
         {
-          name: t("plans:options.catering"),
-          discount: "0%"
+          name: t("plans:options.deliveryManagement")
         },
         {
-          name: t("plans:options.privatisation"),
-          discount: "0%"
+          discount: "10%",
+          name: t("plans:options.deliveryTakeAway")
         },
         {
-          name: t("plans:options.reservations"),
-          discount: "0%"
+          discount: "€1",
+          name: t("plans:options.bookings")
         },
         {
-          name: t("plans:options.payments"),
-          discount: ""
+          discount: "10%",
+          name: t("plans:options.catering")
         },
         {
-          name: t("plans:options.reviews")
+          discount: "10%",
+          name: t("plans:options.privateEvents")
+        },
+        {
+          name: t("plans:options.communityManagement")
+        },
+        {
+          name: t("plans:options.adsMarketing")
+        },
+        {
+          name: t("plans:options.photography")
         },
         {
           name: t("plans:options.wholesalers")
-        },
-        {
-          name: t("plans:options.widgets")
-        },
-        {
-          name: t("plans:options.integrations")
-        },
-        {
-          name: t("plans:options.dashboard")
-        },
-        {
-          name: t("plans:options.visibility")
         }
       ];
     case "essential":
       return [
         {
-          name: t("plans:options.delivery"),
-          discount: "5%"
-        },
-        {
-          name: t("plans:options.takeAway"),
-          discount: "5%"
-        },
-        {
-          name: t("plans:options.catering"),
-          discount: "5%"
-        },
-        {
-          name: t("plans:options.privatisation"),
-          discount: "5%"
-        },
-        {
-          name: t("plans:options.reservations"),
-          discount: "€0,5"
-        },
-        {
-          name: t("plans:options.payments"),
-          discount: ""
-        },
-        {
-          name: t("plans:options.reviews")
-        },
-        {
-          name: t("plans:options.wholesalers")
-        },
-        {
-          name: t("plans:options.widgets")
-        },
-        {
-          name: t("plans:options.integrations")
+          name: t("plans:options.myProfile")
         },
         {
           name: t("plans:options.dashboard")
-        }
-      ];
-    case "basic":
-      return [
-        {
-          name: t("plans:options.delivery"),
-          discount: "10%"
         },
         {
-          name: t("plans:options.takeAway"),
-          discount: "10%"
+          name: t("plans:options.integrationHub")
         },
         {
-          name: t("plans:options.catering"),
-          discount: "10%"
+          name: t("plans:options.deliveryManagement")
         },
         {
-          name: t("plans:options.privatisation"),
-          discount: "10%"
+          name: t("plans:options.appManager")
         },
         {
-          name: t("plans:options.reservations"),
-          discount: "€1"
+          name: t("plans:options.payments")
+        },
+        {
+          discount: "5%",
+          name: t("plans:options.deliveryTakeAway")
+        },
+        {
+          discount: "€0.5",
+          name: t("plans:options.bookings")
+        },
+        {
+          discount: "5%",
+          name: t("plans:options.catering")
+        },
+        {
+          discount: "5%",
+          name: t("plans:options.privateEvents")
         },
         {
           name: t("plans:options.reviews")
         },
         {
+          name: t("plans:options.detectives")
+        },
+        {
+          name: t("plans:options.communityManagement")
+        },
+        {
+          name: t("plans:options.adsMarketing")
+        },
+        {
+          name: t("plans:options.photography")
+        },
+        {
+          name: t("plans:options.clients")
+        },
+        {
           name: t("plans:options.wholesalers")
         }
       ];
+    case "premium":
+      return [
+        {
+          name: t("plans:options.myProfile")
+        },
+        {
+          name: t("plans:options.dashboard")
+        },
+        {
+          name: t("plans:options.integrationHub")
+        },
+        {
+          name: t("plans:options.deliveryManagement")
+        },
+        {
+          name: t("plans:options.appManager")
+        },
+        {
+          discount: "0%",
+          name: t("plans:options.payments")
+        },
+        {
+          discount: "0%",
+          name: t("plans:options.deliveryTakeAway")
+        },
+        {
+          discount: "0%",
+          name: t("plans:options.bookings")
+        },
+        {
+          discount: "0%",
+          name: t("plans:options.catering")
+        },
+        {
+          discount: "0%",
+          name: t("plans:options.privateEvents")
+        },
+        {
+          name: t("plans:options.reviews")
+        },
+        {
+          name: t("plans:options.detectives")
+        },
+        {
+          name: t("plans:options.communityManagement")
+        },
+        {
+          name: t("plans:options.adsMarketing")
+        },
+        {
+          name: t("plans:options.photography")
+        },
+        {
+          name: t("plans:options.clients")
+        },
+        {
+          name: t("plans:options.wholesalers")
+        },
+        {
+          name: t("plans:options.stockManagement")
+        },
+        {
+          name: t("plans:options.smartBackend")
+        }
+      ];
+    case "special":
     default:
       return [];
   }

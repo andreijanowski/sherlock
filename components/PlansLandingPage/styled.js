@@ -10,6 +10,11 @@ const alignCenterMobile = css`
   }
 `;
 
+export const Description = styled.div`
+  color: #2a2f38cc;
+  line-height: 1.6;
+`;
+
 export const NameWrapper = styled(Flex).attrs(() => ({
   flexDirection: "row",
   m: "-2px",
@@ -121,7 +126,7 @@ export const Service = styled(Flex).attrs(() => ({ mb: 1 }))`
   font-weight: ${p => (p.isHighlighted ? 700 : p.theme.fontWeights.medium)};
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 1.5;
-  text-align: center;
+  text-align: ${p => p.textAlign || "center"};
   ${p => p.tooltipImage && "cursor:pointer;"}
 `;
 

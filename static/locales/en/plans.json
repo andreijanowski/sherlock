@@ -36,25 +36,40 @@
   "billingYearly": "Billing Yearly (save 30%)",
   "billingMonthly": "Billing Monthly",
   "options": {
+    "adsMarketing": "Ads & Marketing",
+    "appManager": "App Manager",
+    "bookings": "Bookings",
+    "catering": "Catering",
+    "clients": "Clients",
+    "communityManagement": "Community Management",
+    "dashboard": "Dashboard",
+    "deliveryManagement": "Delivery Management",
+    "deliveryTakeAway": "Delivery & Take away",
+    "detectives": "Detectives",
+    "enterprise": "You’re a Wholesaler, a Manufacturer, a Distributor or a Multinational? Let us tailor-made you an offer. Book one of our specialists today.",
+    "integrationHub": "Integration Hub",
+    "myProfile": "My Profile",
+    "payments": "Payments",
+    "photography": "Photography",
+    "privateEvents": "Private Events",
+    "reviews": "Reviews",
+    "smartBackend": "Smart Back end",
+    "stockManagement": "Stock Management",
+    "wholesalers": "Wholesalers",
+
     "website": "Webpage",
     "widget": "Widget",
     "mobileApp": "Mobile App",
     "reservations": "Reservations",
     "takeAway": "Take Away",
     "paidBooking": "Reservation",
-    "bookings": "Reservations",
-    "catering": "Catering",
     "privatisation": "Privatisation",
     "delivery": "Delivery",
     "digitalMarketing": "Digital marketing",
     "redirections": "Redirections",
     "integrations": "Integrations",
-    "reviews": "Reviews",
     "suppliers": "Suppliers",
     "widgets": "Widgets",
-    "dashboard": "Dashboard",
-    "payments": "Payments",
-    "wholesalers": "Wholesalers",
     "visibility": "Premium Visibility"
   },
 
@@ -104,6 +119,7 @@
       "year": "",
       "beta": ""
     },
-    "buttonText": "Book a Meeting"
+    "buttonText": "Book a Meeting",
+    "buttonText2": "Book a Demo"
   }
 }
