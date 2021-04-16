@@ -36,25 +36,40 @@
   "billingYearly": "Fatturazione annuale (risparmia fino al 30%)",
   "billingMonthly": "Fatturazione mensile",
   "options": {
+    "adsMarketing": "Annunci e Marketing",
+    "appManager": "Gestore delle applicazioni",
+    "bookings": "Prenotazioni",
+    "catering": "Ristorazione",
+    "clients": "Clienti",
+    "communityManagement": "Gestione della Comunità",
+    "dashboard": "Pannello di Controllo",
+    "deliveryManagement": "Gestione delle Consegne",
+    "deliveryTakeAway": "Consegna e Asporto",
+    "detectives": "Detective",
+    "enterprise": "Sei un grossista, un produttore, un distributore o una multinazionale? Lascia che ti facciamo un'offerta su misura. Prenota uno dei nostri specialisti oggi.",
+    "integrationHub": "Hub di Integrazione",
+    "myProfile": "Mio Profilo",
+    "payments": "Pagamenti",
+    "photography": "Fotografia",
+    "privateEvents": "Eventi Privati",
+    "reviews": "Recensioni",
+    "smartBackend": "Back end intelligente",
+    "stockManagement": "Gestione delle Scorte",
+    "wholesalers": "Grossisti",
+
     "website": "Pagina web",
     "widget": "widget",
     "mobileApp": "App per telefono mobile",
     "reservations": "Prenotazioni",
     "takeAway": "Da asporto",
     "paidBooking": "Prenotazione",
-    "bookings": "Prenotazioni",
-    "catering": "Catering",
     "privatisation": "Privatizzazione",
     "delivery": "Consegna / da asporto",
     "redirections": "Reindirizzamenti",
     "integrations": "Integrazioni",
     "digitalMarketing": "Marketing digitale",
     "widgets": "Widgets",
-    "dashboard": "Dashboard",
-    "reviews": "Reviews",
     "suppliers": "Fornitori",
-    "payments": "Payments",
-    "wholesalers": "Wholesalers",
     "visibility": "Premium Visibility"
   },
   "basic": {
@@ -102,6 +117,7 @@
       "year": "",
       "beta": ""
     },
-    "buttonText": "Book a Meeting"
+    "buttonText": "Book a Meeting",
+    "buttonText2": "Prenota una Demo"
   }
 }

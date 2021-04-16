@@ -3,6 +3,7 @@ import { Button } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  Description,
   MainWrapper,
   Name,
   PriceWrapper,
@@ -31,6 +32,9 @@ const Plan = ({
     buttonText = t(`plans:chosen`);
   } else if (nextPlanName !== null) {
     buttonText = t(`plans:choose`);
+  }
+  if (name === "special") {
+    buttonText = t("plans:special.buttonText2");
   }
 
   return (
@@ -85,11 +89,13 @@ const Plan = ({
           />
         </Button>
       </Flex>
-      {name !== "special" && (
-        <Box mt={[1, 5]}>
-          <List {...{ t, name, color }} />
-        </Box>
-      )}
+      <Box mt={[1, 5]}>
+        {name === "special" ? (
+          <Description>{t("plans:options.enterprise")}</Description>
+        ) : (
+          <List {...{ t, name, color, textAlign: "left" }} />
+        )}
+      </Box>
     </MainWrapper>
   );
 };

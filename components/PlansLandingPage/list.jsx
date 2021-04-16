@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Service, Design, Tooltip, Badge } from "./styled";
 import { generatePlanOptionsList } from "./utils";
 
-const List = ({ t, name: listName, color }) =>
+const List = ({ t, name: listName, color, textAlign = "center" }) =>
   generatePlanOptionsList(listName, t).map(
     ({ name, isHighlighted, isLighter, tooltipImage, discount }) => {
       const item = (
@@ -10,6 +10,7 @@ const List = ({ t, name: listName, color }) =>
           key={name}
           {...{ isHighlighted, isLighter, tooltipImage }}
           justifyContent={["center", "flex-start"]}
+          textAlign={textAlign}
         >
           {name}
           {discount && <Badge color={color}>{discount}</Badge>}

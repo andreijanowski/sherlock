@@ -36,25 +36,40 @@
   "billingYearly": "Facturation annuelle (économiser jusqu'à 30%)",
   "billingMonthly": "Facturation mensuelle",
   "options": {
+    "adsMarketing": "Annonces et Marketing",
+    "appManager": "Gestionnaire d'application",
+    "bookings": "Réservations",
+    "catering": "Service traiteur",
+    "clients": "Clients",
+    "communityManagement": "Gestionnaire de Communauté",
+    "dashboard": "Tableau de Bord",
+    "deliveryManagement": "Gestion de la Livraison",
+    "deliveryTakeAway": "Livraison et Plats à Emporter",
+    "detectives": "Détectives",
+    "enterprise": "Vous êtes un grossiste, un fabricant, un distributeur ou une multinationale? Laissez-nous vous faire une offre sur mesure. Réservez un de nos spécialistes dès aujourd'hui.",
+    "integrationHub": "Hub d'Intégration",
+    "myProfile": "Mon Profil",
+    "payments": "Paiements",
+    "photography": "Photographie",
+    "privateEvents": "Événements Privés",
+    "reviews": "Avis",
+    "smartBackend": "Back end intelligent",
+    "stockManagement": "Gestion de Stock",
+    "wholesalers": "Grossistes",
+
     "website": "Page Web",
     "widget": "Widget",
     "mobileApp": "Application mobile",
     "takeAway": "À emporter",
-    "catering": "Service traiteur",
     "delivery": "Livraisons",
     "redirections": "Redirections",
     "integrations": "Intégrations",
     "reservations": "Réservations",
     "paidBooking": "Réservation",
-    "bookings": "Réservations",
     "privatisation": "Privatisation",
     "digitalMarketing": "Le marketing numérique",
     "widgets": "Widgets",
-    "dashboard": "Tableau de Bord",
-    "reviews": "Avis",
     "suppliers": "Fournisseurs",
-    "payments": "Paiements",
-    "wholesalers": "Grossistes",
     "visibility": "Visibilité Premium"
   },
 
@@ -104,7 +119,8 @@
       "year": "",
       "beta": ""
     },
-    "buttonText": "Prendre RDV"
+    "buttonText": "Prendre RDV",
+    "buttonText2": "Réservez une Démo"
   }
  }
 
