@@ -1,3 +1,4 @@
+import { isNil } from "lodash";
 import { shape, arrayOf, func, string, bool } from "prop-types";
 import Downshift from "downshift";
 import { LoadingIndicator } from "components";
@@ -13,7 +14,7 @@ import {
 } from "./styled";
 
 const Select = ({
-  value,
+  value = {},
   items,
   onChange,
   bottomAction,
@@ -46,7 +47,7 @@ const Select = ({
             {withImage && <Avatar src={value.src} />}
             <ButtonLabel>{value.label}</ButtonLabel>
             {restyled ? <ExpandIconRestyled /> : <ExpandIcon />}
-            {!value.value && <LoadingIndicator />}
+            {isNil(value.value) && <LoadingIndicator />}
           </ToggleButtonWrapper>
         )}
         {isOpen && items.length > 0 && (
@@ -85,7 +86,13 @@ const Select = ({
 );
 
 Select.propTypes = {
-  items: arrayOf(shape()).isRequired,
+  items: arrayOf(
+    shape({
+      label: string,
+      src: string,
+      value: string
+    })
+  ).isRequired,
   value: shape().isRequired,
   onChange: func.isRequired,
   withImage: bool,

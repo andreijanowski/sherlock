@@ -1,6 +1,5 @@
 import { CONNECT_PARTNER_SUCCESS } from "types/partners";
-import { put, takeEvery, select } from "redux-saga/effects";
-
+import { all, put, takeEvery, select } from "redux-saga/effects";
 import { fetchPartners } from "actions/partners";
 
 function* fetchIntegrations() {
@@ -13,4 +12,4 @@ function* fetchIntegrations() {
   }
 }
 
-export default takeEvery(CONNECT_PARTNER_SUCCESS, fetchIntegrations);
+export default all([takeEvery(CONNECT_PARTNER_SUCCESS, fetchIntegrations)]);

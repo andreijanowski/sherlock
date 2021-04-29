@@ -15,3 +15,12 @@ export const ButtonsWrap = styled.div`
   justify-content: space-around;
   margin: 2em 0 0;
 `;
+
+export const Content = styled.div`
+  text-align: ${p => (p.center ? "center" : "")};
+`;
+
+export const Icon = styled.div`
+  margin: 0 0 1em;
+  text-align: center;
+`;
