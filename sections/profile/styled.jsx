@@ -39,3 +39,14 @@ export const TypesWrapper = styled(Flex).attrs(() => ({
 }))`
   position: relative;
 `;
+
+export const Link = styled.button`
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  color: rgb(${p => p.theme.colors.deepSkyBlue});
+`;

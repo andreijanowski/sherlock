@@ -1,5 +1,8 @@
 /* eslint-disable camelcase */
 import { all, put, takeEvery, select } from "redux-saga/effects";
+import Notifications from "react-notification-system-redux";
+import { Map } from "immutable";
+
 import {
   PATH_CHANGED,
   SET_CURRENT_BUSINESS,
@@ -12,8 +15,7 @@ import { fetchProfileBusiness } from "actions/users";
 import { fetchBusinessMembers, fetchBusinessDishes } from "actions/businesses";
 import { fetchPartners } from "actions/partners";
 import { fetchWholesalers } from "actions/wholesalers";
-import Notifications from "react-notification-system-redux";
-import { Map } from "immutable";
+import { fetchExternalServices } from "actions/externalServices";
 
 function* handlePatchChangeSaga({ payload: { path } }) {
   switch (path) {
@@ -26,9 +28,20 @@ function* handlePatchChangeSaga({ payload: { path } }) {
       const business = yield select(state =>
         state.getIn(["users", "currentBusiness", "data", "businesses"])
       );
+      const externalServices = yield select(state =>
+        state.getIn(["externalServices", "data", "services"])
+      );
+
       if (business) {
         const id = business.first().get("id");
         yield put(fetchProfileBusiness(id, false));
+      }
+
+      const shouldFetchExternalServices =
+        !externalServices && path === "/app/profile/additionalInformation";
+
+      if (shouldFetchExternalServices) {
+        yield put(fetchExternalServices());
       }
       break;
     }

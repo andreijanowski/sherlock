@@ -31,5 +31,17 @@
   "secretCodeLabel": "Secret code",
   "secretCodePlaceholder": "32543cdsSD4ewcbwt6654",
   "redirectionLinks": "Redirection Links",
-  "redirectionLinksTooltip": "Enter links to your external services/profiles"
+  "redirectionLinksTooltip": "Enter links to your external services/profiles",
+  "addExternalServiceLink": "Add a link to my profile",
+  "serviceLinkUrlPlaceholder": "Copy & paste your {{service}} url here",
+  "serviceLinkCategory": {
+    "delivery": "Delivery",
+    "booking": "Booking",
+    "food_waste": "Food waste",
+    "payment": "Payment",
+    "loyalty": "Loyalty",
+    "social_media": "Social media"
+  },
+  "servicePlaceholder": "Select service",
+  "urlPlaceholder": "Enter url"
 }

@@ -19,6 +19,7 @@ import widgets from "./widgets";
 import partners from "./partners";
 import partnersPreferred from "./partnersPreferred";
 import wholesalers from "./wholesalers";
+import externalServices from "./externalServices";
 
 export default {
   app,
@@ -41,5 +42,6 @@ export default {
   widgets,
   partners,
   partnersPreferred,
-  wholesalers
+  wholesalers,
+  externalServices
 };
