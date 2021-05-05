@@ -11,8 +11,10 @@ export const Body = styled.div`
 `;
 
 export const ButtonsWrap = styled.div`
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 16px;
   margin: 2em 0 0;
 `;
 

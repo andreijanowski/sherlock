@@ -8,6 +8,7 @@ import { Field, Form } from "react-final-form";
 import { Button, FormDropdown, FormInput, H3, Modal } from "components";
 import { connectExternalService } from "actions/externalServices";
 import { required } from "utils/validators";
+import { groupServiceLinksByCategory } from "utils/servicesUtils";
 import { Wrapper, ButtonsWrap } from "./styled";
 
 const namespaces = ["forms", "additionalInformation"];
@@ -17,6 +18,7 @@ const AddServiceLink = ({
   open,
   onClose,
   services,
+  links,
   businessId,
   addService
 }) => {
@@ -32,18 +34,47 @@ const AddServiceLink = ({
     [addService, businessId, onClose]
   );
 
-  const serviceItems = useMemo(
-    () =>
-      services
-        ? services
-            .map(service => ({
-              label: service.getIn(["attributes", "name"]),
-              value: service.get("id")
-            }))
-            .toJS()
-        : [],
-    [services]
-  );
+  const connectedServicesIds = useMemo(() => {
+    if (!links) return [];
+    const connectedIds = [];
+
+    links.forEach(link => {
+      connectedIds.push(link.getIn(["attributes", "externalServiceId"]));
+    });
+    return connectedIds;
+  }, [links]);
+
+  const serviceItems = useMemo(() => {
+    if (!services) return [];
+    const filteredServices = services.filter(
+      service => !connectedServicesIds.includes(service.get("id"))
+    );
+
+    const groupedServices = groupServiceLinksByCategory(filteredServices);
+
+    const result = [];
+    Object.keys(groupedServices).forEach(category => {
+      result.push({
+        label: t(`additionalInformation:serviceLinkCategory.${category}`),
+        items: groupedServices[category].map(
+          ({
+            id,
+            attributes: {
+              name,
+              logo: {
+                thumb: { url }
+              }
+            }
+          }) => ({
+            label: name,
+            value: id,
+            src: url
+          })
+        )
+      });
+    });
+    return result;
+  }, [connectedServicesIds, services, t]);
 
   return (
     <Modal open={open} onClose={onClose}>
@@ -93,20 +124,26 @@ AddServiceLink.propTypes = {
   onClose: func.isRequired,
   addService: func.isRequired,
   services: shape(),
+  links: shape(),
   businessId: string
 };
 
 AddServiceLink.defaultProps = {
   services: null,
+  links: null,
   businessId: null
 };
 
 const mapStateToProps = state => {
-  const services = state.getIn(["externalServices", "data", "services"]);
+  const externalServices = state.getIn(["externalServices", "data"]);
+  const services = externalServices.get("services");
+  const links = externalServices.get("links");
+
   const businessData = state.getIn(["users", "currentBusiness", "data"]);
   const business = businessData && businessData.get("businesses").first();
 
   return {
+    links,
     services,
     businessId: business && business.get("id")
   };

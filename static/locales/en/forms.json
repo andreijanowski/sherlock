@@ -153,5 +153,6 @@
     "egAccount": "e.g. Acme Corp"
   },
   "save": "Save",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "delete": "Delete"
 }

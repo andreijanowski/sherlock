@@ -13,12 +13,14 @@ import Form from "sections/profile/additionalInformation";
 import { getInitialValues } from "sections/profile/additionalInformation/utils";
 import ProfileLayout from "sections/profile/Layout";
 import { addProtocol } from "utils/urls";
-import { AddServiceLink } from "components/modals";
+import { AddServiceLink, Confirm } from "components/modals";
+import H3 from "components/H3";
 
 const namespaces = ["additionalInformation", "app", "publishModal", "forms"];
 
 const MODALS = {
-  ADD_SERVICE_LINK: "ADD_SERVICE_LINK"
+  ADD_SERVICE_LINK: "ADD_SERVICE_LINK",
+  REMOVE_SERVICE_LINK: "REMOVE_SERVICE_LINK"
 };
 
 const AdditionalInformation = ({
@@ -100,9 +102,26 @@ const AdditionalInformation = ({
     [updateServiceLink]
   );
 
-  const onServiceLinkDelete = useCallback(id => removeServiceLink(id), [
-    removeServiceLink
-  ]);
+  const onServiceLinkDelete = useCallback(
+    ({ id, name }) => {
+      const modalProps = {
+        children: (
+          <H3>{t("additionalInformation:deletePrompt", { service: name })}</H3>
+        ),
+        btnOkText: t("forms:delete"),
+        btnCancelText: t("forms:cancel"),
+        restyled: true,
+        inverseColors: true,
+        onConfirm: async () => {
+          await removeServiceLink(id);
+          hideModal();
+        }
+      };
+
+      setModalData({ name: MODALS.REMOVE_SERVICE_LINK, props: modalProps });
+    },
+    [hideModal, removeServiceLink, t]
+  );
 
   const onServiceAdd = useCallback(() => {
     setModalData({ name: MODALS.ADD_SERVICE_LINK });
@@ -143,6 +162,9 @@ const AdditionalInformation = ({
       />
       {modalData && modalData.name === MODALS.ADD_SERVICE_LINK && (
         <AddServiceLink open onClose={hideModal} />
+      )}
+      {modalData && modalData.name === MODALS.REMOVE_SERVICE_LINK && (
+        <Confirm open onClose={hideModal} {...modalData.props} />
       )}
     </ProfileLayout>
   );

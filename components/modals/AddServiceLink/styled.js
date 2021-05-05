@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.form`
-  max-width: 400px;
+  max-width: 100%;
+  width: 400px;
 `;
 
 export const ButtonsWrap = styled.div`
@@ -9,4 +10,5 @@ export const ButtonsWrap = styled.div`
   justify-content: flex-end;
   grid-template-columns: 1fr 1fr;
   column-gap: 18px;
+  margin-top: 2em;
 `;
