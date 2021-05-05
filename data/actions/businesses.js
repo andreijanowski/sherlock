@@ -12,7 +12,8 @@ import {
   FETCH_BUSINESS_TABLES_REQUEST,
   FETCH_BUSINESS_RESERVATIONS_REQUEST,
   FETCH_BUSINESS_WIDGETS_REQUEST,
-  FETCH_BUSINESS_SETUP_INTENT_REQUEST
+  FETCH_BUSINESS_SETUP_INTENT_REQUEST,
+  FETCH_BUSINESS_SERVICE_LINKS_REQUEST
 } from "types/businesses";
 
 export const postBusiness = onSuccess => ({
@@ -202,6 +203,19 @@ export const fetchBusinessSetupIntent = id => ({
     endpoint: `/api/v1/businesses/${id}/setup_intent`,
     params: {
       purpose: "subscription"
+    }
+  },
+  meta: { thunk: true }
+});
+
+export const fetchBusinessServiceLinks = (id, page = 1) => ({
+  type: FETCH_BUSINESS_SERVICE_LINKS_REQUEST,
+  payload: {
+    method: "GET",
+    endpoint: `/api/v1/businesses/${id}/external_service_links`,
+    params: {
+      per_page: 200,
+      page
     }
   },
   meta: { thunk: true }

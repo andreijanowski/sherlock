@@ -44,7 +44,9 @@ export {
   Notifications,
   ExpandIcon,
   ExpandIconRestyled,
-  SidebarExpandIcon
+  SidebarExpandIcon,
+  SearchIcon,
+  CloseIcon
 } from "./mainControls";
 export {
   Orders,

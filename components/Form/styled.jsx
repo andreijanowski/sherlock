@@ -255,13 +255,25 @@ export const Items = styled(Flex).attrs(p => ({
   border-radius: ${p => p.theme.radius.small};
 `;
 
-export const Item = styled(Box).attrs(() => ({
+export const Item = styled(Flex).attrs(() => ({
+  alignItems: "center",
   px: 3,
   py: 2
 }))`
   color: rgb(${p => p.theme.colors.dark});
   cursor: pointer;
-  ${p => p.isActive && `background-color: rgb(${p.theme.colors.background});`}
+  ${p =>
+    p.isGroupLabel
+      ? `
+        cursor: initial;
+        background-color: rgb(${p.theme.colors.background});
+      `
+      : `
+        &:hover {
+          background-color: rgb(${p.theme.colors.background});
+       }
+      `}
+
   ${p =>
     p.isSelected && `background-color: rgb(${p.theme.colors.linkWaterLight});`}
 `;
@@ -286,6 +298,17 @@ export const ExpandIcon = () => (
     </svg>
   </span>
 );
+
+export const ItemThumb = styled.div`
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background-image: url(${p => p.src});
+  background-size: cover;
+  background-position: center;
+`;
 
 export const CheckboxLabel = styled(Flex).attrs(() => ({
   as: "label",

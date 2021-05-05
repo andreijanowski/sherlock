@@ -31,5 +31,13 @@
   "secretCodeLabel": "Code secret",
   "secretCodePlaceholder": "32543cdsSD4ewcbwt6654",
   "redirectionLinks": "Liens de Redirection",
-  "redirectionLinksTooltip": "Ajoutez le lien URL de vos plateformes/partenaires "
+  "redirectionLinksTooltip": "Ajoutez le lien URL de vos plateformes/partenaires ",
+  "serviceLinkCategory": {
+    "delivery": "Livraison & Pick Up",
+    "booking": "Reservations",
+    "food_waste": "Contre le Gaspillage Alimentaire",
+    "payment": "Paiement",
+    "loyalty": "Fidélité",
+    "social_media": "Réseaux Sociaux"
+  }
 }

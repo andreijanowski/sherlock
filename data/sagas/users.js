@@ -9,7 +9,8 @@ import {
   fetchBusinessPrivatisations,
   fetchBusinessTables,
   fetchBusinessReservations,
-  fetchBusinessWidgets
+  fetchBusinessWidgets,
+  fetchBusinessServiceLinks
 } from "actions/businesses";
 import { UPDATE_PROFILE_SUCCESS } from "types/users";
 import { SET_CURRENT_BUSINESS } from "types/app";
@@ -24,6 +25,7 @@ import fetchAllBusinessData from "./utils/fetchAllBusinessData";
 function* fetchBusinessData({ payload: { id } }) {
   const lang = i18n.language;
   yield put(fetchProfileBusiness(id));
+  yield fetchAllBusinessData(fetchBusinessServiceLinks, id);
   yield put(fetchCategories(lang));
   yield fetchAllBusinessData(fetchBusinessMembers, id);
   yield fetchAllBusinessData(fetchBusinessDeliveries, id);
