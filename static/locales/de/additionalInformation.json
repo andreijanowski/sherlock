@@ -31,5 +31,13 @@
   "secretCodeLabel": "Geheim Code",
   "secretCodePlaceholder": "32543cdsSD4ewcbwt6654",
   "redirectionLinks": "Umleitungs-Links",
-  "redirectionLinksTooltip": "Geben Sie Links zu Ihren externen Dienstleistungen/Profilen ein"
+  "redirectionLinksTooltip": "Geben Sie Links zu Ihren externen Dienstleistungen/Profilen ein",
+  "serviceLinkCategory": {
+    "delivery": "Lieferung & zum Mitnehmen",
+    "booking": "Buchung",
+    "food_waste": "Gegen Lebensmittelverschwendung",
+    "payment": "Zahlung",
+    "loyalty": "Treueprogramme",
+    "social_media": "Sozialen Medien"
+  }
 }

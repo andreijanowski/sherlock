@@ -35,14 +35,16 @@
   "addExternalServiceLink": "Add a link to my profile",
   "serviceLinkUrlPlaceholder": "Copy & paste your {{service}} url here",
   "serviceLinkCategory": {
-    "delivery": "Delivery",
-    "booking": "Booking",
-    "food_waste": "Food waste",
+    "delivery": "Delivery & Take Away",
+    "booking": "Booking & Reservations",
+    "food_waste": "Fighting Food waste",
     "payment": "Payment",
     "loyalty": "Loyalty",
     "social_media": "Social media"
   },
   "servicePlaceholder": "Select service",
   "urlPlaceholder": "Enter url",
-  "deletePrompt": "Do you want to delete {{service}} link?"
+  "deletePrompt": "Do you want to delete {{service}} link?",
+  "redirectionWebsiteLinks": "Links to your websites",
+  "redirectionServicesLinks": "Links to partners external services"
 }

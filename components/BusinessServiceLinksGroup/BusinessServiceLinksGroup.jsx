@@ -1,12 +1,9 @@
 import React from "react";
 import { func, string, shape, arrayOf } from "prop-types";
 import { withTranslation } from "i18n";
-import { Form } from "react-final-form";
-import setFieldData from "final-form-set-field-data";
 
-import { AutoSave, FormInput, H3 } from "components";
-import { CloseIcon } from "components/Icons";
-import { ServiceDeleteButton, ServiceForm, ServiceLogo } from "./styled";
+import { H5 } from "components";
+import ServiceLinkForm from "./ServiceLinkForm";
 
 const namespaces = ["additionalInformation"];
 
@@ -18,7 +15,7 @@ const BusinessServiceLinksGroup = ({
   onServiceLinkDelete
 }) => (
   <>
-    <H3>{t(`serviceLinkCategory.${category}`)}</H3>
+    <H5>{t(`serviceLinkCategory.${category}`)}</H5>
     {items.map(
       ({
         attributes: {
@@ -30,6 +27,9 @@ const BusinessServiceLinksGroup = ({
         },
         id
       }) => {
+        const initialValues = {
+          service_url: serviceUrl
+        };
         const onSubmit = async values => {
           await onServiceLinkChange(id, values);
         };
@@ -38,42 +38,15 @@ const BusinessServiceLinksGroup = ({
         };
         const label = t("serviceLinkUrlPlaceholder", { service: name });
         return (
-          <Form
-            onSubmit={onSubmit}
-            initialValues={{ service_url: serviceUrl }}
-            subscription={{
-              submitting: true
-            }}
-            mutators={{ setFieldData }}
+          <ServiceLinkForm
             key={id}
-          >
-            {({ handleSubmit, form: { mutators, getState } }) => {
-              const { submitting } = getState();
-
-              return (
-                <ServiceForm handleSubmit={handleSubmit}>
-                  <AutoSave
-                    setFieldData={mutators.setFieldData}
-                    save={handleSubmit}
-                    t={t}
-                  />
-                  <ServiceLogo url={url} />
-                  <FormInput
-                    name="service_url"
-                    label={label}
-                    placeholder={label}
-                  />
-                  <ServiceDeleteButton
-                    type="button"
-                    disabled={submitting}
-                    onClick={onDeleteClick}
-                  >
-                    <CloseIcon />
-                  </ServiceDeleteButton>
-                </ServiceForm>
-              );
-            }}
-          </Form>
+            label={label}
+            url={url}
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            onDeleteClick={onDeleteClick}
+            t={t}
+          />
         );
       }
     )}

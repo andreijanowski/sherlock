@@ -1,4 +1,13 @@
-import { string, shape, arrayOf, bool, any, oneOf } from "prop-types";
+import {
+  string,
+  shape,
+  arrayOf,
+  bool,
+  any,
+  oneOf,
+  number,
+  node
+} from "prop-types";
 import { Fragment, useState } from "react";
 import Downshift from "downshift";
 import { LoadingIndicator } from "components";
@@ -132,8 +141,8 @@ FormDropdown.propTypes = {
         )
       }),
       shape({
-        label: any.isRequired,
-        value: any.isRequired,
+        label: oneOf([string, node]).isRequired,
+        value: oneOf([string, number]).isRequired,
         src: string
       })
     ])

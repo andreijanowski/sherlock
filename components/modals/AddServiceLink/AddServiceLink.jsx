@@ -3,13 +3,11 @@ import { func, bool, string, shape } from "prop-types";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { withTranslation } from "i18n";
-import { Field, Form } from "react-final-form";
 
-import { Button, FormDropdown, FormInput, H3, Modal } from "components";
+import { Modal } from "components";
 import { connectExternalService } from "actions/externalServices";
-import { required } from "utils/validators";
 import { groupServiceLinksByCategory } from "utils/servicesUtils";
-import { Wrapper, ButtonsWrap } from "./styled";
+import AddServiceLinkForm from "./AddServiceLinkForm";
 
 const namespaces = ["forms", "additionalInformation"];
 
@@ -52,68 +50,34 @@ const AddServiceLink = ({
 
     const groupedServices = groupServiceLinksByCategory(filteredServices);
 
-    const result = [];
-    Object.keys(groupedServices).forEach(category => {
-      result.push({
-        label: t(`additionalInformation:serviceLinkCategory.${category}`),
-        items: groupedServices[category].map(
-          ({
-            id,
-            attributes: {
-              name,
-              logo: {
-                thumb: { url }
-              }
+    return Object.keys(groupedServices).map(category => ({
+      label: t(`additionalInformation:serviceLinkCategory.${category}`),
+      items: groupedServices[category].map(
+        ({
+          id,
+          attributes: {
+            name,
+            logo: {
+              thumb: { url }
             }
-          }) => ({
-            label: name,
-            value: id,
-            src: url
-          })
-        )
-      });
-    });
-    return result;
+          }
+        }) => ({
+          label: name,
+          value: id,
+          src: url
+        })
+      )
+    }));
   }, [connectedServicesIds, services, t]);
 
   return (
     <Modal open={open} onClose={onClose}>
-      <Form onSubmit={onSubmit}>
-        {({ handleSubmit, form: { getState } }) => {
-          const { submitting } = getState();
-          return (
-            <Wrapper onSubmit={handleSubmit}>
-              <H3>{t("additionalInformation:addExternalServiceLink")}</H3>
-              <Field name="serviceId" validate={required(t)}>
-                {({ input, meta }) => (
-                  <FormDropdown
-                    {...{
-                      input,
-                      meta,
-                      label: t("additionalInformation:servicePlaceholder"),
-                      items: serviceItems
-                    }}
-                  />
-                )}
-              </Field>
-              <FormInput
-                name="url"
-                validate={required(t)}
-                label={t("additionalInformation:urlPlaceholder")}
-                placeholder={t("additionalInformation:urlPlaceholder")}
-              />
-              <ButtonsWrap>
-                <Button type="button" styleName="reject" onClick={onClose}>
-                  {t("forms:cancel")}
-                </Button>
-                <Button styleName="accept" disabled={submitting}>
-                  {t("forms:save")}
-                </Button>
-              </ButtonsWrap>
-            </Wrapper>
-          );
-        }}
-      </Form>
+      <AddServiceLinkForm
+        onSubmit={onSubmit}
+        onClose={onClose}
+        serviceItems={serviceItems}
+        t={t}
+      />
     </Modal>
   );
 };

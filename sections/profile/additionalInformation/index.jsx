@@ -5,6 +5,7 @@ import { Flex, Box } from "@rebass/grid";
 import setFieldData from "final-form-set-field-data";
 
 import {
+  H4,
   H3,
   FormCheckbox,
   FormSelect,
@@ -86,6 +87,7 @@ const AdditionalInformationForm = ({
           />
 
           <H3 mt={3}>{t("redirectionLinks")}</H3>
+          <H4>{t("redirectionWebsiteLinks")}</H4>
           <Tooltip content={t("redirectionLinksTooltip")}>
             <FormInput
               name="deliveryUrl"
@@ -108,6 +110,7 @@ const AdditionalInformationForm = ({
             />
           </Tooltip>
 
+          <H4>{t("redirectionServicesLinks")}</H4>
           {Object.keys(groupedServiceLinks).map(category => (
             <BusinessServiceLinksGroup
               key={category}

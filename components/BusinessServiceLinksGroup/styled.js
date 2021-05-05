@@ -36,4 +36,5 @@ export const ServiceDeleteButton = styled.button`
   margin-bottom: 16px;
   background-color: transparent;
   cursor: pointer;
+  color: rgb(${p => p.theme.colors.ruby});
 `;
