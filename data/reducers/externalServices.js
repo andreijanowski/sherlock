@@ -41,6 +41,7 @@ const succeededFetchRecord = Record({
 const reducer = (state = initialState, { type, payload, meta }) => {
   switch (type) {
     case FETCH_BUSINESS_SERVICE_LINKS_REQUEST:
+      return state.merge(startFetchRecord).removeIn(["data", "links"]);
     case FETCH_EXTERNAL_SERVICES_REQUEST:
       return state.merge(startFetchRecord);
     case FETCH_BUSINESS_SERVICE_LINKS_FAIL:

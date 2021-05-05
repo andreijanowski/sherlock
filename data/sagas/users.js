@@ -25,6 +25,7 @@ import fetchAllBusinessData from "./utils/fetchAllBusinessData";
 function* fetchBusinessData({ payload: { id } }) {
   const lang = i18n.language;
   yield put(fetchProfileBusiness(id));
+  yield fetchAllBusinessData(fetchBusinessServiceLinks, id);
   yield put(fetchCategories(lang));
   yield fetchAllBusinessData(fetchBusinessMembers, id);
   yield fetchAllBusinessData(fetchBusinessDeliveries, id);
@@ -35,7 +36,6 @@ function* fetchBusinessData({ payload: { id } }) {
   yield fetchAllBusinessData(fetchBusinessTables, id);
   yield fetchAllBusinessData(fetchBusinessReservations, id);
   yield fetchAllBusinessData(fetchBusinessWidgets, id);
-  yield fetchAllBusinessData(fetchBusinessServiceLinks, id);
   yield put(fetchBusinessPartnerships(id));
 }
 
