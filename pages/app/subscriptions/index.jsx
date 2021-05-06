@@ -1,3 +1,4 @@
+import { SUBSCRIPTION_ENTREPRISE_URL, SUBSCRIPTION_PLANS } from "consts";
 import { PureComponent } from "react";
 import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
@@ -15,17 +16,9 @@ import {
 } from "actions/subscriptions";
 import { fetchProfileSubscriptions, fetchProfileCards } from "actions/users";
 import { fetchBusinessSetupIntent } from "actions/businesses";
+import { getNewPlanSlug } from "utils/plans";
 
 const namespaces = ["plans", "forms", "app"];
-const getNewPlanSlug = (planName, billingInterval) => {
-  let newPlanSlug = `sherlock-${planName}-${billingInterval}ly-eur`;
-  const isPremiumMonthly =
-    planName === "premium" && billingInterval === "month";
-  if (isPremiumMonthly) {
-    newPlanSlug = `sherlock-${planName}-${billingInterval}ly-new-eur`;
-  }
-  return newPlanSlug;
-};
 
 class SubscriptionsPage extends PureComponent {
   static async getInitialProps() {
@@ -57,22 +50,27 @@ class SubscriptionsPage extends PureComponent {
     }));
 
   choosePlan = planName => {
+    if (planName === SUBSCRIPTION_PLANS.ENTREPRISE) {
+      window.location.href = SUBSCRIPTION_ENTREPRISE_URL;
+
+      return;
+    }
+
     const { billingInterval } = this.state;
     const {
       subscriptions,
       updateSubscriptionPlan,
       cancelSubscriptionPlan
     } = this.props;
+
     if (subscriptions) {
-      if (planName === "basic") {
+      if (planName === SUBSCRIPTION_PLANS.FREEMIUM) {
         if (!subscriptions.getIn(["attributes", "cancelAt"])) {
           this.setState({
             view: "loading"
           });
           cancelSubscriptionPlan(subscriptions.get("id"))
-            .then(() => {
-              this.goToSuccess();
-            })
+            .then(this.goToSuccess)
             .catch(() =>
               this.setState({
                 view: "plans"
@@ -80,7 +78,10 @@ class SubscriptionsPage extends PureComponent {
             );
         }
       } else {
-        const newPlanSlug = getNewPlanSlug(planName, billingInterval);
+        const newPlanSlug = getNewPlanSlug({
+          planName: planName.toLowerCase(),
+          billingInterval
+        });
         if (
           subscriptions.getIn(["attributes", "slug"]) !== newPlanSlug ||
           subscriptions.getIn(["attributes", "cancelAt"])
@@ -99,9 +100,9 @@ class SubscriptionsPage extends PureComponent {
             );
         }
       }
-    } else if (planName !== "basic") {
+    } else if (planName !== SUBSCRIPTION_PLANS.FREEMIUM) {
       this.setState({
-        chosenPlan: planName,
+        chosenPlan: planName.toLowerCase(),
         view: "payments"
       });
     }
@@ -128,10 +129,11 @@ class SubscriptionsPage extends PureComponent {
       this.setState({
         view: "loading"
       });
-      createSubscription(stripeToken, getNewPlanSlug(plan, billingInterval))
-        .then(() => {
-          this.goToSuccess();
-        })
+      createSubscription(
+        stripeToken,
+        getNewPlanSlug({ planName: plan, billingInterval })
+      )
+        .then(this.goToSuccess)
         .catch(() => this.goToPayments());
     }
   };

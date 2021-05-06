@@ -23,6 +23,7 @@ import {
   FooterWrapper,
   InstallAppWrapper
 } from "sections/landing/sharedStyled";
+import { planLoginPath } from "utils/plans";
 
 const namespaces = ["landing", "plans", "common"];
 
@@ -44,6 +45,12 @@ class Home extends PureComponent {
     };
   }
 
+  getLng = () => {
+    const { i18n } = this.props;
+
+    return (i18n && i18n.language) || "en";
+  };
+
   scrollTo = section => {
     window.scrollTo({
       top: this[`${section}Ref`].current.offsetTop - 100,
@@ -56,6 +63,12 @@ class Home extends PureComponent {
       billingInterval: billingInterval === "month" ? "year" : "month"
     }));
 
+  handlePlanChoose = ({ label } = {}) => {
+    const href = planLoginPath({ lng: this.getLng(), planName: label });
+
+    window.location.href = href;
+  };
+
   render() {
     const {
       servicesRef,
@@ -66,7 +79,8 @@ class Home extends PureComponent {
     } = this;
     const { t, i18n } = this.props;
     const { billingInterval } = this.state;
-    const lng = (i18n && i18n.language) || "en";
+    const lng = this.getLng();
+
     return (
       <LandingWrapper width={1} alignItems="center" flexDirection="column">
         <NavigationWrapper>
@@ -91,7 +105,8 @@ class Home extends PureComponent {
               plansRef,
               lng: (i18n && i18n.language) || "en",
               billingInterval,
-              handleChangeBillngPeriod: this.handleChangeBillngPeriod
+              handleChangeBillngPeriod: this.handleChangeBillngPeriod,
+              onPlanChoose: this.handlePlanChoose
             }}
           />
         </PlansWrapper>

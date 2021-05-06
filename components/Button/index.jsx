@@ -42,6 +42,19 @@ const signUpContactSales = css`
   }
 `;
 
+const subscription = css`
+  ${login}
+  background: ${p => p.background || p.theme.colors.blue};
+  line-height: 27px;
+  padding-bottom: 4px;
+  padding-top: 4px;
+  &:hover {
+    background: ${p => p.background || p.theme.colors.blue};
+    box-shadow: 0 1px 3px 0 ${p => p.background || p.theme.colors.blue};
+    opacity: 0.8;
+  }
+`;
+
 const blue = css`
   padding: 8px 20px;
   color: rgb(${p => p.theme.colors.blue});
@@ -257,19 +270,18 @@ const fullHeight = css`
 
 const Button = styled.button`
   overflow: hidden;
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: ${p => p.theme.fontSizes.f16};
+  font-weight: ${p => p.fontWeight || p.theme.fontWeights.medium};
+  font-size: ${p => p.fontSize || p.theme.fontSizes.f16};
   line-height: 1.5;
   text-decoration: none;
   border-radius: ${p => p.theme.radius.default};
   cursor: pointer;
-
   ${p => p.width && `width: ${p.width};`};
-
   ${p => p.styleName === "login" && login};
   ${p => p.styleName === "signUp" && signUp};
   ${p => p.styleName === "signUpCTA" && signUpCTA};
   ${p => p.styleName === "signUpContactSales" && signUpContactSales};
+  ${p => p.styleName === "subscription" && subscription};
   ${p => p.styleName === "blue" && blue};
   ${p => p.styleName === "formBlue" && formBlue};
   ${p => p.styleName === "orange" && orange};
