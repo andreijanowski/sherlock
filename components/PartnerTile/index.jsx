@@ -1,13 +1,19 @@
 import { noop } from "lodash";
-import { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { connect } from "react-redux";
 import { shape, arrayOf, oneOfType, func, string, bool } from "prop-types";
+import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import { connectPartner } from "actions/partners";
 import { connectWholesaler } from "actions/wholesalers";
 
-import { OrchestroIntegrationSwitch } from "components";
-import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  H3,
+  OrchestroIntegrationSwitch,
+  UberIntegrationSwitch
+} from "components";
+import { Confirm } from "components/modals";
+
 import IntegrationLink from "./IntegrationLink";
 import { getIntegrationButtonLabel, getIsIntegrationPending } from "./utils";
 import {
@@ -20,7 +26,6 @@ import {
   InfoButton,
   LinkContainer
 } from "./styled";
-import UberIntegrationSwitch from "../OrchestroIntegrationSwitch/UberIntegrationSwitch";
 
 const PartnerTile = ({
   added,
@@ -33,6 +38,8 @@ const PartnerTile = ({
   t,
   onAddClick
 }) => {
+  const [showDisconnectModal, setShowDisconnectModal] = useState(false);
+
   const isOrkestroIntegration = partner.get("name") === "Orkestro";
   const isUberIntegration = partner.get("name") === "Uber Eats";
   const isIntegratedWithServices = isOrkestroIntegration || isUberIntegration;
@@ -61,17 +68,51 @@ const PartnerTile = ({
     onAddClick({ added, partnerId });
   };
 
+  const makeIntergationRequest = useCallback(() => {
+    // todo possible a bug, we try to integrate already connected partner
+    if (isPartnerWholesaler) {
+      return integrateWholesaler(partnerId);
+    }
+    return integratePartner(partnerId);
+  }, [integratePartner, integrateWholesaler, isPartnerWholesaler, partnerId]);
+
   const requestIntegration = () => {
     if (isIntegrationNotRequested) setIsPending(true);
-    if (isPartnerWholesaler) {
-      integrateWholesaler(partnerId);
+    if (isIntegrated) {
+      setShowDisconnectModal(true);
     } else {
-      integratePartner(partnerId);
+      makeIntergationRequest();
     }
   };
 
+  const closeModal = useCallback(() => {
+    setShowDisconnectModal(false);
+  }, []);
+
+  const onConfirmDisconnect = useCallback(async () => {
+    await makeIntergationRequest();
+    closeModal();
+  }, [closeModal, makeIntergationRequest]);
+
   return (
     <Container mb={3} width={["100%"]} alignItems="center">
+      {showDisconnectModal && (
+        <Confirm
+          open
+          restyled
+          inverseColors
+          btnOkText={t("integrations:disconnect")}
+          btnCancelText={t("forms:cancel")}
+          onConfirm={onConfirmDisconnect}
+          onClose={closeModal}
+        >
+          <H3>
+            {t("integrations:disconnectPrompt", {
+              integration: partner.get("name")
+            })}
+          </H3>
+        </Confirm>
+      )}
       {showActionIcon && (
         <IconAdded icon={added ? faMinus : faPlus} onClick={iconAddedClick} />
       )}
