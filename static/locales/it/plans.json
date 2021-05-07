@@ -37,9 +37,11 @@
   "billingMonthly": "Fatturazione mensile",
   "options": {
     "adsMarketing": "Annunci e Marketing",
+    "analytics": "Analytics",
     "appManager": "Gestore delle applicazioni",
     "bookings": "Prenotazioni",
     "catering": "Ristorazione",
+    "clientDirectory": "Client Directory",
     "clients": "Clienti",
     "communityManagement": "Gestione della Comunità",
     "dashboard": "Pannello di Controllo",
@@ -65,12 +67,17 @@
     "paidBooking": "Prenotazione",
     "privatisation": "Privatizzazione",
     "delivery": "Consegna / da asporto",
+    "digitalMarketing": "Marketing digitale",
     "redirections": "Reindirizzamenti",
     "integrations": "Integrazioni",
-    "digitalMarketing": "Marketing digitale",
-    "widgets": "Widgets",
     "suppliers": "Fornitori",
+    "widgets": "Widgets",
     "visibility": "Premium Visibility"
+  },
+  "optionsHd": {
+    "1": "Strumenti e Servizi",
+    "2": "Amministratore e Operazioni",
+    "3": "Migliora la Visibilità"
   },
   "basic": {
     "name": "Basic",
@@ -83,11 +90,13 @@
     },
     "month": "mese",
     "year": "anno",
-    "buttonText": "Create profile"
+    "buttonText": "Create profile",
+    "buttonText2": "Iniziare"
   },
   "essential": {
     "name": "Essenziale",
     "priceDescription": "Per sempre",
+    "mostPopular": "Più Popolare",
     "price": {
       "month": "29.90",
       "year": "249",
@@ -95,7 +104,8 @@
     },
     "month": "mese",
     "year": "anno",
-    "buttonText": "Inizia da"
+    "buttonText": "Inizia da",
+    "buttonText2": "Scegli Essential"
   },
   "premium": {
     "name": "Premium",
@@ -107,17 +117,24 @@
     },
     "month": "mese",
     "year": "anno",
-    "buttonText": "Inizia da"
+    "buttonText": "Inizia da",
+    "buttonText2": "Scegli Premium"
   },
   "special": {
+    "buttonText": "Book a Meeting",
+    "buttonText2": "Prenota una Demo",
+    "description1": "Sei un Grossista, Produttore, Distributore o Multinazionale?",
+    "description2": "In tal caso, prenota oggi stesso un incontro con uno dei nostri specialisti per saperne di più.",
     "name": "Enterprise",
-    "priceDescription": "Let's talk",
+    "priceDescription": "Parliamo",
+    "priceDescription2": "Prezzi Personalizzati",
     "price": {
       "month": "",
       "year": "",
       "beta": ""
-    },
-    "buttonText": "Book a Meeting",
-    "buttonText2": "Prenota una Demo"
-  }
+    }
+  },
+  "tableHd1": "Al Mese",
+  "tableHd2": "Per Località",
+  "tableStar": "* A questi servizi e prodotti si applicano costi aggiuntivi."
 }

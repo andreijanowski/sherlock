@@ -37,9 +37,11 @@
   "billingMonthly": "Billing Monthly",
   "options": {
     "adsMarketing": "Ads & Marketing",
+    "analytics": "Analytics",
     "appManager": "App Manager",
     "bookings": "Bookings",
     "catering": "Catering",
+    "clientDirectory": "Client Directory",
     "clients": "Clients",
     "communityManagement": "Community Management",
     "dashboard": "Dashboard",
@@ -72,7 +74,11 @@
     "widgets": "Widgets",
     "visibility": "Premium Visibility"
   },
-
+  "optionsHd": {
+    "1": "Tool & Services",
+    "2": "Admin & Operations",
+    "3": "Enhance Visibility"
+  },
   "basic": {
     "name": "Basic",
     "mostPopular": "Most popular",
@@ -84,7 +90,8 @@
     },
     "month": "month",
     "year": "year",
-    "buttonText": "Start today"
+    "buttonText": "Start today",
+    "buttonText2": "Get Started"
   },
   "essential": {
     "name": "Essential",
@@ -97,7 +104,8 @@
     },
     "month": "month",
     "year": "year",
-    "buttonText": "Starting at"
+    "buttonText": "Starting at",
+    "buttonText2": "Choose Essential"
   },
   "premium": {
     "name": "Premium",
@@ -109,17 +117,24 @@
     },
     "month": "month",
     "year": "year",
-    "buttonText": "Starting at"
+    "buttonText": "Starting at",
+    "buttonText2": "Choose Premium"
   },
   "special": {
+    "buttonText": "Book a Meeting",
+    "buttonText2": "Book a Demo",
+    "description1": "Are you a Wholesaler, Manufacturer, Distributor or Multinational?",
+    "description2": "If so, book a meeting with one of our specialists today to learn more.",
     "name": "Enterprise",
     "priceDescription": "Let's talk",
+    "priceDescription2": "Custom Pricing",
     "price": {
       "month": "",
       "year": "",
       "beta": ""
-    },
-    "buttonText": "Book a Meeting",
-    "buttonText2": "Book a Demo"
-  }
+    }
+  },
+  "tableHd1": "Per Month",
+  "tableHd2": "Per Location",
+  "tableStar": "* Additional charges apply to these services and products."
 }

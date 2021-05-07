@@ -37,9 +37,11 @@
   "billingMonthly": "Facturación mensual",
   "options": {
     "adsMarketing": "Anuncios y Marketing",
+    "analytics": "Analítica",
     "appManager": "Control de aplicaciones",
     "bookings": "Reservaciones",
     "catering": "Abastecimiento",
+    "clientDirectory": "Directorio de clientes",
     "clients": "Clientela",
     "communityManagement": "Gestión Comunitaria",
     "dashboard": "Tablero",
@@ -68,9 +70,14 @@
     "digitalMarketing": "Publicidad digital",
     "redirections": "Redirecciones",
     "integrations": "Integraciones",
-    "widgets": "Widgets",
     "suppliers": "Proveedores",
+    "widgets": "Widgets",
     "visibility": "Premium Visibility"
+  },
+  "optionsHd": {
+    "1": "Herramientas y Servicios",
+    "2": "Administración y Operaciones",
+    "3": "Mejora la Visibilidad"
   },
   "basic": {
     "name": "Básico",
@@ -83,11 +90,13 @@
     },
     "month": "mes",
     "year": "año",
-    "buttonText": "Crear perfil"
+    "buttonText": "Crear perfil",
+    "buttonText2": "Empezar"
   },
   "essential": {
     "name": "Esencial",
     "priceDescription": "Siempre",
+    "mostPopular": "Más Popular",
     "price": {
       "month": "29.90",
       "year": "249",
@@ -95,7 +104,8 @@
     },
     "month": "mes",
     "year": "año",
-    "buttonText": "Comience a las"
+    "buttonText": "Comience a las",
+    "buttonText2": "Elija Esencial"
   },
   "premium": {
     "name": "Tailored Made",
@@ -107,17 +117,24 @@
     },
     "month": "mes",
     "year": "año",
-    "buttonText": "Comience a las"
+    "buttonText": "Comience a las",
+    "buttonText2": "Elija Premium"
   },
   "special": {
+    "buttonText": "Book a Meeting",
+    "buttonText2": "Reserve una Demo",
+    "description1": "¿Eres Mayorista, Fabricante, Distribuidor o Multinacional?",
+    "description2": "Si es así, reserve una reunión con uno de nuestros especialistas hoy para obtener más información.",
     "name": "Enterprise",
-    "priceDescription": "Let's talk",
+    "priceDescription": "Hablemos",
+    "priceDescription2": "Precios Personalizados",
     "price": {
       "month": "",
       "year": "",
       "beta": ""
-    },
-    "buttonText": "Book a Meeting",
-    "buttonText2": "Reserve una Demo"
-  }
+    }
+  },
+  "tableHd1": "Por Mes",
+  "tableHd2": "Por Ubicación",
+  "tableStar": "* Se aplican cargos adicionales a estos servicios y productos."
 }
