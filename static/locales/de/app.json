@@ -49,7 +49,8 @@
     "requestIntegration": "Integration anfordern",
     "pending": "Hängend",
     "integrated": "Integrated",
-    "noPartners": "Keine partner für diese kategorie."
+    "noPartners": "Keine partner für diese kategorie.",
+    "noPreferred": "Sie haben noch keine bevorzugten Großhändler hinzugefügt."
   },
   "subscriptions": "Abonnements",
   "userSettings": {
@@ -74,7 +75,7 @@
     "diary_products": "Milchprodukte",
     "sweets_and_desserts": "Süßigkeiten & Desserts",
     "frozen_products": "Tiefkühlprodukte",
-    "preferred": "Bevorzugt",
+    "preferred": "Meine Großhändler",
     "sauces_and_oils": "Sauzen & Oli",
     "beers": "Biere",
     "wine_and_alcohol": "Wein & Alkohol",

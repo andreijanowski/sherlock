@@ -73,7 +73,11 @@ const PartnerTile = ({
   return (
     <Container mb={3} width={["100%"]} alignItems="center">
       {showActionIcon && (
-        <IconAdded icon={added ? faMinus : faPlus} onClick={iconAddedClick} />
+        <IconAdded
+          added={added}
+          icon={added ? faMinus : faPlus}
+          onClick={iconAddedClick}
+        />
       )}
       <Image src={partner.getIn(["logo", "url"])} />
       <ContentWrapper

@@ -49,7 +49,8 @@
     "requestIntegration": "Solicitar integración",
     "pending": "Pendiente",
     "integrated": "Integrado",
-    "noPartners": "No hay socios para esta categoría."
+    "noPartners": "No hay socios para esta categoría.",
+    "noPreferred": "Aún no has agregado ningún mayorista preferido."
   },
   "subscriptions": "Suscripciones",
   "userSettings": {
@@ -72,7 +73,7 @@
     "fish": "Pescado",
     "bread_and_flour": "Pan y Harina",
     "diary_products": "Productos lácteos",
-    "preferred": "Principal",
+    "preferred": "Mis Mayoristas",
     "sweets_and_desserts": "Dulces y Postres",
     "frozen_products": "Congelados",
     "sauces_and_oils": "Salsas y Aceites",
