@@ -89,6 +89,12 @@ const Footer = ({ t }) => (
                 href: "https://www.instagram.com/business.foodetective/",
                 target: "_blank",
                 rel: "noreferrer noopener"
+              },
+              "4": {
+                href:
+                  "https://www.youtube.com/channel/UC2MnDoNtpuh5CTbhEtOOGbA/featured",
+                target: "_blank",
+                rel: "noreferrer noopener"
               }
             }
           }}

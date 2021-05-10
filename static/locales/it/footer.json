@@ -1,7 +1,7 @@
 {
   "navigation": {
     "columnOne": {
-      "title": "Unisciti a  noi",
+      "title": "Unisciti a noi",
       "links": [
         "Partner con noi"
       ]
@@ -25,7 +25,8 @@
         "Facebook",
         "Linkedin",
         "Cinguettio",
-        "Instagram"
+        "Instagram",
+        "Youtube"
       ]
     },
     "columnFive": {
