@@ -3,6 +3,7 @@ import { func, string, shape, arrayOf } from "prop-types";
 import { withTranslation } from "i18n";
 
 import { H5 } from "components";
+import { addProtocol } from "utils/urls";
 import ServiceLinkForm from "./ServiceLinkForm";
 
 const namespaces = ["additionalInformation"];
@@ -28,10 +29,12 @@ const BusinessServiceLinksGroup = ({
         id
       }) => {
         const initialValues = {
-          service_url: serviceUrl
+          serviceUrl
         };
-        const onSubmit = async values => {
-          await onServiceLinkChange(id, values);
+        const onSubmit = async data => {
+          await onServiceLinkChange(id, {
+            service_url: addProtocol(data.serviceUrl)
+          });
         };
         const onDeleteClick = () => {
           onServiceLinkDelete({ id, name });

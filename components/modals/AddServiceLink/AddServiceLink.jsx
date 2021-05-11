@@ -7,6 +7,7 @@ import { withTranslation } from "i18n";
 import { Modal } from "components";
 import { connectExternalService } from "actions/externalServices";
 import { groupServiceLinksByCategory } from "utils/servicesUtils";
+import { addProtocol } from "utils/urls";
 import AddServiceLinkForm from "./AddServiceLinkForm";
 
 const namespaces = ["forms", "additionalInformation"];
@@ -21,9 +22,9 @@ const AddServiceLink = ({
   addService
 }) => {
   const onSubmit = useCallback(
-    async data => {
+    async ({ url, ...data }) => {
       try {
-        await addService({ ...data, businessId });
+        await addService({ ...data, businessId, url: addProtocol(url) });
         onClose();
       } catch (e) {
         throw e;
