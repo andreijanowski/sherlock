@@ -81,6 +81,9 @@ export {
   default as OrchestroIntegrationSwitch
 } from "./OrchestroIntegrationSwitch";
 export {
+  default as UberIntegrationSwitch
+} from "./OrchestroIntegrationSwitch/UberIntegrationSwitch";
+export {
   Header as SliderHeader,
   Value as SliderValue,
   Name as SliderName,
