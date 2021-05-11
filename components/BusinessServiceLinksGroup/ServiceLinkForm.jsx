@@ -34,7 +34,7 @@ const ServiceLinkForm = ({
             t={t}
           />
           <ServiceLogo url={url} />
-          <FormInput name="service_url" label={label} placeholder={label} />
+          <FormInput name="serviceUrl" label={label} placeholder={label} />
           <ServiceDeleteButton
             type="button"
             disabled={submitting}

@@ -38,10 +38,13 @@ const succeededFetchRecord = Record({
   isSucceeded: true
 })();
 
+const SERVICES_PATH = ["data", "services"];
+const LINKS_PATH = ["data", "links"];
+
 const reducer = (state = initialState, { type, payload, meta }) => {
   switch (type) {
     case FETCH_BUSINESS_SERVICE_LINKS_REQUEST:
-      return state.merge(startFetchRecord).removeIn(["data", "links"]);
+      return state.merge(startFetchRecord).removeIn(LINKS_PATH);
     case FETCH_EXTERNAL_SERVICES_REQUEST:
       return state.merge(startFetchRecord);
     case FETCH_BUSINESS_SERVICE_LINKS_FAIL:
@@ -50,23 +53,26 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     case FETCH_EXTERNAL_SERVICES_SUCCESS:
       return state
         .merge(succeededFetchRecord)
-        .setIn(["data", "services"], fromJS(payload.rawData.data));
+        .setIn(SERVICES_PATH, fromJS(payload.rawData.data));
     case FETCH_BUSINESS_SERVICE_LINKS_SUCCESS:
       return state
         .merge(succeededFetchRecord)
-        .setIn(["data", "links"], fromJS(payload.data.externalServiceLinks));
+        .setIn(LINKS_PATH, fromJS(payload.data.externalServiceLinks));
     case PATCH_EXTERNAL_SERVICE_LINK_SUCCESS:
       return state.mergeDeepIn(
-        ["data", "links"],
+        LINKS_PATH,
         fromJS(payload.data.externalServiceLinks)
       );
-    case CONNECT_EXTERNAL_SERVICES_SUCCESS:
-      return state.mergeDeepIn(
-        ["data", "links"],
-        fromJS(payload.data.externalServiceLinks)
-      );
+    case CONNECT_EXTERNAL_SERVICES_SUCCESS: {
+      const links = fromJS(payload.data.externalServiceLinks);
+      const hasLinksState = state.getIn(LINKS_PATH);
+
+      return hasLinksState
+        ? state.mergeDeepIn(LINKS_PATH, links)
+        : state.setIn(LINKS_PATH, links);
+    }
     case DELETE_EXTERNAL_SERVICE_LINK_SUCCESS:
-      return state.removeIn(["data", "links", meta.id]);
+      return state.removeIn(LINKS_PATH.concat([meta.id]));
     default:
       return state;
   }
