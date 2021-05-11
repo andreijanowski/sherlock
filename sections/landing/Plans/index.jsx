@@ -41,7 +41,13 @@ const PlansMainComponent = ({
         </Box>
       </Flex>
     </TextWrapper>
-    <PlansTable interval={billingInterval} t={t} onPlanChoose={onPlanChoose} />
+    <TextWrapper>
+      <PlansTable
+        interval={billingInterval}
+        t={t}
+        onPlanChoose={onPlanChoose}
+      />
+    </TextWrapper>
   </Flex>
 );
 
