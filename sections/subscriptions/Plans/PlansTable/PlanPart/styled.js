@@ -5,6 +5,22 @@ export const Tr = styled.tr`
     text-align: center;
   }
 
+  & .icon {
+    color: #5479fa;
+    display: inline-block;
+    height: 1.5em;
+    position: relative;
+    width: 1.5em;
+
+    & svg {
+      height: 3.4375em;
+      left: -65%;
+      position: absolute;
+      top: -50%;
+      width: 3.4375em;
+    }
+  }
+
   & .label {
     color: #828282;
     text-align: left;
@@ -36,4 +52,10 @@ export const TrHead = styled.tr`
     border-top: 0 none;
     padding: 1.2em 0;
   }
+`;
+
+export const SvgIconWrap = styled.span`
+  display: inline-block;
+  height: ${p => p.height || "1em"};
+  width: ${p => p.width || "1em"};
 `;
