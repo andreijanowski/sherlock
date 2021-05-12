@@ -2,5 +2,6 @@
   "connected": "Connected",
   "connect": "Connect",
   "disconnected": "Not Connected",
-  "disconnect": "Disconnect"
+  "disconnect": "Disconnect",
+  "disconnectPrompt": "Do you want to disconnect {{integration}}?"
 }

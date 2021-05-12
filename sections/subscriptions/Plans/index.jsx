@@ -1,27 +1,21 @@
 import { func, string, shape, arrayOf, bool } from "prop-types";
-import {
-  PlansBillingInterval,
-  BoldText,
-  Button,
-  PlansLandingPage
-} from "components";
+import { PlansBillingInterval, BoldText, Button } from "components";
+import { useCallback } from "react";
 import { Flex, Box } from "@rebass/grid";
 import { Wrapper } from "../styled";
 import { getPlanName } from "../utils";
 import Card from "../Payments/Card";
+import PlansTable from "./PlansTable";
 import PlanStatus from "./PlanStatus";
-import { PlansWrapper } from "./styled";
 
 const PlansSection = ({
   t,
-  lng,
   billingInterval,
   handleChangeBillngPeriod,
   choosePlan,
   currentPlan,
   cards,
-  goToPayments,
-  isCanceled
+  goToPayments
 }) => {
   const { currentPlanName, nextPlanName } = getPlanName(currentPlan);
   const currentCard =
@@ -32,6 +26,13 @@ const PlansSection = ({
             currentPlan.getIn(["attributes", "stripeSourceId"])
         )
       : null;
+
+  const handlePlanChoose = useCallback(
+    ({ label } = {}) => {
+      choosePlan(label);
+    },
+    [choosePlan]
+  );
 
   return (
     <Wrapper>
@@ -81,22 +82,11 @@ const PlansSection = ({
           </Flex>
         </Flex>
       )}
-      <PlansWrapper>
-        <PlansLandingPage
-          {...{
-            t,
-            lng,
-            billingInterval,
-            choosePlan,
-            nextPlanName,
-            currentPlanInterval:
-              currentPlan && currentPlan.getIn(["attributes", "interval"]),
-            isAuthenticated: false,
-            isSubscriptionView: true,
-            isCanceled
-          }}
-        />
-      </PlansWrapper>
+      <PlansTable
+        interval={billingInterval}
+        t={t}
+        onPlanChoose={handlePlanChoose}
+      />
     </Wrapper>
   );
 };

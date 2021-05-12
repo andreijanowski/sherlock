@@ -49,7 +49,8 @@
     "requestIntegration": "Demander l'intégration",
     "pending": "En attente",
     "integrated": "Intégré",
-    "noPartners": "Aucun partenaire pour cette catégorie."
+    "noPartners": "Aucun partenaire pour cette catégorie.",
+    "noPreferred": "Vous n'avez pas encore ajouté de grossistes préférés."
   },
   "subscriptions": "Abonnements",
   "userSettings": {
@@ -72,6 +73,7 @@
     "fish": "Poissons",
     "bread_and_flour": "Pains & Farines",
     "diary_products": "Produits Laitiers",
+    "preferred": "Mes Grossistes",
     "sweets_and_desserts": "Desserts & Bonbons",
     "frozen_products": "Produtis congelés",
     "sauces_and_oils": "Sauces & Huiles",

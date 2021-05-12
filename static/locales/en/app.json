@@ -51,6 +51,7 @@
     "pending": "Pending",
     "integrated": "Integrated",
     "noPartners": "No partners for this category.",
+    "noPreferred": "You haven’t added any preferred wholesalers yet.",
     "moreInfo": "More info",
     "orderNow": "Order now"
   },
@@ -77,6 +78,7 @@
     "diary_products": "Diary products",
     "sweets_and_desserts": "Sweets & desserts",
     "frozen_products": "Frozen products",
+    "preferred": "My Wholesalers",
     "sauces_and_oils": "Sauces & oils",
     "beers": "Beers",
     "wine_and_alcohol": "Wine & alcohol",

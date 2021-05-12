@@ -36,26 +36,48 @@
   "billingYearly": "Facturación anual (ahorre hasta un 30%)",
   "billingMonthly": "Facturación mensual",
   "options": {
+    "adsMarketing": "Anuncios y Marketing",
+    "analytics": "Analítica",
+    "appManager": "Control de aplicaciones",
+    "bookings": "Reservaciones",
+    "catering": "Abastecimiento",
+    "clientDirectory": "Directorio de clientes",
+    "clients": "Clientela",
+    "communityManagement": "Gestión Comunitaria",
+    "dashboard": "Tablero",
+    "deliveryManagement": "Gestión de Entrega",
+    "deliveryTakeAway": "Entrega y Llevar",
+    "detectives": "Detectives",
+    "enterprise": "¿Eres mayorista, fabricante, distribuidor o multinacional? Permítanos hacerle una oferta a medida. Reserve uno de nuestros especialistas hoy.",
+    "integrationHub": "Centro de Integración",
+    "myProfile": "Mi Perfil",
+    "payments": "Pagos",
+    "photography": "Fotografía",
+    "privateEvents": "Eventos Privados",
+    "reviews": "Reseñas",
+    "smartBackend": "Back-end inteligente",
+    "stockManagement": "Gestion de Stocks",
+    "wholesalers": "Mayoristas",
+
     "website": "Página web",
     "widget": "Widget",
     "mobileApp": "Aplicación de teléfono móvil",
     "reservations": "Reservaciones",
     "takeAway": "Para llevar",
     "paidBooking": "Reserva",
-    "bookings": "Reservas",
-    "catering": "Abastecimiento",
     "privatisation": "Privatización",
     "delivery": "Entrega / para llevar",
     "digitalMarketing": "Publicidad digital",
     "redirections": "Redirecciones",
     "integrations": "Integraciones",
-    "widgets": "Widgets",
-    "dashboard": "Dashboard",
-    "reviews": "Reviews",
     "suppliers": "Proveedores",
-    "payments": "Payments",
-    "wholesalers": "Wholesalers",
+    "widgets": "Widgets",
     "visibility": "Premium Visibility"
+  },
+  "optionsHd": {
+    "1": "Herramientas y Servicios",
+    "2": "Administración y Operaciones",
+    "3": "Mejora la Visibilidad"
   },
   "basic": {
     "name": "Básico",
@@ -68,11 +90,13 @@
     },
     "month": "mes",
     "year": "año",
-    "buttonText": "Crear perfil"
+    "buttonText": "Crear perfil",
+    "buttonText2": "Empezar"
   },
   "essential": {
     "name": "Esencial",
     "priceDescription": "Siempre",
+    "mostPopular": "Más Popular",
     "price": {
       "month": "29.90",
       "year": "249",
@@ -80,7 +104,8 @@
     },
     "month": "mes",
     "year": "año",
-    "buttonText": "Comience a las"
+    "buttonText": "Comience a las",
+    "buttonText2": "Elija Esencial"
   },
   "premium": {
     "name": "Tailored Made",
@@ -92,16 +117,24 @@
     },
     "month": "mes",
     "year": "año",
-    "buttonText": "Comience a las"
+    "buttonText": "Comience a las",
+    "buttonText2": "Elija Premium"
   },
   "special": {
+    "buttonText": "Book a Meeting",
+    "buttonText2": "Reserve una Demo",
+    "description1": "¿Eres Mayorista, Fabricante, Distribuidor o Multinacional?",
+    "description2": "Si es así, reserve una reunión con uno de nuestros especialistas hoy para obtener más información.",
     "name": "Enterprise",
-    "priceDescription": "Let's talk",
+    "priceDescription": "Hablemos",
+    "priceDescription2": "Precios Personalizados",
     "price": {
       "month": "",
       "year": "",
       "beta": ""
-    },
-    "buttonText": "Book a Meeting"
-  }
+    }
+  },
+  "tableHd1": "Por Mes",
+  "tableHd2": "Por Ubicación",
+  "tableStar": "* Se aplican cargos adicionales a estos servicios y productos."
 }

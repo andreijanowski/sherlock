@@ -1,32 +1,45 @@
-import { useState } from "react";
+import { noop } from "lodash";
+import React, { useCallback, useState } from "react";
 import { connect } from "react-redux";
-import { shape, arrayOf, oneOfType, func, string } from "prop-types";
+import { shape, arrayOf, oneOfType, func, string, bool } from "prop-types";
+import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import { connectPartner } from "actions/partners";
 import { connectWholesaler } from "actions/wholesalers";
 
-import { OrchestroIntegrationSwitch } from "components";
+import {
+  H3,
+  OrchestroIntegrationSwitch,
+  UberIntegrationSwitch
+} from "components";
+import { Confirm } from "components/modals";
+
 import IntegrationLink from "./IntegrationLink";
 import { getIntegrationButtonLabel, getIsIntegrationPending } from "./utils";
 import {
   ButtonContainer,
   Container,
   ContentWrapper,
+  IconAdded,
   Image,
   IntegrationButton,
   InfoButton,
   LinkContainer
 } from "./styled";
-import UberIntegrationSwitch from "../OrchestroIntegrationSwitch/UberIntegrationSwitch";
 
 const PartnerTile = ({
+  added,
   integratePartner,
   integrateWholesaler,
   partner,
   partnerId,
   partnerRelationships,
-  t
+  showActionIcon,
+  t,
+  onAddClick
 }) => {
+  const [showDisconnectModal, setShowDisconnectModal] = useState(false);
+
   const isOrkestroIntegration = partner.get("name") === "Orkestro";
   const isUberIntegration = partner.get("name") === "Uber Eats";
   const isIntegratedWithServices = isOrkestroIntegration || isUberIntegration;
@@ -51,17 +64,62 @@ const PartnerTile = ({
   const partnerCategory = partner.get("category");
   const isPartnerWholesaler = partnerCategory === WHOLESALER;
 
+  const iconAddedClick = () => {
+    onAddClick({ added, partnerId });
+  };
+
+  const makeIntergationRequest = useCallback(() => {
+    // todo possible a bug, we try to integrate already connected partner
+    if (isPartnerWholesaler) {
+      return integrateWholesaler(partnerId);
+    }
+    return integratePartner(partnerId);
+  }, [integratePartner, integrateWholesaler, isPartnerWholesaler, partnerId]);
+
   const requestIntegration = () => {
     if (isIntegrationNotRequested) setIsPending(true);
-    if (isPartnerWholesaler) {
-      integrateWholesaler(partnerId);
+    if (isIntegrated) {
+      setShowDisconnectModal(true);
     } else {
-      integratePartner(partnerId);
+      makeIntergationRequest();
     }
   };
 
+  const closeModal = useCallback(() => {
+    setShowDisconnectModal(false);
+  }, []);
+
+  const onConfirmDisconnect = useCallback(async () => {
+    await makeIntergationRequest();
+    closeModal();
+  }, [closeModal, makeIntergationRequest]);
+
   return (
     <Container mb={3} width={["100%"]} alignItems="center">
+      {showDisconnectModal && (
+        <Confirm
+          open
+          restyled
+          inverseColors
+          btnOkText={t("integrations:disconnect")}
+          btnCancelText={t("forms:cancel")}
+          onConfirm={onConfirmDisconnect}
+          onClose={closeModal}
+        >
+          <H3>
+            {t("integrations:disconnectPrompt", {
+              integration: partner.get("name")
+            })}
+          </H3>
+        </Confirm>
+      )}
+      {showActionIcon && (
+        <IconAdded
+          added={added}
+          icon={added ? faMinus : faPlus}
+          onClick={iconAddedClick}
+        />
+      )}
       <Image src={partner.getIn(["logo", "url"])} />
       <ContentWrapper
         alignItems="center"
@@ -108,16 +166,20 @@ const PartnerTile = ({
 };
 
 PartnerTile.propTypes = {
+  added: bool,
   integratePartner: func.isRequired,
   integrateWholesaler: func.isRequired,
   partner: oneOfType([arrayOf(), shape()]).isRequired,
   partnerId: string.isRequired,
   partnerRelationships: oneOfType([arrayOf(), shape({})]).isRequired,
-  t: func.isRequired
+  showActionIcon: bool,
+  t: func.isRequired,
+  onAddClick: func
 };
-
-PartnerTile.defaultValue = {
-  partner: null
+PartnerTile.defaultProps = {
+  added: false,
+  showActionIcon: false,
+  onAddClick: noop
 };
 
 export default connect(

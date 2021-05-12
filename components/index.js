@@ -11,6 +11,8 @@ export { default as ItalicText } from "./ItalicText";
 export { default as H1 } from "./H1";
 export { default as H2 } from "./H2";
 export { default as H3 } from "./H3";
+export { default as H4 } from "./H4";
+export { default as H5 } from "./H5";
 export { default as Paragraph } from "./Paragraph";
 export { default as LanguageSwitcher } from "./LanguageSwitcher";
 export { default as Footer } from "./Footer";
@@ -79,6 +81,9 @@ export {
   default as OrchestroIntegrationSwitch
 } from "./OrchestroIntegrationSwitch";
 export {
+  default as UberIntegrationSwitch
+} from "./OrchestroIntegrationSwitch/UberIntegrationSwitch";
+export {
   Header as SliderHeader,
   Value as SliderValue,
   Name as SliderName,
@@ -88,3 +93,6 @@ export {
 export { default as ServiceStatusCheckbox } from "./ServiceStatusCheckbox";
 export { default as Tooltip } from "./Tooltip";
 export { default as BusinessSelect } from "./BusinessSelect";
+export {
+  default as BusinessServiceLinksGroup
+} from "./BusinessServiceLinksGroup";

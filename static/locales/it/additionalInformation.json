@@ -31,5 +31,13 @@
   "secretCodeLabel": "Codice segreto",
   "secretCodePlaceholder": "32543cdsSD4ewcbwt6654",
   "redirectionLinks": "Link di reindirizzamento",
-  "redirectionLinksTooltip": "Inserite i link ai vostri servizi/profili esterni"
+  "redirectionLinksTooltip": "Inserite i link ai vostri servizi/profili esterni",
+  "serviceLinkCategory": {
+    "delivery": "Consegna a domicilio & Pick up",
+    "booking": "Prenotazione",
+    "food_waste": "Contro lo spreco alimentare",
+    "payment": "Pagamento",
+    "loyalty": "Programma fedeltà",
+    "social_media": "Social media"
+  }
 }

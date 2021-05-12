@@ -1,15 +1,17 @@
+import { noop } from "lodash";
 import { Flex, Box } from "@rebass/grid";
 import { func, string, oneOfType, shape, any } from "prop-types";
-import { PlansLandingPage, PlansBillingInterval } from "components";
-import { H2Styled, ParagraphStyled, PlansWrapper, TextWrapper } from "./styled";
+import { PlansBillingInterval } from "components";
+import PlansTable from "sections/subscriptions/Plans/PlansTable";
+import { H2Styled, ParagraphStyled, TextWrapper } from "./styled";
 import { BlueText } from "../sharedStyled";
 
 const PlansMainComponent = ({
   t,
   plansRef,
-  lng,
   billingInterval,
-  handleChangeBillngPeriod
+  handleChangeBillngPeriod,
+  onPlanChoose
 }) => (
   <Flex ref={plansRef} flexDirection="column" width={1} mt={[40, 80]} px={3}>
     <TextWrapper>
@@ -39,25 +41,25 @@ const PlansMainComponent = ({
         </Box>
       </Flex>
     </TextWrapper>
-    <PlansWrapper>
-      <PlansLandingPage
-        {...{
-          t,
-          lng,
-          billingInterval,
-          isAuthenticated: false
-        }}
+    <TextWrapper>
+      <PlansTable
+        interval={billingInterval}
+        t={t}
+        onPlanChoose={onPlanChoose}
       />
-    </PlansWrapper>
+    </TextWrapper>
   </Flex>
 );
 
+PlansMainComponent.defaultProps = {
+  onPlanChoose: noop
+};
 PlansMainComponent.propTypes = {
   t: func.isRequired,
-  lng: string.isRequired,
   billingInterval: string.isRequired,
   handleChangeBillngPeriod: func.isRequired,
-  plansRef: oneOfType([func, shape({ current: any })]).isRequired
+  plansRef: oneOfType([func, shape({ current: any })]).isRequired,
+  onPlanChoose: func
 };
 
 export default PlansMainComponent;

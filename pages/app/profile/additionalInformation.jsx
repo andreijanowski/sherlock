@@ -1,115 +1,178 @@
-import { PureComponent } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { withTranslation } from "i18n";
-import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
-import Form from "sections/profile/additionalInformation";
 import { connect } from "react-redux";
+import { compose } from "redux";
+
+import requireAuth from "lib/requireAuth";
 import { postBusiness, patchBusiness } from "actions/businesses";
 import { fetchProfileBusiness } from "actions/users";
 import { setCurrentBusiness } from "actions/app";
+import { deleteServiceLink, patchServiceLink } from "actions/externalServices";
+import Form from "sections/profile/additionalInformation";
 import { getInitialValues } from "sections/profile/additionalInformation/utils";
 import ProfileLayout from "sections/profile/Layout";
 import { addProtocol } from "utils/urls";
+import { AddServiceLink, Confirm } from "components/modals";
+import H3 from "components/H3";
 
 const namespaces = ["additionalInformation", "app", "publishModal", "forms"];
 
-class AdditionalInformation extends PureComponent {
-  static async getInitialProps() {
-    return {
-      namespacesRequired: namespaces
-    };
-  }
+const MODALS = {
+  ADD_SERVICE_LINK: "ADD_SERVICE_LINK",
+  REMOVE_SERVICE_LINK: "REMOVE_SERVICE_LINK"
+};
 
-  handleSubmit = ({
-    breakfastService,
-    lunchService,
-    dinnerService,
-    brunchService,
-    cafeService,
-    snackService,
-    currency,
-    pricePerPerson,
-    hasCatering,
-    hasReservations,
-    hasPrivateEvents,
-    availableInLefood,
-    deliveryUrl,
-    onlineBookingUrl,
-    takeawayUrl,
-    canPayWithCards,
-    canPayWithCash,
-    canPayWithMobile,
-    secretCode
-  }) => {
-    const { updateBusiness, businessId } = this.props;
-    const requestValues = {
+const AdditionalInformation = ({
+  t,
+  lng,
+  business,
+  businessId,
+  businessGroups,
+  businessMenus,
+  businessPictures,
+  businessProducts,
+  businessOpenPeriods,
+  businesses,
+  changeCurrentBusiness,
+  addBusiness,
+  updateBusiness,
+  getProfileBusiness,
+  serviceLinks,
+  updateServiceLink,
+  removeServiceLink
+}) => {
+  const [modalData, setModalData] = useState(null);
+
+  const hideModal = useCallback(() => {
+    setModalData(null);
+  }, []);
+
+  const handleSubmit = useCallback(
+    ({
       breakfastService,
       lunchService,
       dinnerService,
       brunchService,
       cafeService,
       snackService,
-      currency: currency && currency.value,
+      currency,
       pricePerPerson,
       hasCatering,
       hasReservations,
       hasPrivateEvents,
       availableInLefood,
-      deliveryUrl: addProtocol(deliveryUrl),
-      onlineBookingUrl: addProtocol(onlineBookingUrl),
-      takeawayUrl: addProtocol(takeawayUrl),
+      deliveryUrl,
+      onlineBookingUrl,
+      takeawayUrl,
       canPayWithCards,
       canPayWithCash,
       canPayWithMobile,
       secretCode
-    };
+    }) => {
+      const requestValues = {
+        breakfastService,
+        lunchService,
+        dinnerService,
+        brunchService,
+        cafeService,
+        snackService,
+        currency: currency && currency.value,
+        pricePerPerson,
+        hasCatering,
+        hasReservations,
+        hasPrivateEvents,
+        availableInLefood,
+        deliveryUrl: addProtocol(deliveryUrl),
+        onlineBookingUrl: addProtocol(onlineBookingUrl),
+        takeawayUrl: addProtocol(takeawayUrl),
+        canPayWithCards,
+        canPayWithCash,
+        canPayWithMobile,
+        secretCode
+      };
 
-    return updateBusiness(businessId, requestValues);
-  };
+      return updateBusiness(businessId, requestValues);
+    },
+    [updateBusiness, businessId]
+  );
 
-  render() {
-    const {
-      t,
-      lng,
-      business,
-      businessId,
-      businessGroups,
-      businessMenus,
-      businessPictures,
-      businessProducts,
-      businessOpenPeriods,
-      businesses,
-      changeCurrentBusiness,
-      addBusiness,
-      updateBusiness,
-      getProfileBusiness
-    } = this.props;
-    const initialValues = getInitialValues(business);
-    return (
-      <ProfileLayout
+  const onServiceLinkChange = useCallback(
+    (id, values) => updateServiceLink(id, values),
+    [updateServiceLink]
+  );
+
+  const onServiceLinkDelete = useCallback(
+    ({ id, name }) => {
+      const modalProps = {
+        children: (
+          <H3>{t("additionalInformation:deletePrompt", { service: name })}</H3>
+        ),
+        btnOkText: t("forms:delete"),
+        btnCancelText: t("forms:cancel"),
+        restyled: true,
+        inverseColors: true,
+        onConfirm: async () => {
+          await removeServiceLink(id);
+          hideModal();
+        }
+      };
+
+      setModalData({ name: MODALS.REMOVE_SERVICE_LINK, props: modalProps });
+    },
+    [hideModal, removeServiceLink, t]
+  );
+
+  const onServiceAdd = useCallback(() => {
+    setModalData({ name: MODALS.ADD_SERVICE_LINK });
+  }, []);
+
+  const initialValues = useMemo(() => getInitialValues(business), [business]);
+
+  return (
+    <ProfileLayout
+      {...{
+        t,
+        lng,
+        business,
+        businessId,
+        businessGroups,
+        businessMenus,
+        businessPictures,
+        businessProducts,
+        businessOpenPeriods,
+        businesses,
+        changeCurrentBusiness,
+        addBusiness,
+        updateBusiness,
+        getProfileBusiness,
+        currentPage: "additionalInformation"
+      }}
+    >
+      <Form
         {...{
           t,
-          lng,
-          business,
-          businessId,
-          businessGroups,
-          businessMenus,
-          businessPictures,
-          businessProducts,
-          businessOpenPeriods,
-          businesses,
-          changeCurrentBusiness,
-          addBusiness,
-          updateBusiness,
-          getProfileBusiness,
-          currentPage: "additionalInformation"
+          initialValues,
+          serviceLinks,
+          handleSubmit,
+          onServiceAdd,
+          onServiceLinkChange,
+          onServiceLinkDelete
         }}
-      >
-        <Form {...{ t, initialValues, handleSubmit: this.handleSubmit }} />
-      </ProfileLayout>
-    );
-  }
-}
+      />
+      {modalData && modalData.name === MODALS.ADD_SERVICE_LINK && (
+        <AddServiceLink open onClose={hideModal} />
+      )}
+      {modalData && modalData.name === MODALS.REMOVE_SERVICE_LINK && (
+        <Confirm open onClose={hideModal} {...modalData.props} />
+      )}
+    </ProfileLayout>
+  );
+};
+
+AdditionalInformation.getInitialProps = async () => ({
+  namespacesRequired: namespaces
+});
 
 AdditionalInformation.propTypes = {
   t: func.isRequired,
@@ -125,7 +188,10 @@ AdditionalInformation.propTypes = {
   changeCurrentBusiness: func.isRequired,
   getProfileBusiness: func.isRequired,
   addBusiness: func.isRequired,
-  businesses: shape()
+  updateServiceLink: func.isRequired,
+  removeServiceLink: func.isRequired,
+  businesses: shape(),
+  serviceLinks: shape()
 };
 
 AdditionalInformation.defaultProps = {
@@ -136,41 +202,48 @@ AdditionalInformation.defaultProps = {
   businessPictures: null,
   businessProducts: null,
   businessOpenPeriods: null,
-  businesses: null
+  businesses: null,
+  serviceLinks: null
 };
 
-export default requireAuth(true)(
-  withTranslation(namespaces)(
-    connect(
-      (state, { i18n }) => {
-        const businessData = state.getIn(["users", "currentBusiness", "data"]);
-        const business =
-          businessData &&
-          businessData.get("businesses") &&
-          businessData.get("businesses").first();
-        return {
-          business: business && business.get("attributes"),
-          businessId: business && business.get("id"),
-          businessGroups: businessData && businessData.get("groups"),
-          businessMenus: businessData && businessData.get("menus"),
-          businessPictures: businessData && businessData.get("pictures"),
-          businessProducts: businessData && businessData.get("products"),
-          businessOpenPeriods: businessData && businessData.get("openPeriods"),
-          businesses: state.getIn([
-            "users",
-            "profileBusinesses",
-            "data",
-            "businesses"
-          ]),
-          lng: (i18n && i18n.language) || "en"
-        };
-      },
-      {
-        updateBusiness: patchBusiness,
-        addBusiness: postBusiness,
-        changeCurrentBusiness: setCurrentBusiness,
-        getProfileBusiness: fetchProfileBusiness
-      }
-    )(AdditionalInformation)
+export default compose(
+  requireAuth(true),
+  withTranslation(namespaces),
+  connect(
+    (state, { i18n }) => {
+      const businessData = state.getIn(["users", "currentBusiness", "data"]);
+      const serviceLinks = state.getIn(["externalServices", "data", "links"]);
+
+      const business =
+        businessData &&
+        businessData.get("businesses") &&
+        businessData.get("businesses").first();
+
+      return {
+        business: business && business.get("attributes"),
+        businessId: business && business.get("id"),
+        businessGroups: businessData && businessData.get("groups"),
+        businessMenus: businessData && businessData.get("menus"),
+        businessPictures: businessData && businessData.get("pictures"),
+        businessProducts: businessData && businessData.get("products"),
+        businessOpenPeriods: businessData && businessData.get("openPeriods"),
+        businesses: state.getIn([
+          "users",
+          "profileBusinesses",
+          "data",
+          "businesses"
+        ]),
+        lng: (i18n && i18n.language) || "en",
+        serviceLinks
+      };
+    },
+    {
+      updateBusiness: patchBusiness,
+      addBusiness: postBusiness,
+      changeCurrentBusiness: setCurrentBusiness,
+      getProfileBusiness: fetchProfileBusiness,
+      updateServiceLink: patchServiceLink,
+      removeServiceLink: deleteServiceLink
+    }
   )
-);
+)(AdditionalInformation);

@@ -36,26 +36,48 @@
   "billingYearly": "Jahresabrechnung (bis zu 30% sparen)",
   "billingMonthly": "Monatliche Abrechnung",
   "options": {
+    "adsMarketing": "Anzeigen & Marketing",
+    "analytics": "Analytics",
+    "appManager": "App Manager",
+    "bookings": "Reservierungen",
+    "catering": "Gastronomie",
+    "clientDirectory": "Client Verzeichnis",
+    "clients": "Kunden",
+    "communityManagement": "Community Management",
+    "dashboard": "Instrumententafel",
+    "deliveryManagement": "Lieferungsmanagement",
+    "deliveryTakeAway": "Lieferung & Mitnehmen",
+    "detectives": "Detektive",
+    "enterprise": "Sind Sie Großhändler, Hersteller, Händler oder multinationaler Konzern? Lassen Sie sich von uns ein maßgeschneidertes Angebot unterbreiten. Buchen Sie noch heute einen unserer Spezialisten.",
+    "integrationHub": "Integration Hub",
+    "myProfile": "Mein Profil",
+    "payments": "Zahlungen",
+    "photography": "Fotografie",
+    "privateEvents": "Private Veranstaltungen",
+    "reviews": "Bewertungen",
+    "smartBackend": "Smart Back end",
+    "stockManagement": "Lagerverwaltung",
+    "wholesalers": "Großhändler",
+
     "website": "Website",
     "widget": "Widget",
     "mobileApp": "Handy-App",
     "reservations": "Reservierungen",
     "takeAway": "Zum Mitnehmen",
     "paidBooking": "Reservierung",
-    "bookings": "Reservierungen",
-    "catering": "Gastronomie",
     "privatisation": "Privatisierung",
     "delivery": "Lieferung / zum Mitnehmen",
     "redirections": "Weiterleitungen",
     "integrations": "Integrationen",
     "digitalMarketing": "Digitales Marketing",
     "widgets": "Widgets",
-    "dashboard": "Dashboard",
-    "reviews": "Reviews",
     "suppliers": "Lieferanten",
-    "payments": "Payments",
-    "wholesalers": "Wholesalers",
     "visibility": "Premium Visibility"
+  },
+  "optionsHd": {
+    "1": "Tool & Services",
+    "2": "Admin & Operations",
+    "3": "Sichtbarkeit Verbessern"
   },
   "basic": {
     "name": "Basic",
@@ -68,11 +90,13 @@
     },
     "month": "Monat",
     "year": "Yahr",
-    "buttonText": "Profil erstellen"
+    "buttonText": "Profil erstellen",
+    "buttonText2": "Loslegen"
   },
   "essential": {
     "name": "Wesentlich",
     "priceDescription": "Beginnt um",
+    "mostPopular": "Am beliebtesten",
     "price": {
       "month": "29.90",
       "year": "249",
@@ -80,7 +104,8 @@
     },
     "month": "Monat",
     "year": "Yahr",
-    "buttonText": "Beginnt um"
+    "buttonText": "Beginnt um",
+    "buttonText2": "Essential Wählen"
   },
   "premium": {
     "name": "Premium",
@@ -92,16 +117,24 @@
     },
     "month": "Monat",
     "year": "Yahr",
-    "buttonText": "Beginnt um"
+    "buttonText": "Beginnt um",
+    "buttonText2": "Premium Wählen"
   },
   "special": {
+    "buttonText": "Book a Meeting",
+    "buttonText2": "Buchen Sie eine Demo",
+    "description1": "Sind Sie Großhändler, Hersteller, Händler oder multinationaler Konzern?",
+    "description2": "Wenn ja, buchen Sie noch heute ein Treffen mit einem unserer Spezialisten, um mehr zu erfahren.",
     "name": "Enterprise",
     "priceDescription": "Let's talk",
+    "priceDescription2": "Kundenspezifische Preisgestaltung",
     "price": {
       "month": "",
       "year": "",
       "beta": ""
-    },
-    "buttonText": "Book a Meeting"
-  }
+    }
+  },
+  "tableHd1": "Pro Monat",
+  "tableHd2": "Pro Standort",
+  "tableStar": "* Für diese Dienstleistungen und Produkte fallen zusätzliche Gebühren an."
 }

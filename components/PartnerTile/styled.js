@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
@@ -40,6 +41,12 @@ export const ContentWrapper = styled(Flex)`
   @media (max-width: 1200px) {
     padding: 16px;
   }
+`;
+
+export const IconAdded = styled(FontAwesomeIcon)`
+  color: ${p => `#${p.added ? "de1154" : "03a04f"}`};
+  cursor: pointer;
+  margin: 0 0 0 1em;
 `;
 
 export const Link = styled.a`

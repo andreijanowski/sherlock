@@ -36,28 +36,49 @@
   "billingYearly": "Facturation annuelle (économiser jusqu'à 30%)",
   "billingMonthly": "Facturation mensuelle",
   "options": {
+    "adsMarketing": "Annonces et Marketing",
+    "analytics": "Analytique",
+    "appManager": "Gestionnaire d'application",
+    "bookings": "Réservations",
+    "catering": "Service traiteur",
+    "clientDirectory": "Annuaire des Clients",
+    "clients": "Clients",
+    "communityManagement": "Gestionnaire de Communauté",
+    "dashboard": "Tableau de Bord",
+    "deliveryManagement": "Gestion de la Livraison",
+    "deliveryTakeAway": "Livraison et Plats à Emporter",
+    "detectives": "Détectives",
+    "enterprise": "Vous êtes un grossiste, un fabricant, un distributeur ou une multinationale? Laissez-nous vous faire une offre sur mesure. Réservez un de nos spécialistes dès aujourd'hui.",
+    "integrationHub": "Hub d'Intégration",
+    "myProfile": "Mon Profil",
+    "payments": "Paiements",
+    "photography": "Photographie",
+    "privateEvents": "Événements Privés",
+    "reviews": "Avis",
+    "smartBackend": "Back end intelligent",
+    "stockManagement": "Gestion de Stock",
+    "wholesalers": "Grossistes",
+
     "website": "Page Web",
     "widget": "Widget",
-    "mobileApp": "Application mobile",
+    "mobileApp": "Application Mobile",
+    "reservations": "Réservations",
     "takeAway": "À emporter",
-    "catering": "Service traiteur",
+    "paidBooking": "Réservation",
+    "privatisation": "Privatisation",
     "delivery": "Livraisons",
+    "digitalMarketing": "Le marketing numérique",
     "redirections": "Redirections",
     "integrations": "Intégrations",
-    "reservations": "Réservations",
-    "paidBooking": "Réservation",
-    "bookings": "Réservations",
-    "privatisation": "Privatisation",
-    "digitalMarketing": "Le marketing numérique",
-    "widgets": "Widgets",
-    "dashboard": "Tableau de Bord",
-    "reviews": "Avis",
     "suppliers": "Fournisseurs",
-    "payments": "Paiements",
-    "wholesalers": "Grossistes",
+    "widgets": "Widgets",
     "visibility": "Visibilité Premium"
   },
-
+  "optionsHd": {
+    "1": "Outils et Services",
+    "2": "Admin et Opérations",
+    "3": "Améliorer la Visibilité"
+  },
   "basic": {
     "name": "De base",
     "mostPopular": "La plus populaire",
@@ -69,7 +90,8 @@
     },
     "month": "mois",
     "year": "année",
-    "buttonText": "Créer un profil"
+    "buttonText": "Créer un profil",
+    "buttonText2": "Commencer"
   },
   "essential": {
     "name": "Essentiel",
@@ -82,7 +104,8 @@
     },
     "month": "mois",
     "year": "année",
-    "buttonText": "Commencez à"
+    "buttonText": "Commencez à",
+    "buttonText2": "Choisissez Essential"
   },
   "premium": {
     "name": "Premium",
@@ -94,19 +117,24 @@
     },
     "month": "mois",
     "year": "année",
-    "buttonText": "Commencez à"
+    "buttonText": "Commencez à",
+    "buttonText2": "Choisissez Premium"
   },
   "special": {
+    "buttonText": "Prendre RDV",
+    "buttonText2": "Réservez une Démo",
+    "description1": "Êtes-vous un grossiste, un fabricant, un distributeur ou une multinationale?",
+    "description2": "Si tel est le cas, réservez dès aujourd'hui une rencontre avec l'un de nos spécialistes pour en savoir plus.",
     "name": "Entreprise",
     "priceDescription": "Parlons-en !",
+    "priceDescription2": "Tarification Personnalisée",
     "price": {
       "month": "",
       "year": "",
       "beta": ""
-    },
-    "buttonText": "Prendre RDV"
-  }
+    }
+  },
+  "tableHd1": "Par Mois",
+  "tableHd2": "Par Emplacement",
+  "tableStar": "* Des frais supplémentaires s'appliquent à ces services et produits."
  }
-
-
-

@@ -49,7 +49,8 @@
     "requestIntegration": "Richiedi integrazione",
     "pending": "In sospeso",
     "integrated": "Integrato",
-    "noPartners": "Nessun partner per questa categoria."
+    "noPartners": "Nessun partner per questa categoria.",
+    "noPreferred": "Non hai ancora aggiunto alcun grossista preferito."
   },
   "subscriptions": "Sottoscrizioni",
   "userSettings": {
@@ -72,6 +73,7 @@
     "fish": "Pesce",
     "bread_and_flour": "Pane e Farine",
     "diary_products": "Latticini",
+    "preferred": "I Miei Grossisti",
     "sweets_and_desserts": "Docli e Caramelle",
     "frozen_products": "Prodotti surgelati",
     "sauces_and_oils": "Salse e Olio",
