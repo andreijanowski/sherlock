@@ -2,9 +2,13 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { arrayOf, element, node, shape, string } from "prop-types";
 import React from "react";
-import { Tr, TrHead } from "./styled";
+import { Tr, TrHead, SvgIconWrap } from "./styled";
 
-const tick = <FontAwesomeIcon icon={faCheck} />;
+const tick = (
+  <SvgIconWrap>
+    <FontAwesomeIcon icon={faCheck} />
+  </SvgIconWrap>
+);
 
 const PlanPart = ({ heading, items }) => (
   <>
@@ -16,7 +20,7 @@ const PlanPart = ({ heading, items }) => (
     {items.map(({ essential, free, icon, label, premium }) => (
       <Tr key={label}>
         <td className="planPartCell">
-          <img alt="" src={icon} />
+          <span className="icon">{icon}</span>
         </td>
         <td className="label planPartCell">{label}</td>
         <td className="planPartCell free">{free || tick}</td>

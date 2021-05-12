@@ -1,3 +1,22 @@
+import {
+  AppManager,
+  Bookings,
+  Catering,
+  Clients,
+  CommunityManagement,
+  Dashboard,
+  Detectives,
+  Delivery,
+  IntegrationHub,
+  Marketing,
+  Payments,
+  Photography,
+  PrivateEvents,
+  Restaurant,
+  Reviews,
+  StockManagement,
+  Wholesalers
+} from "components/Icons";
 import { SUBSCRIPTION_PERIOD, SUBSCRIPTION_PLANS } from "consts";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -51,39 +70,39 @@ export const planParts = ({ t }) => [
     heading: t("plans:optionsHd.1"),
     items: [
       {
-        icon: "/static/img/restaurant-bleu.png",
+        icon: <Restaurant />,
         label: t("plans:options.myProfile")
       },
       {
         free: "€1",
-        icon: "/static/img/booking-bleu.png",
+        icon: <Bookings />,
         label: t("plans:options.bookings")
       },
       {
         essential: "5%",
         free: "10%",
-        icon: "/static/img/take-away-bleu.png",
+        icon: <Delivery />,
         label: t("plans:options.deliveryTakeAway"),
         premium: t("plans:basic.price.month")
       },
       {
         essential: "5%",
         free: "10%",
-        icon: "/static/img/caterings-bleu.png",
+        icon: <Catering />,
         label: t("plans:options.catering"),
         premium: t("plans:basic.price.month")
       },
       {
         essential: "5%",
         free: "10%",
-        icon: "/static/img/rooftop-bleu.png",
+        icon: <PrivateEvents />,
         label: t("plans:options.privateEvents"),
         premium: t("plans:basic.price.month")
       },
       {
         essential: "1.4%",
         free: "1.4%",
-        icon: "/static/img/payment-bleu.png",
+        icon: <Payments />,
         label: t("plans:options.payments"),
         premium: "1.4%"
       }
@@ -93,48 +112,46 @@ export const planParts = ({ t }) => [
     heading: t("plans:optionsHd.2"),
     items: [
       {
-        icon: "/static/img/connexion-bleu.png",
+        icon: <IntegrationHub />,
         label: t("plans:options.integrationHub")
       },
       {
-        icon: "/static/img/food-trucks-bleu.png",
+        icon: <Wholesalers />,
         label: t("plans:options.wholesalers")
       },
       {
-        icon: "/static/img/billing-bleu.png",
         label: t("plans:options.deliveryManagement")
       },
       {
         free: ICON_DASH,
-        icon: "/static/img/privatization-bleu.png",
+        icon: <AppManager />,
         label: t("plans:options.appManager")
       },
       {
         free: ICON_DASH,
-        icon: "/static/img/analytics-bleu.png",
+        icon: <Dashboard />,
         label: t("plans:options.dashboard")
       },
       {
         free: ICON_DASH,
-        icon: "/static/img/social-media-bleu.png",
+        icon: <Reviews />,
         label: t("plans:options.reviews")
       },
       {
         essential: ICON_DASH,
         free: ICON_DASH,
-        icon: "/static/img/analytics2-bleu.png",
         label: t("plans:options.analytics")
       },
       {
         essential: ICON_DASH,
         free: ICON_DASH,
-        icon: "/static/img/stock-management-bleu.png",
+        icon: <StockManagement />,
         label: t("plans:options.stockManagement")
       },
       {
         essential: ICON_DASH,
         free: ICON_DASH,
-        icon: "/static/img/le-food-bleu.png",
+        icon: <Clients />,
         label: t("plans:options.clientDirectory")
       }
     ]
@@ -143,20 +160,20 @@ export const planParts = ({ t }) => [
     heading: t("plans:optionsHd.3"),
     items: [
       {
-        icon: "/static/img/photography-bleu.png",
+        icon: <Photography />,
         label: `${t("plans:options.photography")} *`
       },
       {
-        icon: "/static/img/feedback-bleu.png",
+        icon: <Marketing />,
         label: `${t("plans:options.adsMarketing")} *`
       },
       {
-        icon: "/static/img/community-manager-bleu.png",
+        icon: <CommunityManagement />,
         label: `${t("plans:options.communityManagement")} *`
       },
       {
         free: ICON_DASH,
-        icon: "/static/img/detective-02-bleu.png",
+        icon: <Detectives />,
         label: t("plans:options.detectives")
       }
     ]
