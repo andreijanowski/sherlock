@@ -114,7 +114,11 @@ const PartnerTile = ({
         </Confirm>
       )}
       {showActionIcon && (
-        <IconAdded icon={added ? faMinus : faPlus} onClick={iconAddedClick} />
+        <IconAdded
+          added={added}
+          icon={added ? faMinus : faPlus}
+          onClick={iconAddedClick}
+        />
       )}
       <Image src={partner.getIn(["logo", "url"])} />
       <ContentWrapper

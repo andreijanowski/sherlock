@@ -26,8 +26,10 @@ const IntegrationsPage = ({
   pending,
   wholesalers,
   fetchPreferredPartnersAc,
-  preferredAddAc
+  preferredAddAc,
+  query
 }) => {
+  const { category } = query || {};
   const [confirmOpened, confirmOpen] = useState(false);
   const [partnerIdState, partnerIdSet] = useState("");
   const [tab, setTab] = useState("");
@@ -120,6 +122,7 @@ const IntegrationsPage = ({
         <>
           {pending && <LoadingIndicator hasTransparentBackground />}
           <IntegrationsList
+            category={category}
             itemsAdded={partnersPreferredIds}
             showActionIcons
             partners={preparedWholesalers}
@@ -154,6 +157,7 @@ IntegrationsPage.propTypes = {
   partnersPreferredIds: arrayOf(string),
   pending: bool,
   preferredAddAc: func,
+  query: shape(),
   wholesalers: shape()
 };
 
@@ -163,6 +167,7 @@ IntegrationsPage.defaultProps = {
   partnersPreferredIds: [],
   pending: false,
   preferredAddAc: noop,
+  query: {},
   wholesalers: null
 };
 

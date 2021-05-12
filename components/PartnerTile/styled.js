@@ -44,6 +44,7 @@ export const ContentWrapper = styled(Flex)`
 `;
 
 export const IconAdded = styled(FontAwesomeIcon)`
+  color: ${p => `#${p.added ? "de1154" : "03a04f"}`};
   cursor: pointer;
   margin: 0 0 0 1em;
 `;

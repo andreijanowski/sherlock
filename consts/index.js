@@ -40,6 +40,10 @@ const TYPEFORM_IDS = {
   PHOTOGRAPHY: process.env.PHOTOGRAPHY_TYPEFORM_ID
 };
 
+const WHOLESALERS_CATEGORY = {
+  PREFERRED: "preferred"
+};
+
 const contentTypes = {
   JSON: "application/json",
   JSONAPI: "application/vnd.api+json",
@@ -72,5 +76,6 @@ module.exports = {
   SUBSCRIPTION_ENTREPRISE_URL,
   SUBSCRIPTION_PERIOD,
   SUBSCRIPTION_PLANS,
-  TYPEFORM_IDS
+  TYPEFORM_IDS,
+  WHOLESALERS_CATEGORY
 };
