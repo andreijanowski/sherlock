@@ -16,6 +16,7 @@ import { fetchBusinessMembers, fetchBusinessDishes } from "actions/businesses";
 import { fetchPartners } from "actions/partners";
 import { fetchWholesalers } from "actions/wholesalers";
 import { fetchExternalServices } from "actions/externalServices";
+import fetchAllBusinessData from "./utils/fetchAllBusinessData";
 
 function* handlePatchChangeSaga({ payload: { path } }) {
   switch (path) {
@@ -78,7 +79,7 @@ function* handlePatchChangeSaga({ payload: { path } }) {
         "currentBusinessId"
       );
       if (bussinessId) {
-        yield put(fetchPartners(bussinessId));
+        yield fetchAllBusinessData(fetchPartners, bussinessId);
       }
       break;
     }
