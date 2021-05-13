@@ -216,7 +216,7 @@ class BasicInformationForm extends PureComponent {
               items={diets}
               isErrorVisibilityRequired={isErrorVisibilityRequired}
             />
-            <H3 mt={4}>{t("michelinStars")}</H3>
+            <H3 mt={4}>{t("labelsDistinctions")}</H3>
             <Field
               name="michelinStars"
               placeholder={t("michelinStarsPlaceholder")}

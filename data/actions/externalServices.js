@@ -11,7 +11,9 @@ export const fetchExternalServices = () => ({
   payload: {
     method: "GET",
     endpoint: `/api/v1/external_services`,
-    per_page: 500
+    params: {
+      per_page: 200
+    }
   },
   meta: { thunk: true }
 });
