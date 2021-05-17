@@ -1,6 +1,10 @@
 import { withTranslation } from "i18n";
 import { func } from "prop-types";
-import { privacyPolicyLink, termsAndConditionsLink } from "consts";
+import {
+  privacyPolicyLink,
+  termsAndConditionsLink,
+  mediaKitLink
+} from "consts";
 import { FooterWrapper, MenuWrapper, ColumnTitle, NavItem } from "./styled";
 import NavigationList from "./navigationList";
 
@@ -21,6 +25,13 @@ const Footer = ({ t }) => (
                 href: "https://foodetective.typeform.com/to/tzqu8b",
                 target: "_blank",
                 rel: "noreferrer noopener"
+              },
+              "1": {
+                href: `mailto:hello@foodetective.co?subject=${t(
+                  "workInFoodetective"
+                )}`,
+                target: "_blank",
+                rel: "noreferrer noopener"
               }
             }
           }}
@@ -35,6 +46,11 @@ const Footer = ({ t }) => (
             hrefs: {
               "0": {
                 href: "https://medium.com/@foodetective",
+                target: "_blank",
+                rel: "noreferrer noopener"
+              },
+              "1": {
+                href: mediaKitLink,
                 target: "_blank",
                 rel: "noreferrer noopener"
               }

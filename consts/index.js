@@ -52,6 +52,8 @@ const contentTypes = {
 
 const privacyPolicyLink = `${FOODETECTIVE_URL}/foodetective-for-business-privacy-policy`;
 const termsAndConditionsLink = `${FOODETECTIVE_URL}/foodetective-for-business-terms-of-use`;
+const mediaKitLink =
+  "https://drive.google.com/drive/folders/1AlH-mWME83bzmg-job1N-ZqQjwxb0Ga0";
 
 module.exports = {
   contentTypes,
@@ -59,6 +61,7 @@ module.exports = {
   languagesPattern,
   privacyPolicyLink,
   termsAndConditionsLink,
+  mediaKitLink,
   API_URL,
   APP_URL,
   FOODETECTIVE_URL,
