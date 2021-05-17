@@ -2,7 +2,7 @@ import { PureComponent } from "react";
 import { withTranslation } from "i18n";
 import { func, string, shape } from "prop-types";
 import requireAuth from "lib/requireAuth";
-import { SingleActionView, BlueText, BoldText } from "components";
+import { SingleActionView } from "components";
 import { DesciprtionWrapper, InviteManagers } from "sections/addManager";
 import { postReferrals } from "actions/referrals";
 import { connect } from "react-redux";
@@ -30,18 +30,14 @@ class AddManager extends PureComponent {
 
   render() {
     const { t, lng } = this.props;
+
     return (
       <SingleActionView
         {...{
           lng,
           actionTitle: t("title"),
           actionDescription: (
-            <DesciprtionWrapper>
-              {t("description")}
-              <BlueText>
-                <BoldText>{t("highlightedDescription")}</BoldText>
-              </BlueText>
-            </DesciprtionWrapper>
+            <DesciprtionWrapper>{t("description")}.</DesciprtionWrapper>
           )
         }}
       >

@@ -1,9 +1,9 @@
 {
-  "title": "Ajouter un gestionnaire",
-  "description": "Invitez vos amis restaurateurs",
+  "title": "Invitez vos amis restaurateurs",
+  "description": "Un mois gratuit par email qui s'enregistre",
   "highlightedDescription": "3 mois gratuits",
-  "emailHelperTitle": "Quel est le courrier électronique du gestionnaire?",
+  "emailHelperTitle": "Ajoutez leurs emails ci-dessous",
   "inviteButton": "Invitez",
   "addEmailButton": "Ajouter plus d'adresses email",
-  "skip": "Sauter"
+  "skip": "Passer cette étape"
 }
