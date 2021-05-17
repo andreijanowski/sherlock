@@ -3,13 +3,15 @@
     "columnOne": {
       "title": "Begleiten Sie uns",
       "links": [
-        "Partner mit uns"
+        "Partner mit uns",
+        "Arbeite mit uns"
       ]
     },
     "columnTwo": {
       "title": "Hilfe",
       "links": [
-        "Blog"
+        "Blog",
+        "Media kit"
       ]
     },
     "columnThree": {
@@ -36,5 +38,6 @@
       ]
     }
   },
-  "copyrightNote": "© {{currentYear}} The Food Detective SA. Alle Rechte vorbehalten."
+  "copyrightNote": "© {{currentYear}} The Food Detective SA. Alle Rechte vorbehalten.",
+  "workInFoodetective": "Tritt dem team bei"
 }

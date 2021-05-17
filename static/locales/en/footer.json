@@ -3,12 +3,13 @@
     "columnOne": {
       "title": "Join us",
       "links": [
-        "Partner with us"
+        "Partner with us",
+        "Work with us"
       ]
     },
     "columnTwo": {
       "title": "Help",
-      "links": ["Blog"]
+      "links": ["Blog", "Media kit"]
     },
     "columnThree": {
       "title": "Legal",
@@ -23,5 +24,6 @@
       "links": ["Apple", "Android"]
     }
   },
-  "copyrightNote": "© {{currentYear}} The Food Detective SA. All rights reserved."
+  "copyrightNote": "© {{currentYear}} The Food Detective SA. All rights reserved.",
+  "workInFoodetective": "Join the team"
 }
