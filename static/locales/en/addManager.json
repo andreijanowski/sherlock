@@ -1,9 +1,9 @@
 {
-  "title": "Add manager",
-  "description": "Invite your restauranteurs friends, get ",
+  "title": "Invite your restaurateur friends",
+  "description": "One free month for the registered email",
   "highlightedDescription": "3 months for free.",
-  "emailHelperTitle": "What’s the Manager’s email?",
+  "emailHelperTitle": "Add their emails below",
   "inviteButton": "Invite",
   "addEmailButton": "Add more Emails",
-  "skip": "Skip"
+  "skip": "Skip this step"
 }

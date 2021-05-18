@@ -1,9 +1,9 @@
 {
-  "title": "Aggiungi gestore",
-  "description": "Invita i tuoi amici ristoratori",
+  "title": "Invita i tuoi amici ristoratori",
+  "description": "Un mese gratuito per l'email registrata",
   "highlightedDescription": "3 mesi gratis",
-  "emailHelperTitle": "Qual è la email del gestore?",
+  "emailHelperTitle": "Aggiungi le loro email di seguito",
   "inviteButton": "Invitare",
   "addEmailButton": "Aggiungere più mail",
-  "skip": "Salta"
+  "skip": "Salta questo passaggio"
 }
