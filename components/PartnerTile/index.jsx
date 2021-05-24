@@ -5,7 +5,6 @@ import { shape, arrayOf, oneOfType, func, string, bool } from "prop-types";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import { connectPartner } from "actions/partners";
-import { connectWholesaler } from "actions/wholesalers";
 
 import {
   H3,
@@ -15,7 +14,7 @@ import {
 import { Confirm } from "components/modals";
 
 import IntegrationLink from "./IntegrationLink";
-import { getIntegrationButtonLabel, getIsIntegrationPending } from "./utils";
+import { getIntegrationButtonLabel } from "./utils";
 import {
   ButtonContainer,
   Container,
@@ -28,12 +27,9 @@ import {
 } from "./styled";
 
 const PartnerTile = ({
-  added,
   integratePartner,
-  integrateWholesaler,
   partner,
   partnerId,
-  partnerRelationships,
   showActionIcon,
   t,
   onAddClick
@@ -45,14 +41,11 @@ const PartnerTile = ({
   const isIntegratedWithServices = isOrkestroIntegration || isUberIntegration;
   const WHOLESALER = "wholesaler";
 
-  const currentUserId = window.localStorage.getItem("currentUserId");
-  const isIntegrationPending = getIsIntegrationPending(
-    partnerRelationships,
-    currentUserId
-  );
+  const isIntegrationPending = partner.get("userIntegrationRequested");
 
   const isIntegrationNotRequested = partner.get("active");
   const isIntegrated = !partner.get("active");
+  const isPreferred = partner.get("preferred");
 
   const [isPending, setIsPending] = useState(isIntegrationPending);
   const integrationButtonLabel = getIntegrationButtonLabel(
@@ -65,16 +58,15 @@ const PartnerTile = ({
   const isPartnerWholesaler = partnerCategory === WHOLESALER;
 
   const iconAddedClick = () => {
-    onAddClick({ added, partnerId });
+    onAddClick({ added: isPreferred, partnerId });
   };
 
-  const makeIntergationRequest = useCallback(() => {
-    // todo possible a bug, we try to integrate already connected partner
-    if (isPartnerWholesaler) {
-      return integrateWholesaler(partnerId);
-    }
-    return integratePartner(partnerId);
-  }, [integratePartner, integrateWholesaler, isPartnerWholesaler, partnerId]);
+  const makeIntergationRequest = useCallback(
+    () =>
+      // todo possible a bug, we try to integrate already connected partner
+      integratePartner(partnerId),
+    [integratePartner, partnerId]
+  );
 
   const requestIntegration = () => {
     if (isIntegrationNotRequested) setIsPending(true);
@@ -115,8 +107,8 @@ const PartnerTile = ({
       )}
       {showActionIcon && (
         <IconAdded
-          added={added}
-          icon={added ? faMinus : faPlus}
+          added={isPreferred}
+          icon={isPreferred ? faMinus : faPlus}
           onClick={iconAddedClick}
         />
       )}
@@ -166,18 +158,14 @@ const PartnerTile = ({
 };
 
 PartnerTile.propTypes = {
-  added: bool,
   integratePartner: func.isRequired,
-  integrateWholesaler: func.isRequired,
   partner: oneOfType([arrayOf(), shape()]).isRequired,
   partnerId: string.isRequired,
-  partnerRelationships: oneOfType([arrayOf(), shape({})]).isRequired,
   showActionIcon: bool,
   t: func.isRequired,
   onAddClick: func
 };
 PartnerTile.defaultProps = {
-  added: false,
   showActionIcon: false,
   onAddClick: noop
 };
@@ -185,7 +173,6 @@ PartnerTile.defaultProps = {
 export default connect(
   null,
   {
-    integratePartner: connectPartner,
-    integrateWholesaler: connectWholesaler
+    integratePartner: connectPartner
   }
 )(PartnerTile);
