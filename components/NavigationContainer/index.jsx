@@ -1,9 +1,14 @@
 import React, { useCallback, useEffect } from "react";
 import { bool, func, string, arrayOf, shape } from "prop-types";
 import { connect } from "react-redux";
+import { useRouter } from "next/router";
+
 import { NavBar, Menu, MobileNav } from "components";
 import { setNestedMenuVisibility } from "actions/app";
+import { PARTNERS_URL, WHOLESALERS_URL } from "sections/integrations/utils";
 import { Wrapper, MobileWrapper } from "./styled";
+
+const routesWithSearch = [PARTNERS_URL, WHOLESALERS_URL];
 
 const NavigationContainer = ({
   withMenu,
@@ -13,6 +18,8 @@ const NavigationContainer = ({
   updateNestedMenuVisibility,
   isNestedMenuVisible
 }) => {
+  const router = useRouter();
+
   const toggleNestedMenu = useCallback(() => {
     updateNestedMenuVisibility(!isNestedMenuVisible);
   }, [isNestedMenuVisible, updateNestedMenuVisibility]);
@@ -26,11 +33,15 @@ const NavigationContainer = ({
 
   const showNestedMenu = withMenu && isNestedMenuVisible;
 
+  const withSearch = routesWithSearch.includes(router.pathname);
+
   return (
     <>
       <Wrapper>
         <NavBar {...{ t, lng, showNestedMenu, toggleNestedMenu }}>
-          {withMenu && <Menu {...{ t, lng, menuItems, toggleNestedMenu }} />}
+          {withMenu && (
+            <Menu {...{ withSearch, t, lng, menuItems, toggleNestedMenu }} />
+          )}
         </NavBar>
       </Wrapper>
       <MobileWrapper>
