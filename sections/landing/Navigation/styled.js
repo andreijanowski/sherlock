@@ -16,8 +16,8 @@ export const StyledParagraph = styled(Box).attrs(() => ({
   my: 0,
   px: 18
 }))`
-  font-weight: ${p => p.theme.fontWeights.regular};
-  font-size: ${p => p.theme.fontSizes.f16};
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f18};
   line-height: 28px;
   letter-spacing: 0.36px;
   cursor: pointer;
@@ -49,8 +49,8 @@ export const StyledHeaderParagraph = styled(Box).attrs(() => ({
   margin-bottom: 0;
   color: rgb(${p => p.theme.colors.white});
   font-weight: ${p => p.theme.fontWeights.semiBold};
-  font-size: ${p => p.theme.fontSizes.f24};
-  line-height: 30px;
+  font-size: ${p => p.theme.fontSizes.f18};
+  line-height: 21px;
   letter-spacing: 0.5px;
   word-spacing: 200px;
   span {

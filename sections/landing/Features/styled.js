@@ -1,13 +1,9 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Flex } from "@rebass/grid";
-import { H2 } from "components";
-
-export const alignCenterMobile = css`
-  text-align: center;
-  @media (min-width: ${p => p.theme.breakpoints[0]}) {
-    text-align: start;
-  }
-`;
+import {
+  H2Styled as BaseH2Styled,
+  ParagraphStyled as BaseParagraphStyled
+} from "../sharedStyled";
 
 export const FeaturesWrapper = styled(Flex).attrs(() => ({
   justifyContent: "start",
@@ -19,12 +15,8 @@ export const FeaturesWrapper = styled(Flex).attrs(() => ({
   max-width: 1150px;
 `;
 
-export const H2Styled = styled(H2)`
-  ${alignCenterMobile}
-  color: black;
-  font-weight: ${p => p.theme.fontWeights.semiBold};
-  font-size: ${p => p.theme.fontSizes.f30};
-  letter-spacing: 0.6px;
+export const H2Styled = styled(BaseH2Styled)`
+  color: rgb(${p => p.theme.colors.darkText});
 `;
 
 export const Image = styled.img`
@@ -34,15 +26,7 @@ export const Image = styled.img`
   margin: 20px 0;
 `;
 
-export const ParagraphStyled = styled("p")`
-  ${alignCenterMobile}
+export const ParagraphStyled = styled(BaseParagraphStyled)`
   margin: 0;
-  color: black;
-  font-weight: 500;
-  font-size: ${p => p.theme.fontSizes.f16};
-  line-height: 20px;
-  letter-spacing: 0.3px;
-  @media (min-width: ${p => p.theme.breakpoints[2]}) {
-    font-size: ${p => p.theme.fontSizes.f16};
-  }
+  color: rgb(${p => p.theme.colors.darkText});
 `;

@@ -29,11 +29,13 @@ const PlansMainComponent = ({
             justifyContent={["center", "space-between"]}
             mb={[20, 10]}
           >
-            <ParagraphStyled width={[1, 1 / 2]} mr={4}>
-              {t("plans:subHeader.start")}{" "}
-              <BlueText>{t("plans:subHeader.end")}</BlueText>
-              {t("plans:paragraph")}
-            </ParagraphStyled>
+            <Box width={[1, 1 / 2]} mb={[30, 0]} mr={4}>
+              <ParagraphStyled big>
+                {t("plans:subHeader.start")}{" "}
+                <BlueText>{t("plans:subHeader.end")}</BlueText>
+              </ParagraphStyled>
+              <ParagraphStyled>{t("plans:paragraph")}</ParagraphStyled>
+            </Box>
             <PlansBillingInterval
               {...{ t, billingInterval, handleChangeBillngPeriod }}
             />

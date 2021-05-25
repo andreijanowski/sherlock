@@ -16,7 +16,7 @@ export const LanguageSwitcherWrapper = styled(Flex).attrs(() => ({
   position: relative;
   z-index: 2;
   width: auto;
-  height: 40px;
+  height: 55px;
   color: rgb(${p => p.theme.colors.white});
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f12};
