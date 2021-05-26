@@ -123,8 +123,8 @@ const goToApiDocs = css`
 `;
 
 const becomePartner = css`
-  ${goToApiDocs};
-  margin: 12px 0;
+  ${login};
+  margin: 0 0 16px;
   background: rgba(${p => p.theme.colors.purpleBlue}, 1);
   box-shadow: none;
   &:hover {

@@ -50,6 +50,8 @@ const fontSizes = {
   f16: "16px",
   f18: "18px",
   f21: "21px",
+  f22: "22px",
+  f23: "23px",
   f24: "24px",
   f30: "30px",
   f32: "32px",
@@ -57,7 +59,8 @@ const fontSizes = {
   f46: "46px",
   f48: "48px",
   f52: "52px",
-  f56: "56px"
+  f56: "56px",
+  f60: "60px"
 };
 
 export const radius = {

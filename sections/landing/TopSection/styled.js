@@ -5,8 +5,10 @@ import { alignCenterMobile } from "../sharedStyled";
 export const H1Styled = styled(H1)`
   ${alignCenterMobile}
   color: white;
+  letter-spacing: 1.2px;
   @media (min-width: ${p => p.theme.breakpoints[2]}) {
-    font-size: ${p => p.theme.fontSizes.f52};
+    font-size: ${p => p.theme.fontSizes.f60};
+    line-height: 70px;
   }
 `;
 
@@ -22,19 +24,9 @@ export const ParagraphStyled = styled(Paragraph)`
   }
 `;
 
-export const Image = styled.div`
+export const Image = styled.img`
   width: 100%;
-  height: 100%;
-  min-height: 50vh;
-  max-height: 500px;
-  background-image: url("/static/img/topsection/dashboard.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
-  @media (min-width: ${p => p.theme.breakpoints[0]}) {
-    width: 100vw;
-    min-height: 600px;
-    max-height: 800px;
-    background-position: top left;
+  @media (min-width: ${p => p.theme.breakpoints[2]}) {
+    width: auto;
   }
 `;

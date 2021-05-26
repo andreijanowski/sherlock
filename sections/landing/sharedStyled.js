@@ -34,9 +34,16 @@ export const ParagraphStyled = styled("p")`
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 20px;
   letter-spacing: 0.3px;
-  @media (min-width: ${p => p.theme.breakpoints[2]}) {
-    font-size: ${p => p.theme.fontSizes.f16};
-  }
+  ${p =>
+    p.big &&
+    `
+    margin-bottom: 16px;
+    line-height: 1.25;
+    color: rgb(${p.theme.colors.white});
+    font-weight: ${p.theme.fontWeights.semiBold};
+    font-size: ${p.theme.fontSizes.f30};
+    letter-spacing: 0.6px;
+  `}
 `;
 
 export const LandingWrapper = styled(Flex)`
