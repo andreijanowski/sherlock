@@ -3,7 +3,8 @@ import { func } from "prop-types";
 import {
   privacyPolicyLink,
   termsAndConditionsLink,
-  mediaKitLink
+  mediaKitLink,
+  becomePartnerLink
 } from "consts";
 import { FooterWrapper, MenuWrapper, ColumnTitle, NavItem } from "./styled";
 import NavigationList from "./navigationList";
@@ -22,7 +23,7 @@ const Footer = ({ t }) => (
             columnName: "columnOne",
             hrefs: {
               "0": {
-                href: "https://foodetective.typeform.com/to/tzqu8b",
+                href: becomePartnerLink,
                 target: "_blank",
                 rel: "noreferrer noopener"
               },

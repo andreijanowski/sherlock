@@ -3,6 +3,8 @@ import { func, oneOfType, shape, any } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import { Button } from "components";
 import ReactPlayer from "react-player";
+
+import { becomePartnerLink } from "consts";
 import { FeaturesWrapper, H2Styled, ParagraphStyled } from "./styled";
 import { BlueText } from "../sharedStyled";
 
@@ -18,7 +20,7 @@ const Features = ({ t, featuresRef }) => (
         <Button
           styleName="becomePartner"
           onClick={() => {
-            window.location.href = `https://foodetective.typeform.com/to/tzqu8b`;
+            window.location.href = becomePartnerLink;
           }}
         >
           {t("cooperations.becomePartner")}

@@ -1,7 +1,9 @@
 import React from "react";
 import { Flex, Box } from "@rebass/grid";
 import { func, oneOfType, any, shape } from "prop-types";
+
 import { Button } from "components";
+import { becomePartnerLink } from "consts";
 import {
   LogosContainer,
   ClientLogo,
@@ -82,7 +84,7 @@ const Cooperations = ({ t, industriesRef }) => (
       <Button
         styleName="blue"
         onClick={() => {
-          window.open("https://foodetective.typeform.com/to/tzqu8b");
+          window.open(becomePartnerLink);
         }}
       >
         {t("cooperations.becomePartner")}
