@@ -52,6 +52,8 @@ const splitRatioList = [
   { value: "1.0", label: "100%" }
 ];
 
+const ONE_DAY_IN_MINUTES = 24 * 60;
+
 const averageDeliveryTimeList = t => [
   {
     value: 0,
@@ -88,6 +90,22 @@ const averageDeliveryTimeList = t => [
   {
     value: 120,
     label: "2 h"
+  },
+  {
+    value: ONE_DAY_IN_MINUTES,
+    label: "24 h"
+  },
+  {
+    value: ONE_DAY_IN_MINUTES * 2,
+    label: `2 ${t("day", { count: 2 })}`
+  },
+  {
+    value: ONE_DAY_IN_MINUTES * 7,
+    label: `1 ${t("week")}`
+  },
+  {
+    value: ONE_DAY_IN_MINUTES * 30,
+    label: `1 ${t("month")}`
   }
 ];
 
