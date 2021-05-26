@@ -26,7 +26,8 @@
     "published": "Published",
     "unPublish": "Unpublish business",
     "waitingForApproval": "Waiting for approval",
-    "myProfile": "My profile"
+    "myProfile": "My profile",
+    "unPublish_prompt": "Are you sure you want to Unpublish your business from Foodetective? Clients won't be able to find your profile anymore."
   },
   "manageIntegrations": {
     "pos": "POS",
