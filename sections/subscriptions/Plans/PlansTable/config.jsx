@@ -15,7 +15,9 @@ import {
   Restaurant,
   Reviews,
   StockManagement,
-  Wholesalers
+  Wholesalers,
+  DeliveryManagement,
+  Analytics
 } from "components/Icons";
 import { SUBSCRIPTION_PERIOD, SUBSCRIPTION_PLANS } from "consts";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
@@ -120,6 +122,7 @@ export const planParts = ({ t }) => [
         label: t("plans:options.wholesalers")
       },
       {
+        icon: <DeliveryManagement />,
         label: t("plans:options.deliveryManagement")
       },
       {
@@ -140,6 +143,7 @@ export const planParts = ({ t }) => [
       {
         essential: ICON_DASH,
         free: ICON_DASH,
+        icon: <Analytics />,
         label: t("plans:options.analytics")
       },
       {

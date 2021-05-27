@@ -36,7 +36,9 @@ export {
   Marketing,
   Clients,
   StockManagement,
-  Photography
+  Photography,
+  DeliveryManagement,
+  Analytics
 } from "./navigation";
 export {
   Docs,
