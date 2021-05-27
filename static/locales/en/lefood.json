@@ -160,5 +160,8 @@
   "white_wines": "White Wines",
   "rose_wines": "Rosé Wines",
   "sandwiches": "Sandwiches",
-  "other": "Other"
+  "other": "Other",
+  "day_plural": "days",
+  "week": "week",
+  "month": "month"
 }
