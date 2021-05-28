@@ -1,7 +1,9 @@
 import {
   FETCH_PARTNERS_REQUEST,
   FETCH_PARTNERS_SUCCESS,
-  FETCH_PARTNERS_FAIL
+  FETCH_PARTNERS_FAIL,
+  PARTNERS_PREFERRED_ADD_SUCCESS,
+  PARTNERS_PREFERRED_DELETE_SUCCESS
 } from "types/partners";
 import { LOGOUT } from "types/auth";
 import { Record, Map, fromJS } from "immutable";
@@ -28,17 +30,20 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       let newState = state.merge(
         Record({
           isFetching: false,
-          isSucceeded: true
+          isSucceeded: true,
+          previousConfig: meta.config,
+          hasMore: meta.config.page < payload.rawData.meta.totalPages
         })()
       );
-      if (meta.page === 1) {
-        newState = newState.setIn(["data", "partners"], fromJS(payload.data));
+
+      const preparedData = fromJS(payload.rawData.data);
+
+      if (meta.merge) {
+        newState = newState.mergeIn(["data"], preparedData);
       } else {
-        newState = newState.mergeDeepIn(
-          ["data", "partners"],
-          fromJS(payload.data)
-        );
+        newState = newState.set("data", preparedData);
       }
+
       return newState;
     }
     case FETCH_PARTNERS_FAIL: {
@@ -47,6 +52,30 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           isFetching: false,
           isFailed: true
         })()
+      );
+    }
+
+    case PARTNERS_PREFERRED_ADD_SUCCESS: {
+      return state.set(
+        "data",
+        state.get("data").map(partner => {
+          if (partner.get("id") === meta.partnerId) {
+            return partner.setIn(["attributes", "preferred"], true);
+          }
+          return partner;
+        })
+      );
+    }
+
+    case PARTNERS_PREFERRED_DELETE_SUCCESS: {
+      return state.set(
+        "data",
+        state.get("data").map(partner => {
+          if (partner.get("id") === meta.partnerId) {
+            return partner.setIn(["attributes", "preferred"], false);
+          }
+          return partner;
+        })
       );
     }
 

@@ -1,11 +1,14 @@
 import { string, bool, arrayOf, shape, func } from "prop-types";
 import { Flex } from "@rebass/grid";
 import { Button, Link } from "components";
+
 import MenuArrowIcon from "components/MenuArrowIcon";
+import PartnersSearchBox from "components/PartnersSearchBox";
 import { Items, Item } from "./styled";
 
-const Menu = ({ lng, toggleNestedMenu, menuItems, t }) => (
+const Menu = ({ lng, toggleNestedMenu, menuItems, t, withSearch }) => (
   <Items>
+    {withSearch && <PartnersSearchBox />}
     <Item bigPadding onClick={toggleNestedMenu}>
       <MenuArrowIcon back />
       <span>{t("app:backToMainMenu")}</span>
@@ -64,7 +67,8 @@ Menu.propTypes = {
     })
   ).isRequired,
   t: func.isRequired,
-  toggleNestedMenu: func.isRequired
+  toggleNestedMenu: func.isRequired,
+  withSearch: bool.isRequired
 };
 
 export default Menu;

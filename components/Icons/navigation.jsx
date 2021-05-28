@@ -1475,3 +1475,97 @@ export const Photography = () => (
     />
   </svg>
 );
+
+export const DeliveryManagement = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
+  >
+    <defs>
+      <style>{`
+        .svg-delivery-management-cls-1,
+        .svg-delivery-management-cls-2 {
+          fill: none;
+          stroke-width: 4px;
+        }
+        
+        .svg-delivery-management-cls-1 {
+          stroke: currentColor;
+        }
+        
+        .svg-delivery-management-cls-2 {
+          stroke: currentColor;
+          stroke-linecap: round;
+        }
+      `}</style>
+    </defs>
+    <path
+      className="svg-delivery-management-cls-1 primary"
+      d="M48.58,41.29c-3.47,0-5.4.4-7.2,1.36a8.9,8.9,0,0,0-3.72,3.72c-1,1.8-1.36,3.73-1.36,7.2V57c0,3.48.4,5.41,1.36,7.2a8.9,8.9,0,0,0,3.72,3.72c1.8,1,3.73,1.37,7.2,1.37H60c3.47,0,5.4-.41,7.2-1.37a8.9,8.9,0,0,0,3.72-3.72c1-1.79,1.37-3.72,1.37-7.2V53.57c0-3.47-.41-5.4-1.37-7.2a8.9,8.9,0,0,0-3.72-3.72c-1.8-1-3.73-1.36-7.2-1.36Z"
+    />
+    <path
+      className="svg-delivery-management-cls-2 secondary"
+      d="M46.3,51.29h16"
+    />
+    <path
+      className="svg-delivery-management-cls-2 secondary"
+      d="M46.3,60.29h4"
+    />
+  </svg>
+);
+
+export const Analytics = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1em"
+    height="1em"
+    viewBox="0 0 112 112"
+  >
+    <defs>
+      <style>{`
+      .svg-analytics-cls-1 {
+        fill: currentColor;
+      }
+      
+      .svg-analytics-cls-2 {
+        fill: currentColor;
+      }
+      
+      .svg-analytics-cls-3 {
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 5px;
+      }
+      
+      .svg-analytics-cls-4 {
+        fill: currentColor;
+      }
+      `}</style>
+    </defs>
+    <path
+      className="svg-analytics-cls-1 primary"
+      d="M35.26,67.4V39.64A5.53,5.53,0,0,1,41,34.32h0a5.52,5.52,0,0,1,5.7,5.32V67.4a4.88,4.88,0,0,1-5,4.7H40.31A4.88,4.88,0,0,1,35.26,67.4Z"
+    />
+    <path
+      className="svg-analytics-cls-2 primary"
+      d="M50.3,67.4V53.24A5.52,5.52,0,0,1,56,47.92h0a5.52,5.52,0,0,1,5.7,5.32V67.4a4.88,4.88,0,0,1-5,4.7H55.34A4.88,4.88,0,0,1,50.3,67.4Z"
+    />
+    <line
+      className="svg-analytics-cls-3 primary"
+      x1="35.26"
+      y1="77.68"
+      x2="76.74"
+      y2="77.68"
+    />
+    <circle
+      className="svg-analytics-cls-4 secondary"
+      cx="70.91"
+      cy="66.36"
+      r="5.58"
+    />
+  </svg>
+);

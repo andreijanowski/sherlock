@@ -154,5 +154,6 @@
   },
   "save": "Save",
   "cancel": "Cancel",
-  "delete": "Delete"
+  "delete": "Delete",
+  "unpublish": "Unpublish"
 }

@@ -17,8 +17,6 @@ import tables from "./tables";
 import bookings from "./bookings";
 import widgets from "./widgets";
 import partners from "./partners";
-import partnersPreferred from "./partnersPreferred";
-import wholesalers from "./wholesalers";
 import externalServices from "./externalServices";
 
 export default {
@@ -41,7 +39,5 @@ export default {
   bookings,
   widgets,
   partners,
-  partnersPreferred,
-  wholesalers,
   externalServices
 };

@@ -7,8 +7,8 @@ import List from "./list";
 const Services = ({ t, servicesRef }) => (
   <ServicesWrapper ref={servicesRef} px={3} flexWrap="wrap">
     <H2Styled>{t("services.header")}</H2Styled>
-    <Box width={[1, 1 / 2]}>
-      <ParagraphStyled>
+    <Box width={[1, 3 / 4]}>
+      <ParagraphStyled big>
         {t("services.paragraph.start")}
         <BlueText>
           {t("services.paragraph.firstKeyword")}

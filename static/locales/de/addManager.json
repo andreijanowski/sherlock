@@ -1,9 +1,9 @@
 {
-  "title": "Manager hinzufügen",
-  "description": "Laden Sie Ihre Restaurantfreunde ein",
+  "title": "Laden Sie Ihre Restaurantfreunde ein",
+  "description": "Ein freier Monat für die registrierte E-Mail",
   "highlightedDescription": "3 Monate kostenlos",
-  "emailHelperTitle": "Wie lautet die E-Mail-Adresse des Managers?",
+  "emailHelperTitle": "Fügen Sie ihre E-Mails unten hinzu",
   "inviteButton": "Einladen",
   "addEmailButton": "Weitere E-Mail-Adressen hinzufügen",
-  "skip": "Überspringen"
+  "skip": "Überspringe diesen Schritt"
 }

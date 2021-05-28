@@ -41,7 +41,7 @@ export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
   },
   {
     basePath: "/app/integrations",
-    route: "/app/integrations?category=pos",
+    route: "/app/integrations",
     Icon: IntegrationHub,
     label: t("app:integrationHub"),
     hasNested: true
@@ -122,7 +122,7 @@ export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
   },
   {
     basePath: "/app/wholesalers",
-    route: "/app/wholesalers?category=preferred",
+    route: "/app/wholesalers",
     Icon: Wholesalers,
     label: t("app:wholesaler"),
     hasNested: true

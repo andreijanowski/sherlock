@@ -11,8 +11,3 @@ export const getIntegrationButtonLabel = (
 
   return t("app:manageIntegrations.requestIntegration");
 };
-
-export const getIsIntegrationPending = (partnerRelationships, currentUserId) =>
-  partnerRelationships.some(
-    partnerRelationship => partnerRelationship.id === currentUserId
-  );

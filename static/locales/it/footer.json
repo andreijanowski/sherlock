@@ -1,15 +1,17 @@
 {
   "navigation": {
     "columnOne": {
-      "title": "Unisciti a  noi",
+      "title": "Unisciti a noi",
       "links": [
-        "Partner con noi"
+        "Partner con noi",
+        "Lavora con noi"
       ]
     },
     "columnTwo": {
       "title": "Aiuto",
       "links": [
-        "blog"
+        "Blog",
+        "Media kit"
       ]
     },
     "columnThree": {
@@ -25,7 +27,8 @@
         "Facebook",
         "Linkedin",
         "Cinguettio",
-        "Instagram"
+        "Instagram",
+        "Youtube"
       ]
     },
     "columnFive": {
@@ -36,5 +39,6 @@
       ]
     }
   },
-  "copyrightNote": "© {{currentYear}} The Food Detective SA. Tutti i diritti riservati."
+  "copyrightNote": "© {{currentYear}} The Food Detective SA. Tutti i diritti riservati.",
+  "workInFoodetective": "Unisciti alla nostro team"
 }

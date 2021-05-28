@@ -34,15 +34,13 @@ const Navigation = ({ t, lng, scrollTo }) => (
     flexDirection="column"
     mt={0}
   >
-    <Flex
-      css={{ background: "#27378e", width: "100%", margin: "0" }}
-      justifyContent="center"
-    >
+    <Flex css={{ width: "100%", margin: "0" }} justifyContent="center">
       <Flex
         justifyContent="space-between"
         width={1150}
         alignItems="center"
         px={3}
+        mt={25}
       >
         <Flex
           as="ul"

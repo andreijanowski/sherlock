@@ -1,20 +1,20 @@
 import { LoadingIndicator } from "components";
 import { Confirm } from "components/modals";
-import { fetchPreferredPartners, preferredAdd } from "actions/partners";
+import { preferredAdd } from "actions/partners";
 import { keys, noop } from "lodash";
 import React, { useCallback, useEffect, useState } from "react";
-import Router from "next/router";
 import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { arrayOf, func, string, shape, bool } from "prop-types";
+import { func, string, shape, bool } from "prop-types";
 import { connect } from "react-redux";
 import AppLayout from "layout/App";
 import {
   generateWholesalersMenuItems,
-  WHOLESALERS_CATEGORIES
+  WHOLESALERS_CATEGORIES,
+  WHOLESALERS_URL
 } from "sections/integrations/utils";
-import isServer from "utils/isServer";
 import IntegrationsList from "sections/integrations";
+import { useRouter } from "next/router";
 
 const namespaces = ["forms", "app"];
 
@@ -22,42 +22,25 @@ const IntegrationsPage = ({
   businessId,
   t,
   lng,
-  partnersPreferredIds,
-  pending,
+  isLoading,
   wholesalers,
-  fetchPreferredPartnersAc,
-  preferredAddAc,
-  query
+  preferredAddAc
 }) => {
-  const { category } = query || {};
   const [confirmOpened, confirmOpen] = useState(false);
   const [partnerIdState, partnerIdSet] = useState("");
-  const [tab, setTab] = useState("");
-  const setActiveTab = () => {
-    if (!isServer) {
-      const urlParams = new URLSearchParams(window.location.search);
-      const getParam = urlParams.get("category");
 
-      setTab(WHOLESALERS_CATEGORIES.includes(getParam) ? getParam : "pos");
-    }
-  };
+  const {
+    query: { category },
+    push
+  } = useRouter();
 
   useEffect(() => {
-    if (!businessId) {
-      return;
+    const isCategoryValid =
+      !category || WHOLESALERS_CATEGORIES.includes(category);
+    if (!isCategoryValid) {
+      push(WHOLESALERS_URL);
     }
-
-    fetchPreferredPartnersAc({
-      filter: "wholesaler",
-      id: businessId
-    });
-  }, [businessId, fetchPreferredPartnersAc]);
-
-  useEffect(() => {
-    setActiveTab();
-  }, []);
-
-  Router.events.on("routeChangeComplete", setActiveTab);
+  }, [category, push]);
 
   const handleAddToFavorite = useCallback(
     (data = {}) => {
@@ -91,24 +74,6 @@ const IntegrationsPage = ({
     partnerIdSet("");
   }, [businessId, handleConfirmClose, partnerIdState, preferredAddAc]);
 
-  const preparedWholesalers =
-    wholesalers &&
-    wholesalers.filter(wholesaler => {
-      switch (tab) {
-        case "allProducts":
-          return wholesaler.getIn(["attributes", "category"]) === "wholesaler";
-
-        case "preferred": {
-          const wId = wholesaler.get("id");
-
-          return partnersPreferredIds.includes(wId);
-        }
-
-        default:
-          return wholesaler.getIn(["attributes", "wholesalerCategory"]) === tab;
-      }
-    });
-
   return (
     <AppLayout
       t={t}
@@ -116,21 +81,20 @@ const IntegrationsPage = ({
       mainIcon="wholesalers"
       header={t("app:wholesaler")}
       withMenu
-      menuItems={generateWholesalersMenuItems(t, tab)}
+      menuItems={generateWholesalersMenuItems(t, category)}
     >
       {wholesalers && wholesalers.size > 0 && (
         <>
-          {pending && <LoadingIndicator hasTransparentBackground />}
           <IntegrationsList
             category={category}
-            itemsAdded={partnersPreferredIds}
             showActionIcons
-            partners={preparedWholesalers}
+            partners={wholesalers}
             t={t}
             onAddToFavorite={handleAddToFavorite}
           />
         </>
       )}
+      {isLoading && <LoadingIndicator hasTransparentBackground />}
       <Confirm
         contentCenter
         withIcon
@@ -153,21 +117,15 @@ IntegrationsPage.propTypes = {
   businessId: string,
   t: func.isRequired,
   lng: string.isRequired,
-  fetchPreferredPartnersAc: func,
-  partnersPreferredIds: arrayOf(string),
-  pending: bool,
+  isLoading: bool,
   preferredAddAc: func,
-  query: shape(),
   wholesalers: shape()
 };
 
 IntegrationsPage.defaultProps = {
   businessId: "",
-  fetchPreferredPartnersAc: noop,
-  partnersPreferredIds: [],
-  pending: false,
+  isLoading: false,
   preferredAddAc: noop,
-  query: {},
   wholesalers: null
 };
 
@@ -181,16 +139,8 @@ export default requireAuth(true)(
           "data",
           "businesses"
         ]);
-        const partnersPreferredIds = state
-          .getIn(["partnersPreferred", "items"])
-          .map(({ id }) => id)
-          .toJS();
-        const wholesalers = state.getIn([
-          "wholesalers",
-          "data",
-          "wholesalers",
-          "partners"
-        ]);
+
+        const wholesalers = state.getIn(["partners", "data"]);
         let businessId = "";
 
         if (businesses) {
@@ -200,13 +150,11 @@ export default requireAuth(true)(
         return {
           businessId,
           lng: (i18n && i18n.language) || "en",
-          partnersPreferredIds,
-          pending: state.getIn(["partnersPreferred", "pending"]),
+          isLoading: state.getIn(["partners", "isFetching"]),
           wholesalers
         };
       },
       {
-        fetchPreferredPartnersAc: fetchPreferredPartners,
         preferredAddAc: preferredAdd
       }
     )(IntegrationsPage)

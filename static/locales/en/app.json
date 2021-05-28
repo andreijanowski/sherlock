@@ -26,7 +26,8 @@
     "published": "Published",
     "unPublish": "Unpublish business",
     "waitingForApproval": "Waiting for approval",
-    "myProfile": "My profile"
+    "myProfile": "My profile",
+    "unPublish_prompt": "Are you sure you want to Unpublish your business from Foodetective? Clients won't be able to find your profile anymore."
   },
   "manageIntegrations": {
     "pos": "POS",
@@ -53,7 +54,8 @@
     "noPartners": "No partners for this category.",
     "noPreferred": "You haven’t added any preferred wholesalers yet.",
     "moreInfo": "More info",
-    "orderNow": "Order now"
+    "orderNow": "Order now",
+    "all": "All integrations"
   },
   "subscriptions": "Subscriptions",
   "userSettings": {
@@ -105,5 +107,6 @@
     "caption": "Bear with us it’s coming very soon."
   },
   "backToMainMenu": "Back to main menu",
-  "photography": "Photography"
+  "photography": "Photography",
+  "search": "Search..."
 }

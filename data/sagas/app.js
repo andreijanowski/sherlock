@@ -13,10 +13,7 @@ import { HANDLE_RESERVATION_UPDATE } from "types/reservations";
 import { setOrdersUpdates, setReservationsUpdates } from "actions/app";
 import { fetchProfileBusiness } from "actions/users";
 import { fetchBusinessMembers, fetchBusinessDishes } from "actions/businesses";
-import { fetchPartners } from "actions/partners";
-import { fetchWholesalers } from "actions/wholesalers";
 import { fetchExternalServices } from "actions/externalServices";
-import fetchAllBusinessData from "./utils/fetchAllBusinessData";
 
 function* handlePatchChangeSaga({ payload: { path } }) {
   switch (path) {
@@ -72,19 +69,6 @@ function* handlePatchChangeSaga({ payload: { path } }) {
     }
     case "/app/reservation/reservations": {
       yield put(setReservationsUpdates(Map()));
-      break;
-    }
-    case "/app/integrations": {
-      const bussinessId = yield window.localStorage.getItem(
-        "currentBusinessId"
-      );
-      if (bussinessId) {
-        yield fetchAllBusinessData(fetchPartners, bussinessId);
-      }
-      break;
-    }
-    case "/app/wholesalers": {
-      yield put(fetchWholesalers());
       break;
     }
     default: {
