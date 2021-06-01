@@ -116,10 +116,10 @@ jobs:
       - run:
           name: Push image to AWS ECR
           command: |
-            docker tag ${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-${CIRCLE_SHA1} ${AWS_ECR_REPO_URL}:latest
-            docker tag ${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-${CIRCLE_SHA1} ${AWS_ECR_REPO_URL}:${CIRCLE_SHA1}
-            docker push ${AWS_ECR_REPO_URL}:latest
-            docker push ${AWS_ECR_REPO_URL}:${CIRCLE_SHA1}
+            docker tag ${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-${CIRCLE_SHA1} ${AWS_ECR_REPO_URL_BUSINESS}:latest
+            docker tag ${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-${CIRCLE_SHA1} ${AWS_ECR_REPO_URL_BUSINESS}:${CIRCLE_SHA1}
+            docker push ${AWS_ECR_REPO_URL_BUSINESS}:latest
+            docker push ${AWS_ECR_REPO_URL_BUSINESS}:${CIRCLE_SHA1}
 
   deploy_production_front:
     <<: *deploy
