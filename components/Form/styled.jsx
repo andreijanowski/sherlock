@@ -248,7 +248,7 @@ export const Items = styled(Flex).attrs(p => ({
 }))`
   position: absolute;
   z-index: 2;
-  max-height: 250px;
+  max-height: ${p => (p.long ? "450px" : "250px")};
   overflow: scroll;
   background-color: rgb(${p => p.theme.colors.white});
   border: 1px solid rgb(${p => p.theme.colors.blue});

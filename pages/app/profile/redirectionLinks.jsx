@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { withTranslation } from "i18n";
 import { func, string, shape } from "prop-types";
 import { connect } from "react-redux";
@@ -8,13 +8,22 @@ import requireAuth from "lib/requireAuth";
 import { postBusiness, patchBusiness } from "actions/businesses";
 import { fetchProfileBusiness } from "actions/users";
 import { setCurrentBusiness } from "actions/app";
-import Form from "sections/profile/additionalInformation";
-import { getInitialValues } from "sections/profile/additionalInformation/utils";
+import { deleteServiceLink, patchServiceLink } from "actions/externalServices";
+import Form from "sections/profile/redirectionLinks";
+import { getInitialValues } from "sections/profile/redirectionLinks/utils";
 import ProfileLayout from "sections/profile/Layout";
+import { addProtocol } from "utils/urls";
+import { AddServiceLink, Confirm } from "components/modals";
+import H3 from "components/H3";
 
 const namespaces = ["additionalInformation", "app", "publishModal", "forms"];
 
-const AdditionalInformation = ({
+const MODALS = {
+  ADD_SERVICE_LINK: "ADD_SERVICE_LINK",
+  REMOVE_SERVICE_LINK: "REMOVE_SERVICE_LINK"
+};
+
+const RedirectionLinks = ({
   t,
   lng,
   business,
@@ -28,44 +37,53 @@ const AdditionalInformation = ({
   changeCurrentBusiness,
   addBusiness,
   updateBusiness,
-  getProfileBusiness
+  getProfileBusiness,
+  serviceLinks,
+  updateServiceLink,
+  removeServiceLink
 }) => {
+  const [modalData, setModalData] = useState(null);
+
+  const hideModal = useCallback(() => {
+    setModalData(null);
+  }, []);
+
+  const onServiceLinkChange = useCallback(
+    (id, values) => updateServiceLink(id, values),
+    [updateServiceLink]
+  );
+
+  const onServiceLinkDelete = useCallback(
+    ({ id, name }) => {
+      const modalProps = {
+        children: (
+          <H3>{t("additionalInformation:deletePrompt", { service: name })}</H3>
+        ),
+        btnOkText: t("forms:delete"),
+        btnCancelText: t("forms:cancel"),
+        restyled: true,
+        inverseColors: true,
+        onConfirm: async () => {
+          await removeServiceLink(id);
+          hideModal();
+        }
+      };
+
+      setModalData({ name: MODALS.REMOVE_SERVICE_LINK, props: modalProps });
+    },
+    [hideModal, removeServiceLink, t]
+  );
+
+  const onServiceAdd = useCallback(() => {
+    setModalData({ name: MODALS.ADD_SERVICE_LINK });
+  }, []);
+
   const handleSubmit = useCallback(
-    ({
-      breakfastService,
-      lunchService,
-      dinnerService,
-      brunchService,
-      cafeService,
-      snackService,
-      currency,
-      pricePerPerson,
-      hasCatering,
-      hasReservations,
-      hasPrivateEvents,
-      availableInLefood,
-      canPayWithCards,
-      canPayWithCash,
-      canPayWithMobile,
-      secretCode
-    }) => {
+    ({ deliveryUrl, onlineBookingUrl, takeawayUrl }) => {
       const requestValues = {
-        breakfastService,
-        lunchService,
-        dinnerService,
-        brunchService,
-        cafeService,
-        snackService,
-        currency: currency && currency.value,
-        pricePerPerson,
-        hasCatering,
-        hasReservations,
-        hasPrivateEvents,
-        availableInLefood,
-        canPayWithCards,
-        canPayWithCash,
-        canPayWithMobile,
-        secretCode
+        deliveryUrl: addProtocol(deliveryUrl),
+        onlineBookingUrl: addProtocol(onlineBookingUrl),
+        takeawayUrl: addProtocol(takeawayUrl)
       };
 
       return updateBusiness(businessId, requestValues);
@@ -92,25 +110,35 @@ const AdditionalInformation = ({
         addBusiness,
         updateBusiness,
         getProfileBusiness,
-        currentPage: "additionalInformation"
+        currentPage: "redirectionLinks"
       }}
     >
       <Form
         {...{
           t,
+          handleSubmit,
           initialValues,
-          handleSubmit
+          serviceLinks,
+          onServiceAdd,
+          onServiceLinkChange,
+          onServiceLinkDelete
         }}
       />
+      {modalData && modalData.name === MODALS.ADD_SERVICE_LINK && (
+        <AddServiceLink open onClose={hideModal} />
+      )}
+      {modalData && modalData.name === MODALS.REMOVE_SERVICE_LINK && (
+        <Confirm open onClose={hideModal} {...modalData.props} />
+      )}
     </ProfileLayout>
   );
 };
 
-AdditionalInformation.getInitialProps = async () => ({
+RedirectionLinks.getInitialProps = async () => ({
   namespacesRequired: namespaces
 });
 
-AdditionalInformation.propTypes = {
+RedirectionLinks.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   business: shape(),
@@ -124,10 +152,13 @@ AdditionalInformation.propTypes = {
   changeCurrentBusiness: func.isRequired,
   getProfileBusiness: func.isRequired,
   addBusiness: func.isRequired,
-  businesses: shape()
+  updateServiceLink: func.isRequired,
+  removeServiceLink: func.isRequired,
+  businesses: shape(),
+  serviceLinks: shape()
 };
 
-AdditionalInformation.defaultProps = {
+RedirectionLinks.defaultProps = {
   business: null,
   businessId: "",
   businessGroups: null,
@@ -135,7 +166,8 @@ AdditionalInformation.defaultProps = {
   businessPictures: null,
   businessProducts: null,
   businessOpenPeriods: null,
-  businesses: null
+  businesses: null,
+  serviceLinks: null
 };
 
 export default compose(
@@ -144,6 +176,7 @@ export default compose(
   connect(
     (state, { i18n }) => {
       const businessData = state.getIn(["users", "currentBusiness", "data"]);
+      const serviceLinks = state.getIn(["externalServices", "data", "links"]);
 
       const business =
         businessData &&
@@ -164,14 +197,17 @@ export default compose(
           "data",
           "businesses"
         ]),
-        lng: (i18n && i18n.language) || "en"
+        lng: (i18n && i18n.language) || "en",
+        serviceLinks
       };
     },
     {
       updateBusiness: patchBusiness,
       addBusiness: postBusiness,
       changeCurrentBusiness: setCurrentBusiness,
-      getProfileBusiness: fetchProfileBusiness
+      getProfileBusiness: fetchProfileBusiness,
+      updateServiceLink: patchServiceLink,
+      removeServiceLink: deleteServiceLink
     }
   )
-)(AdditionalInformation);
+)(RedirectionLinks);

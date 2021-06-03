@@ -33,6 +33,10 @@ module.exports = routes()
   )
   .add("app/profile/widgets", `/:lng(${languagesPattern})/app/profile/widgets`)
   .add(
+    "app/profile/redirectionLinks",
+    `/:lng(${languagesPattern})/app/profile/redirection-links`
+  )
+  .add(
     "app/settings/basicInformation",
     `/:lng(${languagesPattern})/app/settings/basic-information`
   )

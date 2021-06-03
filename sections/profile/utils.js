@@ -32,6 +32,11 @@ export const generateMenuItems = (
       isActive: active === "additionalInformation"
     },
     {
+      route: `/app/profile/redirection-links/`,
+      label: t("additionalInformation:redirectionLinks"),
+      isActive: active === "redirectionLinks"
+    },
+    {
       route: `/app/profile/members/`,
       label: t("app:manageProfile.inviteYourTeam"),
       isActive: active === "inviteYourTeam"

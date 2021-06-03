@@ -22,7 +22,8 @@ function* handlePatchChangeSaga({ payload: { path } }) {
     case "/app/profile/additionalInformation":
     case "/app/profile/openingHours":
     case "/app/profile/picturesAndMenus":
-    case "/app/profile/liveInfo": {
+    case "/app/profile/liveInfo":
+    case "/app/profile/redirectionLinks": {
       const business = yield select(state =>
         state.getIn(["users", "currentBusiness", "data", "businesses"])
       );
@@ -36,7 +37,7 @@ function* handlePatchChangeSaga({ payload: { path } }) {
       }
 
       const shouldFetchExternalServices =
-        !externalServices && path === "/app/profile/additionalInformation";
+        !externalServices && path === "/app/profile/redirectionLinks";
 
       if (shouldFetchExternalServices) {
         yield put(fetchExternalServices());
