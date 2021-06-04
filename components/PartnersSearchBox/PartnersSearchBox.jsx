@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useCallback } from "react";
-import { func, string } from "prop-types";
+import { func, shape } from "prop-types";
 import { withTranslation } from "i18n";
 import { compose } from "redux";
 import { connect } from "react-redux";
@@ -61,7 +61,7 @@ DebouncedInput.propTypes = {
   onChange: func.isRequired
 };
 
-const PartnersSearchBox = ({ t, businessId, fetchPartnersHandler }) => {
+const PartnersSearchBox = ({ t, business, fetchPartnersHandler }) => {
   const [search, setSearch] = useState("");
   const {
     pathname,
@@ -70,14 +70,16 @@ const PartnersSearchBox = ({ t, businessId, fetchPartnersHandler }) => {
 
   const isWholesalersPage = pathname === WHOLESALERS_URL;
 
-  const filter = useMemo(() => getPartnersFilter(isWholesalersPage, category), [
-    isWholesalersPage,
-    category
-  ]);
+  const filter = useMemo(
+    () => getPartnersFilter(isWholesalersPage, category, business),
+    [isWholesalersPage, category, business]
+  );
 
   const onSearchChange = useCallback(newSearch => {
     setSearch(newSearch);
   }, []);
+
+  const businessId = business && business.get("id");
 
   useEffect(() => {
     if (businessId) {
@@ -97,11 +99,11 @@ const PartnersSearchBox = ({ t, businessId, fetchPartnersHandler }) => {
 PartnersSearchBox.propTypes = {
   t: func.isRequired,
   fetchPartnersHandler: func.isRequired,
-  businessId: string
+  business: shape()
 };
 
 PartnersSearchBox.defaultProps = {
-  businessId: null
+  business: null
 };
 
 const mapState = state => {
@@ -109,7 +111,7 @@ const mapState = state => {
   const business = businessData && businessData.get("businesses").first();
 
   return {
-    businessId: business && business.get("id")
+    business
   };
 };
 
