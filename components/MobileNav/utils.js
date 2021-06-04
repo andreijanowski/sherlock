@@ -86,6 +86,12 @@ const generateProfileMobileSubmenu = (t, active) => [
     SubmenuIcon: ProfileAdditionaInfo
   },
   {
+    route: `/app/profile/redirection-links/`,
+    label: t("additionalInformation:redirectionLinks"),
+    isActive: active === "redirectionLinks",
+    SubmenuIcon: ProfileAdditionaInfo
+  },
+  {
     route: `/app/profile/members/`,
     label: t("app:manageProfile.inviteYourTeam"),
     isActive: active === "inviteYourTeam",
