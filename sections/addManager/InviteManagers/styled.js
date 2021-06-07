@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Paragraph } from "components";
+import { Paragraph, Button } from "components";
 
 export const DesciprtionWrapper = styled(Paragraph)`
   max-height: 30px;
@@ -60,5 +60,19 @@ export const RemoveButton = styled.button.attrs(() => ({
     &::after {
       background-color: rgba(${p => p.theme.colors.dark}, 1);
     }
+  }
+`;
+
+export const BottomButton = styled(Button)`
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  max-width: 252px;
+  @media (max-width: ${p => p.theme.breakpoints[3]}) {
+    margin-top: 36px;
+  }
+  @media (max-width: ${p => p.theme.breakpoints[2]}) {
+    position: relative;
+    max-width: 100%;
   }
 `;
