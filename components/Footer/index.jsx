@@ -103,7 +103,7 @@ const Footer = ({ t }) => (
                 rel: "noreferrer noopener"
               },
               "3": {
-                href: "https://www.instagram.com/business.foodetective/",
+                href: "https://www.instagram.com/business.foodetective.co/",
                 target: "_blank",
                 rel: "noreferrer noopener"
               },

@@ -7,7 +7,13 @@ import { Box, Flex } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { InputField, Button } from "components";
 import { isEmail } from "utils/validators";
-import { HelperTitle, FieldsContainer, RemoveButton } from "./styled";
+import {
+  HelperTitle,
+  FieldsContainer,
+  RemoveButton,
+  BottomButton,
+  ButtonWrapper
+} from "./styled";
 
 class InviteManagers extends PureComponent {
   constructor(props) {
@@ -68,22 +74,11 @@ class InviteManagers extends PureComponent {
                     ))}
                     {this.scrollToLastField()}
                   </FieldsContainer>
-                  <Flex flexDirection={["column-reverse", "row"]} mt={[1, 4]}>
-                    <Box width={[1, "auto"]} mt={[4, 0]} mr={[0, 2]}>
-                      <Button
-                        onClick={handleSubmit}
-                        styleName="blue"
-                        fluid
-                        disabled={invalid || pristine || submitting}
-                      >
-                        {submitting ? (
-                          <FontAwesomeIcon icon="circle-notch" spin size="lg" />
-                        ) : (
-                          t("inviteButton")
-                        )}
-                      </Button>
-                    </Box>
-                    <Box width={[1, "auto"]} mt={[4, 0]} mr={[0, 2]}>
+                  <ButtonWrapper
+                    flexDirection={["column-reverse", "row"]}
+                    mt={[1, 2]}
+                  >
+                    <Box width={[1]} mt={[4, 0]} mr={[0, 2]}>
                       <Button
                         type="button"
                         fluid
@@ -93,7 +88,7 @@ class InviteManagers extends PureComponent {
                         {t("addEmailButton")}
                       </Button>
                     </Box>
-                    <Box width={[1, "auto"]}>
+                    <Box width={[1]}>
                       <Button
                         onClick={handleSubmit}
                         type="button"
@@ -103,6 +98,25 @@ class InviteManagers extends PureComponent {
                         {t("skip")}
                       </Button>
                     </Box>
+                  </ButtonWrapper>
+                  <Flex
+                    justifyContent={["center", "flex-end"]}
+                    width={[1]}
+                    mt={[4, 4, 4, 0]}
+                    mr={[0, 2]}
+                  >
+                    <BottomButton
+                      onClick={handleSubmit}
+                      styleName="blue"
+                      fluid
+                      disabled={invalid || pristine || submitting}
+                    >
+                      {submitting ? (
+                        <FontAwesomeIcon icon="circle-notch" spin size="lg" />
+                      ) : (
+                        t("inviteButton")
+                      )}
+                    </BottomButton>
                   </Flex>
                 </>
               )}
