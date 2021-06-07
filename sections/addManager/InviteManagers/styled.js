@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Paragraph, Button } from "components";
+import { Flex } from "@rebass/grid";
 
 export const DesciprtionWrapper = styled(Paragraph)`
   max-height: 30px;
@@ -75,4 +76,8 @@ export const BottomButton = styled(Button)`
     position: relative;
     max-width: 100%;
   }
+`;
+
+export const ButtonWrapper = styled(Flex)`
+  position: relative;
 `;

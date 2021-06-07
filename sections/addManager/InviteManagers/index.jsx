@@ -11,7 +11,8 @@ import {
   HelperTitle,
   FieldsContainer,
   RemoveButton,
-  BottomButton
+  BottomButton,
+  ButtonWrapper
 } from "./styled";
 
 class InviteManagers extends PureComponent {
@@ -73,8 +74,7 @@ class InviteManagers extends PureComponent {
                     ))}
                     {this.scrollToLastField()}
                   </FieldsContainer>
-                  <Flex
-                    style={{ position: "relative" }}
+                  <ButtonWrapper
                     flexDirection={["column-reverse", "row"]}
                     mt={[1, 2]}
                   >
@@ -98,7 +98,7 @@ class InviteManagers extends PureComponent {
                         {t("skip")}
                       </Button>
                     </Box>
-                  </Flex>
+                  </ButtonWrapper>
                   <Flex
                     justifyContent={["center", "flex-end"]}
                     width={[1]}
