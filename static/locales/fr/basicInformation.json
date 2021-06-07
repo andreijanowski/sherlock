@@ -36,5 +36,6 @@
   "bioPlaceholder": "C'est un petit endroit à ...",
   "labelsDistinctions": "Étiquettes et Distinctions",
   "michelinStars": "Étoiles Michelin",
-  "michelinStarsPlaceholder": "1 étoile Michelin"
+  "michelinStarsPlaceholder": "1 étoile Michelin",
+  "bio": "Bio"
 }

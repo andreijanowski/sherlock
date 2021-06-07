@@ -227,13 +227,7 @@ class BasicInformationForm extends PureComponent {
               min={0}
               validate={this.validateMichelinStarsLength}
             />
-            <H3 mt={4}>{t("additionalInformation")}</H3>
-            <FormInput
-              name="ownerRole"
-              label={t("ownerRoleLabel")}
-              isErrorVisibilityRequired={isErrorVisibilityRequired}
-              placeholder={t("ownerRolePlaceholder")}
-            />
+            <H3 mt={4}>{t("bio")}</H3>
             <FormTextarea
               name="bio"
               label={t("bioLabel")}
