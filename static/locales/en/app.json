@@ -89,7 +89,8 @@
     "tableware": "Tableware",
     "hygiene": "Hygiene",
     "other": "Other",
-    "allProducts": "All products"
+    "allProducts": "All products",
+    "FMCG": "FMCG"
   },
   "dashboard": "Dashboard",
   "integrationHub": "Integration Hub",
