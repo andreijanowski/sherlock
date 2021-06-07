@@ -37,7 +37,7 @@ class AddManager extends PureComponent {
           lng,
           actionTitle: t("title"),
           actionDescription: (
-            <DesciprtionWrapper>{t("description")}.</DesciprtionWrapper>
+            <DesciprtionWrapper>{t("description")}!</DesciprtionWrapper>
           )
         }}
       >
