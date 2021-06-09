@@ -18,6 +18,7 @@ import bookings from "./bookings";
 import widgets from "./widgets";
 import partners from "./partners";
 import externalServices from "./externalServices";
+import detectives from "./detectives";
 
 export default {
   app,
@@ -39,5 +40,6 @@ export default {
   bookings,
   widgets,
   partners,
-  externalServices
+  externalServices,
+  detectives
 };

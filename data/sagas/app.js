@@ -14,6 +14,8 @@ import { setOrdersUpdates, setReservationsUpdates } from "actions/app";
 import { fetchProfileBusiness } from "actions/users";
 import { fetchBusinessMembers, fetchBusinessDishes } from "actions/businesses";
 import { fetchExternalServices } from "actions/externalServices";
+import { fetchDetectives, fetchTopDetective } from "actions/detectives";
+import { DETECTIVES_CITIES } from "pages/app/detectives/config";
 
 function* handlePatchChangeSaga({ payload: { path } }) {
   switch (path) {
@@ -70,6 +72,16 @@ function* handlePatchChangeSaga({ payload: { path } }) {
     }
     case "/app/reservation/reservations": {
       yield put(setReservationsUpdates(Map()));
+      break;
+    }
+    case "/app/detectives": {
+      yield put(fetchTopDetective());
+      yield all(DETECTIVES_CITIES.map(city => put(fetchDetectives({ city }))));
+      yield put(
+        fetchDetectives({
+          excludeCities: DETECTIVES_CITIES
+        })
+      );
       break;
     }
     default: {
