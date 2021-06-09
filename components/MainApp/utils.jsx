@@ -10,7 +10,8 @@ import {
   Wholesalers,
   Marketing,
   CommunityManagement,
-  Photography
+  Photography,
+  Detectives
 } from "icons";
 
 export const chooseIcon = icon => {
@@ -39,6 +40,8 @@ export const chooseIcon = icon => {
       return CommunityManagement;
     case "photography":
       return Photography;
+    case "detectives":
+      return Detectives;
     default:
       return () => "";
   }

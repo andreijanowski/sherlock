@@ -38,7 +38,10 @@ export const colors = {
   darkText: "51, 51, 51",
   bombayDark: "69, 71, 75",
   menuDarkBlue: "147, 164, 255",
-  boxShadow: "189, 189, 189"
+  boxShadow: "189, 189, 189",
+  darkGreyText: "79, 79, 79",
+  lightGreyText: "170, 170, 170",
+  detectivesBackgroundGrey: "242, 242, 242"
 };
 
 const fontSizes = {
@@ -72,6 +75,7 @@ export const radius = {
 };
 
 const fontWeights = {
+  thin: 300,
   regular: 400,
   medium: 500,
   semiBold: 600,

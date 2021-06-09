@@ -58,7 +58,8 @@
                     "layout": "./layout",
                     "consts": "./consts",
                     "sections": "./sections",
-                    "scripts": "./scripts"
+                    "scripts": "./scripts",
+                    "pages": "./pages"
                 }
             }
         ],

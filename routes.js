@@ -114,12 +114,12 @@ module.exports = routes()
     `/:lng(${languagesPattern})/app/community-management`
   )
   .add("app/photography", `/:lng(${languagesPattern})/app/photography`)
+  .add("app/detectives", `/:lng(${languagesPattern})/app/detectives`)
   .add("app/comingSoon", [
     `/:lng(${languagesPattern})/app/dashboard`,
     `/:lng(${languagesPattern})/app/app-manager`,
     `/:lng(${languagesPattern})/app/payments`,
     `/:lng(${languagesPattern})/app/reviews`,
-    `/:lng(${languagesPattern})/app/detectives`,
     `/:lng(${languagesPattern})/app/clients`,
     `/:lng(${languagesPattern})/app/stock-management`
   ]);
