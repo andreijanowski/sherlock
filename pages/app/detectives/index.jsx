@@ -15,7 +15,7 @@ const namespaces = ["detectives", "app"];
 const DetectivesPage = ({ t, lng, isLoading }) => (
   <AppLayout t={t} lng={lng} mainIcon="detectives" header={t("app:detectives")}>
     {isLoading && <LoadingIndicator hasTransparentBackground />}
-    <TopDetectiveSection />
+    <TopDetectiveSection lng={lng} />
     <DetectivesSection lng={lng} />
   </AppLayout>
 );
