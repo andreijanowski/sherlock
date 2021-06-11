@@ -1,40 +1,23 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { func, shape } from "prop-types";
 import { Form as FinalForm, Field } from "react-final-form";
 import { Flex, Box } from "@rebass/grid";
 import setFieldData from "final-form-set-field-data";
 
 import {
-  H4,
   H3,
   FormCheckbox,
   FormSelect,
   FormInput,
   AutoSave,
-  LoadingIndicator,
-  Tooltip,
-  BusinessServiceLinksGroup
+  LoadingIndicator
 } from "components";
 import currencies from "utils/currencies";
-import { groupServiceLinksByCategory } from "utils/servicesUtils";
-import { Form, Link } from "../styled";
+import { Form } from "../styled";
 import { timeOfTheDay, paymentMethods } from "./utils";
 
-const AdditionalInformationForm = ({
-  t,
-  initialValues,
-  handleSubmit,
-  serviceLinks,
-  onServiceAdd,
-  onServiceLinkChange,
-  onServiceLinkDelete
-}) => {
-  const groupedServiceLinks = useMemo(
-    () => (serviceLinks ? groupServiceLinksByCategory(serviceLinks) : {}),
-    [serviceLinks]
-  );
-
-  return initialValues ? (
+const AdditionalInformationForm = ({ t, initialValues, handleSubmit }) =>
+  initialValues ? (
     <FinalForm
       initialValues={initialValues}
       onSubmit={handleSubmit}
@@ -86,45 +69,6 @@ const AdditionalInformationForm = ({
             label={t("availableInLefood")}
           />
 
-          <H3 mt={3}>{t("redirectionLinks")}</H3>
-          <H4>{t("redirectionWebsiteLinks")}</H4>
-          <Tooltip content={t("redirectionLinksTooltip")}>
-            <FormInput
-              name="deliveryUrl"
-              label={t("deliveryUrlLabel")}
-              placeholder={t("deliveryUrlPlaceholder")}
-            />
-          </Tooltip>
-          <Tooltip content={t("redirectionLinksTooltip")}>
-            <FormInput
-              name="onlineBookingUrl"
-              label={t("onlineBookingUrlLabel")}
-              placeholder={t("onlineBookingUrlPlaceholder")}
-            />
-          </Tooltip>
-          <Tooltip content={t("redirectionLinksTooltip")}>
-            <FormInput
-              name="takeawayUrl"
-              label={t("takeawayUrlLabel")}
-              placeholder={t("takeawayUrlPlaceholder")}
-            />
-          </Tooltip>
-
-          <H4>{t("redirectionServicesLinks")}</H4>
-          {Object.keys(groupedServiceLinks).map(category => (
-            <BusinessServiceLinksGroup
-              key={category}
-              category={category}
-              items={groupedServiceLinks[category]}
-              onServiceLinkChange={onServiceLinkChange}
-              onServiceLinkDelete={onServiceLinkDelete}
-            />
-          ))}
-
-          <Link type="button" onClick={onServiceAdd}>
-            {t("addExternalServiceLink")}
-          </Link>
-
           <H3 mt={3}>{t("paymentMethods")}</H3>
           <Flex flexWrap="wrap">
             {paymentMethods.map(method => (
@@ -145,21 +89,15 @@ const AdditionalInformationForm = ({
   ) : (
     <LoadingIndicator />
   );
-};
 
 AdditionalInformationForm.propTypes = {
   t: func.isRequired,
   initialValues: shape(),
-  handleSubmit: func.isRequired,
-  onServiceAdd: func.isRequired,
-  onServiceLinkChange: func.isRequired,
-  onServiceLinkDelete: func.isRequired,
-  serviceLinks: shape()
+  handleSubmit: func.isRequired
 };
 
 AdditionalInformationForm.defaultProps = {
-  initialValues: undefined,
-  serviceLinks: null
+  initialValues: undefined
 };
 
 export default AdditionalInformationForm;

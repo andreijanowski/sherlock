@@ -14,6 +14,8 @@ import { setOrdersUpdates, setReservationsUpdates } from "actions/app";
 import { fetchProfileBusiness } from "actions/users";
 import { fetchBusinessMembers, fetchBusinessDishes } from "actions/businesses";
 import { fetchExternalServices } from "actions/externalServices";
+import { fetchDetectives, fetchTopDetective } from "actions/detectives";
+import { DETECTIVES_CITIES } from "pages/app/detectives/config";
 
 function* handlePatchChangeSaga({ payload: { path } }) {
   switch (path) {
@@ -22,7 +24,8 @@ function* handlePatchChangeSaga({ payload: { path } }) {
     case "/app/profile/additionalInformation":
     case "/app/profile/openingHours":
     case "/app/profile/picturesAndMenus":
-    case "/app/profile/liveInfo": {
+    case "/app/profile/liveInfo":
+    case "/app/profile/redirectionLinks": {
       const business = yield select(state =>
         state.getIn(["users", "currentBusiness", "data", "businesses"])
       );
@@ -36,7 +39,7 @@ function* handlePatchChangeSaga({ payload: { path } }) {
       }
 
       const shouldFetchExternalServices =
-        !externalServices && path === "/app/profile/additionalInformation";
+        !externalServices && path === "/app/profile/redirectionLinks";
 
       if (shouldFetchExternalServices) {
         yield put(fetchExternalServices());
@@ -69,6 +72,16 @@ function* handlePatchChangeSaga({ payload: { path } }) {
     }
     case "/app/reservation/reservations": {
       yield put(setReservationsUpdates(Map()));
+      break;
+    }
+    case "/app/detectives": {
+      yield put(fetchTopDetective());
+      yield all(DETECTIVES_CITIES.map(city => put(fetchDetectives({ city }))));
+      yield put(
+        fetchDetectives({
+          excludeCities: DETECTIVES_CITIES
+        })
+      );
       break;
     }
     default: {

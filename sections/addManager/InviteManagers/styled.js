@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { Paragraph } from "components";
+import { Paragraph, Button } from "components";
+import { Flex } from "@rebass/grid";
 
 export const DesciprtionWrapper = styled(Paragraph)`
   max-height: 30px;
@@ -61,4 +62,22 @@ export const RemoveButton = styled.button.attrs(() => ({
       background-color: rgba(${p => p.theme.colors.dark}, 1);
     }
   }
+`;
+
+export const BottomButton = styled(Button)`
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  max-width: 252px;
+  @media (max-width: ${p => p.theme.breakpoints[3]}) {
+    margin-top: 36px;
+  }
+  @media (max-width: ${p => p.theme.breakpoints[2]}) {
+    position: relative;
+    max-width: 100%;
+  }
+`;
+
+export const ButtonWrapper = styled(Flex)`
+  position: relative;
 `;

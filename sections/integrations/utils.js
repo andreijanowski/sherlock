@@ -1,4 +1,5 @@
 export const PARTNERS_CATEGORIES = [
+  "",
   "pos",
   "delivery_and_take_away",
   "booking",
@@ -21,6 +22,8 @@ export const PARTNERS_URL = "/app/integrations";
 
 export const WHOLESALERS_CATEGORIES = [
   "preferred",
+  "FMCG",
+  "",
   "new",
   "fruits_and_vegetables",
   "meat",
@@ -42,31 +45,31 @@ export const WHOLESALERS_CATEGORIES = [
 export const WHOLESALERS_URL = "/app/wholesalers";
 
 export const generatePartnersMenuItems = (t, activeTab) =>
-  [
-    {
-      route: `/app/integrations`,
-      label: t(`app:manageIntegrations.all`),
-      isActive: !activeTab
-    }
-  ].concat(
-    PARTNERS_CATEGORIES.map(category => ({
-      route: `/app/integrations?category=${category}`,
-      label: t(`app:manageIntegrations.${category}`),
-      isActive: activeTab === category
-    }))
+  PARTNERS_CATEGORIES.map(category =>
+    category
+      ? {
+          route: `/app/integrations?category=${category}`,
+          label: t(`app:manageIntegrations.${category}`),
+          isActive: activeTab === category
+        }
+      : {
+          route: `/app/integrations`,
+          label: t(`app:manageIntegrations.all`),
+          isActive: !activeTab
+        }
   );
 
 export const generateWholesalersMenuItems = (t, activeTab) =>
-  [
-    {
-      route: `/app/wholesalers`,
-      label: t(`app:wholesalersCategories.allProducts`),
-      isActive: !activeTab
-    }
-  ].concat(
-    WHOLESALERS_CATEGORIES.map(category => ({
-      route: `/app/wholesalers?category=${category}`,
-      label: t(`app:wholesalersCategories.${category}`),
-      isActive: activeTab === category
-    }))
+  WHOLESALERS_CATEGORIES.map(category =>
+    category
+      ? {
+          route: `/app/wholesalers?category=${category}`,
+          label: t(`app:wholesalersCategories.${category}`),
+          isActive: activeTab === category
+        }
+      : {
+          route: `/app/wholesalers`,
+          label: t(`app:wholesalersCategories.allProducts`),
+          isActive: !activeTab
+        }
   );

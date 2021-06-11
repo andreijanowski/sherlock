@@ -17,6 +17,7 @@ const AddServiceLinkForm = ({ onSubmit, serviceItems, onClose, t }) => (
             {({ input, meta }) => (
               <FormDropdown
                 {...{
+                  long: true,
                   input,
                   meta,
                   label: t("additionalInformation:servicePlaceholder"),

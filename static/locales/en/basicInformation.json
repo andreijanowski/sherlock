@@ -36,5 +36,6 @@
   "roleLabel": "What is your role? (optional)",
   "rolePlaceholder": "Owner",
   "bioLabel": "Restaurant bio (optional)",
-  "bioPlaceholder": "It's a small place in..."
+  "bioPlaceholder": "It's a small place in...",
+  "bio": "Bio"
 }

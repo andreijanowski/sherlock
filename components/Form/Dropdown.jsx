@@ -30,7 +30,8 @@ const FormDropdown = ({
   meta,
   label,
   items,
-  isErrorVisibilityRequired
+  isErrorVisibilityRequired,
+  long
 }) => {
   const isGroupedMenu = Array.isArray(items[0] && items[0].items);
 
@@ -111,7 +112,7 @@ const FormDropdown = ({
               {meta.data.saving && !meta.active && <LoadingIndicator />}
             </FieldWrapper>
             {isOpen && items.length > 0 && (
-              <Items>
+              <Items long={long}>
                 <SelectInput
                   onChange={e => setSelectInput(e.target.value)}
                   value={selectInput}
@@ -148,10 +149,12 @@ FormDropdown.propTypes = {
     ])
   ).isRequired,
   label: string.isRequired,
-  isErrorVisibilityRequired: bool
+  isErrorVisibilityRequired: bool,
+  long: bool
 };
 FormDropdown.defaultProps = {
-  isErrorVisibilityRequired: false
+  isErrorVisibilityRequired: false,
+  long: false
 };
 
 export default FormDropdown;
