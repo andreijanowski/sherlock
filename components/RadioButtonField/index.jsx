@@ -1,24 +1,39 @@
-import { string, node } from "prop-types";
+import { string, node, bool } from "prop-types";
 import { Field } from "react-final-form";
-import { RadioButtonContainer, RadioButton, RadioButtonLabel } from "./styled";
+import {
+  RadioButtonContainer,
+  RadioButton,
+  CircleRadioButtonLabel,
+  RectangleRadioButtonLabel
+} from "./styled";
 
-const RadioButtonField = ({ children, value, name, ...rest }) => (
-  <Field
-    type="radio"
-    {...{ name, value, ...rest }}
-    render={({ input }) => (
-      <RadioButtonContainer>
-        <RadioButton type="radio" {...input} />
-        <RadioButtonLabel>{children}</RadioButtonLabel>
-      </RadioButtonContainer>
-    )}
-  />
-);
+const RadioButtonField = ({ children, value, name, isCircle, ...rest }) => {
+  const LabelContainer = isCircle
+    ? CircleRadioButtonLabel
+    : RectangleRadioButtonLabel;
+  return (
+    <Field
+      type="radio"
+      {...{ name, value, ...rest }}
+      render={({ input }) => (
+        <RadioButtonContainer>
+          <RadioButton type="radio" {...input} />
+          <LabelContainer>{children}</LabelContainer>
+        </RadioButtonContainer>
+      )}
+    />
+  );
+};
 
 RadioButtonField.propTypes = {
   value: string.isRequired,
   name: string.isRequired,
-  children: node.isRequired
+  children: node.isRequired,
+  isCircle: bool
+};
+
+RadioButtonField.defaultProps = {
+  isCircle: false
 };
 
 export default RadioButtonField;

@@ -1,7 +1,8 @@
 import {
   POST_DISH_REQUEST,
   PATCH_DISH_REQUEST,
-  DELETE_DISH_REQUEST
+  DELETE_DISH_REQUEST,
+  UPLOAD_DISHES_REQUEST
 } from "types/dishes";
 import { getRelationships } from "./utils";
 
@@ -61,4 +62,20 @@ export const deleteDish = id => ({
     endpoint: `/api/v1/dishes/${id}`
   },
   meta: { thunk: true, id }
+});
+
+export const uploadDishes = (values, businessId) => ({
+  type: UPLOAD_DISHES_REQUEST,
+  payload: {
+    method: "POST",
+    endpoint: "/api/v1/dishes/upload",
+    data: {
+      data: {
+        type: "dishes",
+        attributes: values,
+        relationships: getRelationships("business", businessId)
+      }
+    }
+  },
+  meta: { thunk: true, hideErrorNotification: true }
 });

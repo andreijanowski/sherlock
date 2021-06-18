@@ -163,5 +163,45 @@
   "other": "Other",
   "day_plural": "days",
   "week": "week",
-  "month": "month"
+  "month": "month",
+  "import": {
+    "uploadMenu": "Upload the menu",
+    "mode": {
+      "add": "Add to existing menu",
+      "replace": "Upload/Replace menu"
+    },
+    "steps": {
+      "upload": "Upload",
+      "verify": "Verify",
+      "publish": "Publish"
+    },
+    "instructions": "Instructions",
+    "instructions_add": "Instructions for add. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sed eu, bibendum blandit hendrerit tortor, amet, non sem. Vitae pellentesque pharetra suspendisse vitae diam suscipit sit. Volutpat sed proin habitant vel est. Vitae duis sed egestas a risus consectetur gravida utpat. Nibh elementum placerat rhoncus nunc. Magna metus, hendrerit id sagittis a velit. Proin gravida proin est nulla sed at tincidunt auctor. Tortor ultrices turpis enim in rhoncus hac. Magna iaculis enim blandit natoque praesent libero odio tellus a. Adipiscing tempor rhoncus, amet turpis id pulvinar. Mollis non integer congue quam eget diam cras in. Vitae ut ornare odio gravida pulvinar imperdiet id risus. Commodo a lectus at mattis luctus mollis malesuada nec.",
+    "instructions_replace": "Instructions for upload. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sed eu, bibendum blandit hendrerit tortor, amet, non sem. Vitae pellentesque pharetra suspendisse vitae diam suscipit sit. Volutpat sed proin habitant vel est. Vitae duis sed egestas a risus consectetur gravida utpat. Nibh elementum placerat rhoncus nunc. Magna metus, hendrerit id sagittis a velit. Proin gravida proin est nulla sed at tincidunt auctor. Tortor ultrices turpis enim in rhoncus hac. Magna iaculis enim blandit natoque praesent libero odio tellus a. Adipiscing tempor rhoncus, amet turpis id pulvinar. Mollis non integer congue quam eget diam cras in. Vitae ut ornare odio gravida pulvinar imperdiet id risus. Commodo a lectus at mattis luctus mollis malesuada nec.",
+    "downloadMenu": "Download menu",
+    "downloadTemplate": "Download CSV template",
+    "dragInputTitle": "Drag & Drop a CSV file here or browse",
+    "verifying": "Verifying menu",
+    "success": "Your menu has been successfully published!",
+    "uploadAgain": "Upload again",
+    "error": {
+      "missing_data": "We found <0>{{count}} error</0> in your document.<1/> Please, review the CSV file and upload again",
+      "missing_data_plural": "We found <0>{{count}} errors</0> in your document.<1/> Please, review the CSV file and upload again",
+      "other": "Something went wrong"
+    },
+    "table": {
+      "row": "Row",
+      "error": "Error"
+    },
+    "row_error": {
+      "missing": "{{column}} is missing",
+      "unknown": "{{column}} is unknown",
+      "too_long": "{{column}} is too long",
+      "wrong_order": "{{column}} is in wrong position",
+      "invalid": "{{column}} is invalid",
+      "too_low": "{{column}} is too low",
+      "too_high": "{{column}} is too high",
+      "duplicated": "{{column}} is duplicated"
+    }
+  }
 }

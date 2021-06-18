@@ -1,6 +1,39 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
+export const Input = styled.input`
+  display: none;
+`;
+
+export const Tip = styled.span`
+  position: relative;
+  z-index: 1;
+  margin-bottom: 4px;
+  color: rgb(
+    ${p => (p.isDragReject ? p.theme.colors.white : p.theme.colors.dark)}
+  );
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes.f16};
+`;
+
+export const Info = styled.span`
+  position: relative;
+  z-index: 1;
+  color: rgb(
+    ${p => (p.isDragReject ? p.theme.colors.white : p.theme.colors.bombay)}
+  );
+  font-size: ${p => p.theme.fontSizes.f12};
+`;
+
+export const ValidationError = styled(Flex).attrs({
+  alignItems: "center"
+})`
+  position: relative;
+  z-index: 1;
+  margin-top: 2px;
+  color: rgb(${p => p.theme.colors.error});
+`;
+
 export const Wrapper = styled(Flex).attrs(() => ({
   alignItems: "center",
   justifyContent: "center",
@@ -15,6 +48,12 @@ export const Wrapper = styled(Flex).attrs(() => ({
   border-radius: ${p => p.theme.radius.default};
   ${p => p.isCircleShape && "border-radius: 50%;"};
   cursor: pointer;
+
+  ${Tip} {
+    svg {
+      color: rgb(${p => p.theme.colors.importGray});
+    }
+  }
 
   ${p =>
     p.isDragActive &&
@@ -65,33 +104,19 @@ export const Wrapper = styled(Flex).attrs(() => ({
       opacity: 1;
       color: rgb(${p.theme.colors.white});
     }
+    
+    ${Tip} {
+      svg {
+        color: rgb(${p.theme.colors.white});
+      }
+    }
+    
+    ${ValidationError} {
+      color: white;
+    }
   }
   `}
   &:focus {
     outline: none;
   }
-`;
-
-export const Input = styled.input`
-  display: none;
-`;
-
-export const Tip = styled.span`
-  position: relative;
-  z-index: 1;
-  margin-bottom: 4px;
-  color: rgb(
-    ${p => (p.isDragReject ? p.theme.colors.white : p.theme.colors.dark)}
-  );
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: ${p => p.theme.fontSizes.f16};
-`;
-
-export const Info = styled.span`
-  position: relative;
-  z-index: 1;
-  color: rgb(
-    ${p => (p.isDragReject ? p.theme.colors.white : p.theme.colors.bombay)}
-  );
-  font-size: ${p => p.theme.fontSizes.f12};
 `;

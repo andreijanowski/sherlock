@@ -144,7 +144,8 @@
       "contains invalid characters (valid characters [a-z0-9-])-domains": "Domains contains invalid characters (valid characters: [a-z0-9\\-])",
       "unsupported_business_city-base": "Orkestro is not supported in your city.",
       "taken-external_service_id": "This service is already connected",
-      "url-service_url": "Invalid service url"
+      "url-service_url": "Invalid service url",
+      "invalidFiles": "Invalid file format"
     }
   },
   "placeholder": {
@@ -155,5 +156,6 @@
   "save": "Save",
   "cancel": "Cancel",
   "delete": "Delete",
-  "unpublish": "Unpublish"
+  "unpublish": "Unpublish",
+  "next": "Next"
 }
