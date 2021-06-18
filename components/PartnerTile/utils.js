@@ -1,13 +1,6 @@
-export const getIntegrationButtonLabel = (
-  isIntegrationNotRequested,
-  isPending,
-  isIntegrated,
-  t
-) => {
-  if (isPending) return t("app:manageIntegrations.pending");
-  if (isIntegrationNotRequested)
-    return t("app:manageIntegrations.requestIntegration");
+export const getIntegrationButtonLabel = (isIntegrated, isPending, t) => {
   if (isIntegrated) return t("app:manageIntegrations.integrated");
+  if (isPending) return t("app:manageIntegrations.pending");
 
   return t("app:manageIntegrations.requestIntegration");
 };
