@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { shape, arrayOf, oneOfType, func, string, bool } from "prop-types";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
-import { connectPartner } from "actions/partners";
+import { connectPartner, disconnectPartner } from "actions/partners";
 
 import {
   H3,
@@ -32,7 +32,8 @@ const PartnerTile = ({
   partnerId,
   showActionIcon,
   t,
-  onAddClick
+  onAddClick,
+  removePartner
 }) => {
   const [showDisconnectModal, setShowDisconnectModal] = useState(false);
 
@@ -42,16 +43,12 @@ const PartnerTile = ({
   const WHOLESALER = "wholesaler";
 
   const isIntegrationPending = partner.get("userIntegrationRequested");
-
-  const isIntegrationNotRequested = partner.get("active");
   const isIntegrated = !partner.get("active");
   const isPreferred = partner.get("preferred");
 
-  const [isPending, setIsPending] = useState(isIntegrationPending);
   const integrationButtonLabel = getIntegrationButtonLabel(
-    isIntegrationNotRequested,
-    isPending,
     isIntegrated,
+    isIntegrationPending,
     t
   );
   const partnerCategory = partner.get("category");
@@ -62,29 +59,31 @@ const PartnerTile = ({
   };
 
   const makeIntergationRequest = useCallback(
-    () =>
-      // todo possible a bug, we try to integrate already connected partner
-      integratePartner(partnerId),
+    () => integratePartner(partnerId),
     [integratePartner, partnerId]
   );
 
-  const requestIntegration = () => {
-    if (isIntegrationNotRequested) setIsPending(true);
-    if (isIntegrated) {
+  const makeCancelIntegrationRequest = useCallback(
+    () => removePartner(partnerId),
+    [partnerId, removePartner]
+  );
+
+  const onIntegrationButtonClick = useCallback(() => {
+    if (isIntegrated || isIntegrationPending) {
       setShowDisconnectModal(true);
-    } else {
-      makeIntergationRequest();
+      return;
     }
-  };
+    makeIntergationRequest();
+  }, [isIntegrated, isIntegrationPending, makeIntergationRequest]);
 
   const closeModal = useCallback(() => {
     setShowDisconnectModal(false);
   }, []);
 
   const onConfirmDisconnect = useCallback(async () => {
-    await makeIntergationRequest();
+    await makeCancelIntegrationRequest();
     closeModal();
-  }, [closeModal, makeIntergationRequest]);
+  }, [closeModal, makeCancelIntegrationRequest]);
 
   return (
     <Container mb={3} width={["100%"]} alignItems="center">
@@ -129,11 +128,9 @@ const PartnerTile = ({
             (!isIntegratedWithServices && (
               <IntegrationButton
                 styleName={
-                  !isIntegrationNotRequested || isPending
-                    ? "orange"
-                    : "navyBlue"
+                  isIntegrated || isIntegrationPending ? "orange" : "navyBlue"
                 }
-                onClick={requestIntegration}
+                onClick={onIntegrationButtonClick}
               >
                 {integrationButtonLabel}
               </IntegrationButton>
@@ -163,6 +160,7 @@ PartnerTile.propTypes = {
   partnerId: string.isRequired,
   showActionIcon: bool,
   t: func.isRequired,
+  removePartner: func.isRequired,
   onAddClick: func
 };
 PartnerTile.defaultProps = {
@@ -173,6 +171,7 @@ PartnerTile.defaultProps = {
 export default connect(
   null,
   {
-    integratePartner: connectPartner
+    integratePartner: connectPartner,
+    removePartner: disconnectPartner
   }
 )(PartnerTile);
