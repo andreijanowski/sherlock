@@ -7,6 +7,7 @@ import pusher from "./pusher";
 import orders from "./orders";
 import reservations from "./reservations";
 import integrations from "./integrations";
+import dishes from "./dishes";
 
 export default function* rootSaga(dispatch) {
   try {
@@ -18,7 +19,8 @@ export default function* rootSaga(dispatch) {
       integrations,
       pusher(dispatch),
       orders,
-      reservations
+      reservations,
+      dishes
     ]);
   } catch (e) {
     // eslint-disable-next-line  no-console

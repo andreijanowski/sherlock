@@ -60,3 +60,14 @@ export const validateEmail = t => composeValidators(required(t), isEmail(t));
 
 export const validateTableName = t =>
   composeValidators(required(t), maxLength(t, 10));
+
+export const validateFileExtensions = (t, extensions) => value => {
+  if (!value) return undefined;
+  const fileExt = value.name
+    .split(".")
+    .slice(-1)[0]
+    .toLocaleLowerCase();
+  return extensions.includes(`.${fileExt}`)
+    ? undefined
+    : t("forms:validation.error.invalid_files");
+};

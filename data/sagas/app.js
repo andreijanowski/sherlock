@@ -16,6 +16,7 @@ import { fetchBusinessMembers, fetchBusinessDishes } from "actions/businesses";
 import { fetchExternalServices } from "actions/externalServices";
 import { fetchDetectives, fetchTopDetective } from "actions/detectives";
 import { DETECTIVES_CITIES } from "pages/app/detectives/config";
+import fetchAllBusinessData from "./utils/fetchAllBusinessData";
 
 function* handlePatchChangeSaga({ payload: { path } }) {
   switch (path) {
@@ -62,7 +63,7 @@ function* handlePatchChangeSaga({ payload: { path } }) {
       );
       if (business) {
         const id = business.first().get("id");
-        yield put(fetchBusinessDishes(id));
+        yield fetchAllBusinessData(fetchBusinessDishes, id);
       }
       break;
     }

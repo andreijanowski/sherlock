@@ -48,7 +48,9 @@ export {
   ExpandIconRestyled,
   SidebarExpandIcon,
   SearchIcon,
-  CloseIcon
+  CloseIcon,
+  UploadFileIcon,
+  CircleWarningIcon
 } from "./mainControls";
 export {
   Orders,

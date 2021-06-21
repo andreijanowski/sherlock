@@ -44,3 +44,5 @@ export const TimekeeperConfig = {
   CLOCK_HAND_CIRCLE_BACKGROUND: `rgb(${colors.snuff})`,
   CLOCK_HAND_INTERMEDIATE_CIRCLE_BACKGROUND: `rgb(${colors.snuff})`
 };
+
+export const getMenuFileName = fileName => fileName.split("/").slice(-1)[0];

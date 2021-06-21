@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import TextareaAutosize from "react-autosize-textarea";
 
 export const LABEL_ACTIVE_SCALE = 0.7;
@@ -444,7 +445,14 @@ export const DaypickerWrapper = styled.div`
 `;
 
 export const FileWrapper = styled(Flex)`
-  height: 60px;
+  height: ${p => (p.restyled ? "115px" : "60px")};
+  ${p =>
+    p.restyled &&
+    `
+      background-color: rgb(${p.theme.colors.lightBlue});
+      border: 1px dashed #000;
+      border-radius: ${p.theme.radius.default};
+  `}
 `;
 
 export const SelectInput = styled.input`
@@ -486,4 +494,23 @@ export const SearchIcon = styled.img.attrs(() => ({
   right: 20px;
   width: 20px;
   height: 20px;
+`;
+
+export const FileName = styled.div`
+  font-size: ${p => p.theme.fontSizes.f18};
+  text-decoration: underline;
+  line-height: 27px;
+  margin-bottom: 6px;
+`;
+
+export const FileSize = styled.div`
+  color: rgb(${p => p.theme.colors.importGray});
+`;
+
+export const FileDeleteIcon = styled(FontAwesomeIcon).attrs({
+  icon: faTrashAlt
+})`
+  font-size: ${p => p.theme.fontSizes.f24};
+  color: rgb(${p => p.theme.colors.error});
+  cursor: pointer;
 `;

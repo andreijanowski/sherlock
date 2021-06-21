@@ -15,7 +15,8 @@ import {
   LoadingIndicator,
   RawCheckbox,
   H2,
-  ServiceStatusCheckbox
+  ServiceStatusCheckbox,
+  ImportModal
 } from "components";
 import {
   Orders,
@@ -137,7 +138,8 @@ class LefoodLayout extends PureComponent {
       isStopOrdersModalVisible: false,
       isFinishOrdersModalVisible: false,
       isCurrencyModalVisible:
-        props.business && !props.business.get("stripeCurrency")
+        props.business && !props.business.get("stripeCurrency"),
+      showImportModal: false
     };
   }
 
@@ -221,6 +223,18 @@ class LefoodLayout extends PureComponent {
     }
   };
 
+  showImportModal = () => {
+    this.setState({
+      showImportModal: true
+    });
+  };
+
+  hideImportModal = () => {
+    this.setState({
+      showImportModal: false
+    });
+  };
+
   render() {
     const {
       t,
@@ -243,7 +257,8 @@ class LefoodLayout extends PureComponent {
       minAmountForDeliveryCents,
       isStopOrdersModalVisible,
       isFinishOrdersModalVisible,
-      isCurrencyModalVisible
+      isCurrencyModalVisible,
+      showImportModal
     } = this.state;
 
     const profileCompletedPercents =
@@ -255,6 +270,8 @@ class LefoodLayout extends PureComponent {
             allowPickup: business && business.get("allowPickup")
           })
         : 100;
+
+    const shouldShowImportButton = page === "menu";
 
     const currentAverageDeliveryTime = averageDeliveryTimeList(t).find(
       i => i.value === (business && business.get("averageDeliveryTime"))
@@ -547,7 +564,7 @@ class LefoodLayout extends PureComponent {
                         )}
                       </Box>
                       {ratio && currentSplitRatio !== undefined && (
-                        <Box>
+                        <Box pr={3} mb={2}>
                           <Flex alignItems="center" width="1">
                             <SplitFee>Split Fee</SplitFee>
                             {ratio !== null && (
@@ -567,29 +584,43 @@ class LefoodLayout extends PureComponent {
                           </Flex>
                         </Box>
                       )}
-                      {isUberAvailable && (
-                        <Box>
+                      {shouldShowImportButton && (
+                        <Box pr={3} mb={2}>
                           <Button
-                            onClick={() => addToUber(currentBusinessId)}
                             styleName="withImage"
+                            onClick={this.showImportModal}
                           >
                             <ButtonWithImageText>
-                              Upload Menu to Uber Eats
+                              {t("import.upload_menu")}
                             </ButtonWithImageText>
                           </Button>
                         </Box>
-                      )}{" "}
+                      )}
                       {isUberAvailable && (
-                        <Box>
-                          <Button
-                            onClick={() => donwloadFromUber(currentBusinessId)}
-                            styleName="withImage"
-                          >
-                            <ButtonWithImageText>
-                              Download Menu from Uber Eats
-                            </ButtonWithImageText>
-                          </Button>
-                        </Box>
+                        <>
+                          <Box pr={3} mb={2}>
+                            <Button
+                              onClick={() => addToUber(currentBusinessId)}
+                              styleName="withImage"
+                            >
+                              <ButtonWithImageText>
+                                Upload Menu to Uber Eats
+                              </ButtonWithImageText>
+                            </Button>
+                          </Box>
+                          <Box pr={3} mb={2}>
+                            <Button
+                              onClick={() =>
+                                donwloadFromUber(currentBusinessId)
+                              }
+                              styleName="withImage"
+                            >
+                              <ButtonWithImageText>
+                                Download Menu from Uber Eats
+                              </ButtonWithImageText>
+                            </Button>
+                          </Box>
+                        </>
                       )}
                     </Flex>
                     {children}
@@ -612,6 +643,9 @@ class LefoodLayout extends PureComponent {
                         t
                       }}
                     />
+                    {showImportModal && (
+                      <ImportModal onClose={this.hideImportModal} />
+                    )}
                   </>
                 ) : (
                   <ConnectWithStripe {...{ t }} />

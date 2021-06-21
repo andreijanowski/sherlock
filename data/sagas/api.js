@@ -73,7 +73,8 @@ function* makeApiCall({ type, payload: { endpoint, ...options } = {}, meta }) {
     } else if (
       error.response &&
       error.response.data &&
-      error.response.data.errors
+      error.response.data.errors &&
+      !meta.hideErrorNotification
     ) {
       const { errors } = error.response.data;
       yield put(getErrorMessage(errors));
