@@ -69,5 +69,5 @@ export const validateFileExtensions = (t, extensions) => value => {
     .toLocaleLowerCase();
   return extensions.includes(`.${fileExt}`)
     ? undefined
-    : t("forms:validation.error.invalidFiles");
+    : t("forms:validation.error.invalid_files");
 };

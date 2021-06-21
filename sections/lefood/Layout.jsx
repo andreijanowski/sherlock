@@ -591,7 +591,7 @@ class LefoodLayout extends PureComponent {
                             onClick={this.showImportModal}
                           >
                             <ButtonWithImageText>
-                              {t("import.uploadMenu")}
+                              {t("import.upload_menu")}
                             </ButtonWithImageText>
                           </Button>
                         </Box>

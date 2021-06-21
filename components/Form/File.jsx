@@ -7,6 +7,7 @@ import { faFile } from "@fortawesome/free-regular-svg-icons";
 import { Dropzone } from "components";
 import { bytesToKB } from "utils/misc";
 import { FileWrapper, FileName, FileSize, FileDeleteIcon } from "./styled";
+import { getMenuFileName } from "./utils";
 
 const FilePreview = ({ file, onDeleteClick }) => (
   <Flex justifyContent="space-between" alignItems="center" flexWrap="nowrap">
@@ -50,9 +51,7 @@ const File = ({
       };
 
       const computedTip =
-        !restyled && fileName
-          ? `Menu: ${fileName.split("/").slice(-1)[0]}`
-          : tip;
+        !restyled && fileName ? `Menu: ${getMenuFileName(fileName)}` : tip;
 
       const computedInfo = (restyled || !fileName) && info;
 

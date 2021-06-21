@@ -34,6 +34,8 @@ export const ValidationError = styled(Flex).attrs({
   color: rgb(${p => p.theme.colors.error});
 `;
 
+export const DropzoneTipIcon = styled.span``;
+
 export const Wrapper = styled(Flex).attrs(() => ({
   alignItems: "center",
   justifyContent: "center",
@@ -50,7 +52,7 @@ export const Wrapper = styled(Flex).attrs(() => ({
   cursor: pointer;
 
   ${Tip} {
-    svg {
+    ${DropzoneTipIcon} {
       color: rgb(${p => p.theme.colors.importGray});
     }
   }
@@ -106,7 +108,7 @@ export const Wrapper = styled(Flex).attrs(() => ({
     }
     
     ${Tip} {
-      svg {
+      ${DropzoneTipIcon} {
         color: rgb(${p.theme.colors.white});
       }
     }

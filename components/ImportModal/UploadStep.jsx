@@ -10,6 +10,7 @@ import {
   validateFileExtensions
 } from "utils/validators";
 import { UploadFileIcon } from "components/Icons";
+import { DropzoneTipIcon } from "components/Dropzone/styled";
 import {
   StepTitle,
   StepWrapper,
@@ -25,6 +26,8 @@ const initialValues = {
   mode: MODE.REPLACE
 };
 
+const EXAMPLE_FILE_URL = "/static/download/valid_menu.csv";
+
 const UploadStep = ({ t, onUploadSubmit }) => (
   <Form onSubmit={onUploadSubmit} initialValues={initialValues}>
     {({ handleSubmit, form: { getState } }) => {
@@ -35,15 +38,17 @@ const UploadStep = ({ t, onUploadSubmit }) => (
       const fileUploadTip = (
         <Flex flexDirection="column" alignItems="center">
           <Box mb={2}>
-            <UploadFileIcon />
+            <DropzoneTipIcon>
+              <UploadFileIcon />
+            </DropzoneTipIcon>
           </Box>
-          <span>{t("lefood:import.dragInputTitle")}</span>
+          <span>{t("lefood:import.drag_input_title")}</span>
         </Flex>
       );
 
       return (
         <StepWrapper as="form" onSubmit={handleSubmit}>
-          <StepTitle mb={4}>{t("lefood:import.uploadMenu")}</StepTitle>
+          <StepTitle mb={4}>{t("lefood:import.upload_menu")}</StepTitle>
           <Flex
             width={1}
             justifyContent="flex-start"
@@ -71,7 +76,7 @@ const UploadStep = ({ t, onUploadSubmit }) => (
               )}
               name="file"
               tip={fileUploadTip}
-              errorTipType={t("forms:validation.error.invalidFiles")}
+              errorTipType={t("forms:validation.error.invalid_files")}
               errorInfoType=""
               info=""
             />
@@ -89,12 +94,8 @@ const UploadStep = ({ t, onUploadSubmit }) => (
             flexDirection={["column", "row"]}
           >
             <Box mb={3} width="auto">
-              <DownloadButton
-                as="a"
-                donwload
-                href="/static/download/valid_menu.csv"
-              >
-                {t("lefood:import.downloadTemplate")}
+              <DownloadButton as="a" donwload href={EXAMPLE_FILE_URL}>
+                {t("lefood:import.download_template")}
               </DownloadButton>
             </Box>
           </Flex>

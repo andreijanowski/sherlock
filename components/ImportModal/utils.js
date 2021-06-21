@@ -28,7 +28,7 @@ export const extractErrorData = (errorData, index, t) => {
   } = errorData;
 
   return {
-    index,
+    index: index + 1,
     key: errorData.code,
     row,
     error: t(`lefood:import.row_error.${code}`, { column: capitalize(column) })

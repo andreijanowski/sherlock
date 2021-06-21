@@ -10,9 +10,7 @@ import {
 } from "./styled";
 
 const FormStepper = ({ t, step, steps }) => {
-  const selectedStepIndex = steps.findIndex(
-    orderedStep => orderedStep.id === step
-  );
+  const selectedStepIndex = steps.findIndex(({ id }) => id === step);
 
   return (
     <FormStepperWrapper

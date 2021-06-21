@@ -145,7 +145,7 @@
       "unsupported_business_city-base": "Orkestro is not supported in your city.",
       "taken-external_service_id": "This service is already connected",
       "url-service_url": "Invalid service url",
-      "invalidFiles": "Invalid file format"
+      "invalid_files": "Invalid file format"
     }
   },
   "placeholder": {

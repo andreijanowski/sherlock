@@ -5,7 +5,7 @@ import { DataCell, RedText, TableRow } from "./styled";
 const ImportErrorsTableRow = ({ index, row, error }) => (
   <TableRow>
     <DataCell>
-      <RedText>{index + 1}</RedText>
+      <RedText>{index}</RedText>
     </DataCell>
     <DataCell>{row}</DataCell>
     <DataCell isError>{error}</DataCell>
