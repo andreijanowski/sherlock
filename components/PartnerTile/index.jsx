@@ -46,7 +46,6 @@ const PartnerTile = ({
   const isIntegrated = !partner.get("active");
   const isPreferred = partner.get("preferred");
 
-  // const [isPending, setIsPending] = useState(isIntegrationPending);
   const integrationButtonLabel = getIntegrationButtonLabel(
     isIntegrated,
     isIntegrationPending,
@@ -72,9 +71,9 @@ const PartnerTile = ({
   const onIntegrationButtonClick = useCallback(() => {
     if (isIntegrated || isIntegrationPending) {
       setShowDisconnectModal(true);
-    } else {
-      makeIntergationRequest();
+      return;
     }
+    makeIntergationRequest();
   }, [isIntegrated, isIntegrationPending, makeIntergationRequest]);
 
   const closeModal = useCallback(() => {
