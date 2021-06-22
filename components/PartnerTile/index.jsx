@@ -69,7 +69,8 @@ const PartnerTile = ({
   );
 
   const onIntegrationButtonClick = useCallback(() => {
-    if (isIntegrated || isIntegrationPending) {
+    if (isIntegrated) return;
+    if (isIntegrationPending) {
       setShowDisconnectModal(true);
       return;
     }
@@ -127,6 +128,7 @@ const PartnerTile = ({
           {!isPartnerWholesaler &&
             (!isIntegratedWithServices && (
               <IntegrationButton
+                disabled={isIntegrated}
                 styleName={
                   isIntegrated || isIntegrationPending ? "orange" : "navyBlue"
                 }
