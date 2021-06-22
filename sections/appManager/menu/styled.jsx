@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
+import { Button } from "../../../components";
 
 export const Wrapper = styled(Flex).attrs(() => ({
   flexDirection: "column",
@@ -65,3 +66,8 @@ export const Form = styled.form`
   width: 100%;
   min-height: 540px;
 `;
+
+export const ImportButton = styled(Button).attrs({
+  type: "button",
+  styleName: "underline"
+})``;

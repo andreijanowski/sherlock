@@ -202,6 +202,10 @@
       "too_low": "{{column}} is too low",
       "too_high": "{{column}} is too high",
       "duplicated": "{{column}} is duplicated"
-    }
+    },
+    "upload_to_uber": "Upload Menu to Uber Eats",
+    "upload_to_uber_confirm": "Are you sure you want to send menu to Uber Eats? It will replace your current menu in Uber.",
+    "download_from_uber": "Download Menu from Uber Eats",
+    "download_from_uber_confirm": "Are you sure you want to download menu from Uber Eats? It will ADD all new dishes from Uber to your current menu."
   }
 }

@@ -1,4 +1,4 @@
-import { Modal, Button, FormSelect, Paragraph, H3 } from "components";
+import { Modal, Button, FormSelect, Paragraph, H3 } from "components/index";
 import { func, bool, string } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import currencies from "utils/currencies";
