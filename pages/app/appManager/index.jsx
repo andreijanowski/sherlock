@@ -81,10 +81,10 @@ const MenuPage = ({
   }, [confirmModalData, downloadMenu, hideModal, uploadMenu]);
 
   const onUploadMenuClick = useCallback(
-    id => {
+    menuId => {
       setConfirmModalData({
         action: ACTION_TYPE.UPLOAD_UBER_EATS,
-        menuId: id,
+        menuId,
         title: t("lefood:import.upload_to_uber_confirm")
       });
     },
@@ -92,10 +92,10 @@ const MenuPage = ({
   );
 
   const onDownloadMenuClick = useCallback(
-    id => {
+    menuId => {
       setConfirmModalData({
         action: ACTION_TYPE.DOWNLOAD_UBER_EATS,
-        menuId: id,
+        menuId,
         title: t("lefood:import.download_from_uber_confirm")
       });
     },
