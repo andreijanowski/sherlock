@@ -1,9 +1,10 @@
-import { Modal, Button, FormSelect, Paragraph, H3 } from "components/index";
+import { Form as FinalForm, Field } from "react-final-form";
 import { func, bool, string } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
+
+import { Modal, Button, FormSelect, Paragraph, H3 } from "components";
 import currencies from "utils/currencies";
 import { WarningIcon } from "icons";
-import { Form as FinalForm, Field } from "react-final-form";
 
 const StripeCurrencyModal = ({
   onClose,

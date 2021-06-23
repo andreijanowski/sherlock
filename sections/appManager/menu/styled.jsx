@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
-import { Button } from "../../../components";
+
+import { Button } from "components";
 
 export const Wrapper = styled(Flex).attrs(() => ({
   flexDirection: "column",
