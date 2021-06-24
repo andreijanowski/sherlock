@@ -5,7 +5,6 @@ import {
   Catering,
   Restaurant,
   ProfileBasicInfo,
-  ProfileContact,
   ProfileOpeningHours,
   ProfilePicturesAndMenus,
   ProfileAdditionaInfo,
@@ -56,16 +55,10 @@ const generateSettingsMobileSubmenu = (t, active, logout) => [
 
 const generateProfileMobileSubmenu = (t, active) => [
   {
-    route: `/app/profile/basic-information/`,
-    label: t("app:manageProfile.basicInformation"),
-    isActive: active === "basicInformation",
+    route: `/app/profile/my-business/`,
+    label: t("app:manageProfile.myBusiness"),
+    isActive: active === "myBusiness",
     SubmenuIcon: ProfileBasicInfo
-  },
-  {
-    route: `/app/profile/contact-information/`,
-    label: t("app:manageProfile.contactInformation"),
-    isActive: active === "contactInformation",
-    SubmenuIcon: ProfileContact
   },
   {
     route: `/app/profile/opening-hours/`,

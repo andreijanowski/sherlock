@@ -28,7 +28,7 @@ const prepareBadge = updates => {
 export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
   {
     basePath: "/app/profile",
-    route: "/app/profile/basic-information/",
+    route: "/app/profile/my-business/",
     Icon: Restaurant,
     label: t("app:manageProfile.myProfile"),
     hasNested: true

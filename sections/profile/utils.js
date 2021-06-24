@@ -7,14 +7,9 @@ export const generateMenuItems = (
 ) => {
   const menuItems = [
     {
-      route: `/app/profile/basic-information/`,
-      label: t("app:manageProfile.basicInformation"),
-      isActive: active === "basicInformation"
-    },
-    {
-      route: `/app/profile/contact-information/`,
-      label: t("app:manageProfile.contactInformation"),
-      isActive: active === "contactInformation"
+      route: `/app/profile/my-business/`,
+      label: t("app:manageProfile.myBusiness"),
+      isActive: active === "myBusiness"
     },
     {
       route: `/app/profile/opening-hours/`,

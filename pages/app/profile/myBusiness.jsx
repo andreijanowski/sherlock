@@ -1,24 +1,33 @@
 import { PureComponent } from "react";
 import { withTranslation } from "i18n";
-import requireAuth from "lib/requireAuth";
 import { func, string, shape } from "prop-types";
-import Form from "sections/profile/basicInformation";
+import { connect } from "react-redux";
+import { compose } from "redux";
+
+import requireAuth from "lib/requireAuth";
+import Form from "sections/profile/myBusiness";
 import {
   getInitialValues,
   getGroupsValues,
   isSelectValueChanged
-} from "sections/profile/basicInformation/utils";
+} from "sections/profile/myBusiness/utils";
 import { countries } from "utils/iso-3166-2";
 import { getGroupsData } from "sections/profile/utils";
 import ProfileLayout from "sections/profile/Layout";
-import { connect } from "react-redux";
 import { postBusiness, patchBusiness } from "actions/businesses";
 import { fetchProfileBusiness } from "actions/users";
 import { setCurrentBusiness } from "actions/app";
+import { addProtocol } from "utils/urls";
 
-const namespaces = ["basicInformation", "app", "publishModal", "forms"];
+const namespaces = [
+  "basicInformation",
+  "contactInformation",
+  "app",
+  "publishModal",
+  "forms"
+];
 
-class BasicInformation extends PureComponent {
+class MyBusiness extends PureComponent {
   static async getInitialProps() {
     return {
       namespacesRequired: namespaces
@@ -68,7 +77,13 @@ class BasicInformation extends PureComponent {
       city,
       postCode,
       ownerRole,
-      bio
+      bio,
+      email,
+      phone,
+      phoneCountry,
+      website,
+      facebook,
+      instagram
     },
     { types, cuisines, foodsAndDrinks, quirks, diets, michelinStars },
     { country: countryValue, region: regionValue }
@@ -110,7 +125,20 @@ class BasicInformation extends PureComponent {
           ])
         : undefined,
       ownerRole,
-      bio
+      bio,
+      email,
+      phone,
+      phoneCountryPrefix:
+        phoneCountry && phoneCountry.value
+          ? phoneCountry.value.prefix
+          : undefined,
+      phoneCountryCode:
+        phoneCountry && phoneCountry.value
+          ? phoneCountry.value.code
+          : undefined,
+      website: addProtocol(website),
+      facebook: addProtocol(facebook),
+      instagram: addProtocol(instagram)
     };
     if (Object.values(requestValues).some(v => !!v)) {
       return updateBusiness(businessId, requestValues);
@@ -162,7 +190,7 @@ class BasicInformation extends PureComponent {
           addBusiness,
           updateBusiness,
           getProfileBusiness,
-          currentPage: "basicInformation"
+          currentPage: "myBusiness"
         }}
       >
         <Form
@@ -185,7 +213,7 @@ class BasicInformation extends PureComponent {
   }
 }
 
-BasicInformation.propTypes = {
+MyBusiness.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   business: shape(),
@@ -204,7 +232,7 @@ BasicInformation.propTypes = {
   query: shape()
 };
 
-BasicInformation.defaultProps = {
+MyBusiness.defaultProps = {
   business: null,
   businessId: "",
   businessGroups: null,
@@ -217,39 +245,39 @@ BasicInformation.defaultProps = {
   query: {}
 };
 
-export default requireAuth(true)(
-  withTranslation(namespaces)(
-    connect(
-      (state, { i18n }) => {
-        const businessData = state.getIn(["users", "currentBusiness", "data"]);
-        const business =
-          businessData &&
-          businessData.get("businesses") &&
-          businessData.get("businesses").first();
-        return {
-          business: business && business.get("attributes"),
-          businessId: business && business.get("id"),
-          businessGroups: businessData && businessData.get("groups"),
-          businessMenus: businessData && businessData.get("menus"),
-          businessPictures: businessData && businessData.get("pictures"),
-          businessProducts: businessData && businessData.get("products"),
-          businessOpenPeriods: businessData && businessData.get("openPeriods"),
-          businesses: state.getIn([
-            "users",
-            "profileBusinesses",
-            "data",
-            "businesses"
-          ]),
-          groups: state.getIn(["groups", "data", "groups"]),
-          lng: (i18n && i18n.language) || "en"
-        };
-      },
-      {
-        updateBusiness: patchBusiness,
-        changeCurrentBusiness: setCurrentBusiness,
-        addBusiness: postBusiness,
-        getProfileBusiness: fetchProfileBusiness
-      }
-    )(BasicInformation)
+export default compose(
+  requireAuth(true),
+  withTranslation(namespaces),
+  connect(
+    (state, { i18n }) => {
+      const businessData = state.getIn(["users", "currentBusiness", "data"]);
+      const business =
+        businessData &&
+        businessData.get("businesses") &&
+        businessData.get("businesses").first();
+      return {
+        business: business && business.get("attributes"),
+        businessId: business && business.get("id"),
+        businessGroups: businessData && businessData.get("groups"),
+        businessMenus: businessData && businessData.get("menus"),
+        businessPictures: businessData && businessData.get("pictures"),
+        businessProducts: businessData && businessData.get("products"),
+        businessOpenPeriods: businessData && businessData.get("openPeriods"),
+        businesses: state.getIn([
+          "users",
+          "profileBusinesses",
+          "data",
+          "businesses"
+        ]),
+        groups: state.getIn(["groups", "data", "groups"]),
+        lng: (i18n && i18n.language) || "en"
+      };
+    },
+    {
+      updateBusiness: patchBusiness,
+      changeCurrentBusiness: setCurrentBusiness,
+      addBusiness: postBusiness,
+      getProfileBusiness: fetchProfileBusiness
+    }
   )
-);
+)(MyBusiness);

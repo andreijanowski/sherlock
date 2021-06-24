@@ -1,4 +1,9 @@
-import { PureComponent } from "react";
+import React, { PureComponent } from "react";
+import { Form as FinalForm, Field } from "react-final-form";
+import { func, shape, arrayOf, string, bool } from "prop-types";
+import { Flex, Box } from "@rebass/grid";
+import setFieldData from "final-form-set-field-data";
+
 import {
   FormInput,
   FormTextarea,
@@ -10,16 +15,14 @@ import {
   AutoSave,
   LoadingIndicator
 } from "components";
-import { Form as FinalForm, Field } from "react-final-form";
-import { func, shape, arrayOf, string, bool } from "prop-types";
-import { Flex, Box } from "@rebass/grid";
-import setFieldData from "final-form-set-field-data";
 import { getSubdivisions } from "utils/iso-3166-2";
 import { validateLength, required, requiredProperty } from "utils/validators";
+import countriesPhoneCodes from "utils/countriesPhoneCodes";
+import { normalizePhone } from "utils/normalizers";
 import { Form, TypesWrapper } from "../styled";
 import TypesError from "./TypesError";
 
-class BasicInformationForm extends PureComponent {
+class MyBusinessForm extends PureComponent {
   constructor(props) {
     super(props);
     this.validateTypesLength = validateLength(props.t, 1, 3);
@@ -151,6 +154,47 @@ class BasicInformationForm extends PureComponent {
                 />
               </Box>
             </Flex>
+            <H3>{t("contactInformation:contactInformation")}</H3>
+            <FormInput
+              name="email"
+              label={t("contactInformation:emailLabel")}
+              placeholder={t("contactInformation:emailPlaceholder")}
+            />
+            <Flex mx={-2} flexWrap="wrap">
+              <Box width={[1, 1 / 2, 1 / 3]} px={2}>
+                <Field
+                  name="phoneCountry"
+                  component={FormSelect}
+                  label={t("contactInformation:countryLabel")}
+                  placeholder={t("contactInformation:countryPlaceholder")}
+                  items={countriesPhoneCodes}
+                  showFlag
+                />
+              </Box>
+              <Box width={[1, 1 / 2, 2 / 3]} px={2}>
+                <FormInput
+                  name="phone"
+                  label={t("contactInformation:phoneLabel")}
+                  placeholder={t("contactInformation:phonePlaceholder")}
+                  parse={normalizePhone}
+                />
+              </Box>
+            </Flex>
+            <FormInput
+              name="website"
+              label={t("contactInformation:websiteLabel")}
+              placeholder={t("contactInformation:websitePlaceholder")}
+            />
+            <FormInput
+              name="facebook"
+              label={t("contactInformation:facebookLabel")}
+              placeholder={t("contactInformation:facebookPlaceholder")}
+            />
+            <FormInput
+              name="instagram"
+              label={t("contactInformation:instagramLabel")}
+              placeholder={t("contactInformation:instagramPlaceholder")}
+            />
             <H3 mt={4}>{t("types")}</H3>
             <TypesWrapper>
               {types.map(type => (
@@ -243,7 +287,7 @@ class BasicInformationForm extends PureComponent {
   }
 }
 
-BasicInformationForm.propTypes = {
+MyBusinessForm.propTypes = {
   t: func.isRequired,
   initialValues: shape(),
   countries: arrayOf(
@@ -268,9 +312,9 @@ BasicInformationForm.propTypes = {
   isErrorVisibilityRequired: bool
 };
 
-BasicInformationForm.defaultProps = {
+MyBusinessForm.defaultProps = {
   initialValues: undefined,
   isErrorVisibilityRequired: false
 };
 
-export default BasicInformationForm;
+export default MyBusinessForm;
