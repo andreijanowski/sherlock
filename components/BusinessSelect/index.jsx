@@ -8,7 +8,7 @@ import { postBusiness } from "actions/businesses";
 import prepareBusinessesList from "utils/prepareBusinessesList";
 import Select from "components/Select";
 
-const BUSINESS_PAGE_URL = "/app/profile/basic-information/";
+const BUSINESS_PAGE_URL = "/app/profile/my-business/";
 
 const BusinessSelect = ({
   t,
