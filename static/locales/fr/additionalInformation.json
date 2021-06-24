@@ -30,7 +30,7 @@
   "secretCode": "Code secret",
   "secretCodeLabel": "Code secret",
   "secretCodePlaceholder": "32543cdsSD4ewcbwt6654",
-  "redirectionLinks": "Liens de Redirection",
+  "redirectionLinks": "Liens de redirections",
   "redirectionLinksTooltip": "Ajoutez le lien URL de vos plateformes/partenaires ",
   "serviceLinkCategory": {
     "delivery": "Livraison & Pick Up",

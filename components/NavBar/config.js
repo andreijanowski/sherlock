@@ -47,12 +47,6 @@ export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
     hasNested: true
   },
   {
-    basePath: "/app/app-manager",
-    route: "/app/app-manager",
-    Icon: AppManager,
-    label: t("app:appManager")
-  },
-  {
     basePath: "/app/payments",
     route: "/app/payments",
     Icon: Payments,
@@ -64,6 +58,12 @@ export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
     Icon: Delivery,
     label: t("app:delivery"),
     badge: prepareBadge(ordersUpdates)
+  },
+  {
+    basePath: "/app/app-manager",
+    route: "/app/app-manager",
+    Icon: AppManager,
+    label: t("app:appManager")
   },
   {
     basePath: "/app/reservation",

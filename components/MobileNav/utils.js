@@ -137,7 +137,7 @@ const generateWholesalersMobileSubmenu = (t, activeTab) =>
 export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
   {
     icon: Restaurant,
-    label: t("app:manageProfile.manageProfile"),
+    label: t("app:manageProfile.myProfile"),
     withSubmenu: true,
     submenuItems: generateProfileMobileSubmenu(t, lng)
   },
@@ -154,12 +154,6 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     submenuItems: generateIntegrationsMobileSubmenu(t, lng)
   },
   {
-    basePath: "/app/app-manager",
-    route: "/app/app-manager",
-    icon: AppManager,
-    label: t("app:appManager")
-  },
-  {
     basePath: "/app/payments",
     route: "/app/payments",
     icon: Payments,
@@ -169,6 +163,12 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     icon: Delivery,
     label: t("app:delivery"),
     route: "/app/lefood/orders/"
+  },
+  {
+    basePath: "/app/app-manager",
+    route: "/app/app-manager",
+    icon: AppManager,
+    label: t("app:appManager")
   },
   {
     icon: Bookings,
