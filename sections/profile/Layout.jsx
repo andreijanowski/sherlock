@@ -50,7 +50,7 @@ const ProfileLayout = ({
       : "waiting_for_approval";
     updateBusiness(businessId, { state }).catch(() =>
       Router.pushRoute(
-        `/${lng}/app/profile/my-business/?isErrorVisibilityRequired=true`
+        `/${lng}/app/profile/basic-information/?isErrorVisibilityRequired=true`
       )
     );
   }, [business, businessId, lng, updateBusiness]);

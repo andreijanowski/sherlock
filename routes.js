@@ -7,8 +7,8 @@ module.exports = routes()
   .add("add/venue", `/:lng(${languagesPattern})/add/venue`)
   .add("app/index", `/:lng(${languagesPattern})/app`)
   .add(
-    "app/profile/myBusiness",
-    `/:lng(${languagesPattern})/app/profile/my-business`
+    "app/profile/basicInformation",
+    `/:lng(${languagesPattern})/app/profile/basic-information`
   )
   .add("app/profile/members", `/:lng(${languagesPattern})/app/profile/members`)
   .add(

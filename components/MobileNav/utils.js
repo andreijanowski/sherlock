@@ -55,9 +55,9 @@ const generateSettingsMobileSubmenu = (t, active, logout) => [
 
 const generateProfileMobileSubmenu = (t, active) => [
   {
-    route: `/app/profile/my-business/`,
-    label: t("app:manageProfile.myBusiness"),
-    isActive: active === "myBusiness",
+    route: `/app/profile/basic-information/`,
+    label: t("app:manageProfile.basicInformation"),
+    isActive: active === "basicInformation",
     SubmenuIcon: ProfileBasicInfo
   },
   {

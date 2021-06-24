@@ -22,7 +22,7 @@ import { normalizePhone } from "utils/normalizers";
 import { Form, TypesWrapper } from "../styled";
 import TypesError from "./TypesError";
 
-class MyBusinessForm extends PureComponent {
+class BasicInformationForm extends PureComponent {
   constructor(props) {
     super(props);
     this.validateTypesLength = validateLength(props.t, 1, 3);
@@ -287,7 +287,7 @@ class MyBusinessForm extends PureComponent {
   }
 }
 
-MyBusinessForm.propTypes = {
+BasicInformationForm.propTypes = {
   t: func.isRequired,
   initialValues: shape(),
   countries: arrayOf(
@@ -312,9 +312,9 @@ MyBusinessForm.propTypes = {
   isErrorVisibilityRequired: bool
 };
 
-MyBusinessForm.defaultProps = {
+BasicInformationForm.defaultProps = {
   initialValues: undefined,
   isErrorVisibilityRequired: false
 };
 
-export default MyBusinessForm;
+export default BasicInformationForm;

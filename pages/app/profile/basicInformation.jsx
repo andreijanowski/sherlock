@@ -5,12 +5,12 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 
 import requireAuth from "lib/requireAuth";
-import Form from "sections/profile/myBusiness";
+import Form from "sections/profile/basicInformation";
 import {
   getInitialValues,
   getGroupsValues,
   isSelectValueChanged
-} from "sections/profile/myBusiness/utils";
+} from "sections/profile/basicInformation/utils";
 import { countries } from "utils/iso-3166-2";
 import { getGroupsData } from "sections/profile/utils";
 import ProfileLayout from "sections/profile/Layout";
@@ -27,7 +27,7 @@ const namespaces = [
   "forms"
 ];
 
-class MyBusiness extends PureComponent {
+class BasicInformation extends PureComponent {
   static async getInitialProps() {
     return {
       namespacesRequired: namespaces
@@ -190,7 +190,7 @@ class MyBusiness extends PureComponent {
           addBusiness,
           updateBusiness,
           getProfileBusiness,
-          currentPage: "myBusiness"
+          currentPage: "basicInformation"
         }}
       >
         <Form
@@ -213,7 +213,7 @@ class MyBusiness extends PureComponent {
   }
 }
 
-MyBusiness.propTypes = {
+BasicInformation.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   business: shape(),
@@ -232,7 +232,7 @@ MyBusiness.propTypes = {
   query: shape()
 };
 
-MyBusiness.defaultProps = {
+BasicInformation.defaultProps = {
   business: null,
   businessId: "",
   businessGroups: null,
@@ -280,4 +280,4 @@ export default compose(
       getProfileBusiness: fetchProfileBusiness
     }
   )
-)(MyBusiness);
+)(BasicInformation);
