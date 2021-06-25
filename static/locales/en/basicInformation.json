@@ -1,5 +1,5 @@
 {
-  "header": "My business",
+  "header": "Basic Information",
   "basicInformation": "Basic Information",
   "nameLabel": "Name",
   "namePlaceholder": "The Amber Chicken",
@@ -27,7 +27,7 @@
   "quirksPlaceholder": "First Dates",
   "diets": "Diets (optional)",
   "dietsPlaceholder": "Vegan",
-  "labelsDistinctions": "Labels & Distinctions",
+  "labelsDistinctions": "Labels & Distinctions (Optional)",
   "michelinStars": "Michelin Stars",
   "michelinStarsPlaceholder": "1 Michelin Star",
   "additionalInformation": "Additional information:",
