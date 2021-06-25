@@ -119,10 +119,16 @@ export const InstructionsTitle = styled(H4)`
   font-weight: ${p => p.theme.fontWeights.medium};
 `;
 
-export const InstructionsText = styled.p`
-  margin: 0 auto 24px;
+export const InstructionsList = styled.ol`
+  margin: 0 0 24px;
+  padding-left: 20px;
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 24px;
+`;
+
+export const InstructionsNote = styled.p`
+  margin: 0 auto 24px;
+  font-style: italic;
 `;
 
 export const DownloadButton = styled(Button).attrs({

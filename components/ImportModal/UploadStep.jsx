@@ -15,7 +15,8 @@ import {
   StepTitle,
   StepWrapper,
   InstructionsTitle,
-  InstructionsText,
+  InstructionsList,
+  InstructionsNote,
   DownloadButton
 } from "./styled";
 import { MODE } from "./utils";
@@ -84,9 +85,16 @@ const UploadStep = ({ t, onUploadSubmit }) => (
           <InstructionsTitle>
             {t("lefood:import.instructions")}
           </InstructionsTitle>
-          <InstructionsText>
-            {t(`lefood:import.instructions_${mode}`)}
-          </InstructionsText>
+          <InstructionsList>
+            {t(`lefood:import.instructions_${mode}`, {
+              returnObjects: true
+            }).map(instruction => (
+              <li key={instruction}>{instruction}</li>
+            ))}
+          </InstructionsList>
+          <InstructionsNote>
+            {t(`lefood:import.instructions_note`)}
+          </InstructionsNote>
           <Flex
             width={1}
             justifyContent="flex-start"
