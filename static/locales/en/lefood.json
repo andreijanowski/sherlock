@@ -167,8 +167,8 @@
   "import": {
     "upload_menu": "Upload the menu",
     "mode": {
-      "add": "Add to existing menu",
-      "replace": "Upload/Replace menu"
+      "add": "Add Additional items to existing menu",
+      "replace": "Upload or Replace menu items"
     },
     "steps": {
       "upload": "Upload",
@@ -176,8 +176,21 @@
       "publish": "Publish"
     },
     "instructions": "Instructions",
-    "instructions_add": "Instructions for add. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sed eu, bibendum blandit hendrerit tortor, amet, non sem. Vitae pellentesque pharetra suspendisse vitae diam suscipit sit. Volutpat sed proin habitant vel est. Vitae duis sed egestas a risus consectetur gravida utpat. Nibh elementum placerat rhoncus nunc. Magna metus, hendrerit id sagittis a velit. Proin gravida proin est nulla sed at tincidunt auctor. Tortor ultrices turpis enim in rhoncus hac. Magna iaculis enim blandit natoque praesent libero odio tellus a. Adipiscing tempor rhoncus, amet turpis id pulvinar. Mollis non integer congue quam eget diam cras in. Vitae ut ornare odio gravida pulvinar imperdiet id risus. Commodo a lectus at mattis luctus mollis malesuada nec.",
-    "instructions_replace": "Instructions for upload. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui sed eu, bibendum blandit hendrerit tortor, amet, non sem. Vitae pellentesque pharetra suspendisse vitae diam suscipit sit. Volutpat sed proin habitant vel est. Vitae duis sed egestas a risus consectetur gravida utpat. Nibh elementum placerat rhoncus nunc. Magna metus, hendrerit id sagittis a velit. Proin gravida proin est nulla sed at tincidunt auctor. Tortor ultrices turpis enim in rhoncus hac. Magna iaculis enim blandit natoque praesent libero odio tellus a. Adipiscing tempor rhoncus, amet turpis id pulvinar. Mollis non integer congue quam eget diam cras in. Vitae ut ornare odio gravida pulvinar imperdiet id risus. Commodo a lectus at mattis luctus mollis malesuada nec.",
+    "instructions_add": [
+      "Download our CSV file template",
+      "Add only your new items to the file",
+      "Make sure you have entered the right categories (available in the categories dropdown)",
+      "Upload the CSV file here below",
+      "Let the magic happen."
+    ],
+    "instructions_replace": [
+      "Download our CSV file template",
+      "Create your menu on a CSV file, add your whole menu/products into the file",
+      "Make sure you have entered the right categories (available in the categories dropdown)",
+      "Upload the CSV file here below",
+      "Let the magic happen."
+    ],
+    "instructions_note": "If there are any errors in your file, we'll list them all in a table on a pop-up. You'll have to correct those errors in the file directly and reupload the file",
     "download_menu": "Download menu",
     "download_template": "Download CSV template",
     "drag_input_title": "Drag & Drop a CSV file here or browse",
@@ -195,13 +208,21 @@
     },
     "row_error": {
       "missing": "{{column}} is missing",
+      "missing_header": "{{column}} header is missing",
       "unknown": "{{column}} is unknown",
+      "unknown_header": "{{column}} header is unknown",
       "too_long": "{{column}} is too long",
+      "too_long_header": "{{column}} header is too long",
       "wrong_order": "{{column}} is in wrong position",
+      "wrong_order_header": "{{column}} header is in wrong position",
       "invalid": "{{column}} is invalid",
+      "invalid_header": "{{column}} header is invalid",
       "too_low": "{{column}} is too low",
+      "too_low_header": "{{column}} header is too low",
       "too_high": "{{column}} is too high",
-      "duplicated": "{{column}} is duplicated"
+      "too_high_header": "{{column}} header is too high",
+      "already_exists": "{{column}} already exists",
+      "already_exists_header": "{{column}} header already exists"
     },
     "upload_to_uber": "Upload Menu to Uber Eats",
     "upload_to_uber_confirm": "Are you sure you want to send menu to Uber Eats? It will replace your current menu in Uber.",

@@ -43,7 +43,7 @@ export const CircleRadioButtonLabel = styled.span`
     content: "";
     min-width: 15px;
     min-height: 15px;
-    margin-right: 30px;
+    margin-right: 15px;
     border: 3px solid rgb(${p => p.theme.colors.importGray});
     border-radius: 50%;
     transition: border-color ${TRANSITION_TIME};

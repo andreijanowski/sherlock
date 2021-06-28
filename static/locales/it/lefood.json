@@ -155,5 +155,27 @@
   "white_wines": "Vini Bianchi",
   "rose_wines": "Vini Rosati",
   "sandwiches": "Sandwich",
-  "other": "Altro"
+  "other": "Altro",
+  "import": {
+    "mode": {
+      "add": "Aggiugni \"voci aggiuntive\" nel menu esistente ",
+      "replace": "Carica o sostituisci le voci del tuo menu "
+    },
+    "instructions": "Istruzioni",
+    "instructions_add": [
+      "Scarica il nosto file CSV",
+      "Crea il tuo menu sul nostro file CSV aggiungendo il menu cpmleto e i tuoi prodotti",
+      "Assicurati di aver inserito le categorie giuste (disponibili nel menu a tendina)",
+      "Carica il file CSV qua sotto",
+      "Lascia che la magia accada"
+    ],
+    "instructions_replace": [
+      "Scarica il nosto file CSV",
+      "Aggiungi solamente i tuoi nuvoi elementi al file",
+      "Assicurati di aver inserito le categorie giuste (disponibili nel menu a tendina)",
+      "Carica il file CSV qua sotto",
+      "Lascia che la magia accada"
+    ],
+    "instructions_note": "Se vi sono degli errori all'interno del file, questi verranno elencati in una tabella \nDovrete correggere gli errori direttamente nel file. Ricaricate il file successivamente"
+  }
 }

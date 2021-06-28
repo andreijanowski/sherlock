@@ -31,6 +31,9 @@ export const extractErrorData = (errorData, index, t) => {
     index: index + 1,
     key: errorData.code,
     row,
-    error: t(`lefood:import.row_error.${code}`, { column: capitalize(column) })
+    error: t(`lefood:import.row_error.${code}`, {
+      column: capitalize(column),
+      context: row === 1 ? "header" : ""
+    })
   };
 };
