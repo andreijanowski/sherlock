@@ -3,7 +3,9 @@ import {
   FETCH_PARTNERS_SUCCESS,
   FETCH_PARTNERS_FAIL,
   PARTNERS_PREFERRED_ADD_SUCCESS,
-  PARTNERS_PREFERRED_DELETE_SUCCESS
+  PARTNERS_PREFERRED_DELETE_SUCCESS,
+  CONNECT_PARTNER_SUCCESS,
+  DISCONNECT_PARTNER_SUCCESS
 } from "types/partners";
 import { LOGOUT } from "types/auth";
 import { Record, Map, fromJS } from "immutable";
@@ -73,6 +75,22 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         state.get("data").map(partner => {
           if (partner.get("id") === meta.partnerId) {
             return partner.setIn(["attributes", "preferred"], false);
+          }
+          return partner;
+        })
+      );
+    }
+
+    case CONNECT_PARTNER_SUCCESS:
+    case DISCONNECT_PARTNER_SUCCESS: {
+      return state.set(
+        "data",
+        state.get("data").map(partner => {
+          if (partner.get("id") === meta.id) {
+            return partner.setIn(
+              ["attributes", "userIntegrationRequested"],
+              type === CONNECT_PARTNER_SUCCESS
+            );
           }
           return partner;
         })

@@ -1,6 +1,6 @@
 {
   "header": "Widgets",
-  "addWidget": "Agregar widget",
+  "addWidget": "Añade el URL de tu página web para crear un widget. Una vez hecho, intégralo en tu página web para que tus clientes puedan hacer uso de tus servicios.",
   "editWidget": "Editar widget",
   "addNewWidget": "Agregar nuevo widget",
   "domainsLabel": "Dominios (separados por comas)",

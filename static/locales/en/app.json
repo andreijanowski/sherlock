@@ -3,11 +3,11 @@
   "reservations": "Bookings",
   "takeAway": "Take Away",
   "bookings": "Bookings (soon)",
-  "delivery": "Delivery & Take away",
-  "catering": "Catering",
+  "delivery": "Order Management",
+  "catering": "Caterings",
   "privatisations": "Privatisations",
   "integrations": "Integrations",
-  "wholesaler": "Wholesalers",
+  "wholesaler": "My Wholesalers",
   "socialMedia": "Social media (soon)",
   "billing": "Billing (soon)",
   "manageProfile": {
@@ -15,8 +15,8 @@
     "basicInformation": "Basic Information",
     "contactInformation": "Contact Information",
     "openingHours": "Opening Hours",
-    "picturesAndMenus": "Pictures and Menus",
-    "additionalInformation": "Additional Information",
+    "picturesAndMenus": "Images, Products & Menus",
+    "additionalInformation": "Additional Information & Tags",
     "inviteYourTeam": "Invite your team",
     "liveInfo": "Live info",
     "widgets": "Widgets",
@@ -24,9 +24,9 @@
     "addNewBusiness": "Add new business",
     "publish": "Publish business",
     "published": "Published",
-    "unPublish": "Unpublish business",
+    "unPublish": "Unpublish My Business",
     "waitingForApproval": "Waiting for approval",
-    "myProfile": "My profile",
+    "myProfile": "My Business",
     "unPublish_prompt": "Are you sure you want to Unpublish your business from Foodetective? Clients won't be able to find your profile anymore."
   },
   "manageIntegrations": {
@@ -94,13 +94,13 @@
   },
   "dashboard": "Dashboard",
   "integrationHub": "Integration Hub",
-  "appManager": "App Manager",
+  "appManager": "Menu management",
   "payments": "Payments",
   "privateEvents": "Private Events",
-  "reviews": "Reviews",
-  "detectives": "Detectives",
+  "reviews": "Reviews Management",
+  "detectives": "Detectives & Influencers",
   "adsAndMarketing": "Ads & Marketing",
-  "clients": "Clients",
+  "clients": "My Clients",
   "settings": "Settings",
   "stockManagement": "Stock Management",
   "comingSoon": {
@@ -108,6 +108,6 @@
     "caption": "Bear with us it’s coming very soon."
   },
   "backToMainMenu": "Back to main menu",
-  "photography": "Photography",
+  "photography": "Photography & Video",
   "search": "Search..."
 }

@@ -175,3 +175,49 @@ export const CloseIcon = () => (
     <path d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z" />
   </svg>
 );
+
+export const UploadFileIcon = () => (
+  <svg
+    width="46"
+    height="33"
+    viewBox="0 0 46 33"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M34.9899 9.82579C34.3551 9.82579 33.7341 9.88758 33.1292 9.99386C31.6204 4.69222 26.9468 0.831543 21.4107 0.831543C14.651 0.831543 9.1747 6.58549 9.1747 13.6815C9.1747 14.3143 9.2207 14.9371 9.3058 15.5501C8.97845 15.5065 8.64895 15.4843 8.3191 15.4833C3.7237 15.4833 0 19.3935 0 24.2205C0 29.0476 3.7237 32.9627 8.3191 32.9627H18.4V23.0762H12.65L23 10.7181L33.35 23.0762H27.6V32.9627H34.9899C41.0688 32.9627 46 27.7822 46 21.3955C46 15.0038 41.0688 9.82579 34.9899 9.82579Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+export const CircleWarningIcon = () => (
+  <svg
+    width="1em"
+    height="1em"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M10 6.3999V9.9999"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M10 13.6001H10.009"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);

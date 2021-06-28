@@ -30,7 +30,7 @@
   "secretCode": "Geheim Code",
   "secretCodeLabel": "Geheim Code",
   "secretCodePlaceholder": "32543cdsSD4ewcbwt6654",
-  "redirectionLinks": "Umleitungs-Links",
+  "redirectionLinks": "Weiterleitungslinks",
   "redirectionLinksTooltip": "Geben Sie Links zu Ihren externen Dienstleistungen/Profilen ein",
   "serviceLinkCategory": {
     "delivery": "Lieferung & zum Mitnehmen",

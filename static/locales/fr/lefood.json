@@ -5,7 +5,7 @@
   "reject": "Refuser",
   "orders": "Commandes",
   "notSpecified": "Non précisé",
-  "menu": "Menu",
+  "menu": "Gestion du Menu",
   "orderingHours": "Horaires de commande",
   "deliveryArea": "Zone de livraison",
   "delivery": "Livraison",
@@ -155,5 +155,27 @@
   "white_wines": "Vins Blancs",
   "rose_wines": "Vins Rosés",
   "sandwiches": "Sandwichs",
-  "other": "Autre"
+  "other": "Autre",
+  "import": {
+    "mode": {
+      "add": "Ajouter des éléments supplémentaires au menu existant",
+      "replace": "Télécharger ou remplacer des éléments du menu"
+    },
+    "instructions": "Instructions",
+    "instructions_add": [
+      "Télécharger notre modèle de fichier CSV",
+      "Ajouter seulement les nouveaux éléments au fichier",
+      "Vérifiez que vous avez saisi les bonnes catégories (disponible dans la liste déroulante)",
+      "Télécharger le fichier CSV ici",
+      "Laissez la magie opérer"
+    ],
+    "instructions_replace": [
+      "Télécharger notre modèle de fichier CSV",
+      "Créer votre menu dans un fichier CSV, ajouter l’ensemble de votre menu et produits dans le fichier",
+      "Vérifiez que vous avez saisi les bonnes catégories (disponible dans la liste déroulante)",
+      "Télécharger le fichier CSV ici",
+      "Laissez la magie opérer"
+    ],
+    "instructions_note": "Si il y a des erreurs dans votre fichier, elles apparaîtront dans un tableau. Vous aurez à les corriger dans le fichier et le télécharger à nouveau"
+  }
 }

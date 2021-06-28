@@ -163,5 +163,70 @@
   "other": "Other",
   "day_plural": "days",
   "week": "week",
-  "month": "month"
+  "month": "month",
+  "import": {
+    "upload_menu": "Upload the menu",
+    "mode": {
+      "add": "Add Additional items to existing menu",
+      "replace": "Upload or Replace menu items"
+    },
+    "steps": {
+      "upload": "Upload",
+      "verify": "Verify",
+      "publish": "Publish"
+    },
+    "instructions": "Instructions",
+    "instructions_add": [
+      "Download our CSV file template",
+      "Add only your new items to the file",
+      "Make sure you have entered the right categories (available in the categories dropdown)",
+      "Upload the CSV file here below",
+      "Let the magic happen."
+    ],
+    "instructions_replace": [
+      "Download our CSV file template",
+      "Create your menu on a CSV file, add your whole menu/products into the file",
+      "Make sure you have entered the right categories (available in the categories dropdown)",
+      "Upload the CSV file here below",
+      "Let the magic happen."
+    ],
+    "instructions_note": "If there are any errors in your file, we'll list them all in a table on a pop-up. You'll have to correct those errors in the file directly and reupload the file",
+    "download_menu": "Download menu",
+    "download_template": "Download CSV template",
+    "drag_input_title": "Drag & Drop a CSV file here or browse",
+    "verifying": "Verifying menu",
+    "success": "Your menu has been successfully published!",
+    "upload_again": "Upload again",
+    "error": {
+      "missing_data": "We found <0>{{count}} error</0> in your document.<1/> Please, review the CSV file and upload again",
+      "missing_data_plural": "We found <0>{{count}} errors</0> in your document.<1/> Please, review the CSV file and upload again",
+      "other": "Something went wrong"
+    },
+    "table": {
+      "row": "Row",
+      "error": "Error"
+    },
+    "row_error": {
+      "missing": "{{column}} is missing",
+      "missing_header": "{{column}} header is missing",
+      "unknown": "{{column}} is unknown",
+      "unknown_header": "{{column}} header is unknown",
+      "too_long": "{{column}} is too long",
+      "too_long_header": "{{column}} header is too long",
+      "wrong_order": "{{column}} is in wrong position",
+      "wrong_order_header": "{{column}} header is in wrong position",
+      "invalid": "{{column}} is invalid",
+      "invalid_header": "{{column}} header is invalid",
+      "too_low": "{{column}} is too low",
+      "too_low_header": "{{column}} header is too low",
+      "too_high": "{{column}} is too high",
+      "too_high_header": "{{column}} header is too high",
+      "already_exists": "{{column}} already exists",
+      "already_exists_header": "{{column}} header already exists"
+    },
+    "upload_to_uber": "Upload Menu to Uber Eats",
+    "upload_to_uber_confirm": "Are you sure you want to send menu to Uber Eats? It will replace your current menu in Uber.",
+    "download_from_uber": "Download Menu from Uber Eats",
+    "download_from_uber_confirm": "Are you sure you want to download menu from Uber Eats? It will ADD all new dishes from Uber to your current menu."
+  }
 }

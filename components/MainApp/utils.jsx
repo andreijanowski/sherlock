@@ -11,7 +11,8 @@ import {
   Marketing,
   CommunityManagement,
   Photography,
-  Detectives
+  Detectives,
+  AppManager
 } from "icons";
 
 export const chooseIcon = icon => {
@@ -42,6 +43,8 @@ export const chooseIcon = icon => {
       return Photography;
     case "detectives":
       return Detectives;
+    case "appManager":
+      return AppManager;
     default:
       return () => "";
   }

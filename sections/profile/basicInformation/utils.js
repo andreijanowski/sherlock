@@ -1,3 +1,4 @@
+import countriesPhoneCodes from "utils/countriesPhoneCodes";
 import { getGroupsData } from "../utils";
 
 export const getInitialValues = ({ business, businessGroups }) => {
@@ -10,6 +11,12 @@ export const getInitialValues = ({ business, businessGroups }) => {
       diets,
       michelinStars
     } = getGroupsData(businessGroups);
+
+    const phoneCountry = countriesPhoneCodes.find(
+      ({ value: { code, prefix } }) =>
+        code === business.get("phoneCountryCode") &&
+        prefix === business.get("phoneCountryPrefix")
+    );
 
     return {
       name: business.get("name"),
@@ -28,6 +35,12 @@ export const getInitialValues = ({ business, businessGroups }) => {
       postCode: business.get("postCode"),
       ownerRole: business.get("ownerRole"),
       bio: business.get("bio"),
+      email: business.get("email"),
+      phone: business.get("phone"),
+      phoneCountry,
+      website: business.get("website"),
+      facebook: business.get("facebook"),
+      instagram: business.get("instagram"),
       types,
       cuisines,
       foodsAndDrinks,

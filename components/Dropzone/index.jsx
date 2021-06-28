@@ -1,7 +1,10 @@
 import ReactDropzone from "react-dropzone";
-import { LoadingIndicator } from "components";
+import { Box } from "@rebass/grid";
 import { arrayOf, string, bool, func } from "prop-types";
-import { Wrapper, Input, Tip, Info } from "./styled";
+
+import { LoadingIndicator } from "components";
+import { CircleWarningIcon } from "icons";
+import { Wrapper, Input, Tip, Info, ValidationError } from "./styled";
 
 const Dropzone = ({
   accept,
@@ -15,7 +18,9 @@ const Dropzone = ({
   errorInfoMultiple,
   image,
   loading,
-  isCircleShape
+  isCircleShape,
+  customValidation,
+  validationError
 }) => (
   <ReactDropzone {...{ accept, onDrop, multiple }}>
     {({
@@ -27,7 +32,10 @@ const Dropzone = ({
     }) => {
       let tipText = tip;
       let infoText = info;
-      if (isDragReject) {
+
+      const isDragRejectValidated = customValidation ? false : isDragReject;
+
+      if (isDragRejectValidated) {
         if (!multiple && draggedFiles.length > 1) {
           tipText = errorTipMultiple;
           infoText = errorInfoMultiple;
@@ -36,11 +44,12 @@ const Dropzone = ({
           infoText = errorInfoType;
         }
       }
+
       return (
         <Wrapper
           {...getRootProps({
             isDragActive,
-            isDragReject,
+            isDragReject: isDragRejectValidated,
             image,
             loading,
             isCircleShape
@@ -51,8 +60,18 @@ const Dropzone = ({
           ) : (
             <>
               <Input {...getInputProps()} />
-              <Tip {...{ isDragReject }}>{tipText}</Tip>
-              <Info {...{ isDragReject }}>{infoText}</Info>
+              <Tip {...{ isDragReject: isDragRejectValidated }}>{tipText}</Tip>
+              <Info {...{ isDragReject: isDragRejectValidated }}>
+                {infoText}
+              </Info>
+              {customValidation && validationError && (
+                <ValidationError>
+                  <Box mr={1}>
+                    <CircleWarningIcon />
+                  </Box>
+                  {validationError}
+                </ValidationError>
+              )}
             </>
           )}
         </Wrapper>
@@ -73,7 +92,9 @@ Dropzone.propTypes = {
   errorInfoMultiple: string,
   image: string,
   isCircleShape: bool,
-  loading: bool
+  loading: bool,
+  customValidation: bool,
+  validationError: string
 };
 
 Dropzone.defaultProps = {
@@ -81,7 +102,9 @@ Dropzone.defaultProps = {
   isCircleShape: false,
   errorTipMultiple: "",
   errorInfoMultiple: "",
-  loading: false
+  loading: false,
+  customValidation: false,
+  validationError: null
 };
 
 export default Dropzone;

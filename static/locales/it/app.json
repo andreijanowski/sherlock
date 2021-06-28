@@ -3,10 +3,10 @@
   "reservations": "Prenotazioni",
   "takeAway": "Porta via/Da Asporto",
   "bookings": "Prenotazioni",
-  "delivery": "Consegna",
-  "catering": "Ristorazione/catering",
+  "delivery": "Gestione degli ordini",
+  "catering": "Caterings",
   "privatisations": "Privatizzazioni",
-  "integrations": "Integrazioni",
+  "integrations": "Hub di Integrazione",
   "wholesaler": "Grossista",
   "socialMedia": "Social media",
   "billing": "Fatturazione",
@@ -15,9 +15,9 @@
     "basicInformation": "Informazioni di base",
     "contactInformation": "Informazioni sui contatti",
     "openingHours": "Orari di apertura",
-    "picturesAndMenus": "Immagini e menu",
-    "additionalInformation": "Informazioni aggiuntive",
-    "inviteYourTeam": "Invita la tua squadra",
+    "picturesAndMenus": "Immagini, Prodotti & Menu",
+    "additionalInformation": "Maggiori informazioni & Tag",
+    "inviteYourTeam": "Invita il tuo team",
     "unnamedBusiness": "Attività senza nome",
     "addNewBusiness": "Aggiungi nuova attività",
     "publish": "Pubblicare attività commercial",
@@ -25,7 +25,7 @@
     "waitingForApproval": "In attesa di approvazione",
     "liveInfo": "Informazioni in diretta",
     "widgets": "Widget",
-    "unPublish": "Affari non pubblicati"
+    "unPublish": "Disattivare la mia attività"
   },
   "manageIntegrations": {
     "pos": "POS",
@@ -41,7 +41,7 @@
     "mystery_shopping": "Mystery shopping",
     "packaging": "Confezione",
     "social_media": "Social media",
-    "stock_management": "Gestione delle scorte",
+    "stock_management": "Gestione degli stock/ Gestione delle scorte",
     "wholesaler": "Grossista",
     "photography": "Fotografia",
     "hardware": "Hardware",
@@ -52,7 +52,7 @@
     "noPartners": "Nessun partner per questa categoria.",
     "noPreferred": "Non hai ancora aggiunto alcun grossista preferito."
   },
-  "subscriptions": "Sottoscrizioni",
+  "subscriptions": "Iscrizioni o Abbonamenti",
   "userSettings": {
     "userSettings": "Impostazioni",
     "basicInformation": "Informazioni di base",
@@ -84,5 +84,17 @@
     "tableware": "Prodotti da cucina",
     "hygiene": "Igiene",
     "other": "Altri"
-  }
+  },
+  "backToMainMenu": "Tornare al menu principale",
+  "photography": "Fotografia & Video",
+  "reviews": "Gestione delle recensioni",
+  "detectives": "Detectives e Influencers",
+  "adsAndMarketing": "Pubblicità & Marketing",
+  "clients": "Clienti",
+  "appManager": "Gestione del Menu",
+  "dashboard": "Dashboard",
+  "privateEvents": "Eventi Privati",
+  "settings": "Impostazioni",
+  "payments": "Pagamenti",
+  "integrationHub": "Hub di Integrazione"
 }

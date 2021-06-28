@@ -12,11 +12,6 @@ export const generateMenuItems = (
       isActive: active === "basicInformation"
     },
     {
-      route: `/app/profile/contact-information/`,
-      label: t("app:manageProfile.contactInformation"),
-      isActive: active === "contactInformation"
-    },
-    {
       route: `/app/profile/opening-hours/`,
       label: t("app:manageProfile.openingHours"),
       isActive: active === "openingHours"

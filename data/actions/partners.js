@@ -1,5 +1,6 @@
 import {
   CONNECT_PARTNER_REQUEST,
+  DISCONNECT_PARTNER_REQUEST,
   FETCH_PARTNERS_REQUEST,
   PARTNERS_PREFERRED_ADD_REQUEST,
   PARTNERS_PREFERRED_DELETE_REQUEST
@@ -11,7 +12,16 @@ export const connectPartner = id => ({
     method: "PATCH",
     endpoint: `/api/v1/partners/${id}/connect`
   },
-  meta: { thunk: true }
+  meta: { thunk: true, id }
+});
+
+export const disconnectPartner = id => ({
+  type: DISCONNECT_PARTNER_REQUEST,
+  payload: {
+    method: "DELETE",
+    endpoint: `/api/v1/partners/${id}/disconnect`
+  },
+  meta: { thunk: true, id }
 });
 
 export const fetchPartners = config => {

@@ -268,6 +268,15 @@ const fullHeight = css`
   height: 100%;
 `;
 
+const underline = css`
+  padding: 0;
+  color: rgb(${p => p.theme.colors.blue});
+  font-size: ${p => p.theme.fontSizes.f18};
+  background-color: transparent;
+  text-decoration: underline;
+  border: none;
+`;
+
 const Button = styled.button`
   overflow: hidden;
   font-weight: ${p => p.fontWeight || p.theme.fontWeights.medium};
@@ -299,6 +308,7 @@ const Button = styled.button`
   ${p => p.styleName === "withImage" && withImage};
   ${p => p.styleName === "goToApiDocs" && goToApiDocs};
   ${p => p.styleName === "becomePartner" && becomePartner};
+  ${p => p.styleName === "underline" && underline};
   ${p => p.fluid && fluid};
   ${p => p.fullHeight && fullHeight};
 

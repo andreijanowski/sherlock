@@ -41,7 +41,10 @@ export const colors = {
   boxShadow: "189, 189, 189",
   darkGreyText: "79, 79, 79",
   lightGreyText: "170, 170, 170",
-  detectivesBackgroundGrey: "242, 242, 242"
+  detectivesBackgroundGrey: "242, 242, 242",
+  lightBlue: "248, 249, 254",
+  importGray: "157, 157, 156",
+  error: "235, 87, 87"
 };
 
 const fontSizes = {
@@ -59,6 +62,7 @@ const fontSizes = {
   f30: "30px",
   f32: "32px",
   f36: "36px",
+  f44: "44px",
   f46: "46px",
   f48: "48px",
   f52: "52px",
@@ -70,6 +74,7 @@ export const radius = {
   tiny: "2px",
   small: "4px",
   default: "6px",
+  semi: "10px",
   double: "12px",
   biggest: "20px"
 };
