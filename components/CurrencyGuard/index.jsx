@@ -5,10 +5,10 @@ import { Box, Flex } from "@rebass/grid";
 import { connect } from "react-redux";
 import { compose } from "redux";
 
-import { Button, ConnectWithStripe, H2 } from "components";
+import { Button, H2 } from "components";
 import { patchBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/app";
-import StripeCurrencyModal from "./StripeCurrencyModal";
+import StripeCurrencyModal from "components/StripeSetupModal/StripeCurrencyModal";
 
 const namespaces = ["lefood"];
 
@@ -50,13 +50,7 @@ const CurrencyGuard = ({
   return (
     <>
       {business.get("stripeCurrency") ? (
-        <>
-          {business.get("stripeUserId") ? (
-            children
-          ) : (
-            <ConnectWithStripe {...{ t }} />
-          )}
-        </>
+        children
       ) : (
         <Flex
           justifyContent="center"

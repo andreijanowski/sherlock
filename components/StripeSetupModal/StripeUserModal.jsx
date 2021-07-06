@@ -1,19 +1,20 @@
 import React from "react";
 import { func } from "prop-types";
-import { H2 } from "components";
-import { Container, ParagraphStyled } from "./styled";
+import { H2, Modal } from "components";
+import { ParagraphStyled } from "./styled";
 import StripeButton from "./StripeButton";
 
-const ConnectWithStripe = ({ t }) => (
-  <Container>
+const StripeUserModal = ({ t, onClose }) => (
+  <Modal {...{ open: true, onClose }}>
     <H2 textAlign="center">{t("connectWithStripe")}</H2>
     <ParagraphStyled>{t("connectWithStripeSubheading")}</ParagraphStyled>
     <StripeButton>{t("connectWithStripe")}</StripeButton>
-  </Container>
+  </Modal>
 );
 
-ConnectWithStripe.propTypes = {
-  t: func.isRequired
+StripeUserModal.propTypes = {
+  t: func.isRequired,
+  onClose: func.isRequired
 };
 
-export default ConnectWithStripe;
+export default StripeUserModal;
