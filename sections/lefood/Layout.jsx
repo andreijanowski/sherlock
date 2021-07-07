@@ -255,6 +255,8 @@ const LefoodLayout = ({
     setMinAmountForDeliveryCents(normalizePrice(value));
   }, []);
 
+  const onMinAmountForDeliveryClick = useCallback(e => e.stopPropagation(), []);
+
   const onMinAmountForDeliveryBlur = useCallback(
     () =>
       onUpdateBusiness({
@@ -436,24 +438,18 @@ const LefoodLayout = ({
             </Tippy>
             <Tippy content={t("minAmountForDelivery")}>
               <Box pr={3} mb={2}>
-                <Button styleName="withImage">
-                  <ButtonWithImageIconWrapper onClick={showCurrencyModal}>
+                <Button styleName="withImage" onClick={showCurrencyModal}>
+                  <ButtonWithImageIconWrapper>
                     <Price />
                   </ButtonWithImageIconWrapper>
                   <ButtonWithImageText>
                     <AutosizeInput
+                      onClick={onMinAmountForDeliveryClick}
                       value={minAmountForDeliveryCents}
                       onChange={onMinAmountForDeliveryChange}
                       onBlur={onMinAmountForDeliveryBlur}
                     />
-                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-                    <span
-                      onClick={showCurrencyModal}
-                      role="button"
-                      tabIndex={-1}
-                    >
-                      {business.get("stripeCurrency")}
-                    </span>
+                    {business.get("stripeCurrency")}
                   </ButtonWithImageText>
                 </Button>
               </Box>
