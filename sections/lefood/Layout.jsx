@@ -1,4 +1,4 @@
-import { PureComponent } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { func, string, node, number, shape, bool } from "prop-types";
 import AppLayout from "layout/App";
 import { connect } from "react-redux";
@@ -18,6 +18,7 @@ import {
   LoadingIndicator,
   RawCheckbox,
   ServiceStatusCheckbox,
+  StripeSetupModal,
   CurrencyGuard
 } from "components";
 import {
@@ -38,7 +39,7 @@ import {
   disconnectPartnerFromOrkestro
 } from "actions/integrations";
 import { patchBusiness } from "actions/businesses";
-import StripeCurrencyModal from "components/CurrencyGuard/StripeCurrencyModal";
+import StripeCurrencyModal from "components/StripeSetupModal/StripeCurrencyModal";
 import StopOrdersModal from "./StopOrdersModal";
 import FinishOrdersModal from "./FinishOrdersModal";
 import { Orange, SplitFee } from "./styled";
@@ -108,6 +109,8 @@ const averageDeliveryTimeList = t => [
   }
 ];
 
+const FULL_PROFILE_PERCENTS = 100;
+
 const calcProfileCompletedPercents = ({
   dishesLength,
   deliveriesLength,
@@ -124,439 +127,474 @@ const calcProfileCompletedPercents = ({
   if (orderPeriodsLength) {
     profileCompletedSteps += 1;
   }
-  const profileCompletedPercents = [0, 33, 67, 100];
+  const profileCompletedPercents = [0, 33, 67, FULL_PROFILE_PERCENTS];
   return profileCompletedPercents[profileCompletedSteps];
 };
 
-class LefoodLayout extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      minAmountForDeliveryCents: 0,
-      isStopOrdersModalVisible: false,
-      isFinishOrdersModalVisible: false,
-      isCurrencyModalVisible: false
-    };
-  }
+const UNFINISHED_STATES = [
+  "waiting_for_approval",
+  "waiting_for_payment",
+  "paid",
+  "in_preparation",
+  "in_delivery"
+];
 
-  componentDidMount() {
-    this.updateMinAmountForDeliveryCents();
-  }
+const LefoodLayout = ({
+  business,
+  t,
+  lng,
+  page,
+  children,
+  dishesLength,
+  deliveriesLength,
+  orderPeriodsLength,
+  currentBusinessId,
+  updateBusiness,
+  connectedWithOrkestro,
+  ratio,
+  integrateWithOrkestro,
+  disconnectFromOrkestro,
+  changeCurrentBusiness,
+  hasUnfinishedOrders
+}) => {
+  const isCurrencySetUp = business && business.get("stripeCurrency");
+  const isStripeSetUp = business && business.get("stripeUserId");
 
-  componentDidUpdate(prevProps) {
-    const { business: prevBusiness } = prevProps;
-    const { business } = this.props;
+  const [minAmountForDeliveryCents, setMinAmountForDeliveryCents] = useState(
+    normalizePrice(business && business.get("minAmountForDeliveryCents"))
+  );
+  const [isStopOrdersModalVisible, setStopOrdersModalVisible] = useState(false);
+  const [isFinishOrdersModalVisible, setFinishOrdersModalVisible] = useState(
+    false
+  );
+  const [isCurrencyModalVisible, setCurrencyModalVisible] = useState(false);
+  const [isStripeSetupModalVisible, setStripeSetupModalVisible] = useState(
+    false
+  );
 
-    if (
-      (prevBusiness && prevBusiness.get("minAmountForDeliveryCents")) !==
-      (business && business.get("minAmountForDeliveryCents"))
-    ) {
-      this.updateMinAmountForDeliveryCents();
-    }
-  }
+  useEffect(() => {
+    setMinAmountForDeliveryCents(
+      normalizePrice(business && business.get("minAmountForDeliveryCents"))
+    );
+  }, [business]);
 
-  updateMinAmountForDeliveryCents = () => {
-    const { business } = this.props;
-    this.setState({
-      minAmountForDeliveryCents: normalizePrice(
-        business && business.get("minAmountForDeliveryCents")
-      )
-    });
-  };
+  const showStopOrdersModal = useCallback(() => {
+    setStopOrdersModalVisible(true);
+  }, []);
+  const hideStopOrdersModal = useCallback(() => {
+    setStopOrdersModalVisible(false);
+  }, []);
 
-  setStopOrdersModalVisibility = isVisible =>
-    this.setState({
-      isStopOrdersModalVisible: isVisible
-    });
+  const showFinishOrdersModal = useCallback(() => {
+    setFinishOrdersModalVisible(true);
+  }, []);
+  const hideFinishOrdersModal = useCallback(() => {
+    setFinishOrdersModalVisible(false);
+  }, []);
 
-  setFinishOrdersModalVisibility = isVisible =>
-    this.setState({
-      isFinishOrdersModalVisible: isVisible
-    });
+  const showCurrencyModal = useCallback(() => {
+    setCurrencyModalVisible(true);
+  }, []);
+  const hideCurrencyModal = useCallback(() => {
+    setCurrencyModalVisible(false);
+  }, []);
 
-  setCurrencyModalVisibility = isVisible =>
-    this.setState({ isCurrencyModalVisible: isVisible });
+  const showStripeSetupModal = useCallback(() => {
+    setStripeSetupModalVisible(true);
+  }, []);
+  const hideStripeSetupModal = useCallback(() => {
+    setStripeSetupModalVisible(false);
+  }, []);
 
-  updateBusiness = values => {
-    const {
-      updateBusiness,
-      currentBusinessId,
-      changeCurrentBusiness
-    } = this.props;
-    updateBusiness(currentBusinessId, values, true)
-      .then(() => {
+  const onUpdateBusiness = useCallback(
+    async values => {
+      try {
+        await updateBusiness(currentBusinessId, values, true);
         if (values.stripeCurrency) {
           changeCurrentBusiness(currentBusinessId);
         }
-      })
-      .catch(() => {
+      } catch (e) {
         if (values.minAmountForDeliveryCents) {
-          this.updateMinAmountForDeliveryCents();
+          setMinAmountForDeliveryCents(values.minAmountForDeliveryCents);
         }
-      });
-  };
+      }
+    },
+    [changeCurrentBusiness, currentBusinessId, updateBusiness]
+  );
 
-  handleOrkestroIntegrationChange = value => {
-    const {
-      integrateWithOrkestro,
-      disconnectFromOrkestro,
-      currentBusinessId
-    } = this.props;
-    if (value) {
+  const toggleOrkestroIntegration = useCallback(() => {
+    if (business.get("visibleInLefood") || hasUnfinishedOrders) {
+      showFinishOrdersModal();
+      return;
+    }
+    const newConnectedValue = !connectedWithOrkestro;
+    if (newConnectedValue) {
       integrateWithOrkestro(currentBusinessId);
     } else {
       disconnectFromOrkestro(currentBusinessId);
     }
-  };
+  }, [
+    business,
+    hasUnfinishedOrders,
+    connectedWithOrkestro,
+    showFinishOrdersModal,
+    integrateWithOrkestro,
+    currentBusinessId,
+    disconnectFromOrkestro
+  ]);
 
-  render() {
-    const {
-      t,
-      lng,
-      page,
-      children,
-      dishesLength,
-      deliveriesLength,
-      orderPeriodsLength,
-      business,
-      currentBusinessId,
-      updateBusiness,
-      connectedWithOrkestro,
-      ratio
-    } = this.props;
-    const {
-      minAmountForDeliveryCents,
-      isStopOrdersModalVisible,
-      isFinishOrdersModalVisible,
-      isCurrencyModalVisible
-    } = this.state;
+  const onAverageDeliveryTimeChange = useCallback(
+    ({ value }) =>
+      onUpdateBusiness({
+        averageDeliveryTime: value
+      }),
+    [onUpdateBusiness]
+  );
 
-    const profileCompletedPercents =
-      page === "orders"
-        ? calcProfileCompletedPercents({
-            dishesLength,
-            deliveriesLength,
-            orderPeriodsLength,
-            allowPickup: business && business.get("allowPickup")
-          })
-        : 100;
+  const onMinAmountForDeliveryChange = useCallback(({ target: { value } }) => {
+    setMinAmountForDeliveryCents(normalizePrice(value));
+  }, []);
 
-    const currentAverageDeliveryTime = averageDeliveryTimeList(t).find(
-      i => i.value === (business && business.get("averageDeliveryTime"))
-    ) || { value: undefined };
+  const onMinAmountForDeliveryClick = useCallback(e => e.stopPropagation(), []);
 
-    const currentSplitRatio =
-      ratio && splitRatioList.find(item => item.value === ratio).label;
+  const onMinAmountForDeliveryBlur = useCallback(
+    () =>
+      onUpdateBusiness({
+        minAmountForDeliveryCents: convertToCents(minAmountForDeliveryCents)
+      }),
+    [minAmountForDeliveryCents, onUpdateBusiness]
+  );
 
-    const isBusinessLoading =
-      !business || business.get("stripeUserId") === undefined;
+  const onPickupChange = useCallback(
+    () =>
+      onUpdateBusiness({
+        allowPickup: !business.get("allowPickup")
+      }),
+    [business, onUpdateBusiness]
+  );
 
-    return (
-      <AppLayout
-        {...{
-          mainIcon: "leFood",
-          header: (
-            <>
-              {t(page)}
-              {!isBusinessLoading && (
-                <Box ml={3}>
-                  <ServiceStatusCheckbox
-                    {...{
-                      t,
-                      serviceActivationFieldName: "availableInLefood",
-                      business,
-                      updateBusiness,
-                      businessId: currentBusinessId
-                    }}
-                  />
-                </Box>
-              )}
-            </>
-          ),
-          t,
-          lng
-        }}
-      >
-        {isBusinessLoading ? (
+  const checkStripeSetup = useCallback(() => {
+    if (!isCurrencySetUp) return false;
+    if (!isStripeSetUp) {
+      showStripeSetupModal();
+      return false;
+    }
+    return true;
+  }, [isCurrencySetUp, isStripeSetUp, showStripeSetupModal]);
+
+  const onShowInLefoodClick = useCallback(async () => {
+    if (!checkStripeSetup()) return;
+    await onUpdateBusiness({
+      visibleInLefood: true
+    });
+    Router.pushRoute(`/${lng}/app/lefood/orders/`);
+  }, [checkStripeSetup, lng, onUpdateBusiness]);
+
+  const onStopOrders = useCallback(async () => {
+    await onUpdateBusiness({ visibleInLefood: false });
+    hideStopOrdersModal();
+  }, [hideStopOrdersModal, onUpdateBusiness]);
+
+  const onRatioChange = useCallback(
+    ({ value }) =>
+      onUpdateBusiness({
+        deliveryPriceParticipationRatio: value
+      }),
+    [onUpdateBusiness]
+  );
+
+  const onSetStripeCurrency = useCallback(
+    async ({ stripeCurrency: { value } }) => {
+      await onUpdateBusiness({
+        stripeCurrency: value
+      });
+      hideCurrencyModal();
+    },
+    [hideCurrencyModal, onUpdateBusiness]
+  );
+
+  const onActiveCheckboxToggle = useCallback(
+    (_currentBusinessId, values) => {
+      if (!checkStripeSetup()) return;
+      updateBusiness(currentBusinessId, values, true);
+    },
+    [checkStripeSetup, currentBusinessId, updateBusiness]
+  );
+
+  const profileCompletedPercents =
+    page === "orders"
+      ? calcProfileCompletedPercents({
+          dishesLength,
+          deliveriesLength,
+          orderPeriodsLength,
+          allowPickup: business && business.get("allowPickup")
+        })
+      : FULL_PROFILE_PERCENTS;
+
+  const currentAverageDeliveryTime = averageDeliveryTimeList(t).find(
+    i => i.value === (business && business.get("averageDeliveryTime"))
+  ) || { value: undefined };
+
+  const currentSplitRatio =
+    ratio && splitRatioList.find(item => item.value === ratio).label;
+
+  const isBusinessLoading =
+    !business || business.get("stripeUserId") === undefined;
+
+  return (
+    <AppLayout
+      {...{
+        mainIcon: "leFood",
+        header: (
           <>
-            <LoadingIndicator />
-          </>
-        ) : (
-          <CurrencyGuard>
-            {profileCompletedPercents !== 100 && (
-              <InfoBar
-                info={
-                  // eslint-disable-next-line react/jsx-wrap-multilines
-                  <span>
-                    {`${t("completeYourProfile")} `}
-                    <ItalicText>
-                      <Orange>
-                        <Link route="/app/lefood/menu/" lng={lng}>
-                          <Orange as="a">{`(${t("menu")}`}</Orange>
-                        </Link>
-                        {", "}
-                        <Link route="/app/lefood/ordering-hours/" lng={lng}>
-                          <Orange as="a">{t("orderingHours")}</Orange>
-                        </Link>
-                        {` ${t("and")} `}
-                        <Link route="/app/lefood/delivery-area/" lng={lng}>
-                          <Orange as="a">{t("deliveryArea")}</Orange>
-                        </Link>
-                        {` ${t("or")} ${t("allowPickup")}`})
-                      </Orange>
-                    </ItalicText>
-                    {` ${t("toSeeAnyNewOrders")}`}.
-                  </span>
-                }
-                complete={`${profileCompletedPercents}% ${t("complete")}`}
-              />
+            {t(page)}
+            {!isBusinessLoading && (
+              <Box ml={3}>
+                <ServiceStatusCheckbox
+                  {...{
+                    t,
+                    serviceActivationFieldName: "availableInLefood",
+                    business,
+                    updateBusiness: onActiveCheckboxToggle,
+                    businessId: currentBusinessId
+                  }}
+                />
+              </Box>
             )}
-            <Flex width={1} mt={3} flexWrap="wrap">
+          </>
+        ),
+        t,
+        lng
+      }}
+    >
+      {isBusinessLoading ? (
+        <>
+          <LoadingIndicator />
+        </>
+      ) : (
+        <CurrencyGuard>
+          {profileCompletedPercents !== FULL_PROFILE_PERCENTS && (
+            <InfoBar
+              info={
+                // eslint-disable-next-line react/jsx-wrap-multilines
+                <span>
+                  {`${t("completeYourProfile")} `}
+                  <ItalicText>
+                    <Orange>
+                      <Link route="/app/app-manager/" lng={lng}>
+                        <Orange as="a">{`(${t("menu")}`}</Orange>
+                      </Link>
+                      {", "}
+                      <Link route="/app/lefood/ordering-hours/" lng={lng}>
+                        <Orange as="a">{t("orderingHours")}</Orange>
+                      </Link>
+                      {` ${t("and")} `}
+                      <Link route="/app/lefood/delivery-area/" lng={lng}>
+                        <Orange as="a">{t("deliveryArea")}</Orange>
+                      </Link>
+                      {` ${t("or")} ${t("allowPickup")}`})
+                    </Orange>
+                  </ItalicText>
+                  {` ${t("toSeeAnyNewOrders")}`}.
+                </span>
+              }
+              complete={`${profileCompletedPercents}% ${t("complete")}`}
+            />
+          )}
+          <Flex width={1} mt={3} flexWrap="wrap">
+            <Box pr={3} mb={2}>
+              <Link route="/app/lefood/orders/" lng={lng}>
+                <Button as="a" styleName="withImage" active={page === "orders"}>
+                  <ButtonWithImageIconWrapper>
+                    <Orders />
+                  </ButtonWithImageIconWrapper>
+                  <ButtonWithImageText>{t("orders")}</ButtonWithImageText>
+                </Button>
+              </Link>
+            </Box>
+            <Tippy content={t("averageDeliveryTime")}>
               <Box pr={3} mb={2}>
-                <Link route="/app/lefood/orders/" lng={lng}>
-                  <Button
-                    as="a"
-                    styleName="withImage"
-                    active={page === "orders"}
-                  >
-                    <ButtonWithImageIconWrapper>
-                      <Orders />
-                    </ButtonWithImageIconWrapper>
-                    <ButtonWithImageText>{t("orders")}</ButtonWithImageText>
-                  </Button>
-                </Link>
-              </Box>
-              <Tippy content={t("averageDeliveryTime")}>
-                <Box pr={3} mb={2}>
-                  <Select
-                    items={averageDeliveryTimeList(t)}
-                    value={currentAverageDeliveryTime}
-                    onChange={({ value }) =>
-                      this.updateBusiness({
-                        averageDeliveryTime: value
-                      })
-                    }
-                    ButtonComponent={p => (
-                      <Button styleName="withImage" {...p}>
-                        <ButtonWithImageIconWrapper>
-                          <Time />
-                        </ButtonWithImageIconWrapper>
-                        <ButtonWithImageText>
-                          {currentAverageDeliveryTime
-                            ? currentAverageDeliveryTime.label
-                            : "-"}
-                        </ButtonWithImageText>
-                        <Box pr={3}>
-                          <ExpandIcon />
-                        </Box>
-                      </Button>
-                    )}
-                  />
-                </Box>
-              </Tippy>
-              <Tippy content={t("minAmountForDelivery")}>
-                <Box pr={3} mb={2}>
-                  <Button styleName="withImage">
-                    <ButtonWithImageIconWrapper
-                      onClick={() => this.setCurrencyModalVisibility(true)}
-                    >
-                      <Price />
-                    </ButtonWithImageIconWrapper>
-                    <ButtonWithImageText>
-                      <AutosizeInput
-                        value={minAmountForDeliveryCents}
-                        onChange={e => {
-                          this.setState({
-                            minAmountForDeliveryCents: normalizePrice(
-                              e.target.value
-                            )
-                          });
-                        }}
-                        onBlur={() =>
-                          this.updateBusiness({
-                            minAmountForDeliveryCents: convertToCents(
-                              minAmountForDeliveryCents
-                            )
-                          })
-                        }
-                      />
-                      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
-                      <span
-                        onClick={() => this.setCurrencyModalVisibility(true)}
-                        role="dialog"
-                      >
-                        {business.get("stripeCurrency")}
-                      </span>
-                    </ButtonWithImageText>
-                  </Button>
-                </Box>
-              </Tippy>
-              <Box pr={3} mb={2}>
-                <Link route="/app/lefood/ordering-hours/" lng={lng}>
-                  <Button
-                    as="a"
-                    styleName="withImage"
-                    active={page === "orderingHours"}
-                  >
-                    <ButtonWithImageIconWrapper>
-                      <Clock />
-                    </ButtonWithImageIconWrapper>
-                    <ButtonWithImageText>
-                      {t("orderingHours")}
-                    </ButtonWithImageText>
-                  </Button>
-                </Link>
-              </Box>
-              <Box pr={3} mb={2}>
-                <Link route="/app/lefood/delivery-area/" lng={lng}>
-                  <Button
-                    as={connectedWithOrkestro ? "button" : "a"}
-                    styleName="withImage"
-                    active={page === "deliveryArea"}
-                    disabled={connectedWithOrkestro}
-                  >
-                    <ButtonWithImageIconWrapper>
-                      <Location />
-                    </ButtonWithImageIconWrapper>
-                    <ButtonWithImageText>
-                      {t("deliveryArea")}
-                    </ButtonWithImageText>
-                  </Button>
-                </Link>
-              </Box>
-              <Box pr={3} mb={2}>
-                <Link route="/app/lefood/orders-history/" lng={lng}>
-                  <Button
-                    as="a"
-                    styleName="withImage"
-                    active={page === "ordersHistory"}
-                  >
-                    <ButtonWithImageIconWrapper>
-                      <Reservations />
-                    </ButtonWithImageIconWrapper>
-                    <ButtonWithImageText>
-                      {t("ordersHistory")}
-                    </ButtonWithImageText>
-                  </Button>
-                </Link>
-              </Box>
-              <Box pr={4}>
-                <RawCheckbox
-                  hasCloserText
-                  label={t("allowPickup")}
-                  input={{
-                    onChange: () =>
-                      this.updateBusiness({
-                        allowPickup: !business.get("allowPickup")
-                      }),
-                    value: business.get("allowPickup")
-                  }}
+                <Select
+                  items={averageDeliveryTimeList(t)}
+                  value={currentAverageDeliveryTime}
+                  onChange={onAverageDeliveryTimeChange}
+                  ButtonComponent={p => (
+                    <Button styleName="withImage" {...p}>
+                      <ButtonWithImageIconWrapper>
+                        <Time />
+                      </ButtonWithImageIconWrapper>
+                      <ButtonWithImageText>
+                        {currentAverageDeliveryTime
+                          ? currentAverageDeliveryTime.label
+                          : "-"}
+                      </ButtonWithImageText>
+                      <Box pr={3}>
+                        <ExpandIcon />
+                      </Box>
+                    </Button>
+                  )}
                 />
               </Box>
-              <Box pr={4}>
-                <RawCheckbox
-                  hasCloserText
-                  label={t("deliverWithOrkestro")}
-                  input={{
-                    onChange: () =>
-                      this.handleOrkestroIntegrationChange(
-                        !connectedWithOrkestro
-                      ),
-                    value: connectedWithOrkestro
-                  }}
-                />
-              </Box>
+            </Tippy>
+            <Tippy content={t("minAmountForDelivery")}>
               <Box pr={3} mb={2}>
-                {business.get("visibleInLefood") ? (
-                  <Button
-                    styleName="withImage"
-                    red
-                    onClick={() => this.setStopOrdersModalVisibility(true)}
-                  >
-                    <ButtonWithImageIconWrapper>
-                      <Pause />
-                    </ButtonWithImageIconWrapper>
-                  </Button>
-                ) : (
-                  <Button
-                    styleName="withImage"
-                    greenHaze
-                    onClick={() => {
-                      this.updateBusiness({
-                        visibleInLefood: true
-                      });
-                      Router.pushRoute(`/${lng}/app/lefood/orders/`);
-                    }}
-                  >
-                    <ButtonWithImageIconWrapper>
-                      <FontAwesomeIcon icon={["fa", "play"]} />
-                    </ButtonWithImageIconWrapper>
-                  </Button>
-                )}
+                <Button styleName="withImage" onClick={showCurrencyModal}>
+                  <ButtonWithImageIconWrapper>
+                    <Price />
+                  </ButtonWithImageIconWrapper>
+                  <ButtonWithImageText>
+                    <AutosizeInput
+                      onClick={onMinAmountForDeliveryClick}
+                      value={minAmountForDeliveryCents}
+                      onChange={onMinAmountForDeliveryChange}
+                      onBlur={onMinAmountForDeliveryBlur}
+                    />
+                    {business.get("stripeCurrency")}
+                  </ButtonWithImageText>
+                </Button>
               </Box>
-              {ratio && currentSplitRatio !== undefined && (
-                <Box pr={3} mb={2}>
-                  <Flex alignItems="center" width="1">
-                    <SplitFee>Split Fee</SplitFee>
-                    {ratio !== null && (
-                      <Select
-                        value={{
-                          value: ratio || "0.0",
-                          label: currentSplitRatio
-                        }}
-                        onChange={({ value }) =>
-                          this.updateBusiness({
-                            deliveryPriceParticipationRatio: value
-                          })
-                        }
-                        items={splitRatioList}
-                      />
-                    )}
-                  </Flex>
-                </Box>
+            </Tippy>
+            <Box pr={3} mb={2}>
+              <Link route="/app/lefood/ordering-hours/" lng={lng}>
+                <Button
+                  as="a"
+                  styleName="withImage"
+                  active={page === "orderingHours"}
+                >
+                  <ButtonWithImageIconWrapper>
+                    <Clock />
+                  </ButtonWithImageIconWrapper>
+                  <ButtonWithImageText>
+                    {t("orderingHours")}
+                  </ButtonWithImageText>
+                </Button>
+              </Link>
+            </Box>
+            <Box pr={3} mb={2}>
+              <Link route="/app/lefood/delivery-area/" lng={lng}>
+                <Button
+                  as={connectedWithOrkestro ? "button" : "a"}
+                  styleName="withImage"
+                  active={page === "deliveryArea"}
+                  disabled={connectedWithOrkestro}
+                >
+                  <ButtonWithImageIconWrapper>
+                    <Location />
+                  </ButtonWithImageIconWrapper>
+                  <ButtonWithImageText>{t("deliveryArea")}</ButtonWithImageText>
+                </Button>
+              </Link>
+            </Box>
+            <Box pr={3} mb={2}>
+              <Link route="/app/lefood/orders-history/" lng={lng}>
+                <Button
+                  as="a"
+                  styleName="withImage"
+                  active={page === "ordersHistory"}
+                >
+                  <ButtonWithImageIconWrapper>
+                    <Reservations />
+                  </ButtonWithImageIconWrapper>
+                  <ButtonWithImageText>
+                    {t("ordersHistory")}
+                  </ButtonWithImageText>
+                </Button>
+              </Link>
+            </Box>
+            <Box pr={4}>
+              <RawCheckbox
+                hasCloserText
+                label={t("allowPickup")}
+                input={{
+                  onChange: onPickupChange,
+                  value: business.get("allowPickup")
+                }}
+              />
+            </Box>
+            <Box pr={4}>
+              <RawCheckbox
+                hasCloserText
+                label={t("deliverWithOrkestro")}
+                input={{
+                  onChange: toggleOrkestroIntegration,
+                  value: connectedWithOrkestro
+                }}
+              />
+            </Box>
+            <Box pr={3} mb={2}>
+              {business.get("visibleInLefood") ? (
+                <Button styleName="withImage" red onClick={showStopOrdersModal}>
+                  <ButtonWithImageIconWrapper>
+                    <Pause />
+                  </ButtonWithImageIconWrapper>
+                </Button>
+              ) : (
+                <Button
+                  styleName="withImage"
+                  greenHaze
+                  onClick={onShowInLefoodClick}
+                >
+                  <ButtonWithImageIconWrapper>
+                    <FontAwesomeIcon icon={["fa", "play"]} />
+                  </ButtonWithImageIconWrapper>
+                </Button>
               )}
-            </Flex>
-            {children}
+            </Box>
+            {ratio && currentSplitRatio !== undefined && (
+              <Box pr={3} mb={2}>
+                <Flex alignItems="center" width="1">
+                  <SplitFee>Split Fee</SplitFee>
+                  <Select
+                    value={{
+                      value: ratio || "0.0",
+                      label: currentSplitRatio
+                    }}
+                    onChange={onRatioChange}
+                    items={splitRatioList}
+                  />
+                </Flex>
+              </Box>
+            )}
+          </Flex>
+          {children}
+          {isStopOrdersModalVisible && (
             <StopOrdersModal
               {...{
-                isOpen: isStopOrdersModalVisible,
-                onClose: () => this.setStopOrdersModalVisibility(false),
-                stopOrders: () => {
-                  this.updateBusiness({ visibleInLefood: false });
-                  this.setStopOrdersModalVisibility(false);
-                },
+                isOpen: true,
+                onClose: hideStopOrdersModal,
+                stopOrders: onStopOrders,
                 t
               }}
             />
+          )}
+          {isFinishOrdersModalVisible && (
             <FinishOrdersModal
               {...{
-                isOpen: isFinishOrdersModalVisible,
-                onClose: () => this.setFinishOrdersModalVisibility(false),
+                isOpen: true,
+                onClose: hideFinishOrdersModal,
                 t
               }}
             />
-          </CurrencyGuard>
-        )}
-        {isCurrencyModalVisible && (
-          <StripeCurrencyModal
-            {...{
-              isOpen: true,
-              stripeCurrency: business.get("stripeCurrency"),
-              setStripeCurrency: values => {
-                this.updateBusiness({
-                  stripeCurrency: values.stripeCurrency.value
-                });
-                this.setCurrencyModalVisibility(false);
-              },
-              onClose: () => this.setCurrencyModalVisibility(false),
-              t
-            }}
-          />
-        )}
-      </AppLayout>
-    );
-  }
-}
+          )}
+          {isCurrencyModalVisible && (
+            <StripeCurrencyModal
+              {...{
+                isOpen: true,
+                stripeCurrency: business.get("stripeCurrency"),
+                setStripeCurrency: onSetStripeCurrency,
+                onClose: hideCurrencyModal,
+                t
+              }}
+            />
+          )}
+          {isStripeSetupModalVisible && (
+            <StripeSetupModal onClose={hideStripeSetupModal} />
+          )}
+        </CurrencyGuard>
+      )}
+    </AppLayout>
+  );
+};
 
 LefoodLayout.propTypes = {
   t: func.isRequired,
@@ -573,7 +611,8 @@ LefoodLayout.propTypes = {
   dishesLength: number,
   deliveriesLength: number,
   orderPeriodsLength: number,
-  ratio: string
+  ratio: string,
+  hasUnfinishedOrders: bool.isRequired
 };
 
 LefoodLayout.defaultProps = {
@@ -600,10 +639,20 @@ export default connect(
       business &&
       business.get("attributes").get("deliveryPriceParticipationRatio");
 
+    const orders = state.getIn(["orders", "data", "orders"]);
+
+    const hasUnfinishedOrders = !!(
+      orders &&
+      orders.find(order =>
+        UNFINISHED_STATES.includes(order.getIn(["attributes", "state"]))
+      )
+    );
+
     return {
       connectedWithOrkestro: isConnectedWithOrkestro,
       ratio,
-      busData: business
+      busData: business,
+      hasUnfinishedOrders
     };
   },
   {
