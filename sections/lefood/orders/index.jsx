@@ -25,7 +25,8 @@ const Orders = ({
   allowPickup,
   t
 }) => {
-  const orderOrigin = id => orders.get(id).getIn(["attributes", "origin"]);
+  const orderOrigin = id =>
+    orders && orders.get(id).getIn(["attributes", "origin"]);
   return loading ? (
     <LoadingIndicator />
   ) : (
@@ -33,7 +34,7 @@ const Orders = ({
       <ColumnsWrapper>
         {Object.values(columns).map(column => {
           const columnOrders = column.orderIds
-            .map(id => orders.get(id))
+            .map(id => orders && orders.get(id))
             .filter(o => !!o);
           return (
             <DndColumn
