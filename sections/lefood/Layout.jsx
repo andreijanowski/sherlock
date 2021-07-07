@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect, useState, useCallback } from "react";
 import { func, string, node, number, shape, bool } from "prop-types";
 import AppLayout from "layout/App";
@@ -110,6 +109,8 @@ const averageDeliveryTimeList = t => [
   }
 ];
 
+const FULL_PROFILE_PERCENTS = 100;
+
 const calcProfileCompletedPercents = ({
   dishesLength,
   deliveriesLength,
@@ -126,7 +127,7 @@ const calcProfileCompletedPercents = ({
   if (orderPeriodsLength) {
     profileCompletedSteps += 1;
   }
-  const profileCompletedPercents = [0, 33, 67, 100];
+  const profileCompletedPercents = [0, 33, 67, FULL_PROFILE_PERCENTS];
   return profileCompletedPercents[profileCompletedSteps];
 };
 
@@ -206,18 +207,18 @@ const LefoodLayout = ({
   }, []);
 
   const onUpdateBusiness = useCallback(
-    values =>
-      updateBusiness(currentBusinessId, values, true)
-        .then(() => {
-          if (values.stripeCurrency) {
-            changeCurrentBusiness(currentBusinessId);
-          }
-        })
-        .catch(() => {
-          if (values.minAmountForDeliveryCents) {
-            setMinAmountForDeliveryCents(values.minAmountForDeliveryCents);
-          }
-        }),
+    async values => {
+      try {
+        await updateBusiness(currentBusinessId, values, true);
+        if (values.stripeCurrency) {
+          changeCurrentBusiness(currentBusinessId);
+        }
+      } catch (e) {
+        if (values.minAmountForDeliveryCents) {
+          setMinAmountForDeliveryCents(values.minAmountForDeliveryCents);
+        }
+      }
+    },
     [changeCurrentBusiness, currentBusinessId, updateBusiness]
   );
 
@@ -326,7 +327,7 @@ const LefoodLayout = ({
           orderPeriodsLength,
           allowPickup: business && business.get("allowPickup")
         })
-      : 100;
+      : FULL_PROFILE_PERCENTS;
 
   const currentAverageDeliveryTime = averageDeliveryTimeList(t).find(
     i => i.value === (business && business.get("averageDeliveryTime"))
@@ -370,7 +371,7 @@ const LefoodLayout = ({
         </>
       ) : (
         <CurrencyGuard>
-          {profileCompletedPercents !== 100 && (
+          {profileCompletedPercents !== FULL_PROFILE_PERCENTS && (
             <InfoBar
               info={
                 // eslint-disable-next-line react/jsx-wrap-multilines
@@ -445,6 +446,7 @@ const LefoodLayout = ({
                       onChange={onMinAmountForDeliveryChange}
                       onBlur={onMinAmountForDeliveryBlur}
                     />
+                    {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
                     <span
                       onClick={showCurrencyModal}
                       role="button"
