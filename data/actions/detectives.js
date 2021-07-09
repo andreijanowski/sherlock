@@ -6,7 +6,7 @@ import {
 export const fetchTopDetective = () => ({
   type: FETCH_TOP_DETECTIVE_REQUEST,
   payload: {
-    endpoint: "/api/v1/users/detectives",
+    endpoint: "/api/v1/users/detectives/top",
     params: {
       page: 1,
       per_page: 1
