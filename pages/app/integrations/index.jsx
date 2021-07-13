@@ -42,7 +42,9 @@ const IntegrationsPage = ({ t, lng, partners, isLoading }) => {
       menuItems={generatePartnersMenuItems(t, category)}
     >
       <PartnersSearchBox isHiddenOndesktop />
-      {partners.size > 0 && <IntegrationsList partners={partners} t={t} />}
+      {partners && partners.size > 0 && (
+        <IntegrationsList partners={partners} t={t} />
+      )}
       {isLoading && <LoadingIndicator hasTransparentBackground />}
     </AppLayout>
   );
