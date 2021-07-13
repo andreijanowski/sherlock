@@ -68,6 +68,7 @@
   "confirmAccount": "Nous vous avons envoyé un message de confirmation par e-mail. Veuillez confirmer votre compte dans les 3 jours.",
   "active": "Actif",
   "wholesalersCategories": {
+    "search": "Search wholesalers",
     "new": "Nouveautés",
     "fruits_and_vegetables": "Fruits & Légumes",
     "meat": "Viande",

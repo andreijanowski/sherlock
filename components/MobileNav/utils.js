@@ -129,7 +129,7 @@ const generateWholesalersMobileSubmenu = (t, activeTab) =>
         }
       : {
           route: `/app/wholesalers`,
-          label: t(`app:wholesalersCategories.allProducts`),
+          label: t(`app:wholesalersCategories.search`),
           isActive: !activeTab
         }
   );

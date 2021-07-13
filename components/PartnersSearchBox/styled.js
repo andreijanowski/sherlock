@@ -3,6 +3,9 @@ import styled, { css } from "styled-components";
 export const Wrapper = styled.div`
   position: relative;
   margin-bottom: 24px;
+  @media (min-width: ${p => p.theme.breakpoints[1]}) {
+    display: ${props => (props.isHiddenOnDesktop ? "none" : "none")};
+  }
 `;
 
 export const Input = styled.input`

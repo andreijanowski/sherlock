@@ -15,6 +15,7 @@ import {
 } from "sections/integrations/utils";
 import IntegrationsList from "sections/integrations";
 import { useRouter } from "next/router";
+import PartnersSearchBox from "components/PartnersSearchBox";
 
 const namespaces = ["forms", "app"];
 
@@ -83,6 +84,7 @@ const IntegrationsPage = ({
       withMenu
       menuItems={generateWholesalersMenuItems(t, category)}
     >
+      <PartnersSearchBox />
       {wholesalers && wholesalers.size > 0 && (
         <>
           <IntegrationsList

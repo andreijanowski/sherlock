@@ -51,7 +51,6 @@ const IntegrationsList = ({
       {partners.size > 0 ? (
         partners.map(partner => {
           const partnerId = partner.get("id");
-
           return (
             <PartnerTile
               showActionIcon={showActionIcons}
