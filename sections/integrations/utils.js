@@ -21,9 +21,9 @@ export const PARTNERS_CATEGORIES = [
 export const PARTNERS_URL = "/app/integrations";
 
 export const WHOLESALERS_CATEGORIES = [
+  "",
   "preferred",
   "FMCG",
-  "",
   "new",
   "fruits_and_vegetables",
   "meat",
