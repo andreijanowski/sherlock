@@ -41,7 +41,7 @@ const IntegrationsPage = ({ t, lng, partners, isLoading }) => {
       withMenu
       menuItems={generatePartnersMenuItems(t, category)}
     >
-      <PartnersSearchBox isHiddenOndesktop />
+      <PartnersSearchBox isHiddenOnDesktop />
       {partners && partners.size > 0 && (
         <IntegrationsList partners={partners} t={t} />
       )}

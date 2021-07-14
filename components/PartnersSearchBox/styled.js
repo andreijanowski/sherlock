@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   position: relative;
   margin-bottom: 24px;
   @media (min-width: ${p => p.theme.breakpoints[1]}) {
-    display: ${props => (props.isHiddenOnDesktop ? "none" : "none")};
+    display: ${p => (p.isHiddenOnDesktop ? "none" : "block")};
   }
 `;
 

@@ -84,7 +84,7 @@ const IntegrationsPage = ({
       withMenu
       menuItems={generateWholesalersMenuItems(t, category)}
     >
-      <PartnersSearchBox />
+      <PartnersSearchBox isHiddenOnDesktop />
       {wholesalers && wholesalers.size > 0 && (
         <>
           <IntegrationsList
