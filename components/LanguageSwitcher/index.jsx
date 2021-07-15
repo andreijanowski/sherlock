@@ -4,6 +4,7 @@ import { i18n, withTranslation } from "i18n";
 
 import { Router } from "routes";
 import isServer from "utils/isServer";
+import replacePathLng from "utils/replacePathLng";
 import {
   LanguageSwitcherWrapper,
   LanguageList,
@@ -13,7 +14,7 @@ import {
 } from "./styled";
 
 /* Temporary list of available languages, remove after provide valid locales data */
-const LANGUAGES = ["en", "fr", "de", "it", "es"];
+export const LANGUAGES = ["en", "fr", "de", "it", "es"];
 
 class LanguageSwitcher extends Component {
   state = {
@@ -41,8 +42,7 @@ class LanguageSwitcher extends Component {
     });
     await i18n.changeLanguage(lng);
     const prevPath = Router.asPath;
-    const regex = new RegExp(`^/\\w\\w/`, "gm");
-    const newPath = prevPath.replace(regex, `/${lng}/`);
+    const newPath = replacePathLng(prevPath, lng);
     Router.replaceRoute(newPath, undefined, { shallow: true });
   };
 

@@ -1,27 +1,37 @@
-import { languages, languagesPattern } from "consts";
+import { LANGUAGES } from "components/LanguageSwitcher";
+import replacePathLng from "utils/replacePathLng";
 
-export default ctx => {
-  if (ctx && ctx.req) {
-    const pattern = `^(${languagesPattern})$`;
-    const regex = new RegExp(pattern, "gm");
-    const firstUrlParam = ctx.req.url.split("/").filter(i => i !== "")[0];
-    if (
-      firstUrlParam !== "locales" &&
-      firstUrlParam !== "static" &&
-      firstUrlParam !== "_next"
-    ) {
-      const language = languages.find(l => l === firstUrlParam);
-      const shouldRedirect = !regex.test(language);
+const IGNORED_PATHS = ["locales", "static", "_next"];
 
-      if (shouldRedirect) {
-        const supportedLanguage = ctx.req.acceptsLanguages(languages) || "en";
-        ctx.res.writeHead(302, {
-          Location: `${ctx.req.protocol}://${
-            ctx.req.headers.host
-          }/${supportedLanguage}${ctx.req.url}`
-        });
-        ctx.res.end();
-      }
+export default async ctx => {
+  if (!ctx || !ctx.req) return;
+  const {
+    req: { url, i18n }
+  } = ctx;
+
+  const urlLng = url.split("/").filter(Boolean)[0];
+  // dont need to process these request
+  if (IGNORED_PATHS.includes(urlLng)) return;
+
+  const isValidLng = LANGUAGES.includes(urlLng);
+  if (isValidLng) {
+    if (i18n.language !== urlLng) {
+      await i18n.changeLanguage(urlLng);
     }
+    return;
   }
+
+  const supportedLanguage = ctx.req.acceptsLanguages(LANGUAGES) || "en";
+  await i18n.changeLanguage(supportedLanguage);
+
+  const urlWithReplacedLng = replacePathLng(url, supportedLanguage);
+  const lngWasNotReplaced = urlWithReplacedLng === url;
+  const newUrl = lngWasNotReplaced
+    ? `/${supportedLanguage}${url}`
+    : urlWithReplacedLng;
+
+  ctx.res.writeHead(302, {
+    Location: `${ctx.req.protocol}://${ctx.req.headers.host}${newUrl}`
+  });
+  ctx.res.end();
 };
