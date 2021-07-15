@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const Wrapper = styled.div`
   position: relative;
   margin-bottom: 24px;
-  @media (min-width: ${p => p.theme.breakpoints[1]}) {
+  @media (min-width: 640px) {
     display: ${p => (p.isHiddenOnDesktop ? "none" : "block")};
   }
 `;
