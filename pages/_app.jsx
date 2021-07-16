@@ -2,6 +2,10 @@ import App, { Container } from "next/app";
 import { Provider, connect } from "react-redux";
 import withRedux from "next-redux-wrapper";
 import withReduxSaga from "next-redux-saga";
+import {
+  Provider as ErrorBoundaryProvider,
+  ErrorBoundary
+} from "@rollbar/react";
 import forceLanguageInUrl from "utils/forceLanguageInUrl";
 import Layout from "layout";
 import { ThemeProvider } from "styled-components";
@@ -10,7 +14,7 @@ import isServer from "utils/isServer";
 import NProgress from "nprogress";
 import { Router } from "routes";
 import { StripeProvider } from "react-stripe-elements";
-import { STRIPE_API_KEY, GOOGLE_ANALYTICS_ID } from "consts";
+import { STRIPE_API_KEY, GOOGLE_ANALYTICS_ID, rollbarConfig } from "consts";
 import ReactGA from "react-ga";
 import { fromJS } from "immutable";
 import Cookies from "js-cookie";
@@ -98,15 +102,19 @@ class MyApp extends App {
   render() {
     const { Component, pageProps, store } = this.props;
     return (
-      <Container>
-        <Provider store={store}>
-          <ThemeProvider theme={theme}>
-            <StripeProvider stripe={this.state.stripe}>
-              <Layout {...{ pageProps, Component }} />
-            </StripeProvider>
-          </ThemeProvider>
-        </Provider>
-      </Container>
+      <ErrorBoundaryProvider config={rollbarConfig}>
+        <ErrorBoundary>
+          <Container>
+            <Provider store={store}>
+              <ThemeProvider theme={theme}>
+                <StripeProvider stripe={this.state.stripe}>
+                  <Layout {...{ pageProps, Component }} />
+                </StripeProvider>
+              </ThemeProvider>
+            </Provider>
+          </Container>
+        </ErrorBoundary>
+      </ErrorBoundaryProvider>
     );
   }
 }
