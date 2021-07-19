@@ -1,9 +1,9 @@
 version: 2.1
 
 orbs:
-  aws-cli: circleci/aws-cli@0.1.13
+  aws-cli: circleci/aws-cli@2.0.3
   aws-code-deploy: circleci/aws-code-deploy@0.0.7
-  aws-ecr: circleci/aws-ecr@6.3.0
+  aws-ecr: circleci/aws-ecr@7.0.0
 
 references:
   deploy: &deploy
@@ -83,8 +83,7 @@ jobs:
           name: Configure deployment
           command: |
             echo IMAGE=${STAGING_AWS_ECR_ACCOUNT_URL}/calluna-ecr-sherlock-staging:${CIRCLE_SHA1} >> codedeploy/parameters
-      - aws-cli/install
-      - aws-cli/configure
+      - aws-cli/setup
       - aws-code-deploy/push-bundle:
           application-name: calluna-sherlock-staging-main_app
           bundle-bucket: calluna-bucket-sherlock-staging
