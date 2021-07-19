@@ -29,6 +29,7 @@ services:
       - COMMUNITY_MANAGEMENT_TYPEFORM_ID
       - MARKETING_TYPEFORM_ID
       - PHOTOGRAPHY_TYPEFORM_ID
+      - ROLLBAR_ACCESS_TOKEN
     networks:
       - frontend
     expose:
