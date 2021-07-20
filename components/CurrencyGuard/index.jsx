@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { func, string, shape, node, arrayOf, oneOf } from "prop-types";
+import { func, string, shape, node, arrayOf, oneOf, bool } from "prop-types";
 import { withTranslation } from "i18n";
 import { Box, Flex } from "@rebass/grid";
 import { connect } from "react-redux";
@@ -18,7 +18,8 @@ const CurrencyGuard = ({
   children,
   updateBusiness,
   businessId,
-  changeCurrentBusiness
+  changeCurrentBusiness,
+  isFetching
 }) => {
   const [showCurrencyModal, setShowCurrencyModal] = useState(
     business && !business.get("stripeCurrency")
@@ -73,6 +74,7 @@ const CurrencyGuard = ({
             stripeCurrency: business.get("stripeCurrency"),
             setStripeCurrency: onStripeCurrencyUpdate,
             onClose: onHideStripeCurrencyModal,
+            isFetching,
             t
           }}
         />
@@ -87,13 +89,23 @@ CurrencyGuard.propTypes = {
   children: oneOf(arrayOf(node), node).isRequired,
   updateBusiness: func.isRequired,
   businessId: string.isRequired,
-  changeCurrentBusiness: func.isRequired
+  changeCurrentBusiness: func.isRequired,
+  isFetching: bool
+};
+
+CurrencyGuard.defaultProps = {
+  isFetching: false
 };
 
 export default compose(
   withTranslation(namespaces),
   connect(
     state => {
+      const isFetching = state.getIn([
+        "users",
+        "currentBusiness",
+        "isFetching"
+      ]);
       const businessData = state.getIn(["users", "currentBusiness", "data"]);
       const business =
         businessData &&
@@ -102,7 +114,8 @@ export default compose(
 
       return {
         business: business && business.get("attributes"),
-        businessId: business && business.get("id")
+        businessId: business && business.get("id"),
+        isFetching
       };
     },
     {
