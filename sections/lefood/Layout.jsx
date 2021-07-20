@@ -155,7 +155,8 @@ const LefoodLayout = ({
   integrateWithOrkestro,
   disconnectFromOrkestro,
   changeCurrentBusiness,
-  hasUnfinishedOrders
+  hasUnfinishedOrders,
+  isFetching
 }) => {
   const isCurrencySetUp = business && business.get("stripeCurrency");
   const isStripeSetUp = business && business.get("stripeUserId");
@@ -579,6 +580,7 @@ const LefoodLayout = ({
           {isCurrencyModalVisible && (
             <StripeCurrencyModal
               {...{
+                isFetching,
                 isOpen: true,
                 stripeCurrency: business.get("stripeCurrency"),
                 setStripeCurrency: onSetStripeCurrency,
@@ -612,7 +614,8 @@ LefoodLayout.propTypes = {
   deliveriesLength: number,
   orderPeriodsLength: number,
   ratio: string,
-  hasUnfinishedOrders: bool.isRequired
+  hasUnfinishedOrders: bool.isRequired,
+  isFetching: bool
 };
 
 LefoodLayout.defaultProps = {
@@ -621,11 +624,13 @@ LefoodLayout.defaultProps = {
   orderPeriodsLength: 0,
   currentBusinessId: "",
   business: null,
-  ratio: "0.0"
+  ratio: "0.0",
+  isFetching: false
 };
 
 export default connect(
   state => {
+    const isFetching = state.getIn(["users", "currentBusiness", "isFetching"]);
     const isConnectedWithOrkestro = state.getIn([
       "integrations",
       "isConnectedToOrkestro"
@@ -649,6 +654,7 @@ export default connect(
     );
 
     return {
+      isFetching,
       connectedWithOrkestro: isConnectedWithOrkestro,
       ratio,
       busData: business,
