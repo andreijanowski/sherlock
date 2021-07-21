@@ -15,7 +15,11 @@ import {
   postSubscription
 } from "actions/subscriptions";
 import { fetchProfileSubscriptions, fetchProfileCards } from "actions/users";
-import { fetchBusinessSetupIntent } from "actions/businesses";
+import {
+  fetchBusinessSetupIntent,
+  fetchBusinessSubscriptions,
+  fetchBusinessCards
+} from "actions/businesses";
 import { getNewPlanSlug } from "utils/plans";
 
 const namespaces = ["plans", "forms", "app"];
@@ -112,7 +116,8 @@ class SubscriptionsPage extends PureComponent {
     const {
       createSubscription,
       updateSubscriptionCard,
-      subscriptions
+      subscriptions,
+      businessId
     } = this.props;
     const { billingInterval, chosenPlan } = this.state;
     const plan = chosenPlan || planName;
@@ -130,6 +135,7 @@ class SubscriptionsPage extends PureComponent {
         view: "loading"
       });
       createSubscription(
+        businessId,
         stripeToken,
         getNewPlanSlug({ planName: plan, billingInterval })
       )
@@ -157,9 +163,23 @@ class SubscriptionsPage extends PureComponent {
   };
 
   goToSuccess = () => {
-    const { getProfileSubscriptions, getProfileCards } = this.props;
-    getProfileSubscriptions();
-    getProfileCards();
+    const {
+      getProfileSubscriptions,
+      getProfileCards,
+      getBusinessSubscriptions,
+      getBusinessCards,
+      businessId,
+      subscriptionInEffect
+    } = this.props;
+
+    if (subscriptionInEffect) {
+      getProfileSubscriptions();
+      getProfileCards();
+    } else {
+      getBusinessSubscriptions(businessId);
+      getBusinessCards(businessId);
+    }
+
     this.setState({
       chosenPlan: null,
       view: "success"
@@ -232,10 +252,13 @@ SubscriptionsPage.propTypes = {
   createSubscription: func.isRequired,
   getProfileSubscriptions: func.isRequired,
   getProfileCards: func.isRequired,
+  getBusinessSubscriptions: func.isRequired,
+  getBusinessCards: func.isRequired,
   getBusinessSetupIntent: func.isRequired,
   notificationError: func.isRequired,
   businessId: string.isRequired,
-  isCanceled: bool
+  isCanceled: bool,
+  subscriptionInEffect: bool.isRequired
 };
 
 SubscriptionsPage.defaultProps = {
@@ -254,13 +277,21 @@ export default requireAuth(true)(
           "data",
           "subscriptions"
         ]);
+        const users = state.getIn(["users", "profile", "data", "users"]);
+
+        const profile = users && users.first();
+
+        const subscriptionInEffect =
+          profile && profile.getIn(["attributes", "subscriptionInEffect"]);
+
         const businessData = state.getIn(["users", "currentBusiness", "data"]);
         const business = businessData && businessData.get("businesses").first();
         return {
           subscriptions: subscriptions ? subscriptions.first() : subscriptions,
           cards: state.getIn(["users", "cards", "data", "cards"]),
           businessId: business && business.get("id"),
-          lng: (i18n && i18n.language) || "en"
+          lng: (i18n && i18n.language) || "en",
+          subscriptionInEffect
         };
       },
       {
@@ -270,6 +301,8 @@ export default requireAuth(true)(
         createSubscription: postSubscription,
         getProfileSubscriptions: fetchProfileSubscriptions,
         getProfileCards: fetchProfileCards,
+        getBusinessSubscriptions: fetchBusinessSubscriptions,
+        getBusinessCards: fetchBusinessCards,
         getBusinessSetupIntent: fetchBusinessSetupIntent,
         notificationError: error
       }

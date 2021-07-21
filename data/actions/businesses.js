@@ -13,7 +13,9 @@ import {
   FETCH_BUSINESS_RESERVATIONS_REQUEST,
   FETCH_BUSINESS_WIDGETS_REQUEST,
   FETCH_BUSINESS_SETUP_INTENT_REQUEST,
-  FETCH_BUSINESS_SERVICE_LINKS_REQUEST
+  FETCH_BUSINESS_SERVICE_LINKS_REQUEST,
+  FETCH_BUSINESS_CARDS_REQUEST,
+  FETCH_BUSINESS_SUBSCRIPTIONS_REQUEST
 } from "types/businesses";
 
 export const postBusiness = onSuccess => ({
@@ -217,6 +219,24 @@ export const fetchBusinessServiceLinks = (id, page = 1) => ({
       per_page: 200,
       page
     }
+  },
+  meta: { thunk: true }
+});
+
+export const fetchBusinessCards = (id, page = 1) => ({
+  type: FETCH_BUSINESS_CARDS_REQUEST,
+  payload: {
+    endpoint: `/api/v1/businesses/${id}/cards`,
+    params: { per_page: 200, page }
+  },
+  meta: { thunk: true, page }
+});
+
+export const fetchBusinessSubscriptions = (id, page = 1) => ({
+  type: FETCH_BUSINESS_SUBSCRIPTIONS_REQUEST,
+  payload: {
+    endpoint: `/api/v1/businesses/${id}/subscriptions`,
+    params: { per_page: 200, page }
   },
   meta: { thunk: true }
 });

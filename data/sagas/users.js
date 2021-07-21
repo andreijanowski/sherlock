@@ -10,12 +10,14 @@ import {
   fetchBusinessTables,
   fetchBusinessReservations,
   fetchBusinessWidgets,
-  fetchBusinessServiceLinks
+  fetchBusinessServiceLinks,
+  fetchBusinessCards,
+  fetchBusinessSubscriptions
 } from "actions/businesses";
 import { UPDATE_PROFILE_SUCCESS } from "types/users";
 import { SET_CURRENT_BUSINESS } from "types/app";
 import { POST_BUSINESS_SUCCESS } from "types/businesses";
-import { takeEvery, all, put, call } from "redux-saga/effects";
+import { takeEvery, all, put, call, select } from "redux-saga/effects";
 import Notifications from "react-notification-system-redux";
 import { setCurrentBusiness } from "actions/app";
 import { fetchCategories } from "actions/categories";
@@ -25,6 +27,17 @@ import fetchAllBusinessData from "./utils/fetchAllBusinessData";
 function* fetchBusinessData({ payload: { id } }) {
   const lang = i18n.language;
   yield put(fetchProfileBusiness(id));
+  const profile = yield select(state =>
+    state.getIn(["users", "profile", "data", "users"]).first()
+  );
+
+  const subscriptionInEffect =
+    profile && profile.getIn(["attributes", "subscriptionInEffect"]);
+
+  if (!subscriptionInEffect) {
+    yield fetchAllBusinessData(fetchBusinessCards, id);
+    yield fetchAllBusinessData(fetchBusinessSubscriptions, id);
+  }
   yield fetchAllBusinessData(fetchBusinessServiceLinks, id);
   yield put(fetchCategories(lang));
   yield fetchAllBusinessData(fetchBusinessMembers, id);
