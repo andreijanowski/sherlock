@@ -370,6 +370,13 @@ const reducer = (state = initialState, { type, payload, meta }) => {
               .setIn(
                 currentBusinessPathArray,
                 payload.data.businesses[payload.rawData.data.id].attributes[v]
+              )
+              .mergeIn(
+                ["currentBusiness"],
+                Record({
+                  isFetching: false,
+                  isFailed: false
+                })()
               );
           } else {
             newState = state
