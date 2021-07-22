@@ -40,6 +40,8 @@ export const client = axios.create({
 function* makeApiCall({ type, payload: { endpoint, ...options } = {}, meta }) {
   const [HEAD] = type.split("_REQUEST");
 
+  const shouldShowNotification = !(meta && meta.hideErrorNotification);
+
   try {
     const response = yield call(client, endpoint, options);
 
@@ -74,11 +76,11 @@ function* makeApiCall({ type, payload: { endpoint, ...options } = {}, meta }) {
       error.response &&
       error.response.data &&
       error.response.data.errors &&
-      !meta.hideErrorNotification
+      shouldShowNotification
     ) {
       const { errors } = error.response.data;
       yield put(getErrorMessage(errors));
-    } else if (!meta.hideErrorNotification) {
+    } else if (shouldShowNotification) {
       yield put(Notifications.error({ message: error.message }));
     }
 

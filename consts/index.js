@@ -56,6 +56,15 @@ const mediaKitLink =
   "https://drive.google.com/drive/folders/1AlH-mWME83bzmg-job1N-ZqQjwxb0Ga0";
 const becomePartnerLink = `https://foodetective.typeform.com/to/tzqu8b`;
 
+const rollbarConfig = {
+  accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
+  captureUncaught: true,
+  captureUnhandledRejections: true,
+  payload: {
+    environment: process.env.NODE_ENV || "development"
+  }
+};
+
 module.exports = {
   contentTypes,
   languages,
@@ -82,5 +91,6 @@ module.exports = {
   SUBSCRIPTION_PERIOD,
   SUBSCRIPTION_PLANS,
   TYPEFORM_IDS,
-  WHOLESALERS_CATEGORY
+  WHOLESALERS_CATEGORY,
+  rollbarConfig
 };

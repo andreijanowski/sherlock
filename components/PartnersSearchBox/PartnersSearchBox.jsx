@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useCallback } from "react";
-import { func, shape } from "prop-types";
+import { bool, func, shape } from "prop-types";
 import { withTranslation } from "i18n";
 import { compose } from "redux";
 import { connect } from "react-redux";
@@ -16,7 +16,7 @@ const namespaces = ["app"];
 
 const DEBOUNCE = 300;
 
-const DebouncedInput = ({ t, onChange }) => {
+const DebouncedInput = ({ t, onChange, isHiddenOnDesktop }) => {
   const [value, setValue] = useState("");
 
   const debouncedOnChange = useCallback(debounce(onChange, DEBOUNCE), [
@@ -37,7 +37,7 @@ const DebouncedInput = ({ t, onChange }) => {
   );
 
   return (
-    <Wrapper>
+    <Wrapper isHiddenOnDesktop={isHiddenOnDesktop}>
       <LeftIcon>
         <SearchIcon />
       </LeftIcon>
@@ -58,10 +58,20 @@ const DebouncedInput = ({ t, onChange }) => {
 
 DebouncedInput.propTypes = {
   t: func.isRequired,
-  onChange: func.isRequired
+  onChange: func.isRequired,
+  isHiddenOnDesktop: bool
 };
 
-const PartnersSearchBox = ({ t, business, fetchPartnersHandler }) => {
+DebouncedInput.defaultProps = {
+  isHiddenOnDesktop: false
+};
+
+const PartnersSearchBox = ({
+  t,
+  business,
+  fetchPartnersHandler,
+  isHiddenOnDesktop
+}) => {
   const [search, setSearch] = useState("");
   const {
     pathname,
@@ -93,17 +103,25 @@ const PartnersSearchBox = ({ t, business, fetchPartnersHandler }) => {
     }
   }, [businessId, fetchPartnersHandler, filter, search]);
 
-  return <DebouncedInput t={t} onChange={onSearchChange} />;
+  return (
+    <DebouncedInput
+      isHiddenOnDesktop={isHiddenOnDesktop}
+      t={t}
+      onChange={onSearchChange}
+    />
+  );
 };
 
 PartnersSearchBox.propTypes = {
   t: func.isRequired,
   fetchPartnersHandler: func.isRequired,
-  business: shape()
+  business: shape(),
+  isHiddenOnDesktop: bool
 };
 
 PartnersSearchBox.defaultProps = {
-  business: null
+  business: null,
+  isHiddenOnDesktop: false
 };
 
 const mapState = state => {

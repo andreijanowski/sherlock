@@ -10,11 +10,11 @@ import {
   PATCH_ORDER_SUCCESS,
   PATCH_ORDER_REJECT_SUCCESS,
   FETCH_ORKESTRO_STATUS_REQUEST,
-  FETCH_ORKESTRO_STATUS_SUCCESS
+  FETCH_ORKESTRO_STATUS_SUCCESS,
+  FETCH_ORKESTRO_STATUS_FAIL
 } from "types/orders";
 
 import { Record, Map, fromJS } from "immutable";
-import { FETCH_ORKESTRO_STATUS_FAIL } from "../types/orders";
 
 export const initialState = Record({
   data: Map(),
@@ -120,10 +120,6 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           isFetching: false,
           isSucceeded: true
         })()
-      );
-      console.log(
-        payload.config.params.id,
-        payload.rawData.data.attributes.status
       );
       return newState.setIn(
         [

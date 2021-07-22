@@ -1,6 +1,8 @@
 import { Form as FinalForm, Field } from "react-final-form";
 import { func, bool, string } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
+import { PulseLoader } from "react-spinners";
+import { colors } from "utils/theme";
 
 import { Modal, Button, FormSelect, Paragraph, H3 } from "components";
 import currencies from "utils/currencies";
@@ -10,7 +12,8 @@ const StripeCurrencyModal = ({
   onClose,
   t,
   setStripeCurrency,
-  stripeCurrency
+  stripeCurrency,
+  isFetching
 }) => (
   <Modal {...{ open: true, onClose }}>
     <FinalForm
@@ -65,7 +68,15 @@ const StripeCurrencyModal = ({
                   }
                   width="100%"
                 >
-                  {t("setStripeCurrency")}
+                  {isFetching ? (
+                    <PulseLoader
+                      size={8}
+                      color={`rgb(${colors.blue})`}
+                      loading
+                    />
+                  ) : (
+                    t("setStripeCurrency")
+                  )}
                 </Button>
               </Box>
             </Flex>
@@ -81,11 +92,13 @@ StripeCurrencyModal.propTypes = {
   onClose: func.isRequired,
   setStripeCurrency: func.isRequired,
   t: func.isRequired,
-  stripeCurrency: string
+  stripeCurrency: string,
+  isFetching: bool
 };
 
 StripeCurrencyModal.defaultProps = {
-  stripeCurrency: null
+  stripeCurrency: null,
+  isFetching: false
 };
 
 export default StripeCurrencyModal;

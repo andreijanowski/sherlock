@@ -18,6 +18,12 @@ services:
     #   - frontend
     ports:
       - "3002:3000"
+    logging:
+      driver: awslogs
+      options:
+        awslogs-region: eu-central-1
+        awslogs-group: front
+        awslogs-stream: sherlock
 # networks:
 #   frontend:
 #     external:

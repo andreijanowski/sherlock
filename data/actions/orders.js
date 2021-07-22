@@ -67,5 +67,5 @@ export const fetchOrkestroOrder = id => ({
       id
     }
   },
-  meta: { thunk: true }
+  meta: { thunk: true, hideErrorNotification: true }
 });

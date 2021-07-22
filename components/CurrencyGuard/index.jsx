@@ -1,14 +1,14 @@
 import React, { useState, useCallback } from "react";
-import { func, string, shape, node, arrayOf, oneOf } from "prop-types";
+import { func, string, shape, node, arrayOf, oneOf, bool } from "prop-types";
 import { withTranslation } from "i18n";
 import { Box, Flex } from "@rebass/grid";
 import { connect } from "react-redux";
 import { compose } from "redux";
 
-import { Button, ConnectWithStripe, H2 } from "components";
+import { Button, H2 } from "components";
 import { patchBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/app";
-import StripeCurrencyModal from "./StripeCurrencyModal";
+import StripeCurrencyModal from "components/StripeSetupModal/StripeCurrencyModal";
 
 const namespaces = ["lefood"];
 
@@ -18,7 +18,8 @@ const CurrencyGuard = ({
   children,
   updateBusiness,
   businessId,
-  changeCurrentBusiness
+  changeCurrentBusiness,
+  isFetching
 }) => {
   const [showCurrencyModal, setShowCurrencyModal] = useState(
     business && !business.get("stripeCurrency")
@@ -50,13 +51,7 @@ const CurrencyGuard = ({
   return (
     <>
       {business.get("stripeCurrency") ? (
-        <>
-          {business.get("stripeUserId") ? (
-            children
-          ) : (
-            <ConnectWithStripe {...{ t }} />
-          )}
-        </>
+        children
       ) : (
         <Flex
           justifyContent="center"
@@ -79,6 +74,7 @@ const CurrencyGuard = ({
             stripeCurrency: business.get("stripeCurrency"),
             setStripeCurrency: onStripeCurrencyUpdate,
             onClose: onHideStripeCurrencyModal,
+            isFetching,
             t
           }}
         />
@@ -93,13 +89,23 @@ CurrencyGuard.propTypes = {
   children: oneOf(arrayOf(node), node).isRequired,
   updateBusiness: func.isRequired,
   businessId: string.isRequired,
-  changeCurrentBusiness: func.isRequired
+  changeCurrentBusiness: func.isRequired,
+  isFetching: bool
+};
+
+CurrencyGuard.defaultProps = {
+  isFetching: false
 };
 
 export default compose(
   withTranslation(namespaces),
   connect(
     state => {
+      const isFetching = state.getIn([
+        "users",
+        "currentBusiness",
+        "isFetching"
+      ]);
       const businessData = state.getIn(["users", "currentBusiness", "data"]);
       const business =
         businessData &&
@@ -108,7 +114,8 @@ export default compose(
 
       return {
         business: business && business.get("attributes"),
-        businessId: business && business.get("id")
+        businessId: business && business.get("id"),
+        isFetching
       };
     },
     {

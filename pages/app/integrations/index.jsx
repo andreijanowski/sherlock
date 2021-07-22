@@ -5,6 +5,7 @@ import { func, string, shape, bool } from "prop-types";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
+import PartnersSearchBox from "components/PartnersSearchBox";
 
 import AppLayout from "layout/App";
 import {
@@ -40,6 +41,7 @@ const IntegrationsPage = ({ t, lng, partners, isLoading }) => {
       withMenu
       menuItems={generatePartnersMenuItems(t, category)}
     >
+      <PartnersSearchBox isHiddenOnDesktop />
       {partners && partners.size > 0 && (
         <IntegrationsList partners={partners} t={t} />
       )}

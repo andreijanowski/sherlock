@@ -1,7 +1,10 @@
 import { Component } from "react";
 import { oneOf, bool, func } from "prop-types";
 import { i18n, withTranslation } from "i18n";
+
+import { Router } from "routes";
 import isServer from "utils/isServer";
+import replacePathLng from "utils/replacePathLng";
 import {
   LanguageSwitcherWrapper,
   LanguageList,
@@ -11,7 +14,7 @@ import {
 } from "./styled";
 
 /* Temporary list of available languages, remove after provide valid locales data */
-const LANGUAGES = ["en", "fr", "de", "it", "es"];
+export const LANGUAGES = ["en", "fr", "de", "it", "es"];
 
 class LanguageSwitcher extends Component {
   state = {
@@ -33,11 +36,14 @@ class LanguageSwitcher extends Component {
     }));
   };
 
-  changeLanguage = language => {
+  changeLanguage = async lng => {
     this.setState({
-      selectedLanguage: language
+      selectedLanguage: lng
     });
-    i18n.changeLanguage(language);
+    await i18n.changeLanguage(lng);
+    const prevPath = Router.asPath;
+    const newPath = replacePathLng(prevPath, lng);
+    Router.replaceRoute(newPath, undefined, { shallow: true });
   };
 
   setProperIconPosition = () => {

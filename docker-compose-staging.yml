@@ -29,10 +29,17 @@ services:
       - COMMUNITY_MANAGEMENT_TYPEFORM_ID
       - MARKETING_TYPEFORM_ID
       - PHOTOGRAPHY_TYPEFORM_ID
+      - ROLLBAR_ACCESS_TOKEN
     networks:
       - frontend
     expose:
       - "3000"
+    logging:
+      driver: awslogs
+      options:
+        awslogs-region: eu-central-1
+        awslogs-group: calluna-sherlock-staging-log-group
+        awslogs-stream: sherlock
 
 networks:
   frontend:

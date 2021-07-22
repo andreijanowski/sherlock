@@ -21,7 +21,9 @@ import {
 import {
   POST_BUSINESS_REQUEST,
   POST_BUSINESS_SUCCESS,
-  PATCH_BUSINESS_SUCCESS
+  PATCH_BUSINESS_SUCCESS,
+  PATCH_BUSINESS_REQUEST,
+  PATCH_BUSINESS_FAIL
 } from "types/businesses";
 import { POST_PICTURE_SUCCESS, DELETE_PICTURE_REQUEST } from "types/pictures";
 import {
@@ -305,6 +307,26 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       );
     }
 
+    case PATCH_BUSINESS_REQUEST: {
+      return state.mergeIn(
+        ["currentBusiness"],
+        Record({
+          isFetching: true,
+          isFailed: false
+        })()
+      );
+    }
+
+    case PATCH_BUSINESS_FAIL: {
+      return state.mergeIn(
+        ["currentBusiness"],
+        Record({
+          isFetching: false,
+          isFailed: true
+        })()
+      );
+    }
+
     case PATCH_BUSINESS_SUCCESS: {
       let newState = null;
       meta.updatedValues.forEach(v => {
@@ -348,12 +370,27 @@ const reducer = (state = initialState, { type, payload, meta }) => {
               .setIn(
                 currentBusinessPathArray,
                 payload.data.businesses[payload.rawData.data.id].attributes[v]
+              )
+              .mergeIn(
+                ["currentBusiness"],
+                Record({
+                  isFetching: false,
+                  isFailed: false
+                })()
               );
           } else {
-            newState = state.setIn(
-              currentBusinessPathArray,
-              payload.data.businesses[payload.rawData.data.id].attributes[v]
-            );
+            newState = state
+              .setIn(
+                currentBusinessPathArray,
+                payload.data.businesses[payload.rawData.data.id].attributes[v]
+              )
+              .mergeIn(
+                ["currentBusiness"],
+                Record({
+                  isFetching: false,
+                  isFailed: false
+                })()
+              );
           }
         }
       });
