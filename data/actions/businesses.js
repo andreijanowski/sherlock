@@ -18,6 +18,8 @@ import {
   FETCH_BUSINESS_SUBSCRIPTIONS_REQUEST
 } from "types/businesses";
 
+const PER_PAGE = 200;
+
 export const postBusiness = onSuccess => ({
   type: POST_BUSINESS_REQUEST,
   payload: {
@@ -60,7 +62,7 @@ export const fetchBusinessMembers = (id, page = 1) => ({
   payload: {
     endpoint: `/api/v1/businesses/${id}/members`,
     params: {
-      per_page: 200,
+      per_page: PER_PAGE,
       page
     }
   },
@@ -72,7 +74,7 @@ export const fetchBusinessDeliveries = (id, page = 1) => ({
   payload: {
     endpoint: `/api/v1/businesses/${id}/deliveries`,
     params: {
-      per_page: 200,
+      per_page: PER_PAGE,
       page
     }
   },
@@ -84,7 +86,7 @@ export const fetchBusinessDishes = (id, page = 1) => ({
   payload: {
     endpoint: `/api/v1/businesses/${id}/dishes`,
     params: {
-      per_page: 200,
+      per_page: PER_PAGE,
       page,
       include: "pictures,category"
     }
@@ -97,7 +99,7 @@ export const fetchBusinessOrders = (id, page = 1) => ({
   payload: {
     endpoint: `/api/v1/businesses/${id}/orders`,
     params: {
-      per_page: 200,
+      per_page: PER_PAGE,
       page,
       filter: {
         states:
@@ -129,7 +131,7 @@ export const fetchBusinessCaterings = (id, page = 1) => ({
   payload: {
     endpoint: `/api/v1/businesses/${id}/caterings`,
     params: {
-      per_page: 200,
+      per_page: PER_PAGE,
       page,
       include: "user,address"
     }
@@ -142,7 +144,7 @@ export const fetchBusinessPrivatisations = (id, page = 1) => ({
   payload: {
     endpoint: `/api/v1/businesses/${id}/privatisations`,
     params: {
-      per_page: 200,
+      per_page: PER_PAGE,
       page,
       include: "user,address"
     }
@@ -155,7 +157,7 @@ export const fetchBusinessTables = (id, page = 1) => ({
   payload: {
     endpoint: `/api/v1/businesses/${id}/tables`,
     params: {
-      per_page: 200,
+      per_page: PER_PAGE,
       page
     }
   },
@@ -178,7 +180,7 @@ export const fetchBusinessReservations = (
   payload: {
     endpoint: `/api/v1/businesses/${id}/reservations`,
     params: {
-      per_page: 200,
+      per_page: PER_PAGE,
       page,
       include: "user,bookings,tables",
       filter: { start_date: startDate, end_date: endDate, from, to }
@@ -192,7 +194,7 @@ export const fetchBusinessWidgets = (id, page = 1) => ({
   payload: {
     endpoint: `/api/v1/businesses/${id}/widgets`,
     params: {
-      per_page: 200,
+      per_page: PER_PAGE,
       page
     }
   },
@@ -216,7 +218,7 @@ export const fetchBusinessServiceLinks = (id, page = 1) => ({
     method: "GET",
     endpoint: `/api/v1/businesses/${id}/external_service_links`,
     params: {
-      per_page: 200,
+      per_page: PER_PAGE,
       page
     }
   },
@@ -227,7 +229,7 @@ export const fetchBusinessCards = (id, page = 1) => ({
   type: FETCH_BUSINESS_CARDS_REQUEST,
   payload: {
     endpoint: `/api/v1/businesses/${id}/cards`,
-    params: { per_page: 200, page }
+    params: { per_page: PER_PAGE, page }
   },
   meta: { thunk: true, page }
 });
@@ -236,7 +238,7 @@ export const fetchBusinessSubscriptions = (id, page = 1) => ({
   type: FETCH_BUSINESS_SUBSCRIPTIONS_REQUEST,
   payload: {
     endpoint: `/api/v1/businesses/${id}/subscriptions`,
-    params: { per_page: 200, page }
+    params: { per_page: PER_PAGE, page }
   },
   meta: { thunk: true }
 });
