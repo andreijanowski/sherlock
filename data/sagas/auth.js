@@ -33,8 +33,18 @@ function* fetchUserData() {
       data: { id: userId }
     }
   } = yield putResolve(fetchProfile());
-  yield fetchAllUserData(fetchProfileCards);
-  yield put(fetchProfileSubscriptions());
+  const profile = yield select(state =>
+    state.getIn(["users", "profile", "data", "users", userId])
+  );
+
+  const subscriptionInEffect =
+    profile && profile.getIn(["attributes", "subscriptionInEffect"]);
+
+  if (subscriptionInEffect) {
+    yield fetchAllUserData(fetchProfileCards);
+    yield put(fetchProfileSubscriptions());
+  }
+
   yield fetchAllUserData(fetchGroups);
   yield fetchAllUserData(fetchProfileBusinesses);
   const profileBusinesses = yield select(state =>

@@ -5,7 +5,7 @@ import {
 } from "types/subscriptions";
 import { getRelationships } from "./utils";
 
-export const postSubscription = (stripeToken, stripePlan) => ({
+export const postSubscription = (businessId, stripeToken, stripePlan) => ({
   type: POST_SUBSCRIPTION_REQUEST,
   payload: {
     method: "POST",
@@ -16,7 +16,10 @@ export const postSubscription = (stripeToken, stripePlan) => ({
         attributes: {
           stripeToken
         },
-        relationships: getRelationships("stripe_plan", stripePlan)
+        relationships: {
+          ...getRelationships("stripe_plan", stripePlan),
+          ...getRelationships("business", businessId)
+        }
       }
     }
   },
