@@ -184,7 +184,6 @@ const EventDetails = ({
           </a>
         </Box>
       )}
-      {/* <Box px={2} width={event.resource.menu.url ? 1 / 2 : 1}> */}
       <Flex width={1}>
         <ExtendedButton
           isFull
@@ -197,7 +196,6 @@ const EventDetails = ({
             : t("events:sendOffer")}
         </ExtendedButton>
       </Flex>
-      {/* </Box> */}
     </Flex>
   </>
 );
