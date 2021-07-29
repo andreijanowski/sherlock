@@ -13,9 +13,11 @@ import {
   Details,
   Detail,
   DetailContent,
+  DetailName,
   AdditionalHeader,
   AdditionalParagraph,
-  MapWrapper
+  MapWrapper,
+  ExtendedButton
 } from "./styled";
 import { parseDateTime } from "../utils";
 
@@ -42,8 +44,12 @@ const EventDetails = ({
             .currency || ""}`}</Price>
         )}
       </MainInfo>
-      <Flex alignItems="center">
-        <Button
+      <Flex
+        flexDirection={["column", "row"]}
+        alignItems={["flex-start", "center"]}
+        mt={[2, 0]}
+      >
+        <ExtendedButton
           styleName="smallBlue"
           onClick={() => {
             setEditedEvent(event.resource);
@@ -51,42 +57,42 @@ const EventDetails = ({
           }}
         >
           {t("events:prepareOfer")}
-        </Button>
+        </ExtendedButton>
       </Flex>
     </Header>
     <Details>
       <Detail>
-        <DetailContent>{t("events:type")}</DetailContent>
+        <DetailName>{t("events:type")}</DetailName>
         <DetailContent>{event.resource.typeOfEvent}</DetailContent>
       </Detail>
       <Detail>
-        <DetailContent>{t("events:servings")}</DetailContent>
+        <DetailName>{t("events:servings")}</DetailName>
         <DetailContent>{event.resource.numberOfServings}</DetailContent>
       </Detail>
       <Detail>
-        <DetailContent>{t("events:waiters")}</DetailContent>
+        <DetailName>{t("events:waiters")}</DetailName>
         <DetailContent>{event.resource.numberOfWaiters}</DetailContent>
       </Detail>
       <Detail>
-        <DetailContent>{t("events:outdoors")}</DetailContent>
+        <DetailName>{t("events:outdoors")}</DetailName>
         <DetailContent>
           {event.resource.outdoors ? t("events:yes") : t("events:no")}
         </DetailContent>
       </Detail>
       <Detail>
-        <DetailContent>{t("events:corporateEvent")}</DetailContent>
+        <DetailName>{t("events:corporateEvent")}</DetailName>
         <DetailContent>
           {event.resource.corporateEvent ? t("events:yes") : t("events:no")}
         </DetailContent>
       </Detail>
       <Detail>
-        <DetailContent>{t("events:cutlery")}</DetailContent>
+        <DetailName>{t("events:cutlery")}</DetailName>
         <DetailContent>
           {event.resource.cutlery ? t("events:yes") : t("events:no")}
         </DetailContent>
       </Detail>
       <Detail>
-        <DetailContent>{t("events:chef")}</DetailContent>
+        <DetailName>{t("events:chef")}</DetailName>
         <DetailContent>
           {event.resource.chefAttendance ? t("events:yes") : t("events:no")}
         </DetailContent>
@@ -103,25 +109,25 @@ const EventDetails = ({
     <Details>
       {event.resource.companyName && (
         <Detail>
-          <DetailContent>{t("events:companyName")}</DetailContent>
+          <DetailName>{t("events:companyName")}</DetailName>
           <DetailContent>{event.resource.companyName}</DetailContent>
         </Detail>
       )}
       {event.resource.userName && (
         <Detail>
-          <DetailContent>{t("events:contactPerson")}</DetailContent>
+          <DetailName>{t("events:contactPerson")}</DetailName>
           <DetailContent>{event.resource.userName}</DetailContent>
         </Detail>
       )}
       {event.resource.email && (
         <Detail>
-          <DetailContent>{t("events:email")}</DetailContent>
+          <DetailName>{t("events:email")}</DetailName>
           <DetailContent>{event.resource.email}</DetailContent>
         </Detail>
       )}
       {event.resource.phone && (
         <Detail>
-          <DetailContent>{t("events:phoneNumber")}</DetailContent>
+          <DetailName>{t("events:phoneNumber")}</DetailName>
           <DetailContent>{`${event.resource.phoneCountryPrefix} ${
             event.resource.phone
           }`}</DetailContent>
@@ -178,8 +184,9 @@ const EventDetails = ({
           </a>
         </Box>
       )}
-      <Box px={2} width={event.resource.menu.url ? 1 / 2 : 1}>
-        <Button
+      <Flex width={1}>
+        <ExtendedButton
+          isFull
           styleName="blue"
           onClick={() => sendOffer(event.resource.id)}
           width="100%"
@@ -187,8 +194,8 @@ const EventDetails = ({
           {event.resource.offerSendAt
             ? t("events:resendOffer")
             : t("events:sendOffer")}
-        </Button>
-      </Box>
+        </ExtendedButton>
+      </Flex>
     </Flex>
   </>
 );
