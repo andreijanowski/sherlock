@@ -15,7 +15,8 @@ const PlansSection = ({
   choosePlan,
   currentPlan,
   cards,
-  goToPayments
+  goToPayments,
+  plans
 }) => {
   const { currentPlanName, nextPlanName } = getPlanName(currentPlan);
   const currentCard =
@@ -86,6 +87,7 @@ const PlansSection = ({
         interval={billingInterval}
         t={t}
         onPlanChoose={handlePlanChoose}
+        plans={plans}
       />
     </Wrapper>
   );
@@ -100,13 +102,15 @@ PlansSection.propTypes = {
   goToPayments: func.isRequired,
   currentPlan: shape(),
   cards: arrayOf(shape()),
-  isCanceled: bool
+  isCanceled: bool,
+  plans: shape()
 };
 
 PlansSection.defaultProps = {
   currentPlan: null,
   cards: null,
-  isCanceled: false
+  isCanceled: false,
+  plans: null
 };
 
 export default PlansSection;

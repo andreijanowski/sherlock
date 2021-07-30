@@ -19,6 +19,7 @@ import widgets from "./widgets";
 import partners from "./partners";
 import externalServices from "./externalServices";
 import detectives from "./detectives";
+import plans from "./plans";
 
 export default {
   app,
@@ -41,5 +42,6 @@ export default {
   widgets,
   partners,
   externalServices,
-  detectives
+  detectives,
+  plans
 };

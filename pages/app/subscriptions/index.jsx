@@ -4,6 +4,7 @@ import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape, bool } from "prop-types";
 import { connect } from "react-redux";
+import { compose } from "redux";
 import AppLayout from "layout/App";
 import { LoadingIndicator } from "components";
 import { Plans, Payments, Success } from "sections/subscriptions";
@@ -21,6 +22,7 @@ import {
   fetchBusinessCards
 } from "actions/businesses";
 import { getNewPlanSlug } from "utils/plans";
+import { fetchPlans } from "actions/plans";
 
 const namespaces = ["plans", "forms", "app"];
 
@@ -36,6 +38,11 @@ class SubscriptionsPage extends PureComponent {
     view: "plans",
     chosenPlan: null
   };
+
+  componentDidMount() {
+    const { getPlans } = this.props;
+    getPlans();
+  }
 
   componentDidUpdate(prevProps) {
     const { subscriptions } = this.props;
@@ -187,7 +194,14 @@ class SubscriptionsPage extends PureComponent {
   };
 
   render() {
-    const { t, lng, subscriptions, cards, notificationError } = this.props;
+    const {
+      t,
+      lng,
+      subscriptions,
+      cards,
+      notificationError,
+      plans
+    } = this.props;
     const { billingInterval, view, chosenPlan } = this.state;
 
     return (
@@ -204,6 +218,7 @@ class SubscriptionsPage extends PureComponent {
           <Plans
             {...{
               t,
+              plans,
               lng,
               cards,
               billingInterval,
@@ -258,54 +273,61 @@ SubscriptionsPage.propTypes = {
   notificationError: func.isRequired,
   businessId: string.isRequired,
   isCanceled: bool,
-  subscriptionInEffect: bool.isRequired
+  subscriptionInEffect: bool.isRequired,
+  getPlans: func.isRequired,
+  plans: shape()
 };
 
 SubscriptionsPage.defaultProps = {
   subscriptions: null,
   cards: null,
-  isCanceled: false
+  isCanceled: false,
+  plans: null
 };
 
-export default requireAuth(true)(
-  withTranslation(namespaces)(
-    connect(
-      (state, { i18n }) => {
-        const subscriptions = state.getIn([
-          "users",
-          "subscriptions",
-          "data",
-          "subscriptions"
-        ]);
-        const users = state.getIn(["users", "profile", "data", "users"]);
+export default compose(
+  requireAuth(true),
+  withTranslation(namespaces),
+  connect(
+    (state, { i18n }) => {
+      const subscriptions = state.getIn([
+        "users",
+        "subscriptions",
+        "data",
+        "subscriptions"
+      ]);
+      const users = state.getIn(["users", "profile", "data", "users"]);
 
-        const profile = users && users.first();
+      const plans = state.getIn(["plans", "data"]);
 
-        const subscriptionInEffect =
-          profile && profile.getIn(["attributes", "subscriptionInEffect"]);
+      const profile = users && users.first();
 
-        const businessData = state.getIn(["users", "currentBusiness", "data"]);
-        const business = businessData && businessData.get("businesses").first();
-        return {
-          subscriptions: subscriptions ? subscriptions.first() : subscriptions,
-          cards: state.getIn(["users", "cards", "data", "cards"]),
-          businessId: business && business.get("id"),
-          lng: (i18n && i18n.language) || "en",
-          subscriptionInEffect
-        };
-      },
-      {
-        updateSubscriptionPlan: pathSubscriptionChangePlan,
-        updateSubscriptionCard: pathSubscriptionChangeCard,
-        cancelSubscriptionPlan: pathSubscriptionCancel,
-        createSubscription: postSubscription,
-        getProfileSubscriptions: fetchProfileSubscriptions,
-        getProfileCards: fetchProfileCards,
-        getBusinessSubscriptions: fetchBusinessSubscriptions,
-        getBusinessCards: fetchBusinessCards,
-        getBusinessSetupIntent: fetchBusinessSetupIntent,
-        notificationError: error
-      }
-    )(SubscriptionsPage)
+      const subscriptionInEffect =
+        profile && profile.getIn(["attributes", "subscriptionInEffect"]);
+
+      const businessData = state.getIn(["users", "currentBusiness", "data"]);
+      const business = businessData && businessData.get("businesses").first();
+      return {
+        subscriptions: subscriptions ? subscriptions.first() : subscriptions,
+        cards: state.getIn(["users", "cards", "data", "cards"]),
+        businessId: business && business.get("id"),
+        lng: (i18n && i18n.language) || "en",
+        subscriptionInEffect,
+        plans
+      };
+    },
+    {
+      updateSubscriptionPlan: pathSubscriptionChangePlan,
+      updateSubscriptionCard: pathSubscriptionChangeCard,
+      cancelSubscriptionPlan: pathSubscriptionCancel,
+      createSubscription: postSubscription,
+      getProfileSubscriptions: fetchProfileSubscriptions,
+      getProfileCards: fetchProfileCards,
+      getBusinessSubscriptions: fetchBusinessSubscriptions,
+      getBusinessCards: fetchBusinessCards,
+      getBusinessSetupIntent: fetchBusinessSetupIntent,
+      notificationError: error,
+      getPlans: fetchPlans
+    }
   )
-);
+)(SubscriptionsPage);
