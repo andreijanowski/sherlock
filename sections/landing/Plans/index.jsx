@@ -8,6 +8,7 @@ import { BlueText } from "../sharedStyled";
 
 const PlansMainComponent = ({
   t,
+  plans,
   plansRef,
   billingInterval,
   handleChangeBillngPeriod,
@@ -48,20 +49,23 @@ const PlansMainComponent = ({
         interval={billingInterval}
         t={t}
         onPlanChoose={onPlanChoose}
+        plans={plans}
       />
     </TextWrapper>
   </Flex>
 );
 
 PlansMainComponent.defaultProps = {
-  onPlanChoose: noop
+  onPlanChoose: noop,
+  plans: null
 };
 PlansMainComponent.propTypes = {
   t: func.isRequired,
   billingInterval: string.isRequired,
   handleChangeBillngPeriod: func.isRequired,
   plansRef: oneOfType([func, shape({ current: any })]).isRequired,
-  onPlanChoose: func
+  onPlanChoose: func,
+  plans: shape()
 };
 
 export default PlansMainComponent;
