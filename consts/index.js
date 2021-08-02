@@ -23,15 +23,29 @@ const GOOGLE_TAG_MANAGER_ID = process.env.PUBLIC_GOOGLE_TAG_MANAGER_ID;
 
 const SUBSCRIPTION_ENTREPRISE_URL =
   "https://share.hsforms.com/1UW67s4YOTTKvC2NIum5X0w3cpmu";
+
 const SUBSCRIPTION_PERIOD = {
   MONTH: "month",
   YEAR: "year"
 };
+const BASIC_PLAN_NAME = "basic";
+
 const SUBSCRIPTION_PLANS = {
   ENTREPRISE: "Entreprise",
   ESSENTIAL: "Essential",
   FREEMIUM: "Freemium",
   PREMIUM: "Premium"
+};
+
+const SUBSCRIPTION_PLANS_SLUGS = {
+  [SUBSCRIPTION_PERIOD.MONTH]: {
+    [SUBSCRIPTION_PLANS.ESSENTIAL.toLocaleLowerCase()]: "sherlock-essential-monthly-eur",
+    [SUBSCRIPTION_PLANS.PREMIUM.toLocaleLowerCase()]: "sherlock-premium-monthly-new-eur"
+  },
+  [SUBSCRIPTION_PERIOD.YEAR]: {
+    [SUBSCRIPTION_PLANS.ESSENTIAL.toLocaleLowerCase()]: "sherlock-essential-yearly-eur",
+    [SUBSCRIPTION_PLANS.PREMIUM.toLocaleLowerCase()]: "sherlock-premium-yearly-new-eur"
+  }
 };
 
 const TYPEFORM_IDS = {
@@ -92,5 +106,7 @@ module.exports = {
   SUBSCRIPTION_PLANS,
   TYPEFORM_IDS,
   WHOLESALERS_CATEGORY,
-  rollbarConfig
+  rollbarConfig,
+  SUBSCRIPTION_PLANS_SLUGS,
+  BASIC_PLAN_NAME
 };

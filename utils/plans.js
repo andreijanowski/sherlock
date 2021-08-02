@@ -2,20 +2,28 @@ import {
   API_URL,
   APP_URL,
   SUBSCRIPTION_ENTREPRISE_URL,
-  SUBSCRIPTION_PLANS
+  SUBSCRIPTION_PLANS,
+  SUBSCRIPTION_PLANS_SLUGS
 } from "consts";
 
-export const getNewPlanSlug = (config = {}) => {
+export const getPlanSlug = (config = {}) => {
   const { planName, billingInterval } = config || {};
-  const isPremiumMonthly =
-    planName === "premium" && billingInterval === "month";
-  let newPlanSlug = `sherlock-${planName}-${billingInterval}ly-eur`;
+  return SUBSCRIPTION_PLANS_SLUGS[billingInterval][planName];
+};
 
-  if (isPremiumMonthly) {
-    newPlanSlug = `sherlock-${planName}-${billingInterval}ly-new-eur`;
-  }
+export const getPlanPrice = ({ plans, planName, billingInterval }) => {
+  const planSlug = getPlanSlug({
+    planName: planName.toLowerCase(),
+    billingInterval
+  });
 
-  return newPlanSlug;
+  const relatedPlan =
+    plans && plans.find(p => p.getIn(["attributes", "slug"]) === planSlug);
+
+  if (!relatedPlan) return null;
+
+  const amountInCents = relatedPlan.getIn(["attributes", "amountCents"]);
+  return amountInCents / 100;
 };
 
 /**

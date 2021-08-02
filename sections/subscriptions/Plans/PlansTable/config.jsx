@@ -23,22 +23,7 @@ import { SUBSCRIPTION_PERIOD, SUBSCRIPTION_PLANS } from "consts";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { getNewPlanSlug } from "utils/plans";
-
-const getPlanPrice = ({ plans, planName, billingInterval }) => {
-  const planSlug = getNewPlanSlug({
-    planName: planName.toLowerCase(),
-    billingInterval
-  });
-
-  const relatedPlan =
-    plans && plans.find(p => p.getIn(["attributes", "slug"]) === planSlug);
-
-  if (!relatedPlan) return null;
-
-  const amountInCents = relatedPlan.getIn(["attributes", "amountCents"]);
-  return amountInCents / 100;
-};
+import { getPlanPrice } from "utils/plans";
 
 export const heads = ({ isMonth = true, t, plans }) => {
   const interval = isMonth
