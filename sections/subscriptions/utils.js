@@ -1,22 +1,13 @@
+import { BASIC_PLAN_NAME } from "consts";
+
 const getCurrentPlanNameBySlug = slug => {
-  switch (slug) {
-    case "sherlock-essential-monthly-eur":
-    case "sherlock-essential-yearly-eur": {
-      return "essential";
-    }
-    case "sherlock-premium-monthly-new-eur":
-    case "sherlock-premium-yearly-eur": {
-      return "premium";
-    }
-    default: {
-      return "basic";
-    }
-  }
+  const [, planName] = slug.split("-");
+  return planName;
 };
 
 const basicPlan = {
-  currentPlanName: "basic",
-  nextPlanName: "basic"
+  currentPlanName: BASIC_PLAN_NAME,
+  nextPlanName: BASIC_PLAN_NAME
 };
 
 export const getPlanName = plan => {

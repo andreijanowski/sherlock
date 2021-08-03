@@ -21,7 +21,7 @@ import {
   fetchBusinessSubscriptions,
   fetchBusinessCards
 } from "actions/businesses";
-import { getNewPlanSlug } from "utils/plans";
+import { getPlanSlug } from "utils/plans";
 import { fetchPlans } from "actions/plans";
 
 const namespaces = ["plans", "forms", "app"];
@@ -89,7 +89,7 @@ class SubscriptionsPage extends PureComponent {
             );
         }
       } else {
-        const newPlanSlug = getNewPlanSlug({
+        const newPlanSlug = getPlanSlug({
           planName: planName.toLowerCase(),
           billingInterval
         });
@@ -144,7 +144,7 @@ class SubscriptionsPage extends PureComponent {
       createSubscription(
         businessId,
         stripeToken,
-        getNewPlanSlug({ planName: plan, billingInterval })
+        getPlanSlug({ planName: plan, billingInterval })
       )
         .then(this.goToSuccess)
         .catch(() => this.goToPayments());
@@ -236,6 +236,7 @@ class SubscriptionsPage extends PureComponent {
             {...{
               t,
               lng,
+              plans,
               billingInterval,
               cards,
               notificationError,

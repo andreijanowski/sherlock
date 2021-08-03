@@ -2,6 +2,7 @@ import { func, string, shape, arrayOf, bool } from "prop-types";
 import { PlansBillingInterval, BoldText, Button } from "components";
 import { useCallback } from "react";
 import { Flex, Box } from "@rebass/grid";
+import { BASIC_PLAN_NAME } from "consts";
 import { Wrapper } from "../styled";
 import { getPlanName } from "../utils";
 import Card from "../Payments/Card";
@@ -58,7 +59,7 @@ const PlansSection = ({
           {...{ t, billingInterval, handleChangeBillngPeriod }}
         />
       </Flex>
-      {nextPlanName !== "basic" && (
+      {nextPlanName !== BASIC_PLAN_NAME && (
         <Flex flexDirection="column" mb={4}>
           <Box mr={2} mb={3}>{`${t("paymentInfo")}: `}</Box>
           <Flex>

@@ -2,6 +2,8 @@ import { func, string, arrayOf, shape } from "prop-types";
 import { PlansBillingInterval, Button } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Elements } from "react-stripe-elements";
+import { BASIC_PLAN_NAME } from "consts";
+import { getPlanPrice } from "utils/plans";
 import { Wrapper } from "../styled";
 import { Price, Container, Line } from "./styled";
 // TODO: After MVP use CardsModal for allowing user to choose from saved cards
@@ -11,6 +13,7 @@ import CardForm from "./CardForm";
 
 const PaymentsSection = ({
   t,
+  plans,
   billingInterval,
   handleChangeBillngPeriod,
   // TODO: After MVP use CardsModal for allowing user to choose from saved cards
@@ -27,13 +30,18 @@ const PaymentsSection = ({
   if (chosenPlan) {
     currentPlanName = chosenPlan;
   }
-  let price = t(`plans:${currentPlanName}.price.${billingInterval}`);
-  if (
-    billingInterval === "year" &&
-    (currentPlanName === "premium" || currentPlanName === "basic")
-  ) {
-    price = t(`plans:${currentPlanName}.price.beta`);
-  }
+
+  const price =
+    getPlanPrice({
+      plans,
+      planName: currentPlanName,
+      billingInterval
+    }) || t(`plans:${currentPlanName}.price.${billingInterval}`);
+
+  const translatedBillingInterval = t(
+    `plans:${currentPlanName}.${billingInterval}`
+  );
+
   return (
     <Wrapper>
       <Flex mb={4} justifyContent="space-between" alignItems="center">
@@ -58,13 +66,9 @@ const PaymentsSection = ({
                 {...{ t, billingInterval, handleChangeBillngPeriod }}
               />
               <Price>
-                {price}
-                {(currentPlanName === "premium" ||
-                  currentPlanName === "basic") && (
-                  <small>
-                    /{t(`plans:${currentPlanName}.${billingInterval}`)}
-                  </small>
-                )}
+                {currentPlanName === BASIC_PLAN_NAME
+                  ? price
+                  : `€${price}/${translatedBillingInterval}`}
               </Price>
             </Flex>
           </Container>
@@ -99,7 +103,8 @@ PaymentsSection.propTypes = {
   updateSubscription: func.isRequired,
   notificationError: func.isRequired,
   getBusinessSetupIntent: func.isRequired,
-  chosenPlan: string
+  chosenPlan: string,
+  plans: shape().isRequired
 };
 
 PaymentsSection.defaultProps = {
