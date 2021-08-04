@@ -158,5 +158,7 @@
   "cancel": "Cancel",
   "delete": "Delete",
   "unpublish": "Unpublish",
-  "next": "Next"
+  "next": "Next",
+  "yes": "Yes",
+  "no": "No"
 }

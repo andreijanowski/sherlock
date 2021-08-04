@@ -1,6 +1,12 @@
+import React, { useCallback } from "react";
 import { Flex } from "@rebass/grid";
-import { MainApp, NavigationContainer } from "components";
 import { node, bool, func, string, arrayOf, shape } from "prop-types";
+import { connect } from "react-redux";
+import { LoadingIndicator, MainApp, NavigationContainer, H3 } from "components";
+import { Confirm } from "components/modals";
+import { postBusiness } from "actions/businesses";
+import { logout as logoutAction } from "actions/auth";
+import { BASIC_ROLE } from "sagas/users";
 
 const AppLayout = ({
   children,
@@ -9,26 +15,62 @@ const AppLayout = ({
   mainIcon,
   header,
   t,
-  lng
-}) => (
-  <Flex flexDirection={["column", "row"]} width={1} id="app">
-    <NavigationContainer
-      t={t}
-      lng={lng}
-      withMenu={withMenu}
-      menuItems={menuItems}
-    />
-    <MainApp
-      withMenu={withMenu}
-      mainIcon={mainIcon}
-      header={header}
-      t={t}
-      menuItems={menuItems}
-    >
-      {children}
-    </MainApp>
-  </Flex>
-);
+  lng,
+  role,
+  createBusiness,
+  logout,
+  isFetching
+}) => {
+  const onConfirmModalSubmit = useCallback(() => {
+    createBusiness();
+  }, [createBusiness]);
+
+  const onConfirmModalClose = useCallback(() => {
+    logout();
+  }, [logout]);
+
+  const shouldShowConfirmBOModal = role === BASIC_ROLE;
+
+  return (
+    <Flex flexDirection={["column", "row"]} width={1} id="app">
+      <NavigationContainer
+        t={t}
+        lng={lng}
+        withMenu={withMenu}
+        menuItems={menuItems}
+      />
+      <MainApp
+        withMenu={withMenu}
+        mainIcon={mainIcon}
+        header={header}
+        t={t}
+        menuItems={menuItems}
+      >
+        {children}
+      </MainApp>
+      {shouldShowConfirmBOModal && (
+        <Confirm
+          {...{
+            btnOkText: t("forms:yes"),
+            btnCancelText: t("forms:no"),
+            open: true,
+            restyled: true,
+            onConfirm: onConfirmModalSubmit,
+            onClose: onConfirmModalClose
+          }}
+        >
+          {isFetching ? (
+            <Flex pt={6} width={1} alignItems="center" justifyContent="center">
+              <LoadingIndicator />
+            </Flex>
+          ) : (
+            <H3>{t("app:becomeBOPrompt")}</H3>
+          )}
+        </Confirm>
+      )}
+    </Flex>
+  );
+};
 
 AppLayout.propTypes = {
   children: node.isRequired,
@@ -44,14 +86,36 @@ AppLayout.propTypes = {
   mainIcon: string,
   header: node,
   t: func.isRequired,
-  lng: string.isRequired
+  lng: string.isRequired,
+  isFetching: bool.isRequired,
+  createBusiness: func.isRequired,
+  logout: func.isRequired,
+  role: string
 };
 
 AppLayout.defaultProps = {
   menuItems: null,
   withMenu: false,
   mainIcon: null,
-  header: null
+  header: null,
+  role: null
 };
 
-export default AppLayout;
+export default connect(
+  state => {
+    const isFetching = state.getIn(["users", "currentBusiness", "isFetching"]);
+
+    const users = state.getIn(["users", "profile", "data", "users"]);
+    const user = users && users.first();
+    const role = user && user.getIn(["attributes", "role"]);
+
+    return {
+      isFetching,
+      role
+    };
+  },
+  {
+    createBusiness: postBusiness,
+    logout: logoutAction
+  }
+)(AppLayout);

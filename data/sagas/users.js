@@ -1,5 +1,5 @@
 import { i18n } from "i18n";
-import { fetchProfileBusiness } from "actions/users";
+import { fetchProfileBusiness, fetchProfile } from "actions/users";
 import {
   fetchBusinessMembers,
   fetchBusinessDeliveries,
@@ -23,6 +23,8 @@ import { setCurrentBusiness } from "actions/app";
 import { fetchCategories } from "actions/categories";
 import { fetchBusinessPartnerships } from "actions/integrations";
 import fetchAllBusinessData from "./utils/fetchAllBusinessData";
+
+export const BASIC_ROLE = "basic";
 
 function* fetchBusinessData({ payload: { id } }) {
   const lang = i18n.language;
@@ -77,6 +79,15 @@ function* onBusinessCreated(data) {
   } = data;
   if (onSuccess) {
     yield call(onSuccess);
+  }
+
+  const profile = yield select(state =>
+    state.getIn(["users", "profile", "data", "users"]).first()
+  );
+
+  const role = profile && profile.getIn(["attributes", "role"]);
+  if (role === BASIC_ROLE) {
+    yield put(fetchProfile());
   }
 }
 
