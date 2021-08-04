@@ -106,12 +106,6 @@ const EditPrivatisationForm = ({
             />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
-            <FormInput
-              name="numberOfWaiters"
-              label={t("events:createEvent.numberOfWaiters")}
-            />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
             <Field
               name="chefAttendance"
               component={FormDropdown}
@@ -143,12 +137,6 @@ const EditPrivatisationForm = ({
                   value: false
                 }
               ]}
-            />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <FormInput
-              name="companyName"
-              label={t("events:createEvent.companyName")}
             />
           </Box>
           <Box width={1} px={2}>

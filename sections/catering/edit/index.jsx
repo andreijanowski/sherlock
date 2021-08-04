@@ -125,23 +125,6 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
             <Field
-              name="cutlery"
-              component={FormDropdown}
-              label={t("events:createEvent.cutlery")}
-              items={[
-                {
-                  label: t("events:createEvent.cutleryOption.yes"),
-                  value: true
-                },
-                {
-                  label: t("events:createEvent.cutleryOption.no"),
-                  value: false
-                }
-              ]}
-            />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <Field
               name="chefAttendance"
               component={FormDropdown}
               label={t("events:createEvent.chefAttendance")}

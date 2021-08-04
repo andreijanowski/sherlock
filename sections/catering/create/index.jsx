@@ -168,12 +168,6 @@ const CreateCateringForm = ({ t, lng, isSending, handleFormSubmit }) => (
             />
           </Box>
           <Box width={[1, 1 / 2]} px={2}>
-            <FormInput
-              name="numberOfWaiters"
-              label={t("events:createEvent.numberOfWaiters")}
-            />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
             <Field
               name="outdoors"
               component={FormDropdown}
@@ -190,23 +184,7 @@ const CreateCateringForm = ({ t, lng, isSending, handleFormSubmit }) => (
               ]}
             />
           </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <Field
-              name="cutlery"
-              component={FormDropdown}
-              label={t("events:createEvent.cutlery")}
-              items={[
-                {
-                  label: t("events:createEvent.cutleryOption.yes"),
-                  value: true
-                },
-                {
-                  label: t("events:createEvent.cutleryOption.no"),
-                  value: false
-                }
-              ]}
-            />
-          </Box>
+
           <Box width={[1, 1 / 2]} px={2}>
             <Field
               name="chefAttendance"
@@ -239,12 +217,6 @@ const CreateCateringForm = ({ t, lng, isSending, handleFormSubmit }) => (
                   value: false
                 }
               ]}
-            />
-          </Box>
-          <Box width={[1, 1 / 2]} px={2}>
-            <FormInput
-              name="companyName"
-              label={t("events:createEvent.companyName")}
             />
           </Box>
           <Box width={1} px={2}>

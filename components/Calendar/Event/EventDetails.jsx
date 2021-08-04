@@ -70,10 +70,6 @@ const EventDetails = ({
         <DetailContent>{event.resource.numberOfServings}</DetailContent>
       </Detail>
       <Detail>
-        <DetailName>{t("events:waiters")}</DetailName>
-        <DetailContent>{event.resource.numberOfWaiters}</DetailContent>
-      </Detail>
-      <Detail>
         <DetailName>{t("events:outdoors")}</DetailName>
         <DetailContent>
           {event.resource.outdoors ? t("events:yes") : t("events:no")}
@@ -83,12 +79,6 @@ const EventDetails = ({
         <DetailName>{t("events:corporateEvent")}</DetailName>
         <DetailContent>
           {event.resource.corporateEvent ? t("events:yes") : t("events:no")}
-        </DetailContent>
-      </Detail>
-      <Detail>
-        <DetailName>{t("events:cutlery")}</DetailName>
-        <DetailContent>
-          {event.resource.cutlery ? t("events:yes") : t("events:no")}
         </DetailContent>
       </Detail>
       <Detail>
