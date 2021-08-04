@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 import { takeEvery, put, putResolve, all, select } from "redux-saga/effects";
+import Notifications from "react-notification-system-redux";
 import {
   fetchProfile,
   fetchProfileBusinesses,
@@ -7,7 +8,6 @@ import {
   fetchProfileSubscriptions
 } from "actions/users";
 import { fetchGroups } from "actions/groups";
-import { postBusiness } from "actions/businesses";
 import {
   LOAD_USER_DATA,
   REFRESH_TOKEN_SUCCESS,
@@ -17,7 +17,6 @@ import {
 import { API_URL, APP_URL } from "consts";
 import { setCurrentBusiness, saveCurrentUserId } from "actions/app";
 import { refreshToken } from "actions/auth";
-import Notifications from "react-notification-system-redux";
 import isServer from "utils/isServer";
 import fetchAllUserData from "./utils/fetchAllUserData";
 
@@ -59,8 +58,6 @@ function* fetchUserData() {
     } else {
       yield put(setCurrentBusiness(profileBusinesses.first().get("id")));
     }
-  } else {
-    yield put(postBusiness());
   }
   yield put(saveCurrentUserId(userId));
 }
