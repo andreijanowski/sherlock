@@ -238,7 +238,7 @@ export const fetchBusinessSubscriptions = (id, page = 1) => ({
   type: FETCH_BUSINESS_SUBSCRIPTIONS_REQUEST,
   payload: {
     endpoint: `/api/v1/businesses/${id}/subscriptions`,
-    params: { per_page: PER_PAGE, page }
+    params: { per_page: PER_PAGE, page, "filter[scope]": "not_terminated" }
   },
   meta: { thunk: true }
 });

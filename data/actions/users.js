@@ -69,7 +69,7 @@ export const fetchProfileSubscriptions = () => ({
   type: FETCH_PROFILE_SUBSCRIPTIONS_REQUEST,
   payload: {
     endpoint: "/api/v1/users/me/subscriptions",
-    params: { per_page: 200, page: 1 }
+    params: { per_page: 200, page: 1, "filter[scope]": "not_terminated" }
   },
   meta: { thunk: true }
 });
