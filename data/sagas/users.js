@@ -33,10 +33,10 @@ function* fetchBusinessData({ payload: { id } }) {
     state.getIn(["users", "profile", "data", "users"]).first()
   );
 
-  const subscriptionInEffect =
-    profile && profile.getIn(["attributes", "subscriptionInEffect"]);
+  const subscriptionNotTerminated =
+    profile && profile.getIn(["attributes", "subscriptionNotTerminated"]);
 
-  if (!subscriptionInEffect) {
+  if (!subscriptionNotTerminated) {
     yield fetchAllBusinessData(fetchBusinessCards, id);
     yield fetchAllBusinessData(fetchBusinessSubscriptions, id);
   }
