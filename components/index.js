@@ -98,3 +98,4 @@ export {
 export { default as ImportModal } from "./ImportModal";
 export { default as StripeSetupModal } from "./StripeSetupModal";
 export { default as CurrencyGuard } from "./CurrencyGuard";
+export { default as Input } from "./Input";
