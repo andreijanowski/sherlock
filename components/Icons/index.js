@@ -50,7 +50,8 @@ export {
   SearchIcon,
   CloseIcon,
   UploadFileIcon,
-  CircleWarningIcon
+  CircleWarningIcon,
+  AcceptedDetectiveIcon
 } from "./mainControls";
 export {
   Orders,

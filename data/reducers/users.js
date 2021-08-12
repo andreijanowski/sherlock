@@ -29,7 +29,10 @@ import {
   FETCH_BUSINESS_CARDS_FAIL,
   FETCH_BUSINESS_SUBSCRIPTIONS_REQUEST,
   FETCH_BUSINESS_SUBSCRIPTIONS_SUCCESS,
-  FETCH_BUSINESS_SUBSCRIPTIONS_FAIL
+  FETCH_BUSINESS_SUBSCRIPTIONS_FAIL,
+  FETCH_BUSINESS_CLIENTS_REQUEST,
+  FETCH_BUSINESS_CLIENTS_SUCCESS,
+  FETCH_BUSINESS_CLIENTS_FAIL
 } from "types/businesses";
 import { POST_PICTURE_SUCCESS, DELETE_PICTURE_REQUEST } from "types/pictures";
 import {
@@ -103,6 +106,13 @@ export const initialState = Record({
   })(),
   subscriptions: Record({
     data: null,
+    isFetching: false,
+    isFailed: false,
+    isSucceeded: false
+  })(),
+  clients: Record({
+    data: null,
+    totalCount: 0,
     isFetching: false,
     isFailed: false,
     isSucceeded: false
@@ -533,6 +543,48 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     case FETCH_BUSINESS_SUBSCRIPTIONS_FAIL: {
       return state.mergeIn(
         ["subscriptions"],
+        Record({
+          isFetching: false,
+          isFailed: true
+        })()
+      );
+    }
+
+    case FETCH_BUSINESS_CLIENTS_REQUEST: {
+      return state.mergeIn(
+        ["clients"],
+        Record({
+          isFetching: true,
+          isFailed: false,
+          isSucceeded: false
+        })()
+      );
+    }
+    case FETCH_BUSINESS_CLIENTS_SUCCESS: {
+      let newState = state.mergeIn(
+        ["clients"],
+        Record({
+          isFetching: false,
+          isSucceeded: true
+        })()
+      );
+
+      if (meta.page === 1) {
+        newState = newState
+          .setIn(["clients", "data"], fromJS(payload.data.users))
+          .setIn(["clients", "totalCount"], payload.rawData.meta.totalCount);
+      } else {
+        newState = newState.mergeIn(
+          ["clients", "data"],
+          fromJS(payload.data.users)
+        );
+      }
+
+      return newState;
+    }
+    case FETCH_BUSINESS_CLIENTS_FAIL: {
+      return state.mergeIn(
+        ["clients"],
         Record({
           isFetching: false,
           isFailed: true

@@ -15,7 +15,8 @@ import {
   FETCH_BUSINESS_SETUP_INTENT_REQUEST,
   FETCH_BUSINESS_SERVICE_LINKS_REQUEST,
   FETCH_BUSINESS_CARDS_REQUEST,
-  FETCH_BUSINESS_SUBSCRIPTIONS_REQUEST
+  FETCH_BUSINESS_SUBSCRIPTIONS_REQUEST,
+  FETCH_BUSINESS_CLIENTS_REQUEST
 } from "types/businesses";
 
 const PER_PAGE = 200;
@@ -241,4 +242,13 @@ export const fetchBusinessSubscriptions = (id, page = 1) => ({
     params: { per_page: PER_PAGE, page, "filter[scope]": "not_terminated" }
   },
   meta: { thunk: true }
+});
+
+export const fetchBusinessClients = (id, page = 1, search) => ({
+  type: FETCH_BUSINESS_CLIENTS_REQUEST,
+  payload: {
+    endpoint: `/api/v1/businesses/${id}/clients`,
+    params: { per_page: PER_PAGE, page, search }
+  },
+  meta: { thunk: true, page }
 });
