@@ -31,9 +31,15 @@ const Search = ({ t, onSearchUpdate, currentBusinessId }) => {
         value={value}
         onChange={onChange}
       />
-      <InputIcon onClick={value ? clearValue : undefined}>
-        {value ? <CloseIcon /> : <SearchIcon />}
-      </InputIcon>
+      {value ? (
+        <InputIcon onClick={clearValue}>
+          <CloseIcon />
+        </InputIcon>
+      ) : (
+        <InputIcon>
+          <SearchIcon />
+        </InputIcon>
+      )}
     </InputWrapper>
   );
 };

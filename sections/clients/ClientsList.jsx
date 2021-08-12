@@ -19,6 +19,7 @@ import {
 
 const INITIAL_PAGE = 1;
 const INITIAL_SEARCH = "";
+const INPUT_DELAY = 300;
 
 const ClientsList = ({
   t,
@@ -46,7 +47,7 @@ const ClientsList = ({
       setPage(INITIAL_PAGE);
       setSearch(newSearch);
       fetchBusinessClients(currentBusinessId, INITIAL_PAGE, newSearch);
-    }, 300),
+    }, INPUT_DELAY),
     [currentBusinessId]
   );
 
