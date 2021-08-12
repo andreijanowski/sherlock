@@ -23,9 +23,9 @@ const ClientsTable = ({
         <thead>
           <tr>
             <TableHeadCell>{t("clients:table.name")}</TableHeadCell>
-            <TableHeadCell>{t("clients:table.budget")}</TableHeadCell>
             <TableHeadCell>{t("clients:table.email")}</TableHeadCell>
             <TableHeadCell>{t("clients:table.phone")}</TableHeadCell>
+            <TableHeadCell>{t("clients:table.budget")}</TableHeadCell>
           </tr>
         </thead>
         <tbody>

@@ -49,9 +49,9 @@ const ClientsTableRow = ({ t, client, onClientClick, isActive }) => {
           </Box>
         </Flex>
       </TableDataCell>
-      <TableDataCell>€{totalMonthlyBudget}</TableDataCell>
       <TableDataCell title={email}>{email}</TableDataCell>
       <TableDataCell>{phone}</TableDataCell>
+      <TableDataCell>€{totalMonthlyBudget}</TableDataCell>
     </TableDataRow>
   );
 };
