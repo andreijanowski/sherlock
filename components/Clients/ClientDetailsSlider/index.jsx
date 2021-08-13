@@ -8,8 +8,6 @@ import { AcceptedDetectiveIcon, CloseIcon } from "components/Icons";
 import {
   SlideWrapper,
   ContentWrapper,
-  Avatar,
-  Name,
   MainInfoTags,
   MainInfoTag,
   Section,
@@ -19,8 +17,7 @@ import {
   PersonalInfoValue,
   Tags,
   Tag,
-  Currency,
-  DetectiveLabel
+  Currency
 } from "./styled";
 import {
   BUDGET_KEYS,
@@ -30,20 +27,27 @@ import {
   TOTAL_BUDGET_KEY,
   ALLERGIES_KEY
 } from "../utils";
+import { Avatar, DetectiveLabel, Name } from "../styled";
 
 const PAGE_WRAP_ID = "app";
 const OUTER_CONTAINER_ID = "layout";
 const SLIDER_WIDTH = 400;
 
-const slideStyles = {
+const getSlideStyles = isMobile => ({
   bmCrossButton: {
-    top: "15px",
+    top: isMobile ? "75px" : "15px",
     right: "15px",
     fontSize: "24px"
   }
-};
+});
 
-const ClientDetailsSlider = ({ t, isOpen, client, onStateChange }) => {
+const ClientDetailsSlider = ({
+  t,
+  isOpen,
+  client,
+  onStateChange,
+  isMobile
+}) => {
   const {
     avatar,
     name,
@@ -80,6 +84,8 @@ const ClientDetailsSlider = ({ t, isOpen, client, onStateChange }) => {
 
   const hasTags = !!renderedTags.filter(Boolean).length;
 
+  const slideStyles = useMemo(() => getSlideStyles(isMobile), [isMobile]);
+
   return (
     <SlideWrapper>
       <Slide
@@ -88,25 +94,27 @@ const ClientDetailsSlider = ({ t, isOpen, client, onStateChange }) => {
         pageWrapId={PAGE_WRAP_ID}
         outerContainerId={OUTER_CONTAINER_ID}
         right
-        width={SLIDER_WIDTH}
+        width={isMobile ? "100%" : SLIDER_WIDTH}
         customCrossIcon={<CloseIcon />}
         styles={slideStyles}
       >
         {client && (
-          <ContentWrapper>
+          <ContentWrapper isMobile={isMobile}>
             <Flex flexDirection="column" alignItems="center">
               <Box mb={48}>
                 <Flex mb={3} justifyContent="center">
-                  <Avatar src={avatar} />
+                  <Avatar src={avatar} big />
                 </Flex>
-                <Name>{name}</Name>
+                <Name big>{name}</Name>
                 {acceptedFoodDetective && (
-                  <DetectiveLabel>
+                  <Flex justifyContent="center" alignItems="center">
                     <Box mr="6px">
                       <AcceptedDetectiveIcon />
                     </Box>
-                    {t("clients:acceptedDetective")}
-                  </DetectiveLabel>
+                    <DetectiveLabel>
+                      {t("clients:acceptedDetective")}
+                    </DetectiveLabel>
+                  </Flex>
                 )}
                 {!!mainInfo.length && (
                   <MainInfoTags>
@@ -153,6 +161,7 @@ const ClientDetailsSlider = ({ t, isOpen, client, onStateChange }) => {
 ClientDetailsSlider.propTypes = {
   t: func.isRequired,
   isOpen: bool.isRequired,
+  isMobile: bool.isRequired,
   onStateChange: func.isRequired,
   client: shape()
 };

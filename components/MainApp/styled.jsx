@@ -8,6 +8,14 @@ export const Wrapper = styled(Flex).attrs(() => ({
   mt: [60, 0]
 }))`
   position: relative;
+  ${p =>
+    p.mainIcon === "clients" &&
+    `
+      background: rgb(${p.theme.colors.white});
+      @media (min-width: ${p.theme.breakpoints[2]}) {
+        background: transparent;
+      }
+  `}
 `;
 
 export const HeaderWrapper = styled(Flex).attrs(() => ({

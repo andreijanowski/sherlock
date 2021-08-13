@@ -54,7 +54,7 @@ const MainApp = ({
   }, [shouldPlayNotification, toggleSound]);
 
   return (
-    <Wrapper withMenu={withMenu}>
+    <Wrapper withMenu={withMenu} mainIcon={mainIcon}>
       {!isAccountConfirmed && <InfoBar info={t("app:confirmAccount")} />}
       <HeaderWrapper>
         <Flex alignItems="center">

@@ -12,19 +12,26 @@ const ClientsFilter = ({
   onSearchUpdate,
   currentBusinessId
 }) => (
-  <Pane justifyContent="space-between" alignItems="center" mb={4}>
-    <Flex alignItems="center">
-      <Box mr="4">
-        <TotalClientsCount>{totalCount}</TotalClientsCount>
-      </Box>
-      <TotalClientsLabel>{t("clients:total")}</TotalClientsLabel>
-    </Flex>
-    <Search
-      t={t}
-      onSearchUpdate={onSearchUpdate}
-      currentBusinessId={currentBusinessId}
-    />
-  </Pane>
+  <>
+    <Pane
+      justifyContent={["center", "center", "center", "space-between"]}
+      alignItems="center"
+      flexWrap="wrap"
+      mb={[3, 3, 3, 4]}
+    >
+      <Flex alignItems="center" mb={[3, 3, 3, 0]}>
+        <Box mr={[3, 3, 3, 4]}>
+          <TotalClientsCount>{totalCount}</TotalClientsCount>
+        </Box>
+        <TotalClientsLabel>{t("clients:total")}</TotalClientsLabel>
+      </Flex>
+      <Search
+        t={t}
+        onSearchUpdate={onSearchUpdate}
+        currentBusinessId={currentBusinessId}
+      />
+    </Pane>
+  </>
 );
 
 ClientsFilter.propTypes = {

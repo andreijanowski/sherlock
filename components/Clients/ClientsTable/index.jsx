@@ -2,7 +2,7 @@ import React from "react";
 import { func, shape, number } from "prop-types";
 
 import { ExpandIconRestyled } from "components/Icons";
-import { Table, TableHeadCell, LoadMoreButton, TableDataRow } from "./styled";
+import { Table, TableHeadCell, TableDataRow, LoadMoreButton } from "./styled";
 import ClientsTableRow from "./ClientsTableRow";
 import { Pane } from "../styled";
 

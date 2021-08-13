@@ -40,34 +40,6 @@ export const TableDataRow = styled.tr`
   }
 `;
 
-export const Avatar = styled.img`
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  object-fit: cover;
-  background: rgb(${p => p.theme.colors.background});
-`;
-
-export const AvatarWrapper = styled.div`
-  position: relative;
-`;
-
-export const Name = styled.div`
-  white-space: nowrap;
-  color: rgb(${p => p.theme.colors.black});
-  font-weight: ${p => p.theme.fontWeights.bold};
-  font-size: ${p => p.theme.fontSizes.f16};
-  line-height: 18px;
-`;
-
-export const DetectiveLabel = styled.div`
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: ${p => p.theme.fontSizes.f14};
-  line-height: 1;
-  text-align: left;
-  color: rgb(${p => p.theme.colors.blue});
-`;
-
 export const DetectiveIconWrapper = styled.div`
   position: absolute;
   top: -5px;
