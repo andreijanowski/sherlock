@@ -38,7 +38,8 @@ export {
   StockManagement,
   Photography,
   DeliveryManagement,
-  Analytics
+  Analytics,
+  ChevronDown
 } from "./navigation";
 export {
   Docs,
@@ -50,7 +51,9 @@ export {
   SearchIcon,
   CloseIcon,
   UploadFileIcon,
-  CircleWarningIcon
+  CircleWarningIcon,
+  Arrow,
+  ArrowDown
 } from "./mainControls";
 export {
   Orders,

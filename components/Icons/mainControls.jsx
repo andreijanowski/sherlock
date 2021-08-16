@@ -221,3 +221,53 @@ export const CircleWarningIcon = () => (
     />
   </svg>
 );
+
+export const Arrow = () => (
+  <svg
+    width="15"
+    height="14"
+    viewBox="0 0 15 14"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M7.61475 12L7.61475 2"
+      stroke="#4C68FF"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M2 7L7.5 2L13 7"
+      stroke="#4C68FF"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const ArrowDown = () => (
+  <svg
+    width="16"
+    height="14"
+    viewBox="0 0 16 14"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8.00012 2L8.00012 12"
+      stroke="#F38176"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M14 7L8 12L2 7"
+      stroke="#F38176"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);

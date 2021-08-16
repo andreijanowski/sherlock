@@ -37,7 +37,7 @@ export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
     basePath: "/app/dashboard",
     route: "/app/dashboard/",
     Icon: Dashboard,
-    label: t("app:dashboard")
+    label: t("app:dashboardView.dashboard")
   },
   {
     basePath: "/app/integrations",

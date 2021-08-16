@@ -94,6 +94,10 @@
     "FMCG": "FMCG"
   },
   "dashboard": "Dashboard",
+  "dashboardView": {
+    "dashboard": "Dashboard",
+    "businessOverview": "Business Overview"
+  },
   "integrationHub": "Integration Hub",
   "appManager": "Menu management",
   "payments": "Payments",
