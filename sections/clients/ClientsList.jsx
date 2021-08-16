@@ -14,12 +14,16 @@ import { fetchBusinessClients as fetchBusinessClientsActions } from "actions/bus
 import {
   ClientsFilter,
   ClientsTable,
-  ClientDetailsSlider
+  ClientDetailsSlider,
+  ClientsCards
 } from "components/Clients";
+import { useWindowWidthLessThen } from "utils/hooks";
 
 const INITIAL_PAGE = 1;
 const INITIAL_SEARCH = "";
 const INPUT_DELAY = 300;
+const MOBILE_THRESHOLD = 640;
+const TABLET_THRESHOLD = 1024;
 
 const ClientsList = ({
   t,
@@ -63,6 +67,9 @@ const ClientsList = ({
     setSearch(INITIAL_SEARCH);
   }, [currentBusinessId]);
 
+  const isMobile = useWindowWidthLessThen(MOBILE_THRESHOLD);
+  const isTablet = useWindowWidthLessThen(TABLET_THRESHOLD);
+
   return (
     <>
       <ClientsFilter
@@ -71,15 +78,26 @@ const ClientsList = ({
         onSearchUpdate={onSearchUpdate}
         currentBusinessId={currentBusinessId}
       />
-      <ClientsTable
-        t={t}
-        clients={clients}
-        totalCount={totalCount}
-        activeClient={activeClient}
-        onClientClick={onClientClick}
-        onLoadMoreClick={onLoadMoreClick}
-      />
-      <ClientDetailsSlider t={t} client={activeClient} />
+      {isTablet ? (
+        <ClientsCards
+          t={t}
+          clients={clients}
+          totalCount={totalCount}
+          activeClient={activeClient}
+          onClientClick={onClientClick}
+          onLoadMoreClick={onLoadMoreClick}
+        />
+      ) : (
+        <ClientsTable
+          t={t}
+          clients={clients}
+          totalCount={totalCount}
+          activeClient={activeClient}
+          onClientClick={onClientClick}
+          onLoadMoreClick={onLoadMoreClick}
+        />
+      )}
+      <ClientDetailsSlider t={t} client={activeClient} isMobile={isMobile} />
     </>
   );
 };

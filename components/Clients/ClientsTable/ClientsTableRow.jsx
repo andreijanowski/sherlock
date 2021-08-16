@@ -3,16 +3,9 @@ import { func, shape, bool } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 
 import { AcceptedDetectiveIcon } from "components/Icons";
-import {
-  TableDataCell,
-  Avatar,
-  Name,
-  TableDataRow,
-  DetectiveIconWrapper,
-  AvatarWrapper,
-  DetectiveLabel
-} from "./styled";
+import { TableDataCell, TableDataRow, DetectiveIconWrapper } from "./styled";
 import { getClientDetails } from "../utils";
+import { Avatar, AvatarWrapper, Name, DetectiveLabel } from "../styled";
 
 const ClientsTableRow = ({ t, client, onClientClick, isActive }) => {
   const onRowClick = useCallback(() => {
@@ -33,7 +26,7 @@ const ClientsTableRow = ({ t, client, onClientClick, isActive }) => {
         <Flex alignItems="center">
           <Box mr={3}>
             <AvatarWrapper>
-              <Avatar src={avatar} />
+              <Avatar src={avatar} small />
               {acceptedFoodDetective && (
                 <DetectiveIconWrapper>
                   <AcceptedDetectiveIcon />

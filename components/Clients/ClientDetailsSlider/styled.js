@@ -10,28 +10,11 @@ export const SlideWrapper = styled.div`
 export const ContentWrapper = styled.div`
   min-height: 100%;
   overflow: auto;
-  padding: 38px 36px;
+  padding: ${p => (p.isMobile ? "98px 36px 38px" : "38px 36px")};
   background: rgb(${p => p.theme.colors.white});
   &:focus {
     outline: none;
   }
-`;
-
-export const Avatar = styled.img`
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  object-fit: cover;
-  background: rgb(${p => p.theme.colors.background});
-`;
-
-export const Name = styled.div`
-  white-space: nowrap;
-  color: rgb(${p => p.theme.colors.black});
-  font-weight: ${p => p.theme.fontWeights.bold};
-  font-size: ${p => p.theme.fontSizes.f24};
-  line-height: 36px;
-  letter-spacing: 3.7px;
 `;
 
 export const MainInfoTags = styled.ul`
@@ -121,14 +104,4 @@ export const Currency = styled(Box).attrs({ mb: 24 })`
   &:last-child {
     margin-bottom: 0;
   }
-`;
-
-export const DetectiveLabel = styled(Flex).attrs({
-  justifyContent: "center",
-  alignItems: "center"
-})`
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: ${p => p.theme.fontSizes.f14};
-  line-height: 21px;
-  color: rgb(${p => p.theme.colors.blue});
 `;

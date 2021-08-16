@@ -7,25 +7,35 @@ export const TotalClientsCount = styled.div`
   padding: 0 20px;
   color: rgb(${p => p.theme.colors.darkText});
   font-weight: ${p => p.theme.fontWeights.semiBold};
-  font-size: ${p => p.theme.fontSizes.f28};
-  line-height: 42px;
+  font-size: ${p => p.theme.fontSizes.f21};
+  line-height: 31px;
   background: rgba(${p => p.theme.colors.violet}, 0.3);
   border-radius: ${p => p.theme.radius.default};
+  @media (min-width: ${p => p.theme.breakpoints[2]}) {
+    font-size: ${p => p.theme.fontSizes.f28};
+    line-height: 42px;
+  }
 `;
 
 export const TotalClientsLabel = styled(H3)`
   margin-bottom: 0;
   color: rgb(${p => p.theme.colors.black});
+  font-size: ${p => p.theme.fontSizes.f18};
+  line-height: 27px;
   font-weight: ${p => p.theme.fontWeights.semiBold};
-  font-size: ${p => p.theme.fontSizes.f28};
-  line-height: 42px;
+  @media (min-width: ${p => p.theme.breakpoints[2]}) {
+    font-size: ${p => p.theme.fontSizes.f28};
+    line-height: 42px;
+  }
 `;
 
 export const InputWrapper = styled.div`
   position: relative;
-  max-width: 270px;
   width: 100%;
-  margin-left: 16px;
+  @media (min-width: ${p => p.theme.breakpoints[2]}) {
+    max-width: 270px;
+    margin-left: 16px;
+  }
 `;
 
 export const Input = styled(BaseInput)`
