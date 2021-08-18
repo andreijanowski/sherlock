@@ -14,7 +14,7 @@ import Sales from "components/Dashboard/sales";
 import LineChart from "components/Dashboard/lineChart";
 import Stream from "components/Dashboard/stream";
 import EvaluationChart from "components/Dashboard/evaluationChart";
-import { Tile, TileHeader } from "components/Dashboard/styled";
+import { Tile, TileHeader, TileWrapper } from "components/Dashboard/styled";
 
 const namespaces = ["dashboardView", "app"];
 
@@ -39,16 +39,19 @@ const Dashboard = ({ t, lng }) => (
     t={t}
     lng={lng}
   >
-    <Flex flexDirection={["column", "column", "row"]} width={1}>
-      <Tile width={[1, 1 / 2, 1 / 2]}>
-        <TileHeader isBig>Business overview</TileHeader>{" "}
-        <Flex flexDirection="row">
-          <Flex width={[1, 1 / 2, 1 / 2]} flexDirection="column">
+    <TileWrapper width={1}>
+      <Tile width={1}>
+        <TileHeader isBig>Business overview</TileHeader>
+        <Flex
+          justifyContent="space-between"
+          flexDirection={["column", "column", "row"]}
+        >
+          <Flex width={[1, 1, 1, 31 / 64]} flexDirection="column">
             <BarTile isDown={salesList.isDown} withDroprown color="turquoise" />
             <BarTile color="salmon" />
             <BarTile color="royalblue" />
           </Flex>
-          <Flex width={[1, 1 / 2, 1 / 2]} flexDirection="column">
+          <Flex width={[1, 1, 1, 31 / 64]} flexDirection="column">
             <ProgressBarTile />
             <Tile height={424}>
               <TileHeader>Payment chart</TileHeader>
@@ -57,9 +60,9 @@ const Dashboard = ({ t, lng }) => (
           </Flex>
         </Flex>
       </Tile>
-      <Tile width={[1, 1 / 2, 1 / 2]}>
+      <Tile width={1}>
         <TileHeader isBig>Todays activity</TileHeader>
-        <Flex>
+        <Flex flexDirection={["column", "column", "row"]}>
           <Stream />
           <Flex width={1} flexDirection="column">
             <Sales salesList={salesList} title="Best Sales" />
@@ -67,14 +70,17 @@ const Dashboard = ({ t, lng }) => (
           </Flex>
         </Flex>
       </Tile>
-    </Flex>
+    </TileWrapper>
     <Tile>
-      <Flex justifyContent="space-between">
+      <Flex flexDirection={["column", "column", "column", "row"]}>
         <LineChart title="Consultation" />
         <LineChart isDown title="total number of comments" />
         <EvaluationChart title="Consultation" isDown />
       </Flex>
-      <Flex justifyContent="space-between">
+      <Flex
+        flexDirection={["column", "column", "column", "row"]}
+        justifyContent="space-between"
+      >
         <LineChart title="Daily Budget" isDown />
         <LineChart title="Offers & Promotions" />
         <LineChart title="Hours Worked" isDown />

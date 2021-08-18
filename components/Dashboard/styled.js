@@ -4,6 +4,11 @@ import { Flex } from "@rebass/grid";
 export const DashboardWrapper = styled(Flex)`
   flex-direction: column;
 `;
+export const TileWrapper = styled(Flex)`
+  @media (max-width: ${p => p.theme.breakpointsPx[3]}) {
+    flex-direction: column;
+  }
+`;
 
 export const Tile = styled(Flex)`
   justify-content: center;
@@ -11,12 +16,15 @@ export const Tile = styled(Flex)`
   box-shadow: 0px 0px 17px rgba(55, 81, 255, 0.15);
   box-sizing: border-box;
   border-radius: ${p => (p.withoutRadius ? "0px" : "13px")};
-  padding: 20px;
-  margin: 12px;
+  padding: 16px;
+  margin: 8px;
   ${p => p.height && `height:  ${p.height}px`};
   ${p => p.height && `max-height:  ${p.height}px`};
   background-color: ${p => `rgb(${p.theme.colors.white})`};
   position: relative;
+  @media (max-width: ${p => p.theme.breakpoints[3]}) {
+    margin: 6px;
+  }
 `;
 
 export const TileHeader = styled.h2`

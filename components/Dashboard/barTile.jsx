@@ -7,7 +7,7 @@ import { getRandomInt } from "./utils";
 import { Percentage, Tile, TileHeader } from "./styled";
 
 const BarTile = ({ color, isDown }) => (
-  <Tile height="200" isSmall>
+  <Tile width={1} height="200" isSmall>
     <Flex mb={10} justifyContent="space-between">
       <TileHeader>Data 2</TileHeader>
       <Flex justifyContent="space-between">

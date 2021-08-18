@@ -1,5 +1,5 @@
 import React from "react";
-import { PieChart, Pie, Cell, Legend } from "recharts";
+import { PieChart, Pie, Cell, Legend, ResponsiveContainer } from "recharts";
 import { Flex } from "@rebass/grid";
 import { shape } from "prop-types";
 import { randomChartGenerator } from "./utils";
@@ -30,20 +30,22 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 const data = randomChartGenerator(true);
 
 export const PaymentChart = () => (
-  <PieChart width={256} height={384}>
-    <Pie
-      data={data}
-      dataKey="value"
-      cy={92}
-      innerRadius={50}
-      outerRadius={85}
-      fill="#8884d8"
-      activeIndex={2}
-    >
-      {data.map((entry, index) => (
-        <Cell key={`cell-${entry.id}`} fill={COLORS[index % COLORS.length]} />
-      ))}
-    </Pie>
-    <Legend content={<CustomizedLegend />} />
-  </PieChart>
+  <ResponsiveContainer width="100%">
+    <PieChart width={256} height={384}>
+      <Pie
+        data={data}
+        dataKey="value"
+        cy={92}
+        innerRadius={50}
+        outerRadius={85}
+        fill="#8884d8"
+        activeIndex={2}
+      >
+        {data.map((entry, index) => (
+          <Cell key={`cell-${entry.id}`} fill={COLORS[index % COLORS.length]} />
+        ))}
+      </Pie>
+      <Legend content={<CustomizedLegend />} />
+    </PieChart>
+  </ResponsiveContainer>
 );
