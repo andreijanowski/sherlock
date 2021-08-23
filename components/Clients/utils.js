@@ -24,7 +24,7 @@ export const TAGS_KEYS = [
 
 export const EMPTY_VALUE = "—";
 const AVATAR_PLACEHOLDER_URL = "/static/img/avatarPlaceholder.png";
-const BIRTHDAY_FORMAT = "LL";
+const BIRTHDAY_FORMAT = "DD/MM/YYYY";
 
 const prepareStringTags = arr => arr.filter(Boolean).map(str => str.trim());
 
@@ -32,14 +32,14 @@ export const getClientAvatar = client =>
   client.getIn(["attributes", "avatar", "url"]) || AVATAR_PLACEHOLDER_URL;
 
 export const getClientPhone = client => {
-  const phone = [
-    client.getIn(["attributes", "phoneCountryPrefix"]),
+  const phonePrefix = client.getIn(["attributes", "phoneCountryPrefix"]);
+
+  return [
+    phonePrefix && `+${phonePrefix} `,
     client.getIn(["attributes", "phone"])
   ]
     .filter(Boolean)
     .join("");
-
-  return phone ? `+${phone}` : null;
 };
 
 export const getClientTotalBudget = client =>
@@ -54,7 +54,7 @@ export const getClientMainInfo = (client, t) => {
   const yo = birthday && moment().diff(birthday, "years");
   return prepareStringTags([
     gender && t(`clients:gender.${gender}`),
-    yo && t("clients:yo", { yo })
+    yo && t("clients:years", { count: yo })
   ]);
 };
 
