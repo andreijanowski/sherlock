@@ -85,6 +85,7 @@ export const Tags = styled(Flex).attrs({
 
 export const Tag = styled(Box)`
   margin-right: 14px;
+  margin-bottom: 12px;
   padding: 8px 16px;
   border-radius: ${p => p.theme.radius.default};
   font-size: ${p => p.theme.fontSizes.f16};
