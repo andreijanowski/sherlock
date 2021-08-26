@@ -247,7 +247,8 @@ class OrdersPage extends PureComponent {
       businessId,
       businessOrderPeriodsLength,
       businesses,
-      changeCurrentBusiness
+      changeCurrentBusiness,
+      connectedWithOrkestro
     } = this.props;
     const {
       columns,
@@ -299,6 +300,7 @@ class OrdersPage extends PureComponent {
         <div style={{ position: "absolute", left: 0 }}>
           <OrderDetails
             {...{
+              connectedWithOrkestro,
               orderDetails,
               t,
               updateOrder: this.updateOrder,
