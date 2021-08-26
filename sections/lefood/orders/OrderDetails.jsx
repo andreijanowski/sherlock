@@ -13,7 +13,7 @@ import {
 } from "components";
 import { connect } from "react-redux";
 import { fetchOrkestroOrder } from "actions/orders";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import OrderDetail from "./OrderDetail";
 import LogoIcon from "./LogoIcon";
 
@@ -24,6 +24,7 @@ const OrderDetails = ({
   setRejectModalVisibility,
   updateOrder,
   fetchOrkestroOrderStatus,
+  connectedWithOrkestro,
   t
 }) => {
   const orderId = orderDetails && orderDetails.get("id");
@@ -124,26 +125,38 @@ const OrderDetails = ({
                   }}
                 />
               ))}
-          <OrderDetail
-            {...{
-              name: t("deliveryForCustomer"),
-              price: orderDetails.getIn([
-                "attributes",
-                "shippingCostForCustomerCents"
-              ]),
-              currency: orderDetails.getIn(["attributes", "currency"])
-            }}
-          />
-          <OrderDetail
-            {...{
-              name: t("deliveryForBusiness"),
-              price: orderDetails.getIn([
-                "attributes",
-                "shippingCostForBusinessCents"
-              ]),
-              currency: orderDetails.getIn(["attributes", "currency"])
-            }}
-          />
+          {connectedWithOrkestro ? (
+            <React.Fragment>
+              <OrderDetail
+                {...{
+                  name: t("deliveryForCustomer"),
+                  price: orderDetails.getIn([
+                    "attributes",
+                    "shippingCostForCustomerCents"
+                  ]),
+                  currency: orderDetails.getIn(["attributes", "currency"])
+                }}
+              />
+              <OrderDetail
+                {...{
+                  name: t("deliveryForBusiness"),
+                  price: orderDetails.getIn([
+                    "attributes",
+                    "shippingCostForBusinessCents"
+                  ]),
+                  currency: orderDetails.getIn(["attributes", "currency"])
+                }}
+              />{" "}
+            </React.Fragment>
+          ) : (
+            <OrderDetail
+              {...{
+                name: t("deliveryForCustomer"),
+                price: orderDetails.getIn(["attributes", "shippingCostCents"]),
+                currency: orderDetails.getIn(["attributes", "currency"])
+              }}
+            />
+          )}
           <OrderDetail
             {...{
               name: t("total"),
@@ -279,6 +292,7 @@ const OrderDetails = ({
 };
 
 OrderDetails.propTypes = {
+  connectedWithOrkestro: bool,
   isOpen: bool.isRequired,
   onStateChange: func.isRequired,
   fetchOrkestroOrderStatus: func.isRequired,
@@ -289,7 +303,8 @@ OrderDetails.propTypes = {
 };
 
 OrderDetails.defaultProps = {
-  orderDetails: null
+  orderDetails: null,
+  connectedWithOrkestro: false
 };
 
 export default reduxBurgerMenu(
