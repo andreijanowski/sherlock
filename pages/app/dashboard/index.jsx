@@ -41,7 +41,7 @@ const Dashboard = ({ t, lng }) => (
   >
     <TileWrapper width={1}>
       <Tile width={1}>
-        <TileHeader isBig>Business overview</TileHeader>
+        <TileHeader isBig>{t("dashboard:businessOverview")}</TileHeader>
         <Flex
           justifyContent="space-between"
           flexDirection={["column", "column", "row"]}
@@ -54,14 +54,14 @@ const Dashboard = ({ t, lng }) => (
           <Flex width={[1, 1, 1, 31 / 64]} flexDirection="column">
             <ProgressBarTile />
             <Tile height={424}>
-              <TileHeader>Payment chart</TileHeader>
+              <TileHeader>{t("dashboard:paymentType")}</TileHeader>
               <PaymentChart />
             </Tile>
           </Flex>
         </Flex>
       </Tile>
       <Tile width={1}>
-        <TileHeader isBig>Todays activity</TileHeader>
+        <TileHeader isBig>{t("dashboard:todaysActivity")}</TileHeader>
         <Flex flexDirection={["column", "column", "row"]}>
           <Stream />
           <Flex width={1} flexDirection="column">
@@ -73,9 +73,9 @@ const Dashboard = ({ t, lng }) => (
     </TileWrapper>
     <Tile>
       <Flex flexDirection={["column", "column", "column", "row"]}>
-        <LineChart title="Consultation" />
-        <LineChart isDown title="total number of comments" />
-        <EvaluationChart title="Consultation" isDown />
+        <LineChart title={t("dashboard:consultation")} />
+        <LineChart isDown title={t("dashboard:totalComments")} />
+        <EvaluationChart title={t("dashboard:consultation")} isDown />
       </Flex>
       <Flex
         flexDirection={["column", "column", "column", "row"]}

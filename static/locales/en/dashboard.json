@@ -1,0 +1,20 @@
+{
+  "businessOverview": "Business Overview",
+  "avgTicketSize": "Avg ticket size",
+  "revenueBreakdown": "Revenue Breakdown",
+  "todaysEarnings": "Todays Earnings",
+  "paymenTypes": "Payment types",
+  "frequentation": "Frequentation",
+  "todaysActivity": "Todays activity",
+  "liveStram": "Live stram",
+  "bestSales": "Best sales",
+  "worstSales": "Worst sales",
+  "consultation": "Consultation",
+  "totalComments": "Total number of comments",
+  "globalEvaluation": "Global evaluation",
+  "advancedReports": "Advanced reports",
+  "dailyBudget": "Daily budget",
+  "offersPromotions": "Offers & promotions",
+  "hoursWorked": "Hours worked",
+  "laborCost": "Labor Cost"
+}
