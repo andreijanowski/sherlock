@@ -4,6 +4,7 @@ import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape, bool } from "prop-types";
 import { connect } from "react-redux";
+import { compose } from "redux";
 import AppLayout from "layout/App";
 import { LoadingIndicator } from "components";
 import { Plans, Payments, Success } from "sections/subscriptions";
@@ -15,8 +16,13 @@ import {
   postSubscription
 } from "actions/subscriptions";
 import { fetchProfileSubscriptions, fetchProfileCards } from "actions/users";
-import { fetchBusinessSetupIntent } from "actions/businesses";
-import { getNewPlanSlug } from "utils/plans";
+import {
+  fetchBusinessSetupIntent,
+  fetchBusinessSubscriptions,
+  fetchBusinessCards
+} from "actions/businesses";
+import { getPlanSlug } from "utils/plans";
+import { fetchPlans } from "actions/plans";
 
 const namespaces = ["plans", "forms", "app"];
 
@@ -32,6 +38,11 @@ class SubscriptionsPage extends PureComponent {
     view: "plans",
     chosenPlan: null
   };
+
+  componentDidMount() {
+    const { getPlans } = this.props;
+    getPlans();
+  }
 
   componentDidUpdate(prevProps) {
     const { subscriptions } = this.props;
@@ -78,7 +89,7 @@ class SubscriptionsPage extends PureComponent {
             );
         }
       } else {
-        const newPlanSlug = getNewPlanSlug({
+        const newPlanSlug = getPlanSlug({
           planName: planName.toLowerCase(),
           billingInterval
         });
@@ -112,7 +123,8 @@ class SubscriptionsPage extends PureComponent {
     const {
       createSubscription,
       updateSubscriptionCard,
-      subscriptions
+      subscriptions,
+      businessId
     } = this.props;
     const { billingInterval, chosenPlan } = this.state;
     const plan = chosenPlan || planName;
@@ -130,8 +142,9 @@ class SubscriptionsPage extends PureComponent {
         view: "loading"
       });
       createSubscription(
+        businessId,
         stripeToken,
-        getNewPlanSlug({ planName: plan, billingInterval })
+        getPlanSlug({ planName: plan, billingInterval })
       )
         .then(this.goToSuccess)
         .catch(() => this.goToPayments());
@@ -157,9 +170,23 @@ class SubscriptionsPage extends PureComponent {
   };
 
   goToSuccess = () => {
-    const { getProfileSubscriptions, getProfileCards } = this.props;
-    getProfileSubscriptions();
-    getProfileCards();
+    const {
+      getProfileSubscriptions,
+      getProfileCards,
+      getBusinessSubscriptions,
+      getBusinessCards,
+      businessId,
+      subscriptionNotTerminated
+    } = this.props;
+
+    if (subscriptionNotTerminated) {
+      getProfileSubscriptions();
+      getProfileCards();
+    } else {
+      getBusinessSubscriptions(businessId);
+      getBusinessCards(businessId);
+    }
+
     this.setState({
       chosenPlan: null,
       view: "success"
@@ -167,7 +194,14 @@ class SubscriptionsPage extends PureComponent {
   };
 
   render() {
-    const { t, lng, subscriptions, cards, notificationError } = this.props;
+    const {
+      t,
+      lng,
+      subscriptions,
+      cards,
+      notificationError,
+      plans
+    } = this.props;
     const { billingInterval, view, chosenPlan } = this.state;
 
     return (
@@ -184,6 +218,7 @@ class SubscriptionsPage extends PureComponent {
           <Plans
             {...{
               t,
+              plans,
               lng,
               cards,
               billingInterval,
@@ -201,6 +236,7 @@ class SubscriptionsPage extends PureComponent {
             {...{
               t,
               lng,
+              plans,
               billingInterval,
               cards,
               notificationError,
@@ -232,47 +268,67 @@ SubscriptionsPage.propTypes = {
   createSubscription: func.isRequired,
   getProfileSubscriptions: func.isRequired,
   getProfileCards: func.isRequired,
+  getBusinessSubscriptions: func.isRequired,
+  getBusinessCards: func.isRequired,
   getBusinessSetupIntent: func.isRequired,
   notificationError: func.isRequired,
   businessId: string.isRequired,
-  isCanceled: bool
+  isCanceled: bool,
+  subscriptionNotTerminated: bool.isRequired,
+  getPlans: func.isRequired,
+  plans: shape()
 };
 
 SubscriptionsPage.defaultProps = {
   subscriptions: null,
   cards: null,
-  isCanceled: false
+  isCanceled: false,
+  plans: null
 };
 
-export default requireAuth(true)(
-  withTranslation(namespaces)(
-    connect(
-      (state, { i18n }) => {
-        const subscriptions = state.getIn([
-          "users",
-          "subscriptions",
-          "data",
-          "subscriptions"
-        ]);
-        const businessData = state.getIn(["users", "currentBusiness", "data"]);
-        const business = businessData && businessData.get("businesses").first();
-        return {
-          subscriptions: subscriptions ? subscriptions.first() : subscriptions,
-          cards: state.getIn(["users", "cards", "data", "cards"]),
-          businessId: business && business.get("id"),
-          lng: (i18n && i18n.language) || "en"
-        };
-      },
-      {
-        updateSubscriptionPlan: pathSubscriptionChangePlan,
-        updateSubscriptionCard: pathSubscriptionChangeCard,
-        cancelSubscriptionPlan: pathSubscriptionCancel,
-        createSubscription: postSubscription,
-        getProfileSubscriptions: fetchProfileSubscriptions,
-        getProfileCards: fetchProfileCards,
-        getBusinessSetupIntent: fetchBusinessSetupIntent,
-        notificationError: error
-      }
-    )(SubscriptionsPage)
+export default compose(
+  requireAuth(true),
+  withTranslation(namespaces),
+  connect(
+    (state, { i18n }) => {
+      const subscriptions = state.getIn([
+        "users",
+        "subscriptions",
+        "data",
+        "subscriptions"
+      ]);
+      const users = state.getIn(["users", "profile", "data", "users"]);
+
+      const plans = state.getIn(["plans", "data"]);
+
+      const profile = users && users.first();
+
+      const subscriptionNotTerminated =
+        profile && profile.getIn(["attributes", "subscriptionNotTerminated"]);
+
+      const businessData = state.getIn(["users", "currentBusiness", "data"]);
+      const business = businessData && businessData.get("businesses").first();
+      return {
+        subscriptions: subscriptions ? subscriptions.first() : subscriptions,
+        cards: state.getIn(["users", "cards", "data", "cards"]),
+        businessId: business && business.get("id"),
+        lng: (i18n && i18n.language) || "en",
+        subscriptionNotTerminated,
+        plans
+      };
+    },
+    {
+      updateSubscriptionPlan: pathSubscriptionChangePlan,
+      updateSubscriptionCard: pathSubscriptionChangeCard,
+      cancelSubscriptionPlan: pathSubscriptionCancel,
+      createSubscription: postSubscription,
+      getProfileSubscriptions: fetchProfileSubscriptions,
+      getProfileCards: fetchProfileCards,
+      getBusinessSubscriptions: fetchBusinessSubscriptions,
+      getBusinessCards: fetchBusinessCards,
+      getBusinessSetupIntent: fetchBusinessSetupIntent,
+      notificationError: error,
+      getPlans: fetchPlans
+    }
   )
-);
+)(SubscriptionsPage);

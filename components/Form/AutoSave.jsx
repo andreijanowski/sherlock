@@ -2,6 +2,8 @@ import React from "react";
 import { FormSpy } from "react-final-form";
 import diff from "object-diff";
 import { shape, string, func } from "prop-types";
+import Notifications from "react-notification-system-redux";
+import { connect } from "react-redux";
 import { getErrorMessageKey, getValidMessageKey } from "utils/getErrorMessage";
 import { getArraysDiff } from "./utils";
 
@@ -19,7 +21,15 @@ class AutoSave extends React.Component {
   }
 
   save = async blurredField => {
-    const { setFieldData, arrayName, t, values, save, errors } = this.props;
+    const {
+      setFieldData,
+      arrayName,
+      t,
+      values,
+      save,
+      errors,
+      showSavedMessage
+    } = this.props;
     try {
       if (this.promise) {
         await this.promise;
@@ -75,6 +85,7 @@ class AutoSave extends React.Component {
           });
         }
         setFieldData(blurredField, { saving: false });
+        showSavedMessage();
       }
     } catch (e) {
       if (e.response) {
@@ -157,7 +168,8 @@ AutoSave.propTypes = {
   save: func.isRequired,
   t: func.isRequired,
   errors: shape(),
-  arrayName: string
+  arrayName: string,
+  showSavedMessage: func.isRequired
 };
 
 AutoSave.defaultProps = {
@@ -174,4 +186,15 @@ const Spy = props => (
   />
 );
 
-export default Spy;
+export default connect(
+  null,
+  dispatch => ({
+    showSavedMessage: () => {
+      dispatch(
+        Notifications.success({
+          message: "formSavedSuccessfully"
+        })
+      );
+    }
+  })
+)(Spy);

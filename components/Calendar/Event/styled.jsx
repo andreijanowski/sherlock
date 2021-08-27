@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
+import { Button } from "components";
 
 export const Text = styled.div`
   overflow: hidden;
@@ -32,7 +33,8 @@ export const EventWrapper = styled(Wrapper)`
 `;
 
 export const Header = styled(Flex).attrs(() => ({
-  justifyContent: "space-between"
+  justifyContent: "space-between",
+  flexDirection: ["column", "row"]
 }))`
   padding-bottom: 24px;
 `;
@@ -65,12 +67,37 @@ export const Detail = styled(Flex).attrs(() => ({
   width: 1,
   alignItems: "center"
 }))`
-  /* stylelint-disable-line no-empty-block */
+  justify-content: space-between;
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
 `;
-export const DetailContent = styled(Box).attrs(() => ({ width: 1 / 2, mb: 2 }))`
-  color: rgb(${p => p.theme.colors.dark});
+export const DetailName = styled(Box).attrs(() => ({
+  width: [1, 1 / 3],
+  mb: [0, 2]
+}))`
+  color: rgb(${p => p.theme.colors.brightGray});
   font-size: ${p => p.theme.fontSizes.f14};
   line-height: 24px;
+  @media (max-width: 640px) {
+    color: rgb(${p => p.theme.colors.importGray});
+    font-size: ${p => p.theme.fontSizes.f12};
+  }
+`;
+
+export const DetailContent = styled(DetailName).attrs(() => ({
+  width: 2 / 3,
+  mb: 2
+}))`
+  color: rgb(${p => p.theme.colors.dark});
+  text-align: right;
+  @media (max-width: 640px) {
+    text-align: left;
+    color: rgb(${p => p.theme.colors.dark});
+    font-size: ${p => p.theme.fontSizes.f14};
+  }
 `;
 export const AdditionalHeader = styled.div`
   padding: 8px 0 4px;
@@ -92,4 +119,16 @@ export const MapWrapper = styled.div`
 
 export const ModalContentWrapper = styled.div`
   min-width: 450px;
+  @media (max-width: 640px) {
+    min-width: calc(100vw - 64px);
+  }
+`;
+
+export const ExtendedButton = styled(Button)`
+  @media (max-width: 640px) {
+    margin: auto;
+    height: 36px;
+    font-size: ${p => p.theme.fontSizes.f14};
+    line-height: ${p => p.theme.fontSizes.f14};
+  }
 `;

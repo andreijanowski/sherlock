@@ -23,7 +23,16 @@ import {
   POST_BUSINESS_SUCCESS,
   PATCH_BUSINESS_SUCCESS,
   PATCH_BUSINESS_REQUEST,
-  PATCH_BUSINESS_FAIL
+  PATCH_BUSINESS_FAIL,
+  FETCH_BUSINESS_CARDS_REQUEST,
+  FETCH_BUSINESS_CARDS_SUCCESS,
+  FETCH_BUSINESS_CARDS_FAIL,
+  FETCH_BUSINESS_SUBSCRIPTIONS_REQUEST,
+  FETCH_BUSINESS_SUBSCRIPTIONS_SUCCESS,
+  FETCH_BUSINESS_SUBSCRIPTIONS_FAIL,
+  FETCH_BUSINESS_CLIENTS_REQUEST,
+  FETCH_BUSINESS_CLIENTS_SUCCESS,
+  FETCH_BUSINESS_CLIENTS_FAIL
 } from "types/businesses";
 import { POST_PICTURE_SUCCESS, DELETE_PICTURE_REQUEST } from "types/pictures";
 import {
@@ -97,6 +106,13 @@ export const initialState = Record({
   })(),
   subscriptions: Record({
     data: null,
+    isFetching: false,
+    isFailed: false,
+    isSucceeded: false
+  })(),
+  clients: Record({
+    data: null,
+    totalCount: 0,
     isFetching: false,
     isFailed: false,
     isSucceeded: false
@@ -455,7 +471,8 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       ]);
     }
 
-    case FETCH_PROFILE_CARDS_REQUEST: {
+    case FETCH_PROFILE_CARDS_REQUEST:
+    case FETCH_BUSINESS_CARDS_REQUEST: {
       return state.mergeIn(
         ["cards"],
         Record({
@@ -465,7 +482,8 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         })()
       );
     }
-    case FETCH_PROFILE_CARDS_SUCCESS: {
+    case FETCH_PROFILE_CARDS_SUCCESS:
+    case FETCH_BUSINESS_CARDS_SUCCESS: {
       let newState = state.mergeIn(
         ["cards"],
         Record({
@@ -483,7 +501,8 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       }
       return newState;
     }
-    case FETCH_PROFILE_CARDS_FAIL: {
+    case FETCH_PROFILE_CARDS_FAIL:
+    case FETCH_BUSINESS_CARDS_FAIL: {
       state.mergeIn(
         ["cards"],
         Record({
@@ -497,7 +516,8 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       return state;
     }
 
-    case FETCH_PROFILE_SUBSCRIPTIONS_REQUEST: {
+    case FETCH_PROFILE_SUBSCRIPTIONS_REQUEST:
+    case FETCH_BUSINESS_SUBSCRIPTIONS_REQUEST: {
       return state.mergeIn(
         ["subscriptions"],
         Record({
@@ -508,7 +528,8 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         })()
       );
     }
-    case FETCH_PROFILE_SUBSCRIPTIONS_SUCCESS: {
+    case FETCH_PROFILE_SUBSCRIPTIONS_SUCCESS:
+    case FETCH_BUSINESS_SUBSCRIPTIONS_SUCCESS: {
       return state.mergeIn(
         ["subscriptions"],
         Record({
@@ -518,9 +539,52 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         })()
       );
     }
-    case FETCH_PROFILE_SUBSCRIPTIONS_FAIL: {
+    case FETCH_PROFILE_SUBSCRIPTIONS_FAIL:
+    case FETCH_BUSINESS_SUBSCRIPTIONS_FAIL: {
       return state.mergeIn(
         ["subscriptions"],
+        Record({
+          isFetching: false,
+          isFailed: true
+        })()
+      );
+    }
+
+    case FETCH_BUSINESS_CLIENTS_REQUEST: {
+      return state.mergeIn(
+        ["clients"],
+        Record({
+          isFetching: true,
+          isFailed: false,
+          isSucceeded: false
+        })()
+      );
+    }
+    case FETCH_BUSINESS_CLIENTS_SUCCESS: {
+      let newState = state.mergeIn(
+        ["clients"],
+        Record({
+          isFetching: false,
+          isSucceeded: true
+        })()
+      );
+
+      if (meta.page === 1) {
+        newState = newState
+          .setIn(["clients", "data"], fromJS(payload.data.users))
+          .setIn(["clients", "totalCount"], payload.rawData.meta.totalCount);
+      } else {
+        newState = newState.mergeIn(
+          ["clients", "data"],
+          fromJS(payload.data.users)
+        );
+      }
+
+      return newState;
+    }
+    case FETCH_BUSINESS_CLIENTS_FAIL: {
+      return state.mergeIn(
+        ["clients"],
         Record({
           isFetching: false,
           isFailed: true

@@ -1,5 +1,5 @@
 import { i18n } from "i18n";
-import { fetchProfileBusiness } from "actions/users";
+import { fetchProfileBusiness, fetchProfile } from "actions/users";
 import {
   fetchBusinessMembers,
   fetchBusinessDeliveries,
@@ -10,21 +10,37 @@ import {
   fetchBusinessTables,
   fetchBusinessReservations,
   fetchBusinessWidgets,
-  fetchBusinessServiceLinks
+  fetchBusinessServiceLinks,
+  fetchBusinessCards,
+  fetchBusinessSubscriptions,
+  fetchBusinessClients
 } from "actions/businesses";
 import { UPDATE_PROFILE_SUCCESS } from "types/users";
 import { SET_CURRENT_BUSINESS } from "types/app";
 import { POST_BUSINESS_SUCCESS } from "types/businesses";
-import { takeEvery, all, put, call } from "redux-saga/effects";
+import { takeEvery, all, put, call, select } from "redux-saga/effects";
 import Notifications from "react-notification-system-redux";
 import { setCurrentBusiness } from "actions/app";
 import { fetchCategories } from "actions/categories";
 import { fetchBusinessPartnerships } from "actions/integrations";
 import fetchAllBusinessData from "./utils/fetchAllBusinessData";
 
+export const BASIC_ROLE = "basic";
+
 function* fetchBusinessData({ payload: { id } }) {
   const lang = i18n.language;
   yield put(fetchProfileBusiness(id));
+  const profile = yield select(state =>
+    state.getIn(["users", "profile", "data", "users"]).first()
+  );
+
+  const subscriptionNotTerminated =
+    profile && profile.getIn(["attributes", "subscriptionNotTerminated"]);
+
+  if (!subscriptionNotTerminated) {
+    yield fetchAllBusinessData(fetchBusinessCards, id);
+    yield fetchAllBusinessData(fetchBusinessSubscriptions, id);
+  }
   yield fetchAllBusinessData(fetchBusinessServiceLinks, id);
   yield put(fetchCategories(lang));
   yield fetchAllBusinessData(fetchBusinessMembers, id);
@@ -37,6 +53,7 @@ function* fetchBusinessData({ payload: { id } }) {
   yield fetchAllBusinessData(fetchBusinessReservations, id);
   yield fetchAllBusinessData(fetchBusinessWidgets, id);
   yield put(fetchBusinessPartnerships(id));
+  yield put(fetchBusinessClients(id));
 }
 
 function* showSuccesNotification() {
@@ -64,6 +81,15 @@ function* onBusinessCreated(data) {
   } = data;
   if (onSuccess) {
     yield call(onSuccess);
+  }
+
+  const profile = yield select(state =>
+    state.getIn(["users", "profile", "data", "users"]).first()
+  );
+
+  const role = profile && profile.getIn(["attributes", "role"]);
+  if (role === BASIC_ROLE) {
+    yield put(fetchProfile());
   }
 }
 

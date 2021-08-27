@@ -1,5 +1,7 @@
 import React, { PureComponent } from "react";
 import requireAuth from "lib/requireAuth";
+import { compose } from "redux";
+import { connect } from "react-redux";
 import { func, string, shape } from "prop-types";
 import { Footer } from "components";
 import {
@@ -24,6 +26,7 @@ import {
   InstallAppWrapper
 } from "sections/landing/sharedStyled";
 import { planLoginPath } from "utils/plans";
+import { fetchPlans } from "actions/plans";
 
 const namespaces = ["landing", "plans", "common"];
 
@@ -43,6 +46,11 @@ class Home extends PureComponent {
     this.state = {
       billingInterval: "month"
     };
+  }
+
+  componentDidMount() {
+    const { getPlans } = this.props;
+    getPlans();
   }
 
   getLng = () => {
@@ -77,7 +85,7 @@ class Home extends PureComponent {
       featuresRef,
       plansRef
     } = this;
-    const { t, i18n } = this.props;
+    const { t, i18n, plans } = this.props;
     const { billingInterval } = this.state;
     const lng = this.getLng();
 
@@ -102,6 +110,7 @@ class Home extends PureComponent {
           <Plans
             {...{
               t,
+              plans,
               plansRef,
               lng: (i18n && i18n.language) || "en",
               billingInterval,
@@ -123,7 +132,25 @@ class Home extends PureComponent {
 
 Home.propTypes = {
   t: func.isRequired,
-  i18n: shape({ language: string.isRequired }).isRequired
+  i18n: shape({ language: string.isRequired }).isRequired,
+  getPlans: func.isRequired,
+  plans: shape()
 };
 
-export default requireAuth(false)(withTranslation(namespaces)(Home));
+Home.defaultProps = {
+  plans: null
+};
+
+export default compose(
+  requireAuth(false),
+  withTranslation(namespaces),
+  connect(
+    state => {
+      const plans = state.getIn(["plans", "data"]);
+      return {
+        plans
+      };
+    },
+    { getPlans: fetchPlans }
+  )
+)(Home);

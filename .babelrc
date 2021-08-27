@@ -59,7 +59,8 @@
                     "consts": "./consts",
                     "sections": "./sections",
                     "scripts": "./scripts",
-                    "pages": "./pages"
+                    "pages": "./pages",
+                    "selectors": "./data/selectors"
                 }
             }
         ],

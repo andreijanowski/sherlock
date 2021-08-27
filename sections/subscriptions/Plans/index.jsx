@@ -2,6 +2,7 @@ import { func, string, shape, arrayOf, bool } from "prop-types";
 import { PlansBillingInterval, BoldText, Button } from "components";
 import { useCallback } from "react";
 import { Flex, Box } from "@rebass/grid";
+import { BASIC_PLAN_NAME } from "consts";
 import { Wrapper } from "../styled";
 import { getPlanName } from "../utils";
 import Card from "../Payments/Card";
@@ -15,7 +16,8 @@ const PlansSection = ({
   choosePlan,
   currentPlan,
   cards,
-  goToPayments
+  goToPayments,
+  plans
 }) => {
   const { currentPlanName, nextPlanName } = getPlanName(currentPlan);
   const currentCard =
@@ -57,7 +59,7 @@ const PlansSection = ({
           {...{ t, billingInterval, handleChangeBillngPeriod }}
         />
       </Flex>
-      {nextPlanName !== "basic" && (
+      {nextPlanName !== BASIC_PLAN_NAME && (
         <Flex flexDirection="column" mb={4}>
           <Box mr={2} mb={3}>{`${t("paymentInfo")}: `}</Box>
           <Flex>
@@ -86,6 +88,7 @@ const PlansSection = ({
         interval={billingInterval}
         t={t}
         onPlanChoose={handlePlanChoose}
+        plans={plans}
       />
     </Wrapper>
   );
@@ -100,13 +103,15 @@ PlansSection.propTypes = {
   goToPayments: func.isRequired,
   currentPlan: shape(),
   cards: arrayOf(shape()),
-  isCanceled: bool
+  isCanceled: bool,
+  plans: shape()
 };
 
 PlansSection.defaultProps = {
   currentPlan: null,
   cards: null,
-  isCanceled: false
+  isCanceled: false,
+  plans: null
 };
 
 export default PlansSection;

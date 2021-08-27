@@ -23,13 +23,26 @@ import { SUBSCRIPTION_PERIOD, SUBSCRIPTION_PLANS } from "consts";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { getPlanPrice } from "utils/plans";
 
-export const heads = ({ isMonth = true, t }) => {
+export const heads = ({ isMonth = true, t, plans }) => {
   const interval = isMonth
     ? SUBSCRIPTION_PERIOD.MONTH
     : SUBSCRIPTION_PERIOD.YEAR;
-  const priceEssential = t(`plans:essential.price.${interval}`);
-  const pricePremium = t(`plans:premium.price.${interval}`);
+
+  const priceEssential =
+    getPlanPrice({
+      plans,
+      planName: SUBSCRIPTION_PLANS.ESSENTIAL,
+      billingInterval: interval
+    }) || t(`plans:essential.price.${interval}`);
+
+  const pricePremium =
+    getPlanPrice({
+      plans,
+      planName: SUBSCRIPTION_PLANS.PREMIUM,
+      billingInterval: interval
+    }) || t(`plans:premium.price.${interval}`);
 
   return [
     {

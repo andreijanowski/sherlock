@@ -4,7 +4,8 @@ import {
   FacebookPixelScript,
   GoogleTagManagerScript,
   GoogleTagManagerNoscript,
-  HubspotChatScript
+  HubspotChatScript,
+  LinkedinAdsScript
 } from "scripts";
 
 export default class MyDocument extends Document {
@@ -73,6 +74,7 @@ export default class MyDocument extends Document {
           <meta name="theme-color" content="#ffffff" />
           <FacebookPixelScript />
           <HubspotChatScript />
+          <LinkedinAdsScript />
         </Head>
         <body>
           <GoogleTagManagerNoscript />

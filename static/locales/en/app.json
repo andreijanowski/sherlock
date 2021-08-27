@@ -101,7 +101,7 @@
   "reviews": "Reviews Management",
   "detectives": "Detectives & Influencers",
   "adsAndMarketing": "Ads & Marketing",
-  "clients": "My Clients",
+  "clients": "My Customers",
   "settings": "Settings",
   "stockManagement": "Stock Management",
   "comingSoon": {
@@ -110,5 +110,6 @@
   },
   "backToMainMenu": "Back to main menu",
   "photography": "Photography & Video",
-  "search": "Search..."
+  "search": "Search...",
+  "becomeBOPrompt": "Do you want to become Business Owner?"
 }
