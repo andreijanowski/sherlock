@@ -52,7 +52,10 @@ export const Name = styled.div`
     font-weight: ${p.theme.fontWeights.bold};
     font-size: ${p.theme.fontSizes.f24};
     line-height: 36px;
-    letter-spacing: 3.7px;
+    letter-spacing: 3px;
+    white-space: pre-line;
+    word-break: break-word;
+    text-align: center;
   `}
 `;
 
