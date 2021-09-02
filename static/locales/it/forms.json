@@ -41,6 +41,7 @@
       "same_password-password": "La password è uguale alla password corrente",
       "url-website": "Il sito web non è un URL valido",
       "url-instagram": "Instagram non è un URL valido",
+      "url-youtube": "Youtube URL is not valid",
       "improbable_phone-phone": "Il telefono è un numero non valido",
       "not_a_number-price_per_person": "Il prezzo a persona deve essere un numero",
       "not_an_integer-price_per_person": "Il prezzo a persona deve essere un numero intero",
