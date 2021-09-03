@@ -14,5 +14,7 @@
   "facebookLabel": "Facebook (facoltativo, per esempio. https://facebook.com/profile/)",
   "facebookPlaceholder": "https://facebook.com/profile/",
   "instagramLabel": "Instagram (facoltativo, per esempio. https://instagram.com/profile)",
-  "instagramPlaceholder": "https://instagram.com/profile"
+  "instagramPlaceholder": "https://instagram.com/profile",
+  "youtubeLabel": "Youtube video (oprional)",
+  "youtubePlaceholder": "https://www.youtube.com/watch?v=12341234"
 }

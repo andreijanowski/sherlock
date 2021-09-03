@@ -139,7 +139,8 @@ const checkIsFilled = ({
         (business.get("phoneCountryPrefix") &&
           business.get("phoneCountryCode")) ||
         business.get("website") ||
-        business.get("instagram")
+        business.get("instagram") ||
+        business.get("youtube")
       );
     }
     case 2: {

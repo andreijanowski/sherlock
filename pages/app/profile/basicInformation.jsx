@@ -83,7 +83,8 @@ class BasicInformation extends PureComponent {
       phoneCountry,
       website,
       facebook,
-      instagram
+      instagram,
+      youtube
     },
     { types, cuisines, foodsAndDrinks, quirks, diets, michelinStars },
     { country: countryValue, region: regionValue }
@@ -138,7 +139,8 @@ class BasicInformation extends PureComponent {
           : undefined,
       website: addProtocol(website),
       facebook: addProtocol(facebook),
-      instagram: addProtocol(instagram)
+      instagram: addProtocol(instagram),
+      youtube: addProtocol(youtube)
     };
     if (Object.values(requestValues).some(v => !!v)) {
       return updateBusiness(businessId, requestValues);
