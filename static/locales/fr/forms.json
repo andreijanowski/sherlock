@@ -20,6 +20,7 @@
       "invalid-facebook": "N'est pas une adresse URL de Facebook",
       "invalid-instagram": "Ça n'est pas une adresse URL de instagram",
       "url-facebook": "N'est pas une adresse URL de Facebook",
+      "url-youtube": "Youtube URL is not valid",
       "too_many_types-groups_list": "Peut avoir 3 entrées 'types' max",
       "too_many_types-groups": "Peut avoir 3 entrées 'types' max",
       "too_many_others-groups_list": "Peut contenir au maximum 5 entrées autres que 'types' et 'bizarreries'/quirks",
