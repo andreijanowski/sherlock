@@ -47,7 +47,6 @@ const PartnerTile = ({
   const WHOLESALER = "wholesaler";
 
   const isIntegrationPending = partner.get("partnerIntegrationRequested");
-  console.log(isIntegrationPending);
   const isIntegrated = partner.get("partnerIntegrationActive");
   const isPreferred = partner.get("preferred");
 
