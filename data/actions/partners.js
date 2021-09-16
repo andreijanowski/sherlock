@@ -5,6 +5,7 @@ import {
   PARTNERS_PREFERRED_ADD_REQUEST,
   PARTNERS_PREFERRED_DELETE_REQUEST
 } from "types/partners";
+import { getRelationships } from "./utils";
 
 export const connectIntegrationPartner = (businessId, partnerId) => ({
   type: CONNECT_PARTNER_REQUEST,
@@ -15,18 +16,8 @@ export const connectIntegrationPartner = (businessId, partnerId) => ({
       data: {
         type: "partner_integrations",
         relationships: {
-          business: {
-            data: {
-              id: businessId,
-              type: "business"
-            }
-          },
-          partner: {
-            data: {
-              id: partnerId,
-              type: "partner"
-            }
-          }
+          ...getRelationships("business", businessId),
+          ...getRelationships("partner", partnerId)
         }
       }
     }
@@ -43,17 +34,9 @@ export const disconnectIntegrationPartner = (businessId, partnerId) => ({
       data: {
         type: "partner_integrations",
         relationships: {
-          business: {
-            data: {
-              id: businessId,
-              type: "business"
-            }
-          },
-          partner: {
-            data: {
-              id: partnerId,
-              type: "partner"
-            }
+          relationships: {
+            ...getRelationships("business", businessId),
+            ...getRelationships("partner", partnerId)
           }
         }
       }
