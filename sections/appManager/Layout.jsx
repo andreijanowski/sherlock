@@ -9,6 +9,7 @@ import {
   LoadingIndicator,
   CurrencyGuard
 } from "components";
+import { checkIsBusinessStripeLoading } from "utils/businessUtils";
 
 const AppManagerLayout = ({
   business,
@@ -30,8 +31,7 @@ const AppManagerLayout = ({
     [currentBusinessId, downloadFromUber]
   );
 
-  const isBusinessLoading =
-    !business || business.get("stripeUserId") === undefined;
+  const isBusinessLoading = checkIsBusinessStripeLoading(business);
 
   return (
     <AppLayout

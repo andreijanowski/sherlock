@@ -7,9 +7,9 @@ import { debounce } from "lodash";
 import {
   selectClientsData,
   selectClientsTotalCount,
-  selectCurrentBusinessId,
   selectClientsIsFetching
 } from "selectors/users";
+import { selectCurrentBusinessId } from "selectors/business";
 import { fetchBusinessClients as fetchBusinessClientsActions } from "actions/businesses";
 import {
   ClientsFilter,

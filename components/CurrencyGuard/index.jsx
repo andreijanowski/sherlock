@@ -9,6 +9,11 @@ import { Button, H2 } from "components";
 import { patchBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/app";
 import StripeCurrencyModal from "components/StripeSetupModal/StripeCurrencyModal";
+import {
+  selectCurrentBusinessAttributes,
+  selectCurrentBusinessId,
+  selectCurrentBusinessIsFetching
+} from "selectors/business";
 
 const namespaces = ["lefood"];
 
@@ -100,24 +105,11 @@ CurrencyGuard.defaultProps = {
 export default compose(
   withTranslation(namespaces),
   connect(
-    state => {
-      const isFetching = state.getIn([
-        "users",
-        "currentBusiness",
-        "isFetching"
-      ]);
-      const businessData = state.getIn(["users", "currentBusiness", "data"]);
-      const business =
-        businessData &&
-        businessData.get("businesses") &&
-        businessData.get("businesses").first();
-
-      return {
-        business: business && business.get("attributes"),
-        businessId: business && business.get("id"),
-        isFetching
-      };
-    },
+    state => ({
+      business: selectCurrentBusinessAttributes(state),
+      businessId: selectCurrentBusinessId(state),
+      isFetching: selectCurrentBusinessIsFetching(state)
+    }),
     {
       updateBusiness: patchBusiness,
       changeCurrentBusiness: setCurrentBusiness
