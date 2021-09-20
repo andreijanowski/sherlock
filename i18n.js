@@ -9,3 +9,4 @@ const NextI18NextInstance = new NextI18Next({
 });
 
 module.exports = NextI18NextInstance;
+module.exports.defaultLanguage = defaultLanguage;

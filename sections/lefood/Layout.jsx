@@ -40,6 +40,7 @@ import {
 } from "actions/integrations";
 import { patchBusiness } from "actions/businesses";
 import StripeCurrencyModal from "components/StripeSetupModal/StripeCurrencyModal";
+import { checkIsBusinessStripeLoading } from "utils/businessUtils";
 import StopOrdersModal from "./StopOrdersModal";
 import FinishOrdersModal from "./FinishOrdersModal";
 import { Orange, SplitFee } from "./styled";
@@ -339,8 +340,7 @@ const LefoodLayout = ({
   const currentSplitRatio =
     ratio && splitRatioList.find(item => item.value === ratio).label;
 
-  const isBusinessLoading =
-    !business || business.get("stripeUserId") === undefined;
+  const isBusinessLoading = checkIsBusinessStripeLoading(business);
 
   return (
     <AppLayout
