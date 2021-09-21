@@ -76,7 +76,7 @@ export const SalesList = styled.ul`
   list-style-type: none;
   padding: 0;
   margin: 0;
-  max-height: 226px;
+  max-height: 645px;
   overflow: scroll;
   &::-webkit-scrollbar {
     display: none;

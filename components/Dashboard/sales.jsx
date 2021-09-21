@@ -22,7 +22,7 @@ import Arrow from "./arrow";
 const Sales = ({ isWorst, title, salesList }) => {
   const myRef = useRef(null);
   return (
-    <Tile width={1}>
+    <Tile height="645" width={1}>
       <Flex alignItems="center" justifyContent="space-between">
         <TileHeader>{title}</TileHeader>
         <Dropdown withToday />

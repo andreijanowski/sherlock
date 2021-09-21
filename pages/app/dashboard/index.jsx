@@ -66,7 +66,6 @@ const Dashboard = ({ t, lng }) => (
           <Stream />
           <Flex width={1} flexDirection="column">
             <Sales salesList={salesList} title="Best Sales" />
-            <Sales isWorst salesList={salesList} title="Worst Sales" />
           </Flex>
         </Flex>
       </Tile>
