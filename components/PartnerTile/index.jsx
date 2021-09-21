@@ -28,6 +28,9 @@ import {
   InfoButton,
   LinkContainer
 } from "./styled";
+import PlayVideoButton from "./PlayVideoButton";
+
+const WHOLESALER = "wholesaler";
 
 const PartnerTile = ({
   integratePartner,
@@ -44,11 +47,12 @@ const PartnerTile = ({
   const isOrkestroIntegration = partner.get("name") === "Orkestro";
   const isUberIntegration = partner.get("name") === "Uber Eats";
   const isIntegratedWithServices = isOrkestroIntegration || isUberIntegration;
-  const WHOLESALER = "wholesaler";
 
   const isIntegrationPending = partner.get("partnerIntegrationRequested");
   const isIntegrated = partner.get("partnerIntegrationActive");
   const isPreferred = partner.get("preferred");
+
+  const videoUrl = partner.get("videoUrl");
 
   const integrationButtonLabel = getIntegrationButtonLabel(
     isIntegrated,
@@ -128,6 +132,7 @@ const PartnerTile = ({
           </IntegrationLink>
         </LinkContainer>
         <ButtonContainer width={["100%", "100%", "65%", "70", "60%"]}>
+          {videoUrl && <PlayVideoButton t={t} url={videoUrl} />}
           {!isPartnerWholesaler &&
             (!isIntegratedWithServices && (
               <IntegrationButton

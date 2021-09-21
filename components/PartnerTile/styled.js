@@ -68,7 +68,9 @@ export const IntegrationButton = styled(Button)`
       margin: 0 0 8px 0;
     }
     ${p => p.styleName === "signUp" && "border-width: 2px"}
-    ${p => p.styleName === "navyBlue" && "cursor: pointer"}
+    ${p =>
+      (p.styleName === "navyBlue" || p.styleName === "outlineBlue") &&
+      "cursor: pointer"}
   }
 `;
 
