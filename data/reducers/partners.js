@@ -100,10 +100,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         state.get("data").map(partner => {
           if (partner.get("id") === meta.partnerId) {
             return partner
-              .setIn(
-                ["attributes", "partnerIntegrationActive"],
-                type === !DISCONNECT_PARTNER_SUCCESS
-              )
+              .setIn(["attributes", "partnerIntegrationActive"], false)
               .setIn(
                 ["attributes", "partnerIntegrationRequested"],
                 type === CONNECT_PARTNER_SUCCESS

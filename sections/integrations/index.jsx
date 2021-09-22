@@ -34,7 +34,8 @@ const IntegrationsList = ({
         fetchPartnersHandler({
           ...previousConfig,
           merge: true,
-          page: previousConfig.page + 1
+          page: previousConfig.page + 1,
+          search: "active"
         });
       }
     };
