@@ -1,0 +1,66 @@
+import { fromJS, Map, Record } from "immutable";
+import {
+  FETCH_BUSINESS_PAYMENTS_REQUEST,
+  FETCH_BUSINESS_PAYMENTS_SUCCESS,
+  FETCH_BUSINESS_PAYMENTS_FAIL
+} from "types/payments";
+
+export const initialState = Record({
+  data: Map(),
+  totalCount: 0,
+  isFetching: false,
+  isFailed: false,
+  isSucceeded: false
+})();
+
+const reducer = (state = initialState, { type, payload, meta }) => {
+  switch (type) {
+    case FETCH_BUSINESS_PAYMENTS_REQUEST: {
+      const newState = state.merge(
+        Record({
+          isFetching: true,
+          isFailed: false,
+          isSucceeded: false
+        })()
+      );
+      return meta.page === 1
+        ? newState.merge(
+            Record({
+              data: Map(),
+              totalCount: 0
+            })()
+          )
+        : newState;
+    }
+    case FETCH_BUSINESS_PAYMENTS_SUCCESS: {
+      let newState = state.merge(
+        Record({
+          isFetching: false,
+          isSucceeded: true
+        })()
+      );
+      if (meta.page === 1) {
+        newState = newState
+          .set("data", fromJS(payload.rawData.data))
+          .set("totalCount", payload.rawData.meta.totalCount);
+      } else {
+        newState = newState.mergeIn(["data"], fromJS(payload.rawData.data));
+      }
+      return newState;
+    }
+    case FETCH_BUSINESS_PAYMENTS_FAIL: {
+      return state.merge(
+        Record({
+          isFetching: false,
+          isFailed: true
+        })()
+      );
+    }
+
+    default: {
+      return state;
+    }
+  }
+};
+
+export default reducer;

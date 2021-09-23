@@ -1,0 +1,8 @@
+{
+  "table": {
+    "date": "Date",
+    "client": "Client",
+    "amount": "Amount",
+    "currency": "Currency"
+  }
+}

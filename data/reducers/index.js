@@ -20,6 +20,7 @@ import partners from "./partners";
 import externalServices from "./externalServices";
 import detectives from "./detectives";
 import plans from "./plans";
+import payments from "./payments";
 
 export default {
   app,
@@ -43,5 +44,6 @@ export default {
   partners,
   externalServices,
   detectives,
-  plans
+  plans,
+  payments
 };
