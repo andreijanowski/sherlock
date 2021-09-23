@@ -88,7 +88,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           if (partner.get("id") === meta.partnerId) {
             return partner.setIn(
               ["attributes", "partnerIntegrationRequested"],
-              type === CONNECT_PARTNER_SUCCESS
+              true
             );
           }
           return partner;
@@ -101,10 +101,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           if (partner.get("id") === meta.partnerId) {
             return partner
               .setIn(["attributes", "partnerIntegrationActive"], false)
-              .setIn(
-                ["attributes", "partnerIntegrationRequested"],
-                type === CONNECT_PARTNER_SUCCESS
-              );
+              .setIn(["attributes", "partnerIntegrationRequested"], false);
           }
           return partner;
         })
