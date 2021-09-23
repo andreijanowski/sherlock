@@ -10,7 +10,8 @@ import {
   API_URL,
   APP_URL,
   OAUTH_PUBLIC_CLIENT_ID,
-  OAUTH_CALLBACK_URL
+  OAUTH_CALLBACK_URL,
+  FOODETECTIVE_URL
 } from "consts";
 import {
   SectionItem,
@@ -52,7 +53,7 @@ const Navigation = ({ t, lng, scrollTo }) => (
         >
           <StyledNavigationLink
             onClick={() => {
-              window.location.href = "http://foodetective.co";
+              window.location.href = FOODETECTIVE_URL;
             }}
           >
             {t("common:personal")}
