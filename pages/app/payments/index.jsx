@@ -11,6 +11,7 @@ import {
   selectCurrentBusinessStripeIsLoading,
   selectCurrentBusinessAttributes
 } from "selectors/business";
+import PaymentsTable from "sections/payments/PaymentsTable";
 
 const namespaces = ["app"];
 
@@ -44,7 +45,7 @@ const PaymentsPage = ({ t, lng, business, isBusinessStripeLoading }) => {
         </>
       ) : (
         <CurrencyGuard>
-          {isStripeSetUp && <h3>Payments are set properly</h3>}
+          {isStripeSetUp && <PaymentsTable />}
           {isStripeSetupModalVisible && (
             <StripeSetupModal onClose={hideStripeSetupModal} />
           )}

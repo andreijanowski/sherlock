@@ -1,8 +1,13 @@
 import React from "react";
-import { func, shape, number } from "prop-types";
+import { func, number, shape } from "prop-types";
 
 import { ExpandIconRestyled } from "components/Icons";
-import { Table, TableHeadCell, TableDataRow, LoadMoreButton } from "./styled";
+import {
+  LoadMoreButton,
+  Table,
+  TableDataRow,
+  TableHeadCell
+} from "components/Table";
 import ClientsTableRow from "./ClientsTableRow";
 import { Pane } from "../styled";
 
