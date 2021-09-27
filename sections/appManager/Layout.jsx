@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { func, string, node, shape, bool } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
+import styled from "styled-components";
 
 import AppLayout from "layout/App";
 import {
@@ -10,6 +11,13 @@ import {
   CurrencyGuard
 } from "components";
 import { checkIsBusinessStripeLoading } from "utils/businessUtils";
+
+const AppLayoutWrapper = styled.div`
+  height: 100vh;
+  @media (max-width: ${p => p.theme.breakpoints[0]}) {
+    height: auto;
+  }
+`;
 
 const AppManagerLayout = ({
   business,
@@ -38,6 +46,7 @@ const AppManagerLayout = ({
       {...{
         mainIcon: "appManager",
         header: t(page),
+        containerComponent: AppLayoutWrapper,
         t,
         lng
       }}
@@ -48,29 +57,24 @@ const AppManagerLayout = ({
         </>
       ) : (
         <CurrencyGuard>
-          <Flex width={1} mt={3} flexWrap="wrap">
-            {isUberAvailable && (
-              <>
-                <Box pr={3} mb={2}>
-                  <Button onClick={onUploadToUberClick} styleName="withImage">
-                    <ButtonWithImageText>
-                      {t("import.upload_to_uber")}
-                    </ButtonWithImageText>
-                  </Button>
-                </Box>
-                <Box pr={3} mb={2}>
-                  <Button
-                    onClick={onDownloadFromUberClick}
-                    styleName="withImage"
-                  >
-                    <ButtonWithImageText>
-                      {t("import.download_from_uber")}
-                    </ButtonWithImageText>
-                  </Button>
-                </Box>
-              </>
-            )}
-          </Flex>
+          {isUberAvailable && (
+            <Flex width={1} mt={3} flexWrap="wrap">
+              <Box pr={3} mb={2}>
+                <Button onClick={onUploadToUberClick} styleName="withImage">
+                  <ButtonWithImageText>
+                    {t("import.upload_to_uber")}
+                  </ButtonWithImageText>
+                </Button>
+              </Box>
+              <Box pr={3} mb={2}>
+                <Button onClick={onDownloadFromUberClick} styleName="withImage">
+                  <ButtonWithImageText>
+                    {t("import.download_from_uber")}
+                  </ButtonWithImageText>
+                </Button>
+              </Box>
+            </Flex>
+          )}
           {children}
         </CurrencyGuard>
       )}

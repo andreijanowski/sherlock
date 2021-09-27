@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
 import { func, shape, bool, string } from "prop-types";
-import { Flex, Box } from "@rebass/grid";
+import { Box } from "@rebass/grid";
 import { LoadingIndicator } from "components";
 import Form from "./Form";
 import List from "./List";
-import { Wrapper } from "./styled";
+import { InnerWrapper, Wrapper, FloatingColumn } from "./styled";
 import { getInitialValues, prepareCategories } from "./utils";
 
 const Menu = ({
@@ -48,8 +48,8 @@ const Menu = ({
       {loading ? (
         <LoadingIndicator />
       ) : (
-        <Flex mx={-3}>
-          <Box width={1 / 2} px={3}>
+        <InnerWrapper flexWrap="wrap">
+          <Box as={FloatingColumn} width={[1, 1 / 2]} px={3}>
             <Form
               addDish={addDish}
               initialValues={initialValues}
@@ -64,7 +64,7 @@ const Menu = ({
               onShowImportModalClick={onShowImportModalClick}
             />
           </Box>
-          <Box width={1 / 2} px={3}>
+          <Box width={[1, 1 / 2]} px={3}>
             <List
               items={preparedList}
               removeDish={removeDish}
@@ -72,7 +72,7 @@ const Menu = ({
               setEditedDishId={setEditedDishId}
             />
           </Box>
-        </Flex>
+        </InnerWrapper>
       )}
     </Wrapper>
   );

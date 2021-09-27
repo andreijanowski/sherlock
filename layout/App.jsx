@@ -19,7 +19,8 @@ const AppLayout = ({
   role,
   createBusiness,
   logout,
-  isFetching
+  isFetching,
+  containerComponent
 }) => {
   const onConfirmModalSubmit = useCallback(() => {
     createBusiness();
@@ -32,7 +33,12 @@ const AppLayout = ({
   const shouldShowConfirmBOModal = role === BASIC_ROLE;
 
   return (
-    <Flex flexDirection={["column", "row"]} width={1} id="app">
+    <Flex
+      as={containerComponent}
+      flexDirection={["column", "row"]}
+      width={1}
+      id="app"
+    >
       <NavigationContainer
         t={t}
         lng={lng}
@@ -75,6 +81,7 @@ const AppLayout = ({
 AppLayout.propTypes = {
   children: node.isRequired,
   withMenu: bool,
+  containerComponent: node,
   menuItems: arrayOf(
     shape({
       onClick: func,
@@ -96,6 +103,7 @@ AppLayout.propTypes = {
 AppLayout.defaultProps = {
   menuItems: null,
   withMenu: false,
+  containerComponent: undefined,
   mainIcon: null,
   header: null,
   role: null
