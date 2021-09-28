@@ -16,7 +16,12 @@ import {
   LoadingIndicator
 } from "components";
 import { getSubdivisions } from "utils/iso-3166-2";
-import { validateLength, required, requiredProperty } from "utils/validators";
+import {
+  validateLength,
+  required,
+  requiredProperty,
+  matchYoutubeUrl
+} from "utils/validators";
 import countriesPhoneCodes from "utils/countriesPhoneCodes";
 import { normalizePhone } from "utils/normalizers";
 import { Form, TypesWrapper } from "../styled";
@@ -32,6 +37,7 @@ class BasicInformationForm extends PureComponent {
     this.validateMichelinStarsLength = validateLength(props.t, 0, 1);
     this.requiredCountry = requiredProperty(props.t, "value");
     this.required = required(props.t);
+    this.isYoutubeLink = matchYoutubeUrl(props.t, "value");
   }
 
   render() {
@@ -194,6 +200,12 @@ class BasicInformationForm extends PureComponent {
               name="instagram"
               label={t("contactInformation:instagramLabel")}
               placeholder={t("contactInformation:instagramPlaceholder")}
+            />
+            <FormInput
+              name="youtube"
+              label={t("contactInformation:youtubeLabel")}
+              placeholder={t("contactInformation:youtubePlaceholder")}
+              validate={this.isYoutubeLink}
             />
             <H3 mt={4}>{t("types")}</H3>
             <TypesWrapper>

@@ -36,10 +36,10 @@ function* fetchUserData() {
     state.getIn(["users", "profile", "data", "users", userId])
   );
 
-  const subscriptionInEffect =
-    profile && profile.getIn(["attributes", "subscriptionInEffect"]);
+  const subscriptionNotTerminated =
+    profile && profile.getIn(["attributes", "subscriptionNotTerminated"]);
 
-  if (subscriptionInEffect) {
+  if (subscriptionNotTerminated) {
     yield fetchAllUserData(fetchProfileCards);
     yield put(fetchProfileSubscriptions());
   }

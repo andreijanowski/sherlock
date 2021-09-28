@@ -79,6 +79,8 @@ const rollbarConfig = {
   }
 };
 
+const LINKEDIN_ADS_ID = process.env.LINKEDIN_ADS_ID;
+
 module.exports = {
   contentTypes,
   languages,
@@ -108,5 +110,6 @@ module.exports = {
   WHOLESALERS_CATEGORY,
   rollbarConfig,
   SUBSCRIPTION_PLANS_SLUGS,
-  BASIC_PLAN_NAME
+  BASIC_PLAN_NAME,
+  LINKEDIN_ADS_ID
 };

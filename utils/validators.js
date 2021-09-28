@@ -71,3 +71,12 @@ export const validateFileExtensions = (t, extensions) => value => {
     ? undefined
     : t("forms:validation.error.invalid_files");
 };
+
+export const matchYoutubeUrl = t => url => {
+  if (!url) return undefined;
+  const p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+  if (url.match(p)) {
+    return undefined;
+  }
+  return t("forms:validation.error.url-youtube");
+};

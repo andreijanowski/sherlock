@@ -13,7 +13,9 @@ import {
   Photography,
   Detectives,
   AppManager,
-  Dashboard
+  Dashboard,
+  Clients,
+  Payments
 } from "icons";
 
 export const chooseIcon = icon => {
@@ -46,7 +48,11 @@ export const chooseIcon = icon => {
       return Detectives;
     case "appManager":
       return AppManager;
-    case "analytics":
+    case "clients":
+      return Clients;
+    case "payments":
+      return Payments;
+    case "dashboard":
       return Dashboard;
     default:
       return () => "";

@@ -15,7 +15,9 @@ import {
   FETCH_BUSINESS_SETUP_INTENT_REQUEST,
   FETCH_BUSINESS_SERVICE_LINKS_REQUEST,
   FETCH_BUSINESS_CARDS_REQUEST,
-  FETCH_BUSINESS_SUBSCRIPTIONS_REQUEST
+  FETCH_BUSINESS_SUBSCRIPTIONS_REQUEST,
+  FETCH_BUSINESS_CLIENTS_REQUEST,
+  FETCH_AVG_TICKET_SIZE_REQUEST
 } from "types/businesses";
 
 const PER_PAGE = 200;
@@ -238,7 +240,25 @@ export const fetchBusinessSubscriptions = (id, page = 1) => ({
   type: FETCH_BUSINESS_SUBSCRIPTIONS_REQUEST,
   payload: {
     endpoint: `/api/v1/businesses/${id}/subscriptions`,
-    params: { per_page: PER_PAGE, page }
+    params: { per_page: PER_PAGE, page, "filter[scope]": "not_terminated" }
+  },
+  meta: { thunk: true }
+});
+
+export const fetchBusinessClients = (id, page = 1, search) => ({
+  type: FETCH_BUSINESS_CLIENTS_REQUEST,
+  payload: {
+    endpoint: `/api/v1/businesses/${id}/clients`,
+    params: { per_page: PER_PAGE, page, search }
+  },
+  meta: { thunk: true, page }
+});
+
+export const fetchAvgTicketSize = id => ({
+  type: FETCH_AVG_TICKET_SIZE_REQUEST,
+  method: "GET",
+  payload: {
+    enpoint: `/api/v1/businesses/${id}/dashboard/average_ticket_size`
   },
   meta: { thunk: true }
 });

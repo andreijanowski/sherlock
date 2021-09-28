@@ -53,8 +53,10 @@ const MainApp = ({
     };
   }, [shouldPlayNotification, toggleSound]);
 
+  const hasRoutesBar = !!(prevRoute || nextRoute);
+
   return (
-    <Wrapper withMenu={withMenu}>
+    <Wrapper withMenu={withMenu} mainIcon={mainIcon}>
       {!isAccountConfirmed && <InfoBar info={t("app:confirmAccount")} />}
       <HeaderWrapper>
         <Flex alignItems="center">
@@ -105,21 +107,25 @@ const MainApp = ({
         </IconsWrapper>
       </HeaderWrapper>
       {children}
-      <Flex
-        py="4"
-        justifyContent={nextRoute && !prevRoute ? "flex-end" : "space-between"}
-      >
-        {prevRoute && (
-          <Link lng={lng} route={prevRoute}>
-            <Button styleName="blue">{t("common:prev")}</Button>
-          </Link>
-        )}
-        {nextRoute && (
-          <Link lng={lng} route={nextRoute}>
-            <Button styleName="blue">{t("common:next")}</Button>
-          </Link>
-        )}
-      </Flex>
+      {hasRoutesBar && (
+        <Flex
+          py="4"
+          justifyContent={
+            nextRoute && !prevRoute ? "flex-end" : "space-between"
+          }
+        >
+          {prevRoute && (
+            <Link lng={lng} route={prevRoute}>
+              <Button styleName="blue">{t("common:prev")}</Button>
+            </Link>
+          )}
+          {nextRoute && (
+            <Link lng={lng} route={nextRoute}>
+              <Button styleName="blue">{t("common:next")}</Button>
+            </Link>
+          )}
+        </Flex>
+      )}
     </Wrapper>
   );
 };

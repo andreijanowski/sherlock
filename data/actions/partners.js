@@ -5,23 +5,44 @@ import {
   PARTNERS_PREFERRED_ADD_REQUEST,
   PARTNERS_PREFERRED_DELETE_REQUEST
 } from "types/partners";
+import { getRelationships } from "./utils";
 
-export const connectPartner = id => ({
+export const connectIntegrationPartner = (businessId, partnerId) => ({
   type: CONNECT_PARTNER_REQUEST,
   payload: {
-    method: "PATCH",
-    endpoint: `/api/v1/partners/${id}/connect`
+    method: "POST",
+    endpoint: `/api/v1/partner_integrations/connect`,
+    data: {
+      data: {
+        type: "partner_integrations",
+        relationships: {
+          ...getRelationships("business", businessId),
+          ...getRelationships("partner", partnerId)
+        }
+      }
+    }
   },
-  meta: { thunk: true, id }
+  meta: { thunk: true, partnerId }
 });
 
-export const disconnectPartner = id => ({
+export const disconnectIntegrationPartner = (businessId, partnerId) => ({
   type: DISCONNECT_PARTNER_REQUEST,
   payload: {
     method: "DELETE",
-    endpoint: `/api/v1/partners/${id}/disconnect`
+    endpoint: `/api/v1/partner_integrations/disconnect`,
+    data: {
+      data: {
+        type: "partner_integrations",
+        relationships: {
+          relationships: {
+            ...getRelationships("business", businessId),
+            ...getRelationships("partner", partnerId)
+          }
+        }
+      }
+    }
   },
-  meta: { thunk: true, id }
+  meta: { thunk: true, partnerId }
 });
 
 export const fetchPartners = config => {

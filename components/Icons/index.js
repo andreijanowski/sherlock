@@ -53,7 +53,8 @@ export {
   UploadFileIcon,
   CircleWarningIcon,
   Arrow,
-  ArrowDown
+  ArrowDown,
+  AcceptedDetectiveIcon
 } from "./mainControls";
 export {
   Orders,

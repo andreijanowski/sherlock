@@ -37,6 +37,7 @@
       "published-base": "Published reviews cannot be modified",
       "url-website": "Website is not a valid URL",
       "url-instagram": "Instagram is not a valid URL",
+      "url-youtube": "Youtube URL is not valid",
       "improbable_phone-phone": "Phone is an invalid number",
       "not_a_number-price_per_person": "Price per person must be a number",
       "not_an_integer-price_per_person": "Price per person must be an integer",

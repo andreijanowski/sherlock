@@ -4,3 +4,4 @@ export {
   default as GoogleTagManagerScript,
   noscript as GoogleTagManagerNoscript
 } from "./googleTagManager";
+export { default as LinkedinAdsScript } from "./LinkedinAdsScript";

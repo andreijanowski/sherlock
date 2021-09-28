@@ -12,7 +12,8 @@ import {
   fetchBusinessWidgets,
   fetchBusinessServiceLinks,
   fetchBusinessCards,
-  fetchBusinessSubscriptions
+  fetchBusinessSubscriptions,
+  fetchBusinessClients
 } from "actions/businesses";
 import { UPDATE_PROFILE_SUCCESS } from "types/users";
 import { SET_CURRENT_BUSINESS } from "types/app";
@@ -33,10 +34,10 @@ function* fetchBusinessData({ payload: { id } }) {
     state.getIn(["users", "profile", "data", "users"]).first()
   );
 
-  const subscriptionInEffect =
-    profile && profile.getIn(["attributes", "subscriptionInEffect"]);
+  const subscriptionNotTerminated =
+    profile && profile.getIn(["attributes", "subscriptionNotTerminated"]);
 
-  if (!subscriptionInEffect) {
+  if (!subscriptionNotTerminated) {
     yield fetchAllBusinessData(fetchBusinessCards, id);
     yield fetchAllBusinessData(fetchBusinessSubscriptions, id);
   }
@@ -52,6 +53,7 @@ function* fetchBusinessData({ payload: { id } }) {
   yield fetchAllBusinessData(fetchBusinessReservations, id);
   yield fetchAllBusinessData(fetchBusinessWidgets, id);
   yield put(fetchBusinessPartnerships(id));
+  yield put(fetchBusinessClients(id));
 }
 
 function* showSuccesNotification() {

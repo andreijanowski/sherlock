@@ -4,7 +4,10 @@ import { connect } from "react-redux";
 import { shape, arrayOf, oneOfType, func, string, bool } from "prop-types";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
-import { connectPartner, disconnectPartner } from "actions/partners";
+import {
+  connectIntegrationPartner,
+  disconnectIntegrationPartner
+} from "actions/partners";
 
 import {
   H3,
@@ -25,6 +28,9 @@ import {
   InfoButton,
   LinkContainer
 } from "./styled";
+import PlayVideoButton from "./PlayVideoButton";
+
+const WHOLESALER = "wholesaler";
 
 const PartnerTile = ({
   integratePartner,
@@ -33,18 +39,20 @@ const PartnerTile = ({
   showActionIcon,
   t,
   onAddClick,
-  removePartner
+  removePartner,
+  businessId
 }) => {
   const [showDisconnectModal, setShowDisconnectModal] = useState(false);
 
   const isOrkestroIntegration = partner.get("name") === "Orkestro";
   const isUberIntegration = partner.get("name") === "Uber Eats";
   const isIntegratedWithServices = isOrkestroIntegration || isUberIntegration;
-  const WHOLESALER = "wholesaler";
 
-  const isIntegrationPending = partner.get("userIntegrationRequested");
-  const isIntegrated = !partner.get("active");
+  const isIntegrationPending = partner.get("partnerIntegrationRequested");
+  const isIntegrated = partner.get("partnerIntegrationActive");
   const isPreferred = partner.get("preferred");
+
+  const videoUrl = partner.get("videoUrl");
 
   const integrationButtonLabel = getIntegrationButtonLabel(
     isIntegrated,
@@ -59,22 +67,21 @@ const PartnerTile = ({
   };
 
   const makeIntergationRequest = useCallback(
-    () => integratePartner(partnerId),
-    [integratePartner, partnerId]
+    () => integratePartner(businessId, partnerId),
+    [integratePartner, partnerId, businessId]
   );
 
   const makeCancelIntegrationRequest = useCallback(
-    () => removePartner(partnerId),
-    [partnerId, removePartner]
+    () => removePartner(businessId, partnerId),
+    [partnerId, removePartner, businessId]
   );
 
   const onIntegrationButtonClick = useCallback(() => {
-    if (isIntegrated) return;
-    if (isIntegrationPending) {
+    if (isIntegrated || isIntegrationPending) {
       setShowDisconnectModal(true);
-      return;
+    } else {
+      makeIntergationRequest();
     }
-    makeIntergationRequest();
   }, [isIntegrated, isIntegrationPending, makeIntergationRequest]);
 
   const closeModal = useCallback(() => {
@@ -125,10 +132,10 @@ const PartnerTile = ({
           </IntegrationLink>
         </LinkContainer>
         <ButtonContainer width={["100%", "100%", "65%", "70", "60%"]}>
+          {videoUrl && <PlayVideoButton t={t} url={videoUrl} />}
           {!isPartnerWholesaler &&
             (!isIntegratedWithServices && (
               <IntegrationButton
-                disabled={isIntegrated}
                 styleName={
                   isIntegrated || isIntegrationPending ? "orange" : "navyBlue"
                 }
@@ -160,6 +167,7 @@ PartnerTile.propTypes = {
   integratePartner: func.isRequired,
   partner: oneOfType([arrayOf(), shape()]).isRequired,
   partnerId: string.isRequired,
+  businessId: string.isRequired,
   showActionIcon: bool,
   t: func.isRequired,
   removePartner: func.isRequired,
@@ -171,9 +179,16 @@ PartnerTile.defaultProps = {
 };
 
 export default connect(
-  null,
+  state => {
+    const businessData = state.getIn(["users", "currentBusiness", "data"]);
+    const business = businessData && businessData.get("businesses").first();
+
+    return {
+      businessId: business && business.get("id")
+    };
+  },
   {
-    integratePartner: connectPartner,
-    removePartner: disconnectPartner
+    integratePartner: connectIntegrationPartner,
+    removePartner: disconnectIntegrationPartner
   }
 )(PartnerTile);

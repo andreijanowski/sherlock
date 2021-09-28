@@ -41,6 +41,7 @@ export const getInitialValues = ({ business, businessGroups }) => {
       website: business.get("website"),
       facebook: business.get("facebook"),
       instagram: business.get("instagram"),
+      youtube: business.get("youtube"),
       types,
       cuisines,
       foodsAndDrinks,

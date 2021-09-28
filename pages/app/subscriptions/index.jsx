@@ -176,10 +176,10 @@ class SubscriptionsPage extends PureComponent {
       getBusinessSubscriptions,
       getBusinessCards,
       businessId,
-      subscriptionInEffect
+      subscriptionNotTerminated
     } = this.props;
 
-    if (subscriptionInEffect) {
+    if (subscriptionNotTerminated) {
       getProfileSubscriptions();
       getProfileCards();
     } else {
@@ -274,7 +274,7 @@ SubscriptionsPage.propTypes = {
   notificationError: func.isRequired,
   businessId: string.isRequired,
   isCanceled: bool,
-  subscriptionInEffect: bool.isRequired,
+  subscriptionNotTerminated: bool.isRequired,
   getPlans: func.isRequired,
   plans: shape()
 };
@@ -303,8 +303,8 @@ export default compose(
 
       const profile = users && users.first();
 
-      const subscriptionInEffect =
-        profile && profile.getIn(["attributes", "subscriptionInEffect"]);
+      const subscriptionNotTerminated =
+        profile && profile.getIn(["attributes", "subscriptionNotTerminated"]);
 
       const businessData = state.getIn(["users", "currentBusiness", "data"]);
       const business = businessData && businessData.get("businesses").first();
@@ -313,7 +313,7 @@ export default compose(
         cards: state.getIn(["users", "cards", "data", "cards"]),
         businessId: business && business.get("id"),
         lng: (i18n && i18n.language) || "en",
-        subscriptionInEffect,
+        subscriptionNotTerminated,
         plans
       };
     },

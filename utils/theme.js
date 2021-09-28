@@ -45,7 +45,14 @@ export const colors = {
   detectivesBackgroundGrey: "242, 242, 242",
   lightBlue: "248, 249, 254",
   importGray: "157, 157, 156",
-  error: "235, 87, 87"
+  error: "235, 87, 87",
+  violet: "55, 81, 255",
+  black: "0, 0, 0",
+  pink: "243, 129, 118",
+  gray: {
+    "2": "79, 79, 79",
+    "3": "130, 130, 130"
+  }
 };
 
 const fontSizes = {
@@ -60,6 +67,7 @@ const fontSizes = {
   f22: "22px",
   f23: "23px",
   f24: "24px",
+  f28: "28px",
   f30: "30px",
   f32: "32px",
   f36: "36px",
