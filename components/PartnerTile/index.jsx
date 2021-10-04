@@ -17,7 +17,7 @@ import {
 import { Confirm } from "components/modals";
 
 import IntegrationLink from "./IntegrationLink";
-import { getIntegrationButtonLabel } from "./utils";
+import { getIntegrationButtonLabel, getIntegrationButtonColor } from "./utils";
 import {
   ButtonContainer,
   Container,
@@ -58,6 +58,11 @@ const PartnerTile = ({
     isIntegrated,
     isIntegrationPending,
     t
+  );
+
+  const integrationButtonColor = getIntegrationButtonColor(
+    isIntegrated,
+    isIntegrationPending
   );
   const partnerCategory = partner.get("category");
   const isPartnerWholesaler = partnerCategory === WHOLESALER;
@@ -136,9 +141,7 @@ const PartnerTile = ({
           {!isPartnerWholesaler &&
             (!isIntegratedWithServices && (
               <IntegrationButton
-                styleName={
-                  isIntegrated || isIntegrationPending ? "orange" : "navyBlue"
-                }
+                styleName={integrationButtonColor}
                 onClick={onIntegrationButtonClick}
               >
                 {integrationButtonLabel}

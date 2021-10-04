@@ -2,7 +2,8 @@ import { WHOLESALERS_CATEGORY } from "consts";
 
 export const getPartnersFilter = (isWholesalers, category, business) => {
   const commonFilter = {
-    country_codes: [business && business.getIn(["attributes", "countryCode"])]
+    country_codes: [business && business.getIn(["attributes", "countryCode"])],
+    active: "true"
   };
 
   if (isWholesalers) {

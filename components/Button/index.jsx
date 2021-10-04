@@ -147,6 +147,11 @@ const navyBlue = css`
   ${planButton};
 `;
 
+const green = css`
+  background-color: rgb(${p => p.theme.colors.green});
+  ${planButton};
+`;
+
 const white = css`
   ${planButton};
   color: rgb(${p => p.theme.colors.blue});
@@ -296,6 +301,7 @@ const Button = styled.button`
   ${p => p.styleName === "orange" && orange};
   ${p => p.styleName === "deepSkyBlue" && deepSkyBlue};
   ${p => p.styleName === "navyBlue" && navyBlue};
+  ${p => p.styleName === "green" && green};
   ${p => p.styleName === "white" && white};
   ${p => p.styleName === "hanPurple" && hanPurple};
   ${p => p.styleName === "smallBlue" && smallBlue};

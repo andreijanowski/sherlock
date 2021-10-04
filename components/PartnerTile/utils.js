@@ -4,3 +4,9 @@ export const getIntegrationButtonLabel = (isIntegrated, isPending, t) => {
 
   return t("app:manageIntegrations.requestIntegration");
 };
+
+export const getIntegrationButtonColor = (isIntegrated, isPending) => {
+  if (isIntegrated) return "green";
+  if (isPending) return "orange";
+  return "navyBlue";
+};

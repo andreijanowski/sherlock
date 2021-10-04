@@ -82,15 +82,26 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     }
 
     case CONNECT_PARTNER_SUCCESS:
-    case DISCONNECT_PARTNER_SUCCESS: {
       return state.set(
         "data",
         state.get("data").map(partner => {
           if (partner.get("id") === meta.partnerId) {
             return partner.setIn(
               ["attributes", "partnerIntegrationRequested"],
-              type === CONNECT_PARTNER_SUCCESS
+              true
             );
+          }
+          return partner;
+        })
+      );
+    case DISCONNECT_PARTNER_SUCCESS: {
+      return state.set(
+        "data",
+        state.get("data").map(partner => {
+          if (partner.get("id") === meta.partnerId) {
+            return partner
+              .setIn(["attributes", "partnerIntegrationActive"], false)
+              .setIn(["attributes", "partnerIntegrationRequested"], false);
           }
           return partner;
         })

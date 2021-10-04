@@ -63,14 +63,11 @@ export const IntegrationButton = styled(Button)`
     flex: none;
     margin-right: 16px;
     padding: 8px 16px;
-    cursor: default;
     @media (max-width: 1024px) {
       margin: 0 0 8px 0;
     }
     ${p => p.styleName === "signUp" && "border-width: 2px"}
-    ${p =>
-      (p.styleName === "navyBlue" || p.styleName === "outlineBlue") &&
-      "cursor: pointer"}
+    cursor: pointer;
   }
 `;
 
