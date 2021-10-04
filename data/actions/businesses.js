@@ -17,7 +17,8 @@ import {
   FETCH_BUSINESS_CARDS_REQUEST,
   FETCH_BUSINESS_SUBSCRIPTIONS_REQUEST,
   FETCH_BUSINESS_CLIENTS_REQUEST,
-  FETCH_AVG_TICKET_SIZE_REQUEST
+  FETCH_AVG_TICKET_SIZE_REQUEST,
+  FETCH_TODAYS_EARNINGS_REQUEST
 } from "types/businesses";
 
 const PER_PAGE = 200;
@@ -256,9 +257,18 @@ export const fetchBusinessClients = (id, page = 1, search) => ({
 
 export const fetchAvgTicketSize = id => ({
   type: FETCH_AVG_TICKET_SIZE_REQUEST,
-  method: "GET",
   payload: {
-    enpoint: `/api/v1/businesses/${id}/dashboard/average_ticket_size`
+    method: "GET",
+    endpoint: `/api/v1/businesses/${id}/dashboard/average_ticket_size`
+  },
+  meta: { thunk: true }
+});
+
+export const fetchTodaysEarnings = id => ({
+  type: FETCH_TODAYS_EARNINGS_REQUEST,
+  payload: {
+    method: "GET",
+    endpoint: `/api/v1/businesses/${id}/dashboard/earnings`
   },
   meta: { thunk: true }
 });

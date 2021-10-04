@@ -111,7 +111,7 @@ const dropdownStyles = css`
 
 export const DropdownWrapper = styled(Flex)`
   height: 24px;
-  padding: 4px 12px;
+  padding: 4px 0 4px 12px;
   position: relative;
   font-size: 10px;
   font-weight: 600;
@@ -157,7 +157,6 @@ export const DropdownButton = styled(Flex)`
     transition: 0.1s;
     transform: ${p => (p.isDropdownOpen ? "rotate(180deg)" : "none")};
     stroke: rgb(${p => p.theme.colors.darkGreyText}, 0.7);
-    margin-bottom: 2px;
   }
 `;
 

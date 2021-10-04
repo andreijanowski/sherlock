@@ -15,7 +15,7 @@ import LineChart from "components/Dashboard/lineChart";
 import Stream from "components/Dashboard/stream";
 import EvaluationChart from "components/Dashboard/evaluationChart";
 import { Tile, TileHeader, TileWrapper } from "components/Dashboard/styled";
-import { fetchAvgTicketSize } from "actions/businesses";
+import { fetchAvgTicketSize, fetchTodaysEarnings } from "actions/businesses";
 
 const namespaces = ["dashboardView", "app"];
 
@@ -31,7 +31,7 @@ const salesList = [
   { name: "Zesty Prawns", percentage: "5%", ordered: "21" }
 ];
 
-const Dashboard = ({ t, lng, businessId, fetchTickets }) => (
+const Dashboard = ({ t, lng, businessId, fetchTickets, fetchEarnings }) => (
   <AppLayout
     {...{
       mainIcon: "analytics",
@@ -48,17 +48,20 @@ const Dashboard = ({ t, lng, businessId, fetchTickets }) => (
           flexDirection={["column", "column", "row"]}
         >
           <Flex width={[1, 1, 1, 31 / 64]} flexDirection="column">
-            {businessId && (
-              <BarTile
-                businessId={businessId}
-                isDown={salesList.isDown}
-                withDroprown
-                color="turquoise"
-                fetchAction={fetchTickets}
-              />
-            )}
-            {/* <BarTile color="salmon" />
-              <BarTile color="royalblue" /> */}
+            <BarTile
+              businessId={businessId}
+              isDown={salesList.isDown}
+              color="turquoise"
+              fetchAction={fetchTickets}
+              title="ticket"
+            />
+            <BarTile
+              fetchAction={fetchEarnings}
+              businessId={businessId}
+              color="salmon"
+              title="earnings"
+            />
+            {/*  <BarTile color="royalblue" /> */}
           </Flex>
           <Flex width={[1, 1, 1, 31 / 64]} flexDirection="column">
             <ProgressBarTile />
@@ -106,27 +109,29 @@ Dashboard.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   businessId: string.isRequired,
-  fetchTickets: func.isRequired
+  fetchTickets: func.isRequired,
+  fetchEarnings: func.isRequired
 };
 
 export default compose(
   requireAuth(true),
   withTranslation(namespaces),
-  connect((state, { i18n }) => {
-    const businessData = state.getIn(["users", "currentBusiness", "data"]);
-    const business =
-      businessData &&
-      businessData.get("businesses") &&
-      businessData.get("businesses").first();
+  connect(
+    (state, { i18n }) => {
+      const businessData = state.getIn(["users", "currentBusiness", "data"]);
+      const business =
+        businessData &&
+        businessData.get("businesses") &&
+        businessData.get("businesses").first();
 
-    return (
-      {
+      return {
         lng: (i18n && i18n.language) || "en",
         businessId: business && business.get("id")
-      },
-      {
-        fetchTickets: fetchAvgTicketSize
-      }
-    );
-  })
+      };
+    },
+    {
+      fetchTickets: fetchAvgTicketSize,
+      fetchEarnings: fetchTodaysEarnings
+    }
+  )
 )(Dashboard);

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { bool } from "prop-types";
+import { bool, func, string } from "prop-types";
 import { ExpandIconRestyled } from "icons";
 
 import {
@@ -29,10 +29,16 @@ const OPTIONS = [
   }
 ];
 
-export default function Dropdown({ withToday, withoutBorder }) {
+export default function Dropdown({
+  withToday,
+  withoutBorder,
+  onChange,
+  value
+}) {
   const [activeOption, setActiveOption] = useState(OPTIONS[0].value);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
+
   return (
     <DropdownWrapper
       withoutBorder={withoutBorder}
@@ -46,7 +52,7 @@ export default function Dropdown({ withToday, withoutBorder }) {
         withoutBorder={withoutBorder}
         isDropdownOpen={isDropdownOpen}
       >
-        {OPTIONS.find(el => el.value === activeOption).name}
+        {OPTIONS.find(el => el.value === value).name}
         <ExpandIconRestyled />
       </DropdownButton>
 
@@ -57,8 +63,16 @@ export default function Dropdown({ withToday, withoutBorder }) {
               isActive={activeOption === option.value}
               tabIndex="0"
               role="button"
-              onKeyDown={() => setActiveOption(option.value)}
-              onClick={() => setActiveOption(option.value)}
+              onKeyDown={() =>
+                onChange
+                  ? onChange(option.value)
+                  : setActiveOption(option.value)
+              }
+              onClick={() =>
+                onChange
+                  ? onChange(option.value)
+                  : setActiveOption(option.value)
+              }
             >
               {option.name}
             </DropdownItem>
@@ -71,10 +85,14 @@ export default function Dropdown({ withToday, withoutBorder }) {
 
 Dropdown.propTypes = {
   withToday: bool,
-  withoutBorder: bool
+  withoutBorder: bool,
+  onChange: func,
+  value: string
 };
 
 Dropdown.defaultProps = {
   withToday: false,
-  withoutBorder: false
+  withoutBorder: false,
+  onChange: () => {},
+  value: "yesterday"
 };
