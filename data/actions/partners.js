@@ -34,10 +34,8 @@ export const disconnectIntegrationPartner = (businessId, partnerId) => ({
       data: {
         type: "partner_integrations",
         relationships: {
-          relationships: {
-            ...getRelationships("business", businessId),
-            ...getRelationships("partner", partnerId)
-          }
+          ...getRelationships("business", businessId),
+          ...getRelationships("partner", partnerId)
         }
       }
     }
