@@ -3,7 +3,8 @@ import { func, shape, bool } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 
 import { AcceptedDetectiveIcon } from "components/Icons";
-import { TableDataCell, TableDataRow, DetectiveIconWrapper } from "./styled";
+import { TableDataCell, TableDataRow } from "components/Table";
+import { DetectiveIconWrapper } from "./styled";
 import { getClientDetails } from "../utils";
 import { Avatar, AvatarWrapper, Name, DetectiveLabel } from "../styled";
 

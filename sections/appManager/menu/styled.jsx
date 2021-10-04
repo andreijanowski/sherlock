@@ -7,7 +7,23 @@ export const Wrapper = styled(Flex).attrs(() => ({
   flexDirection: "column",
   p: 4
 }))`
+  flex: auto;
+  overflow: auto;
   background-color: rgb(${p => p.theme.colors.white});
+`;
+
+export const InnerWrapper = styled(Flex).attrs({
+  mx: -1
+})`
+  flex: auto;
+  overflow: auto;
+  position: relative;
+`;
+
+export const FloatingColumn = styled.div`
+  align-self: flex-start;
+  position: sticky;
+  top: 0;
 `;
 
 export const Dish = styled(Flex).attrs(() => ({
