@@ -39,7 +39,6 @@ const IntegrationsList = ({
         });
       }
     };
-
     window.addEventListener("scroll", onScroll);
 
     return () => {
@@ -52,18 +51,15 @@ const IntegrationsList = ({
       {partners.size > 0 ? (
         partners.map(partner => {
           const partnerId = partner.get("id");
-          const isActive = partner.getIn(["attributes", "active"]);
           return (
-            isActive && (
-              <PartnerTile
-                showActionIcon={showActionIcons}
-                key={partnerId}
-                partner={partner.get("attributes")}
-                partnerId={partnerId}
-                t={t}
-                onAddClick={onAddToFavorite}
-              />
-            )
+            <PartnerTile
+              showActionIcon={showActionIcons}
+              key={partnerId}
+              partner={partner.get("attributes")}
+              partnerId={partnerId}
+              t={t}
+              onAddClick={onAddToFavorite}
+            />
           );
         })
       ) : (
