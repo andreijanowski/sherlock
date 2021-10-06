@@ -14,8 +14,6 @@ export const getPaymentDetails = payment => {
   const totalCostCents = payment.getIn(["attributes", "amountCents"]);
   const amount = parseCentsPriceToDottedFormat(totalCostCents, currency);
 
-  console.log(payment.getIn(["attributes", "state"]));
-
   return {
     id,
     date,

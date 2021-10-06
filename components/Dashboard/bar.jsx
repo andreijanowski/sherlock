@@ -1,8 +1,8 @@
 import { bool, func, string, shape } from "prop-types";
-import React from "react";
 import { Flex } from "@rebass/grid";
-import { Currency, ProgressBar, ProgressTitle, Value } from "./styled";
+import { normalizePrice } from "utils/normalizers";
 import Dropdown from "./dropdown";
+import { Currency, ProgressBar, ProgressTitle, Value } from "./styled";
 
 export const Bar = ({
   barData,
@@ -10,14 +10,16 @@ export const Bar = ({
   currency,
   color,
   withDropdown,
-  onChange
+  onChange,
+  t
 }) => {
-  const barValue = barData && barData[value] ? barData[value] : 0;
+  const barValue = barData && barData[value];
+
   return (
     <Flex flexDirection="column">
       <ProgressTitle>
         <Flex alignItems="flex-end">
-          <Value color={color}> {barValue}</Value>
+          <Value color={color}> {normalizePrice(barValue)}</Value>
           <Currency color={color}>{currency}</Currency>
         </Flex>
       </ProgressTitle>
@@ -30,7 +32,7 @@ export const Bar = ({
       >
         <ProgressBar color={color} width={60} />
         {withDropdown && value.length > 0 ? (
-          <Dropdown value={value} onChange={onChange} withoutBorder />
+          <Dropdown t={t} value={value} onChange={onChange} withoutBorder />
         ) : (
           <Value isSmall color={color}>
             Today
@@ -47,7 +49,8 @@ Bar.propTypes = {
   color: string.isRequired,
   withDropdown: bool,
   onChange: func,
-  barData: shape().isRequired
+  barData: shape().isRequired,
+  t: func.isRequired
 };
 
 Bar.defaultProps = {

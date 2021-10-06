@@ -3,50 +3,60 @@ import { connect } from "react-redux";
 import { Flex } from "@rebass/grid";
 import { Bar } from "components/Dashboard/bar";
 import { bool, func, string, shape } from "prop-types";
-import { PulseLoader } from "react-spinners";
+import Loader from "./loader";
 import Arrow from "./arrow";
 import { Percentage, Tile, TileHeader } from "./styled";
 
 const BarTile = ({
   businessId,
   color,
-  isDown,
   fetchAction,
   title,
   dashboard,
-  isFetching
+  isFetching,
+  isDisabled,
+  t
 }) => {
   useEffect(() => {
     fetchAction(businessId);
   }, [businessId, fetchAction]);
+
+  const MAX_PERCENTAGE = 1000000;
+  const HUNDRET_PERCENT = 100;
 
   const [dropDownValue, setDropdownValue] = useState("yesterday");
 
   const barData =
     dashboard && dashboard.get(`${title}`) && dashboard.get(`${title}`).toJS();
 
-  const percentage = barData ? (4730 / barData[dropDownValue]) * 100 - 100 : 0;
+  const percentage =
+    barData &&
+    barData.today &&
+    (barData.today / barData[dropDownValue]) * HUNDRET_PERCENT - 100;
 
-  console.log(percentage);
+  const isDown = percentage < 0;
 
   return (
-    <Tile width={1} height="200" isSmall>
+    <Tile isDisabled={isDisabled} width={1} height="200" isSmall>
       {isFetching ? (
-        <Flex justifyContent="center">
-          <PulseLoader />
-        </Flex>
+        <Loader />
       ) : (
         <>
           <Flex mb={10} justifyContent="space-between">
-            <TileHeader>{title}</TileHeader>
+            <TileHeader>{t(`${title}`)}</TileHeader>
             <Flex justifyContent="space-between">
-              <Arrow isDown={isDown} />
-              <Percentage isDown={isDown} ml={1}>
-                2%
-              </Percentage>
+              {(!Number.isNaN(percentage) && percentage < MAX_PERCENTAGE) ||
+                (percentage === 0 && (
+                  <>
+                    <Arrow isDown={isDown} />
+                    <Percentage isDown={isDown} ml={1}>
+                      {Math.round(percentage)} %
+                    </Percentage>
+                  </>
+                ))}
             </Flex>
           </Flex>
-          <Bar values={barData} value="today" currency="CHF" color={color} />
+          <Bar barData={barData} value="today" currency="CHF" color={color} />
           <Bar
             barData={barData}
             value={dropDownValue}
@@ -54,6 +64,7 @@ const BarTile = ({
             color="silver"
             withDropdown
             onChange={setDropdownValue}
+            t={t}
           />
         </>
       )}
@@ -63,14 +74,18 @@ const BarTile = ({
 
 BarTile.propTypes = {
   color: string.isRequired,
-  isDown: bool,
   businessId: string.isRequired,
   fetchAction: func.isRequired,
   title: string.isRequired,
   dashboard: shape().isRequired,
-  isFetching: bool.isRequired
+  isFetching: bool.isRequired,
+  t: func.isRequired,
+  isDisabled: bool
 };
-BarTile.defaultProps = { isDown: false };
+
+BarTile.defaultProps = {
+  isDisabled: false
+};
 
 export default connect(state => {
   const dashboard = state.getIn(["dashboard", "data"]);

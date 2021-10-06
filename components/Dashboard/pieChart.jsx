@@ -10,7 +10,7 @@ const CustomizedLegend = props => {
   return (
     <Flex flexDirection="column">
       {payload.map(entry => (
-        <Flex mb={4} justifyContent="space-between" alignItems="center">
+        <Flex mb={3} justifyContent="space-between" alignItems="center">
           <Flex alignItems="center">
             <Bullet background={entry.color} />
             {entry.payload.name}

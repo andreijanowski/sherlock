@@ -18,6 +18,7 @@ export const Tile = styled(Flex)`
   border-radius: ${p => (p.withoutRadius ? "0px" : "13px")};
   padding: 16px;
   margin: 8px;
+  ${p => p.isDisabled && "pointer-events: none; opacity: 0.4;"}
   ${p => p.height && `height:  ${p.height}px`};
   ${p => p.height && `max-height:  ${p.height}px`};
   background-color: ${p => `rgb(${p.theme.colors.white})`};
@@ -110,8 +111,9 @@ const dropdownStyles = css`
 `;
 
 export const DropdownWrapper = styled(Flex)`
+  width: 90px;
   height: 24px;
-  padding: 4px 0 4px 12px;
+  padding: ${p => (p.withoutBorder ? "4px 0 4px 12px" : "4px; 16px")};
   position: relative;
   font-size: 10px;
   font-weight: 600;
@@ -149,14 +151,14 @@ export const ItemsWrapper = styled(Flex)`
 export const DropdownButton = styled(Flex)`
   font-size: ${p => (p.withoutBorder ? "12px" : "10px")};
   align-items: center;
+  justify-content: flex-end;
   svg {
-    width: 8px;
-    height: 4px;
+    width: ${p => (p.withoutBorder ? "10px" : "8px")};
+    height: ${p => (p.withoutBorder ? "5px" : "4px")};
   }
-  .ExpandIcon {
+  .DropdownArrow {
     transition: 0.1s;
     transform: ${p => (p.isDropdownOpen ? "rotate(180deg)" : "none")};
-    stroke: rgb(${p => p.theme.colors.darkGreyText}, 0.7);
   }
 `;
 

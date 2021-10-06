@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Flex } from "@rebass/grid";
-import { bool, shape, string } from "prop-types";
+import { bool, func, shape, string } from "prop-types";
 
 import { scrollToNextItem } from "./utils";
 import { ChevronDown } from "../Icons";
@@ -19,13 +19,13 @@ import {
 import Dropdown from "./dropdown";
 import Arrow from "./arrow";
 
-const Sales = ({ isWorst, title, salesList }) => {
+const Sales = ({ isWorst, title, salesList, t }) => {
   const myRef = useRef(null);
   return (
     <Tile height="645" width={1}>
       <Flex alignItems="center" justifyContent="space-between">
         <TileHeader>{title}</TileHeader>
-        <Dropdown withToday />
+        <Dropdown t={t} withToday />
       </Flex>
       <Spacer />
       <SalesList ref={myRef}>
@@ -61,6 +61,7 @@ const Sales = ({ isWorst, title, salesList }) => {
 Sales.propTypes = {
   isWorst: bool,
   title: string.isRequired,
+  t: func.isRequired,
   salesList: shape({
     percentage: string.isRequired,
     ordered: string.isRequired,

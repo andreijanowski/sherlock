@@ -1587,3 +1587,20 @@ export const ChevronDown = () => (
     />
   </svg>
 );
+
+export const DropdownArrow = () => (
+  <span className="DropdownArrow">
+    <svg
+      width="9"
+      height="6"
+      viewBox="0 0 9 6"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.80538 5.11523L0.643727 0.528203L8.96703 0.528204L4.80538 5.11523Z"
+        fill="#BDBDBD"
+      />
+    </svg>
+  </span>
+);

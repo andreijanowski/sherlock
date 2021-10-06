@@ -39,7 +39,8 @@ export {
   Photography,
   DeliveryManagement,
   Analytics,
-  ChevronDown
+  ChevronDown,
+  DropdownArrow
 } from "./navigation";
 export {
   Docs,

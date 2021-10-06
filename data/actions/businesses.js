@@ -18,7 +18,8 @@ import {
   FETCH_BUSINESS_SUBSCRIPTIONS_REQUEST,
   FETCH_BUSINESS_CLIENTS_REQUEST,
   FETCH_AVG_TICKET_SIZE_REQUEST,
-  FETCH_TODAYS_EARNINGS_REQUEST
+  FETCH_TODAYS_EARNINGS_REQUEST,
+  FETCH_REVENUE_BREAKDOWN_REQUEST
 } from "types/businesses";
 
 const PER_PAGE = 200;
@@ -269,6 +270,15 @@ export const fetchTodaysEarnings = id => ({
   payload: {
     method: "GET",
     endpoint: `/api/v1/businesses/${id}/dashboard/earnings`
+  },
+  meta: { thunk: true }
+});
+
+export const fetchRevenueBreakdown = id => ({
+  type: FETCH_REVENUE_BREAKDOWN_REQUEST,
+  payload: {
+    method: "GET",
+    endpoint: `/api/v1/businesses/${id}/dashboard/revenue_breakdown`
   },
   meta: { thunk: true }
 });

@@ -15,9 +15,13 @@ import LineChart from "components/Dashboard/lineChart";
 import Stream from "components/Dashboard/stream";
 import EvaluationChart from "components/Dashboard/evaluationChart";
 import { Tile, TileHeader, TileWrapper } from "components/Dashboard/styled";
-import { fetchAvgTicketSize, fetchTodaysEarnings } from "actions/businesses";
+import {
+  fetchAvgTicketSize,
+  fetchTodaysEarnings,
+  fetchRevenueBreakdown
+} from "actions/businesses";
 
-const namespaces = ["dashboardView", "app"];
+const namespaces = ["dashboard", "app"];
 
 const salesList = [
   { name: "Jungle Chicken", isDown: true, percentage: "4%", ordered: "33" },
@@ -31,7 +35,14 @@ const salesList = [
   { name: "Zesty Prawns", percentage: "5%", ordered: "21" }
 ];
 
-const Dashboard = ({ t, lng, businessId, fetchTickets, fetchEarnings }) => (
+const Dashboard = ({
+  t,
+  lng,
+  businessId,
+  fetchTickets,
+  fetchEarnings,
+  fetchRevenue
+}) => (
   <AppLayout
     {...{
       mainIcon: "analytics",
@@ -42,7 +53,7 @@ const Dashboard = ({ t, lng, businessId, fetchTickets, fetchEarnings }) => (
   >
     <TileWrapper width={1}>
       <Tile width={1}>
-        <TileHeader isBig>{t("dashboard:businessOverview")}</TileHeader>
+        <TileHeader isBig>{t("businessOverview")}</TileHeader>
         <Flex
           justifyContent="space-between"
           flexDirection={["column", "column", "row"]}
@@ -54,39 +65,52 @@ const Dashboard = ({ t, lng, businessId, fetchTickets, fetchEarnings }) => (
               color="turquoise"
               fetchAction={fetchTickets}
               title="ticket"
+              t={t}
             />
             <BarTile
               fetchAction={fetchEarnings}
               businessId={businessId}
               color="salmon"
               title="earnings"
+              t={t}
             />
-            {/*  <BarTile color="royalblue" /> */}
+            <BarTile
+              isDisabled
+              fetchAction={fetchEarnings}
+              businessId={businessId}
+              title="earnings"
+              t={t}
+              color="royalblue"
+            />
           </Flex>
           <Flex width={[1, 1, 1, 31 / 64]} flexDirection="column">
-            <ProgressBarTile />
-            <Tile height={424}>
-              <TileHeader>{t("dashboard:paymentType")}</TileHeader>
+            <ProgressBarTile
+              businessId={businessId}
+              fetchAction={fetchRevenue}
+              t={t}
+            />
+            <Tile isDisabled height={380}>
+              <TileHeader>{t("paymentTypes")}</TileHeader>
               <PaymentChart />
             </Tile>
           </Flex>
         </Flex>
       </Tile>
-      <Tile width={1}>
-        <TileHeader isBig>{t("dashboard:todaysActivity")}</TileHeader>
+      <Tile isDisabled width={1}>
+        <TileHeader isBig>{t("todaysActivity")}</TileHeader>
         <Flex flexDirection={["column", "column", "row"]}>
           <Stream />
           <Flex width={1} flexDirection="column">
-            <Sales salesList={salesList} title="Best Sales" />
+            <Sales t={t} salesList={salesList} title="Best Sales" />
           </Flex>
         </Flex>
       </Tile>
     </TileWrapper>
-    <Tile>
+    <Tile isDisabled>
       <Flex flexDirection={["column", "column", "column", "row"]}>
-        <LineChart title={t("dashboard:consultation")} />
-        <LineChart isDown title={t("dashboard:totalComments")} />
-        <EvaluationChart title={t("dashboard:consultation")} isDown />
+        <LineChart title={t("consultation")} />
+        <LineChart isDown title={t("totalComments")} />
+        <EvaluationChart title={t("consultation")} isDown />
       </Flex>
       <Flex
         flexDirection={["column", "column", "column", "row"]}
@@ -110,7 +134,8 @@ Dashboard.propTypes = {
   lng: string.isRequired,
   businessId: string.isRequired,
   fetchTickets: func.isRequired,
-  fetchEarnings: func.isRequired
+  fetchEarnings: func.isRequired,
+  fetchRevenue: func.isRequired
 };
 
 export default compose(
@@ -131,7 +156,8 @@ export default compose(
     },
     {
       fetchTickets: fetchAvgTicketSize,
-      fetchEarnings: fetchTodaysEarnings
+      fetchEarnings: fetchTodaysEarnings,
+      fetchRevenue: fetchRevenueBreakdown
     }
   )
 )(Dashboard);

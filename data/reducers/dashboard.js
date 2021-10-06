@@ -5,6 +5,7 @@ import {
 } from "types/businesses";
 import { Record, Map, fromJS } from "immutable";
 import {
+  FETCH_REVENUE_BREAKDOWN_SUCCESS,
   FETCH_TODAYS_EARNINGS_REQUEST,
   FETCH_TODAYS_EARNINGS_SUCCESS
 } from "../types/businesses";
@@ -54,6 +55,37 @@ const reducer = (state = initialState, { type, payload }) => {
           lastMonth: averageLastMonth,
           last3Months: averageLast3Months,
           lastYear: averageLastYear
+        })
+      );
+
+      return newState;
+    }
+
+    case FETCH_REVENUE_BREAKDOWN_SUCCESS: {
+      let newState = state.merge(
+        Record({
+          isFetching: false,
+          isFailed: false,
+          isSucceeded: true
+        })()
+      );
+
+      const {
+        revenue,
+        onSiteRevenue,
+        deliveryRevenue,
+        takeawayRevenue,
+        otherRevenue
+      } = payload.rawData.data.attributes;
+
+      newState = newState.mergeIn(
+        ["data", "dashboard", "revenueBreakdown"],
+        fromJS({
+          revenue,
+          onSiteRevenue,
+          deliveryRevenue,
+          takeawayRevenue,
+          otherRevenue
         })
       );
 

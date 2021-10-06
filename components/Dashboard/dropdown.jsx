@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { bool, func, string } from "prop-types";
-import { ExpandIconRestyled } from "icons";
+import { DropdownArrow } from "icons";
+import { OPTIONS, OPTIONS_FOR_REVENUE } from "./consts";
 
 import {
   DropdownWrapper,
@@ -10,32 +11,16 @@ import {
   Today
 } from "./styled";
 
-const OPTIONS = [
-  {
-    name: "Yesterday",
-    value: "yesterday"
-  },
-  {
-    name: "Last month",
-    value: "lastMonth"
-  },
-  {
-    name: "Last 3 months",
-    value: "last3Months"
-  },
-  {
-    name: "Last year",
-    value: "lastYear"
-  }
-];
-
 export default function Dropdown({
   withToday,
   withoutBorder,
   onChange,
-  value
+  value,
+  isRevenue,
+  t
 }) {
-  const [activeOption, setActiveOption] = useState(OPTIONS[0].value);
+  const options = isRevenue ? OPTIONS_FOR_REVENUE : OPTIONS;
+  const [activeOption, setActiveOption] = useState(options[0].value);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
 
@@ -52,15 +37,19 @@ export default function Dropdown({
         withoutBorder={withoutBorder}
         isDropdownOpen={isDropdownOpen}
       >
-        {OPTIONS.find(el => el.value === value).name}
-        <ExpandIconRestyled />
+        {options.find(el => el.value === value).name}
+        <DropdownArrow />
       </DropdownButton>
 
       {isDropdownOpen && (
         <ItemsWrapper>
-          {OPTIONS.map(option => (
+          {options.map(option => (
             <DropdownItem
-              isActive={activeOption === option.value}
+              isActive={
+                onChange
+                  ? value === option.value
+                  : activeOption === option.value
+              }
               tabIndex="0"
               role="button"
               onKeyDown={() =>
@@ -74,7 +63,7 @@ export default function Dropdown({
                   : setActiveOption(option.value)
               }
             >
-              {option.name}
+              {t(`${option.value}`)}
             </DropdownItem>
           ))}
         </ItemsWrapper>
@@ -87,12 +76,15 @@ Dropdown.propTypes = {
   withToday: bool,
   withoutBorder: bool,
   onChange: func,
-  value: string
+  value: string,
+  isRevenue: bool,
+  t: func.isRequired
 };
 
 Dropdown.defaultProps = {
   withToday: false,
   withoutBorder: false,
   onChange: () => {},
-  value: "yesterday"
+  value: "yesterday",
+  isRevenue: false
 };
