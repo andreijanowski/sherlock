@@ -111,10 +111,10 @@ module.exports = routes()
   .add("app/photography", `/:lng(${languagesPattern})/app/photography`)
   .add("app/detectives", `/:lng(${languagesPattern})/app/detectives`)
   .add("app/appManager", `/:lng(${languagesPattern})/app/app-manager`)
+  .add("app/dashboard", `/:lng(${languagesPattern})/app/dashboard`)
   .add("app/clients", `/:lng(${languagesPattern})/app/clients`)
   .add("app/payments", `/:lng(${languagesPattern})/app/payments`)
   .add("app/comingSoon", [
-    `/:lng(${languagesPattern})/app/dashboard`,
     `/:lng(${languagesPattern})/app/app-manager`,
     `/:lng(${languagesPattern})/app/reviews`,
     `/:lng(${languagesPattern})/app/stock-management`
