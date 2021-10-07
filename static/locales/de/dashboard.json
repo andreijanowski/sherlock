@@ -1,6 +1,6 @@
 {
-  "businessOverview": "Business Overview",
-  "avgTicketSize": "Avg ticket size",
+  "businessOverview": "Geschäftsüberblick",
+  "avgTicketSize": "Durchschnittlicher Betrag des Tickets",
   "revenueBreakdown": "Revenue Breakdown",
   "todaysEarnings": "Todays Earnings",
   "paymentTypes": "Payment types",
@@ -17,20 +17,32 @@
   "offersPromotions": "Offers & promotions",
   "hoursWorked": "Hours worked",
   "laborCost": "Labor Cost",
-  "deliveryRevenue": "Delivery",
-  "takeawayRevenue": "Takeaway ",
-  "onSiteRevenue": "On Site",
-  "otherRevenue": "Other",
-  "ticket": "Avg ticket size",
-  "earnings": "Today's earnings",
-  "today": "Today",
-  "yesterday": "Yesterday",
-  "lastMonth": "Last month",
-  "last3Months": "Last 3 months",
-  "lastYear": "Last Year",
-  "sumToday": "Today",
-  "sumYesterday": "Yesterday",
-  "sumLastMonth": "Last month",
-  "sumLast3Months": "Last 3 months",
-  "sumLastYear": "Last Year"
+  "deliveryRevenue": "Zustellung",
+  "takeawayRevenue": "Zum Mitnehmen",
+  "onSiteRevenue": "Vor Ort",
+  "otherRevenue": "Anderes",
+  "ticket": "Durchschnittlicher Betrag des Tickets",
+  "earnings": "Heutige Ergebnisse",
+  "today": "Heute",
+  "yesterday": "Gestern",
+  "lastMonth": "Letzter Monat",
+  "last3Months": "Letzte 3 Monate",
+  "lastYear": "Letztes Jahr",
+  "sumToday": "Heute",
+  "sumYesterday": "Gestern",
+  "sumLastMonth": "Letzter Monat",
+  "sumLast3Months": "Letzte 3 Monate",
+  "sumLastYear": "Letztes Jahr"
 }
+
+
+
+
+
+
+
+Heute
+Gestern
+Letzter Monat
+Letzte 3 Monate
+
