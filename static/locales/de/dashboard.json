@@ -1,22 +1,22 @@
 {
   "businessOverview": "Geschäftsüberblick",
-  "avgTicketSize": "Durchschnittlicher Betrag des Tickets",
-  "revenueBreakdown": "Revenue Breakdown",
-  "todaysEarnings": "Todays Earnings",
-  "paymentTypes": "Payment types",
-  "frequentation": "Frequentation",
-  "todaysActivity": "Todays activity",
-  "liveStram": "Live stram",
-  "bestSales": "Best sales",
-  "worstSales": "Worst sales",
-  "consultation": "Consultation",
-  "totalComments": "Total number of comments",
-  "globalEvaluation": "Global evaluation",
-  "advancedReports": "Advanced reports",
-  "dailyBudget": "Daily budget",
-  "offersPromotions": "Offers & promotions",
-  "hoursWorked": "Hours worked",
-  "laborCost": "Labor Cost",
+  "avgTicketSize": "Durchschnittlicher Betrag/Verkauf",
+  "revenueBreakdown": "Verteilung des Einkommens",
+  "todaysEarnings": "Tägliches Einkommen",
+  "paymentTypes": "Arten der Bezahlung",
+  "frequentation": "Anwesenheit",
+  "todaysActivity": "Tägliche Aktivität",
+  "liveStram": "Live",
+  "bestSales": "Beste Verkäufe",
+  "worstSales": "Schlechteste Verkäufe",
+  "consultation": "Konsultation",
+  "totalComments": "Gesamtzahl der Kommentare",
+  "globalEvaluation": "Gesamtbewertung",
+  "advancedReports": "Erweiterte Berichte",
+  "dailyBudget": "Tägliches Budget",
+  "offersPromotions": "Angebote und Werbeaktionen",
+  "hoursWorked": "Geleistete Arbeitsstunden",
+  "laborCost": "Kosten der Arbeit",
   "deliveryRevenue": "Zustellung",
   "takeawayRevenue": "Zum Mitnehmen",
   "onSiteRevenue": "Vor Ort",
@@ -34,15 +34,3 @@
   "sumLast3Months": "Letzte 3 Monate",
   "sumLastYear": "Letztes Jahr"
 }
-
-
-
-
-
-
-
-Heute
-Gestern
-Letzter Monat
-Letzte 3 Monate
-

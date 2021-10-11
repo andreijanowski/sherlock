@@ -69,7 +69,7 @@ export const Currency = styled(Value)`
 export const Spacer = styled.div`
   width: 100%;
   height: 2px;
-  border-bottom: 1px dashed silver;
+  border-bottom: 1px dashed solid rgb(${p => p.theme.colors.lightGreyText});
   margin-top: 12px;
 `;
 
@@ -89,7 +89,7 @@ export const SalesItem = styled(Flex)`
   font-weight: 600;
   height: 70px;
   justify-content: space-between;
-  border-bottom: 1px dashed silver;
+  border-bottom: 1px dashed rgb(${p => p.theme.colors.lightGreyText});
 `;
 
 export const ItemNumber = styled.span`
@@ -106,7 +106,7 @@ export const TimesOrdered = styled.div`
 `;
 
 const dropdownStyles = css`
-  box-shadow: 0px 0px 10.2392px rgba(51, 51, 51, 0.15);
+  box-shadow: 0px 0px 10px rgba(${p => p.theme.colors.lightGreyText}, 0.2);
   border-radius: 12px;
 `;
 
@@ -120,8 +120,19 @@ export const DropdownWrapper = styled(Flex)`
   justify-content: ${p => (!p.withoutBorder ? "center" : "flex-end")};
   align-items: center;
   cursor: pointer;
-  color: rgba(${p => p.theme.colors.darkGreyText}, 1);
+  color: rgba(
+    ${p =>
+      p.withoutBorder
+        ? p.theme.colors.lightGreyText
+        : p.theme.colors.darkGreyText},
+    1
+  );
   ${p => !p.withoutBorder && dropdownStyles}
+  &:hover {
+    ${p =>
+      !p.withoutBorder &&
+      `box-shadow: 0px 0px 10px rgba(${p.theme.colors.lightGreyText}, 0.4);`}
+  }
 `;
 
 export const DropdownItem = styled.div`
@@ -155,6 +166,14 @@ export const DropdownButton = styled(Flex)`
   svg {
     width: ${p => (p.withoutBorder ? "10px" : "8px")};
     height: ${p => (p.withoutBorder ? "5px" : "4px")};
+  }
+  &:hover {
+    transition: 0.2s;
+    color: rgba(
+      ${p =>
+        p.withoutBorder ? p.theme.colors.gray["3"] : p.theme.colors.darkText},
+      1
+    );
   }
   .DropdownArrow {
     transition: 0.1s;
