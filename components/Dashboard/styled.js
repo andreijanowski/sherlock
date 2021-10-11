@@ -69,7 +69,7 @@ export const Currency = styled(Value)`
 export const Spacer = styled.div`
   width: 100%;
   height: 2px;
-  border-bottom: 1px dashed solid rgb(${p => p.theme.colors.lightGreyText});
+  border-bottom: 1px dashed rgb(${p => p.theme.colors.lightGreyText});
   margin-top: 12px;
 `;
 
