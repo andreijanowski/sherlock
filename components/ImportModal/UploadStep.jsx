@@ -24,7 +24,7 @@ import { MODE } from "./utils";
 const ACCEPTED_FILE_EXTENSIONS = [".csv"];
 
 const initialValues = {
-  mode: MODE.REPLACE
+  mode: MODE.ADD
 };
 
 const EXAMPLE_FILE_URL = "/static/download/valid_menu.csv";
@@ -57,13 +57,13 @@ const UploadStep = ({ t, onUploadSubmit }) => (
             flexDirection={["column", "row"]}
           >
             <Box mr={4} mb={3}>
-              <RadioButtonField name="mode" value={MODE.REPLACE} isCircle>
-                {t("lefood:import.mode.replace")}
+              <RadioButtonField name="mode" value={MODE.ADD} isCircle>
+                {t("lefood:import.mode.add")}
               </RadioButtonField>
             </Box>
             <Box mb={3}>
-              <RadioButtonField name="mode" value={MODE.ADD} isCircle>
-                {t("lefood:import.mode.add")}
+              <RadioButtonField name="mode" value={MODE.REPLACE} isCircle>
+                {t("lefood:import.mode.replace")}
               </RadioButtonField>
             </Box>
           </Flex>
