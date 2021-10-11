@@ -46,7 +46,7 @@ const Dashboard = ({
 }) => (
   <AppLayout
     {...{
-      mainIcon: "analytics",
+      mainIcon: "dashboard",
       header: "Dashbord"
     }}
     t={t}
