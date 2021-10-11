@@ -15,7 +15,8 @@ const BarTile = ({
   dashboard,
   isFetching,
   isDisabled,
-  t
+  t,
+  currency
 }) => {
   useEffect(() => {
     fetchAction(businessId);
@@ -56,11 +57,16 @@ const BarTile = ({
                 ))}
             </Flex>
           </Flex>
-          <Bar barData={barData} value="today" currency="CHF" color={color} />
+          <Bar
+            barData={barData}
+            value="today"
+            currency={currency}
+            color={color}
+          />
           <Bar
             barData={barData}
             value={dropDownValue}
-            currency="CHF"
+            currency={currency}
             color="silver"
             withDropdown
             onChange={setDropdownValue}
@@ -80,7 +86,8 @@ BarTile.propTypes = {
   dashboard: shape().isRequired,
   isFetching: bool.isRequired,
   t: func.isRequired,
-  isDisabled: bool
+  isDisabled: bool,
+  currency: string.isRequired
 };
 
 BarTile.defaultProps = {

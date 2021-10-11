@@ -41,7 +41,8 @@ const Dashboard = ({
   businessId,
   fetchTickets,
   fetchEarnings,
-  fetchRevenue
+  fetchRevenue,
+  currency
 }) => (
   <AppLayout
     {...{
@@ -66,6 +67,7 @@ const Dashboard = ({
               fetchAction={fetchTickets}
               title="ticket"
               t={t}
+              currency={currency}
             />
             <BarTile
               fetchAction={fetchEarnings}
@@ -73,6 +75,7 @@ const Dashboard = ({
               color="salmon"
               title="earnings"
               t={t}
+              currency={currency}
             />
             <BarTile
               isDisabled
@@ -81,6 +84,7 @@ const Dashboard = ({
               title="earnings"
               t={t}
               color="royalblue"
+              currency={currency}
             />
           </Flex>
           <Flex width={[1, 1, 1, 31 / 64]} flexDirection="column">
@@ -135,7 +139,8 @@ Dashboard.propTypes = {
   businessId: string.isRequired,
   fetchTickets: func.isRequired,
   fetchEarnings: func.isRequired,
-  fetchRevenue: func.isRequired
+  fetchRevenue: func.isRequired,
+  currency: string.isRequired
 };
 
 export default compose(
@@ -151,7 +156,8 @@ export default compose(
 
       return {
         lng: (i18n && i18n.language) || "en",
-        businessId: business && business.get("id")
+        businessId: business && business.get("id"),
+        currency: business && business.getIn(["attributes", "currency"])
       };
     },
     {
