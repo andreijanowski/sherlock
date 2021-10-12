@@ -16,7 +16,8 @@ export const getInitialValues = ({ editedDishId, dishes }) => {
           description: dish.getIn(["attributes", "description"]),
           category: dish.getIn(["relationships", "category", "data", "id"]),
           available: !dish.getIn(["attributes", "unavailable"]),
-          onUberEats: dish.getIn(["attributes", "onUberEats"])
+          onUberEats: dish.getIn(["attributes", "onUberEats"]),
+          skuRef: dish.getIn(["attributes", "skuRef"])
         },
         initialPicture: picture && {
           id: picture.get("id"),

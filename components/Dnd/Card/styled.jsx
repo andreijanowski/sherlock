@@ -3,6 +3,7 @@ import { Flex } from "@rebass/grid";
 
 export const Wrapper = styled(Flex).attrs(() => ({
   flexDirection: "column",
+  position: "relative",
   mb: 2
 }))`
   overflow: hidden;
@@ -23,6 +24,7 @@ export const Header = styled(Flex).attrs(() => ({
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: ${p => p.theme.fontSizes.f14};
   line-height: 24px;
+  position: relative;
   background-color: rgb(
     ${p => (p.isSplited ? p.theme.colors.blue : p.theme.colors.titanWhite)}
   );
@@ -45,6 +47,12 @@ export const Footer = styled(Flex).attrs(() => ({
     ${p => (p.isSplited ? p.theme.colors.blue : p.theme.colors.titanWhite)}
   );
   border-top: 1px solid rgb(${p => p.theme.colors.linkWaterDark});
+`;
+
+export const Source = styled(Footer)`
+  background: rgb(${p => p.theme.colors.white});
+  color: rgb(${p => p.theme.colors.lightGreyText});
+  font-size: 11px;
 `;
 
 export const Details = styled(Flex).attrs(() => ({

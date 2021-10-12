@@ -66,6 +66,7 @@ const Order = ({ order, id, t, setRejectModalVisibility, updateOrder }) => (
         </Box>
       </Flex>
     )}
+    <Box />
   </>
 );
 

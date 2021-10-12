@@ -123,6 +123,7 @@ const DishForm = ({
                   placeholder={t("descriptionPlaceholder")}
                 />
               </Box>
+
               <Box>
                 <Field
                   name="category"
@@ -131,6 +132,12 @@ const DishForm = ({
                   items={categories}
                   validate={required(t)}
                   value=""
+                />
+                <FormTextarea
+                  rows={3}
+                  name="skuRef"
+                  label={t("sku")}
+                  placeholder={t("sku")}
                 />
               </Box>
               <Box my={4}>
