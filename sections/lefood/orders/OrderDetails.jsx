@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import Slide from "react-burger-menu/lib/menus/slide";
 import { decorator as reduxBurgerMenu } from "redux-burger-menu/immutable";
 import { func, bool, shape } from "prop-types";
@@ -13,9 +14,7 @@ import {
 } from "components";
 import { connect } from "react-redux";
 import { fetchOrkestroOrder } from "actions/orders";
-import React, { useEffect } from "react";
 import OrderDetail from "./OrderDetail";
-import LogoIcon from "./LogoIcon";
 
 const OrderDetails = ({
   isOpen,
@@ -28,8 +27,6 @@ const OrderDetails = ({
   t
 }) => {
   const orderId = orderDetails && orderDetails.get("id");
-  const orderOrigin =
-    orderDetails && orderDetails.getIn(["attributes", "origin"]);
   const notes = orderDetails && orderDetails.getIn(["attributes", "notes"]);
 
   const deliveryNotes = Map.isMap(notes) && notes.get("deliveryNotes");
@@ -58,13 +55,13 @@ const OrderDetails = ({
           <SliderSubheader isDetails>
             {`ID: ${orderDetails.getIn(["attributes", "shortId"])}
             `}
-            <LogoIcon
-              icon={
-                orderOrigin === null
-                  ? "logoFoodetectiveSquared"
-                  : "uber_eats_logo"
-              }
-            />
+            {orderDetails.getIn(["attributes", "origin"]) !== null && (
+              <Flex justifyContent="flex-end">
+                {orderDetails.getIn(["attributes", "hubriseSource"]) !== null
+                  ? orderDetails.getIn(["attributes", "hubriseSource"])
+                  : orderDetails.getIn(["attributes", "origin"])}
+              </Flex>
+            )}
           </SliderSubheader>
           <FormDropdown
             {...{

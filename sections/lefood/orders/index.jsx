@@ -71,10 +71,12 @@ const Orders = ({
                   />
                 ),
                 renderCardSource: id =>
-                  orders.get(id).getIn(["attributes", "hubriseSource"]) !==
-                    null && (
+                  orders.get(id).getIn(["attributes", "origin"]) !== null && (
                     <Source width={1} justifyContent="center">
-                      {orders.get(id).getIn(["attributes", "hubriseSource"])}
+                      {orders.get(id).getIn(["attributes", "hubriseSource"]) !==
+                      null
+                        ? orders.get(id).getIn(["attributes", "hubriseSource"])
+                        : orders.get(id).getIn(["attributes", "origin"])}
                     </Source>
                   ),
                 renderCardFooter: id => (
