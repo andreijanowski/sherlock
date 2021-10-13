@@ -43,7 +43,7 @@ const IntegrationsPage = ({ t, lng, partners, isLoading }) => {
     >
       <PartnersSearchBox isHiddenOnDesktop />
       {partners && partners.size > 0 && (
-        <IntegrationsList partners={partners} t={t} />
+        <IntegrationsList partners={partners} isIntegrations t={t} />
       )}
       {isLoading && <LoadingIndicator hasTransparentBackground />}
     </AppLayout>
