@@ -51,7 +51,8 @@
     "pending": "En attente",
     "integrated": "Intégré",
     "noPartners": "Aucun partenaire pour cette catégorie.",
-    "noPreferred": "Vous n'avez pas encore ajouté de grossistes préférés."
+    "noPreferred": "Vous n'avez pas encore ajouté de grossistes préférés.",
+    "goToWeb": "Aller sur le Web"
   },
   "subscriptions": "Abonnements",
   "userSettings": {
@@ -96,5 +97,6 @@
   "appManager": "Gestion du Menu",
   "dashboard": "Dashboard",
   "privateEvents": "Evenements",
-  "settings": "Paramètres"
+  "settings": "Paramètres",
+  "playVideo": "Jouer la vidéo"
 }

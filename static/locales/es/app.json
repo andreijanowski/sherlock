@@ -51,7 +51,8 @@
     "pending": "Pendiente",
     "integrated": "Integrado",
     "noPartners": "No hay socios para esta categoría.",
-    "noPreferred": "Aún no has agregado ningún mayorista preferido."
+    "noPreferred": "Aún no has agregado ningún mayorista preferido.",
+    "goToWeb": "Ir a la página web"
   },
   "subscriptions": "Suscripciones",
   "userSettings": {
@@ -96,5 +97,6 @@
   "clients": "Mis Clientes",
   "dashboard": "Panel de Analítica",
   "privateEvents": "Eventos Privados",
-  "settings": "Ajustes"
+  "settings": "Ajustes",
+  "playVideo": "Reproducir vídeo"
 }

@@ -50,7 +50,8 @@
     "pending": "In sospeso",
     "integrated": "Integrato",
     "noPartners": "Nessun partner per questa categoria.",
-    "noPreferred": "Non hai ancora aggiunto alcun grossista preferito."
+    "noPreferred": "Non hai ancora aggiunto alcun grossista preferito.",
+    "goToWeb": "Vai al web"
   },
   "subscriptions": "Iscrizioni o Abbonamenti",
   "userSettings": {
@@ -97,5 +98,6 @@
   "privateEvents": "Eventi Privati",
   "settings": "Impostazioni",
   "payments": "Pagamenti",
-  "integrationHub": "Hub di Integrazione"
+  "integrationHub": "Hub di Integrazione",
+  "playVideo": "Riproduci video"
 }
