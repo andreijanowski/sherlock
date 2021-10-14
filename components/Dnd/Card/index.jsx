@@ -9,6 +9,7 @@ const Card = ({
   renderHeader,
   renderDetails,
   renderFooter,
+  renderSource,
   handleCardClick,
   isDragDisabled,
   isSplited
@@ -25,6 +26,7 @@ const Card = ({
       >
         <Header isSplited={isSplited}>{renderHeader()}</Header>
         <Details isSplited={isSplited}>{renderDetails({ isSplited })}</Details>
+        <>{renderSource()}</>
         <Footer isSplited={isSplited}>{renderFooter()}</Footer>
       </Wrapper>
     )}
@@ -37,6 +39,7 @@ Card.propTypes = {
   renderHeader: func.isRequired,
   renderDetails: func.isRequired,
   renderFooter: func.isRequired,
+  renderSource: func,
   handleCardClick: func,
   isCardGrayedOut: bool,
   isDragDisabled: bool,
@@ -47,7 +50,8 @@ Card.defaultProps = {
   handleCardClick: undefined,
   isCardGrayedOut: false,
   isDragDisabled: false,
-  isSplited: false
+  isSplited: false,
+  renderSource: () => {}
 };
 
 export default Card;

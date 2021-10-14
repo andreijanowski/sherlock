@@ -19,6 +19,7 @@ const Column = ({
   renderCardHeader,
   renderCardDetails,
   renderCardFooter,
+  renderCardSource,
   splitedCard,
   width
 }) => (
@@ -45,7 +46,8 @@ const Column = ({
               handleCardClick,
               renderCardHeader,
               renderCardDetails,
-              renderCardFooter
+              renderCardFooter,
+              renderCardSource
             }}
           />
           {provided.placeholder}
@@ -67,6 +69,7 @@ Column.propTypes = {
   renderCardHeader: func.isRequired,
   renderCardDetails: func.isRequired,
   renderCardFooter: func,
+  renderCardSource: func,
   width: number
 };
 
@@ -76,7 +79,8 @@ Column.defaultProps = {
   handleCardClick: undefined,
   width: undefined,
   splitedCard: undefined,
-  renderCardFooter: () => {}
+  renderCardFooter: () => {},
+  renderCardSource: () => {}
 };
 
 export default Column;
