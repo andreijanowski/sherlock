@@ -4,6 +4,7 @@ import Switch from "react-switch";
 import { Flex } from "@rebass/grid";
 
 import { theme } from "utils/theme";
+import { getThemeHexColor } from "utils/colors";
 import { Option, SwitchWrapper } from "./styled";
 
 const IntegrationSwitch = ({
@@ -23,10 +24,10 @@ const IntegrationSwitch = ({
         handleDiameter={21}
         height={31}
         width={80}
-        offHandleColor="#a5a8af"
-        onHandleColor="#000000"
-        offColor="#f8f9ff"
-        onColor="#f8f9ff"
+        offHandleColor={getThemeHexColor(theme.colors.mischka)}
+        onHandleColor={getThemeHexColor(theme.colors.background)}
+        offColor={getThemeHexColor(theme.colors.background)}
+        onColor={getThemeHexColor(theme.colors.background)}
         boxShadow={`0 1px 3px rgba(${theme.colors.blue}, 0.48)`}
         activeBoxShadow={`0 0 0 3px rgba(${theme.colors.blue}, 0.48)`}
       />
