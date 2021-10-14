@@ -28,9 +28,11 @@ const OrderDetails = ({
 }) => {
   const orderId = orderDetails && orderDetails.get("id");
   const notes = orderDetails && orderDetails.getIn(["attributes", "notes"]);
-
   const deliveryNotes = Map.isMap(notes) && notes.get("deliveryNotes");
   const disposableItems = Map.isMap(notes) && notes.get("disposableItems");
+  const hubriseSource =
+    orderDetails && orderDetails.getIn(["attributes", "hubriseSource"]);
+  const origin = orderDetails && orderDetails.getIn(["attributes", "origin"]);
   const specialInstructions =
     Map.isMap(notes) && notes.get("specialInstructions");
 
@@ -55,11 +57,9 @@ const OrderDetails = ({
           <SliderSubheader isDetails>
             {`ID: ${orderDetails.getIn(["attributes", "shortId"])}
             `}
-            {orderDetails.getIn(["attributes", "origin"]) !== null && (
+            {origin !== null && (
               <Flex justifyContent="flex-end">
-                {orderDetails.getIn(["attributes", "hubriseSource"]) !== null
-                  ? orderDetails.getIn(["attributes", "hubriseSource"])
-                  : orderDetails.getIn(["attributes", "origin"])}
+                {hubriseSource !== null ? hubriseSource : origin}
               </Flex>
             )}
           </SliderSubheader>

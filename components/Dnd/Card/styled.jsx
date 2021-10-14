@@ -52,8 +52,8 @@ export const Footer = styled(Flex).attrs(() => ({
 export const Source = styled(Footer)`
   background: rgb(${p => p.theme.colors.white});
   color: rgb(${p => p.theme.colors.lightGreyText});
-  font-size: 14px;
-  font-weight: 400;
+  font-size: (${p => p.theme.fontSizes.f14});
+  font-weight: (${p => p.theme.fontWeights.regular});
 `;
 
 export const Details = styled(Flex).attrs(() => ({
