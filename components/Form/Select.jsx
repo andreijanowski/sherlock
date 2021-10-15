@@ -87,7 +87,7 @@ class FormSelect extends PureComponent {
         selectedItem={input.value}
         onChange={v => {
           input.onChange(v);
-          this.setState({ inputValue: v.label });
+          this.setState({ inputValue: v ? v.label : "" });
         }}
         itemToString={i => i.label}
       >
