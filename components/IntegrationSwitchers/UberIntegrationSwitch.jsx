@@ -1,19 +1,16 @@
 import React, { useCallback, useState } from "react";
-import { func, string, bool } from "prop-types";
-import Switch from "react-switch";
-import { Flex } from "@rebass/grid";
+import { bool, func, string } from "prop-types";
 import { connect } from "react-redux";
 
-import { theme } from "utils/theme";
-import { Modal, Button, H3 } from "components";
+import { Button, H3, Modal } from "components";
 import {
   connectPartnerWithUberEats,
   disconnectPartnerFromUberEats
 } from "actions/integrations";
 import { Confirm } from "components/modals";
-
-import { Option, SwitchWrapper, ModalHeader } from "./styled";
+import { ModalHeader } from "./styled";
 import { UberIntegrationForm } from "./UberIntegrationForm";
+import IntegrationSwitch from "./IntegrationSwitch";
 
 const MODALS = {
   CONNECT: "CONNECT",
@@ -40,7 +37,7 @@ const UberIntegrationSwitch = ({
     setModal(isConnectedToUber ? MODALS.DISCONNECT : MODALS.CONNECT);
   };
   return (
-    <Flex alignItems="center" mx={3}>
+    <>
       {modal === MODALS.CONNECT && (
         <Modal {...{ open: true, onClose: closeModal }}>
           <ModalHeader>Uber Eats Integration</ModalHeader>
@@ -74,35 +71,13 @@ const UberIntegrationSwitch = ({
           </H3>
         </Confirm>
       )}
-      <Option dark={isConnectedToUber} mr={3}>
-        {isConnectedToUber
-          ? t("integrations:disconnect")
-          : t("integrations:disconnected")}
-      </Option>
-      <SwitchWrapper>
-        <Switch
-          disabled={isFetching}
-          checked={isConnectedToUber}
-          onChange={handleSwitch}
-          uncheckedIcon={false}
-          checkedIcon={false}
-          handleDiameter={21}
-          height={31}
-          width={80}
-          offHandleColor="#a5a8af"
-          onHandleColor="#000000"
-          offColor="#f8f9ff"
-          onColor="#f8f9ff"
-          boxShadow={`0 1px 3px rgba(${theme.colors.blue}, 0.48)`}
-          activeBoxShadow={`0 0 0 3px rgba(${theme.colors.blue}, 0.48)`}
-        />
-      </SwitchWrapper>
-      <Option dark={!isConnectedToUber} ml={3}>
-        {isConnectedToUber
-          ? t("integrations:connected")
-          : t("integrations:connect")}
-      </Option>
-    </Flex>
+      <IntegrationSwitch
+        isFetching={isFetching}
+        t={t}
+        onChange={handleSwitch}
+        isIntegrationConnected={isConnectedToUber}
+      />
+    </>
   );
 };
 UberIntegrationSwitch.propTypes = {

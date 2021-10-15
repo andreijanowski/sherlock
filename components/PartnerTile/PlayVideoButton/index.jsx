@@ -1,14 +1,14 @@
 import React, { useCallback, useState } from "react";
 import { Flex, Box } from "@rebass/grid";
-import { func, string } from "prop-types";
+import { func, string, bool } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
-import { Modal } from "components";
-import { IntegrationButton } from "./styled";
+import { Modal } from "components/index";
 import Video from "./Video";
+import { OutlineButton } from "../styled";
 
-const PlayVideoButton = ({ t, url }) => {
+const PlayVideoButton = ({ t, url, big }) => {
   const [showModal, setShowModal] = useState(false);
 
   const onPlayVideoClick = useCallback(() => {
@@ -22,13 +22,14 @@ const PlayVideoButton = ({ t, url }) => {
   return (
     <>
       <Flex
-        as={IntegrationButton}
+        as={OutlineButton}
+        big={big}
         onClick={onPlayVideoClick}
         justifyContent="center"
         alignItems="center"
         styleName="outlineBlue"
       >
-        <Box mr={2}>{t("app:watchVideo")}</Box>
+        <Box mr={2}>{t("app:playVideo")}</Box>
         <FontAwesomeIcon icon={faPlay} />
       </Flex>
       {showModal && (
@@ -42,7 +43,12 @@ const PlayVideoButton = ({ t, url }) => {
 
 PlayVideoButton.propTypes = {
   url: string.isRequired,
-  t: func.isRequired
+  t: func.isRequired,
+  big: bool
+};
+
+PlayVideoButton.defaultProps = {
+  big: false
 };
 
 export default PlayVideoButton;

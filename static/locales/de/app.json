@@ -51,7 +51,8 @@
     "pending": "Hängend",
     "integrated": "Integrated",
     "noPartners": "Keine partner für diese kategorie.",
-    "noPreferred": "Sie haben noch keine bevorzugten Großhändler hinzugefügt."
+    "noPreferred": "Sie haben noch keine bevorzugten Großhändler hinzugefügt.",
+    "goToWeb": "Zum Web gehen"
   },
   "subscriptions": "Abonnements",
   "userSettings": {
@@ -97,5 +98,6 @@
   "dashboard": "Instrumententafel",
   "privateEvents": "Private Veranstaltungen",
   "settings": "Einstellungen",
-  "payments": "Zahlungen"
+  "payments": "Zahlungen",
+  "playVideo": "Video abspielen"
 }

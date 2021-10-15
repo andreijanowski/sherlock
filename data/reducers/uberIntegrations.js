@@ -13,6 +13,8 @@ import {
 import { LOGOUT } from "types/auth";
 import { Record } from "immutable";
 
+import { UBER_EATS_NAME } from "utils/integrations";
+
 export const initialState = Record({
   isConnectedToUberEats: false,
   isFetching: false,
@@ -35,7 +37,7 @@ const reducer = (state = initialState, { type, payload }) => {
       const isConnectedToUberEats =
         payload.rawData.included &&
         payload.rawData.included.some(
-          service => service.attributes.name === "Uber Eats"
+          service => service.attributes.name === UBER_EATS_NAME
         );
       const newState = state.merge(
         Record({
