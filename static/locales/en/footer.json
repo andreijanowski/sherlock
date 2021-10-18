@@ -9,7 +9,7 @@
     },
     "columnTwo": {
       "title": "Help",
-      "links": ["Blog", "Media kit"]
+      "links": ["Blog", "Media kit", "API"]
     },
     "columnThree": {
       "title": "Legal",

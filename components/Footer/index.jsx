@@ -4,7 +4,8 @@ import {
   privacyPolicyLink,
   termsAndConditionsLink,
   mediaKitLink,
-  becomePartnerLink
+  becomePartnerLink,
+  apiGuideLink
 } from "consts";
 import { FooterWrapper, MenuWrapper, ColumnTitle, NavItem } from "./styled";
 import NavigationList from "./navigationList";
@@ -52,6 +53,11 @@ const Footer = ({ t }) => (
               },
               "1": {
                 href: mediaKitLink,
+                target: "_blank",
+                rel: "noreferrer noopener"
+              },
+              "2": {
+                href: apiGuideLink,
                 target: "_blank",
                 rel: "noreferrer noopener"
               }

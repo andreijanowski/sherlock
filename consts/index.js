@@ -70,6 +70,8 @@ const mediaKitLink =
   "https://drive.google.com/drive/folders/1AlH-mWME83bzmg-job1N-ZqQjwxb0Ga0";
 const becomePartnerLink = `https://foodetective.typeform.com/to/tzqu8b`;
 
+const apiGuideLink = `${API_URL}/static_pages/api-auth-guide`;
+
 const rollbarConfig = {
   accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
   captureUncaught: true,
@@ -111,5 +113,6 @@ module.exports = {
   rollbarConfig,
   SUBSCRIPTION_PLANS_SLUGS,
   BASIC_PLAN_NAME,
-  LINKEDIN_ADS_ID
+  LINKEDIN_ADS_ID,
+  apiGuideLink
 };
