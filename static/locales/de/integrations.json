@@ -1,0 +1,7 @@
+{
+  "connected": "Vernetzt",
+  "disconnected": "Getrennt",
+  "connect": "Anschließen",
+  "disconnect": "Abziehen",
+  "disconnectPrompt": "Möchten Sie {{integration}} abziehen?"
+}
