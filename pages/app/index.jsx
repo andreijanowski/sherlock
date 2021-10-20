@@ -18,17 +18,17 @@ class AppLanding extends PureComponent {
   }
 
   componentDidMount() {
-    this.redirectToProfile();
+    this.redirectToDashboard();
   }
 
   componentDidUpdate() {
-    this.redirectToProfile();
+    this.redirectToDashboard();
   }
 
-  redirectToProfile = () => {
+  redirectToDashboard = () => {
     const { canRedirect, lng } = this.props;
     if (canRedirect) {
-      Router.pushRoute(`/${lng}/app/profile/basic-information/`);
+      Router.pushRoute(`/${lng}/app/dashboard/`);
     }
   };
 
