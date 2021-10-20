@@ -1,0 +1,7 @@
+{
+  "connected": "Conectado",
+  "disconnected": "Desconectado",
+  "connect": "Conectar",
+  "disconnect": "Desconectar",
+  "disconnectPrompt": "Quieres desconectar {{integration}}?"
+}

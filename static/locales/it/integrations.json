@@ -1,0 +1,7 @@
+{
+  "connected": "Collegato",
+  "disconnected": "Scollegato",
+  "connect": "Collegare",
+  "disconnect": "Scollegare",
+  "disconnectPrompt": "Vuoi scollegare {{integration}}?"
+}

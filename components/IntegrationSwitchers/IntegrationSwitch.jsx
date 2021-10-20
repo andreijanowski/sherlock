@@ -32,10 +32,10 @@ const IntegrationSwitch = ({
         activeBoxShadow={`0 0 0 3px rgba(${theme.colors.blue}, 0.48)`}
       />
     </SwitchWrapper>
-    <Option dark={isIntegrationConnected}>
+    <Option dark={!isIntegrationConnected}>
       {isIntegrationConnected
-        ? t("integrations:disconnect")
-        : t("integrations:connect")}
+        ? t("integrations:connected")
+        : t("integrations:disconnected")}
     </Option>
   </Flex>
 );
