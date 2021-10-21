@@ -19,7 +19,8 @@ import {
   fetchAvgTicketSize as fetchAvgTicketSizeAction,
   fetchTodaysEarnings as fetchTodaysEarningsAction,
   fetchRevenueBreakdown as fetchRevenueBreakdownAction,
-  fetchBestSales as fetchBestSalesAction
+  fetchBestSales as fetchBestSalesAction,
+  fetchWorstSales as fetchWorstSalesAction
 } from "actions/businesses";
 import { selectCurrentBusiness } from "selectors/business";
 
@@ -45,6 +46,7 @@ const Dashboard = ({
   fetchTodaysEarnings,
   fetchRevenueBreakdown,
   fetchBestSales,
+  fetchWorstSales,
   currency
 }) => (
   <AppLayout
@@ -109,6 +111,12 @@ const Dashboard = ({
           <Stream />
           <Flex width={1} flexDirection="column">
             <Sales t={t} title="bestSales" fetchAction={fetchBestSales} />
+            <Sales
+              t={t}
+              title="worstSales"
+              isWorst
+              fetchAction={fetchWorstSales}
+            />
           </Flex>
         </Flex>
       </Tile>
@@ -144,6 +152,7 @@ Dashboard.propTypes = {
   fetchTodaysEarnings: func.isRequired,
   fetchRevenueBreakdown: func.isRequired,
   fetchBestSales: func.isRequired,
+  fetchWorstSales: func.isRequired,
   currency: string.isRequired
 };
 
@@ -160,7 +169,8 @@ const mapDispatch = {
   fetchAvgTicketSize: fetchAvgTicketSizeAction,
   fetchTodaysEarnings: fetchTodaysEarningsAction,
   fetchRevenueBreakdown: fetchRevenueBreakdownAction,
-  fetchBestSales: fetchBestSalesAction
+  fetchBestSales: fetchBestSalesAction,
+  fetchWorstSales: fetchWorstSalesAction
 };
 
 export default compose(

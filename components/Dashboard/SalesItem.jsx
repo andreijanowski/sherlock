@@ -17,7 +17,7 @@ const SalesItem = ({ t, isWorst, item, index, comparisonPeriod }) => {
     comparisonPeriod
   );
   return (
-    <SalesItemContainer>
+    <SalesItemContainer as="li">
       <Flex alignItems="center">
         <ItemNumber isWorst={isWorst}>{`${index + 1}.`}</ItemNumber>
         <Box flex="auto" mx={2} flexWrap="wrap">

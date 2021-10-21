@@ -8,7 +8,8 @@ import {
   FETCH_AVG_TICKET_SIZE_SUCCESS,
   FETCH_REVENUE_BREAKDOWN_SUCCESS,
   FETCH_TODAYS_EARNINGS_SUCCESS,
-  FETCH_BEST_SALES_SUCCESS
+  FETCH_BEST_SALES_SUCCESS,
+  FETCH_WORST_SALES_SUCCESS
 } from "types/businesses";
 
 export const initialState = Record({
@@ -23,6 +24,19 @@ export const BEST_SALES_TOTAL_PAGES_PATH = [
   "data",
   "dashboard",
   "bestSales",
+  "totalPages"
+];
+
+export const WORST_SALES_DATA_PATH = [
+  "data",
+  "dashboard",
+  "worstSales",
+  "data"
+];
+export const WORST_SALES_TOTAL_PAGES_PATH = [
+  "data",
+  "dashboard",
+  "worstSales",
   "totalPages"
 ];
 
@@ -155,6 +169,31 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           .setIn(BEST_SALES_TOTAL_PAGES_PATH, totalPages);
       } else {
         newState = newState.mergeIn(BEST_SALES_DATA_PATH, fromJS(data));
+      }
+      return newState;
+    }
+
+    case FETCH_WORST_SALES_SUCCESS: {
+      let newState = state.merge(
+        Record({
+          isFetching: false,
+          isFailed: false,
+          isSucceeded: true
+        })()
+      );
+      const {
+        rawData: {
+          data,
+          meta: { totalPages }
+        }
+      } = payload;
+
+      if (meta.page === 1) {
+        newState = newState
+          .setIn(WORST_SALES_DATA_PATH, fromJS(data))
+          .setIn(WORST_SALES_TOTAL_PAGES_PATH, totalPages);
+      } else {
+        newState = newState.mergeIn(WORST_SALES_DATA_PATH, fromJS(data));
       }
       return newState;
     }

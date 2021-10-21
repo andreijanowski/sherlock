@@ -7,7 +7,9 @@ import { selectCurrentBusinessId } from "selectors/business";
 import {
   selectBestSalesData,
   selectBestSalesTotalPagesData,
-  selectDashboardIsFetching
+  selectDashboardIsFetching,
+  selectWorstSalesData,
+  selectWorstSalesTotalPagesData
 } from "selectors/dashboard";
 import { ChevronDown } from "components/Icons";
 import {
@@ -57,7 +59,7 @@ const Sales = ({
   }, [fetchAction, businessId]);
 
   const render = content => (
-    <Tile height="645" width={1}>
+    <Tile height="314" width={1}>
       {content}
     </Tile>
   );
@@ -131,8 +133,10 @@ Sales.defaultProps = {
 
 const mapState = (state, { isWorst }) => ({
   businessId: selectCurrentBusinessId(state),
-  salesList: isWorst ? [] : selectBestSalesData(state),
-  totalPages: isWorst ? 0 : selectBestSalesTotalPagesData(state),
+  salesList: isWorst ? selectWorstSalesData(state) : selectBestSalesData(state),
+  totalPages: isWorst
+    ? selectWorstSalesTotalPagesData(state)
+    : selectBestSalesTotalPagesData(state),
   isFetching: selectDashboardIsFetching(state)
 });
 
