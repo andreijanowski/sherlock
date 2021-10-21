@@ -1,5 +1,7 @@
 import * as moment from "moment";
 
+import { capitalize } from "utils/strings";
+
 export const getRandomInt = (min, max) => {
   const minimum = Math.ceil(min);
   const maximum = Math.floor(max);
@@ -30,4 +32,45 @@ export const scrollToNextItem = ref => {
   if (ref.current) {
     ref.current.scrollBy(0, 92);
   }
+};
+
+export const getPercentageStats = (baseCount, comparedCount) => {
+  const isDown = baseCount < comparedCount;
+
+  if (baseCount && comparedCount) {
+    return {
+      isDown,
+      percentage: Math.round(Math.abs(1 - baseCount / comparedCount) * 100)
+    };
+  }
+
+  return {
+    isDown,
+    percentage: 0
+  };
+};
+
+export const getSalesItemData = (salesItem, comparisonPeriod) => {
+  const name = salesItem.getIn(["attributes", "name"]);
+  const orderedTimes = salesItem.getIn([
+    "attributes",
+    "orderedUnitsCountToday"
+  ]);
+
+  const comparedOrderedTimes = salesItem.getIn([
+    "attributes",
+    `orderedUnitsCount${capitalize(comparisonPeriod)}`
+  ]);
+
+  const { isDown, percentage } = getPercentageStats(
+    orderedTimes,
+    comparedOrderedTimes
+  );
+
+  return {
+    name,
+    orderedTimes,
+    isDown,
+    percentage
+  };
 };

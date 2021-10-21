@@ -32,5 +32,8 @@
   "sumYesterday": "Yesterday",
   "sumLastMonth": "Last month",
   "sumLast3Months": "Last 3 months",
-  "sumLastYear": "Last Year"
+  "sumLastYear": "Last Year",
+  "noData": "No data",
+  "orderedTimes": "Ordered {{count}} time",
+  "orderedTimes_plural": "Ordered {{count}} times"
 }

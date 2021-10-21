@@ -16,10 +16,12 @@ import Stream from "components/Dashboard/stream";
 import EvaluationChart from "components/Dashboard/evaluationChart";
 import { Tile, TileHeader, TileWrapper } from "components/Dashboard/styled";
 import {
-  fetchAvgTicketSize,
-  fetchTodaysEarnings,
-  fetchRevenueBreakdown
+  fetchAvgTicketSize as fetchAvgTicketSizeAction,
+  fetchTodaysEarnings as fetchTodaysEarningsAction,
+  fetchRevenueBreakdown as fetchRevenueBreakdownAction,
+  fetchBestSales as fetchBestSalesAction
 } from "actions/businesses";
+import { selectCurrentBusiness } from "selectors/business";
 
 const namespaces = ["dashboard", "app"];
 
@@ -39,9 +41,10 @@ const Dashboard = ({
   t,
   lng,
   businessId,
-  fetchTickets,
-  fetchEarnings,
-  fetchRevenue,
+  fetchAvgTicketSize,
+  fetchTodaysEarnings,
+  fetchRevenueBreakdown,
+  fetchBestSales,
   currency
 }) => (
   <AppLayout
@@ -64,13 +67,13 @@ const Dashboard = ({
               businessId={businessId}
               isDown={salesList.isDown}
               color="turquoise"
-              fetchAction={fetchTickets}
+              fetchAction={fetchAvgTicketSize}
               title="ticket"
               t={t}
               currency={currency}
             />
             <BarTile
-              fetchAction={fetchEarnings}
+              fetchAction={fetchTodaysEarnings}
               businessId={businessId}
               color="salmon"
               title="earnings"
@@ -79,7 +82,7 @@ const Dashboard = ({
             />
             <BarTile
               isDisabled
-              fetchAction={fetchEarnings}
+              fetchAction={fetchTodaysEarnings}
               businessId={businessId}
               title="earnings"
               t={t}
@@ -90,7 +93,7 @@ const Dashboard = ({
           <Flex width={[1, 1, 1, 31 / 64]} flexDirection="column">
             <ProgressBarTile
               businessId={businessId}
-              fetchAction={fetchRevenue}
+              fetchAction={fetchRevenueBreakdown}
               t={t}
             />
             <Tile isDisabled height={380}>
@@ -100,12 +103,12 @@ const Dashboard = ({
           </Flex>
         </Flex>
       </Tile>
-      <Tile isDisabled width={1}>
+      <Tile width={1}>
         <TileHeader isBig>{t("todaysActivity")}</TileHeader>
         <Flex flexDirection={["column", "column", "row"]}>
           <Stream />
           <Flex width={1} flexDirection="column">
-            <Sales t={t} salesList={salesList} title="Best Sales" />
+            <Sales t={t} title="bestSales" fetchAction={fetchBestSales} />
           </Flex>
         </Flex>
       </Tile>
@@ -137,33 +140,34 @@ Dashboard.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
   businessId: string.isRequired,
-  fetchTickets: func.isRequired,
-  fetchEarnings: func.isRequired,
-  fetchRevenue: func.isRequired,
+  fetchAvgTicketSize: func.isRequired,
+  fetchTodaysEarnings: func.isRequired,
+  fetchRevenueBreakdown: func.isRequired,
+  fetchBestSales: func.isRequired,
   currency: string.isRequired
+};
+
+const mapState = (state, { i18n }) => {
+  const business = selectCurrentBusiness(state);
+  return {
+    lng: (i18n && i18n.language) || "en",
+    businessId: business && business.get("id"),
+    currency: business && business.getIn(["attributes", "currency"])
+  };
+};
+
+const mapDispatch = {
+  fetchAvgTicketSize: fetchAvgTicketSizeAction,
+  fetchTodaysEarnings: fetchTodaysEarningsAction,
+  fetchRevenueBreakdown: fetchRevenueBreakdownAction,
+  fetchBestSales: fetchBestSalesAction
 };
 
 export default compose(
   requireAuth(true),
   withTranslation(namespaces),
   connect(
-    (state, { i18n }) => {
-      const businessData = state.getIn(["users", "currentBusiness", "data"]);
-      const business =
-        businessData &&
-        businessData.get("businesses") &&
-        businessData.get("businesses").first();
-
-      return {
-        lng: (i18n && i18n.language) || "en",
-        businessId: business && business.get("id"),
-        currency: business && business.getIn(["attributes", "currency"])
-      };
-    },
-    {
-      fetchTickets: fetchAvgTicketSize,
-      fetchEarnings: fetchTodaysEarnings,
-      fetchRevenue: fetchRevenueBreakdown
-    }
+    mapState,
+    mapDispatch
   )
 )(Dashboard);
