@@ -20,10 +20,12 @@ import {
   FETCH_AVG_TICKET_SIZE_REQUEST,
   FETCH_TODAYS_EARNINGS_REQUEST,
   FETCH_REVENUE_BREAKDOWN_REQUEST,
-  FETCH_BEST_SALES_REQUEST
+  FETCH_BEST_SALES_REQUEST,
+  FETCH_WORST_SALES_REQUEST
 } from "types/businesses";
 
 const PER_PAGE = 200;
+const SALES_PER_PAGE = 25;
 
 export const postBusiness = onSuccess => ({
   type: POST_BUSINESS_REQUEST,
@@ -290,7 +292,20 @@ export const fetchBestSales = (id, page = 1) => ({
     method: "GET",
     endpoint: `/api/v1/businesses/${id}/dashboard/best_sales`,
     params: {
-      per_page: 25,
+      per_page: SALES_PER_PAGE,
+      page
+    }
+  },
+  meta: { thunk: true, page }
+});
+
+export const fetchWorstSales = (id, page = 1) => ({
+  type: FETCH_WORST_SALES_REQUEST,
+  payload: {
+    method: "GET",
+    endpoint: `/api/v1/businesses/${id}/dashboard/worst_sales`,
+    params: {
+      per_page: SALES_PER_PAGE,
       page
     }
   },
