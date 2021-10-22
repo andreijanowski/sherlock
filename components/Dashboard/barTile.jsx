@@ -19,7 +19,9 @@ const BarTile = ({
   currency
 }) => {
   useEffect(() => {
-    fetchAction(businessId);
+    if (businessId) {
+      fetchAction(businessId);
+    }
   }, [businessId, fetchAction]);
 
   const MAX_PERCENTAGE = 1000000;
@@ -46,15 +48,15 @@ const BarTile = ({
           <Flex mb={10} justifyContent="space-between">
             <TileHeader>{t(`${title}`)}</TileHeader>
             <Flex justifyContent="space-between">
-              {(!Number.isNaN(percentage) && percentage < MAX_PERCENTAGE) ||
-                (percentage === 0 && (
-                  <>
-                    <Arrow isDown={isDown} />
-                    <Percentage isDown={isDown} ml={1}>
-                      {Math.round(percentage)} %
-                    </Percentage>
-                  </>
-                ))}
+              {((!Number.isNaN(percentage) && percentage < MAX_PERCENTAGE) ||
+                percentage === 0) && (
+                <>
+                  <Arrow isDown={isDown} />
+                  <Percentage isDown={isDown} ml={1}>
+                    {Math.round(percentage)} %
+                  </Percentage>
+                </>
+              )}
             </Flex>
           </Flex>
           <Bar

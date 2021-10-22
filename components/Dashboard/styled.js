@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components";
 import { Flex } from "@rebass/grid";
 
+import { H3 } from "components";
+
 export const DashboardWrapper = styled(Flex)`
   flex-direction: column;
 `;
@@ -74,6 +76,7 @@ export const Spacer = styled.div`
 `;
 
 export const SalesList = styled.ul`
+  flex: auto;
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -84,7 +87,7 @@ export const SalesList = styled.ul`
   }
 `;
 
-export const SalesItem = styled(Flex)`
+export const SalesItemContainer = styled(Flex)`
   align-items: center;
   font-weight: 600;
   height: 70px;
@@ -260,4 +263,10 @@ export const Bullet = styled.div`
 export const StreamHeader = styled(Flex)`
   position: sticky;
   z-index: 3;
+`;
+
+export const EmptySalesData = styled(H3)`
+  flex: 1;
+  text-align: center;
+  margin: 20px 0;
 `;

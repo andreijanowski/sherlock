@@ -1,14 +1,15 @@
 /* eslint-disable no-param-reassign */
-import {
-  FETCH_AVG_TICKET_SIZE_SUCCESS,
-  FETCH_AVG_TICKET_SIZE_REQUEST
-} from "types/businesses";
 import { Record, Map, fromJS } from "immutable";
 import {
-  FETCH_REVENUE_BREAKDOWN_SUCCESS,
+  FETCH_REVENUE_BREAKDOWN_REQUEST,
+  FETCH_AVG_TICKET_SIZE_REQUEST,
   FETCH_TODAYS_EARNINGS_REQUEST,
-  FETCH_TODAYS_EARNINGS_SUCCESS
-} from "../types/businesses";
+  FETCH_BEST_SALES_REQUEST,
+  FETCH_AVG_TICKET_SIZE_SUCCESS,
+  FETCH_REVENUE_BREAKDOWN_SUCCESS,
+  FETCH_TODAYS_EARNINGS_SUCCESS,
+  FETCH_BEST_SALES_SUCCESS
+} from "types/businesses";
 
 export const initialState = Record({
   data: Map(),
@@ -17,10 +18,20 @@ export const initialState = Record({
   isSucceeded: false
 })();
 
-const reducer = (state = initialState, { type, payload }) => {
+export const BEST_SALES_DATA_PATH = ["data", "dashboard", "bestSales", "data"];
+export const BEST_SALES_TOTAL_PAGES_PATH = [
+  "data",
+  "dashboard",
+  "bestSales",
+  "totalPages"
+];
+
+const reducer = (state = initialState, { type, payload, meta }) => {
   switch (type) {
+    case FETCH_REVENUE_BREAKDOWN_REQUEST:
     case FETCH_TODAYS_EARNINGS_REQUEST:
-    case FETCH_AVG_TICKET_SIZE_REQUEST: {
+    case FETCH_AVG_TICKET_SIZE_REQUEST:
+    case FETCH_BEST_SALES_REQUEST: {
       return state.merge(
         Record({
           isFetching: true,
@@ -120,6 +131,31 @@ const reducer = (state = initialState, { type, payload }) => {
         })
       );
 
+      return newState;
+    }
+
+    case FETCH_BEST_SALES_SUCCESS: {
+      let newState = state.merge(
+        Record({
+          isFetching: false,
+          isFailed: false,
+          isSucceeded: true
+        })()
+      );
+      const {
+        rawData: {
+          data,
+          meta: { totalPages }
+        }
+      } = payload;
+
+      if (meta.page === 1) {
+        newState = newState
+          .setIn(BEST_SALES_DATA_PATH, fromJS(data))
+          .setIn(BEST_SALES_TOTAL_PAGES_PATH, totalPages);
+      } else {
+        newState = newState.mergeIn(BEST_SALES_DATA_PATH, fromJS(data));
+      }
       return newState;
     }
 
