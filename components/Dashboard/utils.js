@@ -37,17 +37,18 @@ export const scrollToNextItem = ref => {
 export const getPercentageStats = (baseCount, comparedCount) => {
   const isDown = baseCount < comparedCount;
 
-  if (baseCount && comparedCount) {
-    return {
-      isDown,
-      percentage: Math.round(Math.abs(1 - baseCount / comparedCount) * 100)
-    };
-  }
-
-  return {
+  const result = {
     isDown,
     percentage: 0
   };
+
+  if (baseCount && comparedCount) {
+    result.percentage = Math.round(
+      Math.abs(1 - baseCount / comparedCount) * 100
+    );
+  }
+
+  return result;
 };
 
 export const getSalesItemData = (salesItem, comparisonPeriod) => {
