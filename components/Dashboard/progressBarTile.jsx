@@ -25,7 +25,9 @@ const ProgressBarTile = ({
 }) => {
   const [dropdownValue, setDropdonwValue] = useState("sumLastMonth");
   useEffect(() => {
-    fetchAction(businessId);
+    if (businessId) {
+      fetchAction(businessId);
+    }
   }, [fetchAction, businessId]);
 
   const barData =

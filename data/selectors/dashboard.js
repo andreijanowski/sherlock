@@ -2,22 +2,34 @@ import {
   BEST_SALES_DATA_PATH,
   BEST_SALES_TOTAL_PAGES_PATH,
   WORST_SALES_DATA_PATH,
-  WORST_SALES_TOTAL_PAGES_PATH
+  WORST_SALES_TOTAL_PAGES_PATH,
+  LIVE_STREAM_DATA_PATH,
+  LIVE_STREAM_TOTAL_PAGES_PATH
 } from "reducers/dashboard";
 
 const PREFIX = "dashboard";
 
+const DEFAULT_TOTAL_COUNT = 0;
+
+const getDashboardData = (state, path) => state.getIn([PREFIX].concat(path));
+
 export const selectBestSalesData = state =>
-  state.getIn([PREFIX, ...BEST_SALES_DATA_PATH]);
+  getDashboardData(state, BEST_SALES_DATA_PATH);
 
 export const selectBestSalesTotalPagesData = state =>
-  state.getIn([PREFIX, ...BEST_SALES_TOTAL_PAGES_PATH]) || 0;
+  getDashboardData(state, BEST_SALES_TOTAL_PAGES_PATH) || DEFAULT_TOTAL_COUNT;
 
 export const selectWorstSalesData = state =>
-  state.getIn([PREFIX, ...WORST_SALES_DATA_PATH]);
+  getDashboardData(state, WORST_SALES_DATA_PATH);
 
 export const selectWorstSalesTotalPagesData = state =>
-  state.getIn([PREFIX, ...WORST_SALES_TOTAL_PAGES_PATH]) || 0;
+  getDashboardData(state, WORST_SALES_TOTAL_PAGES_PATH) || DEFAULT_TOTAL_COUNT;
+
+export const selectLiveStreamData = state =>
+  getDashboardData(state, LIVE_STREAM_DATA_PATH);
+
+export const selectLiveStreamTotalPagesData = state =>
+  getDashboardData(state, LIVE_STREAM_TOTAL_PAGES_PATH) || DEFAULT_TOTAL_COUNT;
 
 export const selectDashboardIsFetching = state =>
-  state.getIn([PREFIX, "isFetching"]);
+  getDashboardData(state, ["isFetching"]);

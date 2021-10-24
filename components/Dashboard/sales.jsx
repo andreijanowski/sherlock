@@ -14,7 +14,7 @@ import {
 import { ChevronDown } from "components/Icons";
 import {
   ChevronWrapper,
-  EmptySalesData,
+  EmptyData,
   SalesList,
   Spacer,
   Tile,
@@ -93,7 +93,7 @@ const Sales = ({
             />
           ))
         ) : (
-          <EmptySalesData>{t("noData")}</EmptySalesData>
+          <EmptyData>{t("noData")}</EmptyData>
         )}
       </SalesList>
       {isFetching && <Loader />}

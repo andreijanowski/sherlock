@@ -2,6 +2,8 @@ import * as moment from "moment";
 
 import { capitalize } from "utils/strings";
 
+const HOURS_NOW_EDGE = 1;
+
 export const getRandomInt = (min, max) => {
   const minimum = Math.ceil(min);
   const maximum = Math.floor(max);
@@ -26,12 +28,6 @@ export const randomChartGenerator = (isPaymentChart = false) => {
   });
 
   return sampleData;
-};
-
-export const scrollToNextItem = ref => {
-  if (ref.current) {
-    ref.current.scrollBy(0, 92);
-  }
 };
 
 export const getPercentageStats = (baseCount, comparedCount) => {
@@ -73,5 +69,23 @@ export const getSalesItemData = (salesItem, comparisonPeriod) => {
     orderedTimes,
     isDown,
     percentage
+  };
+};
+
+export const getStreamItemData = (streamItem, t) => {
+  const state = streamItem.getIn(["attributes", "state"]);
+  const placedAt = streamItem.getIn(["attributes", "placedAt"]); // todo check what should we use for timestamp and for avatar
+  const badgeNumber = streamItem.getIn(["attributes", "shortId"]);
+
+  const hoursDiff = moment().diff(placedAt, "hour");
+  const time =
+    hoursDiff < HOURS_NOW_EDGE
+      ? t("changedNow")
+      : t("changedHoursAgo", { count: hoursDiff });
+
+  return {
+    status: t(`lefood:${state}`),
+    time,
+    badgeNumber
   };
 };

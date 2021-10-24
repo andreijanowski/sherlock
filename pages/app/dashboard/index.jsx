@@ -108,7 +108,7 @@ const Dashboard = ({
       <Tile width={1}>
         <TileHeader isBig>{t("todaysActivity")}</TileHeader>
         <Flex flexDirection={["column", "column", "row"]}>
-          <Stream />
+          <Stream t={t} />
           <Flex width={1} flexDirection="column">
             <Sales t={t} title="bestSales" fetchAction={fetchBestSales} />
             <Sales

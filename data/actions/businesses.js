@@ -21,11 +21,13 @@ import {
   FETCH_TODAYS_EARNINGS_REQUEST,
   FETCH_REVENUE_BREAKDOWN_REQUEST,
   FETCH_BEST_SALES_REQUEST,
-  FETCH_WORST_SALES_REQUEST
+  FETCH_WORST_SALES_REQUEST,
+  FETCH_LIVE_STREAM_REQUEST
 } from "types/businesses";
 
 const PER_PAGE = 200;
 const SALES_PER_PAGE = 25;
+const LIVE_STREAM_PER_PAGE = 50;
 
 export const postBusiness = onSuccess => ({
   type: POST_BUSINESS_REQUEST,
@@ -307,6 +309,25 @@ export const fetchWorstSales = (id, page = 1) => ({
     params: {
       per_page: SALES_PER_PAGE,
       page
+    }
+  },
+  meta: { thunk: true, page }
+});
+
+export const fetchLiveStream = (id, page = 1) => ({
+  type: FETCH_LIVE_STREAM_REQUEST,
+  payload: {
+    method: "GET",
+    endpoint: `/api/v1/businesses/${id}/orders`,
+    params: {
+      per_page: LIVE_STREAM_PER_PAGE,
+      page,
+      filter: {
+        day: new Date()
+      },
+      // todo check what should we sort and use for timestamp?
+      // sort: "-created_at",
+      sort: "-updated_at"
     }
   },
   meta: { thunk: true, page }

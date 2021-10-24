@@ -1,64 +1,120 @@
-import React, { useRef } from "react";
-import { Flex } from "@rebass/grid";
-import { scrollToNextItem } from "./utils";
+import React, { useCallback, useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { bool, func, number, shape, string } from "prop-types";
+
+import { selectCurrentBusinessId } from "selectors/business";
+import { fetchLiveStream as fetchLiveStreamAction } from "actions/businesses";
 import {
-  Avatar,
-  Tile,
-  TileHeader,
-  Spacer,
-  StreamItem,
-  StreamList,
-  StreamItemRight,
-  Badge,
-  Time,
-  StreamName,
+  selectDashboardIsFetching,
+  selectLiveStreamData,
+  selectLiveStreamTotalPagesData
+} from "selectors/dashboard";
+import {
   ChevronWrapper,
-  StreamHeader
+  EmptyData,
+  Spacer,
+  StreamHeader,
+  StreamList,
+  Tile,
+  TileHeader
 } from "./styled";
 import { ChevronDown } from "../Icons";
+import Loader from "./loader";
+import StreamItem from "./StreamItem";
 
-const listItems = [
-  { title: "Approved new booking", time: "2h", badge: "34" },
-  { title: "Delivered to destination", time: "Now", badge: "15" },
-  { title: "Arriving now", time: "2h", badge: "214" },
-  { title: "Approved new booking", time: "2h", badge: "14" },
-  { title: "Approved new booking", time: "1h", badge: "21" },
-  { title: "Delivered to destination", time: "Now", badge: "15" },
-  { title: "Delivered to destination", time: "Now", badge: "15" }
-];
+const INITIAL_PAGE = 1;
 
-const Stream = () => {
-  const myRef = useRef();
+const Stream = ({
+  t,
+  businessId,
+  fetchLiveStream,
+  streamList,
+  totalPages,
+  isFetching
+}) => {
+  const [page, setPage] = useState(INITIAL_PAGE);
 
-  return (
+  const hasMore = totalPages > page;
+
+  const onHasMoreClick = useCallback(() => {
+    const nextPage = page + 1;
+    fetchLiveStream(businessId, nextPage);
+    setPage(nextPage);
+  }, [page, fetchLiveStream, businessId]);
+
+  useEffect(() => {
+    if (businessId) {
+      setPage(INITIAL_PAGE);
+      fetchLiveStream(businessId, INITIAL_PAGE);
+    }
+  }, [businessId, fetchLiveStream]);
+
+  const render = content => (
     <Tile height="645" width={1}>
-      <StreamHeader alignItems="center" justifyContent="space-between">
-        <TileHeader>Live Stream</TileHeader>
-      </StreamHeader>
-      <Spacer />
-      <StreamList ref={myRef}>
-        {listItems.map(item => (
-          <StreamItem>
-            <Flex alignItems="center">
-              <Avatar />
-              <StreamName>{item.title}</StreamName>
-            </Flex>
-            <StreamItemRight>
-              <Badge>{item.badge}</Badge>
-              <Time>{item.time}</Time>
-            </StreamItemRight>
-          </StreamItem>
-        ))}
-      </StreamList>
-      <ChevronWrapper
-        onClick={() => scrollToNextItem(myRef)}
-        alignItems="center"
-        justifyContent="center"
-        width={1}
-      >
-        <ChevronDown />
-      </ChevronWrapper>
+      {content}
     </Tile>
   );
+
+  if (!streamList && isFetching) {
+    return render(<Loader />);
+  }
+
+  return render(
+    <>
+      <StreamHeader alignItems="center" justifyContent="space-between">
+        <TileHeader>{t("liveStream")}</TileHeader>
+      </StreamHeader>
+      <Spacer />
+      <StreamList>
+        {streamList && streamList.size ? (
+          streamList.map(item => (
+            <StreamItem key={item.get("id")} t={t} item={item} />
+          ))
+        ) : (
+          <EmptyData>{t("noData")}</EmptyData>
+        )}
+      </StreamList>
+      {isFetching && <Loader />}
+      {hasMore && (
+        <ChevronWrapper
+          onClick={onHasMoreClick}
+          alignItems="center"
+          justifyContent="center"
+          width={1}
+        >
+          <ChevronDown />
+        </ChevronWrapper>
+      )}
+    </>
+  );
 };
-export default Stream;
+
+Stream.propTypes = {
+  t: func.isRequired,
+  businessId: string,
+  fetchLiveStream: func.isRequired,
+  streamList: shape(),
+  totalPages: number.isRequired,
+  isFetching: bool.isRequired
+};
+
+Stream.defaultProps = {
+  streamList: null,
+  businessId: null
+};
+
+const mapState = state => ({
+  businessId: selectCurrentBusinessId(state),
+  streamList: selectLiveStreamData(state),
+  totalPages: selectLiveStreamTotalPagesData(state),
+  isFetching: selectDashboardIsFetching(state)
+});
+
+const mapDispatch = {
+  fetchLiveStream: fetchLiveStreamAction
+};
+
+export default connect(
+  mapState,
+  mapDispatch
+)(Stream);
