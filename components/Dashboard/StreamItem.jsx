@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Flex } from "@rebass/grid";
 import { func, shape } from "prop-types";
 
+import { getOrderSourceLogo } from "utils/orderUtils";
 import {
-  Avatar,
+  StreamLogo,
   Badge,
   StreamItemContainer,
   StreamItemRight,
@@ -12,12 +13,18 @@ import {
 } from "./styled";
 import { getStreamItemData } from "./utils";
 
-const StreamItem = ({ t, item }) => {
+const StreamItem = ({ t, item, onItemClick }) => {
   const { badgeNumber, status, time } = getStreamItemData(item, t);
+  const sourceLogo = getOrderSourceLogo(item);
+
+  const onClick = useCallback(() => {
+    onItemClick(item);
+  }, [onItemClick, item]);
+
   return (
-    <StreamItemContainer as="li">
-      <Flex alignItems="center">
-        <Avatar />
+    <StreamItemContainer as="li" onClick={onClick}>
+      <Flex alignItems="center" mr={2}>
+        <StreamLogo src={sourceLogo} />
         <StreamStatus>{status}</StreamStatus>
       </Flex>
       <StreamItemRight>
@@ -30,7 +37,8 @@ const StreamItem = ({ t, item }) => {
 
 StreamItem.propTypes = {
   t: func.isRequired,
-  item: shape.isRequired
+  onItemClick: func.isRequired,
+  item: shape().isRequired
 };
 
 export default StreamItem;

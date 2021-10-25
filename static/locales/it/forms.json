@@ -73,6 +73,7 @@
       "presence-data[attributes][currency] is missing": "Manca la valuta",
       "cannot_set_while_currency_not_set-visible_in_lefood": "Imposta prima la valuta per rendere visibile la tua attività in lefood",
       "unauthorized_state_update-base": "Cambio di stato non valido",
+      "state_transition_not_valid": "Cambio di stato non valido",
       "server_error-Cannot transition state via": "Cambio di stato non valido",
       "invalid-base": "L'ordine non è in attesa di approvazione, quindi non può essere rifiutato",
       "taken-email": "Questa email è già stata presa",

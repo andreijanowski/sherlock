@@ -64,7 +64,6 @@ const Orders = ({
                     {...{
                       order: orders.get(id),
                       id,
-                      t,
                       setRejectModalVisibility,
                       updateOrder
                     }}

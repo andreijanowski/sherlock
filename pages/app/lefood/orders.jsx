@@ -1,7 +1,10 @@
 import { PureComponent } from "react";
+import { func, string, shape, bool, number } from "prop-types";
+import { action as toggleMenu } from "redux-burger-menu/immutable";
+import { connect } from "react-redux";
+
 import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, shape, bool, number } from "prop-types";
 import LefoodLayout from "sections/lefood/Layout";
 import Orders from "sections/lefood/orders";
 import {
@@ -9,13 +12,12 @@ import {
   columns as columnsNames,
   mergeOrdersData
 } from "sections/lefood/utils";
-import { connect } from "react-redux";
 import { patchOrder, patchOrderReject } from "actions/orders";
 import { patchBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/app";
 import OrderDetails from "sections/lefood/orders/OrderDetails";
-import { SliderStyles } from "components";
-import { action as toggleMenu } from "redux-burger-menu/immutable";
+import { selectIsConnectedWithOrkestro } from "selectors/integrations";
+import { getRejectOrderPayload } from "utils/orderUtils";
 import ConfirmOrkestroDeliveryModal from "./ConfirmOrkestroDeliveryModal";
 
 const namespaces = ["lefood", "app", "forms"];
@@ -204,24 +206,14 @@ class OrdersPage extends PureComponent {
     const { pendingRejectionOrderId } = this.state;
     this.setRejectModalVisibility(undefined);
     const order = orders.find(o => o.get("id") === pendingRejectionOrderId);
-    const unavailableElementsIds = unavailableElements
-      .map((unavailable, index) =>
-        unavailable
-          ? order.getIn(["relationships", "elements", "data", index, "id"])
-          : null
-      )
-      .filter(e => !!e)
-      .toString();
+
     rejectOrder(
-      {
+      getRejectOrderPayload({
         rejectReason,
-        unavailableElements:
-          rejectReason === "dishes_unavailable"
-            ? unavailableElementsIds || undefined
-            : undefined,
-        otherRejectionReason:
-          rejectReason === "other" ? otherRejectionReason : undefined
-      },
+        unavailableElements,
+        otherRejectionReason,
+        orderDetails: order
+      }),
       pendingRejectionOrderId
     ).then(() => this.refreshColumnsContent());
   };
@@ -247,8 +239,7 @@ class OrdersPage extends PureComponent {
       businessId,
       businessOrderPeriodsLength,
       businesses,
-      changeCurrentBusiness,
-      connectedWithOrkestro
+      changeCurrentBusiness
     } = this.props;
     const {
       columns,
@@ -296,13 +287,10 @@ class OrdersPage extends PureComponent {
             }}
           />
         </LefoodLayout>
-        <SliderStyles />
         <div style={{ position: "absolute", left: 0 }}>
           <OrderDetails
             {...{
-              connectedWithOrkestro,
               orderDetails,
-              t,
               updateOrder: this.updateOrder,
               setRejectModalVisibility: this.setRejectModalVisibility
             }}
@@ -365,10 +353,6 @@ export default requireAuth(true)(
         const orders = state.getIn(["orders", "data", "orders"]);
         const elements = state.getIn(["orders", "data", "elements"]);
         const addresses = state.getIn(["orders", "data", "addresses"]);
-        const isConnectedWithOrkestro = state.getIn([
-          "integrations",
-          "isConnectedToOrkestro"
-        ]);
 
         return {
           loading:
@@ -394,7 +378,7 @@ export default requireAuth(true)(
             "data",
             "businesses"
           ]),
-          connectedWithOrkestro: isConnectedWithOrkestro,
+          connectedWithOrkestro: selectIsConnectedWithOrkestro(state),
           lng: (i18n && i18n.language) || "en"
         };
       },

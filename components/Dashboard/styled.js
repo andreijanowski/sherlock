@@ -201,6 +201,7 @@ export const StreamList = styled(Flex)`
   }
 `;
 export const StreamItemContainer = styled(Flex)`
+  cursor: pointer;
   font-size: 12px;
   font-weight: 600;
   justify-content: space-between;
@@ -212,7 +213,6 @@ export const StreamItemContainer = styled(Flex)`
 
 export const StreamStatus = styled(Flex)`
   flex-wrap: wrap;
-  width: 50%;
   line-height: 16px;
 `;
 export const StreamItemRight = styled(Flex)`
@@ -223,12 +223,19 @@ export const StreamItemRight = styled(Flex)`
   padding: 16px 0;
 `;
 
-export const Avatar = styled.div`
+export const StreamLogo = styled.div`
   height: 53px;
   width: 53px;
-  border-radius: 53px;
+  flex: none;
+  border-radius: 50%;
   margin-right: 8px;
-  background: rgba(${p => p.theme.colors.lightGreyText}, 0.4);
+  ${p =>
+    p.src &&
+    `
+    background-image: url(${p.src});
+    background-size: cover;
+    background-position: center
+  `}
 `;
 
 export const Badge = styled.div`
@@ -270,4 +277,11 @@ export const EmptyData = styled(H3)`
   flex: 1;
   text-align: center;
   margin: 20px 0;
+`;
+
+export const OrderDetailsContainer = styled.div`
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
 `;

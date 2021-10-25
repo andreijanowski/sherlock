@@ -1,18 +1,20 @@
 import { PureComponent } from "react";
+import { func, string, shape, number } from "prop-types";
+import { connect } from "react-redux";
+import { action as toggleMenu } from "redux-burger-menu/immutable";
+import { fromJS } from "immutable";
+
 import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, shape, number } from "prop-types";
 import LefoodLayout from "sections/lefood/Layout";
 import OrdersHistory from "sections/lefood/ordersHistory";
 import { mergeOrdersData } from "sections/lefood/utils";
-import { connect } from "react-redux";
 import { patchBusiness, fetchBusinessOrdersHistory } from "actions/businesses";
 import { patchOrder, patchOrderReject } from "actions/orders";
 import { setCurrentBusiness } from "actions/app";
 import OrderDetails from "sections/lefood/orders/OrderDetails";
 import { SliderStyles } from "components";
-import { action as toggleMenu } from "redux-burger-menu/immutable";
-import { fromJS } from "immutable";
+import { getRejectOrderPayload } from "utils/orderUtils";
 
 const namespaces = ["lefood", "app", "forms"];
 
@@ -133,24 +135,14 @@ class OrdersPage extends PureComponent {
     const { pendingRejectionOrderId, orders } = this.state;
     this.setRejectModalVisibility(undefined);
     const order = orders.get(pendingRejectionOrderId);
-    const unavailableElementsIds = unavailableElements
-      .map((unavailable, index) =>
-        unavailable
-          ? order.getIn(["relationships", "elements", "data", index, "id"])
-          : null
-      )
-      .filter(e => !!e)
-      .toString();
+
     rejectOrder(
-      {
+      getRejectOrderPayload({
         rejectReason,
-        unavailableElements:
-          rejectReason === "dishes_unavailable"
-            ? unavailableElementsIds || undefined
-            : undefined,
-        otherRejectionReason:
-          rejectReason === "other" ? otherRejectionReason : undefined
-      },
+        unavailableElements,
+        otherRejectionReason,
+        orderDetails: order
+      }),
       pendingRejectionOrderId
     ).then(res => {
       this.setState(state => ({
@@ -226,7 +218,6 @@ class OrdersPage extends PureComponent {
           <OrderDetails
             {...{
               orderDetails,
-              t,
               updateOrder: this.updateOrder,
               setRejectModalVisibility: this.setRejectModalVisibility
             }}

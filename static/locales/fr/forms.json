@@ -73,6 +73,7 @@
       "presence-data[attributes][currency] is missing": "Il manque la devise",
       "cannot_set_while_currency_not_set-visible_in_lefood": "Définissez d'abord la devise afin de rendre visible votre entreprise dans lefood",
       "unauthorized_state_update-base": "Changement d'état non valide",
+      "state_transition_not_valid": "Changement d'état non valide",
       "server_error-Cannot transition state via": "Changement d'état non valide",
       "invalid-base": "L'ordre n'est pas en attente d'approbation, il ne peut donc pas être rejeté",
       "taken-email": "Cet email est déjà pris",

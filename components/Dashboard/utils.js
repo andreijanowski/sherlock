@@ -74,10 +74,10 @@ export const getSalesItemData = (salesItem, comparisonPeriod) => {
 
 export const getStreamItemData = (streamItem, t) => {
   const state = streamItem.getIn(["attributes", "state"]);
-  const placedAt = streamItem.getIn(["attributes", "placedAt"]); // todo check what should we use for timestamp and for avatar
+  const updatedAt = streamItem.getIn(["attributes", "updatedAt"]);
   const badgeNumber = streamItem.getIn(["attributes", "shortId"]);
 
-  const hoursDiff = moment().diff(placedAt, "hour");
+  const hoursDiff = moment().diff(updatedAt, "hour");
   const time =
     hoursDiff < HOURS_NOW_EDGE
       ? t("changedNow")

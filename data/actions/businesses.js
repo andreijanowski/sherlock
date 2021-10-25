@@ -322,11 +322,10 @@ export const fetchLiveStream = (id, page = 1) => ({
     params: {
       per_page: LIVE_STREAM_PER_PAGE,
       page,
+      include: "elements",
       filter: {
-        day: new Date()
+        day: new Date().toISOString().split("T")[0]
       },
-      // todo check what should we sort and use for timestamp?
-      // sort: "-created_at",
       sort: "-updated_at"
     }
   },

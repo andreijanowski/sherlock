@@ -116,11 +116,7 @@ Sales.propTypes = {
   title: string.isRequired,
   t: func.isRequired,
   fetchAction: func.isRequired,
-  salesList: shape({
-    percentage: string.isRequired,
-    ordered: string.isRequired,
-    name: string.isRequired
-  }).isRequired,
+  salesList: shape(),
   businessId: string,
   totalPages: number.isRequired,
   isFetching: bool.isRequired
@@ -128,7 +124,8 @@ Sales.propTypes = {
 
 Sales.defaultProps = {
   isWorst: false,
-  businessId: null
+  businessId: null,
+  salesList: null
 };
 
 const mapState = (state, { isWorst }) => ({
