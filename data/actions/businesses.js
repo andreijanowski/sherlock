@@ -322,7 +322,7 @@ export const fetchLiveStream = (id, page = 1) => ({
     params: {
       per_page: LIVE_STREAM_PER_PAGE,
       page,
-      include: "elements",
+      include: "addresses,elements",
       filter: {
         day: new Date().toISOString().split("T")[0]
       },

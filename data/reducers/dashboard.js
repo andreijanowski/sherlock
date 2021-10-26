@@ -13,6 +13,7 @@ import {
   FETCH_WORST_SALES_SUCCESS,
   FETCH_LIVE_STREAM_SUCCESS
 } from "types/businesses";
+import { mergeOrdersData } from "sections/lefood/utils";
 
 export const initialState = Record({
   data: Map(),
@@ -199,13 +200,34 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     }
 
     case FETCH_LIVE_STREAM_SUCCESS: {
-      return processDashboardData({
-        state,
-        payload,
-        meta,
-        dataPath: LIVE_STREAM_DATA_PATH,
-        totalPagesPath: LIVE_STREAM_TOTAL_PAGES_PATH
-      });
+      let newState = state.merge(
+        Record({
+          isFetching: false,
+          isFailed: false,
+          isSucceeded: true
+        })()
+      );
+      const immutablePayload = fromJS(payload);
+      const totalPages = immutablePayload.getIn([
+        "rawData",
+        "meta",
+        "totalPages"
+      ]);
+
+      const preparedOrdersData = mergeOrdersData(
+        immutablePayload.getIn(["rawData", "data"]),
+        immutablePayload.getIn(["data", "elements"]),
+        immutablePayload.getIn(["data", "addresses"])
+      );
+
+      if (meta.page === 1) {
+        newState = newState
+          .setIn(LIVE_STREAM_DATA_PATH, preparedOrdersData)
+          .setIn(LIVE_STREAM_TOTAL_PAGES_PATH, totalPages);
+      } else {
+        newState = newState.mergeIn(LIVE_STREAM_DATA_PATH, preparedOrdersData);
+      }
+      return newState;
     }
 
     default: {
