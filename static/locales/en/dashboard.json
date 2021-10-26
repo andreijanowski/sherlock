@@ -6,7 +6,7 @@
   "paymentTypes": "Payment types",
   "frequentation": "Frequentation",
   "todaysActivity": "Todays activity",
-  "liveStram": "Live stram",
+  "liveStream": "Live stream",
   "bestSales": "Best sales",
   "worstSales": "Worst sales",
   "consultation": "Consultation",
@@ -35,5 +35,7 @@
   "sumLastYear": "Last Year",
   "noData": "No data",
   "orderedTimes": "Ordered {{count}} time",
-  "orderedTimes_plural": "Ordered {{count}} times"
+  "orderedTimes_plural": "Ordered {{count}} times",
+  "changedNow": "Now",
+  "changedHoursAgo": "{{count}}h"
 }

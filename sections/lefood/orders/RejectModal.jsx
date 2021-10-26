@@ -1,3 +1,10 @@
+import { Form as FinalForm, Field } from "react-final-form";
+import { FieldArray } from "react-final-form-arrays";
+import arrayMutators from "final-form-arrays";
+import { shape, func, bool } from "prop-types";
+import { Flex, Box } from "@rebass/grid";
+
+import { useTranslation } from "i18n";
 import {
   Modal,
   FormDropdown,
@@ -6,22 +13,17 @@ import {
   Button,
   ModalHeader
 } from "components";
-import { Form as FinalForm, Field } from "react-final-form";
-import { FieldArray } from "react-final-form-arrays";
-import arrayMutators from "final-form-arrays";
 import { RejectModalIcon } from "icons";
-import { shape, func, bool } from "prop-types";
-import { Flex, Box } from "@rebass/grid";
 import { ElementsWrapper } from "./styled";
 
 const RejectModal = ({
   isOpen,
   onClose,
-  t,
   pendingRejectionOrder,
   handleRejectionSubmit
-}) =>
-  isOpen ? (
+}) => {
+  const { t } = useTranslation("lefood");
+  return isOpen ? (
     <Modal {...{ open: true, onClose }}>
       <FinalForm
         initialValues={{
@@ -127,13 +129,13 @@ const RejectModal = ({
       />
     </Modal>
   ) : null;
+};
 
 RejectModal.propTypes = {
   pendingRejectionOrder: shape(),
   isOpen: bool.isRequired,
   onClose: func.isRequired,
-  handleRejectionSubmit: func.isRequired,
-  t: func.isRequired
+  handleRejectionSubmit: func.isRequired
 };
 
 RejectModal.defaultProps = {

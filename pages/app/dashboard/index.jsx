@@ -24,19 +24,7 @@ import {
 } from "actions/businesses";
 import { selectCurrentBusiness } from "selectors/business";
 
-const namespaces = ["dashboard", "app"];
-
-const salesList = [
-  { name: "Jungle Chicken", isDown: true, percentage: "4%", ordered: "33" },
-  { name: "Tropical Beef", percentage: "2%", ordered: "15" },
-  { name: "Zesty Prawns", percentage: "5%", ordered: "21" },
-  { name: "Jungle Chicken", isDown: true, percentage: "4%", ordered: "33" },
-  { name: "Tropical Beef", percentage: "2%", ordered: "15" },
-  { name: "Zesty Prawns", percentage: "5%", ordered: "21" },
-  { name: "Jungle Chicken", isDown: true, percentage: "4%", ordered: "33" },
-  { name: "Tropical Beef", percentage: "2%", ordered: "15" },
-  { name: "Zesty Prawns", percentage: "5%", ordered: "21" }
-];
+const namespaces = ["dashboard", "app", "forms", "lefood"];
 
 const Dashboard = ({
   t,
@@ -67,7 +55,6 @@ const Dashboard = ({
           <Flex width={[1, 1, 1, 31 / 64]} flexDirection="column">
             <BarTile
               businessId={businessId}
-              isDown={salesList.isDown}
               color="turquoise"
               fetchAction={fetchAvgTicketSize}
               title="ticket"
@@ -108,7 +95,7 @@ const Dashboard = ({
       <Tile width={1}>
         <TileHeader isBig>{t("todaysActivity")}</TileHeader>
         <Flex flexDirection={["column", "column", "row"]}>
-          <Stream />
+          <Stream t={t} />
           <Flex width={1} flexDirection="column">
             <Sales t={t} title="bestSales" fetchAction={fetchBestSales} />
             <Sales

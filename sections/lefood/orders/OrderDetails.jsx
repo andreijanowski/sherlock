@@ -4,6 +4,8 @@ import { decorator as reduxBurgerMenu } from "redux-burger-menu/immutable";
 import { func, bool, shape } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import { Map } from "immutable";
+import { connect } from "react-redux";
+
 import {
   Button,
   FormDropdown,
@@ -12,8 +14,11 @@ import {
   SliderSubheader,
   SliderSpacer
 } from "components";
-import { connect } from "react-redux";
+import { SliderStyles } from "components/Slider";
 import { fetchOrkestroOrder } from "actions/orders";
+import { getOrderSource } from "utils/orderUtils";
+import { selectIsConnectedWithOrkestro } from "selectors/integrations";
+import { useTranslation } from "i18n";
 import OrderDetail from "./OrderDetail";
 
 const OrderDetails = ({
@@ -23,18 +28,17 @@ const OrderDetails = ({
   setRejectModalVisibility,
   updateOrder,
   fetchOrkestroOrderStatus,
-  connectedWithOrkestro,
-  t
+  connectedWithOrkestro
 }) => {
+  const { t } = useTranslation("lefood");
   const orderId = orderDetails && orderDetails.get("id");
   const notes = orderDetails && orderDetails.getIn(["attributes", "notes"]);
   const deliveryNotes = Map.isMap(notes) && notes.get("deliveryNotes");
   const disposableItems = Map.isMap(notes) && notes.get("disposableItems");
-  const hubriseSource =
-    orderDetails && orderDetails.getIn(["attributes", "hubriseSource"]);
-  const origin = orderDetails && orderDetails.getIn(["attributes", "origin"]);
   const specialInstructions =
     Map.isMap(notes) && notes.get("specialInstructions");
+
+  const source = getOrderSource(orderDetails);
 
   useEffect(() => {
     if (isOpen) {
@@ -51,17 +55,14 @@ const OrderDetails = ({
       right
       width={400}
     >
+      <SliderStyles />
       {orderDetails && (
         <>
           <SliderHeader>{t("orderDetails")}</SliderHeader>
           <SliderSubheader isDetails>
             {`ID: ${orderDetails.getIn(["attributes", "shortId"])}
             `}
-            {origin !== null && (
-              <Flex justifyContent="flex-end">
-                {hubriseSource !== null ? hubriseSource : origin}
-              </Flex>
-            )}
+            {source && <Flex justifyContent="flex-end">{source}</Flex>}
           </SliderSubheader>
           <FormDropdown
             {...{
@@ -295,8 +296,7 @@ OrderDetails.propTypes = {
   fetchOrkestroOrderStatus: func.isRequired,
   orderDetails: shape(),
   setRejectModalVisibility: func.isRequired,
-  updateOrder: func.isRequired,
-  t: func.isRequired
+  updateOrder: func.isRequired
 };
 
 OrderDetails.defaultProps = {
@@ -304,9 +304,15 @@ OrderDetails.defaultProps = {
   connectedWithOrkestro: false
 };
 
+const mapState = state => ({
+  connectedWithOrkestro: selectIsConnectedWithOrkestro(state)
+});
+
+const mapDispatch = { fetchOrkestroOrderStatus: fetchOrkestroOrder };
+
 export default reduxBurgerMenu(
   connect(
-    null,
-    { fetchOrkestroOrderStatus: fetchOrkestroOrder }
+    mapState,
+    mapDispatch
   )(OrderDetails)
 );

@@ -69,6 +69,7 @@
       "presence-data[attributes][currency] is missing": "'Currency' is missing",
       "cannot_set_while_currency_not_set-visible_in_lefood": "Set currency first in order to make your business visible in lefood",
       "unauthorized_state_update-base": "Invalid state change",
+      "state_transition_not_valid": "Invalid state change",
       "server_error-Cannot transition state via": "Invalid state change",
       "invalid-base": "Order is not waiting for approval so cannot be rejected",
       "taken-email": "This email is taken already",

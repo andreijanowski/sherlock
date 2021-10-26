@@ -62,9 +62,9 @@ const Orders = ({
                 renderCardDetails: id => (
                   <Order
                     {...{
+                      t,
                       order: orders.get(id),
                       id,
-                      t,
                       setRejectModalVisibility,
                       updateOrder
                     }}
@@ -99,8 +99,7 @@ const Orders = ({
             pendingRejectionOrder: orders
               ? orders.find(o => o.get("id") === pendingRejectionOrderId)
               : null,
-            handleRejectionSubmit,
-            t
+            handleRejectionSubmit
           }}
         />
       </ColumnsWrapper>

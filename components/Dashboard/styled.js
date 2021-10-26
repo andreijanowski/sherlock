@@ -192,6 +192,7 @@ export const Today = styled.span`
 `;
 
 export const StreamList = styled(Flex)`
+  flex: auto;
   flex-direction: column;
   margin-bottom: 16px;
   overflow: scroll;
@@ -199,7 +200,8 @@ export const StreamList = styled(Flex)`
     display: none;
   }
 `;
-export const StreamItem = styled(Flex)`
+export const StreamItemContainer = styled(Flex)`
+  cursor: pointer;
   font-size: 12px;
   font-weight: 600;
   justify-content: space-between;
@@ -209,9 +211,8 @@ export const StreamItem = styled(Flex)`
   padding: 20px 16px 24px 0px;
 `;
 
-export const StreamName = styled(Flex)`
+export const StreamStatus = styled(Flex)`
   flex-wrap: wrap;
-  width: 50%;
   line-height: 16px;
 `;
 export const StreamItemRight = styled(Flex)`
@@ -222,12 +223,19 @@ export const StreamItemRight = styled(Flex)`
   padding: 16px 0;
 `;
 
-export const Avatar = styled.div`
+export const StreamLogo = styled.div`
   height: 53px;
   width: 53px;
-  border-radius: 53px;
+  flex: none;
+  border-radius: 50%;
   margin-right: 8px;
-  background: rgba(${p => p.theme.colors.lightGreyText}, 0.4);
+  ${p =>
+    p.src &&
+    `
+    background-image: url(${p.src});
+    background-size: cover;
+    background-position: center
+  `}
 `;
 
 export const Badge = styled.div`
@@ -238,7 +246,7 @@ export const Badge = styled.div`
 `;
 
 export const Time = styled.div`
-  color: rgba($ ${p => p.theme.colors.lightGreyText}, 0.7);
+  color: rgb(${p => p.theme.colors.gray["3"]});
 `;
 
 export const ArrowWrapper = styled.div`
@@ -265,8 +273,15 @@ export const StreamHeader = styled(Flex)`
   z-index: 3;
 `;
 
-export const EmptySalesData = styled(H3)`
+export const EmptyData = styled(H3)`
   flex: 1;
   text-align: center;
   margin: 20px 0;
+`;
+
+export const OrderDetailsContainer = styled.div`
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
 `;

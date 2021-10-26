@@ -73,6 +73,7 @@
       "presence-data[attributes][currency] is missing": "Währung fehlt",
       "cannot_set_while_currency_not_set-visible_in_lefood": "Stellen Sie zuerst die Währung ein, um Ihr Geschäft in Lefood sichtbar zu machen",
       "unauthorized_state_update-base": "Ungültige Statusänderung",
+      "state_transition_not_valid": "Ungültige Statusänderung",
       "server_error-Cannot transition state via": "Ungültige Statusänderung",
       "invalid-base": "Bestellung wartet nicht auf Genehmigung, kann also nicht abgelehnt werden",
       "taken-email": "Diese E-Mail ist bereits vergeben",
