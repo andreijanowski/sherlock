@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { bool, func, string } from "prop-types";
+import { bool, func, string, arrayOf, shape } from "prop-types";
+
 import { DropdownArrow } from "icons";
 import { OPTIONS, OPTIONS_FOR_REVENUE } from "./consts";
 
@@ -8,18 +9,18 @@ import {
   DropdownItem,
   ItemsWrapper,
   DropdownButton,
-  Today
+  DropdownLabel
 } from "./styled";
 
 export default function Dropdown({
-  withToday,
   withoutBorder,
   onChange,
   value,
   isRevenue,
-  t
+  t,
+  dropdownLabel,
+  options = isRevenue ? OPTIONS_FOR_REVENUE : OPTIONS
 }) {
-  const options = isRevenue ? OPTIONS_FOR_REVENUE : OPTIONS;
   const [activeOption, setActiveOption] = useState(options[0].value);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
@@ -32,12 +33,12 @@ export default function Dropdown({
       onKeyDown={toggleDropdown}
       onClick={toggleDropdown}
     >
-      {withToday && <Today>Today vs</Today>}
+      {dropdownLabel && <DropdownLabel>{dropdownLabel}</DropdownLabel>}
       <DropdownButton
         withoutBorder={withoutBorder}
         isDropdownOpen={isDropdownOpen}
       >
-        {options.find(el => el.value === value).name}
+        {t(options.find(el => el.value === value).name)}
         <DropdownArrow />
       </DropdownButton>
 
@@ -63,7 +64,7 @@ export default function Dropdown({
                   : setActiveOption(option.value)
               }
             >
-              {t(`${option.value}`)}
+              {t(`${option.name}`)}
             </DropdownItem>
           ))}
         </ItemsWrapper>
@@ -73,18 +74,22 @@ export default function Dropdown({
 }
 
 Dropdown.propTypes = {
-  withToday: bool,
   withoutBorder: bool,
   onChange: func,
   value: string,
   isRevenue: bool,
-  t: func.isRequired
+  t: func.isRequired,
+  dropdownLabel: string,
+  options: arrayOf(
+    shape({ label: string.isRequired, value: string.isRequired })
+  )
 };
 
 Dropdown.defaultProps = {
-  withToday: false,
+  options: undefined,
   withoutBorder: false,
   onChange: () => {},
   value: "yesterday",
-  isRevenue: false
+  isRevenue: false,
+  dropdownLabel: null
 };

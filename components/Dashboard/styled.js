@@ -184,7 +184,7 @@ export const DropdownButton = styled(Flex)`
   }
 `;
 
-export const Today = styled.span`
+export const DropdownLabel = styled.span`
   position: absolute;
   font-weight: 300;
   color: rgba(${p => p.theme.colors.darkGreyText}, 0.7);

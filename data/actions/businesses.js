@@ -288,26 +288,28 @@ export const fetchRevenueBreakdown = id => ({
   meta: { thunk: true }
 });
 
-export const fetchBestSales = (id, page = 1) => ({
+export const fetchBestSales = (id, comparison, page = 1) => ({
   type: FETCH_BEST_SALES_REQUEST,
   payload: {
     method: "GET",
     endpoint: `/api/v1/businesses/${id}/dashboard/best_sales`,
     params: {
       per_page: SALES_PER_PAGE,
+      comparison,
       page
     }
   },
   meta: { thunk: true, page }
 });
 
-export const fetchWorstSales = (id, page = 1) => ({
+export const fetchWorstSales = (id, comparison, page = 1) => ({
   type: FETCH_WORST_SALES_REQUEST,
   payload: {
     method: "GET",
     endpoint: `/api/v1/businesses/${id}/dashboard/worst_sales`,
     params: {
       per_page: SALES_PER_PAGE,
+      comparison,
       page
     }
   },
@@ -324,7 +326,7 @@ export const fetchLiveStream = (id, page = 1) => ({
       page,
       include: "addresses,elements",
       filter: {
-        day: new Date().toISOString().split("T")[0]
+        day: moment.utc().format("YYYY-MM-DD")
       },
       sort: "-updated_at"
     }

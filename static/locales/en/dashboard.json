@@ -26,16 +26,20 @@
   "today": "Today",
   "yesterday": "Yesterday",
   "lastMonth": "Last month",
-  "last3Months": "Last 3 months",
+  "last3Months": "Last quarter",
   "lastYear": "Last Year",
   "sumToday": "Today",
   "sumYesterday": "Yesterday",
   "sumLastMonth": "Last month",
-  "sumLast3Months": "Last 3 months",
+  "sumLast3Months": "Last quarter",
   "sumLastYear": "Last Year",
   "noData": "No data",
   "orderedTimes": "Ordered {{count}} time",
   "orderedTimes_plural": "Ordered {{count}} times",
   "changedNow": "Now",
-  "changedHoursAgo": "{{count}}h"
+  "changedHoursAgo": "{{count}}h",
+  "todayVS": "Today vs",
+  "thisMonthVS": "This month vs",
+  "thisQuarterVS": "This quarter vs",
+  "thisYearVS": "This year vs"
 }
