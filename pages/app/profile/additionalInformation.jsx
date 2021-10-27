@@ -76,11 +76,7 @@ const AdditionalInformation = ({
         takeawayServiceTypeRef
       };
 
-      if (Object.values(requestValues).some(Boolean)) {
-        return updateBusiness(businessId, requestValues);
-      }
-
-      return null;
+      return updateBusiness(businessId, requestValues);
     },
     [updateBusiness, businessId]
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import { FormSpy } from "react-final-form";
-import diff from "object-diff";
+import { diff } from "deep-object-diff";
 import { shape, string, func } from "prop-types";
 import Notifications from "react-notification-system-redux";
 import { connect } from "react-redux";
