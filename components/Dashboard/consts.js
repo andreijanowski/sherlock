@@ -1,38 +1,65 @@
+const TRANSLATIONS = {
+  TODAY: "today",
+  YESTERDAY: "yesterday",
+  LAST_MONTH: "lastMonth",
+  LAST_3_MONTH: "last3Months",
+  LAST_YEAR: "lastYear"
+};
+
 export const OPTIONS = [
   {
-    name: "Yesterday",
+    name: TRANSLATIONS.YESTERDAY,
     value: "yesterday"
   },
   {
-    name: "Last month",
+    name: TRANSLATIONS.LAST_MONTH,
     value: "lastMonth"
   },
   {
-    name: "Last 3 months",
+    name: TRANSLATIONS.LAST_3_MONTH,
     value: "last3Months"
   },
   {
-    name: "Last year",
+    name: TRANSLATIONS.LAST_YEAR,
     value: "lastYear"
   }
 ];
 
 export const OPTIONS_FOR_REVENUE = [
-  { name: "Today", value: "sumToday" },
+  { name: TRANSLATIONS.TODAY, value: "sumToday" },
   {
-    name: "Yesterday",
+    name: TRANSLATIONS.YESTERDAY,
     value: "sumYesterday"
   },
   {
-    name: "Last month",
+    name: TRANSLATIONS.LAST_MONTH,
     value: "sumLastMonth"
   },
   {
-    name: "Last 3 months",
+    name: TRANSLATIONS.LAST_3_MONTH,
     value: "sumLast3Months"
   },
   {
-    name: "Last year",
+    name: TRANSLATIONS.LAST_YEAR,
     value: "sumLastYear"
+  }
+];
+
+export const SALES_OPTIONS = [
+  {
+    name: TRANSLATIONS.YESTERDAY,
+    value: "day"
+  },
+  {
+    name: TRANSLATIONS.LAST_MONTH,
+    value: "month"
+  },
+  {
+    name: TRANSLATIONS.LAST_3_MONTH,
+    value: "quarter"
+  },
+  {
+    name: TRANSLATIONS.LAST_YEAR,
+    value: "year"
   }
 ];

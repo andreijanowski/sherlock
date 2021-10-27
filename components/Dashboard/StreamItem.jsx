@@ -28,7 +28,7 @@ const StreamItem = ({ t, item, onItemClick }) => {
         <StreamStatus>{status}</StreamStatus>
       </Flex>
       <StreamItemRight>
-        <Badge>{badgeNumber}</Badge>
+        <Badge>#{badgeNumber}</Badge>
         <Time>{time}</Time>
       </StreamItemRight>
     </StreamItemContainer>

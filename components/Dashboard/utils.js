@@ -1,7 +1,5 @@
 import * as moment from "moment";
 
-import { capitalize } from "utils/strings";
-
 const HOURS_NOW_EDGE = 1;
 
 export const getRandomInt = (min, max) => {
@@ -47,16 +45,16 @@ export const getPercentageStats = (baseCount, comparedCount) => {
   return result;
 };
 
-export const getSalesItemData = (salesItem, comparisonPeriod) => {
+export const getSalesItemData = salesItem => {
   const name = salesItem.getIn(["attributes", "name"]);
   const orderedTimes = salesItem.getIn([
     "attributes",
-    "orderedUnitsCountToday"
+    "orderedUnitsCountCurrent"
   ]);
 
   const comparedOrderedTimes = salesItem.getIn([
     "attributes",
-    `orderedUnitsCount${capitalize(comparisonPeriod)}`
+    "orderedUnitsCountPrevious"
   ]);
 
   const { isDown, percentage } = getPercentageStats(
@@ -88,4 +86,17 @@ export const getStreamItemData = (streamItem, t) => {
     time,
     badgeNumber
   };
+};
+
+export const getDropdownLabel = (t, comparisonPeriod) => {
+  switch (comparisonPeriod) {
+    case "month":
+      return t("thisMonthVS");
+    case "quarter":
+      return t("thisQuarterVS");
+    case "year":
+      return t("thisYearVS");
+    default:
+      return t("todayVS");
+  }
 };

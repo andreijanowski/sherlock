@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex, Box } from "@rebass/grid";
-import { bool, func, shape, number, string } from "prop-types";
+import { bool, func, shape, number } from "prop-types";
 
 import {
   ItemNumber,
@@ -11,11 +11,8 @@ import {
 import Arrow from "./arrow";
 import { getSalesItemData } from "./utils";
 
-const SalesItem = ({ t, isWorst, item, index, comparisonPeriod }) => {
-  const { name, orderedTimes, isDown, percentage } = getSalesItemData(
-    item,
-    comparisonPeriod
-  );
+const SalesItem = ({ t, isWorst, item, index }) => {
+  const { name, orderedTimes, isDown, percentage } = getSalesItemData(item);
   return (
     <SalesItemContainer as="li">
       <Flex alignItems="center">
@@ -40,8 +37,7 @@ SalesItem.propTypes = {
   isWorst: bool.isRequired,
   t: func.isRequired,
   item: shape.isRequired,
-  index: number.isRequired,
-  comparisonPeriod: string.isRequired
+  index: number.isRequired
 };
 
 export default SalesItem;

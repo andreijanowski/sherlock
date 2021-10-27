@@ -23,6 +23,8 @@ import {
 import Loader from "./loader";
 import SalesItem from "./SalesItem";
 import Dropdown from "./dropdown";
+import { SALES_OPTIONS } from "./consts";
+import { getDropdownLabel } from "./utils";
 
 const INITIAL_PAGE = 1;
 
@@ -37,7 +39,7 @@ const Sales = ({
   t
 }) => {
   const [page, setPage] = useState(INITIAL_PAGE);
-  const [comparisonPeriod, setComparisonPeriod] = useState("yesterday");
+  const [comparisonPeriod, setComparisonPeriod] = useState("day");
 
   const onComparisonPeriodChange = useCallback(newPeriod => {
     setComparisonPeriod(newPeriod);
@@ -45,18 +47,18 @@ const Sales = ({
 
   const onHasMoreClick = useCallback(() => {
     const nextPage = page + 1;
-    fetchAction(businessId, nextPage);
+    fetchAction(businessId, comparisonPeriod, nextPage);
     setPage(nextPage);
-  }, [page, fetchAction, businessId]);
+  }, [page, fetchAction, businessId, comparisonPeriod]);
 
   const hasMore = totalPages > page;
 
   useEffect(() => {
     if (businessId) {
       setPage(INITIAL_PAGE);
-      fetchAction(businessId, INITIAL_PAGE);
+      fetchAction(businessId, comparisonPeriod, INITIAL_PAGE);
     }
-  }, [fetchAction, businessId]);
+  }, [fetchAction, businessId, comparisonPeriod]);
 
   const render = content => (
     <Tile height="314" width={1}>
@@ -76,7 +78,8 @@ const Sales = ({
           t={t}
           value={comparisonPeriod}
           onChange={onComparisonPeriodChange}
-          withToday
+          options={SALES_OPTIONS}
+          dropdownLabel={getDropdownLabel(t, comparisonPeriod)}
         />
       </Flex>
       <Spacer />
@@ -89,7 +92,6 @@ const Sales = ({
               index={index}
               item={item}
               isWorst={isWorst}
-              comparisonPeriod={comparisonPeriod}
             />
           ))
         ) : (
