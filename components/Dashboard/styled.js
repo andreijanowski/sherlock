@@ -102,6 +102,7 @@ export const ItemNumber = styled.span`
 export const Percentage = styled(Flex)`
   color: ${p => (p.isDown ? "salmon" : "royalBlue")};
   font-weight: 600;
+  white-space: nowrap;
 `;
 export const TimesOrdered = styled.div`
   font-size: 10px;
@@ -189,6 +190,7 @@ export const DropdownLabel = styled.span`
   font-weight: 300;
   color: rgba(${p => p.theme.colors.darkGreyText}, 0.7);
   top: -16px;
+  ${p => !p.isCentered && "left: 0;"}
 `;
 
 export const StreamList = styled(Flex)`

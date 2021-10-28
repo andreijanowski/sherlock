@@ -7,6 +7,7 @@ import Dropdown from "./dropdown";
 import Loader from "./loader";
 import ProgressBar from "./progressBar";
 import { Tile } from "./styled";
+import { getComparedDataKeys, getPercentageStats } from "./utils";
 
 const SAMPLE_DATA = [
   { color: "salmon", title: "deliveryRevenue" },
@@ -14,7 +15,6 @@ const SAMPLE_DATA = [
   { color: "royalblue", title: "onSiteRevenue" },
   { color: "turquoise", title: "otherRevenue" }
 ];
-const HUNDRET_PERCENT = 100;
 
 const ProgressBarTile = ({
   fetchAction,
@@ -23,24 +23,15 @@ const ProgressBarTile = ({
   t,
   isFetching
 }) => {
-  const [dropdownValue, setDropdonwValue] = useState("sumLastMonth");
+  const [dropdownValue, setDropdonwValue] = useState("month");
+
   useEffect(() => {
     if (businessId) {
       fetchAction(businessId);
     }
   }, [fetchAction, businessId]);
 
-  const barData =
-    dashboard &&
-    dashboard.get(`revenueBreakdown`) &&
-    dashboard.get(`revenueBreakdown`).toJS();
-
-  const countRevenuePercentage = (title, data, value) =>
-    Math.round(
-      data &&
-        data[title] &&
-        (data[title][value] / data.revenue[value]) * HUNDRET_PERCENT
-    );
+  const comparedKeys = getComparedDataKeys(dropdownValue);
 
   return (
     <Tile height="280" isSmall>
@@ -52,25 +43,41 @@ const ProgressBarTile = ({
             <h4>{t("revenueBreakdown")}</h4>
             <Dropdown
               t={t}
-              isRevenue
+              isCentered
               value={dropdownValue}
               onChange={setDropdonwValue}
             />
           </Flex>
-          {SAMPLE_DATA.map(({ color, title }) => (
-            <ProgressBar
-              color={color}
-              withPercentage
-              title={t(`${title}`)}
-              width={
-                !Number.isNaN(
-                  countRevenuePercentage(title, barData, dropdownValue)
-                )
-                  ? countRevenuePercentage(title, barData, dropdownValue)
-                  : 0
-              }
-            />
-          ))}
+          {SAMPLE_DATA.map(({ color, title }) => {
+            const currentValue =
+              dashboard &&
+              dashboard.getIn([
+                "revenueBreakdown",
+                title,
+                comparedKeys.current
+              ]);
+            const previousValue =
+              dashboard &&
+              dashboard.getIn([
+                "revenueBreakdown",
+                title,
+                comparedKeys.previous
+              ]);
+
+            const { percentage } = getPercentageStats(
+              currentValue,
+              previousValue
+            );
+
+            return (
+              <ProgressBar
+                color={color}
+                withPercentage
+                title={t(title)}
+                width={percentage}
+              />
+            );
+          })}
         </>
       )}
     </Tile>

@@ -13,7 +13,7 @@ export default function Bar({ title, width, withPercentage, color }) {
         )}
       </Flex>
       <ProgressBarBackground>
-        <ProgressBar color={color} width={width} />
+        <ProgressBar color={color} width={Math.min(100, width)} />
       </ProgressBarBackground>
     </Flex>
   );

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { Flex } from "@rebass/grid";
+import { Flex, Box } from "@rebass/grid";
 import { Bar } from "components/Dashboard/bar";
 import { bool, func, string, shape } from "prop-types";
 import Loader from "./loader";
 import Arrow from "./arrow";
+import Dropdown from "./dropdown";
 import { Percentage, Tile, TileHeader } from "./styled";
+import { getComparedDataKeys, getPercentageStats } from "./utils";
 
 const BarTile = ({
   businessId,
@@ -24,20 +26,19 @@ const BarTile = ({
     }
   }, [businessId, fetchAction]);
 
-  const MAX_PERCENTAGE = 1000000;
-  const HUNDRET_PERCENT = 100;
+  const [dropdownValue, setDropdownValue] = useState("day");
 
-  const [dropDownValue, setDropdownValue] = useState("yesterday");
+  const comparedKeys = getComparedDataKeys(dropdownValue);
 
-  const barData =
-    dashboard && dashboard.get(`${title}`) && dashboard.get(`${title}`).toJS();
+  const currentValue =
+    dashboard && dashboard.getIn([title, comparedKeys.current]);
+  const previousValue =
+    dashboard && dashboard.getIn([title, comparedKeys.previous]);
 
-  const percentage =
-    barData &&
-    barData.today &&
-    (barData.today / barData[dropDownValue]) * HUNDRET_PERCENT - 100;
-
-  const isDown = percentage < 0;
+  const { isDown, percentage } = getPercentageStats(
+    currentValue,
+    previousValue
+  );
 
   return (
     <Tile isDisabled={isDisabled} width={1} height="200" isSmall>
@@ -45,35 +46,20 @@ const BarTile = ({
         <Loader />
       ) : (
         <>
-          <Flex mb={10} justifyContent="space-between">
-            <TileHeader>{t(`${title}`)}</TileHeader>
-            <Flex justifyContent="space-between">
-              {((!Number.isNaN(percentage) && percentage < MAX_PERCENTAGE) ||
-                percentage === 0) && (
-                <>
-                  <Arrow isDown={isDown} />
-                  <Percentage isDown={isDown} ml={1}>
-                    {Math.round(percentage)} %
-                  </Percentage>
-                </>
-              )}
+          <Box mb={16}>
+            <TileHeader>{t(title)}</TileHeader>
+          </Box>
+          <Flex justifyContent="space-between" mb={10}>
+            <Dropdown t={t} value={dropdownValue} onChange={setDropdownValue} />
+            <Flex justifyContent="space-between" mr={2}>
+              <Arrow isDown={isDown} />
+              <Percentage isDown={isDown} ml={1}>
+                {Math.round(percentage)} %
+              </Percentage>
             </Flex>
           </Flex>
-          <Bar
-            barData={barData}
-            value="today"
-            currency={currency}
-            color={color}
-          />
-          <Bar
-            barData={barData}
-            value={dropDownValue}
-            currency={currency}
-            color="silver"
-            withDropdown
-            onChange={setDropdownValue}
-            t={t}
-          />
+          <Bar value={currentValue} currency={currency} color={color} />
+          <Bar value={previousValue} currency={currency} color="silver" />
         </>
       )}
     </Tile>
