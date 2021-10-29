@@ -23,8 +23,6 @@ import {
 import Loader from "./loader";
 import SalesItem from "./SalesItem";
 import Dropdown from "./dropdown";
-import { SALES_OPTIONS } from "./consts";
-import { getDropdownLabel } from "./utils";
 
 const INITIAL_PAGE = 1;
 
@@ -78,8 +76,7 @@ const Sales = ({
           t={t}
           value={comparisonPeriod}
           onChange={onComparisonPeriodChange}
-          options={SALES_OPTIONS}
-          dropdownLabel={getDropdownLabel(t, comparisonPeriod)}
+          isCentered
         />
       </Flex>
       <Spacer />

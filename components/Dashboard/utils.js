@@ -100,3 +100,30 @@ export const getDropdownLabel = (t, comparisonPeriod) => {
       return t("todayVS");
   }
 };
+
+export const getComparedDataKeys = comparisonPeriod => {
+  switch (comparisonPeriod) {
+    case "month":
+      return {
+        current: "thisMonth",
+        previous: "previousMonth"
+      };
+
+    case "quarter":
+      return {
+        current: "thisQuarter",
+        previous: "previousQuarter"
+      };
+    case "year":
+      return {
+        current: "thisYear",
+        previous: "previousYear"
+      };
+
+    default:
+      return {
+        current: "today",
+        previous: "yesterday"
+      };
+  }
+};

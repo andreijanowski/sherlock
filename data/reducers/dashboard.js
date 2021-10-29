@@ -5,6 +5,7 @@ import {
   FETCH_AVG_TICKET_SIZE_REQUEST,
   FETCH_TODAYS_EARNINGS_REQUEST,
   FETCH_BEST_SALES_REQUEST,
+  FETCH_WORST_SALES_REQUEST,
   FETCH_LIVE_STREAM_REQUEST,
   FETCH_AVG_TICKET_SIZE_SUCCESS,
   FETCH_REVENUE_BREAKDOWN_SUCCESS,
@@ -38,6 +39,10 @@ export const WORST_SALES_TOTAL_PAGES_PATH = getTotalPagesPath("worstSales");
 
 export const LIVE_STREAM_DATA_PATH = getDataPath("liveStream");
 export const LIVE_STREAM_TOTAL_PAGES_PATH = getTotalPagesPath("liveStream");
+
+export const TODAY_EARNINGS_PATH = ["data", "dashboard", "earnings"];
+
+export const REVENUE_BREAKDOWN_PATH = ["data", "dashboard", "revenueBreakdown"];
 
 const processDashboardData = ({
   state,
@@ -76,6 +81,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     case FETCH_TODAYS_EARNINGS_REQUEST:
     case FETCH_AVG_TICKET_SIZE_REQUEST:
     case FETCH_BEST_SALES_REQUEST:
+    case FETCH_WORST_SALES_REQUEST:
     case FETCH_LIVE_STREAM_REQUEST: {
       return state.merge(
         Record({
@@ -98,19 +104,25 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       const {
         sumToday,
         sumYesterday,
-        averageLastMonth,
-        averageLast3Months,
-        averageLastYear
+        sumPreviousMonth,
+        sumThisMonth,
+        sumThisQuarter,
+        sumPreviousQuarter,
+        sumPreviousYear,
+        sumThisYear
       } = payload.rawData.data.attributes;
 
       newState = newState.mergeIn(
-        ["data", "dashboard", "earnings"],
+        TODAY_EARNINGS_PATH,
         fromJS({
           today: sumToday,
           yesterday: sumYesterday,
-          lastMonth: averageLastMonth,
-          last3Months: averageLast3Months,
-          lastYear: averageLastYear
+          thisMonth: sumThisMonth,
+          previousMonth: sumPreviousMonth,
+          thisQuarter: sumThisQuarter,
+          previousQuarter: sumPreviousQuarter,
+          thisYear: sumThisYear,
+          previousYear: sumPreviousYear
         })
       );
 
@@ -126,6 +138,26 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         })()
       );
 
+      const prepareRevenue = ({
+        sumPreviousMonth,
+        sumPreviousQuarter,
+        sumPreviousYear,
+        sumThisMonth,
+        sumThisQuarter,
+        sumThisYear,
+        sumToday,
+        sumYesterday
+      }) => ({
+        today: sumToday,
+        yesterday: sumYesterday,
+        thisMonth: sumThisMonth,
+        previousMonth: sumPreviousMonth,
+        thisQuarter: sumThisQuarter,
+        previousQuarter: sumPreviousQuarter,
+        thisYear: sumThisYear,
+        previousYear: sumPreviousYear
+      });
+
       const {
         revenue,
         onSiteRevenue,
@@ -135,13 +167,13 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       } = payload.rawData.data.attributes;
 
       newState = newState.mergeIn(
-        ["data", "dashboard", "revenueBreakdown"],
+        REVENUE_BREAKDOWN_PATH,
         fromJS({
-          revenue,
-          onSiteRevenue,
-          deliveryRevenue,
-          takeawayRevenue,
-          otherRevenue
+          revenue: prepareRevenue(revenue),
+          onSiteRevenue: prepareRevenue(onSiteRevenue),
+          deliveryRevenue: prepareRevenue(deliveryRevenue),
+          takeawayRevenue: prepareRevenue(takeawayRevenue),
+          otherRevenue: prepareRevenue(otherRevenue)
         })
       );
 
@@ -158,11 +190,14 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       );
 
       const {
+        averagePreviousMonth,
+        averagePreviousQuarter,
+        averagePreviousYear,
+        averageThisMonth,
+        averageThisQuarter,
+        averageThisYear,
         averageToday,
-        averageYesterday,
-        averageLastMonth,
-        averageLast3Months,
-        averageLastYear
+        averageYesterday
       } = payload.rawData.data.attributes;
 
       newState = newState.mergeIn(
@@ -170,9 +205,12 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         fromJS({
           today: averageToday,
           yesterday: averageYesterday,
-          lastMonth: averageLastMonth,
-          last3Months: averageLast3Months,
-          lastYear: averageLastYear
+          thisMonth: averageThisMonth,
+          previousMonth: averagePreviousMonth,
+          thisQuarter: averageThisQuarter,
+          previousQuarter: averagePreviousQuarter,
+          thisYear: averageThisYear,
+          previousYear: averagePreviousYear
         })
       );
 
