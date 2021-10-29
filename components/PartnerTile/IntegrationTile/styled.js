@@ -15,6 +15,9 @@ export const Container = styled(Flex)`
     `
     border-color: rgb(${p.theme.colors.navyBlue});
   `}
+  @media (max-width: 900px) {
+    min-height: auto;
+  }
 `;
 
 export const ImageContainer = styled.div`
