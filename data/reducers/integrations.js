@@ -7,6 +7,8 @@ import {
 import { LOGOUT } from "types/auth";
 import { Record } from "immutable";
 
+import { ORKESTRO_NAME } from "utils/integrations";
+
 export const initialState = Record({
   isConnectedToOrkestro: false,
   isFetching: false,
@@ -29,7 +31,7 @@ const reducer = (state = initialState, { type, payload }) => {
       const isConnectedToOrkestro =
         payload.rawData.included &&
         payload.rawData.included.some(
-          service => service.attributes.name === "Orkestro"
+          service => service.attributes.name === ORKESTRO_NAME
         );
       const newState = state.merge(
         Record({

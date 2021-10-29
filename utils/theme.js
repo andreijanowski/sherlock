@@ -1,4 +1,5 @@
 const breakpoints = ["40em", "52em", "64em", "75em"];
+const breakpointsPx = ["575px", "767px", "992px", "1199px", "1399px"];
 
 const borderWeights = {
   tiny: "2px",
@@ -97,6 +98,7 @@ const fontWeights = {
 
 export const theme = {
   breakpoints,
+  breakpointsPx,
   borderWeights,
   colors,
   fontSizes,

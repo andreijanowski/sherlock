@@ -111,8 +111,7 @@ const OrdersHistory = ({
           pendingRejectionOrder: orders
             ? orders.find(o => o.get("id") === pendingRejectionOrderId)
             : null,
-          handleRejectionSubmit,
-          t
+          handleRejectionSubmit
         }}
       />
     </Wrapper>

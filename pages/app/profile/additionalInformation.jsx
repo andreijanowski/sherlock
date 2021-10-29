@@ -47,7 +47,11 @@ const AdditionalInformation = ({
       canPayWithCards,
       canPayWithCash,
       canPayWithMobile,
-      secretCode
+      secretCode,
+      deliveryChargeRef,
+      stripePaymentRef,
+      deliveryServiceTypeRef,
+      takeawayServiceTypeRef
     }) => {
       const requestValues = {
         breakfastService,
@@ -65,7 +69,11 @@ const AdditionalInformation = ({
         canPayWithCards,
         canPayWithCash,
         canPayWithMobile,
-        secretCode
+        secretCode,
+        deliveryChargeRef,
+        stripePaymentRef,
+        deliveryServiceTypeRef,
+        takeawayServiceTypeRef
       };
 
       return updateBusiness(businessId, requestValues);

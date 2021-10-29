@@ -27,6 +27,7 @@
   "descriptionLabel": "Details",
   "descriptionPlaceholder": "Authentic Neapolitan pizza is made with...",
   "categoryLabel": "Category",
+  "sku": "SKU",
   "categoryPlaceholder": "Category",
   "addToMenu": "Add to menu",
   "availability": "Foodetective(My Menu)",
@@ -167,7 +168,7 @@
   "import": {
     "upload_menu": "Upload the menu",
     "mode": {
-      "add": "Add Additional items to existing menu",
+      "add": "Add additional items to existing menu",
       "replace": "Upload or Replace menu items"
     },
     "steps": {

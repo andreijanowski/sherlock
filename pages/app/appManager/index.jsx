@@ -49,12 +49,20 @@ const MenuPage = ({
 
   const onAddDish = useCallback(
     values => {
-      const { available, name, description, category, onUberEats } = values;
+      const {
+        available,
+        name,
+        description,
+        category,
+        onUberEats,
+        skuRef
+      } = values;
       const dish = {
         name,
         description,
         onUberEats,
         unavailable: !available,
+        skuRef,
         pricePerItemCents: convertToCents(values.pricePerItemCents)
       };
       if (editedDishId) {

@@ -9,7 +9,8 @@ const Cards = ({
   handleCardClick,
   renderCardHeader,
   renderCardDetails,
-  renderCardFooter
+  renderCardFooter,
+  renderCardSource
 }) =>
   items && items.length !== 0
     ? items.map(
@@ -28,6 +29,7 @@ const Cards = ({
                 renderHeader: () => renderCardHeader(item.get("id")),
                 renderDetails: opt => renderCardDetails(item.get("id"), opt),
                 renderFooter: () => renderCardFooter(item.get("id")),
+                renderSource: () => renderCardSource(item.get("id")),
                 handleCardClick: () => handleCardClick(item.get("id"))
               }}
             />
@@ -45,7 +47,8 @@ Cards.propTypes = {
   handleCardClick: func,
   renderCardHeader: func.isRequired,
   renderCardDetails: func.isRequired,
-  renderCardFooter: func.isRequired
+  renderCardFooter: func.isRequired,
+  renderCardSource: func.isRequired
 };
 
 Cards.defaultProps = {

@@ -55,7 +55,8 @@
     "noPreferred": "You haven’t added any preferred wholesalers yet.",
     "moreInfo": "More info",
     "orderNow": "Order now",
-    "all": "All integrations"
+    "all": "All integrations",
+    "goToWeb": "Go to web"
   },
   "subscriptions": "Subscriptions",
   "userSettings": {
@@ -94,6 +95,10 @@
     "FMCG": "FMCG"
   },
   "dashboard": "Dashboard",
+  "dashboardView": {
+    "dashboard": "Dashboard",
+    "businessOverview": "Business Overview"
+  },
   "integrationHub": "Integration Hub",
   "appManager": "Menu management",
   "payments": "Payments",
@@ -112,5 +117,5 @@
   "photography": "Photography & Video",
   "search": "Search...",
   "becomeBOPrompt": "Do you want to become Business Owner?",
-  "watchVideo": "Watch video"
+  "playVideo": "Play video"
 }

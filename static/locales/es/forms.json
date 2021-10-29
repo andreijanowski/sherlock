@@ -73,6 +73,7 @@
       "presence-data[attributes][currency] is missing": "La Moneda falta",
       "cannot_set_while_currency_not_set-visible_in_lefood": "Establezca la moneda primero para hacer visible su negocio en lefood",
       "unauthorized_state_update-base": "Cambio de estado no válido",
+      "state_transition_not_valid": "Cambio de estado no válido",
       "server_error-Cannot transition state via": "Cambio de estado no válido",
       "invalid-base": "El pedido no está esperando aprobación, por lo que no se puede rechazar",
       "taken-email": "Este correo electrónico ya está en uso",

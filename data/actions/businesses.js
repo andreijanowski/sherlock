@@ -16,10 +16,18 @@ import {
   FETCH_BUSINESS_SERVICE_LINKS_REQUEST,
   FETCH_BUSINESS_CARDS_REQUEST,
   FETCH_BUSINESS_SUBSCRIPTIONS_REQUEST,
-  FETCH_BUSINESS_CLIENTS_REQUEST
+  FETCH_BUSINESS_CLIENTS_REQUEST,
+  FETCH_AVG_TICKET_SIZE_REQUEST,
+  FETCH_TODAYS_EARNINGS_REQUEST,
+  FETCH_REVENUE_BREAKDOWN_REQUEST,
+  FETCH_BEST_SALES_REQUEST,
+  FETCH_WORST_SALES_REQUEST,
+  FETCH_LIVE_STREAM_REQUEST
 } from "types/businesses";
 
 const PER_PAGE = 200;
+const SALES_PER_PAGE = 25;
+const LIVE_STREAM_PER_PAGE = 50;
 
 export const postBusiness = onSuccess => ({
   type: POST_BUSINESS_REQUEST,
@@ -249,6 +257,79 @@ export const fetchBusinessClients = (id, page = 1, search) => ({
   payload: {
     endpoint: `/api/v1/businesses/${id}/clients`,
     params: { per_page: PER_PAGE, page, search }
+  },
+  meta: { thunk: true, page }
+});
+
+export const fetchAvgTicketSize = id => ({
+  type: FETCH_AVG_TICKET_SIZE_REQUEST,
+  payload: {
+    method: "GET",
+    endpoint: `/api/v1/businesses/${id}/dashboard/average_ticket_size`
+  },
+  meta: { thunk: true }
+});
+
+export const fetchTodaysEarnings = id => ({
+  type: FETCH_TODAYS_EARNINGS_REQUEST,
+  payload: {
+    method: "GET",
+    endpoint: `/api/v1/businesses/${id}/dashboard/earnings`
+  },
+  meta: { thunk: true }
+});
+
+export const fetchRevenueBreakdown = id => ({
+  type: FETCH_REVENUE_BREAKDOWN_REQUEST,
+  payload: {
+    method: "GET",
+    endpoint: `/api/v1/businesses/${id}/dashboard/revenue_breakdown`
+  },
+  meta: { thunk: true }
+});
+
+export const fetchBestSales = (id, comparison, page = 1) => ({
+  type: FETCH_BEST_SALES_REQUEST,
+  payload: {
+    method: "GET",
+    endpoint: `/api/v1/businesses/${id}/dashboard/best_sales`,
+    params: {
+      per_page: SALES_PER_PAGE,
+      comparison,
+      page
+    }
+  },
+  meta: { thunk: true, page }
+});
+
+export const fetchWorstSales = (id, comparison, page = 1) => ({
+  type: FETCH_WORST_SALES_REQUEST,
+  payload: {
+    method: "GET",
+    endpoint: `/api/v1/businesses/${id}/dashboard/worst_sales`,
+    params: {
+      per_page: SALES_PER_PAGE,
+      comparison,
+      page
+    }
+  },
+  meta: { thunk: true, page }
+});
+
+export const fetchLiveStream = (id, page = 1) => ({
+  type: FETCH_LIVE_STREAM_REQUEST,
+  payload: {
+    method: "GET",
+    endpoint: `/api/v1/businesses/${id}/orders`,
+    params: {
+      per_page: LIVE_STREAM_PER_PAGE,
+      page,
+      include: "addresses,elements",
+      filter: {
+        day: moment.utc().format("YYYY-MM-DD")
+      },
+      sort: "-updated_at"
+    }
   },
   meta: { thunk: true, page }
 });

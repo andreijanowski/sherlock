@@ -5,21 +5,21 @@ import { connect } from "react-redux";
 
 import { WHOLESALERS_CATEGORY } from "consts";
 import { fetchPartners } from "actions/partners";
-import PartnerTile from "components/PartnerTile";
-import { Wrapper, NoPartners } from "./styled";
+import { IntegrationTile, WholesalerTile } from "components/PartnerTile";
+import { GridWrapper, Wrapper, NoPartners } from "./styled";
 
 const SCROLL_GAP = 100;
 
 const IntegrationsList = ({
   category,
   partners,
-  showActionIcons,
   t,
   onAddToFavorite,
   hasMore,
   previousConfig,
   fetchPartnersHandler,
-  isLoading
+  isLoading,
+  isIntegrations
 }) => {
   const isPreferred = category === WHOLESALERS_CATEGORY.PREFERRED;
 
@@ -46,23 +46,9 @@ const IntegrationsList = ({
     };
   }, [isLoading, previousConfig, hasMore, fetchPartnersHandler]);
 
-  return (
-    <Wrapper>
-      {partners.size > 0 ? (
-        partners.map(partner => {
-          const partnerId = partner.get("id");
-          return (
-            <PartnerTile
-              showActionIcon={showActionIcons}
-              key={partnerId}
-              partner={partner.get("attributes")}
-              partnerId={partnerId}
-              t={t}
-              onAddClick={onAddToFavorite}
-            />
-          );
-        })
-      ) : (
+  if (!partners.size) {
+    return (
+      <Wrapper>
         <NoPartners width="100%" alignItems="center" justifyContent="center">
           {t(
             `app:manageIntegrations.${
@@ -70,28 +56,65 @@ const IntegrationsList = ({
             }`
           )}
         </NoPartners>
-      )}
+      </Wrapper>
+    );
+  }
+
+  if (isIntegrations) {
+    return (
+      <GridWrapper justifyContent="flex-start">
+        {partners.map(partner => {
+          const partnerId = partner.get("id");
+
+          return (
+            <IntegrationTile
+              key={partnerId}
+              t={t}
+              partner={partner.get("attributes")}
+              partnerId={partnerId}
+            />
+          );
+        })}
+      </GridWrapper>
+    );
+  }
+
+  return (
+    <Wrapper>
+      {partners.map(partner => {
+        const partnerId = partner.get("id");
+
+        return (
+          <WholesalerTile
+            key={partnerId}
+            partner={partner.get("attributes")}
+            partnerId={partnerId}
+            t={t}
+            onAddClick={onAddToFavorite}
+          />
+        );
+      })}
     </Wrapper>
   );
 };
 
 IntegrationsList.defaultProps = {
   category: "",
-  showActionIcons: false,
   onAddToFavorite: noop,
   hasMore: false,
+  isIntegrations: false,
   previousConfig: null
 };
 
 IntegrationsList.propTypes = {
   category: string,
   partners: oneOfType([shape(), arrayOf()]).isRequired,
-  showActionIcons: bool,
   t: func.isRequired,
   onAddToFavorite: func,
   fetchPartnersHandler: func.isRequired,
   hasMore: bool,
   isLoading: bool.isRequired,
+  isIntegrations: bool,
   previousConfig: shape()
 };
 

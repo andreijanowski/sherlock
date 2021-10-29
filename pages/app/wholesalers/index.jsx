@@ -89,7 +89,6 @@ const IntegrationsPage = ({
         <>
           <IntegrationsList
             category={category}
-            showActionIcons
             partners={wholesalers}
             t={t}
             onAddToFavorite={handleAddToFavorite}

@@ -1,0 +1,26 @@
+const TRANSLATIONS = {
+  TODAY: "today",
+  YESTERDAY: "yesterday",
+  LAST_MONTH: "lastMonth",
+  LAST_3_MONTH: "last3Months",
+  LAST_YEAR: "lastYear"
+};
+
+export const OPTIONS = [
+  {
+    name: TRANSLATIONS.YESTERDAY,
+    value: "day"
+  },
+  {
+    name: TRANSLATIONS.LAST_MONTH,
+    value: "month"
+  },
+  {
+    name: TRANSLATIONS.LAST_3_MONTH,
+    value: "quarter"
+  },
+  {
+    name: TRANSLATIONS.LAST_YEAR,
+    value: "year"
+  }
+];

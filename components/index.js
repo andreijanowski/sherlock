@@ -76,12 +76,7 @@ export { default as TimeSlotPicker } from "./Timeline/TimeSlotPicker";
 export { default as DaySwitcher } from "./Timeline/DaySwitcher";
 export { SliderStyles } from "./Slider";
 export { default as SliderDetail } from "./Slider/Detail";
-export {
-  default as OrchestroIntegrationSwitch
-} from "./OrchestroIntegrationSwitch";
-export {
-  default as UberIntegrationSwitch
-} from "./OrchestroIntegrationSwitch/UberIntegrationSwitch";
+export * from "./IntegrationSwitchers";
 export {
   Header as SliderHeader,
   Value as SliderValue,

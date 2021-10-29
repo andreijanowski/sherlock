@@ -3,7 +3,7 @@ import { Flex, Box } from "@rebass/grid";
 
 export const alignCenterMobile = css`
   text-align: center;
-  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+  @media (min-width: ${p => p.theme.breakpoints[1]}) {
     text-align: start;
   }
 `;
@@ -19,6 +19,9 @@ export const ServicesWrapper = styled(Flex).attrs(() => ({
   margin: auto;
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     margin-bottom: 80px;
+  }
+  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+    flex-direction: column;
   }
 `;
 

@@ -21,11 +21,13 @@ import externalServices from "./externalServices";
 import detectives from "./detectives";
 import plans from "./plans";
 import payments from "./payments";
+import dashboard from "./dashboard";
 
 export default {
   app,
   notifications,
   burgerMenu,
+  dashboard,
   users,
   groups,
   members,

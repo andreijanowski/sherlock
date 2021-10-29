@@ -1,11 +1,7 @@
 ### Ticket
 
-https://netguru.atlassian.net/browse/TFD-XXX
+https://foodetective.atlassian.net/browse/FOOD-XXX
 
 ### Task Description
 
 - [x] point description here
-
-### Aditional Notes (optional)
-
-None

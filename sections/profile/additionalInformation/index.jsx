@@ -59,7 +59,6 @@ const AdditionalInformationForm = ({ t, initialValues, handleSubmit }) =>
               />
             </Box>
           </Flex>
-
           <H3 mt={3}>{t("services")}</H3>
           <FormCheckbox name="hasCatering" label={t("hasCatering")} />
           <FormCheckbox name="hasReservations" label={t("hasReservations")} />
@@ -68,7 +67,6 @@ const AdditionalInformationForm = ({ t, initialValues, handleSubmit }) =>
             name="availableInLefood"
             label={t("availableInLefood")}
           />
-
           <H3 mt={3}>{t("paymentMethods")}</H3>
           <Flex flexWrap="wrap">
             {paymentMethods.map(method => (
@@ -82,6 +80,27 @@ const AdditionalInformationForm = ({ t, initialValues, handleSubmit }) =>
             name="secretCode"
             label={t("secretCodeLabel")}
             placeholder={t("secretCodePlaceholder")}
+          />
+          <H3 mt={3}>{t("referenceCodes")}</H3>
+          <FormInput
+            name="deliveryChargeRef"
+            label={t("deliveryChargeRef")}
+            placeholder={t("deliveryChargeRef")}
+          />
+          <FormInput
+            name="stripePaymentRef"
+            label={t("stripePaymentRef")}
+            placeholder={t("stripePaymentRef")}
+          />
+          <FormInput
+            name="deliveryServiceTypeRef"
+            label={t("deliveryServiceTypeRef")}
+            placeholder={t("deliveryServiceTypeRef")}
+          />
+          <FormInput
+            name="takeawayServiceTypeRef"
+            label={t("takeawayServiceTypeRef")}
+            placeholder={t("takeawayServiceTypeRef")}
           />
         </Form>
       )}
