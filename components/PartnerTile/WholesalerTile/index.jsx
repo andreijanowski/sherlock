@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { arrayOf, func, oneOfType, shape, string } from "prop-types";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Box } from "@rebass/grid";
@@ -6,12 +6,26 @@ import { Box } from "@rebass/grid";
 import { Container, ContentWrapper, IconAdded, Image } from "./styled";
 import PartnerTileButtons from "../PartnerTileButtons";
 
-const WholesalerTile = ({ partner, partnerId, t, onAddClick }) => {
+const WholesalerTile = ({
+  partner,
+  partnerId,
+  t,
+  onAddClick,
+  onOrderNowClick
+}) => {
   const isPreferred = partner.get("preferred");
 
   const iconAddedClick = () => {
     onAddClick({ added: isPreferred, partnerId });
   };
+
+  const handleOrderNowClick = useCallback(
+    e => {
+      e.preventDefault();
+      onOrderNowClick(partner);
+    },
+    [onOrderNowClick, partner]
+  );
 
   return (
     <Container mb={3} width={1} alignItems="center">
@@ -32,6 +46,7 @@ const WholesalerTile = ({ partner, partnerId, t, onAddClick }) => {
         <PartnerTileButtons
           t={t}
           partner={partner}
+          onOrderNowClick={handleOrderNowClick}
           linkLabel={t("app:manageIntegrations.orderNow")}
         />
       </ContentWrapper>
@@ -43,7 +58,8 @@ WholesalerTile.propTypes = {
   partner: oneOfType([arrayOf(), shape()]).isRequired,
   partnerId: string.isRequired,
   t: func.isRequired,
-  onAddClick: func.isRequired
+  onAddClick: func.isRequired,
+  onOrderNowClick: func.isRequired
 };
 
 export default WholesalerTile;

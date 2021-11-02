@@ -52,7 +52,9 @@
     "integrated": "Integrado",
     "noPartners": "No hay socios para esta categoría.",
     "noPreferred": "Aún no has agregado ningún mayorista preferido.",
-    "goToWeb": "Ir a la página web"
+    "goToWeb": "Ir a la página web",
+    "backToList": "Volver a la lista",
+    "openInNewTab": "Abrir en una nueva pestaña"
   },
   "subscriptions": "Suscripciones",
   "userSettings": {
