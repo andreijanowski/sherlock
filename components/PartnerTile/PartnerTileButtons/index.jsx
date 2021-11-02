@@ -6,7 +6,13 @@ import PlayVideoButton from "../PlayVideoButton";
 import { BlueButton } from "../styled";
 import { ButtonsContainer, ButtonWrapper } from "./styled";
 
-const PartnerTileButtons = ({ t, partner, isIntegration, linkLabel }) => {
+const PartnerTileButtons = ({
+  t,
+  partner,
+  isIntegration,
+  linkLabel,
+  onOrderNowClick
+}) => {
   const videoUrl = partner.get("videoUrl");
 
   const isBig = !isIntegration;
@@ -21,7 +27,7 @@ const PartnerTileButtons = ({ t, partner, isIntegration, linkLabel }) => {
           <PlayVideoButton big={isBig} t={t} url={videoUrl} />
         </ButtonWrapper>
       )}
-      <ButtonWrapper isIntegration={isIntegration}>
+      <ButtonWrapper isIntegration={isIntegration} onClick={onOrderNowClick}>
         <BlueButton big={isBig} {...getIntegrationLinkProps(partner)}>
           {linkLabel}
         </BlueButton>
@@ -34,11 +40,13 @@ PartnerTileButtons.propTypes = {
   partner: oneOfType([arrayOf(), shape()]).isRequired,
   linkLabel: string.isRequired,
   isIntegration: bool,
-  t: func.isRequired
+  t: func.isRequired,
+  onOrderNowClick: func
 };
 
 PartnerTileButtons.defaultProps = {
-  isIntegration: false
+  isIntegration: false,
+  onOrderNowClick: null
 };
 
 export default PartnerTileButtons;

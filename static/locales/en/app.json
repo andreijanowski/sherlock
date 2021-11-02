@@ -56,7 +56,9 @@
     "moreInfo": "More info",
     "orderNow": "Order now",
     "all": "All integrations",
-    "goToWeb": "Go to web"
+    "goToWeb": "Go to web",
+    "backToList": "Back to list",
+    "openInNewTab": "Open in a new tab"
   },
   "subscriptions": "Subscriptions",
   "userSettings": {
