@@ -44,7 +44,7 @@ const AppManagerLayout = ({
   return (
     <AppLayout
       {...{
-        mainIcon: "appManager",
+        mainIcon: "menu-management",
         header: t(page),
         containerComponent: AppLayoutWrapper,
         t,

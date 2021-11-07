@@ -55,7 +55,7 @@ export const generatePlanOptionsList = (planName, t) => {
           name: t("plans:options.deliveryManagement")
         },
         {
-          name: t("plans:options.appManager")
+          name: t("plans:options.menuManagement")
         },
         {
           name: t("plans:options.payments")
@@ -113,7 +113,7 @@ export const generatePlanOptionsList = (planName, t) => {
           name: t("plans:options.deliveryManagement")
         },
         {
-          name: t("plans:options.appManager")
+          name: t("plans:options.menuManagement")
         },
         {
           discount: "0%",

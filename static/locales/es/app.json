@@ -1,14 +1,14 @@
 {
   "controlCenter": "Centro de control (pronto)",
-  "reservations": "Reservas",
+  "reservations": "Gestión de reservas",
   "takeAway": "Para Llevar",
-  "bookings": "Reserva de Mesa",
+  "bookings": "Gestión de reservas",
   "delivery": "Gestión de Pedidos",
   "catering": "Catering",
   "privatisations": "Privatizaciones",
   "integrations": "Integraciones",
   "integrationHub": "Integraciones",
-  "wholesaler": "Mis Proveedores",
+  "wholesaler": "Proveedores",
   "socialMedia": "Redes sociales (pronto)",
   "billing": "Facturación (pronto)",
   "manageProfile": {
@@ -90,7 +90,7 @@
     "hygiene": "Higiene",
     "other": "Otros"
   },
-  "appManager": "Gestión de la Carta",
+  "menuManagement": "Gestión de la Carta",
   "backToMainMenu": "Volver al Menú Principal",
   "photography": "Fotografía y Video",
   "reviews": "Gestión de Reseñas",
@@ -100,5 +100,9 @@
   "dashboard": "Panel de Analítica",
   "privateEvents": "Eventos Privados",
   "settings": "Ajustes",
-  "playVideo": "Reproducir vídeo"
+  "playVideo": "Reproducir vídeo",
+  "payroll": "Recursos Humanos y salarios",
+  "foodWaste": "Comidas no vendidas",
+  "presenceManagement": "Presencia en línea",
+  "loyalty": "Retención de clientes"
 }

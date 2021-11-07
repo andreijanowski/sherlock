@@ -1,14 +1,14 @@
 {
   "controlCenter": "Kontrollzentrum (bald)",
-  "reservations": "Buchungen",
+  "reservations": "Reservierungsverwaltung",
   "takeAway": "Zum Mitnehmen",
-  "bookings": "Buchungen",
+  "bookings": "Reservierungsverwaltung",
   "delivery": "Bestellverwaltung",
   "catering": "Catering",
   "privatisations": "Privatisierungen",
   "integrations": "Integrationszentrum",
   "integrationHub": "Integrationszentrum",
-  "wholesaler": "Meine Großhändler",
+  "wholesaler": "Anbieter",
   "socialMedia": "Social Media (bald)",
   "billing": "Abrechnung (bald)",
   "manageProfile": {
@@ -96,10 +96,14 @@
   "detectives": "Detektive & Influencer",
   "adsAndMarketing": "Werbung und Marketing",
   "clients": "Meine Kunden",
-  "appManager": "Verwaltungsmenü",
+  "menuManagement": "Verwaltungsmenü",
   "dashboard": "Instrumententafel",
   "privateEvents": "Private Veranstaltungen",
   "settings": "Einstellungen",
   "payments": "Zahlungen",
-  "playVideo": "Video abspielen"
+  "playVideo": "Video abspielen",
+  "payroll": "HR & Gehalt",
+  "foodWaste": "Unverkaufte Lebensmittel",
+  "presenceManagement": "Online-Präsenz",
+  "loyalty": "Kundenbindung"
 }

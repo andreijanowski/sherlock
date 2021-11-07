@@ -89,7 +89,7 @@
     "navItems": {
       "visibility": "Visibilità",
       "analytics": "Analitica",
-      "bookings": "Prenotazioni",
+      "bookings": "Gestione delle prenotazioni",
       "deliveryAndTakeaway": "Consegna e ritiro",
       "cateringAndPrivatization": "Ristorazione e privatizzazione",
       "reviews": "Recensioni",
@@ -106,7 +106,7 @@
         "paragraph": "Scopri come sta andando la tua attività ovunque, in qualsiasi momento, in tempo reale."
       },
       "bookings": {
-        "header": "Prenotazioni",
+        "header": "Gestione delle prenotazioni",
         "paragraph": "Foodetective ti aiuta a prendere il controllo della tua attività offrendoti un sistema di prenotazione completamente personalizzabile per i tuoi tavoli quotidiani, degustazioni speciali e tutto il resto."
       },
       "deliveryAndTakeaway": {

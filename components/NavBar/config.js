@@ -2,7 +2,7 @@ import {
   Restaurant,
   Dashboard,
   IntegrationHub,
-  AppManager,
+  MenuManagement,
   Payments,
   Delivery,
   Bookings,
@@ -17,7 +17,12 @@ import {
   StockManagement,
   Subscriptions,
   SettingsIcon,
-  Photography
+  Photography,
+  AppManager,
+  Payroll,
+  FoodWaste,
+  PresenceManagement,
+  CustomerLoyalty
 } from "components/Icons";
 
 const prepareBadge = updates => {
@@ -27,17 +32,17 @@ const prepareBadge = updates => {
 
 export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
   {
+    basePath: "/app/dashboard",
+    route: "/app/dashboard/",
+    Icon: Dashboard,
+    label: t("app:dashboardView.dashboard")
+  },
+  {
     basePath: "/app/profile",
     route: "/app/profile/basic-information/",
     Icon: Restaurant,
     label: t("app:manageProfile.myProfile"),
     hasNested: true
-  },
-  {
-    basePath: "/app/dashboard",
-    route: "/app/dashboard/",
-    Icon: Dashboard,
-    label: t("app:dashboardView.dashboard")
   },
   {
     basePath: "/app/integrations",
@@ -47,10 +52,10 @@ export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
     hasNested: true
   },
   {
-    basePath: "/app/payments",
-    route: "/app/payments",
-    Icon: Payments,
-    label: t("app:payments")
+    basePath: "/app/app-manager",
+    route: "/app/app-manager",
+    Icon: AppManager,
+    label: t("app:appManager")
   },
   {
     basePath: "/app/lefood/",
@@ -60,10 +65,10 @@ export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
     badge: prepareBadge(ordersUpdates)
   },
   {
-    basePath: "/app/app-manager",
-    route: "/app/app-manager",
-    Icon: AppManager,
-    label: t("app:appManager")
+    basePath: "/app/menu-management",
+    route: "/app/menu-management",
+    Icon: MenuManagement,
+    label: t("app:menuManagement")
   },
   {
     basePath: "/app/reservation",
@@ -85,10 +90,41 @@ export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
     label: t("app:privateEvents")
   },
   {
-    basePath: "/app/reviews",
-    route: "/app/reviews/",
-    Icon: Reviews,
-    label: t("app:reviews")
+    basePath: "/app/clients",
+    route: "/app/clients/",
+    Icon: Clients,
+    label: t("app:clients")
+  },
+  {
+    basePath: "/app/payments",
+    route: "/app/payments",
+    Icon: Payments,
+    label: t("app:payments")
+  },
+  {
+    basePath: "/app/wholesalers",
+    route: "/app/wholesalers?category=preferred",
+    Icon: Wholesalers,
+    label: t("app:wholesaler"),
+    hasNested: true
+  },
+  {
+    basePath: "/app/stock-management",
+    route: "/app/stock-management/",
+    Icon: StockManagement,
+    label: t("app:stockManagement")
+  },
+  {
+    basePath: "/app/payroll",
+    route: "/app/payroll/",
+    Icon: Payroll,
+    label: t("app:payroll")
+  },
+  {
+    basePath: "/app/food-waste",
+    route: "/app/food-waste/",
+    Icon: FoodWaste,
+    label: t("app:foodWaste")
   },
   {
     basePath: "/app/detectives",
@@ -103,6 +139,18 @@ export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
     label: t("app:manageIntegrations.community_management")
   },
   {
+    basePath: "/app/presence-management",
+    route: "/app/presence-management/",
+    Icon: PresenceManagement,
+    label: t("app:presenceManagement")
+  },
+  {
+    basePath: "/app/reviews",
+    route: "/app/reviews/",
+    Icon: Reviews,
+    label: t("app:reviews")
+  },
+  {
     basePath: "/app/marketing",
     route: "/app/marketing/",
     Icon: Marketing,
@@ -115,23 +163,10 @@ export const getNavConfig = ({ t, ordersUpdates, reservationsUpdates }) => [
     label: t("app:photography")
   },
   {
-    basePath: "/app/clients",
-    route: "/app/clients/",
-    Icon: Clients,
-    label: t("app:clients")
-  },
-  {
-    basePath: "/app/wholesalers",
-    route: "/app/wholesalers?category=preferred",
-    Icon: Wholesalers,
-    label: t("app:wholesaler"),
-    hasNested: true
-  },
-  {
-    basePath: "/app/stock-management",
-    route: "/app/stock-management/",
-    Icon: StockManagement,
-    label: t("app:stockManagement")
+    basePath: "/app/loyalty",
+    route: "/app/loyalty/",
+    Icon: CustomerLoyalty,
+    label: t("app:loyalty")
   },
   {
     basePath: "/app/subscriptions",
