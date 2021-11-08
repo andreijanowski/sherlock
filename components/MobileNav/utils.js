@@ -16,7 +16,7 @@ import {
   SettingsPassword,
   IntegrationHub,
   Wholesalers,
-  AppManager,
+  MenuManagement,
   Clients,
   CommunityManagement,
   Dashboard,
@@ -25,8 +25,13 @@ import {
   Payments,
   Photography,
   Reviews,
-  StockManagement
-} from "icons";
+  StockManagement,
+  AppManager,
+  Payroll,
+  FoodWaste,
+  PresenceManagement,
+  CustomerLoyalty
+} from "components/Icons";
 import {
   PARTNERS_CATEGORIES,
   WHOLESALERS_CATEGORIES
@@ -136,16 +141,16 @@ const generateWholesalersMobileSubmenu = (t, activeTab) =>
 
 export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
   {
-    icon: Restaurant,
-    label: t("app:manageProfile.myProfile"),
-    withSubmenu: true,
-    submenuItems: generateProfileMobileSubmenu(t, lng)
-  },
-  {
     basePath: "/app/dashboard",
     route: "/app/dashboard/",
     icon: Dashboard,
     label: t("app:dashboard")
+  },
+  {
+    icon: Restaurant,
+    label: t("app:manageProfile.myProfile"),
+    withSubmenu: true,
+    submenuItems: generateProfileMobileSubmenu(t, lng)
   },
   {
     icon: IntegrationHub,
@@ -154,10 +159,10 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     submenuItems: generateIntegrationsMobileSubmenu(t, lng)
   },
   {
-    basePath: "/app/payments",
-    route: "/app/payments",
-    icon: Payments,
-    label: t("app:payments")
+    basePath: "/app/app-manager",
+    route: "/app/app-manager",
+    icon: AppManager,
+    label: t("app:appManager")
   },
   {
     icon: Delivery,
@@ -165,10 +170,10 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     route: "/app/lefood/orders/"
   },
   {
-    basePath: "/app/app-manager",
-    route: "/app/app-manager",
-    icon: AppManager,
-    label: t("app:appManager")
+    basePath: "/app/menu-management",
+    route: "/app/menu-management",
+    icon: MenuManagement,
+    label: t("app:menuManagement")
   },
   {
     icon: Bookings,
@@ -186,10 +191,40 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     route: "/app/privatisation/month/"
   },
   {
-    basePath: "/app/reviews",
-    route: "/app/reviews/",
-    icon: Reviews,
-    label: t("app:reviews")
+    basePath: "/app/clients",
+    route: "/app/clients/",
+    icon: Clients,
+    label: t("app:clients")
+  },
+  {
+    basePath: "/app/payments",
+    route: "/app/payments",
+    icon: Payments,
+    label: t("app:payments")
+  },
+  {
+    icon: Wholesalers,
+    label: t("app:wholesaler"),
+    withSubmenu: true,
+    submenuItems: generateWholesalersMobileSubmenu(t, lng)
+  },
+  {
+    basePath: "/app/stock-management",
+    route: "/app/stock-management/",
+    icon: StockManagement,
+    label: t("app:stockManagement")
+  },
+  {
+    basePath: "/app/payroll",
+    route: "/app/payroll/",
+    icon: Payroll,
+    label: t("app:payroll")
+  },
+  {
+    basePath: "/app/food-waste",
+    route: "/app/food-waste/",
+    icon: FoodWaste,
+    label: t("app:foodWaste")
   },
   {
     basePath: "/app/detectives",
@@ -204,6 +239,18 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     label: t("app:manageIntegrations.community_management")
   },
   {
+    basePath: "/app/presence-management",
+    route: "/app/presence-management/",
+    icon: PresenceManagement,
+    label: t("app:presenceManagement")
+  },
+  {
+    basePath: "/app/reviews",
+    route: "/app/reviews/",
+    icon: Reviews,
+    label: t("app:reviews")
+  },
+  {
     basePath: "/app/marketing",
     route: "/app/marketing/",
     icon: Marketing,
@@ -216,22 +263,10 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     label: t("app:photography")
   },
   {
-    basePath: "/app/clients",
-    route: "/app/clients/",
-    icon: Clients,
-    label: t("app:clients")
-  },
-  {
-    icon: Wholesalers,
-    label: t("app:wholesaler"),
-    withSubmenu: true,
-    submenuItems: generateWholesalersMobileSubmenu(t, lng)
-  },
-  {
-    basePath: "/app/stock-management",
-    route: "/app/stock-management/",
-    icon: StockManagement,
-    label: t("app:stockManagement")
+    basePath: "/app/loyalty",
+    route: "/app/loyalty/",
+    icon: CustomerLoyalty,
+    label: t("app:loyalty")
   },
   {
     icon: Subscriptions,

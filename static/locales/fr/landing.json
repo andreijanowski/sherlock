@@ -92,7 +92,7 @@
     "navItems": {
       "visibility": "Visibilité",
       "analytics": "Statistiques",
-      "bookings": "Réservations",
+      "bookings": "Gestion des réservations",
       "deliveryAndTakeaway": "Livraisons et à l'emporter",
       "cateringAndPrivatization": "Service traiteur et privatisation",
       "reviews": "Avis",
@@ -109,7 +109,7 @@
         "paragraph": "Sachez comment se porte votre entreprise, n'importe où, n'importe quand, en temps réel. Soyez avertis lorsque des événements importants se produisent. Appliquer les meilleures pratiques du secteur dans chaque expérience de service pour améliorer les résultats."
       },
       "bookings": {
-        "header": "Réservations",
+        "header": "Gestion des réservations",
         "paragraph": "Foodetective vous aide à prendre controle de votre entreprise en vous offrant un système de réservations totalement personnalisable pour vos tables au quotidien, des dégustations spéciales et tout le reste."
       },
       "deliveryAndTakeaway": {

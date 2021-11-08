@@ -1,5 +1,5 @@
 import {
-  AppManager,
+  MenuManagement,
   Bookings,
   Catering,
   Clients,
@@ -140,8 +140,8 @@ export const planParts = ({ t }) => [
       },
       {
         free: ICON_DASH,
-        icon: <AppManager />,
-        label: t("plans:options.appManager")
+        icon: <MenuManagement />,
+        label: t("plans:options.menuManagement")
       },
       {
         free: ICON_DASH,

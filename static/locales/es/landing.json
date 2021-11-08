@@ -89,7 +89,7 @@
     "navItems": {
       "visibility": "Visibilidad",
       "analytics": "Analítica",
-      "bookings": "Reservas",
+      "bookings": "Gestión de reservas",
       "deliveryAndTakeaway": "Entrega y para llevar",
       "cateringAndPrivatization": "Catering y privatización",
       "reviews": "Comentarios",
@@ -106,7 +106,7 @@
         "paragraph": "Sepa cómo va su negocio en cualquier lugar, en cualquier momento, en tiempo real. Ser notificado cuando ocurran eventos importantes. Hacer cumplir las mejores prácticas de la industria en cada experiencia de servicio para mejorar los resultados."
       },
       "bookings": {
-        "header": "Reservas",
+        "header": "Gestión de reservas",
         "paragraph": "Foodetective le ayuda a tomar el control de su negocio ofreciendo reservas personalizables para las mesas de cada día, degustaciones especiales y todo en el medio."
       },
       "deliveryAndTakeaway": {

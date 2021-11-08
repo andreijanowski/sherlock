@@ -6,8 +6,8 @@ import { compose } from "redux";
 
 import { Confirm } from "components/modals";
 import requireAuth from "lib/requireAuth";
-import AppManagerLayout from "sections/appManager/Layout";
-import Menu from "sections/appManager/menu";
+import AppManagerLayout from "sections/menuManagement/Layout";
+import Menu from "sections/menuManagement/menu";
 import { postDish, patchDish, deleteDish } from "actions/dishes";
 import { postPicture, deletePicture } from "actions/pictures";
 import {
@@ -145,7 +145,7 @@ const MenuPage = ({
       {...{
         t,
         lng,
-        page: "app:appManager",
+        page: "app:menuManagement",
         currentBusinessId: businessId,
         business,
         businesses,

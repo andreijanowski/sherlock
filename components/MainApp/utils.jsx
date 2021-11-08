@@ -12,7 +12,7 @@ import {
   CommunityManagement,
   Photography,
   Detectives,
-  AppManager,
+  MenuManagement,
   Dashboard,
   Clients,
   Payments
@@ -46,8 +46,8 @@ export const chooseIcon = icon => {
       return Photography;
     case "detectives":
       return Detectives;
-    case "appManager":
-      return AppManager;
+    case "menu-management":
+      return MenuManagement;
     case "clients":
       return Clients;
     case "payments":
