@@ -35,6 +35,8 @@ const PublishModal = ({
         businessOpenPeriods
       })
     : [];
+
+  console.log(steps);
   return (
     <Wrapper>
       <Header>

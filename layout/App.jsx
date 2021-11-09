@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { Flex } from "@rebass/grid";
-import { node, bool, func, string, arrayOf, shape } from "prop-types";
+import { node, bool, func, string } from "prop-types";
 import { connect } from "react-redux";
 import { LoadingIndicator, MainApp, NavigationContainer, H3 } from "components";
 import { Confirm } from "components/modals";
@@ -10,8 +10,6 @@ import { BASIC_ROLE } from "sagas/users";
 
 const AppLayout = ({
   children,
-  withMenu,
-  menuItems,
   mainIcon,
   header,
   t,
@@ -39,19 +37,8 @@ const AppLayout = ({
       width={1}
       id="app"
     >
-      <NavigationContainer
-        t={t}
-        lng={lng}
-        withMenu={withMenu}
-        menuItems={menuItems}
-      />
-      <MainApp
-        withMenu={withMenu}
-        mainIcon={mainIcon}
-        header={header}
-        t={t}
-        menuItems={menuItems}
-      >
+      <NavigationContainer t={t} lng={lng} />
+      <MainApp mainIcon={mainIcon} header={header} t={t}>
         {children}
       </MainApp>
       {shouldShowConfirmBOModal && (
@@ -80,16 +67,7 @@ const AppLayout = ({
 
 AppLayout.propTypes = {
   children: node.isRequired,
-  withMenu: bool,
   containerComponent: node,
-  menuItems: arrayOf(
-    shape({
-      onClick: func,
-      route: string,
-      label: string.isRequired,
-      isActive: bool
-    })
-  ),
   mainIcon: string,
   header: node,
   t: func.isRequired,
@@ -101,8 +79,6 @@ AppLayout.propTypes = {
 };
 
 AppLayout.defaultProps = {
-  menuItems: null,
-  withMenu: false,
   containerComponent: undefined,
   mainIcon: null,
   header: null,

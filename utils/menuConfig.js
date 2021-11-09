@@ -1,8 +1,6 @@
 import {
   Delivery,
   Bookings,
-  PrivateEvents,
-  Catering,
   Restaurant,
   ProfileBasicInfo,
   ProfileOpeningHours,
@@ -30,133 +28,160 @@ import {
   Payroll,
   FoodWaste,
   PresenceManagement,
-  CustomerLoyalty
+  CustomerLoyalty,
+  EventsManagement,
+  Catering,
+  PrivateEvents
 } from "components/Icons";
 import {
   PARTNERS_CATEGORIES,
   WHOLESALERS_CATEGORIES
 } from "sections/integrations/utils";
 
-const generateSettingsMobileSubmenu = (t, active, logout) => [
+const generateSettingsSubmenu = (t, logout) => [
   {
+    basePath: `/app/settings/basic-information/`,
     route: `/app/settings/basic-information/`,
     label: t("app:userSettings.basicInformation"),
-    isActive: active === "basicInformation",
-    SubmenuIcon: SettingsBasicInfo
+    icon: SettingsBasicInfo
   },
   {
+    basePath: `/app/settings/password/`,
     route: `/app/settings/password/`,
     label: t("app:userSettings.password"),
-    isActive: active === "password",
-    SubmenuIcon: SettingsPassword
+    icon: SettingsPassword
   },
   {
     onClick: logout,
     label: t("app:userSettings.logout"),
-    isActive: false,
-    SubmenuIcon: SettingsLogout
+    icon: SettingsLogout
   }
 ];
 
-const generateProfileMobileSubmenu = (t, active) => [
+export const PROFILE_BASE_PATH = "/app/profile";
+
+export const generateProfileSubmenu = t => [
   {
-    route: `/app/profile/basic-information/`,
+    basePath: `${PROFILE_BASE_PATH}/basic-information/`,
+    route: `${PROFILE_BASE_PATH}/basic-information/`,
     label: t("app:manageProfile.basicInformation"),
-    isActive: active === "basicInformation",
-    SubmenuIcon: ProfileBasicInfo
+    icon: ProfileBasicInfo
   },
   {
-    route: `/app/profile/opening-hours/`,
+    basePath: `${PROFILE_BASE_PATH}/opening-hours/`,
+    route: `${PROFILE_BASE_PATH}/opening-hours/`,
     label: t("app:manageProfile.openingHours"),
-    isActive: active === "openingHours",
-    SubmenuIcon: ProfileOpeningHours
+    icon: ProfileOpeningHours
   },
   {
-    route: `/app/profile/pictures-and-menus/`,
+    basePath: `${PROFILE_BASE_PATH}/pictures-and-menus/`,
+    route: `${PROFILE_BASE_PATH}/pictures-and-menus/`,
     label: t("app:manageProfile.picturesAndMenus"),
-    isActive: active === "picturesAndMenus",
-    SubmenuIcon: ProfilePicturesAndMenus
+    icon: ProfilePicturesAndMenus
   },
   {
-    route: `/app/profile/additional-information/`,
+    basePath: `${PROFILE_BASE_PATH}/additional-information/`,
+    route: `${PROFILE_BASE_PATH}/additional-information/`,
     label: t("app:manageProfile.additionalInformation"),
-    isActive: active === "additionalInformation",
-    SubmenuIcon: ProfileAdditionaInfo
+    icon: ProfileAdditionaInfo
   },
   {
-    route: `/app/profile/redirection-links/`,
+    basePath: `${PROFILE_BASE_PATH}/redirection-links/`,
+    route: `${PROFILE_BASE_PATH}/redirection-links/`,
     label: t("additionalInformation:redirectionLinks"),
-    isActive: active === "redirectionLinks",
-    SubmenuIcon: ProfileAdditionaInfo
+    icon: ProfileAdditionaInfo
   },
   {
-    route: `/app/profile/members/`,
+    basePath: `${PROFILE_BASE_PATH}/members/`,
+    route: `${PROFILE_BASE_PATH}/members/`,
     label: t("app:manageProfile.inviteYourTeam"),
-    isActive: active === "inviteYourTeam",
-    SubmenuIcon: ProfileMembers
+    icon: ProfileMembers
   },
   {
-    route: `/app/profile/live-info/`,
+    basePath: `${PROFILE_BASE_PATH}/live-info/`,
+    route: `${PROFILE_BASE_PATH}/live-info/`,
     label: t("app:manageProfile.liveInfo"),
-    isActive: active === "liveInfo",
-    SubmenuIcon: ProfileAdditionaInfo
+    icon: ProfileAdditionaInfo
   },
   {
-    route: `/app/profile/widgets/`,
+    basePath: `${PROFILE_BASE_PATH}/widgets/`,
+    route: `${PROFILE_BASE_PATH}/widgets/`,
     label: t("app:manageProfile.widgets"),
-    isActive: active === "widgets",
-    SubmenuIcon: ProfileAdditionaInfo
+    icon: ProfileAdditionaInfo
   }
 ];
 
-const generateIntegrationsMobileSubmenu = (t, activeTab) =>
+const generateEventsManagementSubmenu = t => [
+  {
+    icon: Catering,
+    label: t("app:catering"),
+    basePath: "/app/events-management/catering/",
+    route: "/app/events-management/catering/month/"
+  },
+  {
+    icon: PrivateEvents,
+    label: t("app:privateEvents"),
+    basePath: "/app/events-management/privatisation/",
+    route: "/app/events-management/privatisation/month/"
+  }
+];
+
+const generateIntegrationsSubmenu = t =>
   PARTNERS_CATEGORIES.map(category =>
     category
       ? {
           route: `/app/integrations?category=${category}`,
-          label: t(`app:manageIntegrations.${category}`),
-          isActive: activeTab === category
+          label: t(`app:manageIntegrations.${category}`)
         }
       : {
           route: `/app/integrations`,
-          label: t(`app:manageIntegrations.all`),
-          isActive: !activeTab
+          label: t(`app:manageIntegrations.all`)
         }
   );
 
-const generateWholesalersMobileSubmenu = (t, activeTab) =>
+const generateWholesalersSubmenu = t =>
   WHOLESALERS_CATEGORIES.map(category =>
     category
       ? {
           route: `/app/wholesalers?category=${category}`,
-          label: t(`app:wholesalersCategories.${category}`),
-          isActive: activeTab === category
+          label: t(`app:wholesalersCategories.${category}`)
         }
       : {
           route: `/app/wholesalers`,
-          label: t(`app:wholesalersCategories.search`),
-          isActive: !activeTab
+          label: t(`app:wholesalersCategories.search`)
         }
   );
 
-export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
+const prepareBadge = updates => {
+  if (!updates) return null;
+  return updates < 10 ? updates : "9+";
+};
+
+export const getMenuConfig = ({
+  t,
+  ordersUpdates,
+  reservationsUpdates,
+  logout
+}) => [
   {
     basePath: "/app/dashboard",
     route: "/app/dashboard/",
     icon: Dashboard,
-    label: t("app:dashboard")
+    label: t("app:dashboardView.dashboard")
   },
   {
+    basePath: PROFILE_BASE_PATH,
+    route: `${PROFILE_BASE_PATH}/basic-information/`,
     icon: Restaurant,
     label: t("app:manageProfile.myProfile"),
-    withSubmenu: true,
-    submenuItems: generateProfileMobileSubmenu(t, lng)
+    submenuItems: generateProfileSubmenu(t)
   },
   {
+    basePath: "/app/integrations",
+    route: "/app/integrations",
     icon: IntegrationHub,
     label: t("app:integrationHub"),
-    withSubmenu: true,
-    submenuItems: generateIntegrationsMobileSubmenu(t, lng)
+    submenuItems: generateIntegrationsSubmenu(t)
   },
   {
     basePath: "/app/app-manager",
@@ -165,9 +190,11 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     label: t("app:appManager")
   },
   {
+    basePath: "/app/lefood/",
+    route: "/app/lefood/orders/",
     icon: Delivery,
     label: t("app:delivery"),
-    route: "/app/lefood/orders/"
+    badge: prepareBadge(ordersUpdates)
   },
   {
     basePath: "/app/menu-management",
@@ -176,19 +203,18 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     label: t("app:menuManagement")
   },
   {
+    basePath: "/app/reservation",
+    route: "/app/reservation/reservations/",
     icon: Bookings,
     label: t("app:reservations"),
-    route: "/app/reservation/reservations/"
+    badge: prepareBadge(reservationsUpdates)
   },
   {
-    icon: Catering,
-    label: t("app:catering"),
-    route: "/app/catering/month/"
-  },
-  {
-    icon: PrivateEvents,
-    label: t("app:privateEvents"),
-    route: "/app/privatisation/month/"
+    basePath: "/app/events-management",
+    route: "/app/events-management/catering/month",
+    icon: EventsManagement,
+    label: t("app:eventsManagement"),
+    submenuItems: generateEventsManagementSubmenu(t)
   },
   {
     basePath: "/app/clients",
@@ -203,10 +229,11 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     label: t("app:payments")
   },
   {
+    basePath: "/app/wholesalers",
+    route: "/app/wholesalers?category=preferred",
     icon: Wholesalers,
     label: t("app:wholesaler"),
-    withSubmenu: true,
-    submenuItems: generateWholesalersMobileSubmenu(t, lng)
+    submenuItems: generateWholesalersSubmenu(t)
   },
   {
     basePath: "/app/stock-management",
@@ -269,14 +296,21 @@ export const generateToggledMobileMenuSubitems = (t, lng, logout) => [
     label: t("app:loyalty")
   },
   {
+    basePath: "/app/subscriptions",
+    route: "/app/subscriptions/",
     icon: Subscriptions,
-    label: t("app:subscriptions"),
-    route: "/app/subscriptions/"
+    label: t("app:subscriptions")
   },
   {
+    basePath: "/app/settings",
+    route: "/app/settings/basic-information/",
     icon: SettingsIcon,
-    label: t("app:userSettings.userSettings"),
-    withSubmenu: true,
-    submenuItems: generateSettingsMobileSubmenu(t, lng, logout)
+    label: t("app:settings"),
+    submenuItems: generateSettingsSubmenu(t, logout)
   }
 ];
+
+export const isMenuItemActive = ({ lng, asPath, menuItem }) =>
+  menuItem.basePath
+    ? asPath.startsWith(`/${lng}${menuItem.basePath}`)
+    : asPath === `/${lng}${menuItem.route}`;

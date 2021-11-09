@@ -104,5 +104,6 @@
   "payroll": "RH & Salaires",
   "foodWaste": "Gestion des invendus",
   "presenceManagement": "Présence en ligne",
-  "loyalty": "Fidélisation des clients"
+  "loyalty": "Fidélisation des clients",
+  "eventsManagement": "Gestion des événements"
 }

@@ -1,60 +1,47 @@
+import React from "react";
 import { string, bool, arrayOf, shape, func } from "prop-types";
-import { Flex } from "@rebass/grid";
-import { Button, Link } from "components";
+import { useRouter } from "next/router";
 
+import { Link } from "components";
 import MenuArrowIcon from "components/MenuArrowIcon";
 import PartnersSearchBox from "components/PartnersSearchBox";
+import { isMenuItemActive, PROFILE_BASE_PATH } from "utils/menuConfig";
 import { Items, Item } from "./styled";
+import PublishBusinessButton from "./PublishBusinessButton";
 
-const Menu = ({ lng, toggleNestedMenu, menuItems, t, withSearch }) => (
-  <Items>
-    {withSearch && <PartnersSearchBox />}
-    <Item bigPadding onClick={toggleNestedMenu}>
-      <MenuArrowIcon back />
-      <span>{t("app:backToMainMenu")}</span>
-    </Item>
-    {menuItems.map(i => {
-      const isPublishBusinessButton =
-        i.label === t("app:manageProfile.publish");
+const Menu = ({ lng, toggleNestedMenu, menuItems, t, withSearch }) => {
+  const { asPath } = useRouter();
 
-      if (isPublishBusinessButton) {
-        return (
-          <Flex p={1}>
-            <Button
-              styleName="accept"
-              type="submit"
-              width="100%"
-              onClick={i.onClick}
-            >
-              {i.label}
-            </Button>
-          </Flex>
-        );
-      }
+  const isProfilePath = asPath.startsWith(`/${lng}${PROFILE_BASE_PATH}`);
 
-      if (i.route) {
-        return (
-          <Link {...{ lng, route: i.route, key: i.route }}>
-            <Item isActive={i.isActive} color={i.color}>
-              <span>{i.label}</span>
-            </Item>
-          </Link>
-        );
-      }
-
-      return (
-        <Item
-          isActive={i.isActive}
-          onClick={i.onClick}
-          key={i.label}
-          color={i.color}
-        >
-          <span>{i.label}</span>
+  return (
+    <>
+      <Items>
+        {withSearch && <PartnersSearchBox />}
+        <Item bigPadding onClick={toggleNestedMenu}>
+          <MenuArrowIcon back />
+          <span>{t("app:backToMainMenu")}</span>
         </Item>
-      );
-    })}
-  </Items>
-);
+        {menuItems.map(menuItem => {
+          const isActive = isMenuItemActive({
+            lng,
+            asPath,
+            menuItem
+          });
+
+          return (
+            <Link {...{ lng, route: menuItem.route, key: menuItem.route }}>
+              <Item isActive={isActive} color={menuItem.color}>
+                <span>{menuItem.label}</span>
+              </Item>
+            </Link>
+          );
+        })}
+        {isProfilePath && <PublishBusinessButton t={t} lng={lng} />}
+      </Items>
+    </>
+  );
+};
 
 Menu.propTypes = {
   lng: string.isRequired,

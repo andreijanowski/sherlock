@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Flex } from "@rebass/grid";
-import { bool, node, string, func, arrayOf, shape } from "prop-types";
+import { bool, node, string, func } from "prop-types";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 
@@ -24,20 +24,22 @@ import { chooseIcon, getButtonRoutes } from "./utils";
 
 const MainApp = ({
   t,
-  withMenu,
   mainIcon,
   header,
   children,
   avatar,
   isAccountConfirmed,
-  menuItems,
   shouldPlayNotification,
   toggleSound
 }) => {
   const router = useRouter();
   const lng = (i18n && i18n.language) || "en";
   const MainIcon = chooseIcon(mainIcon);
-  const { prevRoute, nextRoute } = getButtonRoutes(menuItems, mainIcon);
+  const { prevRoute, nextRoute } = getButtonRoutes({
+    lng,
+    asPath: router.asPath,
+    mainIcon
+  });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const isProfile = router.pathname.includes("profile");
   useEffect(() => {
@@ -56,7 +58,7 @@ const MainApp = ({
   const hasRoutesBar = !!(prevRoute || nextRoute);
 
   return (
-    <Wrapper withMenu={withMenu} mainIcon={mainIcon}>
+    <Wrapper mainIcon={mainIcon}>
       {!isAccountConfirmed && <InfoBar info={t("app:confirmAccount")} />}
       <HeaderWrapper>
         <Flex alignItems="center">
@@ -131,14 +133,6 @@ const MainApp = ({
 };
 
 MainApp.propTypes = {
-  menuItems: arrayOf(
-    shape({
-      route: string,
-      label: string,
-      isActive: bool
-    })
-  ),
-  withMenu: bool.isRequired,
   mainIcon: string,
   header: string,
   children: node.isRequired,
@@ -150,7 +144,6 @@ MainApp.propTypes = {
 };
 
 MainApp.defaultProps = {
-  menuItems: [],
   mainIcon: "",
   header: "",
   avatar: "",

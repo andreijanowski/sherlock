@@ -8,11 +8,7 @@ import { useRouter } from "next/router";
 import PartnersSearchBox from "components/PartnersSearchBox";
 
 import AppLayout from "layout/App";
-import {
-  generatePartnersMenuItems,
-  PARTNERS_CATEGORIES,
-  PARTNERS_URL
-} from "sections/integrations/utils";
+import { PARTNERS_CATEGORIES, PARTNERS_URL } from "sections/integrations/utils";
 import { LoadingIndicator } from "components";
 import IntegrationsList from "sections/integrations";
 
@@ -38,8 +34,6 @@ const IntegrationsPage = ({ t, lng, partners, isLoading }) => {
       lng={lng}
       mainIcon="integrations"
       header={t("app:integrations")}
-      withMenu
-      menuItems={generatePartnersMenuItems(t, category)}
     >
       <PartnersSearchBox isHiddenOnDesktop />
       {partners && partners.size > 0 && (

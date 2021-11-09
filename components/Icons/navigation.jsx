@@ -1849,3 +1849,60 @@ export const CustomerLoyalty = () => (
     />
   </svg>
 );
+
+export const EventsManagement = () => (
+  <svg
+    width="1em"
+    height="1em"
+    viewBox="-18 -14 56 48"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <style>{`
+      .svg-events-management-cls {
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke: currentColor;
+      }
+      `}</style>
+    </defs>
+    <path
+      d="M6.73424 8.22144L13.4895 15.3916"
+      className="svg-events-management-cls secondary"
+    />
+    <path
+      d="M5.00575 11.4006L9.63802 16.601"
+      className="svg-events-management-cls secondary"
+    />
+    <path
+      d="M2.9211 14.5525L5.85501 17.783"
+      className="svg-events-management-cls secondary"
+    />
+    <path
+      d="M17.2255 13.914L9.08189 4.93551C9.00121 4.84347 8.89681 4.77181 8.77835 4.72715C8.65989 4.6825 8.53121 4.6663 8.40421 4.68004C8.27721 4.69379 8.15601 4.73705 8.05181 4.8058C7.94762 4.87456 7.8638 4.9666 7.80812 5.07339L1.14631 17.1996C1.02744 17.4152 0.979376 17.6584 1.0081 17.8992C1.03682 18.1399 1.14105 18.3675 1.30788 18.5537C1.4747 18.74 1.69677 18.8767 1.94656 18.9469C2.19635 19.0172 2.46286 19.0178 2.71305 18.9488L16.8646 15.0407C16.9853 15.0075 17.0951 14.9469 17.1841 14.8644C17.2731 14.7819 17.3385 14.68 17.3743 14.5681C17.4102 14.4562 17.4153 14.3378 17.3893 14.2235C17.3634 14.1093 17.307 14.0029 17.2255 13.914V13.914Z"
+      className="svg-events-management-cls primary"
+    />
+    <path
+      d="M11.7269 4.10787L12.8223 1.23193"
+      className="svg-events-management-cls secondary"
+    />
+    <path
+      d="M19.6747 12.2718L22.2095 11.7715"
+      className="svg-events-management-cls secondary"
+    />
+    <path
+      d="M15.8117 3.45834L16.9793 1"
+      className="svg-events-management-cls primary"
+    />
+    <path
+      d="M17.3697 6.57862L19.31 5.10913"
+      className="svg-events-management-cls secondary"
+    />
+    <path
+      d="M20.5119 8.55642L23 7.6897"
+      className="svg-events-management-cls primary"
+    />
+  </svg>
+);
