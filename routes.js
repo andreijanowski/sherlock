@@ -121,13 +121,22 @@ module.exports = routes()
   .add("app/subscriptions", `/:lng(${languagesPattern})/app/subscriptions`)
   .add("app/integrations", `/:lng(${languagesPattern})/app/integrations`)
   .add("app/wholesalers", `/:lng(${languagesPattern})/app/wholesalers`)
-  .add("app/marketing", `/:lng(${languagesPattern})/app/marketing`)
   .add(
-    "app/communityManagement",
-    `/:lng(${languagesPattern})/app/community-management`
+    "app/influencerManagement/marketing",
+    `/:lng(${languagesPattern})/app/influencer-management/marketing`
   )
-  .add("app/photography", `/:lng(${languagesPattern})/app/photography`)
-  .add("app/detectives", `/:lng(${languagesPattern})/app/detectives`)
+  .add(
+    "app/influencerManagement/communityManagement",
+    `/:lng(${languagesPattern})/app/influencer-management/community-management`
+  )
+  .add(
+    "app/influencerManagement/photography",
+    `/:lng(${languagesPattern})/app/influencer-management/photography`
+  )
+  .add(
+    "app/influencerManagement/detectives",
+    `/:lng(${languagesPattern})/app/influencer-management/detectives`
+  )
   .add("app/menuManagement", `/:lng(${languagesPattern})/app/menu-management`)
   .add("app/dashboard", `/:lng(${languagesPattern})/app/dashboard`)
   .add("app/clients", `/:lng(${languagesPattern})/app/clients`)

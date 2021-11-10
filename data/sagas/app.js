@@ -15,7 +15,7 @@ import { fetchProfileBusiness } from "actions/users";
 import { fetchBusinessMembers, fetchBusinessDishes } from "actions/businesses";
 import { fetchExternalServices } from "actions/externalServices";
 import { fetchDetectives, fetchTopDetective } from "actions/detectives";
-import { DETECTIVES_CITIES } from "pages/app/detectives/config";
+import { DETECTIVES_CITIES } from "pages/app/influencerManagement/detectives/config";
 import fetchAllBusinessData from "./utils/fetchAllBusinessData";
 
 function* handlePatchChangeSaga({ payload: { path } }) {

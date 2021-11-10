@@ -31,7 +31,8 @@ import {
   CustomerLoyalty,
   EventsManagement,
   Catering,
-  PrivateEvents
+  PrivateEvents,
+  InfluencerManagement
 } from "components/Icons";
 import {
   PARTNERS_CATEGORIES,
@@ -152,6 +153,35 @@ const generateWholesalersSubmenu = t =>
         }
   );
 
+export const INFLUENCER_MANAGEMENT_BASE_PATH = "/app/influencer-management";
+
+const generateInfluencerManagementSubmenu = t => [
+  {
+    basePath: `${INFLUENCER_MANAGEMENT_BASE_PATH}/detectives/`,
+    route: `${INFLUENCER_MANAGEMENT_BASE_PATH}/detectives/`,
+    icon: Detectives,
+    label: t("app:detectives")
+  },
+  {
+    basePath: `${INFLUENCER_MANAGEMENT_BASE_PATH}/community-management/`,
+    route: `${INFLUENCER_MANAGEMENT_BASE_PATH}/community-management/`,
+    icon: CommunityManagement,
+    label: t("app:manageIntegrations.community_management")
+  },
+  {
+    basePath: `${INFLUENCER_MANAGEMENT_BASE_PATH}/marketing/`,
+    route: `${INFLUENCER_MANAGEMENT_BASE_PATH}/marketing/`,
+    icon: Marketing,
+    label: t("app:adsAndMarketing")
+  },
+  {
+    basePath: `${INFLUENCER_MANAGEMENT_BASE_PATH}/photography/`,
+    route: `${INFLUENCER_MANAGEMENT_BASE_PATH}/photography/`,
+    icon: Photography,
+    label: t("app:photography")
+  }
+];
+
 const prepareBadge = updates => {
   if (!updates) return null;
   return updates < 10 ? updates : "9+";
@@ -254,16 +284,11 @@ export const getMenuConfig = ({
     label: t("app:foodWaste")
   },
   {
-    basePath: "/app/detectives",
-    route: "/app/detectives/",
-    icon: Detectives,
-    label: t("app:detectives")
-  },
-  {
-    basePath: "/app/community-management",
-    route: "/app/community-management/",
-    icon: CommunityManagement,
-    label: t("app:manageIntegrations.community_management")
+    basePath: INFLUENCER_MANAGEMENT_BASE_PATH,
+    route: `${INFLUENCER_MANAGEMENT_BASE_PATH}/detectives`,
+    icon: InfluencerManagement,
+    label: t("app:influencerManagement"),
+    submenuItems: generateInfluencerManagementSubmenu(t)
   },
   {
     basePath: "/app/presence-management",
@@ -276,18 +301,6 @@ export const getMenuConfig = ({
     route: "/app/reviews/",
     icon: Reviews,
     label: t("app:reviews")
-  },
-  {
-    basePath: "/app/marketing",
-    route: "/app/marketing/",
-    icon: Marketing,
-    label: t("app:adsAndMarketing")
-  },
-  {
-    basePath: "/app/photography",
-    route: "/app/photography/",
-    icon: Photography,
-    label: t("app:photography")
   },
   {
     basePath: "/app/loyalty",

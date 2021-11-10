@@ -6,7 +6,7 @@ import { withTheme } from "styled-components";
 import { func, shape, string } from "prop-types";
 
 import DetectivesRow from "components/Detectives/DetectivesRow";
-import { DETECTIVES_CITIES } from "pages/app/detectives/config";
+import { DETECTIVES_CITIES } from "pages/app/influencerManagement/detectives/config";
 
 const namespaces = ["detectives"];
 
