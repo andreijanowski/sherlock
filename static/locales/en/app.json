@@ -126,5 +126,8 @@
   "presenceManagement": "Presence management",
   "loyalty": "Customer loyalty",
   "eventsManagement": "Events Management",
-  "influencerManagement": "Influencer Management"
+  "influencerManagement": "Influencer Management",
+  "managementIntegrations": "Management Integrations",
+  "operationsIntegrations": "Operations Integrations",
+  "marketingIntegrations": "Marketing Integrations"
 }

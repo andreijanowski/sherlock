@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Flex, Box } from "@rebass/grid";
 
 const SIDEBAR_WIDTH = 300;
 
@@ -147,4 +148,23 @@ export const BadgeNumber = styled.div`
   text-align: center;
   background: rgb(${p => p.theme.colors.blue});
   border-radius: 50%;
+`;
+
+// has unique color, will not be a part of theme
+export const CollapsingGroupToggle = styled(Flex)`
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 6px 6px 6px 18px;
+  color: #0d1249;
+  cursor: pointer;
+`;
+
+export const CollapsingGroupContent = styled.ul`
+  padding-left: 0;
+`;
+
+export const CollapsingGroupTitle = styled(Box)`
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes.f16};
+  line-height: ${p => p.theme.fontSizes.f24};
 `;

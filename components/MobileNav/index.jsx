@@ -71,20 +71,28 @@ const MobileNav = ({
           withImage
         />
         <MenuScrollContainer>
-          {config.map(subitem => (
-            <SubItem
-              {...{
-                lng,
-                t,
-                route: subitem.route,
-                Icon: subitem.icon,
-                label: subitem.label,
-                submenuItems: subitem.submenuItems,
-                key: subitem.label,
-                toggleMenu: setIsMobileNavOpen
-              }}
-            />
-          ))}
+          {config.flatMap(subitem => {
+            const renderItem = item => (
+              <SubItem
+                {...{
+                  lng,
+                  t,
+                  route: item.route,
+                  Icon: item.icon,
+                  label: item.label,
+                  submenuItems: item.submenuItems,
+                  key: item.label,
+                  toggleMenu: setIsMobileNavOpen
+                }}
+              />
+            );
+
+            const isGroup = !!subitem.groupTitle;
+
+            return isGroup
+              ? subitem.items.map(renderItem)
+              : renderItem(subitem);
+          })}
         </MenuScrollContainer>
       </ToggledMobileMenu>
     </Flex>

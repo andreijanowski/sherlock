@@ -19,6 +19,7 @@ import {
   TransitionContainer,
   NavTransitionContainer
 } from "./styled";
+import CollapsingGroup from "./CollapsingGroup";
 
 const routesWithSearch = [PARTNERS_URL, WHOLESALERS_URL];
 
@@ -51,50 +52,64 @@ const NavBar = ({
         >
           <NavTransitionContainer>
             <NavList>
-              {config.map(menuItem => {
-                const {
-                  route,
-                  basePath,
-                  icon,
-                  label,
-                  badge,
-                  submenuItems: itemSubmenuItems
-                } = menuItem;
+              {config.flatMap(menuItem => {
+                const renderItem = item => {
+                  const {
+                    route,
+                    basePath,
+                    icon,
+                    label,
+                    badge,
+                    submenuItems: itemSubmenuItems
+                  } = item;
 
-                const withoutIcon = !icon;
+                  const withoutIcon = !icon;
 
-                const isActive = isMenuItemActive({
-                  lng,
-                  asPath,
-                  menuItem
-                });
-                const shouldToggleMenu = withMenu && isActive;
-                const onClick = shouldToggleMenu
-                  ? e => {
-                      e.preventDefault();
-                      toggleNestedMenu();
-                    }
-                  : undefined;
+                  const isActive = isMenuItemActive({
+                    lng,
+                    asPath,
+                    menuItem
+                  });
+                  const shouldToggleMenu = withMenu && isActive;
+                  const onClick = shouldToggleMenu
+                    ? e => {
+                        e.preventDefault();
+                        toggleNestedMenu();
+                      }
+                    : undefined;
 
-                const hasNested = !!itemSubmenuItems;
+                  const hasNested = !!itemSubmenuItems;
 
-                return (
-                  <NavItem key={basePath} withoutIcon={withoutIcon}>
-                    <Link route={route} lng={lng}>
-                      <NavItemLink
-                        isActive={isActive}
-                        onClick={onClick}
-                        withoutIcon={withoutIcon}
-                      >
-                        {icon && (
-                          <NavItemIcon>{React.createElement(icon)}</NavItemIcon>
-                        )}
-                        {label}
-                        {hasNested && <MenuArrowIcon />}
-                        {badge && <BadgeNumber>{badge}</BadgeNumber>}
-                      </NavItemLink>
-                    </Link>
-                  </NavItem>
+                  return (
+                    <NavItem key={basePath} withoutIcon={withoutIcon}>
+                      <Link route={route} lng={lng}>
+                        <NavItemLink
+                          isActive={isActive}
+                          onClick={onClick}
+                          withoutIcon={withoutIcon}
+                        >
+                          {icon && (
+                            <NavItemIcon>
+                              {React.createElement(icon)}
+                            </NavItemIcon>
+                          )}
+                          {label}
+                          {hasNested && <MenuArrowIcon />}
+                          {badge && <BadgeNumber>{badge}</BadgeNumber>}
+                        </NavItemLink>
+                      </Link>
+                    </NavItem>
+                  );
+                };
+
+                const isGroup = !!menuItem.groupTitle;
+
+                return isGroup ? (
+                  <CollapsingGroup title={menuItem.groupTitle}>
+                    {menuItem.items.map(renderItem)}
+                  </CollapsingGroup>
+                ) : (
+                  renderItem(menuItem)
                 );
               })}
             </NavList>

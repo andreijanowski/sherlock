@@ -218,93 +218,108 @@ export const getMenuConfig = ({
     label: t("app:appManager")
   },
   {
-    basePath: "/app/lefood/",
-    route: "/app/lefood/orders/",
-    icon: Delivery,
-    label: t("app:delivery"),
-    badge: prepareBadge(ordersUpdates)
+    groupTitle: t("app:managementIntegrations"),
+    items: [
+      {
+        basePath: "/app/lefood/",
+        route: "/app/lefood/orders/",
+        icon: Delivery,
+        label: t("app:delivery"),
+        badge: prepareBadge(ordersUpdates)
+      },
+      {
+        basePath: "/app/menu-management",
+        route: "/app/menu-management",
+        icon: MenuManagement,
+        label: t("app:menuManagement")
+      },
+      {
+        basePath: "/app/reservation",
+        route: "/app/reservation/reservations/",
+        icon: Bookings,
+        label: t("app:reservations"),
+        badge: prepareBadge(reservationsUpdates)
+      },
+      {
+        basePath: "/app/events-management",
+        route: "/app/events-management/catering/month",
+        icon: EventsManagement,
+        label: t("app:eventsManagement"),
+        submenuItems: generateEventsManagementSubmenu(t)
+      },
+      {
+        basePath: "/app/clients",
+        route: "/app/clients/",
+        icon: Clients,
+        label: t("app:clients")
+      }
+    ]
   },
   {
-    basePath: "/app/menu-management",
-    route: "/app/menu-management",
-    icon: MenuManagement,
-    label: t("app:menuManagement")
+    groupTitle: t("app:operationsIntegrations"),
+    items: [
+      {
+        basePath: "/app/payments",
+        route: "/app/payments",
+        icon: Payments,
+        label: t("app:payments")
+      },
+      {
+        basePath: "/app/wholesalers",
+        route: "/app/wholesalers?category=preferred",
+        icon: Wholesalers,
+        label: t("app:wholesaler"),
+        submenuItems: generateWholesalersSubmenu(t)
+      },
+      {
+        basePath: "/app/stock-management",
+        route: "/app/stock-management/",
+        icon: StockManagement,
+        label: t("app:stockManagement")
+      },
+      {
+        basePath: "/app/payroll",
+        route: "/app/payroll/",
+        icon: Payroll,
+        label: t("app:payroll")
+      },
+      {
+        basePath: "/app/food-waste",
+        route: "/app/food-waste/",
+        icon: FoodWaste,
+        label: t("app:foodWaste")
+      }
+    ]
   },
   {
-    basePath: "/app/reservation",
-    route: "/app/reservation/reservations/",
-    icon: Bookings,
-    label: t("app:reservations"),
-    badge: prepareBadge(reservationsUpdates)
-  },
-  {
-    basePath: "/app/events-management",
-    route: "/app/events-management/catering/month",
-    icon: EventsManagement,
-    label: t("app:eventsManagement"),
-    submenuItems: generateEventsManagementSubmenu(t)
-  },
-  {
-    basePath: "/app/clients",
-    route: "/app/clients/",
-    icon: Clients,
-    label: t("app:clients")
-  },
-  {
-    basePath: "/app/payments",
-    route: "/app/payments",
-    icon: Payments,
-    label: t("app:payments")
-  },
-  {
-    basePath: "/app/wholesalers",
-    route: "/app/wholesalers?category=preferred",
-    icon: Wholesalers,
-    label: t("app:wholesaler"),
-    submenuItems: generateWholesalersSubmenu(t)
-  },
-  {
-    basePath: "/app/stock-management",
-    route: "/app/stock-management/",
-    icon: StockManagement,
-    label: t("app:stockManagement")
-  },
-  {
-    basePath: "/app/payroll",
-    route: "/app/payroll/",
-    icon: Payroll,
-    label: t("app:payroll")
-  },
-  {
-    basePath: "/app/food-waste",
-    route: "/app/food-waste/",
-    icon: FoodWaste,
-    label: t("app:foodWaste")
-  },
-  {
-    basePath: INFLUENCER_MANAGEMENT_BASE_PATH,
-    route: `${INFLUENCER_MANAGEMENT_BASE_PATH}/detectives`,
-    icon: InfluencerManagement,
-    label: t("app:influencerManagement"),
-    submenuItems: generateInfluencerManagementSubmenu(t)
-  },
-  {
-    basePath: "/app/presence-management",
-    route: "/app/presence-management/",
-    icon: PresenceManagement,
-    label: t("app:presenceManagement")
-  },
-  {
-    basePath: "/app/reviews",
-    route: "/app/reviews/",
-    icon: Reviews,
-    label: t("app:reviews")
-  },
-  {
-    basePath: "/app/loyalty",
-    route: "/app/loyalty/",
-    icon: CustomerLoyalty,
-    label: t("app:loyalty")
+    groupTitle: t("app:marketingIntegrations"),
+    items: [
+      {
+        basePath: INFLUENCER_MANAGEMENT_BASE_PATH,
+        route: `${INFLUENCER_MANAGEMENT_BASE_PATH}/detectives`,
+        icon: InfluencerManagement,
+        label: t("app:influencerManagement"),
+        submenuItems: generateInfluencerManagementSubmenu(t)
+      },
+      {
+        basePath: "/app/presence-management",
+        route: "/app/presence-management/",
+        icon: PresenceManagement,
+        label: t("app:presenceManagement")
+      },
+      {
+        basePath: "/app/reviews",
+        route: "/app/reviews/",
+        icon: Reviews,
+        label: t("app:reviews")
+      },
+      {
+        basePath: "/app/loyalty",
+        route: "/app/loyalty/",
+        icon: CustomerLoyalty,
+        label: t("app:loyalty")
+      }
+    ]
   },
   {
     basePath: "/app/subscriptions",
