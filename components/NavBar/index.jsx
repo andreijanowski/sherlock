@@ -61,6 +61,8 @@ const NavBar = ({
                   submenuItems: itemSubmenuItems
                 } = menuItem;
 
+                const withoutIcon = !icon;
+
                 const isActive = isMenuItemActive({
                   lng,
                   asPath,
@@ -77,12 +79,16 @@ const NavBar = ({
                 const hasNested = !!itemSubmenuItems;
 
                 return (
-                  <NavItem key={basePath}>
+                  <NavItem key={basePath} withoutIcon={withoutIcon}>
                     <Link route={route} lng={lng}>
-                      <NavItemLink isActive={isActive} onClick={onClick}>
-                        <NavItemIcon>
-                          {icon && React.createElement(icon)}
-                        </NavItemIcon>
+                      <NavItemLink
+                        isActive={isActive}
+                        onClick={onClick}
+                        withoutIcon={withoutIcon}
+                      >
+                        {icon && (
+                          <NavItemIcon>{React.createElement(icon)}</NavItemIcon>
+                        )}
                         {label}
                         {hasNested && <MenuArrowIcon />}
                         {badge && <BadgeNumber>{badge}</BadgeNumber>}

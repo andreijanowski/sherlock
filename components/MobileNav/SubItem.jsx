@@ -13,9 +13,7 @@ const SubItem = ({ t, lng, route, label, Icon, submenuItems, toggleMenu }) => {
   return !withSubmenu ? (
     <Link {...{ lng, route }}>
       <Flex align="center">
-        <IconWrapper dark>
-          <Icon />
-        </IconWrapper>
+        <IconWrapper dark>{Icon && <Icon />}</IconWrapper>
         <IconLabel>{label}</IconLabel>
       </Flex>
     </Link>
@@ -24,9 +22,7 @@ const SubItem = ({ t, lng, route, label, Icon, submenuItems, toggleMenu }) => {
       align="center"
       onClick={() => setIsSubmenuOpen(prevIsSubmenuOpen => !prevIsSubmenuOpen)}
     >
-      <IconWrapper dark>
-        <Icon />
-      </IconWrapper>
+      <IconWrapper dark>{Icon && <Icon />}</IconWrapper>
       <IconLabel>{label}</IconLabel>
       <SubMenuWrapper
         {...{ isSubmenuOpen }}

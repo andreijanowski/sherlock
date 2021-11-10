@@ -7,8 +7,6 @@ import {
   ProfilePicturesAndMenus,
   ProfileAdditionaInfo,
   ProfileMembers,
-  Subscriptions,
-  SettingsIcon,
   SettingsBasicInfo,
   SettingsLogout,
   SettingsPassword,
@@ -311,13 +309,11 @@ export const getMenuConfig = ({
   {
     basePath: "/app/subscriptions",
     route: "/app/subscriptions/",
-    icon: Subscriptions,
     label: t("app:subscriptions")
   },
   {
     basePath: "/app/settings",
     route: "/app/settings/basic-information/",
-    icon: SettingsIcon,
     label: t("app:settings"),
     submenuItems: generateSettingsSubmenu(t, logout)
   }
