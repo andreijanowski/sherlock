@@ -36,7 +36,6 @@ const PublishModal = ({
       })
     : [];
 
-  console.log(steps);
   return (
     <Wrapper>
       <Header>

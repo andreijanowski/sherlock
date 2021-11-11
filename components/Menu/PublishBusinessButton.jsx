@@ -65,23 +65,6 @@ const PublishBusinessButton = ({
     hideModal();
   }, [businessId, hideModal, updateBusiness]);
 
-  // if (businessState === "waiting_for_approval") {
-  //   items.push({
-  //     label: t("app:manageProfile.waitingForApproval"),
-  //     color: "carrotOrange"
-  //   });
-  // } else {
-  //   items.push({
-  //     onClick:
-  //       businessState === "published" ? unpublishBusiness : showPublishModal,
-  //     label:
-  //       businessState === "published"
-  //         ? t("app:manageProfile.unPublish")
-  //         : t("app:manageProfile.publish"),
-  //     color: businessState === "published" ? "ruby" : "green"
-  //   });
-  // }
-
   if (!businessAttributes) return null;
 
   const businessState = businessAttributes.get("state");

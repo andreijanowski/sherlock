@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { func, string, shape, arrayOf, bool } from "prop-types";
 import { useRouter } from "next/router";
 import { CSSTransition } from "react-transition-group";
@@ -36,6 +36,14 @@ const NavBar = ({
 
   const withSearch = routesWithSearch.includes(pathname);
 
+  const onTogglingItemClick = useCallback(
+    e => {
+      e.preventDefault();
+      toggleNestedMenu();
+    },
+    [toggleNestedMenu]
+  );
+
   return (
     <Wrapper>
       <SelectWrapper>
@@ -72,10 +80,7 @@ const NavBar = ({
                   });
                   const shouldToggleMenu = withMenu && isActive;
                   const onClick = shouldToggleMenu
-                    ? e => {
-                        e.preventDefault();
-                        toggleNestedMenu();
-                      }
+                    ? onTogglingItemClick
                     : undefined;
 
                   const hasNested = !!itemSubmenuItems;
