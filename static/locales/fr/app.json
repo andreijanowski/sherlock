@@ -1,9 +1,9 @@
 {
   "controlCenter": "Centre de contrôle (bientôt)",
-  "reservations": "Gestion des réservations",
+  "reservations": "Réservations",
   "takeAway": "A Emporter",
-  "bookings": "Gestion des réservations (bientôt)",
-  "delivery": "Gestion des Commandes",
+  "bookings": "Réservations (bientôt)",
+  "delivery": "Commandes",
   "catering": "Caterings",
   "privatisations": "Privatisations",
   "integrations": "Intégrations",
@@ -92,11 +92,11 @@
   },
   "backToMainMenu": "Retour au menu principal",
   "photography": "Photographie & Video",
-  "reviews": "Gestions des Avis",
+  "reviews": "Avis en ligne",
   "detectives": "Detectives & Influenceurs",
   "adsAndMarketing": "Pubs & Marketing",
   "clients": "Clients",
-  "menuManagement": "Gestion du Menu",
+  "menuManagement": "Menu",
   "dashboard": "Dashboard",
   "privateEvents": "Evenements",
   "settings": "Paramètres",
@@ -104,5 +104,7 @@
   "payroll": "RH & Salaires",
   "foodWaste": "Gestion des invendus",
   "presenceManagement": "Présence en ligne",
-  "loyalty": "Fidélisation des clients"
+  "loyalty": "Fidélisation des clients",
+  "eventsManagement": "Gestion des événements",
+  "influencerManagement": "Gestion des influenceurs"
 }

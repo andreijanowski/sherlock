@@ -105,5 +105,7 @@
   "payroll": "HR & Gehalt",
   "foodWaste": "Unverkaufte Lebensmittel",
   "presenceManagement": "Online-Präsenz",
-  "loyalty": "Kundenbindung"
+  "loyalty": "Kundenbindung",
+  "eventsManagement": "Veranstaltungs-Management",
+  "influencerManagement": "Einflussnehmern Management"
 }

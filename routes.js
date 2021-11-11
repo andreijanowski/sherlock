@@ -40,35 +40,53 @@ module.exports = routes()
     "app/settings/password",
     `/:lng(${languagesPattern})/app/settings/password`
   )
-  .add("app/catering/day", `/:lng(${languagesPattern})/app/catering/day`)
-  .add("app/catering/week", `/:lng(${languagesPattern})/app/catering/week`)
-  .add("app/catering/month", `/:lng(${languagesPattern})/app/catering/month`)
-  .add("app/catering/year", `/:lng(${languagesPattern})/app/catering/year`)
-  .add("app/catering/edit", `/:lng(${languagesPattern})/app/catering/edit`)
-  .add("app/catering/create", `/:lng(${languagesPattern})/app/catering/create`)
   .add(
-    "app/privatisation/day",
-    `/:lng(${languagesPattern})/app/privatisation/day`
+    "app/eventsManagement/catering/day",
+    `/:lng(${languagesPattern})/app/events-management/catering/day`
   )
   .add(
-    "app/privatisation/week",
-    `/:lng(${languagesPattern})/app/privatisation/week`
+    "app/eventsManagement/catering/week",
+    `/:lng(${languagesPattern})/app/events-management/catering/week`
   )
   .add(
-    "app/privatisation/month",
-    `/:lng(${languagesPattern})/app/privatisation/month`
+    "app/eventsManagement/catering/month",
+    `/:lng(${languagesPattern})/app/events-management/catering/month`
   )
   .add(
-    "app/privatisation/year",
-    `/:lng(${languagesPattern})/app/privatisation/year`
+    "app/eventsManagement/catering/year",
+    `/:lng(${languagesPattern})/app/events-management/catering/year`
   )
   .add(
-    "app/privatisation/edit",
-    `/:lng(${languagesPattern})/app/privatisation/edit`
+    "app/eventsManagement/catering/edit",
+    `/:lng(${languagesPattern})/app/events-management/atering/edit`
   )
   .add(
-    "app/privatisation/create",
-    `/:lng(${languagesPattern})/app/privatisation/create`
+    "app/eventsManagement/catering/create",
+    `/:lng(${languagesPattern})/app/events-management/catering/create`
+  )
+  .add(
+    "app/eventsManagement/privatisation/day",
+    `/:lng(${languagesPattern})/app/events-management/privatisation/day`
+  )
+  .add(
+    "app/eventsManagement/privatisation/week",
+    `/:lng(${languagesPattern})/app/events-management/privatisation/week`
+  )
+  .add(
+    "app/eventsManagement/privatisation/month",
+    `/:lng(${languagesPattern})/app/events-management/privatisation/month`
+  )
+  .add(
+    "app/eventsManagement/privatisation/year",
+    `/:lng(${languagesPattern})/app/events-management/privatisation/year`
+  )
+  .add(
+    "app/eventsManagement/privatisation/edit",
+    `/:lng(${languagesPattern})/app/events-management/privatisation/edit`
+  )
+  .add(
+    "app/eventsManagement/privatisation/create",
+    `/:lng(${languagesPattern})/app/events-management/privatisation/create`
   )
   .add("app/lefood/orders", `/:lng(${languagesPattern})/app/lefood/orders`)
   .add(
@@ -103,13 +121,22 @@ module.exports = routes()
   .add("app/subscriptions", `/:lng(${languagesPattern})/app/subscriptions`)
   .add("app/integrations", `/:lng(${languagesPattern})/app/integrations`)
   .add("app/wholesalers", `/:lng(${languagesPattern})/app/wholesalers`)
-  .add("app/marketing", `/:lng(${languagesPattern})/app/marketing`)
   .add(
-    "app/communityManagement",
-    `/:lng(${languagesPattern})/app/community-management`
+    "app/influencerManagement/marketing",
+    `/:lng(${languagesPattern})/app/influencer-management/marketing`
   )
-  .add("app/photography", `/:lng(${languagesPattern})/app/photography`)
-  .add("app/detectives", `/:lng(${languagesPattern})/app/detectives`)
+  .add(
+    "app/influencerManagement/communityManagement",
+    `/:lng(${languagesPattern})/app/influencer-management/community-management`
+  )
+  .add(
+    "app/influencerManagement/photography",
+    `/:lng(${languagesPattern})/app/influencer-management/photography`
+  )
+  .add(
+    "app/influencerManagement/detectives",
+    `/:lng(${languagesPattern})/app/influencer-management/detectives`
+  )
   .add("app/menuManagement", `/:lng(${languagesPattern})/app/menu-management`)
   .add("app/dashboard", `/:lng(${languagesPattern})/app/dashboard`)
   .add("app/clients", `/:lng(${languagesPattern})/app/clients`)

@@ -2,17 +2,10 @@ import React, { useState, useCallback } from "react";
 import { func, string, shape, node } from "prop-types";
 
 import AppLayout from "layout/App";
-import { generateMenuItems } from "sections/profile/utils";
-import { Modal, ActionIcon, H3, H4 } from "components";
+import { Modal, ActionIcon } from "components";
 import PublishModal from "sections/profile/publishModal";
 import { Router } from "routes";
-import { Confirm } from "components/modals";
 import { PublishMobileIconWrapper, PublishHeader } from "./styled";
-
-const MODALS = {
-  PUBLISH_MODAL: "PUBLISH_MODAL",
-  UNPUBLISH_MODAL: "UNPUBLISH_MODAL"
-};
 
 const ProfileLayout = ({
   t,
@@ -23,25 +16,20 @@ const ProfileLayout = ({
   businessPictures,
   businessProducts,
   businessOpenPeriods,
-  currentPage,
   children,
   updateBusiness,
   businessId,
   getProfileBusiness
 }) => {
-  const [modal, setModal] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const showPublishModal = useCallback(() => {
     getProfileBusiness(businessId);
-    setModal(MODALS.PUBLISH_MODAL);
+    setShowModal(true);
   }, [businessId, getProfileBusiness]);
 
-  const showUnpublishModal = useCallback(() => {
-    setModal(MODALS.UNPUBLISH_MODAL);
-  }, []);
-
   const hideModal = useCallback(() => {
-    setModal(null);
+    setShowModal(false);
   }, []);
 
   const publish = useCallback(() => {
@@ -55,26 +43,13 @@ const ProfileLayout = ({
     );
   }, [business, businessId, lng, updateBusiness]);
 
-  const unpublishBusiness = useCallback(async () => {
-    await updateBusiness(businessId, { state: "draft" });
-    hideModal();
-  }, [businessId, hideModal, updateBusiness]);
-
   return (
     <AppLayout
       {...{
         mainIcon: "profile",
         header: t("header"),
         t,
-        lng,
-        withMenu: true,
-        menuItems: generateMenuItems(
-          t,
-          currentPage,
-          showPublishModal,
-          business && business.get("state"),
-          showUnpublishModal
-        )
+        lng
       }}
     >
       {business && business.get("state") !== "published" && (
@@ -90,7 +65,7 @@ const ProfileLayout = ({
         </PublishMobileIconWrapper>
       )}
       {children}
-      {modal === MODALS.PUBLISH_MODAL && (
+      {showModal && (
         <Modal {...{ open: true, onClose: hideModal }}>
           <PublishModal
             {...{
@@ -107,20 +82,6 @@ const ProfileLayout = ({
             }}
           />
         </Modal>
-      )}
-      {modal === MODALS.UNPUBLISH_MODAL && (
-        <Confirm
-          open
-          onClose={hideModal}
-          btnOkText={t("forms:unpublish")}
-          btnCancelText={t("forms:cancel")}
-          restyled
-          inverseColors
-          onConfirm={unpublishBusiness}
-        >
-          <H3>{t("app:manageProfile.unPublish")}</H3>
-          <H4>{t("app:manageProfile.unPublish_prompt")}</H4>
-        </Confirm>
       )}
     </AppLayout>
   );

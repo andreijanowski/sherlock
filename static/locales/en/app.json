@@ -124,5 +124,10 @@
   "payroll": "HR & Payroll",
   "foodWaste": "Food waste",
   "presenceManagement": "Presence management",
-  "loyalty": "Customer loyalty"
+  "loyalty": "Customer loyalty",
+  "eventsManagement": "Events Management",
+  "influencerManagement": "Influencer Management",
+  "managementIntegrations": "Management Integrations",
+  "operationsIntegrations": "Operations Integrations",
+  "marketingIntegrations": "Marketing Integrations"
 }

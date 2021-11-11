@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Flex } from "@rebass/grid";
 import { func, string, shape } from "prop-types";
 import { connect } from "react-redux";
+
 import { postBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/app";
 import prepareBusinessesList from "utils/prepareBusinessesList";
@@ -13,11 +14,9 @@ import {
   Hamburger
 } from "icons";
 import { Select } from "components";
-import { logout as logoutAction } from "actions/auth";
 import { ToggledMobileMenu, MenuScrollContainer } from "./styled";
 import MainIcon from "./MainIcon";
 import SubItem from "./SubItem";
-import { generateToggledMobileMenuSubitems } from "./utils";
 
 const MobileNav = ({
   t,
@@ -26,7 +25,7 @@ const MobileNav = ({
   businesses,
   changeCurrentBusiness,
   addBusiness,
-  logout
+  config
 }) => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
@@ -39,7 +38,10 @@ const MobileNav = ({
       alignItems="center"
     >
       <MainIcon Icon={ControlCenter} {...{ lng, route: "/" }} />
-      <MainIcon Icon={Catering} {...{ lng, route: "/app/catering/month/" }} />
+      <MainIcon
+        Icon={Catering}
+        {...{ lng, route: "/app/events-management/catering/month/" }}
+      />
       <MainIcon Icon={Delivery} {...{ lng, route: "/" }} />
       <MainIcon Icon={LiveStream} {...{ lng, route: "/" }} />
       <MainIcon
@@ -69,21 +71,28 @@ const MobileNav = ({
           withImage
         />
         <MenuScrollContainer>
-          {generateToggledMobileMenuSubitems(t, lng, logout).map(subitem => (
-            <SubItem
-              {...{
-                lng,
-                t,
-                route: subitem.route,
-                Icon: subitem.icon,
-                label: subitem.label,
-                withSubmenu: subitem.withSubmenu,
-                submenuItems: subitem.submenuItems,
-                key: subitem.label,
-                toggleMenu: setIsMobileNavOpen
-              }}
-            />
-          ))}
+          {config.flatMap(subitem => {
+            const renderItem = item => (
+              <SubItem
+                {...{
+                  lng,
+                  t,
+                  route: item.route,
+                  Icon: item.icon,
+                  label: item.label,
+                  submenuItems: item.submenuItems,
+                  key: item.label,
+                  toggleMenu: setIsMobileNavOpen
+                }}
+              />
+            );
+
+            const isGroup = !!subitem.groupTitle;
+
+            return isGroup
+              ? subitem.items.map(renderItem)
+              : renderItem(subitem);
+          })}
         </MenuScrollContainer>
       </ToggledMobileMenu>
     </Flex>
@@ -93,11 +102,13 @@ const MobileNav = ({
 MobileNav.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
+  currentPage: string.isRequired,
   business: shape(),
   businesses: shape(),
   changeCurrentBusiness: func.isRequired,
   addBusiness: func.isRequired,
-  logout: func.isRequired
+  logout: func.isRequired,
+  config: shape().isRequired
 };
 
 MobileNav.defaultProps = {
@@ -129,7 +140,6 @@ export default connect(
   },
   {
     addBusiness: postBusiness,
-    changeCurrentBusiness: setCurrentBusiness,
-    logout: logoutAction
+    changeCurrentBusiness: setCurrentBusiness
   }
 )(MobileNav);

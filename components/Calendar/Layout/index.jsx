@@ -40,7 +40,9 @@ const CalendarLayout = ({
                 value={view}
                 items={preparePeriodsList(t)}
                 onChange={p =>
-                  Router.pushRoute(`/${lng}/app/${eventType}/${p.value}/`)
+                  Router.pushRoute(
+                    `/${lng}/app/events-management/${eventType}/${p.value}/`
+                  )
                 }
               />
             </Box>
@@ -52,7 +54,9 @@ const CalendarLayout = ({
                 icon={["fa", "plus"]}
                 white
                 onClick={() => {
-                  Router.pushRoute(`/${lng}/app/${eventType}/create/`);
+                  Router.pushRoute(
+                    `/${lng}/app/events-management/${eventType}/create/`
+                  );
                 }}
               />
             </AddIconWrapper>

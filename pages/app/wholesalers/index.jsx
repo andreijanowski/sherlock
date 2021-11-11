@@ -9,7 +9,6 @@ import { func, string, shape, bool } from "prop-types";
 import { connect } from "react-redux";
 import AppLayout from "layout/App";
 import {
-  generateWholesalersMenuItems,
   WHOLESALERS_CATEGORIES,
   WHOLESALERS_URL
 } from "sections/integrations/utils";
@@ -81,8 +80,6 @@ const IntegrationsPage = ({
       lng={lng}
       mainIcon="wholesalers"
       header={t("app:wholesaler")}
-      withMenu
-      menuItems={generateWholesalersMenuItems(t, category)}
     >
       <PartnersSearchBox isHiddenOnDesktop />
       {wholesalers && wholesalers.size > 0 && (

@@ -9,7 +9,13 @@ const TypeformContainer = ({ formId }) => {
   const containerRef = useRef(null);
   useEffect(() => {
     if (containerRef.current) {
-      createWidget(atob(formId), { container: containerRef.current });
+      try {
+        createWidget(Buffer.from(formId, "base64"), {
+          container: containerRef.current
+        });
+      } catch (err) {
+        console.error(err);
+      }
     }
   }, [formId]);
   return <Container ref={containerRef} />;

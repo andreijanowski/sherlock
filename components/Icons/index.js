@@ -45,7 +45,9 @@ export {
   Payroll,
   FoodWaste,
   PresenceManagement,
-  CustomerLoyalty
+  CustomerLoyalty,
+  EventsManagement,
+  InfluencerManagement
 } from "./navigation";
 export {
   Docs,

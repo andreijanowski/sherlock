@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Flex, Box } from "@rebass/grid";
 
 const SIDEBAR_WIDTH = 300;
 
@@ -62,9 +63,13 @@ export const ChildrenWrapper = styled.div`
 
 export const NavItem = styled.li`
   list-style: none;
-  &:not(:last-child) {
-    border-bottom: 1px solid rgb(${p => p.theme.colors.greyBorder});
-  }
+  ${p =>
+    !p.withoutIcon &&
+    `
+    &:not(:first-child) {
+      border-top: 1px solid rgb(${p.theme.colors.greyBorder});
+    }
+  `}
 `;
 
 export const NavItemIcon = styled.span`
@@ -72,6 +77,7 @@ export const NavItemIcon = styled.span`
   position: absolute;
   left: 0;
   top: 50%;
+  z-index: 0;
   transform: translateY(-50%);
   font-size: 55px;
   justify-content: center;
@@ -81,6 +87,19 @@ export const NavItemIcon = styled.span`
   svg .secondary {
     color: rgb(${p => p.theme.colors.bombayDark});
   }
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background-color: rgb(${p => p.theme.colors.detectivesBackgroundGrey});
+    border-radius: 50%;
+    z-index: -1;
+  }
 `;
 
 export const NavItemLink = styled.a`
@@ -88,15 +107,18 @@ export const NavItemLink = styled.a`
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding: 12px 25px 12px 60px;
-  font-weight: ${p => p.theme.fontWeights.semiBold};
+  padding: ${p => (p.withoutIcon ? "12px" : "20px 25px 20px 60px")};
+  font-weight: ${p =>
+    p.withoutIcon ? p.theme.fontWeights.medium : p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f13};
   line-height: 21px;
   letter-spacing: 0.3px;
   &:hover {
     background-color: rgb(${p => p.theme.colors.background});
   }
-  color: rgb(${p => p.theme.colors.darkText});
+  color: rgb(
+    ${p => (p.withoutIcon ? p.theme.colors.gray["3"] : p.theme.colors.darkText)}
+  );
   ${p =>
     p.isActive &&
     `
@@ -126,4 +148,23 @@ export const BadgeNumber = styled.div`
   text-align: center;
   background: rgb(${p => p.theme.colors.blue});
   border-radius: 50%;
+`;
+
+// has unique color, will not be a part of theme
+export const CollapsingGroupToggle = styled(Flex)`
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 6px 6px 6px 18px;
+  color: #0d1249;
+  cursor: pointer;
+`;
+
+export const CollapsingGroupContent = styled.ul`
+  padding-left: 0;
+`;
+
+export const CollapsingGroupTitle = styled(Box)`
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes.f16};
+  line-height: ${p => p.theme.fontSizes.f24};
 `;

@@ -1,11 +1,12 @@
-import React, { useMemo } from "react";
-import { func, string, number, node, bool } from "prop-types";
-import { connect } from "react-redux";
+import React, { useCallback } from "react";
+import { func, string, shape, arrayOf, bool } from "prop-types";
 import { useRouter } from "next/router";
 import { CSSTransition } from "react-transition-group";
 
-import { Link, BusinessSelect } from "components";
+import { Link, BusinessSelect, Menu } from "components";
+import { PARTNERS_URL, WHOLESALERS_URL } from "sections/integrations/utils";
 import MenuArrowIcon from "components/MenuArrowIcon";
+import { isMenuItemActive } from "utils/menuConfig";
 import {
   Wrapper,
   BadgeNumber,
@@ -18,21 +19,29 @@ import {
   TransitionContainer,
   NavTransitionContainer
 } from "./styled";
-import { getNavConfig } from "./config";
+import CollapsingGroup from "./CollapsingGroup";
+
+const routesWithSearch = [PARTNERS_URL, WHOLESALERS_URL];
 
 const NavBar = ({
   t,
   lng,
   showNestedMenu,
-  children,
-  ordersUpdates,
-  reservationsUpdates,
+  config,
+  withMenu,
+  submenuItems,
   toggleNestedMenu
 }) => {
-  const { asPath } = useRouter();
-  const navConfig = useMemo(
-    () => getNavConfig({ t, ordersUpdates, reservationsUpdates }),
-    [ordersUpdates, reservationsUpdates, t]
+  const { asPath, pathname } = useRouter();
+
+  const withSearch = routesWithSearch.includes(pathname);
+
+  const onTogglingItemClick = useCallback(
+    e => {
+      e.preventDefault();
+      toggleNestedMenu();
+    },
+    [toggleNestedMenu]
   );
 
   return (
@@ -51,22 +60,44 @@ const NavBar = ({
         >
           <NavTransitionContainer>
             <NavList>
-              {navConfig.map(
-                ({ route, basePath, Icon, label, badge, hasNested }) => {
-                  const isActive = asPath.startsWith(`/${lng}${basePath}`);
-                  const shouldToggleMenu = children && isActive;
+              {config.flatMap(menuItem => {
+                const renderItem = item => {
+                  const {
+                    route,
+                    basePath,
+                    icon,
+                    label,
+                    badge,
+                    submenuItems: itemSubmenuItems
+                  } = item;
+
+                  const withoutIcon = !icon;
+
+                  const isActive = isMenuItemActive({
+                    lng,
+                    asPath,
+                    menuItem
+                  });
+                  const shouldToggleMenu = withMenu && isActive;
                   const onClick = shouldToggleMenu
-                    ? e => {
-                        e.preventDefault();
-                        toggleNestedMenu();
-                      }
+                    ? onTogglingItemClick
                     : undefined;
 
+                  const hasNested = !!itemSubmenuItems;
+
                   return (
-                    <NavItem key={basePath}>
+                    <NavItem key={basePath} withoutIcon={withoutIcon}>
                       <Link route={route} lng={lng}>
-                        <NavItemLink isActive={isActive} onClick={onClick}>
-                          <NavItemIcon>{Icon && <Icon />}</NavItemIcon>
+                        <NavItemLink
+                          isActive={isActive}
+                          onClick={onClick}
+                          withoutIcon={withoutIcon}
+                        >
+                          {icon && (
+                            <NavItemIcon>
+                              {React.createElement(icon)}
+                            </NavItemIcon>
+                          )}
                           {label}
                           {hasNested && <MenuArrowIcon />}
                           {badge && <BadgeNumber>{badge}</BadgeNumber>}
@@ -74,12 +105,34 @@ const NavBar = ({
                       </Link>
                     </NavItem>
                   );
-                }
-              )}
+                };
+
+                const isGroup = !!menuItem.groupTitle;
+
+                return isGroup ? (
+                  <CollapsingGroup title={menuItem.groupTitle}>
+                    {menuItem.items.map(renderItem)}
+                  </CollapsingGroup>
+                ) : (
+                  renderItem(menuItem)
+                );
+              })}
             </NavList>
           </NavTransitionContainer>
         </CSSTransition>
-        {children ? <ChildrenWrapper>{children}</ChildrenWrapper> : null}
+        {withMenu && (
+          <ChildrenWrapper>
+            <Menu
+              {...{
+                withSearch,
+                t,
+                lng,
+                menuItems: submenuItems,
+                toggleNestedMenu
+              }}
+            />
+          </ChildrenWrapper>
+        )}
       </TransitionContainer>
     </Wrapper>
   );
@@ -88,18 +141,16 @@ const NavBar = ({
 NavBar.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  ordersUpdates: number.isRequired,
-  reservationsUpdates: number.isRequired,
   showNestedMenu: bool.isRequired,
   toggleNestedMenu: func.isRequired,
-  children: node
+  config: arrayOf(shape()).isRequired,
+  withMenu: bool,
+  submenuItems: arrayOf(shape())
 };
 
 NavBar.defaultProps = {
-  children: null
+  withMenu: false,
+  submenuItems: null
 };
 
-export default connect(state => ({
-  ordersUpdates: state.getIn(["app", "ordersUpdates"]).size,
-  reservationsUpdates: state.getIn(["app", "reservationsUpdates"]).size
-}))(NavBar);
+export default NavBar;

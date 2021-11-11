@@ -79,6 +79,7 @@ export const SubMenuWrapper = styled(Box).attrs(() => ({
   p: 4
 }))`
   position: absolute;
+  overflow: auto;
   top: 0;
   left: -120%;
   width: 100%;

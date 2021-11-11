@@ -17,6 +17,7 @@ import {
   Clients,
   Payments
 } from "icons";
+import { generateProfileSubmenu, isMenuItemActive } from "utils/menuConfig";
 
 export const chooseIcon = icon => {
   switch (icon) {
@@ -59,18 +60,25 @@ export const chooseIcon = icon => {
   }
 };
 
-export const getButtonRoutes = (menuItems, mainIcon) => {
-  let prevRoute = null;
-  let nextRoute = null;
+const getPrevAndNextButtons = (items, activeIndex) => ({
+  prevRoute: activeIndex > 0 ? items[activeIndex - 1].route : null,
+  nextRoute:
+    activeIndex + 1 < items.length ? items[activeIndex + 1].route : null
+});
 
-  if (menuItems && mainIcon === "profile") {
-    const activeTabIndex = menuItems.findIndex(item => item.isActive);
-    prevRoute = activeTabIndex > 0 ? menuItems[activeTabIndex - 1].route : null;
-    nextRoute =
-      activeTabIndex + 1 < menuItems.length - 1
-        ? menuItems[activeTabIndex + 1].route
-        : null;
+export const getButtonRoutes = ({ lng, asPath, mainIcon }) => {
+  if (mainIcon === "profile") {
+    const profileMenuItems = generateProfileSubmenu(() => {});
+
+    const activeTabIndex = profileMenuItems.findIndex(menuItem =>
+      isMenuItemActive({
+        lng,
+        asPath,
+        menuItem
+      })
+    );
+    return getPrevAndNextButtons(profileMenuItems, activeTabIndex);
   }
 
-  return { prevRoute, nextRoute };
+  return { prevRoute: null, nextRoute: null };
 };
