@@ -26,9 +26,15 @@ const NavigationContainer = ({
   );
 
   const mainMenuActiveItem = useMemo(() => {
-    const flatConfig = config.flatMap(menuItem =>
-      menuItem.groupTitle ? menuItem.items : menuItem
-    );
+    const flatConfig = [];
+
+    config.forEach(menuItem => {
+      if (menuItem.groupTitle) {
+        flatConfig.push(...menuItem.items);
+      } else {
+        flatConfig.push(menuItem);
+      }
+    });
 
     return flatConfig.find(menuItem =>
       isMenuItemActive({ lng, asPath, menuItem })
