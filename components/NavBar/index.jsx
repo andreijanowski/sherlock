@@ -44,6 +44,49 @@ const NavBar = ({
     [toggleNestedMenu]
   );
 
+  const renderItem = useCallback(
+    item => {
+      const {
+        route,
+        basePath,
+        icon,
+        label,
+        badge,
+        submenuItems: itemSubmenuItems
+      } = item;
+
+      const withoutIcon = !icon;
+
+      const isActive = isMenuItemActive({
+        lng,
+        asPath,
+        menuItem: item
+      });
+      const shouldToggleMenu = withMenu && isActive;
+      const onClick = shouldToggleMenu ? onTogglingItemClick : undefined;
+
+      const hasNested = !!itemSubmenuItems;
+
+      return (
+        <NavItem key={basePath} withoutIcon={withoutIcon}>
+          <Link route={route} lng={lng}>
+            <NavItemLink
+              isActive={isActive}
+              onClick={onClick}
+              withoutIcon={withoutIcon}
+            >
+              {icon && <NavItemIcon>{React.createElement(icon)}</NavItemIcon>}
+              {label}
+              {hasNested && <MenuArrowIcon />}
+              {badge && <BadgeNumber>{badge}</BadgeNumber>}
+            </NavItemLink>
+          </Link>
+        </NavItem>
+      );
+    },
+    [asPath, lng, onTogglingItemClick, withMenu]
+  );
+
   return (
     <Wrapper>
       <SelectWrapper>
@@ -61,52 +104,6 @@ const NavBar = ({
           <NavTransitionContainer>
             <NavList>
               {config.flatMap(menuItem => {
-                const renderItem = item => {
-                  const {
-                    route,
-                    basePath,
-                    icon,
-                    label,
-                    badge,
-                    submenuItems: itemSubmenuItems
-                  } = item;
-
-                  const withoutIcon = !icon;
-
-                  const isActive = isMenuItemActive({
-                    lng,
-                    asPath,
-                    menuItem
-                  });
-                  const shouldToggleMenu = withMenu && isActive;
-                  const onClick = shouldToggleMenu
-                    ? onTogglingItemClick
-                    : undefined;
-
-                  const hasNested = !!itemSubmenuItems;
-
-                  return (
-                    <NavItem key={basePath} withoutIcon={withoutIcon}>
-                      <Link route={route} lng={lng}>
-                        <NavItemLink
-                          isActive={isActive}
-                          onClick={onClick}
-                          withoutIcon={withoutIcon}
-                        >
-                          {icon && (
-                            <NavItemIcon>
-                              {React.createElement(icon)}
-                            </NavItemIcon>
-                          )}
-                          {label}
-                          {hasNested && <MenuArrowIcon />}
-                          {badge && <BadgeNumber>{badge}</BadgeNumber>}
-                        </NavItemLink>
-                      </Link>
-                    </NavItem>
-                  );
-                };
-
                 const isGroup = !!menuItem.groupTitle;
 
                 return isGroup ? (

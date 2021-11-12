@@ -58,7 +58,7 @@ module.exports = routes()
   )
   .add(
     "app/eventsManagement/catering/edit",
-    `/:lng(${languagesPattern})/app/events-management/atering/edit`
+    `/:lng(${languagesPattern})/app/events-management/catering/edit`
   )
   .add(
     "app/eventsManagement/catering/create",

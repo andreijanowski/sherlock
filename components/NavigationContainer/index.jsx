@@ -25,10 +25,15 @@ const NavigationContainer = ({
     [t, ordersUpdates, reservationsUpdates, logout]
   );
 
-  const mainMenuActiveItem = useMemo(
-    () => config.find(menuItem => isMenuItemActive({ lng, asPath, menuItem })),
-    [config, lng, asPath]
-  );
+  const mainMenuActiveItem = useMemo(() => {
+    const flatConfig = config.flatMap(menuItem =>
+      menuItem.groupTitle ? menuItem.items : menuItem
+    );
+
+    return flatConfig.find(menuItem =>
+      isMenuItemActive({ lng, asPath, menuItem })
+    );
+  }, [config, lng, asPath]);
 
   const submenuItems = mainMenuActiveItem && mainMenuActiveItem.submenuItems;
   const withMenu = !!submenuItems;
