@@ -155,8 +155,8 @@ export const INFLUENCER_MANAGEMENT_BASE_PATH = "/app/influencer-management";
 
 const generateInfluencerManagementSubmenu = t => [
   {
-    basePath: `${INFLUENCER_MANAGEMENT_BASE_PATH}/detectives/`,
-    route: `${INFLUENCER_MANAGEMENT_BASE_PATH}/detectives/`,
+    basePath: `${INFLUENCER_MANAGEMENT_BASE_PATH}/detectives`,
+    route: `${INFLUENCER_MANAGEMENT_BASE_PATH}/detectives`,
     icon: Detectives,
     label: t("app:detectives")
   },
@@ -296,7 +296,7 @@ export const getMenuConfig = ({
     items: [
       {
         basePath: INFLUENCER_MANAGEMENT_BASE_PATH,
-        route: `${INFLUENCER_MANAGEMENT_BASE_PATH}/detectives/`,
+        route: `${INFLUENCER_MANAGEMENT_BASE_PATH}/detectives`,
         icon: InfluencerManagement,
         label: t("app:influencerManagement"),
         submenuItems: generateInfluencerManagementSubmenu(t)

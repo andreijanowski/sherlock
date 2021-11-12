@@ -103,7 +103,7 @@ const NavBar = ({
         >
           <NavTransitionContainer>
             <NavList>
-              {config.flatMap(menuItem => {
+              {config.map(menuItem => {
                 const isGroup = !!menuItem.groupTitle;
 
                 return isGroup ? (

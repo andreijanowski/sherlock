@@ -75,7 +75,7 @@ function* handlePatchChangeSaga({ payload: { path } }) {
       yield put(setReservationsUpdates(Map()));
       break;
     }
-    case "/app/detectives": {
+    case "/app/influencerManagement/detectives": {
       yield put(fetchTopDetective());
       yield all(DETECTIVES_CITIES.map(city => put(fetchDetectives({ city }))));
       yield put(

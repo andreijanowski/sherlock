@@ -71,7 +71,7 @@ const MobileNav = ({
           withImage
         />
         <MenuScrollContainer>
-          {config.flatMap(subitem => {
+          {config.map(subitem => {
             const renderItem = item => (
               <SubItem
                 {...{
