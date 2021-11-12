@@ -31,13 +31,18 @@ const Menu = ({ lng, toggleNestedMenu, menuItems, t, withSearch }) => {
           });
 
           return menuItem.route ? (
-            <Link {...{ lng, route, key: route }}>
+            <Link {...{ lng, route, key: label }}>
               <Item isActive={isActive} color={color}>
                 <span>{label}</span>
               </Item>
             </Link>
           ) : (
-            <Item onClick={onClick} isActive={isActive} color={color}>
+            <Item
+              key={label}
+              onClick={onClick}
+              isActive={isActive}
+              color={color}
+            >
               <span>{label}</span>
             </Item>
           );
