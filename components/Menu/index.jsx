@@ -23,18 +23,23 @@ const Menu = ({ lng, toggleNestedMenu, menuItems, t, withSearch }) => {
           <span>{t("app:backToMainMenu")}</span>
         </Item>
         {menuItems.map(menuItem => {
+          const { route, label, color, onClick } = menuItem;
           const isActive = isMenuItemActive({
             lng,
             asPath,
             menuItem
           });
 
-          return (
-            <Link {...{ lng, route: menuItem.route, key: menuItem.route }}>
-              <Item isActive={isActive} color={menuItem.color}>
-                <span>{menuItem.label}</span>
+          return menuItem.route ? (
+            <Link {...{ lng, route, key: route }}>
+              <Item isActive={isActive} color={color}>
+                <span>{label}</span>
               </Item>
             </Link>
+          ) : (
+            <Item onClick={onClick} isActive={isActive} color={color}>
+              <span>{label}</span>
+            </Item>
           );
         })}
         {isProfilePath && <PublishBusinessButton t={t} lng={lng} />}
