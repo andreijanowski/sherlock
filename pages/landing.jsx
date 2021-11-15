@@ -1,32 +1,30 @@
 import React, { PureComponent } from "react";
 import requireAuth from "lib/requireAuth";
 import { compose } from "redux";
-import { connect } from "react-redux";
-import { func, string, shape } from "prop-types";
+import { func, shape, string } from "prop-types";
+
 import { Footer } from "components";
 import {
-  Navigation,
-  TopSection,
-  Services,
   DevelopersAndApi,
   Features,
-  Plans,
-  InstallApp
+  InstallApp,
+  Navigation,
+  Services,
+  TopSection
 } from "sections/landing";
 import { withTranslation } from "i18n";
 import {
-  TopSectionWrapper,
-  LandingWrapper,
-  NavigationWrapper,
-  ProductsWrapper,
   DevelopersAndApiWrapper,
   FeaturesWrapper,
-  PlansWrapper,
   FooterWrapper,
-  InstallAppWrapper
+  InstallAppWrapper,
+  LandingWrapper,
+  NavigationWrapper,
+  PlansWrapper,
+  ProductsWrapper,
+  TopSectionWrapper
 } from "sections/landing/sharedStyled";
-import { planLoginPath } from "utils/plans";
-import { fetchPlans } from "actions/plans";
+import PlansV2 from "sections/landing/PlansV2";
 
 const namespaces = ["landing", "plans", "common"];
 
@@ -43,14 +41,6 @@ class Home extends PureComponent {
     this.developersAndApiRef = React.createRef();
     this.featuresRef = React.createRef();
     this.plansRef = React.createRef();
-    this.state = {
-      billingInterval: "month"
-    };
-  }
-
-  componentDidMount() {
-    const { getPlans } = this.props;
-    getPlans();
   }
 
   getLng = () => {
@@ -66,27 +56,15 @@ class Home extends PureComponent {
     });
   };
 
-  handleChangeBillngPeriod = () =>
-    this.setState(({ billingInterval }) => ({
-      billingInterval: billingInterval === "month" ? "year" : "month"
-    }));
-
-  handlePlanChoose = ({ label } = {}) => {
-    const href = planLoginPath({ lng: this.getLng(), planName: label });
-
-    window.location.href = href;
-  };
-
   render() {
     const {
       servicesRef,
       developersAndApiRef,
       scrollTo,
-      featuresRef,
-      plansRef
+      plansRef,
+      featuresRef
     } = this;
-    const { t, i18n, plans } = this.props;
-    const { billingInterval } = this.state;
+    const { t } = this.props;
     const lng = this.getLng();
 
     return (
@@ -103,21 +81,11 @@ class Home extends PureComponent {
         <DevelopersAndApiWrapper>
           <DevelopersAndApi {...{ t, lng, developersAndApiRef }} />
         </DevelopersAndApiWrapper>
-        <FeaturesWrapper>
+        <FeaturesWrapper id="features">
           <Features {...{ t, lng, featuresRef }} />
         </FeaturesWrapper>
-        <PlansWrapper>
-          <Plans
-            {...{
-              t,
-              plans,
-              plansRef,
-              lng: (i18n && i18n.language) || "en",
-              billingInterval,
-              handleChangeBillngPeriod: this.handleChangeBillngPeriod,
-              onPlanChoose: this.handlePlanChoose
-            }}
-          />
+        <PlansWrapper ref={plansRef}>
+          <PlansV2 />
         </PlansWrapper>
         <InstallAppWrapper>
           <InstallApp {...{ t }} />
@@ -133,7 +101,6 @@ class Home extends PureComponent {
 Home.propTypes = {
   t: func.isRequired,
   i18n: shape({ language: string.isRequired }).isRequired,
-  getPlans: func.isRequired,
   plans: shape()
 };
 
@@ -143,14 +110,5 @@ Home.defaultProps = {
 
 export default compose(
   requireAuth(false),
-  withTranslation(namespaces),
-  connect(
-    state => {
-      const plans = state.getIn(["plans", "data"]);
-      return {
-        plans
-      };
-    },
-    { getPlans: fetchPlans }
-  )
+  withTranslation(namespaces)
 )(Home);

@@ -150,12 +150,11 @@ export const BadgeNumber = styled.div`
   border-radius: 50%;
 `;
 
-// has unique color, will not be a part of theme
 export const CollapsingGroupToggle = styled(Flex)`
   align-items: center;
   flex-wrap: nowrap;
   padding: 6px 6px 6px 18px;
-  color: #0d1249;
+  color: rgb(${p => p.theme.colors.textDarkBlue});
   cursor: pointer;
 `;
 

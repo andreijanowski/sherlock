@@ -19,6 +19,8 @@ import ReactGA from "react-ga";
 import { fromJS } from "immutable";
 import Cookies from "js-cookie";
 import uuid from "uuid/v1";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
 import {
   loadUserData as loadUserDataAction,
   refreshToken as refreshTokenAction
@@ -26,6 +28,8 @@ import {
 import { pathChanged as pathChangedAction, setInstanceUuid } from "actions/app";
 import { appWithTranslation } from "../i18n";
 import createStore from "../data/store";
+
+config.autoAddCss = false;
 
 ReactGA.initialize(GOOGLE_ANALYTICS_ID);
 if (!isServer) {

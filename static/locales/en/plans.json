@@ -136,5 +136,39 @@
   },
   "tableHd1": "Per Month",
   "tableHd2": "Per Location",
-  "tableStar": "* Additional charges apply to these services and products."
+  "tableStar": "* Additional charges apply to these services and products.",
+  "dashboardAnalytics": {
+    "basic": "Basic",
+    "essential": "Advanced",
+    "ultimate": "Tailor Made"
+  },
+  "hints": {
+    "integrationHubTitle": "Available integrations are shown below",
+    "integrationHubCaption": "Management, Operations, Marketing",
+    "dashboardTailorMade": "Dashboard includes multilocation view",
+    "paymentsTitle": "Transactional fee may apply",
+    "paymentsCaption": "e.g. Stripe 1,4% + 0,25€",
+    "customerSupportTitle": "Service Available",
+    "customerSupportTime": "9h to 21h CET",
+    "customerSupportDays": "Mon to Sat"
+  },
+  "outFeatures": "Our features",
+  "ourIntegrations": "Our integrations",
+  "comingSoon": "coming soon",
+  "reportAndSupport": "Report & Customer Support",
+  "customerSupport": {
+    "title": "Customer Support",
+    "options": {
+      "basic": "Online Chat",
+      "essential": "Phone Support with account manager",
+      "ultimate": "24/7 Phone Support with account manager"
+    }
+  },
+  "operationalReport": {
+    "title": "Operational Report",
+    "options": {
+      "essential": "Essential",
+      "ultimate": "Advanced"
+    }
+  }
 }
