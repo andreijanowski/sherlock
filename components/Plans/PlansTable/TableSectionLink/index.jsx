@@ -6,12 +6,9 @@ import { Cell, Row } from "../styled";
 
 const TableSectionLink = ({ link: { label } }) => (
   <Row>
-    <Cell>
+    <Cell colSpan={4}>
       <SectionLink>{label}</SectionLink>
     </Cell>
-    <Cell />
-    <Cell />
-    <Cell />
   </Row>
 );
 

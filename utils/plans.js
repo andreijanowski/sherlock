@@ -2,47 +2,74 @@ import {
   API_URL,
   APP_URL,
   SUBSCRIPTION_ENTREPRISE_URL,
-  SUBSCRIPTION_PLANS,
-  SUBSCRIPTION_PLANS_SLUGS
+  SUBSCRIPTION_PLANS
 } from "consts";
+import { theme } from "./theme";
 
-export const getPlanSlug = (config = {}) => {
-  const { planName, billingInterval } = config || {};
-  return SUBSCRIPTION_PLANS_SLUGS[billingInterval][planName];
-};
+export const getPlanSlug = ({ name, period, currency }) =>
+  `sherlock-${name}-${period}-${currency}-v2`;
 
-export const getPlanPrice = ({ plans, planName, billingInterval }) => {
+export const matchPlanBySlug = ({ plans, name, period, currency }) => {
   const planSlug = getPlanSlug({
-    planName: planName.toLowerCase(),
-    billingInterval
+    name: name.toLowerCase(),
+    period,
+    currency
   });
 
-  const relatedPlan =
-    plans && plans.find(p => p.getIn(["attributes", "slug"]) === planSlug);
+  return plans && plans.find(p => p.getIn(["attributes", "slug"]) === planSlug);
+};
 
+/* @deprecated  */
+export const getPlanPrice = ({ plans, name, period, currency }) => {
+  const relatedPlan = matchPlanBySlug({ plans, name, period, currency });
   if (!relatedPlan) return null;
 
   const amountInCents = relatedPlan.getIn(["attributes", "amountCents"]);
   return amountInCents / 100;
 };
 
-/**
- * @param {Object} config
- * @param {String} config.lng
- * @param {String} config.planName
- */
-export const planLoginPath = (config = {}) => {
-  const { lng = "", planName = "" } = config;
-
-  if (planName === SUBSCRIPTION_PLANS.ENTREPRISE) {
+export const getPlanLoginPath = ({ lng, name }) => {
+  if (name === SUBSCRIPTION_PLANS.ULTIMATE) {
     return SUBSCRIPTION_ENTREPRISE_URL;
   }
+  return `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=${name}`;
+};
 
-  const plan =
-    planName === SUBSCRIPTION_PLANS.ESSENTIAL ||
-    planName === SUBSCRIPTION_PLANS.PREMIUM
-      ? planName.toLowerCase()
-      : "basic";
+const PLANS_COLORS = {
+  [SUBSCRIPTION_PLANS.BASIC]: theme.colors.darkText,
+  [SUBSCRIPTION_PLANS.ESSENTIAL]: theme.colors.plansCaptionBlue,
+  [SUBSCRIPTION_PLANS.ULTIMATE]: theme.colors.textDarkBlue
+};
 
-  return `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=${plan}`;
+export const formatPlanPrice = ({ cents, currency, t }) => {
+  const preparedCents = cents / 100;
+  const preparedCurrency = currency.toLocaleLowerCase();
+  return `${t(`plans:currency.${preparedCurrency}`)}${preparedCents.toFixed(
+    0
+  )}`;
+};
+
+export const getPlanData = ({ plan, t }) => {
+  const slug = plan.getIn(["attributes", "slug"]);
+
+  const name = slug.split("-")[1].toLocaleLowerCase();
+  const label = t(`plans:plansTitle.${name}`);
+  const cents = plan.getIn(["attributes", "amountCents"]);
+  const currency = plan.getIn(["attributes", "currency"]);
+  const price = formatPlanPrice({ cents, currency, t });
+  const buttonLabel =
+    name === SUBSCRIPTION_PLANS.ULTIMATE
+      ? t("plans:contactUs")
+      : t("plans:choosePlan", { name: label });
+  const isPopular = name === SUBSCRIPTION_PLANS.ESSENTIAL;
+  const color = PLANS_COLORS[name] || "#000";
+
+  return {
+    name,
+    label,
+    price,
+    buttonLabel,
+    color,
+    isPopular
+  };
 };

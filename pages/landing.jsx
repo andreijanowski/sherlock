@@ -24,7 +24,7 @@ import {
   ProductsWrapper,
   TopSectionWrapper
 } from "sections/landing/sharedStyled";
-import PlansV2 from "sections/landing/PlansV2";
+import Plans from "sections/landing/Plans";
 
 const namespaces = ["landing", "plans", "common"];
 
@@ -85,7 +85,7 @@ class Home extends PureComponent {
           <Features {...{ t, lng, featuresRef }} />
         </FeaturesWrapper>
         <PlansWrapper ref={plansRef}>
-          <PlansV2 />
+          <Plans lng={lng} />
         </PlansWrapper>
         <InstallAppWrapper>
           <InstallApp {...{ t }} />

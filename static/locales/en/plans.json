@@ -170,5 +170,41 @@
       "essential": "Essential",
       "ultimate": "Advanced"
     }
-  }
+  },
+  "billing": {
+    "title": "Billing",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "save": "Save 20%"
+  },
+  "billingPerPeriod": {
+    "monthly": "month",
+    "yearly": "year"
+  },
+  "currency": {
+    "title": "Currency",
+    "eur": "€",
+    "gbp": "£",
+    "chf": "CHF",
+    "usd": "$"
+  },
+  "perfectFor": {
+    "title": "Perfect For",
+    "basic": "Small independent restaurants & stores",
+    "essential": "SMB’s & small chains looking to scale",
+    "ultimate": "Well established brands looking to reduce operational costs"
+  },
+  "introductoryOffer": {
+    "title": "Introductory Offer",
+    "offer": "{{price}} for 3 months"
+  },
+  "ourPlans": "Our plans",
+  "plansTitle": {
+    "basic": "Basic",
+    "essential": "Essential",
+    "ultimate": "Ultimate from"
+  },
+  "choosePlan": "Choose {{name}}",
+  "contactUs": "Contact us",
+  "mostPopular": "Most popular"
 }

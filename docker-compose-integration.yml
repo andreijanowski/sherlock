@@ -28,6 +28,7 @@ services:
       - MARKETING_TYPEFORM_ID
       - PHOTOGRAPHY_TYPEFORM_ID
       - ROLLBAR_ACCESS_TOKEN
+      - PLANS_BUSINESS_EXAMPLE_LINK
     networks:
       - frontend
     expose:

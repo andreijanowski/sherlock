@@ -50,6 +50,8 @@ export const colors = {
   black: "0, 0, 0",
   pink: "243, 129, 118",
   textDarkBlue: "13, 18, 73",
+  tableBorder: "234, 229, 229",
+  plansCaptionBlue: "83, 121, 247",
   gray: {
     "2": "79, 79, 79",
     "3": "130, 130, 130",

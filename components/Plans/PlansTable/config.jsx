@@ -22,6 +22,7 @@ import {
   CustomerSupport,
   OperationalReport
 } from "components/Icons";
+import { PLANS_BUSINESS_EXAMPLE_LINK } from "consts";
 import { TableHintCaption, TableHintTitle } from "./TableHint/styled";
 
 export const getTableConfig = t => [
@@ -88,8 +89,7 @@ export const getTableConfig = t => [
           {
             icon: Restaurant,
             label: t("app:manageProfile.myProfile"),
-            // todo add href to env var
-            href: "https://google.com",
+            href: PLANS_BUSINESS_EXAMPLE_LINK,
             columns: [
               { isAvailable: true },
               { isAvailable: true },
