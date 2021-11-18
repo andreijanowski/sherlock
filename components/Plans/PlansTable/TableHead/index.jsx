@@ -11,9 +11,9 @@ import TablePerfectForRow from "../TablePerfectForRow";
 const TableHead = ({ plans, period, currency, onPlanChooseClick }) => {
   const matchingPlans = useMemo(
     () =>
-      Object.values(SUBSCRIPTION_PLANS).map(name =>
-        matchPlanBySlug({ plans, name, period, currency })
-      ),
+      Object.values(SUBSCRIPTION_PLANS)
+        .map(name => matchPlanBySlug({ plans, name, period, currency }))
+        .filter(Boolean),
     [currency, period, plans]
   );
 

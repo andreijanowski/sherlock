@@ -19,15 +19,6 @@ export const matchPlanBySlug = ({ plans, name, period, currency }) => {
   return plans && plans.find(p => p.getIn(["attributes", "slug"]) === planSlug);
 };
 
-/* @deprecated  */
-export const getPlanPrice = ({ plans, name, period, currency }) => {
-  const relatedPlan = matchPlanBySlug({ plans, name, period, currency });
-  if (!relatedPlan) return null;
-
-  const amountInCents = relatedPlan.getIn(["attributes", "amountCents"]);
-  return amountInCents / 100;
-};
-
 export const getPlanLoginPath = ({ lng, name }) => {
   if (name === SUBSCRIPTION_PLANS.ULTIMATE) {
     return SUBSCRIPTION_ENTREPRISE_URL;
@@ -51,11 +42,14 @@ export const formatPlanPrice = ({ cents, currency, t }) => {
 
 export const getPlanData = ({ plan, t }) => {
   const slug = plan.getIn(["attributes", "slug"]);
-
-  const name = slug.split("-")[1].toLocaleLowerCase();
-  const label = t(`plans:plansTitle.${name}`);
   const cents = plan.getIn(["attributes", "amountCents"]);
   const currency = plan.getIn(["attributes", "currency"]);
+  const fullName = plan.getIn(["attributes", "name"]);
+
+  const splittedSlug = slug.split("-");
+  const name = splittedSlug[1].toLocaleLowerCase();
+  const period = splittedSlug[2];
+  const label = t(`plans:plansTitle.${name}`);
   const price = formatPlanPrice({ cents, currency, t });
   const buttonLabel =
     name === SUBSCRIPTION_PLANS.ULTIMATE
@@ -66,6 +60,9 @@ export const getPlanData = ({ plan, t }) => {
 
   return {
     name,
+    fullName,
+    period,
+    slug,
     label,
     price,
     buttonLabel,

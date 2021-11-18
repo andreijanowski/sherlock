@@ -14,17 +14,17 @@ const TableIntroductoryRow = ({ matchingPlans }) => {
         {t("plans:introductoryOffer.title")}
       </TableHeadPrimaryCell>
       {matchingPlans.map((plan, index) => {
-        const threeMonthPromoPrice = plan.getIn([
+        const introductoryOffer = plan.getIn([
           "attributes",
-          "threeMonthPromoPrice"
+          "introductoryOffer"
         ]);
 
         const currency = plan.getIn(["attributes", "currency"]);
 
-        const price = threeMonthPromoPrice
+        const price = introductoryOffer
           ? t("plans:introductoryOffer.offer", {
               price: formatPlanPrice({
-                cents: threeMonthPromoPrice,
+                cents: introductoryOffer,
                 currency,
                 t
               })

@@ -37,19 +37,18 @@ export const CardWrapper = styled(Flex).attrs(() => ({
   `};
 `;
 
+export const Name = styled(Box)`
+  color: rgb(${p => p.theme.colors.darkText});
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f16};
+`;
+
 export const Price = styled.div`
-  margin-bottom: 16px;
   color: rgb(${p => p.theme.colors.dark});
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f36};
   line-height: 1.333;
   text-align: center;
-  @media (min-width: ${p => p.theme.breakpoints[0]}) {
-    text-align: start;
-  }
-  small {
-    font-size: ${p => p.theme.fontSizes.f16};
-  }
 `;
 
 export const Container = styled(Flex).attrs(() => ({

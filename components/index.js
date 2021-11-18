@@ -66,8 +66,6 @@ export {
 export { default as InfoBar } from "./InfoBar";
 export { default as AutosizeInput } from "./AutosizeInput";
 export { default as CookiesModal } from "./CookiesModal";
-export { default as Plans, PlansBillingInterval } from "./Plans";
-export { default as PlansLandingPage } from "./PlansLandingPage";
 export { default as Opacity } from "./Opacity";
 export { default as Picture } from "./Picture";
 export { default as DndColumn } from "./Dnd/Column";

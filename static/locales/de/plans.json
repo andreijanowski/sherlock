@@ -26,115 +26,76 @@
   "success": "Erfolg",
   "successMessage": "Ihr Abonnement wurde erfolgreich aktualisiert!",
   "goBackToPlans": "Gehe zurück zu den Plänen",
-  "promotion": {
-    "startFirstLine": "Bekommen ",
-    "promotionPlan": "Foodetective für Unternehmen Basic",
-    "startLastLine": " für 3 Monate kostenlos.",
-    "endFirstLine": "Vervollständigen Sie einfach Ihr Profil online. Das Angebot ist sehr begrenzt, wir haben nur ",
-    "endLastLine": "1000 slots/Plätze übrig."
+  "dashboardAnalytics": {
+    "basic": "Grundlegend",
+    "essential": "Erweitert",
+    "ultimate": "Maßgeschneidert"
   },
-  "billingYearly": "Jahresabrechnung (bis zu 30% sparen)",
-  "billingMonthly": "Monatliche Abrechnung",
-  "options": {
-    "adsMarketing": "Werbung und Marketing",
-    "analytics": "Analytics",
-    "menuManagement": "Verwaltungsmenü",
-    "bookings": "Reservierungsverwaltung",
-    "catering": "Catering",
-    "clientDirectory": "Client Verzeichnis",
-    "clients": "Meine Kunden",
-    "communityManagement": "Community-Management",
-    "dashboard": "Instrumententafel",
-    "deliveryManagement": "Lieferungsmanagement",
-    "deliveryTakeAway": "Lieferung & Mitnehmen",
-    "detectives": "Detektive & Influencer",
-    "enterprise": "Sind Sie Großhändler, Hersteller, Händler oder multinationaler Konzern? Lassen Sie sich von uns ein maßgeschneidertes Angebot unterbreiten. Buchen Sie noch heute einen unserer Spezialisten.",
-    "integrationHub": "Integration Hub",
-    "myProfile": "Business Profile",
-    "payments": "Zahlungen",
-    "photography": "Fotografie",
-    "privateEvents": "Private Veranstaltungen",
-    "reviews": "Bewertungen Management",
-    "smartBackend": "Smart Back end",
-    "stockManagement": "Lagerverwaltung",
-    "wholesalers": "Meine Großhändler",
-
-    "website": "Website",
-    "widget": "Widget",
-    "mobileApp": "Handy-App",
-    "reservations": "Reservierungen",
-    "takeAway": "Zum Mitnehmen",
-    "paidBooking": "Reservierung",
-    "privatisation": "Privatisierung",
-    "delivery": "Bestellverwaltung",
-    "redirections": "Weiterleitungen",
-    "integrations": "Integrationszentrum",
-    "digitalMarketing": "Digitales Marketing",
-    "widgets": "Widgets",
-    "suppliers": "Lieferanten",
-    "visibility": "Premium Visibility"
+  "hints": {
+    "integrationHubTitle": "Die verfügbaren Integrationen sind unten aufgeführt",
+    "integrationHubCaption": "Management, Operations, Marketing",
+    "dashboardTailorMade": "Dashboard enthält eine standortübergreifende Ansicht",
+    "paymentsTitle": "Es kann eine Transaktionsgebühr anfallen.",
+    "paymentsCaption": "z.b. Stripe 1,4% + 0,25€",
+    "customerSupportTitle": "Service verfügbar",
+    "customerSupportTime": "9h bis 21h CET",
+    "customerSupportDays": "Mon bis Sam"
   },
-  "optionsHd": {
-    "1": "Tool & Services",
-    "2": "Admin & Operations",
-    "3": "Sichtbarkeit Verbessern"
-  },
-  "basic": {
-    "name": "Basic",
-    "mostPopular": "Am beliebtesten",
-    "priceDescription": "Ewig",
-    "price": {
-      "month": "Frei",
-      "year": "Frei",
-      "beta": "Frei"
-    },
-    "month": "Monat",
-    "year": "Yahr",
-    "buttonText": "Profil erstellen",
-    "buttonText2": "Loslegen"
-  },
-  "essential": {
-    "name": "Wesentlich",
-    "priceDescription": "Beginnt um",
-    "mostPopular": "Am beliebtesten",
-    "price": {
-      "month": "29.90",
-      "year": "249",
-      "beta": "29.90"
-    },
-    "month": "Monat",
-    "year": "Yahr",
-    "buttonText": "Beginnt um",
-    "buttonText2": "Essential Wählen"
-  },
-  "premium": {
-    "name": "Premium",
-    "priceDescription": "Beginnt um",
-    "price": {
-      "month": "299",
-      "year": "2499",
-      "beta": "beta"
-    },
-    "month": "Monat",
-    "year": "Yahr",
-    "buttonText": "Beginnt um",
-    "buttonText2": "Premium Wählen"
-  },
-  "special": {
-    "buttonText": "Book a Meeting",
-    "buttonText2": "Buchen Sie eine Demo",
-    "description1": "Sind Sie Großhändler, Hersteller, Händler oder multinationaler Konzern?",
-    "description2": "Wenn ja, buchen Sie noch heute ein Treffen mit einem unserer Spezialisten, um mehr zu erfahren.",
-    "name": "Enterprise",
-    "priceDescription": "Let's talk",
-    "priceDescription2": "Kundenspezifische Preisgestaltung",
-    "price": {
-      "month": "",
-      "year": "",
-      "beta": ""
+  "ourFeatures": "Unser Angebot",
+  "ourIntegrations": "Unsere Integrationen",
+  "comingSoon": "coming soon",
+  "reportAndSupport": "Bericht & Kundenbetreuung",
+  "customerSupport": {
+    "title": "Kundenbetreuung",
+    "options": {
+      "basic": "Online Chat",
+      "essential": "Telefonischer Support mit Kundenbetreuer",
+      "ultimate": "24/7 Telefon-Support mit Kundenbetreuer"
     }
   },
-  "tableHd1": "Pro Monat",
-  "tableHd2": "Pro Standort",
-  "tableStar": "* Für diese Dienstleistungen und Produkte fallen zusätzliche Gebühren an."
+  "operationalReport": {
+    "title": "Operativer Bericht",
+    "options": {
+      "essential": "Wesentlich",
+      "ultimate": "Fortgeschrittene"
+    }
+  },
+  "billing": {
+    "title": "Abrechnung",
+    "monthly": "Monatlich",
+    "yearly": "Jährlich",
+    "save": "20% sparen"
+  },
+  "billingPerPeriod": {
+    "monthly": "Monat",
+    "yearly": "Jahr"
+  },
+  "currency": {
+    "title": "Währung",
+    "eur": "€",
+    "gbp": "£",
+    "chf": "CHF ",
+    "usd": "$"
+  },
+  "perfectFor": {
+    "title": "Perfekt für",
+    "basic": "Kleine unabhängige Restaurants und Geschäfte",
+    "essential": "SMBs und kleine Ketten, die skalieren wollen",
+    "ultimate": "Gut etablierte Marken, die ihre Betriebskosten senken wollen"
+  },
+  "introductoryOffer": {
+    "title": "Einführungsangebot",
+    "offer": "{{price}} für 3 Monate"
+  },
+  "ourPlans": "Unsere Pläne",
+  "plansTitle": {
+    "basic": "Basic",
+    "essential": "Essential",
+    "ultimate": "Ultimate ab"
+  },
+  "choosePlan": "Wählen {{name}}",
+  "contactUs": "Kontakt",
+  "mostPopular": "Beliebtestes",
+  "cancelSubscription": "Abonnement kündigen",
+  "cancelSubscriptionPrompt": "Sind Sie sicher, dass Sie Ihr Abonnement kündigen möchten?"
 }

@@ -1,94 +1,65 @@
-import { func, string, shape, arrayOf, bool } from "prop-types";
-import { PlansBillingInterval, BoldText, Button } from "components";
-import { useCallback } from "react";
-import { Flex, Box } from "@rebass/grid";
-import { BASIC_PLAN_NAME } from "consts";
+import React, { useState } from "react";
+import { Box, Flex } from "@rebass/grid";
+import { arrayOf, func, shape } from "prop-types";
+
+import PlansTable from "components/Plans/PlansTable";
+import { SUBSCRIPTION_CURRENCY, SUBSCRIPTION_PERIOD } from "consts";
+import PlansPeriodSelector from "components/Plans/PlansPeriodSelector";
+import PlansCurrencySelector from "components/Plans/PlansCurrencySelector";
 import { Wrapper } from "../styled";
-import { getPlanName } from "../utils";
-import Card from "../Payments/Card";
-import PlansTable from "./PlansTable";
-import PlanStatus from "./PlanStatus";
+import CurrentPlanInfo from "./CurrentPlanInfo";
+import CurrentCardInfo from "./CurrentCardInfo";
 
 const PlansSection = ({
   t,
-  billingInterval,
-  handleChangeBillngPeriod,
-  choosePlan,
   currentPlan,
   cards,
   goToPayments,
-  plans
+  plans,
+  handlePlanChoose,
+  handleCancelSubscription
 }) => {
-  const { currentPlanName, nextPlanName } = getPlanName(currentPlan);
-  const currentCard =
-    cards && currentPlan
-      ? cards.find(
-          c =>
-            c.getIn(["attributes", "stripeSourceId"]) ===
-            currentPlan.getIn(["attributes", "stripeSourceId"])
-        )
-      : null;
+  const [period, setPeriod] = useState(SUBSCRIPTION_PERIOD.MONTHLY);
+  const [currency, setCurrency] = useState(SUBSCRIPTION_CURRENCY.EUR);
 
-  const handlePlanChoose = useCallback(
-    ({ label } = {}) => {
-      choosePlan(label);
-    },
-    [choosePlan]
-  );
+  if (!plans || !plans.size) return null;
 
   return (
     <Wrapper>
-      <Flex justifyContent="space-between" alignItems="center" mb={2}>
-        <Box mb={3}>
-          {`${t("yourCurrentPlan")}: `}
-          <BoldText>{t(`plans:${currentPlanName}.name`)}.</BoldText>
-          <PlanStatus
-            {...{
-              nextPaymentAt:
-                currentPlan &&
-                currentPlan.getIn(["attributes", "nextPaymentAt"]),
-              cancelAt:
-                currentPlan && currentPlan.getIn(["attributes", "cancelAt"]),
-              trialEndsAt:
-                currentPlan && currentPlan.getIn(["attributes", "trialEndsAt"]),
-              t
-            }}
+      <Flex
+        flexWrap="wrap"
+        flexDirection={["column", "column", "column", "row"]}
+        justifyContent={["center", "center", "center", "space-between"]}
+      >
+        <Box width={[1, 1, 1, 2 / 5]} mb={[30, 30, 30, 0]}>
+          <CurrentPlanInfo
+            t={t}
+            currentPlan={currentPlan}
+            handleCancelSubscription={handleCancelSubscription}
           />
         </Box>
-        <PlansBillingInterval
-          {...{ t, billingInterval, handleChangeBillngPeriod }}
-        />
+        <Box width={[1, 1, 1, 2 / 5]} mb={30}>
+          <Box mb={20}>
+            <PlansPeriodSelector period={period} setPeriod={setPeriod} />
+          </Box>
+          <PlansCurrencySelector
+            currency={currency}
+            setCurrency={setCurrency}
+          />
+        </Box>
       </Flex>
-      {nextPlanName !== BASIC_PLAN_NAME && (
-        <Flex flexDirection="column" mb={4}>
-          <Box mr={2} mb={3}>{`${t("paymentInfo")}: `}</Box>
-          <Flex>
-            {currentCard && (
-              <Box mb={-2} mr={2}>
-                <Card
-                  {...{
-                    id: currentCard.get("id"),
-                    last4: currentCard.getIn(["attributes", "last4"]),
-                    brand: currentCard.getIn(["attributes", "brand"]),
-                    disabled: currentCard.getIn(["attributes", "disabled"])
-                  }}
-                  disabled
-                />
-              </Box>
-            )}
-            <Box>
-              <Button styleName="smallBlue" onClick={goToPayments}>
-                {currentCard ? t("changeCard") : t("setCard")}
-              </Button>
-            </Box>
-          </Flex>
-        </Flex>
-      )}
-      <PlansTable
-        interval={billingInterval}
+      <CurrentCardInfo
+        goToPayments={goToPayments}
         t={t}
-        onPlanChoose={handlePlanChoose}
+        currentPlan={currentPlan}
+        cards={cards}
         plans={plans}
+      />
+      <PlansTable
+        plans={plans}
+        period={period}
+        currency={currency}
+        onPlanChooseClick={handlePlanChoose}
       />
     </Wrapper>
   );
@@ -96,21 +67,17 @@ const PlansSection = ({
 
 PlansSection.propTypes = {
   t: func.isRequired,
-  lng: string.isRequired,
-  billingInterval: string.isRequired,
-  handleChangeBillngPeriod: func.isRequired,
-  choosePlan: func.isRequired,
   goToPayments: func.isRequired,
   currentPlan: shape(),
   cards: arrayOf(shape()),
-  isCanceled: bool,
-  plans: shape()
+  plans: shape(),
+  handlePlanChoose: func.isRequired,
+  handleCancelSubscription: func.isRequired
 };
 
 PlansSection.defaultProps = {
   currentPlan: null,
   cards: null,
-  isCanceled: false,
   plans: null
 };
 

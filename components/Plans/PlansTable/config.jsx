@@ -27,7 +27,7 @@ import { TableHintCaption, TableHintTitle } from "./TableHint/styled";
 
 export const getTableConfig = t => [
   {
-    heading: t("plans:outFeatures"),
+    heading: t("plans:ourFeatures"),
     sections: [
       {
         id: "features",
