@@ -1,11 +1,14 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
+import React from "react";
 import { Form } from "react-final-form";
 import { PulseLoader } from "react-spinners";
 import { func, bool, string } from "prop-types";
+import { Box } from "@rebass/grid";
 
-import { InputField } from "components";
+import { InputField, H4 } from "components";
 import { required } from "utils/validators";
-
-import React from "react";
+import { Trans } from "i18n";
+import { FOODETECTIVE_MAIL, UBER_EATS_RESTAURANT_URL } from "consts";
 
 export const UberIntegrationForm = ({
   connectToUber,
@@ -22,6 +25,38 @@ export const UberIntegrationForm = ({
       onSubmit={handleUberEatsIntegrationChange}
       render={form => (
         <form onSubmit={form.handleSubmit} style={{ width: "100%" }}>
+          <H4>
+            <strong>{t("integrations:uberEatsHint.title")}</strong>
+          </H4>
+          <ol>
+            <Box as="li" mb={3}>
+              <Trans
+                t={t}
+                i18nKey="integrations:uberEatsHint.step1"
+                components={[
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={UBER_EATS_RESTAURANT_URL}
+                  />
+                ]}
+              />
+            </Box>
+            <Box as="li">
+              <Trans
+                t={t}
+                i18nKey="integrations:uberEatsHint.step2"
+                components={[<br />, <strong />]}
+              />
+            </Box>
+          </ol>
+          <p>
+            <Trans
+              t={t}
+              i18nKey="integrations:uberEatsHint.ifDoesntWork"
+              components={[<a href={`mailto:${FOODETECTIVE_MAIL}`} />]}
+            />
+          </p>
           <InputField
             name="store_id"
             placeholder="Store ID"

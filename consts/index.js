@@ -83,6 +83,10 @@ const rollbarConfig = {
 
 const LINKEDIN_ADS_ID = process.env.LINKEDIN_ADS_ID;
 
+const UBER_EATS_RESTAURANT_URL = "https://restaurant.uber.com/";
+
+const FOODETECTIVE_MAIL = "support@foodetective.co";
+
 module.exports = {
   contentTypes,
   languages,
@@ -114,5 +118,7 @@ module.exports = {
   SUBSCRIPTION_PLANS_SLUGS,
   BASIC_PLAN_NAME,
   LINKEDIN_ADS_ID,
-  apiGuideLink
+  apiGuideLink,
+  UBER_EATS_RESTAURANT_URL,
+  FOODETECTIVE_MAIL
 };
