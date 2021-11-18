@@ -3,5 +3,11 @@
   "disconnected": "Déconnecté",
   "connect": "Connecter",
   "disconnect": "Déconnecter",
-  "disconnectPrompt": "Voulez-vous déconnecter {{integration}}?"
+  "disconnectPrompt": "Voulez-vous déconnecter {{integration}}?",
+  "uberEatsHint": {
+    "title": "Comment trouver votre ID",
+    "step1": "Connectez-vous sur votre <0>Uber Eats Restaurant Manager</0>",
+    "step2": "L'UUID se trouve dans l'URL. Voir exemple ci-dessous: <0/> https://restaurant.uber.com/home/<1>be77dfif-49e5-4a96-y234-98f6f55af43d</1>",
+    "ifDoesntWork": "Si cela ne fonctionne pas, veuillez nous contacter à <0>support@foodetective.co</0>"
+  }
 }
