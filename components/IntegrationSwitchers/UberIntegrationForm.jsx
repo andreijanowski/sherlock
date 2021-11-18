@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
 import React from "react";
 import { Form } from "react-final-form";
 import { PulseLoader } from "react-spinners";
@@ -38,7 +37,9 @@ export const UberIntegrationForm = ({
                     target="_blank"
                     rel="noopener noreferrer"
                     href={UBER_EATS_RESTAURANT_URL}
-                  />
+                  >
+                    {UBER_EATS_RESTAURANT_URL}
+                  </a>
                 ]}
               />
             </Box>
@@ -54,7 +55,9 @@ export const UberIntegrationForm = ({
             <Trans
               t={t}
               i18nKey="integrations:uberEatsHint.ifDoesntWork"
-              components={[<a href={`mailto:${FOODETECTIVE_MAIL}`} />]}
+              components={[
+                <a href={`mailto:${FOODETECTIVE_MAIL}`}>{FOODETECTIVE_MAIL}</a>
+              ]}
             />
           </p>
           <InputField
