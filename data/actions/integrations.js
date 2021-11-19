@@ -11,6 +11,7 @@ import {
 } from "types/integrations";
 import { getRelationships } from "./utils";
 
+/* @deprecated now Uber eats treated as internal integration */
 export const connectPartnerWithUberEats = values => {
   const { business_id, store_id } = values;
   return {
@@ -47,6 +48,7 @@ export const connectPartnerWithOrkestro = id => ({
   meta: { thunk: true }
 });
 
+/* @deprecated now Uber eats treated as internal integration */
 export const disconnectPartnerFromUberEats = id => ({
   type: DISCONNECT_PARTNER_FROM_UBER_EATS_REQUEST,
   payload: {

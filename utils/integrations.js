@@ -9,49 +9,29 @@ export const getInternalIntegrationStates = partner => ({
 export const getServiceIntegrationMeta = partner => {
   const name = partner.get("name");
   const isOrkestroIntegration = name === ORKESTRO_NAME;
-  const isUberIntegration = name === UBER_EATS_NAME;
-  const isIntegratedWithServices = isOrkestroIntegration || isUberIntegration;
+  const isIntegratedWithServices = isOrkestroIntegration;
   return {
     isOrkestroIntegration,
-    isUberIntegration,
     isIntegratedWithServices
   };
 };
 
-export const getServiceIntegrationStates = (
-  partner,
-  isOrkestroConnected,
-  isUberConnected
-) => {
-  const {
-    isOrkestroIntegration,
-    isUberIntegration
-  } = getServiceIntegrationMeta(partner);
+export const getServiceIntegrationStates = (partner, isOrkestroConnected) => {
+  const { isOrkestroIntegration } = getServiceIntegrationMeta(partner);
   return {
-    isIntegrated:
-      (isOrkestroIntegration && isOrkestroConnected) ||
-      (isUberIntegration && isUberConnected)
+    isIntegrated: isOrkestroIntegration && isOrkestroConnected
   };
 };
 
-export const getIntegrationStates = (
-  partner,
-  isOrkestroConnected,
-  isUberConnected
-) => {
+export const getIntegrationStates = (partner, isOrkestroConnected) => {
   const { isIntegratedWithServices } = getServiceIntegrationMeta(partner);
   return isIntegratedWithServices
-    ? getServiceIntegrationStates(partner, isOrkestroConnected, isUberConnected)
+    ? getServiceIntegrationStates(partner, isOrkestroConnected)
     : getInternalIntegrationStates(partner);
 };
 
-export const isServiceIntegrationConnected = (
-  partner,
-  isOrkestroConnected,
-  isUberConnected
-) =>
-  getServiceIntegrationStates(partner, isOrkestroConnected, isUberConnected)
-    .isIntegrated;
+export const isServiceIntegrationConnected = (partner, isOrkestroConnected) =>
+  getServiceIntegrationStates(partner, isOrkestroConnected).isIntegrated;
 
 export const isInternalIntegrationConnectedOrPending = partner => {
   const { isIntegrated, isIntegrationPending } = getInternalIntegrationStates(
@@ -63,28 +43,18 @@ export const isInternalIntegrationConnectedOrPending = partner => {
 
 export const isIntegrationConnectedOrPending = (
   partner,
-  isOrkestroConnected,
-  isUberConnected
+  isOrkestroConnected
 ) => {
   const { isIntegratedWithServices } = getServiceIntegrationMeta(partner);
   return isIntegratedWithServices
-    ? isServiceIntegrationConnected(
-        partner,
-        isOrkestroConnected,
-        isUberConnected
-      )
+    ? isServiceIntegrationConnected(partner, isOrkestroConnected)
     : isInternalIntegrationConnectedOrPending(partner);
 };
 
-export const getIntegrationColoredStatus = (
-  partner,
-  isOrkestroConnected,
-  isUberConnected
-) => {
+export const getIntegrationColoredStatus = (partner, isOrkestroConnected) => {
   const { isIntegrated, isIntegrationPending } = getIntegrationStates(
     partner,
-    isOrkestroConnected,
-    isUberConnected
+    isOrkestroConnected
   );
 
   if (isIntegrated) {
