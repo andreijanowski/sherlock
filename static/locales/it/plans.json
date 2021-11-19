@@ -26,115 +26,76 @@
   "success": "Successo",
   "successMessage": "La tua iscrizione è stata aggiornata con successo!",
   "goBackToPlans": "Torna ai piani",
-  "promotion": {
-    "startFirstLine": "Ottenere ",
-    "promotionPlan": "Foodetective per affari Basic",
-    "startLastLine": " per 3 mesi gratis.",
-    "endFirstLine": "Completa il tuo profilo online. L'offerta è molto limitata, abbiamo solo ",
-    "endLastLine": "1000 slot/spazi rimasti."
+  "dashboardAnalytics": {
+    "basic": "Basic",
+    "essential": "Avanzato",
+    "ultimate": "Su misura"
   },
-  "billingYearly": "Fatturazione annuale (risparmia fino al 30%)",
-  "billingMonthly": "Fatturazione mensile",
-  "options": {
-    "adsMarketing": "Pubblicità & Marketing",
-    "analytics": "Analytics",
-    "menuManagement": "Gestione del Menu",
-    "bookings": "Gestione delle prenotazioni",
-    "catering": "Caterings",
-    "clientDirectory": "Client Directory",
-    "clients": "Clienti",
-    "communityManagement": "Gestione della Comunità",
-    "dashboard": "Dashboard",
-    "deliveryManagement": "Gestione delle Consegne",
-    "deliveryTakeAway": "Consegna e Asporto",
-    "detectives": "Detectives e Influencers",
-    "enterprise": "Sei un grossista, un produttore, un distributore o una multinazionale? Lascia che ti facciamo un'offerta su misura. Prenota uno dei nostri specialisti oggi.",
-    "integrationHub": "Hub di Integrazione",
-    "myProfile": "Business Profile",
-    "payments": "Pagamenti",
-    "photography": "Fotografia",
-    "privateEvents": "Eventi Privati",
-    "reviews": "Gestione delle recensioni",
-    "smartBackend": "Back end intelligente",
-    "stockManagement": "Gestione degli stock/ Gestione delle scorte",
-    "wholesalers": "Grossisti",
-
-    "website": "Pagina web",
-    "widget": "widget",
-    "mobileApp": "App per telefono mobile",
-    "reservations": "Prenotazioni",
-    "takeAway": "Da asporto",
-    "paidBooking": "Prenotazione",
-    "privatisation": "Privatizzazione",
-    "delivery": "Gestione degli ordini",
-    "digitalMarketing": "Marketing digitale",
-    "redirections": "Reindirizzamenti",
-    "integrations": "Hub di Integrazione",
-    "suppliers": "Fornitori",
-    "widgets": "Widgets",
-    "visibility": "Premium Visibility"
+  "hints": {
+    "integrationHubTitle": "Le integrazioni disponibili sono mostrate qui sotto",
+    "integrationHubCaption": "Management, Operations, Marketing",
+    "dashboardTailorMade": "Il cruscotto include la vista multisede",
+    "paymentsTitle": "Può essere applicata una tassa transazionale",
+    "paymentsCaption": "p.e. Stripe 1,4% + 0,25€",
+    "customerSupportTitle": "Servizio disponibile",
+    "customerSupportTime": "9h a 21h CET",
+    "customerSupportDays": "Lun a Sab"
   },
-  "optionsHd": {
-    "1": "Strumenti e Servizi",
-    "2": "Amministratore e Operazioni",
-    "3": "Migliora la Visibilità"
-  },
-  "basic": {
-    "name": "Basic",
-    "mostPopular": "Most popular",
-    "priceDescription": "Forever",
-    "price": {
-      "month": "Gratuito",
-      "year": "Gratuito",
-      "beta": "Gratuito"
-    },
-    "month": "mese",
-    "year": "anno",
-    "buttonText": "Create profile",
-    "buttonText2": "Iniziare"
-  },
-  "essential": {
-    "name": "Essenziale",
-    "priceDescription": "Per sempre",
-    "mostPopular": "Più Popolare",
-    "price": {
-      "month": "29.90",
-      "year": "249",
-      "beta": "29.90"
-    },
-    "month": "mese",
-    "year": "anno",
-    "buttonText": "Inizia da",
-    "buttonText2": "Scegli Essential"
-  },
-  "premium": {
-    "name": "Premium",
-    "priceDescription": "A partire da",
-    "price": {
-      "month": "299",
-      "year": "2499",
-      "beta": "249,90"
-    },
-    "month": "mese",
-    "year": "anno",
-    "buttonText": "Inizia da",
-    "buttonText2": "Scegli Premium"
-  },
-  "special": {
-    "buttonText": "Book a Meeting",
-    "buttonText2": "Prenota una Demo",
-    "description1": "Sei un Grossista, Produttore, Distributore o Multinazionale?",
-    "description2": "In tal caso, prenota oggi stesso un incontro con uno dei nostri specialisti per saperne di più.",
-    "name": "Enterprise",
-    "priceDescription": "Parliamo",
-    "priceDescription2": "Prezzi Personalizzati",
-    "price": {
-      "month": "",
-      "year": "",
-      "beta": ""
+  "ourFeatures": "Caratteristiche",
+  "ourIntegrations": "Integrazioni",
+  "comingSoon": "coming soon",
+  "reportAndSupport": "Rapporto e assistenza clienti",
+  "customerSupport": {
+    "title": "Assistenza clienti",
+    "options": {
+      "basic": "Online Chat",
+      "essential": "Supporto telefonico con l'account manager",
+      "ultimate": "24/7 Supporto telefonico con l'account manager"
     }
   },
-  "tableHd1": "Al Mese",
-  "tableHd2": "Per Località",
-  "tableStar": "* A questi servizi e prodotti si applicano costi aggiuntivi."
+  "operationalReport": {
+    "title": "Rapporto operativo",
+    "options": {
+      "essential": "Essenziale",
+      "ultimate": "Avanzato"
+    }
+  },
+  "billing": {
+    "title": "Fatturazione",
+    "monthly": "Mensile",
+    "yearly": "Annuale",
+    "save": "Risparmia il 20%"
+  },
+  "billingPerPeriod": {
+    "monthly": "mese",
+    "yearly": "anno"
+  },
+  "currency": {
+    "title": "Valuta",
+    "eur": "€",
+    "gbp": "£",
+    "chf": "CHF ",
+    "usd": "$"
+  },
+  "perfectFor": {
+    "title": "Perfetto per",
+    "basic": "Piccoli ristoranti e negozi indipendenti",
+    "essential": "PMI e piccole catene che cercano di scalare",
+    "ultimate": "Marchi ben consolidati che cercano di ridurre i costi operativi"
+  },
+  "introductoryOffer": {
+    "title": "Offerta introduttiva",
+    "offer": "{{price}} per 3 mesi"
+  },
+  "ourPlans": "I nostri piani",
+  "plansTitle": {
+    "basic": "Basic",
+    "essential": "Essential",
+    "ultimate": "Ultimate da"
+  },
+  "choosePlan": "Scegliere {{name}}",
+  "contactUs": "Contattateci",
+  "mostPopular": "Il più popolare",
+  "cancelSubscription": "Cancella l'abbonamento",
+  "cancelSubscriptionPrompt": "Sei sicuro di voler cancellare il tuo abbonamento?"
 }

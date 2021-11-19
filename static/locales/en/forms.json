@@ -148,7 +148,8 @@
       "taken-external_service_id": "This service is already connected",
       "url-service_url": "Invalid service url",
       "invalid_files": "Invalid file format",
-      "cannot_set_without_publishing-visible_in_lefood": "Your business should be published at first."
+      "cannot_set_without_publishing-visible_in_lefood": "Your business should be published at first.",
+      "stripe_error-base": "Your business stripe currency is not equal to subscription plan currency"
     }
   },
   "placeholder": {

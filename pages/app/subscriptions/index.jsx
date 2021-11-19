@@ -1,14 +1,15 @@
-import { SUBSCRIPTION_ENTREPRISE_URL, SUBSCRIPTION_PLANS } from "consts";
-import { PureComponent } from "react";
-import { withTranslation } from "i18n";
-import requireAuth from "lib/requireAuth";
+import React, { useState, useEffect, useCallback } from "react";
 import { func, string, shape, bool } from "prop-types";
 import { connect } from "react-redux";
 import { compose } from "redux";
+import { error } from "react-notification-system-redux";
+
+import { SUBSCRIPTION_ENTREPRISE_URL, SUBSCRIPTION_PLANS } from "consts";
+import { withTranslation } from "i18n";
+import requireAuth from "lib/requireAuth";
 import AppLayout from "layout/App";
 import { LoadingIndicator } from "components";
 import { Plans, Payments, Success } from "sections/subscriptions";
-import { error } from "react-notification-system-redux";
 import {
   pathSubscriptionChangePlan,
   pathSubscriptionChangeCard,
@@ -21,164 +22,55 @@ import {
   fetchBusinessSubscriptions,
   fetchBusinessCards
 } from "actions/businesses";
-import { getPlanSlug } from "utils/plans";
+import { getPlanData } from "utils/plans";
 import { fetchPlans } from "actions/plans";
 
 const namespaces = ["plans", "forms", "app"];
 
-class SubscriptionsPage extends PureComponent {
-  static async getInitialProps() {
-    return {
-      namespacesRequired: namespaces
-    };
-  }
+const VIEWS = {
+  LOADING: "loading",
+  PAYMENTS: "payments",
+  PLANS: "plans",
+  SUCCESS: "success"
+};
 
-  state = {
-    billingInterval: "month",
-    view: "plans",
-    chosenPlan: null
-  };
+const SubscriptionsPage = ({
+  t,
+  lng,
+  currentPlan,
+  plans,
+  cards,
+  getPlans,
+  getBusinessSetupIntent,
+  businessId,
+  getProfileSubscriptions,
+  getProfileCards,
+  getBusinessSubscriptions,
+  getBusinessCards,
+  subscriptionNotTerminated,
+  updateSubscriptionPlan,
+  notificationError,
+  createSubscription,
+  updateSubscriptionCard,
+  cancelSubscriptionPlan
+}) => {
+  const [newPlan, setNewPlan] = useState(null);
+  const [view, setView] = useState(VIEWS.PLANS);
 
-  componentDidMount() {
-    const { getPlans } = this.props;
-    getPlans();
-  }
+  const handleBusinessSetupIntent = useCallback(
+    () => getBusinessSetupIntent(businessId),
+    [businessId, getBusinessSetupIntent]
+  );
 
-  componentDidUpdate(prevProps) {
-    const { subscriptions } = this.props;
-    const { subscriptions: prevSubscriptions } = prevProps;
-    if (subscriptions && subscriptions !== prevSubscriptions) {
-      this.handleChangeBillngPeriod({
-        interval: subscriptions.getIn(["attributes", "interval"])
-      });
-    }
-  }
+  const goToPlans = useCallback(() => {
+    setView(VIEWS.PLANS);
+  }, []);
 
-  handleChangeBillngPeriod = ({ interval }) =>
-    this.setState(({ billingInterval }) => ({
-      billingInterval:
-        interval || (billingInterval === "month" ? "year" : "month")
-    }));
+  const goToPayments = useCallback(() => {
+    setView(VIEWS.PAYMENTS);
+  }, []);
 
-  choosePlan = planName => {
-    if (planName === SUBSCRIPTION_PLANS.ENTREPRISE) {
-      window.location.href = SUBSCRIPTION_ENTREPRISE_URL;
-
-      return;
-    }
-
-    const { billingInterval } = this.state;
-    const {
-      subscriptions,
-      updateSubscriptionPlan,
-      cancelSubscriptionPlan
-    } = this.props;
-
-    if (subscriptions) {
-      if (planName === SUBSCRIPTION_PLANS.FREEMIUM) {
-        if (!subscriptions.getIn(["attributes", "cancelAt"])) {
-          this.setState({
-            view: "loading"
-          });
-          cancelSubscriptionPlan(subscriptions.get("id"))
-            .then(this.goToSuccess)
-            .catch(() =>
-              this.setState({
-                view: "plans"
-              })
-            );
-        }
-      } else {
-        const newPlanSlug = getPlanSlug({
-          planName: planName.toLowerCase(),
-          billingInterval
-        });
-        if (
-          subscriptions.getIn(["attributes", "slug"]) !== newPlanSlug ||
-          subscriptions.getIn(["attributes", "cancelAt"])
-        ) {
-          this.setState({
-            view: "loading"
-          });
-          updateSubscriptionPlan(subscriptions.get("id"), newPlanSlug)
-            .then(() => {
-              this.goToSuccess();
-            })
-            .catch(() =>
-              this.setState({
-                view: "plans"
-              })
-            );
-        }
-      }
-    } else if (planName !== SUBSCRIPTION_PLANS.FREEMIUM) {
-      this.setState({
-        chosenPlan: planName.toLowerCase(),
-        view: "payments"
-      });
-    }
-  };
-
-  updateSubscription = (stripeToken, planName) => {
-    const {
-      createSubscription,
-      updateSubscriptionCard,
-      subscriptions,
-      businessId
-    } = this.props;
-    const { billingInterval, chosenPlan } = this.state;
-    const plan = chosenPlan || planName;
-    if (subscriptions) {
-      this.setState({
-        view: "loading"
-      });
-      updateSubscriptionCard(subscriptions.get("id"), stripeToken)
-        .then(() => {
-          this.goToSuccess();
-        })
-        .catch(() => this.goToPayments());
-    } else if (plan !== "basic") {
-      this.setState({
-        view: "loading"
-      });
-      createSubscription(
-        businessId,
-        stripeToken,
-        getPlanSlug({ planName: plan, billingInterval })
-      )
-        .then(this.goToSuccess)
-        .catch(() => this.goToPayments());
-    }
-  };
-
-  getBusinessSetupIntent = () => {
-    const { getBusinessSetupIntent, businessId } = this.props;
-    return getBusinessSetupIntent(businessId);
-  };
-
-  goToPlans = () => {
-    this.setState({
-      view: "plans"
-    });
-  };
-
-  goToPayments = () => {
-    this.setState({
-      chosenPlan: null,
-      view: "payments"
-    });
-  };
-
-  goToSuccess = () => {
-    const {
-      getProfileSubscriptions,
-      getProfileCards,
-      getBusinessSubscriptions,
-      getBusinessCards,
-      businessId,
-      subscriptionNotTerminated
-    } = this.props;
-
+  const goToSuccess = useCallback(() => {
     if (subscriptionNotTerminated) {
       getProfileSubscriptions();
       getProfileCards();
@@ -187,80 +79,153 @@ class SubscriptionsPage extends PureComponent {
       getBusinessCards(businessId);
     }
 
-    this.setState({
-      chosenPlan: null,
-      view: "success"
-    });
-  };
+    setNewPlan(null);
+    setView(VIEWS.SUCCESS);
+  }, [
+    businessId,
+    getBusinessCards,
+    getBusinessSubscriptions,
+    getProfileCards,
+    getProfileSubscriptions,
+    subscriptionNotTerminated
+  ]);
 
-  render() {
-    const {
+  const handlePlanChoose = useCallback(
+    async plan => {
+      const { name, slug } = getPlanData({ plan, t });
+
+      if (name === SUBSCRIPTION_PLANS.ULTIMATE) {
+        window.location.href = SUBSCRIPTION_ENTREPRISE_URL;
+      }
+
+      if (!currentPlan) {
+        setNewPlan(plan);
+        setView(VIEWS.PAYMENTS);
+        return;
+      }
+
+      const currentPlanSlug = currentPlan.getIn(["attributes", "slug"]);
+      const isSamePlan = currentPlanSlug === slug;
+
+      if (isSamePlan) return;
+
+      setView(VIEWS.LOADING);
+      try {
+        const subscriptionId = currentPlan.get("id");
+        await updateSubscriptionPlan(subscriptionId, slug);
+        goToSuccess();
+      } catch (e) {
+        setView(VIEWS.PLANS);
+      }
+    },
+    [t, currentPlan, updateSubscriptionPlan, goToSuccess]
+  );
+
+  const planToPay = newPlan || currentPlan;
+
+  const updateSubscription = useCallback(
+    async stripeToken => {
+      setView(VIEWS.LOADING);
+
+      if (currentPlan) {
+        const currentPlanId = currentPlan.get("id");
+        try {
+          await updateSubscriptionCard(currentPlanId, stripeToken);
+          goToSuccess();
+        } catch (e) {
+          goToPayments();
+        }
+        return;
+      }
+
+      try {
+        const { slug } = getPlanData({ plan: planToPay, t });
+        await createSubscription(businessId, stripeToken, slug);
+        goToSuccess();
+      } catch (e) {
+        goToPayments();
+      }
+    },
+    [
+      businessId,
+      createSubscription,
+      currentPlan,
+      goToPayments,
+      goToSuccess,
+      planToPay,
       t,
-      lng,
-      subscriptions,
-      cards,
-      notificationError,
-      plans
-    } = this.props;
-    const { billingInterval, view, chosenPlan } = this.state;
+      updateSubscriptionCard
+    ]
+  );
 
-    return (
-      <AppLayout
-        {...{
-          t,
-          lng,
-          mainIcon: "subscriptions",
-          header: t("header")
-        }}
-      >
-        {view === "loading" && <LoadingIndicator />}
-        {view === "plans" && (
-          <Plans
-            {...{
-              t,
-              plans,
-              lng,
-              cards,
-              billingInterval,
-              choosePlan: this.choosePlan,
-              goToPayments: this.goToPayments,
-              currentPlan: subscriptions,
-              handleChangeBillngPeriod: this.handleChangeBillngPeriod,
-              isCanceled:
-                subscriptions && subscriptions.getIn(["attributes", "cancelAt"])
-            }}
-          />
-        )}
-        {view === "payments" && (
-          <Payments
-            {...{
-              t,
-              lng,
-              plans,
-              billingInterval,
-              cards,
-              notificationError,
-              chosenPlan,
-              getBusinessSetupIntent: this.getBusinessSetupIntent,
-              currentPlan: subscriptions,
-              goToPlans: this.goToPlans,
-              handleChangeBillngPeriod: this.handleChangeBillngPeriod,
-              updateSubscription: this.updateSubscription
-            }}
-          />
-        )}
-        {view === "success" && (
-          <Success {...{ t, lng, goToPlans: this.goToPlans }} />
-        )}
-      </AppLayout>
-    );
-  }
-}
+  const handleCancelSubscription = useCallback(
+    async planId => {
+      try {
+        setView(VIEWS.LOADING);
+        await cancelSubscriptionPlan(planId);
+        goToSuccess();
+      } catch (e) {
+        setView(VIEWS.PLANS);
+      }
+    },
+    [cancelSubscriptionPlan, goToSuccess]
+  );
+
+  useEffect(() => {
+    getPlans();
+  }, [getPlans]);
+
+  return (
+    <AppLayout
+      {...{
+        t,
+        lng,
+        mainIcon: "subscriptions",
+        header: t("header")
+      }}
+    >
+      {view === VIEWS.LOADING && <LoadingIndicator />}
+      {view === VIEWS.PLANS && (
+        <Plans
+          {...{
+            t,
+            plans,
+            lng,
+            cards,
+            handlePlanChoose,
+            goToPayments,
+            currentPlan,
+            handleCancelSubscription
+          }}
+        />
+      )}
+      {view === VIEWS.PAYMENTS && (
+        <Payments
+          {...{
+            t,
+            plans,
+            cards,
+            notificationError,
+            planToPay,
+            getBusinessSetupIntent: handleBusinessSetupIntent,
+            goToPlans,
+            updateSubscription
+          }}
+        />
+      )}
+      {view === VIEWS.SUCCESS && <Success {...{ t, lng, goToPlans }} />}
+    </AppLayout>
+  );
+};
+
+SubscriptionsPage.getInitialProps = async () => ({
+  namespacesRequired: namespaces
+});
 
 SubscriptionsPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  subscriptions: shape(),
+  currentPlan: shape(),
   cards: shape(),
   updateSubscriptionPlan: func.isRequired,
   updateSubscriptionCard: func.isRequired,
@@ -273,16 +238,14 @@ SubscriptionsPage.propTypes = {
   getBusinessSetupIntent: func.isRequired,
   notificationError: func.isRequired,
   businessId: string.isRequired,
-  isCanceled: bool,
   subscriptionNotTerminated: bool.isRequired,
   getPlans: func.isRequired,
   plans: shape()
 };
 
 SubscriptionsPage.defaultProps = {
-  subscriptions: null,
+  currentPlan: null,
   cards: null,
-  isCanceled: false,
   plans: null
 };
 
@@ -309,7 +272,7 @@ export default compose(
       const businessData = state.getIn(["users", "currentBusiness", "data"]);
       const business = businessData && businessData.get("businesses").first();
       return {
-        subscriptions: subscriptions ? subscriptions.first() : subscriptions,
+        currentPlan: subscriptions ? subscriptions.first() : subscriptions,
         cards: state.getIn(["users", "cards", "data", "cards"]),
         businessId: business && business.get("id"),
         lng: (i18n && i18n.language) || "en",

@@ -1,71 +1,101 @@
-import { noop } from "lodash";
-import { Flex, Box } from "@rebass/grid";
-import { func, string, oneOfType, shape, any } from "prop-types";
-import { PlansBillingInterval } from "components";
-import PlansTable from "sections/subscriptions/Plans/PlansTable";
-import { H2Styled, ParagraphStyled, TextWrapper } from "./styled";
+import React, { useEffect, useState, useCallback } from "react";
+import { connect } from "react-redux";
+import { shape, func, string } from "prop-types";
+import { Box, Flex } from "@rebass/grid";
+
+import { fetchPlans as fetchPlansAction } from "actions/plans";
+import { selectPlans } from "selectors/plans";
+import { SUBSCRIPTION_CURRENCY, SUBSCRIPTION_PERIOD } from "consts";
+import { useTranslation } from "i18n";
+import PlansTable from "components/Plans/PlansTable";
+import PlansPeriodSelector from "components/Plans/PlansPeriodSelector";
+import PlansCurrencySelector from "components/Plans/PlansCurrencySelector";
+import { getPlanData, getPlanLoginPath } from "utils/plans";
+import {
+  PlansContainer,
+  H2Styled,
+  ParagraphStyled,
+  TextWrapper
+} from "./styled";
 import { BlueText } from "../sharedStyled";
 
-const PlansMainComponent = ({
-  t,
-  plans,
-  plansRef,
-  billingInterval,
-  handleChangeBillngPeriod,
-  onPlanChoose
-}) => (
-  <Flex ref={plansRef} flexDirection="column" width={1} mt={[40, 80]} px={3}>
-    <TextWrapper>
-      <Flex
-        flexDirection="row"
-        flexWrap="wrap"
-        justifyContent={["center", "space-between"]}
-        alignItems="flex-end"
-      >
-        <Box width={[1, "auto"]}>
-          <H2Styled>{t("plans:header")}</H2Styled>
-          <Flex
-            alignItems="flex-start"
-            flexDirection={["column", "row"]}
-            justifyContent={["center", "space-between"]}
-            mb={[20, 10]}
-          >
-            <Box width={[1, 1 / 2]} mb={[30, 0]} mr={4}>
-              <ParagraphStyled big>
-                {t("plans:subHeader.start")}{" "}
-                <BlueText>{t("plans:subHeader.end")}</BlueText>
-              </ParagraphStyled>
-              <ParagraphStyled>{t("plans:paragraph")}</ParagraphStyled>
-            </Box>
-            <PlansBillingInterval
-              {...{ t, billingInterval, handleChangeBillngPeriod }}
-            />
-          </Flex>
-        </Box>
-      </Flex>
-    </TextWrapper>
-    <TextWrapper>
-      <PlansTable
-        interval={billingInterval}
-        t={t}
-        onPlanChoose={onPlanChoose}
-        plans={plans}
-      />
-    </TextWrapper>
-  </Flex>
-);
+const Plans = ({ plans, fetchPlans, lng }) => {
+  const { t } = useTranslation();
+  const [period, setPeriod] = useState(SUBSCRIPTION_PERIOD.MONTHLY);
+  const [currency, setCurrency] = useState(SUBSCRIPTION_CURRENCY.EUR);
 
-PlansMainComponent.defaultProps = {
-  onPlanChoose: noop,
+  const onPlanChooseClick = useCallback(
+    plan => {
+      const { name } = getPlanData({ plan, t });
+      window.location.href = getPlanLoginPath({ lng, name });
+    },
+    [lng, t]
+  );
+
+  useEffect(() => {
+    fetchPlans();
+  }, [fetchPlans]);
+
+  if (!plans || !plans.size) return null;
+
+  return (
+    <PlansContainer>
+      <TextWrapper>
+        <Flex
+          flexWrap="wrap"
+          flexDirection={["column", "column", "column", "row"]}
+          justifyContent={["center", "center", "center", "space-between"]}
+          alignItems="flex-end"
+          mb="60px"
+        >
+          <Box width={[1, 1, 1, 2 / 5]} mb={[30, 30, 30, 0]}>
+            <H2Styled>{t("plans:header")}</H2Styled>
+            <ParagraphStyled big>
+              {t("plans:subHeader.start")}{" "}
+              <BlueText>{t("plans:subHeader.end")}</BlueText>
+            </ParagraphStyled>
+            <ParagraphStyled>{t("plans:paragraph")}</ParagraphStyled>
+          </Box>
+          <Box width={[1, 1, 1, 2 / 5]}>
+            <Box mb={20}>
+              <PlansPeriodSelector period={period} setPeriod={setPeriod} />
+            </Box>
+            <PlansCurrencySelector
+              currency={currency}
+              setCurrency={setCurrency}
+            />
+          </Box>
+        </Flex>
+      </TextWrapper>
+      <PlansTable
+        plans={plans}
+        period={period}
+        currency={currency}
+        onPlanChooseClick={onPlanChooseClick}
+      />
+    </PlansContainer>
+  );
+};
+
+Plans.propTypes = {
+  plans: shape(),
+  lng: string.isRequired,
+  fetchPlans: func.isRequired
+};
+
+Plans.defaultProps = {
   plans: null
 };
-PlansMainComponent.propTypes = {
-  t: func.isRequired,
-  billingInterval: string.isRequired,
-  handleChangeBillngPeriod: func.isRequired,
-  plansRef: oneOfType([func, shape({ current: any })]).isRequired,
-  onPlanChoose: func,
-  plans: shape()
+
+const mapState = state => ({
+  plans: selectPlans(state)
+});
+
+const mapDispatch = {
+  fetchPlans: fetchPlansAction
 };
 
-export default PlansMainComponent;
+export default connect(
+  mapState,
+  mapDispatch
+)(Plans);

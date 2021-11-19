@@ -143,7 +143,8 @@
       "is not a fully qualified domain name-domains": "Dominios no es un nombre de dominio completo",
       "unauthorized-Not allowed to create? this Widget": "No tienes permiso para crear este widget. Solo los usuarios con plan pagado pueden usar widgets.",
       "contains invalid characters (valid characters [a-z0-9-])-domains": "Los dominios contienen caracteres no válidos (caracteres válidos: [a-z0-9 \\ -])",
-      "unsupported_business_city-base": "Orkestro no es compatible con tu ciudad."
+      "unsupported_business_city-base": "Orkestro no es compatible con tu ciudad.",
+      "stripe_error-base": "La moneda de Stripe de su empresa no es igual a la moneda del plan de suscripción"
     }
   },
   "placeholder": {

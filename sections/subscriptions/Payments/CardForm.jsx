@@ -1,17 +1,18 @@
 import { PureComponent } from "react";
 import {
-  injectStripe,
-  CardNumberElement,
-  CardExpiryElement,
   CardCVCElement,
+  CardExpiryElement,
+  CardNumberElement,
+  injectStripe,
   PostalCodeElement
 } from "react-stripe-elements";
-import { Flex, Box } from "@rebass/grid";
-import { Button, BlueText, Opacity, LoadingIndicator } from "components";
-import { shape, func, string } from "prop-types";
-import { theme } from "utils/theme";
+import { Box, Flex } from "@rebass/grid";
+import { func, shape } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Label, Input, Line, Container } from "./styled";
+
+import { BlueText, Button, LoadingIndicator, Opacity } from "components";
+import { theme } from "utils/theme";
+import { Container, Input, Label, Line } from "./styled";
 
 const style = {
   base: {
@@ -37,7 +38,6 @@ class Form extends PureComponent {
       stripe,
       updateSubscription,
       notificationError,
-      nextPlanName,
       getBusinessSetupIntent
     } = this.props;
     if (stripe) {
@@ -48,7 +48,7 @@ class Form extends PureComponent {
             .handleCardSetup(rawData.data.attributes.clientSecret)
             .then(({ error, setupIntent }) => {
               if (setupIntent) {
-                updateSubscription(setupIntent.id, nextPlanName);
+                updateSubscription(setupIntent.id);
                 this.setState({ loading: true });
               } else {
                 this.setState({ loading: false });
@@ -126,8 +126,7 @@ Form.propTypes = {
   t: func.isRequired,
   updateSubscription: func.isRequired,
   getBusinessSetupIntent: func.isRequired,
-  notificationError: func.isRequired,
-  nextPlanName: string.isRequired
+  notificationError: func.isRequired
 };
 
 export default injectStripe(Form);

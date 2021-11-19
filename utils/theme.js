@@ -49,9 +49,13 @@ export const colors = {
   violet: "55, 81, 255",
   black: "0, 0, 0",
   pink: "243, 129, 118",
+  textDarkBlue: "13, 18, 73",
+  tableBorder: "234, 229, 229",
+  plansCaptionBlue: "83, 121, 247",
   gray: {
     "2": "79, 79, 79",
-    "3": "130, 130, 130"
+    "3": "130, 130, 130",
+    "4": "189, 189, 189"
   }
 };
 
@@ -67,6 +71,7 @@ const fontSizes = {
   f22: "22px",
   f23: "23px",
   f24: "24px",
+  f27: "27px",
   f28: "28px",
   f30: "30px",
   f32: "32px",
