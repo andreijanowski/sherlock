@@ -4,8 +4,7 @@ import { Box, Flex } from "@rebass/grid";
 
 import {
   InternalIntegrationSwitch,
-  OrchestroIntegrationSwitch,
-  UberIntegrationSwitch
+  OrchestroIntegrationSwitch
 } from "components";
 import {
   isIntegrationConnectedOrPending,
@@ -24,37 +23,21 @@ import {
 } from "./styled";
 import PartnerTileButtons from "../PartnerTileButtons";
 
-const IntegrationTile = ({
-  partner,
-  partnerId,
-  t,
-  isOrkestroConnected,
-  isUberConnected
-}) => {
+const IntegrationTile = ({ partner, partnerId, t, isOrkestroConnected }) => {
   const name = partner.get("name");
   const {
     isOrkestroIntegration,
-    isUberIntegration,
     isIntegratedWithServices
   } = getServiceIntegrationMeta(partner);
 
-  const { isIntegrated } = getIntegrationStates(
-    partner,
-    isOrkestroConnected,
-    isUberConnected
-  );
+  const { isIntegrated } = getIntegrationStates(partner, isOrkestroConnected);
 
   const isConnectedOrPending = isIntegrationConnectedOrPending(
     partner,
-    isOrkestroConnected,
-    isUberConnected
+    isOrkestroConnected
   );
 
-  const status = getIntegrationColoredStatus(
-    partner,
-    isOrkestroConnected,
-    isUberConnected
-  );
+  const status = getIntegrationColoredStatus(partner, isOrkestroConnected);
 
   return (
     <Container isConnectedOrPending={isConnectedOrPending}>
@@ -79,7 +62,6 @@ const IntegrationTile = ({
           />
         )}
         {isOrkestroIntegration && <OrchestroIntegrationSwitch t={t} />}
-        {isUberIntegration && <UberIntegrationSwitch t={t} />}
       </Box>
       <PartnerTileButtons
         t={t}
@@ -95,8 +77,7 @@ IntegrationTile.propTypes = {
   partner: oneOfType([arrayOf(), shape()]).isRequired,
   partnerId: string.isRequired,
   t: func.isRequired,
-  isOrkestroConnected: bool.isRequired,
-  isUberConnected: bool.isRequired
+  isOrkestroConnected: bool.isRequired
 };
 
 export default connect(state => {
@@ -104,12 +85,7 @@ export default connect(state => {
     "integrations",
     "isConnectedToOrkestro"
   ]);
-  const isUberConnected = state.getIn([
-    "uberIntegrations",
-    "isConnectedToUberEats"
-  ]);
   return {
-    isOrkestroConnected,
-    isUberConnected
+    isOrkestroConnected
   };
 })(IntegrationTile);

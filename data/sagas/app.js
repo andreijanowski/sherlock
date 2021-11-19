@@ -15,6 +15,7 @@ import { fetchProfileBusiness } from "actions/users";
 import { fetchBusinessMembers, fetchBusinessDishes } from "actions/businesses";
 import { fetchExternalServices } from "actions/externalServices";
 import { fetchDetectives, fetchTopDetective } from "actions/detectives";
+import { fetchBusinessPartnerships } from "actions/integrations";
 import { DETECTIVES_CITIES } from "pages/app/influencerManagement/detectives/config";
 import fetchAllBusinessData from "./utils/fetchAllBusinessData";
 
@@ -57,13 +58,14 @@ function* handlePatchChangeSaga({ payload: { path } }) {
       }
       break;
     }
-    case "/app/lefood/menu": {
+    case "/app/menuManagement": {
       const business = yield select(state =>
         state.getIn(["users", "currentBusiness", "data", "businesses"])
       );
       if (business) {
         const id = business.first().get("id");
         yield fetchAllBusinessData(fetchBusinessDishes, id);
+        yield put(fetchBusinessPartnerships(id));
       }
       break;
     }
