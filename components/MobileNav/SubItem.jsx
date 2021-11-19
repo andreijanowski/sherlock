@@ -42,19 +42,25 @@ const SubItem = ({ t, lng, route, label, Icon, submenuItems, toggleMenu }) => {
           <IconLabel>{t("app:back")}</IconLabel>
         </Flex>
         {submenuItems &&
-          submenuItems.map(item => {
-            const onClick = item.onClick || (() => toggleMenu(false));
-            return (
+          submenuItems.map(item =>
+            item.route ? (
               <Link {...{ lng, route: item.route, key: item.label }}>
-                <Flex align="center" onClick={onClick}>
+                <Flex align="center" onClick={() => toggleMenu(false)}>
                   <IconWrapper dark noFill>
                     {item.icon && React.createElement(item.icon)}
                   </IconWrapper>
                   <IconLabel>{item.label}</IconLabel>
                 </Flex>
               </Link>
-            );
-          })}
+            ) : (
+              <Flex align="center" onClick={item.onClick}>
+                <IconWrapper dark noFill>
+                  {item.icon && React.createElement(item.icon)}
+                </IconWrapper>
+                <IconLabel>{item.label}</IconLabel>
+              </Flex>
+            )
+          )}
       </SubMenuWrapper>
     </Flex>
   );
