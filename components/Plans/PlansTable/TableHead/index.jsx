@@ -9,13 +9,18 @@ import TableIntroductoryRow from "../TableIntroductoryRow";
 import TablePerfectForRow from "../TablePerfectForRow";
 
 const TableHead = ({ plans, period, currency, onPlanChooseClick }) => {
-  const matchingPlans = useMemo(
-    () =>
-      Object.values(SUBSCRIPTION_PLANS)
-        .map(name => matchPlanBySlug({ plans, name, period, currency }))
-        .filter(Boolean),
-    [currency, period, plans]
-  );
+  const matchingPlans = useMemo(() => {
+    const res = [];
+
+    Object.values(SUBSCRIPTION_PLANS).forEach(name => {
+      const plan = matchPlanBySlug({ plans, name, period, currency });
+      if (plan) {
+        res.push(plan);
+      }
+    });
+
+    return res;
+  }, [currency, period, plans]);
 
   return (
     <Container>

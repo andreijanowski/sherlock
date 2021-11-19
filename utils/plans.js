@@ -46,9 +46,7 @@ export const getPlanData = ({ plan, t }) => {
   const currency = plan.getIn(["attributes", "currency"]);
   const fullName = plan.getIn(["attributes", "name"]);
 
-  const splittedSlug = slug.split("-");
-  const name = splittedSlug[1].toLocaleLowerCase();
-  const period = splittedSlug[2];
+  const [, name, period] = slug.split("-");
   const label = t(`plans:plansTitle.${name}`);
   const price = formatPlanPrice({ cents, currency, t });
   const buttonLabel =

@@ -27,7 +27,9 @@ const TablePrimaryCell = ({
         <PrimaryCellLabel
           onClick={onClick}
           isComingSoon={isComingSoon}
-          {...(href ? { as: "a", href, target: "_blank" } : null)}
+          {...(href
+            ? { as: "a", href, target: "_blank", rel: "noreferrer noopener" }
+            : null)}
         >
           {label}
           {href && (
