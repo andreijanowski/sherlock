@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Flex } from "@rebass/grid";
 import { func, string, shape } from "prop-types";
 import { connect } from "react-redux";
@@ -14,6 +14,7 @@ import {
   Hamburger
 } from "icons";
 import { Select } from "components";
+import CollapsingGroup from "components/CollapsingGroup";
 import { ToggledMobileMenu, MenuScrollContainer } from "./styled";
 import MainIcon from "./MainIcon";
 import SubItem from "./SubItem";
@@ -89,9 +90,13 @@ const MobileNav = ({
 
             const isGroup = !!subitem.groupTitle;
 
-            return isGroup
-              ? subitem.items.map(renderItem)
-              : renderItem(subitem);
+            return isGroup ? (
+              <CollapsingGroup title={subitem.groupTitle}>
+                {subitem.items.map(renderItem)}
+              </CollapsingGroup>
+            ) : (
+              renderItem(subitem)
+            );
           })}
         </MenuScrollContainer>
       </ToggledMobileMenu>

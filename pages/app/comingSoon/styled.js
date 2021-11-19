@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  max-height: calc(100vh - 200px);
 `;
 
 export const Text = styled.p`

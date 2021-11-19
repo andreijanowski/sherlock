@@ -4,12 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 import {
+  CollapsingGroupContainer,
   CollapsingGroupToggle,
   CollapsingGroupContent,
   CollapsingGroupTitle
 } from "./styled";
 
-const CollapsingGroup = ({ title, children }) => {
+const CollapsingGroup = ({ title, children, as }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const toggleState = useCallback(() => {
@@ -17,7 +18,7 @@ const CollapsingGroup = ({ title, children }) => {
   }, []);
 
   return (
-    <li>
+    <CollapsingGroupContainer as={as}>
       <CollapsingGroupToggle onClick={toggleState}>
         <CollapsingGroupTitle mr={2}>{title}</CollapsingGroupTitle>
         <FontAwesomeIcon icon={isCollapsed ? faChevronDown : faChevronUp} />
@@ -25,13 +26,18 @@ const CollapsingGroup = ({ title, children }) => {
       <CollapsingGroupContent>
         {!isCollapsed && children}
       </CollapsingGroupContent>
-    </li>
+    </CollapsingGroupContainer>
   );
 };
 
 CollapsingGroup.propTypes = {
+  as: string,
   title: string.isRequired,
   children: node.isRequired
+};
+
+CollapsingGroup.defaultProps = {
+  as: "li"
 };
 
 export default CollapsingGroup;

@@ -7,6 +7,7 @@ import { Link, BusinessSelect, Menu } from "components";
 import { PARTNERS_URL, WHOLESALERS_URL } from "sections/integrations/utils";
 import MenuArrowIcon from "components/MenuArrowIcon";
 import { isMenuItemActive } from "utils/menuConfig";
+import CollapsingGroup from "components/CollapsingGroup";
 import {
   Wrapper,
   BadgeNumber,
@@ -19,7 +20,6 @@ import {
   TransitionContainer,
   NavTransitionContainer
 } from "./styled";
-import CollapsingGroup from "./CollapsingGroup";
 
 const routesWithSearch = [PARTNERS_URL, WHOLESALERS_URL];
 
