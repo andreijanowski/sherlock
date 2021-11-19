@@ -72,6 +72,7 @@ const Plans = ({ plans, fetchPlans, lng }) => {
         period={period}
         currency={currency}
         onPlanChooseClick={onPlanChooseClick}
+        isLandingPage
       />
     </PlansContainer>
   );

@@ -10,9 +10,7 @@ export const alignCenterMobile = css`
 `;
 
 export const BlueText = styled.span`
-  display: inline-block;
   color: rgb(${p => p.theme.colors.blue});
-  text-align: center;
 `;
 export const WhiteText = styled.span`
   color: rgb(${p => p.theme.colors.blue});
