@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Flex, Box } from "@rebass/grid";
 
 const SIDEBAR_WIDTH = 300;
 
@@ -79,7 +78,7 @@ export const NavItemIcon = styled.span`
   top: 50%;
   z-index: 0;
   transform: translateY(-50%);
-  font-size: 55px;
+  font-size: 40px;
   justify-content: center;
   svg .primary {
     color: rgb(${p => p.theme.colors.bombay});
@@ -94,8 +93,8 @@ export const NavItemIcon = styled.span`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     background-color: rgb(${p => p.theme.colors.detectivesBackgroundGrey});
     border-radius: 50%;
     z-index: -1;
@@ -107,7 +106,7 @@ export const NavItemLink = styled.a`
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding: ${p => (p.withoutIcon ? "12px" : "20px 25px 20px 60px")};
+  padding: ${p => (p.withoutIcon ? "12px" : "20px 25px 20px 50px")};
   font-weight: ${p =>
     p.withoutIcon ? p.theme.fontWeights.medium : p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f13};
@@ -148,22 +147,4 @@ export const BadgeNumber = styled.div`
   text-align: center;
   background: rgb(${p => p.theme.colors.blue});
   border-radius: 50%;
-`;
-
-export const CollapsingGroupToggle = styled(Flex)`
-  align-items: center;
-  flex-wrap: nowrap;
-  padding: 6px 6px 6px 18px;
-  color: rgb(${p => p.theme.colors.textDarkBlue});
-  cursor: pointer;
-`;
-
-export const CollapsingGroupContent = styled.ul`
-  padding-left: 0;
-`;
-
-export const CollapsingGroupTitle = styled(Box)`
-  font-weight: ${p => p.theme.fontWeights.bold};
-  font-size: ${p => p.theme.fontSizes.f16};
-  line-height: ${p => p.theme.fontSizes.f24};
 `;
