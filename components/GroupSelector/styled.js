@@ -20,8 +20,8 @@ export const OptionsContainer = styled(Flex)`
 export const Caption = styled.span`
   color: rgb(${p => p.theme.colors.plansCaptionBlue});
   font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: ${p => p.theme.fontSizes.f12};
-  line-height: ${p => p.theme.fontSizes.f12};
+  font-size: ${p => p.theme.fontSizes.f10};
+  line-height: ${p => p.theme.fontSizes.f10};
 `;
 
 export const Option = styled.div`

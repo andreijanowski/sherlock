@@ -112,7 +112,6 @@ MobileNav.propTypes = {
   businesses: shape(),
   changeCurrentBusiness: func.isRequired,
   addBusiness: func.isRequired,
-  logout: func.isRequired,
   config: shape().isRequired
 };
 

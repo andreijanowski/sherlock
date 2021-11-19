@@ -25,7 +25,7 @@ import {
 import { PLANS_BUSINESS_EXAMPLE_LINK } from "consts";
 import { TableHintCaption, TableHintTitle } from "./TableHint/styled";
 
-export const getTableConfig = t => [
+export const getTableConfig = ({ t, isLandingPage }) => [
   {
     heading: t("plans:ourFeatures"),
     sections: [
@@ -34,16 +34,20 @@ export const getTableConfig = t => [
         rows: [
           {
             icon: IntegrationHub,
-            href: "/#features",
-            onClick: e => {
-              e.preventDefault();
-              const target = document.querySelector("#features h2");
-              window.scroll({
-                left: 0,
-                top: window.scrollY + target.getBoundingClientRect().top,
-                behavior: "smooth"
-              });
-            },
+            ...(isLandingPage
+              ? {
+                  href: "/#features",
+                  onClick: e => {
+                    e.preventDefault();
+                    const target = document.querySelector("#features h2");
+                    window.scroll({
+                      left: 0,
+                      top: window.scrollY + target.getBoundingClientRect().top,
+                      behavior: "smooth"
+                    });
+                  }
+                }
+              : null),
             label: t("app:integrationHub"),
             renderHint: () => (
               <>
