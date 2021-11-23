@@ -15,7 +15,8 @@ import { fetchProfileBusiness } from "actions/users";
 import { fetchBusinessMembers, fetchBusinessDishes } from "actions/businesses";
 import { fetchExternalServices } from "actions/externalServices";
 import { fetchDetectives, fetchTopDetective } from "actions/detectives";
-import { DETECTIVES_CITIES } from "pages/app/detectives/config";
+import { fetchBusinessPartnerships } from "actions/integrations";
+import { DETECTIVES_CITIES } from "pages/app/influencerManagement/detectives/config";
 import fetchAllBusinessData from "./utils/fetchAllBusinessData";
 
 function* handlePatchChangeSaga({ payload: { path } }) {
@@ -57,13 +58,14 @@ function* handlePatchChangeSaga({ payload: { path } }) {
       }
       break;
     }
-    case "/app/lefood/menu": {
+    case "/app/menuManagement": {
       const business = yield select(state =>
         state.getIn(["users", "currentBusiness", "data", "businesses"])
       );
       if (business) {
         const id = business.first().get("id");
         yield fetchAllBusinessData(fetchBusinessDishes, id);
+        yield put(fetchBusinessPartnerships(id));
       }
       break;
     }
@@ -75,7 +77,7 @@ function* handlePatchChangeSaga({ payload: { path } }) {
       yield put(setReservationsUpdates(Map()));
       break;
     }
-    case "/app/detectives": {
+    case "/app/influencerManagement/detectives": {
       yield put(fetchTopDetective());
       yield all(DETECTIVES_CITIES.map(city => put(fetchDetectives({ city }))));
       yield put(

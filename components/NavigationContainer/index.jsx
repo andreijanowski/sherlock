@@ -1,24 +1,48 @@
-import React, { useCallback, useEffect } from "react";
-import { bool, func, string, arrayOf, shape } from "prop-types";
+import React, { useCallback, useEffect, useMemo } from "react";
+import { bool, func, string, number } from "prop-types";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 
-import { NavBar, Menu, MobileNav } from "components";
+import { NavBar, MobileNav } from "components";
 import { setNestedMenuVisibility } from "actions/app";
-import { PARTNERS_URL, WHOLESALERS_URL } from "sections/integrations/utils";
+import { logout as logoutAction } from "actions/auth";
+import { getMenuConfig, isMenuItemActive } from "utils/menuConfig";
 import { Wrapper, MobileWrapper } from "./styled";
 
-const routesWithSearch = [PARTNERS_URL, WHOLESALERS_URL];
-
 const NavigationContainer = ({
-  withMenu,
-  menuItems,
   t,
   lng,
   updateNestedMenuVisibility,
-  isNestedMenuVisible
+  isNestedMenuVisible,
+  ordersUpdates,
+  reservationsUpdates,
+  logout
 }) => {
-  const router = useRouter();
+  const { asPath } = useRouter();
+
+  const config = useMemo(
+    () => getMenuConfig({ t, ordersUpdates, reservationsUpdates, logout }),
+    [t, ordersUpdates, reservationsUpdates, logout]
+  );
+
+  const mainMenuActiveItem = useMemo(() => {
+    const flatConfig = [];
+
+    config.forEach(menuItem => {
+      if (menuItem.groupTitle) {
+        flatConfig.push(...menuItem.items);
+      } else {
+        flatConfig.push(menuItem);
+      }
+    });
+
+    return flatConfig.find(menuItem =>
+      isMenuItemActive({ lng, asPath, menuItem })
+    );
+  }, [config, lng, asPath]);
+
+  const submenuItems = mainMenuActiveItem && mainMenuActiveItem.submenuItems;
+  const withMenu = !!submenuItems;
 
   const toggleNestedMenu = useCallback(() => {
     updateNestedMenuVisibility(!isNestedMenuVisible);
@@ -33,50 +57,48 @@ const NavigationContainer = ({
 
   const showNestedMenu = withMenu && isNestedMenuVisible;
 
-  const withSearch = routesWithSearch.includes(router.pathname);
-
   return (
     <>
       <Wrapper>
-        <NavBar {...{ t, lng, showNestedMenu, toggleNestedMenu }}>
-          {withMenu && (
-            <Menu {...{ withSearch, t, lng, menuItems, toggleNestedMenu }} />
-          )}
-        </NavBar>
+        <NavBar
+          {...{
+            t,
+            lng,
+            config,
+            withMenu,
+            submenuItems,
+            showNestedMenu,
+            toggleNestedMenu
+          }}
+        />
       </Wrapper>
       <MobileWrapper>
-        <MobileNav {...{ t, lng }} />
+        <MobileNav {...{ t, lng, config }} />
       </MobileWrapper>
     </>
   );
 };
 
 NavigationContainer.propTypes = {
-  withMenu: bool,
-  menuItems: arrayOf(
-    shape({
-      onClick: func,
-      route: string,
-      label: string.isRequired,
-      isActive: bool
-    })
-  ),
   mainIcon: string,
   t: func.isRequired,
   lng: string.isRequired,
   isNestedMenuVisible: bool.isRequired,
-  updateNestedMenuVisibility: func.isRequired
+  updateNestedMenuVisibility: func.isRequired,
+  ordersUpdates: number.isRequired,
+  reservationsUpdates: number.isRequired,
+  logout: func.isRequired
 };
 
 NavigationContainer.defaultProps = {
-  menuItems: null,
-  withMenu: false,
   mainIcon: null
 };
 
 export default connect(
   state => ({
-    isNestedMenuVisible: state.getIn(["app", "isNestedMenuVisible"])
+    isNestedMenuVisible: state.getIn(["app", "isNestedMenuVisible"]),
+    ordersUpdates: state.getIn(["app", "ordersUpdates"]).size,
+    reservationsUpdates: state.getIn(["app", "reservationsUpdates"]).size
   }),
-  { updateNestedMenuVisibility: setNestedMenuVisibility }
+  { updateNestedMenuVisibility: setNestedMenuVisibility, logout: logoutAction }
 )(NavigationContainer);

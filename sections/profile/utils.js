@@ -1,70 +1,4 @@
-export const generateMenuItems = (
-  t,
-  active,
-  showPublishModal,
-  state,
-  unpublishBusiness
-) => {
-  const menuItems = [
-    {
-      route: `/app/profile/basic-information/`,
-      label: t("app:manageProfile.basicInformation"),
-      isActive: active === "basicInformation"
-    },
-    {
-      route: `/app/profile/opening-hours/`,
-      label: t("app:manageProfile.openingHours"),
-      isActive: active === "openingHours"
-    },
-    {
-      route: `/app/profile/pictures-and-menus/`,
-      label: t("app:manageProfile.picturesAndMenus"),
-      isActive: active === "picturesAndMenus"
-    },
-    {
-      route: `/app/profile/additional-information/`,
-      label: t("app:manageProfile.additionalInformation"),
-      isActive: active === "additionalInformation"
-    },
-    {
-      route: `/app/profile/redirection-links/`,
-      label: t("additionalInformation:redirectionLinks"),
-      isActive: active === "redirectionLinks"
-    },
-    {
-      route: `/app/profile/members/`,
-      label: t("app:manageProfile.inviteYourTeam"),
-      isActive: active === "inviteYourTeam"
-    },
-    {
-      route: `/app/profile/live-info/`,
-      label: t("app:manageProfile.liveInfo"),
-      isActive: active === "liveInfo"
-    },
-    {
-      route: `/app/profile/widgets/`,
-      label: t("app:manageProfile.widgets"),
-      isActive: active === "widgets"
-    },
-    {
-      onClick: state === "published" ? unpublishBusiness : showPublishModal,
-      label:
-        state === "published"
-          ? t("app:manageProfile.unPublish")
-          : t("app:manageProfile.publish"),
-      color: state === "published" ? "ruby" : "green"
-    }
-  ];
-
-  if (state === "waiting_for_approval") {
-    menuItems[8] = {
-      label: t("app:manageProfile.waitingForApproval"),
-      color: "carrotOrange"
-    };
-  }
-
-  return menuItems;
-};
+import { generateProfileSubmenu } from "utils/menuConfig";
 
 const getGroupsByParentGroups = (groups, parentGroups) =>
   groups
@@ -200,11 +134,12 @@ export const generatePublishModalItems = ({
     t("publishModal:picturesAndMenusTip"),
     t("publishModal:additionalInformationTip")
   ];
-  const items = generateMenuItems(t);
+  const items = generateProfileSubmenu(t);
   const isBasicInformationValid = !!checkIsBasicInformationValid(
     business,
     businessGroups
   );
+
   return tips.map((item, index) => ({
     name: items[index].label,
     route: `${items[index].route}?isErrorVisibilityRequired=true`,

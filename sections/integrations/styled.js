@@ -1,6 +1,8 @@
 import { Flex } from "@rebass/grid";
 import styled from "styled-components";
 
+import { Button } from "components";
+
 export const Wrapper = styled(Flex).attrs(() => ({
   px: [3, 4],
   pt: [3, 4],
@@ -29,4 +31,22 @@ export const GridWrapper = styled(Wrapper)`
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
   }
+`;
+
+export const BackToListButton = styled(Flex)`
+  color: rgb(${p => p.theme.colors.navyBlue});
+  cursor: pointer;
+`;
+
+export const BlueButton = styled(Button)`
+  width: auto;
+`;
+
+export const IframeWrapper = styled.iframe`
+  width: 100%;
+  flex: 1;
+  min-height: 500px;
+  border: none;
+  border-radius: ${p => p.theme.radius.default};
+  box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
 `;

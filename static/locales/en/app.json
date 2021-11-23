@@ -1,13 +1,13 @@
 {
   "controlCenter": "Control Center (soon)",
-  "reservations": "Bookings",
+  "reservations": "Reservation management",
   "takeAway": "Take Away",
-  "bookings": "Bookings (soon)",
+  "bookings": "Reservation management (soon)",
   "delivery": "Order Management",
   "catering": "Caterings",
   "privatisations": "Privatisations",
   "integrations": "Integrations",
-  "wholesaler": "My Wholesalers",
+  "wholesaler": "Procurement",
   "socialMedia": "Social media (soon)",
   "billing": "Billing (soon)",
   "manageProfile": {
@@ -26,7 +26,7 @@
     "published": "Published",
     "unPublish": "Unpublish My Business",
     "waitingForApproval": "Waiting for approval",
-    "myProfile": "My Business",
+    "myProfile": "Business Profile",
     "unPublish_prompt": "Are you sure you want to Unpublish your business from Foodetective? Clients won't be able to find your profile anymore."
   },
   "manageIntegrations": {
@@ -56,7 +56,9 @@
     "moreInfo": "More info",
     "orderNow": "Order now",
     "all": "All integrations",
-    "goToWeb": "Go to web"
+    "goToWeb": "Go to web",
+    "backToList": "Back to list",
+    "openInNewTab": "Open in a new tab"
   },
   "subscriptions": "Subscriptions",
   "userSettings": {
@@ -100,7 +102,7 @@
     "businessOverview": "Business Overview"
   },
   "integrationHub": "Integration Hub",
-  "appManager": "Menu management",
+  "menuManagement": "Menu management",
   "payments": "Payments",
   "privateEvents": "Private Events",
   "reviews": "Reviews Management",
@@ -117,5 +119,15 @@
   "photography": "Photography & Video",
   "search": "Search...",
   "becomeBOPrompt": "Do you want to become Business Owner?",
-  "playVideo": "Play video"
+  "playVideo": "Play video",
+  "appManager": "App Manager",
+  "payroll": "HR & Payroll",
+  "foodWaste": "Food waste",
+  "presenceManagement": "Presence management",
+  "loyalty": "Customer loyalty",
+  "eventsManagement": "Events Management",
+  "influencerManagement": "Content Management",
+  "managementIntegrations": "Management",
+  "operationsIntegrations": "Operations",
+  "marketingIntegrations": "Marketing"
 }

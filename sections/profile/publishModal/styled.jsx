@@ -17,7 +17,7 @@ export const Header = styled(Flex).attrs(() => ({
   /* stylelint-disable-line no-empty-block */
 `;
 
-export const H2 = styled(RawH2)`
+export const H2 = styled(props => <RawH2 {...props} />)`
   font-size: ${p => p.theme.fontSizes.f24};
 `;
 

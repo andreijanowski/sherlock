@@ -9,7 +9,7 @@
   "paymentInfo": "Information de payement",
   "changeCard": "Changer de carte",
   "setCard": "Établir la carte",
-  "nextPaymentAt": "Próximo pago a las",
+  "nextPaymentAt": "Prochain paiement le",
   "trialEndsAt": "L'essai terminera à",
   "cancelAt": "Effacer à",
   "finishPoweringYouUp": "Finissons de vous alimenter!",
@@ -26,115 +26,82 @@
   "success": "Succès",
   "successMessage": "Votre abonnement a été mis à jour avec succès!",
   "goBackToPlans": "Retourner aux plans",
-  "promotion": {
-    "startFirstLine": "Obtenir ",
-    "promotionPlan": "Foodetective pour les entreprises Basic",
-    "startLastLine": " pendant 3 mois gratuitement.",
-    "endFirstLine": "Il suffit de compléter votre profil en ligne. L'offre est très limitée, nous n'avons que ",
-    "endLastLine": "1000 slots/places disponibles."
+  "dashboardAnalytics": {
+    "basic": "Basique",
+    "essential": "Avancé",
+    "ultimate": "Sur mesure"
   },
-  "billingYearly": "Facturation annuelle (économiser jusqu'à 30%)",
-  "billingMonthly": "Facturation mensuelle",
-  "options": {
-    "adsMarketing": "Pubs & Marketing",
-    "analytics": "Analytique",
-    "appManager": "Gestionnaire d'application",
-    "bookings": "Réservations",
-    "catering": "Caterings",
-    "clientDirectory": "Annuaire des Clients",
-    "clients": "Clients",
-    "communityManagement": "Community Management",
-    "dashboard": "Dashboard",
-    "deliveryManagement": "Gestion de la Livraison",
-    "deliveryTakeAway": "Livraison et Plats à Emporter",
-    "detectives": "Detectives & Influenceurs",
-    "enterprise": "Vous êtes un grossiste, un fabricant, un distributeur ou une multinationale? Laissez-nous vous faire une offre sur mesure. Réservez un de nos spécialistes dès aujourd'hui.",
-    "integrationHub": "Intégrations",
-    "myProfile": "My Business",
-    "payments": "Paiements",
-    "photography": "Photographie",
-    "privateEvents": "Evenements",
-    "reviews": "Gestions des Avis",
-    "smartBackend": "Back end intelligent",
-    "stockManagement": "Gestion de Stocks",
-    "wholesalers": "Grossistes",
-
-    "website": "Page Web",
-    "widget": "Widget",
-    "mobileApp": "Application Mobile",
-    "reservations": "Réservations",
-    "takeAway": "À emporter",
-    "paidBooking": "Réservation",
-    "privatisation": "Privatisation",
-    "delivery": "Gestion des Commandes",
-    "digitalMarketing": "Le marketing numérique",
-    "redirections": "Redirections",
-    "integrations": "Intégrations",
-    "suppliers": "Fournisseurs",
-    "widgets": "Widgets",
-    "visibility": "Visibilité Premium"
+  "hints": {
+    "integrationHubTitle": "Les intégrations disponibles sont affichées ci-dessous",
+    "integrationHubCaption": "Management, Operations, Marketing",
+    "dashboardTailorMade": "Le Dashboard inclut une vue multi-location",
+    "paymentsTitle": "Des frais de transaction peuvent s'appliquer",
+    "paymentsCaption": "ex. Stripe 1,4% + 0,25€",
+    "customerSupportTitle": "Service Disponible",
+    "customerSupportTime": "9h à 21h CET",
+    "customerSupportDays": "Lun à Sam"
   },
-  "optionsHd": {
-    "1": "Outils et Services",
-    "2": "Admin et Opérations",
-    "3": "Améliorer la Visibilité"
-  },
-  "basic": {
-    "name": "De base",
-    "mostPopular": "La plus populaire",
-    "priceDescription": "Gratuit",
-    "price": {
-      "month": "pour toujours",
-      "year": "pour toujours",
-      "beta": "pour toujours"
-    },
-    "month": "mois",
-    "year": "année",
-    "buttonText": "Créer un profil",
-    "buttonText2": "Commencer"
-  },
-  "essential": {
-    "name": "Essentiel",
-    "priceDescription": " A partir de",
-    "mostPopular": "La plus populaire",
-    "price": {
-      "month": "29.90",
-      "year": "249",
-      "beta": "29.90"
-    },
-    "month": "mois",
-    "year": "année",
-    "buttonText": "Commencez à",
-    "buttonText2": "Choisissez Essential"
-  },
-  "premium": {
-    "name": "Premium",
-    "priceDescription": "À partir de",
-    "price": {
-      "month": "299",
-      "year": "2499",
-      "beta": "beta"
-    },
-    "month": "mois",
-    "year": "année",
-    "buttonText": "Commencez à",
-    "buttonText2": "Choisissez Premium"
-  },
-  "special": {
-    "buttonText": "Prendre RDV",
-    "buttonText2": "Réservez une Démo",
-    "description1": "Êtes-vous un grossiste, un fabricant, un distributeur ou une multinationale?",
-    "description2": "Si tel est le cas, réservez dès aujourd'hui une rencontre avec l'un de nos spécialistes pour en savoir plus.",
-    "name": "Entreprise",
-    "priceDescription": "Parlons-en !",
-    "priceDescription2": "Tarification Personnalisée",
-    "price": {
-      "month": "",
-      "year": "",
-      "beta": ""
+  "ourFeatures": "Nos fonctionnalités",
+  "ourIntegrations": "Nos intégrations",
+  "comingSoon": "coming soon",
+  "reportAndSupport": "Rapport & Support Client",
+  "customerSupport": {
+    "title": "Support Client",
+    "options": {
+      "basic": "Online Chat",
+      "essential": "Support téléphonique avec un Account Manager",
+      "ultimate": "Support téléphonique 24/7 avec un account manager"
     }
   },
-  "tableHd1": "Par Mois",
-  "tableHd2": "Par Emplacement",
-  "tableStar": "* Des frais supplémentaires s'appliquent à ces services et produits."
+  "operationalReport": {
+    "title": " Rapport Opérationnel",
+    "options": {
+      "essential": "Essentiel",
+      "ultimate": "Avancé"
+    }
+  },
+  "billing": {
+    "title": "Facturation",
+    "monthly": "Mensuel",
+    "yearly": "Annuel",
+    "save": "Economisez 20%"
+  },
+  "billingPerPeriod": {
+    "monthly": "Mois",
+    "yearly": "Année"
+  },
+  "currency": {
+    "title": "Devise",
+    "eur": "€",
+    "gbp": "£",
+    "chf": "CHF ",
+    "usd": "$"
+  },
+  "perfectFor": {
+    "title": "Parfait pour",
+    "basic": "Petits restaurants et magasins indépendants",
+    "essential": "PME et petites chaînes cherchant à se développer",
+    "ultimate": "Les chaînes bien établies cherchant à réduire leurs coûts opérationnels"
+  },
+  "introductoryOffer": {
+    "title": "Offre de lancement",
+    "offer": "{{price}} pour 3 mois"
+  },
+  "ourPlans": "Nos plans",
+  "plansTitle": {
+    "basic": "Basic",
+    "essential": "Essential",
+    "ultimate": "Ultimate à partir de"
+  },
+  "choosePlan": "Choisir {{name}}",
+  "contactUs": "Contactez nous",
+  "mostPopular": "Le plus populaire",
+  "cancelSubscription": "Annuler l'abonnement",
+  "cancelSubscriptionPrompt": "Etes-vous sûr de vouloir annuler votre abonnement?",
+  "getReady": {
+    "title": "Prêt à commencer??",
+    "description": "Nous serions heureux d'en savoir plus sur votre entreprise et d'organiser une démonstration  gratuite de Foodetective.",
+    "bookDemo": "Réserver une démonstration",
+    "registerNow": "S'inscrire"
+  }
  }

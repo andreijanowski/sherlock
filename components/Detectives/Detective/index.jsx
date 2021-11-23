@@ -2,7 +2,7 @@ import React from "react";
 import { Flex } from "@rebass/grid";
 import { shape, string, func } from "prop-types";
 
-import { getDetectiveUrl } from "pages/app/detectives/config";
+import { getDetectiveUrl } from "pages/app/influencerManagement/detectives/config";
 import { DetectiveName, DetectiveReviews, DetectiveImage } from "../styled";
 
 const Detective = ({ t, lng, detective }) =>

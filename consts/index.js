@@ -21,31 +21,27 @@ const GOOGLE_ANALYTICS_ID = process.env.PUBLIC_GOOGLE_ANALYTICS_ID;
 const GOOGLE_MAPS_API_KEY = process.env.PUBLIC_GOOGLE_MAPS_API_KEY;
 const GOOGLE_TAG_MANAGER_ID = process.env.PUBLIC_GOOGLE_TAG_MANAGER_ID;
 
+const PLANS_BUSINESS_EXAMPLE_LINK = process.env.PLANS_BUSINESS_EXAMPLE_LINK;
+
 const SUBSCRIPTION_ENTREPRISE_URL =
   "https://share.hsforms.com/1UW67s4YOTTKvC2NIum5X0w3cpmu";
 
 const SUBSCRIPTION_PERIOD = {
-  MONTH: "month",
-  YEAR: "year"
+  MONTHLY: "monthly",
+  YEARLY: "yearly"
 };
-const BASIC_PLAN_NAME = "basic";
 
 const SUBSCRIPTION_PLANS = {
-  ENTREPRISE: "Entreprise",
-  ESSENTIAL: "Essential",
-  FREEMIUM: "Freemium",
-  PREMIUM: "Premium"
+  BASIC: "basic",
+  ESSENTIAL: "essential",
+  ULTIMATE: "ultimate"
 };
 
-const SUBSCRIPTION_PLANS_SLUGS = {
-  [SUBSCRIPTION_PERIOD.MONTH]: {
-    [SUBSCRIPTION_PLANS.ESSENTIAL.toLocaleLowerCase()]: "sherlock-essential-monthly-eur",
-    [SUBSCRIPTION_PLANS.PREMIUM.toLocaleLowerCase()]: "sherlock-premium-monthly-new-eur"
-  },
-  [SUBSCRIPTION_PERIOD.YEAR]: {
-    [SUBSCRIPTION_PLANS.ESSENTIAL.toLocaleLowerCase()]: "sherlock-essential-yearly-eur",
-    [SUBSCRIPTION_PLANS.PREMIUM.toLocaleLowerCase()]: "sherlock-premium-yearly-new-eur"
-  }
+const SUBSCRIPTION_CURRENCY = {
+  EUR: "eur",
+  GBP: "gbp",
+  CHF: "chf",
+  USD: "usd"
 };
 
 const TYPEFORM_IDS = {
@@ -83,6 +79,13 @@ const rollbarConfig = {
 
 const LINKEDIN_ADS_ID = process.env.LINKEDIN_ADS_ID;
 
+const UBER_EATS_RESTAURANT_URL = "https://restaurant.uber.com/";
+
+const FOODETECTIVE_MAIL = "support@foodetective.co";
+
+const FOODETECTIVE_ADDRESS =
+  "Rue de la Terrassière 23, 1207 Genève, Switzerland";
+
 module.exports = {
   contentTypes,
   languages,
@@ -111,8 +114,11 @@ module.exports = {
   TYPEFORM_IDS,
   WHOLESALERS_CATEGORY,
   rollbarConfig,
-  SUBSCRIPTION_PLANS_SLUGS,
-  BASIC_PLAN_NAME,
   LINKEDIN_ADS_ID,
-  apiGuideLink
+  apiGuideLink,
+  UBER_EATS_RESTAURANT_URL,
+  FOODETECTIVE_MAIL,
+  SUBSCRIPTION_CURRENCY,
+  PLANS_BUSINESS_EXAMPLE_LINK,
+  FOODETECTIVE_ADDRESS
 };

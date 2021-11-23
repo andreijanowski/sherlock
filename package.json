@@ -28,6 +28,7 @@
     "@rebass/grid": "^6.0.0-7",
     "@rollbar/react": "^0.8.0",
     "@tippy.js/react": "^2.2.0",
+    "@tippyjs/react": "^4.2.6",
     "@typeform/embed": "^1.0.2",
     "@zeit/next-css": "^1.0.1",
     "axios": "^0.21.1",

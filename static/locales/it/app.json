@@ -1,13 +1,13 @@
 {
   "controlCenter": "Control Center",
-  "reservations": "Prenotazioni",
+  "reservations": "Gestione delle prenotazioni",
   "takeAway": "Porta via/Da Asporto",
-  "bookings": "Prenotazioni",
+  "bookings": "Gestione delle prenotazioni",
   "delivery": "Gestione degli ordini",
   "catering": "Caterings",
   "privatisations": "Privatizzazioni",
   "integrations": "Hub di Integrazione",
-  "wholesaler": "Grossista",
+  "wholesaler": "Fornitori",
   "socialMedia": "Social media",
   "billing": "Fatturazione",
   "manageProfile": {
@@ -51,7 +51,9 @@
     "integrated": "Integrato",
     "noPartners": "Nessun partner per questa categoria.",
     "noPreferred": "Non hai ancora aggiunto alcun grossista preferito.",
-    "goToWeb": "Vai al web"
+    "goToWeb": "Vai al web",
+    "backToList": "Torna alla lista",
+    "openInNewTab": "Aprire in una nuova scheda"
   },
   "subscriptions": "Iscrizioni o Abbonamenti",
   "userSettings": {
@@ -93,11 +95,16 @@
   "detectives": "Detectives e Influencers",
   "adsAndMarketing": "Pubblicità & Marketing",
   "clients": "Clienti",
-  "appManager": "Gestione del Menu",
+  "menuManagement": "Gestione del Menu",
   "dashboard": "Dashboard",
   "privateEvents": "Eventi Privati",
   "settings": "Impostazioni",
   "payments": "Pagamenti",
   "integrationHub": "Hub di Integrazione",
-  "playVideo": "Riproduci video"
+  "playVideo": "Riproduci video",
+  "payroll": "Risorse umane e stipendio",
+  "foodWaste": "Pasti invenduti",
+  "presenceManagement": "Presenza online",
+  "loyalty": "Ritenzione dei clienti",
+  "eventsManagement": "Gestione degli eventi"
 }

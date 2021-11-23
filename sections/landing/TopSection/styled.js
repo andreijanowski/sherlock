@@ -1,6 +1,7 @@
 import styled from "styled-components";
+
 import { H1, Paragraph } from "components";
-import { alignCenterMobile } from "../sharedStyled";
+import { alignCenterMobile } from "sections/common/sharedStyled";
 
 export const H1Styled = styled(H1)`
   ${alignCenterMobile}

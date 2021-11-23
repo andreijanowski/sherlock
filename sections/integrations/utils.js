@@ -43,33 +43,3 @@ export const WHOLESALERS_CATEGORIES = [
 ];
 
 export const WHOLESALERS_URL = "/app/wholesalers";
-
-export const generatePartnersMenuItems = (t, activeTab) =>
-  PARTNERS_CATEGORIES.map(category =>
-    category
-      ? {
-          route: `/app/integrations?category=${category}`,
-          label: t(`app:manageIntegrations.${category}`),
-          isActive: activeTab === category
-        }
-      : {
-          route: `/app/integrations`,
-          label: t(`app:manageIntegrations.all`),
-          isActive: !activeTab
-        }
-  );
-
-export const generateWholesalersMenuItems = (t, activeTab) =>
-  WHOLESALERS_CATEGORIES.map(category =>
-    category
-      ? {
-          route: `/app/wholesalers?category=${category}`,
-          label: t(`app:wholesalersCategories.${category}`),
-          isActive: activeTab === category
-        }
-      : {
-          route: `/app/wholesalers`,
-          label: t(`app:wholesalersCategories.allProducts`),
-          isActive: !activeTab
-        }
-  );

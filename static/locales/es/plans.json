@@ -9,7 +9,7 @@
   "paymentInfo": "Informaciones de pago",
   "changeCard": "Cambiar tarjeta",
   "setCard": "Establecer tarjeta",
-  "nextPaymentAt": "Prossimo pagamento a",
+  "nextPaymentAt": "Próximo pago a las",
   "trialEndsAt": "Prueba termina a las",
   "cancelAt": "Cancelar en",
   "finishPoweringYouUp": "¡Terminemos de energizarte!",
@@ -26,115 +26,82 @@
   "success": "Éxito",
   "successMessage": "¡Su suscripción se actualizó correctamente!",
   "goBackToPlans": "Volver a los planes",
-  "promotion": {
-    "startFirstLine": "Obtener ",
-    "promotionPlan": "Foodetective for business Basic",
-    "startLastLine": " por 3 meses gratis.",
-    "endFirstLine": "La oferta es muy limitada, solo tenemos ",
-    "endLastLine": "Quedan 1000 espacios"
+  "dashboardAnalytics": {
+    "basic": "Básico",
+    "essential": "Avanzado",
+    "ultimate": "A medida"
   },
-  "billingYearly": "Facturación anual (ahorre hasta un 30%)",
-  "billingMonthly": "Facturación mensual",
-  "options": {
-    "adsMarketing": "Anuncios y Marketing",
-    "analytics": "Analítica",
-    "appManager": "Gestión de la Carta",
-    "bookings": "Reserva de Mesa",
-    "catering": "Catering",
-    "clientDirectory": "Directorio de clientes",
-    "clients": "Mis Clientes",
-    "communityManagement": "Community Management",
-    "dashboard": "Panel de Analítica",
-    "deliveryManagement": "Gestión de Entrega",
-    "deliveryTakeAway": "Entrega y Llevar",
-    "detectives": "Detectives y Influencers",
-    "enterprise": "¿Eres mayorista, fabricante, distribuidor o multinacional? Permítanos hacerle una oferta a medida. Reserve uno de nuestros especialistas hoy.",
-    "integrationHub": "Centro de Integración",
-    "myProfile": "My Business",
-    "payments": "Pagos",
-    "photography": "Fotografía",
-    "privateEvents": "Eventos Privados",
-    "reviews": "Gestión de Reseñas",
-    "smartBackend": "Back-end inteligente",
-    "stockManagement": "Gestión de Inventario",
-    "wholesalers": "Mis Proveedores",
-
-    "website": "Página web",
-    "widget": "Widget",
-    "mobileApp": "Aplicación de teléfono móvil",
-    "reservations": "Reservaciones",
-    "takeAway": "Para llevar",
-    "paidBooking": "Reserva",
-    "privatisation": "Privatización",
-    "delivery": "Gestión de Pedidos",
-    "digitalMarketing": "Publicidad digital",
-    "redirections": "Redirecciones",
-    "integrations": "Integraciones",
-    "suppliers": "Proveedores",
-    "widgets": "Widgets",
-    "visibility": "Premium Visibility"
+  "hints": {
+    "integrationHubTitle": "Las integraciones disponibles se muestran a continuación",
+    "integrationHubCaption": "Management, Operations, Marketing",
+    "dashboardTailorMade": "El tablero de mandos incluye una vista multiubicación",
+    "paymentsTitle": "Puede aplicarse una tasa de transacción",
+    "paymentsCaption": "p.e. Stripe 1,4% + 0,25€",
+    "customerSupportTitle": "Servicio disponible",
+    "customerSupportTime": "9h a 21h CET",
+    "customerSupportDays": "Lun a Sáb"
   },
-  "optionsHd": {
-    "1": "Herramientas y Servicios",
-    "2": "Administración y Operaciones",
-    "3": "Mejora la Visibilidad"
-  },
-  "basic": {
-    "name": "Básico",
-    "mostPopular": "Más popular",
-    "priceDescription": "Para siempre",
-    "price": {
-      "month": "Free",
-      "year": "Free",
-      "beta": "Free"
-    },
-    "month": "mes",
-    "year": "año",
-    "buttonText": "Crear perfil",
-    "buttonText2": "Empezar"
-  },
-  "essential": {
-    "name": "Esencial",
-    "priceDescription": "Siempre",
-    "mostPopular": "Más Popular",
-    "price": {
-      "month": "29.90",
-      "year": "249",
-      "beta": "29.90"
-    },
-    "month": "mes",
-    "year": "año",
-    "buttonText": "Comience a las",
-    "buttonText2": "Elija Esencial"
-  },
-  "premium": {
-    "name": "Tailored Made",
-    "priceDescription": "Premium",
-    "price": {
-      "month": "299",
-      "year": "2499",
-      "beta": "beta"
-    },
-    "month": "mes",
-    "year": "año",
-    "buttonText": "Comience a las",
-    "buttonText2": "Elija Premium"
-  },
-  "special": {
-    "buttonText": "Book a Meeting",
-    "buttonText2": "Reserve una Demo",
-    "description1": "¿Eres Mayorista, Fabricante, Distribuidor o Multinacional?",
-    "description2": "Si es así, reserve una reunión con uno de nuestros especialistas hoy para obtener más información.",
-    "name": "Enterprise",
-    "priceDescription": "Hablemos",
-    "priceDescription2": "Precios Personalizados",
-    "price": {
-      "month": "",
-      "year": "",
-      "beta": ""
+  "ourFeatures": "Nuestras características",
+  "ourIntegrations": "Nuestras integraciones",
+  "comingSoon": "coming soon",
+  "reportAndSupport": "Informe y asistencia al cliente",
+  "customerSupport": {
+    "title": "Asistencia al cliente",
+    "options": {
+      "basic": "Online Chat",
+      "essential": "Asistencia telefónica con el gestor de cuentas",
+      "ultimate": "24/7 Asistencia telefónica con el gestor de cuentas"
     }
   },
-  "tableHd1": "Por Mes",
-  "tableHd2": "Por Ubicación",
-  "tableStar": "* Se aplican cargos adicionales a estos servicios y productos."
+  "operationalReport": {
+    "title": "Informe operacional",
+    "options": {
+      "essential": "Esencial",
+      "ultimate": "Avanzado"
+    }
+  },
+  "billing": {
+    "title": "Facturación",
+    "monthly": "Mensual",
+    "yearly": "Anual",
+    "save": "Recambio 20 %"
+  },
+  "billingPerPeriod": {
+    "monthly": "mes",
+    "yearly": "año"
+  },
+  "currency": {
+    "title": "Moneda",
+    "eur": "€",
+    "gbp": "£",
+    "chf": "CHF ",
+    "usd": "$"
+  },
+  "perfectFor": {
+    "title": "Perfecto para",
+    "basic": "Pequeños restaurantes y tiendas independientes",
+    "essential": "PYMES y pequeñas cadenas que buscan escalar",
+    "ultimate": "Marcas bien establecidas que buscan reducir los costes operativos"
+  },
+  "introductoryOffer": {
+    "title": "Oferta de introducción",
+    "offer": "{{price}} por 3 meses"
+  },
+  "ourPlans": "Nuestros planes",
+  "plansTitle": {
+    "basic": "Basic",
+    "essential": "Essential",
+    "ultimate": "Ultimate desde"
+  },
+  "choosePlan": "Elige {{name}}",
+  "contactUs": "Contacto",
+  "mostPopular": "Más popular",
+  "cancelSubscription": "Cancelar suscripción",
+  "cancelSubscriptionPrompt": "¿Está seguro de que quiere cancelar su suscripción?",
+  "getReady": {
+    "title": "¿Listo para empezar?",
+    "description": "Estaremos encantados de conocer su negocio y organizar una demostración guiada gratuita de Foodetective",
+    "bookDemo": "Reservar una demostración",
+    "registerNow": "Regístrese ahora"
+  }
 }

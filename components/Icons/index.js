@@ -26,7 +26,7 @@ export {
   Restaurant,
   Dashboard,
   IntegrationHub,
-  AppManager,
+  MenuManagement,
   Payments,
   Bookings,
   PrivateEvents,
@@ -40,7 +40,16 @@ export {
   DeliveryManagement,
   Analytics,
   ChevronDown,
-  DropdownArrow
+  DropdownArrow,
+  AppManager,
+  Payroll,
+  FoodWaste,
+  PresenceManagement,
+  CustomerLoyalty,
+  EventsManagement,
+  InfluencerManagement,
+  CustomerSupport,
+  OperationalReport
 } from "./navigation";
 export {
   Docs,

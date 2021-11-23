@@ -3,7 +3,7 @@
   "reservations": "Réservations",
   "takeAway": "A Emporter",
   "bookings": "Réservations (bientôt)",
-  "delivery": "Gestion des Commandes",
+  "delivery": "Commandes",
   "catering": "Caterings",
   "privatisations": "Privatisations",
   "integrations": "Intégrations",
@@ -26,7 +26,9 @@
     "waitingForApproval": "En attente d'approbation",
     "liveInfo": "Information live",
     "widgets": "Widgets",
-    "unPublish": "Desactiver Mon Entreprise"
+    "unPublish": "Desactiver Mon Entreprise",
+    "backToList" : "Retour à la liste",
+    "openInNewTab" : "Ouvrir dans un nouvel onglet"
   },
   "manageIntegrations": {
     "pos": "POS",
@@ -90,13 +92,18 @@
   },
   "backToMainMenu": "Retour au menu principal",
   "photography": "Photographie & Video",
-  "reviews": "Gestions des Avis",
+  "reviews": "Avis en ligne",
   "detectives": "Detectives & Influenceurs",
   "adsAndMarketing": "Pubs & Marketing",
   "clients": "Clients",
-  "appManager": "Gestion du Menu",
+  "menuManagement": "Menu",
   "dashboard": "Dashboard",
   "privateEvents": "Evenements",
   "settings": "Paramètres",
-  "playVideo": "Voir vidéo"
+  "playVideo": "Voir vidéo",
+  "payroll": "RH & Salaires",
+  "foodWaste": "Gestion des invendus",
+  "presenceManagement": "Présence en ligne",
+  "loyalty": "Fidélisation des clients",
+  "eventsManagement": "Gestion des événements"
 }

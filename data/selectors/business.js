@@ -24,3 +24,23 @@ export const selectCurrentBusinessStripeIsLoading = state =>
 
 export const selectCurrentBusinessIsFetching = state =>
   state.getIn(["users", "currentBusiness", "isFetching"]);
+
+export const selectBusinessDataProp = (state, { prop }) => {
+  const businessData = state.getIn(["users", "currentBusiness", "data"]);
+  return businessData && businessData.get(prop);
+};
+
+export const selectBusinessGroups = state =>
+  selectBusinessDataProp(state, { prop: "groups" });
+
+export const selectBusinessMenus = state =>
+  selectBusinessDataProp(state, { prop: "menus" });
+
+export const selectBusinessPictures = state =>
+  selectBusinessDataProp(state, { prop: "pictures" });
+
+export const selectBusinessProducts = state =>
+  selectBusinessDataProp(state, { prop: "products" });
+
+export const selectBusinessOpenPeriods = state =>
+  selectBusinessDataProp(state, { prop: "openPeriods" });
