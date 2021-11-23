@@ -50,7 +50,7 @@ const Home = ({ t, i18n }) => {
         <InstallApp t={t} />
       </InstallAppWrapper>
       <FooterWrapper>
-        <Footer />
+        <Footer lng={lng} />
       </FooterWrapper>
     </LandingWrapper>
   );

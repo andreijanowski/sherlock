@@ -120,7 +120,7 @@ const Navigation = ({ t, lng }) => {
           maxWidth: "1150px"
         }}
       >
-        <Link route="" lng={lng}>
+        <Link route="/" lng={lng}>
           <StyledHeaderParagraph as="a">
             Foodetective <span> For Business</span>
           </StyledHeaderParagraph>

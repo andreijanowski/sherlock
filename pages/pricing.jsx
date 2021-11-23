@@ -32,7 +32,7 @@ const Pricing = ({ i18n, t }) => {
         <GetReady />
       </GetReadyWrapper>
       <FooterWrapper>
-        <Footer />
+        <Footer lng={lng} />
       </FooterWrapper>
     </LandingWrapper>
   );
