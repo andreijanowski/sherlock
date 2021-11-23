@@ -1,15 +1,9 @@
-import React, { useCallback } from "react";
-import { func, string, node, shape, bool } from "prop-types";
-import { Flex, Box } from "@rebass/grid";
+import React from "react";
+import { bool, func, node, shape, string } from "prop-types";
 import styled from "styled-components";
 
 import AppLayout from "layout/App";
-import {
-  Button,
-  ButtonWithImageText,
-  LoadingIndicator,
-  CurrencyGuard
-} from "components";
+import { CurrencyGuard, LoadingIndicator } from "components";
 import { checkIsBusinessStripeLoading } from "utils/businessUtils";
 
 const AppLayoutWrapper = styled.div`
@@ -19,25 +13,16 @@ const AppLayoutWrapper = styled.div`
   }
 `;
 
-const AppManagerLayout = ({
-  business,
-  currentBusinessId,
-  t,
-  lng,
-  page,
-  children,
-  addToUber,
-  downloadFromUber,
-  isUberAvailable
-}) => {
-  const onUploadToUberClick = useCallback(() => {
-    addToUber(currentBusinessId);
-  }, [addToUber, currentBusinessId]);
-
-  const onDownloadFromUberClick = useCallback(
-    () => downloadFromUber(currentBusinessId),
-    [currentBusinessId, downloadFromUber]
-  );
+const AppManagerLayout = ({ business, t, lng, page, children }) => {
+  // see https://foodetective.atlassian.net/browse/FOOD-201?focusedCommentId=10163
+  // const onUploadToUberClick = useCallback(() => {
+  //   addToUber(currentBusinessId);
+  // }, [addToUber, currentBusinessId]);
+  //
+  // const onDownloadFromUberClick = useCallback(
+  //   () => downloadFromUber(currentBusinessId),
+  //   [currentBusinessId, downloadFromUber]
+  // );
 
   const isBusinessLoading = checkIsBusinessStripeLoading(business);
 
@@ -57,7 +42,8 @@ const AppManagerLayout = ({
         </>
       ) : (
         <CurrencyGuard>
-          {isUberAvailable && (
+          {/* see https://foodetective.atlassian.net/browse/FOOD-201?focusedCommentId=10163
+            isUberAvailable && (
             <Flex width={1} mt={3} flexWrap="wrap">
               <Box pr={3} mb={2}>
                 <Button onClick={onUploadToUberClick} styleName="withImage">
@@ -74,7 +60,9 @@ const AppManagerLayout = ({
                 </Button>
               </Box>
             </Flex>
-          )}
+          )
+
+          */}
           {children}
         </CurrencyGuard>
       )}
