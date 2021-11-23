@@ -2,8 +2,6 @@ import styled, { css } from "styled-components";
 import { H2 } from "components";
 import { Box, Flex } from "@rebass/grid";
 
-export const WRAPPER_WIDTH = 1150;
-
 export const alignCenterMobile = css`
   text-align: center;
   @media (min-width: ${p => p.theme.breakpoints[0]}) {

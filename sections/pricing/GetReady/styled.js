@@ -2,10 +2,8 @@ import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
 import { Button as BaseButton } from "components";
-import {
-  WRAPPER_WIDTH,
-  ParagraphStyled as BaseParagraphStyled
-} from "sections/common/sharedStyled";
+import { ParagraphStyled as BaseParagraphStyled } from "sections/common/sharedStyled";
+import { WRAPPER_WIDTH } from "utils/theme";
 
 export const Container = styled(Flex)`
   max-width: ${WRAPPER_WIDTH}px;
