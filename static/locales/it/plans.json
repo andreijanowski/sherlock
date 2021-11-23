@@ -97,5 +97,11 @@
   "contactUs": "Contattateci",
   "mostPopular": "Il più popolare",
   "cancelSubscription": "Cancella l'abbonamento",
-  "cancelSubscriptionPrompt": "Sei sicuro di voler cancellare il tuo abbonamento?"
+  "cancelSubscriptionPrompt": "Sei sicuro di voler cancellare il tuo abbonamento?",
+  "getReady": {
+    "title": "Pronto per iniziare?",
+    "description": "Saremmo lieti di conoscere la tua attività e impostare una demo gratuita guidata di Foodetective",
+    "bookDemo": "Prenota una dimostrazione",
+    "registerNow": "Registrati ora"
+  }
 }

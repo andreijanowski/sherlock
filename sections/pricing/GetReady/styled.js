@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Flex } from "@rebass/grid";
 
 import { Button as BaseButton } from "components";
 import {
@@ -6,9 +7,9 @@ import {
   ParagraphStyled as BaseParagraphStyled
 } from "sections/common/sharedStyled";
 
-export const Container = styled.div`
+export const Container = styled(Flex)`
   max-width: ${WRAPPER_WIDTH}px;
-  padding: 210px 16px;
+  padding: 90px 16px 105px;
   margin: auto;
 `;
 
@@ -19,6 +20,9 @@ export const H2Styled = styled.h2`
   font-size: ${p => p.theme.fontSizes.f48};
   line-height: 72px;
   letter-spacing: 0.6px;
+  @media (max-width: ${p => p.theme.breakpoints[1]}) {
+    text-align: center;
+  }
 `;
 
 export const ParagraphStyled = styled(BaseParagraphStyled).attrs({ big: true })`
@@ -27,6 +31,9 @@ export const ParagraphStyled = styled(BaseParagraphStyled).attrs({ big: true })`
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f24};
   line-height: ${p => p.theme.fontSizes.f36};
+  @media (max-width: ${p => p.theme.breakpoints[1]}) {
+    text-align: center;
+  }
 `;
 
 export const BookDemoButton = styled(BaseButton).attrs({
@@ -38,9 +45,12 @@ export const BookDemoButton = styled(BaseButton).attrs({
     box-shadow: none;
     background: rgba(${p => p.theme.colors.blue}, 0.8);
   }
+  @media (max-width: ${p => p.theme.breakpoints[0]}) {
+    margin-right: 0;
+  }
 `;
 
-export const SeeSubscriptionsButton = styled(BookDemoButton)`
+export const RegisterNowButton = styled(BookDemoButton)`
   margin: 0;
   background: rgb(${p => p.theme.colors.gray["5"]});
   &:hover {
@@ -48,25 +58,13 @@ export const SeeSubscriptionsButton = styled(BookDemoButton)`
   }
 `;
 
-// todo check with design team how it should be in mobile view
 export const ImageContainer = styled.div`
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  position: relative;
+  text-align: center;
 `;
 
-export const Image = styled.img``;
-
-export const ImageOverlay = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  color: white;
-  font-size: 100px;
+export const Image = styled.img`
+  @media (max-width: ${p => p.theme.breakpoints[1]}) {
+    max-width: 100%;
+  }
 `;

@@ -29,7 +29,7 @@ const Pricing = ({ i18n, t }) => {
         <Plans lng={lng} />
       </PlansWrapper>
       <GetReadyWrapper>
-        <GetReady />
+        <GetReady lng={lng} />
       </GetReadyWrapper>
       <FooterWrapper>
         <Footer lng={lng} />
