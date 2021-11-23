@@ -11,7 +11,7 @@ export const FooterWrapper = styled(Flex).attrs(() => ({
   px: 3,
   alignItems: "flex-start"
 }))`
-  color: white;
+  color: rgb(${p => p.theme.colors.white});
   max-width: ${WRAPPER_WIDTH}px;
   margin: auto;
 `;
@@ -37,7 +37,7 @@ export const ColumnTitle = styled.p`
   font-size: ${p => p.theme.fontSizes.f18};
   line-height: ${p => p.theme.fontSizes.f27};
   letter-spacing: 0.7px;
-  color: #fff;
+  color: rgb(${p => p.theme.colors.white});
 `;
 
 export const ListWrapper = styled.ul`
