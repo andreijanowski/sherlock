@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
-import { WRAPPER_WIDTH } from "sections/common/sharedStyled";
+import { WRAPPER_WIDTH } from "utils/theme";
 
 export const FooterWrapper = styled(Flex).attrs(() => ({
   as: "footer",
@@ -23,7 +23,7 @@ export const MenuWrapper = styled(Flex).attrs(() => ({
   width: 1
 }))`
   flex: 1;
-  max-width: 1150px;
+  max-width: ${WRAPPER_WIDTH}px;
 `;
 
 export const NavItem = styled(Flex).attrs(() => ({
