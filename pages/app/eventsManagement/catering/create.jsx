@@ -54,7 +54,9 @@ class CreateCateringPage extends PureComponent {
     createCatering(newCatering, businessId)
       .then(res => {
         sendOffer(res.rawData.data.id);
-        Router.pushRoute(`/${lng}/app/catering/month?date=${values.date}`);
+        Router.pushRoute(
+          `/${lng}/app/events-management/catering/month?date=${values.date}`
+        );
       })
       .catch(() => this.setState({ isSending: false }));
   };

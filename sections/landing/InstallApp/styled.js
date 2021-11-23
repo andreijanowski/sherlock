@@ -1,6 +1,7 @@
 import styled from "styled-components";
+
 import { H2 } from "components";
-import { alignCenterMobile } from "../sharedStyled";
+import { alignCenterMobile } from "sections/common/sharedStyled";
 
 export const Image = styled.div`
   width: 100%;

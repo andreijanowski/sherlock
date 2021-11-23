@@ -1,22 +1,22 @@
 import React from "react";
-import { func, oneOfType, shape, any } from "prop-types";
+import { func, string } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import { Button } from "components";
 import ReactPlayer from "react-player";
 
 import { becomePartnerLink } from "consts";
+import { BlueText } from "sections/common/sharedStyled";
 import { FeaturesWrapper, H2Styled, ParagraphStyled } from "./styled";
-import { BlueText } from "../sharedStyled";
 
-const Features = ({ t, featuresRef }) => (
+const Features = ({ t, id }) => (
   <FeaturesWrapper width="auto" pt={75} pb={[0, 75]}>
-    <Box ref={featuresRef} mt={[180, 280]} mb={[0, 60]} width={[1]}>
+    <Box mt={[180, 280]} mb={[0, 60]} width={[1]}>
       <Flex
         flexDirection={["column", "column", "row"]}
         alignItems="center"
         justifyContent="space-between"
       >
-        <H2Styled>{t("features.header")}</H2Styled>
+        <H2Styled id={id}>{t("features.header")}</H2Styled>
         <Button
           styleName="becomePartner"
           onClick={() => {
@@ -60,7 +60,7 @@ const Features = ({ t, featuresRef }) => (
 
 Features.propTypes = {
   t: func.isRequired,
-  featuresRef: oneOfType([func, shape({ current: any })]).isRequired
+  id: string.isRequired
 };
 
 export default Features;

@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import { Flex, Box } from "@rebass/grid";
+import { Flex } from "@rebass/grid";
+
+import { WRAPPER_WIDTH } from "sections/common/sharedStyled";
 
 export const FooterWrapper = styled(Flex).attrs(() => ({
   as: "footer",
@@ -9,45 +11,15 @@ export const FooterWrapper = styled(Flex).attrs(() => ({
   px: 3,
   alignItems: "flex-start"
 }))`
-  max-width: 1150px;
-`;
-
-export const FoodetectiveLogoWrapper = styled(Box).attrs(() => ({
-  my: 25,
-  width: 120
-}))`
-  display: none;
-  @media (min-width: ${p => p.theme.breakpoints[0]}) {
-    display: block;
-  }
-`;
-
-export const CopyrightWrapper = styled(Flex).attrs(() => ({
-  flexDirection: ["column", "row"],
-  width: 1,
-  pt: 20,
-  alignItems: "center",
-  justifyContent: ["flex-end", "flex-end"]
-}))`
-  max-width: 1150px;
-  border-top: 1px solid rgba(${p => p.theme.colors.mischka}, 0.1);
-`;
-
-export const TextWrapper = styled(Flex).attrs(() => ({
-  width: 1,
-  flexDirection: "row",
-  alignSelf: "center",
-  justifyContent: "space-between"
-}))`
-  max-width: 1150px;
+  color: rgb(${p => p.theme.colors.white});
+  max-width: ${WRAPPER_WIDTH}px;
+  margin: auto;
 `;
 
 export const MenuWrapper = styled(Flex).attrs(() => ({
   alignSelf: "center",
   justifyContent: "flex-start",
-  mb: 50,
   flexWrap: "wrap",
-  m: -2,
   width: 1
 }))`
   flex: 1;
@@ -60,12 +32,12 @@ export const NavItem = styled(Flex).attrs(() => ({
 }))``;
 
 export const ColumnTitle = styled.p`
-  margin: 0 0 15px 0;
-  color: #333;
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: ${p => p.theme.fontSizes.f15};
-  line-height: 35px;
-  letter-spacing: 0.3px;
+  margin-bottom: 16px;
+  font-weight: ${p => p.theme.fontWeights.bold};
+  font-size: ${p => p.theme.fontSizes.f18};
+  line-height: ${p => p.theme.fontSizes.f27};
+  letter-spacing: 0.7px;
+  color: rgb(${p => p.theme.colors.white});
 `;
 
 export const ListWrapper = styled.ul`
@@ -75,31 +47,59 @@ export const ListWrapper = styled.ul`
 `;
 
 export const NavigationLink = styled.a`
-  color: #828282;
+  display: block;
+  margin-bottom: 4px;
   font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: ${p => p.theme.fontSizes.f15};
-  line-height: 45px;
-  letter-spacing: 0.3px;
+  font-size: ${p => p.theme.fontSizes.f16};
+  line-height: ${p => p.theme.fontSizes.f24};
+  color: rgb(${p => p.theme.colors.white});
   text-decoration: none;
   &:hover {
-    color: rgb(${p => p.theme.colors.abbey});
+    color: rgba(${p => p.theme.colors.white}, 0.7);
   }
 `;
 
-export const CopyrightNote = styled.p`
-  align-self: center;
-  margin: 0;
-  color: rgb(${p => p.theme.colors.mischka});
-  font-size: ${p => p.theme.fontSizes.f12};
-  line-height: 35px;
-  @media (min-width: ${p => p.theme.breakpoints[0]}) {
-    padding-left: 120px;
-    font-size: ${p => p.theme.fontSizes.f14};
-  }
-`;
-
-export const AppPlatformLogo = styled.img`
+export const Line = styled.hr`
   width: 100%;
-  max-width: 113px;
-  height: 100%;
+  margin: 70px 0 20px;
+  border: none;
+  border-bottom: 1px solid rgb(${p => p.theme.colors.gray["4"]});
+`;
+
+export const SocialsContainer = styled(Flex).attrs({
+  as: "ul",
+  alignItems: "center",
+  flexWrap: "nowrap"
+})`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+`;
+
+export const SocialsItem = styled.li`
+  &:not(:last-child) {
+    margin-right: 16px;
+  }
+`;
+
+export const SocialsItemLink = styled.a``;
+
+export const LogoContainer = styled.div`
+  color: rgb(${p => p.theme.colors.white});
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f14};
+  line-height: ${p => p.theme.fontSizes.f18};
+  letter-spacing: 0.5px;
+`;
+
+export const LogoSmallText = styled.div`
+  font-weight: ${p => p.theme.fontWeights.medium};
+`;
+
+export const CopyrightsContainer = styled.div`
+  color: rgb(${p => p.theme.colors.white});
+  font-weight: ${p => p.theme.fontWeights.thin};
+  font-size: ${p => p.theme.fontSizes.f12};
+  line-height: ${p => p.theme.fontSizes.f18};
+  letter-spacing: 0.7px;
 `;

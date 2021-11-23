@@ -3,6 +3,7 @@ const { languagesPattern } = require("./consts");
 
 module.exports = routes()
   .add("landing", `/:lng(${languagesPattern})`)
+  .add("pricing", `/:lng(${languagesPattern})/pricing`)
   .add("referrals", `/:lng(${languagesPattern})/referrals`)
   .add("add/venue", `/:lng(${languagesPattern})/add/venue`)
   .add("app/index", `/:lng(${languagesPattern})/app`)

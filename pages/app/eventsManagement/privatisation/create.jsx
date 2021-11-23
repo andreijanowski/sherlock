@@ -59,7 +59,11 @@ class CreatePrivatisationPage extends PureComponent {
     createPrivatisation(newPrivatisation, businessId)
       .then(res => {
         sendOffer(res.rawData.data.id);
-        Router.pushRoute(`/${lng}/app/privatisation/month?date=${values.date}`);
+        Router.pushRoute(
+          `/${lng}/app/events-management/privatisation/month?date=${
+            values.date
+          }`
+        );
       })
       .catch(() => this.setState({ isSending: false }));
   };

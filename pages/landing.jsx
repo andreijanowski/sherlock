@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import requireAuth from "lib/requireAuth";
 import { compose } from "redux";
 import { func, shape, string } from "prop-types";
@@ -8,10 +8,10 @@ import {
   DevelopersAndApi,
   Features,
   InstallApp,
-  Navigation,
   Services,
   TopSection
 } from "sections/landing";
+import Navigation, { SECTION_IDS } from "sections/common/Navigation";
 import { withTranslation } from "i18n";
 import {
   DevelopersAndApiWrapper,
@@ -20,92 +20,49 @@ import {
   InstallAppWrapper,
   LandingWrapper,
   NavigationWrapper,
-  PlansWrapper,
   ProductsWrapper,
   TopSectionWrapper
-} from "sections/landing/sharedStyled";
-import Plans from "sections/landing/Plans";
+} from "sections/common/sharedStyled";
 
 const namespaces = ["landing", "plans", "common"];
 
-class Home extends PureComponent {
-  static async getInitialProps() {
-    return {
-      namespacesRequired: namespaces
-    };
-  }
+const Home = ({ t, i18n }) => {
+  const lng = (i18n && i18n.language) || "en";
 
-  constructor(props) {
-    super(props);
-    this.servicesRef = React.createRef();
-    this.developersAndApiRef = React.createRef();
-    this.featuresRef = React.createRef();
-    this.plansRef = React.createRef();
-  }
+  return (
+    <LandingWrapper width={1} alignItems="center" flexDirection="column">
+      <NavigationWrapper>
+        <Navigation t={t} lng={lng} />
+      </NavigationWrapper>
+      <TopSectionWrapper>
+        <TopSection t={t} lng={lng} />
+      </TopSectionWrapper>
+      <ProductsWrapper id="services">
+        <Services t={t} id={SECTION_IDS.SERVICES} />
+      </ProductsWrapper>
+      <DevelopersAndApiWrapper>
+        <DevelopersAndApi t={t} id={SECTION_IDS.DEVELOPERS_AND_API} />
+      </DevelopersAndApiWrapper>
+      <FeaturesWrapper>
+        <Features t={t} id={SECTION_IDS.FEATURES} />
+      </FeaturesWrapper>
+      <InstallAppWrapper>
+        <InstallApp t={t} />
+      </InstallAppWrapper>
+      <FooterWrapper>
+        <Footer lng={lng} />
+      </FooterWrapper>
+    </LandingWrapper>
+  );
+};
 
-  getLng = () => {
-    const { i18n } = this.props;
-
-    return (i18n && i18n.language) || "en";
-  };
-
-  scrollTo = section => {
-    window.scrollTo({
-      top: this[`${section}Ref`].current.offsetTop - 100,
-      behavior: "smooth"
-    });
-  };
-
-  render() {
-    const {
-      servicesRef,
-      developersAndApiRef,
-      scrollTo,
-      plansRef,
-      featuresRef
-    } = this;
-    const { t } = this.props;
-    const lng = this.getLng();
-
-    return (
-      <LandingWrapper width={1} alignItems="center" flexDirection="column">
-        <NavigationWrapper>
-          <Navigation {...{ t, lng, scrollTo }} />
-        </NavigationWrapper>
-        <TopSectionWrapper>
-          <TopSection {...{ t, lng }} />
-        </TopSectionWrapper>
-        <ProductsWrapper>
-          <Services {...{ t, servicesRef }} />
-        </ProductsWrapper>
-        <DevelopersAndApiWrapper>
-          <DevelopersAndApi {...{ t, lng, developersAndApiRef }} />
-        </DevelopersAndApiWrapper>
-        <FeaturesWrapper id="features">
-          <Features {...{ t, lng, featuresRef }} />
-        </FeaturesWrapper>
-        <PlansWrapper ref={plansRef}>
-          <Plans lng={lng} />
-        </PlansWrapper>
-        <InstallAppWrapper>
-          <InstallApp {...{ t }} />
-        </InstallAppWrapper>
-        <FooterWrapper>
-          <Footer />
-        </FooterWrapper>
-      </LandingWrapper>
-    );
-  }
-}
+Home.getInitialProps = async () => ({
+  namespacesRequired: namespaces
+});
 
 Home.propTypes = {
   t: func.isRequired,
-  i18n: shape({ language: string.isRequired }).isRequired,
-  plans: shape()
-};
-
-Home.defaultProps = {
-  plans: null
+  i18n: shape({ language: string.isRequired }).isRequired
 };
 
 export default compose(

@@ -2,6 +2,8 @@ import styled, { css } from "styled-components";
 import { H2 } from "components";
 import { Box, Flex } from "@rebass/grid";
 
+export const WRAPPER_WIDTH = 1150;
+
 export const alignCenterMobile = css`
   text-align: center;
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
@@ -10,9 +12,6 @@ export const alignCenterMobile = css`
 `;
 
 export const BlueText = styled.span`
-  color: rgb(${p => p.theme.colors.blue});
-`;
-export const WhiteText = styled.span`
   color: rgb(${p => p.theme.colors.blue});
 `;
 
@@ -52,6 +51,7 @@ export const LandingWrapper = styled(Flex)`
 export const NavigationWrapper = styled(Box).attrs(() => ({}))`
   width: 100%;
   background: rgb(${p => p.theme.colors.darkBlue});
+  padding-bottom: 30px;
 `;
 
 export const TopSectionWrapper = styled(Box)`
@@ -87,28 +87,25 @@ export const PlansWrapper = styled(Box)`
   background: white;
 `;
 
+export const GetReadyWrapper = styled(Box)`
+  position: relative;
+  width: 100%;
+  background: rgb(${p => p.theme.colors.darkBlue});
+`;
+
 export const InstallAppWrapper = styled(Box)`
   width: 100%;
-  background: linear-gradient(transparent 0%, transparent 85%, #eff2ff 100%),
-    linear-gradient(170deg, white calc(62% - 2px), #a6b4ff 62%, #eff2ff 85%);
+  background: ${p => {
+    const {
+      theme: {
+        colors: { darkBlue }
+      }
+    } = p;
+    return `linear-gradient(170deg, white calc(62% - 2px), rgb(${darkBlue}) 62%, rgb(${darkBlue}) 85%);`;
+  }};
 `;
 
-export const FooterWrapper = styled(Flex)`
-  align-items: flex-end;
-  justify-content: center;
+export const FooterWrapper = styled.div`
   width: 100%;
-  background: linear-gradient(#eff2ff 0%, #eff2ff 100%);
-`;
-
-export const LogoWrapper = styled(Box)`
-  display: none;
-  @media (min-width: ${p => p.theme.breakpoints[0]}) {
-    display: block;
-  }
-`;
-
-export const LogoMobileWrapper = styled.div`
-  @media (min-width: ${p => p.theme.breakpoints[0]}) {
-    display: none;
-  }
+  background: rgb(${p => p.theme.colors.darkBlue});
 `;

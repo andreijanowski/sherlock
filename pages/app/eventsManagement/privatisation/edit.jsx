@@ -31,7 +31,7 @@ class EditPrivatisationPage extends PureComponent {
   componentDidMount() {
     const { editedPrivatisation, lng } = this.props;
     if (!editedPrivatisation) {
-      Router.pushRoute(`/${lng}/app/privatisation/month`);
+      Router.pushRoute(`/${lng}/app/events-management/privatisation/month`);
     }
   }
 
@@ -55,7 +55,11 @@ class EditPrivatisationPage extends PureComponent {
     updatePrivatisation(id, updatedPrivatisation)
       .then(res => {
         sendOffer(res.rawData.data.id);
-        Router.pushRoute(`/${lng}/app/privatisation/month?date=${values.date}`);
+        Router.pushRoute(
+          `/${lng}/app/events-management/privatisation/month?date=${
+            values.date
+          }`
+        );
       })
       .catch(() => this.setState({ isSending: false }));
   };

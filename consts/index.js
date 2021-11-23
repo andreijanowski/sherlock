@@ -83,6 +83,9 @@ const UBER_EATS_RESTAURANT_URL = "https://restaurant.uber.com/";
 
 const FOODETECTIVE_MAIL = "support@foodetective.co";
 
+const FOODETECTIVE_ADDRESS =
+  "Rue de la Terrassière 23, 1207 Genève, Switzerland";
+
 module.exports = {
   contentTypes,
   languages,
@@ -116,5 +119,6 @@ module.exports = {
   UBER_EATS_RESTAURANT_URL,
   FOODETECTIVE_MAIL,
   SUBSCRIPTION_CURRENCY,
-  PLANS_BUSINESS_EXAMPLE_LINK
+  PLANS_BUSINESS_EXAMPLE_LINK,
+  FOODETECTIVE_ADDRESS
 };

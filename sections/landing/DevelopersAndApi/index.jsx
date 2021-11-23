@@ -1,14 +1,19 @@
 import React from "react";
-import { func, oneOfType, shape, any } from "prop-types";
+import { func, string } from "prop-types";
 import { Box, Flex } from "@rebass/grid";
-import { Button } from "components";
-import { DevelopersAndApiWrapper } from "./styled";
-import { BlueText, H2Styled, ParagraphStyled } from "../sharedStyled";
 
-const DevelopersAndApi = ({ t, developersAndApiRef }) => (
-  <DevelopersAndApiWrapper ref={developersAndApiRef}>
+import { Button } from "components";
+import {
+  BlueText,
+  H2Styled,
+  ParagraphStyled
+} from "sections/common/sharedStyled";
+import { DevelopersAndApiWrapper } from "./styled";
+
+const DevelopersAndApi = ({ t, id }) => (
+  <DevelopersAndApiWrapper>
     <Box width={[1, 1 / 2]}>
-      <H2Styled>{t("developersAndApi.header")}</H2Styled>
+      <H2Styled id={id}>{t("developersAndApi.header")}</H2Styled>
       <ParagraphStyled big>
         {t("developersAndApi.subHeader.start")}
         <BlueText>{t("developersAndApi.subHeader.end")}</BlueText>
@@ -30,7 +35,7 @@ const DevelopersAndApi = ({ t, developersAndApiRef }) => (
 
 DevelopersAndApi.propTypes = {
   t: func.isRequired,
-  developersAndApiRef: oneOfType([func, shape({ current: any })]).isRequired
+  id: string.isRequired
 };
 
 export default DevelopersAndApi;

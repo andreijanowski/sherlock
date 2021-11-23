@@ -36,16 +36,7 @@ export const getTableConfig = ({ t, isLandingPage }) => [
             icon: IntegrationHub,
             ...(isLandingPage
               ? {
-                  href: "/#features",
-                  onClick: e => {
-                    e.preventDefault();
-                    const target = document.querySelector("#features h2");
-                    window.scroll({
-                      left: 0,
-                      top: window.scrollY + target.getBoundingClientRect().top,
-                      behavior: "smooth"
-                    });
-                  }
+                  href: "/#features"
                 }
               : null),
             label: t("app:integrationHub"),

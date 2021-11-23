@@ -1,5 +1,5 @@
 import React from "react";
-import { shape } from "prop-types";
+import { shape, arrayOf } from "prop-types";
 
 import { useTranslation } from "i18n";
 import { formatPlanPrice } from "utils/plans";
@@ -41,7 +41,7 @@ const TableIntroductoryRow = ({ matchingPlans }) => {
 };
 
 TableIntroductoryRow.propTypes = {
-  matchingPlans: shape().isRequired
+  matchingPlans: arrayOf(shape()).isRequired
 };
 
 export default TableIntroductoryRow;
