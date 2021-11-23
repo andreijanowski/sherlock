@@ -2,11 +2,15 @@ import React, { useCallback } from "react";
 import { Flex } from "@rebass/grid";
 import { node, bool, func, string } from "prop-types";
 import { connect } from "react-redux";
+import { useRouter } from "next/router";
+
 import { LoadingIndicator, MainApp, NavigationContainer, H3 } from "components";
 import { Confirm } from "components/modals";
 import { postBusiness } from "actions/businesses";
 import { logout as logoutAction } from "actions/auth";
 import { BASIC_ROLE } from "sagas/users";
+
+const REDIRECT_URL = "/app/subscriptions/";
 
 const AppLayout = ({
   children,
@@ -20,9 +24,13 @@ const AppLayout = ({
   isFetching,
   containerComponent
 }) => {
+  const router = useRouter();
+
   const onConfirmModalSubmit = useCallback(() => {
-    createBusiness();
-  }, [createBusiness]);
+    createBusiness(() => {
+      router.push(`/${lng}${REDIRECT_URL}`);
+    });
+  }, [createBusiness, lng, router]);
 
   const onConfirmModalClose = useCallback(() => {
     logout();
