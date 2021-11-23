@@ -15,7 +15,7 @@ const TableSectionLink = ({ link: { label } }) => (
 TableSectionLink.propTypes = {
   link: shape({
     label: string.isRequired,
-    href: string.isRequired
+    href: string
   }).isRequired
 };
 

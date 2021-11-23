@@ -22,6 +22,8 @@ const TableHead = ({ plans, period, currency, onPlanChooseClick }) => {
     return res;
   }, [currency, period, plans]);
 
+  if (!plans || !plans.size) return null;
+
   return (
     <Container>
       <TablePlansRow

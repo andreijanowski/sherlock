@@ -1,8 +1,9 @@
 import { func } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
+
 import FoodetectiveLogo from "components/FoodetectiveLogo";
+import { BlueText } from "sections/common/sharedStyled";
 import { H2Styled, Image, AppPlatformLogo, NavigationLink } from "./styled";
-import { BlueText } from "../sharedStyled";
 
 const InstallApp = ({ t }) => (
   <Flex

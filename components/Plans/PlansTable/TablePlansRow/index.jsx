@@ -1,5 +1,5 @@
 import React from "react";
-import { shape, func, string } from "prop-types";
+import { shape, func, string, arrayOf } from "prop-types";
 
 import { useTranslation } from "i18n";
 import { Row } from "../styled";
@@ -25,7 +25,7 @@ const TablePlansRow = ({ period, matchingPlans, onPlanChooseClick }) => {
 
 TablePlansRow.propTypes = {
   period: string.isRequired,
-  matchingPlans: shape().isRequired,
+  matchingPlans: arrayOf(shape()).isRequired,
   onPlanChooseClick: func.isRequired
 };
 export default TablePlansRow;

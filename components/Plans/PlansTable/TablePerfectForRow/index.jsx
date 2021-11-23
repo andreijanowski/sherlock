@@ -11,7 +11,7 @@ const TablePerfectForRow = () => {
     <Row>
       <TableHeadPrimaryCell>{t("plans:perfectFor.title")}</TableHeadPrimaryCell>
       {Object.values(SUBSCRIPTION_PLANS).map(plan => (
-        <TableHeadColumnCell>
+        <TableHeadColumnCell key={plan}>
           {t(`plans:perfectFor.${plan}`)}
         </TableHeadColumnCell>
       ))}

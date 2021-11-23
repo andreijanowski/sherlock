@@ -1,12 +1,17 @@
-import { func, oneOfType, shape, any } from "prop-types";
+import { func, string } from "prop-types";
 import { Box } from "@rebass/grid";
+
+import {
+  BlueText,
+  H2Styled,
+  ParagraphStyled
+} from "sections/common/sharedStyled";
 import { ServicesWrapper } from "./styled";
-import { BlueText, H2Styled, ParagraphStyled } from "../sharedStyled";
 import List from "./list";
 
-const Services = ({ t, servicesRef }) => (
-  <ServicesWrapper ref={servicesRef} px={3} flexWrap="wrap">
-    <H2Styled>{t("services.header")}</H2Styled>
+const Services = ({ t, id }) => (
+  <ServicesWrapper px={3} flexWrap="wrap">
+    <H2Styled id={id}>{t("services.header")}</H2Styled>
     <Box width={[1, 3 / 4]}>
       <ParagraphStyled big>
         {t("services.paragraph.start")}
@@ -24,7 +29,7 @@ const Services = ({ t, servicesRef }) => (
 
 Services.propTypes = {
   t: func.isRequired,
-  servicesRef: oneOfType([func, shape({ current: any })]).isRequired
+  id: string.isRequired
 };
 
 export default Services;

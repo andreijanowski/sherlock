@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
+
 import {
   H2Styled as BaseH2Styled,
   ParagraphStyled as BaseParagraphStyled
-} from "../sharedStyled";
+} from "sections/common/sharedStyled";
 
 export const FeaturesWrapper = styled(Flex).attrs(() => ({
   justifyContent: "start",

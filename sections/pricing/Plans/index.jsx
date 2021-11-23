@@ -11,13 +11,13 @@ import PlansTable from "components/Plans/PlansTable";
 import PlansPeriodSelector from "components/Plans/PlansPeriodSelector";
 import PlansCurrencySelector from "components/Plans/PlansCurrencySelector";
 import { getPlanData, getPlanLoginPath } from "utils/plans";
+import { BlueText } from "sections/common/sharedStyled";
 import {
   PlansContainer,
   H2Styled,
   ParagraphStyled,
   TextWrapper
 } from "./styled";
-import { BlueText } from "../sharedStyled";
 
 const Plans = ({ plans, fetchPlans, lng }) => {
   const { t } = useTranslation();
@@ -35,8 +35,6 @@ const Plans = ({ plans, fetchPlans, lng }) => {
   useEffect(() => {
     fetchPlans();
   }, [fetchPlans]);
-
-  if (!plans || !plans.size) return null;
 
   return (
     <PlansContainer>
