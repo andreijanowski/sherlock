@@ -1,20 +1,17 @@
 import React, { useCallback } from "react";
 import { string } from "prop-types";
 import { Box, Flex } from "@rebass/grid";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 import { SUBSCRIPTION_ENTREPRISE_URL, SUBSCRIPTION_PLANS } from "consts";
 import { useTranslation } from "i18n";
 import { getPlanLoginPath } from "utils/plans";
+import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
 import {
-  BookDemoButton,
   Container,
   H2Styled,
   Image,
   ImageContainer,
-  ParagraphStyled,
-  RegisterNowButton
+  ParagraphStyled
 } from "./styled";
 
 const GetReady = ({ lng }) => {
@@ -48,18 +45,18 @@ const GetReady = ({ lng }) => {
           alignItems="flex-start"
           flexWrap={["wrap", "nowrap"]}
         >
-          <Flex as={BookDemoButton} onClick={onBookDemoClick}>
-            {t("plans:getReady.bookDemo")}
-            <Box ml={2}>
-              <FontAwesomeIcon icon={faChevronRight} />
-            </Box>
-          </Flex>
-          <Flex as={RegisterNowButton} onClick={onRegisterNowClick}>
+          <Box mr={[0, "13px"]}>
+            <Button onClick={onBookDemoClick} withArrow>
+              {t("plans:getReady.bookDemo")}
+            </Button>
+          </Box>
+          <Button
+            variant={BUTTON_VARIANT.SECONDARY}
+            onClick={onRegisterNowClick}
+            withArrow
+          >
             {t("plans:getReady.registerNow")}
-            <Box ml={2}>
-              <FontAwesomeIcon icon={faChevronRight} />
-            </Box>
-          </Flex>
+          </Button>
         </Flex>
       </Flex>
       <Box width={[1, 1, 1 / 2, 2 / 5]} pl={[0, 0, 20]}>

@@ -12,12 +12,12 @@ import {
   NavigationWrapper,
   PlansWrapper
 } from "sections/common/sharedStyled";
-import { GetReady, Plans } from "sections/pricing";
+import { GetReady, Plans } from "sections/pricing/subscriptions";
 import Navigation from "sections/common/Navigation";
 
 const namespaces = ["landing", "plans", "common"];
 
-const Pricing = ({ i18n, t }) => {
+const Subscriptions = ({ i18n, t }) => {
   const lng = (i18n && i18n.language) || "en";
 
   return (
@@ -38,7 +38,7 @@ const Pricing = ({ i18n, t }) => {
   );
 };
 
-Pricing.propTypes = {
+Subscriptions.propTypes = {
   i18n: shape({ language: string.isRequired }).isRequired,
   t: func.isRequired
 };
@@ -46,4 +46,4 @@ Pricing.propTypes = {
 export default compose(
   requireAuth(false),
   withTranslation(namespaces)
-)(Pricing);
+)(Subscriptions);

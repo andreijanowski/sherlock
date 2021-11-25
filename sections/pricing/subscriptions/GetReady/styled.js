@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
-import { Button as BaseButton } from "components";
 import { ParagraphStyled as BaseParagraphStyled } from "sections/common/sharedStyled";
 import { WRAPPER_WIDTH } from "utils/theme";
 
@@ -31,28 +30,6 @@ export const ParagraphStyled = styled(BaseParagraphStyled).attrs({ big: true })`
   line-height: ${p => p.theme.fontSizes.f36};
   @media (max-width: ${p => p.theme.breakpoints[1]}) {
     text-align: center;
-  }
-`;
-
-export const BookDemoButton = styled(BaseButton).attrs({
-  styleName: "becomePartner"
-})`
-  margin-right: 13px;
-  background: rgb(${p => p.theme.colors.blue});
-  &:hover {
-    box-shadow: none;
-    background: rgba(${p => p.theme.colors.blue}, 0.8);
-  }
-  @media (max-width: ${p => p.theme.breakpoints[0]}) {
-    margin-right: 0;
-  }
-`;
-
-export const RegisterNowButton = styled(BookDemoButton)`
-  margin: 0;
-  background: rgb(${p => p.theme.colors.gray["5"]});
-  &:hover {
-    background: rgba(${p => p.theme.colors.gray["5"]}, 0.8);
   }
 `;
 
