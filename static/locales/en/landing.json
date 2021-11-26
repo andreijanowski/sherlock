@@ -49,15 +49,6 @@
     ],
     "more": "We centralize all your services into a single dashboard."
   },
-  "developersAndApi": {
-    "header": "Developer & API",
-    "subHeader": {
-      "start": "Get access to our ",
-      "end": "API."
-    },
-    "paragraph": " Our partners build technology and software that bring more businesses online, enable new types of businesses and help them work more effectively. We’ve designed a program to help accelerate and amplify their impact.",
-    "goToApiDocs": "Read the docs"
-  },
   "cooperations": {
     "clients": "Clients",
     "partners": "Partners",
@@ -155,5 +146,25 @@
     "navLink": "Widget",
     "paragraph": "Offer clients a world class experience, additional interactions & services. Integrate all kind of services into your website easily with our widget."
   },
-  "pricing": "Pricing"
+  "pricing": "Pricing",
+  "appSwitcher": {
+    "lefood": "Foodies",
+    "sherlock": "Businesses"
+  },
+  "loginAndRegister": "Login/Register",
+  "getTheApp": "Get the App",
+  "howItWorks": "How it works",
+  "product": "Product",
+  "developersAndApi": "Developers & API",
+  "company": "Company",
+  "management": "Management",
+  "operations": "Operations",
+  "marketing": "Marketing",
+  "documentation": "Documentation",
+  "subscriptionPlans": "Subscription plans",
+  "licensing": "Licensing",
+  "aboutUs": "About us",
+  "newsroom": "Newsroom",
+  "careers": "Careers",
+  "partners": "Partners"
 }

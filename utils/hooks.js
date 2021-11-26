@@ -1,5 +1,6 @@
 import { useState, useLayoutEffect } from "react";
 
+import { useTranslation } from "i18n";
 import isServer from "./isServer";
 
 export const useWindowWidthLessThen = threshold => {
@@ -22,4 +23,16 @@ export const useWindowWidthLessThen = threshold => {
   }, [threshold]);
 
   return isLess;
+};
+
+export const useLng = () => {
+  const {
+    i18n: { language }
+  } = useTranslation();
+  return language;
+};
+
+export const useT = (...params) => {
+  const { t } = useTranslation(...params);
+  return t;
 };

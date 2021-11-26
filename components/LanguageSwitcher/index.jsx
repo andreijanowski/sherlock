@@ -65,12 +65,7 @@ class LanguageSwitcher extends Component {
         tabIndex="0"
       >
         <SelectedLanguageWrapper>
-          {!isServer && (
-            <>
-              <FlagIcon code={selectedLanguage} />
-              {t(selectedLanguage)}
-            </>
-          )}
+          {!isServer && <FlagIcon code={selectedLanguage} />}
         </SelectedLanguageWrapper>
         {listIsVisible && (
           <LanguageList {...{ listPosition }}>
