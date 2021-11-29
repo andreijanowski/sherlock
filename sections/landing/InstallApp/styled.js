@@ -1,12 +1,23 @@
 import styled from "styled-components";
+import { Flex } from "@rebass/grid";
 
 import { H2 } from "components";
 import { alignCenterMobile } from "sections/common/sharedStyled";
+import { WRAPPER_WIDTH } from "utils/theme";
+
+export const Container = styled(Flex)`
+  width: 100%;
+  max-width: ${WRAPPER_WIDTH}px;
+  justify-content: space-around;
+  margin: auto;
+  padding-top: 275px;
+  padding-bottom: 100px;
+`;
 
 export const Image = styled.div`
   width: 100%;
   height: 100%;
-  min-height: 755px;
+  min-height: 645px;
   background-image: url("/static/img/phoneApp.png");
   background-repeat: no-repeat;
   background-position: center center;

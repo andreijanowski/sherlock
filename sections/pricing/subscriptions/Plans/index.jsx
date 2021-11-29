@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { shape, func, string } from "prop-types";
+import { func, shape } from "prop-types";
 import { Box, Flex } from "@rebass/grid";
 
 import { fetchPlans as fetchPlansAction } from "actions/plans";
@@ -12,14 +12,16 @@ import PlansPeriodSelector from "components/Plans/PlansPeriodSelector";
 import PlansCurrencySelector from "components/Plans/PlansCurrencySelector";
 import { getPlanData, getPlanLoginPath } from "utils/plans";
 import { BlueText } from "sections/common/sharedStyled";
+import { useLng } from "utils/hooks";
 import {
-  PlansContainer,
   H2Styled,
   ParagraphStyled,
+  PlansContainer,
   TextWrapper
 } from "./styled";
 
-const Plans = ({ plans, fetchPlans, lng }) => {
+const Plans = ({ plans, fetchPlans }) => {
+  const lng = useLng();
   const { t } = useTranslation();
   const [period, setPeriod] = useState(SUBSCRIPTION_PERIOD.MONTHLY);
   const [currency, setCurrency] = useState(SUBSCRIPTION_CURRENCY.EUR);
@@ -78,7 +80,6 @@ const Plans = ({ plans, fetchPlans, lng }) => {
 
 Plans.propTypes = {
   plans: shape(),
-  lng: string.isRequired,
   fetchPlans: func.isRequired
 };
 

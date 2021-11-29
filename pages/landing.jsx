@@ -1,71 +1,51 @@
 import React from "react";
 import requireAuth from "lib/requireAuth";
-import { compose } from "redux";
-import { func, shape, string } from "prop-types";
 
 import { Footer } from "components";
 import {
   DevelopersAndApi,
-  Features,
   InstallApp,
-  Services,
+  Product,
   TopSection
 } from "sections/landing";
-import Navigation, { SECTION_IDS } from "sections/common/Navigation";
-import { withTranslation } from "i18n";
+import Navigation from "sections/common/Navigation";
+import { GetReady } from "sections/pricing/subscriptions";
 import {
   DevelopersAndApiWrapper,
-  FeaturesWrapper,
   FooterWrapper,
+  GetReadyWrapper,
   InstallAppWrapper,
   LandingWrapper,
   NavigationWrapper,
   ProductsWrapper,
   TopSectionWrapper
 } from "sections/common/sharedStyled";
+import { theme } from "utils/theme";
 
-const namespaces = ["landing", "plans", "common"];
+const Home = () => (
+  <LandingWrapper width={1} alignItems="center" flexDirection="column">
+    <NavigationWrapper>
+      <Navigation />
+    </NavigationWrapper>
+    <TopSectionWrapper>
+      <TopSection />
+    </TopSectionWrapper>
+    <DevelopersAndApiWrapper>
+      <DevelopersAndApi />
+    </DevelopersAndApiWrapper>
+    <ProductsWrapper>
+      <Product />
+    </ProductsWrapper>
+    <GetReadyWrapper bgColor={theme.colors.landingDarkBlue}>
+      <GetReady />
+    </GetReadyWrapper>
+    <InstallAppWrapper>
+      <InstallApp />
+    </InstallAppWrapper>
+    <FooterWrapper>
+      <Footer />
+    </FooterWrapper>
+  </LandingWrapper>
+);
 
-const Home = ({ t, i18n }) => {
-  const lng = (i18n && i18n.language) || "en";
-
-  return (
-    <LandingWrapper width={1} alignItems="center" flexDirection="column">
-      <NavigationWrapper>
-        <Navigation t={t} lng={lng} />
-      </NavigationWrapper>
-      <TopSectionWrapper>
-        <TopSection t={t} lng={lng} />
-      </TopSectionWrapper>
-      <ProductsWrapper id="services">
-        <Services t={t} id={SECTION_IDS.SERVICES} />
-      </ProductsWrapper>
-      <DevelopersAndApiWrapper>
-        <DevelopersAndApi t={t} id={SECTION_IDS.DEVELOPERS_AND_API} />
-      </DevelopersAndApiWrapper>
-      <FeaturesWrapper>
-        <Features t={t} id={SECTION_IDS.FEATURES} />
-      </FeaturesWrapper>
-      <InstallAppWrapper>
-        <InstallApp t={t} />
-      </InstallAppWrapper>
-      <FooterWrapper>
-        <Footer lng={lng} />
-      </FooterWrapper>
-    </LandingWrapper>
-  );
-};
-
-Home.getInitialProps = async () => ({
-  namespacesRequired: namespaces
-});
-
-Home.propTypes = {
-  t: func.isRequired,
-  i18n: shape({ language: string.isRequired }).isRequired
-};
-
-export default compose(
-  requireAuth(false),
-  withTranslation(namespaces)
-)(Home);
+export default requireAuth(false)(Home);

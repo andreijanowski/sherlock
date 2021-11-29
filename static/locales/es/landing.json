@@ -4,7 +4,7 @@
       "start": "Facilitamos",
       "end": " la vida de los restaurantes"
     },
-    "paragraph": "El primero software todo en uno en el mundo para restaurantes.",
+    "paragraph": "Foodetective integra todo su software y sistemas en una única plataforma online. Empresas de restauración de todos los tamaños confían en la API de Foodetective para gestionar toda su pila tecnológica, reducir las ineficiencias operativas y mejorar la información empresarial.",
     "getStartedForFree": "Comienza gratis",
     "contactSales": "Contacta con nuestro equipo comercial ",
     "addYourBusiness": "Agregue su negocio",
@@ -14,7 +14,7 @@
   },
   "installApp": {
     "header": {
-      "start": "Descarga nuestra aplicación hoy.",
+      "start": "Descargue hoy su aplicación.",
       "end": " Foodtective For Business."
     }
   },
@@ -48,15 +48,6 @@
       "Reseñas"
     ],
     "more": "Centralizamos todos sus servicios en un solo tablero."
-  },
-  "developersAndApi": {
-    "header": "Developer & API",
-    "subHeader": {
-      "start": "Obtenga acceso a nuestra  ",
-      "end": "API."
-    },
-    "paragraph": " Nuestros socios están desarrollando tecnología y software para incrementar el negocio online, facilitar nuevos tipos de negocios y ayudarles a trabajar de una manera más eficiente. Además, hemos diseñado un programa para ayudar a acelerar y amplificar su impacto.",
-    "goToApiDocs": "Lee los documentos"
   },
   "cooperations": {
     "clients": "Clientela",
@@ -155,5 +146,55 @@
     "navLink": "Widget",
     "paragraph": "Integre su widget en su pagina web para ofrecer a sus clientes una experiencia de clase mundial."
   },
-  "pricing": "Precios"
+  "bookDemo": "Reservar una demostración",
+  "registerNow": "Regístrese ahora",
+  "pricing": "Precios",
+  "appSwitcher": {
+    "lefood": "Foodies",
+    "sherlock": "Businesses"
+  },
+  "loginAndRegister": "Iniciar sesión/registrarme",
+  "getTheApp": "Obtener la aplicación",
+  "howItWorks": "Cómo funciona",
+  "product": "Producto",
+  "developersAndApi": "Desarrolladores y API",
+  "company": "Empresa",
+  "management": "Management",
+  "operations": "Operations",
+  "marketing": "Marketing",
+  "documentation": "Documentación",
+  "subscriptionPlans": "Planes de suscripción",
+  "licensing": "Licencia",
+  "aboutUs": "Sobre nosotros",
+  "newsroom": "Newsroom",
+  "careers": "Carreras",
+  "partners": "Socios",
+  "unifiedApiSection": {
+    "title": "API unificada para el sector de la restauración",
+    "description": "Con nuestra API unificada, se acabaron los días de tener que lidiar con múltiples aplicaciones y hardware para gestionar su negocio de restauración. La información ya no está fragmentada entre los sistemas."
+  },
+  "apiPossibilities": {
+    "connect": {
+      "title": "Click & Connect",
+      "description": "Sólo tienes que elegir tus aplicaciones preferidas. <0>No se necesita código.</0>"
+    },
+    "manage": {
+      "title": "Gestionar",
+      "description": "Plataforma de gestión 'todo en uno'. <0>Live stream</0> notificaciones."
+    },
+    "analyze": {
+      "title": "Analizar",
+      "description": "Informes generales, monitorización de métricas, ver correlaciones. <0>Tablero personalizado.</0>"
+    }
+  },
+  "productContent": {
+    "management": {
+      "title": "Gestión perfecta",
+      "description": "Gestiona tus notificaciones desde tu bolsillo. La información actualizada se sincronizará automáticamente en las apps conectadas"
+    },
+    "visibility": {
+      "title": "Mayor visibilidad",
+      "description": "Aparecer en el directorio de Foodetective. Benefíciese de nuestra plataforma de generación de contactos que muestra sus servicios de cara al cliente."
+    }
+  }
 }

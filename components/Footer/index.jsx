@@ -1,9 +1,8 @@
 import React, { useMemo } from "react";
 import { Box } from "@rebass/grid";
-import { func } from "prop-types";
 
-import { withTranslation } from "i18n";
 import FoodetectiveTextLogo from "components/FoodetectiveTextLogo";
+import { useT } from "utils/hooks";
 import {
   ColumnTitle,
   FooterWrapper,
@@ -16,9 +15,8 @@ import { getConfig } from "./utils";
 import Socials from "./Socials";
 import Copyrights from "./Copyrights";
 
-const namespaces = ["footer"];
-
-const Footer = ({ t }) => {
+const Footer = () => {
+  const t = useT("footer");
   const config = useMemo(() => getConfig(t), [t]);
 
   return (
@@ -49,8 +47,5 @@ const Footer = ({ t }) => {
     </FooterWrapper>
   );
 };
-Footer.propTypes = {
-  t: func.isRequired
-};
 
-export default withTranslation(namespaces)(Footer);
+export default Footer;

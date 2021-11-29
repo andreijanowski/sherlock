@@ -1,11 +1,11 @@
-import React, { useCallback } from "react";
-import { string } from "prop-types";
+import React from "react";
 import { Box, Flex } from "@rebass/grid";
 
 import { SUBSCRIPTION_ENTREPRISE_URL, SUBSCRIPTION_PLANS } from "consts";
 import { useTranslation } from "i18n";
 import { getPlanLoginPath } from "utils/plans";
 import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
+import { useLng } from "utils/hooks";
 import {
   Container,
   H2Styled,
@@ -14,18 +14,9 @@ import {
   ParagraphStyled
 } from "./styled";
 
-const GetReady = ({ lng }) => {
+const GetReady = () => {
+  const lng = useLng();
   const { t } = useTranslation();
-  const onBookDemoClick = useCallback(() => {
-    window.open(SUBSCRIPTION_ENTREPRISE_URL, "_blank", "noreferrer noopener");
-  }, []);
-
-  const onRegisterNowClick = useCallback(() => {
-    window.location.href = getPlanLoginPath({
-      lng,
-      name: SUBSCRIPTION_PLANS.ESSENTIAL
-    });
-  }, [lng]);
 
   return (
     <Container alignItems="center" flexWrap={["wrap", "wrap", "nowrap"]}>
@@ -46,16 +37,28 @@ const GetReady = ({ lng }) => {
           flexWrap={["wrap", "nowrap"]}
         >
           <Box mr={[0, "13px"]}>
-            <Button onClick={onBookDemoClick} withArrow>
-              {t("plans:getReady.bookDemo")}
+            <Button
+              as="a"
+              target="_blank"
+              href={SUBSCRIPTION_ENTREPRISE_URL}
+              rel="noreferrer noopener"
+              withArrow
+            >
+              {t("landing:bookDemo")}
             </Button>
           </Box>
           <Button
             variant={BUTTON_VARIANT.SECONDARY}
-            onClick={onRegisterNowClick}
+            as="a"
+            target="_blank"
+            href={getPlanLoginPath({
+              lng,
+              name: SUBSCRIPTION_PLANS.ESSENTIAL
+            })}
+            rel="noreferrer noopener"
             withArrow
           >
-            {t("plans:getReady.registerNow")}
+            {t("landing:registerNow")}
           </Button>
         </Flex>
       </Flex>
@@ -66,10 +69,6 @@ const GetReady = ({ lng }) => {
       </Box>
     </Container>
   );
-};
-
-GetReady.propTypes = {
-  lng: string.isRequired
 };
 
 export default GetReady;

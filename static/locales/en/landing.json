@@ -4,7 +4,7 @@
       "start": "We make restaurants' lives",
       "end": " much easier"
     },
-    "paragraph": "Thousands of F&B businesses use the products & API of Foodetective to manage their entire tech stack from one single platform online",
+    "paragraph": "Foodetective integrates all your software and systems into a single platform online. F&B businesses of all sizes rely on Foodetective’s API to manage their entire tech stack, reduce operational inefficiencies, and improve business insights.",
     "getStartedForFree": "Register now in two minutes",
     "contactSales": "Contact our sales team ",
     "addYourBusiness": "Add your business",
@@ -14,7 +14,7 @@
   },
   "installApp": {
     "header": {
-      "start": "Download our app today.",
+      "start": "Download (Y)our app today.",
       "end": " Foodetective For Business."
     }
   },
@@ -146,6 +146,8 @@
     "navLink": "Widget",
     "paragraph": "Offer clients a world class experience, additional interactions & services. Integrate all kind of services into your website easily with our widget."
   },
+  "bookDemo": "Book a Demo",
+  "registerNow": "Register now",
   "pricing": "Pricing",
   "appSwitcher": {
     "lefood": "Foodies",
@@ -166,5 +168,33 @@
   "aboutUs": "About us",
   "newsroom": "Newsroom",
   "careers": "Careers",
-  "partners": "Partners"
+  "partners": "Partners",
+  "unifiedApiSection": {
+    "title": "Unified API for the F&B Industry",
+    "description": "With our Unified API, gone are the days of dealing with multiple apps and hardware to manage your F&B business. Insights are no longer fragmented across systems."
+  },
+  "apiPossibilities": {
+    "connect": {
+      "title": "Click & Connect",
+      "description": "Simply choose your preferred apps. <0>No code needed.</0>"
+    },
+    "manage": {
+      "title": "Manage",
+      "description": "All-in-one management platform. <0>Live stream</0> notifications."
+    },
+    "analyze": {
+      "title": "Analyze",
+      "description": "Overview reports, monitor metrics, see correlations. <0>Personalized Dashboard.</0>"
+    }
+  },
+  "productContent": {
+    "management": {
+      "title": "Seamless Management",
+      "description": "Manage your notifications from your pocket. Updated information will synchronize automatically on connected apps"
+    },
+    "visibility": {
+      "title": "Enhanced Visibility",
+      "description": "Be listed on Foodetective’s directory. Benefit from our lead generating platform that showcases your customer-facing services."
+    }
+  }
 }
