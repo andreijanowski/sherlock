@@ -1,11 +1,9 @@
 import styled from "styled-components";
-import { Flex } from "@rebass/grid";
+import { Box } from "@rebass/grid";
 
-export const DevelopersAndApiWrapper = styled(Flex).attrs(() => ({
-  justifyContent: "start",
-  px: 3
-}))`
-  flex-direction: column;
-  max-width: 1150px;
+import { WRAPPER_WIDTH } from "utils/theme";
+
+export const Container = styled(Box)`
+  max-width: ${WRAPPER_WIDTH}px;
   margin: auto;
 `;

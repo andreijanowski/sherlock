@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Box } from "@rebass/grid";
 
 import { H1, Paragraph } from "components";
 import { alignCenterMobile } from "sections/common/sharedStyled";
@@ -25,9 +26,15 @@ export const ParagraphStyled = styled(Paragraph)`
   }
 `;
 
-export const Image = styled.img`
-  width: 100%;
-  @media (min-width: ${p => p.theme.breakpoints[2]}) {
-    width: auto;
+export const ImagesSliderColumn = styled(Box)`
+  position: relative;
+`;
+
+export const ImagesSliderContainer = styled.div`
+  position: absolute;
+  left: 80px;
+  @media (max-width: ${p => p.theme.breakpoints[2]}) {
+    position: relative;
+    left: initial;
   }
 `;

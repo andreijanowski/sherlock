@@ -2,6 +2,7 @@ import React, { useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
 import { Box } from "@rebass/grid";
 
+import { APP_URL } from "consts";
 import LanguageSwitcher from "components/LanguageSwitcher";
 import { useT } from "utils/hooks";
 import { Container, LanguageSwitcherContainer } from "./styled";
@@ -19,8 +20,8 @@ const NavigationList = () => {
 
   const onLinkClick = useCallback(
     href => {
-      const [, anchor] = href.split("#");
-      const relatedElement = document.getElementById(anchor);
+      const { hash } = new URL(href, APP_URL);
+      const relatedElement = document.getElementById(hash);
       if (!relatedElement) {
         router.push(href);
         return;

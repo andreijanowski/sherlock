@@ -53,6 +53,7 @@ export const colors = {
   tableBorder: "234, 229, 229",
   plansCaptionBlue: "83, 121, 247",
   buttonSecondary: "78, 77, 102",
+  landingDarkBlue: "15, 17, 59",
   gray: {
     "2": "79, 79, 79",
     "3": "130, 130, 130",

@@ -100,8 +100,6 @@
   "cancelSubscriptionPrompt": "Sind Sie sicher, dass Sie Ihr Abonnement kündigen möchten?",
   "getReady": {
     "title": "Bereit für den Einstieg?",
-    "description": "Wir würden uns freuen, mehr über Ihr Unternehmen zu erfahren und eine kostenlose, geführte Demo von Foodetective einzurichten",
-    "bookDemo": "Demo buchen",
-    "registerNow": "Jetzt anmelden"
+    "description": "Wir würden uns freuen, mehr über Ihr Unternehmen zu erfahren und eine kostenlose, geführte Demo von Foodetective einzurichten"
   }
 }

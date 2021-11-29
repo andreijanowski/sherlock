@@ -100,8 +100,6 @@
   "cancelSubscriptionPrompt": "¿Está seguro de que quiere cancelar su suscripción?",
   "getReady": {
     "title": "¿Listo para empezar?",
-    "description": "Estaremos encantados de conocer su negocio y organizar una demostración guiada gratuita de Foodetective",
-    "bookDemo": "Reservar una demostración",
-    "registerNow": "Regístrese ahora"
+    "description": "Estaremos encantados de conocer su negocio y organizar una demostración guiada gratuita de Foodetective"
   }
 }

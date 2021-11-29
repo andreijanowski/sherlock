@@ -2,11 +2,18 @@ import { Flex } from "@rebass/grid";
 import { bool } from "prop-types";
 import { Wordmark } from "components";
 import { Brandmark, SquaredBrandmark, BrandmarkWrapper } from "./styled";
+import FoodetectiveTextLogo from "../FoodetectiveTextLogo";
 
 const FoodetectiveLogo = ({ withTagline, squared }) => (
   <Flex alignItems="center">
     <BrandmarkWrapper squared={squared}>
-      {squared ? <SquaredBrandmark /> : <Brandmark />}
+      {squared ? (
+        <SquaredBrandmark>
+          <FoodetectiveTextLogo isSmall />
+        </SquaredBrandmark>
+      ) : (
+        <Brandmark />
+      )}
     </BrandmarkWrapper>
     {withTagline && <Wordmark />}
   </Flex>
