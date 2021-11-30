@@ -6,7 +6,8 @@ import {
   DevelopersAndApi,
   InstallApp,
   Product,
-  TopSection
+  TopSection,
+  Integrations
 } from "sections/landing";
 import Navigation from "sections/common/Navigation";
 import { GetReady } from "sections/pricing/subscriptions";
@@ -18,7 +19,8 @@ import {
   LandingWrapper,
   NavigationWrapper,
   ProductsWrapper,
-  TopSectionWrapper
+  TopSectionWrapper,
+  IntegrationsWrapper
 } from "sections/common/sharedStyled";
 import { theme } from "utils/theme";
 
@@ -33,6 +35,9 @@ const Home = () => (
     <DevelopersAndApiWrapper>
       <DevelopersAndApi />
     </DevelopersAndApiWrapper>
+    <IntegrationsWrapper>
+      <Integrations />
+    </IntegrationsWrapper>
     <ProductsWrapper>
       <Product />
     </ProductsWrapper>

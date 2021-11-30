@@ -105,5 +105,10 @@
   "foodWaste": "Gestion des invendus",
   "presenceManagement": "Présence en ligne",
   "loyalty": "Fidélisation des clients",
-  "eventsManagement": "Gestion des événements"
+  "eventsManagement": "Gestion des événements",
+  "adsPoweredBy": "Publicité propulsée par",
+  "influencersPoweredBy": "Influencers propulsé par Foodetective.co",
+  "communityMgmt": "Community Mgmt",
+  "photographyMgmt": "Photographie"
+
 }

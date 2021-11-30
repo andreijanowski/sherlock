@@ -129,5 +129,9 @@
   "influencerManagement": "Content Management",
   "managementIntegrations": "Management",
   "operationsIntegrations": "Operations",
-  "marketingIntegrations": "Marketing"
+  "marketingIntegrations": "Marketing",
+  "adsPoweredBy": "Ads powered by",
+  "influencersPoweredBy": "Influencers powered by Foodetective.co",
+  "communityMgmt": "Community Mgmt",
+  "photographyMgmt": "Photography"
 }

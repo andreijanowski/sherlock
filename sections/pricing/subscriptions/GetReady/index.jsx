@@ -6,13 +6,8 @@ import { useTranslation } from "i18n";
 import { getPlanLoginPath } from "utils/plans";
 import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
 import { useLng } from "utils/hooks";
-import {
-  Container,
-  H2Styled,
-  Image,
-  ImageContainer,
-  ParagraphStyled
-} from "./styled";
+import { H1 } from "components/styleguide/Typography";
+import { Container, Image, ImageContainer, H3Styled } from "./styled";
 
 const GetReady = () => {
   const lng = useLng();
@@ -26,9 +21,9 @@ const GetReady = () => {
         width={[1, null, 1 / 2, 3 / 5]}
         mb={[30, null, null, 0]}
       >
-        <H2Styled>{t("plans:getReady.title")}</H2Styled>
+        <H1>{t("plans:getReady.title")}</H1>
         <Box mb={60}>
-          <ParagraphStyled>{t("plans:getReady.description")}</ParagraphStyled>
+          <H3Styled>{t("plans:getReady.description")}</H3Styled>
         </Box>
         <Flex
           flexDirection={["column", "row"]}

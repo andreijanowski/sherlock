@@ -51,8 +51,9 @@ const Product = () => {
           </Button>
         </Column>
       </Flex>
-      {/* todo fix video color */}
-      <Mockup src="/static/img/productMockup.gif" />
+      <Mockup muted loop controls>
+        <source src="/static/productFlow.mp4" type="video/mp4" />
+      </Mockup>
     </Container>
   );
 };

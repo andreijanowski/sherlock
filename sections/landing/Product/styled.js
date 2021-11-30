@@ -19,7 +19,9 @@ export const Column = styled(Flex)`
   max-width: 340px;
 `;
 
-export const Mockup = styled.img`
+export const Mockup = styled.video`
   display: block;
-  margin: auto;
+  width: 100%;
+  max-width: 890px;
+  margin: 30px auto 0;
 `;

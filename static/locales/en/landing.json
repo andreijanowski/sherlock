@@ -18,37 +18,6 @@
       "end": " Foodetective For Business."
     }
   },
-  "services": {
-    "header": "Products",
-    "paragraph": {
-      "start": "Designed for your changing ",
-      "firstKeyword": "needs",
-      "middle": " & ",
-      "secondKeyword": "business size. ",
-      "end": " You can easily add and remove any of our services at any point, ensuring we are tailored to your growth."
-    },
-    "list": [
-      "Reservations",
-      "Delivery",
-      "Take Away",
-      "Payments",
-      "Privatisation",
-      "Catering",
-      "Analytics",
-      "Marketing",
-      "HR & Payroll",
-      "Supply",
-      "Accounting",
-      "Food Waste",
-      "Hygiene",
-      "Packaging",
-      "Photography",
-      "Social Media",
-      "Stocks",
-      "Reviews"
-    ],
-    "more": "We centralize all your services into a single dashboard."
-  },
   "cooperations": {
     "clients": "Clients",
     "partners": "Partners",
@@ -68,53 +37,6 @@
         "fromagerie": "Fromageries",
         "butcher": "Butchers",
         "bars": "Wineries"
-      }
-    }
-  },
-  "features": {
-    "header": "Integrations",
-    "subHeader": {
-      "start": "Create and run your restaurant with Foodetective and our partners. ",
-      "end": " No code required."
-    },
-    "navItems": {
-      "visibility": "Visibility",
-      "analytics": "Analytics",
-      "bookings": "Reservation management",
-      "deliveryAndTakeaway": "Delivery & Take away",
-      "cateringAndPrivatization": "Catering & Privatization",
-      "reviews": "Reviews",
-      "payments": "Payments"
-    },
-    "registerForFree": "Register for free now",
-    "subsections": {
-      "visibility": {
-        "header": "Increase your visibility",
-        "paragraph": "Marketing is easier than ever with Foodetective. Capture all guest visit details, notes, tags, and display your services into a unified profile available on all formats for targeted marketing and world-class eaters."
-      },
-      "analytics": {
-        "header": "Manage your business easily",
-        "paragraph": "Know how your business is doing anywhere, any time, in real-time. Be notified when important events happen. Enforce industry best practices in every service experience to improve outcomes"
-      },
-      "bookings": {
-        "header": "Reservation management",
-        "paragraph": "Foodetective helps you take control of your business by offering fully customizable reservations for everyday tables, special tastings, and everything in between."
-      },
-      "deliveryAndTakeaway": {
-        "header": "Set up your own delivery",
-        "paragraph": "Manage all your online deliveries and take-away order from one single platform. Offer your clients a higher quality, the best service, hot meals and manage all of your orders easily."
-      },
-      "cateringAndPrivatization": {
-        "header": "Receive special requests",
-        "paragraph": "Receive Special Requests Manage your catering & privatisations requests like never before, send offers, change menus, assign people to offer your client the best and easiest experience ever."
-      },
-      "reviews": {
-        "header": "6 pillars reviews",
-        "paragraph": "At Foodetective all reviews are made by professionals who provide outstanding content creating constructive feedback to help businesses to constantly improve their offer, products & services."
-      },
-      "payments": {
-        "header": "Connect your bank account",
-        "paragraph": "Receive payments instantly, connect your bank account and manage your payments from a single view."
       }
     }
   },
@@ -196,5 +118,9 @@
       "title": "Enhanced Visibility",
       "description": "Be listed on Foodetective’s directory. Benefit from our lead generating platform that showcases your customer-facing services."
     }
+  },
+  "integrationsHub": {
+    "title": "Integrations Hub",
+    "description": "Designed for your changing needs, you can easily add or remove any integration at any point, ensuring we are tailored to your growth. <0>Discover how it works.</0>"
   }
 }

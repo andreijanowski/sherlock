@@ -73,13 +73,8 @@ export const DevelopersAndApiWrapper = styled(Box)`
   background: linear-gradient(
     ${ANGLE},
     rgb(${p => p.theme.colors.landingDarkBlue}) calc(85% - 1px),
-    #fff 85%
+    rgb(${p => p.theme.colors.white}) 85%
   );
-`;
-
-export const FeaturesWrapper = styled(Box)`
-  width: 100%;
-  background: linear-gradient(170deg, #0f113d calc(22% - 2px), #f7f8fe 22%);
 `;
 
 export const PlansWrapper = styled(Box)`
@@ -114,4 +109,13 @@ export const InstallAppWrapper = styled(Box)`
 export const FooterWrapper = styled.div`
   width: 100%;
   background: rgb(${p => p.theme.colors.darkBlue});
+`;
+
+export const IntegrationsWrapper = styled(Box)`
+  width: 100%;
+  background: linear-gradient(
+    ${ANGLE},
+    rgb(${p => p.theme.colors.white}) calc(85% - 1px),
+    rgb(${p => p.theme.colors.landingDarkBlue}) 85%
+  );
 `;

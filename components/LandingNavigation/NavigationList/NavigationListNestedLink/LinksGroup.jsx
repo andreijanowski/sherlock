@@ -18,7 +18,11 @@ const LinksGroup = ({
         onLinkClick(fullPath);
       };
       return (
-        <LinksGroupItem href={fullPath} onClick={onClick}>
+        <LinksGroupItem
+          key={`${label}-${href}`}
+          href={fullPath}
+          onClick={onClick}
+        >
           {label}
         </LinksGroupItem>
       );
