@@ -18,37 +18,6 @@
       "end": " Foodetective For Business."
     }
   },
-  "services": {
-    "header": "Services",
-    "paragraph": {
-      "start": "Conçu pour s'adapter à l'évolution de vos ",
-      "firstKeyword": "besoins",
-      "middle": " et ",
-      "secondKeyword": "la taille de votre entreprise.",
-      "end": " Vous pouvez facilement ajouter ou supprimer n'importe lequel de vos services à tout moment, de manière à ’adapter à votre développement."
-    },
-    "list": [
-      "Réservations",
-      "Livraison",
-      "À emporter",
-      "Paiements",
-      "Privatisation",
-      "Service Traiteur",
-      "Statistiques",
-      "Marketing",
-      "RH & Salaires",
-      "Grossiste",
-      "Comptabilité",
-      "Déchets Alimentaires",
-      "Hygiène",
-      "Emballage",
-      "Photos",
-      "Réseaux Sociaux",
-      "Stocks",
-      "Nos Avis"
-    ],
-    "more": "Nous centralisons tous vos services dans un tableau de bord unique."
-  },
   "developerAndApi": {
     "header": "developer & API"
   },
@@ -71,53 +40,6 @@
         "fromagerie": "Fromageries",
         "butcher": "Boucheries",
         "bars": "Caves"
-      }
-    }
-  },
-  "features": {
-    "header": "Intégration et Partenariat",
-    "subHeader": {
-      "start": "Créez et gérez votre restaurant avec Foodetective et nos partenaires. ",
-      "end": " Aucun code requis."
-    },
-    "navItems": {
-      "visibility": "Visibilité",
-      "analytics": "Statistiques",
-      "bookings": "Gestion des réservations",
-      "deliveryAndTakeaway": "Livraisons et à l'emporter",
-      "cateringAndPrivatization": "Service traiteur et privatisation",
-      "reviews": "Avis",
-      "payments": "Paiements"
-    },
-    "registerForFree": "Inscrivez-vous gratuitement dès maintenant",
-    "subsections": {
-      "visibility": {
-        "header": "Augmentez votre visibilité",
-        "paragraph": "Votre marketing devient plus facile que jamais avec Foodetective. Saisissez tous les détails des visites de vos clients et affichez vos services sur un seul profil disponible sur tous les formats pour un marketing ciblé et une clientèle de renomée mondiale."
-      },
-      "analytics": {
-        "header": "Gérez votre entreprise facilement",
-        "paragraph": "Sachez comment se porte votre entreprise, n'importe où, n'importe quand, en temps réel. Soyez avertis lorsque des événements importants se produisent. Appliquer les meilleures pratiques du secteur dans chaque expérience de service pour améliorer les résultats."
-      },
-      "bookings": {
-        "header": "Gestion des réservations",
-        "paragraph": "Foodetective vous aide à prendre controle de votre entreprise en vous offrant un système de réservations totalement personnalisable pour vos tables au quotidien, des dégustations spéciales et tout le reste."
-      },
-      "deliveryAndTakeaway": {
-        "header": "Configurez votre votre propre service de livraison",
-        "paragraph": "Pourquoi payer des frais élevés de livraison lorsque vous pouvez faire vos propres livraisons? Offrez à vos clients une meilleure qualité, un meille service, des plats chauds et gérez vos commandes facilement."
-      },
-      "cateringAndPrivatization": {
-        "header": "Recevez des demandes spéciales",
-        "paragraph": "Gérez votre service traiteur et vos demandes de privatisation comme jamais auparavant, envoyez des offres, changez les menus, affecter des personnes pour offrir à vos clients la meilleure experience et assistance possible."
-      },
-      "reviews": {
-        "header": "Des avis reposant sur 6 critères",
-        "paragraph": "Chez Foodetective, tous les avis sont rédigés par des professionnels qui fournissent du contenu exceptionnel, assurant des retours constructifs afin d'aider les entreprises à constamment améliorer leur offre, produits et services."
-      },
-      "payments": {
-        "header": "Connectez votre compte bancaire",
-        "paragraph": "Recevez vos paiements instantanément, connectez votre compte bancaire et gérez vos paiements d'un seul coup d'oeil."
       }
     }
   },
@@ -199,5 +121,9 @@
       "title": "Visibilité améliorée",
       "description": "Vous serez inscrit dans l'annuaire de Foodetective et bénéficierez de notre plateforme de génération de prospects qui met en valeur vos services à la clientèle."
     }
+  },
+  "integrationsHub": {
+    "title": "Integrations Hub",
+    "description": "Conçu pour répondre à l'évolution de vos besoins, vous pouvez facilement ajouter ou supprimer toute intégration à tout moment, ce qui vous garantit que nous sommes adaptés à votre croissance. <0>Découvrez comment ça fonctionne.</0>"
   }
 }

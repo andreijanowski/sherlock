@@ -105,5 +105,9 @@
   "foodWaste": "Comidas no vendidas",
   "presenceManagement": "Presencia en línea",
   "loyalty": "Retención de clientes",
-  "eventsManagement": "Gestión de eventos"
+  "eventsManagement": "Gestión de eventos",
+  "adsPoweredBy": "Anuncios con la ayuda de",
+  "influencersPoweredBy": "Influenciadores impulsados por Foodetective.co",
+  "communityMgmt": "Community Mgmt",
+  "photographyMgmt": "Fotografía"
 }

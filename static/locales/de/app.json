@@ -106,5 +106,9 @@
   "foodWaste": "Unverkaufte Lebensmittel",
   "presenceManagement": "Online-Präsenz",
   "loyalty": "Kundenbindung",
-  "eventsManagement": "Veranstaltungs-Management"
+  "eventsManagement": "Veranstaltungs-Management",
+  "adsPoweredBy": "Anzeige betrieben durch",
+  "influencersPoweredBy": "Influencers betrieben durch Foodetective.co",
+  "communityMgmt": "Community Mgmt",
+  "photographyMgmt": "Fotografie"
 }

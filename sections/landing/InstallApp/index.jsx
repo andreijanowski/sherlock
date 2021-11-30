@@ -1,22 +1,33 @@
+import React from "react";
 import { Box, Flex } from "@rebass/grid";
 
 import FoodetectiveLogo from "components/FoodetectiveLogo";
 import { BlueText } from "sections/common/sharedStyled";
 import { useT } from "utils/hooks";
 import {
+  GET_THE_APP_ANDROID_LINK,
+  GET_THE_APP_IOS_LINK,
+  GET_THE_APP_VIDEO_URL
+} from "consts";
+import { VideoButton } from "components/Landing";
+import {
   Container,
   AppPlatformLogo,
   H2Styled,
   Image,
-  NavigationLink
+  NavigationLink,
+  VideoButtonContainer
 } from "./styled";
 
 const InstallApp = () => {
   const t = useT("landing");
   return (
     <Container flexDirection={["column", "row"]}>
-      {/* todo add video button */}
-      <Image width={[1, 1 / 2]} />
+      <Image width={[1, 1 / 2]}>
+        <VideoButtonContainer>
+          <VideoButton url={GET_THE_APP_VIDEO_URL} isVertical />
+        </VideoButtonContainer>
+      </Image>
       <Flex
         flexDirection="column"
         alignItems={["center", "flex-start"]}
@@ -33,10 +44,18 @@ const InstallApp = () => {
           </H2Styled>
         </Box>
         <Box>
-          <NavigationLink href="#">
+          <NavigationLink
+            rel="noopener nofollower"
+            target="_blank"
+            href={GET_THE_APP_IOS_LINK}
+          >
             <AppPlatformLogo src="/static/img/applestore.png" />
           </NavigationLink>
-          <NavigationLink href="#">
+          <NavigationLink
+            rel="noopener nofollower"
+            target="_blank"
+            href={GET_THE_APP_ANDROID_LINK}
+          >
             <AppPlatformLogo src="/static/img/googleplay.png" />
           </NavigationLink>
         </Box>

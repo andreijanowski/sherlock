@@ -24,7 +24,9 @@ export const ImageContainer = styled.div`
   margin-bottom: 42px;
 `;
 
-export const Image = styled.img``;
+export const Image = styled.img`
+  border-radius: 13px;
+`;
 
 export const Description = styled.div`
   padding: 8px 24px;

@@ -18,37 +18,6 @@
       "end": " Foodetective For Business."
     }
   },
-  "services": {
-    "header": "Servizi",
-    "paragraph": {
-      "start": "Progettato per le tue mutevoli ",
-      "firstKeyword": "esigenze",
-      "middle": " e ",
-      "secondKeyword": "dimensioni aziendali.",
-      "end": " Puoi facilmente aggiungere e rimuovere tuoi servizi in qualsiasi momento, assicurandoci che il nostro software sia fatto su misura per la tua crescita."
-    },
-    "list": [
-      "Prenotazioni",
-      "Consegna",
-      "Da portare via/da asporto",
-      "Pagamenti",
-      "Privatizzazione",
-      "Catering",
-      "analitica",
-      "Marketing",
-      "Risorse umane e stipendi",
-      "Fornitura",
-      "Contabilità",
-      "Rifiuti alimentari",
-      "Igiene",
-      "Packaging",
-      "Fotografie",
-      "Social Media",
-      "Inventario",
-      "Recensioni"
-    ],
-    "more": "Centralizziamo tutti i tuoi servizi in un'unica dashboard."
-  },
   "cooperations": {
     "clients": "Clienti",
     "partners": "Partner",
@@ -68,53 +37,6 @@
         "fromagerie": "Formaggio",
         "butcher": "Macellaie",
         "bars": "Cantine"
-      }
-    }
-  },
-  "features": {
-    "header": "Caratteristiche",
-    "subHeader": {
-      "start": "Crea e gestisci il tuo ristorante con Foodetective e i nostri partner. ",
-      "end": " Nessun codice richiesto."
-    },
-    "navItems": {
-      "visibility": "Visibilità",
-      "analytics": "Analitica",
-      "bookings": "Gestione delle prenotazioni",
-      "deliveryAndTakeaway": "Consegna e ritiro",
-      "cateringAndPrivatization": "Ristorazione e privatizzazione",
-      "reviews": "Recensioni",
-      "payments": "Pagamenti"
-    },
-    "registerForFree": "Iscriviti gratuitamente ora",
-    "subsections": {
-      "visibility": {
-        "header": "Aumenta la tua visibilità",
-        "paragraph": "Il marketing non è mai stato cosi facile con Foodetective. Cattura tutti i dettagli, le note, i tag delle visite degli ospiti e visualizza i tuoi servizi in un profilo unificato disponibile in tutti i formati per marketing mirato e clienti di prima classe."
-      },
-      "analytics": {
-        "header": "Gestisci facilmente la tua attività",
-        "paragraph": "Scopri come sta andando la tua attività ovunque, in qualsiasi momento, in tempo reale."
-      },
-      "bookings": {
-        "header": "Gestione delle prenotazioni",
-        "paragraph": "Foodetective ti aiuta a prendere il controllo della tua attività offrendoti un sistema di prenotazione completamente personalizzabile per i tuoi tavoli quotidiani, degustazioni speciali e tutto il resto."
-      },
-      "deliveryAndTakeaway": {
-        "header": "Configura il tuo servizio di consegna",
-        "paragraph": "Perché pagare commissioni di consegna elevate quando puoi effettuare le tue consegne? Offri ai tuoi clienti una migliore qualità, un servizio migliore, cibi caldi e gestisci facilmente i tuoi ordini."
-      },
-      "cateringAndPrivatization": {
-        "header": "Ricevi richieste speciali",
-        "paragraph": "Gestisci il tuo servizio di catering e le richieste di privatizzazione come mai prima d'ora, invia offerte, cambia menu, assegna persone per offrire ai tuoi clienti la migliore esperienza e supporto possibile."
-      },
-      "reviews": {
-        "header": "Opinioni basate su 6 criteri",
-        "paragraph": "Da Foodetective, tutte le recensioni sono scritte da professionisti che forniscono contenuti eccezionali, garantendo feedback costruttivi per aiutare le aziende a migliorare costantemente la loro offerta, prodotti e servizi."
-      },
-      "payments": {
-        "header": "Collega il tuo conto bancario",
-        "paragraph": "Ricevi i tuoi pagamenti all'istante, collega il tuo conto bancario e gestisci i pagamenti a colpo d'occhio."
       }
     }
   },
@@ -196,5 +118,9 @@
       "title": "Visibilità migliorata",
       "description": "Essere elencati nella directory di Foodetective. Beneficia della nostra piattaforma di generazione di lead che mette in mostra i tuoi servizi rivolti al cliente."
     }
+  },
+  "integrationsHub": {
+    "title": "Integrations Hub",
+    "description": "Progettato per le vostre esigenze mutevoli, è possibile aggiungere o rimuovere facilmente qualsiasi integrazione in qualsiasi momento, assicurando che siamo su misura per la vostra crescita. <0>Scopri come funziona.</0>"
   }
 }

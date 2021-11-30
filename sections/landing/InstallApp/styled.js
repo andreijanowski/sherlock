@@ -18,10 +18,21 @@ export const Image = styled.div`
   width: 100%;
   height: 100%;
   min-height: 645px;
+  position: relative;
   background-image: url("/static/img/phoneApp.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
+`;
+
+export const VideoButtonContainer = styled(Flex)`
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 `;
 
 export const AppPlatformLogo = styled.img`
