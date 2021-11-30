@@ -403,16 +403,30 @@ export const getConfig = t => [
               {
                 icon: "factorial.svg",
                 isComingSoon: true,
-                top: 35,
-                left: -110,
+                top: 30,
+                left: -100,
                 size: 92
               },
               {
                 icon: "breezy.svg",
                 isComingSoon: true,
                 top: 0,
-                left: 0,
+                left: 10,
                 size: 110
+              },
+              {
+                icon: "skello.svg",
+                isComingSoon: true,
+                top: 140,
+                left: -70,
+                size: 110
+              },
+              {
+                icon: "7shifts.png",
+                isComingSoon: true,
+                top: 120,
+                left: 60,
+                size: 92
               }
             ]
           }
@@ -420,8 +434,33 @@ export const getConfig = t => [
       },
       {
         label: t("stockManagement"),
-        isComingSoon: true,
-        groups: []
+        groups: [
+          {
+            partners: [
+              {
+                icon: "koust.png",
+                isComingSoon: true,
+                top: 30,
+                left: -100,
+                size: 92
+              },
+              {
+                icon: "marketMan.png",
+                isComingSoon: true,
+                top: 0,
+                left: 10,
+                size: 110
+              },
+              {
+                icon: "noSpoilers.png",
+                isComingSoon: true,
+                top: 140,
+                left: -40,
+                size: 110
+              }
+            ]
+          }
+        ]
       }
     ]
   },
