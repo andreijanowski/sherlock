@@ -16,6 +16,7 @@ export const partnersGroupShape = shape({
 
 export const sectionItemShape = shape({
   label: string.isRequired,
+  id: string.isRequired,
   isComingSoon: bool,
   groups: arrayOf(partnersGroupShape).isRequired
 });

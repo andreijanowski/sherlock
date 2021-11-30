@@ -20,8 +20,9 @@ const NavigationCTAButtons = () => {
           {t("landing:loginAndRegister")}
         </Button>
       </Box>
-      {/* todo add anchor support */}
-      <Button>{t("landing:getTheApp")}</Button>
+      <Button as="a" href={`/${lng}/#app`}>
+        {t("landing:getTheApp")}
+      </Button>
     </Flex>
   );
 };

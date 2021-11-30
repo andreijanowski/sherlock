@@ -1,22 +1,28 @@
+import {
+  apiGuideLink,
+  NEWS_ROOM_URL,
+  PARTNERS_URL,
+  CAREERS_FOODETECTIVE_EMAIL
+} from "consts";
+
 export const getMenuItems = t => [
   {
     label: t("landing:howItWorks"),
-    href: "/#test"
+    href: "/"
   },
   {
     label: t("landing:product"),
-    baseHref: "/product",
     groups: [
       {
-        label: t("features"),
+        label: t("landing:features"),
         items: [
           {
             label: t("app:dashboard"),
-            href: "/dashboard"
+            href: "/product/dashboard"
           },
           {
             label: t("app:appManager"),
-            href: "/app-manager"
+            href: "/product/app-manager"
           }
         ]
       },
@@ -25,15 +31,15 @@ export const getMenuItems = t => [
         items: [
           {
             label: t("landing:management"),
-            href: "/management"
+            href: "/?partners=delivery#integrations"
           },
           {
             label: t("landing:operations"),
-            href: "/operations"
+            href: "/?partners=procurement#integrations"
           },
           {
             label: t("landing:marketing"),
-            href: "/marketing"
+            href: "/?partners=content#integrations"
           }
         ]
       }
@@ -41,13 +47,12 @@ export const getMenuItems = t => [
   },
   {
     label: t("landing:developersAndApi"),
-    baseHref: "/developers-and-api",
     groups: [
       {
         items: [
           {
             label: t("landing:documentation"),
-            href: "/documentation"
+            href: apiGuideLink
           }
         ]
       }
@@ -55,17 +60,16 @@ export const getMenuItems = t => [
   },
   {
     label: t("landing:pricing"),
-    baseHref: "/pricing",
     groups: [
       {
         items: [
           {
             label: t("landing:subscriptionPlans"),
-            href: "/subscriptions"
+            href: "/pricing/subscriptions"
           },
           {
             label: t("landing:licensing"),
-            href: "/licensing"
+            href: "/pricing/licensing"
           }
         ]
       }
@@ -73,25 +77,26 @@ export const getMenuItems = t => [
   },
   {
     label: t("landing:company"),
-    baseHref: "/company",
     groups: [
       {
         items: [
           {
             label: t("landing:aboutUs"),
-            href: "/about-us"
+            href: "/company/about-us"
           },
           {
             label: t("landing:newsroom"),
-            href: "/newsroom"
+            href: NEWS_ROOM_URL
           },
           {
             label: t("landing:careers"),
-            href: "/careers"
+            href: `mailto:${CAREERS_FOODETECTIVE_EMAIL}?subject=${t(
+              "careersSubject"
+            )}`
           },
           {
             label: t("landing:partners"),
-            href: "/partners"
+            href: PARTNERS_URL
           }
         ]
       }

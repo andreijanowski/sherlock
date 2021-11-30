@@ -12,7 +12,6 @@ export const linksGroupShape = shape({
 
 export const nestedLinkShape = shape({
   label: string.isRequired,
-  baseHref: string.isRequired,
   groups: arrayOf(linksGroupShape).isRequired
 });
 
