@@ -125,5 +125,8 @@
   "integrationsHub": {
     "title": "Integrations Hub",
     "description": "Conçu pour répondre à l'évolution de vos besoins, vous pouvez facilement ajouter ou supprimer toute intégration à tout moment, ce qui vous garantit que nous sommes adaptés à votre croissance. <0>Découvrez comment ça fonctionne.</0>"
-  }
+  },
+  "features": "Fonctionnalités",
+  "integrations": "Intégrations",
+  "careersSubject": "Rejoins l'équipe"
 }

@@ -1,38 +1,47 @@
 import React from "react";
-import { func, string } from "prop-types";
+import { func } from "prop-types";
 
+import { useLng } from "utils/hooks";
 import { linksGroupShape } from "../types";
 import { LinksGroupItem, LinksGroupLabel } from "./styled";
 
-const LinksGroup = ({
-  group: { label: groupLabel, items },
-  basePath,
-  onLinkClick
-}) => (
-  <>
-    {groupLabel && <LinksGroupLabel>{groupLabel}</LinksGroupLabel>}
-    {items.map(({ label, href }) => {
-      const fullPath = `${basePath}${href}`;
-      const onClick = e => {
-        e.preventDefault();
-        onLinkClick(fullPath);
-      };
-      return (
-        <LinksGroupItem
-          key={`${label}-${href}`}
-          href={fullPath}
-          onClick={onClick}
-        >
-          {label}
-        </LinksGroupItem>
-      );
-    })}
-  </>
-);
+const LinksGroup = ({ group: { label: groupLabel, items }, onLinkClick }) => {
+  const lng = useLng();
+
+  return (
+    <>
+      {groupLabel && <LinksGroupLabel>{groupLabel}</LinksGroupLabel>}
+      {items.map(({ label, href }) => {
+        const isInternalHref = href.startsWith("/");
+        const fullPath = `/${lng}${href}`;
+        const onClick = e => {
+          e.preventDefault();
+          onLinkClick(fullPath);
+        };
+        return (
+          <LinksGroupItem
+            key={`${label}-${href}`}
+            {...(isInternalHref
+              ? {
+                  href: fullPath,
+                  onClick
+                }
+              : {
+                  href,
+                  target: "_blank",
+                  rel: "nofollow noopener"
+                })}
+          >
+            {label}
+          </LinksGroupItem>
+        );
+      })}
+    </>
+  );
+};
 
 LinksGroup.propTypes = {
   group: linksGroupShape.isRequired,
-  basePath: string.isRequired,
   onLinkClick: func.isRequired
 };
 

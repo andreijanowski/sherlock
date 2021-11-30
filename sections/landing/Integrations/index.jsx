@@ -11,7 +11,9 @@ const Integrations = () => {
   return (
     <Container pt="50px" pb="320px">
       <Box width={[1, 1 / 2]} mb={5}>
-        <H2Styled mb="24px">{t("integrationsHub.title")}</H2Styled>
+        <H2Styled mb="24px" id="integrations">
+          {t("integrationsHub.title")}
+        </H2Styled>
         <SubtitleStyled mb="80px">
           <Trans
             t={t}

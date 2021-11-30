@@ -122,5 +122,8 @@
   "integrationsHub": {
     "title": "Integrations Hub",
     "description": "Designed for your changing needs, you can easily add or remove any integration at any point, ensuring we are tailored to your growth. <0>Discover how it works.</0>"
-  }
+  },
+  "features": "Features",
+  "integrations": "Integrations",
+  "careersSubject": "Join the team"
 }

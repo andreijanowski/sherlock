@@ -3,6 +3,7 @@ export const getConfig = t => [
     id: "ungrouped",
     items: [
       {
+        id: "pos",
         label: t("manageIntegrations.pos"),
         groups: [
           {
@@ -138,6 +139,7 @@ export const getConfig = t => [
     label: t("managementIntegrations"),
     items: [
       {
+        id: "delivery",
         label: t("delivery"),
         groups: [
           {
@@ -217,11 +219,13 @@ export const getConfig = t => [
         ]
       },
       {
+        id: "clients",
         label: t("clients"),
         isComingSoon: true,
         groups: []
       },
       {
+        id: "menuManagement",
         label: t("menuManagement"),
         groups: [
           {
@@ -252,11 +256,13 @@ export const getConfig = t => [
         ]
       },
       {
+        id: "eventsManagement",
         label: t("eventsManagement"),
         isComingSoon: true,
         groups: []
       },
       {
+        id: "reservations",
         label: t("reservations"),
         groups: [
           {
@@ -293,6 +299,7 @@ export const getConfig = t => [
     label: t("operationsIntegrations"),
     items: [
       {
+        id: "procurement",
         label: t("wholesaler"),
         groups: [
           {
@@ -344,6 +351,7 @@ export const getConfig = t => [
         ]
       },
       {
+        id: "payments",
         label: t("payments"),
         groups: [
           {
@@ -366,6 +374,7 @@ export const getConfig = t => [
         ]
       },
       {
+        id: "foodWaste",
         label: t("foodWaste"),
         groups: [
           {
@@ -396,6 +405,7 @@ export const getConfig = t => [
         ]
       },
       {
+        id: "payroll",
         label: t("payroll"),
         groups: [
           {
@@ -433,6 +443,7 @@ export const getConfig = t => [
         ]
       },
       {
+        id: "stockManagement",
         label: t("stockManagement"),
         groups: [
           {
@@ -469,6 +480,7 @@ export const getConfig = t => [
     label: t("marketingIntegrations"),
     items: [
       {
+        id: "content",
         label: t("influencerManagement"),
         groups: [
           {
@@ -534,6 +546,7 @@ export const getConfig = t => [
         ]
       },
       {
+        id: "reviews",
         label: t("reviews"),
         groups: [
           {
@@ -556,6 +569,7 @@ export const getConfig = t => [
         ]
       },
       {
+        id: "loyalty",
         label: t("loyalty"),
         groups: [
           {
@@ -614,6 +628,7 @@ export const getConfig = t => [
         ]
       },
       {
+        id: "presenceManagement",
         label: t("presenceManagement"),
         groups: [
           {

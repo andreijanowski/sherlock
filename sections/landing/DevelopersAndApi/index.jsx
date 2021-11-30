@@ -3,7 +3,6 @@ import { Box } from "@rebass/grid";
 
 import { useT } from "utils/hooks";
 import { H2, Subtitle } from "components/styleguide/Typography";
-import { SECTION_IDS } from "sections/common/Navigation";
 import { APIPossibilitiesList } from "components/Landing";
 import { Container } from "./styled";
 
@@ -12,9 +11,7 @@ const DevelopersAndApi = () => {
   return (
     <Container pt="50px" pb="180px">
       <Box width={[1, 1 / 2]} mb={5}>
-        <H2 id={SECTION_IDS.DEVELOPERS_AND_API}>
-          {t("unifiedApiSection.title")}
-        </H2>
+        <H2>{t("unifiedApiSection.title")}</H2>
         <Subtitle>{t("unifiedApiSection.description")}</Subtitle>
       </Box>
       <APIPossibilitiesList />

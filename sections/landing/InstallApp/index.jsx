@@ -22,7 +22,7 @@ import {
 const InstallApp = () => {
   const t = useT("landing");
   return (
-    <Container flexDirection={["column", "row"]}>
+    <Container flexDirection={["column", "row"]} id="app">
       <Image width={[1, 1 / 2]}>
         <VideoButtonContainer>
           <VideoButton url={GET_THE_APP_VIDEO_URL} isVertical />
