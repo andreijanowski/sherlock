@@ -1,21 +1,18 @@
 import styled from "styled-components";
-import { Box } from "@rebass/grid";
 
-import { H1, Paragraph } from "components";
-import { alignCenterMobile } from "sections/common/sharedStyled";
+import { Paragraph } from "components";
+import { H1 } from "components/styleguide/Typography";
+import { alignCenterTablet } from "sections/common/sharedStyled";
+import { AdaptiveBox } from "components/styleguide/common";
+import { upThanBreakpoint } from "utils/theme";
 
 export const H1Styled = styled(H1)`
-  ${alignCenterMobile}
-  color: white;
-  letter-spacing: 1.2px;
-  @media (min-width: ${p => p.theme.breakpoints[2]}) {
-    font-size: ${p => p.theme.fontSizes.f60};
-    line-height: 70px;
-  }
+  font-size: 60px;
+  line-height: 70px;
 `;
 
 export const ParagraphStyled = styled(Paragraph)`
-  ${alignCenterMobile}
+  ${alignCenterTablet}
   color: #e0e0e0;
   font-weight: 500;
   font-size: ${p => p.theme.fontSizes.f15};
@@ -26,15 +23,15 @@ export const ParagraphStyled = styled(Paragraph)`
   }
 `;
 
-export const ImagesSliderColumn = styled(Box)`
+export const ImagesSliderColumn = styled(AdaptiveBox)`
   position: relative;
 `;
 
 export const ImagesSliderContainer = styled.div`
-  position: absolute;
-  left: 80px;
-  @media (max-width: ${p => p.theme.breakpoints[2]}) {
-    position: relative;
-    left: initial;
+  position: relative;
+  left: initial;
+  ${upThanBreakpoint(2)} {
+    position: absolute;
+    left: 80px;
   }
 `;

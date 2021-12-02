@@ -1,4 +1,5 @@
 export const BUTTON_VARIANT = {
   PRIMARY: "primary",
-  SECONDARY: "secondary"
+  SECONDARY: "secondary",
+  OUTLINE: "outline"
 };

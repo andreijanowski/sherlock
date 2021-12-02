@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
 import { H2 } from "components";
-import { alignCenterMobile } from "sections/common/sharedStyled";
+import { alignCenterTablet } from "sections/common/sharedStyled";
 import { WRAPPER_WIDTH } from "utils/theme";
 
 export const Container = styled(Flex)`
@@ -52,7 +52,7 @@ export const NavigationLink = styled.a`
 `;
 
 export const H2Styled = styled(H2)`
-  ${alignCenterMobile}
+  ${alignCenterTablet}
   margin: 0;
   color: black;
   font-weight: ${p => p.theme.fontWeights.semiBold};

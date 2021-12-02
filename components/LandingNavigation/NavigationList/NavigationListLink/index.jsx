@@ -23,6 +23,7 @@ const NavigationListLink = ({ link: { label, href }, onLinkClick }) => {
 
   return (
     <NavigationListItem
+      display="flex"
       as="a"
       href={fullPath}
       label={label}

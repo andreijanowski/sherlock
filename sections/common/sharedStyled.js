@@ -4,9 +4,9 @@ import { Box, Flex } from "@rebass/grid";
 
 const ANGLE = "177deg";
 
-export const alignCenterMobile = css`
+export const alignCenterTablet = css`
   text-align: center;
-  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+  @media (min-width: ${p => p.theme.breakpoints[2]}) {
     text-align: start;
   }
 `;
@@ -16,7 +16,7 @@ export const BlueText = styled.span`
 `;
 
 export const H2Styled = styled(H2)`
-  ${alignCenterMobile}
+  ${alignCenterTablet}
   color: rgb(${p => p.theme.colors.white});
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f30};
@@ -24,7 +24,7 @@ export const H2Styled = styled(H2)`
 `;
 
 export const ParagraphStyled = styled("p")`
-  ${alignCenterMobile}
+  ${alignCenterTablet}
   margin: 0;
   color: #e0e0e0;
   font-weight: 500;
