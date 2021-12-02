@@ -10,13 +10,29 @@ const getColorByVariant = props => {
   switch (variant) {
     case BUTTON_VARIANT.SECONDARY:
       return colors.buttonSecondary;
+    case BUTTON_VARIANT.OUTLINE:
+      return "transparent";
     default:
       return colors.blue;
   }
 };
 
+const getBorderColorByVariant = props => {
+  const {
+    theme: { colors },
+    variant
+  } = props;
+  switch (variant) {
+    case BUTTON_VARIANT.OUTLINE:
+      return [colors.white, 1].join(", ");
+    default:
+      return [colors.white, 0].join(", ");
+  }
+};
+
 export const ButtonContainer = styled(Flex)`
-  padding: 8px 24px;
+  padding: 7px 24px;
+  justify-content: center;
   color: rgb(${p => p.theme.colors.white});
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f16};
@@ -25,7 +41,7 @@ export const ButtonContainer = styled(Flex)`
   cursor: pointer;
   appearance: none;
   text-decoration: none;
-  border: none;
+  border: 1px solid rgba(${getBorderColorByVariant});
   box-shadow: none;
   background: rgb(${getColorByVariant});
   &:hover {

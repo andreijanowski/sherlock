@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
-import { WRAPPER_WIDTH } from "utils/theme";
+import { downThanBreakpoint, WRAPPER_WIDTH } from "utils/theme";
 
 export const Container = styled(Flex)`
   width: 100%;
@@ -14,4 +14,7 @@ export const Container = styled(Flex)`
 
 export const Logo = styled.img`
   display: block;
+  ${downThanBreakpoint(2)} {
+    max-width: 100%;
+  }
 `;

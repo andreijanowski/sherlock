@@ -1,4 +1,5 @@
 import React from "react";
+import { Box } from "@rebass/grid";
 
 import { Container, Logo } from "./styled";
 
@@ -11,9 +12,14 @@ const items = [
 
 const TopPartnersList = () => (
   <Container>
-    {items.map(item => (
-      <Logo key={item} src={item} />
-    ))}
+    {items.map((item, index) => {
+      const isLastChild = index === items.length - 1;
+      return (
+        <Box key={item} mr={[isLastChild ? 0 : 3, 0]}>
+          <Logo key={item} src={item} />
+        </Box>
+      );
+    })}
   </Container>
 );
 

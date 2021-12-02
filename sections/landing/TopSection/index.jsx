@@ -9,9 +9,9 @@ import { getPlanLoginPath } from "utils/plans";
 import { WRAPPER_WIDTH } from "utils/theme";
 import {
   H1Styled,
-  ParagraphStyled,
+  ImagesSliderColumn,
   ImagesSliderContainer,
-  ImagesSliderColumn
+  ParagraphStyled
 } from "./styled";
 
 const images = [
@@ -29,21 +29,32 @@ const TopSection = () => {
         alignItems="start"
         flexWrap="wrap"
         m="auto"
-        width={[1, 1, 1, WRAPPER_WIDTH]}
+        width={[1, null, null, WRAPPER_WIDTH]}
         px={3}
-        mb="150px"
+        mb={[5, null, null, "150px"]}
       >
-        <Box width={[1, 1, 1, 1 / 2]} p={[3, 0]} pt={[30, 80]}>
-          <H1Styled>{`${t("landing:topSection.header.start")}${t(
-            "landing:topSection.header.end"
-          )}`}</H1Styled>
+        <Box width={[1, 1, 1, 1 / 2]} pt={[46, null, null, 60]}>
+          <H1Styled tabletCentered>
+            {`${t("landing:topSection.header.start")}
+            
+             ${t("landing:topSection.header.end")}`}
+          </H1Styled>
+          <ImagesSliderColumn
+            display={["block", null, null, "none"]}
+            width={[1, 1, 1, 1 / 2]}
+            mb={50}
+          >
+            <ImagesSliderContainer>
+              <ImagesSlider images={images} />
+            </ImagesSliderContainer>
+          </ImagesSliderColumn>
           <ParagraphStyled>{t("landing:topSection.paragraph")}</ParagraphStyled>
           <Flex
             alignItems="center"
             flexWrap="wrap"
-            justifyContent={["center", "start"]}
+            justifyContent={["center", null, null, "start"]}
           >
-            <Box width={["auto"]} mr={[0, 16]} my={2}>
+            <Box width={[1, null, "auto"]} mr={[0, null, 16]} my={2}>
               <Button
                 as="a"
                 target="_blank"
@@ -54,7 +65,7 @@ const TopSection = () => {
                 {t("landing:bookDemo")}
               </Button>
             </Box>
-            <Box width={["auto"]} my={2}>
+            <Box width={[1, null, "auto"]} my={2}>
               <Button
                 variant={BUTTON_VARIANT.SECONDARY}
                 as="a"
@@ -71,7 +82,11 @@ const TopSection = () => {
             </Box>
           </Flex>
         </Box>
-        <ImagesSliderColumn width={[1, 1, 1, 1 / 2]} pt={[30, 40]}>
+        <ImagesSliderColumn
+          display={["none", null, null, "block"]}
+          width={[1, 1, 1, 1 / 2]}
+          pt={[30, 40]}
+        >
           <ImagesSliderContainer>
             <ImagesSlider images={images} />
           </ImagesSliderContainer>

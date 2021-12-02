@@ -5,11 +5,11 @@ import { Link } from "components";
 import { useLng } from "utils/hooks";
 import { LogoContainer, LogoSmallText } from "./styled";
 
-const FoodetectiveTextLogo = ({ isSmall }) => {
+const FoodetectiveTextLogo = ({ isSmall, isDark }) => {
   const lng = useLng();
   return (
     <Link route="/" lng={lng}>
-      <LogoContainer as="a" isSmall={isSmall}>
+      <LogoContainer as="a" isSmall={isSmall} isDark={isDark}>
         Foodetective <LogoSmallText> For Business</LogoSmallText>
       </LogoContainer>
     </Link>
@@ -17,11 +17,13 @@ const FoodetectiveTextLogo = ({ isSmall }) => {
 };
 
 FoodetectiveTextLogo.propTypes = {
-  isSmall: bool
+  isSmall: bool,
+  isDark: bool
 };
 
 FoodetectiveTextLogo.defaultProps = {
-  isSmall: false
+  isSmall: false,
+  isDark: false
 };
 
 export default FoodetectiveTextLogo;

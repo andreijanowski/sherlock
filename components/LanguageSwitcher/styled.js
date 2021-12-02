@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 
+import { downThanBreakpoint } from "utils/theme";
+
 /* Icon source http://flag-icon-css.lip.is/ */
 export const FlagIcon = styled.img.attrs(({ code }) => ({
   src: `/static/flags/${code}.svg`
@@ -14,15 +16,8 @@ export const LanguageSwitcherWrapper = styled(Flex).attrs(() => ({
   justifyContent: "space-between"
 }))`
   position: relative;
-  z-index: 2;
+  z-index: 10;
   width: auto;
-  height: 55px;
-  color: rgb(${p => p.theme.colors.white});
-  font-weight: ${p => p.theme.fontWeights.semiBold};
-  font-size: ${p => p.theme.fontSizes.f12};
-  line-height: ${p => p.theme.fontSizes.f24};
-  letter-spacing: 0.22px;
-  text-transform: capitalize;
   border: ${({ withBorder, theme }) =>
     withBorder
       ? `${theme.borderWeights.normal} solid
@@ -54,6 +49,11 @@ export const LanguageList = styled(Flex).attrs(() => ({
   border-radius: ${p => p.theme.radius.default};
   ${({ listPosition }) => listPosition === "top" && LanguageListTop}
   ${({ listPosition }) => listPosition === "bottom" && LanguageListBottom}
+  
+  ${downThanBreakpoint(2)} {
+    width: 100%;
+    right: 0;
+  }
 `;
 
 export const LanguageListItem = styled(Box).attrs(() => ({
@@ -77,12 +77,15 @@ export const LanguageListItem = styled(Box).attrs(() => ({
     margin-right: 8px;
     vertical-align: middle;
   }
+
+  ${downThanBreakpoint(2)} {
+    width: 100%;
+  }
 `;
 
 export const SelectedLanguageWrapper = styled(Flex).attrs(() => ({
   alignItems: "center"
 }))`
-  ${FlagIcon} {
-    margin-right: 8px;
-  }
+  width: 100%;
+  justify-content: space-between;
 `;
