@@ -1,7 +1,20 @@
 import styled from "styled-components";
-import { Flex } from "@rebass/grid";
+import { Flex, Box } from "@rebass/grid";
 
 import { H3 } from "components/styleguide/Typography";
+import { downThanBreakpoint, themeGet } from "utils/theme";
+
+export const Container = styled(Flex)`
+  flex-direction: column;
+  ${downThanBreakpoint(2)} {
+    align-items: center;
+    ${p =>
+      !p.isLastChild &&
+      `
+      border-bottom: 2px dotted rgba(${themeGet("colors.border")}, 0.5);
+    `}
+  }
+`;
 
 export const Title = styled(Flex).attrs({ as: H3 })`
   margin-bottom: 64px;
@@ -9,6 +22,7 @@ export const Title = styled(Flex).attrs({ as: H3 })`
   &:before {
     content: "";
     display: block;
+    flex: none;
     width: 16px;
     height: 16px;
     margin-right: 16px;
@@ -18,13 +32,19 @@ export const Title = styled(Flex).attrs({ as: H3 })`
   }
 `;
 
-export const ImageContainer = styled.div`
-  border-left: 2px dotted rgba(${p => p.theme.colors.white}, 0.5);
+export const ImageContainer = styled(Box)`
+  border-left: 2px dotted rgba(${themeGet("colors.border")}, 0.5);
   padding-left: 18px;
   margin-bottom: 42px;
+  ${downThanBreakpoint(2)} {
+    padding-left: 0;
+    border-left: none;
+  }
 `;
 
 export const Image = styled.img`
+  display: block;
+  max-width: 100%;
   border-radius: 13px;
 `;
 
