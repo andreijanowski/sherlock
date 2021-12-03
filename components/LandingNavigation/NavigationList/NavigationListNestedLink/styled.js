@@ -6,11 +6,12 @@ import { downThanBreakpoint, themeGet } from "utils/theme";
 export const PopupContainer = styled(Flex)`
   padding: 24px;
   background: rgb(${p => p.theme.colors.white});
-  box-shadow: 0px 4px 27px rgba(${p => p.theme.colors.white}, 0.3);
+  box-shadow: 0px 4px 27px rgba(${p => p.theme.colors.black}, 0.3);
   border-radius: 13px;
   ${downThanBreakpoint(2)} {
     padding: 16px;
     border-radius: 0;
+    box-shadow: none;
     border-bottom: 1px solid rgb(${themeGet("colors.border")});
   }
 `;
@@ -39,5 +40,8 @@ export const LinksGroupItem = styled.a`
   color: #0e113b;
   &:not(:last-child) {
     margin-bottom: 8px;
+  }
+  &:hover {
+    opacity: 0.8;
   }
 `;
