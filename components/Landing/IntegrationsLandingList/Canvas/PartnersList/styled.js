@@ -1,9 +1,17 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
+import { downThanBreakpoint } from "utils/theme";
+
 export const Container = styled.div`
   flex: auto;
   position: relative;
+  padding-bottom: 24px;
+  ${downThanBreakpoint(2)} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 18px;
+  }
 `;
 
 export const Partner = styled(Flex)`
@@ -22,6 +30,11 @@ export const Partner = styled(Flex)`
   border-radius: 50%;
   background: rgb(${p => p.theme.colors.white});
   box-shadow: 0px 0px 26.5762px rgba(14, 17, 59, 0.2);
+  ${downThanBreakpoint(2)} {
+    position: static;
+    width: 92px;
+    height: 92px;
+  }
 `;
 
 export const PartnerLabel = styled.div`

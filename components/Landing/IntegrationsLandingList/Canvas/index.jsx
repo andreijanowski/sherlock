@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Box } from "@rebass/grid";
 
 import { useT } from "utils/hooks";
@@ -6,6 +6,7 @@ import ButtonsBar from "components/styleguide/ButtonsBar";
 import { theme } from "utils/theme";
 import VideoButton from "components/Landing/VideoButton";
 import { INTEGRATIONS_VIDEO_URL } from "consts";
+import { AdaptiveBox } from "components/styleguide/common";
 import { sectionItemShape } from "../types";
 import { Container, SubtitleStyled } from "./styled";
 import PartnersList from "./PartnersList";
@@ -24,9 +25,11 @@ const Canvas = ({ activeItem }) => {
 
   return (
     <Container>
-      <SubtitleStyled mb={4}>{`${activeItem.label} ${t(
-        "partners"
-      )}`}</SubtitleStyled>
+      <AdaptiveBox display={["none", null, "block"]}>
+        <SubtitleStyled mb={4}>{`${activeItem.label} ${t(
+          "partners"
+        )}`}</SubtitleStyled>
+      </AdaptiveBox>
       {shouldDisplaySwitcher && (
         <Box mb="40px">
           <ButtonsBar

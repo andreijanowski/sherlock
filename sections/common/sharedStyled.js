@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { H2 } from "components";
 import { Box, Flex } from "@rebass/grid";
+import { downThanBreakpoint } from "../../utils/theme";
 
 const ANGLE = "177deg";
 
@@ -75,6 +76,9 @@ export const DevelopersAndApiWrapper = styled(Box)`
     rgb(${p => p.theme.colors.landingDarkBlue}) calc(85% - 1px),
     rgb(${p => p.theme.colors.white}) 85%
   );
+  ${downThanBreakpoint(2)} {
+    background: rgb(${p => p.theme.colors.landingDarkBlue});
+  }
 `;
 
 export const PlansWrapper = styled(Box)`
@@ -118,4 +122,7 @@ export const IntegrationsWrapper = styled(Box)`
     rgb(${p => p.theme.colors.white}) calc(85% - 1px),
     rgb(${p => p.theme.colors.landingDarkBlue}) 85%
   );
+  ${downThanBreakpoint(1)} {
+    background: rgb(${p => p.theme.colors.white});
+  }
 `;
