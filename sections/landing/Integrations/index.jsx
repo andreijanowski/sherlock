@@ -9,7 +9,7 @@ import { BlueText, Container, H2Styled, SubtitleStyled } from "./styled";
 const Integrations = () => {
   const t = useT("landing");
   return (
-    <Container pt="50px" pb={[95, null, "320px"]} px={3}>
+    <Container pt="50px" pb={[95, null, null, "150px"]} px={3}>
       <Box width={[1, 1 / 2]} mb={[3, null, 5]} mx={["auto", null, null, 0]}>
         <H2Styled mb="24px" id="integrations" tabletCentered>
           {t("integrationsHub.title")}
