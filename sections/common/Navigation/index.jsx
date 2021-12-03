@@ -14,6 +14,10 @@ const Navigation = () => {
     setIsMenuOpened(prevIsOpened => !prevIsOpened);
   }, []);
 
+  const hideMenu = useCallback(() => {
+    setIsMenuOpened(false);
+  }, []);
+
   const isTablet = useWindowWidthLessThen(emToPx(theme.breakpoints[2]));
 
   useEffect(() => {
@@ -32,7 +36,7 @@ const Navigation = () => {
         isMenuOpened={isMenuOpened}
         onBurgerClick={onBurgerClick}
       />
-      <NavigationList isMenuOpened={isMenuOpened} />
+      <NavigationList isMenuOpened={isMenuOpened} hideMenu={hideMenu} />
     </Header>
   );
 };

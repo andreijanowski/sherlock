@@ -13,7 +13,7 @@ const Product = () => {
   const lng = useLng();
 
   return (
-    <Container px={3} pt="80px">
+    <Container px={3} pt={["80px", null, null, "20px"]}>
       <H2 mb={[4, null, null, 90]} tabletCentered>
         {t("product")}
       </H2>

@@ -81,7 +81,6 @@ export const Body = styled(TypographyBox).attrs(
   })
 )`
   color: rgb(${p => p.theme.colors.white});
-  font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 22px;
   letter-spacing: 0.01em;

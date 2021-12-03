@@ -10,6 +10,8 @@ export const PopupContainer = styled(Flex)`
   border-radius: 13px;
   ${downThanBreakpoint(2)} {
     padding: 16px;
+    border-radius: 0;
+    border-bottom: 1px solid rgb(${themeGet("colors.border")});
   }
 `;
 
@@ -26,7 +28,6 @@ export const LinksGroupLabel = styled.div`
   color: rgb(${p => p.theme.colors.blue});
   ${downThanBreakpoint(2)} {
     margin: 0 0 4px;
-    border-bottom: 1px solid rgb(${themeGet("colors.border")});
   }
 `;
 

@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { func } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import uuid from "uuid/v1";
 import Cookies from "js-cookie";
@@ -8,7 +9,7 @@ import { useLng, useT, useWindowWidthLessThen } from "utils/hooks";
 import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
 import { emToPx, theme } from "utils/theme";
 
-const NavigationCTAButtons = () => {
+const NavigationCTAButtons = ({ onGetTheAppClick }) => {
   const t = useT();
   const lng = useLng();
 
@@ -31,6 +32,7 @@ const NavigationCTAButtons = () => {
         as="a"
         variant={isTablet ? BUTTON_VARIANT.OUTLINE : BUTTON_VARIANT.PRIMARY}
         href={`/${lng}/#app`}
+        onClick={onGetTheAppClick}
       >
         {t("landing:getTheApp")}
       </Button>
@@ -38,6 +40,12 @@ const NavigationCTAButtons = () => {
   );
 };
 
-NavigationCTAButtons.propTypes = {};
+NavigationCTAButtons.propTypes = {
+  onGetTheAppClick: func
+};
+
+NavigationCTAButtons.defaultProps = {
+  onGetTheAppClick: undefined
+};
 
 export default NavigationCTAButtons;
