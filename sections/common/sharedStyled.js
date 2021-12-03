@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { H2 } from "components";
 import { Box, Flex } from "@rebass/grid";
-import { downThanBreakpoint } from "../../utils/theme";
+import { downThanBreakpoint, themeGet } from "../../utils/theme";
 
 const ANGLE = "177deg";
 
@@ -64,7 +64,6 @@ export const TopSectionWrapper = styled(Box)`
 `;
 
 export const ProductsWrapper = styled(Box)`
-  padding-top: 135px;
   width: 100%;
   background: rgb(${p => p.theme.colors.landingDarkBlue});
 `;
@@ -108,6 +107,13 @@ export const InstallAppWrapper = styled(Box)`
     rgb(${darkBlue}) 75%
     );`;
   }};
+  ${downThanBreakpoint(1)} {
+    background: linear-gradient(
+      ${ANGLE},
+      rgb(${themeGet("colors.white")}) calc(50% - 1px),
+      rgb(${themeGet("colors.darkBlue")}) 50%
+    );
+  }
 `;
 
 export const FooterWrapper = styled.div`
@@ -119,10 +125,10 @@ export const IntegrationsWrapper = styled(Box)`
   width: 100%;
   background: linear-gradient(
     ${ANGLE},
-    rgb(${p => p.theme.colors.white}) calc(85% - 1px),
-    rgb(${p => p.theme.colors.landingDarkBlue}) 85%
+    rgb(${p => p.theme.colors.white}) calc(90% - 1px),
+    rgb(${p => p.theme.colors.landingDarkBlue}) 90%
   );
-  ${downThanBreakpoint(1)} {
+  ${downThanBreakpoint(2)} {
     background: rgb(${p => p.theme.colors.white});
   }
 `;

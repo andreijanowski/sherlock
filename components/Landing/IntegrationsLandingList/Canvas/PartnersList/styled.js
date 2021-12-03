@@ -4,7 +4,6 @@ import { Flex } from "@rebass/grid";
 import { downThanBreakpoint } from "utils/theme";
 
 export const Container = styled.div`
-  flex: auto;
   position: relative;
   padding-bottom: 24px;
   ${downThanBreakpoint(2)} {

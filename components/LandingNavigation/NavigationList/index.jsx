@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import { Box } from "@rebass/grid";
-import { bool } from "prop-types";
+import { bool, func } from "prop-types";
 
 import { APP_URL, SUBSCRIPTION_ENTREPRISE_URL } from "consts";
 import LanguageSwitcher from "components/LanguageSwitcher";
@@ -21,27 +21,35 @@ import NavigationCTAButtons from "../NavigationCTAButtons";
 
 const SCROLL_GAP = 50;
 
-const NavigationList = ({ isMenuOpened }) => {
+const NavigationList = ({ isMenuOpened, hideMenu }) => {
   const t = useT();
 
   const menuItems = useMemo(() => getMenuItems(t), [t]);
 
-  const onLinkClick = useCallback(href => {
-    const { hash } = new URL(href, APP_URL);
-    const relatedElement = document.getElementById(hash.slice(1));
-    if (!relatedElement) {
-      Router.pushRoute(href, undefined, { shallow: true });
-      return;
-    }
-    window.scrollTo({
-      top:
-        window.scrollY +
-        relatedElement.getBoundingClientRect().top -
-        SCROLL_GAP,
-      behavior: "smooth"
-    });
-    Router.replaceRoute(href, undefined, { shallow: true });
-  }, []);
+  const onLinkClick = useCallback(
+    href => {
+      hideMenu();
+      const { hash } = new URL(href, APP_URL);
+      const relatedElement = document.getElementById(hash.slice(1));
+      if (!relatedElement) {
+        Router.pushRoute(href, undefined, { shallow: true });
+        return;
+      }
+      window.scrollTo({
+        top:
+          window.scrollY +
+          relatedElement.getBoundingClientRect().top -
+          SCROLL_GAP,
+        behavior: "smooth"
+      });
+      Router.replaceRoute(href, undefined, { shallow: true });
+    },
+    [hideMenu]
+  );
+
+  const onGetTheAppClick = useCallback(() => {
+    hideMenu();
+  }, [hideMenu]);
 
   return (
     <Container isMenuOpened={isMenuOpened}>
@@ -51,7 +59,7 @@ const NavigationList = ({ isMenuOpened }) => {
         px={3}
         py="24px"
       >
-        <NavigationCTAButtons />
+        <NavigationCTAButtons onGetTheAppClick={onGetTheAppClick} />
       </MobileCTAButtons>
       <MobileLanguageSwitcherContainer display={["block", null, null, "none"]}>
         <LanguageSwitcher>{t("landing:language")}</LanguageSwitcher>
@@ -95,7 +103,8 @@ const NavigationList = ({ isMenuOpened }) => {
 };
 
 NavigationList.propTypes = {
-  isMenuOpened: bool.isRequired
+  isMenuOpened: bool.isRequired,
+  hideMenu: func.isRequired
 };
 
 export default NavigationList;

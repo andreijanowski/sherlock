@@ -34,7 +34,7 @@ export const NavigationListItem = styled(AdaptiveBox)`
       left: 0;
       right: 0;
       bottom: -10px;
-      border: 3px solid rgb(${p.theme.colors.white});
+      border: 1px solid rgb(${p.theme.colors.white});
       background: rgb(${p.theme.colors.white});
       border-radius: 10px;
     }

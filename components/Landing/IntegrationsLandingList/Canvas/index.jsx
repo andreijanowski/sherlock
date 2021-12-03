@@ -8,7 +8,7 @@ import VideoButton from "components/Landing/VideoButton";
 import { INTEGRATIONS_VIDEO_URL } from "consts";
 import { AdaptiveBox } from "components/styleguide/common";
 import { sectionItemShape } from "../types";
-import { Container, SubtitleStyled } from "./styled";
+import { Container, SubtitleStyled, PartnersListContainer } from "./styled";
 import PartnersList from "./PartnersList";
 
 const Canvas = ({ activeItem }) => {
@@ -47,8 +47,12 @@ const Canvas = ({ activeItem }) => {
           />
         </Box>
       )}
-      <PartnersList activeGroup={activeGroup} />
-      <VideoButton url={INTEGRATIONS_VIDEO_URL} />
+      <PartnersListContainer>
+        <PartnersList activeGroup={activeGroup} />
+      </PartnersListContainer>
+      <AdaptiveBox display={["none", null, "flex"]} alignItems="center">
+        <VideoButton url={INTEGRATIONS_VIDEO_URL} />
+      </AdaptiveBox>
     </Container>
   );
 };

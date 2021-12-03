@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 
-import { WRAPPER_WIDTH } from "utils/theme";
+import { downThanBreakpoint, WRAPPER_WIDTH } from "utils/theme";
 import { Subtitle as BaseSubtitle } from "components/styleguide/Typography";
 
 export const Container = styled(Box)`
@@ -17,6 +17,10 @@ export const Column = styled(Flex)`
   flex-direction: column;
   align-items: flex-start;
   max-width: 340px;
+  ${downThanBreakpoint(2)} {
+    max-width: 100%;
+    align-items: center;
+  }
 `;
 
 export const Mockup = styled.video`

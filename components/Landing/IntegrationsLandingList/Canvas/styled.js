@@ -19,6 +19,10 @@ export const Container = styled(Flex)`
   }
 `;
 
+export const PartnersListContainer = styled.div`
+  flex: auto;
+`;
+
 export const SubtitleStyled = styled(Subtitle)`
   color: rgb(${p => p.theme.colors.landingDarkBlue});
 `;

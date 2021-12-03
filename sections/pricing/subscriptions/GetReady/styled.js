@@ -6,7 +6,6 @@ import { H3 } from "components/styleguide/Typography";
 
 export const Container = styled(Flex)`
   max-width: ${WRAPPER_WIDTH}px;
-  padding: 90px 16px 105px;
   margin: auto;
 `;
 

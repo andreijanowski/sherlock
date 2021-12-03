@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
-import { downThanBreakpoint } from "utils/theme";
-
 export const Container = styled(Flex).attrs(p =>
   p.isVertical
     ? {
@@ -13,9 +11,6 @@ export const Container = styled(Flex).attrs(p =>
   align-items: center;
   color: rgb(${p => p.theme.colors.landingDarkBlue});
   cursor: pointer;
-  ${downThanBreakpoint(1)} {
-    display: none;
-  }
 `;
 
 export const Label = styled.div`

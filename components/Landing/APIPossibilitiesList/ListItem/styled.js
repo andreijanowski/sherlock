@@ -55,4 +55,7 @@ export const Description = styled.div`
   color: rgb(${p => p.theme.colors.white});
   background: rgba(${p => p.theme.colors.white}, 0.15);
   border-radius: 19px;
+  ${downThanBreakpoint(2)} {
+    text-align: center;
+  }
 `;

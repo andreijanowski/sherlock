@@ -13,12 +13,19 @@ const Product = () => {
   const lng = useLng();
 
   return (
-    <Container px={2}>
-      <H2 mb={90}>{t("product")}</H2>
-      <Flex justifyContent="center">
-        <Column mr={[0, 180]}>
-          <H3 mb={3}>{t("productContent.management.title")}</H3>
-          <Subtitle mb={30}>
+    <Container px={3} pt={["80px", null, null, "20px"]}>
+      <H2 mb={[4, null, null, 90]} tabletCentered>
+        {t("product")}
+      </H2>
+      <Flex
+        justifyContent="center"
+        flexDirection={["column", null, null, "row"]}
+      >
+        <Column mb={[56, null, null, 0]} mr={[0, null, null, 180]}>
+          <H3 mb={3} tabletCentered>
+            {t("productContent.management.title")}
+          </H3>
+          <Subtitle mb={30} tabletCentered>
             {t("productContent.management.description")}
           </Subtitle>
           <Button
@@ -32,8 +39,10 @@ const Product = () => {
           </Button>
         </Column>
         <Column>
-          <H3 mb={3}>{t("productContent.visibility.title")}</H3>
-          <Subtitle mb={30}>
+          <H3 mb={3} tabletCentered>
+            {t("productContent.visibility.title")}
+          </H3>
+          <Subtitle mb={30} tabletCentered>
             {t("productContent.visibility.description")}
           </Subtitle>
           <Button
