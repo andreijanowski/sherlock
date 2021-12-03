@@ -3,9 +3,12 @@ import { Flex } from "@rebass/grid";
 import { useRouter } from "next/router";
 
 import { useT } from "utils/hooks";
+import { INTEGRATIONS_VIDEO_URL } from "consts";
+import { AdaptiveBox } from "components/styleguide/common";
 import { getConfig } from "./utils";
 import Menu from "./Menu";
 import Canvas from "./Canvas";
+import MobileVideoButton from "../MobileVideoButton";
 
 const IntegrationsLandingList = () => {
   const { query } = useRouter();
@@ -32,9 +35,18 @@ const IntegrationsLandingList = () => {
   }, [config, query, query.partners]);
 
   return (
-    <Flex justifyContent="space-between" alignItems="stretch">
+    <Flex
+      justifyContent="space-between"
+      alignItems="stretch"
+      flexDirection={["column", null, "row"]}
+    >
       <Menu config={config} activeItem={activeItem} />
-      <Canvas activeItem={activeItem} />
+      <AdaptiveBox mt={40} display={["block", null, "none"]}>
+        <MobileVideoButton url={INTEGRATIONS_VIDEO_URL} />
+      </AdaptiveBox>
+      <AdaptiveBox display={["none", null, "flex"]} flexDirection="column">
+        <Canvas activeItem={activeItem} />
+      </AdaptiveBox>
     </Flex>
   );
 };

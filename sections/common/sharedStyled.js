@@ -122,4 +122,7 @@ export const IntegrationsWrapper = styled(Box)`
     rgb(${p => p.theme.colors.white}) calc(85% - 1px),
     rgb(${p => p.theme.colors.landingDarkBlue}) 85%
   );
+  ${downThanBreakpoint(1)} {
+    background: rgb(${p => p.theme.colors.white});
+  }
 `;

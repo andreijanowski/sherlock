@@ -12,6 +12,8 @@ const getColorByVariant = props => {
       return colors.buttonSecondary;
     case BUTTON_VARIANT.OUTLINE:
       return "transparent";
+    case BUTTON_VARIANT.B2BSECONDARY:
+      return colors.landingDarkBlue;
     default:
       return colors.blue;
   }
