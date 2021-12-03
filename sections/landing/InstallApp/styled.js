@@ -2,16 +2,13 @@ import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
 import { H2 } from "components";
-import { alignCenterTablet } from "sections/common/sharedStyled";
-import { WRAPPER_WIDTH } from "utils/theme";
+import { downThanBreakpoint, themeGet, WRAPPER_WIDTH } from "utils/theme";
 
 export const Container = styled(Flex)`
   width: 100%;
   max-width: ${WRAPPER_WIDTH}px;
   justify-content: space-around;
   margin: auto;
-  padding-top: 275px;
-  padding-bottom: 100px;
 `;
 
 export const Image = styled.div`
@@ -52,11 +49,16 @@ export const NavigationLink = styled.a`
 `;
 
 export const H2Styled = styled(H2)`
-  ${alignCenterTablet}
   margin: 0;
   color: black;
-  font-weight: ${p => p.theme.fontWeights.semiBold};
-  font-size: ${p => p.theme.fontSizes.f30};
+  font-weight: ${themeGet("fontWeights.semiBold")};
+  font-size: ${themeGet("fontSizes.f30")};
   letter-spacing: 0.6px;
   white-space: wrap;
+  ${downThanBreakpoint(1)} {
+    text-align: center;
+    font-size: ${themeGet("fontSizes.f18")};
+    line-height: ${themeGet("fontSizes.f25")};
+    color: rgb(${themeGet("colors.white")});
+  }
 `;

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { H2 } from "components";
 import { Box, Flex } from "@rebass/grid";
-import { downThanBreakpoint } from "../../utils/theme";
+import { downThanBreakpoint, themeGet } from "../../utils/theme";
 
 const ANGLE = "177deg";
 
@@ -107,6 +107,13 @@ export const InstallAppWrapper = styled(Box)`
     rgb(${darkBlue}) 75%
     );`;
   }};
+  ${downThanBreakpoint(1)} {
+    background: linear-gradient(
+      ${ANGLE},
+      rgb(${themeGet("colors.white")}) calc(50% - 1px),
+      rgb(${themeGet("colors.darkBlue")}) 50%
+    );
+  }
 `;
 
 export const FooterWrapper = styled.div`
