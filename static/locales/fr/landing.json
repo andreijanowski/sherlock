@@ -96,7 +96,7 @@
   "partners": "Partenaires",
   "unifiedApiSection": {
     "title": "API unifiée pour l'industrie F&B",
-    "description": "Grâce à notre API unifiée, il n'est plus nécessaire d'utiliser plusieurs applications et matériels pour gérer votre entreprise de restauration. Retrouvez tous vos services sur une seule et même plateforme."
+    "description": "Grâce à notre API, il n'est plus nécessaire d'utiliser plusieurs applications et logiciels pour gérer votre établissement. Retrouvez tous vos services sur une seule et même plateforme."
   },
   "apiPossibilities": {
     "connect": {
@@ -124,7 +124,7 @@
   },
   "integrationsHub": {
     "title": "Integrations Hub",
-    "description": "Conçu pour répondre à l'évolution de vos besoins, vous pouvez facilement ajouter ou supprimer des intégrations à tout moment, ce qui vous garantit que nous sommes adaptés à votre croissance. <0>Découvrez nos différentes intégrations.</0>"
+    "description": "Conçu pour répondre à l'évolution de vos besoins, vous pouvez facilement ajouter ou supprimer des intégrations à tout moment, ce qui nous garantit d'être adaptés à votre croissance. <0>Découvrez nos différentes intégrations.</0>"
   },
   "features": "Fonctionnalités",
   "integrations": "Intégrations",
