@@ -6,6 +6,7 @@ import { downThanBreakpoint, themeGet } from "utils/theme";
 
 export const Container = styled(Flex)`
   flex-direction: column;
+  align-items: flex-start;
   ${downThanBreakpoint(2)} {
     align-items: center;
     ${p =>
