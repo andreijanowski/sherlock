@@ -11,7 +11,16 @@ const LinksGroup = ({ group: { label: groupLabel, items }, onLinkClick }) => {
   return (
     <>
       {groupLabel && <LinksGroupLabel>{groupLabel}</LinksGroupLabel>}
-      {items.map(({ label, href }) => {
+      {items.map(({ label, href, isDisabled }) => {
+        const key = `${label}-${href}`;
+        if (isDisabled) {
+          return (
+            <LinksGroupItem key={key} isDisabled>
+              {label}
+            </LinksGroupItem>
+          );
+        }
+
         const isInternalHref = href.startsWith("/");
         const fullPath = `/${lng}${href}`;
         const onClick = e => {
@@ -20,7 +29,7 @@ const LinksGroup = ({ group: { label: groupLabel, items }, onLinkClick }) => {
         };
         return (
           <LinksGroupItem
-            key={`${label}-${href}`}
+            key={key}
             {...(isInternalHref
               ? {
                   href: fullPath,

@@ -1,8 +1,9 @@
-import { shape, string, arrayOf, oneOfType } from "prop-types";
+import { shape, string, arrayOf, oneOfType, bool } from "prop-types";
 
 export const linkShape = shape({
   label: string.isRequired,
-  href: string.isRequired
+  href: string.isRequired,
+  isDisabled: bool
 });
 
 export const linksGroupShape = shape({

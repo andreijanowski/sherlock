@@ -18,11 +18,13 @@ export const getMenuItems = t => [
         items: [
           {
             label: t("app:dashboard"),
-            href: "/product/dashboard"
+            href: "/product/dashboard",
+            isDisabled: true
           },
           {
             label: t("app:appManager"),
-            href: "/product/app-manager"
+            href: "/product/app-manager",
+            isDisabled: true
           }
         ]
       },
@@ -69,7 +71,8 @@ export const getMenuItems = t => [
           },
           {
             label: t("landing:licensing"),
-            href: "/pricing/licensing"
+            href: "/pricing/licensing",
+            isDisabled: true
           }
         ]
       }
@@ -82,7 +85,8 @@ export const getMenuItems = t => [
         items: [
           {
             label: t("landing:aboutUs"),
-            href: "/company/about-us"
+            href: "/company/about-us",
+            isDisabled: true
           },
           {
             label: t("landing:newsroom"),
