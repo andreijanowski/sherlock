@@ -84,18 +84,6 @@ export const SocialsItem = styled.li`
 
 export const SocialsItemLink = styled.a``;
 
-export const LogoContainer = styled.div`
-  color: rgb(${p => p.theme.colors.white});
-  font-weight: ${p => p.theme.fontWeights.semiBold};
-  font-size: ${p => p.theme.fontSizes.f14};
-  line-height: ${p => p.theme.fontSizes.f18};
-  letter-spacing: 0.5px;
-`;
-
-export const LogoSmallText = styled.div`
-  font-weight: ${p => p.theme.fontWeights.medium};
-`;
-
 export const CopyrightsContainer = styled.div`
   color: rgb(${p => p.theme.colors.white});
   font-weight: ${p => p.theme.fontWeights.thin};

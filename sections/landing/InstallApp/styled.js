@@ -1,16 +1,35 @@
 import styled from "styled-components";
+import { Flex } from "@rebass/grid";
 
 import { H2 } from "components";
-import { alignCenterMobile } from "sections/common/sharedStyled";
+import { downThanBreakpoint, themeGet, WRAPPER_WIDTH } from "utils/theme";
+
+export const Container = styled(Flex)`
+  width: 100%;
+  max-width: ${WRAPPER_WIDTH}px;
+  justify-content: space-around;
+  margin: auto;
+`;
 
 export const Image = styled.div`
   width: 100%;
   height: 100%;
-  min-height: 755px;
+  min-height: 645px;
+  position: relative;
   background-image: url("/static/img/phoneApp.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
+`;
+
+export const VideoButtonContainer = styled(Flex)`
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 `;
 
 export const AppPlatformLogo = styled.img`
@@ -30,11 +49,16 @@ export const NavigationLink = styled.a`
 `;
 
 export const H2Styled = styled(H2)`
-  ${alignCenterMobile}
   margin: 0;
   color: black;
-  font-weight: ${p => p.theme.fontWeights.semiBold};
-  font-size: ${p => p.theme.fontSizes.f30};
+  font-weight: ${themeGet("fontWeights.semiBold")};
+  font-size: ${themeGet("fontSizes.f30")};
   letter-spacing: 0.6px;
   white-space: wrap;
+  ${downThanBreakpoint(1)} {
+    text-align: center;
+    font-size: ${themeGet("fontSizes.f18")};
+    line-height: ${themeGet("fontSizes.f25")};
+    color: rgb(${themeGet("colors.white")});
+  }
 `;

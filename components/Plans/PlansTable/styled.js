@@ -21,10 +21,10 @@ export const Table = styled.table`
 
 export const Row = styled.tr``;
 
-export const Cell = styled(Box).attrs({
+export const Cell = styled(Box).attrs(p => ({
   as: "td",
-  p: p => (p.isHeading ? "30px 20px" : "8px 20px")
-})`
+  p: p.isHeading ? "30px 20px" : "8px 20px"
+}))`
   &:first-child {
     font-size: ${p => p.theme.fontSizes.f18};
     line-height: ${p => p.theme.fontSizes.f27};

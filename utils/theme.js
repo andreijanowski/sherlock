@@ -1,5 +1,9 @@
+import * as _ from "lodash";
+
 const breakpoints = ["40em", "52em", "64em", "75em"];
 const breakpointsPx = ["575px", "767px", "992px", "1199px", "1399px"];
+
+const DEFAULT_BODY_PIXEL_SIZE = 16;
 
 const borderWeights = {
   tiny: "2px",
@@ -52,11 +56,14 @@ export const colors = {
   textDarkBlue: "13, 18, 73",
   tableBorder: "234, 229, 229",
   plansCaptionBlue: "83, 121, 247",
+  buttonSecondary: "78, 77, 102",
+  landingDarkBlue: "15, 17, 59",
+  blackDark: "32, 32, 31",
+  border: "220, 223, 239",
   gray: {
     "2": "79, 79, 79",
     "3": "130, 130, 130",
-    "4": "189, 189, 189",
-    "5": "78, 77, 102"
+    "4": "189, 189, 189"
   }
 };
 
@@ -113,3 +120,13 @@ export const theme = {
 };
 
 export const WRAPPER_WIDTH = 1150;
+
+export const emToPx = em => Number.parseInt(em, 10) * DEFAULT_BODY_PIXEL_SIZE;
+
+export const upThanBreakpoint = breakpointIndex =>
+  `@media (min-width: ${breakpoints[breakpointIndex]})`;
+
+export const downThanBreakpoint = breakpointIndex =>
+  `@media (max-width: ${emToPx(breakpoints[breakpointIndex]) - 1}px)`;
+
+export const themeGet = path => _.get(theme, path);

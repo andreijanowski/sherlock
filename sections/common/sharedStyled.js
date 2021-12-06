@@ -1,10 +1,13 @@
 import styled, { css } from "styled-components";
 import { H2 } from "components";
 import { Box, Flex } from "@rebass/grid";
+import { downThanBreakpoint, themeGet } from "../../utils/theme";
 
-export const alignCenterMobile = css`
+const ANGLE = "177deg";
+
+export const alignCenterTablet = css`
   text-align: center;
-  @media (min-width: ${p => p.theme.breakpoints[0]}) {
+  @media (min-width: ${p => p.theme.breakpoints[2]}) {
     text-align: start;
   }
 `;
@@ -14,7 +17,7 @@ export const BlueText = styled.span`
 `;
 
 export const H2Styled = styled(H2)`
-  ${alignCenterMobile}
+  ${alignCenterTablet}
   color: rgb(${p => p.theme.colors.white});
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f30};
@@ -22,7 +25,7 @@ export const H2Styled = styled(H2)`
 `;
 
 export const ParagraphStyled = styled("p")`
-  ${alignCenterMobile}
+  ${alignCenterTablet}
   margin: 0;
   color: #e0e0e0;
   font-weight: 500;
@@ -49,35 +52,32 @@ export const LandingWrapper = styled(Flex)`
 export const NavigationWrapper = styled(Box).attrs(() => ({}))`
   width: 100%;
   background: rgb(${p => p.theme.colors.darkBlue});
-  padding-bottom: 30px;
 `;
 
 export const TopSectionWrapper = styled(Box)`
   width: 100%;
-  background: linear-gradient(170deg, #1a1f67 calc(47% - 1px), #020025 47%);
+  background: linear-gradient(
+    ${ANGLE},
+    rgb(${p => p.theme.colors.darkBlue}) calc(47% - 1px),
+    rgb(${p => p.theme.colors.landingDarkBlue}) 47%
+  );
 `;
 
 export const ProductsWrapper = styled(Box)`
   width: 100%;
-  background: linear-gradient(
-      170deg,
-      #020025 0%,
-      #00002b 30%,
-      #111247 60%,
-      #12154d 70%,
-      #12154d 100%
-    ),
-    linear-gradient(#020025 0%, #111247 60%, transparent 60%, transparent 100%);
+  background: rgb(${p => p.theme.colors.landingDarkBlue});
 `;
 
 export const DevelopersAndApiWrapper = styled(Box)`
   width: 100%;
-  background: linear-gradient(#12154d 0%, #0f113d 30%);
-`;
-
-export const FeaturesWrapper = styled(Box)`
-  width: 100%;
-  background: linear-gradient(170deg, #0f113d calc(22% - 2px), #f7f8fe 22%);
+  background: linear-gradient(
+    ${ANGLE},
+    rgb(${p => p.theme.colors.landingDarkBlue}) calc(85% - 1px),
+    rgb(${p => p.theme.colors.white}) 85%
+  );
+  ${downThanBreakpoint(2)} {
+    background: rgb(${p => p.theme.colors.landingDarkBlue});
+  }
 `;
 
 export const PlansWrapper = styled(Box)`
@@ -88,7 +88,7 @@ export const PlansWrapper = styled(Box)`
 export const GetReadyWrapper = styled(Box)`
   position: relative;
   width: 100%;
-  background: rgb(${p => p.theme.colors.darkBlue});
+  background: rgb(${p => p.bgColor || p.theme.colors.darkBlue});
 `;
 
 export const InstallAppWrapper = styled(Box)`
@@ -96,14 +96,39 @@ export const InstallAppWrapper = styled(Box)`
   background: ${p => {
     const {
       theme: {
-        colors: { darkBlue }
+        colors: { darkBlue, landingDarkBlue }
       }
     } = p;
-    return `linear-gradient(170deg, white calc(62% - 2px), rgb(${darkBlue}) 62%, rgb(${darkBlue}) 85%);`;
+    return `linear-gradient(
+    ${ANGLE}, 
+    rgb(${landingDarkBlue}) calc(10% - 1px), 
+    white 10%, 
+    white calc(75% - 1px), 
+    rgb(${darkBlue}) 75%
+    );`;
   }};
+  ${downThanBreakpoint(1)} {
+    background: linear-gradient(
+      ${ANGLE},
+      rgb(${themeGet("colors.white")}) calc(50% - 1px),
+      rgb(${themeGet("colors.darkBlue")}) 50%
+    );
+  }
 `;
 
 export const FooterWrapper = styled.div`
   width: 100%;
   background: rgb(${p => p.theme.colors.darkBlue});
+`;
+
+export const IntegrationsWrapper = styled(Box)`
+  width: 100%;
+  background: linear-gradient(
+    ${ANGLE},
+    rgb(${p => p.theme.colors.white}) calc(90% - 1px),
+    rgb(${p => p.theme.colors.landingDarkBlue}) 90%
+  );
+  ${downThanBreakpoint(2)} {
+    background: rgb(${p => p.theme.colors.white});
+  }
 `;

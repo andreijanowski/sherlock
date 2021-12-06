@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
 import { Box } from "@rebass/grid";
-import { func, string } from "prop-types";
 
-import { withTranslation } from "i18n";
+import FoodetectiveTextLogo from "components/FoodetectiveTextLogo";
+import { useT } from "utils/hooks";
 import {
   ColumnTitle,
   FooterWrapper,
@@ -13,12 +13,10 @@ import {
 import NavigationList from "./navigationList";
 import { getConfig } from "./utils";
 import Socials from "./Socials";
-import Logo from "./Logo";
 import Copyrights from "./Copyrights";
 
-const namespaces = ["footer"];
-
-const Footer = ({ t, lng }) => {
+const Footer = () => {
+  const t = useT("footer");
   const config = useMemo(() => getConfig(t), [t]);
 
   return (
@@ -43,15 +41,11 @@ const Footer = ({ t, lng }) => {
       </MenuWrapper>
       <Line />
       <Box mb={2}>
-        <Logo lng={lng} />
+        <FoodetectiveTextLogo isSmall />
       </Box>
       <Copyrights />
     </FooterWrapper>
   );
 };
-Footer.propTypes = {
-  t: func.isRequired,
-  lng: string.isRequired
-};
 
-export default withTranslation(namespaces)(Footer);
+export default Footer;

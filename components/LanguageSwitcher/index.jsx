@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { oneOf, bool, func } from "prop-types";
+import { oneOf, bool, func, node } from "prop-types";
 import { i18n, withTranslation } from "i18n";
 
 import { Router } from "routes";
@@ -56,7 +56,7 @@ class LanguageSwitcher extends Component {
 
   render() {
     const { listIsVisible, selectedLanguage } = this.state;
-    const { listPosition, t } = this.props;
+    const { listPosition, t, children } = this.props;
 
     return (
       <LanguageSwitcherWrapper
@@ -65,12 +65,8 @@ class LanguageSwitcher extends Component {
         tabIndex="0"
       >
         <SelectedLanguageWrapper>
-          {!isServer && (
-            <>
-              <FlagIcon code={selectedLanguage} />
-              {t(selectedLanguage)}
-            </>
-          )}
+          {children}
+          {!isServer && <FlagIcon code={selectedLanguage} />}
         </SelectedLanguageWrapper>
         {listIsVisible && (
           <LanguageList {...{ listPosition }}>
@@ -95,12 +91,14 @@ class LanguageSwitcher extends Component {
 LanguageSwitcher.propTypes = {
   withBorder: bool,
   listPosition: oneOf(["top", "bottom"]),
-  t: func.isRequired
+  t: func.isRequired,
+  children: node
 };
 
 LanguageSwitcher.defaultProps = {
   withBorder: true,
-  listPosition: "bottom"
+  listPosition: "bottom",
+  children: null
 };
 
 export default withTranslation("languages")(LanguageSwitcher);

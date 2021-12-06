@@ -1,69 +1,100 @@
-import { func, string } from "prop-types";
-import { Button } from "components";
-import { Flex, Box } from "@rebass/grid";
-import { API_URL, APP_URL } from "consts";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { H1Styled, ParagraphStyled, Image } from "./styled";
+import React from "react";
+import { Box, Flex } from "@rebass/grid";
 
-const TopSection = ({ t, lng }) => (
-  <Box mb={[30, 170]} width={1}>
-    <Flex
-      alignItems="start"
-      flexWrap="wrap"
-      m="auto"
-      width={[1, 1, 1, 1150]}
-      px={3}
-    >
-      <Box width={[1, 1, 1, 1 / 2]} p={[3, 0]} pt={[30, 80]}>
-        <H1Styled>{`${t("topSection.header.start")}${t(
-          "topSection.header.end"
-        )}`}</H1Styled>
-        <ParagraphStyled>{t("topSection.paragraph")}</ParagraphStyled>
-        <Flex
-          alignItems="center"
-          flexWrap="wrap"
-          justifyContent={["center", "start"]}
+import { SUBSCRIPTION_ENTREPRISE_URL, SUBSCRIPTION_PLANS } from "consts";
+import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
+import { ImagesSlider, TopPartnersList } from "components/Landing";
+import { useLng, useT } from "utils/hooks";
+import { getPlanLoginPath } from "utils/plans";
+import { WRAPPER_WIDTH } from "utils/theme";
+import {
+  H1Styled,
+  ImagesSliderColumn,
+  ImagesSliderContainer,
+  ParagraphStyled
+} from "./styled";
+
+const images = [
+  "/static/img/topsection/dashboard.png",
+  "/static/img/topsection/integrations.png",
+  "/static/img/topsection/customers.png"
+];
+
+const TopSection = () => {
+  const t = useT();
+  const lng = useLng();
+  return (
+    <Box width={1} pb="50px">
+      <Flex
+        alignItems="start"
+        flexWrap="wrap"
+        m="auto"
+        width={[1, null, null, WRAPPER_WIDTH]}
+        px={3}
+        mb={[5, null, null, "150px"]}
+      >
+        <Box width={[1, 1, 1, 1 / 2]} pt={[46, null, null, 60]}>
+          <H1Styled tabletCentered>
+            {`${t("landing:topSection.header.start")}
+            
+             ${t("landing:topSection.header.end")}`}
+          </H1Styled>
+          <ImagesSliderColumn
+            display={["block", null, null, "none"]}
+            width={[1, 1, 1, 1 / 2]}
+            mb={50}
+          >
+            <ImagesSliderContainer>
+              <ImagesSlider images={images} />
+            </ImagesSliderContainer>
+          </ImagesSliderColumn>
+          <ParagraphStyled>{t("landing:topSection.paragraph")}</ParagraphStyled>
+          <Flex
+            alignItems="center"
+            flexWrap="wrap"
+            justifyContent={["center", null, null, "start"]}
+          >
+            <Box width={[1, null, "auto"]} mr={[0, null, 16]} my={2}>
+              <Button
+                as="a"
+                target="_blank"
+                href={SUBSCRIPTION_ENTREPRISE_URL}
+                rel="noreferrer noopener"
+                withArrow
+              >
+                {t("landing:bookDemo")}
+              </Button>
+            </Box>
+            <Box width={[1, null, "auto"]} my={2}>
+              <Button
+                variant={BUTTON_VARIANT.SECONDARY}
+                as="a"
+                target="_blank"
+                href={getPlanLoginPath({
+                  lng,
+                  name: SUBSCRIPTION_PLANS.ESSENTIAL
+                })}
+                rel="noreferrer noopener"
+                withArrow
+              >
+                {t("landing:registerNow")}
+              </Button>
+            </Box>
+          </Flex>
+        </Box>
+        <ImagesSliderColumn
+          display={["none", null, null, "block"]}
+          width={[1, 1, 1, 1 / 2]}
+          pt={[30, 40]}
         >
-          <Box width={["auto"]} mr={[0, 16]} my={2}>
-            <Button
-              styleName="signUpCTA"
-              onClick={() => {
-                window.location.href = `${API_URL}/users/sign_up?locale=${lng}&redirect_url=${APP_URL}/instant-login?plan=essential`;
-              }}
-            >
-              {t("topSection.getStartedForFree")}
-              <FontAwesomeIcon
-                icon={["fa", "chevron-right"]}
-                style={{ marginLeft: 8 }}
-              />
-            </Button>
-          </Box>
-          <Box width={["auto"]} my={2}>
-            <Button
-              styleName="signUpContactSales"
-              onClick={() => {
-                window.location.href = `https://share.hsforms.com/1UW67s4YOTTKvC2NIum5X0w3cpmu`;
-              }}
-            >
-              {t("topSection.contactSales")}
-              <FontAwesomeIcon
-                icon={["fa", "chevron-right"]}
-                style={{ marginLeft: 8 }}
-              />
-            </Button>
-          </Box>
-        </Flex>
-      </Box>
-      <Box width={[1, 1, 1, 1 / 2]} pt={[30, 40]} pl={[1, 1, 1, 80]}>
-        <Image src="/static/img/topsection/dashboard.png" />
-      </Box>
-    </Flex>
-  </Box>
-);
-
-TopSection.propTypes = {
-  t: func.isRequired,
-  lng: string.isRequired
+          <ImagesSliderContainer>
+            <ImagesSlider images={images} />
+          </ImagesSliderContainer>
+        </ImagesSliderColumn>
+      </Flex>
+      <TopPartnersList />
+    </Box>
+  );
 };
 
 export default TopSection;

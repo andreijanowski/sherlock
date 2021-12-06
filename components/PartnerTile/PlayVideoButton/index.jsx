@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
 import { Modal } from "components/index";
-import Video from "./Video";
+import YoutubeVideo from "components/YoutubeVideo";
 import { OutlineButton } from "../styled";
 
 const PlayVideoButton = ({ t, url, big }) => {
@@ -34,7 +34,7 @@ const PlayVideoButton = ({ t, url, big }) => {
       </Flex>
       {showModal && (
         <Modal open onClose={onModalClose}>
-          <Video url={url} />
+          <YoutubeVideo url={url} />
         </Modal>
       )}
     </>

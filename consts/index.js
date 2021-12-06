@@ -86,6 +86,23 @@ const FOODETECTIVE_MAIL = "support@foodetective.co";
 const FOODETECTIVE_ADDRESS =
   "Rue de la Terrassière 23, 1207 Genève, Switzerland";
 
+const INTEGRATIONS_VIDEO_URL = "https://youtu.be/XW2Hffcne60";
+
+const GET_THE_APP_VIDEO_URL = "https://www.youtube.com/watch?v=dpPBfv1IteI";
+
+const GET_THE_APP_IOS_LINK =
+  "https://apps.apple.com/ch/app/foodetective-for-business/id1530951022?l=en";
+
+const GET_THE_APP_ANDROID_LINK =
+  "https://play.google.com/store/apps/details?id=com.sherlock.production";
+
+const NEWS_ROOM_URL = "https://foodetective.medium.com/";
+
+const PARTNERS_URL =
+  "https://foodetective.typeform.com/to/tzqu8b?typeform-source=business.foodetective.co";
+
+const CAREERS_FOODETECTIVE_EMAIL = "hello@foodetective.co";
+
 module.exports = {
   contentTypes,
   languages,
@@ -120,5 +137,13 @@ module.exports = {
   FOODETECTIVE_MAIL,
   SUBSCRIPTION_CURRENCY,
   PLANS_BUSINESS_EXAMPLE_LINK,
-  FOODETECTIVE_ADDRESS
+  FOODETECTIVE_ADDRESS,
+  DEFAULT_PLAN_NAME: SUBSCRIPTION_PLANS.ESSENTIAL,
+  INTEGRATIONS_VIDEO_URL,
+  GET_THE_APP_VIDEO_URL,
+  GET_THE_APP_IOS_LINK,
+  GET_THE_APP_ANDROID_LINK,
+  NEWS_ROOM_URL,
+  PARTNERS_URL,
+  CAREERS_FOODETECTIVE_EMAIL
 };
