@@ -41,7 +41,15 @@ export const LinksGroupItem = styled.a`
   &:not(:last-child) {
     margin-bottom: 8px;
   }
-  &:hover {
-    opacity: 0.8;
-  }
+  ${p =>
+    p.isDisabled
+      ? `
+      cursor: not-allowed;
+      color: rgb(${themeGet("colors.gray.3")})
+    `
+      : `
+      &:hover {
+        opacity: 0.8;
+      }
+    `}
 `;
