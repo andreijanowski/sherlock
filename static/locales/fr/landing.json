@@ -4,7 +4,7 @@
       "start": "Nous simplifions",
       "end": " la vie des restaurateurs"
     },
-    "paragraph": "Foodetective intègre tous vos logiciels et systèmes en une seule plateforme en ligne. Les entreprises de restauration de toutes tailles s'appuient sur l'API de Foodetective pour gérer l'ensemble de leurs technologies, réduire les inefficacités opérationnelles et améliorer les informations commerciales.",
+    "paragraph": "Foodetective intègre tous vos logiciels et systèmes sur une seule plateforme. Les établissements de toutes tailles peuvent s’appuyer sur notre API pour gérer l’ensemble de leurs technologies, optimiser leurs opérations et améliorer leur connaissance du marché.",
     "getStartedForFree": "Commencez gratuitement",
     "contactSales": "Contactez notre équipe commerciale ",
     "addYourBusiness": "Ajoutez votre entreprise",
@@ -14,7 +14,7 @@
   },
   "installApp": {
     "header": {
-      "start": "Téléchargez votre app aujourd'hui.",
+      "start": "Téléchargez votre application dès aujourd’hui.",
       "end": " Foodetective For Business."
     }
   },
@@ -96,20 +96,20 @@
   "partners": "Partenaires",
   "unifiedApiSection": {
     "title": "API unifiée pour l'industrie F&B",
-    "description": "Grâce à notre API unifiée, il n'est plus nécessaire d'utiliser plusieurs applications et matériels pour gérer votre entreprise de restauration. Les informations ne sont plus fragmentées entre les systèmes."
+    "description": "Grâce à notre API, il n'est plus nécessaire d'utiliser plusieurs applications et logiciels pour gérer votre établissement. Retrouvez tous vos services sur une seule et même plateforme."
   },
   "apiPossibilities": {
     "connect": {
       "title": "Click & Connect",
-      "description": "Choisissez simplement vos apps préférées. <0>Pas besoin de code</0>"
+      "description": "Choisissez simplement vos apps préférées <0>et connectez-les.</0>"
     },
     "manage": {
       "title": "Manager",
-      "description": "Management tout-en-un. <1/> <0>Live stream</0> notifications."
+      "description": "Management tout-en-un. <1/> Notifications en <0>Live Stream.</0>"
     },
     "analyze": {
       "title": "Analyser",
-      "description": "Rapports de synthèse, suivi des mesures, corrélations. <0> Dashboard Personnalisé.</0>"
+      "description": "Rapports analytiques, suivis des KPI et <0>Dashboard personnalisé.</0>"
     }
   },
   "productContent": {
@@ -119,12 +119,12 @@
     },
     "visibility": {
       "title": "Visibilité améliorée",
-      "description": "Vous serez inscrit dans l'annuaire de Foodetective et bénéficierez de notre plateforme de génération de prospects qui met en valeur vos services à la clientèle."
+      "description": "Le référencement de votre établissement sur Foodetective vous permet d’augmenter votre visibilité en ligne."
     }
   },
   "integrationsHub": {
     "title": "Integrations Hub",
-    "description": "Conçu pour répondre à l'évolution de vos besoins, vous pouvez facilement ajouter ou supprimer toute intégration à tout moment, ce qui vous garantit que nous sommes adaptés à votre croissance. <0>Découvrez comment ça fonctionne.</0>"
+    "description": "Conçu pour répondre à l'évolution de vos besoins, vous pouvez facilement ajouter ou supprimer des intégrations à tout moment, ce qui nous garantit d'être adaptés à votre croissance. <0>Découvrez nos différentes intégrations.</0>"
   },
   "features": "Fonctionnalités",
   "integrations": "Intégrations",
