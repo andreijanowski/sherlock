@@ -18,7 +18,7 @@ const ListItem = ({ step, isLastChild }) => {
         <Trans
           t={t}
           i18nKey={`apiPossibilities.${step}.description`}
-          components={[<strong />]}
+          components={[<strong />, <br />]}
         />
       </Description>
     </Container>

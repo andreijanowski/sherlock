@@ -101,11 +101,11 @@
   "apiPossibilities": {
     "connect": {
       "title": "Click & Connect",
-      "description": "Choisissez simplement vos apps préférée <0>Pas besoin de code</0>"
+      "description": "Choisissez simplement vos apps préférées. <0>Pas besoin de code</0>"
     },
     "manage": {
       "title": "Manager",
-      "description": "Pateforme de management tout-en-un <0>Live stream</0> notifications."
+      "description": "Management tout-en-un. <1/> <0>Live stream</0> notifications."
     },
     "analyze": {
       "title": "Analyser",
