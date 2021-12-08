@@ -1,26 +1,26 @@
 import { useEffect, useState } from "react";
 import { Flex } from "@rebass/grid";
-import { bool, node, string, func } from "prop-types";
+import { bool, func, node, string } from "prop-types";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 
-import { i18n } from "i18n";
-import { InfoBar, Link, Button, Modal } from "components";
-import { Docs, Feedback, Notifications } from "icons";
+import { InfoIcon } from "components/Icons";
+import { Button, InfoBar, Link, Modal } from "components";
 import isServer from "utils/isServer";
 import { togglePlayNotification } from "actions/app";
+import { useLng } from "utils/hooks";
 import {
-  Wrapper,
-  HeaderWrapper,
-  MainIconWrapper,
-  Header,
-  Icon,
   Avatar,
+  Header,
+  HeaderWrapper,
+  Icon,
   IconsWrapper,
+  MainIconWrapper,
   TutorialButton,
+  Wrapper,
   YoutubeWrapper
 } from "./styled";
-import { chooseIcon, getButtonRoutes } from "./utils";
+import { chooseIcon, getButtonRoutes, getInfoHref } from "./utils";
 
 const MainApp = ({
   t,
@@ -33,7 +33,7 @@ const MainApp = ({
   toggleSound
 }) => {
   const router = useRouter();
-  const lng = (i18n && i18n.language) || "en";
+  const lng = useLng();
   const MainIcon = chooseIcon(mainIcon);
   const { prevRoute, nextRoute } = getButtonRoutes({
     lng,
@@ -95,15 +95,13 @@ const MainApp = ({
           >
             Watch tutorials
           </TutorialButton>
-          <Icon>
-            <Feedback />
-          </Icon>
-          <Icon>
-            <Docs />
-          </Icon>
-
-          <Icon>
-            <Notifications />
+          <Icon
+            as="a"
+            target="_blank"
+            rel="noopener nofollower"
+            href={getInfoHref(lng)}
+          >
+            <InfoIcon />
           </Icon>
           <Avatar src={avatar} />
         </IconsWrapper>

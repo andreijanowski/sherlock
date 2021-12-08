@@ -91,6 +91,7 @@ export const Icon = styled(Flex).attrs(() => ({
   mx: 1
 }))`
   height: 32px;
+  font-size: 24px;
   border-radius: 16px;
   cursor: pointer;
 
