@@ -5,12 +5,21 @@ import { connect } from "react-redux";
 import { H3 } from "components";
 import { Confirm } from "components/modals";
 import { selectCurrentBusinessId } from "selectors/business";
-import { isInternalIntegrationConnectedOrPending } from "utils/integrations";
+import {
+  isInternalIntegrationConnectedOrPending,
+  isPartnerRequiresConnection
+} from "utils/integrations";
 import {
   connectIntegrationPartner,
   disconnectIntegrationPartner
 } from "actions/partners";
+import ConnectIntegration from "components/modals/ConnectIntegration";
 import IntegrationSwitch from "./IntegrationSwitch";
+
+const MODALS = {
+  DISCONNECT: "disconnect",
+  CONNECT: "connect"
+};
 
 const InternalIntegrationSwitch = ({
   t,
@@ -21,11 +30,12 @@ const InternalIntegrationSwitch = ({
   integratePartner,
   removePartner
 }) => {
-  const [showDisconnectModal, setShowDisconnectModal] = useState(false);
+  const [modal, setModal] = useState(null);
 
   const name = partner.get("name");
   const isIntegrationPending = partner.get("partnerIntegrationRequested");
   const isIntegrated = partner.get("partnerIntegrationActive");
+  const partnerRequiresConnection = isPartnerRequiresConnection(partner);
 
   const isConnectedOrPending = isInternalIntegrationConnectedOrPending(partner);
 
@@ -41,14 +51,21 @@ const InternalIntegrationSwitch = ({
 
   const onIntegrationButtonClick = useCallback(() => {
     if (isIntegrated || isIntegrationPending) {
-      setShowDisconnectModal(true);
+      setModal(MODALS.DISCONNECT);
+    } else if (partnerRequiresConnection) {
+      setModal(MODALS.CONNECT);
     } else {
       makeIntegrationRequest();
     }
-  }, [isIntegrated, isIntegrationPending, makeIntegrationRequest]);
+  }, [
+    isIntegrated,
+    isIntegrationPending,
+    partnerRequiresConnection,
+    makeIntegrationRequest
+  ]);
 
   const closeModal = useCallback(() => {
-    setShowDisconnectModal(false);
+    setModal(null);
   }, []);
 
   const onConfirmDisconnect = useCallback(async () => {
@@ -56,9 +73,19 @@ const InternalIntegrationSwitch = ({
     closeModal();
   }, [closeModal, makeCancelIntegrationRequest]);
 
+  const onPOSConnectSubmit = useCallback(
+    async data => {
+      // todo make request to pos connection
+      console.log(data);
+      // await makeCancelIntegrationRequest();
+      closeModal();
+    },
+    [closeModal]
+  );
+
   return (
     <>
-      {showDisconnectModal && (
+      {modal === MODALS.DISCONNECT && (
         <Confirm
           open
           restyled
@@ -74,6 +101,13 @@ const InternalIntegrationSwitch = ({
             })}
           </H3>
         </Confirm>
+      )}
+      {modal === MODALS.CONNECT && (
+        <ConnectIntegration
+          partner={partner}
+          onSubmit={onPOSConnectSubmit}
+          onClose={closeModal}
+        />
       )}
       <IntegrationSwitch
         isFetching={isFetching}

@@ -1,6 +1,7 @@
 import React from "react";
 import { arrayOf, bool, func, oneOfType, shape, string } from "prop-types";
 import { Box, Flex } from "@rebass/grid";
+import { connect } from "react-redux";
 
 import {
   InternalIntegrationSwitch,
@@ -12,7 +13,6 @@ import {
   getIntegrationStates,
   getServiceIntegrationMeta
 } from "utils/integrations";
-import { connect } from "react-redux";
 import {
   Container,
   Image,
