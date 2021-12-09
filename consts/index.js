@@ -110,6 +110,9 @@ const USER_GUIDES_URL = {
     "https://docs.google.com/document/d/1DvgZpRWiBHzoHAwvhI9u1UFOl2ce8TZf2W7FHhsyKKY/edit"
 };
 
+const PARTOO_SDK_URL =
+  "https://static.sandbox.partoo.co/javascript/build/partoo.js";
+
 module.exports = {
   contentTypes,
   languages,
@@ -153,5 +156,6 @@ module.exports = {
   NEWS_ROOM_URL,
   PARTNERS_URL,
   CAREERS_FOODETECTIVE_EMAIL,
-  USER_GUIDES_URL
+  USER_GUIDES_URL,
+  PARTOO_SDK_URL
 };

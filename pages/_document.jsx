@@ -7,6 +7,7 @@ import {
   HubspotChatScript,
   LinkedinAdsScript
 } from "scripts";
+import { PARTOO_SDK_URL } from "consts";
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
@@ -75,6 +76,7 @@ export default class MyDocument extends Document {
           <FacebookPixelScript />
           <HubspotChatScript />
           <LinkedinAdsScript />
+          <script src={PARTOO_SDK_URL} type="text/javascript" />
         </Head>
         <body>
           <GoogleTagManagerNoscript />
