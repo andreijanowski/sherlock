@@ -133,5 +133,6 @@
   "adsPoweredBy": "Ads powered by",
   "influencersPoweredBy": "Influencers powered by Foodetective.co",
   "communityMgmt": "Community Mgmt",
-  "photographyMgmt": "Photography"
+  "photographyMgmt": "Photography",
+  "connectPartoo": "You are not yet connected to this feature. To request a connection, do the following steps: <0><1>Go to the Integration Hub</1><1>Search for Partoo in the search bar</1><1>Click on connect.</1></0> We will notify you by email as soon as the connection is finalized."
 }

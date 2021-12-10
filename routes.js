@@ -145,12 +145,16 @@ module.exports = routes()
   .add("app/dashboard", `/:lng(${languagesPattern})/app/dashboard`)
   .add("app/clients", `/:lng(${languagesPattern})/app/clients`)
   .add("app/payments", `/:lng(${languagesPattern})/app/payments`)
+  .add("app/reviews", `/:lng(${languagesPattern})/app/reviews`)
+  .add(
+    "app/presenceManagement",
+    `/:lng(${languagesPattern})/app/presence-management`
+  )
   .add("app/comingSoon", [
     `/:lng(${languagesPattern})/app/app-manager`,
     `/:lng(${languagesPattern})/app/reviews`,
     `/:lng(${languagesPattern})/app/stock-management`,
     `/:lng(${languagesPattern})/app/payroll`,
     `/:lng(${languagesPattern})/app/food-waste`,
-    `/:lng(${languagesPattern})/app/presence-management`,
     `/:lng(${languagesPattern})/app/loyalty`
   ]);

@@ -4,7 +4,8 @@ import {
   FETCH_PROFILE_BUSINESSES_REQUEST,
   FETCH_PROFILE_BUSINESS_REQUEST,
   FETCH_PROFILE_CARDS_REQUEST,
-  FETCH_PROFILE_SUBSCRIPTIONS_REQUEST
+  FETCH_PROFILE_SUBSCRIPTIONS_REQUEST,
+  FETCH_PARTOO_TOKEN_REQUEST
 } from "types/users";
 
 export const fetchProfile = () => ({
@@ -70,6 +71,15 @@ export const fetchProfileSubscriptions = () => ({
   payload: {
     endpoint: "/api/v1/users/me/subscriptions",
     params: { per_page: 200, page: 1, "filter[scope]": "not_terminated" }
+  },
+  meta: { thunk: true }
+});
+
+export const generatePartooToken = () => ({
+  type: FETCH_PARTOO_TOKEN_REQUEST,
+  payload: {
+    method: "POST",
+    endpoint: `/api/v1/users/me/partoo/generate_token`
   },
   meta: { thunk: true }
 });
