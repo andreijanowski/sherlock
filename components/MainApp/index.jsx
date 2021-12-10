@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { useRouter } from "next/router";
 
 import { InfoIcon } from "components/Icons";
-import { Button, InfoBar, Link, Modal } from "components";
+import { Button, InfoBar, LanguageSwitcher, Link, Modal } from "components";
 import isServer from "utils/isServer";
 import { togglePlayNotification } from "actions/app";
 import { useLng } from "utils/hooks";
@@ -18,7 +18,8 @@ import {
   MainIconWrapper,
   TutorialButton,
   Wrapper,
-  YoutubeWrapper
+  YoutubeWrapper,
+  LanguageSwitcherWrapper
 } from "./styled";
 import { chooseIcon, getButtonRoutes, getInfoHref } from "./utils";
 
@@ -103,6 +104,9 @@ const MainApp = ({
           >
             <InfoIcon />
           </Icon>
+          <LanguageSwitcherWrapper>
+            <LanguageSwitcher />
+          </LanguageSwitcherWrapper>
           <Avatar src={avatar} />
         </IconsWrapper>
       </HeaderWrapper>

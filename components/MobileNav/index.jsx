@@ -13,9 +13,14 @@ import {
   LiveStream,
   Hamburger
 } from "icons";
-import { Select } from "components";
+import { LanguageSwitcher, Select } from "components";
 import CollapsingGroup from "components/CollapsingGroup";
-import { ToggledMobileMenu, MenuScrollContainer } from "./styled";
+import {
+  ToggledMobileMenu,
+  MenuScrollContainer,
+  IconWrapper,
+  IconLabel
+} from "./styled";
 import MainIcon from "./MainIcon";
 import SubItem from "./SubItem";
 
@@ -98,6 +103,12 @@ const MobileNav = ({
               renderItem(subitem)
             );
           })}
+          <LanguageSwitcher>
+            <Flex align="center">
+              <IconWrapper dark />
+              <IconLabel>{t("landing:language")}</IconLabel>
+            </Flex>
+          </LanguageSwitcher>
         </MenuScrollContainer>
       </ToggledMobileMenu>
     </Flex>

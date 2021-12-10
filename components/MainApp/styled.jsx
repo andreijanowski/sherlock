@@ -137,7 +137,7 @@ export const Avatar = styled.div`
 export const TutorialButton = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 8px;
+  margin-right: 6px;
   color: rgb(76, 104, 255);
   font-size: 14px;
   cursor: pointer;
@@ -145,4 +145,9 @@ export const TutorialButton = styled.div`
 
 export const YoutubeWrapper = styled.div`
   padding: 16px;
+`;
+
+export const LanguageSwitcherWrapper = styled(Flex)`
+  margin: 0 6px;
+  align-items: center;
 `;
