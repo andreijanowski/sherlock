@@ -37,25 +37,19 @@ const IntegrationsList = ({
   const isPreferred = category === WHOLESALERS_CATEGORY.PREFERRED;
 
   const onWholesalerOrderNowClick = useCallback(partner => {
-    const partnerIframeUrl = partner.get("websiteUrl");
-    setIframeUrl(partnerIframeUrl);
+    const websiteUrl = partner.get("websiteUrl");
+    const supportsIframe = partner.get("websiteSupportsIframe");
+    if (supportsIframe) {
+      setIframeUrl(websiteUrl);
+      return;
+    }
+
+    window.open(websiteUrl, "_blank", "noreferrer,noopener");
   }, []);
 
   const onBackToListClick = useCallback(() => {
     setIframeUrl(null);
   }, []);
-
-  const onIframeLoad = useCallback(() => {
-    try {
-      // trying to get document from iframe to define was it loaded or not
-      // eslint-disable-next-line no-unused-vars
-      const doc = document.getElementById(PARTNER_FRAME_ID).contentWindow
-        .document;
-    } catch (error) {
-      setIframeUrl(null);
-      window.open(iframeUrl, "_blank");
-    }
-  }, [iframeUrl]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -131,15 +125,12 @@ const IntegrationsList = ({
           href={iframeUrl}
           target="_blank"
           styleName="navyBlue"
+          rel="noreferrer noopener"
         >
           {t("app:manageIntegrations.openInNewTab")}
         </BlueButton>
       </Flex>
-      <IframeWrapper
-        id={PARTNER_FRAME_ID}
-        src={iframeUrl}
-        onLoad={onIframeLoad}
-      />
+      <IframeWrapper id={PARTNER_FRAME_ID} src={iframeUrl} />
     </>
   ) : (
     <Wrapper>
