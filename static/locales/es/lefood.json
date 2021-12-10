@@ -178,5 +178,6 @@
       "Deje que suceda la magia."
     ],
     "instructions_note": "Si hay algún error en vuestro archivo, lo indicaremos con un pop-up (ventana emergente). Tendréis que corregir esos errores directamente en el archivo y volver a subirlo."
-  }
+  },
+  "autoAcceptOrders": "Aceptar pedidos automáticamente"
 }

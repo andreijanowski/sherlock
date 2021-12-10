@@ -178,5 +178,6 @@
       "Laissez la magie opérer"
     ],
     "instructions_note": "Si il y a des erreurs dans votre fichier, elles apparaîtront dans un tableau. Vous aurez à les corriger dans le fichier et le télécharger à nouveau"
-  }
+  },
+  "autoAcceptOrders": "Accepter les commandes automatiquement"
 }

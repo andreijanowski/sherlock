@@ -178,5 +178,6 @@
       "Lassen Sie die Magie geschehen."
     ],
     "instructions_note": "Wenn Ihre Datei Fehler enthält, listen wir sie alle in einer Tabelle in einem Popup-Fenster auf.\nSie müssen diese Fehler in der Datei direkt korrigieren und die Datei erneut hochladen."
-  }
+  },
+  "autoAcceptOrders": "Automatische Auftragsannahme"
 }

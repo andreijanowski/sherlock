@@ -323,6 +323,14 @@ const LefoodLayout = ({
     [checkStripeSetup, currentBusinessId, updateBusiness]
   );
 
+  const onAutoAcceptChange = useCallback(
+    () =>
+      onUpdateBusiness({
+        autoAcceptOrders: !business.get("autoAcceptOrders")
+      }),
+    [business, onUpdateBusiness]
+  );
+
   const profileCompletedPercents =
     page === "orders"
       ? calcProfileCompletedPercents({
@@ -501,6 +509,16 @@ const LefoodLayout = ({
                   </ButtonWithImageText>
                 </Button>
               </Link>
+            </Box>
+            <Box pr={4}>
+              <RawCheckbox
+                hasCloserText
+                label={t("autoAcceptOrders")}
+                input={{
+                  onChange: onAutoAcceptChange,
+                  value: business.get("autoAcceptOrders")
+                }}
+              />
             </Box>
             <Box pr={4}>
               <RawCheckbox
