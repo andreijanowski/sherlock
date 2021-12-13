@@ -29,13 +29,12 @@ const IntegrationsPage = ({ t, lng, partners, isLoading }) => {
 
   return (
     <AppLayout
-      showChosenWholesalers
       t={t}
       lng={lng}
       mainIcon="integrations"
       header={t("app:integrations")}
     >
-      <PartnersSearchBox isHiddenOnDesktop />
+      <PartnersSearchBox visibilityRange={[60, 640]} />
       {partners && partners.size > 0 && (
         <IntegrationsList partners={partners} isIntegrations t={t} />
       )}
