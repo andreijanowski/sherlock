@@ -6,6 +6,7 @@ import { Trans } from "i18n";
 import { generatePartooToken as generatePartooTokenAction } from "actions/users";
 import { selectIsPartooConnected } from "selectors/users";
 import { useT } from "utils/hooks";
+import { IFrameContainer, NotConnectedContainer } from "./styled";
 
 const BASE_CONTAINER_ID = "partoo-container";
 
@@ -38,7 +39,7 @@ const PartooIframe = ({
         partooPage = window.Partoo.init(containerId, options);
         partooPage.login(token);
       } catch (e) {
-        console.err(e);
+        console.error(e);
       }
     };
 
@@ -51,19 +52,21 @@ const PartooIframe = ({
   }, [containerId, generatePartooToken, isPartooConnected, startPage]);
 
   return isPartooConnected ? (
-    <div id={containerId} />
+    <IFrameContainer id={containerId} />
   ) : (
-    <Trans
-      t={t}
-      i18nKey="app:connectPartoo"
-      components={[
-        <ol>
-          <li />
-          <li />
-          <li />
-        </ol>
-      ]}
-    />
+    <NotConnectedContainer>
+      <Trans
+        t={t}
+        i18nKey="app:connectPartoo"
+        components={[
+          <ol>
+            <li />
+            <li />
+            <li />
+          </ol>
+        ]}
+      />
+    </NotConnectedContainer>
   );
 };
 
