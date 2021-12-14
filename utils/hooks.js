@@ -17,12 +17,27 @@ export const useWindowWidthLessThen = threshold => {
 
     window.addEventListener("resize", onResize);
 
+    onResize();
+
     return () => {
       window.removeEventListener("resize", onResize);
     };
   }, [threshold]);
 
   return isLess;
+};
+
+export const useWindowWidthMoreOrEqualThen = threshold =>
+  !useWindowWidthLessThen(threshold);
+
+// min edge is included, max edge is not included
+export const useWindowWidthInRange = range => {
+  const [min = Number.MIN_SAFE_INTEGER, max = Number.MAX_SAFE_INTEGER] = range;
+
+  const isMinEdgeSatisfied = useWindowWidthMoreOrEqualThen(min);
+  const isMaxEdgeSatisfied = useWindowWidthLessThen(max);
+
+  return isMinEdgeSatisfied && isMaxEdgeSatisfied;
 };
 
 export const useLng = () => {
