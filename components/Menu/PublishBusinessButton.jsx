@@ -49,16 +49,18 @@ const PublishBusinessButton = ({
     setModal(null);
   }, []);
 
+  const showBasicInfoErrors = useCallback(() => {
+    Router.pushRoute(
+      `/${lng}/app/profile/basic-information/?isErrorVisibilityRequired=true`
+    );
+  }, [lng]);
+
   const publishBusiness = useCallback(() => {
     const state = businessAttributes.get("approvedForLefood")
       ? "published"
       : "waiting_for_approval";
-    updateBusiness(businessId, { state }).catch(() =>
-      Router.pushRoute(
-        `/${lng}/app/profile/basic-information/?isErrorVisibilityRequired=true`
-      )
-    );
-  }, [businessAttributes, businessId, lng, updateBusiness]);
+    updateBusiness(businessId, { state }).catch(showBasicInfoErrors);
+  }, [businessAttributes, businessId, showBasicInfoErrors, updateBusiness]);
 
   const unpublishBusiness = useCallback(async () => {
     await updateBusiness(businessId, { state: "draft" });
@@ -106,7 +108,8 @@ const PublishBusinessButton = ({
               businessMenus,
               businessPictures,
               businessProducts,
-              businessOpenPeriods
+              businessOpenPeriods,
+              showBasicInfoErrors
             }}
           />
         </Modal>
