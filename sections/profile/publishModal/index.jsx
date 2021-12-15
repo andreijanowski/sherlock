@@ -22,9 +22,10 @@ const PublishModal = ({
   businessMenus,
   businessPictures,
   businessProducts,
-  businessOpenPeriods
+  businessOpenPeriods,
+  showBasicInfoErrors
 }) => {
-  const steps = business
+  const { isBasicInformationValid, steps } = business
     ? generatePublishModalItems({
         t,
         business,
@@ -34,7 +35,7 @@ const PublishModal = ({
         businessProducts,
         businessOpenPeriods
       })
-    : [];
+    : { isBasicInformationValid: false, steps: [] };
 
   return (
     <Wrapper>
@@ -60,7 +61,11 @@ const PublishModal = ({
         <Button
           styleName="blue"
           onClick={() => {
-            publish();
+            if (isBasicInformationValid) {
+              publish();
+            } else {
+              showBasicInfoErrors();
+            }
             close();
           }}
         >
@@ -78,6 +83,7 @@ PublishModal.propTypes = {
   lng: string.isRequired,
   close: func.isRequired,
   publish: func.isRequired,
+  showBasicInfoErrors: func.isRequired,
   business: shape().isRequired,
   businessGroups: shape(),
   businessMenus: shape(),

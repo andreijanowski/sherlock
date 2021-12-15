@@ -140,21 +140,24 @@ export const generatePublishModalItems = ({
     businessGroups
   );
 
-  return tips.map((item, index) => ({
-    name: items[index].label,
-    route: `${items[index].route}?isErrorVisibilityRequired=true`,
-    tip: item,
-    isValid: index === 0 ? isBasicInformationValid : true,
-    isFilled:
-      index === 0
-        ? isBasicInformationValid
-        : !!checkIsFilled({
-            index,
-            business,
-            businessMenus,
-            businessPictures,
-            businessProducts,
-            businessOpenPeriods
-          })
-  }));
+  return {
+    isBasicInformationValid,
+    steps: tips.map((item, index) => ({
+      name: items[index].label,
+      route: `${items[index].route}?isErrorVisibilityRequired=true`,
+      tip: item,
+      isValid: index === 0 ? isBasicInformationValid : true,
+      isFilled:
+        index === 0
+          ? isBasicInformationValid
+          : !!checkIsFilled({
+              index,
+              business,
+              businessMenus,
+              businessPictures,
+              businessProducts,
+              businessOpenPeriods
+            })
+    }))
+  };
 };
