@@ -26,6 +26,7 @@ export const IFrameContainer = styled.div`
 `;
 
 export const TopPane = styled(Flex)`
+  flex: none;
   padding: 0 16px 16px;
   align-items: center;
   ${upThanBreakpoint(CONTROL_BREAKPOINT)} {
