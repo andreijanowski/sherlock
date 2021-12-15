@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { bool, func, string } from "prop-types";
 import { connect } from "react-redux";
 
@@ -6,7 +6,13 @@ import { Trans } from "i18n";
 import { generatePartooToken as generatePartooTokenAction } from "actions/users";
 import { selectIsPartooConnected } from "selectors/users";
 import { useT } from "utils/hooks";
-import { IFrameContainer, NotConnectedContainer } from "./styled";
+import {
+  ConnectedContainer,
+  IFrameContainer,
+  NotConnectedContainer,
+  TopPane
+} from "./styled";
+import GoToConnectionsButton from "./GoToConnectionsButton";
 
 const BASE_CONTAINER_ID = "partoo-container";
 
@@ -15,13 +21,14 @@ const PartooIframe = ({
   generatePartooToken,
   isPartooConnected
 }) => {
+  const [partooPage, setPartooPage] = useState(null);
   const t = useT();
   const containerId = `${startPage}-${BASE_CONTAINER_ID}`;
 
   useEffect(() => {
     if (!isPartooConnected) return () => {};
 
-    let partooPage;
+    let page;
 
     const loadPartooPage = async () => {
       try {
@@ -36,8 +43,9 @@ const PartooIframe = ({
           displayAddButton: false
         };
 
-        partooPage = window.Partoo.init(containerId, options);
-        partooPage.login(token);
+        page = window.Partoo.init(containerId, options);
+        page.login(token);
+        setPartooPage(page);
       } catch (e) {
         console.error(e);
       }
@@ -45,14 +53,24 @@ const PartooIframe = ({
 
     loadPartooPage();
     return () => {
-      if (partooPage) {
-        partooPage.destroy();
+      if (page) {
+        page.destroy();
       }
     };
   }, [containerId, generatePartooToken, isPartooConnected, startPage]);
 
   return isPartooConnected ? (
-    <IFrameContainer id={containerId} />
+    <ConnectedContainer>
+      {partooPage && (
+        <TopPane>
+          <GoToConnectionsButton
+            partooPage={partooPage}
+            startPage={startPage}
+          />
+        </TopPane>
+      )}
+      <IFrameContainer id={containerId} />
+    </ConnectedContainer>
   ) : (
     <NotConnectedContainer>
       <Trans
