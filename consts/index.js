@@ -103,6 +103,16 @@ const PARTNERS_URL =
 
 const CAREERS_FOODETECTIVE_EMAIL = "hello@foodetective.co";
 
+const USER_GUIDES_URL = {
+  fr:
+    "https://docs.google.com/document/d/18ytc8_ToYltMyFM-Yiax2lXMU7DgvvBvC5SeTtBTstc/edit",
+  en:
+    "https://docs.google.com/document/d/1DvgZpRWiBHzoHAwvhI9u1UFOl2ce8TZf2W7FHhsyKKY/edit"
+};
+
+const PARTOO_SDK_URL =
+  "https://static.sandbox.partoo.co/javascript/build/partoo.js";
+
 module.exports = {
   contentTypes,
   languages,
@@ -145,5 +155,7 @@ module.exports = {
   GET_THE_APP_ANDROID_LINK,
   NEWS_ROOM_URL,
   PARTNERS_URL,
-  CAREERS_FOODETECTIVE_EMAIL
+  CAREERS_FOODETECTIVE_EMAIL,
+  USER_GUIDES_URL,
+  PARTOO_SDK_URL
 };

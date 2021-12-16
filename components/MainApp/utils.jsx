@@ -15,9 +15,12 @@ import {
   MenuManagement,
   Dashboard,
   Clients,
-  Payments
+  Payments,
+  Reviews,
+  PresenceManagement
 } from "icons";
 import { generateProfileSubmenu, isMenuItemActive } from "utils/menuConfig";
+import { USER_GUIDES_URL } from "consts";
 
 export const chooseIcon = icon => {
   switch (icon) {
@@ -55,6 +58,10 @@ export const chooseIcon = icon => {
       return Payments;
     case "dashboard":
       return Dashboard;
+    case "reviews":
+      return Reviews;
+    case "presenceManagement":
+      return PresenceManagement;
     default:
       return () => "";
   }
@@ -81,4 +88,13 @@ export const getButtonRoutes = ({ lng, asPath, mainIcon }) => {
   }
 
   return { prevRoute: null, nextRoute: null };
+};
+
+export const getInfoHref = lng => {
+  switch (lng) {
+    case "fr":
+      return USER_GUIDES_URL.fr;
+    default:
+      return USER_GUIDES_URL.en;
+  }
 };

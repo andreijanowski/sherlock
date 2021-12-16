@@ -32,16 +32,18 @@ const ProfileLayout = ({
     setShowModal(false);
   }, []);
 
+  const showBasicInfoErrors = useCallback(() => {
+    Router.pushRoute(
+      `/${lng}/app/profile/basic-information/?isErrorVisibilityRequired=true`
+    );
+  }, [lng]);
+
   const publish = useCallback(() => {
     const state = business.get("approvedForLefood")
       ? "published"
       : "waiting_for_approval";
-    updateBusiness(businessId, { state }).catch(() =>
-      Router.pushRoute(
-        `/${lng}/app/profile/basic-information/?isErrorVisibilityRequired=true`
-      )
-    );
-  }, [business, businessId, lng, updateBusiness]);
+    updateBusiness(businessId, { state }).catch(showBasicInfoErrors);
+  }, [business, businessId, showBasicInfoErrors, updateBusiness]);
 
   return (
     <AppLayout
@@ -78,7 +80,8 @@ const ProfileLayout = ({
               businessMenus,
               businessPictures,
               businessProducts,
-              businessOpenPeriods
+              businessOpenPeriods,
+              showBasicInfoErrors
             }}
           />
         </Modal>

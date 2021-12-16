@@ -81,7 +81,7 @@ const IntegrationsPage = ({
       mainIcon="wholesalers"
       header={t("app:wholesaler")}
     >
-      <PartnersSearchBox isHiddenOnDesktop />
+      <PartnersSearchBox visibilityRange={[0, 640]} />
       {wholesalers && wholesalers.size > 0 && (
         <>
           <IntegrationsList

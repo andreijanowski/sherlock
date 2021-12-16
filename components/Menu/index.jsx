@@ -17,7 +17,7 @@ const Menu = ({ lng, toggleNestedMenu, menuItems, t, withSearch }) => {
   return (
     <>
       <Items>
-        {withSearch && <PartnersSearchBox />}
+        {withSearch && <PartnersSearchBox visibilityRange={[640]} />}
         <Item bigPadding onClick={toggleNestedMenu}>
           <MenuArrowIcon back />
           <span>{t("app:backToMainMenu")}</span>

@@ -64,7 +64,8 @@ export {
   CircleWarningIcon,
   Arrow,
   ArrowDown,
-  AcceptedDetectiveIcon
+  AcceptedDetectiveIcon,
+  InfoIcon
 } from "./mainControls";
 export {
   Orders,

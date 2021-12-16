@@ -1,22 +1,23 @@
-import React, { useState, useMemo, useEffect, useCallback } from "react";
-import { bool, func, shape } from "prop-types";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { func, shape } from "prop-types";
 import { withTranslation } from "i18n";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import debounce from "debounce";
 
-import { SearchIcon, CloseIcon } from "components/Icons";
+import { CloseIcon, SearchIcon } from "components/Icons";
 import { fetchPartners } from "actions/partners";
 import { WHOLESALERS_URL } from "sections/integrations/utils";
-import { Wrapper, Input, LeftIcon, RightIcon } from "./styled";
+import { withVisibilityRange } from "utils/hoc/withVisibilityRange";
+import { Input, LeftIcon, RightIcon, Wrapper } from "./styled";
 import { getPartnersFilter } from "./utils";
 
 const namespaces = ["app"];
 
 const DEBOUNCE = 300;
 
-const DebouncedInput = ({ t, onChange, isHiddenOnDesktop }) => {
+const DebouncedInput = ({ t, onChange }) => {
   const [value, setValue] = useState("");
 
   const debouncedOnChange = useCallback(debounce(onChange, DEBOUNCE), [
@@ -37,7 +38,7 @@ const DebouncedInput = ({ t, onChange, isHiddenOnDesktop }) => {
   );
 
   return (
-    <Wrapper isHiddenOnDesktop={isHiddenOnDesktop}>
+    <Wrapper>
       <LeftIcon>
         <SearchIcon />
       </LeftIcon>
@@ -58,20 +59,10 @@ const DebouncedInput = ({ t, onChange, isHiddenOnDesktop }) => {
 
 DebouncedInput.propTypes = {
   t: func.isRequired,
-  onChange: func.isRequired,
-  isHiddenOnDesktop: bool
+  onChange: func.isRequired
 };
 
-DebouncedInput.defaultProps = {
-  isHiddenOnDesktop: false
-};
-
-const PartnersSearchBox = ({
-  t,
-  business,
-  fetchPartnersHandler,
-  isHiddenOnDesktop
-}) => {
+const PartnersSearchBox = ({ t, business, fetchPartnersHandler }) => {
   const [search, setSearch] = useState("");
   const {
     pathname,
@@ -103,25 +94,17 @@ const PartnersSearchBox = ({
     }
   }, [businessId, fetchPartnersHandler, filter, search]);
 
-  return (
-    <DebouncedInput
-      isHiddenOnDesktop={isHiddenOnDesktop}
-      t={t}
-      onChange={onSearchChange}
-    />
-  );
+  return <DebouncedInput t={t} onChange={onSearchChange} />;
 };
 
 PartnersSearchBox.propTypes = {
   t: func.isRequired,
   fetchPartnersHandler: func.isRequired,
-  business: shape(),
-  isHiddenOnDesktop: bool
+  business: shape()
 };
 
 PartnersSearchBox.defaultProps = {
-  business: null,
-  isHiddenOnDesktop: false
+  business: null
 };
 
 const mapState = state => {
@@ -138,6 +121,7 @@ const mapDispatch = {
 };
 
 export default compose(
+  withVisibilityRange,
   withTranslation(namespaces),
   connect(
     mapState,
