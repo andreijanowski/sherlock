@@ -1,10 +1,16 @@
 import { string } from "prop-types";
 import { Flex } from "@rebass/grid";
 import { normalizePrice } from "utils/normalizers";
-import { Currency, ProgressBar, ProgressTitle, Value } from "./styled";
+import {
+  BarContainer,
+  Currency,
+  ProgressBar,
+  ProgressTitle,
+  Value
+} from "./styled";
 
 export const Bar = ({ value, currency, color }) => (
-  <Flex flexDirection="column">
+  <BarContainer flexDirection="column">
     <ProgressTitle>
       <Flex alignItems="flex-end">
         <Value color={color}>{normalizePrice(value)}</Value>
@@ -12,7 +18,6 @@ export const Bar = ({ value, currency, color }) => (
       </Flex>
     </ProgressTitle>
     <Flex
-      mb={14}
       width={1}
       flexDirection="row"
       justifyContent="space-between"
@@ -20,7 +25,7 @@ export const Bar = ({ value, currency, color }) => (
     >
       <ProgressBar color={color} />
     </Flex>
-  </Flex>
+  </BarContainer>
 );
 
 Bar.propTypes = {

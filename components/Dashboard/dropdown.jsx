@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Box } from "@rebass/grid";
 import { bool, func, string } from "prop-types";
 
 import { DropdownArrow } from "icons";
@@ -39,7 +40,9 @@ export default function Dropdown({
         isDropdownOpen={isDropdownOpen}
       >
         {t(OPTIONS.find(el => el.value === value).name)}
-        <DropdownArrow />
+        <Box ml={2}>
+          <DropdownArrow />
+        </Box>
       </DropdownButton>
 
       {isDropdownOpen && (
