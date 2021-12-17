@@ -1,12 +1,12 @@
 import { bool, func, shape, string } from "prop-types";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { Flex } from "@rebass/grid";
+import { Box } from "@rebass/grid";
 
 import Dropdown from "./dropdown";
 import Loader from "./loader";
 import ProgressBar from "./progressBar";
-import { Tile } from "./styled";
+import { Tile, TileHeader } from "./styled";
 import { getComparedDataKeys, getPercentageStats } from "./utils";
 
 const SAMPLE_DATA = [
@@ -34,20 +34,17 @@ const ProgressBarTile = ({
   const comparedKeys = getComparedDataKeys(dropdownValue);
 
   return (
-    <Tile height="280" isSmall>
+    <Tile height="310" isSmall>
       {isFetching ? (
         <Loader />
       ) : (
         <>
-          <Flex justifyContent="space-between" alignItems="center">
-            <h4>{t("revenueBreakdown")}</h4>
-            <Dropdown
-              t={t}
-              isCentered
-              value={dropdownValue}
-              onChange={setDropdonwValue}
-            />
-          </Flex>
+          <Box mb={3}>
+            <TileHeader>{t("revenueBreakdown")}</TileHeader>
+          </Box>
+          <Box mb={10}>
+            <Dropdown t={t} value={dropdownValue} onChange={setDropdonwValue} />
+          </Box>
           {SAMPLE_DATA.map(({ color, title }) => {
             const currentValue =
               dashboard &&

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Flex } from "@rebass/grid";
+import { Box } from "@rebass/grid";
 import { bool, func, number, shape, string } from "prop-types";
 import { connect } from "react-redux";
 
@@ -70,15 +70,16 @@ const Sales = ({
 
   return render(
     <>
-      <Flex alignItems="center" justifyContent="space-between">
+      <Box mb={3}>
         <TileHeader>{t(title)}</TileHeader>
+      </Box>
+      <Box mb={10}>
         <Dropdown
           t={t}
           value={comparisonPeriod}
           onChange={onComparisonPeriodChange}
-          isCentered
         />
-      </Flex>
+      </Box>
       <Spacer />
       <SalesList>
         {salesList && salesList.size ? (

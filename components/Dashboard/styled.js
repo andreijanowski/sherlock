@@ -1,13 +1,14 @@
 import styled, { css } from "styled-components";
-import { Flex } from "@rebass/grid";
+import { Flex, Box } from "@rebass/grid";
 
 import { H3 } from "components";
+import { downThanBreakpoint } from "utils/theme";
 
 export const DashboardWrapper = styled(Flex)`
   flex-direction: column;
 `;
 export const TileWrapper = styled(Flex)`
-  @media (max-width: ${p => p.theme.breakpointsPx[3]}) {
+  @media (max-width: ${p => p.theme.breakpointsPx[4]}) {
     flex-direction: column;
   }
 `;
@@ -28,13 +29,16 @@ export const Tile = styled(Flex)`
   @media (max-width: ${p => p.theme.breakpoints[3]}) {
     margin: 6px;
   }
+  ${downThanBreakpoint(2)} {
+    margin: 6px 0;
+  }
 `;
 
-export const TileHeader = styled.h2`
+export const TileHeader = styled(Box).attrs({ as: "h2" })`
   margin: ${p => (p.isBig ? "12px" : "0 0 12px 0")};
   font-size: ${p => (p.isBig ? "28px" : "16px")};
   font-weight: 700;
-  text-align: left;
+  text-align: center;
 `;
 
 export const ProgressBarBackground = styled.div`
@@ -90,7 +94,7 @@ export const SalesList = styled.ul`
 export const SalesItemContainer = styled(Flex)`
   align-items: center;
   font-weight: 600;
-  height: 70px;
+  height: 60px;
   justify-content: space-between;
   border-bottom: 1px dashed rgb(${p => p.theme.colors.lightGreyText});
 `;
@@ -115,9 +119,9 @@ const dropdownStyles = css`
 `;
 
 export const DropdownWrapper = styled(Flex)`
-  width: 90px;
+  width: 120px;
   height: 24px;
-  padding: ${p => (p.withoutBorder ? "4px 0 4px 12px" : "4px; 16px")};
+  padding: ${p => (p.withoutBorder ? "4px 0 4px 12px" : "4px 16px")};
   position: relative;
   font-size: 10px;
   font-weight: 600;
@@ -136,6 +140,9 @@ export const DropdownWrapper = styled(Flex)`
     ${p =>
       !p.withoutBorder &&
       `box-shadow: 0px 0px 10px rgba(${p.theme.colors.lightGreyText}, 0.4);`}
+  }
+  &:focus {
+    outline: none;
   }
 `;
 
@@ -286,4 +293,10 @@ export const OrderDetailsContainer = styled.div`
   z-index: 1;
   left: 0;
   top: 0;
+`;
+
+export const BarContainer = styled(Flex)`
+  &:not(:last-child) {
+    margin-bottom: 14px;
+  }
 `;

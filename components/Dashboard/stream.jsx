@@ -128,8 +128,12 @@ const Stream = ({
 
   return render(
     <>
-      <StreamHeader alignItems="center" justifyContent="space-between">
-        <TileHeader>{t("liveStream")}</TileHeader>
+      <StreamHeader
+        width={1}
+        alignItems="center"
+        justifyContent="space-between"
+      >
+        <TileHeader width={1}>{t("liveStream")}</TileHeader>
       </StreamHeader>
       <Spacer />
       <StreamList>
