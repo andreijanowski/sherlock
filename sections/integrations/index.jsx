@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useCallback } from "react";
-import { oneOfType, arrayOf, shape, string, func, bool } from "prop-types";
+import React, { useCallback, useEffect, useState } from "react";
+import { arrayOf, bool, func, oneOfType, shape, string } from "prop-types";
 import { noop } from "lodash";
 import { connect } from "react-redux";
-import { Flex, Box } from "@rebass/grid";
+import { Box, Flex } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
@@ -10,13 +10,15 @@ import { WHOLESALERS_CATEGORY } from "consts";
 import { fetchPartners } from "actions/partners";
 import { IntegrationTile, WholesalerTile } from "components/PartnerTile";
 import { selectPreviousConfig } from "selectors/integrations";
+import LoadingIndicator from "components/LoadingIndicator";
 import {
   GridWrapper,
   Wrapper,
   NoPartners,
   BackToListButton,
   IframeWrapper,
-  BlueButton
+  BlueButton,
+  IFrame
 } from "./styled";
 
 const SCROLL_GAP = 100;
@@ -35,12 +37,14 @@ const IntegrationsList = ({
   isIntegrations
 }) => {
   const [iframeUrl, setIframeUrl] = useState(null);
+  const [isIFrameLoading, setIsIFrameLoading] = useState(false);
   const isPreferred = category === WHOLESALERS_CATEGORY.PREFERRED;
 
   const onWholesalerOrderNowClick = useCallback(partner => {
     const websiteUrl = partner.get("websiteUrl");
     const supportsIframe = partner.get("websiteSupportsIframe");
     if (supportsIframe) {
+      setIsIFrameLoading(true);
       setIframeUrl(websiteUrl);
       return;
     }
@@ -50,6 +54,10 @@ const IntegrationsList = ({
 
   const onBackToListClick = useCallback(() => {
     setIframeUrl(null);
+  }, []);
+
+  const onIFrameLoaded = useCallback(() => {
+    setIsIFrameLoading(false);
   }, []);
 
   useEffect(() => {
@@ -131,7 +139,10 @@ const IntegrationsList = ({
           {t("app:manageIntegrations.openInNewTab")}
         </BlueButton>
       </Flex>
-      <IframeWrapper id={PARTNER_FRAME_ID} src={iframeUrl} />
+      <IframeWrapper>
+        <IFrame id={PARTNER_FRAME_ID} src={iframeUrl} onLoad={onIFrameLoaded} />
+        {isIFrameLoading && <LoadingIndicator size={15} />}
+      </IframeWrapper>
     </>
   ) : (
     <Wrapper>
