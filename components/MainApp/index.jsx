@@ -149,7 +149,7 @@ MainApp.defaultProps = {
   mainIcon: "",
   header: "",
   avatar: "",
-  isAccountConfirmed: false,
+  isAccountConfirmed: true,
   shouldPlayNotification: false
 };
 
