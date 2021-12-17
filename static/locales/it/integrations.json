@@ -9,5 +9,9 @@
     "step1": "Accedi al tuo <0>Uber Eats Restaurant Manager</0>",
     "step2": "L'UUID è nell'URL. Vedi l'esempio qui sotto: <0/> https://restaurant.uber.com/home/<1>be77dfif-49e5-4a96-y234-98f6f55af43d</1>",
     "ifDoesntWork": "Se non riesci a trovarlo o se non funziona, contattaci a <0>support@foodetective.co</0>"
+  },
+  "emptyWholesalers": {
+    "title": "Ops, sembra che il tuo fornitore non sia ancora presente sulla nostra piattaforma...",
+    "description": "Non preoccuparti: mandaci il nome e il sito web del fornitore che vorresti vedere qui a <0>support@foodetective.co</0> e lo aggiungeremo il prima possibile."
   }
 }

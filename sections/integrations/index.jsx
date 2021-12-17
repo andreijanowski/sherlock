@@ -9,6 +9,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { WHOLESALERS_CATEGORY } from "consts";
 import { fetchPartners } from "actions/partners";
 import { IntegrationTile, WholesalerTile } from "components/PartnerTile";
+import { selectPreviousConfig } from "selectors/integrations";
 import {
   GridWrapper,
   Wrapper,
@@ -175,7 +176,7 @@ IntegrationsList.propTypes = {
 const mapState = state => ({
   isLoading: state.getIn(["partners", "isFetching"]),
   hasMore: state.getIn(["partners", "hasMore"]),
-  previousConfig: state.getIn(["partners", "previousConfig"])
+  previousConfig: selectPreviousConfig(state)
 });
 
 const mapDispatch = {

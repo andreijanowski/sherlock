@@ -6,12 +6,8 @@ import { Trans } from "i18n";
 import { generatePartooToken as generatePartooTokenAction } from "actions/users";
 import { selectIsPartooConnected } from "selectors/users";
 import { useT } from "utils/hooks";
-import {
-  ConnectedContainer,
-  IFrameContainer,
-  NotConnectedContainer,
-  TopPane
-} from "./styled";
+import CenteredSection from "components/CenteredSection";
+import { ConnectedContainer, IFrameContainer, TopPane } from "./styled";
 import GoToConnectionsButton from "./GoToConnectionsButton";
 
 const BASE_CONTAINER_ID = "partoo-container";
@@ -72,7 +68,7 @@ const PartooIframe = ({
       <IFrameContainer id={containerId} />
     </ConnectedContainer>
   ) : (
-    <NotConnectedContainer>
+    <CenteredSection>
       <Trans
         t={t}
         i18nKey="app:connectPartoo"
@@ -84,7 +80,7 @@ const PartooIframe = ({
           </ol>
         ]}
       />
-    </NotConnectedContainer>
+    </CenteredSection>
   );
 };
 
