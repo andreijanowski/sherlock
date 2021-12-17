@@ -42,11 +42,17 @@ export const BlueButton = styled(Button)`
   width: auto;
 `;
 
-export const IframeWrapper = styled.iframe`
+export const IframeWrapper = styled.div`
+  position: relative;
   width: 100%;
   flex: 1;
   min-height: 500px;
-  border: none;
   border-radius: ${p => p.theme.radius.default};
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
+`;
+
+export const IFrame = styled.iframe`
+  width: 100%;
+  min-height: 100%;
+  border: none;
 `;
