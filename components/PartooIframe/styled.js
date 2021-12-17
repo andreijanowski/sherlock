@@ -38,12 +38,3 @@ export const TopPane = styled(Flex)`
 export const ButtonStyled = styled(Button)`
   align-items: center;
 `;
-
-export const NotConnectedContainer = styled(Flex)`
-  flex: auto;
-  width: 100%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-height: calc(100vh - 200px);
-`;

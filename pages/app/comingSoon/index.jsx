@@ -6,16 +6,17 @@ import { func, string } from "prop-types";
 import { connect } from "react-redux";
 
 import AppLayout from "layout/App";
-import { Wrapper, Text } from "./styled";
+import CenteredSection from "components/CenteredSection";
+import { Text } from "./styled";
 
 const namespaces = ["app"];
 
 const ComingSoonPage = ({ t, lng }) => (
   <AppLayout t={t} lng={lng}>
-    <Wrapper>
+    <CenteredSection>
       <Text>{t("comingSoon.title")}</Text>
       <Text>{t("comingSoon.caption")}</Text>
-    </Wrapper>
+    </CenteredSection>
   </AppLayout>
 );
 

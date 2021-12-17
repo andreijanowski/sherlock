@@ -1,20 +1,22 @@
-import { LoadingIndicator } from "components";
-import { Confirm } from "components/modals";
 import { preferredAdd } from "actions/partners";
 import { keys, noop } from "lodash";
 import React, { useCallback, useEffect, useState } from "react";
+import { bool, func, shape, string } from "prop-types";
+import { connect } from "react-redux";
+import { useRouter } from "next/router";
+
+import { LoadingIndicator } from "components";
+import { Confirm } from "components/modals";
 import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
-import { func, string, shape, bool } from "prop-types";
-import { connect } from "react-redux";
 import AppLayout from "layout/App";
 import {
   WHOLESALERS_CATEGORIES,
   WHOLESALERS_URL
 } from "sections/integrations/utils";
 import IntegrationsList from "sections/integrations";
-import { useRouter } from "next/router";
 import PartnersSearchBox from "components/PartnersSearchBox";
+import EmptyWholesalersList from "components/EmptyWholesalersList";
 
 const namespaces = ["forms", "app"];
 
@@ -82,7 +84,7 @@ const IntegrationsPage = ({
       header={t("app:wholesaler")}
     >
       <PartnersSearchBox visibilityRange={[0, 640]} />
-      {wholesalers && wholesalers.size > 0 && (
+      {wholesalers && wholesalers.size > 0 ? (
         <>
           <IntegrationsList
             category={category}
@@ -91,6 +93,8 @@ const IntegrationsPage = ({
             onAddToFavorite={handleAddToFavorite}
           />
         </>
+      ) : (
+        <EmptyWholesalersList category={category} />
       )}
       {isLoading && <LoadingIndicator hasTransparentBackground />}
       <Confirm
