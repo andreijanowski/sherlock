@@ -121,26 +121,15 @@ const dropdownStyles = css`
 export const DropdownWrapper = styled(Flex)`
   width: 120px;
   height: 24px;
-  padding: ${p => (p.withoutBorder ? "4px 0 4px 12px" : "4px 16px")};
+  padding: 4px 8px;
   position: relative;
   font-size: 10px;
   font-weight: 600;
-  justify-content: ${p => (!p.withoutBorder ? "center" : "flex-end")};
+  justify-content: center;
   align-items: center;
   cursor: pointer;
-  color: rgba(
-    ${p =>
-      p.withoutBorder
-        ? p.theme.colors.lightGreyText
-        : p.theme.colors.darkGreyText},
-    1
-  );
-  ${p => !p.withoutBorder && dropdownStyles}
-  &:hover {
-    ${p =>
-      !p.withoutBorder &&
-      `box-shadow: 0px 0px 10px rgba(${p.theme.colors.lightGreyText}, 0.4);`}
-  }
+  color: rgba(${p => p.theme.colors.darkGreyText}, 1);
+  ${dropdownStyles}
   &:focus {
     outline: none;
   }
@@ -163,6 +152,8 @@ export const ItemsWrapper = styled(Flex)`
   z-index: 2;
   position: absolute;
   top: 28px;
+  left: 0;
+  right: 0;
   border-radius: 12px;
   flex-direction: column;
   padding: 12px 0;
@@ -171,20 +162,17 @@ export const ItemsWrapper = styled(Flex)`
 `;
 
 export const DropdownButton = styled(Flex)`
-  font-size: ${p => (p.withoutBorder ? "12px" : "10px")};
+  flex: auto;
+  font-size: 10px;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   svg {
-    width: ${p => (p.withoutBorder ? "10px" : "8px")};
-    height: ${p => (p.withoutBorder ? "5px" : "4px")};
+    width: 8px;
+    height: 4px;
   }
   &:hover {
     transition: 0.2s;
-    color: rgba(
-      ${p =>
-        p.withoutBorder ? p.theme.colors.gray["3"] : p.theme.colors.darkText},
-      1
-    );
+    color: rgba(${p => p.theme.colors.darkText}, 1);
   }
   .DropdownArrow {
     transition: 0.1s;
