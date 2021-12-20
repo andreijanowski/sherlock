@@ -1,22 +1,21 @@
 import React from "react";
 import { Box } from "@rebass/grid";
-import { string, shape } from "prop-types";
+import { shape } from "prop-types";
 import { connect } from "react-redux";
 
 import { FOODETECTIVE_MAIL } from "consts";
 import CenteredSection from "components/CenteredSection";
-import { WHOLESALERS_PREFERRED_CATEGORY } from "sections/integrations/utils";
 import { useT } from "utils/hooks";
 import { Trans } from "i18n";
 import { selectPreviousConfig } from "selectors/integrations";
-import { SubtitleStyled, BodyStyled } from "./styled";
+import { BodyStyled, SubtitleStyled } from "./styled";
 
-const EmptyWholesalersList = ({ category, previousConfig }) => {
+const EmptyWholesalersList = ({ previousConfig }) => {
   const t = useT("integrations");
 
   const isSearchFilled = !!(previousConfig && previousConfig.search);
 
-  if (category === WHOLESALERS_PREFERRED_CATEGORY || !isSearchFilled) {
+  if (!isSearchFilled) {
     return null;
   }
 
@@ -39,7 +38,6 @@ const EmptyWholesalersList = ({ category, previousConfig }) => {
 };
 
 EmptyWholesalersList.propTypes = {
-  category: string.isRequired,
   previousConfig: shape().isRequired
 };
 

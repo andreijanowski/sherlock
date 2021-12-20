@@ -94,7 +94,7 @@ const IntegrationsPage = ({
           />
         </>
       ) : (
-        <EmptyWholesalersList category={category} />
+        <EmptyWholesalersList />
       )}
       {isLoading && <LoadingIndicator hasTransparentBackground />}
       <Confirm
