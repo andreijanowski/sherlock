@@ -119,7 +119,7 @@ const dropdownStyles = css`
 `;
 
 export const DropdownWrapper = styled(Flex)`
-  width: 120px;
+  width: 130px;
   height: 24px;
   padding: 4px 8px;
   position: relative;
@@ -161,11 +161,11 @@ export const ItemsWrapper = styled(Flex)`
   ${dropdownStyles};
 `;
 
-export const DropdownButton = styled(Flex)`
-  flex: auto;
+export const DropdownButton = styled.div`
+  position: relative;
+  width: 100%;
+  text-align: center;
   font-size: 10px;
-  align-items: center;
-  justify-content: space-between;
   svg {
     width: 8px;
     height: 4px;
@@ -175,8 +175,14 @@ export const DropdownButton = styled(Flex)`
     color: rgba(${p => p.theme.colors.darkText}, 1);
   }
   .DropdownArrow {
+    position: absolute;
+    top: 50%;
+    right: -3px;
     transition: 0.1s;
-    transform: ${p => (p.isDropdownOpen ? "rotate(180deg)" : "none")};
+    transform: ${p =>
+      p.isDropdownOpen
+        ? "translateY(-50%) rotate(180deg)"
+        : "translateY(-50%)"};
   }
 `;
 
