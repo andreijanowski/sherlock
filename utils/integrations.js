@@ -1,6 +1,5 @@
 export const ORKESTRO_NAME = "Orkestro";
 export const UBER_EATS_NAME = "Uber Eats";
-export const PARTNERS_WITH_CONNECTION = ["pos", "delivery_and_take_away"];
 
 export const getInternalIntegrationStates = partner => ({
   isIntegrated: partner.get("partnerIntegrationActive"),
@@ -77,7 +76,5 @@ export const getIntegrationLinkProps = partner => ({
   rel: "noopener noreferrer"
 });
 
-export const isPartnerRequiresConnection = partner => {
-  const category = partner.get("category");
-  return PARTNERS_WITH_CONNECTION.includes(category);
-};
+export const isPartnerRequiresConnection = partner =>
+  partner.get("displayCredentialsPrompt");

@@ -27,13 +27,13 @@ const ConnectIntegrationForm = ({ partner, onSubmit, onClose }) => {
               {t("integrations:connectPartner", { name: partner.get("name") })}
             </H3Styled>
             <FormInput
-              name="id"
+              name="integrationLogin"
               validate={required(t)}
               label={t("integrations:id")}
               placeholder={t("integrations:id")}
             />
             <FormInput
-              name="password"
+              name="integrationPassword"
               type="password"
               validate={required(t)}
               label={t("integrations:password")}

@@ -73,14 +73,12 @@ const InternalIntegrationSwitch = ({
     closeModal();
   }, [closeModal, makeCancelIntegrationRequest]);
 
-  const onPOSConnectSubmit = useCallback(
+  const onCredentialsConnectSubmit = useCallback(
     async data => {
-      // todo make request to pos connection
-      console.log(data);
-      // await makeCancelIntegrationRequest();
+      await integratePartner(businessId, partnerId, data);
       closeModal();
     },
-    [closeModal]
+    [businessId, closeModal, integratePartner, partnerId]
   );
 
   return (
@@ -105,7 +103,7 @@ const InternalIntegrationSwitch = ({
       {modal === MODALS.CONNECT && (
         <ConnectIntegration
           partner={partner}
-          onSubmit={onPOSConnectSubmit}
+          onSubmit={onCredentialsConnectSubmit}
           onClose={closeModal}
         />
       )}
