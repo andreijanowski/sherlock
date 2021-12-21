@@ -115,6 +115,9 @@ const PARTOO_SDK_URL =
 
 const LICENSING_TYPEFORM_LINK = "https://foodetective.typeform.com/to/xnVTlV0K";
 
+const ONLINE_MEETING_LINK =
+  "https://calendly.com/maxence-foodetective/meeting-with-maxence-foodetective";
+
 module.exports = {
   contentTypes,
   languages,
@@ -160,5 +163,6 @@ module.exports = {
   CAREERS_FOODETECTIVE_EMAIL,
   USER_GUIDES_URL,
   PARTOO_SDK_URL,
-  LICENSING_TYPEFORM_LINK
+  LICENSING_TYPEFORM_LINK,
+  ONLINE_MEETING_LINK
 };
