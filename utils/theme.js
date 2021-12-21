@@ -130,3 +130,5 @@ export const downThanBreakpoint = breakpointIndex =>
   `@media (max-width: ${emToPx(breakpoints[breakpointIndex]) - 1}px)`;
 
 export const themeGet = path => _.get(theme, path);
+
+export const LANDING_BLOCK_ANGLE = "177deg";

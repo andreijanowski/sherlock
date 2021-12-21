@@ -127,5 +127,11 @@
   "integrations": "Integrations",
   "careersSubject": "Join the team",
   "language": "Language",
-  "seeSubscriptionPlans": "See Subscription plans"
+  "seeSubscriptionPlans": "See Subscription plans",
+  "integrationsLandings": {
+    "management": {
+      "title": "Management Integrations",
+      "subtitle": "Ensure you <0>business runs smoothly</0> and efficiently and provide customers with pleasant experiences that live up to brand standards."
+    }
+  }
 }

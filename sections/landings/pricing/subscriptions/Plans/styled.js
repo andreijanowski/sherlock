@@ -4,7 +4,7 @@ import { Flex } from "@rebass/grid";
 import {
   H2Styled as BaseH2Styled,
   ParagraphStyled as BaseParagraphStyled
-} from "sections/common/sharedStyled";
+} from "sections/landings/common/sharedStyled";
 
 export const PlansContainer = styled.div`
   max-width: 1150px;

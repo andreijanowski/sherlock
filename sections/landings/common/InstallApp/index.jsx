@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Flex } from "@rebass/grid";
 
 import FoodetectiveLogo from "components/FoodetectiveLogo";
-import { BlueText } from "sections/common/sharedStyled";
+import { BlueText } from "sections/landings/common/sharedStyled";
 import { useT } from "utils/hooks";
 import {
   GET_THE_APP_ANDROID_LINK,

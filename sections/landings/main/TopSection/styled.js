@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { Paragraph } from "components";
 import { H1 } from "components/styleguide/Typography";
-import { alignCenterTablet } from "sections/common/sharedStyled";
+import { alignCenterTablet } from "sections/landings/common/sharedStyled";
 import { AdaptiveBox } from "components/styleguide/common";
 import { upThanBreakpoint } from "utils/theme";
 

@@ -3,26 +3,18 @@ import requireAuth from "lib/requireAuth";
 
 import { Footer } from "components";
 import {
-  DevelopersAndApi,
-  Product,
-  TopSection,
-  Integrations
-} from "sections/landings/main";
-import { Navigation, GetReady, InstallApp } from "sections/landings/common";
-import {
-  DevelopersAndApiWrapper,
   FooterWrapper,
   GetReadyWrapper,
   InstallAppWrapper,
   LandingWrapper,
-  NavigationWrapper,
-  ProductsWrapper,
-  TopSectionWrapper,
-  IntegrationsWrapper
+  NavigationWrapper
 } from "sections/landings/common/sharedStyled";
+import { GetReady, InstallApp, Navigation } from "sections/landings/common";
 import { theme } from "utils/theme";
+import { TopSectionWrapper } from "sections/landings/product/styled";
+import { TopSection } from "sections/landings/product";
 
-const Home = () => (
+const ManagementPage = () => (
   <LandingWrapper width={1} alignItems="center" flexDirection="column">
     <NavigationWrapper>
       <Navigation />
@@ -30,15 +22,6 @@ const Home = () => (
     <TopSectionWrapper>
       <TopSection />
     </TopSectionWrapper>
-    <DevelopersAndApiWrapper>
-      <DevelopersAndApi />
-    </DevelopersAndApiWrapper>
-    <IntegrationsWrapper>
-      <Integrations />
-    </IntegrationsWrapper>
-    <ProductsWrapper>
-      <Product />
-    </ProductsWrapper>
     <GetReadyWrapper bgColor={theme.colors.landingDarkBlue}>
       <GetReady />
     </GetReadyWrapper>
@@ -51,4 +34,4 @@ const Home = () => (
   </LandingWrapper>
 );
 
-export default requireAuth(false)(Home);
+export default requireAuth(false)(ManagementPage);
