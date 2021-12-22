@@ -17,7 +17,7 @@ import {
   WhiteWrapper
 } from "sections/landings/product/styled";
 import { InfoSection, TopSection } from "sections/landings/product";
-import { Delivery, MenuManagement } from "components/Icons";
+import { Delivery, EventsManagement, MenuManagement } from "components/Icons";
 
 const ManagementPage = () => (
   <LandingWrapper width={1} alignItems="center" flexDirection="column">
@@ -87,6 +87,21 @@ const ManagementPage = () => (
         columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
       />
     </WhiteWrapper>
+    <DarkWrapper>
+      <InfoSection
+        name="management.events"
+        icon={<EventsManagement />}
+        images={[
+          {
+            src: "/static/img/management/events.png",
+            width: "640px"
+          }
+        ]}
+        columnsProportions={[[1, null, null, 3 / 5], [1, null, null, 2 / 5]]}
+        advantagesColumnsWidth={1}
+        isDark
+      />
+    </DarkWrapper>
     <GetReadyWrapper bgColor={theme.colors.landingDarkBlue}>
       <GetReady />
     </GetReadyWrapper>

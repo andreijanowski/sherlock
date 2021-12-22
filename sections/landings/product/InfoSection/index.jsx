@@ -15,7 +15,8 @@ const InfoSection = ({
   images,
   isDark,
   columnsProportions,
-  linkTo
+  linkTo,
+  advantagesColumnsWidth
 }) => {
   const t = useT("landing");
   const prefix = getPrefix(name);
@@ -51,6 +52,7 @@ const InfoSection = ({
           isDark={isDark}
           activeOption={activeOption}
           prefix={prefix}
+          advantagesColumnsWidth={advantagesColumnsWidth}
         />
       </Flex>
     </Container>
@@ -72,13 +74,15 @@ InfoSection.propTypes = {
     })
   ).isRequired,
   isDark: bool,
-  columnsProportions: arrayOf(arrayOf(number)).isRequired
+  columnsProportions: arrayOf(arrayOf(number)).isRequired,
+  advantagesColumnsWidth: arrayOf(oneOf([arrayOf(number), number, string]))
 };
 
 InfoSection.defaultProps = {
   icon: null,
   linkTo: null,
-  isDark: false
+  isDark: false,
+  advantagesColumnsWidth: [1, null, null, 1 / 2]
 };
 
 export default InfoSection;

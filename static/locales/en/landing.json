@@ -205,6 +205,21 @@
             ]
           }
         ]
+      },
+      "events": {
+        "title": "Events Management",
+        "subtitle": "One Screen All Events",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Boost your productivity with a calendar view of your upcoming events",
+            "advantages": [
+              "<0>No more manual entries.</0> Have an automized overview of the month.",
+              "<0>All events in a single place</0> including private events, caterings, and tastings.",
+              "<0>You are in control.</0> Accept or decline requests and send personalized offers "
+            ]
+          }
+        ]
       }
     }
   }
