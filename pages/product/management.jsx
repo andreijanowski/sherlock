@@ -68,6 +68,25 @@ const ManagementPage = () => (
         isDark
       />
     </DarkWrapper>
+    <WhiteWrapper>
+      <InfoSection
+        name="management.reservation"
+        icon={<Delivery />}
+        images={[
+          {
+            src: "/static/img/management/reservations.png",
+            width: "480px"
+          },
+          {
+            src: "/static/img/management/reservationsPopup.png",
+            width: "273px",
+            bottom: -77,
+            right: -33
+          }
+        ]}
+        columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
+      />
+    </WhiteWrapper>
     <GetReadyWrapper bgColor={theme.colors.landingDarkBlue}>
       <GetReady />
     </GetReadyWrapper>

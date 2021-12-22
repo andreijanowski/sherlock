@@ -70,3 +70,8 @@ export const Image = styled(Box).attrs({ as: "img" })`
       : "";
   }};
 `;
+
+export const List = styled.ul`
+  margin: 6px 0 0;
+  padding-left: 16px;
+`;

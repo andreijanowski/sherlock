@@ -186,6 +186,25 @@
             ]
           }
         ]
+      },
+      "reservation": {
+        "title": "Reservation Management",
+        "subtitle": "Your virtual floor plan with full house",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Keep reservations management simple and reliable. Increase covers and reduce no shows.",
+            "advantages": [
+              "<0>Stay in control of your bookings.</0> Visualize them on a single screen on list or calendar view.",
+              "<0>Add offline reservations.</0> Bookings received over the phone or in person? Add them with ease.",
+              "<0>Communication built in.</0> Receive and write messages to guests when needed.",
+              "<0>Click and adapt.</0> New regulations? Divide groups into tables, add chairs, change time slots. ",
+              "<0>Visual floor plan</0>, Organize customers by groups or tags and send targeted promotions and surveys.",
+              "<0>Live stream notifications</0> sent directly to (y)our app",
+              "<0>Depending on the integration partner</0> you choose you may enjoy additional features such as: <2><3>Require pre-payments</3><3>Waiting list feature</3><3>No show control system</3></2>"
+            ]
+          }
+        ]
       }
     }
   }

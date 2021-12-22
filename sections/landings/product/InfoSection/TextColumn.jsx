@@ -5,7 +5,7 @@ import { arrayOf, bool, number, shape, string } from "prop-types";
 import CheckmarkText from "components/Landing/CheckmarkText";
 import { Trans } from "i18n";
 import { useT } from "utils/hooks";
-import { BodyStyled, H3Styled } from "./styled";
+import { BodyStyled, H3Styled, List } from "./styled";
 
 const TextColumn = ({ width, prefix, isDark, activeOption }) => {
   const t = useT("landing");
@@ -26,10 +26,16 @@ const TextColumn = ({ width, prefix, isDark, activeOption }) => {
             <CheckmarkText isDark={isDark}>
               <Trans
                 t={t}
-                components={
-                  // todo add links support
-                  [<strong />]
-                }
+                components={[
+                  <strong />,
+                  <div />, // todo add links support
+                  <List>
+                    <li />
+                    <li />
+                    <li />
+                    <li />
+                  </List>
+                ]}
               >
                 {adv}
               </Trans>
