@@ -220,6 +220,21 @@
             ]
           }
         ]
+      },
+      "customers": {
+        "title": "Customers Management",
+        "subtitle": "Your customers, Your data",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Your customer data in a single place with actionable insights.",
+            "advantages": [
+              "<0>Customer profiles on autopilot</0> as you can capture meaningful data.",
+              "<0>History of reservations</0> so you can know who your recurring customers are.",
+              "Coming soon: <0>Filter customers by groups</0> or tags and send targeted promotions and surveys."
+            ]
+          }
+        ]
       }
     }
   }

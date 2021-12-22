@@ -17,7 +17,12 @@ import {
   WhiteWrapper
 } from "sections/landings/product/styled";
 import { InfoSection, TopSection } from "sections/landings/product";
-import { Delivery, EventsManagement, MenuManagement } from "components/Icons";
+import {
+  Clients,
+  Delivery,
+  EventsManagement,
+  MenuManagement
+} from "components/Icons";
 
 const ManagementPage = () => (
   <LandingWrapper width={1} alignItems="center" flexDirection="column">
@@ -102,6 +107,27 @@ const ManagementPage = () => (
         isDark
       />
     </DarkWrapper>
+    <WhiteWrapper>
+      <InfoSection
+        name="management.customers"
+        icon={<Clients />}
+        images={[
+          {
+            src: "/static/img/management/customers.png",
+            width: "603px",
+            mr: 60
+          },
+          {
+            src: "/static/img/management/customersPopup.png",
+            width: "163px",
+            top: 28,
+            right: -15
+          }
+        ]}
+        columnsProportions={[[1, null, null, 3 / 5], [1, null, null, 2 / 5]]}
+        advantagesColumnsWidth={1}
+      />
+    </WhiteWrapper>
     <GetReadyWrapper bgColor={theme.colors.landingDarkBlue}>
       <GetReady />
     </GetReadyWrapper>
