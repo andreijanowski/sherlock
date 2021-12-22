@@ -168,6 +168,24 @@
             ]
           }
         ]
+      },
+      "menu": {
+        "title": "Menu Management",
+        "subtitle": "Simultaneously Updated Menus",
+        "options": [
+          {
+            "title": "Main",
+            "description": "You no longer need a week to make changes to your menu. Automatic synchronization of your menu across platforms.",
+            "advantages": [
+              "<0>Update all</0> digital menus on third-party delivery platforms through a single screen.",
+              "Receive notifications when you need to <0>restock products.</0>",
+              "Eliminate the potential of failed orders due to <0>out-of-stock items.</0>",
+              "<0>Insights</0> on best-selling items shown on your personalized dashboard.",
+              "<0>Flexible menu</0> management. You can now test new seasonal dishes.",
+              "Coming soon: integrations with <0>digital menu solutions.</0>"
+            ]
+          }
+        ]
       }
     }
   }

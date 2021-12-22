@@ -35,7 +35,10 @@ const InfoSection = ({
         prefix={prefix}
       />
 
-      <Flex flexDirection={["column", null, isDark ? "row-reverse" : "row"]}>
+      <Flex
+        flexDirection={["column", null, isDark ? "row-reverse" : "row"]}
+        alignItems="flex-start"
+      >
         <ImageColumn
           width={columnsProportions[0]}
           images={images}

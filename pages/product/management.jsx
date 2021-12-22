@@ -12,11 +12,12 @@ import {
 import { GetReady, InstallApp, Navigation } from "sections/landings/common";
 import { theme } from "utils/theme";
 import {
+  DarkWrapper,
   TopSectionWrapper,
   WhiteWrapper
 } from "sections/landings/product/styled";
 import { InfoSection, TopSection } from "sections/landings/product";
-import { Delivery } from "components/Icons";
+import { Delivery, MenuManagement } from "components/Icons";
 
 const ManagementPage = () => (
   <LandingWrapper width={1} alignItems="center" flexDirection="column">
@@ -40,6 +41,33 @@ const ManagementPage = () => (
         linkTo="/#integrations"
       />
     </WhiteWrapper>
+    <DarkWrapper>
+      <InfoSection
+        name="management.menu"
+        icon={<MenuManagement />}
+        images={[
+          {
+            src: "/static/img/management/menu.png",
+            mt: 82,
+            width: "442px"
+          },
+          {
+            src: "/static/img/management/menuUpdatesPopup.png",
+            width: "258px",
+            right: -37,
+            top: 0
+          },
+          {
+            src: "/static/img/management/menuConfirmPopup.png",
+            left: -30,
+            bottom: -45,
+            width: "206px"
+          }
+        ]}
+        columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
+        isDark
+      />
+    </DarkWrapper>
     <GetReadyWrapper bgColor={theme.colors.landingDarkBlue}>
       <GetReady />
     </GetReadyWrapper>

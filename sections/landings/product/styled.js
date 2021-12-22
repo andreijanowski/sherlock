@@ -30,12 +30,12 @@ export const DarkWrapper = styled(Box).attrs({
   width: 100%;
   background: linear-gradient(
     ${LANDING_BLOCK_ANGLE},
-    rgb(${themeGet("colors.white")}) calc(10% - 1px),
-    rgb(${themeGet("colors.darkBlue")}) 10%,
-    rgb(${themeGet("colors.darkBlue")}) calc(90% - 1px),
-    rgb(${themeGet("colors.white")}) 90%
+    rgb(${themeGet("colors.white")}) calc(15% - 1px),
+    rgb(${themeGet("colors.landingDarkBlue")}) 15%,
+    rgb(${themeGet("colors.landingDarkBlue")}) calc(85% - 1px),
+    rgb(${themeGet("colors.white")}) 85%
   );
   ${downThanBreakpoint(2)} {
-    background: rgb(${themeGet("colors.darkBlue")});
+    background: rgb(${themeGet("colors.landingDarkBlue")});
   }
 `;

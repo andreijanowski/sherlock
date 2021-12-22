@@ -50,6 +50,7 @@ export const BodyStyled = styled(Body)`
 `;
 
 export const ImagesContainer = styled(Flex)`
+  width: fit-content;
   position: relative;
   flex-direction: column;
 `;
@@ -58,9 +59,9 @@ export const Image = styled(Box).attrs({ as: "img" })`
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));
   ${({ left, top, right, bottom }) => {
     const positionStyles = `
-      ${top ? `left: ${top}px;` : ""}
-      ${right ? `left: ${right}px;` : ""}
-      ${bottom ? `left: ${bottom}px;` : ""}
+      ${top ? `top: ${top}px;` : ""}
+      ${right ? `right: ${right}px;` : ""}
+      ${bottom ? `bottom: ${bottom}px;` : ""}
       ${left ? `left: ${left}px;` : ""}
     `;
 
