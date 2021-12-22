@@ -27,7 +27,7 @@ const TopSection = () => {
         <TabletImageBox
           display={["block", null, null, "none"]}
           as="img"
-          src="/static/img/managementLandingTabletSmall.png"
+          src="/static/img/management/bannerTablet.png"
           alt="tablet"
         />
         <Subtitle tabletCentered mb={[44, null, null, 54]}>
@@ -53,7 +53,7 @@ const TopSection = () => {
         pt={66}
         ml={50}
       >
-        <img src="/static/img/managementLandingTablet.png" alt="tablet" />
+        <img src="/static/img/management/bannerDesktop.png" alt="tablet" />
       </AdaptiveBox>
     </Container>
   );

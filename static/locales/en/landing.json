@@ -131,7 +131,44 @@
   "integrationsLandings": {
     "management": {
       "title": "Management Integrations",
-      "subtitle": "Ensure you <0>business runs smoothly</0> and efficiently and provide customers with pleasant experiences that live up to brand standards."
+      "subtitle": "Ensure you <0>business runs smoothly</0> and efficiently and provide customers with pleasant experiences that live up to brand standards.",
+      "orders": {
+        "title": "Orders Management",
+        "subtitle": "Work smarter not harder",
+        "link": "See available integrations",
+        "options": [
+          {
+            "title": "Save time & money",
+            "description": "The automation of different stages of your online ordering saves you time, both in the dining room and in the kitchen.",
+            "advantages": [
+              "<0>Aggregate</0> all your orders from food ordering platforms, no more tablets on tablets",
+              "Connection and <0>synchronization</0> to your existing POS",
+              "Enable <0>automatic</0> order acceptance",
+              "<0>Better delivery</0> times for more satisfied customers",
+              "<0>Less staff</0> needed to manage online orders",
+              "<0>More sales</0>, less admin."
+            ]
+          },
+          {
+            "title": "Reduce ordering errors",
+            "description": "Orders are sent directly to you checkout avoiding human error, spend less time processing orders.",
+            "advantages": [
+              "<0>Reduce your time</0> spent on incorrect orders due to human errors",
+              "<0>Streamlining the order flow</0> and providing a more reliable service.",
+              "Happy customers mean better reviews. <1>Better reviews</1> mean better placement on platforms."
+            ]
+          },
+          {
+            "title": "Add sales channels",
+            "description": "Take advantage of the booming online ordering sector and add as many platforms as you need to attract new customers.",
+            "advantages": [
+              "<0>Easily add</0> as many or as few platforms as you use",
+              "You can also <0>create your own delivery system</0> thanks to our logistics partners",
+              "Compare which channels bring you the most sales on the <1>analytics dashboard</1>"
+            ]
+          }
+        ]
+      }
     }
   }
 }

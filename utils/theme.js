@@ -60,6 +60,7 @@ export const colors = {
   landingDarkBlue: "15, 17, 59",
   blackDark: "32, 32, 31",
   border: "220, 223, 239",
+  b2bSecondary: "15, 21, 85",
   gray: {
     "2": "79, 79, 79",
     "3": "130, 130, 130",
