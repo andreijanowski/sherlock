@@ -55,19 +55,21 @@ const ManagementPage = () => (
           {
             src: "/static/img/management/menu.png",
             mt: 82,
-            width: "442px"
+            mb: [74, null, null, 0],
+            mx: "auto",
+            width: ["90%", null, null, "442px"]
           },
           {
             src: "/static/img/management/menuUpdatesPopup.png",
-            width: "258px",
-            right: -37,
-            top: 0
+            width: ["173px", "200px", null, "258px"],
+            right: [-5, null, null, -37],
+            top: [40, null, null, 0]
           },
           {
             src: "/static/img/management/menuConfirmPopup.png",
-            left: -30,
-            bottom: -45,
-            width: "206px"
+            left: [0, null, null, -30],
+            bottom: [25, null, null, -45],
+            width: ["138px", "160px", null, "206px"]
           }
         ]}
         columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}

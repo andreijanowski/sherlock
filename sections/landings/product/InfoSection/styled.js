@@ -63,17 +63,80 @@ export const ImagesContainer = styled(Flex)`
   width: fit-content;
   position: relative;
   flex-direction: column;
+  margin: auto;
 `;
 
 export const Image = styled(Box).attrs({ as: "img" })`
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));
-  ${({ left, top, right, bottom }) => {
-    const positionStyles = `
-      ${top ? `top: ${top}px;` : ""}
-      ${right ? `right: ${right}px;` : ""}
-      ${bottom ? `bottom: ${bottom}px;` : ""}
-      ${left ? `left: ${left}px;` : ""}
-    `;
+  ${({
+    top = [],
+    right = [],
+    bottom = [],
+    left = [],
+    theme: { breakpoints }
+  }) => {
+    let positionStyles = "";
+
+    if (left.length || top.length || right.length || bottom.length) {
+      const addStyles = ({
+        currentTop,
+        currentRight,
+        currentBottom,
+        currentLeft,
+        breakpoint
+      }) => {
+        const currentPositionStyles = `
+          ${typeof currentTop !== "undefined" ? `top: ${currentTop}px;` : ""}
+          ${
+            typeof currentRight !== "undefined"
+              ? `right: ${currentRight}px;`
+              : ""
+          }
+          ${
+            typeof currentBottom !== "undefined"
+              ? `bottom: ${currentBottom}px;`
+              : ""
+          }
+          ${typeof currentLeft !== "undefined" ? `left: ${currentLeft}px;` : ""}
+        `;
+
+        const hasStylesForThisBreakpoint = currentPositionStyles.trim().length;
+
+        if (!hasStylesForThisBreakpoint) return;
+
+        positionStyles = positionStyles.concat(
+          breakpoint
+            ? `@media (min-width: ${breakpoint}) {
+            ${currentPositionStyles}
+          }`
+            : currentPositionStyles
+        );
+      };
+
+      const addBreakpointStyles = (breakpoint, index) => {
+        // we start to use breakpoints from 1 element in our array
+        const arrIndex = index + 1;
+        const currentTop = top[arrIndex];
+        const currentRight = right[arrIndex];
+        const currentBottom = bottom[arrIndex];
+        const currentLeft = left[arrIndex];
+        addStyles({
+          currentTop,
+          currentRight,
+          currentBottom,
+          currentLeft,
+          breakpoint
+        });
+      };
+
+      addStyles({
+        currentTop: top[0],
+        currentRight: right[0],
+        currentBottom: bottom[0],
+        currentLeft: left[0]
+      });
+      breakpoints.map(addBreakpointStyles);
+    }
 
     return positionStyles.trim().length
       ? `position: absolute; ${positionStyles}`
