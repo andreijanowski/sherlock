@@ -39,3 +39,18 @@ export const DarkWrapper = styled(Box).attrs({
     background: rgb(${themeGet("colors.landingDarkBlue")});
   }
 `;
+
+export const BenefitsWrapper = styled(Box).attrs({
+  pt: [57, null, null, 217],
+  pb: [18, null, null, 25]
+})`
+  width: 100%;
+  background: linear-gradient(
+    ${LANDING_BLOCK_ANGLE},
+    rgb(${themeGet("colors.white")}) calc(20% - 1px),
+    rgb(${themeGet("colors.landingDarkBlue")}) 20%
+  );
+  ${downThanBreakpoint(2)} {
+    background: rgb(${themeGet("colors.landingDarkBlue")});
+  }
+`;

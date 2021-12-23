@@ -5,7 +5,7 @@ import { arrayOf, bool, number, oneOf, shape, string } from "prop-types";
 import { useT } from "utils/hooks";
 import { Container } from "./styled";
 import ImageColumn from "./ImageColumn";
-import { getPrefix } from "./utils";
+import { getPrefix } from "../utils";
 import TextColumn from "./TextColumn";
 import Header from "./Header";
 

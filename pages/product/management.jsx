@@ -14,9 +14,10 @@ import { theme } from "utils/theme";
 import {
   DarkWrapper,
   TopSectionWrapper,
-  WhiteWrapper
+  WhiteWrapper,
+  BenefitsWrapper
 } from "sections/landings/product/styled";
-import { InfoSection, TopSection } from "sections/landings/product";
+import { InfoSection, TopSection, Benefits } from "sections/landings/product";
 import {
   Clients,
   Delivery,
@@ -128,6 +129,9 @@ const ManagementPage = () => (
         advantagesColumnsWidth={1}
       />
     </WhiteWrapper>
+    <BenefitsWrapper>
+      <Benefits name="management" />
+    </BenefitsWrapper>
     <GetReadyWrapper bgColor={theme.colors.landingDarkBlue}>
       <GetReady />
     </GetReadyWrapper>

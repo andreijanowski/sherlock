@@ -128,6 +128,7 @@
   "careersSubject": "Join the team",
   "language": "Language",
   "seeSubscriptionPlans": "See Subscription plans",
+  "benefitsInNumbers": "Benefits in numbers",
   "integrationsLandings": {
     "management": {
       "title": "Management Integrations",
@@ -235,7 +236,27 @@
             ]
           }
         ]
-      }
+      },
+      "benefits": [
+        {
+          "percents": "40%",
+          "description": "Improvement in <0/> delivery time."
+        },
+        {
+          "hint": "Up to",
+          "percents": "25%",
+          "description": "Increase in sales <0/> for using multichannel"
+        },
+        {
+          "hint": "Up to",
+          "percents": "80%",
+          "description": "Reduction <0/> in errors."
+        },
+        {
+          "percents": "20%",
+          "description": "Increase in takeaways with <0/> a better digital experience."
+        }
+      ]
     }
   }
 }
