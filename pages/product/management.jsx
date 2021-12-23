@@ -83,13 +83,14 @@ const ManagementPage = () => (
         images={[
           {
             src: "/static/img/management/reservations.png",
-            width: "480px"
+            width: ["95%", null, null, "480px"],
+            mb: [60, null, null, 0]
           },
           {
             src: "/static/img/management/reservationsPopup.png",
-            width: "273px",
-            bottom: -77,
-            right: -33
+            width: ["181px", null, null, "273px"],
+            bottom: [20, null, null, -77],
+            right: [0, null, null, -33]
           }
         ]}
         columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}

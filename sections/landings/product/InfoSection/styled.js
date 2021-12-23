@@ -86,18 +86,10 @@ export const Image = styled(Box).attrs({ as: "img" })`
         breakpoint
       }) => {
         const currentPositionStyles = `
-          ${typeof currentTop !== "undefined" ? `top: ${currentTop}px;` : ""}
-          ${
-            typeof currentRight !== "undefined"
-              ? `right: ${currentRight}px;`
-              : ""
-          }
-          ${
-            typeof currentBottom !== "undefined"
-              ? `bottom: ${currentBottom}px;`
-              : ""
-          }
-          ${typeof currentLeft !== "undefined" ? `left: ${currentLeft}px;` : ""}
+          ${currentTop != null ? `top: ${currentTop}px;` : ""}
+          ${currentRight != null ? `right: ${currentRight}px;` : ""}
+          ${currentBottom != null ? `bottom: ${currentBottom}px;` : ""}
+          ${currentLeft != null ? `left: ${currentLeft}px;` : ""}
         `;
 
         const hasStylesForThisBreakpoint = currentPositionStyles.trim().length;
