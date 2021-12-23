@@ -17,12 +17,18 @@ const ImageColumn = ({ width, isDark, prefix, images, linkTo }) => {
   return (
     <Box
       width={width}
-      ml={isDark ? 80 : undefined}
-      mr={isDark ? undefined : 80}
+      ml={isDark ? [0, null, null, 80] : undefined}
+      mr={isDark ? undefined : [0, null, null, 80]}
+      mb={[24, null, null, 0]}
     >
       <ImagesContainer justifyContent={isDark ? "flex-start" : "flex-end"}>
-        {images.map(({ src, ...styleProps }) => (
-          <Image key={src} src={src} {...styleProps} alt="" />
+        {images.map(({ src, ...styleProps }, index) => (
+          <Image
+            key={src}
+            src={src}
+            {...styleProps}
+            alt={`Image ${index + 1}`}
+          />
         ))}
         {linkTo && linkText && (
           <Link lng={lng} route={linkTo}>

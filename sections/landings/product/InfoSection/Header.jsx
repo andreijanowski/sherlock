@@ -5,6 +5,7 @@ import { string, number, bool, arrayOf, shape, func } from "prop-types";
 import ButtonsBar from "components/styleguide/ButtonsBar";
 import { themeGet } from "utils/theme";
 import { useT } from "utils/hooks";
+import { AdaptiveBox } from "components/styleguide/common";
 import { H2Styled, TitleIcon } from "./styled";
 
 const Header = ({
@@ -24,7 +25,7 @@ const Header = ({
     <>
       <H2Styled
         isDark={isDark}
-        mb={hasOptionsSwitcher ? 4 : 80}
+        mb={hasOptionsSwitcher ? 4 : [4, null, null, 80]}
         justifyContent="center"
         alignItems="center"
       >
@@ -36,7 +37,12 @@ const Header = ({
         {title}
       </H2Styled>
       {hasOptionsSwitcher && (
-        <Box mb={88} width={650} mx="auto">
+        <AdaptiveBox
+          display={["none", null, null, "block"]}
+          mb={88}
+          width={650}
+          mx="auto"
+        >
           <ButtonsBar
             primaryColor={themeGet("colors.landingDarkBlue")}
             secondaryColor={themeGet("colors.white")}
@@ -47,7 +53,7 @@ const Header = ({
               value: index
             }))}
           />
-        </Box>
+        </AdaptiveBox>
       )}
     </>
   );

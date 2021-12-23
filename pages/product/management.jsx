@@ -40,7 +40,7 @@ const ManagementPage = () => (
         images={[
           {
             src: "/static/img/management/ordersManagement.png",
-            width: "490px"
+            width: ["100%", null, null, "490px"]
           }
         ]}
         columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}

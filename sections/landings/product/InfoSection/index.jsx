@@ -23,7 +23,6 @@ const InfoSection = ({
   const options = t(`${prefix}.options`, { returnObjects: true });
 
   const [activeOptionIndex, setActiveOptionIndex] = useState(0);
-  const activeOption = options[activeOptionIndex];
 
   return (
     <Container>
@@ -37,7 +36,7 @@ const InfoSection = ({
       />
 
       <Flex
-        flexDirection={["column", null, isDark ? "row-reverse" : "row"]}
+        flexDirection={["column", null, null, isDark ? "row-reverse" : "row"]}
         alignItems="flex-start"
       >
         <ImageColumn
@@ -50,9 +49,11 @@ const InfoSection = ({
         <TextColumn
           width={columnsProportions[1]}
           isDark={isDark}
-          activeOption={activeOption}
+          activeOptionIndex={activeOptionIndex}
+          setActiveOptionIndex={setActiveOptionIndex}
           prefix={prefix}
           advantagesColumnsWidth={advantagesColumnsWidth}
+          options={options}
         />
       </Flex>
     </Container>
