@@ -103,7 +103,8 @@ const ManagementPage = () => (
         images={[
           {
             src: "/static/img/management/events.png",
-            width: "640px"
+            width: ["100%", null, null, "640px"],
+            mb: [44, null, null, 0]
           }
         ]}
         columnsProportions={[[1, null, null, 3 / 5], [1, null, null, 2 / 5]]}
@@ -118,14 +119,15 @@ const ManagementPage = () => (
         images={[
           {
             src: "/static/img/management/customers.png",
-            width: "603px",
-            mr: 60
+            width: ["90%", null, null, "603px"],
+            mr: [0, null, null, 60],
+            mb: [44, null, null, 0]
           },
           {
             src: "/static/img/management/customersPopup.png",
-            width: "163px",
-            top: 28,
-            right: -15
+            width: ["81px", "163px"],
+            top: [23, 30, 80, 28],
+            right: [0, null, null, -10]
           }
         ]}
         columnsProportions={[[1, null, null, 3 / 5], [1, null, null, 2 / 5]]}
