@@ -4,7 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { LandingContainer } from "sections/landings/common/sharedStyled";
 import { H2, H3, Body } from "components/styleguide/Typography";
-import { downThanBreakpoint, themeGet } from "utils/theme";
+import {
+  downThanBreakpoint,
+  themeGet,
+  adaptiveAbsolutePosition
+} from "utils/theme";
 import { AdaptiveBox } from "components/styleguide/common";
 
 export const Container = styled(LandingContainer)``;
@@ -68,72 +72,7 @@ export const ImagesContainer = styled(Flex)`
 
 export const Image = styled(Box).attrs({ as: "img" })`
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));
-  ${({
-    top = [],
-    right = [],
-    bottom = [],
-    left = [],
-    theme: { breakpoints }
-  }) => {
-    let positionStyles = "";
-
-    if (left.length || top.length || right.length || bottom.length) {
-      const addStyles = ({
-        currentTop,
-        currentRight,
-        currentBottom,
-        currentLeft,
-        breakpoint
-      }) => {
-        const currentPositionStyles = `
-          ${currentTop != null ? `top: ${currentTop}px;` : ""}
-          ${currentRight != null ? `right: ${currentRight}px;` : ""}
-          ${currentBottom != null ? `bottom: ${currentBottom}px;` : ""}
-          ${currentLeft != null ? `left: ${currentLeft}px;` : ""}
-        `;
-
-        const hasStylesForThisBreakpoint = currentPositionStyles.trim().length;
-
-        if (!hasStylesForThisBreakpoint) return;
-
-        positionStyles = positionStyles.concat(
-          breakpoint
-            ? `@media (min-width: ${breakpoint}) {
-            ${currentPositionStyles}
-          }`
-            : currentPositionStyles
-        );
-      };
-
-      const addBreakpointStyles = (breakpoint, index) => {
-        // we start to use breakpoints from 1 element in our array
-        const arrIndex = index + 1;
-        const currentTop = top[arrIndex];
-        const currentRight = right[arrIndex];
-        const currentBottom = bottom[arrIndex];
-        const currentLeft = left[arrIndex];
-        addStyles({
-          currentTop,
-          currentRight,
-          currentBottom,
-          currentLeft,
-          breakpoint
-        });
-      };
-
-      addStyles({
-        currentTop: top[0],
-        currentRight: right[0],
-        currentBottom: bottom[0],
-        currentLeft: left[0]
-      });
-      breakpoints.map(addBreakpointStyles);
-    }
-
-    return positionStyles.trim().length
-      ? `position: absolute; ${positionStyles}`
-      : "";
-  }};
+  ${adaptiveAbsolutePosition};
 `;
 
 export const List = styled.ul`

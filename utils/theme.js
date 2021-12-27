@@ -133,3 +133,69 @@ export const downThanBreakpoint = breakpointIndex =>
 export const themeGet = path => _.get(theme, path);
 
 export const LANDING_BLOCK_ANGLE = "177deg";
+
+export const adaptiveAbsolutePosition = ({
+  top = [],
+  right = [],
+  bottom = [],
+  left = []
+}) => {
+  let positionStyles = "";
+
+  if (left.length || top.length || right.length || bottom.length) {
+    const addStyles = ({
+      currentTop,
+      currentRight,
+      currentBottom,
+      currentLeft,
+      breakpoint
+    }) => {
+      const currentPositionStyles = `
+          ${currentTop != null ? `top: ${currentTop}px;` : ""}
+          ${currentRight != null ? `right: ${currentRight}px;` : ""}
+          ${currentBottom != null ? `bottom: ${currentBottom}px;` : ""}
+          ${currentLeft != null ? `left: ${currentLeft}px;` : ""}
+        `;
+
+      const hasStylesForThisBreakpoint = currentPositionStyles.trim().length;
+
+      if (!hasStylesForThisBreakpoint) return;
+
+      positionStyles = positionStyles.concat(
+        breakpoint
+          ? `@media (min-width: ${breakpoint}) {
+            ${currentPositionStyles}
+          }`
+          : currentPositionStyles
+      );
+    };
+
+    const addBreakpointStyles = (breakpoint, index) => {
+      // we start to use breakpoints from 1 element in our array
+      const arrIndex = index + 1;
+      const currentTop = top[arrIndex];
+      const currentRight = right[arrIndex];
+      const currentBottom = bottom[arrIndex];
+      const currentLeft = left[arrIndex];
+      addStyles({
+        currentTop,
+        currentRight,
+        currentBottom,
+        currentLeft,
+        breakpoint
+      });
+    };
+
+    addStyles({
+      currentTop: top[0],
+      currentRight: right[0],
+      currentBottom: bottom[0],
+      currentLeft: left[0]
+    });
+    breakpoints.map(addBreakpointStyles);
+  }
+
+  return positionStyles.trim().length
+    ? `position: absolute; ${positionStyles}`
+    : "";
+};

@@ -40,7 +40,7 @@ const Header = ({
         <AdaptiveBox
           display={["none", null, null, "block"]}
           mb={88}
-          width={650}
+          textAlign="center"
           mx="auto"
         >
           <ButtonsBar
