@@ -19,6 +19,7 @@
   "postCodePlaceholder": "1205",
   "bigCheckboxLabel": "Checkbox",
   "types": "Types (choix de 1 à 3 articles)",
+  "typesPlaceholder": "Types",
   "cuisines": "Cuisines (choix de 1 à 5 articles)",
   "cuisinesPlaceholder": "Polonais",
   "foodsAndDrinks": "Nourriture et boissons (choix de 1 à 6 articles)",
