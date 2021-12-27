@@ -134,11 +134,11 @@
   "benefitsInNumbers": "Les bénéfices en chiffres",
   "integrationsLandings": {
     "management": {
-      "title": "Intégrations de management",
+      "title": "Management Integrations",
       "subtitle": "Assurez le <0>bon fonctionnement de votre établissement</0> et offrez à vos clients une expérience à la hauteur de vos standards.",
       "orders": {
         "title": "Gestion des commandes",
-        "subtitle": "Travaillez mieux, pas plus.",
+        "subtitle": "Travaillez efficacement, sans complexité.",
         "link": "Voir les intégrations disponibles",
         "options": [
           {
@@ -257,7 +257,7 @@
         },
         {
           "percents": "20%",
-          "description": "Augmentation des commandes à l'emporter grâce à <0/> une meilleure expérience digitale."
+          "description": "En plus de takeaway grâce <0 /> à votre expérience digitale."
         }
       ]
     }

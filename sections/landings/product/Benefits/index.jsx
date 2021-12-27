@@ -21,7 +21,7 @@ const Benefits = ({ name }) => {
   const benefitsData = t(`${prefix}.benefits`, { returnObjects: true });
 
   return (
-    <Container>
+    <Container px={[3, null, null, 1]}>
       <H2Styled mb={[32, null, null, 78]}>{t("benefitsInNumbers")}</H2Styled>
       <Flex
         width={1}
