@@ -127,5 +127,136 @@
   "integrations": "integrazioni",
   "careersSubject": "Unisciti alla squadra",
   "language": "Lingua",
-  "seeSubscriptionPlans": "Vedere i piani di abbonamento"
+  "seeSubscriptionPlans": "Vedere i piani di abbonamento",
+  "benefitsInNumbers": "Benefici in numeri",
+  "integrationsLandings": {
+    "management": {
+      "title": "Integrazioni di gestione",
+      "subtitle": "Assicurati che il tuo <0>commercio scorra senza intoppi</0> e in modo efficiente e fornisci ai clienti esperienze piacevoli e all'altezza degli standard del marchio",
+      "orders": {
+        "title": "Gestione degli ordini",
+        "subtitle": "Lavorare in modo più intelligente, non più difficile",
+        "link": "Vedi le integrazioni disponibili",
+        "options": [
+          {
+            "title": "Risparmia tempo e denaro",
+            "description": "L'automazione di diverse fasi del vostro ordine online vi fa risparmiare tempo, sia in sala da pranzo che in cucina",
+            "advantages": [
+              "<0>Aggregare</0> tutti i tuoi ordini dalle piattaforme di ordinazione di cibo, niente più tablet su tablet",
+              "Collegamento e <0>sincronizzazione</0> al tuo POS esistente",
+              "Abilitazione dell'accettazione <0>automatica</0> degli ordini",
+              "<0>tempi di consegna migliori</0> per clienti più soddisfatti",
+              "<0>Meno personale</0> necessario per gestire gli ordini online",
+              "<0>Più vendite</0>, meno amministrazione"
+            ]
+          },
+          {
+            "title": "Ridurre gli errori di ordinazione",
+            "description": "Gli ordini vengono inviati direttamente alla tua cassa evitando l'errore umano, spendi meno tempo a elaborare gli ordini",
+            "advantages": [
+              "<0>Ridurre il tempo</0> speso per ordini errati a causa di errori umani",
+              "<0>Semplificare il flusso degli ordini</0> e fornendo un servizio più affidabile",
+              "Clienti felici significano recensioni migliori. <1>Migliori recensioni</1> significano migliore posizionamento sulle piattaforme"
+            ]
+          },
+          {
+            "title": "Aggiungere canali di vendita",
+            "description": "Approfitta del settore in forte espansione degli ordini online e aggiungi tutte le piattaforme di cui hai bisogno per attirare nuovi clienti",
+            "advantages": [
+              "<0>Aggiungi facilmente</0> tante o poche piattaforme quante ne usi",
+              "Puoi anche <0>creare il tuo sistema di consegna</0> grazie ai nostri partner logistici",
+              "Confronta quali canali ti portano più vendite sulla <1>dashboard di analisi</1>"
+            ]
+          }
+        ]
+      },
+      "menu": {
+        "title": "Gestione del menu",
+        "subtitle": "Menu aggiornati simultaneamente",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Non hai più bisogno di una settimana per apportare modifiche al tuo menu. Sincronizzazione automatica del tuo menu su tutte le piattaforme",
+            "advantages": [
+              "<0>Aggiorna tutti</0> i menu digitali su piattaforme di consegna di terze parti attraverso un'unica schermata.",
+              "Ricevi notifiche quando hai bisogno di <0>rifornire i prodotti.</0>",
+              "Eliminare il potenziale di ordini falliti a causa di <0>articoli fuori stock.</0>",
+              "<0>Insights</0> sugli articoli più venduti mostrati sul tuo cruscotto personalizzato",
+              "<0>Gestione flessibile del menu</0>. Ora puoi testare nuovi piatti stagionali",
+              "Prossimamente: integrazioni con <0>soluzioni digitali per i menu.</0>"
+            ]
+          }
+        ]
+      },
+      "reservation": {
+        "title": "Gestione delle prenotazioni",
+        "subtitle": "La tua planimetria virtuale con casa completa",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Mantenere la gestione delle prenotazioni semplice e affidabile. Aumenta le coperture e riduci i no show",
+            "advantages": [
+              "<0>Mantieni il controllo delle tue prenotazioni.</0> Visualizzale su un'unica schermata in vista lista o calendario.",
+              "<0>Aggiungi prenotazioni offline.</0> Prenotazioni ricevute per telefono o di persona? Aggiungile con facilità",
+              "<0>Comunicazione incorporata.</0> Ricevi e scrivi messaggi agli ospiti quando necessario.",
+              "<0>Clicca e adatta.</0> Nuovi regolamenti? Dividi i gruppi in tavoli, aggiungi sedie, cambia le fasce orarie. ",
+              "<0>Piano visivo</0>, organizza i clienti per gruppi o tag e invia promozioni e sondaggi mirati",
+              "<0>Notifiche live stream</0> inviate direttamente alla (y)nostra app",
+              "<0>A seconda del partner di integrazione</0> che sceglierai potrai usufruire di funzioni aggiuntive come: <2><3>Richiede pre-pagamenti</3><3>Funzione lista d'attesa</3><3>Sistema di controllo no show</3></2>"
+            ]
+          }
+        ]
+      },
+      "events": {
+        "title": "Gestione degli eventi",
+        "subtitle": "Uno schermo unico per tutti gli eventi",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Aumenta la tua produttività con una vista del calendario dei tuoi prossimi eventi",
+            "advantages": [
+              "<0>Niente più inserimenti manuali.</0> Avere una panoramica automatizzata del mese",
+              "<0>Tutti gli eventi in un unico posto</0> compresi eventi privati, catering e degustazioni",
+              "<0>Tu hai il controllo.</0> Accetta o rifiuta le richieste e invia offerte personalizzate"
+            ]
+          }
+        ]
+      },
+      "customers": {
+        "title": "Gestione dei clienti",
+        "subtitle": "I tuoi clienti, i tuoi dati",
+        "options": [
+          {
+            "title": "Main",
+            "description": "I dati dei tuoi clienti in un unico luogo con approfondimenti attivabili",
+            "advantages": [
+              "<0>Profili dei clienti con il pilota automatico</0> così puoi catturare dati significativi",
+              "<0>Storia delle prenotazioni</0> così puoi sapere chi sono i tuoi clienti ricorrenti",
+              "Prossimamente: <0>Filtrare i clienti per gruppi</0> o tag e inviare promozioni e sondaggi mirati."
+            ]
+          }
+        ]
+      },
+      "benefits": [
+        {
+          "percents": "40%",
+          "description": "Miglioramento del <0/> tempo di consegna"
+        },
+        {
+          "hint": "Fino a",
+          "percents": "25%",
+          "description": "Aumento delle vendite <0/> per l'utilizzo della multicanalità"
+        },
+        {
+          "hint": "Fino a",
+          "percents": "80%",
+          "description": "Riduzione <0/> degli errori"
+        },
+        {
+          "percents": "20%",
+          "description": "Aumento dei takeaway con <0/> una migliore esperienza digitale"
+        }
+      ]
+    }
+  }
 }

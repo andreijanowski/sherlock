@@ -127,5 +127,136 @@
   "integrations": "Integrationen",
   "careersSubject": "Kommen Sie ins Team",
   "language": "Sprache",
-  "seeSubscriptionPlans": "Siehe Abonnementpläne"
+  "seeSubscriptionPlans": "Siehe Abonnementpläne",
+  "benefitsInNumbers": "Vorteile in Zahlen",
+  "integrationsLandings": {
+    "management": {
+      "title": "Management-Integrationen",
+      "subtitle": "Stellen Sie sicher, dass Ihr <0>Geschäft reibungslos</0> und effizient läuft und bieten Sie Ihren Kunden ein angenehmes Erlebnis, das den Markenstandards entspricht.",
+      "orders": {
+        "title": "Auftragsverwaltung",
+        "subtitle": "Intelligenter arbeiten, nicht härter",
+        "link": "Verfügbare Integrationen anzeigen",
+        "options": [
+          {
+            "title": "Zeit und Geld sparen",
+            "description": "Die Automatisierung der verschiedenen Schritte Ihrer Online-Bestellung spart Ihnen Zeit, sowohl im Esszimmer als auch in der Küche.",
+            "advantages": [
+              "<0>Aggregate</0> alle Ihre Bestellungen von Lebensmittelbestellplattformen, keine Tablets mehr auf Tablets",
+              "Verbindung und <0>Synchronisation</0> zu Ihrem bestehenden POS",
+              "Aktivieren Sie die <0>automatische</0> Bestellannahme",
+              "<0>Bessere Lieferzeiten</0> für mehr zufriedene Kunden",
+              "<0>Weniger Personal</0> für die Verwaltung von Online-Bestellungen erforderlich",
+              "<0>Mehr Umsatz</0>, weniger Verwaltungsaufwand"
+            ]
+          },
+          {
+            "title": "Bestellfehler reduzieren",
+            "description": "Bestellungen werden direkt an die Kasse geschickt, um menschliche Fehler zu vermeiden und weniger Zeit mit der Bearbeitung von Bestellungen zu verbringen.",
+            "advantages": [
+              "<0>Reduzieren Sie Ihre Zeit</0>, die Sie mit fehlerhaften Bestellungen aufgrund menschlicher Fehler verbringen",
+              "<0>Straffung des Auftragsflusses</0> und die Bereitstellung eines zuverlässigeren Dienstes.",
+              "Zufriedene Kunden bedeuten bessere Bewertungen. <1>Bessere Bewertungen</1> bedeuten eine bessere Platzierung auf Plattformen."
+            ]
+          },
+          {
+            "title": "Vertriebskanäle hinzufügen",
+            "description": "Nutzen Sie die Vorteile des boomenden Online-Bestellwesens und fügen Sie so viele Plattformen hinzu, wie Sie brauchen, um neue Kunden zu gewinnen.",
+            "advantages": [
+              "<0>Fügen Sie ganz einfach</0> so viele oder so wenige Plattformen hinzu, wie Sie benötigen",
+              "Sie können auch <0>Ihr eigenes Liefersystem</0> dank unserer Logistikpartner erstellen",
+              "Vergleichen Sie auf dem <1>Analyse-Dashboard</1>, welche Kanäle Ihnen den meisten Umsatz bringen"
+            ]
+          }
+        ]
+      },
+      "menu": {
+        "Titel": "Menüverwaltung",
+        "subtitle": "Simultan aktualisierte Menüs",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Sie brauchen nicht mehr eine Woche, um Änderungen an Ihrem Menü vorzunehmen. Automatische Synchronisierung Ihres Menüs über verschiedene Plattformen hinweg.",
+            "advantages": [
+              "<0>Aktualisieren Sie alle</0> digitalen Menüs auf Lieferplattformen von Drittanbietern über einen einzigen Bildschirm.",
+              "Erhalten Sie Benachrichtigungen, wenn Sie <0>Produkte aufstocken müssen.</0>",
+              "Vermeiden Sie Fehlbestellungen aufgrund von <0>nicht vorrätigen Artikeln.</0>",
+              "<0>Einblicke</0> in die meistverkauften Artikel, die auf Ihrem personalisierten Dashboard angezeigt werden.",
+              "<0>Flexibles Menü</0> Management. Sie können jetzt neue saisonale Gerichte testen.",
+              "Demnächst: Integrationen mit <0>digitalen Menülösungen.</0>"
+            ]
+          }
+        ]
+      },
+      "reservation": {
+        "Titel": "Reservierungsmanagement",
+        "subtitle": "Ihr virtueller Grundriss mit vollem Haus",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Halten Sie die Reservierungsverwaltung einfach und zuverlässig. Erhöhen Sie die Auslastung und reduzieren Sie No-Shows.",
+            "advantages": [
+              "<0>Behalten Sie die Kontrolle über Ihre Buchungen.</0> Visualisieren Sie sie auf einem einzigen Bildschirm in der Listen- oder Kalenderansicht.",
+              "<0>Fügen Sie Offline-Reservierungen hinzu.</0> Buchungen, die Sie per Telefon oder persönlich erhalten haben? Fügen Sie sie mühelos hinzu.",
+              "<0>Kommunikation integriert.</0> Empfangen und schreiben Sie bei Bedarf Nachrichten an Gäste.",
+              "<0>Klicken und anpassen.</0> Neue Vorschriften? Teilen Sie Gruppen in Tische ein, fügen Sie Stühle hinzu, ändern Sie Zeitfenster. ",
+              "<0>Visueller Grundriss</0>, Kunden nach Gruppen oder Tags organisieren und gezielte Werbeaktionen und Umfragen versenden.",
+              "<0>Live-Stream-Benachrichtigungen</0>, die direkt an unsere App gesendet werden",
+              "<0>Abhängig vom Integrationspartner</0>, den Sie wählen, können Sie zusätzliche Funktionen nutzen, wie z.B.: <2><3>Vorauszahlungen verlangen</3><3>Wartelistenfunktion</3><3>No-Show Control System</3></2>"
+            ]
+          }
+        ]
+      },
+      "events": {
+        "title": "Ereignisverwaltung",
+        "subtitle": "Ein Bildschirm für alle Ereignisse",
+        "options": [
+          {
+            "Titel": "Main",
+            "description": "Steigern Sie Ihre Produktivität mit einer Kalenderansicht Ihrer bevorstehenden Ereignisse",
+            "advantages": [
+              "<0>Keine manuellen Einträge mehr</0> Haben Sie einen automatisierten Überblick über den Monat.",
+              "<0>Alle Veranstaltungen an einem Ort</0> einschließlich privater Veranstaltungen, Caterings und Verkostungen.",
+              "<0>Sie haben die Kontrolle.</0> Akzeptieren oder lehnen Sie Anfragen ab und senden Sie personalisierte Angebote "
+            ]
+          }
+        ]
+      },
+      "customers": {
+        "title": "Kundenverwaltung",
+        "subtitle": "Ihre Kunden, Ihre Daten",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Ihre Kundendaten an einem einzigen Ort mit umsetzbaren Erkenntnissen",
+            "advantages": [
+              "<0>Kundenprofile auf Autopilot</0>, da Sie aussagekräftige Daten erfassen können.",
+              "<0>Historie der Reservierungen</0>, damit Sie wissen, wer Ihre wiederkehrenden Kunden sind.",
+              "Demnächst: <0>Filtern Sie Kunden nach Gruppen</0> oder Tags und senden Sie gezielte Werbeaktionen und Umfragen."
+            ]
+          }
+        ]
+      },
+      "benefits": [
+        {
+          "percents": "40%",
+          "description": "Verbesserung der <0/> Lieferzeit"
+        },
+        {
+          "hint": "Bis zu",
+          "percents": "25%",
+          "description": "Umsatzsteigerung <0/> für die Nutzung von Multichannel"
+        },
+        {
+          "hint": "Bis zu",
+          "percents": "80%",
+          "description": "Reduktion <0/> der Fehler."
+        },
+        {
+          "percents": "20%",
+          "description": "Steigerung der Mitnahmeeffekte durch <0/> ein besseres digitales Erlebnis."
+        }
+      ]
+    }
+  }
 }

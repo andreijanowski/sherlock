@@ -1,9 +1,13 @@
 import styled, { css } from "styled-components";
-import { H2 } from "components";
 import { Box, Flex } from "@rebass/grid";
-import { downThanBreakpoint, themeGet } from "../../utils/theme";
 
-const ANGLE = "177deg";
+import { H2 } from "components";
+import {
+  downThanBreakpoint,
+  themeGet,
+  LANDING_BLOCK_ANGLE,
+  WRAPPER_WIDTH
+} from "utils/theme";
 
 export const alignCenterTablet = css`
   text-align: center;
@@ -57,7 +61,7 @@ export const NavigationWrapper = styled(Box).attrs(() => ({}))`
 export const TopSectionWrapper = styled(Box)`
   width: 100%;
   background: linear-gradient(
-    ${ANGLE},
+    ${LANDING_BLOCK_ANGLE},
     rgb(${p => p.theme.colors.darkBlue}) calc(47% - 1px),
     rgb(${p => p.theme.colors.landingDarkBlue}) 47%
   );
@@ -71,7 +75,7 @@ export const ProductsWrapper = styled(Box)`
 export const DevelopersAndApiWrapper = styled(Box)`
   width: 100%;
   background: linear-gradient(
-    ${ANGLE},
+    ${LANDING_BLOCK_ANGLE},
     rgb(${p => p.theme.colors.landingDarkBlue}) calc(85% - 1px),
     rgb(${p => p.theme.colors.white}) 85%
   );
@@ -100,16 +104,16 @@ export const InstallAppWrapper = styled(Box)`
       }
     } = p;
     return `linear-gradient(
-    ${ANGLE}, 
-    rgb(${landingDarkBlue}) calc(10% - 1px), 
-    white 10%, 
+    ${LANDING_BLOCK_ANGLE}, 
+    rgb(${landingDarkBlue}) calc(20% - 1px), 
+    white 20%, 
     white calc(75% - 1px), 
     rgb(${darkBlue}) 75%
     );`;
   }};
   ${downThanBreakpoint(1)} {
     background: linear-gradient(
-      ${ANGLE},
+      ${LANDING_BLOCK_ANGLE},
       rgb(${themeGet("colors.white")}) calc(50% - 1px),
       rgb(${themeGet("colors.darkBlue")}) 50%
     );
@@ -124,11 +128,17 @@ export const FooterWrapper = styled.div`
 export const IntegrationsWrapper = styled(Box)`
   width: 100%;
   background: linear-gradient(
-    ${ANGLE},
+    ${LANDING_BLOCK_ANGLE},
     rgb(${p => p.theme.colors.white}) calc(90% - 1px),
     rgb(${p => p.theme.colors.landingDarkBlue}) 90%
   );
   ${downThanBreakpoint(2)} {
     background: rgb(${p => p.theme.colors.white});
   }
+`;
+
+export const LandingContainer = styled(Box)`
+  max-width: ${WRAPPER_WIDTH}px;
+  padding: 0 16px;
+  margin: 0 auto;
 `;

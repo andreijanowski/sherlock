@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { Box } from "@rebass/grid";
 
-import { downThanBreakpoint } from "utils/theme";
+import { downThanBreakpoint, themeGet } from "utils/theme";
 
 export const centeredOnTabletCss = css`
   ${downThanBreakpoint(2)} {
@@ -83,5 +83,18 @@ export const Body = styled(TypographyBox).attrs(
   color: rgb(${p => p.theme.colors.white});
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: 22px;
+  letter-spacing: 0.01em;
+`;
+
+export const BodySmall = styled(TypographyBox).attrs(
+  ({ as = "p", mt = 0, mb = 0 }) => ({
+    as,
+    mt,
+    mb
+  })
+)`
+  color: rgb(${themeGet("colors.white")});
+  font-size: ${themeGet("fontSizes.f14")};
+  line-height: 20px;
   letter-spacing: 0.01em;
 `;
