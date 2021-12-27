@@ -11,7 +11,7 @@ import NavigationCTAButtons from "../NavigationCTAButtons";
 
 const NavigationTopBar = ({ isMenuOpened, onBurgerClick }) => (
   <Container
-    px={[16, null, null, 40]}
+    px={3}
     pt={[13, null, null, 0]}
     pb={[12, null, null, 0]}
     mb={[0, null, null, 56]}
