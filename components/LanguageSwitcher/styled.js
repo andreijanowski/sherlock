@@ -3,6 +3,8 @@ import { Flex, Box } from "@rebass/grid";
 
 import { downThanBreakpoint } from "utils/theme";
 
+const MOBILE_BREAKPOINT = 0;
+
 /* Icon source http://flag-icon-css.lip.is/ */
 export const FlagIcon = styled.img.attrs(({ code }) => ({
   src: `/static/flags/${code}.svg`
@@ -50,7 +52,7 @@ export const LanguageList = styled(Flex).attrs(() => ({
   ${({ listPosition }) => listPosition === "top" && LanguageListTop}
   ${({ listPosition }) => listPosition === "bottom" && LanguageListBottom}
   
-  ${downThanBreakpoint(2)} {
+  ${downThanBreakpoint(MOBILE_BREAKPOINT)} {
     width: 100%;
     right: 0;
   }
@@ -78,7 +80,7 @@ export const LanguageListItem = styled(Box).attrs(() => ({
     vertical-align: middle;
   }
 
-  ${downThanBreakpoint(2)} {
+  ${downThanBreakpoint(MOBILE_BREAKPOINT)} {
     width: 100%;
   }
 `;
