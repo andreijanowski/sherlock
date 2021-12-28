@@ -1,7 +1,10 @@
 import styled from "styled-components";
-import { Flex } from "@rebass/grid";
+import { Flex, Box } from "@rebass/grid";
 
 import { Button } from "components";
+import { downThanBreakpoint } from "utils/theme";
+
+const CONTROL_BREAKPOINT = 3;
 
 export const Wrapper = styled(Flex).attrs(() => ({
   flexDirection: "column",
@@ -13,17 +16,24 @@ export const Wrapper = styled(Flex).attrs(() => ({
 `;
 
 export const InnerWrapper = styled(Flex).attrs({
-  mx: -1
+  mx: [0, null, null, null, -1]
 })`
   flex: auto;
   overflow: auto;
   position: relative;
+  ${downThanBreakpoint(CONTROL_BREAKPOINT)} {
+    flex: none;
+    overflow: initial;
+  }
 `;
 
 export const FloatingColumn = styled.div`
   align-self: flex-start;
   position: sticky;
   top: 0;
+  ${downThanBreakpoint(CONTROL_BREAKPOINT)} {
+    position: static;
+  }
 `;
 
 export const Dish = styled(Flex).attrs(() => ({
@@ -33,12 +43,14 @@ export const Dish = styled(Flex).attrs(() => ({
   alignItems: "center",
   justifyContent: "space-between"
 }))`
+  flex-wrap: wrap;
   background-color: rgb(${p => p.theme.colors.white});
   border: 1px solid rgb(${p => p.theme.colors.snuff});
   border-radius: ${p => p.theme.radius.default};
 `;
 
 export const Image = styled.div`
+  flex: none;
   width: 60px;
   height: 60px;
   margin-right: 16px;
@@ -70,8 +82,7 @@ export const Description = styled.div`
   text-overflow: ellipsis;
 `;
 
-export const Price = styled.div`
-  padding-right: 32px;
+export const Price = styled(Box)`
   color: rgb(${p => p.theme.colors.dark});
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes.f16};
@@ -87,4 +98,16 @@ export const Form = styled.form`
 export const ImportButton = styled(Button).attrs({
   type: "button",
   styleName: "underline"
-})``;
+})`
+  margin-bottom: 16px;
+`;
+
+export const Info = styled(Flex)`
+  overflow: hidden;
+`;
+
+export const InfoText = styled(Flex)`
+  overflow: hidden;
+`;
+
+export const Actions = styled(Flex)``;

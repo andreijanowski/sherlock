@@ -71,8 +71,8 @@ const DishForm = ({
                   {t("lefood:import.upload_menu")}
                 </ImportButton>
               </Flex>
-              <Flex>
-                <Box width={152} pr={3} pb={3}>
+              <Flex justifyContent="center" flexWrap="wrap">
+                <Box width={152} pr={[0, null, 3]} pb={3}>
                   {initialPicture ? (
                     <Picture
                       {...{ ...initialPicture, remove: removePicture }}
@@ -95,7 +95,10 @@ const DishForm = ({
                     </PerfectSquare>
                   )}
                 </Box>
-                <Flex flexDirection="column" width="calc(100% - 152px)">
+                <Flex
+                  flexDirection="column"
+                  width={["100%", null, "calc(100% - 152px)"]}
+                >
                   <Box>
                     <FormInput
                       name="name"
