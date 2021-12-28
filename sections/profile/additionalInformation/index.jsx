@@ -35,14 +35,14 @@ const AdditionalInformationForm = ({ t, initialValues, handleSubmit }) =>
           <H3>{t("timeOfTheDay")}</H3>
           <Flex flexWrap="wrap">
             {timeOfTheDay.map(time => (
-              <Box width={1 / 2} key={time}>
+              <Box width={[1, null, 1 / 2]} key={time}>
                 <FormCheckbox name={time} label={t(time)} />
               </Box>
             ))}
           </Flex>
           <H3 mt={3}>{t("priceRange")}</H3>
-          <Flex mx={-2}>
-            <Box width={[1 / 2, 1 / 3, 1 / 3, 1 / 2]} px={2}>
+          <Flex mx={-2} flexWrap="wrap">
+            <Box width={[1, null, 1 / 3, 1 / 2]} px={2}>
               <Field
                 name="currency"
                 component={FormSelect}
@@ -51,7 +51,7 @@ const AdditionalInformationForm = ({ t, initialValues, handleSubmit }) =>
                 items={currencies}
               />
             </Box>
-            <Box width={[1 / 2, 2 / 3, 2 / 3, 1 / 2]} px={2}>
+            <Box width={[1, null, 2 / 3, 1 / 2]} px={2}>
               <FormInput
                 name="pricePerPerson"
                 label={t("pricePerPersonLabel")}
