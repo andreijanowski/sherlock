@@ -1,31 +1,29 @@
 import React, { PureComponent } from "react";
-import { Form as FinalForm, Field } from "react-final-form";
-import { func, shape, arrayOf, string, bool } from "prop-types";
-import { Flex, Box } from "@rebass/grid";
+import { Field, Form as FinalForm } from "react-final-form";
+import { arrayOf, bool, func, shape, string } from "prop-types";
+import { Box, Flex } from "@rebass/grid";
 import setFieldData from "final-form-set-field-data";
 
 import {
-  FormInput,
-  FormTextarea,
-  FormSelect,
-  BigCheckbox,
-  H3,
-  WhenFieldChanges,
-  FormMultipleSelect,
   AutoSave,
-  LoadingIndicator
+  FormInput,
+  FormMultipleSelect,
+  FormSelect,
+  FormTextarea,
+  H3,
+  LoadingIndicator,
+  WhenFieldChanges
 } from "components";
 import { getSubdivisions } from "utils/iso-3166-2";
 import {
-  validateLength,
+  matchYoutubeUrl,
   required,
   requiredProperty,
-  matchYoutubeUrl
+  validateLength
 } from "utils/validators";
 import countriesPhoneCodes from "utils/countriesPhoneCodes";
 import { normalizePhone } from "utils/normalizers";
-import { Form, TypesWrapper } from "../styled";
-import TypesError from "./TypesError";
+import { Form } from "../styled";
 
 class BasicInformationForm extends PureComponent {
   constructor(props) {
@@ -208,29 +206,16 @@ class BasicInformationForm extends PureComponent {
               validate={this.isYoutubeLink}
             />
             <H3 mt={4}>{t("types")}</H3>
-            <TypesWrapper>
-              {types.map(type => (
-                <Box
-                  width={[1 / 4, 1 / 4, 1 / 5, 1 / 7]}
-                  p={2}
-                  key={type.value}
-                >
-                  <BigCheckbox
-                    {...{
-                      label: type.label,
-                      name: "types",
-                      value: type,
-                      min: 1,
-                      max: 3,
-                      validate: this.validateTypesLength
-                    }}
-                  />
-                </Box>
-              ))}
-              <TypesError
-                isErrorVisibilityRequired={isErrorVisibilityRequired}
-              />
-            </TypesWrapper>
+            <Field
+              name="types"
+              placeholder={t("typesPlaceholder")}
+              component={FormMultipleSelect}
+              items={types}
+              max={3}
+              min={1}
+              isErrorVisibilityRequired={isErrorVisibilityRequired}
+              validate={this.validateTypesLength}
+            />
             <H3 mt={4}>{t("cuisines")}</H3>
             <Field
               name="cuisines"

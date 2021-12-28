@@ -19,6 +19,7 @@
   "postCodePlaceholder": "1205",
   "bigCheckboxLabel": "Grande casella di controllo",
   "types": "Tipi (scegli da 1 a 3 articoli)",
+  "typesPlaceholder": "Tipi",
   "cuisines": "Cucine (scegli da 1 a 5 articoli)",
   "cuisinesPlaceholder": "Polacco",
   "foodsAndDrinks": "Cibo e bevande (scegli da 1 a 6 articoli)",
