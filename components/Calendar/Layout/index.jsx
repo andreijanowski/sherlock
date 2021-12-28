@@ -33,9 +33,9 @@ const CalendarLayout = ({
       flexWrap={["wrap", "nowrap"]}
     >
       <Box width={1}>
-        <Flex width={1} flexWrap="wrap">
+        <Flex width={1} flexWrap="wrap" mb={[3, 0]}>
           {view && (
-            <Box width={[1, 1 / 4]}>
+            <Box width={[1, 1 / 2, 1 / 4]}>
               <Select
                 value={view}
                 items={preparePeriodsList(t)}

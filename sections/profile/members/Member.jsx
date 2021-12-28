@@ -20,7 +20,7 @@ const Member = ({ name, fields, index, t, removeMember, checkboxDisabled }) => (
         type="text"
       />
     </Box>
-    <Box width={[1, 1 / 3, 1 / 3, "calc(33% - 32px)"]} pl={[0, 0, 0, 2]}>
+    <Box width={[1, null, 1 / 3, "calc(33% - 32px)"]} pl={[0, 0, 0, 2]}>
       <FormInput
         label={t("roleLabel")}
         placeholder={t("rolePlaceholder")}
@@ -30,7 +30,7 @@ const Member = ({ name, fields, index, t, removeMember, checkboxDisabled }) => (
       />
     </Box>
     <Box
-      width={["calc(100% - 96px)", 1 / 3, 1 / 3, "calc(33% - 32px)"]}
+      width={["calc(100% - 96px)", null, 1 / 3, "calc(33% - 32px)"]}
       pl={[0, 2]}
     >
       <FormCheckbox
