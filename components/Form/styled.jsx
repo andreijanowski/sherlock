@@ -4,8 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import TextareaAutosize from "react-autosize-textarea";
 
-export const LABEL_ACTIVE_SCALE = 0.7;
-
 const InputStyles = css`
   box-sizing: border-box;
   width: 100%;
@@ -51,7 +49,8 @@ const InputStyles = css`
     }
 
     & + label {
-      transform: translateY(-120%) scale(${LABEL_ACTIVE_SCALE});
+      font-size: 11px;
+      transform: translateY(-22px);
     }
   }
 
@@ -65,7 +64,8 @@ const FilledInputStyles = css`
   padding-bottom: 12px;
   /* stylelint-disable no-descending-specificity */
   & + label {
-    transform: translateY(-120%) scale(${LABEL_ACTIVE_SCALE});
+    font-size: 11px;
+    transform: translateY(-22px);
   }
 `;
 
@@ -118,15 +118,6 @@ export const ToggleButton = styled.button`
     top: calc(50% - 9px);
     stroke: rgb(${p => p.theme.colors.dark});
   }
-`;
-
-export const DropdownLabel = styled.div`
-  position: absolute;
-  top: 50%;
-  color: rgb(${p => p.theme.colors.bombay});
-  transform: translateY(-120%) scale(${LABEL_ACTIVE_SCALE});
-  transform-origin: left;
-  pointer-events: none;
 `;
 
 export const RawTextarea = styled(({ smallLabel, ...p }) => (
