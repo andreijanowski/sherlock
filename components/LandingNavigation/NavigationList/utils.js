@@ -2,7 +2,8 @@ import {
   apiGuideLink,
   NEWS_ROOM_URL,
   PARTNERS_URL,
-  CAREERS_FOODETECTIVE_EMAIL
+  CAREERS_FOODETECTIVE_EMAIL,
+  LICENSING_TYPEFORM_LINK
 } from "consts";
 
 export const getMenuItems = t => [
@@ -33,7 +34,7 @@ export const getMenuItems = t => [
         items: [
           {
             label: t("landing:management"),
-            href: "/?partners=delivery#integrations"
+            href: "/product/management"
           },
           {
             label: t("landing:operations"),
@@ -71,8 +72,7 @@ export const getMenuItems = t => [
           },
           {
             label: t("landing:licensing"),
-            href: "/pricing/licensing",
-            isDisabled: true
+            href: LICENSING_TYPEFORM_LINK
           }
         ]
       }

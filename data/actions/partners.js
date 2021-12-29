@@ -7,7 +7,11 @@ import {
 } from "types/partners";
 import { getRelationships } from "./utils";
 
-export const connectIntegrationPartner = (businessId, partnerId) => ({
+export const connectIntegrationPartner = (
+  businessId,
+  partnerId,
+  attributes
+) => ({
   type: CONNECT_PARTNER_REQUEST,
   payload: {
     method: "POST",
@@ -15,6 +19,7 @@ export const connectIntegrationPartner = (businessId, partnerId) => ({
     data: {
       data: {
         type: "partner_integrations",
+        attributes,
         relationships: {
           ...getRelationships("business", businessId),
           ...getRelationships("partner", partnerId)

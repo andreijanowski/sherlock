@@ -11,7 +11,7 @@ import PlansTable from "components/Plans/PlansTable";
 import PlansPeriodSelector from "components/Plans/PlansPeriodSelector";
 import PlansCurrencySelector from "components/Plans/PlansCurrencySelector";
 import { getPlanData, getPlanLoginPath } from "utils/plans";
-import { BlueText } from "sections/common/sharedStyled";
+import { BlueText } from "sections/landings/common/sharedStyled";
 import { useLng } from "utils/hooks";
 import {
   H2Styled,

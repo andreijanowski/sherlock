@@ -9,5 +9,14 @@
     "step1": "Connectez-vous sur votre <0>Uber Eats Restaurant Manager</0>",
     "step2": "L'UUID se trouve dans l'URL. Voir exemple ci-dessous: <0/> https://restaurant.uber.com/home/<1>be77dfif-49e5-4a96-y234-98f6f55af43d</1>",
     "ifDoesntWork": "Si cela ne fonctionne pas, veuillez nous contacter à <0>support@foodetective.co</0>"
-  }
+  },
+  "emptyWholesalers": {
+    "title": "Oups, il semble que votre fournisseur ne soit pas encore répertorié sur notre plateforme...",
+    "description": "Aucun soucis: envoyez-nous le nom et le site web du fournisseur que vous souhaitez voir ici à <0>support@foodetective.co</0> et nous l'ajouterons dès que possible."
+  },
+  "connectPartner": "Veuillez entrer les identifiants que vous utilisez habituellement pour vous connecter au back-office de {{name}}:",
+  "connectPartnerNote": "<0>Note:</0> Pour votre sécurité, ces identifiants seront automatiquement supprimées de notre système dès que l'intégration sera terminée ou au plus tard deux semaines après la demande d'intégration.",
+  "id": "Id",
+  "password": "Mot de passe",
+  "bookMeeting": "Si vous ne voulez pas partager ces informations, veuillez réserver une <0>réunion en ligne</0> avec nous pour faire l'intégration ensemble."
 }

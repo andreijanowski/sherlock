@@ -9,15 +9,22 @@ const CustomizedLegend = props => {
   const { payload } = props;
   return (
     <Flex flexDirection="column">
-      {payload.map(entry => (
-        <Flex mb={3} justifyContent="space-between" alignItems="center">
-          <Flex alignItems="center">
-            <Bullet background={entry.color} />
-            {entry.payload.name}
+      {payload.map((entry, index) => {
+        const isLastChild = index === payload.length - 1;
+        return (
+          <Flex
+            mb={isLastChild ? 0 : 3}
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Flex alignItems="center">
+              <Bullet background={entry.color} />
+              {entry.payload.name}
+            </Flex>
+            <div>{entry.payload.value}</div>
           </Flex>
-          <div>{entry.payload.value}</div>
-        </Flex>
-      ))}
+        );
+      })}
     </Flex>
   );
 };
@@ -31,11 +38,11 @@ const data = randomChartGenerator(true);
 
 export const PaymentChart = () => (
   <ResponsiveContainer width="100%">
-    <PieChart width={256} height={384}>
+    <PieChart width={256} height={300}>
       <Pie
         data={data}
         dataKey="value"
-        cy={92}
+        cy={85}
         innerRadius={50}
         outerRadius={85}
         fill="#8884d8"

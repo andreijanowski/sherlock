@@ -59,7 +59,7 @@ export const NavigationListItem = styled(AdaptiveBox)`
 export const LanguageSwitcherContainer = styled(AdaptiveBox)`
   position: absolute;
   top: 50%;
-  right: 32px;
+  right: 16px;
   transform: translateY(-50%);
   z-index: 10;
 `;

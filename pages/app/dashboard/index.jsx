@@ -50,7 +50,7 @@ const Dashboard = ({
         <TileHeader isBig>{t("businessOverview")}</TileHeader>
         <Flex
           justifyContent="space-between"
-          flexDirection={["column", "column", "row"]}
+          flexDirection={["column", "column", "column", "row"]}
         >
           <Flex width={[1, 1, 1, 31 / 64]} flexDirection="column">
             <BarTile
@@ -85,7 +85,7 @@ const Dashboard = ({
               fetchAction={fetchRevenueBreakdown}
               t={t}
             />
-            <Tile isDisabled height={380}>
+            <Tile isDisabled height={350}>
               <TileHeader>{t("paymentTypes")}</TileHeader>
               <PaymentChart />
             </Tile>
@@ -94,7 +94,7 @@ const Dashboard = ({
       </Tile>
       <Tile width={1}>
         <TileHeader isBig>{t("todaysActivity")}</TileHeader>
-        <Flex flexDirection={["column", "column", "row"]}>
+        <Flex flexDirection={["column", "column", "column", "row"]}>
           <Stream t={t} />
           <Flex width={1} flexDirection="column">
             <Sales t={t} title="bestSales" fetchAction={fetchBestSales} />

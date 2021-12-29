@@ -23,6 +23,9 @@ export const ConnectedContainer = styled(Flex)`
 export const IFrameContainer = styled.div`
   width: 100%;
   flex: auto;
+  ${upThanBreakpoint(CONTROL_BREAKPOINT)} {
+    min-height: 400px;
+  }
 `;
 
 export const TopPane = styled(Flex)`
@@ -37,13 +40,4 @@ export const TopPane = styled(Flex)`
 
 export const ButtonStyled = styled(Button)`
   align-items: center;
-`;
-
-export const NotConnectedContainer = styled(Flex)`
-  flex: auto;
-  width: 100%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-height: calc(100vh - 200px);
 `;

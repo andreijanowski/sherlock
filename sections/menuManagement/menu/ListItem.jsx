@@ -2,7 +2,16 @@ import { Flex, Box } from "@rebass/grid";
 import { Button, ButtonWithImageIconWrapper } from "components";
 import { func, shape } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Dish, Name, Description, Price, Image } from "./styled";
+import {
+  Actions,
+  Description,
+  Dish,
+  Image,
+  Info,
+  InfoText,
+  Name,
+  Price
+} from "./styled";
 
 const ListItem = ({ item, removeDish, setEditedDishId }) => {
   const pictures = item.getIn(["relationships", "pictures", "data"]);
@@ -13,39 +22,46 @@ const ListItem = ({ item, removeDish, setEditedDishId }) => {
       picture.getIn(["attributes", "photo", "url"]));
   return (
     <Dish>
-      <Flex alignItems="center" width="calc(100% - 200px)">
+      <Info alignItems="center" width="50%">
         <Image src={imageUrl} />
-        <Flex flexDirection="column" width="calc(100% - 80px)">
+        <InfoText flexDirection="column">
           <Name>{item.getIn(["attributes", "name"])}</Name>
           <Description>{item.getIn(["attributes", "description"])}</Description>
-        </Flex>
-      </Flex>
-      <Flex alignItems="center">
+        </InfoText>
+      </Info>
+      <Actions
+        flexWrap="wrap"
+        alignItems="center"
+        justifyContent="flex-end"
+        width="50%"
+      >
         <Price>
           {(item.getIn(["attributes", "pricePerItemCents"]) / 100).toFixed(2)}
           {item.getIn(["attributes", "currency"])}
         </Price>
-        <Button
-          styleName="withImage"
-          blue
-          onClick={() => setEditedDishId(item.get("id"))}
-        >
-          <ButtonWithImageIconWrapper>
-            <FontAwesomeIcon icon={["fa", "pen"]} />
-          </ButtonWithImageIconWrapper>
-        </Button>
-        <Box ml={1}>
+        <Flex alignItems="center" ml={3}>
           <Button
             styleName="withImage"
-            red
-            onClick={() => removeDish(item.get("id"))}
+            blue
+            onClick={() => setEditedDishId(item.get("id"))}
           >
             <ButtonWithImageIconWrapper>
-              <FontAwesomeIcon icon={["fa", "times"]} />
+              <FontAwesomeIcon icon={["fa", "pen"]} />
             </ButtonWithImageIconWrapper>
           </Button>
-        </Box>
-      </Flex>
+          <Box ml={1}>
+            <Button
+              styleName="withImage"
+              red
+              onClick={() => removeDish(item.get("id"))}
+            >
+              <ButtonWithImageIconWrapper>
+                <FontAwesomeIcon icon={["fa", "times"]} />
+              </ButtonWithImageIconWrapper>
+            </Button>
+          </Box>
+        </Flex>
+      </Actions>
     </Dish>
   );
 };

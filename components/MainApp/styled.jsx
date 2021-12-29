@@ -25,6 +25,7 @@ export const HeaderWrapper = styled(Flex).attrs(() => ({
   mb: [3, 0],
   alignItems: "center",
   justifyContent: ["center", "space-between"],
+  flexDirection: ["column", null, "row"],
   p: 3
 }))`
   height: 60px;

@@ -41,7 +41,7 @@ const BarTile = ({
   );
 
   return (
-    <Tile isDisabled={isDisabled} width={1} height="200" isSmall>
+    <Tile isDisabled={isDisabled} width={1} height="215">
       {isFetching ? (
         <Loader />
       ) : (

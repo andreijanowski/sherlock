@@ -8,9 +8,9 @@ import {
   LandingWrapper,
   NavigationWrapper,
   PlansWrapper
-} from "sections/common/sharedStyled";
-import { GetReady, Plans } from "sections/pricing/subscriptions";
-import Navigation from "sections/common/Navigation";
+} from "sections/landings/common/sharedStyled";
+import { Plans } from "sections/landings/pricing/subscriptions";
+import { GetReady, Navigation } from "sections/landings/common";
 
 const Subscriptions = () => (
   <LandingWrapper width={1} alignItems="center" flexDirection="column">

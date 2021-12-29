@@ -1,13 +1,14 @@
 import styled, { css } from "styled-components";
-import { Flex } from "@rebass/grid";
+import { Flex, Box } from "@rebass/grid";
 
 import { H3 } from "components";
+import { downThanBreakpoint } from "utils/theme";
 
 export const DashboardWrapper = styled(Flex)`
   flex-direction: column;
 `;
 export const TileWrapper = styled(Flex)`
-  @media (max-width: ${p => p.theme.breakpointsPx[3]}) {
+  @media (max-width: ${p => p.theme.breakpointsPx[4]}) {
     flex-direction: column;
   }
 `;
@@ -28,13 +29,16 @@ export const Tile = styled(Flex)`
   @media (max-width: ${p => p.theme.breakpoints[3]}) {
     margin: 6px;
   }
+  ${downThanBreakpoint(2)} {
+    margin: 6px 0;
+  }
 `;
 
-export const TileHeader = styled.h2`
+export const TileHeader = styled(Box).attrs({ as: "h2" })`
   margin: ${p => (p.isBig ? "12px" : "0 0 12px 0")};
   font-size: ${p => (p.isBig ? "28px" : "16px")};
   font-weight: 700;
-  text-align: left;
+  text-align: center;
 `;
 
 export const ProgressBarBackground = styled.div`
@@ -90,7 +94,7 @@ export const SalesList = styled.ul`
 export const SalesItemContainer = styled(Flex)`
   align-items: center;
   font-weight: 600;
-  height: 70px;
+  height: 60px;
   justify-content: space-between;
   border-bottom: 1px dashed rgb(${p => p.theme.colors.lightGreyText});
 `;
@@ -115,27 +119,19 @@ const dropdownStyles = css`
 `;
 
 export const DropdownWrapper = styled(Flex)`
-  width: 90px;
+  width: 130px;
   height: 24px;
-  padding: ${p => (p.withoutBorder ? "4px 0 4px 12px" : "4px; 16px")};
+  padding: 4px 8px;
   position: relative;
   font-size: 10px;
   font-weight: 600;
-  justify-content: ${p => (!p.withoutBorder ? "center" : "flex-end")};
+  justify-content: center;
   align-items: center;
   cursor: pointer;
-  color: rgba(
-    ${p =>
-      p.withoutBorder
-        ? p.theme.colors.lightGreyText
-        : p.theme.colors.darkGreyText},
-    1
-  );
-  ${p => !p.withoutBorder && dropdownStyles}
-  &:hover {
-    ${p =>
-      !p.withoutBorder &&
-      `box-shadow: 0px 0px 10px rgba(${p.theme.colors.lightGreyText}, 0.4);`}
+  color: rgba(${p => p.theme.colors.darkGreyText}, 1);
+  ${dropdownStyles}
+  &:focus {
+    outline: none;
   }
 `;
 
@@ -156,6 +152,8 @@ export const ItemsWrapper = styled(Flex)`
   z-index: 2;
   position: absolute;
   top: 28px;
+  left: 0;
+  right: 0;
   border-radius: 12px;
   flex-direction: column;
   padding: 12px 0;
@@ -163,25 +161,28 @@ export const ItemsWrapper = styled(Flex)`
   ${dropdownStyles};
 `;
 
-export const DropdownButton = styled(Flex)`
-  font-size: ${p => (p.withoutBorder ? "12px" : "10px")};
-  align-items: center;
-  justify-content: flex-end;
+export const DropdownButton = styled.div`
+  position: relative;
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
   svg {
-    width: ${p => (p.withoutBorder ? "10px" : "8px")};
-    height: ${p => (p.withoutBorder ? "5px" : "4px")};
+    width: 8px;
+    height: 4px;
   }
   &:hover {
     transition: 0.2s;
-    color: rgba(
-      ${p =>
-        p.withoutBorder ? p.theme.colors.gray["3"] : p.theme.colors.darkText},
-      1
-    );
+    color: rgba(${p => p.theme.colors.darkText}, 1);
   }
   .DropdownArrow {
+    position: absolute;
+    top: 50%;
+    right: -3px;
     transition: 0.1s;
-    transform: ${p => (p.isDropdownOpen ? "rotate(180deg)" : "none")};
+    transform: ${p =>
+      p.isDropdownOpen
+        ? "translateY(-50%) rotate(180deg)"
+        : "translateY(-50%)"};
   }
 `;
 
@@ -286,4 +287,10 @@ export const OrderDetailsContainer = styled.div`
   z-index: 1;
   left: 0;
   top: 0;
+`;
+
+export const BarContainer = styled(Flex)`
+  &:not(:last-child) {
+    margin-bottom: 14px;
+  }
 `;

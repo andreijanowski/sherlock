@@ -127,5 +127,136 @@
   "integrations": "Integrations",
   "careersSubject": "Join the team",
   "language": "Language",
-  "seeSubscriptionPlans": "See Subscription plans"
+  "seeSubscriptionPlans": "See Subscription plans",
+  "benefitsInNumbers": "Benefits in numbers",
+  "integrationsLandings": {
+    "management": {
+      "title": "Management Integrations",
+      "subtitle": "Ensure you <0>business runs smoothly</0> and efficiently and provide customers with pleasant experiences that live up to brand standards.",
+      "orders": {
+        "title": "Orders Management",
+        "subtitle": "Work smarter not harder",
+        "link": "See available integrations",
+        "options": [
+          {
+            "title": "Save time & money",
+            "description": "The automation of different stages of your online ordering saves you time, both in the dining room and in the kitchen.",
+            "advantages": [
+              "<0>Aggregate</0> all your orders from food ordering platforms, no more tablets on tablets",
+              "Connection and <0>synchronization</0> to your existing POS",
+              "Enable <0>automatic</0> order acceptance",
+              "<0>Better delivery</0> times for more satisfied customers",
+              "<0>Less staff</0> needed to manage online orders",
+              "<0>More sales</0>, less admin."
+            ]
+          },
+          {
+            "title": "Reduce ordering errors",
+            "description": "Orders are sent directly to you checkout avoiding human error, spend less time processing orders.",
+            "advantages": [
+              "<0>Reduce your time</0> spent on incorrect orders due to human errors",
+              "<0>Streamlining the order flow</0> and providing a more reliable service.",
+              "Happy customers mean better reviews. <1>Better reviews</1> mean better placement on platforms."
+            ]
+          },
+          {
+            "title": "Add sales channels",
+            "description": "Take advantage of the booming online ordering sector and add as many platforms as you need to attract new customers.",
+            "advantages": [
+              "<0>Easily add</0> as many or as few platforms as you use",
+              "You can also <0>create your own delivery system</0> thanks to our logistics partners",
+              "Compare which channels bring you the most sales on the <1>analytics dashboard</1>"
+            ]
+          }
+        ]
+      },
+      "menu": {
+        "title": "Menu Management",
+        "subtitle": "Simultaneously Updated Menus",
+        "options": [
+          {
+            "title": "Main",
+            "description": "You no longer need a week to make changes to your menu. Automatic synchronization of your menu across platforms.",
+            "advantages": [
+              "<0>Update all</0> digital menus on third-party delivery platforms through a single screen.",
+              "Receive notifications when you need to <0>restock products.</0>",
+              "Eliminate the potential of failed orders due to <0>out-of-stock items.</0>",
+              "<0>Insights</0> on best-selling items shown on your personalized dashboard.",
+              "<0>Flexible menu</0> management. You can now test new seasonal dishes.",
+              "Coming soon: integrations with <0>digital menu solutions.</0>"
+            ]
+          }
+        ]
+      },
+      "reservation": {
+        "title": "Reservation Management",
+        "subtitle": "Your virtual floor plan with full house",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Keep reservations management simple and reliable. Increase covers and reduce no shows.",
+            "advantages": [
+              "<0>Stay in control of your bookings.</0> Visualize them on a single screen on list or calendar view.",
+              "<0>Add offline reservations.</0> Bookings received over the phone or in person? Add them with ease.",
+              "<0>Communication built in.</0> Receive and write messages to guests when needed.",
+              "<0>Click and adapt.</0> New regulations? Divide groups into tables, add chairs, change time slots. ",
+              "<0>Visual floor plan</0>, Organize customers by groups or tags and send targeted promotions and surveys.",
+              "<0>Live stream notifications</0> sent directly to (y)our app",
+              "<0>Depending on the integration partner</0> you choose you may enjoy additional features such as: <2><3>Require pre-payments</3><3>Waiting list feature</3><3>No show control system</3></2>"
+            ]
+          }
+        ]
+      },
+      "events": {
+        "title": "Events Management",
+        "subtitle": "One Screen All Events",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Boost your productivity with a calendar view of your upcoming events",
+            "advantages": [
+              "<0>No more manual entries.</0> Have an automized overview of the month.",
+              "<0>All events in a single place</0> including private events, caterings, and tastings.",
+              "<0>You are in control.</0> Accept or decline requests and send personalized offers "
+            ]
+          }
+        ]
+      },
+      "customers": {
+        "title": "Customers Management",
+        "subtitle": "Your customers, Your data",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Your customer data in a single place with actionable insights.",
+            "advantages": [
+              "<0>Customer profiles on autopilot</0> as you can capture meaningful data.",
+              "<0>History of reservations</0> so you can know who your recurring customers are.",
+              "Coming soon: <0>Filter customers by groups</0> or tags and send targeted promotions and surveys."
+            ]
+          }
+        ]
+      },
+      "benefits": [
+        {
+          "percents": "40%",
+          "description": "Improvement in <0/> delivery time."
+        },
+        {
+          "hint": "Up to",
+          "percents": "25%",
+          "description": "Increase in sales <0/> for using multichannel"
+        },
+        {
+          "hint": "Up to",
+          "percents": "80%",
+          "description": "Reduction <0/> in errors."
+        },
+        {
+          "percents": "20%",
+          "description": "Increase in takeaways with <0/> a better digital experience."
+        }
+      ]
+    }
+  }
 }

@@ -3,14 +3,18 @@ import { Flex } from "@rebass/grid";
 
 const BORDER_RADIUS = "24px";
 
-export const Container = styled(Flex)`
+export const Container = styled.div`
+  text-align: center;
+`;
+
+export const List = styled(Flex)`
+  display: inline-flex;
   border: 1px solid rgb(${p => p.primaryColor});
   border-radius: ${BORDER_RADIUS};
   z-index: 0;
 `;
 
-export const Item = styled.button`
-  flex: 1;
+export const ListItem = styled.button`
   z-index: 1;
   padding: ${p => (p.slim ? "4px 16px" : "8px 24px")};
   font-weight: ${p => p.theme.fontWeights.semiBold};

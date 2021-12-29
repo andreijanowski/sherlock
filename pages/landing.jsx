@@ -4,13 +4,11 @@ import requireAuth from "lib/requireAuth";
 import { Footer } from "components";
 import {
   DevelopersAndApi,
-  InstallApp,
   Product,
   TopSection,
   Integrations
-} from "sections/landing";
-import Navigation from "sections/common/Navigation";
-import { GetReady } from "sections/pricing/subscriptions";
+} from "sections/landings/main";
+import { Navigation, GetReady, InstallApp } from "sections/landings/common";
 import {
   DevelopersAndApiWrapper,
   FooterWrapper,
@@ -21,7 +19,7 @@ import {
   ProductsWrapper,
   TopSectionWrapper,
   IntegrationsWrapper
-} from "sections/common/sharedStyled";
+} from "sections/landings/common/sharedStyled";
 import { theme } from "utils/theme";
 
 const Home = () => (

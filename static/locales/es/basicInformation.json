@@ -19,6 +19,7 @@
   "postCodePlaceholder": "1205",
   "bigCheckboxLabel": "Gran casilla de verificación",
   "types": "Tipos (elija de 1 a 3 artículos)",
+  "typesPlaceholder": "Tipos",
   "cuisines": "Cocinas (elija de 1 a 5 artículos)",
   "cuisinesPlaceholder": "Polaco",
   "foodsAndDrinks": "Alimentos y bebidas (elija de 1 a 6 artículos)",

@@ -75,3 +75,6 @@ export const getIntegrationLinkProps = partner => ({
   target: "_blank",
   rel: "noopener noreferrer"
 });
+
+export const isPartnerRequiresConnection = partner =>
+  partner.get("displayCredentialsPrompt");
