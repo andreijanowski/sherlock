@@ -186,22 +186,22 @@ class BasicInformationForm extends PureComponent {
             </Flex>
             <FormInput
               name="website"
-              label={t("contactInformation:websiteLabel")}
+              label="Website (optional)"
               placeholder={t("contactInformation:websitePlaceholder")}
             />
             <FormInput
               name="facebook"
-              label={t("contactInformation:facebookLabel")}
+              label="Facebook (optional)"
               placeholder={t("contactInformation:facebookPlaceholder")}
             />
             <FormInput
               name="instagram"
-              label={t("contactInformation:instagramLabel")}
+              label="Instagram (optional)"
               placeholder={t("contactInformation:instagramPlaceholder")}
             />
             <FormInput
               name="youtube"
-              label={t("contactInformation:youtubeLabel")}
+              label="Youtube video (optional)"
               placeholder={t("contactInformation:youtubePlaceholder")}
               validate={this.isYoutubeLink}
             />
