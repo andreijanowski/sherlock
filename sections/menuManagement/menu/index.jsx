@@ -48,8 +48,15 @@ const Menu = ({
       {loading ? (
         <LoadingIndicator />
       ) : (
-        <InnerWrapper flexWrap="wrap">
-          <Box as={FloatingColumn} width={[1, 1 / 2]} px={3}>
+        <InnerWrapper
+          flexDirection={["column", null, null, "row"]}
+          flexWrap="wrap"
+        >
+          <Box
+            as={FloatingColumn}
+            width={[1, null, null, null, 1 / 2]}
+            px={[0, null, null, null, 3]}
+          >
             <Form
               addDish={addDish}
               initialValues={initialValues}
@@ -64,7 +71,10 @@ const Menu = ({
               onShowImportModalClick={onShowImportModalClick}
             />
           </Box>
-          <Box width={[1, 1 / 2]} px={3}>
+          <Box
+            width={[1, null, null, null, 1 / 2]}
+            px={[0, null, null, null, 3]}
+          >
             <List
               items={preparedList}
               removeDish={removeDish}
