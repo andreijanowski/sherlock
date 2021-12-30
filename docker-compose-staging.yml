@@ -1,48 +1,17 @@
 version: "3.4"
 services:
-  front:
+  sherlock:
     image: ${IMAGE}
     hostname: "sherlock.staging.front"
     command: ash -c 'yarn build && yarn start'
-    labels:
-      - "netguru.appname=sherlock"
-      - "netguru.stage=staging"
-    environment:
-      - NODE_ENV=staging
-      - APP_URL=https://sherlock.calluna.devguru.co
-      - VIRTUAL_HOST=sherlock.calluna.devguru.co
-      - PUBLIC_API_URL
-      - PUBLIC_FOODETECTIVE_URL
-      - NETGURU_DEV_PASSWORD
-      - OAUTH_CALLBACK_URL
-      - OAUTH_PUBLIC_CLIENT_ID
-      - OAUTH_SECRET_CLIENT_ID
-      - PUBLIC_PUSHER_APP_KEY
-      - PUBLIC_PUSHER_APP_CLUSTER
-      - STRIPE_CLIENT_ID
-      - PUBLIC_STRIPE_API_KEY
-      - PUBLIC_GOOGLE_ANALYTICS_ID
-      - PUBLIC_GOOGLE_MAPS_API_KEY
-      - LETSENCRYPT_HOST=sherlock.staging.devguru.co
-      - LETSENCRYPT_EMAIL=devops-team@netguru.co
-      - STAGING_AUTH
-      - COMMUNITY_MANAGEMENT_TYPEFORM_ID
-      - MARKETING_TYPEFORM_ID
-      - PHOTOGRAPHY_TYPEFORM_ID
-      - ROLLBAR_ACCESS_TOKEN
-      - PLANS_BUSINESS_EXAMPLE_LINK
+    restart: unless-stopped
+    env_file:
+      - /var/efs/secrets/sherlock.env
     networks:
       - frontend
     expose:
       - "3000"
-    logging:
-      driver: awslogs
-      options:
-        awslogs-region: eu-central-1
-        awslogs-group: calluna-sherlock-staging-log-group
-        awslogs-stream: sherlock
 
 networks:
   frontend:
-    external:
-      name: frontend
+    external: true
