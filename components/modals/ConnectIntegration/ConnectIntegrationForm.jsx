@@ -6,7 +6,7 @@ import { Button, FormInput } from "components";
 import { required } from "utils/validators";
 import { useT } from "utils/hooks";
 import { Trans } from "i18n";
-import { ONLINE_MEETING_LINK } from "consts";
+import { FOODETECTIVE_MAIL } from "consts";
 import {
   BodyStyled,
   ButtonsWrap,
@@ -51,12 +51,7 @@ const ConnectIntegrationForm = ({ partner, onSubmit, onClose }) => {
                 t={t}
                 i18nKey="integrations:bookMeeting"
                 components={[
-                  <a
-                    href={ONLINE_MEETING_LINK}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    onClick={onClose}
-                  >
+                  <a href={`mailto:${FOODETECTIVE_MAIL}`} onClick={onClose}>
                     online meeting
                   </a>
                 ]}
