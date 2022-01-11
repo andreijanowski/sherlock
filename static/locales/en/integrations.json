@@ -15,8 +15,8 @@
     "description": "No worries: just send us the name & website of the supplier you'd like to see here at <0>support@foodetective.co</0> and we’ll add it as soon as possible."
   },
   "connectPartner": "Please enter the credentials you usually use to connect on {{name}} back office:",
-  "connectPartnerNote": "<0>Note:</0> for your security, these credentials will automatically be deleted from our system as soon as the integration is finished or at latest two week after the integration request.",
+  "connectPartnerNote": "<0>Note:</0> for your security, these credentials will automatically be deleted from our system as soon as the integration is finished.",
   "id": "Id",
   "password": "Password",
-  "bookMeeting": "If you don’t want to share these information, please book an <0>online meeting</0> with us to do the integration together."
+  "bookMeeting": "If you have any question or concern, please send us an email at <0>support@foodetective.co</0>."
 }

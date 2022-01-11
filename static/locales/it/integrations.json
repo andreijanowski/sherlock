@@ -15,8 +15,8 @@
     "description": "Non preoccuparti: mandaci il nome e il sito web del fornitore che vorresti vedere qui a <0>support@foodetective.co</0> e lo aggiungeremo il prima possibile."
   },
   "connectPartner": "Inserisci le credenziali che usi di solito per connetterti al back office {{name}}:",
-  "connectPartnerNote": "<0>Nota:</0> per la vostra sicurezza, queste credenziali saranno automaticamente cancellate dal nostro sistema non appena l'integrazione sarà terminata o al massimo due settimane dopo la richiesta di integrazione.",
+  "connectPartnerNote": "<0>Nota:</0> per la vostra sicurezza, queste credenziali saranno automaticamente cancellate dal nostro sistema non appena l'integrazione sarà terminata.",
   "id": "Id",
   "password": "Password",
-  "bookMeeting": "Se non vuoi condividere queste informazioni, prenota un <0>incontro online</0> con noi per fare l'integrazione insieme."
+  "bookMeeting": "Se avete domande o osservazioni, inviateci una mail a <0>support@foodetective.co</0>."
 }

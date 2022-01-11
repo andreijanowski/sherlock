@@ -15,8 +15,8 @@
     "description": "Kein Problem: Senden Sie uns einfach den Namen und die Website des Anbieters, den Sie hier sehen möchten, an <0>support@foodetective.co</0> und wir werden ihn so schnell wie möglich hinzufügen."
   },
   "connectPartner": "Bitte geben Sie die Anmeldedaten ein, die Sie normalerweise für die Verbindung zum {{name}} Backoffice verwenden:",
-  "connectPartnerNote": "<0>Anmerkung:</0> Zu Ihrer Sicherheit werden diese Anmeldedaten automatisch aus unserem System gelöscht, sobald die Integration abgeschlossen ist oder spätestens zwei Wochen nach der Integrationsanfrage.",
+  "connectPartnerNote": "<0>Anmerkung:</0> Zu Ihrer Sicherheit werden diese Anmeldedaten automatisch aus unserem System gelöscht, sobald die Integration abgeschlossen ist.",
   "id": "Id",
   "password": "Passwort",
-  "bookMeeting": "Wenn Sie diese Informationen nicht weitergeben möchten, buchen Sie bitte ein <0>Online-Meeting</0> mit uns, um die Integration gemeinsam durchzuführen."
+  "bookMeeting": "Wenn Sie Fragen oder Anmerkungen haben, senden Sie uns bitte eine E-Mail an <0>support@foodetective.co</0>."
 }
