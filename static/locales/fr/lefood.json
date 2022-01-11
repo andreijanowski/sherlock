@@ -27,7 +27,6 @@
   "sku": "SKU",
   "categoryPlaceholder": "Catégorie",
   "addToMenu": "Ajouter au menu",
-  "availability": "Disponibilité",
   "chooseOrDragFile": "Choisissez un fichier ou faites-le glisser ici",
   "picturesInfo": "fichier png ou jpeg",
   "invalidFiles": "Certains fichiers glissés n'ont pas un type valide",

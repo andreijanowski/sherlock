@@ -145,7 +145,7 @@ const DishForm = ({
               </Box>
               <Box my={4}>
                 <H3>Available in: </H3>
-                <FormCheckbox name="available" label={t("availability")} />
+                <FormCheckbox name="available" label="Foodetective Orders" />
                 {isUberAvailable && (
                   <FormCheckbox
                     name="onUberEats"
