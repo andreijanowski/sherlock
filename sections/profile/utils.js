@@ -105,11 +105,7 @@ const checkIsFilled = ({
         business.get("canPayWithCards") ||
         business.get("canPayWithCash") ||
         business.get("canPayWithMobile") ||
-        business.get("secretCode") ||
-        business.get("deliveryChargeRef") ||
-        business.get("stripePaymentRef") ||
-        business.get("deliveryServiceTypeRef") ||
-        business.get("takeawayServiceTypeRef")
+        business.get("secretCode")
       );
     }
     default: {
