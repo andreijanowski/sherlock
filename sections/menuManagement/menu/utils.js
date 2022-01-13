@@ -7,30 +7,60 @@ export const getInitialValues = ({ editedDishId, dishes }) => {
     if (dish) {
       const pictures = dish.getIn(["relationships", "pictures", "data"]);
       const picture = pictures && pictures.first();
+      const rawDishOptionCategories = dish.getIn([
+        "relationships",
+        "dishOptionCategories",
+        "data"
+      ]);
+
+      const dishOptionCategories = rawDishOptionCategories
+        ? rawDishOptionCategories
+            .map(dishOptionCategory => {
+              const dishOptionsRelationships = dishOptionCategory.getIn([
+                "relationships",
+                "dishOptions",
+                "data"
+              ]);
+
+              return dishOptionCategory
+                .get("attributes")
+                .set(
+                  "dishOptions",
+                  dishOptionsRelationships
+                    ? dishOptionsRelationships.map(dishOption =>
+                        dishOption
+                          .get("attributes")
+                          .update("pricePerItemCents", normalizePrice)
+                      )
+                    : []
+                );
+            })
+            .toJS()
+        : [];
+
       return {
-        initialValues: {
-          name: dish.getIn(["attributes", "name"]),
-          pricePerItemCents: normalizePrice(
-            dish.getIn(["attributes", "pricePerItemCents"])
-          ),
-          description: dish.getIn(["attributes", "description"]),
-          category: dish.getIn(["relationships", "category", "data", "id"]),
-          available: !dish.getIn(["attributes", "unavailable"]),
-          onUberEats: dish.getIn(["attributes", "onUberEats"]),
-          skuRef: dish.getIn(["attributes", "skuRef"])
-        },
-        initialPicture: picture && {
-          id: picture.get("id"),
-          url:
-            picture.getIn(["attributes", "photo", "tablet", "url"]) ||
-            picture.getIn(["attributes", "photo", "url"])
-        }
+        name: dish.getIn(["attributes", "name"]),
+        pricePerItemCents: normalizePrice(
+          dish.getIn(["attributes", "pricePerItemCents"])
+        ),
+        description: dish.getIn(["attributes", "description"]),
+        category: dish.getIn(["relationships", "category", "data", "id"]),
+        available: !dish.getIn(["attributes", "unavailable"]),
+        onUberEats: dish.getIn(["attributes", "onUberEats"]),
+        skuRef: dish.getIn(["attributes", "skuRef"]),
+        dishOptionCategories,
+        picture: picture
+          ? {
+              id: picture.get("id"),
+              url:
+                picture.getIn(["attributes", "photo", "tablet", "url"]) ||
+                picture.getIn(["attributes", "photo", "url"])
+            }
+          : null
       };
     }
   }
-  return {
-    initialValues: {}
-  };
+  return {};
 };
 
 export const prepareCategories = categories =>

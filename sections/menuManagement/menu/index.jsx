@@ -1,11 +1,15 @@
-import React, { useMemo } from "react";
-import { func, shape, bool, string } from "prop-types";
+import React, { useCallback, useMemo, useState } from "react";
+import { bool, func, shape, string } from "prop-types";
 import { Box } from "@rebass/grid";
+import { Form as FinalForm } from "react-final-form";
+import arrayMutators from "final-form-arrays";
+
 import { LoadingIndicator } from "components";
-import Form from "./Form";
+import DishForm from "./DishForm";
 import List from "./List";
-import { InnerWrapper, Wrapper, FloatingColumn } from "./styled";
+import { FloatingColumn, InnerWrapper, Wrapper } from "./styled";
 import { getInitialValues, prepareCategories } from "./utils";
+import DishOptionsForm from "./DishOptionsForm";
 
 const Menu = ({
   dishes,
@@ -18,11 +22,12 @@ const Menu = ({
   t,
   loading,
   categories,
-  businessId,
   isUberAvailable,
   onShowImportModalClick
 }) => {
-  const { initialValues, initialPicture } = getInitialValues({
+  const [pictureUrl, setPictureUrl] = useState("");
+
+  const initialValues = getInitialValues({
     editedDishId,
     dishes
   });
@@ -43,46 +48,86 @@ const Menu = ({
     };
   });
 
+  const onFormSubmit = useCallback(
+    async (values, formApi) => {
+      const {
+        rawData: {
+          data: { id: dishId }
+        }
+      } = await addDish(values);
+
+      if (pictureUrl) {
+        await addPicture(pictureUrl, dishId);
+      }
+      setPictureUrl("");
+      setEditedDishId(null);
+      formApi.reset();
+    },
+    [addDish, addPicture, pictureUrl, setEditedDishId]
+  );
+
   return (
     <Wrapper>
       {loading ? (
         <LoadingIndicator />
       ) : (
-        <InnerWrapper
-          flexDirection={["column", null, null, "row"]}
-          flexWrap="wrap"
-        >
-          <Box
-            as={FloatingColumn}
-            width={[1, null, null, null, 1 / 2]}
-            px={[0, null, null, null, 3]}
-          >
-            <Form
-              addDish={addDish}
-              initialValues={initialValues}
-              initialPicture={initialPicture}
-              addPicture={addPicture}
-              removePicture={removePicture}
-              setEditedDishId={setEditedDishId}
-              t={t}
-              categories={preparedCategories}
-              businessId={businessId}
-              isUberAvailable={isUberAvailable}
-              onShowImportModalClick={onShowImportModalClick}
-            />
-          </Box>
-          <Box
-            width={[1, null, null, null, 1 / 2]}
-            px={[0, null, null, null, 3]}
-          >
-            <List
-              items={preparedList}
-              removeDish={removeDish}
-              loading={loading}
-              setEditedDishId={setEditedDishId}
-            />
-          </Box>
-        </InnerWrapper>
+        <FinalForm
+          initialValues={initialValues}
+          mutators={{
+            ...arrayMutators
+          }}
+          subscription={{
+            initialValues: true,
+            submitting: true
+          }}
+          onSubmit={onFormSubmit}
+          render={({ submitting }) => {
+            if (submitting)
+              return (
+                <InnerWrapper>
+                  <LoadingIndicator />
+                </InnerWrapper>
+              );
+
+            return (
+              <InnerWrapper
+                flexDirection={["column", null, null, "row"]}
+                flexWrap="wrap"
+              >
+                <Box
+                  as={FloatingColumn}
+                  width={[1, null, null, null, 1 / 2]}
+                  px={[0, null, null, null, 3]}
+                >
+                  <DishForm
+                    t={t}
+                    pictureUrl={pictureUrl}
+                    setPictureUrl={setPictureUrl}
+                    removePicture={removePicture}
+                    categories={preparedCategories}
+                    isUberAvailable={isUberAvailable}
+                    onShowImportModalClick={onShowImportModalClick}
+                  />
+                </Box>
+                <Box
+                  width={[1, null, null, null, 1 / 2]}
+                  px={[0, null, null, null, 3]}
+                >
+                  {editedDishId ? (
+                    <DishOptionsForm />
+                  ) : (
+                    <List
+                      items={preparedList}
+                      removeDish={removeDish}
+                      loading={loading}
+                      setEditedDishId={setEditedDishId}
+                    />
+                  )}
+                </Box>
+              </InnerWrapper>
+            );
+          }}
+        />
       )}
     </Wrapper>
   );
@@ -99,7 +144,6 @@ Menu.propTypes = {
   removePicture: func.isRequired,
   loading: bool.isRequired,
   editedDishId: string,
-  businessId: string.isRequired,
   isUberAvailable: bool.isRequired,
   onShowImportModalClick: func.isRequired
 };

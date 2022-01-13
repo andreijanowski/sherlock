@@ -97,7 +97,7 @@ export const fetchBusinessDishes = (id, page = 1) => ({
     params: {
       per_page: PER_PAGE,
       page,
-      include: "pictures,category"
+      include: "pictures,category,dish_option_categories.dish_options"
     }
   },
   meta: { thunk: true, page }

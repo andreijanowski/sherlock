@@ -42,14 +42,14 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       if (meta.page === 1) {
         newState = newState.setIn(["data"], fromJS(payload.data));
       } else {
-        newState = newState.mergeIn(
-          ["data", "dishes"],
-          fromJS(payload.data.dishes)
-        );
-        newState = newState.mergeIn(
-          ["data", "pictures"],
-          fromJS(payload.data.pictures)
-        );
+        newState = newState
+          .mergeIn(["data", "dishes"], fromJS(payload.data.dishes))
+          .mergeIn(["data", "pictures"], fromJS(payload.data.pictures))
+          .mergeIn(
+            ["data", "dishOptionCategories"],
+            fromJS(payload.data.dishOptionCategories)
+          )
+          .mergeIn(["data", "dishOptions"], fromJS(payload.data.dishOptions));
       }
       return newState;
     }
@@ -74,7 +74,12 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       if (state.getIn(["data"]) && state.getIn(["data"]).size) {
         return state
           .mergeIn(["data", "dishes"], fromJS(payload.data.dishes))
-          .mergeIn(["data", "pictures"], fromJS(payload.data.pictures));
+          .mergeIn(["data", "pictures"], fromJS(payload.data.pictures))
+          .mergeIn(
+            ["data", "dishOptionCategories"],
+            fromJS(payload.data.dishOptionCategories)
+          )
+          .mergeIn(["data", "dishOptions"], fromJS(payload.data.dishOptions));
       }
       return state.setIn(["data"], fromJS(payload.data));
     }

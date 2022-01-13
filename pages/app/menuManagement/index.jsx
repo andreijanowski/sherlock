@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { withTranslation } from "i18n";
-import { func, string, shape, bool } from "prop-types";
+import { bool, func, shape, string } from "prop-types";
 import { connect } from "react-redux";
 import { compose } from "redux";
 
@@ -8,15 +8,15 @@ import { Confirm } from "components/modals";
 import requireAuth from "lib/requireAuth";
 import AppManagerLayout from "sections/menuManagement/Layout";
 import Menu from "sections/menuManagement/menu";
-import { postDish, patchDish, deleteDish } from "actions/dishes";
-import { postPicture, deletePicture } from "actions/pictures";
+import { deleteDish, patchDish, postDish } from "actions/dishes";
+import { deletePicture, postPicture } from "actions/pictures";
 import {
-  uploadMenuToUberEats,
-  downloadMenuFromUberEats
+  downloadMenuFromUberEats,
+  uploadMenuToUberEats
 } from "actions/integrations";
-import { mergeDishesData } from "sections/lefood/utils";
 import { convertToCents } from "utils/price";
 import { ImportModal } from "components";
+import { selectDenormalizedDishes } from "selectors/dishes";
 
 const ACTION_TYPE = {
   DOWNLOAD_UBER_EATS: "DOWNLOAD_UBER_EATS",
@@ -227,8 +227,6 @@ export default compose(
         businessData &&
         businessData.get("businesses") &&
         businessData.get("businesses").first();
-      const dishes = state.getIn(["dishes", "data", "dishes"]);
-      const pictures = state.getIn(["dishes", "data", "pictures"]);
       const categories = state.getIn(["categories", "data", "categories"]);
       const loadingDishes =
         (!state.getIn(["dishes", "isFailed"]) &&
@@ -242,7 +240,7 @@ export default compose(
       return {
         isUberAvailable,
         loading: loadingDishes || loadingCategories,
-        dishes: mergeDishesData(dishes, pictures),
+        dishes: selectDenormalizedDishes(state),
         categories,
         business: business && business.get("attributes"),
         businessId: business && business.get("id"),

@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
+import { downThanBreakpoint, themeGet } from "utils/theme";
+
 export const AdaptiveBox = styled(({ display, ...restProps }) => (
   <Flex {...restProps} />
 ))`
@@ -29,4 +31,21 @@ export const AdaptiveBox = styled(({ display, ...restProps }) => (
         .join("")}
     `;
   }}
+`;
+
+export const DeleteListItemBtn = styled(Flex).attrs({ as: "button" })`
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  border: 1px solid rgb(${themeGet("colors.snuff")});
+  border-radius: ${themeGet("radius.small")};
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  cursor: pointer;
+  color: rgb(${themeGet("colors.ruby")});
+  ${downThanBreakpoint(0)} {
+    width: 54px;
+    height: 54px;
+  }
 `;
