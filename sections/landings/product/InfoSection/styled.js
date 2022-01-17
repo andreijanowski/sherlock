@@ -64,9 +64,9 @@ export const BodyStyled = styled(Body)`
 `;
 
 export const ImagesContainer = styled(Flex)`
+  max-width: 100%;
   width: fit-content;
   position: relative;
-  flex-direction: column;
   margin: auto;
 `;
 

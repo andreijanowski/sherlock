@@ -25,13 +25,12 @@ const TextColumn = ({
 }) => {
   const t = useT("landing");
 
-  const subtitle = t(`${prefix}.subtitle`);
   const hasOptionsSwitcher = options.length > 1;
 
   return (
     <Box width={width}>
       <H3Styled isDark={isDark} mb={[3, null, null, 2]} tabletCentered>
-        {subtitle}
+        <Trans t={t} i18nKey={`${prefix}.subtitle`} components={[<br />]} />
       </H3Styled>
       {options.map((option, index) => {
         const isActive = index === activeOptionIndex;
@@ -60,7 +59,9 @@ const TextColumn = ({
                   isDark={isDark}
                   tabletCentered
                 >
-                  {option.description}
+                  <Trans t={t} components={[<strong />]}>
+                    {option.description}
+                  </Trans>
                 </BodyStyled>
                 <Flex flexWrap="wrap" mx={-3}>
                   {option.advantages.map(adv => (

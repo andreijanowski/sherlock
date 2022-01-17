@@ -257,6 +257,61 @@
           "description": "Aumento dei takeaway con <0/> una migliore esperienza digitale"
         }
       ]
+    },
+    "operations": {
+      "title": "Operations Integrations",
+      "subtitle": "Implementare procedure e <0>un solido sistema operativo</0> che faciliti le attività quotidiane del personale e dei fornitori. ",
+      "payments": {
+        "title": "Pagamenti",
+        "subtitle": "La tua storia dei pagamenti a portata di mano",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Ricevere, registrare e gestire i vostri pagamenti.",
+            "advantages": [
+              "<0>Accetta pagamenti online.</0> Con il tuo POS o integrazioni con i nostri partner come Stripe.",
+              "<0>Storia dei pagamenti.</0> Lista di pagamenti in diretta streaming con tutti i dati necessari.",
+              "<0>Molte altre caratteristiche.</0> Le integrazioni con altre applicazioni daranno a te e ai tuoi clienti l'accesso a molte altre funzioni!"
+            ]
+          }
+        ]
+      },
+      "procurement": {
+        "title": "Approvvigionamento",
+        "subtitle": "Scopri nuovi grossisti</0> e ordina dai tuoi preferiti.",
+        "options": [
+          {
+            "title": "Main",
+            "subtitle": "Ordina quello che ti serve quando ti serve. <0>85%</0> delle aziende preferisce ordinare online, sappiamo che lo farai anche tu!",
+            "advantages": [
+              "<0>Lista variegata di categorie di grossisti</0> tra cui FMCG, bevande, igiene, tra gli altri.",
+              "<0>Non più dimenticato.</0> Ordinate piccoli volumi, meno frequentemente? Siate in \"top of mind\" del vostro grossista a prescindere.",
+              "<0>Ordina dai grossisti in modo digitale.</0> Niente più gestione manuale degli ordini.",
+              "<0>Ridurre al minimo il rischio di errori.</0> Nessun tempo speso a rispondere alle domande o a modificare gli ordini.",
+              "<0>Risparmia il tempo dell'amministrazione.</0> Libera il tempo del tuo staff con l'ordine digitale.",
+              "<0>Mai fuori traccia.</0> Aggiorna automaticamente il tuo inventario sulla gestione delle scorte."
+            ]
+          }
+        ]
+      },
+      "stockManagement": {
+        "title": "Stock Management",
+        "subtitle": "Adiós a la brecha de inventario",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Prenditi cura dei tuoi clienti, non della tua dispensa.",
+            "advantages": [
+              "<0>Dati sincronizzati.</0> Comunicazione con la parte anteriore e posteriore della casa.",
+              "<0>Meno sprechi.</0> Sintesi del valore dello stock e di quanto è a rischio.",
+              "<0>Migliore controllo del menu.</0> Usa i dati per modificare il tuo menu, rimuovere i piatti o creare i piatti del giorno.",
+              "<0>Panoramica dei livelli di stock.</0> Evitare l'eccesso o la carenza di scorte.",
+              "<0>Flusso in diretta.</0> Il personale è al corrente delle consegne in sospeso, evitando ordini duplicati.",
+              "<0>Ordinazione automatica.</0> In arrivo: Impostazione dei livelli minimi di inventario e riordino automatico."
+            ]
+          }
+        ]
+      }
     }
   }
 }

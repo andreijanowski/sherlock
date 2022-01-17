@@ -257,6 +257,61 @@
           "description": "Aumento de las tomas con <0/> una mejor experiencia digital"
         }
       ]
+    },
+    "operations": {
+      "title": "Operations Integrations",
+      "subtitle": "Implantar procedimientos y un <0>sistema operativo sólido</0> que facilite las actividades cotidianas del personal y los proveedores.  ",
+      "payments": {
+        "title": "Pagos",
+        "subtitle": "Su historial de pagos a mano",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Recibir, registrar y gestionar sus pagos",
+            "advantages": [
+              "<0>Acepte pagos en línea.</0> Con su TPV o integraciones con nuestros socios como Stripe.",
+              "<0>Historial de pagos.</0> Lista de pagos en vivo con todos los datos que necesitas.",
+              "<0>Muchas más funciones.</0> Las integraciones con otras aplicaciones le darán a usted, y a sus clientes, acceso a muchas más funciones."
+            ]
+          }
+        ]
+      },
+      "procurement": {
+        "title": "Adquisiciones",
+        "subtitle": "Descubra nuevos mayoristas</0> y haga pedidos a sus favoritos.",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Pida lo que necesite cuando lo necesite. El <0>85%</0> de las empresas prefieren los pedidos en línea, ¡sabemos que usted también lo hará!",
+            "advantages": [
+              "<0>Lista variada de categorías de mayoristas</0> que incluye productos de gran consumo, bebidas, higiene, entre otros.",
+              "<0>Ya no se olvida.</0> ¿Pide pequeños volúmenes, con menos frecuencia? Esté en el \"top of mind\" de su mayorista a pesar de todo.",
+              "<0>Haga sus pedidos a los mayoristas de forma digital.</0> Se acabó la gestión manual de los pedidos.",
+              "<0>Minimice el riesgo de errores.</0> No se pierde tiempo respondiendo a preguntas o modificando pedidos.",
+              "<0>Ahorre tiempo de administración.</0> Libere el tiempo de su personal con los pedidos digitales.",
+              "<0>Nunca se pierde el rastro.</0> Actualiza automáticamente su inventario en la gestión de existencias."
+            ]
+          }
+        ]
+      },
+      "stockManagement": {
+        "title": "Stock Management",
+        "subtitle": "Adiós, brecha de inventario",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Cuida de tus clientes, no de tu despensa",
+            "advantages": [
+              "<0>Datos sincronizados.</0> Comunicación de la parte delantera y trasera de la casa.",
+              "<0>Menos residuos.</0> Resumen del valor de las existencias y cuánto está en riesgo.",
+              "<0>Mejor control del menú.</0> Utilice los datos para editar su menú, eliminar platos o crear platos del día.",
+              "<0>Resumen de los niveles de existencias.</0> Evitar el exceso o la falta de existencias.",
+              "<0>Live stream.</0> El personal está al tanto de las entregas pendientes evitando la duplicación de pedidos.",
+              "<0>Pedidos automáticos.</0> Próximamente: Establecimiento de niveles mínimos de inventario y reordenamiento automático."
+            ]
+          }
+        ]
+      }
     }
   }
 }

@@ -21,7 +21,11 @@ const ImageColumn = ({ width, isDark, prefix, images, linkTo }) => {
       mr={isDark ? undefined : [0, null, null, 80]}
       mb={[24, null, null, 0]}
     >
-      <ImagesContainer justifyContent={isDark ? "flex-start" : "flex-end"}>
+      <ImagesContainer
+        justifyContent={
+          isDark ? "flex-start" : ["flex-start", null, null, "flex-end"]
+        }
+      >
         {images.map(({ src, ...styleProps }, index) => (
           <Image
             key={src}
@@ -30,17 +34,17 @@ const ImageColumn = ({ width, isDark, prefix, images, linkTo }) => {
             alt={`Image ${index + 1}`}
           />
         ))}
-        {linkTo && linkText && (
-          <Link lng={lng} route={linkTo}>
-            <Flex as="a" mt={27} justifyContent="center" alignItems="center">
-              {linkText}
-              <Box ml={2}>
-                <FontAwesomeIcon icon={faChevronRight} />
-              </Box>
-            </Flex>
-          </Link>
-        )}
       </ImagesContainer>
+      {linkTo && linkText && (
+        <Link lng={lng} route={linkTo}>
+          <Flex as="a" mt={27} justifyContent="center" alignItems="center">
+            {linkText}
+            <Box ml={2}>
+              <FontAwesomeIcon icon={faChevronRight} />
+            </Box>
+          </Flex>
+        </Link>
+      )}
     </Box>
   );
 };
