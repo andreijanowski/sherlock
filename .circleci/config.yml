@@ -1,9 +1,9 @@
 version: 2.1
 
 orbs:
-  aws-cli: circleci/aws-cli@2.0.3
-  aws-code-deploy: circleci/aws-code-deploy@0.0.7
-  aws-ecr: circleci/aws-ecr@7.0.0
+  aws-cli: circleci/aws-cli@2.0.6
+  aws-code-deploy: circleci/aws-code-deploy@2.0.0
+  aws-ecr: circleci/aws-ecr@7.3.0
 
 references:
   deploy: &deploy
@@ -49,21 +49,23 @@ jobs:
           name: Run CSS Linter
           command: yarn lint:css
 
-  build_image:
+  build_image_staging:
     <<: *node_machine
     steps:
       - run:
+        # we need to overwrite default AWS_ credentials
+        # because they exists in CircleCI
           name: "set ENV for deploying staging"
           command: |
-            echo 'export AWS_ACCESS_KEY_ID=$STAGING_AWS_ACCESS_KEY_ID' >> $BASH_ENV;
-            echo 'export AWS_SECRET_ACCESS_KEY=$STAGING_AWS_SECRET_ACCESS_KEY' >> $BASH_ENV;
+            echo 'export AWS_ACCESS_KEY_ID=$NEW_STAGING_AWS_ACCESS_KEY_ID' >> $BASH_ENV;
+            echo 'export AWS_SECRET_ACCESS_KEY=$NEW_STAGING_AWS_SECRET_ACCESS_KEY' >> $BASH_ENV;
             source $BASH_ENV
       - aws-ecr/build-and-push-image:
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          region: STAGING_AWS_DEFAULT_REGION
-          account-url: STAGING_AWS_ECR_ACCOUNT_URL
-          repo: calluna-ecr-sherlock-staging
+          aws-access-key-id: NEW_STAGING_AWS_ACCESS_KEY_ID
+          aws-secret-access-key: NEW_STAGING_AWS_SECRET_ACCESS_KEY
+          region: NEW_STAGING_AWS_DEFAULT_REGION
+          account-url: NEW_STAGING_AWS_ECR_ACCOUNT_URL
+          repo: foodetective-staging-sherlock
           tag: ${CIRCLE_SHA1}
           dockerfile: docker/Dockerfile.staging
           setup-remote-docker: true
@@ -72,27 +74,32 @@ jobs:
     working_directory: ~/repo
     executor: aws-cli/default
     steps:
-      - run:
-          name: "set ENV for deploying staging"
-          command: |
-            echo 'export AWS_ACCESS_KEY_ID=$STAGING_AWS_ACCESS_KEY_ID' >> $BASH_ENV;
-            echo 'export AWS_SECRET_ACCESS_KEY=$STAGING_AWS_SECRET_ACCESS_KEY' >> $BASH_ENV;
-            source $BASH_ENV
       - checkout
       - run:
-          name: Configure deployment
+        # we need to overwrite default AWS_ credentials
+        # because they exists in CircleCI
+          name: "set ENV for deploying staging"
           command: |
-            echo IMAGE=${STAGING_AWS_ECR_ACCOUNT_URL}/calluna-ecr-sherlock-staging:${CIRCLE_SHA1} >> codedeploy/parameters
-      - aws-cli/setup
+            echo 'export AWS_ACCESS_KEY_ID=$NEW_STAGING_AWS_ACCESS_KEY_ID' >> $BASH_ENV;
+            echo 'export AWS_SECRET_ACCESS_KEY=$NEW_STAGING_AWS_SECRET_ACCESS_KEY' >> $BASH_ENV;
+            source $BASH_ENV
+      - run:
+          name: Prepare ENV vars
+          command: |
+            echo IMAGE=${NEW_STAGING_AWS_ECR_ACCOUNT_URL}/foodetective-staging-sherlock:${CIRCLE_SHA1} > codedeploy/parameters
+      - aws-cli/setup:
+          aws-access-key-id: NEW_STAGING_AWS_ACCESS_KEY_ID
+          aws-secret-access-key: NEW_STAGING_AWS_SECRET_ACCESS_KEY
+          aws-region: NEW_STAGING_AWS_DEFAULT_REGION
       - aws-code-deploy/push-bundle:
-          application-name: calluna-sherlock-staging-main_app
-          bundle-bucket: calluna-bucket-sherlock-staging
-          bundle-key: codedeploy/$CIRCLE_PROJECT_REPONAME-$CIRCLE_BUILD_NUM
+          application-name: foodetective-staging-sherlock
+          bundle-bucket: foodetective-staging-codedeploy
+          bundle-key: sherlock/$CIRCLE_PROJECT_REPONAME-$CIRCLE_SHA1
       - aws-code-deploy/deploy-bundle:
-          application-name: calluna-sherlock-staging-main_app
-          deployment-group: calluna-sherlock-staging-main_app-group
-          bundle-bucket: calluna-bucket-sherlock-staging
-          bundle-key: codedeploy/$CIRCLE_PROJECT_REPONAME-$CIRCLE_BUILD_NUM
+          application-name: foodetective-staging-sherlock
+          deployment-group: foodetective-staging-sherlock-group
+          bundle-bucket: foodetective-staging-codedeploy
+          bundle-key: sherlock/$CIRCLE_PROJECT_REPONAME-$CIRCLE_SHA1
 
   build_push_docker:
     docker:
@@ -147,16 +154,22 @@ workflows:
   build-and-deploy:
     jobs:
       - checkout_code
-      - build_image:
-          filters:
-            branches:
-              ignore: production
-      - deploy_staging:
+
+      ###   STAGING   ###
+      - build_image_staging:
           requires:
-            - build_image
+            - checkout_code
           filters:
             branches:
               only: master
+      - deploy_staging:
+          requires:
+            - build_image_staging
+          filters:
+            branches:
+              only: master
+
+      ###   PRODUCTION   ###
       - build_push_docker:
           requires:
             - checkout_code

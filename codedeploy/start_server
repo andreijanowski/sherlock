@@ -5,12 +5,10 @@ set -u
 # Print a trace of simple commands
 set -x
 
-cd /opt/codedeploy-agent/deployment-root/${DEPLOYMENT_GROUP_ID}/${DEPLOYMENT_ID}/deployment-archive
+cd /opt/codedeploy-agent/deployment-root/"${DEPLOYMENT_GROUP_ID}"/"${DEPLOYMENT_ID}"/deployment-archive || exit 1
 
-if [[ "$APPLICATION_NAME" == "calluna-sherlock-staging-main_app" ]]; then
+if [[ "$APPLICATION_NAME" == "foodetective-staging-sherlock" ]]; then
   source codedeploy/start_server_staging
-elif [[ "$APPLICATION_NAME" == "calluna-sherlock-staging-dynamic_main_app" ]]; then
-  source codedeploy/start_server_integration
 else
   exit 1
 fi

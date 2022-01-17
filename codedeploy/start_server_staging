@@ -5,32 +5,18 @@ set -u
 # Print a trace of simple commands
 set -x
 
-REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r ".region")
-VARS=$(aws --region $REGION ssm get-parameters-by-path --recursive --path /calluna/sherlock/staging --with-decryption | jq -r '.Parameters | .[] | .Name + "=" + .Value' | sed -e s#/calluna/sherlock/staging/##g)
+cd /opt/codedeploy-agent/deployment-root/"${DEPLOYMENT_GROUP_ID}"/"${DEPLOYMENT_ID}"/deployment-archive || exit 1
 
-for envvar in ${VARS}; do
-  export $envvar;
-done
-
-export FACEBOOK_DOMAIN_VERIFICATION=$(echo $FACEBOOK_DOMAIN_VERIFICATION | base64 -d)
-export PUBLIC_API_URL=$(echo $PUBLIC_API_URL | base64 -d)
-export PUBLIC_FOODETECTIVE_URL=$(echo $PUBLIC_FOODETECTIVE_URL | base64 -d)
-export NETGURU_DEV_PASSWORD=$(echo $NETGURU_DEV_PASSWORD | base64 -d)
-export OAUTH_CALLBACK_URL=$(echo $OAUTH_CALLBACK_URL | base64 -d)
-export STAGING_AUTH=$(echo $STAGING_AUTH | base64 -d)
-
-cd /opt/codedeploy-agent/deployment-root/${DEPLOYMENT_GROUP_ID}/${DEPLOYMENT_ID}/deployment-archive
-
-docker-compose -f codedeploy/nginx/docker-compose-staging.yml up -d
-
+# application
+# shellcheck disable=SC2046,SC2002
 export $(cat codedeploy/parameters | xargs)
 
-docker network create frontend
-
+# login to ECR
 $(aws ecr get-login --region eu-central-1 --no-include-email)
+
+# !!! NGINX is deployed from thefoodetective-front repository !!!
 
 docker-compose -p sherlock -f docker-compose-staging.yml up -d --force-recreate
 
 # Remove unused data, do not prompt for confirmation
-docker image prune -f
-docker container prune -f
+docker system prune --all --force
