@@ -260,7 +260,61 @@
           "description": "En plus de takeaway grâce <0 /> à votre expérience digitale."
         }
       ]
+    },
+    "operations": {
+      "title": "Operations Integrations",
+      "subtitle": "Gérez vos opérations via notre plateforme pour <0>faciliter les activités quotidiennes</0> de vos employés et fournisseurs. ",
+      "payments": {
+        "title": "Paiements",
+        "subtitle": "Votre historique de paiements au bout des doigts",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Recevez, enregistrez et gérez vos paiements.",
+            "advantages": [
+              "<0>Acceptez les paiements en ligne.</0> Sur votre point de vente ou grâce aux intégrations avec des partenaires tels que Stripe.",
+              "<0>Historique des paiements.</0> Liste des paiements en direct avec toutes les données essentielles.",
+              "<0>Et bien d'autres fonctionnalités.</0> Les intégrations vous permettront à vous, ainsi qu'à vos clients, d'accéder à de nombreuses autres fonctionnalités !"
+            ]
+          }
+        ]
+      },
+      "procurement": {
+        "title": "Approvisionnement",
+        "subtitle": "Découvrez de nouveaux grossistes</0> et commandez chez vos favoris.",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Commandez ce dont vous avez besoin quand vous en avez besoin. <0>85%</0> des entreprises préfèrent commander en ligne, nous savons que vous le ferez aussi!",
+            "advantages": [
+              "<0>Une liste variée de catégories de grossistes,</0> y compris FMCG, boissons, hygiène, et bien d'autres.",
+              "<0>Fini les oublis.</0> Vous commandez de petits volumes ou moins fréquemment ? Soyez en tête de liste chez votre grossiste.",
+              "<0>Passez commandes chez vos grossistes de manière digitale.</0> Fini le traitement manuel des commandes.",
+              "<0>Minimisez le risque d'erreurs.</0> Fini le temps passé à répondre aux questions ou modifier des commandes.",
+              "<0>Économisez du temps administratif.</0> Libérez le temps de vos employés grâce aux commande digitales.",
+              "<0>Ne perdez jamais le fil.</0> Mettez automatiquement à jour votre inventaire grâce à la gestion de vos stocks."
+            ]
+          }
+        ]
+      },
+      "stockManagement": {
+        "title": "Stock Management",
+        "subtitle": "Adieu, déficit d'inventaire",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Prenez soin de vos clients, pas de votre garde-manger.",
+            "advantages": [
+              "<0>Données synchronisées.</0> Communication entre la salle et la cuisine.",
+              "<0>Moins de déchets.</0> Résumez la valeur actuelle de vos stocks et du montant à risque.",
+              "<0>Meilleure gestion du menu.</0> Utilisez les données pour modifier votre menu, supprimer des plats ou créer des plats du jour.",
+              "<0>Aperçu des niveaux de stock.</0> Évitez les excès ou les pénuries de stock.",
+              "<0>Live stream.</0> Le personnel est informé des livraisons en cours, ce qui évite les commandes en double.",
+              "<0>Commande automatique.</0> Prochainement : Définissez des niveaux d'inventaire minimum et un réapprovisionnement automatique."
+            ]
+          }
+        ]
+      }
     }
   }
-
 }

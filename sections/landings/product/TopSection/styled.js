@@ -19,5 +19,6 @@ export const TabletBlueText = styled.span`
 `;
 
 export const TabletImageBox = styled(AdaptiveBox)`
+  max-width: 100%;
   margin-bottom: 24px;
 `;

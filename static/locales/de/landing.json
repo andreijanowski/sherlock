@@ -257,6 +257,61 @@
           "description": "Steigerung der Mitnahmeeffekte durch <0/> ein besseres digitales Erlebnis."
         }
       ]
+    },
+    "operations": {
+      "title": "Operations Integrations",
+      "subtitle": "Einführung von Verfahren und eines soliden Betriebssystems zur <0>Erleichterung der täglichen Arbeit</0> von Mitarbeitern und Lieferanten.  ",
+      "payments": {
+        "title": "Zahlungen",
+        "subtitle": "Ihr Zahlungsverlauf zur Hand",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Empfangen, erfassen und verwalten Sie Ihre Zahlungen",
+            "advantages": [
+              "<0>Akzeptieren Sie Online-Zahlungen.</0> Mit Ihrem POS oder Integrationen mit unseren Partnern wie Stripe.",
+              "<0>Historie der Zahlungen.</0> Live-Stream-Liste der Zahlungen mit allen Daten, die Sie benötigen.",
+              "<0>Viele weitere Funktionen.</0> Integrationen mit anderen Apps geben Ihnen und Ihren Kunden Zugang zu vielen weiteren Funktionen!"
+            ]
+          }
+        ]
+      },
+      "procurement": {
+        "title": "Beschaffung",
+        "subtitle": "Entdecken Sie neue Großhändler</0> und bestellen Sie bei Ihren Favoriten.",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Bestellen Sie, was Sie brauchen, wenn Sie es brauchen. <0>85%</0> der Unternehmen bevorzugen die Online-Bestellung, wir wissen, dass Sie das auch tun werden!",
+            "advantages": [
+              "<0>Vielfältige Liste von Großhandelskategorien,</0> darunter FMCG, Getränke, Hygiene und andere.",
+              "<0>Nicht mehr vergessen.</0> Bestellen Sie kleine Mengen, weniger häufig? Seien Sie trotzdem \"top of mind\" bei Ihrem Großhändler.",
+              "<0>Bestellen Sie bei Großhändlern auf digitalem Wege.</0> Keine manuelle Auftragsabwicklung mehr.",
+              "<0>Minimieren Sie das Risiko von Fehlern.</0> Keine Zeit für die Beantwortung von Fragen oder die Änderung von Aufträgen.",
+              "<0>Sparen Sie Verwaltungszeit.</0> Setzen Sie die Zeit Ihrer Mitarbeiter mit digitalen Bestellungen frei.",
+              "<0>Niemals aus der Spur.</0> Aktualisiert automatisch Ihr Inventar in der Lagerverwaltung."
+            ]
+          }
+        ]
+      },
+      "stockManagement": {
+        "title": "Stock Management",
+        "subtitle": "Auf Wiedersehen, Bestandslücke",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Kümmern Sie sich um Ihre Kunden, nicht um Ihre Vorratskammer",
+            "advantages": [
+              "<0>Synchronisierte Daten.</0> Front und Back of House kommuniziert.",
+              "<0>Weniger Verschwendung.</0> Überblick über den Wert der Bestände und wie viel gefährdet ist.",
+              "<0>Bessere Menükontrolle.</0> Verwenden Sie Daten, um Ihr Menü zu bearbeiten, Gerichte zu entfernen oder Tagesgerichte zu erstellen.",
+              "<0>Überblick über die Lagerbestände.</0> Vermeiden Sie überschüssige oder knappe Bestände.",
+              "<0>Live-Stream.</0> Das Personal ist über ausstehende Lieferungen informiert und vermeidet doppelte Bestellungen.",
+              "<0>Automatische Bestellung.</0> Demnächst verfügbar: Festlegen von Mindestbestandsmengen und automatische Nachbestellung."
+            ]
+          }
+        ]
+      }
     }
   }
 }

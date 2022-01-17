@@ -257,6 +257,61 @@
           "description": "Increase in takeaways with <0/> a better digital experience."
         }
       ]
+    },
+    "operations": {
+      "title": "Operations Integrations",
+      "subtitle": "Implement procedures and a <0>strong operating system</0> that facilitates the day-to-day activities of staff and suppliers.",
+      "payments": {
+        "title": "Payments",
+        "subtitle": "Your Payments History At Hand",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Receive, record and manage your payments.",
+            "advantages": [
+              "<0>Accept online payments.</0> With your POS or integrations with our partners such as Stripe.",
+              "<0>History of payments.</0> Live stream list of payments with all data you need.",
+              "<0>Many more features.</0> Integrations with other apps will give you, and your customers, access to many more features!"
+            ]
+          }
+        ]
+      },
+      "procurement": {
+        "title": "Procurement",
+        "subtitle": "Discover new Wholesalers,<0/> Order from your Favorites",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Order what you need when you need it. <0>85%</0> of businesses prefer online ordering, we know you will too!",
+            "advantages": [
+              "<0>Varied list of wholesaler categories</0> including FMCG, beverages, hygiene, among others.",
+              "<0>No longer forgotten.</0> Do you order small volumes, less frequently? Be on “top of mind” of your wholesaler regardless.",
+              "<0>Order from wholesalers digitally.</0> No more manual order handling.",
+              "<0>Minimize the risk of errors.</0> No time spent answering questions or amending orders.",
+              "<0>Save on admin time.</0> Free up your staff’s time with digital ordering.",
+              "<0>Never off track.</0> Automatically updates your inventory on stock management."
+            ]
+          }
+        ]
+      },
+      "stockManagement": {
+        "title": "Stock Management",
+        "subtitle": "Goodbye, Inventory Gap",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Take care of your customers not your pantry.",
+            "advantages": [
+              "<0>Synchronized data.</0> Front and back of house communicated.",
+              "<0>Less waste.</0> Summary of value of stock and how much is at risk.",
+              "<0>Better menu control.</0> Use data to edit your menu, remove dishes or create dishes of the day.",
+              "<0>Stock levels overview.</0> Avoid overstocking or shortages.",
+              "<0>Live stream.</0> Staff aware of pending deliveries avoiding duplicated orders.",
+              "<0>Automatic ordering.</0> Coming soon: Set minimum inventory levels and automatic reordering."
+            ]
+          }
+        ]
+      }
     }
   }
 }

@@ -38,7 +38,7 @@ export const getMenuItems = t => [
           },
           {
             label: t("landing:operations"),
-            href: "/?partners=procurement#integrations"
+            href: "/product/operations"
           },
           {
             label: t("landing:marketing"),
