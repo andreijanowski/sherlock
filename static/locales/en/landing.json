@@ -312,6 +312,89 @@
           }
         ]
       }
+    },
+    "analytics": {
+      "title": "Analytics & Business Activity",
+      "subtitle": "A suite of convenient, digital and <0>intelligent tools</0> available for you to best manage your restaurant and stand out from the competition",
+      "intelligence": {
+        "title": "Intelligence",
+        "subtitle": "Notifications are great,<0/> but actionable insights are better",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Connect your systems and software on the <1>Integrations Hub</1> and centralize your data on the <2>Analytics Dashboard</2> to get insights on the performance of your business. Our Intelligence Feature helps you make informed decisions moving forward.",
+            "advantages": [
+              "<0>Get advice</0> and clarifying information.",
+              "<0>Adjust business strategies</0> based on recommendations.",
+              "<0>Keep suggestions in one place</0> accessible for future reference."
+            ]
+          }
+        ]
+      },
+      "dashboard": {
+        "title": "Dashboard",
+        "subtitle": "Your data no longer fragmented across systems",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Your integrated applications will feed multiple reports and data into visuals, that will allow you to review significant amount of valuable data on a single dashboard.",
+            "advantages": [
+              "<0>Real-time analytics:</0> receive, process, and display updated information. Insightful information, in a digestible way.",
+              "<0>360* Vision.</0> Recognize trends, refine processes, identify preferences, analyze traffic.",
+              "<0>Customizable dashboard.</0> Add or remove parameters. The dashboard remains 100% relevant to your business needs.",
+              "<0>Goodbye manual entries</0> and fragmented data from multiple software’s and systems."
+            ]
+          }
+        ]
+      },
+      "businessProfile": {
+        "title": "Business Profile",
+        "subtitle": "Manage your Digital Presence",
+        "options": [
+          {
+            "title": "Main",
+            "description": "The foundation of your digital presence is your business profile. Add your business information, photographs, menu, opening hours, delivery partners among other information.",
+            "advantages": [
+              "<0>New profile in 15 minutes.</0> Simply fill in your business information. <1>Create an account today.</1>",
+              "<0>Stand out.</0> Highlight star dishes & products, awards, your biography, and short video content.",
+              "<0>Accurate information.</0> Automatically updates details on all platforms that are connected to <1>presence management</1>",
+              "<0>Manage live info.</0> Exceptions happen so you can easily showcase your live info” and let customers know.",
+              "<0>Increased visibility.</0> Users can contact you through their preferred channel listed on your <1>Foodetective</1> page.",
+              "<0>Control staff access.</0> Choose who can access and make changes to your profile."
+            ]
+          }
+        ]
+      },
+      "integrations": {
+        "title": "Integrations",
+        "subtitle": "No Code Needed.</0> Simply Click and Connect",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Centralizing all of the heavy tech and API architectures used by the industry requires time, expense, and a technical team; we simplify this through click and connect integrations.",
+            "advantages": [
+              "<0>Plug and play,</0> connect or disconnect tools with ease. ",
+              "<0>No additional training,</0> choose your everyday tools.",
+              "<0>Discover tools,</0> access information and new services."
+            ]
+          }
+        ]
+      },
+      "appManager": {
+        "title": "App Manager",
+        "subtitle": "Your chosen apps when and where you need them",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Our app manager will allow you to visualize and use any of the apps you require daily and seamlessly switch between them.",
+            "advantages": [
+              "<0>No limits.</0> Choose and use any of the apps you need across a variety of categories",
+              "<0>Single log-in.</0> Remembering credentials can be overwhelming. Log-in once.",
+              "<0>Tool discovery.</0> Discover apps that you may want to use for your business strategy. "
+            ]
+          }
+        ]
+      }
     }
   }
 }

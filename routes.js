@@ -152,6 +152,7 @@ module.exports = routes()
   )
   .add("product/management", `/:lng(${languagesPattern})/product/management`)
   .add("product/operations", `/:lng(${languagesPattern})/product/operations`)
+  .add("product/analytics", `/:lng(${languagesPattern})/product/analytics`)
   .add("app/comingSoon", [
     `/:lng(${languagesPattern})/app/app-manager`,
     `/:lng(${languagesPattern})/app/reviews`,

@@ -315,6 +315,89 @@
           }
         ]
       }
+    },
+    "analytics": {
+      "title": "Analytics & Business Activity",
+      "subtitle": "Une suite d'outils pratiques, digitaux et <0>intelligents</0> à votre disposition pour gérer au mieux votre restaurant et vous démarquer de la concurrence.",
+      "intelligence": {
+        "title": "Intelligence",
+        "subtitle": "Les notifications c'est bien,</0> mais les informations exploitables, c'est mieux.",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Connectez vos systèmes et logiciels via notre <1>Integration hub</1> et centralisez vos données sur votre <2>dashboard</2> pour obtenir des informations sur les performances de votre établissement. Notre module Intelligence vous aidera à prendre des décisions éclairées pour l'avenir.",
+            "advantages": [
+              "<0>Obtenez des conseils</0> et des informations claires.",
+              "<0>Ajuster les stratégies commerciales</0> en fonction des recommandations.",
+              "<0>Retrouvez les suggestions dans au même endroit,</0> accessibles pour une consultation ultérieure."
+            ]
+          }
+        ]
+      },
+      "dashboard": {
+        "title": "Dashboard",
+        "subtitle": "Vos données ne sont plus fragmentées sur plusieurs plateformes",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Vos applications intégrées alimenteront de multiples rapports, vous permettant ainsi d'examiner une quantité importante de données précieuses sur un seul tableau de bord.",
+            "advantages": [
+              "<0>Analyse en temps réel:</0> réception, traitement et affichage d'informations actualisées. Des informations pertinentes, sous une forme digeste.",
+              "<0>Vision à 360*</0>. Reconnaître les tendances, affiner les processus, identifier les préférences, analyser le trafic.",
+              "<0>Dashboard customisable.</0> Ajoutez ou supprimez des paramètres. Le tableau de bord reste 100% pertinent pour les besoins de votre établissement.",
+              "<0>Adieu les entrées manuelles</0> et les données fragmentées provenant de plusieurs sources."
+            ]
+          }
+        ]
+      },
+      "businessProfile": {
+        "title": "Business Profile",
+        "subtitle": "Gérez votre présence digitale",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Le profil de votre établissement est la base de votre présence digitale. Ajoutez des informations, des photos, un menu, des heures d'ouverture, des partenaires de livraison, entre autres.",
+            "advantages": [
+              "<0>Nouveau profil en 15 minutes.</0> Il suffit de remplir les informations relatives à votre établissement. <1>Créez un compte dès aujourd'hui.</1>",
+              "<0>Démarquez-vous.</0> Mettez en avant les plats et produits vedettes, les récompenses, votre biographie et une courte vidéo.",
+              "<0>Des informations fiables.</0> Mise à jour automatique des données sur toutes les plates-formes connectées au <1>Presence Management</1>",
+              "<0>Gérez vos informations en direct.</0> En cas d'imprévu, vous pourrez facilement afficher vos infos en direct et tenir vos clients informés.",
+              "<0>Une visibilité accrue.</0> Les utilisateurs peuvent vous contacter par le biais de leur canal préféré figurant sur votre page <1>Foodetective.</1>",
+              "<0>Contrôlez l'accès du personnel.</0> Choisissez qui peut accéder à votre profil et y apporter des modifications."
+            ]
+          }
+        ]
+      },
+      "integrations": {
+        "title": "Intégrations",
+        "subtitle": "Pas de code.</0> Il suffit de cliquer et de se connecter",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Centraliser les technologies et les API utilisées par le secteur F&B nécessite du temps, de l'argent et une équipe technique ; nous simplifions cela grâce à des intégrations \"click and connect\".",
+            "advantages": [
+              "<0>Plug and play,</0> connectez ou déconnectez les outils en toute simplicité.",
+              "<0>Pas de formation nécessaire,</0> choisissez simplement vos outils quotidiens.",
+              "<0>Découvrez des applications,</0> accédez à des informations et à de nouveaux services."
+            ]
+          }
+        ]
+      },
+      "appManager": {
+        "title": "App Manager",
+        "subtitle": "Vos applications, où vous le voulez et quand vous le voulez",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Notre App Manager vous permettra de visualiser, d'utiliser et switcher entre toutes les app dont vous avez besoin au quotidien.",
+            "advantages": [
+              "<0>Aucune limite.</0> Choisissez et utilisez toutes les applications dont vous avez besoin dans une variété de catégories.",
+              "<0>Connexion unique.</0> Il peut être difficile de se souvenir des informations d'identification. Connectez-vous une seule fois.",
+              "<0>Découverte d'outils.</0> Découvrez des applications que vous pourriez utiliser dans le cadre de votre stratégie commerciale."
+            ]
+          }
+        ]
+      }
     }
   }
 }

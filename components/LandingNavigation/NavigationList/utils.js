@@ -26,6 +26,10 @@ export const getMenuItems = t => [
             label: t("app:appManager"),
             href: "/product/app-manager",
             isDisabled: true
+          },
+          {
+            label: t("app:analytics"),
+            href: "/product/analytics"
           }
         ]
       },

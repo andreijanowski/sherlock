@@ -68,6 +68,10 @@ export const ImagesContainer = styled(Flex)`
   width: fit-content;
   position: relative;
   margin: auto;
+  ${downThanBreakpoint(3)} {
+    display: block;
+    text-align: center;
+  }
 `;
 
 export const Image = styled(Box).attrs({ as: "img" })`
@@ -107,4 +111,8 @@ export const ToggleOptionButtonIcon = styled(FontAwesomeIcon)`
   right: 15px;
   top: 50%;
   transform: translateY(-50%);
+`;
+
+export const LinkStyled = styled.a`
+  text-decoration: underline;
 `;

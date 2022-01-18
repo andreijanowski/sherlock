@@ -312,6 +312,89 @@
           }
         ]
       }
+    },
+    "analytics": {
+      "title": "Analytics & Business Activity",
+      "subtitle": "Eine Reihe praktischer, digitaler und <0>intelligenter Tools</0>, mit denen Sie Ihr Restaurant optimal verwalten und sich von der Konkurrenz abheben können",
+      "intelligence": {
+        "title": "Intelligence",
+        "subtitle": "Benachrichtigungen sind toll,</0> aber verwertbare Erkenntnisse sind besser",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Verbinden Sie Ihre Systeme und Software über den <1>Integrations Hub</1> und zentralisieren Sie Ihre Daten auf dem <2>Analytics Dashboard</2>, um Einblicke in die Leistung Ihres Unternehmens zu erhalten. Unsere Intelligence-Funktion hilft Ihnen, fundierte Entscheidungen zu treffen.",
+            "advantages": [
+              "<0>Holen Sie sich Rat</0> und klärende Informationen.",
+              "<0>Anpassung der Geschäftsstrategien</0> auf der Grundlage von Empfehlungen.",
+              "<0>Bewahren Sie die Vorschläge an einem Ort auf</0>, an dem Sie sie später einsehen können."
+            ]
+          }
+        ]
+      },
+      "dashboard": {
+        "title": "Dashboard",
+        "subtitle": "Ihre Daten sind nicht mehr über verschiedene Systeme hinweg fragmentiert",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Ihre integrierten Anwendungen speisen mehrere Berichte und Daten in visuelle Darstellungen ein, die es Ihnen ermöglichen, eine große Menge wertvoller Daten auf einem einzigen Dashboard zu überprüfen.",
+            "advantages": [
+              "<0>Echtzeit-Analysen:</0> Empfang, Verarbeitung und Anzeige aktualisierter Informationen. Aufschlussreiche Informationen in verständlicher Form.",
+              "<0>360*-Blick.</0> Erkennen Sie Trends, verfeinern Sie Prozesse, ermitteln Sie Präferenzen, analysieren Sie den Verkehr.",
+              "<0>Anpassbares Dashboard.</0> Sie können Parameter hinzufügen oder entfernen. Das Dashboard bleibt zu 100 % relevant für Ihre geschäftlichen Anforderungen.",
+              "<0>Verabschieden Sie sich von manuellen Eingaben</0> und fragmentierten Daten aus verschiedenen Softwareprogrammen und Systemen."
+            ]
+          }
+        ]
+      },
+      "businessProfile": {
+        "title": "Business Profile",
+        "subtitle": "Verwalten Sie Ihre digitale Präsenz",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Die Grundlage Ihrer digitalen Präsenz ist Ihr Unternehmensprofil. Fügen Sie Ihre Geschäftsinformationen, Fotos, Speisekarte, Öffnungszeiten, Lieferpartner und andere Informationen hinzu.",
+            "advantages": [
+              "<0>Neues Profil in 15 Minuten.</0> Geben Sie einfach Ihre Unternehmensdaten ein. <1>Erstellen Sie noch heute ein Konto.</1>",
+              "<0>Heben Sie sich ab.</0> Heben Sie Sternegerichte und -produkte, Auszeichnungen, Ihre Biografie und kurze Videoinhalte hervor.",
+              "<0>Genaue Informationen.</0> Aktualisiert automatisch Details auf allen Plattformen, die mit dem <1>Präsenzmanagement</1> verbunden sind",
+              "<0>Verwalten Sie Live-Informationen.</0> Ausnahmen passieren, so dass Sie Ihre Live-Informationen leicht präsentieren und Kunden wissen lassen können.",
+              "<0>Erhöhte Sichtbarkeit.</0> Die Nutzer können Sie über ihren bevorzugten Kanal auf Ihrer <1>Foodetective</1> Seite kontaktieren.",
+              "<0>Kontrollieren Sie den Zugang der Mitarbeiter.</0> Wählen Sie, wer auf Ihr Profil zugreifen und Änderungen vornehmen kann."
+            ]
+          }
+        ]
+      },
+      "integrations": {
+        "title": "Integrationen",
+        "subtitle": "Kein Code erforderlich.</0> Einfach klicken und verbinden",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Die Zentralisierung all der schwerfälligen Technologien und API-Architekturen, die in der Branche verwendet werden, erfordert Zeit, Kosten und ein technisches Team; wir vereinfachen dies durch Click-and-Connect-Integrationen.",
+            "advantages": [
+              "<0>Plug and Play,</0> einfaches Anschließen und Abnehmen von Werkzeugen.",
+              "<0>Keine zusätzliche Ausbildung,</0> wählen Sie Ihre alltäglichen Werkzeuge.",
+              "<0>Entdecken Sie Tools,</0> Informationen und neue Dienste."
+            ]
+          }
+        ]
+      },
+      "appManager": {
+        "title": "App Manager",
+        "subtitle": "Ihre ausgewählten Anwendungen, wann und wo Sie sie brauchen",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Unser App-Manager ermöglicht es Ihnen, alle Apps, die Sie täglich benötigen, zu visualisieren und zu nutzen und nahtlos zwischen ihnen zu wechseln.",
+            "advantages": [
+              "<0>Keine Grenzen.</0> Wählen Sie eine beliebige App aus und nutzen Sie sie in einer Vielzahl von Kategorien",
+              "<0>Einmalige Anmeldung.</0> Sich die Anmeldedaten zu merken, kann sehr mühsam sein. Melden Sie sich einmal an.",
+              "<0>Entdeckung von Tools.</0> Entdecken Sie Anwendungen, die Sie für Ihre Unternehmensstrategie nutzen möchten. "
+            ]
+          }
+        ]
+      }
     }
   }
 }

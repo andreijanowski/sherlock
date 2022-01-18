@@ -42,10 +42,10 @@ const InstallApp = () => {
       >
         <FoodetectiveLogo squared />
         <Box my={30}>
-          <H2Styled mt={30}>{t("installApp.header.start")}</H2Styled>
           <H2Styled>
             <BlueText>{t("installApp.header.end")}</BlueText>
           </H2Styled>
+          <H2Styled mt={30}>{t("installApp.header.start")}</H2Styled>
         </Box>
         <Box>
           <NavigationLink

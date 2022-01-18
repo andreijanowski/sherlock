@@ -9,10 +9,12 @@ import { useT } from "utils/hooks";
 import {
   BodyStyled,
   H3Styled,
+  LinkStyled,
   List,
   ToggleOptionButton,
   ToggleOptionButtonIcon
 } from "./styled";
+import { getAdvPrefix } from "../utils";
 
 const TextColumn = ({
   width,
@@ -21,7 +23,8 @@ const TextColumn = ({
   activeOptionIndex,
   advantagesColumnsWidth,
   options,
-  setActiveOptionIndex
+  setActiveOptionIndex,
+  textLinks
 }) => {
   const t = useT("landing");
 
@@ -59,37 +62,62 @@ const TextColumn = ({
                   isDark={isDark}
                   tabletCentered
                 >
-                  <Trans t={t} components={[<strong />]}>
+                  <Trans
+                    t={t}
+                    components={[<strong />].concat(
+                      textLinks.description
+                        ? textLinks.description.map(linkProps => (
+                            <LinkStyled {...linkProps}>
+                              {linkProps.href}
+                            </LinkStyled>
+                          ))
+                        : []
+                    )}
+                  >
                     {option.description}
                   </Trans>
                 </BodyStyled>
                 <Flex flexWrap="wrap" mx={-3}>
-                  {option.advantages.map(adv => (
-                    <Box
-                      key={adv}
-                      width={advantagesColumnsWidth}
-                      px={3}
-                      mb={24}
-                    >
-                      <CheckmarkText isDark={isDark}>
-                        <Trans
-                          t={t}
-                          components={[
-                            <strong />,
-                            <strong />,
-                            <List>
-                              <li />
-                              <li />
-                              <li />
-                              <li />
-                            </List>
-                          ]}
-                        >
-                          {adv}
-                        </Trans>
-                      </CheckmarkText>
-                    </Box>
-                  ))}
+                  {option.advantages.map((adv, advIndex) => {
+                    const advPrefix = getAdvPrefix({
+                      optionIndex: index,
+                      advIndex
+                    });
+                    const advLink = textLinks[advPrefix];
+
+                    return (
+                      <Box
+                        key={adv}
+                        width={advantagesColumnsWidth}
+                        px={3}
+                        mb={24}
+                      >
+                        <CheckmarkText isDark={isDark}>
+                          <Trans
+                            t={t}
+                            components={[
+                              <strong />,
+                              advLink ? (
+                                <LinkStyled {...advLink}>
+                                  {advLink.href}
+                                </LinkStyled>
+                              ) : (
+                                <strong />
+                              ),
+                              <List>
+                                <li />
+                                <li />
+                                <li />
+                                <li />
+                              </List>
+                            ]}
+                          >
+                            {adv}
+                          </Trans>
+                        </CheckmarkText>
+                      </Box>
+                    );
+                  })}
                 </Flex>
               </>
             )}
@@ -108,7 +136,14 @@ TextColumn.propTypes = {
   advantagesColumnsWidth: arrayOf(oneOf([arrayOf(number), number, string]))
     .isRequired,
   options: arrayOf(shape({ title: string.isRequired })).isRequired,
-  setActiveOptionIndex: func.isRequired
+  setActiveOptionIndex: func.isRequired,
+  textLinks: shape({
+    description: shape()
+  })
+};
+
+TextColumn.defaultProps = {
+  textLinks: {}
 };
 
 export default TextColumn;

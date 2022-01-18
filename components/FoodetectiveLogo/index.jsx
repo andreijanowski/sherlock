@@ -1,15 +1,15 @@
 import { Flex } from "@rebass/grid";
 import { bool } from "prop-types";
 import { Wordmark } from "components";
-import { Brandmark, SquaredBrandmark, BrandmarkWrapper } from "./styled";
-import FoodetectiveTextLogo from "../FoodetectiveTextLogo";
+import { Fork } from "components/Icons";
+import { Brandmark, BrandmarkWrapper, SquaredBrandmark } from "./styled";
 
 const FoodetectiveLogo = ({ withTagline, squared }) => (
   <Flex alignItems="center">
     <BrandmarkWrapper squared={squared}>
       {squared ? (
         <SquaredBrandmark>
-          <FoodetectiveTextLogo isSmall />
+          <Fork />
         </SquaredBrandmark>
       ) : (
         <Brandmark />
