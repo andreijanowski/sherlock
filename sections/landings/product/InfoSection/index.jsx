@@ -10,13 +10,15 @@ import TextColumn from "./TextColumn";
 import Header from "./Header";
 
 const InfoSection = ({
+  id,
   name,
   icon,
   images,
   isDark,
   columnsProportions,
   linkTo,
-  advantagesColumnsWidth
+  advantagesColumnsWidth,
+  textLinks
 }) => {
   const t = useT("landing");
   const prefix = getPrefix(name);
@@ -25,7 +27,7 @@ const InfoSection = ({
   const [activeOptionIndex, setActiveOptionIndex] = useState(0);
 
   return (
-    <Container>
+    <Container id={id}>
       <Header
         isDark={isDark}
         icon={icon}
@@ -47,6 +49,7 @@ const InfoSection = ({
           prefix={prefix}
         />
         <TextColumn
+          textLinks={textLinks}
           width={columnsProportions[1]}
           isDark={isDark}
           activeOptionIndex={activeOptionIndex}
@@ -62,6 +65,7 @@ const InfoSection = ({
 
 InfoSection.propTypes = {
   name: string.isRequired,
+  id: string,
   icon: string,
   linkTo: string,
   images: arrayOf(
@@ -76,14 +80,19 @@ InfoSection.propTypes = {
   ).isRequired,
   isDark: bool,
   columnsProportions: arrayOf(arrayOf(number)).isRequired,
-  advantagesColumnsWidth: arrayOf(oneOf([arrayOf(number), number, string]))
+  advantagesColumnsWidth: arrayOf(oneOf([arrayOf(number), number, string])),
+  textLinks: shape({
+    description: shape()
+  })
 };
 
 InfoSection.defaultProps = {
+  id: null,
   icon: null,
   linkTo: null,
   isDark: false,
-  advantagesColumnsWidth: [1, null, null, 1 / 2]
+  advantagesColumnsWidth: [1, null, null, 1 / 2],
+  textLinks: {}
 };
 
 export default InfoSection;

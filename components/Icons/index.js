@@ -49,7 +49,8 @@ export {
   EventsManagement,
   InfluencerManagement,
   CustomerSupport,
-  OperationalReport
+  OperationalReport,
+  Intelligence
 } from "./navigation";
 export {
   Docs,

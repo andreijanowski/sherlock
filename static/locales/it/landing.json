@@ -312,6 +312,89 @@
           }
         ]
       }
+    },
+    "analytics": {
+      "title": "Analytics & Business Activity",
+      "subtitle": "Una suite di strumenti comodi, digitali e <0>intelligenti</0> a tua disposizione per gestire al meglio il tuo ristorante e distinguerti dalla concorrenza",
+      "intelligence": {
+        "title": "Intelligence",
+        "subtitle": "Le notifiche sono grandiose,</0> ma gli approfondimenti fattibili sono meglio",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Connetti i tuoi sistemi e software su <1>Integrations Hub</1> e centralizza i tuoi dati su <2>Analytics Dashboard</2> per ottenere approfondimenti sulla performance del tuo business. La nostra funzione Intelligence ti aiuta a prendere decisioni informate per il futuro.",
+            "advantages": [
+              "<0>Ottenere consigli</0> e informazioni chiarificatrici.",
+              "<0>Adattare le strategie di business</0> in base alle raccomandazioni.",
+              "<0>Conservare i suggerimenti in un posto</0> accessibile per riferimenti futuri."
+            ]
+          }
+        ]
+      },
+      "dashboard": {
+        "title": "Dashboard",
+        "subtitle": "I tuoi dati non sono più frammentati tra i sistemi",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Le vostre applicazioni integrate alimenteranno più rapporti e dati in visualizzazioni, che vi permetteranno di rivedere una quantità significativa di dati preziosi su un unico cruscotto.",
+            "advantages": [
+              "<0>Analisi in tempo reale:</0> ricevere, elaborare e visualizzare informazioni aggiornate. Informazioni perspicaci, in modo digeribile.",
+              "<0>Visione a 360*.</0> Riconoscere le tendenze, perfezionare i processi, identificare le preferenze, analizzare il traffico.",
+              "<0>Cruscotto personalizzabile.</0> Aggiungi o rimuovi parametri. Il cruscotto rimane al 100% rilevante per le tue esigenze aziendali.",
+              "<0>Addio inserimenti manuali</0> e dati frammentati da più software e sistemi."
+            ]
+          }
+        ]
+      },
+      "businessProfile": {
+        "title": "Business Profile",
+        "subtitle": "Gestisci la tua presenza digitale",
+        "options": [
+          {
+            "title": "Main",
+            "description": "La base della tua presenza digitale è il tuo profilo aziendale. Aggiungi le tue informazioni aziendali, fotografie, menu, orari di apertura, partner di consegna e altre informazioni.",
+            "advantages": [
+              "<0>Nuovo profilo in 15 minuti.</0> Inserisci semplicemente le informazioni sulla tua attività. <1>Crea un account oggi.</1>",
+              "<0>Distinguiti.</0> Evidenzia piatti e prodotti di punta, premi, la tua biografia e brevi contenuti video.",
+              "<0>Informazioni accurate.</0> Aggiorna automaticamente i dettagli su tutte le piattaforme collegate alla <1>gestione della presenza</1>",
+              "<0>Gestire le informazioni dal vivo.</0> Le eccezioni accadono in modo da poter facilmente mostrare le tue informazioni dal vivo e far sapere ai clienti.",
+              "<0>Maggiore visibilità.</0> Gli utenti possono contattarti attraverso il loro canale preferito elencato sulla tua pagina <1>Foodetective.</1>",
+              "<0>Controlla l'accesso del personale.</0> Scegli chi può accedere e apportare modifiche al tuo profilo."
+            ]
+          }
+        ]
+      },
+      "integrations": {
+        "title": "Integrazioni",
+        "subtitle": "Non c'è bisogno di un codice.</0> Basta cliccare e connettersi",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Centralizzare tutta la tecnologia pesante e le architetture API utilizzate dall'industria richiede tempo, spese e un team tecnico; noi semplifichiamo questo attraverso le integrazioni click and connect.",
+            "advantages": [
+              "<0>Plug and play,</0> collega o scollega gli strumenti con facilità. ",
+              "<0>Nessuna formazione supplementare,</0> scegliete i vostri strumenti quotidiani.",
+              "<0>Scopri gli strumenti,</0> accedi alle informazioni e ai nuovi servizi."
+            ]
+          }
+        ]
+      },
+      "appManager": {
+        "title": "App Manager",
+        "subtitle": "Le tue app scelte quando e dove ne hai bisogno",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Il nostro app manager vi permetterà di visualizzare e utilizzare qualsiasi app di cui avete bisogno quotidianamente e passare senza soluzione di continuità tra di loro.",
+            "advantages": [
+              "<0>Nessun limite.</0> Scegli e usa qualsiasi app di cui hai bisogno in una varietà di categorie",
+              "<0>Accesso unico.</0> Ricordare le credenziali può essere opprimente. Effettuare il log-in una volta sola.",
+              "<0>Scoperta di strumenti.</0> Scopri le app che potresti voler utilizzare per la tua strategia aziendale. "
+            ]
+          }
+        ]
+      }
     }
   }
 }

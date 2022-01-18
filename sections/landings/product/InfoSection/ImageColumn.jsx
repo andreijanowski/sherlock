@@ -32,6 +32,7 @@ const ImageColumn = ({ width, isDark, prefix, images, linkTo }) => {
             src={src}
             {...styleProps}
             alt={`Image ${index + 1}`}
+            loading="lazy"
           />
         ))}
       </ImagesContainer>

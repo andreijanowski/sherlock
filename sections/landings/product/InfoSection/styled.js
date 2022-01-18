@@ -108,3 +108,7 @@ export const ToggleOptionButtonIcon = styled(FontAwesomeIcon)`
   top: 50%;
   transform: translateY(-50%);
 `;
+
+export const LinkStyled = styled.a`
+  text-decoration: underline;
+`;

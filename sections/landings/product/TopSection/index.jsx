@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex } from "@rebass/grid";
-import { string } from "prop-types";
+import { string, shape } from "prop-types";
 
 import { Trans } from "i18n";
 import { Subtitle } from "components/styleguide/Typography";
@@ -10,7 +10,7 @@ import Button from "components/styleguide/Button";
 import { AdaptiveBox } from "components/styleguide/common";
 import { Container, H1Styled, TabletBlueText, TabletImageBox } from "./styled";
 
-const TopSection = ({ name }) => {
+const TopSection = ({ name, leftColumnProps }) => {
   const t = useT("landing");
 
   return (
@@ -21,6 +21,7 @@ const TopSection = ({ name }) => {
         flexDirection="column"
         alignItems={["center", null, null, "flex-start"]}
         width={[1, null, null, 1 / 2]}
+        {...leftColumnProps}
       >
         <H1Styled tabletCentered>
           {t(`integrationsLandings.${name}.title`)}
@@ -61,7 +62,12 @@ const TopSection = ({ name }) => {
 };
 
 TopSection.propTypes = {
-  name: string.isRequired
+  name: string.isRequired,
+  leftColumnProps: shape()
+};
+
+TopSection.defaultProps = {
+  leftColumnProps: null
 };
 
 export default TopSection;
