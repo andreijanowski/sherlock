@@ -50,7 +50,8 @@ export {
   InfluencerManagement,
   CustomerSupport,
   OperationalReport,
-  Intelligence
+  Intelligence,
+  Fork
 } from "./navigation";
 export {
   Docs,
