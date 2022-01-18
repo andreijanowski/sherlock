@@ -68,6 +68,10 @@ export const ImagesContainer = styled(Flex)`
   width: fit-content;
   position: relative;
   margin: auto;
+  ${downThanBreakpoint(3)} {
+    display: block;
+    text-align: center;
+  }
 `;
 
 export const Image = styled(Box).attrs({ as: "img" })`
