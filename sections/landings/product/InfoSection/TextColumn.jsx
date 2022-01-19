@@ -14,7 +14,7 @@ import {
   ToggleOptionButton,
   ToggleOptionButtonIcon
 } from "./styled";
-import { getAdvPrefix } from "../utils";
+import { getAdvPrefix, getDescriptionPrefix } from "../utils";
 
 const TextColumn = ({
   width,
@@ -41,6 +41,9 @@ const TextColumn = ({
           setActiveOptionIndex(index);
         };
 
+        const descriptionPrefix = getDescriptionPrefix(index);
+        const descriptionLinks = textLinks[descriptionPrefix] || [];
+
         return (
           <Fragment key={option.title}>
             {hasOptionsSwitcher && (
@@ -65,13 +68,9 @@ const TextColumn = ({
                   <Trans
                     t={t}
                     components={[<strong />].concat(
-                      textLinks.description
-                        ? textLinks.description.map(linkProps => (
-                            <LinkStyled {...linkProps}>
-                              {linkProps.href}
-                            </LinkStyled>
-                          ))
-                        : []
+                      descriptionLinks.map(linkProps => (
+                        <LinkStyled {...linkProps}>{linkProps.href}</LinkStyled>
+                      ))
                     )}
                   >
                     {option.description}
@@ -137,9 +136,7 @@ TextColumn.propTypes = {
     .isRequired,
   options: arrayOf(shape({ title: string.isRequired })).isRequired,
   setActiveOptionIndex: func.isRequired,
-  textLinks: shape({
-    description: shape()
-  })
+  textLinks: shape({})
 };
 
 TextColumn.defaultProps = {

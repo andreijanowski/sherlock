@@ -6,13 +6,24 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { arrayOf, bool, number, oneOf, shape, string } from "prop-types";
 import Link from "components/Link";
 import { useLng, useT } from "utils/hooks";
-import { Image, ImagesContainer } from "./styled";
+import { Image, ImagesContainer, VideoIframe } from "./styled";
+import { getOptionPrefix } from "../utils";
 
-const ImageColumn = ({ width, isDark, prefix, images, linkTo }) => {
+const ImageColumn = ({
+  width,
+  isDark,
+  prefix,
+  images,
+  linkTo,
+  activeOptionIndex,
+  videos
+}) => {
   const t = useT("landing");
   const lng = useLng();
 
   const linkText = t(`${prefix}.link`);
+
+  const videoUrl = videos[getOptionPrefix(activeOptionIndex)];
 
   return (
     <Box
@@ -26,15 +37,19 @@ const ImageColumn = ({ width, isDark, prefix, images, linkTo }) => {
           isDark ? "flex-start" : ["flex-start", null, null, "flex-end"]
         }
       >
-        {images.map(({ src, ...styleProps }, index) => (
-          <Image
-            key={src}
-            src={src}
-            {...styleProps}
-            alt={`Image ${index + 1}`}
-            loading="lazy"
-          />
-        ))}
+        {videoUrl ? (
+          <VideoIframe src={videoUrl} />
+        ) : (
+          images.map(({ src, ...styleProps }, index) => (
+            <Image
+              key={src}
+              src={src}
+              {...styleProps}
+              alt={`Image ${index + 1}`}
+              loading="lazy"
+            />
+          ))
+        )}
       </ImagesContainer>
       {linkTo && linkText && (
         <Link lng={lng} route={linkTo}>
@@ -64,7 +79,9 @@ ImageColumn.propTypes = {
       bottom: number,
       left: number
     })
-  ).isRequired
+  ).isRequired,
+  activeOptionIndex: number.isRequired,
+  videos: shape().isRequired
 };
 
 export default ImageColumn;

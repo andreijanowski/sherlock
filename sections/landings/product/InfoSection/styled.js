@@ -116,3 +116,10 @@ export const ToggleOptionButtonIcon = styled(FontAwesomeIcon)`
 export const LinkStyled = styled.a`
   text-decoration: underline;
 `;
+
+export const VideoIframe = styled.iframe`
+  width: 490px;
+  height: 372px;
+  max-width: 100%;
+  border: none;
+`;

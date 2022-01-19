@@ -1,4 +1,9 @@
 export const getPrefix = name => `integrationsLandings.${name}`;
 
+export const getOptionPrefix = optionIndex => `options.${optionIndex}`;
+
+export const getDescriptionPrefix = optionIndex =>
+  `${getOptionPrefix(optionIndex)}.description`;
+
 export const getAdvPrefix = ({ optionIndex, advIndex }) =>
-  `options.${optionIndex}.advantages.${advIndex}`;
+  `${getOptionPrefix(optionIndex)}.advantages.${advIndex}`;

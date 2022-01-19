@@ -118,6 +118,8 @@ const LICENSING_TYPEFORM_LINK = "https://foodetective.typeform.com/to/xnVTlV0K";
 const ONLINE_MEETING_LINK =
   "https://calendly.com/maxence-foodetective/meeting-with-maxence-foodetective";
 
+const MANAGEMENT_ADV_VIDEO = "https://www.youtube.com/embed/RYwtvUhSSGo";
+
 module.exports = {
   contentTypes,
   languages,
@@ -164,5 +166,6 @@ module.exports = {
   USER_GUIDES_URL,
   PARTOO_SDK_URL,
   LICENSING_TYPEFORM_LINK,
-  ONLINE_MEETING_LINK
+  ONLINE_MEETING_LINK,
+  MANAGEMENT_ADV_VIDEO
 };

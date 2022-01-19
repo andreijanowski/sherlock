@@ -395,6 +395,104 @@
           }
         ]
       }
+    },
+    "marketing": {
+      "title": "Marketing Integrations",
+      "subtitle": "<0>Increase your visibility</0> and stand out from the competition. Engage with your customers and build a community around your brand.",
+      "contentManagement": {
+        "title": "Content management",
+        "subtitle": "Increasing your Visibility has never been this Easy",
+        "options": [
+          {
+            "title": "Community Management",
+            "description": "<1>At Foodetective</1> we have a community of content creators, called Detectives. They are experienced community managers, photographers, bloggers, trained foodies, and influencers who have a true passion for all sorts of beverages & cuisines.",
+            "advantages": [
+              "<0>Stay relevant.</0> Outsource content research and strategy so you stay ahead of competitors and on top of social media trends.",
+              "<0>Engage customers.</0> Don’t miss out on messages, questions, responses which is crucial for success.",
+              "<0>Post consistently.</0> Maintain an active social media account, increase brand awareness and followers.",
+              "<0>Digestible results.</0> Get a full picture of how your visibility is evolving over time thanks to monthly reports."
+            ]
+          },
+          {
+            "title": "Photography/Videography",
+            "description": "<1>At Foodetective</1> we have a community of content creators, called Detectives. They are experienced community managers, photographers, bloggers, trained foodies, and influencers who have a true passion for all sorts of beverages & cuisines.",
+            "advantages": [
+              "<0>\"We eat with our eyes\"</0> High quality content, that show your product in the right light will attract more customers.",
+              "<0>Capture the attention.</0> Staying relevant with photo and video trends will capture the attention of potential customers.",
+              "<0>Support your marketing strategy.</0> Receive content in various formats and dimensions. Tell a story visually through your channels.",
+              "<0>Show your commitment to quality.</0> Customers will associate your brand with high quality. Plus, you can reinforce your brand identity. "
+            ]
+          },
+          {
+            "title": "Influencers",
+            "description": "<1>At Foodetective</1> we have a community of content creators, called Detectives. They are experienced community managers, photographers, bloggers, trained foodies, and influencers who have a true passion for all sorts of beverages & cuisines.",
+            "advantages": [
+              "<0>Boost your social credibility</0> which in turn increases your conversion rate.",
+              "<0>Cost effective</0> compared to other forms of online advertising when compared to engagement levels.",
+              "<0>Don’t miss out</0> 1/3rd of sales are attributed to word of mouth. Influencers have a representative and niche following for your product.",
+              "<0>Influencer generated content.</0> Set up a tasting with the influencer and you’ll likely be able to use the content for your own channels. "
+            ]
+          },
+          {
+            "title": "Advertising",
+            "description": "<1>At Foodetective</1> we have a community of content creators, called Detectives. They are experienced community managers, photographers, bloggers, trained foodies, and influencers who have a true passion for all sorts of beverages & cuisines.",
+            "advantages": [
+              "<0>New leads, more sales</0> through a targeted approach. Target by interests, demographics, behaviors.",
+              "<0>Find out what works.</0> Compare various ads and find out what works best to promote your business. ",
+              "<0>A Flexible budget.</0> Choosing how much you spend a day is possible. Find advertising that adapts to your budget not the other way around.",
+              "<0>Boost traffic</0> to your website, social medias, seasonal promotions, delivery platforms, store. Virtually wherever you want."
+            ]
+          }
+        ]
+      },
+      "reviewManagement": {
+        "title": "Review management",
+        "subtitle": "Your Reviews Organized and Centralized",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Boost your online reputation easily.",
+            "advantages": [
+              "<0>Centralize your Reviews.</0> Google, TripAdvisor, Facebook all in a single interface.",
+              "<0>Engage with your customers.</0> Respond to reviews with just a few clicks.",
+              "<0>Use templates</0> to answer reviews with a click.",
+              "<0>Use reviews to improve.</0> Incorrect opening hours? Dish often out of stock?",
+              "<0>Stand out from competitors.</0> Starting at 30% response rate.",
+              "<0>Analyze your online reputation.</0> Indicators at your reach."
+            ]
+          }
+        ]
+      },
+      "presenceManagement": {
+        "title": "Presence Management",
+        "subtitle": "Your business information always updated",
+        "options": [
+          {
+            "title": "Main",
+            "description": "No need to dedicate more than a few minutes to update your public information.",
+            "advantages": [
+              "<0>Update your information once.</0> Synchronized automatically to directories, GPS, search engines, social networks, and websites.",
+              "<0>Be a SEO champion.</0> Accurate tags and descriptions put you higher in the search engine results.",
+              "<0>Attract customers.</0> With more accurate listings you are better positioned, it’s that easy.  "
+            ]
+          }
+        ]
+      },
+      "benefits": [
+        {
+          "percents": "89%",
+          "description": "of consumers read businesses’ <0/> responses to reviews"
+        },
+        {
+          "hint": "Minimum",
+          "percents": "30%",
+          "description": "response rate to stand <0/> out your competitors"
+        },
+        {
+          "percents": "93%",
+          "description": "of customers are frustrated <0/> by incorrect information online."
+        }
+      ]
     }
   }
 }
