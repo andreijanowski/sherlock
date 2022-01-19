@@ -395,6 +395,104 @@
           }
         ]
       }
+    },
+    "marketing": {
+      "title": "Marketing Integrations",
+      "subtitle": "<0>Aumente su visibilidad</0> y destáquese de la competencia. Relaciónese con sus clientes y cree una comunidad en torno a su marca.",
+      "contentManagement": {
+        "title": "Content management",
+        "subtitle": "Aumentar su visibilidad nunca ha sido tan fácil",
+        "options": [
+          {
+            "title": "Community Management",
+            "description": "<1>En Foodetective</1> tenemos una comunidad de creadores de contenido, llamados Detectives. Son community managers experimentados, fotógrafos, blogueros, foodies entrenados e influencers que tienen una verdadera pasión por todo tipo de bebidas y cocinas.",
+            "advantages": [
+              "<0>Manténgase relevante.</0> Externalice la investigación y la estrategia de contenidos para adelantarse a la competencia y estar al tanto de las tendencias de las redes sociales.",
+              "<0>Involucre a los clientes.</0> No se pierdan los mensajes, las preguntas y las respuestas, lo cual es crucial para el éxito.",
+              "<0>Publicar de forma constante.</0> Mantener una cuenta activa en las redes sociales, aumentar el conocimiento de la marca y los seguidores.",
+              "<0>Resultados digeribles.</0> Obtenga una imagen completa de la evolución de su visibilidad en el tiempo gracias a los informes mensuales."
+            ]
+          },
+          {
+            "title": "Fotografía/Videografía",
+            "description": "<1>En Foodetective</1> tenemos una comunidad de creadores de contenido, llamados Detectives. Son community managers experimentados, fotógrafos, blogueros, foodies entrenados e influencers que tienen una verdadera pasión por todo tipo de bebidas y cocinas.",
+            "advantages": [
+              "<0>\"Comemos con los ojos\"</0> Un contenido de alta calidad, que muestre su producto de forma adecuada, atraerá a más clientes.",
+              "<0>Captar la atención.</0> Estar al día con las tendencias de fotografía y vídeo captará la atención de los clientes potenciales.",
+              "<0>Apoye su estrategia de marketing.</0> Reciba contenidos en varios formatos y dimensiones. Cuente una historia visualmente a través de sus canales.",
+              "<0>Demuestre su compromiso con la calidad.</0> Los clientes asociarán su marca con la alta calidad. Además, puede reforzar la identidad de su marca. "
+            ]
+          },
+          {
+            "title": "Influencers",
+            "description": "<1>En Foodetective</1> tenemos una comunidad de creadores de contenido, llamados Detectives. Son community managers experimentados, fotógrafos, blogueros, foodies entrenados e influencers que tienen una verdadera pasión por todo tipo de bebidas y cocinas.",
+            "advantages": [
+              "<0>Aumenta tu credibilidad social,</0> lo que a su vez incrementa tu tasa de conversión.",
+              "<0>Rentable</0> en comparación con otras formas de publicidad en línea si se compara con los niveles de compromiso.",
+              "<0>No te pierdas</0> 1/3 de las ventas se atribuyen al boca a boca. Los influencers tienen seguidores representativos y de nicho para tu producto.",
+              "<0>Contenido generado por influenciadores.</0> Establece una cata con el influencer y probablemente podrás utilizar el contenido para tus propios canales. "
+            ]
+          },
+          {
+            "title": "Advertising",
+            "description": "<1>En Foodetective</1> tenemos una comunidad de creadores de contenido, llamados Detectives. Son community managers experimentados, fotógrafos, blogueros, foodies entrenados e influencers que tienen una verdadera pasión por todo tipo de bebidas y cocinas.",
+            "advantages": [
+              "<0>Nuevos clientes potenciales,</0> más ventas gracias a un enfoque específico. Diríjase por intereses, datos demográficos y comportamientos.",
+              "<0>Descubra lo que funciona.</0> Compara varios anuncios y averigua qué es lo que mejor funciona para promocionar tu negocio. ",
+              "<0>Un presupuesto flexible.</0> Elegir cuánto gastar al día es posible. Encuentre publicidad que se adapte a su presupuesto y no al revés.",
+              "<0>Impulse el tráfico</0> a su sitio web, medios sociales, promociones de temporada, plataformas de entrega, tienda. Prácticamente donde quiera."
+            ]
+          }
+        ]
+      },
+      "reviewManagement": {
+        "title": "Review management",
+        "subtitle": "Sus revisiones organizadas y centralizadas",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Aumente su reputación en línea fácilmente",
+            "advantages": [
+              "<0>Centralice sus reseñas.</0> Google, TripAdvisor, Facebook todo en una sola interfaz.",
+              "<0>Comprométase con sus clientes.</0> Responda a las opiniones con unos pocos clics.",
+              "<0>Utilice las plantillas</0> para responder a las revisiones con un clic.",
+              "<0>Utilice las críticas para mejorar.</0> ¿Horario de apertura incorrecto? ¿Se han agotado las existencias del plato?",
+              "<0>Destaque entre sus competidores.</0> A partir de un 30% de tasa de respuesta.",
+              "<0>Analiza tu reputación online.</0> Indicadores a su alcance."
+            ]
+          }
+        ]
+      },
+      "presenceManagement": {
+        "title": "Presence Management",
+        "subtitle": "La información de su empresa siempre actualizada",
+        "options": [
+          {
+            "title": "Main",
+            "description": "No es necesario dedicar más que unos minutos para actualizar su información pública",
+            "advantages": [
+              "<0>Actualice su información una vez.</0> Sincronizada automáticamente con directorios, GPS, motores de búsqueda, redes sociales y sitios web.",
+              "<0>Sea un campeón del SEO.</0> Unas etiquetas y descripciones precisas te sitúan más arriba en los resultados de los motores de búsqueda.",
+              "<0>Atraiga clientes.</0> Con listados más precisos estará mejor posicionado, así de fácil.  "
+            ]
+          }
+        ]
+      },
+      "benefits": [
+        {
+          "percents": "89%",
+          "description": "de los consumidores lee las respuestas</0> de las empresas a las reseñas"
+        },
+        {
+          "hint": "Mínima",
+          "percents": "30%",
+          "description": "de tasa de respuesta</0> para destacar entre sus competidores"
+        },
+        {
+          "percents": "93%",
+          "description": "de los clientes se sienten frustrados</0> por la información incorrecta en línea."
+        }
+      ]
     }
   }
 }

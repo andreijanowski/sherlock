@@ -46,7 +46,7 @@ export const getMenuItems = t => [
           },
           {
             label: t("landing:marketing"),
-            href: "/?partners=content#integrations"
+            href: "/product/marketing"
           }
         ]
       }

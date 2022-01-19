@@ -24,7 +24,10 @@ import {
   Intelligence,
   Restaurant
 } from "components/Icons";
-import { getAdvPrefix } from "sections/landings/product/utils";
+import {
+  getAdvPrefix,
+  getDescriptionPrefix
+} from "sections/landings/product/utils";
 import { useLng } from "utils/hooks";
 import { API_URL, FOODETECTIVE_URL } from "consts";
 
@@ -73,7 +76,7 @@ const AnalyticsPage = () => {
           columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
           advantagesColumnsWidth={1}
           textLinks={{
-            description: [
+            [getDescriptionPrefix(0)]: [
               {
                 href: `/${lng}/product/analytics#integrations`
               },
@@ -84,9 +87,8 @@ const AnalyticsPage = () => {
           }}
         />
       </WhiteWrapper>
-      <DarkWrapper>
+      <DarkWrapper id="dashboard">
         <InfoSection
-          id="dashboard"
           name={`${PAGE_NAME}.dashboard`}
           icon={<Dashboard />}
           images={[
@@ -152,7 +154,9 @@ const AnalyticsPage = () => {
               href: `${API_URL}/users/sign_up?locale=${lng}`,
               target: "_blank"
             },
-            // todo add presence management link to 2 index option
+            [getAdvPrefix({ optionIndex: 0, advIndex: 2 })]: {
+              href: `/${lng}/product/marketing#presenceManagement`
+            },
             [getAdvPrefix({ optionIndex: 0, advIndex: 4 })]: {
               href: FOODETECTIVE_URL,
               target: "_blank"
@@ -160,9 +164,8 @@ const AnalyticsPage = () => {
           }}
         />
       </WhiteWrapper>
-      <DarkWrapper>
+      <DarkWrapper id="integrations">
         <InfoSection
-          id="integrations"
           name={`${PAGE_NAME}.integrations`}
           icon={<IntegrationHub />}
           images={[

@@ -30,7 +30,10 @@ const Benefits = ({ name }) => {
         flexWrap="wrap"
       >
         {benefitsData.map(benefit => (
-          <Benefit key={benefit.description} width={[1, 1 / 2, null, 1 / 4]}>
+          <Benefit
+            key={benefit.description}
+            width={[1, 1 / 2, null, 1 / benefitsData.length]}
+          >
             <Hint>{benefit.hint}</Hint>
             <Percents mb={3}>{benefit.percents}</Percents>
             <Description mb={[52, null, null, 0]}>

@@ -398,6 +398,104 @@
           }
         ]
       }
+    },
+    "marketing": {
+      "title": "Marketing Integrations",
+      "subtitle": "<0>Augmentez votre visibilité</0> et démarquez-vous de la concurrence. Engagez le dialogue avec vos clients et créez une communauté autour de votre marque.",
+      "contentManagement": {
+        "title": "Content management",
+        "subtitle": "Augmenter votre visibilité n'a jamais été aussi facile.",
+        "options": [
+          {
+            "title": "Community Management",
+            "description": "<1>Chez Foodetective</1>, nous avons une communauté de créateurs de contenu: les Détectives. Ce sont des community managers expérimentés, des photographes, des blogueurs, des foodies formés et des influenceurs avec une véritable passion pour la gastronomie.",
+            "advantages": [
+              "<0>Restez pertinent.</0> Externalisez la stratégie et la gestion de votre contenu afin de garder une longueur d'avance sur vos concurrents et de rester au fait des tendances des médias sociaux.",
+              "<0>Engagez votre communauté.</0> Ne ratez aucun messages, questions ou réponses, qui sont essentiels au succès.",
+              "<0>Publiez régulièrement.</0> Maintenez un compte actif, augmentez la notoriété de la marque et le nombre de followers.",
+              "<0>Des résultats digestes.</0> Obtenez une image complète de l'évolution temporelle de votre visibilité grâce aux rapports mensuels."
+            ]
+          },
+          {
+            "title": "Photos/Vidéos",
+            "description": "<1>Chez Foodetective</1>, nous avons une communauté de créateurs de contenu: les Détectives. Ce sont des community managers expérimentés, des photographes, des blogueurs, des foodies formés et des influenceurs avec une véritable passion pour la gastronomie.",
+            "advantages": [
+              "<0>\"On mange d'abord avec nos yeux\"</0> Un contenu de haute qualité, montrant votre produit sous le bon angle, attirera plus de clients.",
+              "<0>Captez l'attention.</0> En restant pertinent avec les tendances photo et vidéo, vous capterez l'attention des clients potentiels.",
+              "<0>Soutenez votre stratégie de marketing.</0> Recevez du contenu dans différents formats et racontez une histoire visuelle à travers vos canaux.",
+              "<0>Montrez votre engagement pour la qualité.</0> Les clients associeront votre marque à une qualité élevée et vous renforcerez ainsi l'identité de votre marque. "
+            ]
+          },
+          {
+            "title": "Influencers",
+            "description": "<1>Chez Foodetective</1>, nous avons une communauté de créateurs de contenu: les Détectives. Ce sont des community managers expérimentés, des photographes, des blogueurs, des foodies formés et des influenceurs avec une véritable passion pour la gastronomie.",
+            "advantages": [
+              "<0>Boostez votre crédibilité sociale</0> et augmentez ainsi votre taux de conversion.",
+              "<0>Rentable</0> par rapport à d'autres formes de publicité en ligne si l'on compare les niveaux d'engagement.",
+              "<0>N'oubliez pas</0>: 1/3 des ventes sont attribuées au bouche à oreille. Les influenceurs possède une communauté représentative et de niche pour votre produit.",
+              "<0>Contenu généré par les influenceurs.</0> Organisez une dégustation avec des influenceurs et vous pourrez certainement utiliser leur contenu pour vos propres canaux. "
+            ]
+          },
+          {
+            "title": "Advertising",
+            "description": "<1>Chez Foodetective</1>, nous avons une communauté de créateurs de contenu: les Détectives. Ce sont des community managers expérimentés, des photographes, des blogueurs, des foodies formés et des influenceurs avec une véritable passion pour la gastronomie.",
+            "advantages": [
+              "<0>Nouveaux prospects égal plus de ventes</0> grâce à une approche ciblée. Ciblez par intérêts, données démographiques, comportements.",
+              "<0>Identifiez ce qui marche.</0> Comparez différentes annonces et découvrez ce qui fonctionne le mieux pour promouvoir votre établissement. ",
+              "<0>Un budget flexible.</0> Il est possible de choisir le montant que vous dépensez par jour. Trouvez une publicité qui s'adapte à votre budget et non l'inverse.",
+              "<0>Augmentez le trafic</0> vers votre site web, vos médias sociaux, vos promotions saisonnières, vos plateformes de livraison, votre magasin. Virtuellement, où que vous le souhaitiez."
+            ]
+          }
+        ]
+      },
+      "reviewManagement": {
+        "title": "Review management",
+        "subtitle": "Vos avis sont organisés et centralisés",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Boostez facilement votre réputation en ligne",
+            "advantages": [
+              "<0>Centralisez vos avis.</0> Google, TripAdvisor, Facebook, le tout dans une seule interface.",
+              "<0>Engagez le dialogue avec vos clients.</0> Répondez aux avis en quelques clics seulement.",
+              "<0>Utilisez des modèles</0> pour répondre aux critiques en un clic.",
+              "<0>Utilisez les avis pour vous améliorer.</0> Heures d'ouverture incorrectes ? Plat souvent en rupture de stock ?",
+              "<0>Démarquez-vous de vos concurrents.</0> À partir de 30 % de taux de réponse.",
+              "<0>Analysez votre réputation en ligne.</0> Des indicateurs à votre portée."
+            ]
+          }
+        ]
+      },
+      "presenceManagement": {
+        "title": "Presence Management",
+        "subtitle": "Vos informations toujours actualisées",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Quelques minutes suffiront pour mettre à jour vos informations publiques.",
+            "advantages": [
+              "<0>Mettez vos informations à jour une seule fois.</0> Synchronisation automatique avec les moteurs de recherche, les GPS, les réseaux sociaux et les sites web.",
+              "<0>Soyez un champion du référencement.</0> Des balises et des descriptions précises améliorent votre placement dans les résultats des moteurs de recherche.",
+              "<0>Attirez les clients.</0> Grâce aux descriptions plus précises, vous êtes mieux positionné. C'est aussi simple que cela.  "
+            ]
+          }
+        ]
+      },
+      "benefits": [
+        {
+          "percents": "89%",
+          "description": "des consommateurs lisent les réponses</0> des établissement aux avis."
+        },
+        {
+          "hint": "Minimum",
+          "percents": "30%",
+          "description": "de taux de réponse </0> pour vous démarquer de vos concurrents"
+        },
+        {
+          "percents": "93%",
+          "description": "des clients sont frustrés</0> par des informations incorrectes en ligne."
+        }
+      ]
     }
   }
 }
