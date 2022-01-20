@@ -55,7 +55,7 @@ export const H2Styled = styled(H2)`
   font-size: ${themeGet("fontSizes.f30")};
   letter-spacing: 0.6px;
   white-space: wrap;
-  ${downThanBreakpoint(1)} {
+  ${downThanBreakpoint(2)} {
     text-align: center;
     font-size: ${themeGet("fontSizes.f18")};
     line-height: ${themeGet("fontSizes.f25")};

@@ -4,23 +4,22 @@ import requireAuth from "lib/requireAuth";
 import { Footer } from "components";
 import {
   DevelopersAndApi,
+  Integrations,
   Product,
-  TopSection,
-  Integrations
+  TopSection
 } from "sections/landings/main";
-import { Navigation, GetReady, InstallApp } from "sections/landings/common";
+import { GetReady, InstallApp, Navigation } from "sections/landings/common";
 import {
   DevelopersAndApiWrapper,
   FooterWrapper,
-  GetReadyWrapper,
+  GetReadyLandingWrapper,
   InstallAppWrapper,
+  IntegrationsWrapper,
   LandingWrapper,
   NavigationWrapper,
   ProductsWrapper,
-  TopSectionWrapper,
-  IntegrationsWrapper
+  TopSectionWrapper
 } from "sections/landings/common/sharedStyled";
-import { theme } from "utils/theme";
 
 const Home = () => (
   <LandingWrapper width={1} alignItems="center" flexDirection="column">
@@ -39,9 +38,9 @@ const Home = () => (
     <ProductsWrapper>
       <Product />
     </ProductsWrapper>
-    <GetReadyWrapper bgColor={theme.colors.landingDarkBlue}>
+    <GetReadyLandingWrapper>
       <GetReady />
-    </GetReadyWrapper>
+    </GetReadyLandingWrapper>
     <InstallAppWrapper>
       <InstallApp />
     </InstallAppWrapper>

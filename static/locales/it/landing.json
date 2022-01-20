@@ -278,7 +278,7 @@
       },
       "procurement": {
         "title": "Approvvigionamento",
-        "subtitle": "Scopri nuovi grossisti</0> e ordina dai tuoi preferiti.",
+        "subtitle": "Scopri nuovi grossisti<0/> e ordina dai tuoi preferiti.",
         "options": [
           {
             "title": "Main",
@@ -318,7 +318,7 @@
       "subtitle": "Una suite di strumenti comodi, digitali e <0>intelligenti</0> a tua disposizione per gestire al meglio il tuo ristorante e distinguerti dalla concorrenza",
       "intelligence": {
         "title": "Intelligence",
-        "subtitle": "Le notifiche sono grandiose,</0> ma gli approfondimenti fattibili sono meglio",
+        "subtitle": "Le notifiche sono grandiose,<0/> ma gli approfondimenti fattibili sono meglio",
         "options": [
           {
             "title": "Main",
@@ -367,7 +367,7 @@
       },
       "integrations": {
         "title": "Integrazioni",
-        "subtitle": "Non c'è bisogno di un codice.</0> Basta cliccare e connettersi",
+        "subtitle": "Non c'è bisogno di un codice.<0/> Basta cliccare e connettersi",
         "options": [
           {
             "title": "Main",
@@ -481,16 +481,16 @@
       "benefits": [
         {
           "percents": "89%",
-          "description": "dei consumatori legge le risposte</0> delle aziende alle recensioni"
+          "description": "dei consumatori legge le risposte<0/> delle aziende alle recensioni"
         },
         {
           "hint": "Minimo",
           "percents": "30%",
-          "description": "Tasso di risposta</0> per distinguere i tuoi concorrenti"
+          "description": "Tasso di risposta<0/> per distinguere i tuoi concorrenti"
         },
         {
           "percents": "93%",
-          "description": "dei clienti è frustrato</0> da informazioni errate online."
+          "description": "dei clienti è frustrato<0/> da informazioni errate online."
         }
       ]
     }

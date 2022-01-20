@@ -321,7 +321,7 @@
       "subtitle": "Une suite d'outils pratiques, digitaux et <0>intelligents</0> à votre disposition pour gérer au mieux votre restaurant et vous démarquer de la concurrence.",
       "intelligence": {
         "title": "Intelligence",
-        "subtitle": "Les notifications c'est bien,</0> mais les informations exploitables, c'est mieux.",
+        "subtitle": "Les notifications c'est bien,<0/> mais les informations exploitables, c'est mieux.",
         "options": [
           {
             "title": "Main",
@@ -329,7 +329,7 @@
             "advantages": [
               "<0>Obtenez des conseils</0> et des informations claires.",
               "<0>Ajuster les stratégies commerciales</0> en fonction des recommandations.",
-              "<0>Retrouvez les suggestions dans au même endroit,</0> accessibles pour une consultation ultérieure."
+              "<0>Retrouvez toutes vos suggestions au même endroit,</0> accessibles pour une consultation ultérieure."
             ]
           }
         ]
@@ -358,11 +358,11 @@
             "title": "Main",
             "description": "Le profil de votre établissement est la base de votre présence digitale. Ajoutez des informations, des photos, un menu, des heures d'ouverture, des partenaires de livraison, entre autres.",
             "advantages": [
-              "<0>Nouveau profil en 15 minutes.</0> Il suffit de remplir les informations relatives à votre établissement. <1>Créez un compte dès aujourd'hui.</1>",
+              "<0>Nouveau profil en 15 minutes.</0> Complétez les infos concernant votre établissement. <1>Créez un compte dès aujourd'hui.</1>",
               "<0>Démarquez-vous.</0> Mettez en avant les plats et produits vedettes, les récompenses, votre biographie et une courte vidéo.",
               "<0>Des informations fiables.</0> Mise à jour automatique des données sur toutes les plates-formes connectées au <1>Presence Management</1>",
               "<0>Gérez vos informations en direct.</0> En cas d'imprévu, vous pourrez facilement afficher vos infos en direct et tenir vos clients informés.",
-              "<0>Une visibilité accrue.</0> Les utilisateurs peuvent vous contacter par le biais de leur canal préféré figurant sur votre page <1>Foodetective.</1>",
+              "<0>Une visibilité accrue.</0> Ajoutez tous les canaux sur lesquels vos clients peuvent vous contacter sur votre profil <1>Foodetective.</1>",
               "<0>Contrôlez l'accès du personnel.</0> Choisissez qui peut accéder à votre profil et y apporter des modifications."
             ]
           }
@@ -370,7 +370,7 @@
       },
       "integrations": {
         "title": "Intégrations",
-        "subtitle": "Pas de code.</0> Il suffit de cliquer et de se connecter",
+        "subtitle": "Pas de code.<0/> Il suffit de cliquer et de se connecter",
         "options": [
           {
             "title": "Main",
@@ -484,16 +484,16 @@
       "benefits": [
         {
           "percents": "89%",
-          "description": "des consommateurs lisent les réponses</0> des établissement aux avis."
+          "description": "des consommateurs lisent les réponses<0/> des établissement aux avis."
         },
         {
           "hint": "Minimum",
           "percents": "30%",
-          "description": "de taux de réponse </0> pour vous démarquer de vos concurrents"
+          "description": "de taux de réponse <0/> pour vous démarquer de vos concurrents"
         },
         {
           "percents": "93%",
-          "description": "des clients sont frustrés</0> par des informations incorrectes en ligne."
+          "description": "des clients sont frustrés<0/> par des informations incorrectes en ligne."
         }
       ]
     }

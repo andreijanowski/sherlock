@@ -278,7 +278,7 @@
       },
       "procurement": {
         "title": "Beschaffung",
-        "subtitle": "Entdecken Sie neue Großhändler</0> und bestellen Sie bei Ihren Favoriten.",
+        "subtitle": "Entdecken Sie neue Großhändler<0/> und bestellen Sie bei Ihren Favoriten.",
         "options": [
           {
             "title": "Main",
@@ -318,7 +318,7 @@
       "subtitle": "Eine Reihe praktischer, digitaler und <0>intelligenter Tools</0>, mit denen Sie Ihr Restaurant optimal verwalten und sich von der Konkurrenz abheben können",
       "intelligence": {
         "title": "Intelligence",
-        "subtitle": "Benachrichtigungen sind toll,</0> aber verwertbare Erkenntnisse sind besser",
+        "subtitle": "Benachrichtigungen sind toll,<0/> aber verwertbare Erkenntnisse sind besser",
         "options": [
           {
             "title": "Main",
@@ -367,7 +367,7 @@
       },
       "integrations": {
         "title": "Integrationen",
-        "subtitle": "Kein Code erforderlich.</0> Einfach klicken und verbinden",
+        "subtitle": "Kein Code erforderlich.<0/> Einfach klicken und verbinden",
         "options": [
           {
             "title": "Main",
@@ -481,16 +481,16 @@
       "benefits": [
         {
           "percents": "89%",
-          "description": "der Verbraucher lesen die Antworten</0> der Unternehmen auf Bewertungen"
+          "description": "der Verbraucher lesen die Antworten<0/> der Unternehmen auf Bewertungen"
         },
         {
           "hint": "Mindestens",
           "percents": "30%",
-          "description": "Rücklaufquote</0>, um sich von Ihren Mitbewerbern abzuheben"
+          "description": "Rücklaufquote<0/>, um sich von Ihren Mitbewerbern abzuheben"
         },
         {
           "percents": "93%",
-          "description": "der Kunden sind frustriert</0> über falsche Informationen im Internet."
+          "description": "der Kunden sind frustriert<0/> über falsche Informationen im Internet."
         }
       ]
     }
