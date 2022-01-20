@@ -23,20 +23,20 @@ const InstallApp = () => {
   const t = useT("landing");
   return (
     <Container
-      pt={[80, null, 275]}
+      pt={[80, null, null, 275]}
       pm={100}
-      flexDirection={["column", null, "row"]}
+      flexDirection={["column", null, null, "row"]}
       id="app"
     >
-      <Image width={[1, 1 / 2]}>
+      <Image width={[1, null, null, 1 / 2]}>
         <VideoButtonContainer>
           <VideoButton url={GET_THE_APP_VIDEO_URL} isVertical />
         </VideoButtonContainer>
       </Image>
       <Flex
         flexDirection="column"
-        alignItems={["center", null, "flex-start"]}
-        mt={[3, null, 100]}
+        alignItems={["center", null, null, "flex-start"]}
+        mt={[3, null, null, 100]}
         p={3}
         width={1}
       >

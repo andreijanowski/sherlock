@@ -4,13 +4,12 @@ import requireAuth from "lib/requireAuth";
 import { Footer } from "components";
 import {
   FooterWrapper,
-  GetReadyWrapper,
+  GetReadyLandingTopGradientWrapper,
   InstallAppWrapper,
   LandingWrapper,
   NavigationWrapper
 } from "sections/landings/common/sharedStyled";
 import { GetReady, InstallApp, Navigation } from "sections/landings/common";
-import { theme } from "utils/theme";
 import {
   DarkWrapper,
   TopSectionWrapper,
@@ -86,9 +85,9 @@ const OperationsPage = () => (
         columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
       />
     </WhiteWrapper>
-    <GetReadyWrapper bgColor={theme.colors.landingDarkBlue}>
+    <GetReadyLandingTopGradientWrapper>
       <GetReady />
-    </GetReadyWrapper>
+    </GetReadyLandingTopGradientWrapper>
     <InstallAppWrapper>
       <InstallApp />
     </InstallAppWrapper>

@@ -4,13 +4,12 @@ import requireAuth from "lib/requireAuth";
 import { Footer } from "components";
 import {
   FooterWrapper,
-  GetReadyWrapper,
+  GetReadyLandingWrapper,
   InstallAppWrapper,
   LandingWrapper,
   NavigationWrapper
 } from "sections/landings/common/sharedStyled";
 import { GetReady, InstallApp, Navigation } from "sections/landings/common";
-import { theme } from "utils/theme";
 import {
   BenefitsWrapper,
   TopSectionWrapper,
@@ -113,9 +112,9 @@ const MarketingPage = () => (
     <BenefitsWrapper>
       <Benefits name={PAGE_NAME} />
     </BenefitsWrapper>
-    <GetReadyWrapper bgColor={theme.colors.landingDarkBlue}>
+    <GetReadyLandingWrapper>
       <GetReady />
-    </GetReadyWrapper>
+    </GetReadyLandingWrapper>
     <InstallAppWrapper>
       <InstallApp />
     </InstallAppWrapper>
