@@ -9,7 +9,7 @@ references:
   deploy: &deploy
     working_directory: ~/repo
     docker:
-      - image: circleci/ruby:2.4.3
+      - image: cimg/ruby:2.4.3
 
   node_machine: &node_machine
     working_directory: ~/repo
