@@ -1,28 +1,34 @@
 import React from "react";
+import { Box } from "@rebass/grid";
 import { bool } from "prop-types";
 
 import { Link } from "components";
 import { useLng } from "utils/hooks";
-import { LogoContainer, LogoSmallText } from "./styled";
+import { Fork } from "components/Icons";
+import { IconContainer, LogoContainer } from "./styled";
 
-const FoodetectiveTextLogo = ({ isSmall, isDark }) => {
+const FoodetectiveTextLogo = ({ isDark }) => {
   const lng = useLng();
   return (
     <Link route="/" lng={lng}>
-      <LogoContainer as="a" isSmall={isSmall} isDark={isDark}>
-        Foodetective <LogoSmallText> For Business</LogoSmallText>
+      <LogoContainer as="a" isDark={isDark} alignItems="center">
+        <IconContainer mr={1}>
+          <Fork />
+        </IconContainer>
+        <Box>
+          Foodetective <br />
+          Business
+        </Box>
       </LogoContainer>
     </Link>
   );
 };
 
 FoodetectiveTextLogo.propTypes = {
-  isSmall: bool,
   isDark: bool
 };
 
 FoodetectiveTextLogo.defaultProps = {
-  isSmall: false,
   isDark: false
 };
 

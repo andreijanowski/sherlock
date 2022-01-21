@@ -16,9 +16,10 @@ export const SquaredBrandmark = styled(Flex)`
   justify-content: center;
   align-items: center;
   background: linear-gradient(
-      270deg,
-      rgba(8, 12, 66, 0.38) 39.58%,
-      rgba(56, 79, 203, 0.38) 80%
+      90deg,
+      rgb(0, 0, 30) 0%,
+      rgb(${themeGet("colors.b2bSecondary")}) 65%,
+      rgb(${themeGet("colors.blue")}) 100%
     ),
     rgb(${themeGet("colors.landingDarkBlue")});
   border-radius: 18px;
