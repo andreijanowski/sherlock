@@ -51,7 +51,8 @@ export {
   CustomerSupport,
   OperationalReport,
   Intelligence,
-  Fork
+  Fork,
+  Adv
 } from "./navigation";
 export {
   Docs,

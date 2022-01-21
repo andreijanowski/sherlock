@@ -18,6 +18,7 @@ import {
 } from "sections/landings/product/styled";
 import { Benefits, InfoSection, TopSection } from "sections/landings/product";
 import {
+  Bookings,
   Clients,
   Delivery,
   EventsManagement,
@@ -34,7 +35,7 @@ const ManagementPage = () => (
     <TopSectionWrapper>
       <TopSection name={PAGE_NAME} />
     </TopSectionWrapper>
-    <WhiteWrapper>
+    <WhiteWrapper id="orders">
       <InfoSection
         name={`${PAGE_NAME}.orders`}
         icon={<Delivery />}
@@ -48,7 +49,7 @@ const ManagementPage = () => (
         linkTo="/#integrations"
       />
     </WhiteWrapper>
-    <DarkWrapper>
+    <DarkWrapper id="menu">
       <InfoSection
         name={`${PAGE_NAME}.menu`}
         icon={<MenuManagement />}
@@ -77,10 +78,10 @@ const ManagementPage = () => (
         isDark
       />
     </DarkWrapper>
-    <WhiteWrapper>
+    <WhiteWrapper id="reservation">
       <InfoSection
         name={`${PAGE_NAME}.reservation`}
-        icon={<Delivery />}
+        icon={<Bookings />}
         images={[
           {
             src: `/static/img/${PAGE_NAME}/reservations.png`,
@@ -97,7 +98,7 @@ const ManagementPage = () => (
         columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
       />
     </WhiteWrapper>
-    <DarkWrapper>
+    <DarkWrapper id="events">
       <InfoSection
         name={`${PAGE_NAME}.events`}
         icon={<EventsManagement />}
@@ -113,7 +114,7 @@ const ManagementPage = () => (
         isDark
       />
     </DarkWrapper>
-    <WhiteWrapper>
+    <WhiteWrapper id="customers">
       <InfoSection
         name={`${PAGE_NAME}.customers`}
         icon={<Clients />}

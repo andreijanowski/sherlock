@@ -1,6 +1,5 @@
-import React, { useCallback, useMemo, useState, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { func } from "prop-types";
-import { Box } from "@rebass/grid";
 import { useRouter } from "next/router";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,23 +11,18 @@ import { emToPx, theme } from "utils/theme";
 import { nestedLinkShape } from "../types";
 import { NavigationListItem } from "../styled";
 import { NestedLinkContainer, PopupContainer } from "./styled";
-import LinksGroup from "./LinksGroup";
+import LinkItem from "./LinkItem";
 
-const NavigationListNestedLink = ({ link: { label, groups }, onLinkClick }) => {
+const NavigationListNestedLink = ({
+  link: { label, items, component: ChildrenComponent },
+  onLinkClick
+}) => {
   const { asPath } = useRouter();
   const lng = useLng();
   const [visible, setVisible] = useState(false);
 
   const showMenu = useCallback(() => setVisible(true), []);
   const hideMenu = useCallback(() => setVisible(false), []);
-
-  const isActive = useMemo(
-    () =>
-      groups.some(group =>
-        group.items.some(link => `/${lng}${link.href}` === asPath)
-      ),
-    [asPath, groups, lng]
-  );
 
   const handleLinkClick = useCallback(
     item => {
@@ -41,24 +35,25 @@ const NavigationListNestedLink = ({ link: { label, groups }, onLinkClick }) => {
   const renderContent = useCallback(
     attrs => (
       <PopupContainer {...attrs}>
-        {groups.map((linksGroup, index) => {
-          const isLastChild = index === groups.length - 1;
-          return (
-            // we can use index here because structure is static
-            // and always will be rendered properly
-            // eslint-disable-next-line react/no-array-index-key
-            <Box key={index} mr={isLastChild ? 0 : "26px"}>
-              <LinksGroup group={linksGroup} onLinkClick={handleLinkClick} />
-            </Box>
-          );
-        })}
+        {ChildrenComponent ? (
+          <ChildrenComponent onLinkClick={handleLinkClick} />
+        ) : (
+          items.map(item => {
+            const key = `${item.label}-${item.href}`;
+            return (
+              <LinkItem key={key} item={item} onLinkClick={handleLinkClick} />
+            );
+          })
+        )}
       </PopupContainer>
     ),
-    [groups, handleLinkClick]
+    [ChildrenComponent, handleLinkClick, items]
   );
 
-  const renderLink = useCallback(
-    () => (
+  const renderLink = useCallback(() => {
+    const isActive =
+      items && items.some(link => `/${lng}${link.href}` === asPath);
+    return (
       <NestedLinkContainer
         alignItems="center"
         flexWrap="nowrap"
@@ -74,9 +69,8 @@ const NavigationListNestedLink = ({ link: { label, groups }, onLinkClick }) => {
           <FontAwesomeIcon icon={faChevronDown} />
         </AdaptiveBox>
       </NestedLinkContainer>
-    ),
-    [hideMenu, isActive, label, showMenu, visible]
-  );
+    );
+  }, [asPath, hideMenu, items, label, lng, showMenu, visible]);
 
   const isTablet = useWindowWidthLessThen(emToPx(theme.breakpoints[2]));
 
@@ -98,7 +92,7 @@ const NavigationListNestedLink = ({ link: { label, groups }, onLinkClick }) => {
       render={renderContent}
       visible={visible}
       onClickOutside={hideMenu}
-      placement="bottom-start"
+      placement="bottom"
     >
       {renderLink()}
     </Tippy>

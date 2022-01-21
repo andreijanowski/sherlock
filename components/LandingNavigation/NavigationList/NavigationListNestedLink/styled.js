@@ -3,7 +3,7 @@ import { Flex } from "@rebass/grid";
 
 import { downThanBreakpoint, themeGet } from "utils/theme";
 
-export const PopupContainer = styled(Flex)`
+export const PopupContainer = styled.div`
   padding: 24px;
   background: rgb(${p => p.theme.colors.white});
   box-shadow: 0px 4px 27px rgba(${p => p.theme.colors.black}, 0.3);
@@ -21,18 +21,7 @@ export const NestedLinkContainer = styled(Flex)`
   cursor: pointer;
 `;
 
-export const LinksGroupLabel = styled.div`
-  margin: 0 0 4px -4px;
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: ${p => p.theme.fontSizes.f12};
-  line-height: 20px;
-  color: rgb(${p => p.theme.colors.blue});
-  ${downThanBreakpoint(2)} {
-    margin: 0 0 4px;
-  }
-`;
-
-export const LinksGroupItem = styled.a`
+export const Link = styled.a`
   display: block;
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes.f18};
