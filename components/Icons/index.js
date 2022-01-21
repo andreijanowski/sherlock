@@ -49,7 +49,10 @@ export {
   EventsManagement,
   InfluencerManagement,
   CustomerSupport,
-  OperationalReport
+  OperationalReport,
+  Intelligence,
+  Fork,
+  Adv
 } from "./navigation";
 export {
   Docs,

@@ -64,10 +64,14 @@ export const BodyStyled = styled(Body)`
 `;
 
 export const ImagesContainer = styled(Flex)`
+  max-width: 100%;
   width: fit-content;
   position: relative;
-  flex-direction: column;
   margin: auto;
+  ${downThanBreakpoint(3)} {
+    display: block;
+    text-align: center;
+  }
 `;
 
 export const Image = styled(Box).attrs({ as: "img" })`
@@ -107,4 +111,15 @@ export const ToggleOptionButtonIcon = styled(FontAwesomeIcon)`
   right: 15px;
   top: 50%;
   transform: translateY(-50%);
+`;
+
+export const LinkStyled = styled.a`
+  text-decoration: underline;
+`;
+
+export const VideoIframe = styled.iframe`
+  width: 490px;
+  height: 372px;
+  max-width: 100%;
+  border: none;
 `;

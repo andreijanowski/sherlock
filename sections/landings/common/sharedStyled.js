@@ -80,7 +80,7 @@ export const DevelopersAndApiWrapper = styled(Box)`
     rgb(${p => p.theme.colors.white}) 85%
   );
   ${downThanBreakpoint(2)} {
-    background: rgb(${p => p.theme.colors.landingDarkBlue});
+    background: rgb(${themeGet("colors.landingDarkBlue")});
   }
 `;
 
@@ -92,7 +92,24 @@ export const PlansWrapper = styled(Box)`
 export const GetReadyWrapper = styled(Box)`
   position: relative;
   width: 100%;
-  background: rgb(${p => p.bgColor || p.theme.colors.darkBlue});
+  background: rgb(${themeGet("colors.darkBlue")});
+`;
+
+export const GetReadyLandingWrapper = styled(GetReadyWrapper)`
+  background: rgb(${themeGet("colors.landingDarkBlue")});
+`;
+
+export const GetReadyLandingTopGradientWrapper = styled(GetReadyWrapper)`
+  padding-top: 150px;
+  background: linear-gradient(
+    ${LANDING_BLOCK_ANGLE},
+    rgb(${themeGet("colors.white")}) calc(15% - 1px),
+    rgb(${themeGet("colors.landingDarkBlue")}) 15%
+  );
+  ${downThanBreakpoint(2)} {
+    padding-top: 0;
+    background: rgb(${themeGet("colors.landingDarkBlue")});
+  }
 `;
 
 export const InstallAppWrapper = styled(Box)`
@@ -107,11 +124,11 @@ export const InstallAppWrapper = styled(Box)`
     ${LANDING_BLOCK_ANGLE}, 
     rgb(${landingDarkBlue}) calc(20% - 1px), 
     white 20%, 
-    white calc(75% - 1px), 
-    rgb(${darkBlue}) 75%
+    white calc(80% - 1px), 
+    rgb(${darkBlue}) 80%
     );`;
   }};
-  ${downThanBreakpoint(1)} {
+  ${downThanBreakpoint(2)} {
     background: linear-gradient(
       ${LANDING_BLOCK_ANGLE},
       rgb(${themeGet("colors.white")}) calc(50% - 1px),

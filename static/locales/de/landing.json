@@ -15,7 +15,7 @@
   "installApp": {
     "header": {
       "start": "Laden Sie Ihre App noch heute.",
-      "end": " Foodetective For Business."
+      "end": " Foodetective Business."
     }
   },
   "cooperations": {
@@ -255,6 +255,242 @@
         {
           "percents": "20%",
           "description": "Steigerung der Mitnahmeeffekte durch <0/> ein besseres digitales Erlebnis."
+        }
+      ]
+    },
+    "operations": {
+      "title": "Operations Integrations",
+      "subtitle": "Einführung von Verfahren und eines soliden Betriebssystems zur <0>Erleichterung der täglichen Arbeit</0> von Mitarbeitern und Lieferanten.  ",
+      "payments": {
+        "title": "Zahlungen",
+        "subtitle": "Ihr Zahlungsverlauf zur Hand",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Empfangen, erfassen und verwalten Sie Ihre Zahlungen",
+            "advantages": [
+              "<0>Akzeptieren Sie Online-Zahlungen.</0> Mit Ihrem POS oder Integrationen mit unseren Partnern wie Stripe.",
+              "<0>Historie der Zahlungen.</0> Live-Stream-Liste der Zahlungen mit allen Daten, die Sie benötigen.",
+              "<0>Viele weitere Funktionen.</0> Integrationen mit anderen Apps geben Ihnen und Ihren Kunden Zugang zu vielen weiteren Funktionen!"
+            ]
+          }
+        ]
+      },
+      "procurement": {
+        "title": "Beschaffung",
+        "subtitle": "Entdecken Sie neue Großhändler<0/> und bestellen Sie bei Ihren Favoriten.",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Bestellen Sie, was Sie brauchen, wenn Sie es brauchen. <0>85%</0> der Unternehmen bevorzugen die Online-Bestellung, wir wissen, dass Sie das auch tun werden!",
+            "advantages": [
+              "<0>Vielfältige Liste von Großhandelskategorien,</0> darunter FMCG, Getränke, Hygiene und andere.",
+              "<0>Nicht mehr vergessen.</0> Bestellen Sie kleine Mengen, weniger häufig? Seien Sie trotzdem \"top of mind\" bei Ihrem Großhändler.",
+              "<0>Bestellen Sie bei Großhändlern auf digitalem Wege.</0> Keine manuelle Auftragsabwicklung mehr.",
+              "<0>Minimieren Sie das Risiko von Fehlern.</0> Keine Zeit für die Beantwortung von Fragen oder die Änderung von Aufträgen.",
+              "<0>Sparen Sie Verwaltungszeit.</0> Setzen Sie die Zeit Ihrer Mitarbeiter mit digitalen Bestellungen frei.",
+              "<0>Niemals aus der Spur.</0> Aktualisiert automatisch Ihr Inventar in der Lagerverwaltung."
+            ]
+          }
+        ]
+      },
+      "stockManagement": {
+        "title": "Stock Management",
+        "subtitle": "Auf Wiedersehen, Bestandslücke",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Kümmern Sie sich um Ihre Kunden, nicht um Ihre Vorratskammer",
+            "advantages": [
+              "<0>Synchronisierte Daten.</0> Front und Back of House kommuniziert.",
+              "<0>Weniger Verschwendung.</0> Überblick über den Wert der Bestände und wie viel gefährdet ist.",
+              "<0>Bessere Menükontrolle.</0> Verwenden Sie Daten, um Ihr Menü zu bearbeiten, Gerichte zu entfernen oder Tagesgerichte zu erstellen.",
+              "<0>Überblick über die Lagerbestände.</0> Vermeiden Sie überschüssige oder knappe Bestände.",
+              "<0>Live-Stream.</0> Das Personal ist über ausstehende Lieferungen informiert und vermeidet doppelte Bestellungen.",
+              "<0>Automatische Bestellung.</0> Demnächst verfügbar: Festlegen von Mindestbestandsmengen und automatische Nachbestellung."
+            ]
+          }
+        ]
+      }
+    },
+    "analytics": {
+      "title": "Analytics & Business Activity",
+      "subtitle": "Eine Reihe praktischer, digitaler und <0>intelligenter Tools</0>, mit denen Sie Ihr Restaurant optimal verwalten und sich von der Konkurrenz abheben können",
+      "intelligence": {
+        "title": "Intelligence",
+        "subtitle": "Benachrichtigungen sind toll,<0/> aber verwertbare Erkenntnisse sind besser",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Verbinden Sie Ihre Systeme und Software über den <1>Integrations Hub</1> und zentralisieren Sie Ihre Daten auf dem <2>Analytics Dashboard</2>, um Einblicke in die Leistung Ihres Unternehmens zu erhalten. Unsere Intelligence-Funktion hilft Ihnen, fundierte Entscheidungen zu treffen.",
+            "advantages": [
+              "<0>Holen Sie sich Rat</0> und klärende Informationen.",
+              "<0>Anpassung der Geschäftsstrategien</0> auf der Grundlage von Empfehlungen.",
+              "<0>Bewahren Sie die Vorschläge an einem Ort auf</0>, an dem Sie sie später einsehen können."
+            ]
+          }
+        ]
+      },
+      "dashboard": {
+        "title": "Dashboard",
+        "subtitle": "Ihre Daten sind nicht mehr über verschiedene Systeme hinweg fragmentiert",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Ihre integrierten Anwendungen speisen mehrere Berichte und Daten in visuelle Darstellungen ein, die es Ihnen ermöglichen, eine große Menge wertvoller Daten auf einem einzigen Dashboard zu überprüfen.",
+            "advantages": [
+              "<0>Echtzeit-Analysen:</0> Empfang, Verarbeitung und Anzeige aktualisierter Informationen. Aufschlussreiche Informationen in verständlicher Form.",
+              "<0>360*-Blick.</0> Erkennen Sie Trends, verfeinern Sie Prozesse, ermitteln Sie Präferenzen, analysieren Sie den Verkehr.",
+              "<0>Anpassbares Dashboard.</0> Sie können Parameter hinzufügen oder entfernen. Das Dashboard bleibt zu 100 % relevant für Ihre geschäftlichen Anforderungen.",
+              "<0>Verabschieden Sie sich von manuellen Eingaben</0> und fragmentierten Daten aus verschiedenen Softwareprogrammen und Systemen."
+            ]
+          }
+        ]
+      },
+      "businessProfile": {
+        "title": "Business Profile",
+        "subtitle": "Verwalten Sie Ihre digitale Präsenz",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Die Grundlage Ihrer digitalen Präsenz ist Ihr Unternehmensprofil. Fügen Sie Ihre Geschäftsinformationen, Fotos, Speisekarte, Öffnungszeiten, Lieferpartner und andere Informationen hinzu.",
+            "advantages": [
+              "<0>Neues Profil in 15 Minuten.</0> Geben Sie einfach Ihre Unternehmensdaten ein. <1>Erstellen Sie noch heute ein Konto.</1>",
+              "<0>Heben Sie sich ab.</0> Heben Sie Sternegerichte und -produkte, Auszeichnungen, Ihre Biografie und kurze Videoinhalte hervor.",
+              "<0>Genaue Informationen.</0> Aktualisiert automatisch Details auf allen Plattformen, die mit dem <1>Präsenzmanagement</1> verbunden sind",
+              "<0>Verwalten Sie Live-Informationen.</0> Ausnahmen passieren, so dass Sie Ihre Live-Informationen leicht präsentieren und Kunden wissen lassen können.",
+              "<0>Erhöhte Sichtbarkeit.</0> Die Nutzer können Sie über ihren bevorzugten Kanal auf Ihrer <1>Foodetective</1> Seite kontaktieren.",
+              "<0>Kontrollieren Sie den Zugang der Mitarbeiter.</0> Wählen Sie, wer auf Ihr Profil zugreifen und Änderungen vornehmen kann."
+            ]
+          }
+        ]
+      },
+      "integrations": {
+        "title": "Integrationen",
+        "subtitle": "Kein Code erforderlich.<0/> Einfach klicken und verbinden",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Die Zentralisierung all der schwerfälligen Technologien und API-Architekturen, die in der Branche verwendet werden, erfordert Zeit, Kosten und ein technisches Team; wir vereinfachen dies durch Click-and-Connect-Integrationen.",
+            "advantages": [
+              "<0>Plug and Play,</0> einfaches Anschließen und Abnehmen von Werkzeugen.",
+              "<0>Keine zusätzliche Ausbildung,</0> wählen Sie Ihre alltäglichen Werkzeuge.",
+              "<0>Entdecken Sie Tools,</0> Informationen und neue Dienste."
+            ]
+          }
+        ]
+      },
+      "appManager": {
+        "title": "App Manager",
+        "subtitle": "Ihre ausgewählten Anwendungen, wann und wo Sie sie brauchen",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Unser App-Manager ermöglicht es Ihnen, alle Apps, die Sie täglich benötigen, zu visualisieren und zu nutzen und nahtlos zwischen ihnen zu wechseln.",
+            "advantages": [
+              "<0>Keine Grenzen.</0> Wählen Sie eine beliebige App aus und nutzen Sie sie in einer Vielzahl von Kategorien",
+              "<0>Einmalige Anmeldung.</0> Sich die Anmeldedaten zu merken, kann sehr mühsam sein. Melden Sie sich einmal an.",
+              "<0>Entdeckung von Tools.</0> Entdecken Sie Anwendungen, die Sie für Ihre Unternehmensstrategie nutzen möchten. "
+            ]
+          }
+        ]
+      }
+    },
+    "marketing": {
+      "title": "Marketing Integrations",
+      "subtitle": "<0>Erhöhen Sie Ihren Bekanntheitsgrad</0> und heben Sie sich von der Konkurrenz ab. Treten Sie mit Ihren Kunden in Kontakt und bauen Sie eine Community rund um Ihre Marke auf.",
+      "contentManagement": {
+        "title": "Content management",
+        "subtitle": "Noch nie war es so einfach, Ihre Sichtbarkeit zu erhöhen",
+        "options": [
+          {
+            "title": "Community Management",
+            "description": "<1>Bei Foodetective</1> haben wir eine Gemeinschaft von Inhaltserstellern, die wir Detectives nennen. Sie sind erfahrene Community-Manager, Fotografen, Blogger, ausgebildete Foodies und Influencer, die eine echte Leidenschaft für alle Arten von Getränken und Küchen haben.",
+            "advantages": [
+              "<0>Bleiben Sie relevant.</0> Lagern Sie die Recherche und Strategie für Inhalte aus, damit Sie Ihren Mitbewerbern immer einen Schritt voraus sind und über die Trends in den Medien Bescheid wissen.",
+              "<0>Kunden einbinden.</0> Verpassen Sie keine Nachrichten, Fragen und Antworten, die für den Erfolg entscheidend sind.",
+              "<0>Posten Sie regelmäßig.</0> Pflegen Sie ein aktives Social-Media-Konto, erhöhen Sie die Markenbekanntheit und die Zahl der Follower.",
+              "<0>Verdauliche Ergebnisse.</0> Verschaffen Sie sich dank der monatlichen Berichte ein umfassendes Bild davon, wie sich Ihre Sichtbarkeit im Laufe der Zeit entwickelt."
+            ]
+          },
+          {
+            "title": "Fotografie/Videografie",
+            "description": "<1>Bei Foodetective</1> haben wir eine Gemeinschaft von Inhaltserstellern, die wir Detectives nennen. Sie sind erfahrene Community-Manager, Fotografen, Blogger, ausgebildete Foodies und Influencer, die eine echte Leidenschaft für alle Arten von Getränken und Küchen haben.",
+            "advantages": [
+              "<0>\"Wir essen mit den Augen\"</0> Hochwertige Inhalte, die Ihr Produkt ins rechte Licht rücken, ziehen mehr Kunden an.",
+              "<0>Erobern Sie die Aufmerksamkeit.</0> Wenn Sie mit Foto- und Videotrends auf dem Laufenden bleiben, werden Sie die Aufmerksamkeit potenzieller Kunden auf sich ziehen.",
+              "<0>Unterstützen Sie Ihre Marketingstrategie.</0> Erhalten Sie Inhalte in verschiedenen Formaten und Dimensionen. Erzählen Sie eine Geschichte visuell über Ihre Kanäle.",
+              "<0>Zeigen Sie Ihr Engagement für Qualität.</0> Die Kunden werden Ihre Marke mit hoher Qualität assoziieren. Außerdem können Sie so Ihre Markenidentität stärken. "
+            ]
+          },
+          {
+            "title": "Influencers",
+            "description": "<1>Bei Foodetective</1> haben wir eine Gemeinschaft von Inhaltserstellern, die wir Detectives nennen. Sie sind erfahrene Community-Manager, Fotografen, Blogger, ausgebildete Foodies und Influencer, die eine echte Leidenschaft für alle Arten von Getränken und Küchen haben.",
+            "advantages": [
+              "<0>Steigern Sie Ihre soziale Glaubwürdigkeit,</0> was wiederum Ihre Konversionsrate erhöht.",
+              "<0>Kostengünstig</0> im Vergleich zu anderen Formen der Online-Werbung, wenn man das Engagement vergleicht.",
+              "<0>Verpassen Sie nicht,</0> dass 1/3 der Verkäufe auf Mundpropaganda zurückzuführen sind. Influencer haben eine repräsentative und nischenbezogene Anhängerschaft für Ihr Produkt.",
+              "<0>Von Influencern erstellte Inhalte.</0> Vereinbaren Sie eine Verkostung mit dem Influencer und Sie können die Inhalte wahrscheinlich für Ihre eigenen Kanäle verwenden. "
+            ]
+          },
+          {
+            "title": "Advertising",
+            "description": "<1>Bei Foodetective</1> haben wir eine Gemeinschaft von Inhaltserstellern, die wir Detectives nennen. Sie sind erfahrene Community-Manager, Fotografen, Blogger, ausgebildete Foodies und Influencer, die eine echte Leidenschaft für alle Arten von Getränken und Küchen haben.",
+            "advantages": [
+              "<0>Neue Leads, mehr Verkäufe</0> durch einen gezielten Ansatz. Zielgruppen nach Interessen, Demografie und Verhalten.",
+              "<0>Finden Sie heraus, was funktioniert.</0> Vergleichen Sie verschiedene Anzeigen und finden Sie heraus, was am besten für Ihr Unternehmen geeignet ist. ",
+              "<0>Ein flexibles Budget.</0> Sie können selbst entscheiden, wie viel Sie pro Tag ausgeben. Finden Sie Werbung, die sich Ihrem Budget anpasst und nicht umgekehrt.",
+              "<0>Erhöhen Sie die Besucherzahlen</0> auf Ihrer Website, in den sozialen Medien, bei saisonalen Werbeaktionen, auf Lieferplattformen oder in Ihrem Geschäft. Praktisch überall, wo Sie wollen."
+            ]
+          }
+        ]
+      },
+      "reviewManagement": {
+        "title": "Review management",
+        "subtitle": "Ihre Bewertungen organisiert und zentralisiert",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Steigern Sie Ihren Online-Ruf ganz einfach",
+            "advantages": [
+              "<0>Zentralisieren Sie Ihre Bewertungen.</0> Google, TripAdvisor, Facebook - alles in einer einzigen Oberfläche.",
+              "<0>Treten Sie mit Ihren Kunden in Kontakt.</0> Reagieren Sie auf Bewertungen mit nur wenigen Klicks.",
+              "<0>Verwenden Sie Vorlagen,</0> um Bewertungen mit einem Klick zu beantworten.",
+              "<0>Nutzen Sie Bewertungen zur Verbesserung.</0> Falsche Öffnungszeiten? Geschirr oft nicht auf Lager?",
+              "<0>Heben Sie sich von der Konkurrenz ab.</0> Ab einer Rücklaufquote von 30 %.",
+              "<0>Analysieren Sie Ihren Online-Ruf.</0> Indikatoren in Ihrer Reichweite."
+            ]
+          }
+        ]
+      },
+      "presenceManagement": {
+        "title": "Presence Management",
+        "subtitle": "Ihre Geschäftsinformationen immer auf dem neuesten Stand",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Sie müssen nur wenige Minuten aufwenden, um Ihre öffentlichen Informationen zu aktualisieren",
+            "advantages": [
+              "<0>Aktualisieren Sie Ihre Informationen einmal.</0> Automatische Synchronisierung mit Verzeichnissen, GPS, Suchmaschinen, sozialen Netzwerken und Websites.",
+              "<0>Seien Sie ein SEO-Champion.</0> Genaue Tags und Beschreibungen bringen Sie in den Suchmaschinenergebnissen weiter nach oben.",
+              "<0>Ziehen Sie Kunden an.</0> Mit genaueren Inseraten sind Sie besser positioniert, so einfach ist das.  "
+            ]
+          }
+        ]
+      },
+      "benefits": [
+        {
+          "percents": "89%",
+          "description": "der Verbraucher lesen die Antworten<0/> der Unternehmen auf Bewertungen"
+        },
+        {
+          "hint": "Mindestens",
+          "percents": "30%",
+          "description": "Rücklaufquote<0/>, um sich von Ihren Mitbewerbern abzuheben"
+        },
+        {
+          "percents": "93%",
+          "description": "der Kunden sind frustriert<0/> über falsche Informationen im Internet."
         }
       ]
     }

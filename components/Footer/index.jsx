@@ -41,7 +41,7 @@ const Footer = () => {
       </MenuWrapper>
       <Line />
       <Box mb={2}>
-        <FoodetectiveTextLogo isSmall />
+        <FoodetectiveTextLogo />
       </Box>
       <Copyrights />
     </FooterWrapper>

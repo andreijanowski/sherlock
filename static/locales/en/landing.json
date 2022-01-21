@@ -15,7 +15,7 @@
   "installApp": {
     "header": {
       "start": "Download (Y)our app today.",
-      "end": " Foodetective For Business."
+      "end": " Foodetective Business."
     }
   },
   "cooperations": {
@@ -255,6 +255,242 @@
         {
           "percents": "20%",
           "description": "Increase in takeaways with <0/> a better digital experience."
+        }
+      ]
+    },
+    "operations": {
+      "title": "Operations Integrations",
+      "subtitle": "Implement procedures and a <0>strong operating system</0> that facilitates the day-to-day activities of staff and suppliers.",
+      "payments": {
+        "title": "Payments",
+        "subtitle": "Your Payments History At Hand",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Receive, record and manage your payments.",
+            "advantages": [
+              "<0>Accept online payments.</0> With your POS or integrations with our partners such as Stripe.",
+              "<0>History of payments.</0> Live stream list of payments with all data you need.",
+              "<0>Many more features.</0> Integrations with other apps will give you, and your customers, access to many more features!"
+            ]
+          }
+        ]
+      },
+      "procurement": {
+        "title": "Procurement",
+        "subtitle": "Discover new Wholesalers,<0/> Order from your Favorites",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Order what you need when you need it. <0>85%</0> of businesses prefer online ordering, we know you will too!",
+            "advantages": [
+              "<0>Varied list of wholesaler categories</0> including FMCG, beverages, hygiene, among others.",
+              "<0>No longer forgotten.</0> Do you order small volumes, less frequently? Be on “top of mind” of your wholesaler regardless.",
+              "<0>Order from wholesalers digitally.</0> No more manual order handling.",
+              "<0>Minimize the risk of errors.</0> No time spent answering questions or amending orders.",
+              "<0>Save on admin time.</0> Free up your staff’s time with digital ordering.",
+              "<0>Never off track.</0> Automatically updates your inventory on stock management."
+            ]
+          }
+        ]
+      },
+      "stockManagement": {
+        "title": "Stock Management",
+        "subtitle": "Goodbye, Inventory Gap",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Take care of your customers not your pantry.",
+            "advantages": [
+              "<0>Synchronized data.</0> Front and back of house communicated.",
+              "<0>Less waste.</0> Summary of value of stock and how much is at risk.",
+              "<0>Better menu control.</0> Use data to edit your menu, remove dishes or create dishes of the day.",
+              "<0>Stock levels overview.</0> Avoid overstocking or shortages.",
+              "<0>Live stream.</0> Staff aware of pending deliveries avoiding duplicated orders.",
+              "<0>Automatic ordering.</0> Coming soon: Set minimum inventory levels and automatic reordering."
+            ]
+          }
+        ]
+      }
+    },
+    "analytics": {
+      "title": "Analytics & Business Activity",
+      "subtitle": "A suite of convenient, digital and <0>intelligent tools</0> available for you to best manage your restaurant and stand out from the competition",
+      "intelligence": {
+        "title": "Intelligence",
+        "subtitle": "Notifications are great,<0/> but actionable insights are better",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Connect your systems and software on the <1>Integrations Hub</1> and centralize your data on the <2>Analytics Dashboard</2> to get insights on the performance of your business. Our Intelligence Feature helps you make informed decisions moving forward.",
+            "advantages": [
+              "<0>Get advice</0> and clarifying information.",
+              "<0>Adjust business strategies</0> based on recommendations.",
+              "<0>Keep suggestions in one place</0> accessible for future reference."
+            ]
+          }
+        ]
+      },
+      "dashboard": {
+        "title": "Dashboard",
+        "subtitle": "Your data no longer fragmented across systems",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Your integrated applications will feed multiple reports and data into visuals, that will allow you to review significant amount of valuable data on a single dashboard.",
+            "advantages": [
+              "<0>Real-time analytics:</0> receive, process, and display updated information. Insightful information, in a digestible way.",
+              "<0>360* Vision.</0> Recognize trends, refine processes, identify preferences, analyze traffic.",
+              "<0>Customizable dashboard.</0> Add or remove parameters. The dashboard remains 100% relevant to your business needs.",
+              "<0>Goodbye manual entries</0> and fragmented data from multiple software’s and systems."
+            ]
+          }
+        ]
+      },
+      "businessProfile": {
+        "title": "Business Profile",
+        "subtitle": "Manage your Digital Presence",
+        "options": [
+          {
+            "title": "Main",
+            "description": "The foundation of your digital presence is your business profile. Add your business information, photographs, menu, opening hours, delivery partners among other information.",
+            "advantages": [
+              "<0>New profile in 15 minutes.</0> Simply fill in your business information. <1>Create an account today.</1>",
+              "<0>Stand out.</0> Highlight star dishes & products, awards, your biography, and short video content.",
+              "<0>Accurate information.</0> Automatically updates details on all platforms that are connected to <1>presence management</1>",
+              "<0>Manage live info.</0> Exceptions happen so you can easily showcase your live info” and let customers know.",
+              "<0>Increased visibility.</0> Users can contact you through their preferred channel listed on your <1>Foodetective</1> page.",
+              "<0>Control staff access.</0> Choose who can access and make changes to your profile."
+            ]
+          }
+        ]
+      },
+      "integrations": {
+        "title": "Integrations",
+        "subtitle": "No Code Needed.<0/> Simply Click and Connect",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Centralizing all of the heavy tech and API architectures used by the industry requires time, expense, and a technical team; we simplify this through click and connect integrations.",
+            "advantages": [
+              "<0>Plug and play,</0> connect or disconnect tools with ease. ",
+              "<0>No additional training,</0> choose your everyday tools.",
+              "<0>Discover tools,</0> access information and new services."
+            ]
+          }
+        ]
+      },
+      "appManager": {
+        "title": "App Manager",
+        "subtitle": "Your chosen apps when and where you need them",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Our app manager will allow you to visualize and use any of the apps you require daily and seamlessly switch between them.",
+            "advantages": [
+              "<0>No limits.</0> Choose and use any of the apps you need across a variety of categories",
+              "<0>Single log-in.</0> Remembering credentials can be overwhelming. Log-in once.",
+              "<0>Tool discovery.</0> Discover apps that you may want to use for your business strategy. "
+            ]
+          }
+        ]
+      }
+    },
+    "marketing": {
+      "title": "Marketing Integrations",
+      "subtitle": "<0>Increase your visibility</0> and stand out from the competition. Engage with your customers and build a community around your brand.",
+      "contentManagement": {
+        "title": "Content management",
+        "subtitle": "Increasing your Visibility has never been this Easy",
+        "options": [
+          {
+            "title": "Community Management",
+            "description": "<1>At Foodetective</1> we have a community of content creators, called Detectives. They are experienced community managers, photographers, bloggers, trained foodies, and influencers who have a true passion for all sorts of beverages & cuisines.",
+            "advantages": [
+              "<0>Stay relevant.</0> Outsource content research and strategy so you stay ahead of competitors and on top of social media trends.",
+              "<0>Engage customers.</0> Don’t miss out on messages, questions, responses which is crucial for success.",
+              "<0>Post consistently.</0> Maintain an active social media account, increase brand awareness and followers.",
+              "<0>Digestible results.</0> Get a full picture of how your visibility is evolving over time thanks to monthly reports."
+            ]
+          },
+          {
+            "title": "Photography/Videography",
+            "description": "<1>At Foodetective</1> we have a community of content creators, called Detectives. They are experienced community managers, photographers, bloggers, trained foodies, and influencers who have a true passion for all sorts of beverages & cuisines.",
+            "advantages": [
+              "<0>\"We eat with our eyes\"</0> High quality content, that show your product in the right light will attract more customers.",
+              "<0>Capture the attention.</0> Staying relevant with photo and video trends will capture the attention of potential customers.",
+              "<0>Support your marketing strategy.</0> Receive content in various formats and dimensions. Tell a story visually through your channels.",
+              "<0>Show your commitment to quality.</0> Customers will associate your brand with high quality. Plus, you can reinforce your brand identity. "
+            ]
+          },
+          {
+            "title": "Influencers",
+            "description": "<1>At Foodetective</1> we have a community of content creators, called Detectives. They are experienced community managers, photographers, bloggers, trained foodies, and influencers who have a true passion for all sorts of beverages & cuisines.",
+            "advantages": [
+              "<0>Boost your social credibility</0> which in turn increases your conversion rate.",
+              "<0>Cost effective</0> compared to other forms of online advertising when compared to engagement levels.",
+              "<0>Don’t miss out</0> 1/3rd of sales are attributed to word of mouth. Influencers have a representative and niche following for your product.",
+              "<0>Influencer generated content.</0> Set up a tasting with the influencer and you’ll likely be able to use the content for your own channels. "
+            ]
+          },
+          {
+            "title": "Advertising",
+            "description": "<1>At Foodetective</1> we have a community of content creators, called Detectives. They are experienced community managers, photographers, bloggers, trained foodies, and influencers who have a true passion for all sorts of beverages & cuisines.",
+            "advantages": [
+              "<0>New leads, more sales</0> through a targeted approach. Target by interests, demographics, behaviors.",
+              "<0>Find out what works.</0> Compare various ads and find out what works best to promote your business. ",
+              "<0>A Flexible budget.</0> Choosing how much you spend a day is possible. Find advertising that adapts to your budget not the other way around.",
+              "<0>Boost traffic</0> to your website, social medias, seasonal promotions, delivery platforms, store. Virtually wherever you want."
+            ]
+          }
+        ]
+      },
+      "reviewManagement": {
+        "title": "Review management",
+        "subtitle": "Your Reviews Organized and Centralized",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Boost your online reputation easily.",
+            "advantages": [
+              "<0>Centralize your Reviews.</0> Google, TripAdvisor, Facebook all in a single interface.",
+              "<0>Engage with your customers.</0> Respond to reviews with just a few clicks.",
+              "<0>Use templates</0> to answer reviews with a click.",
+              "<0>Use reviews to improve.</0> Incorrect opening hours? Dish often out of stock?",
+              "<0>Stand out from competitors.</0> Starting at 30% response rate.",
+              "<0>Analyze your online reputation.</0> Indicators at your reach."
+            ]
+          }
+        ]
+      },
+      "presenceManagement": {
+        "title": "Presence Management",
+        "subtitle": "Your business information always updated",
+        "options": [
+          {
+            "title": "Main",
+            "description": "No need to dedicate more than a few minutes to update your public information.",
+            "advantages": [
+              "<0>Update your information once.</0> Synchronized automatically to directories, GPS, search engines, social networks, and websites.",
+              "<0>Be a SEO champion.</0> Accurate tags and descriptions put you higher in the search engine results.",
+              "<0>Attract customers.</0> With more accurate listings you are better positioned, it’s that easy.  "
+            ]
+          }
+        ]
+      },
+      "benefits": [
+        {
+          "percents": "89%",
+          "description": "of consumers read businesses’ <0/> responses to reviews"
+        },
+        {
+          "hint": "Minimum",
+          "percents": "30%",
+          "description": "response rate to stand <0/> out your competitors"
+        },
+        {
+          "percents": "93%",
+          "description": "of customers are frustrated <0/> by incorrect information online."
         }
       ]
     }

@@ -16,7 +16,9 @@ const InfoSection = ({
   isDark,
   columnsProportions,
   linkTo,
-  advantagesColumnsWidth
+  advantagesColumnsWidth,
+  textLinks,
+  videos
 }) => {
   const t = useT("landing");
   const prefix = getPrefix(name);
@@ -45,8 +47,11 @@ const InfoSection = ({
           isDark={isDark}
           linkTo={linkTo}
           prefix={prefix}
+          activeOptionIndex={activeOptionIndex}
+          videos={videos}
         />
         <TextColumn
+          textLinks={textLinks}
           width={columnsProportions[1]}
           isDark={isDark}
           activeOptionIndex={activeOptionIndex}
@@ -76,14 +81,18 @@ InfoSection.propTypes = {
   ).isRequired,
   isDark: bool,
   columnsProportions: arrayOf(arrayOf(number)).isRequired,
-  advantagesColumnsWidth: arrayOf(oneOf([arrayOf(number), number, string]))
+  advantagesColumnsWidth: arrayOf(oneOf([arrayOf(number), number, string])),
+  textLinks: shape({}),
+  videos: shape({})
 };
 
 InfoSection.defaultProps = {
   icon: null,
   linkTo: null,
   isDark: false,
-  advantagesColumnsWidth: [1, null, null, 1 / 2]
+  advantagesColumnsWidth: [1, null, null, 1 / 2],
+  textLinks: {},
+  videos: {}
 };
 
 export default InfoSection;

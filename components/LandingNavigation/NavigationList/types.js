@@ -1,4 +1,4 @@
-import { shape, string, arrayOf, oneOfType, bool } from "prop-types";
+import { shape, string, arrayOf, oneOfType, bool, func } from "prop-types";
 
 export const linkShape = shape({
   label: string.isRequired,
@@ -6,14 +6,10 @@ export const linkShape = shape({
   isDisabled: bool
 });
 
-export const linksGroupShape = shape({
-  label: string,
-  items: arrayOf(linkShape).isRequired
-});
-
 export const nestedLinkShape = shape({
   label: string.isRequired,
-  groups: arrayOf(linksGroupShape).isRequired
+  component: func,
+  items: arrayOf(linkShape)
 });
 
 export const mixedLinkShape = oneOfType([linkShape, nestedLinkShape]);

@@ -4,26 +4,28 @@ import requireAuth from "lib/requireAuth";
 import { Footer } from "components";
 import {
   FooterWrapper,
-  GetReadyWrapper,
+  GetReadyLandingWrapper,
   InstallAppWrapper,
   LandingWrapper,
   NavigationWrapper
 } from "sections/landings/common/sharedStyled";
 import { GetReady, InstallApp, Navigation } from "sections/landings/common";
-import { theme } from "utils/theme";
 import {
+  BenefitsWrapper,
   DarkWrapper,
   TopSectionWrapper,
-  WhiteWrapper,
-  BenefitsWrapper
+  WhiteWrapper
 } from "sections/landings/product/styled";
-import { InfoSection, TopSection, Benefits } from "sections/landings/product";
+import { Benefits, InfoSection, TopSection } from "sections/landings/product";
 import {
+  Bookings,
   Clients,
   Delivery,
   EventsManagement,
   MenuManagement
 } from "components/Icons";
+
+const PAGE_NAME = "management";
 
 const ManagementPage = () => (
   <LandingWrapper width={1} alignItems="center" flexDirection="column">
@@ -31,15 +33,15 @@ const ManagementPage = () => (
       <Navigation />
     </NavigationWrapper>
     <TopSectionWrapper>
-      <TopSection />
+      <TopSection name={PAGE_NAME} />
     </TopSectionWrapper>
-    <WhiteWrapper>
+    <WhiteWrapper id="orders">
       <InfoSection
-        name="management.orders"
+        name={`${PAGE_NAME}.orders`}
         icon={<Delivery />}
         images={[
           {
-            src: "/static/img/management/ordersManagement.png",
+            src: `/static/img/${PAGE_NAME}/ordersManagement.png`,
             width: ["100%", null, null, "490px"]
           }
         ]}
@@ -47,26 +49,26 @@ const ManagementPage = () => (
         linkTo="/#integrations"
       />
     </WhiteWrapper>
-    <DarkWrapper>
+    <DarkWrapper id="menu">
       <InfoSection
-        name="management.menu"
+        name={`${PAGE_NAME}.menu`}
         icon={<MenuManagement />}
         images={[
           {
-            src: "/static/img/management/menu.png",
+            src: `/static/img/${PAGE_NAME}/menu.png`,
             mt: 82,
             mb: [74, null, null, 0],
             mx: "auto",
             width: ["90%", null, null, "442px"]
           },
           {
-            src: "/static/img/management/menuUpdatesPopup.png",
+            src: `/static/img/${PAGE_NAME}/menuUpdatesPopup.png`,
             width: ["173px", "200px", null, "258px"],
             right: [-5, null, null, -37],
             top: [40, null, null, 0]
           },
           {
-            src: "/static/img/management/menuConfirmPopup.png",
+            src: `/static/img/${PAGE_NAME}/menuConfirmPopup.png`,
             left: [0, null, null, -30],
             bottom: [25, null, null, -45],
             width: ["138px", "160px", null, "206px"]
@@ -76,18 +78,18 @@ const ManagementPage = () => (
         isDark
       />
     </DarkWrapper>
-    <WhiteWrapper>
+    <WhiteWrapper id="reservation">
       <InfoSection
-        name="management.reservation"
-        icon={<Delivery />}
+        name={`${PAGE_NAME}.reservation`}
+        icon={<Bookings />}
         images={[
           {
-            src: "/static/img/management/reservations.png",
+            src: `/static/img/${PAGE_NAME}/reservations.png`,
             width: ["95%", null, null, "480px"],
             mb: [60, null, null, 0]
           },
           {
-            src: "/static/img/management/reservationsPopup.png",
+            src: `/static/img/${PAGE_NAME}/reservationsPopup.png`,
             width: ["181px", null, null, "273px"],
             bottom: [20, null, null, -77],
             right: [0, null, null, -33]
@@ -96,13 +98,13 @@ const ManagementPage = () => (
         columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
       />
     </WhiteWrapper>
-    <DarkWrapper>
+    <DarkWrapper id="events">
       <InfoSection
-        name="management.events"
+        name={`${PAGE_NAME}.events`}
         icon={<EventsManagement />}
         images={[
           {
-            src: "/static/img/management/events.png",
+            src: `/static/img/${PAGE_NAME}/events.png`,
             width: ["100%", null, null, "640px"],
             mb: [44, null, null, 0]
           }
@@ -112,19 +114,19 @@ const ManagementPage = () => (
         isDark
       />
     </DarkWrapper>
-    <WhiteWrapper>
+    <WhiteWrapper id="customers">
       <InfoSection
-        name="management.customers"
+        name={`${PAGE_NAME}.customers`}
         icon={<Clients />}
         images={[
           {
-            src: "/static/img/management/customers.png",
+            src: `/static/img/${PAGE_NAME}/customers.png`,
             width: ["90%", null, null, "603px"],
             mr: [0, null, null, 60],
             mb: [44, null, null, 0]
           },
           {
-            src: "/static/img/management/customersPopup.png",
+            src: `/static/img/${PAGE_NAME}/customersPopup.png`,
             width: ["81px", "163px"],
             top: [23, 30, 80, 28],
             right: [0, null, null, -10]
@@ -135,11 +137,11 @@ const ManagementPage = () => (
       />
     </WhiteWrapper>
     <BenefitsWrapper>
-      <Benefits name="management" />
+      <Benefits name={PAGE_NAME} />
     </BenefitsWrapper>
-    <GetReadyWrapper bgColor={theme.colors.landingDarkBlue}>
+    <GetReadyLandingWrapper>
       <GetReady />
-    </GetReadyWrapper>
+    </GetReadyLandingWrapper>
     <InstallAppWrapper>
       <InstallApp />
     </InstallAppWrapper>
