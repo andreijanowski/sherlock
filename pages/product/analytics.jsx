@@ -48,7 +48,7 @@ const AnalyticsPage = () => {
           }}
         />
       </TopSectionWrapper>
-      <WhiteWrapper>
+      <WhiteWrapper id="intelligence">
         <InfoSection
           name={`${PAGE_NAME}.intelligence`}
           icon={<Intelligence />}
@@ -116,7 +116,7 @@ const AnalyticsPage = () => {
           isDark
         />
       </DarkWrapper>
-      <WhiteWrapper>
+      <WhiteWrapper id="profile">
         <InfoSection
           name={`${PAGE_NAME}.businessProfile`}
           icon={<Restaurant />}
@@ -193,7 +193,7 @@ const AnalyticsPage = () => {
           isDark
         />
       </DarkWrapper>
-      <WhiteWrapper>
+      <WhiteWrapper id="appManager">
         <InfoSection
           name={`${PAGE_NAME}.appManager`}
           icon={<AppManager />}

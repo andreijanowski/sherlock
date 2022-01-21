@@ -57,7 +57,7 @@ const MarketingPage = () => (
     <TopSectionWrapper>
       <TopSection name={PAGE_NAME} />
     </TopSectionWrapper>
-    <WhiteWrapper>
+    <WhiteWrapper id="contentManagement">
       <InfoSection
         name={`${PAGE_NAME}.contentManagement`}
         icon={<InfluencerManagement />}
@@ -72,7 +72,7 @@ const MarketingPage = () => (
         textLinks={contentManagementTextLinks}
       />
     </WhiteWrapper>
-    <DarkWrapper>
+    <DarkWrapper id="reviewManagement">
       <InfoSection
         name={`${PAGE_NAME}.reviewManagement`}
         icon={<Reviews />}

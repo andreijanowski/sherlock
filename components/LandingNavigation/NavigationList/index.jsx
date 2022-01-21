@@ -66,7 +66,7 @@ const NavigationList = ({ isMenuOpened, hideMenu }) => {
       </MobileLanguageSwitcherContainer>
       {menuItems.map((mixedLink, index) => {
         const key = mixedLink.label;
-        const isNested = !!mixedLink.groups;
+        const isNested = !!(mixedLink.items || mixedLink.component);
         const isLastChild = index === menuItems.length - 1;
         const Component = isNested
           ? NavigationListNestedLink

@@ -28,7 +28,7 @@ const OperationsPage = () => (
     <TopSectionWrapper>
       <TopSection name={PAGE_NAME} />
     </TopSectionWrapper>
-    <WhiteWrapper>
+    <WhiteWrapper id="payments">
       <InfoSection
         name={`${PAGE_NAME}.payments`}
         icon={<Payments />}
@@ -42,7 +42,7 @@ const OperationsPage = () => (
         advantagesColumnsWidth={1}
       />
     </WhiteWrapper>
-    <DarkWrapper>
+    <DarkWrapper id="procurement">
       <InfoSection
         name={`${PAGE_NAME}.procurement`}
         icon={<Wholesalers />}
@@ -71,7 +71,7 @@ const OperationsPage = () => (
         isDark
       />
     </DarkWrapper>
-    <WhiteWrapper>
+    <WhiteWrapper id="stockManagement">
       <InfoSection
         name={`${PAGE_NAME}.stockManagement`}
         icon={<StockManagement />}
