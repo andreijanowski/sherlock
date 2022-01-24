@@ -120,6 +120,8 @@ const ONLINE_MEETING_LINK =
 
 const MANAGEMENT_ADV_VIDEO = "https://www.youtube.com/embed/RYwtvUhSSGo";
 
+const INVEST_TYPEFORM_LINK = "https://foodetective.typeform.com/to/dFI4yOpP";
+
 module.exports = {
   contentTypes,
   languages,
@@ -167,5 +169,6 @@ module.exports = {
   PARTOO_SDK_URL,
   LICENSING_TYPEFORM_LINK,
   ONLINE_MEETING_LINK,
-  MANAGEMENT_ADV_VIDEO
+  MANAGEMENT_ADV_VIDEO,
+  INVEST_TYPEFORM_LINK
 };
