@@ -98,3 +98,8 @@ export const BodySmall = styled(TypographyBox).attrs(
   line-height: 20px;
   letter-spacing: 0.01em;
 `;
+
+export const H1Landing = styled(H1)`
+  font-size: 64px;
+  line-height: 77px;
+`;

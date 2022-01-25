@@ -18,24 +18,26 @@ const Header = ({
 }) => {
   const t = useT("landing");
 
-  const title = t(`${prefix}.title`);
+  const title = t(`${prefix}.title`, "");
   const hasOptionsSwitcher = options.length > 1;
 
   return (
     <>
-      <H2Styled
-        isDark={isDark}
-        mb={hasOptionsSwitcher ? 4 : [4, null, null, 80]}
-        justifyContent="center"
-        alignItems="center"
-      >
-        {icon && (
-          <Box as={TitleIcon} isDark={isDark} mr={14}>
-            {icon}
-          </Box>
-        )}
-        {title}
-      </H2Styled>
+      {title && (
+        <H2Styled
+          isDark={isDark}
+          mb={hasOptionsSwitcher ? 4 : [4, null, null, 80]}
+          justifyContent="center"
+          alignItems="center"
+        >
+          {icon && (
+            <Box as={TitleIcon} isDark={isDark} mr={14}>
+              {icon}
+            </Box>
+          )}
+          {title}
+        </H2Styled>
+      )}
       {hasOptionsSwitcher && (
         <AdaptiveBox
           display={["none", null, null, "block"]}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Flex } from "@rebass/grid";
-import { arrayOf, bool, number, oneOf, shape, string } from "prop-types";
+import { arrayOf, bool, number, oneOf, shape, string, func } from "prop-types";
 
 import { useT } from "utils/hooks";
 import { Container } from "./styled";
@@ -18,7 +18,9 @@ const InfoSection = ({
   linkTo,
   advantagesColumnsWidth,
   textLinks,
-  videos
+  videos,
+  step,
+  renderButton
 }) => {
   const t = useT("landing");
   const prefix = getPrefix(name);
@@ -51,6 +53,7 @@ const InfoSection = ({
           videos={videos}
         />
         <TextColumn
+          step={step}
           textLinks={textLinks}
           width={columnsProportions[1]}
           isDark={isDark}
@@ -59,6 +62,7 @@ const InfoSection = ({
           prefix={prefix}
           advantagesColumnsWidth={advantagesColumnsWidth}
           options={options}
+          renderButton={renderButton}
         />
       </Flex>
     </Container>
@@ -83,16 +87,20 @@ InfoSection.propTypes = {
   columnsProportions: arrayOf(arrayOf(number)).isRequired,
   advantagesColumnsWidth: arrayOf(oneOf([arrayOf(number), number, string])),
   textLinks: shape({}),
-  videos: shape({})
+  videos: shape({}),
+  step: number,
+  renderButton: func
 };
 
 InfoSection.defaultProps = {
+  step: null,
   icon: null,
   linkTo: null,
   isDark: false,
   advantagesColumnsWidth: [1, null, null, 1 / 2],
   textLinks: {},
-  videos: {}
+  videos: {},
+  renderButton: null
 };
 
 export default InfoSection;

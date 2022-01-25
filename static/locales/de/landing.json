@@ -129,7 +129,7 @@
   "language": "Sprache",
   "seeSubscriptionPlans": "Siehe Abonnementpläne",
   "benefitsInNumbers": "Vorteile in Zahlen",
-  "integrationsLandings": {
+  "landings": {
     "management": {
       "title": "Management-Integrationen",
       "subtitle": "Stellen Sie sicher, dass Ihr <0>Geschäft reibungslos</0> und effizient läuft und bieten Sie Ihren Kunden ein angenehmes Erlebnis, das den Markenstandards entspricht.",
@@ -493,6 +493,77 @@
           "description": "der Kunden sind frustriert<0/> über falsche Informationen im Internet."
         }
       ]
+    },
+    "howItWorks": {
+      "title": "Ein Produkt, das für die Selbstbedienung gemacht ist",
+      "subtitle": "Was bedeutet das? Keine langen Anrufe beim Kundensupport und oder Einrichtungsgebühren, wir haben eine Software entwickelt, die einfach zu verwalten ist und keine technischen Kenntnisse erfordert",
+      "step1": {
+        "title": "Wie es funktioniert",
+        "subtitle": "Erstellen Sie Ihr Konto",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Neue Einrichtungen registrieren sich im Durchschnitt in <0>15 Minuten.</0>",
+            "advantages": [
+              "Füllen Sie in Ihrem <1>Business Profile</1> die Informationen über Ihr Lokal aus, wie Öffnungszeiten, verfügbare Dienstleistungen, Ihre Fotos und alle wesentlichen Elemente",
+              "Wenn Sie diese Informationen aktualisieren müssen, tun Sie dies einmalig und es wird auf allen Ihren <1>Online-Plattformen</1> aktualisiert."
+            ]
+          }
+        ]
+      },
+      "step2": {
+        "subtitle": "Click & Connect",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Kümmern Sie sich nicht um den <0>technischen Aspekt der Dinge.</0>",
+            "advantages": [
+              "Gehen Sie auf den <1>Integrations Hub</1> und <0>klicken und verbinden Sie</0> Ihre bevorzugten Plattformen.",
+              "Sie können jederzeit Plattformen hinzufügen oder entfernen, wenn Sie es für nötig halten",
+              "Fügen Sie Ihre Logins nur einmal hinzu und es ist einsatzbereit!"
+            ]
+          }
+        ]
+      },
+      "step3": {
+        "subtitle": "Beginnen Sie, Ihre Einrichtung auf transparente Weise zu verwalten",
+        "options": [
+          {
+            "title": "Main",
+            "advantages": [
+              "Greifen Sie einfach über unser Menü auf alle Ihre Tools zu",
+              "Keine Schulung erforderlich, sie funktionieren so, wie sie es schon immer getan haben"
+            ]
+          }
+        ]
+      },
+      "step4": {
+        "subtitle": "Verwalten Sie alle Ihre Systeme von einer einzigen Plattform aus",
+        "options": [
+          {
+            "title": "Main",
+            "advantages": [
+              "Durch die Zentralisierung Ihres Tech-Stacks erhalten Sie Informationen in Echtzeit auf Ihrem <1>angepassten Dashboard.</1>",
+              "Verwenden Sie Foodetective täglich \uD83D\uDE09"
+            ]
+          }
+        ]
+      },
+      "step5": {
+        "subtitle": "24/7 Zugang aus der Hosentasche",
+        "options": [
+          {
+            "title": "Main",
+            "advantages": [
+              "Download der Foodetective Business App",
+              "Keine Schulung erforderlich, sie funktionieren so, wie sie es schon immer getan haben"
+            ]
+          }
+        ]
+      }
     }
-  }
+  },
+  "step": "Step {{step}}",
+  "createAccountNow": "Konto jetzt erstellen",
+  "downloadApp": "App herunterladen"
 }

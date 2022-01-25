@@ -129,7 +129,7 @@
   "language": "Lingua",
   "seeSubscriptionPlans": "Vedere i piani di abbonamento",
   "benefitsInNumbers": "Benefici in numeri",
-  "integrationsLandings": {
+  "landings": {
     "management": {
       "title": "Integrazioni di gestione",
       "subtitle": "Assicurati che il tuo <0>commercio scorra senza intoppi</0> e in modo efficiente e fornisci ai clienti esperienze piacevoli e all'altezza degli standard del marchio",
@@ -493,6 +493,77 @@
           "description": "dei clienti è frustrato<0/> da informazioni errate online."
         }
       ]
+    },
+    "howItWorks" : {
+      "title": "Un prodotto fatto per il self-service",
+      "subtitle": "Cosa significa questo? Non c'è bisogno di lunghe chiamate con l'assistenza clienti e non ci sono costi di installazione, abbiamo progettato un software che è facile da gestire e non richiede alcuna conoscenza tecnica",
+      "step1": {
+        "title": "Come funziona",
+        "subtitle" : "Crea il tuo account",
+        "options" : [
+          {
+            "title" : "Main",
+            "description" : "I nuovi luoghi si registrano in media in <0>15 minuti.</0>",
+            "advantages" : [
+              "Compila le informazioni del tuo stabilimento sul tuo <1>Profilo Aziendale</1> come gli orari di apertura, i servizi disponibili, le tue foto e tutto l'essenziale",
+              "Se hai bisogno di aggiornare queste informazioni, fallo una volta e saranno aggiornate su tutte le tue <1>piattaforme online</1>"
+            ]
+          }
+        ]
+      },
+      "step2" : {
+        "subtitle" : "Click & Connect",
+        "options" : [
+          {
+            "title" : "Main",
+            "description" : "Non preoccuparti del <0>lato tecnico delle cose.</0>",
+            "advantages" : [
+              "Vai su <1>Integrations Hub</1> e <0>clicca e connetti</0> le tue piattaforme preferite",
+              "Puoi sempre aggiungere o rimuovere le piattaforme come meglio credi",
+              "Aggiungi le tue credenziali una volta ed è pronto all'uso!"
+            ]
+          }
+        ]
+      },
+      "step3" : {
+        "subtitle" : "Inizia a gestire la tua struttura senza soluzione di continuità",
+        "options" : [
+          {
+            "title" : "Main",
+            "advantages" : [
+              "Accedi facilmente a tutti i tuoi strumenti tramite il nostro menu",
+              "Non c'è bisogno di formazione, funzionano come hanno sempre fatto"
+            ]
+          }
+        ]
+      },
+      "step4": {
+        "subtitle": "Gestisci tutti i tuoi sistemi da una sola piattaforma",
+        "options" : [
+          {
+            "title" : "Main",
+            "advantages" : [
+              "Centralizzare il vostro tech-stack vi permetterà di ottenere informazioni in tempo reale sul vostro <1>pannello personalizzato.</1>",
+              "Utilizzare Foodetective su base giornaliera"
+            ]
+          }
+        ]
+      },
+      "step5" : {
+        "subtitle": "accesso 24/7 dalla tua tasca",
+        "options" : [
+          {
+            "title" : "Main",
+            "advantages" : [
+              "Scarica l'applicazione Foodetective Business",
+              "Non è necessario alcun addestramento, funzionano come hanno sempre fatto"
+            ]
+          }
+        ]
+      }
     }
-  }
+  },
+  "step": "Step {{step}}",
+  "createAccountNow": "Crea il tuo profilo",
+  "downloadApp": "Scarica l'applicazione"
 }

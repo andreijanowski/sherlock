@@ -80,7 +80,7 @@
   },
   "loginAndRegister": "Connexion/Inscription",
   "getTheApp": "Téléchargez l'App",
-  "howItWorks": "Comment ça fonctionne",
+  "howItWorks": "Comment ça marche",
   "product": "Produit",
   "developersAndApi": "Développeurs & API",
   "company": "Entreprise",
@@ -132,7 +132,7 @@
   "language": "Language",
   "seeSubscriptionPlans": "Voir les plans d'abonnements",
   "benefitsInNumbers": "Les bénéfices en chiffres",
-  "integrationsLandings": {
+  "landings": {
     "management": {
       "title": "Management Integrations",
       "subtitle": "Assurez le <0>bon fonctionnement de votre établissement</0> et offrez à vos clients une expérience à la hauteur de vos standards.",
@@ -496,6 +496,77 @@
           "description": "des clients sont frustrés<0/> par des informations incorrectes en ligne."
         }
       ]
+    },
+    "howItWorks" : {
+      "title" : "Un produit fait pour le self-service",
+      "subtitle" : "Qu'est-ce que cela signifie ? Pas besoin de longs appels avec le support client et ou de frais de mise en service, nous avons conçu un logiciel facile à gérer et ne nécessitant aucune connaissance technique",
+      "step1" : {
+        "title" : "Comment ça marche",
+        "subtitle" : "Créer votre compte",
+        "options" : [
+          {
+            "title" : "Main",
+            "description" : "Les nouveaux établissements s'enregistrent en moyenne en <0>15 minutes.</0>",
+            "advantages" : [
+              "Remplissez les informations de votre établissement sur votre <1>Business Profile</1> telles que les heures d'ouverture, les services disponibles, vos photos et tous les éléments essentiels.",
+              "Si vous devez mettre à jour ces informations, faites-le une seule fois et cela sera mis à jour sur toutes vos plateformes <1>en ligne</1>."
+            ]
+          }
+        ]
+      },
+      "step2" : {
+        "subtitle" : "Click & Connect",
+        "options" : [
+          {
+            "title" : "Main",
+            "description" : "Ne vous préoccupez pas de l'aspect <0>technique des choses.</0>",
+            "advantages" : [
+              "Allez sur le <1>Integrations Hub</1> et <0>cliquez et connectez</0> vos plateformes préférées.",
+              "Vous pouvez toujours ajouter ou supprimer des plateformes si vous le jugez nécessaire.",
+              "Ajoutez vos identifiants une seule fois et c'est prêt à être utilisé !"
+            ]
+          }
+        ]
+      },
+      "step3" : {
+        "subtitle" : "Commencez à gérer votre établissement de manière transparente",
+        "options" : [
+          {
+            "title" : "Main",
+            "advantages" : [
+              "Accédez facilement à tous vos outils via notre menu",
+              "Aucune formation nécessaire, ils fonctionnent comme ils l'ont toujours fait"
+            ]
+          }
+        ]
+      },
+      "step4" : {
+        "subtitle" : "Gérer tous vos systèmes à partir d'une seule plateforme",
+        "options" : [
+          {
+            "title" : "Main",
+            "advantages" : [
+              "La centralisation de votre tech-stack vous permettra d'obtenir des informations en temps réel sur votre <1>dashboard personnalisé.</1>",
+              "Utilisez Foodetective au quotidien \uD83D\uDE09"
+            ]
+          }
+        ]
+      },
+      "étape5" : {
+        "subtitle" : "Accès 24/7 depuis votre poche",
+        "options" : [
+          {
+            "title" : "Main",
+            "advantages" : [
+              "Télécharger l'application Foodetective Business",
+              "Aucune formation nécessaire, ils fonctionnent comme ils l'ont toujours fait."
+            ]
+          }
+        ]
+      }
     }
-  }
+  },
+  "step": "Step {{step}}",
+  "createAccountNow": "Créez votre profil",
+  "downloadApp": "Téléchargez l'app"
 }
