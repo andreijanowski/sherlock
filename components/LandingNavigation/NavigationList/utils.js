@@ -10,7 +10,7 @@ import ProductLinkDropdown from "./ProductLinkDropdown";
 export const getMenuItems = t => [
   {
     label: t("landing:howItWorks"),
-    href: "/"
+    href: "/how-it-works"
   },
   {
     label: t("landing:product"),

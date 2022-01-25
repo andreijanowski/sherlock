@@ -122,6 +122,8 @@ const MANAGEMENT_ADV_VIDEO = "https://www.youtube.com/embed/RYwtvUhSSGo";
 
 const INVEST_TYPEFORM_LINK = "https://foodetective.typeform.com/to/dFI4yOpP";
 
+const HOW_IT_WORKS_VIDEO_URL = "https://www.youtube.com/embed/SIAyeaqywT4";
+
 module.exports = {
   contentTypes,
   languages,
@@ -170,5 +172,6 @@ module.exports = {
   LICENSING_TYPEFORM_LINK,
   ONLINE_MEETING_LINK,
   MANAGEMENT_ADV_VIDEO,
-  INVEST_TYPEFORM_LINK
+  INVEST_TYPEFORM_LINK,
+  HOW_IT_WORKS_VIDEO_URL
 };

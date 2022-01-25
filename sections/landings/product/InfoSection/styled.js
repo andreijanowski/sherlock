@@ -67,7 +67,6 @@ export const ImagesContainer = styled(Flex)`
   max-width: 100%;
   width: fit-content;
   position: relative;
-  margin: auto;
   ${downThanBreakpoint(3)} {
     display: block;
     text-align: center;
@@ -75,7 +74,7 @@ export const ImagesContainer = styled(Flex)`
 `;
 
 export const Image = styled(Box).attrs({ as: "img" })`
-  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));
+  ${p => !p.noShadow && "filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));"}
   ${adaptiveAbsolutePosition};
 `;
 
@@ -122,4 +121,13 @@ export const VideoIframe = styled.iframe`
   height: 372px;
   max-width: 100%;
   border: none;
+`;
+
+export const Step = styled(H3)`
+  font-size: 18px;
+  line-height: 25px;
+  font-style: italic;
+  color: rgb(
+    ${p => themeGet(p.isDark ? "colors.white" : "colors.b2bSecondary")}
+  );
 `;

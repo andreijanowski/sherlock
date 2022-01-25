@@ -1,14 +1,14 @@
 import React from "react";
 import { Flex } from "@rebass/grid";
-import { string, shape } from "prop-types";
+import { shape, string } from "prop-types";
 
 import { Trans } from "i18n";
-import { Subtitle } from "components/styleguide/Typography";
+import { H1Landing, Subtitle } from "components/styleguide/Typography";
 import { useT } from "utils/hooks";
 import { SUBSCRIPTION_ENTREPRISE_URL } from "consts";
 import Button from "components/styleguide/Button";
 import { AdaptiveBox } from "components/styleguide/common";
-import { Container, H1Styled, TabletBlueText, TabletImageBox } from "./styled";
+import { Container, TabletBlueText, TabletImageBox } from "./styled";
 
 const TopSection = ({ name, leftColumnProps }) => {
   const t = useT("landing");
@@ -23,9 +23,7 @@ const TopSection = ({ name, leftColumnProps }) => {
         width={[1, null, null, 1 / 2]}
         {...leftColumnProps}
       >
-        <H1Styled tabletCentered>
-          {t(`integrationsLandings.${name}.title`)}
-        </H1Styled>
+        <H1Landing tabletCentered>{t(`landings.${name}.title`)}</H1Landing>
         <TabletImageBox
           display={["block", null, null, "none"]}
           as="img"
@@ -35,7 +33,7 @@ const TopSection = ({ name, leftColumnProps }) => {
         <Subtitle tabletCentered mb={[44, null, null, 54]}>
           <Trans
             t={t}
-            i18nKey={`integrationsLandings.${name}.subtitle`}
+            i18nKey={`landings.${name}.subtitle`}
             components={[<TabletBlueText />]}
           />
         </Subtitle>

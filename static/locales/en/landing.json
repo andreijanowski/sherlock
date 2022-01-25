@@ -129,7 +129,7 @@
   "language": "Language",
   "seeSubscriptionPlans": "See Subscription plans",
   "benefitsInNumbers": "Benefits in numbers",
-  "integrationsLandings": {
+  "landings": {
     "management": {
       "title": "Management Integrations",
       "subtitle": "Ensure you <0>business runs smoothly</0> and efficiently and provide customers with pleasant experiences that live up to brand standards.",
@@ -493,6 +493,77 @@
           "description": "of customers are frustrated <0/> by incorrect information online."
         }
       ]
+    },
+    "howItWorks": {
+      "title": "A product made for self-service",
+      "subtitle": "What does this mean? You won’t need long calls with customer support nor are obligated to pay a set-up fee, we have designed a software that is easy to manage and requires no technical knowledge.",
+      "step1": {
+        "title": "How it works",
+        "subtitle": "Create your free account",
+        "options": [
+          {
+            "title": "Main",
+            "description": "New businesses register in an average of <0>15 minutes.</0>",
+            "advantages": [
+              "Fill in your business information on your <1>business profile</1> such as opening hours, available services, your photo gallery, and all the essentials.",
+              "If you need to update this information, do it once and have your <1>online</1> presence updated across all your platforms."
+            ]
+          }
+        ]
+      },
+      "step2": {
+        "subtitle": "Click & Connect",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Don’t worry about the <0>tech side of things.</0>",
+            "advantages": [
+              "Head over to the <1>Integrations Hub</1> and <0>click and connect</0> your tech stack.",
+              "You can always add or remove systems as you see necessary.",
+              "You will need to insert your log in details once and it’s ready to use!"
+            ]
+          }
+        ]
+      },
+      "step3": {
+        "subtitle": "Start seamlessly managing your business.",
+        "options": [
+          {
+            "title": "Main",
+            "advantages": [
+              "Use the left side menu to easily access all your tools",
+              "No training needed, they work the same way they always have."
+            ]
+          }
+        ]
+      },
+      "step4": {
+        "subtitle": "Manage all systems from a single platform",
+        "options": [
+          {
+            "title": "Main",
+            "advantages": [
+              "Your tech-stack centralization will lead to real-time insights on your <1>personalised dashboard.</1>",
+              "Use Foodetective on a daily basis\uD83D\uDE09"
+            ]
+          }
+        ]
+      },
+      "step5": {
+        "subtitle": "Have 24/7 access from your pocket.",
+        "options": [
+          {
+            "title": "Main",
+            "advantages": [
+              "Download the Foodetective Business app",
+              "No training needed, they work the same way they always have."
+            ]
+          }
+        ]
+      }
     }
-  }
+  },
+  "step": "Step {{step}}",
+  "createAccountNow": "Create account now",
+  "downloadApp": "Download App"
 }

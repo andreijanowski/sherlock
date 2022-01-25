@@ -33,9 +33,17 @@ const ImageColumn = ({
       mb={[24, null, null, 0]}
     >
       <ImagesContainer
-        justifyContent={
-          isDark ? "flex-start" : ["flex-start", null, null, "flex-end"]
-        }
+        {...(isDark
+          ? {
+              justifyContent: "flex-start",
+              ml: "auto",
+              mr: ["auto", null, null, 0]
+            }
+          : {
+              justifyContent: ["flex-start", null, null, "flex-end"],
+              mr: "auto",
+              ml: ["auto", null, null, 0]
+            })}
       >
         {videoUrl ? (
           <VideoIframe src={videoUrl} />

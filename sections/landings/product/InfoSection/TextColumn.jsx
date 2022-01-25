@@ -12,7 +12,8 @@ import {
   LinkStyled,
   List,
   ToggleOptionButton,
-  ToggleOptionButtonIcon
+  ToggleOptionButtonIcon,
+  Step
 } from "./styled";
 import { getAdvPrefix, getDescriptionPrefix } from "../utils";
 
@@ -24,7 +25,9 @@ const TextColumn = ({
   advantagesColumnsWidth,
   options,
   setActiveOptionIndex,
-  textLinks
+  textLinks,
+  step,
+  renderButton
 }) => {
   const t = useT("landing");
 
@@ -32,6 +35,11 @@ const TextColumn = ({
 
   return (
     <Box width={width}>
+      {step && (
+        <Step isDark={isDark} mb={0} tabletCentered>
+          {t("step", { step })}
+        </Step>
+      )}
       <H3Styled isDark={isDark} mb={[3, null, null, 2]} tabletCentered>
         <Trans t={t} i18nKey={`${prefix}.subtitle`} components={[<br />]} />
       </H3Styled>
@@ -123,6 +131,14 @@ const TextColumn = ({
           </Fragment>
         );
       })}
+      {renderButton && (
+        <Flex
+          justifyContent={["center", null, null, "flex-start"]}
+          mt={[3, null, null, "48px"]}
+        >
+          {renderButton()}
+        </Flex>
+      )}
     </Box>
   );
 };
@@ -136,11 +152,15 @@ TextColumn.propTypes = {
     .isRequired,
   options: arrayOf(shape({ title: string.isRequired })).isRequired,
   setActiveOptionIndex: func.isRequired,
-  textLinks: shape({})
+  textLinks: shape({}),
+  step: number,
+  renderButton: func
 };
 
 TextColumn.defaultProps = {
-  textLinks: {}
+  step: null,
+  textLinks: {},
+  renderButton: null
 };
 
 export default TextColumn;

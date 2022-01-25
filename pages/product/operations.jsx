@@ -35,7 +35,7 @@ const OperationsPage = () => (
         images={[
           {
             src: `/static/img/${PAGE_NAME}/payments.png`,
-            width: ["100%", null, null, "622px"]
+            width: ["100%", null, null, "550px", "622px"]
           }
         ]}
         columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
