@@ -4,7 +4,7 @@ import {
   DELETE_DISH_REQUEST,
   UPLOAD_DISHES_REQUEST
 } from "types/dishes";
-import { getRelationships } from "./utils";
+import { getDataRelationships, getRelationships } from "./utils";
 
 export const postDish = (
   values,
@@ -25,7 +25,7 @@ export const postDish = (
         relationships: {
           ...getRelationships("business", bussinessId),
           ...getRelationships("category", categoryId),
-          ...getRelationships("dishOptionCategories", dishOptionCategories)
+          ...getDataRelationships("dishOptionCategories", dishOptionCategories)
         }
       }
     },
@@ -56,7 +56,10 @@ export const patchDish = (
         relationships: {
           ...getRelationships("business", bussinessId),
           ...getRelationships("category", categoryId),
-          ...getRelationships("dish_option_categories", dishOptionCategories)
+          ...getDataRelationships(
+            "dish_option_categories",
+            dishOptionCategories
+          )
         }
       }
     },
