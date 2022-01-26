@@ -55,7 +55,8 @@ const MenuPage = ({
         description,
         category,
         onUberEats,
-        skuRef
+        skuRef,
+        dishOptionCategories
       } = values;
       const dish = {
         name,
@@ -66,9 +67,9 @@ const MenuPage = ({
         pricePerItemCents: convertToCents(values.pricePerItemCents)
       };
       if (editedDishId) {
-        return updateDish(dish, editedDishId, category);
+        return updateDish(dish, editedDishId, category, dishOptionCategories);
       }
-      return addDish(dish, businessId, category);
+      return addDish(dish, businessId, category, dishOptionCategories);
     },
     [addDish, businessId, editedDishId, updateDish]
   );

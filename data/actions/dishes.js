@@ -6,7 +6,12 @@ import {
 } from "types/dishes";
 import { getRelationships } from "./utils";
 
-export const postDish = (values, bussinessId, categoryId) => ({
+export const postDish = (
+  values,
+  bussinessId,
+  categoryId,
+  dishOptionCategories
+) => ({
   type: POST_DISH_REQUEST,
   payload: {
     method: "POST",
@@ -19,7 +24,8 @@ export const postDish = (values, bussinessId, categoryId) => ({
         },
         relationships: {
           ...getRelationships("business", bussinessId),
-          ...getRelationships("category", categoryId)
+          ...getRelationships("category", categoryId),
+          ...getRelationships("dishOptionCategories", dishOptionCategories)
         }
       }
     },
@@ -30,7 +36,12 @@ export const postDish = (values, bussinessId, categoryId) => ({
   meta: { thunk: true }
 });
 
-export const patchDish = (values, bussinessId, categoryId) => ({
+export const patchDish = (
+  values,
+  bussinessId,
+  categoryId,
+  dishOptionCategories
+) => ({
   type: PATCH_DISH_REQUEST,
   payload: {
     method: "PATCH",
@@ -44,7 +55,8 @@ export const patchDish = (values, bussinessId, categoryId) => ({
         },
         relationships: {
           ...getRelationships("business", bussinessId),
-          ...getRelationships("category", categoryId)
+          ...getRelationships("category", categoryId),
+          ...getRelationships("dish_option_categories", dishOptionCategories)
         }
       }
     },
