@@ -31,9 +31,11 @@ export const getInitialValues = ({ editedDishId, dishes }) => {
                         dishOption
                           .get("attributes")
                           .update("pricePerItemCents", normalizePrice)
+                          .set("id", dishOption.get("id"))
                       )
                     : []
-                );
+                )
+                .set("id", dishOptionCategory.get("id"));
             })
             .toJS()
         : [];
