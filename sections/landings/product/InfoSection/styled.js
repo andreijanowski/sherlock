@@ -114,6 +114,8 @@ export const ToggleOptionButtonIcon = styled(FontAwesomeIcon)`
 
 export const LinkStyled = styled.a`
   text-decoration: underline;
+  font-weight: bold;
+  color: rgb(${p => themeGet(p.isDark ? "colors.white" : "colors.blue")});
 `;
 
 export const Step = styled(H3)`

@@ -87,7 +87,7 @@ const TextColumn = ({
                     components={[<strong />]
                       .concat(
                         descriptionLinks.map(linkProps => (
-                          <LinkStyled {...linkProps}>
+                          <LinkStyled isDark={isDark} {...linkProps}>
                             {linkProps.href}
                           </LinkStyled>
                         ))
@@ -118,7 +118,7 @@ const TextColumn = ({
                             components={[
                               <strong />,
                               advLink ? (
-                                <LinkStyled {...advLink}>
+                                <LinkStyled isDark={isDark} {...advLink}>
                                   {advLink.href}
                                 </LinkStyled>
                               ) : (
