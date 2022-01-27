@@ -1,6 +1,15 @@
 import React, { Fragment } from "react";
 import { Box, Flex } from "@rebass/grid";
-import { arrayOf, bool, func, number, oneOf, shape, string } from "prop-types";
+import {
+  arrayOf,
+  bool,
+  func,
+  number,
+  oneOf,
+  shape,
+  string,
+  node
+} from "prop-types";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 import CheckmarkText from "components/Landing/CheckmarkText";
@@ -27,7 +36,7 @@ const TextColumn = ({
   setActiveOptionIndex,
   textLinks,
   step,
-  renderButton
+  ctaButton
 }) => {
   const t = useT("landing");
 
@@ -75,11 +84,15 @@ const TextColumn = ({
                 >
                   <Trans
                     t={t}
-                    components={[<strong />].concat(
-                      descriptionLinks.map(linkProps => (
-                        <LinkStyled {...linkProps}>{linkProps.href}</LinkStyled>
-                      ))
-                    )}
+                    components={[<strong />]
+                      .concat(
+                        descriptionLinks.map(linkProps => (
+                          <LinkStyled {...linkProps}>
+                            {linkProps.href}
+                          </LinkStyled>
+                        ))
+                      )
+                      .concat([<br />])}
                   >
                     {option.description}
                   </Trans>
@@ -131,12 +144,13 @@ const TextColumn = ({
           </Fragment>
         );
       })}
-      {renderButton && (
+      {ctaButton && (
         <Flex
-          justifyContent={["center", null, null, "flex-start"]}
+          flexDirection="column"
+          alignItems={["center", null, null, "flex-start"]}
           mt={[3, null, null, "48px"]}
         >
-          {renderButton()}
+          {ctaButton}
         </Flex>
       )}
     </Box>
@@ -154,13 +168,13 @@ TextColumn.propTypes = {
   setActiveOptionIndex: func.isRequired,
   textLinks: shape({}),
   step: number,
-  renderButton: func
+  ctaButton: node
 };
 
 TextColumn.defaultProps = {
   step: null,
   textLinks: {},
-  renderButton: null
+  ctaButton: null
 };
 
 export default TextColumn;

@@ -561,9 +561,94 @@
           }
         ]
       }
+    },
+    "customers": {
+      "independent": {
+        "title": "Unabhängige Restaurants",
+        "subtitle": "Schluss mit den sich stapelnden Tablets",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Wir arbeiten mit unabhängigen Restaurants zusammen und helfen ihnen dabei, ihr Management, ihre Abläufe und ihr Marketing zu verbessern. <1/> <0>Das bedeutet:</0>",
+            "advantages": [
+              "Verringerung des Zeitaufwands für die Verwaltung",
+              "Erhöhung der Sichtbarkeit",
+              "Erhöhung der Einnahmen",
+              "Datenbasierte Entscheidungen"
+            ]
+          }
+        ]
+      },
+      "chains": {
+        "title": "Restaurantketten",
+        "subtitle": "Durchsichtig Multi-Location-Management",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Wir arbeiten mit Ketten aller Größen zusammen und helfen ihnen dabei, Vorschauen an mehreren Standorten zu nutzen und zu vergleichen. <1/> <0>Das bedeutet:</0>",
+            "advantages": [
+              "Kontrolle über die Vorgänge",
+              "Konsolidierte Daten",
+              "Lösung von operativen Problemen",
+              "Erleichterung von Veränderungen"
+            ]
+          }
+        ]
+      },
+      "kitchens": {
+        "title": "Dark Kitchens",
+        "subtitle": "Kein Vorankommen im Dunkeln",
+        "optionen": [
+          {
+            "title": "Main",
+            "description": "Dark Kitchens brauchen Zugang zu den richtigen Werkzeugen und einfachen Arbeitsabläufen, um sich weiterentwickeln zu können. <1/> <0>Das bedeutet:</0>",
+            "advantages": [
+              "Messbare KPIs",
+              "Präzise Prognosen",
+              "Bessere Kostenkontrolle",
+              "Datenbasierte Entscheidungen"
+            ]
+          }
+        ]
+      },
+      "kiosks": {
+        "title": "Lebensmittelgeschäft, Einzelhändler und Kioske",
+        "subtitle": "Erreichen Sie Ihr volles Potenzial",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Was auch immer Ihr Fachgebiet ist, wir helfen Ihnen. Fügen Sie jederzeit Dienste und Integrationen hinzu oder entfernen Sie sie. <1/> <0>Das bedeutet:</0>",
+            "advantages": [
+              "Maßgeschneidertes Managementsystem",
+              "Erhöhung der B2C- und B2B-Sichtbarkeit",
+              "Steigerung der Einnahmen",
+              "Datenbasierte Entscheidungen"
+            ]
+          }
+        ]
+      },
+      "wholesalers": {
+        "title": "Lieferanten",
+        "subtitle": "Ein neuer Verkaufskanal",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Wir arbeiten mit Lieferanten zusammen, die verstehen, wie wichtig es ist, ihre Produkte hervorzuheben und den Einkauf zu erleichtern. Seien Sie von unserer <1>Beschaffungsabteilung aus entdeckt.</1> <2 /> <0>Das bedeutet:</0>",
+            "advantages": [
+              "Akquisition von potenziellen Kunden",
+              "Verbesserung der Kundenbeziehungen",
+              "Reduzierung von Fehlern bei der Beschaffung",
+              "Förderung der Marke"
+            ]
+          }
+        ]
+      }
     }
   },
   "step": "Step {{step}}",
   "createAccountNow": "Konto jetzt erstellen",
-  "downloadApp": "App herunterladen"
+  "downloadApp": "App herunterladen",
+  "customers": "Kunden",
+  "alreadyOnboard": "Sie vertrauen uns",
+  "ourLicensing": "Über die Lizenzierung"
 }

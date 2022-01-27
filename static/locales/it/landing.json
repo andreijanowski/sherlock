@@ -561,9 +561,94 @@
           }
         ]
       }
+    },
+    "customers" : {
+      "independent" : {
+        "title" : "Ristoranti indipendenti",
+        "subtitle" : "Basta impilare gli scaffali",
+        "options" : [
+          {
+            "title" : "Main",
+            "description" : "Lavoriamo con ristoranti indipendenti per aiutarli a migliorare la loro gestione, operazioni e marketing. <1/> <0>Questo significa:</0>",
+            "advantages": [
+              "Tempo di amministrazione ridotto",
+              "Maggiore visibilità",
+              "Aumento delle entrate",
+              "Decisioni guidate dai dati"
+            ]
+          }
+        ]
+      },
+      "chains" : {
+        "title" : "Catene di ristoranti",
+        "subtitle" : "Gestione trasparente di più sedi",
+        "options" : [
+          {
+            "title" : "Main",
+            "description" : "Lavoriamo con catene di tutte le dimensioni per aiutarle a sfruttare e confrontare le intuizioni in più sedi. <1/> <0>Questo significa:</0>",
+            "advantages": [
+              "Controllo delle operazioni",
+              "Dati consolidati",
+              "Risoluzione di problemi operativi",
+              "Facilitazione del cambiamento"
+            ]
+          }
+        ]
+      },
+      "kitchens" : {
+        "title" : "Dark Kitchens",
+        "subtitle" : "Non c'è bisogno di avanzare nel buio",
+        "options" : [
+          {
+            "title" : "Main",
+            "description" : "Le Dark Kitchens hanno bisogno di accedere agli strumenti giusti e a flussi di lavoro semplici per andare avanti. <1/> <0>Questo significa:</0>",
+            "advantages": [
+              "KPI misurabili",
+              "Previsioni accurate",
+              "Migliore controllo dei costi",
+              "Decisioni guidate dai dati"
+            ]
+          }
+        ]
+      },
+      "kiosks" : {
+        "title": "Drogheria, vendita al dettaglio e chioschi",
+        "subtitle" : "Raggiungi il tuo pieno potenziale",
+        "options" : [
+          {
+            "title" : "Main",
+            "description" : "Qualunque sia la tua area di specializzazione, ti aiuteremo. Aggiungere o rimuovere servizi e integrazioni in qualsiasi momento. <1/> <0>Questo significa:</0>",
+            "advantages" : [
+              "Sistema di gestione su misura",
+              "Aumento della visibilità B2C e B2B",
+              "Aumento delle entrate",
+              "Decisioni guidate dai dati"
+            ]
+          }
+        ]
+      },
+      "wholesalers" : {
+        "title" : "Fornitori",
+        "subtitle" : "Un nuovo canale di vendita",
+        "options" : [
+          {
+            "title" : "Main",
+            "description" : "Lavoriamo con i fornitori che capiscono il valore di mettere in mostra i loro prodotti e rendere lo shopping più facile. Essere scoperto dalla nostra <1>sezione appalti.</1> <2 /> <0>Questo significa:</0>",
+            "advantages": [
+              "Acquisizione di piombo",
+              "Miglioramento delle relazioni con i clienti",
+              "Riduzione degli errori di approvvigionamento",
+              "Promozione del marchio"
+            ]
+          }
+        ]
+      }
     }
   },
   "step": "Step {{step}}",
   "createAccountNow": "Crea il tuo profilo",
-  "downloadApp": "Scarica l'applicazione"
+  "downloadApp": "Scarica l'applicazione",
+  "customers": "clienti",
+  "alreadyOnboard": "Si fidano di noi",
+  "ourLicensing": "A proposito di licenze"
 }

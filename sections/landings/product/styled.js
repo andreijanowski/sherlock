@@ -16,8 +16,8 @@ export const TopSectionWrapper = styled.div`
 `;
 
 export const WhiteWrapper = styled(Box).attrs({
-  pt: [36, null, null, 88],
-  pb: [80, null, null, 88]
+  pt: [36, null, null, 30],
+  pb: [80, null, null, 0]
 })`
   width: 100%;
   background: rgb(${themeGet("colors.white")});
@@ -30,10 +30,10 @@ export const DarkWrapper = styled(Box).attrs({
   width: 100%;
   background: linear-gradient(
     ${LANDING_BLOCK_ANGLE},
-    rgb(${themeGet("colors.white")}) calc(15% - 1px),
-    rgb(${themeGet("colors.landingDarkBlue")}) 15%,
-    rgb(${themeGet("colors.landingDarkBlue")}) calc(85% - 1px),
-    rgb(${themeGet("colors.white")}) 85%
+    rgb(${themeGet("colors.white")}) calc(13% - 1px),
+    rgb(${themeGet("colors.landingDarkBlue")}) 13%,
+    rgb(${themeGet("colors.landingDarkBlue")}) calc(87% - 1px),
+    rgb(${themeGet("colors.white")}) 87%
   );
   ${downThanBreakpoint(2)} {
     background: rgb(${themeGet("colors.landingDarkBlue")});
@@ -53,4 +53,26 @@ export const BenefitsWrapper = styled(Box).attrs({
   ${downThanBreakpoint(2)} {
     background: rgb(${themeGet("colors.landingDarkBlue")});
   }
+`;
+
+export const TopDarkWrapper = styled(DarkWrapper).attrs({
+  pt: 57,
+  pb: 80
+})`
+  background: linear-gradient(
+    ${LANDING_BLOCK_ANGLE},
+    rgb(${themeGet("colors.landingDarkBlue")}) calc(90% - 1px),
+    rgb(${themeGet("colors.white")}) 90%
+  );
+`;
+
+export const BottomDarkWrapper = styled(DarkWrapper).attrs({
+  pt: [57, null, null, 217],
+  pb: 0
+})`
+  background: linear-gradient(
+    ${LANDING_BLOCK_ANGLE},
+    rgb(${themeGet("colors.white")}) calc(13% - 1px),
+    rgb(${themeGet("colors.landingDarkBlue")}) 13%
+  );
 `;

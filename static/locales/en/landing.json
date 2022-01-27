@@ -561,9 +561,94 @@
           }
         ]
       }
+    },
+    "customers": {
+      "independent": {
+        "title": "Independent Restaurants",
+        "subtitle": "No more tablet headache",
+        "options": [
+          {
+            "title": "Main",
+            "description": "We work with independent restaurants to help them improve their management, operations, and marketing. <1/> <0>Leading to:</0>",
+            "advantages": [
+              "Reduced admin time",
+              "Boosted visibility",
+              "Increased revenues",
+              "Data driven decisions"
+            ]
+          }
+        ]
+      },
+      "chains": {
+        "title": "Chain Restaurants",
+        "subtitle": "Seamless Multilocation Management",
+        "options": [
+          {
+            "title": "Main",
+            "description": "We work with chains of all sizes to help them operate and compare insights across multiple locations. <1/> <0>Leading to:</0>",
+            "advantages": [
+              "Control over operations",
+              "Consolidated data",
+              "Resolved operational issues",
+              "Change facilitation"
+            ]
+          }
+        ]
+      },
+      "kitchens": {
+        "title": "Dark Kitchens",
+        "subtitle": "No need to be in the dark",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Dark Kitchens need access to the right tools and straightforward workflows in order to scale. <1/> <0>Leading to:</0>",
+            "advantages": [
+              "Measurable KPI’s",
+              "Accurate forecasting",
+              "Better cost control",
+              "Data driven decisions"
+            ]
+          }
+        ]
+      },
+      "kiosks": {
+        "title": "Grocery, Retailers & Kiosks",
+        "subtitle": "Reach Your Full Potential",
+        "options": [
+          {
+            "title": "Main",
+            "description": "No matter what you specialize in, we’ve got you covered. Add or remove services and integrations at any point. <1/> <0>Leading to:</0>",
+            "advantages": [
+              "Bespoke management system",
+              "Boosted B2C & B2B visibility",
+              "Increased revenues",
+              "Data driven decisions"
+            ]
+          }
+        ]
+      },
+      "wholesalers": {
+        "title": "Wholesalers",
+        "subtitle": "A new sales channel",
+        "options": [
+          {
+            "title": "Main",
+            "description": "We work with wholesalers who understand the value of showcasing their products and facilitating purchasing. Be discovered on the <1>procurement section.</1> <2 /> <0>Leading to:</0>",
+            "advantages": [
+              "Lead acquisition",
+              "Improved customer relationships",
+              "Procurement error reduction",
+              "Brand promotion"
+            ]
+          }
+        ]
+      }
     }
   },
   "step": "Step {{step}}",
   "createAccountNow": "Create account now",
-  "downloadApp": "Download App"
+  "downloadApp": "Download App",
+  "customers": "Customers",
+  "alreadyOnboard": "Already onboard",
+  "ourLicensing": "Find out about licensing"
 }

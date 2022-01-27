@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 
 import requireAuth from "lib/requireAuth";
 import { Footer } from "components";
@@ -17,46 +17,20 @@ import {
 } from "sections/landings/product/styled";
 import { InfoSection } from "sections/landings/product";
 import { getAdvPrefix } from "sections/landings/product/utils";
-import { useLng, useT } from "utils/hooks";
-import { API_URL, SUBSCRIPTION_ENTREPRISE_URL } from "consts";
+import { useLng } from "utils/hooks";
 import TopSection from "sections/landings/howItWorks/TopSection";
-import CTAButton from "components/Landing/CTAButton";
+import {
+  CreateAccountButton,
+  DemoButton,
+  DownloadButton
+} from "components/Landing";
 
 const PAGE_NAME = "howItWorks";
 
 const DOWNLOAD_SECTION_ID = "downloadApp";
 
-const AnalyticsPage = () => {
+const HowItWorksPage = () => {
   const lng = useLng();
-  const t = useT("landing");
-
-  const renderAccountButton = useCallback(
-    () => (
-      <CTAButton
-        label={t("createAccountNow")}
-        href={`${API_URL}/users/sign_up?locale=${lng}`}
-      />
-    ),
-    [lng, t]
-  );
-
-  const renderDemoButton = useCallback(
-    () => (
-      <CTAButton label={t("bookDemo")} href={SUBSCRIPTION_ENTREPRISE_URL} />
-    ),
-    [t]
-  );
-
-  const renderDownloadButton = useCallback(
-    () => (
-      <CTAButton
-        label={t("downloadApp")}
-        href={`#${DOWNLOAD_SECTION_ID}`}
-        target="_self"
-      />
-    ),
-    [t]
-  );
 
   return (
     <LandingWrapper width={1} alignItems="center" flexDirection="column">
@@ -94,7 +68,7 @@ const AnalyticsPage = () => {
               href: `/${lng}/product/marketing#presenceManagement`
             }
           }}
-          renderButton={renderAccountButton}
+          ctaButton={<CreateAccountButton />}
         />
       </WhiteWrapper>
       <DarkWrapper>
@@ -122,7 +96,7 @@ const AnalyticsPage = () => {
               href: `/${lng}/product/analytics#integrations`
             }
           }}
-          renderButton={renderDemoButton}
+          ctaButton={<DemoButton />}
           isDark
         />
       </DarkWrapper>
@@ -146,7 +120,7 @@ const AnalyticsPage = () => {
           ]}
           columnsProportions={[[1, null, null, 3 / 5], [1, null, null, 2 / 5]]}
           advantagesColumnsWidth={1}
-          renderButton={renderDemoButton}
+          ctaButton={<DemoButton />}
         />
       </WhiteWrapper>
       <DarkWrapper>
@@ -180,7 +154,7 @@ const AnalyticsPage = () => {
               href: `/${lng}/product/analytics#dashboard`
             }
           }}
-          renderButton={renderDemoButton}
+          ctaButton={<DemoButton />}
           isDark
         />
       </DarkWrapper>
@@ -204,7 +178,7 @@ const AnalyticsPage = () => {
           ]}
           columnsProportions={[[1, null, null, 3 / 5], [1, null, null, 2 / 5]]}
           advantagesColumnsWidth={1}
-          renderButton={renderDownloadButton}
+          ctaButton={<DownloadButton sectionId={DOWNLOAD_SECTION_ID} />}
         />
       </WhiteWrapper>
       <GetReadyLandingTopGradientWrapper>
@@ -220,4 +194,4 @@ const AnalyticsPage = () => {
   );
 };
 
-export default requireAuth(false)(AnalyticsPage);
+export default requireAuth(false)(HowItWorksPage);

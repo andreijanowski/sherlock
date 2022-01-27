@@ -17,6 +17,10 @@ export const getMenuItems = t => [
     component: ProductLinkDropdown
   },
   {
+    label: t("landing:customers"),
+    href: "/customers"
+  },
+  {
     label: t("landing:developersAndApi"),
     items: [
       {
