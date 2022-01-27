@@ -5,3 +5,8 @@ export { default as IntegrationsLandingList } from "./IntegrationsLandingList";
 export { default as VideoButton } from "./VideoButton";
 export { default as CheckmarkText } from "./CheckmarkText";
 export { default as CTAButton } from "./CTAButton";
+export { default as DownloadButton } from "./DownloadButton";
+export { default as DemoButton } from "./DemoButton";
+export { default as CreateAccountButton } from "./CreateAccountButton";
+export { default as VideoPreview } from "./VideoPreview";
+export { default as LicensingButton } from "./LicensingButton";

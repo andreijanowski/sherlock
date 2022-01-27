@@ -6,12 +6,13 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { arrayOf, bool, number, oneOf, shape, string } from "prop-types";
 import Link from "components/Link";
 import { useLng, useT } from "utils/hooks";
-import { Image, ImagesContainer, VideoIframe } from "./styled";
+import { VideoPreview } from "components/Landing";
+import { Image, ImagesContainer } from "./styled";
 import { getOptionPrefix } from "../utils";
 
 const ImageColumn = ({
   width,
-  isDark,
+  isReversed,
   prefix,
   images,
   linkTo,
@@ -23,17 +24,17 @@ const ImageColumn = ({
 
   const linkText = t(`${prefix}.link`);
 
-  const videoUrl = videos[getOptionPrefix(activeOptionIndex)];
+  const videoData = videos[getOptionPrefix(activeOptionIndex)];
 
   return (
     <Box
       width={width}
-      ml={isDark ? [0, null, null, 80] : undefined}
-      mr={isDark ? undefined : [0, null, null, 80]}
+      ml={isReversed ? [0, null, null, 80] : undefined}
+      mr={isReversed ? undefined : [0, null, null, 80]}
       mb={[24, null, null, 0]}
     >
       <ImagesContainer
-        {...(isDark
+        {...(isReversed
           ? {
               justifyContent: "flex-start",
               ml: "auto",
@@ -45,8 +46,8 @@ const ImageColumn = ({
               ml: ["auto", null, null, 0]
             })}
       >
-        {videoUrl ? (
-          <VideoIframe src={videoUrl} />
+        {videoData ? (
+          <VideoPreview {...videoData} />
         ) : (
           images.map(({ src, ...styleProps }, index) => (
             <Image
@@ -76,7 +77,7 @@ const ImageColumn = ({
 ImageColumn.propTypes = {
   width: arrayOf(number).isRequired,
   linkTo: string.isRequired,
-  isDark: bool.isRequired,
+  isReversed: bool.isRequired,
   prefix: string.isRequired,
   images: arrayOf(
     shape({

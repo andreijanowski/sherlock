@@ -552,7 +552,7 @@
           }
         ]
       },
-      "étape5" : {
+      "step5" : {
         "subtitle" : "Accès 24/7 depuis votre poche",
         "options" : [
           {
@@ -564,9 +564,94 @@
           }
         ]
       }
+    },
+    "customers" : {
+      "independent": {
+        "title": "Restaurants indépendants",
+        "subtitle": "Fini les tablettes qui s'empilent",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Nous travaillons avec des restaurants indépendants pour les aider à améliorer leur gestion, leurs opérations et leur marketing. <1/> <0>Cela signifie :</0>",
+            "advantages": [
+              "Réduction du temps d'administration",
+              "Augmentation de la visibilité",
+              "Augmentation des revenus",
+              "Décisions basées sur les données"
+            ]
+          }
+        ]
+      },
+      "chains": {
+        "title": "Chaînes de restaurants",
+        "subtitle": "Gestion multi-localisation transparente",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Nous travaillons avec des chaînes de toutes tailles pour les aider à exploiter et à comparer les aperçus sur plusieurs sites. <1/> <0>Cela signifie :</0>",
+            "advantages": [
+              "Contrôle sur les opérations",
+              "Données consolidées",
+              "Résolution des problèmes opérationnels",
+              "Facilitation du changement"
+            ]
+          }
+        ]
+      },
+      "kitchens": {
+        "titre": "Dark Kitchens",
+        "subtitle": "Pas besoin d'avance dans l'obscurité",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Les Dark Kitchens ont besoin d'accéder aux bons outils et à des flux de travail simples pour pouvoir évoluer. <1/> <0>Cela signifie :</0>",
+            "advantages": [
+              "KPI mesurables",
+              "Des prévisions précises",
+              "Meilleur contrôle des coûts",
+              "Décisions basées sur les données"
+            ]
+          }
+        ]
+      },
+      "kiosks": {
+        "title": "Épicerie, détaillants et kiosques",
+        "subtitle": "Atteignez votre plein potentiel",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Quel que soit votre domaine de spécialisation, nous vous aiderons. Ajoutez ou supprimez des services et des intégrations à tout moment. <1/> <0>Cela signifie :</0>",
+            "advantages": [
+              "Système de gestion sur mesure",
+              "Augmentation de la visibilité B2C et B2B",
+              "Augmentation des revenus",
+              "Décisions basées sur les données"
+            ]
+          }
+        ]
+      },
+      "wholesalers": {
+        "title": "Fournisseurs",
+        "subtitle": "Un nouveau canal de vente",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Nous travaillons avec des fournisseurs qui comprennent l'intérêt de mettre en valeur leurs produits et de faciliter les achats. Soyez découverts depuis notre <1>section approvisionnement.</1> <2 /> <0>Cela signifie:</0>",
+            "advantages": [
+              "Acquisition de prospects",
+              "Amélioration des relations avec les clients",
+              "Réduction des erreurs d'approvisionnement",
+              "Promotion de la marque"
+            ]
+          }
+        ]
+      }
     }
   },
   "step": "Step {{step}}",
   "createAccountNow": "Créez votre profil",
-  "downloadApp": "Téléchargez l'app"
+  "downloadApp": "Téléchargez l'app",
+  "customers": "Clients",
+  "alreadyOnboard": "Ils nous font confiance",
+  "ourLicensing": "A propos du licensing"
 }

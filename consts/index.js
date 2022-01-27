@@ -122,7 +122,7 @@ const MANAGEMENT_ADV_VIDEO = "https://www.youtube.com/embed/RYwtvUhSSGo";
 
 const INVEST_TYPEFORM_LINK = "https://foodetective.typeform.com/to/dFI4yOpP";
 
-const HOW_IT_WORKS_VIDEO_URL = "https://www.youtube.com/embed/SIAyeaqywT4";
+const HOW_IT_WORKS_VIDEO_URL = "https://www.youtube.com/embed/HDZjyO5btxc";
 
 module.exports = {
   contentTypes,

@@ -1,8 +1,9 @@
 import React from "react";
 
 import { useT } from "utils/hooks";
+import { VideoPreview } from "components/Landing";
+import { HOW_IT_WORKS_VIDEO_URL } from "consts";
 import { Container, Description, Title } from "./styled";
-import VideoPreview from "./VideoPreview";
 
 const TopSection = () => {
   const t = useT("landing");
@@ -12,7 +13,12 @@ const TopSection = () => {
       <Description mx="auto" mb="48px">
         {t("landings.howItWorks.subtitle")}
       </Description>
-      <VideoPreview />
+      <VideoPreview
+        width={["100%", null, null, 1033]}
+        height="576"
+        src={HOW_IT_WORKS_VIDEO_URL}
+        poster="/static/img/howItWorks/videoBanner.png"
+      />
     </Container>
   );
 };

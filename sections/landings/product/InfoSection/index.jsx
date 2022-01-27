@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Flex } from "@rebass/grid";
-import { arrayOf, bool, number, oneOf, shape, string, func } from "prop-types";
+import { arrayOf, bool, number, oneOf, shape, string, node } from "prop-types";
 
 import { useT } from "utils/hooks";
 import { Container } from "./styled";
@@ -20,7 +20,8 @@ const InfoSection = ({
   textLinks,
   videos,
   step,
-  renderButton
+  isReversed = isDark,
+  ctaButton
 }) => {
   const t = useT("landing");
   const prefix = getPrefix(name);
@@ -40,13 +41,18 @@ const InfoSection = ({
       />
 
       <Flex
-        flexDirection={["column", null, null, isDark ? "row-reverse" : "row"]}
+        flexDirection={[
+          "column",
+          null,
+          null,
+          isReversed ? "row-reverse" : "row"
+        ]}
         alignItems="flex-start"
       >
         <ImageColumn
           width={columnsProportions[0]}
           images={images}
-          isDark={isDark}
+          isReversed={isReversed}
           linkTo={linkTo}
           prefix={prefix}
           activeOptionIndex={activeOptionIndex}
@@ -62,7 +68,7 @@ const InfoSection = ({
           prefix={prefix}
           advantagesColumnsWidth={advantagesColumnsWidth}
           options={options}
-          renderButton={renderButton}
+          ctaButton={ctaButton}
         />
       </Flex>
     </Container>
@@ -82,14 +88,15 @@ InfoSection.propTypes = {
       bottom: number,
       left: number
     })
-  ).isRequired,
+  ),
   isDark: bool,
+  isReversed: bool,
   columnsProportions: arrayOf(arrayOf(number)).isRequired,
   advantagesColumnsWidth: arrayOf(oneOf([arrayOf(number), number, string])),
   textLinks: shape({}),
   videos: shape({}),
   step: number,
-  renderButton: func
+  ctaButton: node
 };
 
 InfoSection.defaultProps = {
@@ -97,10 +104,12 @@ InfoSection.defaultProps = {
   icon: null,
   linkTo: null,
   isDark: false,
+  isReversed: undefined,
   advantagesColumnsWidth: [1, null, null, 1 / 2],
   textLinks: {},
   videos: {},
-  renderButton: null
+  images: [],
+  ctaButton: null
 };
 
 export default InfoSection;

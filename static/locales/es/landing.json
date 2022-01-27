@@ -561,9 +561,94 @@
           }
         ]
       }
+    },
+    "customers" : {
+      "independent" : {
+        "title" : "Restaurantes independientes",
+        "subtitle" : "Se acabaron los estantes apilados",
+        "options" : [
+          {
+            "title" : "Main",
+            "description" : "Trabajamos con restaurantes independientes para ayudarles a mejorar su gestión, operaciones y marketing. <1/> <0>Esto significa:</0>",
+            "advantages": [
+              "Reducción del tiempo de administración",
+              "Mayor visibilidad",
+              "Aumento de los ingresos",
+              "Decisiones basadas en datos"
+            ]
+          }
+        ]
+      },
+      "chains" : {
+        "title" : "Cadenas de restaurantes",
+        "subtitle" : "Gestión transparente de múltiples ubicaciones",
+        "options" : [
+          {
+            "title" : "Main",
+            "description" : "Trabajamos con cadenas de todos los tamaños para ayudarles a aprovechar y comparar la información de múltiples ubicaciones. <1/> <0>Esto significa:</0>",
+            "advantages": [
+              "Control sobre las operaciones",
+              "Datos consolidados",
+              "Resolución de problemas operativos",
+              "Facilitación del cambio"
+            ]
+          }
+        ]
+      },
+      "kitchens" : {
+        "title" : "Dark Kitchens",
+        "subtitle" : "No es necesario avanzar en la oscuridad",
+        "options" : [
+          {
+            "title" : "Main",
+            "description" : "Las Dark Kitchens necesitan acceder a las herramientas adecuadas y a flujos de trabajo sencillos para avanzar. <1/> <0>Esto significa:</0>",
+            "advantages": [
+              "KPIs medibles",
+              "Previsiones precisas",
+              "Mejor control de costes",
+              "Decisiones basadas en datos"
+            ]
+          }
+        ]
+      },
+      "kiosks" : {
+        "title": "Tienda de comestibles, comercio minorista y quioscos",
+        "subtitle" : "Alcanza todo tu potencial",
+        "options" : [
+          {
+            "title" : "Main",
+            "description" : "Sea cual sea su área de especialización, le ayudaremos. Añade o elimina servicios e integraciones en cualquier momento. <1/> <0>Eso significa:</0>",
+            "advantages" : [
+              "Sistema de gestión a medida",
+              "Mayor visibilidad B2C y B2B",
+              "Aumento de los ingresos",
+              "Decisiones basadas en datos"
+            ]
+          }
+        ]
+      },
+      "wholesalers" : {
+        "title" : "Proveedores",
+        "subtitle" : "Un nuevo canal de ventas",
+        "options" : [
+          {
+            "title" : "Main",
+            "description" : "Trabajamos con proveedores que entienden el valor de mostrar sus productos y facilitar las compras. Se descubre desde nuestra <1>sección de compras.</1> <2 /> <0>Eso significa:</0>",
+            "advantages": [
+              "Adquisición de plomo",
+              "Mejora de las relaciones con los clientes",
+              "Reducción de los errores de compra",
+              "Promoción de la marca"
+            ]
+          }
+        ]
+      }
     }
   },
   "step": "Step {{step}}",
   "createAccountNow": "Crear cuenta ahora",
-  "downloadApp": "Descargar App"
+  "downloadApp": "Descargar App",
+  "customers": "Clientes",
+  "alreadyOnboard": "Confían en nosotros",
+  "ourLicensing": "Acerca de las licencias"
 }

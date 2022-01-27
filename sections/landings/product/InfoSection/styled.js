@@ -116,13 +116,6 @@ export const LinkStyled = styled.a`
   text-decoration: underline;
 `;
 
-export const VideoIframe = styled.iframe`
-  width: 490px;
-  height: 372px;
-  max-width: 100%;
-  border: none;
-`;
-
 export const Step = styled(H3)`
   font-size: 18px;
   line-height: 25px;
