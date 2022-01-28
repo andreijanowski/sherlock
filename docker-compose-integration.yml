@@ -29,6 +29,7 @@ services:
       - PHOTOGRAPHY_TYPEFORM_ID
       - ROLLBAR_ACCESS_TOKEN
       - PLANS_BUSINESS_EXAMPLE_LINK
+      - PARTOO_SDK_URL
     networks:
       - frontend
     expose:
