@@ -3,7 +3,9 @@ import {
   becomePartnerLink,
   mediaKitLink,
   privacyPolicyLink,
-  termsAndConditionsLink
+  termsAndConditionsLink,
+  INVEST_TYPEFORM_LINK,
+  LICENSING_TYPEFORM_LINK
 } from "consts";
 
 export const getConfig = t => [
@@ -18,6 +20,16 @@ export const getConfig = t => [
       },
       "1": {
         href: `mailto:hello@foodetective.co?subject=${t("workInFoodetective")}`,
+        target: "_blank",
+        rel: "noreferrer noopener"
+      },
+      "2": {
+        href: LICENSING_TYPEFORM_LINK,
+        target: "_blank",
+        rel: "noreferrer noopener"
+      },
+      "3": {
+        href: INVEST_TYPEFORM_LINK,
         target: "_blank",
         rel: "noreferrer noopener"
       }

@@ -129,7 +129,7 @@
   "language": "Language",
   "seeSubscriptionPlans": "See Subscription plans",
   "benefitsInNumbers": "Benefits in numbers",
-  "integrationsLandings": {
+  "landings": {
     "management": {
       "title": "Management Integrations",
       "subtitle": "Ensure you <0>business runs smoothly</0> and efficiently and provide customers with pleasant experiences that live up to brand standards.",
@@ -493,6 +493,162 @@
           "description": "of customers are frustrated <0/> by incorrect information online."
         }
       ]
+    },
+    "howItWorks": {
+      "title": "A product made for self-service",
+      "subtitle": "What does this mean? You won’t need long calls with customer support nor are obligated to pay a set-up fee, we have designed a software that is easy to manage and requires no technical knowledge.",
+      "step1": {
+        "title": "How it works",
+        "subtitle": "Create your free account",
+        "options": [
+          {
+            "title": "Main",
+            "description": "New businesses register in an average of <0>15 minutes.</0>",
+            "advantages": [
+              "Fill in your business information on your <1>business profile</1> such as opening hours, available services, your photo gallery, and all the essentials.",
+              "If you need to update this information, do it once and have your <1>online presence</1> updated across all your platforms."
+            ]
+          }
+        ]
+      },
+      "step2": {
+        "subtitle": "Click & Connect",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Don’t worry about the <0>tech side of things.</0>",
+            "advantages": [
+              "Head over to the <1>Integrations Hub</1> and <0>click and connect</0> your tech stack.",
+              "You can always add or remove systems as you see necessary.",
+              "You will need to insert your log in details once and it’s ready to use!"
+            ]
+          }
+        ]
+      },
+      "step3": {
+        "subtitle": "Start seamlessly managing your business.",
+        "options": [
+          {
+            "title": "Main",
+            "advantages": [
+              "Use the left side menu to easily access all your tools",
+              "No training needed, they work the same way they always have."
+            ]
+          }
+        ]
+      },
+      "step4": {
+        "subtitle": "Manage all systems from a single platform",
+        "options": [
+          {
+            "title": "Main",
+            "advantages": [
+              "Your tech-stack centralization will lead to real-time insights on your <1>personalised dashboard.</1>",
+              "Use Foodetective on a daily basis\uD83D\uDE09"
+            ]
+          }
+        ]
+      },
+      "step5": {
+        "subtitle": "Have 24/7 access from your pocket.",
+        "options": [
+          {
+            "title": "Main",
+            "advantages": [
+              "Download the Foodetective Business app",
+              "No training needed, they work the same way they always have."
+            ]
+          }
+        ]
+      }
+    },
+    "customers": {
+      "independent": {
+        "title": "Independent Restaurants",
+        "subtitle": "No more tablet headache",
+        "options": [
+          {
+            "title": "Main",
+            "description": "We work with independent restaurants to help them improve their management, operations, and marketing. <1/> <0>Leading to:</0>",
+            "advantages": [
+              "Reduced admin time",
+              "Boosted visibility",
+              "Increased revenues",
+              "Data driven decisions"
+            ]
+          }
+        ]
+      },
+      "chains": {
+        "title": "Chain Restaurants",
+        "subtitle": "Seamless Multilocation Management",
+        "options": [
+          {
+            "title": "Main",
+            "description": "We work with chains of all sizes to help them operate and compare insights across multiple locations. <1/> <0>Leading to:</0>",
+            "advantages": [
+              "Control over operations",
+              "Consolidated data",
+              "Resolved operational issues",
+              "Change facilitation"
+            ]
+          }
+        ]
+      },
+      "kitchens": {
+        "title": "Dark Kitchens",
+        "subtitle": "No need to be in the dark",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Dark Kitchens need access to the right tools and straightforward workflows in order to scale. <1/> <0>Leading to:</0>",
+            "advantages": [
+              "Measurable KPI’s",
+              "Accurate forecasting",
+              "Better cost control",
+              "Data driven decisions"
+            ]
+          }
+        ]
+      },
+      "kiosks": {
+        "title": "Grocery, Retailers & Kiosks",
+        "subtitle": "Reach Your Full Potential",
+        "options": [
+          {
+            "title": "Main",
+            "description": "No matter what you specialize in, we’ve got you covered. Add or remove services and integrations at any point. <1/> <0>Leading to:</0>",
+            "advantages": [
+              "Bespoke management system",
+              "Boosted B2C & B2B visibility",
+              "Increased revenues",
+              "Data driven decisions"
+            ]
+          }
+        ]
+      },
+      "wholesalers": {
+        "title": "Wholesalers",
+        "subtitle": "A new sales channel",
+        "options": [
+          {
+            "title": "Main",
+            "description": "We work with wholesalers who understand the value of showcasing their products and facilitating purchasing. Be discovered on the <1>procurement section.</1> <2 /> <0>Leading to:</0>",
+            "advantages": [
+              "Lead acquisition",
+              "Improved customer relationships",
+              "Procurement error reduction",
+              "Brand promotion"
+            ]
+          }
+        ]
+      }
     }
-  }
+  },
+  "step": "Step {{step}}",
+  "createAccountNow": "Create account now",
+  "downloadApp": "Download App",
+  "customers": "Customers",
+  "alreadyOnboard": "Already onboard",
+  "ourLicensing": "Find out about licensing"
 }

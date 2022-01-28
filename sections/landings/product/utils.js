@@ -1,4 +1,4 @@
-export const getPrefix = name => `integrationsLandings.${name}`;
+export const getPrefix = name => `landings.${name}`;
 
 export const getOptionPrefix = optionIndex => `options.${optionIndex}`;
 

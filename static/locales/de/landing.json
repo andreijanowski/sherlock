@@ -129,7 +129,7 @@
   "language": "Sprache",
   "seeSubscriptionPlans": "Siehe Abonnementpläne",
   "benefitsInNumbers": "Vorteile in Zahlen",
-  "integrationsLandings": {
+  "landings": {
     "management": {
       "title": "Management-Integrationen",
       "subtitle": "Stellen Sie sicher, dass Ihr <0>Geschäft reibungslos</0> und effizient läuft und bieten Sie Ihren Kunden ein angenehmes Erlebnis, das den Markenstandards entspricht.",
@@ -493,6 +493,162 @@
           "description": "der Kunden sind frustriert<0/> über falsche Informationen im Internet."
         }
       ]
+    },
+    "howItWorks": {
+      "title": "Ein Produkt, das für die Selbstbedienung gemacht ist",
+      "subtitle": "Was bedeutet das? Keine langen Anrufe beim Kundensupport und oder Einrichtungsgebühren, wir haben eine Software entwickelt, die einfach zu verwalten ist und keine technischen Kenntnisse erfordert",
+      "step1": {
+        "title": "Wie es funktioniert",
+        "subtitle": "Erstellen Sie Ihr Konto",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Neue Einrichtungen registrieren sich im Durchschnitt in <0>15 Minuten.</0>",
+            "advantages": [
+              "Füllen Sie in Ihrem <1>Business Profile</1> die Informationen über Ihr Lokal aus, wie Öffnungszeiten, verfügbare Dienstleistungen, Ihre Fotos und alle wesentlichen Elemente",
+              "Wenn Sie diese Informationen aktualisieren müssen, tun Sie dies einmalig und es wird auf allen Ihren <1>Online-Plattformen</1> aktualisiert."
+            ]
+          }
+        ]
+      },
+      "step2": {
+        "subtitle": "Click & Connect",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Kümmern Sie sich nicht um den <0>technischen Aspekt der Dinge.</0>",
+            "advantages": [
+              "Gehen Sie auf den <1>Integrations Hub</1> und <0>klicken und verbinden Sie</0> Ihre bevorzugten Plattformen.",
+              "Sie können jederzeit Plattformen hinzufügen oder entfernen, wenn Sie es für nötig halten",
+              "Fügen Sie Ihre Logins nur einmal hinzu und es ist einsatzbereit!"
+            ]
+          }
+        ]
+      },
+      "step3": {
+        "subtitle": "Beginnen Sie, Ihre Einrichtung auf transparente Weise zu verwalten",
+        "options": [
+          {
+            "title": "Main",
+            "advantages": [
+              "Greifen Sie einfach über unser Menü auf alle Ihre Tools zu",
+              "Keine Schulung erforderlich, sie funktionieren so, wie sie es schon immer getan haben"
+            ]
+          }
+        ]
+      },
+      "step4": {
+        "subtitle": "Verwalten Sie alle Ihre Systeme von einer einzigen Plattform aus",
+        "options": [
+          {
+            "title": "Main",
+            "advantages": [
+              "Durch die Zentralisierung Ihres Tech-Stacks erhalten Sie Informationen in Echtzeit auf Ihrem <1>angepassten Dashboard.</1>",
+              "Verwenden Sie Foodetective täglich \uD83D\uDE09"
+            ]
+          }
+        ]
+      },
+      "step5": {
+        "subtitle": "24/7 Zugang aus der Hosentasche",
+        "options": [
+          {
+            "title": "Main",
+            "advantages": [
+              "Download der Foodetective Business App",
+              "Keine Schulung erforderlich, sie funktionieren so, wie sie es schon immer getan haben"
+            ]
+          }
+        ]
+      }
+    },
+    "customers": {
+      "independent": {
+        "title": "Unabhängige Restaurants",
+        "subtitle": "Schluss mit den sich stapelnden Tablets",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Wir arbeiten mit unabhängigen Restaurants zusammen und helfen ihnen dabei, ihr Management, ihre Abläufe und ihr Marketing zu verbessern. <1/> <0>Das bedeutet:</0>",
+            "advantages": [
+              "Verringerung des Zeitaufwands für die Verwaltung",
+              "Erhöhung der Sichtbarkeit",
+              "Erhöhung der Einnahmen",
+              "Datenbasierte Entscheidungen"
+            ]
+          }
+        ]
+      },
+      "chains": {
+        "title": "Restaurantketten",
+        "subtitle": "Durchsichtig Multi-Location-Management",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Wir arbeiten mit Ketten aller Größen zusammen und helfen ihnen dabei, Vorschauen an mehreren Standorten zu nutzen und zu vergleichen. <1/> <0>Das bedeutet:</0>",
+            "advantages": [
+              "Kontrolle über die Vorgänge",
+              "Konsolidierte Daten",
+              "Lösung von operativen Problemen",
+              "Erleichterung von Veränderungen"
+            ]
+          }
+        ]
+      },
+      "kitchens": {
+        "title": "Dark Kitchens",
+        "subtitle": "Kein Vorankommen im Dunkeln",
+        "optionen": [
+          {
+            "title": "Main",
+            "description": "Dark Kitchens brauchen Zugang zu den richtigen Werkzeugen und einfachen Arbeitsabläufen, um sich weiterentwickeln zu können. <1/> <0>Das bedeutet:</0>",
+            "advantages": [
+              "Messbare KPIs",
+              "Präzise Prognosen",
+              "Bessere Kostenkontrolle",
+              "Datenbasierte Entscheidungen"
+            ]
+          }
+        ]
+      },
+      "kiosks": {
+        "title": "Lebensmittelgeschäft, Einzelhändler und Kioske",
+        "subtitle": "Erreichen Sie Ihr volles Potenzial",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Was auch immer Ihr Fachgebiet ist, wir helfen Ihnen. Fügen Sie jederzeit Dienste und Integrationen hinzu oder entfernen Sie sie. <1/> <0>Das bedeutet:</0>",
+            "advantages": [
+              "Maßgeschneidertes Managementsystem",
+              "Erhöhung der B2C- und B2B-Sichtbarkeit",
+              "Steigerung der Einnahmen",
+              "Datenbasierte Entscheidungen"
+            ]
+          }
+        ]
+      },
+      "wholesalers": {
+        "title": "Lieferanten",
+        "subtitle": "Ein neuer Verkaufskanal",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Wir arbeiten mit Lieferanten zusammen, die verstehen, wie wichtig es ist, ihre Produkte hervorzuheben und den Einkauf zu erleichtern. Seien Sie von unserer <1>Beschaffungsabteilung aus entdeckt.</1> <2 /> <0>Das bedeutet:</0>",
+            "advantages": [
+              "Akquisition von potenziellen Kunden",
+              "Verbesserung der Kundenbeziehungen",
+              "Reduzierung von Fehlern bei der Beschaffung",
+              "Förderung der Marke"
+            ]
+          }
+        ]
+      }
     }
-  }
+  },
+  "step": "Step {{step}}",
+  "createAccountNow": "Konto jetzt erstellen",
+  "downloadApp": "App herunterladen",
+  "customers": "Kunden",
+  "alreadyOnboard": "Sie vertrauen uns",
+  "ourLicensing": "Über die Lizenzierung"
 }

@@ -46,7 +46,12 @@ const contentManagementTextLinks = {
 };
 
 const contentManagementVideos = {
-  [getOptionPrefix(3)]: MANAGEMENT_ADV_VIDEO
+  [getOptionPrefix(3)]: {
+    poster: "/static/img/marketing/advVideoPoster.png",
+    width: 490,
+    height: 372,
+    src: MANAGEMENT_ADV_VIDEO
+  }
 };
 
 const MarketingPage = () => (

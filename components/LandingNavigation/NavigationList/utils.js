@@ -10,11 +10,15 @@ import ProductLinkDropdown from "./ProductLinkDropdown";
 export const getMenuItems = t => [
   {
     label: t("landing:howItWorks"),
-    href: "/"
+    href: "/how-it-works"
   },
   {
     label: t("landing:product"),
     component: ProductLinkDropdown
+  },
+  {
+    label: t("landing:customers"),
+    href: "/customers"
   },
   {
     label: t("landing:developersAndApi"),

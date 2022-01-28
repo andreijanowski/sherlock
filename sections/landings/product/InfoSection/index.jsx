@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Flex } from "@rebass/grid";
-import { arrayOf, bool, number, oneOf, shape, string } from "prop-types";
+import { arrayOf, bool, number, oneOf, shape, string, node } from "prop-types";
 
 import { useT } from "utils/hooks";
 import { Container } from "./styled";
@@ -18,7 +18,11 @@ const InfoSection = ({
   linkTo,
   advantagesColumnsWidth,
   textLinks,
-  videos
+  videos,
+  step,
+  isReversed = isDark,
+  ctaButton,
+  isAdvantagesCentered
 }) => {
   const t = useT("landing");
   const prefix = getPrefix(name);
@@ -38,19 +42,25 @@ const InfoSection = ({
       />
 
       <Flex
-        flexDirection={["column", null, null, isDark ? "row-reverse" : "row"]}
+        flexDirection={[
+          "column",
+          null,
+          null,
+          isReversed ? "row-reverse" : "row"
+        ]}
         alignItems="flex-start"
       >
         <ImageColumn
           width={columnsProportions[0]}
           images={images}
-          isDark={isDark}
+          isReversed={isReversed}
           linkTo={linkTo}
           prefix={prefix}
           activeOptionIndex={activeOptionIndex}
           videos={videos}
         />
         <TextColumn
+          step={step}
           textLinks={textLinks}
           width={columnsProportions[1]}
           isDark={isDark}
@@ -59,6 +69,8 @@ const InfoSection = ({
           prefix={prefix}
           advantagesColumnsWidth={advantagesColumnsWidth}
           options={options}
+          ctaButton={ctaButton}
+          isAdvantagesCentered={isAdvantagesCentered}
         />
       </Flex>
     </Container>
@@ -78,21 +90,30 @@ InfoSection.propTypes = {
       bottom: number,
       left: number
     })
-  ).isRequired,
+  ),
   isDark: bool,
+  isReversed: bool,
+  isAdvantagesCentered: bool,
   columnsProportions: arrayOf(arrayOf(number)).isRequired,
   advantagesColumnsWidth: arrayOf(oneOf([arrayOf(number), number, string])),
   textLinks: shape({}),
-  videos: shape({})
+  videos: shape({}),
+  step: number,
+  ctaButton: node
 };
 
 InfoSection.defaultProps = {
+  step: null,
   icon: null,
   linkTo: null,
   isDark: false,
+  isAdvantagesCentered: false,
+  isReversed: undefined,
   advantagesColumnsWidth: [1, null, null, 1 / 2],
   textLinks: {},
-  videos: {}
+  videos: {},
+  images: [],
+  ctaButton: null
 };
 
 export default InfoSection;

@@ -1,6 +1,15 @@
 import React, { Fragment } from "react";
 import { Box, Flex } from "@rebass/grid";
-import { arrayOf, bool, func, number, oneOf, shape, string } from "prop-types";
+import {
+  arrayOf,
+  bool,
+  func,
+  number,
+  oneOf,
+  shape,
+  string,
+  node
+} from "prop-types";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 import CheckmarkText from "components/Landing/CheckmarkText";
@@ -12,7 +21,8 @@ import {
   LinkStyled,
   List,
   ToggleOptionButton,
-  ToggleOptionButtonIcon
+  ToggleOptionButtonIcon,
+  Step
 } from "./styled";
 import { getAdvPrefix, getDescriptionPrefix } from "../utils";
 
@@ -24,7 +34,10 @@ const TextColumn = ({
   advantagesColumnsWidth,
   options,
   setActiveOptionIndex,
-  textLinks
+  textLinks,
+  step,
+  ctaButton,
+  isAdvantagesCentered
 }) => {
   const t = useT("landing");
 
@@ -32,6 +45,11 @@ const TextColumn = ({
 
   return (
     <Box width={width}>
+      {step && (
+        <Step isDark={isDark} mb={0} tabletCentered>
+          {t("step", { step })}
+        </Step>
+      )}
       <H3Styled isDark={isDark} mb={[3, null, null, 2]} tabletCentered>
         <Trans t={t} i18nKey={`${prefix}.subtitle`} components={[<br />]} />
       </H3Styled>
@@ -67,11 +85,15 @@ const TextColumn = ({
                 >
                   <Trans
                     t={t}
-                    components={[<strong />].concat(
-                      descriptionLinks.map(linkProps => (
-                        <LinkStyled {...linkProps}>{linkProps.href}</LinkStyled>
-                      ))
-                    )}
+                    components={[<strong />]
+                      .concat(
+                        descriptionLinks.map(linkProps => (
+                          <LinkStyled isDark={isDark} {...linkProps}>
+                            {linkProps.href}
+                          </LinkStyled>
+                        ))
+                      )
+                      .concat([<br />])}
                   >
                     {option.description}
                   </Trans>
@@ -91,13 +113,16 @@ const TextColumn = ({
                         px={3}
                         mb={24}
                       >
-                        <CheckmarkText isDark={isDark}>
+                        <CheckmarkText
+                          isDark={isDark}
+                          isCentered={isAdvantagesCentered}
+                        >
                           <Trans
                             t={t}
                             components={[
                               <strong />,
                               advLink ? (
-                                <LinkStyled {...advLink}>
+                                <LinkStyled isDark={isDark} {...advLink}>
                                   {advLink.href}
                                 </LinkStyled>
                               ) : (
@@ -123,6 +148,15 @@ const TextColumn = ({
           </Fragment>
         );
       })}
+      {ctaButton && (
+        <Flex
+          flexDirection="column"
+          alignItems={["center", null, null, "flex-start"]}
+          mt={[3, null, null, "48px"]}
+        >
+          {ctaButton}
+        </Flex>
+      )}
     </Box>
   );
 };
@@ -136,11 +170,17 @@ TextColumn.propTypes = {
     .isRequired,
   options: arrayOf(shape({ title: string.isRequired })).isRequired,
   setActiveOptionIndex: func.isRequired,
-  textLinks: shape({})
+  textLinks: shape({}),
+  step: number,
+  ctaButton: node,
+  isAdvantagesCentered: bool
 };
 
 TextColumn.defaultProps = {
-  textLinks: {}
+  step: null,
+  textLinks: {},
+  ctaButton: null,
+  isAdvantagesCentered: false
 };
 
 export default TextColumn;

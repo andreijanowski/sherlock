@@ -80,7 +80,7 @@
   },
   "loginAndRegister": "Connexion/Inscription",
   "getTheApp": "Téléchargez l'App",
-  "howItWorks": "Comment ça fonctionne",
+  "howItWorks": "Comment ça marche",
   "product": "Produit",
   "developersAndApi": "Développeurs & API",
   "company": "Entreprise",
@@ -132,7 +132,7 @@
   "language": "Language",
   "seeSubscriptionPlans": "Voir les plans d'abonnements",
   "benefitsInNumbers": "Les bénéfices en chiffres",
-  "integrationsLandings": {
+  "landings": {
     "management": {
       "title": "Management Integrations",
       "subtitle": "Assurez le <0>bon fonctionnement de votre établissement</0> et offrez à vos clients une expérience à la hauteur de vos standards.",
@@ -496,6 +496,162 @@
           "description": "des clients sont frustrés<0/> par des informations incorrectes en ligne."
         }
       ]
+    },
+    "howItWorks" : {
+      "title" : "Un produit fait pour le self-service",
+      "subtitle" : "Qu'est-ce que cela signifie ? Pas besoin de longs appels avec le support client ou de frais de mise en service, nous avons conçu un logiciel facile à gérer et ne nécessitant aucune connaissance technique",
+      "step1" : {
+        "title" : "Comment ça marche",
+        "subtitle" : "Créer votre compte",
+        "options" : [
+          {
+            "title" : "Main",
+            "description" : "Les nouveaux établissements s'enregistrent en moyenne en <0>15 minutes.</0>",
+            "advantages" : [
+              "Remplissez les informations de votre établissement sur votre <1>Business Profile</1> telles que les heures d'ouverture, les services disponibles, vos photos et tous les éléments essentiels.",
+              "Si vous devez mettre à jour ces informations, faites-le une seule fois et cela sera mis à jour sur toutes vos plateformes <1>en ligne</1>."
+            ]
+          }
+        ]
+      },
+      "step2" : {
+        "subtitle" : "Click & Connect",
+        "options" : [
+          {
+            "title" : "Main",
+            "description" : "Ne vous préoccupez pas de l'aspect <0>technique des choses.</0>",
+            "advantages" : [
+              "Allez sur le <1>Integrations Hub</1> et <0>cliquez et connectez</0> vos plateformes préférées.",
+              "Vous pouvez toujours ajouter ou supprimer des plateformes si vous le jugez nécessaire.",
+              "Ajoutez vos identifiants une seule fois et c'est prêt à être utilisé !"
+            ]
+          }
+        ]
+      },
+      "step3" : {
+        "subtitle" : "Commencez à gérer votre établissement de manière transparente",
+        "options" : [
+          {
+            "title" : "Main",
+            "advantages" : [
+              "Accédez facilement à tous vos outils via notre menu",
+              "Aucune formation nécessaire, ils fonctionnent comme ils l'ont toujours fait"
+            ]
+          }
+        ]
+      },
+      "step4" : {
+        "subtitle" : "Gérer tous vos systèmes à partir d'une seule plateforme",
+        "options" : [
+          {
+            "title" : "Main",
+            "advantages" : [
+              "La centralisation de votre tech-stack vous permettra d'obtenir des informations en temps réel sur votre <1>dashboard personnalisé.</1>",
+              "Utilisez Foodetective au quotidien \uD83D\uDE09"
+            ]
+          }
+        ]
+      },
+      "step5" : {
+        "subtitle" : "Accès 24/7 depuis votre poche",
+        "options" : [
+          {
+            "title" : "Main",
+            "advantages" : [
+              "Télécharger l'application Foodetective Business",
+              "Aucune formation nécessaire, ils fonctionnent comme ils l'ont toujours fait."
+            ]
+          }
+        ]
+      }
+    },
+    "customers" : {
+      "independent": {
+        "title": "Restaurants indépendants",
+        "subtitle": "Fini les tablettes qui s'empilent",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Nous travaillons avec des restaurants indépendants pour les aider à améliorer leur gestion, leurs opérations et leur marketing. <1/> <0>Cela signifie :</0>",
+            "advantages": [
+              "Réduction du temps d'administration",
+              "Augmentation de la visibilité",
+              "Augmentation des revenus",
+              "Décisions basées sur les données"
+            ]
+          }
+        ]
+      },
+      "chains": {
+        "title": "Chaînes de restaurants",
+        "subtitle": "Gestion multi-localisation transparente",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Nous travaillons avec des chaînes de toutes tailles pour les aider à exploiter et à comparer les aperçus sur plusieurs sites. <1/> <0>Cela signifie :</0>",
+            "advantages": [
+              "Contrôle sur les opérations",
+              "Données consolidées",
+              "Résolution des problèmes opérationnels",
+              "Facilitation du changement"
+            ]
+          }
+        ]
+      },
+      "kitchens": {
+        "titre": "Dark Kitchens",
+        "subtitle": "Pas besoin d'avance dans l'obscurité",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Les Dark Kitchens ont besoin d'accéder aux bons outils et à des flux de travail simples pour pouvoir évoluer. <1/> <0>Cela signifie :</0>",
+            "advantages": [
+              "KPI mesurables",
+              "Des prévisions précises",
+              "Meilleur contrôle des coûts",
+              "Décisions basées sur les données"
+            ]
+          }
+        ]
+      },
+      "kiosks": {
+        "title": "Épicerie, détaillants et kiosques",
+        "subtitle": "Atteignez votre plein potentiel",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Quel que soit votre domaine de spécialisation, nous vous aiderons. Ajoutez ou supprimez des services et des intégrations à tout moment. <1/> <0>Cela signifie :</0>",
+            "advantages": [
+              "Système de gestion sur mesure",
+              "Augmentation de la visibilité B2C et B2B",
+              "Augmentation des revenus",
+              "Décisions basées sur les données"
+            ]
+          }
+        ]
+      },
+      "wholesalers": {
+        "title": "Fournisseurs",
+        "subtitle": "Un nouveau canal de vente",
+        "options": [
+          {
+            "title": "Main",
+            "description": "Nous travaillons avec des fournisseurs qui comprennent l'intérêt de mettre en valeur leurs produits et de faciliter les achats. Soyez découverts depuis notre <1>section approvisionnement.</1> <2 /> <0>Cela signifie:</0>",
+            "advantages": [
+              "Acquisition de prospects",
+              "Amélioration des relations avec les clients",
+              "Réduction des erreurs d'approvisionnement",
+              "Promotion de la marque"
+            ]
+          }
+        ]
+      }
     }
-  }
+  },
+  "step": "Step {{step}}",
+  "createAccountNow": "Créez votre profil",
+  "downloadApp": "Téléchargez l'app",
+  "customers": "Clients",
+  "alreadyOnboard": "Ils nous font confiance",
+  "ourLicensing": "A propos du licensing"
 }

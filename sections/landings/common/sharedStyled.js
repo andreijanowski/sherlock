@@ -55,7 +55,9 @@ export const LandingWrapper = styled(Flex)`
 
 export const NavigationWrapper = styled(Box).attrs(() => ({}))`
   width: 100%;
-  background: rgb(${p => p.theme.colors.darkBlue});
+  background: rgb(
+    ${p => themeGet(p.isDark ? "colors.landingDarkBlue" : "colors.darkBlue")}
+  );
 `;
 
 export const TopSectionWrapper = styled(Box)`

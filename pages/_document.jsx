@@ -40,6 +40,7 @@ export default class MyDocument extends Document {
             content="p12xj66v3yf1269crgdmussddpwxq8"
             name="facebook-domain-verification"
           />
+          <meta property="og:image" content="/static/preview.jpg" />
           {this.props.styleTags}
           <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />
           <link rel="stylesheet" type="text/css" href="/static/fonts.css" />
