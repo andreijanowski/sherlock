@@ -36,7 +36,8 @@ const TextColumn = ({
   setActiveOptionIndex,
   textLinks,
   step,
-  ctaButton
+  ctaButton,
+  isAdvantagesCentered
 }) => {
   const t = useT("landing");
 
@@ -112,7 +113,10 @@ const TextColumn = ({
                         px={3}
                         mb={24}
                       >
-                        <CheckmarkText isDark={isDark}>
+                        <CheckmarkText
+                          isDark={isDark}
+                          isCentered={isAdvantagesCentered}
+                        >
                           <Trans
                             t={t}
                             components={[
@@ -168,13 +172,15 @@ TextColumn.propTypes = {
   setActiveOptionIndex: func.isRequired,
   textLinks: shape({}),
   step: number,
-  ctaButton: node
+  ctaButton: node,
+  isAdvantagesCentered: bool
 };
 
 TextColumn.defaultProps = {
   step: null,
   textLinks: {},
-  ctaButton: null
+  ctaButton: null,
+  isAdvantagesCentered: false
 };
 
 export default TextColumn;
