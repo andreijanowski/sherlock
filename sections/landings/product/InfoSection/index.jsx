@@ -21,7 +21,8 @@ const InfoSection = ({
   videos,
   step,
   isReversed = isDark,
-  ctaButton
+  ctaButton,
+  isAdvantagesCentered
 }) => {
   const t = useT("landing");
   const prefix = getPrefix(name);
@@ -69,6 +70,7 @@ const InfoSection = ({
           advantagesColumnsWidth={advantagesColumnsWidth}
           options={options}
           ctaButton={ctaButton}
+          isAdvantagesCentered={isAdvantagesCentered}
         />
       </Flex>
     </Container>
@@ -91,6 +93,7 @@ InfoSection.propTypes = {
   ),
   isDark: bool,
   isReversed: bool,
+  isAdvantagesCentered: bool,
   columnsProportions: arrayOf(arrayOf(number)).isRequired,
   advantagesColumnsWidth: arrayOf(oneOf([arrayOf(number), number, string])),
   textLinks: shape({}),
@@ -104,6 +107,7 @@ InfoSection.defaultProps = {
   icon: null,
   linkTo: null,
   isDark: false,
+  isAdvantagesCentered: false,
   isReversed: undefined,
   advantagesColumnsWidth: [1, null, null, 1 / 2],
   textLinks: {},

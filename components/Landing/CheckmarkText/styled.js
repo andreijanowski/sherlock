@@ -5,7 +5,6 @@ import { themeGet } from "utils/theme";
 import { BodySmall } from "components/styleguide/Typography";
 
 export const Container = styled(Flex)`
-  align-items: flex-start;
   flex-wrap: nowrap;
 `;
 

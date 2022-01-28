@@ -37,9 +37,16 @@ const getSectionVideos = sectionName => ({
     poster: `/static/img/${PAGE_NAME}/${sectionName}.png`,
     width: 500,
     height: 620,
+    borderRadius: 12,
     src: `/static/videos/${PAGE_NAME}/${sectionName}.mp4`
   }
 });
+
+const commonSectionsProps = {
+  isAdvantagesCentered: true,
+  columnsProportions: [[1, null, null, 1 / 2], [1, null, null, 1 / 2]],
+  advantagesColumnsWidth: 1
+};
 
 const CustomersPage = () => {
   const lng = useLng();
@@ -51,10 +58,9 @@ const CustomersPage = () => {
       </NavigationWrapper>
       <TopDarkWrapper>
         <InfoSection
+          {...commonSectionsProps}
           name={`${PAGE_NAME}.independent`}
           videos={getSectionVideos("independent")}
-          columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
-          advantagesColumnsWidth={1}
           isDark
           isReversed={false}
           ctaButton={<DemoButton />}
@@ -67,10 +73,9 @@ const CustomersPage = () => {
       </TopDarkWrapper>
       <WhiteWrapper>
         <InfoSection
+          {...commonSectionsProps}
           name={`${PAGE_NAME}.chains`}
           videos={getSectionVideos("chains")}
-          columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
-          advantagesColumnsWidth={1}
           isReversed
           ctaButton={<DemoButton />}
         />
@@ -78,10 +83,9 @@ const CustomersPage = () => {
       </WhiteWrapper>
       <DarkWrapper>
         <InfoSection
+          {...commonSectionsProps}
           name={`${PAGE_NAME}.kitchens`}
           videos={getSectionVideos("kitchens")}
-          columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
-          advantagesColumnsWidth={1}
           isDark
           isReversed={false}
           ctaButton={<DemoButton />}
@@ -94,10 +98,9 @@ const CustomersPage = () => {
       </DarkWrapper>
       <WhiteWrapper>
         <InfoSection
+          {...commonSectionsProps}
           name={`${PAGE_NAME}.kiosks`}
           videos={getSectionVideos("kiosks")}
-          columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
-          advantagesColumnsWidth={1}
           isReversed
           ctaButton={<DemoButton />}
         />
@@ -105,10 +108,9 @@ const CustomersPage = () => {
       </WhiteWrapper>
       <BottomDarkWrapper>
         <InfoSection
+          {...commonSectionsProps}
           name={`${PAGE_NAME}.wholesalers`}
           videos={getSectionVideos("wholesalers")}
-          columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
-          advantagesColumnsWidth={1}
           isDark
           isReversed={false}
           ctaButton={

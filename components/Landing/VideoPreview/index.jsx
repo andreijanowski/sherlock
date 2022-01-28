@@ -3,7 +3,9 @@ import { string, number, arrayOf } from "prop-types";
 
 import { Container, Image, Video } from "./styled";
 
-const VideoPreview = ({ poster, src, width, height }) => {
+const LOCAL_STATIC_PATH = "/static/";
+
+const VideoPreview = ({ poster, src, width, height, borderRadius }) => {
   const [showVideo, setShowVideo] = useState(false);
 
   const onImgClick = useCallback(() => {
@@ -14,11 +16,23 @@ const VideoPreview = ({ poster, src, width, height }) => {
     <Container>
       {showVideo ? (
         <Video
+          {...(src.startsWith(LOCAL_STATIC_PATH)
+            ? {
+                as: "video",
+                controls: true,
+                autoPlay: true,
+                muted: true,
+                src
+              }
+            : {
+                as: "iframe",
+                src: `${src}?autoplay=1&mute=1`,
+                frameBorder: 0
+              })}
           width={width}
           height={height}
+          borderRadius={borderRadius}
           mx="auto"
-          src={`${src}?autoplay=1&mute=1`}
-          frameBorder="0"
         />
       ) : (
         <Image
@@ -37,7 +51,12 @@ VideoPreview.propTypes = {
   poster: string.isRequired,
   src: string.isRequired,
   width: arrayOf(number).isRequired,
-  height: arrayOf(number).isRequired
+  height: arrayOf(number).isRequired,
+  borderRadius: number
+};
+
+VideoPreview.defaultProps = {
+  borderRadius: 0
 };
 
 export default VideoPreview;

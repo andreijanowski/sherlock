@@ -10,6 +10,7 @@ export const Image = styled(Box).attrs({ as: "img" })`
   cursor: pointer;
 `;
 
-export const Video = styled(Box).attrs({ as: "iframe" })`
+export const Video = styled(Box)`
   max-width: 100%;
+  border-radius: ${p => p.borderRadius}px;
 `;

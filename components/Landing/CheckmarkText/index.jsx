@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Container, CheckmarkContainer, BodySmallStyled } from "./styled";
 
-const CheckmarkText = ({ isDark, children }) => (
-  <Container>
+const CheckmarkText = ({ isDark, children, isCentered }) => (
+  <Container alignItems={isCentered ? "center" : "flex-start"}>
     <CheckmarkContainer mr={3} isDark={isDark}>
       <FontAwesomeIcon icon={faCheck} />
     </CheckmarkContainer>
@@ -16,11 +16,13 @@ const CheckmarkText = ({ isDark, children }) => (
 
 CheckmarkText.propTypes = {
   children: node.isRequired,
-  isDark: bool
+  isDark: bool,
+  isCentered: bool
 };
 
 CheckmarkText.defaultProps = {
-  isDark: false
+  isDark: false,
+  isCentered: false
 };
 
 export default CheckmarkText;
