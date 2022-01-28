@@ -111,6 +111,7 @@ const USER_GUIDES_URL = {
 };
 
 const PARTOO_SDK_URL =
+  process.env.PARTOO_SDK_URL ||
   "https://static.sandbox.partoo.co/javascript/build/partoo.js";
 
 const LICENSING_TYPEFORM_LINK = "https://foodetective.typeform.com/to/xnVTlV0K";
