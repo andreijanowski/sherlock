@@ -5,7 +5,14 @@ import { connect } from "react-redux";
 import { useRouter } from "next/router";
 
 import { InfoIcon } from "components/Icons";
-import { Button, InfoBar, LanguageSwitcher, Link, Modal } from "components";
+import {
+  Button,
+  InfoBar,
+  LanguageSwitcher,
+  Link,
+  Modal,
+  NotificationsSwitch
+} from "components";
 import isServer from "utils/isServer";
 import { togglePlayNotification } from "actions/app";
 import { useLng } from "utils/hooks";
@@ -96,6 +103,7 @@ const MainApp = ({
           >
             Watch tutorials
           </TutorialButton>
+          <NotificationsSwitch mx={1} />
           <Icon
             as="a"
             target="_blank"

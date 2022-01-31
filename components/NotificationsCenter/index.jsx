@@ -3,8 +3,11 @@ import { connect } from "react-redux";
 import { instanceOf } from "prop-types";
 import { withTranslation } from "i18n";
 import { List } from "immutable";
+import { compose } from "redux";
 
 const namespaces = ["notifications", "forms"];
+
+const DEFAULT_POSITION = "tl";
 
 const NotificationCenter = ({ notifications }) => (
   <Notifications
@@ -23,12 +26,15 @@ NotificationCenter.propTypes = {
   notifications: instanceOf(List).isRequired
 };
 
-export default withTranslation(namespaces)(
-  connect((state, { t }) => ({
-    notifications: state.get("notifications").map(n => ({
-      ...n,
-      message: t(n.message, n.meta),
-      position: "tl"
-    }))
-  }))(NotificationCenter)
-);
+const mapState = (state, { t }) => ({
+  notifications: state.get("notifications").map(n => ({
+    ...n,
+    message: t(n.message, n.meta),
+    position: n.position || DEFAULT_POSITION
+  }))
+});
+
+export default compose(
+  withTranslation(namespaces),
+  connect(mapState)
+)(NotificationCenter);

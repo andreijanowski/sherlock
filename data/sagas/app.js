@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
 import { all, put, takeEvery, select } from "redux-saga/effects";
-import Notifications from "react-notification-system-redux";
 import { Map } from "immutable";
 
 import {
@@ -111,11 +110,6 @@ function* handleSettingOrdersUpdates({
       .get("id")
   );
   if (business_uuid === id) {
-    yield put(
-      Notifications.success({
-        message: "orderUpdate"
-      })
-    );
     const path = yield select(state => state.getIn(["app", "currentPath"]));
     if (path !== "/app/lefood/orders") {
       const ordersUpdates = yield select(state =>
@@ -136,11 +130,6 @@ function* handleSettingReservationsUpdates({
       .get("id")
   );
   if (business_uuid === id) {
-    yield put(
-      Notifications.success({
-        message: "reservationUpdate"
-      })
-    );
     const path = yield select(state => state.getIn(["app", "currentPath"]));
     if (path !== "/app/reservation/reservations") {
       const reservationsUpdates = yield select(state =>

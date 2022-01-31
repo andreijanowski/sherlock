@@ -1,5 +1,7 @@
 /* eslint-disable camelcase */
+import Notifications from "react-notification-system-redux";
 import { takeEvery, put, all, select } from "redux-saga/effects";
+
 import {
   PATCH_RESERVATION_SUCCESS,
   PATCH_RESERVATION_REJECT_SUCCESS,
@@ -8,6 +10,12 @@ import {
 } from "types/reservations";
 import { fetchReservation } from "actions/reservations";
 import { togglePlayNotification } from "actions/app";
+import {
+  selectCurrentBusinessId,
+  selectIsReservationsNotificationsEnabled
+} from "selectors/business";
+
+const NEW_NOTIFICATION_STATE = "placed";
 
 function* getReservation({
   payload: {
@@ -19,21 +27,30 @@ function* getReservation({
   yield put(fetchReservation(id));
 }
 
-function* updateReservation({
+function* handleReservationUpdate({
   payload: { business_uuid, reservation_uuid, state }
 }) {
-  const id = yield select(appState =>
-    appState
-      .getIn(["users", "currentBusiness", "data", "businesses"])
-      .first()
-      .get("id")
+  const currentBusinessId = yield select(selectCurrentBusinessId);
+  const isCurrentBusiness = business_uuid === currentBusinessId;
+
+  if (!isCurrentBusiness) return;
+
+  yield put(fetchReservation(reservation_uuid));
+
+  const isNotificationsEnabled = yield select(
+    selectIsReservationsNotificationsEnabled
   );
 
-  if (business_uuid === id) {
-    yield put(fetchReservation(reservation_uuid));
-  }
+  if (!isNotificationsEnabled) return;
 
-  if (business_uuid === id && state === "placed") {
+  yield put(
+    Notifications.success({
+      message: "reservationUpdate"
+    })
+  );
+
+  const isNewNotification = state === NEW_NOTIFICATION_STATE;
+  if (isNewNotification) {
     yield put(togglePlayNotification());
   }
 }
@@ -47,5 +64,5 @@ export default all([
     ],
     getReservation
   ),
-  takeEvery([HANDLE_RESERVATION_UPDATE], updateReservation)
+  takeEvery([HANDLE_RESERVATION_UPDATE], handleReservationUpdate)
 ]);

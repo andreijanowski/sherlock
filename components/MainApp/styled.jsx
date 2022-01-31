@@ -118,6 +118,7 @@ export const Icon = styled(Flex).attrs(() => ({
 
 export const IconsWrapper = styled(Flex)`
   display: none;
+  align-items: center;
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
     display: flex;
   }
