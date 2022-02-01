@@ -30,11 +30,11 @@ export default class MyDocument extends Document {
             content="width=device-width, initial-scale=1.0"
           />
           <title>
-            Foodetective For Business ∙ We make restaurants’ lives much easier !
+            Foodetective Business ∙ We make restaurants’ lives much easier !
           </title>
           <meta
             name="description"
-            content="We're not just another restaurants software, Foodetective For Business is the best all in one platform that has everything you need to sell online, on social media, or in person."
+            content="We're not just another restaurants software, Foodetective Business is the best all in one platform that has everything you need to sell online, on social media, or in person."
           />
           <meta
             content="p12xj66v3yf1269crgdmussddpwxq8"
