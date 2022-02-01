@@ -70,3 +70,8 @@ export const selectIsReservationsNotificationsEnabled = state =>
   selectBusinessSettingsAttribute(state, {
     prop: BUSINESS_SETTINGS_KEYS.RESERVATIONS_NOTIFICATIONS
   });
+
+export const selectIsOrkestroDeliveryConfirmationEnabled = state =>
+  selectBusinessSettingsAttribute(state, {
+    prop: BUSINESS_SETTINGS_KEYS.ORKESTRO_DELIVERY_CONFIRMATION
+  });

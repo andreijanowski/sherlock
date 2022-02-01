@@ -18,6 +18,11 @@ import { setCurrentBusiness } from "actions/app";
 import OrderDetails from "sections/lefood/orders/OrderDetails";
 import { selectIsConnectedWithOrkestro } from "selectors/integrations";
 import { getRejectOrderPayload } from "utils/orderUtils";
+import {
+  selectIsOrkestroDeliveryConfirmationEnabled,
+  selectBusinessSettingsObject
+} from "selectors/business";
+import { BUSINESS_SETTINGS_KEYS } from "utils/businessUtils";
 import ConfirmOrkestroDeliveryModal from "./ConfirmOrkestroDeliveryModal";
 
 const namespaces = ["lefood", "app", "forms"];
@@ -111,13 +116,29 @@ class OrdersPage extends PureComponent {
     });
   };
 
-  handleOrkestroDeliveryAccept = () => {
+  handleOrkestroDeliveryAccept = dontShowAgain => {
     const { draggableId, destination, source } = this.state;
+    const { settings, businessId, updateBusiness } = this.props;
 
     this.setState({
       orkestroDeliveryConfirmationModalOpen: false
     });
     this.handleDragEnd({ destination, source, draggableId });
+
+    if (dontShowAgain) {
+      updateBusiness(
+        businessId,
+        // we need to keep settings object with rest attributes
+        // because we use setIn in reducer
+        {
+          settings: {
+            ...settings,
+            [BUSINESS_SETTINGS_KEYS.ORKESTRO_DELIVERY_CONFIRMATION]: false
+          }
+        },
+        true
+      );
+    }
   };
 
   handleOrkestroDeliveryReject = () => {
@@ -127,7 +148,11 @@ class OrdersPage extends PureComponent {
   };
 
   handleDragEndAndOrkestro = ({ destination, source, draggableId }) => {
-    const { connectedWithOrkestro, orders } = this.props;
+    const {
+      connectedWithOrkestro,
+      orders,
+      isOrkestroDeliveryConfirmationEnabled
+    } = this.props;
     const orderDetails = draggableId && orders ? orders.get(draggableId) : null;
     const state = orderDetails && orderDetails.getIn(["attributes", "state"]);
     const pickupAtBusiness =
@@ -164,7 +189,8 @@ class OrdersPage extends PureComponent {
       destination.droppableId === columnsNames.inProgress &&
       source.droppableId === columnsNames.newOrders &&
       connectedWithOrkestro &&
-      !pickupAtBusiness
+      !pickupAtBusiness &&
+      isOrkestroDeliveryConfirmationEnabled
     ) {
       this.setState({
         orkestroDeliveryConfirmationModalOpen: true,
@@ -314,6 +340,7 @@ OrdersPage.propTypes = {
   lng: string.isRequired,
   orders: shape(),
   business: shape(),
+  settings: shape(),
   loading: bool.isRequired,
   connectedWithOrkestro: bool.isRequired,
   draggableId: string.isRequired,
@@ -328,7 +355,8 @@ OrdersPage.propTypes = {
   businesses: shape(),
   businessId: string,
   businessOrderPeriodsLength: number,
-  changeCurrentBusiness: func.isRequired
+  changeCurrentBusiness: func.isRequired,
+  isOrkestroDeliveryConfirmationEnabled: bool
 };
 
 OrdersPage.defaultProps = {
@@ -338,7 +366,9 @@ OrdersPage.defaultProps = {
   businessOrderPeriodsLength: 0,
   dishesLength: 0,
   deliveriesLength: 0,
-  orders: null
+  orders: null,
+  isOrkestroDeliveryConfirmationEnabled: false,
+  settings: null
 };
 
 export default requireAuth(true)(
@@ -379,7 +409,11 @@ export default requireAuth(true)(
             "businesses"
           ]),
           connectedWithOrkestro: selectIsConnectedWithOrkestro(state),
-          lng: (i18n && i18n.language) || "en"
+          lng: (i18n && i18n.language) || "en",
+          isOrkestroDeliveryConfirmationEnabled: selectIsOrkestroDeliveryConfirmationEnabled(
+            state
+          ),
+          settings: selectBusinessSettingsObject(state)
         };
       },
       {

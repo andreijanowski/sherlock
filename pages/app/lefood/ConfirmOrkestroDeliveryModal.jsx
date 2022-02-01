@@ -1,46 +1,38 @@
-import { Modal, Button, ModalHeader } from "components";
-import { RejectModalIcon } from "icons";
-import { func, bool } from "prop-types";
-import { Flex, Box } from "@rebass/grid";
+import React, { useState, useCallback } from "react";
+import { bool, func } from "prop-types";
 
-const ConfirmOrkestroDeliveryModal = ({ isOpen, onClose, onConfirm, t }) => (
-  <Modal {...{ open: isOpen, onClose }}>
-    <Flex
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="space-between"
-      width={320}
+import { ModalHeader, RawCheckbox } from "components";
+import { RejectModalIcon } from "icons";
+import { Confirm } from "components/modals";
+
+const ConfirmOrkestroDeliveryModal = ({ isOpen, onClose, onConfirm, t }) => {
+  const [dontAskAgain, setDontAskAgain] = useState(false);
+
+  const onConfirmProxy = useCallback(() => {
+    onConfirm(dontAskAgain);
+  }, [dontAskAgain, onConfirm]);
+
+  const checkboxInput = {
+    value: dontAskAgain,
+    onChange: e => setDontAskAgain(e.target.checked)
+  };
+
+  return (
+    <Confirm
+      onClose={onClose}
+      onConfirm={onConfirmProxy}
+      restyled
+      open={isOpen}
+      btnOkText={t("confirm")}
+      btnCancelText={t("cancel")}
+      contentCenter
     >
       <RejectModalIcon />
       <ModalHeader>{t("confirmOrkestroDelivery")}</ModalHeader>
-      <Box width={1}>
-        <Flex mx={-2}>
-          <Box width={1 / 2} px={2}>
-            <Button
-              onClick={onConfirm}
-              styleName="blue"
-              type="submit"
-              width="100%"
-            >
-              {t("confirm")}
-            </Button>
-          </Box>
-          <Box width={1 / 2} px={2}>
-            <Button
-              onClick={onClose}
-              styleName="blue"
-              type="submit"
-              width="100%"
-            >
-              {t("cancel")}
-            </Button>
-          </Box>
-        </Flex>
-      </Box>
-      <Flex />
-    </Flex>
-  </Modal>
-);
+      <RawCheckbox label={t("dontAskAgain")} input={checkboxInput} />
+    </Confirm>
+  );
+};
 
 ConfirmOrkestroDeliveryModal.propTypes = {
   isOpen: bool.isRequired,
