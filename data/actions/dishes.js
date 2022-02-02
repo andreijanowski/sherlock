@@ -25,7 +25,10 @@ export const postDish = (
         relationships: {
           ...getRelationships("business", bussinessId),
           ...getRelationships("category", categoryId),
-          ...getDataRelationships("dishOptionCategories", dishOptionCategories)
+          ...getDataRelationships(
+            "dish_option_categories",
+            dishOptionCategories
+          )
         }
       }
     },
