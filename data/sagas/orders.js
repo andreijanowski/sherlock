@@ -9,8 +9,11 @@ import {
   selectCurrentBusinessId,
   selectIsOrdersNotificationsEnabled
 } from "selectors/business";
+import { showNativeNotification } from "utils/misc";
+import { i18n } from "i18n";
 
 const NEW_ORDER_STATE = "waiting_for_approval";
+const ORDER_CREATE_TRANS_KEY = "orderCreate";
 
 function* handleOrderUpdate({ payload: { business_uuid, order_uuid, state } }) {
   const currentBusinessId = yield select(selectCurrentBusinessId);
@@ -31,7 +34,7 @@ function* handleOrderUpdate({ payload: { business_uuid, order_uuid, state } }) {
     Notifications.success(
       isNewOrder
         ? {
-            message: "orderCreate",
+            message: ORDER_CREATE_TRANS_KEY,
             position: "tr",
             autoDismiss: 10
           }
@@ -42,6 +45,8 @@ function* handleOrderUpdate({ payload: { business_uuid, order_uuid, state } }) {
   );
   if (isNewOrder) {
     yield put(togglePlayNotification());
+    const t = i18n.getFixedT(i18n.language, ["notifications"]);
+    showNativeNotification(t(ORDER_CREATE_TRANS_KEY));
   }
 }
 
