@@ -230,5 +230,6 @@
     "download_from_uber_confirm": "Are you sure you want to download menu from Uber Eats? It will ADD all new dishes from Uber to your current menu."
   },
   "deliveryOrkestroStatus": "Orkestro delivery status",
-  "autoAcceptOrders": "Accept orders automatically"
+  "autoAcceptOrders": "Accept orders automatically",
+  "dontAskAgain": "Don't ask again"
 }
