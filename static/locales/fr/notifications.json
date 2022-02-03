@@ -23,5 +23,6 @@
     }
   },
   "reservationUpdate": "La réservation vient d'être mise à jour. Veuillez vérifier la page des réservations pour plus de détails.",
-  "orderUpdate": "La commande vient d'être mise à jour. Veuillez consulter la page Livraison / A emporter pour plus de détails."
+  "orderUpdate": "La commande vient d'être mise à jour. Veuillez consulter la page Livraison / A emporter pour plus de détails.",
+  "orderCreate": "Nouvelle Commande"
 }

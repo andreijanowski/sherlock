@@ -24,5 +24,6 @@
   },
   "orderUpdate": "Order was just updated. Please check Delivery / Takeaway page for more details.",
   "reservationUpdate": "Reservation was just updated. Please check Reservations page for more details.",
-  "formSavedSuccessfully": "Saved"
+  "formSavedSuccessfully": "Saved",
+  "orderCreate": "New incoming order"
 }

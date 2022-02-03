@@ -23,5 +23,6 @@
     }
   },
   "reservationUpdate": "Reservierung wurde gerade aktualisiert. Weitere Informationen finden Sie auf der Seite Reservierungen.",
-  "orderUpdate": "Bestellung wurde gerade aktualisiert. Weitere Informationen finden Sie auf der Seite Lieferung / Zum Mitnehmen."
+  "orderUpdate": "Bestellung wurde gerade aktualisiert. Weitere Informationen finden Sie auf der Seite Lieferung / Zum Mitnehmen.",
+  "orderCreate": "Neue Ordnung"
 }
