@@ -26,6 +26,7 @@ import {
   refreshToken as refreshTokenAction
 } from "actions/auth";
 import { pathChanged as pathChangedAction, setInstanceUuid } from "actions/app";
+import { requestNotificationsPermission } from "utils/misc";
 import { appWithTranslation } from "../i18n";
 import createStore from "../data/store";
 
@@ -90,6 +91,7 @@ class MyApp extends App {
         this.setState({ stripe: window.Stripe(STRIPE_API_KEY) });
       });
     }
+    requestNotificationsPermission();
   }
 
   componentDidUpdate(prevProps) {

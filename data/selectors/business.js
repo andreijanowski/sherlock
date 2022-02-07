@@ -1,4 +1,9 @@
-import { checkIsBusinessStripeLoading } from "utils/businessUtils";
+import { Map } from "immutable";
+
+import {
+  checkIsBusinessStripeLoading,
+  BUSINESS_SETTINGS_KEYS
+} from "utils/businessUtils";
 
 export const selectCurrentBusiness = state => {
   const businessData = state.getIn(["users", "currentBusiness", "data"]);
@@ -44,3 +49,29 @@ export const selectBusinessProducts = state =>
 
 export const selectBusinessOpenPeriods = state =>
   selectBusinessDataProp(state, { prop: "openPeriods" });
+
+export const selectBusinessSettingsObject = state => {
+  const attributes = selectCurrentBusinessAttributes(state);
+  const settings = attributes && attributes.get("settings");
+  return Map.isMap(settings) ? settings.toObject() : settings;
+};
+
+export const selectBusinessSettingsAttribute = (state, { prop }) => {
+  const settings = selectBusinessSettingsObject(state);
+  return settings && settings[prop];
+};
+
+export const selectIsOrdersNotificationsEnabled = state =>
+  selectBusinessSettingsAttribute(state, {
+    prop: BUSINESS_SETTINGS_KEYS.ORDERS_NOTIFICATIONS
+  });
+
+export const selectIsReservationsNotificationsEnabled = state =>
+  selectBusinessSettingsAttribute(state, {
+    prop: BUSINESS_SETTINGS_KEYS.RESERVATIONS_NOTIFICATIONS
+  });
+
+export const selectIsOrkestroDeliveryConfirmationEnabled = state =>
+  selectBusinessSettingsAttribute(state, {
+    prop: BUSINESS_SETTINGS_KEYS.ORKESTRO_DELIVERY_CONFIRMATION
+  });
