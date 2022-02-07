@@ -14,6 +14,8 @@ import {
   selectCurrentBusinessId,
   selectIsReservationsNotificationsEnabled
 } from "selectors/business";
+import { i18n } from "i18n";
+import { showNativeNotification } from "utils/misc";
 
 const NEW_NOTIFICATION_STATE = "placed";
 
@@ -52,6 +54,8 @@ function* handleReservationUpdate({
   const isNewNotification = state === NEW_NOTIFICATION_STATE;
   if (isNewNotification) {
     yield put(togglePlayNotification());
+    const t = i18n.getFixedT(i18n.language, ["notifications"]);
+    showNativeNotification(t("reservationCreate"));
   }
 }
 
