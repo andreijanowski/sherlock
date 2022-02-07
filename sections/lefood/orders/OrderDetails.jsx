@@ -20,6 +20,7 @@ import { getOrderSource } from "utils/orderUtils";
 import { selectIsConnectedWithOrkestro } from "selectors/integrations";
 import { useTranslation } from "i18n";
 import OrderDetail from "./OrderDetail";
+import { isPickupOrder } from "../utils";
 
 const OrderDetails = ({
   isOpen,
@@ -37,6 +38,8 @@ const OrderDetails = ({
   const disposableItems = Map.isMap(notes) && notes.get("disposableItems");
   const specialInstructions =
     Map.isMap(notes) && notes.get("specialInstructions");
+
+  const isPickup = orderDetails && isPickupOrder(orderDetails);
 
   const source = getOrderSource(orderDetails);
 
@@ -192,7 +195,7 @@ const OrderDetails = ({
               }}
             />
           )}
-          {orderDetails.getIn(["attributes", "pickupAtBusiness"]) && (
+          {isPickup && (
             <SliderDetail
               {...{
                 name: t("deliveryAddress"),
@@ -225,7 +228,7 @@ const OrderDetails = ({
             />
           )}
 
-          {!orderDetails.getIn(["attributes", "pickupAtBusiness"]) &&
+          {!isPickup &&
             orderDetails
               .getIn(["relationships", "addresses", "data"])
               .map(address => (
