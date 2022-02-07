@@ -1,3 +1,10 @@
+export const ORDER_DELIVERY_TYPE = {
+  DELIVERY: "delivery",
+  PICKUP: "pickupAtRestaurant"
+};
+
+export const HUBRISE_PICKUP_TYPE = "collection";
+
 export const columns = {
   newOrders: "newOrders",
   inProgress: "inProgress",
@@ -155,3 +162,21 @@ export const mergeDishesData = (dishes, pictures) =>
         return dish;
       })
     : dishes;
+
+export const getOrderDeliveryStatus = order => {
+  const isHubriseOrder = Boolean(order.getIn(["attributes", "hubriseSource"]));
+
+  if (!isHubriseOrder) {
+    const isPickup = Boolean(order.getIn(["attributes", "pickupAtBusiness"]));
+    return isPickup ? ORDER_DELIVERY_TYPE.PICKUP : ORDER_DELIVERY_TYPE.DELIVERY;
+  }
+
+  const hubriseServiceType = order.getIn(["attributes", "hubriseServiceType"]);
+
+  return hubriseServiceType === HUBRISE_PICKUP_TYPE
+    ? ORDER_DELIVERY_TYPE.PICKUP
+    : ORDER_DELIVERY_TYPE.DELIVERY;
+};
+
+export const isPickupOrder = order =>
+  getOrderDeliveryStatus(order) === ORDER_DELIVERY_TYPE.PICKUP;

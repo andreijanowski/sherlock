@@ -5,7 +5,11 @@ import { LoadingIndicator, DndColumn } from "components";
 import { Source } from "components/Dnd/Card/styled";
 import { ColumnsWrapper } from "./styled";
 import RejectModal from "./RejectModal";
-import { columns as columnsList, setIsDropDisabled } from "../utils";
+import {
+  columns as columnsList,
+  setIsDropDisabled,
+  getOrderDeliveryStatus
+} from "../utils";
 import Order from "./Order";
 
 const Orders = ({
@@ -79,15 +83,8 @@ const Orders = ({
                         : orders.get(id).getIn(["attributes", "origin"])}
                     </Source>
                   ),
-                renderCardFooter: id => (
-                  <>
-                    {`${
-                      orders.get(id).getIn(["attributes", "pickupAtBusiness"])
-                        ? "Pick up"
-                        : "Delivery"
-                    } `}
-                  </>
-                )
+                renderCardFooter: id =>
+                  t(getOrderDeliveryStatus(orders.get(id)))
               }}
             />
           );
