@@ -210,7 +210,9 @@ export const TagIcon = styled(({ isInvalid, ...p }) => (
 
 export const Error = styled.span`
   position: absolute;
-  bottom: -16px;
+  top: 100%;
+  max-width: 100%;
+  z-index: 1;
   width: 350px;
   color: rgb(${p => p.theme.colors.ruby});
   font-size: ${p => p.theme.fontSizes.f12};

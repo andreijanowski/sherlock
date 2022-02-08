@@ -231,5 +231,19 @@
   },
   "deliveryOrkestroStatus": "Orkestro delivery status",
   "autoAcceptOrders": "Accept orders automatically",
-  "dontAskAgain": "Don't ask again"
+  "dontAskAgain": "Don't ask again",
+  "dishOptions": {
+    "addCategory": "Add Option's List",
+    "addOption": "Add option",
+    "category": {
+      "nameLabel": "Category name",
+      "namePlaceholder": "Type in your options category",
+      "limit": "Limit"
+    },
+    "option": {
+      "name": "Option name",
+      "price": "Price",
+      "skuRef": "SKU"
+    }
+  }
 }

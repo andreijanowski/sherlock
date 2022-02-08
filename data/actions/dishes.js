@@ -4,9 +4,14 @@ import {
   DELETE_DISH_REQUEST,
   UPLOAD_DISHES_REQUEST
 } from "types/dishes";
-import { getRelationships } from "./utils";
+import { getDataRelationships, getRelationships } from "./utils";
 
-export const postDish = (values, bussinessId, categoryId) => ({
+export const postDish = (
+  values,
+  bussinessId,
+  categoryId,
+  dishOptionCategories
+) => ({
   type: POST_DISH_REQUEST,
   payload: {
     method: "POST",
@@ -19,7 +24,11 @@ export const postDish = (values, bussinessId, categoryId) => ({
         },
         relationships: {
           ...getRelationships("business", bussinessId),
-          ...getRelationships("category", categoryId)
+          ...getRelationships("category", categoryId),
+          ...getDataRelationships(
+            "dish_option_categories",
+            dishOptionCategories
+          )
         }
       }
     },
@@ -30,7 +39,12 @@ export const postDish = (values, bussinessId, categoryId) => ({
   meta: { thunk: true }
 });
 
-export const patchDish = (values, bussinessId, categoryId) => ({
+export const patchDish = (
+  values,
+  bussinessId,
+  categoryId,
+  dishOptionCategories
+) => ({
   type: PATCH_DISH_REQUEST,
   payload: {
     method: "PATCH",
@@ -44,7 +58,11 @@ export const patchDish = (values, bussinessId, categoryId) => ({
         },
         relationships: {
           ...getRelationships("business", bussinessId),
-          ...getRelationships("category", categoryId)
+          ...getRelationships("category", categoryId),
+          ...getDataRelationships(
+            "dish_option_categories",
+            dishOptionCategories
+          )
         }
       }
     },
