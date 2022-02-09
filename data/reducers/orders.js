@@ -89,19 +89,14 @@ const reducer = (state = initialState, { type, payload, meta }) => {
 
     case FETCH_ORDER_SUCCESS: {
       if (state.get("data") && state.get("data").size) {
-        let newState = state.mergeIn(
-          ["data", "orders"],
-          fromJS(payload.data.orders)
-        );
-        newState = newState.mergeIn(
-          ["data", "elements"],
-          fromJS(payload.data.elements)
-        );
-        newState = newState.mergeIn(
-          ["data", "addresses"],
-          fromJS(payload.data.addresses)
-        );
-        return newState;
+        return state
+          .mergeIn(["data", "orders"], fromJS(payload.data.orders))
+          .mergeIn(["data", "elements"], fromJS(payload.data.elements))
+          .mergeIn(["data", "addresses"], fromJS(payload.data.addresses))
+          .mergeIn(
+            ["data", "elementOptions"],
+            fromJS(payload.data.elementOptions)
+          );
       }
       return state.setIn(["data"], fromJS(payload.data));
     }

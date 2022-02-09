@@ -1,8 +1,11 @@
+import React, { Fragment } from "react";
 import { shape, string, func } from "prop-types";
 import { Button } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { OrderDetail, PaymentConfirmed, WaitingForPayment } from "./styled";
+import { getElementLabel } from "./utils";
 
 const Order = ({ order, id, t, setRejectModalVisibility, updateOrder }) => (
   <>
@@ -19,16 +22,30 @@ const Order = ({ order, id, t, setRejectModalVisibility, updateOrder }) => (
       </WaitingForPayment>
     )}
     {order.getIn(["relationships", "elements", "data"]) &&
-      order
-        .getIn(["relationships", "elements", "data"])
-        .map(element => (
-          <OrderDetail key={element.get("id")}>
-            {`${element.getIn(["attributes", "units"])}x ${element.getIn([
-              "attributes",
-              "dishName"
-            ])}`}
-          </OrderDetail>
-        ))}
+      order.getIn(["relationships", "elements", "data"]).map(element => {
+        const elementOptions = element.getIn([
+          "relationships",
+          "elementOptions",
+          "data"
+        ]);
+
+        return (
+          <Fragment key={element.get("id")}>
+            <OrderDetail>
+              {getElementLabel({ element, nameAttribute: "dishName" })}
+            </OrderDetail>
+            {elementOptions &&
+              elementOptions.map(option => (
+                <OrderDetail key={option.get("id")} pl={3}>
+                  {getElementLabel({
+                    element: option,
+                    nameAttribute: "dishOptionName"
+                  })}
+                </OrderDetail>
+              ))}
+          </Fragment>
+        );
+      })}
     {order.getIn(["attributes", "rejectReason"]) && (
       <Flex mt={3}>
         <Box width={1}>

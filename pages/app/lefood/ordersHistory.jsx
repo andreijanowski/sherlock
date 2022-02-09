@@ -73,12 +73,13 @@ class OrdersPage extends PureComponent {
         page,
         parseFilter(filter)
       );
-      const { orders, elements, addresses } = res.data;
+      const { orders, elements, addresses, elementOptions } = res.data;
       const { totalPages } = res.rawData.meta;
       const newOrders = mergeOrdersData(
         fromJS(orders),
         fromJS(elements),
-        fromJS(addresses)
+        fromJS(addresses),
+        fromJS(elementOptions)
       );
       this.setState(state => ({
         orders: page !== 1 ? state.orders.mergeDeep(newOrders) : newOrders,
