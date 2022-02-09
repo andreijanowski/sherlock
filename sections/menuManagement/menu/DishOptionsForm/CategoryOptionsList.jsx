@@ -7,7 +7,7 @@ import { required } from "utils/validators";
 import { AdaptiveBox, DeleteListItemBtn } from "components/styleguide/common";
 import { CloseIcon } from "components/Icons";
 import { useT } from "utils/hooks";
-import { normalizePrice } from "utils/normalizers";
+import { normalizePrice, normalizeString } from "utils/normalizers";
 import AddEntityButton from "./AddEntityButton";
 
 const CategoryOptionsList = ({ fields }) => {
@@ -60,6 +60,7 @@ const CategoryOptionsList = ({ fields }) => {
                     name={`${name}.skuRef`}
                     label={t("dishOptions.option.skuRef")}
                     placeholder={t("dishOptions.option.skuRef")}
+                    parse={normalizeString}
                   />
                 </Box>
                 <DeleteListItemBtn type="button" onClick={onDeleteOptionClick}>
