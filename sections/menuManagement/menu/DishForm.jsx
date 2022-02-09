@@ -14,7 +14,7 @@ import {
   PerfectSquare,
   Picture
 } from "components";
-import { normalizePrice } from "utils/normalizers";
+import { normalizePrice, normalizeString } from "utils/normalizers";
 import { required } from "utils/validators";
 import { ImportButton } from "./styled";
 
@@ -91,6 +91,7 @@ const DishForm = ({
           name="description"
           label={t("descriptionLabel")}
           placeholder={t("descriptionPlaceholder")}
+          parse={normalizeString}
         />
       </Box>
 
@@ -108,6 +109,7 @@ const DishForm = ({
           name="skuRef"
           label={t("sku")}
           placeholder={t("sku")}
+          parse={normalizeString}
         />
       </Box>
       <Box my={4}>
