@@ -255,7 +255,8 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       const preparedOrdersData = mergeOrdersData(
         immutablePayload.getIn(["rawData", "data"]),
         immutablePayload.getIn(["data", "elements"]),
-        immutablePayload.getIn(["data", "addresses"])
+        immutablePayload.getIn(["data", "addresses"]),
+        immutablePayload.getIn(["data", "elementOptions"])
       );
 
       if (meta.page === 1) {

@@ -383,13 +383,18 @@ export default requireAuth(true)(
         const orders = state.getIn(["orders", "data", "orders"]);
         const elements = state.getIn(["orders", "data", "elements"]);
         const addresses = state.getIn(["orders", "data", "addresses"]);
+        const elementOptions = state.getIn([
+          "orders",
+          "data",
+          "elementOptions"
+        ]);
 
         return {
           loading:
             (!state.getIn(["orders", "isFailed"]) &&
               !state.getIn(["orders", "isSucceeded"])) ||
             state.getIn(["orders", "isFetching"]),
-          orders: mergeOrdersData(orders, elements, addresses),
+          orders: mergeOrdersData(orders, elements, addresses, elementOptions),
           dishesLength:
             state.getIn(["dishes", "data", "dishes"]) &&
             state.getIn(["dishes", "data", "dishes"]).size,
