@@ -86,10 +86,13 @@ const reducer = (state = initialState, { type, payload, meta }) => {
 
     case PATCH_DISH_SUCCESS: {
       if (state.getIn(["data"]) && state.getIn(["data"]).size) {
-        return state.mergeDeepIn(
-          ["data", "dishes"],
-          fromJS(payload.data.dishes)
-        );
+        return state
+          .mergeIn(["data", "dishes"], fromJS(payload.data.dishes))
+          .mergeIn(
+            ["data", "dishOptionCategories"],
+            fromJS(payload.data.dishOptionCategories)
+          )
+          .mergeIn(["data", "dishOptions"], fromJS(payload.data.dishOptions));
       }
       return state.setIn(["data"], fromJS(payload.data));
     }

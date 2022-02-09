@@ -67,7 +67,7 @@ export const patchDish = (
       }
     },
     params: {
-      include: "category"
+      include: "category,dish_option_categories.dish_options"
     }
   },
   meta: { thunk: true }
