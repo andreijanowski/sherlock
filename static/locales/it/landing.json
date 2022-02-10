@@ -1,8 +1,18 @@
 {
   "topSection": {
     "header": {
-      "start": "Semplifichiamo",
-      "end": " la vita dei ristoratori"
+      "start": "Rendiamo la vita più facile per",
+      "middle": [
+        "ristoranti",
+        "Caffè",
+        "Bar e pub",
+        "Ghost Kitchens",
+        "Rivenditori",
+        "Macellai",
+        "Drogherie",
+        "Chioschi"
+      ],
+      "end": ""
     },
     "paragraph": "Foodetective integra tutti i vostri software e sistemi in un'unica piattaforma online. Le aziende F&B di tutte le dimensioni si affidano alle API di Foodetective per gestire il loro intero stack tecnologico, ridurre le inefficienze operative e migliorare le conoscenze aziendali.",
     "getStartedForFree": "Inizia gratuitamente",

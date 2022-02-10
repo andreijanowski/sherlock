@@ -1,8 +1,18 @@
 {
   "topSection": {
     "header": {
-      "start": "We make restaurants' lives",
-      "end": " much easier"
+      "start": "We make",
+      "middle": [
+        "Restaurants",
+        "Coffee Shops",
+        "Bars & Pubs",
+        "Ghost Kitchens",
+        "Retailers",
+        "Butchers",
+        "Grocery Shops",
+        "Kiosks"
+      ],
+      "end": "lives much easier"
     },
     "paragraph": "Foodetective integrates all your software and systems into a single platform online. F&B businesses of all sizes rely on Foodetective’s API to manage their entire tech stack, reduce operational inefficiencies, and improve business insights.",
     "getStartedForFree": "Register now in two minutes",

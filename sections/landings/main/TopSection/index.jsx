@@ -7,6 +7,7 @@ import { ImagesSlider, TopPartnersList } from "components/Landing";
 import { useLng, useT } from "utils/hooks";
 import { getPlanLoginPath } from "utils/plans";
 import { WRAPPER_WIDTH } from "utils/theme";
+import { TextScroller } from "components";
 import {
   H1Styled,
   ImagesSliderColumn,
@@ -35,9 +36,17 @@ const TopSection = () => {
       >
         <Box width={[1, 1, 1, 1 / 2]} pt={[46, null, null, 60]}>
           <H1Styled tabletCentered>
-            {`${t("landing:topSection.header.start")}
-            
-             ${t("landing:topSection.header.end")}`}
+            {t("landing:topSection.header.start")}
+            <TextScroller
+              key={lng}
+              scrollerProps={{
+                alignItems: ["center", null, null, "flex-start"]
+              }}
+              words={t("landing:topSection.header.middle", {
+                returnObjects: true
+              })}
+            />
+            {t("landing:topSection.header.end")}
           </H1Styled>
           <ImagesSliderColumn
             display={["block", null, null, "none"]}
