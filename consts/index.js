@@ -125,6 +125,12 @@ const INVEST_TYPEFORM_LINK = "https://foodetective.typeform.com/to/dFI4yOpP";
 
 const HOW_IT_WORKS_VIDEO_URL = "https://www.youtube.com/embed/HDZjyO5btxc";
 
+const GOOGLE_ADS_IDS = {
+  MAIN: process.env.GOOGLE_ADS_ID,
+  DEMO_BUTTON_EVENT: process.env.GOOGLE_ADS_DEMO_BUTTON_EVENT_ID,
+  PAGE_VIEW_EVENT: process.env.GOOGLE_ADS_PAGE_VIEW_EVENT_ID
+};
+
 module.exports = {
   contentTypes,
   languages,
@@ -174,5 +180,6 @@ module.exports = {
   ONLINE_MEETING_LINK,
   MANAGEMENT_ADV_VIDEO,
   INVEST_TYPEFORM_LINK,
-  HOW_IT_WORKS_VIDEO_URL
+  HOW_IT_WORKS_VIDEO_URL,
+  GOOGLE_ADS_IDS
 };

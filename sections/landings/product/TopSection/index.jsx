@@ -5,9 +5,8 @@ import { shape, string } from "prop-types";
 import { Trans } from "i18n";
 import { H1Landing, Subtitle } from "components/styleguide/Typography";
 import { useT } from "utils/hooks";
-import { SUBSCRIPTION_ENTREPRISE_URL } from "consts";
-import Button from "components/styleguide/Button";
 import { AdaptiveBox } from "components/styleguide/common";
+import { DemoButton } from "components/Landing";
 import { Container, TabletBlueText, TabletImageBox } from "./styled";
 
 const TopSection = ({ name, leftColumnProps }) => {
@@ -37,15 +36,7 @@ const TopSection = ({ name, leftColumnProps }) => {
             components={[<TabletBlueText />]}
           />
         </Subtitle>
-        <Button
-          as="a"
-          target="_blank"
-          href={SUBSCRIPTION_ENTREPRISE_URL}
-          rel="noreferrer noopener"
-          withArrow
-        >
-          {t("bookDemo")}
-        </Button>
+        <DemoButton />
       </Flex>
       <AdaptiveBox
         display={["none", null, null, "block"]}

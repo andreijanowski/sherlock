@@ -5,7 +5,8 @@ import {
   GoogleTagManagerScript,
   GoogleTagManagerNoscript,
   HubspotChatScript,
-  LinkedinAdsScript
+  LinkedinAdsScript,
+  GoogleAdsScript
 } from "scripts";
 import { PARTOO_SDK_URL } from "consts";
 
@@ -77,6 +78,7 @@ export default class MyDocument extends Document {
           <FacebookPixelScript />
           <HubspotChatScript />
           <LinkedinAdsScript />
+          <GoogleAdsScript />
           <script src={PARTOO_SDK_URL} type="text/javascript" />
         </Head>
         <body>

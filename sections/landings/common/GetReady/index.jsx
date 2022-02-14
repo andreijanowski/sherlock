@@ -2,12 +2,13 @@ import React, { useCallback } from "react";
 import { Box, Flex } from "@rebass/grid";
 import { useRouter } from "next/router";
 
-import { SUBSCRIPTION_ENTREPRISE_URL, SUBSCRIPTION_PLANS } from "consts";
+import { SUBSCRIPTION_PLANS } from "consts";
 import { getPlanLoginPath } from "utils/plans";
 import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
 import { useLng, useT } from "utils/hooks";
 import { Body, H1 } from "components/styleguide/Typography";
 import { AdaptiveBox } from "components/styleguide/common";
+import { DemoButton } from "components/Landing";
 import { Container, H3Styled, Image, ImageContainer } from "./styled";
 
 const GetReady = () => {
@@ -52,18 +53,11 @@ const GetReady = () => {
           flexDirection={["column", null, "row"]}
           justifyContent={["center", null, null, "flex-start"]}
         >
-          <Button
+          <DemoButton
             mr={[0, null, "13px"]}
             mb={[3, null, 0]}
             width={[1, null, "auto"]}
-            as="a"
-            target="_blank"
-            href={SUBSCRIPTION_ENTREPRISE_URL}
-            rel="noreferrer noopener"
-            withArrow
-          >
-            {t("landing:bookDemo")}
-          </Button>
+          />
           <Button
             width={[1, null, "auto"]}
             variant={BUTTON_VARIANT.SECONDARY}
