@@ -114,7 +114,7 @@ export const fetchBusinessOrders = (id, page = 1) => ({
         states:
           "waiting_for_approval,waiting_for_payment,paid,in_preparation,in_delivery"
       },
-      include: "addresses,elements"
+      include: "addresses,elements,elements.element_options"
     }
   },
   meta: { thunk: true, page }
@@ -127,7 +127,7 @@ export const fetchBusinessOrdersHistory = (id, page = 1, filter = {}) => ({
     params: {
       per_page: 15,
       page,
-      include: "addresses,elements",
+      include: "addresses,elements,elements.element_options",
       sort: "-placed_at",
       filter
     }
@@ -324,7 +324,7 @@ export const fetchLiveStream = (id, page = 1) => ({
     params: {
       per_page: LIVE_STREAM_PER_PAGE,
       page,
-      include: "addresses,elements",
+      include: "addresses,elements,elements.element_options",
       filter: {
         day: moment.utc().format("YYYY-MM-DD")
       },
