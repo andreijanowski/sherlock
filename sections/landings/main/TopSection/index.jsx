@@ -1,9 +1,9 @@
 import React from "react";
 import { Box, Flex } from "@rebass/grid";
 
-import { SUBSCRIPTION_ENTREPRISE_URL, SUBSCRIPTION_PLANS } from "consts";
+import { SUBSCRIPTION_PLANS } from "consts";
 import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
-import { ImagesSlider, TopPartnersList } from "components/Landing";
+import { DemoButton, ImagesSlider, TopPartnersList } from "components/Landing";
 import { useLng, useT } from "utils/hooks";
 import { getPlanLoginPath } from "utils/plans";
 import { WRAPPER_WIDTH } from "utils/theme";
@@ -64,15 +64,7 @@ const TopSection = () => {
             justifyContent={["center", null, null, "start"]}
           >
             <Box width={[1, null, "auto"]} mr={[0, null, 16]} my={2}>
-              <Button
-                as="a"
-                target="_blank"
-                href={SUBSCRIPTION_ENTREPRISE_URL}
-                rel="noreferrer noopener"
-                withArrow
-              >
-                {t("landing:bookDemo")}
-              </Button>
+              <DemoButton />
             </Box>
             <Box width={[1, null, "auto"]} my={2}>
               <Button

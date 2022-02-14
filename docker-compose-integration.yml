@@ -30,6 +30,9 @@ services:
       - ROLLBAR_ACCESS_TOKEN
       - PLANS_BUSINESS_EXAMPLE_LINK
       - PARTOO_SDK_URL
+      - GOOGLE_ADS_ID
+      - GOOGLE_ADS_DEMO_BUTTON_EVENT_ID
+      - GOOGLE_ADS_PAGE_VIEW_EVENT_ID
     networks:
       - frontend
     expose:

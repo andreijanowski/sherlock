@@ -2,12 +2,12 @@ import React, { useCallback, useMemo } from "react";
 import { Box } from "@rebass/grid";
 import { bool, func } from "prop-types";
 
-import { APP_URL, SUBSCRIPTION_ENTREPRISE_URL } from "consts";
+import { APP_URL } from "consts";
 import LanguageSwitcher from "components/LanguageSwitcher";
 import { useT } from "utils/hooks";
 import { Router } from "routes";
 import { AdaptiveBox } from "components/styleguide/common";
-import Button from "components/styleguide/Button";
+import { DemoButton } from "components/Landing";
 import {
   Container,
   LanguageSwitcherContainer,
@@ -87,16 +87,7 @@ const NavigationList = ({ isMenuOpened, hideMenu }) => {
         py={40}
         px={3}
       >
-        <Button
-          width={1}
-          as="a"
-          target="_blank"
-          href={SUBSCRIPTION_ENTREPRISE_URL}
-          rel="noreferrer noopener"
-          withArrow
-        >
-          {t("landing:bookDemo")}
-        </Button>
+        <DemoButton width={1} />
       </AdaptiveBox>
     </Container>
   );
