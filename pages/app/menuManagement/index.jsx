@@ -66,10 +66,28 @@ const MenuPage = ({
         skuRef,
         pricePerItemCents: convertToCents(values.pricePerItemCents)
       };
+
+      const preparedDishOptionsCategories =
+        dishOptionCategories &&
+        dishOptionCategories.map(optionsCategory => ({
+          ...optionsCategory,
+          dishOptions:
+            optionsCategory.dishOptions &&
+            optionsCategory.dishOptions.map(option => ({
+              ...option,
+              pricePerItemCents: convertToCents(option.pricePerItemCents)
+            }))
+        }));
+
       if (editedDishId) {
-        return updateDish(dish, editedDishId, category, dishOptionCategories);
+        return updateDish(
+          dish,
+          editedDishId,
+          category,
+          preparedDishOptionsCategories
+        );
       }
-      return addDish(dish, businessId, category, dishOptionCategories);
+      return addDish(dish, businessId, category, preparedDishOptionsCategories);
     },
     [addDish, businessId, editedDishId, updateDish]
   );
