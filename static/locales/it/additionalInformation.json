@@ -44,5 +44,6 @@
     "payment": "Pagamento",
     "loyalty": "Programma fedeltà",
     "social_media": "Social media"
-  }
+  },
+  "secretCodeHint": "Inserisci il codice che ti è stato comunicato dal tuo partner di attivazione o dal tuo rappresentante. (Se ti stai registrando di tua iniziativa, lascia questo campo vuoto)"
 }

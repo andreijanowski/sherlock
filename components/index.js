@@ -94,3 +94,4 @@ export { default as CurrencyGuard } from "./CurrencyGuard";
 export { default as Input } from "./Input";
 export { default as NotificationsSwitch } from "./NotificationsSwitch";
 export { default as TextScroller } from "./TextScroller";
+export { default as HintBox } from "./HintBox";

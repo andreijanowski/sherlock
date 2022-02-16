@@ -51,5 +51,6 @@
   "urlPlaceholder": "Enter url",
   "deletePrompt": "Do you want to delete {{service}} link?",
   "redirectionWebsiteLinks": "Links to your websites",
-  "redirectionServicesLinks": "Links to partners external services"
+  "redirectionServicesLinks": "Links to partners external services",
+  "secretCodeHint": "Please enter the code which has been communicated to you by your activation partner or sales rep. (If you are registering on your own initiative, please leave this empty)"
 }
