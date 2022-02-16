@@ -122,7 +122,12 @@ const OrderDetails = ({
                     notes: element.getIn(["attributes", "notes"]),
                     currency:
                       element.getIn(["attributes", "currency"]) ||
-                      orderDetails.getIn(["attributes", "currency"])
+                      orderDetails.getIn(["attributes", "currency"]),
+                    options: element.getIn([
+                      "relationships",
+                      "elementOptions",
+                      "data"
+                    ])
                   }}
                 />
               ))}

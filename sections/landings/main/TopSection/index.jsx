@@ -1,12 +1,13 @@
 import React from "react";
 import { Box, Flex } from "@rebass/grid";
 
-import { SUBSCRIPTION_ENTREPRISE_URL, SUBSCRIPTION_PLANS } from "consts";
+import { SUBSCRIPTION_PLANS } from "consts";
 import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
-import { ImagesSlider, TopPartnersList } from "components/Landing";
+import { DemoButton, ImagesSlider, TopPartnersList } from "components/Landing";
 import { useLng, useT } from "utils/hooks";
 import { getPlanLoginPath } from "utils/plans";
 import { WRAPPER_WIDTH } from "utils/theme";
+import { TextScroller } from "components";
 import {
   H1Styled,
   ImagesSliderColumn,
@@ -35,9 +36,17 @@ const TopSection = () => {
       >
         <Box width={[1, 1, 1, 1 / 2]} pt={[46, null, null, 60]}>
           <H1Styled tabletCentered>
-            {`${t("landing:topSection.header.start")}
-            
-             ${t("landing:topSection.header.end")}`}
+            {t("landing:topSection.header.start")}
+            <TextScroller
+              key={lng}
+              scrollerProps={{
+                alignItems: ["center", null, null, "flex-start"]
+              }}
+              words={t("landing:topSection.header.middle", {
+                returnObjects: true
+              })}
+            />
+            {t("landing:topSection.header.end")}
           </H1Styled>
           <ImagesSliderColumn
             display={["block", null, null, "none"]}
@@ -55,15 +64,7 @@ const TopSection = () => {
             justifyContent={["center", null, null, "start"]}
           >
             <Box width={[1, null, "auto"]} mr={[0, null, 16]} my={2}>
-              <Button
-                as="a"
-                target="_blank"
-                href={SUBSCRIPTION_ENTREPRISE_URL}
-                rel="noreferrer noopener"
-                withArrow
-              >
-                {t("landing:bookDemo")}
-              </Button>
+              <DemoButton />
             </Box>
             <Box width={[1, null, "auto"]} my={2}>
               <Button

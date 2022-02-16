@@ -6,3 +6,12 @@ export const getRelationships = (parent, id) => ({
     }
   }
 });
+
+export const getDataRelationships = (parent, data) => ({
+  [parent]: {
+    data: {
+      type: parent,
+      data
+    }
+  }
+});

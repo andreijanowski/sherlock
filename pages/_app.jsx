@@ -14,7 +14,12 @@ import isServer from "utils/isServer";
 import NProgress from "nprogress";
 import { Router } from "routes";
 import { StripeProvider } from "react-stripe-elements";
-import { STRIPE_API_KEY, GOOGLE_ANALYTICS_ID, rollbarConfig } from "consts";
+import {
+  STRIPE_API_KEY,
+  GOOGLE_ANALYTICS_ID,
+  rollbarConfig,
+  GOOGLE_ADS_IDS
+} from "consts";
 import ReactGA from "react-ga";
 import { fromJS } from "immutable";
 import Cookies from "js-cookie";
@@ -27,14 +32,26 @@ import {
 } from "actions/auth";
 import { pathChanged as pathChangedAction, setInstanceUuid } from "actions/app";
 import { requestNotificationsPermission } from "utils/misc";
+import { handleGtagEvent } from "utils/gtag";
 import { appWithTranslation } from "../i18n";
 import createStore from "../data/store";
 
 config.autoAddCss = false;
 
+const handlePageViewWithAds = () => {
+  if (!GOOGLE_ADS_IDS.PAGE_VIEW_EVENT) return;
+
+  handleGtagEvent({
+    event: "event",
+    action: "conversion",
+    to: GOOGLE_ADS_IDS.PAGE_VIEW_EVENT
+  });
+};
+
 ReactGA.initialize(GOOGLE_ANALYTICS_ID);
 if (!isServer) {
   ReactGA.pageview(window.location.pathname + window.location.search);
+  handlePageViewWithAds();
 }
 
 Router.events.on("routeChangeStart", () => {
@@ -43,6 +60,7 @@ Router.events.on("routeChangeStart", () => {
 Router.events.on("routeChangeComplete", route => {
   NProgress.done();
   ReactGA.pageview(route);
+  handlePageViewWithAds();
 });
 Router.events.on("routeChangeError", () => NProgress.done());
 

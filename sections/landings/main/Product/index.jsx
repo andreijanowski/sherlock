@@ -4,9 +4,10 @@ import { Flex } from "@rebass/grid";
 import { H2, H3 } from "components/styleguide/Typography";
 import { useLng, useT } from "utils/hooks";
 import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
-import { SUBSCRIPTION_ENTREPRISE_URL, SUBSCRIPTION_PLANS } from "consts";
+import { SUBSCRIPTION_PLANS } from "consts";
 import { getPlanLoginPath } from "utils/plans";
-import { Column, Container, Subtitle, Mockup } from "./styled";
+import { DemoButton } from "components/Landing";
+import { Column, Container, Mockup, Subtitle } from "./styled";
 
 const Product = () => {
   const t = useT("landing");
@@ -28,15 +29,7 @@ const Product = () => {
           <Subtitle mb={30} tabletCentered>
             {t("productContent.management.description")}
           </Subtitle>
-          <Button
-            as="a"
-            target="_blank"
-            href={SUBSCRIPTION_ENTREPRISE_URL}
-            rel="noreferrer noopener"
-            withArrow
-          >
-            {t("bookDemo")}
-          </Button>
+          <DemoButton />
         </Column>
         <Column>
           <H3 mb={3} tabletCentered>

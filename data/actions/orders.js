@@ -11,7 +11,7 @@ export const fetchOrder = id => ({
   payload: {
     endpoint: `/api/v1/orders/${id}`,
     params: {
-      include: "addresses,elements"
+      include: "addresses,elements,elements.element_options"
     }
   },
   meta: { thunk: true }
