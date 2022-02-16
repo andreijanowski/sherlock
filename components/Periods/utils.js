@@ -81,13 +81,39 @@ export const defaultTime = {
   minute: 0
 };
 
-export const addNewPeriod = (addPeriod, weekday) => {
-  const newPeriod = {
-    openedFrom: defaultTime,
-    openedTo: defaultTime,
-    weekday
-  };
-  addPeriod(parsePeriod(newPeriod));
+export const addNewPeriod = (addPeriod, weekday, formValues) => {
+  let prevWeekdayData;
+
+  if (formValues) {
+    // trying to get prev weekday data to copy it to current weekday if possible
+    const currentWeekdayIndex = weekdays.indexOf(weekday);
+    let prevWeekdayIndex = currentWeekdayIndex - 1;
+    while (!prevWeekdayData && prevWeekdayIndex >= 0) {
+      const prevWeekday = weekdays[prevWeekdayIndex];
+      prevWeekdayData = formValues[`day-${prevWeekday}`];
+      prevWeekdayIndex -= 1;
+    }
+  }
+
+  if (!prevWeekdayData) {
+    const newPeriod = {
+      openedFrom: defaultTime,
+      openedTo: defaultTime,
+      weekday
+    };
+    return addPeriod(parsePeriod(newPeriod));
+  }
+
+  return Promise.all(
+    prevWeekdayData.map(p => {
+      const newPeriod = {
+        openedFrom: p.openedFrom,
+        openedTo: p.openedTo,
+        weekday
+      };
+      return addPeriod(parsePeriod(newPeriod));
+    })
+  );
 };
 
 export const preparePeriodUpdate = value => {

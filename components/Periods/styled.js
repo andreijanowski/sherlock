@@ -30,3 +30,7 @@ export const Line = styled.div`
   height: 1px;
   background-color: rgb(${p => p.theme.colors.snuff});
 `;
+
+export const DayContainer = styled(Flex)`
+  position: relative;
+`;

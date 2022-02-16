@@ -1,31 +1,41 @@
 import { PureComponent } from "react";
-import {
-  RawCheckbox,
-  ActionIcon,
-  FormTimePicker,
-  FormInput,
-  AutoSave
-} from "components";
-import { Flex, Box } from "@rebass/grid";
+import { Box, Flex } from "@rebass/grid";
 import { FieldArray } from "react-final-form-arrays";
-import { func, number, bool, shape } from "prop-types";
-import { Actions, Action, Line } from "./styled";
+import { bool, func, number, shape } from "prop-types";
+
+import {
+  ActionIcon,
+  AutoSave,
+  FormInput,
+  FormTimePicker,
+  LoadingIndicator,
+  RawCheckbox
+} from "components";
+import { Actions, DayContainer, Line } from "./styled";
 import { addNewPeriod, preparePeriodUpdate } from "./utils";
 
 class Day extends PureComponent {
   state = {
-    isRequestPending: false
+    isRequestPending: false,
+    isUpdating: false
   };
 
-  handleChange = fields => {
-    const { removePeriod, addPeriod, weekday } = this.props;
+  handleChange = async fields => {
+    const { removePeriod, addPeriod, weekday, values } = this.props;
     if (fields.length) {
       for (let i = 0; i < fields.length; i += 1) {
         removePeriod(fields.value[i].id);
         fields.remove(0);
       }
     } else {
-      addNewPeriod(addPeriod, weekday);
+      this.setState({ isUpdating: true });
+      try {
+        await addNewPeriod(addPeriod, weekday, values);
+      } catch (e) {
+        console.error(e);
+      } finally {
+        this.setState({ isUpdating: false });
+      }
     }
   };
 
@@ -47,17 +57,8 @@ class Day extends PureComponent {
   };
 
   render() {
-    const {
-      t,
-      weekday,
-      addPeriod,
-      copy,
-      isCopiedDefined,
-      paste,
-      isLocationVisible,
-      mutators
-    } = this.props;
-    const { isRequestPending } = this.state;
+    const { t, weekday, addPeriod, isLocationVisible, mutators } = this.props;
+    const { isRequestPending, isUpdating } = this.state;
     return (
       <FieldArray name={`day-${weekday}`}>
         {({ fields }) => (
@@ -69,11 +70,12 @@ class Day extends PureComponent {
               arrayName={`day-${weekday}`}
               key="autoSave"
             />
-            <Flex
+            <DayContainer
               width={1}
               flexDirection={["column", "column", "column", "row"]}
               justifyContent="space-between"
             >
+              {isUpdating && <LoadingIndicator />}
               <Flex
                 justifyContent="space-between"
                 alignItems="center"
@@ -92,18 +94,6 @@ class Day extends PureComponent {
                       value: !!fields.length
                     }}
                   />
-                </Box>
-                {fields.value && !!fields.value.length && (
-                  <Box width="auto" mt={0}>
-                    <Action onClick={() => copy(fields.value)}>
-                      {t("copy")}
-                    </Action>
-                  </Box>
-                )}
-                <Box width="auto" mt={0}>
-                  {isCopiedDefined && (
-                    <Action onClick={() => paste(weekday)}>{t("paste")}</Action>
-                  )}
                 </Box>
               </Flex>
               <Flex flexDirection="column" width={[1, 1, 1, 0.6]} mt="12px">
@@ -165,7 +155,7 @@ class Day extends PureComponent {
                   </Flex>
                 ))}
               </Flex>
-            </Flex>
+            </DayContainer>
             {weekday !== 0 && <Line />}
           </>
         )}
@@ -180,11 +170,9 @@ Day.propTypes = {
   updatePeriod: func.isRequired,
   removePeriod: func.isRequired,
   weekday: number.isRequired,
-  copy: func.isRequired,
-  paste: func.isRequired,
   isLocationVisible: bool.isRequired,
-  isCopiedDefined: bool.isRequired,
-  mutators: shape().isRequired
+  mutators: shape().isRequired,
+  values: shape().isRequired
 };
 
 export default Day;
