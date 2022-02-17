@@ -43,11 +43,19 @@ const OrderDetails = ({
 
   const source = getOrderSource(orderDetails);
 
+  // we need to check, was it order created, when
+  // orkestro delivery was enabled
+  const withOrkestroDelivery =
+    orderDetails && orderDetails.getIn(["attributes", "withOrkestroDelivery"]);
+
+  const shouldFetchOrkestroOrderStatus =
+    isOpen && !isPickup && withOrkestroDelivery;
+
   useEffect(() => {
-    if (isOpen) {
+    if (shouldFetchOrkestroOrderStatus) {
       fetchOrkestroOrderStatus(orderId);
     }
-  }, [fetchOrkestroOrderStatus, isOpen, orderId]);
+  }, [fetchOrkestroOrderStatus, orderId, shouldFetchOrkestroOrderStatus]);
 
   return (
     <Slide
