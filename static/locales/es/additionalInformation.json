@@ -44,5 +44,6 @@
     "payment": "Pagos",
     "loyalty": "Programa de fidelización",
     "social_media": "Redes Sociales"
-  }
+  },
+  "secretCodeHint": "Por favor, introduzca el código que le ha comunicado su socio de activación o representante de ventas. (Si se registra por iniciativa propia, deje este campo vacío)"
 }

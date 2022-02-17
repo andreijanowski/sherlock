@@ -44,5 +44,6 @@
     "payment": "Paiement",
     "loyalty": "Fidélité",
     "social_media": "Réseaux Sociaux"
-  }
+  },
+  "secretCodeHint": "Veuillez saisir le code qui vous a été communiqué par votre partenaire d'activation ou votre représentant commercial. (Si vous vous enregistrez de votre propre initiative, veuillez laisser ce champ vide)."
 }
