@@ -144,7 +144,9 @@
       "unauthorized-Not allowed to create? this Widget": "Vous n'êtes pas autorisé à créer ce widget. Seuls les utilisateurs disposant d'un forfait payant peuvent utiliser des widgets.",
       "contains invalid characters (valid characters [a-z0-9-])-domains": "Les domaines contiennent des caractères non valides (caractères valides: [a-z0-9 \\ -])",
       "unsupported_business_city-base": "Orkestro n'est pas compatible avec votre ville.",
-      "stripe_error-base": "La devise de votre compte Stripe n'est pas la même que celle de votre abonnement"
+      "stripe_error-base": "La devise de votre compte Stripe n'est pas la même que celle de votre abonnement",
+      "invalid_time_string": "Utilisez un format hh:mm",
+      "wrong_end_date_format": "Veuillez mettre 23:59 au lieu de 00:00 pour l'heure de fermeture"
     }
   },
   "placeholder": {

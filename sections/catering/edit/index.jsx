@@ -10,8 +10,7 @@ import {
   FormTextarea,
   FormDropdown,
   FormDaypicker,
-  FormTimePicker,
-  parseTime
+  FormTimePicker
 } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Router } from "routes";
@@ -24,8 +23,8 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
     initialValues={{
       name: editedCatering.get("name"),
       date: editedCatering.get("date"),
-      from: parseTime(editedCatering.get("from")),
-      to: parseTime(editedCatering.get("to")),
+      from: editedCatering.get("from"),
+      to: editedCatering.get("to"),
       typeOfEvent: editedCatering.get("typeOfEvent"),
       outdoors: editedCatering.get("outdoors"),
       corporateEvent: editedCatering.get("corporateEvent"),
@@ -190,7 +189,7 @@ const EditCateringForm = ({ t, lng, editedCatering, handleFormSubmit }) => (
               type="button"
               onClick={() => {
                 Router.pushRoute(
-                  `/${lng}/app/catering/month?date=${editedCatering.get(
+                  `/${lng}/app/events-management/catering/month?date=${editedCatering.get(
                     "date"
                   )}`
                 );

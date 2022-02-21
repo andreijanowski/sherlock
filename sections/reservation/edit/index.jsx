@@ -7,8 +7,7 @@ import {
   FormInput,
   FormSelect,
   FormDaypicker,
-  FormTimePicker,
-  parseTime
+  FormTimePicker
 } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Router } from "routes";
@@ -31,8 +30,8 @@ const UpdateCateringForm = ({
     initialValues={{
       partySize: editedReservation.getIn(["attributes", "partySize"]),
       date: editedReservation.getIn(["attributes", "date"]),
-      from: parseTime(editedReservation.getIn(["attributes", "from"])),
-      to: parseTime(editedReservation.getIn(["attributes", "to"])),
+      from: editedReservation.getIn(["attributes", "from"]),
+      to: editedReservation.getIn(["attributes", "to"]),
       name: editedReservation.getIn(["attributes", "name"]),
       email: editedReservation.getIn(["attributes", "email"]),
       phoneCountry: countriesPhoneCodes.find(

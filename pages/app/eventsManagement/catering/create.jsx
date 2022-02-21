@@ -9,7 +9,7 @@ import { patchBusiness } from "actions/businesses";
 import { postCatering, sendCateringOffer } from "actions/caterings";
 import { Router } from "routes";
 import fileToBase64 from "utils/fileToBase64";
-import { timeToNumber, CalendarLayout } from "components";
+import { CalendarLayout } from "components";
 
 const namespaces = ["catering", "events", "app", "forms"];
 
@@ -35,8 +35,6 @@ class CreateCateringPage extends PureComponent {
     const { createCatering, lng, businessId, sendOffer } = this.props;
     const newCatering = {
       ...values,
-      from: values.from ? timeToNumber(values.from, "start") : undefined,
-      to: values.to ? timeToNumber(values.to, "end") : undefined,
       phoneCountryPrefix:
         phoneCountry && phoneCountry.value
           ? phoneCountry.value.prefix

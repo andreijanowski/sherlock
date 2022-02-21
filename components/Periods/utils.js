@@ -1,85 +1,34 @@
-export const parseTime = time => {
-  const hour24 = Math.floor(time / 60 / 60) % 24;
-  const hour = hour24 > 12 ? hour24 - 12 : hour24;
-  const minute = `0${(time / 60) % 60}`.slice(-2);
-  const meridiem = hour24 !== hour || hour === 12 ? "pm" : "am";
-
-  return {
-    hour24,
-    hour,
-    minute,
-    meridiem,
-    formatted: `${hour === 0 ? 12 : hour}:${minute} ${meridiem}`
-  };
-};
-
-export const timeToNumber = ({ hour24, minute }, startOrEnd) => {
-  const timeInSeconds = hour24 * 60 * 60 + minute * 60;
-  if (startOrEnd === "end" && timeInSeconds === 0) {
-    return 86400;
-  }
-  return timeInSeconds;
-};
-
 export const parsePeriods = periods => {
   const days = {};
   if (periods && periods.forEach) {
     periods.forEach(p => {
-      if (days[`day-${p.getIn(["attributes", "weekday"])}`]) {
-        days[`day-${p.getIn(["attributes", "weekday"])}`].push({
-          id: p.get("id"),
-          location: p.getIn(["attributes", "location"]),
-          openedFrom: parseTime(p.getIn(["attributes", "openedFrom"])),
-          openedTo: parseTime(p.getIn(["attributes", "openedTo"])),
-          weekday: p.getIn(["attributes", "weekday"])
-        });
-      } else {
-        days[`day-${p.getIn(["attributes", "weekday"])}`] = [
-          {
-            id: p.get("id"),
-            location: p.getIn(["attributes", "location"]),
-            openedFrom: parseTime(p.getIn(["attributes", "openedFrom"])),
-            openedTo: parseTime(p.getIn(["attributes", "openedTo"])),
-            weekday: p.getIn(["attributes", "weekday"])
-          }
-        ];
+      const dayKey = `day-${p.getIn(["attributes", "weekday"])}`;
+
+      if (!days[dayKey]) {
+        days[dayKey] = [];
       }
+
+      days[dayKey].push({
+        id: p.get("id"),
+        location: p.getIn(["attributes", "location"]),
+        openedFrom: p.getIn(["attributes", "openedFrom"]),
+        openedTo: p.getIn(["attributes", "openedTo"]),
+        weekday: p.getIn(["attributes", "weekday"])
+      });
     });
   }
   Object.entries(days).forEach(([key, value]) => {
-    days[key] = value.sort((a, b) => {
-      const aFrom = timeToNumber(a.openedFrom);
-      const bFrom = timeToNumber(b.openedFrom);
-      if (aFrom > bFrom) {
-        return 1;
-      }
-      if (aFrom < bFrom) {
-        return -1;
-      }
-      return 0;
-    });
+    days[key] = value.sort((a, b) => a.openedFrom - b.openedFrom);
   });
   return days;
 };
 
 export const weekdays = [1, 2, 3, 4, 5, 6, 0];
 
-export const parsePeriod = period => ({
-  location: period.location,
-  openedFrom: timeToNumber(period.openedFrom, "start"),
-  openedTo: timeToNumber(period.openedTo, "end"),
-  weekday: period.weekday
-});
-
-export const defaultTime = {
-  formatted: "12:00 am",
-  formatted24: "0:00",
-  formattedSimple: "12:00",
-  hour: 12,
-  hour24: 0,
-  meridiem: "am",
-  minute: 0
-};
+// we store our hours in seconds from midnight
+export const defaultOpenTime = 0;
+// 23 hours 59 minutes as seconds
+export const defaultCloseTime = 60 * 60 * 23 + 60 * 59;
 
 export const addNewPeriod = (addPeriod, weekday, formValues) => {
   let prevWeekdayData;
@@ -97,11 +46,11 @@ export const addNewPeriod = (addPeriod, weekday, formValues) => {
 
   if (!prevWeekdayData) {
     const newPeriod = {
-      openedFrom: defaultTime,
-      openedTo: defaultTime,
+      openedFrom: defaultOpenTime,
+      openedTo: defaultCloseTime,
       weekday
     };
-    return addPeriod(parsePeriod(newPeriod));
+    return addPeriod(newPeriod);
   }
 
   return Promise.all(
@@ -111,23 +60,23 @@ export const addNewPeriod = (addPeriod, weekday, formValues) => {
         openedTo: p.openedTo,
         weekday
       };
-      return addPeriod(parsePeriod(newPeriod));
+      return addPeriod(newPeriod);
     })
   );
 };
 
 export const preparePeriodUpdate = value => {
   let newPeriod;
-  let updatedPeriod = parsePeriod(value);
+  let updatedPeriod = value;
   if (updatedPeriod.openedFrom > updatedPeriod.openedTo) {
     newPeriod = {
       ...updatedPeriod,
-      openedFrom: 0,
+      openedFrom: defaultOpenTime,
       weekday: (updatedPeriod.weekday + 1) % 7
     };
     updatedPeriod = {
       ...updatedPeriod,
-      openedTo: 86400
+      openedTo: defaultCloseTime
     };
   }
   updatedPeriod = {
@@ -157,10 +106,8 @@ export const checkIfAlwaysOpen = values => {
 
   weekdays.forEach(weekday => {
     if (
-      values[`day-${weekday}`][0].openedFrom.hour === 0 &&
-      values[`day-${weekday}`][0].openedFrom.minute === "00" &&
-      values[`day-${weekday}`][0].openedTo.hour === 0 &&
-      values[`day-${weekday}`][0].openedTo.minute === "00"
+      values[`day-${weekday}`][0].openedFrom === 0 &&
+      values[`day-${weekday}`][0].openedTo === defaultCloseTime
     ) {
       counter += 1;
     }

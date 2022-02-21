@@ -9,7 +9,6 @@ import { postReservation } from "actions/reservations";
 import Form from "sections/reservation/create";
 import { patchBusiness } from "actions/businesses";
 import { Router } from "routes";
-import { timeToNumber } from "components";
 
 const namespaces = ["reservation", "app", "forms"];
 
@@ -26,14 +25,12 @@ const CreateReservationPage = ({
   changeCurrentBusiness
 }) => {
   const [isSending, setIsSending] = useState(false);
-  const handleFormSubmit = ({ phoneCountry, from, to, ...values }) => {
+  const handleFormSubmit = ({ phoneCountry, ...values }) => {
     setIsSending(true);
     addReservation(
       businessId,
       {
         ...values,
-        from: from ? timeToNumber(from, "start") : undefined,
-        to: to ? timeToNumber(to, "end") : undefined,
         phoneCountryPrefix:
           phoneCountry && phoneCountry.value
             ? phoneCountry.value.prefix

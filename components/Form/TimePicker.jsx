@@ -1,136 +1,68 @@
-import { PureComponent, createRef } from "react";
-import Timekeeper from "react-timekeeper";
+import React from "react";
 import { Field as FinalFormField } from "react-final-form";
-import onClickOutside from "react-onclickoutside";
-import { shape, string, bool, func } from "prop-types";
+import { func, string, bool } from "prop-types";
+
 import { LoadingIndicator } from "components";
-import {
-  FieldWrapper,
-  RawInput,
-  Label,
-  Error,
-  TimekeeperWrapper
-} from "./styled";
-import { getError, TimekeeperConfig } from "./utils";
+import { composeValidators, validateTimeString } from "utils/validators";
+import { useT } from "utils/hooks";
+import { Error, FieldWrapper, Label, RawInput } from "./styled";
+import { formatTimeNumber, getError, parseTimeString } from "./utils";
 
-class RawTimePicker extends PureComponent {
-  state = {
-    isTimekeeperVisible: false,
-    top: 0
-  };
+const TimePicker = ({
+  name,
+  validate,
+  label,
+  placeholder,
+  disabled,
+  isErrorVisibilityRequired,
+  ...rest
+}) => {
+  const t = useT();
 
-  timekeeperRef = createRef();
-
-  componentDidUpdate(_, { isTimekeeperVisible: wasTimekeeperVisible }) {
-    const { isTimekeeperVisible } = this.state;
-    if (!wasTimekeeperVisible && isTimekeeperVisible) {
-      const height = window.innerHeight;
-      const { bottom } = this.timekeeperRef.current.getBoundingClientRect();
-      const diff = height - bottom;
-      if (diff < 0) {
-        this.setTop(diff);
+  return (
+    <FinalFormField
+      name={name}
+      validate={
+        validate
+          ? composeValidators(validateTimeString(t), validate)
+          : validateTimeString(t)
       }
-    }
-  }
-
-  setTop = top => this.setState({ top });
-
-  handleFocus = () => {
-    const { input } = this.props;
-    input.onFocus();
-    this.setState({
-      isTimekeeperVisible: true
-    });
-  };
-
-  handleChange = time => {
-    const { input } = this.props;
-    input.onChange(time);
-  };
-
-  handleClickOutside = () => {
-    const { input, meta, handleBlur } = this.props;
-    if (meta.active) {
-      if (handleBlur) {
-        handleBlur(input.value);
-      }
-      input.onBlur();
-      this.setState({
-        isTimekeeperVisible: false,
-        top: 0
-      });
-    }
-  };
-
-  render() {
-    const { input, meta, name, disabled, placeholder, label } = this.props;
-    const { isTimekeeperVisible, top } = this.state;
-    const error = getError(meta);
-
-    return (
-      <FieldWrapper>
-        <RawInput
-          invalid={error ? "true" : undefined}
-          autoComplete="nope"
-          disabled={!error && disabled}
-          placeholder={placeholder}
-          value={input.value && input.value.formatted}
-          onFocus={this.handleFocus}
-          onBlur={!isTimekeeperVisible ? input.onBlur : undefined}
-          readOnly
-        />
-        <Label htmlFor={name}>{label}</Label>
-        {error && <Error>{error}</Error>}
-        {isTimekeeperVisible && (
-          <TimekeeperWrapper ref={this.timekeeperRef} top={top}>
-            <Timekeeper
-              time={input.value && input.value.formatted}
-              switchToMinuteOnHourSelect
-              onChange={time => this.handleChange(time)}
-              config={TimekeeperConfig}
+      parse={parseTimeString}
+      format={formatTimeNumber}
+      render={({ input, meta }) => {
+        const error = getError(meta, isErrorVisibilityRequired);
+        return (
+          <FieldWrapper {...rest}>
+            <RawInput
+              {...input}
+              disabled={!error && disabled}
+              invalid={error ? "true" : undefined}
+              autoComplete="nope"
+              placeholder={placeholder}
             />
-          </TimekeeperWrapper>
-        )}
-        {meta.data.saving && !meta.active && <LoadingIndicator />}
-      </FieldWrapper>
-    );
-  }
-}
-
-RawTimePicker.propTypes = {
-  input: shape().isRequired,
-  meta: shape().isRequired,
-  name: string.isRequired,
-  disabled: bool,
-  placeholder: string.isRequired,
-  label: string.isRequired,
-  handleBlur: func
+            <Label htmlFor={name}>{label}</Label>
+            {error && <Error>{error}</Error>}
+            {meta.data.saving && !meta.active && <LoadingIndicator />}
+          </FieldWrapper>
+        );
+      }}
+    />
+  );
 };
-
-RawTimePicker.defaultProps = {
-  disabled: false,
-  handleBlur: undefined
-};
-
-const EnhancedRawTimePicker = onClickOutside(RawTimePicker);
-
-const TimePicker = ({ name, validate, ...rest }) => (
-  <FinalFormField
-    name={name}
-    validate={validate}
-    render={({ input, meta }) => (
-      <EnhancedRawTimePicker {...{ name, input, meta, ...rest }} />
-    )}
-  />
-);
 
 TimePicker.propTypes = {
   name: string.isRequired,
-  validate: func
+  validate: func,
+  disabled: bool,
+  isErrorVisibilityRequired: bool,
+  placeholder: string.isRequired,
+  label: string.isRequired
 };
 
 TimePicker.defaultProps = {
-  validate: undefined
+  validate: undefined,
+  disabled: false,
+  isErrorVisibilityRequired: false
 };
 
 export default TimePicker;
