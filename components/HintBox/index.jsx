@@ -8,8 +8,12 @@ import { Container, HintContainer, HintIcon } from "./styled";
 const HintBox = ({ children, hint }) => (
   <Container>
     {children}
-    <Tippy content={<HintContainer>{hint}</HintContainer>}>
-      <HintIcon>
+    <Tippy
+      maxWidth="none"
+      placement="top-end"
+      content={<HintContainer>{hint}</HintContainer>}
+    >
+      <HintIcon ml={2}>
         <InfoIcon />
       </HintIcon>
     </Tippy>
