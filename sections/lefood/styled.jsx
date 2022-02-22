@@ -15,6 +15,6 @@ export const SplitFee = styled.div`
   width: 8em;
 `;
 
-export const StyledBox = styled(Box)`
+export const OutlineFreeBox = styled(Box)`
   outline: none;
 `;
