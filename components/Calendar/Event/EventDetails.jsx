@@ -53,7 +53,9 @@ const EventDetails = ({
           styleName="smallBlue"
           onClick={() => {
             setEditedEvent(event.resource);
-            Router.pushRoute(`/${lng}/app/${eventType}/edit/`);
+            Router.pushRoute(
+              `/${lng}/app/events-management/${eventType}/edit/`
+            );
           }}
         >
           {t("events:prepareOfer")}

@@ -6,7 +6,7 @@ import EditPrivatisationForm from "sections/privatisation/edit";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
 import { Router } from "routes";
-import { timeToNumber, LoadingIndicator, CalendarLayout } from "components";
+import { LoadingIndicator, CalendarLayout } from "components";
 import {
   patchPrivatisation,
   sendPrivatisationOffer
@@ -38,9 +38,7 @@ class EditPrivatisationPage extends PureComponent {
   handleFormSubmit = async ({ menu, currency, priceCents, ...values }, id) => {
     const { updatePrivatisation, lng, sendOffer } = this.props;
     const updatedPrivatisation = {
-      ...values,
-      from: timeToNumber(values.from, "start"),
-      to: timeToNumber(values.to, "end")
+      ...values
     };
     if (menu && menu.name) {
       updatedPrivatisation.menu = await fileToBase64(menu);

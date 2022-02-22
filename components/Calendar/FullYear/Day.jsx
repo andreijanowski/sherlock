@@ -7,7 +7,9 @@ const CalendarDay = ({ date, outside, dayFormat, events, lng }) => (
     {...{ outside }}
     onClick={() =>
       Router.pushRoute(
-        `/${lng}/app/catering/day?date=${date.format("YYYY-MM-DD")}`
+        `/${lng}/app/events-management/catering/day?date=${date.format(
+          "YYYY-MM-DD"
+        )}`
       )
     }
   >

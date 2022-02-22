@@ -6,7 +6,7 @@ import EditCateringForm from "sections/catering/edit";
 import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
 import { Router } from "routes";
-import { timeToNumber, LoadingIndicator, CalendarLayout } from "components";
+import { LoadingIndicator, CalendarLayout } from "components";
 import { patchCatering, sendCateringOffer } from "actions/caterings";
 import fileToBase64 from "utils/fileToBase64";
 import { convertToCents } from "utils/price";
@@ -35,9 +35,7 @@ class EditCateringPage extends PureComponent {
   handleFormSubmit = async ({ menu, currency, priceCents, ...values }, id) => {
     const { updateCatering, lng, sendOffer } = this.props;
     const updatedCatering = {
-      ...values,
-      from: timeToNumber(values.from, "start"),
-      to: timeToNumber(values.to, "end")
+      ...values
     };
     if (menu && menu.name) {
       updatedCatering.menu = await fileToBase64(menu);

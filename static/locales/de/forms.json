@@ -144,7 +144,9 @@
       "unauthorized-Not allowed to create? this Widget": "Sie dürfen dieses Widget nicht erstellen. Nur Benutzer mit kostenpflichtigem Plan können Widgets verwenden.",
       "contains invalid characters (valid characters [a-z0-9-])-domains": "Domains enthalten ungültige Zeichen (gültige Zeichen: [a-z0-9 \\ -])",
       "unsupported_business_city-base": "Orkestro wird in Ihrer Stadt nicht unterstützt.",
-      "stripe_error-base": "Die Stripe-Währung Ihres Unternehmens entspricht nicht der Währung des Abonnementplans"
+      "stripe_error-base": "Die Stripe-Währung Ihres Unternehmens entspricht nicht der Währung des Abonnementplans",
+      "invalid_time_string": "Benutzen Sie ein hh:mm-Format",
+      "wrong_end_date_format": "Bitte geben Sie 23:59 anstelle von 00:00 für die Sperrstunde ein"
     }
   },
   "placeholder": {

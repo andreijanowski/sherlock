@@ -11,6 +11,7 @@ import {
   LoadingIndicator,
   RawCheckbox
 } from "components";
+import { validateEndDateFormat } from "utils/validators";
 import { Actions, DayContainer, Line } from "./styled";
 import { addNewPeriod, preparePeriodUpdate } from "./utils";
 
@@ -124,6 +125,7 @@ class Day extends PureComponent {
                         name={`${name}.openedTo`}
                         label={t("openedToLabel")}
                         placeholder={t("openedToPlaceholder")}
+                        validate={validateEndDateFormat(t)}
                         loading={isRequestPending}
                       />
                     </Box>

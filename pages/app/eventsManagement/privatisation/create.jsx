@@ -11,7 +11,7 @@ import {
 } from "actions/privatisations";
 import { Router } from "routes";
 import fileToBase64 from "utils/fileToBase64";
-import { timeToNumber, CalendarLayout } from "components";
+import { CalendarLayout } from "components";
 import { patchBusiness } from "actions/businesses";
 
 const namespaces = ["privatisation", "events", "app", "forms"];
@@ -33,15 +33,11 @@ class CreatePrivatisationPage extends PureComponent {
     addressRegion,
     menu,
     currency,
-    from,
-    to,
     ...values
   }) => {
     const { createPrivatisation, lng, businessId, sendOffer } = this.props;
     const newPrivatisation = {
       ...values,
-      from: from ? timeToNumber(from, "start") : undefined,
-      to: to ? timeToNumber(to, "end") : undefined,
       phoneCountryPrefix:
         phoneCountry && phoneCountry.value
           ? phoneCountry.value.prefix

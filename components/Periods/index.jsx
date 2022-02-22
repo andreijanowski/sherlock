@@ -11,9 +11,6 @@ import Day from "./Day";
 import {
   weekdays,
   parsePeriods,
-  parsePeriod,
-  parseTime,
-  timeToNumber,
   isMovableBusiness,
   addNewPeriod,
   checkIfAlwaysOpen
@@ -112,10 +109,4 @@ PeriodsForm.defaultProps = {
 
 export default PeriodsForm;
 
-export {
-  parsePeriods,
-  parsePeriod,
-  parseTime,
-  timeToNumber,
-  isMovableBusiness
-};
+export { parsePeriods, isMovableBusiness };
