@@ -33,6 +33,9 @@ services:
       - GOOGLE_ADS_ID
       - GOOGLE_ADS_DEMO_BUTTON_EVENT_ID
       - GOOGLE_ADS_PAGE_VIEW_EVENT_ID
+      - NEWSLETTER_GOOGLE_SHEET_ID
+      - GOOGLE_SHEET_SERVICE_ACCOUNT_EMAIL
+      - GOOGLE_SHEET_SERVICE_ACCOUNT_KEY
     networks:
       - frontend
     expose:
