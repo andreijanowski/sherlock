@@ -43,5 +43,13 @@
     }
   },
   "copyrightNote": "© {{currentYear}} The Food Detective SA. Todos los derechos reservados.",
-  "workInFoodetective": "Unete al equipo"
+  "workInFoodetective": "Unete al equipo",
+  "newsletter": {
+    "title": "Newsletter",
+    "send": "Enviar",
+    "caption": "Apúntate a nuestro boletín para recibir la última información sobre Foodetective Business",
+    "success": "Ya está suscrito a nuestro boletín de noticias",
+    "fail": "Hubo un problema. Por favor, inténtalo de nuevo",
+    "email": "Correo electrónico"
+  }
 }

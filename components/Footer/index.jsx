@@ -14,6 +14,7 @@ import NavigationList from "./navigationList";
 import { getConfig } from "./utils";
 import Socials from "./Socials";
 import Copyrights from "./Copyrights";
+import NewsletterForm from "./NewsletterForm";
 
 const Footer = () => {
   const t = useT("footer");
@@ -23,6 +24,8 @@ const Footer = () => {
     <FooterWrapper>
       <MenuWrapper>
         <NavItem width={[1, 1 / 2, 2 / 5]} p={2}>
+          <ColumnTitle>{t("newsletter.title")}</ColumnTitle>
+          <NewsletterForm />
           <ColumnTitle>{t("navigation.columnFour.title")}</ColumnTitle>
           <Socials />
         </NavItem>

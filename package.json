@@ -45,6 +45,7 @@
     "final-form-arrays": "^1.1.2",
     "final-form-set-field-data": "^1.0.2",
     "google-maps-react": "^2.0.2",
+    "google-spreadsheet": "^3.2.0",
     "humps": "^2.0.1",
     "immutable": "^4.0.0-rc.12",
     "iso-3166-2": "^1.0.0",
