@@ -38,6 +38,7 @@ export const Input = styled.input`
   &::placeholder {
     color: rgb(${themeGet("colors.white")});
   }
+  width: 100px;
 `;
 
 export const Button = styled(Box).attrs({ as: "button" })`
