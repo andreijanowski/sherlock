@@ -20,6 +20,10 @@ export const FlexWrapper = styled(Flex)`
 export const H2Styled = styled(H2).attrs({ big: true })`
   max-width: 470px;
   color: rgb(${p => p.theme.colors.greyBorder});
+  @media (max-width: ${p => p.theme.breakpoints[2]}) {
+    margin: 6px auto;
+    text-align: center;
+  }
 `;
 
 export const ImageContainer = styled.div`
@@ -32,11 +36,16 @@ export const ImageContainer = styled.div`
 
 export const Overlay = styled.div`
   position: absolute;
+  border: 1px solid rgb(${p => p.theme.colors.greyBorder});
   border-radius: 40px 0 0 40px;
   background-color: ${p => `rgba(${p.theme.colors.blue}, 0.29)`};
   z-index: 2;
   width: 100%;
   height: 555px;
+  @media (max-width: ${p => p.theme.breakpoints[0]}) {
+    height: 0;
+    border: 0;
+  }
   top: 0;
   left: 0;
 `;
@@ -45,7 +54,7 @@ export const FeatureImage = styled.div`
   position: absolute;
   opacity: 100%;
   top: 160px;
-  left: -150px;
+  left: -120px;
   @media (max-width: ${p => p.theme.breakpoints[2]}) {
     left: -10px;
   }
