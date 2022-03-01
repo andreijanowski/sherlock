@@ -13,7 +13,7 @@ import { DevelopersSection } from "sections/landings/developers";
 
 const DOWNLOAD_SECTION_ID = "downloadApp";
 
-const CustomersPage = () => (
+const DevelopersPage = () => (
   <LandingWrapper width={1} alignItems="center" flexDirection="column">
     <NavigationWrapper isDark>
       <Navigation />
@@ -30,4 +30,4 @@ const CustomersPage = () => (
   </LandingWrapper>
 );
 
-export default requireAuth(false)(CustomersPage);
+export default requireAuth(false)(DevelopersPage);

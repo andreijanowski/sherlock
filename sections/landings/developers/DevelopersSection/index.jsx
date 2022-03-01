@@ -7,11 +7,14 @@ import { AdaptiveBox } from "components/styleguide/common";
 import { CTAButton } from "components/Landing";
 import { apiGuideLink } from "consts";
 import {
+  APIImage,
   Container,
   H2Styled,
   FeatureImage,
+  FlexWrapper,
   Image,
   ImageContainer,
+  Overlay,
   SubtitleStyled
 } from "./styled";
 
@@ -23,22 +26,20 @@ const DevelopersSection = () => {
       alignItems="center"
       px={3}
       pt="90px"
-      pb={["80px", null, null, "105px"]}
+      pb={["80px", null, null, "0"]}
       flexWrap={["wrap", "wrap", "nowrap"]}
     >
-      <Flex
+      <FlexWrapper
         flexDirection="column"
         alignItems={["center", null, null, "flex-start"]}
         width={[1, null, null, 3 / 5]}
       >
-        <H1 tabletCentered mb={["24px", null, null, "32px"]}>
+        <H1 tabletCentered mb={["24px", null, null, "0"]}>
           {t("landing:landings.developers.title")}
         </H1>
         <Box mb={[48, null, null, 60]}>
           <AdaptiveBox>
-            <H2Styled tabletCentered>
-              {t("landing:landings.developers.subtitle")}
-            </H2Styled>
+            <H2Styled>{t("landing:landings.developers.subtitle")}</H2Styled>
           </AdaptiveBox>
           <AdaptiveBox>
             <SubtitleStyled tabletCentered>
@@ -59,13 +60,14 @@ const DevelopersSection = () => {
             width={[1, null, "auto"]}
           />
         </Flex>
-      </Flex>
+      </FlexWrapper>
       <AdaptiveBox width={[1, null, 1 / 2, 2 / 5]} pl={[0, null, 20]}>
         <ImageContainer>
+          <Overlay />
           <FeatureImage>
             <Image src="/static/img/geats.svg" />
           </FeatureImage>
-          <Image src="/static/img/developersapi.svg" />
+          <APIImage src="/static/img/developersapi.svg" />
         </ImageContainer>
       </AdaptiveBox>
     </Container>
