@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Flex } from "@rebass/grid";
 
 import { useT } from "utils/hooks";
-import { H1 } from "components/styleguide/Typography";
+import { H1Landing } from "components/styleguide/Typography";
 import { AdaptiveBox } from "components/styleguide/common";
 import { CTAButton } from "components/Landing";
 import { apiGuideLink } from "consts";
@@ -34,9 +34,9 @@ const DevelopersSection = () => {
         alignItems={["center", null, null, "flex-start"]}
         width={[1, null, null, 3 / 5]}
       >
-        <H1 tabletCentered mb={["24px", null, null, "0"]}>
+        <H1Landing tabletCentered mb={["24px", null, null, "0"]}>
           {t("landing:landings.developers.title")}
-        </H1>
+        </H1Landing>
         <Box mb={[48, null, null, 60]}>
           <AdaptiveBox>
             <H2Styled>{t("landing:landings.developers.subtitle")}</H2Styled>

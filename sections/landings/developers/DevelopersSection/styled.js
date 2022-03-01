@@ -37,7 +37,7 @@ export const ImageContainer = styled.div`
 export const Overlay = styled.div`
   position: absolute;
   border: 1px solid rgb(${p => p.theme.colors.greyBorder});
-  border-radius: 40px 0 0 40px;
+  border-radius: 40px;
   background-color: ${p => `rgba(${p.theme.colors.blue}, 0.29)`};
   z-index: 2;
   width: 100%;
