@@ -9,6 +9,7 @@ import { apiGuideLink } from "consts";
 import {
   Container,
   H2Styled,
+  FeatureImage,
   Image,
   ImageContainer,
   SubtitleStyled
@@ -34,12 +35,12 @@ const DevelopersSection = () => {
           {t("landing:landings.developers.title")}
         </H1>
         <Box mb={[48, null, null, 60]}>
-          <AdaptiveBox display={["none", null, null, "block"]}>
+          <AdaptiveBox>
             <H2Styled tabletCentered>
               {t("landing:landings.developers.subtitle")}
             </H2Styled>
           </AdaptiveBox>
-          <AdaptiveBox display={["none", null, null, "block"]}>
+          <AdaptiveBox>
             <SubtitleStyled tabletCentered>
               {t("landing:landings.developers.description")}
             </SubtitleStyled>
@@ -59,12 +60,11 @@ const DevelopersSection = () => {
           />
         </Flex>
       </Flex>
-      <AdaptiveBox
-        display={["none", null, null, "block"]}
-        width={[1, null, 1 / 2, 2 / 5]}
-        pl={[0, null, 20]}
-      >
+      <AdaptiveBox width={[1, null, 1 / 2, 2 / 5]} pl={[0, null, 20]}>
         <ImageContainer>
+          <FeatureImage>
+            <Image src="/static/img/geats.svg" />
+          </FeatureImage>
           <Image src="/static/img/developersapi.svg" />
         </ImageContainer>
       </AdaptiveBox>
