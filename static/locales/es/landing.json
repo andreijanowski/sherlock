@@ -653,6 +653,12 @@
           }
         ]
       }
+    },
+    "developers": {
+      "title": "Developers & API",
+      "subtitle": "Acceda a nuestra API",
+      "description": "Nuestros socios desarrollan tecnologías y software que permiten que cada vez más empresas se digitalicen. Por eso hemos diseñado un programa para acelerar y amplificar su impacto.",
+      "cta": "Lea la documentación"
     }
   },
   "step": "Step {{step}}",
