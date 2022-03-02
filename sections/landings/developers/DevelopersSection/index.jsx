@@ -63,11 +63,11 @@ const DevelopersSection = () => {
       </FlexWrapper>
       <AdaptiveBox width={[1, null, 1 / 2, 2 / 5]} pl={[0, null, 20]}>
         <ImageContainer>
+          <APIImage src="/static/img/developersapi.svg" />
           <Overlay />
           <FeatureImage>
             <Image src="/static/img/geats.svg" />
           </FeatureImage>
-          <APIImage src="/static/img/developersapi.svg" />
         </ImageContainer>
       </AdaptiveBox>
     </Container>
