@@ -14,7 +14,9 @@ export const Container = styled(Flex)`
 `;
 
 export const FlexWrapper = styled(Flex)`
-  z-index: 1;
+  @media (min-width: ${p => p.theme.breakpoints[2]}) {
+    z-index: 1;
+  }
 `;
 
 export const H2Styled = styled(H2).attrs({ big: true })`
@@ -39,12 +41,12 @@ export const Overlay = styled.div`
   border: 1px solid rgb(${p => p.theme.colors.greyBorder});
   border-radius: 40px;
   background-color: ${p => `rgba(${p.theme.colors.blue}, 0.29)`};
-  z-index: 2;
   width: 100%;
   height: 555px;
   @media (max-width: ${p => p.theme.breakpoints[0]}) {
     height: 0;
     border: 0;
+    display: none;
   }
   top: 0;
   left: 0;
@@ -58,7 +60,6 @@ export const FeatureImage = styled.div`
   @media (max-width: ${p => p.theme.breakpoints[2]}) {
     left: -10px;
   }
-  z-index: 3;
 `;
 
 export const APIImage = styled.img`
