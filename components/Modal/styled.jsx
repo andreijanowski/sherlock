@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from "styled-components";
 export const ModalStyles = createGlobalStyle`
   .modal-overlay {
     padding: 16px;
-    background-color: rgba(${p => p.theme.colors.dark}, 0.46);
+    background-color: rgba(${p => p.theme.colors.dark}, 0.16);
     @media (min-width: ${p => p.theme.breakpoints[0]}) {
       padding: 32px;
     }
