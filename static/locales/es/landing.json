@@ -659,6 +659,11 @@
       "subtitle": "Acceda a nuestra API",
       "description": "Nuestros socios desarrollan tecnologías y software que permiten que cada vez más empresas se digitalicen. Por eso hemos diseñado un programa para acelerar y amplificar su impacto.",
       "cta": "Lea la documentación"
+    },
+    "demo": {
+      "cta": "Volver al sitio web",
+      "title": "¡Su demostración ha sido reservada con éxito!",
+      "subtitle": "Nos pondremos en contacto con usted en un plazo de 24 horas" 
     }
   },
   "step": "Step {{step}}",

@@ -659,6 +659,11 @@
       "subtitle": "Accedi al nostro API",
       "description": "I nostri partner sviluppano tecnologie e software che permettono a sempre più aziende di passare al digitale. Così abbiamo progettato un programma per accelerare e amplificare il loro impatto.",
       "cta": "Leggere la documentazione"
+    },
+    "demo": {
+      "cta": "Torna al sito web",
+      "title": "La tua demo è stata prenotata con successo!",
+      "subtitle": "Vi contatteremo entro 24 ore" 
     }
   },
   "step": "Step {{step}}",

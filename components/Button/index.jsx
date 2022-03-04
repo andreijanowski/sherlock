@@ -33,6 +33,15 @@ const signUpCTA = css`
   }
 `;
 
+const popup = css`
+  ${login}
+  background: rgb(${p => p.theme.colors.b2bSecondary});
+  &:hover:enabled {
+    background-color: rgba(${p => p.theme.colors.facebookBlue}, 1);
+    box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.facebookBlue}, 0.48);
+  }
+`;
+
 const signUpContactSales = css`
   ${login}
   background:  rgba(${p => p.theme.colors.white}, 0.3);
@@ -315,6 +324,7 @@ const Button = styled.button`
   ${p => p.styleName === "goToApiDocs" && goToApiDocs};
   ${p => p.styleName === "becomePartner" && becomePartner};
   ${p => p.styleName === "underline" && underline};
+  ${p => p.styleName === "popup" && popup};
   ${p => p.fluid && fluid};
   ${p => p.fullHeight && fullHeight};
 
