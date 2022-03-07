@@ -7,7 +7,7 @@ export const ModalStyles = createGlobalStyle`
 
   .modal-modal {
     padding: 0;
-    border-radius: 16px;
+    border-radius: 18px;
   }
 
   .modal-closeButton {
@@ -26,10 +26,9 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   margin: auto;
-  border-radius: 16px;
+  border-radius: 18px;
   background-color: white;
   padding-bottom: 24px;
-  overflow: hidden;
 `;
 
 export const Title = styled.div`
@@ -39,8 +38,9 @@ export const Title = styled.div`
   flex-direction: column;
   align-items: center;
   color: white;
-  width: calc(100% + 32px);
   text-align: center;
+  border-radius: 15px 15px 0 0;
+  max-width: 620px;
 `;
 
 export const Image = styled.img`

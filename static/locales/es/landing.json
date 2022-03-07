@@ -664,6 +664,11 @@
       "cta": "Volver al sitio web",
       "title": "¡Su demostración ha sido reservada con éxito!",
       "subtitle": "Nos pondremos en contacto con usted en un plazo de 24 horas" 
+    },
+    "welcome": {
+      "title":  "¡Bienvenido a Foodetective!",
+      "subtitle": "Su cuenta ha sido creada con éxito. Iniciar la incorporación",
+      "cta": "Start"
     }
   },
   "step": "Step {{step}}",
