@@ -664,6 +664,11 @@
       "cta": "Return to Website",
       "title": "You have successfully booked a demo!",
       "subtitle": "You will be contacted within 24 hours" 
+    },
+    "welcome": {
+      "title":  "Welcome to Foodetective!",
+      "subtitle": "You have successfully created an account. Next, provide your business information to start using the platform",
+      "cta": "Start"
     }
   },
   "step": "Step {{step}}",

@@ -667,6 +667,11 @@
       "cta": "Retourner au site web",
       "title": "Votre démo à été réservée avec succès!",
       "subtitle": "Nous vous contacterons dans les 24h" 
+    },
+    "welcome": {
+      "title":  "Bienvenue chez Foodetective!",
+      "subtitle": "Votre compte à été créé avec succès. Commencer l'onboarding",
+      "cta": "Start"
     }
   },
   "step": "Step {{step}}",

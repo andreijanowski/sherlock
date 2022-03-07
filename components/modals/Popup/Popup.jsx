@@ -7,13 +7,13 @@ import { useLng } from "utils/hooks";
 import { H3, Subtitle } from "components/styleguide/Typography";
 import { Image, ModalStyles, Title, Wrapper } from "./styled";
 
-const Popup = ({ cta, title, subtitle, image }) => {
+const Popup = ({ cta, ctaLink, title, subtitle, image }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const lng = useLng();
 
   const onClose = () => {
-    router.push(`/${lng}`);
+    router.push(`/${lng}${ctaLink}`);
     setIsModalOpen(false);
   };
 
@@ -47,9 +47,12 @@ const Popup = ({ cta, title, subtitle, image }) => {
 
 Popup.defaultProps = {
   subtitle: "",
-  image: ""
+  image: "",
+  ctaLink: ""
 };
+
 Popup.propTypes = {
+  ctaLink: string,
   cta: string.isRequired,
   subtitle: string,
   title: string.isRequired,
