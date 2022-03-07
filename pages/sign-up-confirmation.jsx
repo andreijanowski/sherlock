@@ -1,5 +1,4 @@
 import React from "react";
-import requireAuth from "lib/requireAuth";
 
 import { Footer } from "components";
 import { Popup } from "components/modals";
@@ -23,7 +22,7 @@ import {
   TopSectionWrapper
 } from "sections/landings/common/sharedStyled";
 
-const Home = () => {
+const SignUpConfirm = () => {
   const t = useT();
 
   return (
@@ -63,4 +62,4 @@ const Home = () => {
   );
 };
 
-export default requireAuth(true)(Home);
+export default SignUpConfirm;
