@@ -22,7 +22,7 @@ import {
   TopSectionWrapper
 } from "sections/landings/common/sharedStyled";
 
-const SignUpConfirm = () => {
+const SignUpConfirmation = () => {
   const t = useT();
 
   return (
@@ -53,13 +53,13 @@ const SignUpConfirm = () => {
       </FooterWrapper>
       <Popup
         cta={t("landing:landings.welcome.cta")}
-        ctaLink="/app"
         title={t("landing:landings.welcome.title")}
         subtitle={t("landing:landings.welcome.subtitle")}
         image="/static/img/popup1.svg"
+        hasRedirection
       />
     </LandingWrapper>
   );
 };
 
-export default SignUpConfirm;
+export default SignUpConfirmation;
