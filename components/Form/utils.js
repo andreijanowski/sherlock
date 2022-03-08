@@ -1,4 +1,6 @@
-import { colors } from "utils/theme";
+import moment from "moment";
+
+import { validateTimeString } from "utils/validators";
 
 export const getError = (meta, isErrorVisibilityRequired) =>
   isErrorVisibilityRequired
@@ -13,36 +15,43 @@ export const getArraysDiff = (a = [], b = [], err) =>
         -1
   );
 
-export const TimekeeperConfig = {
-  // main container
-  TIMEPICKER_BACKGROUND: `rgb(${colors.white})`,
-  FONT_FAMILY: '"Inter UI", sans-serif',
-  DONE_BUTTON_COLOR: `rgb(${colors.dark})`,
-  DONE_BUTTON_BORDER_COLOR: `rgb(${colors.snuff})`,
+const partiallyTimeRegexp = /^\d\d\d$/;
 
-  // time
-  TIME_BACKGROUND: `rgb(${colors.white})`,
-  TIME_DEFAULT_COLOR: `rgb(${colors.dark})`,
-  TIME_SELECTED_COLOR: `rgb(${colors.blue})`,
+const formatTimeDigits = units => String(units).padStart(2, "0");
 
-  // time dropdown
-  DROPDOWN_BORDER: `rgb(${colors.snuff})`,
-  DROPDOWN_COLOR: `rgb(${colors.dark})`,
-  DROPDOWN_SELECTED_COLOR: `rgb(${colors.background})`,
+export const formatTimeNumber = s => {
+  // if we received non-number value from store, we dont need to parse it
+  if (typeof s !== "number") return s;
+  const duration = moment.duration(s, "seconds");
+  return [
+    formatTimeDigits(duration.get("hours")),
+    formatTimeDigits(duration.get("minutes"))
+  ].join(":");
+};
 
-  // clock wrapper
-  CLOCK_WRAPPER_BACKGROUND: `rgb(${colors.blue})`,
-  CLOCK_WRAPPER_MERIDIEM_BACKGROUND: `rgb(${colors.white})`,
-  CLOCK_WRAPPER_MERIDIEM_COLOR: `rgb(${colors.dark})`,
-  CLOCK_WRAPPER_MERIDIEM_BACKGROUND_COLOR_SELECTED: `rgb(${colors.background})`,
-  CLOCK_WRAPPER_MERIDIEM_TEXT_COLOR_SELECTED: `rgb(${colors.blue})`,
+export const formatPartialTimeString = s => {
+  if (partiallyTimeRegexp.test(s)) {
+    return s
+      .slice(0, 2)
+      .concat(":")
+      .concat(s.slice(2));
+  }
+  return s;
+};
 
-  // clock
-  CLOCK_BACKGROUND: `rgb(${colors.white})`,
-  CLOCK_NUMBER_COLOR: `rgb(${colors.dark})`,
-  CLOCK_HAND_ARM: `rgb(${colors.snuff})`,
-  CLOCK_HAND_CIRCLE_BACKGROUND: `rgb(${colors.snuff})`,
-  CLOCK_HAND_INTERMEDIATE_CIRCLE_BACKGROUND: `rgb(${colors.snuff})`
+export const parseTimeString = s => {
+  // if no value or error validation error exists we dont want to
+  // provide seconds data to form, so we will store there raw string value
+  if (!s || validateTimeString(v => v)(s)) {
+    return formatPartialTimeString(s);
+  }
+  const [hours, minutes] = s.split(":");
+  return moment
+    .duration({
+      hours,
+      minutes
+    })
+    .as("seconds");
 };
 
 export const getMenuFileName = fileName => fileName.split("/").slice(-1)[0];

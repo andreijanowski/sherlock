@@ -43,7 +43,7 @@ import StripeCurrencyModal from "components/StripeSetupModal/StripeCurrencyModal
 import { checkIsBusinessStripeLoading } from "utils/businessUtils";
 import StopOrdersModal from "./StopOrdersModal";
 import FinishOrdersModal from "./FinishOrdersModal";
-import { Orange, SplitFee } from "./styled";
+import { Orange, SplitFee, OutlineFreeBox } from "./styled";
 
 const splitRatioList = [
   { value: "0.0", label: "0%" },
@@ -422,7 +422,7 @@ const LefoodLayout = ({
               </Link>
             </Box>
             <Tippy content={t("averageDeliveryTime")}>
-              <Box pr={3} mb={2}>
+              <OutlineFreeBox pr={3} mb={2}>
                 <Select
                   items={averageDeliveryTimeList(t)}
                   value={currentAverageDeliveryTime}
@@ -443,7 +443,7 @@ const LefoodLayout = ({
                     </Button>
                   )}
                 />
-              </Box>
+              </OutlineFreeBox>
             </Tippy>
             <Tippy content={t("minAmountForDelivery")}>
               <Box pr={3} mb={2}>

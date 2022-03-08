@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { setCurrentBusiness } from "actions/app";
 import { Router } from "routes";
 import ReservationLayout from "sections/reservation/Layout";
-import { timeToNumber, LoadingIndicator } from "components";
+import { LoadingIndicator } from "components";
 import { patchReservation } from "actions/reservations";
 import { patchBusiness } from "actions/businesses";
 
@@ -31,12 +31,10 @@ class EditReservatoinPage extends PureComponent {
     }
   }
 
-  handleFormSubmit = async ({ from, to, phoneCountry, ...values }, id) => {
+  handleFormSubmit = async ({ phoneCountry, ...values }, id) => {
     const { updateReservation, lng } = this.props;
     const updatedReservation = {
       ...values,
-      from: from ? timeToNumber(from, "start") : undefined,
-      to: to ? timeToNumber(to, "end") : undefined,
       phoneCountryPrefix:
         phoneCountry && phoneCountry.value
           ? phoneCountry.value.prefix

@@ -11,9 +11,6 @@ import Day from "./Day";
 import {
   weekdays,
   parsePeriods,
-  parsePeriod,
-  parseTime,
-  timeToNumber,
   isMovableBusiness,
   addNewPeriod,
   checkIfAlwaysOpen
@@ -28,7 +25,6 @@ const PeriodsForm = ({
   isLocationVisible,
   currentPage
 }) => {
-  const [copied, copy] = useState(undefined);
   const [isAlwaysOpen, setIsAlwaysOpen] = useState(
     checkIfAlwaysOpen(initialValues)
   );
@@ -36,15 +32,6 @@ const PeriodsForm = ({
   useEffect(() => {
     setIsAlwaysOpen(checkIfAlwaysOpen(initialValues));
   }, [initialValues]);
-
-  const paste = weekday => {
-    if (copied && copied.length) {
-      copied.forEach(c => {
-        addPeriod(parsePeriod({ ...c, weekday }));
-      });
-    }
-    return null;
-  };
 
   const handleOnChange = values => {
     weekdays.forEach(weekday => {
@@ -87,13 +74,11 @@ const PeriodsForm = ({
           {weekdays.map(weekday => (
             <Day
               t={t}
+              values={values}
               weekday={weekday}
               addPeriod={addPeriod}
               updatePeriod={updatePeriod}
               removePeriod={removePeriod}
-              copy={copy}
-              isCopiedDefined={!!copied}
-              paste={paste}
               isLocationVisible={isLocationVisible}
               mutators={mutators}
               key={weekday}
@@ -124,10 +109,4 @@ PeriodsForm.defaultProps = {
 
 export default PeriodsForm;
 
-export {
-  parsePeriods,
-  parsePeriod,
-  parseTime,
-  timeToNumber,
-  isMovableBusiness
-};
+export { parsePeriods, isMovableBusiness };

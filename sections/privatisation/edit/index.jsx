@@ -10,8 +10,7 @@ import {
   FormTextarea,
   FormDropdown,
   FormDaypicker,
-  FormTimePicker,
-  parseTime
+  FormTimePicker
 } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Router } from "routes";
@@ -29,8 +28,8 @@ const EditPrivatisationForm = ({
     initialValues={{
       name: editedPrivatisation.get("name"),
       date: editedPrivatisation.get("date"),
-      from: parseTime(editedPrivatisation.get("from")),
-      to: parseTime(editedPrivatisation.get("to")),
+      from: editedPrivatisation.get("from"),
+      to: editedPrivatisation.get("to"),
       typeOfEvent: editedPrivatisation.get("typeOfEvent"),
       corporateEvent: editedPrivatisation.get("corporateEvent"),
       companyName: editedPrivatisation.get("companyName"),
@@ -166,7 +165,7 @@ const EditPrivatisationForm = ({
               type="button"
               onClick={() => {
                 Router.pushRoute(
-                  `/${lng}/app/privatisation/month?date=${editedPrivatisation.get(
+                  `/${lng}/app/events-management/privatisation/month?date=${editedPrivatisation.get(
                     "date"
                   )}`
                 );

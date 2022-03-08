@@ -55,14 +55,7 @@ export { default as FullYearCalendar } from "./Calendar/FullYear";
 export { parseEvents as parseCalendarEvents } from "./Calendar/utils";
 export { default as MenusUploader } from "./MenusUploader";
 export { default as Map } from "./Map";
-export {
-  default as Periods,
-  parsePeriods,
-  parsePeriod,
-  parseTime,
-  timeToNumber,
-  isMovableBusiness
-} from "./Periods";
+export { default as Periods, parsePeriods, isMovableBusiness } from "./Periods";
 export { default as InfoBar } from "./InfoBar";
 export { default as AutosizeInput } from "./AutosizeInput";
 export { default as CookiesModal } from "./CookiesModal";
@@ -94,3 +87,4 @@ export { default as CurrencyGuard } from "./CurrencyGuard";
 export { default as Input } from "./Input";
 export { default as NotificationsSwitch } from "./NotificationsSwitch";
 export { default as TextScroller } from "./TextScroller";
+export { default as HintBox } from "./HintBox";

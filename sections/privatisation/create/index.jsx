@@ -178,7 +178,9 @@ const CreatePrivatisationForm = ({ t, lng, isSending, handleFormSubmit }) => (
               fluid
               type="button"
               onClick={() => {
-                Router.pushRoute(`/${lng}/app/privatisation/month/`);
+                Router.pushRoute(
+                  `/${lng}/app/events-management/privatisation/month/`
+                );
               }}
             >
               {t("forms:cancel")}

@@ -27,5 +27,13 @@
     }
   },
   "copyrightNote": "© {{currentYear}} The Food Detective SA. All rights reserved.",
-  "workInFoodetective": "Join the team"
+  "workInFoodetective": "Join the team",
+  "newsletter": {
+    "title": "Newsletter",
+    "send": "Send",
+    "caption": "Sign up to our newsletter to receive the latest updates on our platform",
+    "success": "You successfully subscribed to email newsletter",
+    "fail": "Something went wrong",
+    "email": "Email address"
+  }
 }

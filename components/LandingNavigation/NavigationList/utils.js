@@ -1,5 +1,4 @@
 import {
-  apiGuideLink,
   NEWS_ROOM_URL,
   PARTNERS_URL,
   CAREERS_FOODETECTIVE_EMAIL,
@@ -22,12 +21,7 @@ export const getMenuItems = t => [
   },
   {
     label: t("landing:developersAndApi"),
-    items: [
-      {
-        label: t("landing:documentation"),
-        href: apiGuideLink
-      }
-    ]
+    href: "/developers"
   },
   {
     label: t("landing:pricing"),

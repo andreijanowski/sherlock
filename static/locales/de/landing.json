@@ -653,6 +653,22 @@
           }
         ]
       }
+    },
+    "developers": {
+      "title": "Developers & API",
+      "subtitle": "Greifen Sie auf unsere API zu",
+      "description": "Unsere Partner entwickeln Technologien und Software, die es immer mehr Unternehmen ermöglichen, sich zu digitalisieren. Daher haben wir ein Programm entwickelt, um ihre Wirkung zu beschleunigen und zu verstärken.",
+      "cta": "Lesen Sie die Dokumentation"
+    },
+    "demo": {
+      "cta": "Zurück zur Website",
+      "title": "Ihre Demo wurde erfolgreich gebucht!",
+      "subtitle": "Wir werden Sie innerhalb von 24 Stunden kontaktieren." 
+    },
+    "welcome": {
+      "title":  "Willkommen bei Foodetective!",
+      "subtitle": "Ihr Konto wurde erfolgreich erstellt. Mit dem Onboarding beginnen",
+      "cta": "Start"
     }
   },
   "step": "Step {{step}}",

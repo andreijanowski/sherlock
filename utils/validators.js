@@ -1,3 +1,4 @@
+import moment from "moment";
 import { isEmail as isValidEmail, isInt, isNumeric } from "validator";
 
 export const composeValidators = (...validators) => (...values) =>
@@ -80,3 +81,19 @@ export const matchYoutubeUrl = t => url => {
   }
   return t("forms:validation.error.url-youtube");
 };
+
+const timeRegexp = /^\d\d:\d\d$/;
+
+export const validateTimeString = t => date => {
+  if (typeof date !== "string") return undefined;
+  const momentDate = moment(date, "HH:mm");
+  // we have time label with hh:mm format and its valid in moment
+  const isValidTime = timeRegexp.test(date) && momentDate.isValid();
+
+  return isValidTime
+    ? undefined
+    : t("forms:validation.error.invalid_time_string");
+};
+
+export const validateEndDateFormat = t => date =>
+  date === 0 ? t("forms:validation.error.wrong_end_date_format") : undefined;

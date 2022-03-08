@@ -149,7 +149,9 @@
       "url-service_url": "Invalid service url",
       "invalid_files": "Invalid file format",
       "cannot_set_without_publishing-visible_in_lefood": "Your business should be published at first.",
-      "stripe_error-base": "Your business stripe currency is not equal to subscription plan currency"
+      "stripe_error-base": "Your business stripe currency is not equal to subscription plan currency",
+      "invalid_time_string": "Use hh:mm date format",
+      "wrong_end_date_format": "Please put 23:59 instead of 00:00 for closing hour"
     }
   },
   "placeholder": {

@@ -12,6 +12,7 @@ const handleOauthCallback = require("./handleOauthCallback");
 const handleTokenRefresh = require("./handleTokenRefresh");
 const handleUserLogout = require("./handleUserLogout");
 const handleInstantLogin = require("./handleInstantLogin");
+const handleNewsletterSubscription = require("./handleNewsletterSubscription");
 const apiMiddleware = require("./apiMiddleware");
 const handleNextjs = require("./handleNextjs");
 const startServer = require("./startServer");
@@ -46,6 +47,11 @@ const pusherParser = bodyParser.urlencoded({
   server.get("/instant-login", handleInstantLogin);
   server.get("/oauth-callback", handleOauthCallback);
   server.post("/refresh-token", handleTokenRefresh);
+  server.post(
+    "/newsletter-subscription",
+    bodyParser.json(),
+    handleNewsletterSubscription
+  );
   server.use(pusherParser);
   server.use("/api", apiParser, apiMiddleware);
   handleNextjs(handler, server);

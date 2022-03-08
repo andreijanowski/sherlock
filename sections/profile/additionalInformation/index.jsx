@@ -10,8 +10,10 @@ import {
   FormSelect,
   FormInput,
   AutoSave,
-  LoadingIndicator
+  LoadingIndicator,
+  HintBox
 } from "components";
+import { Trans } from "i18n";
 import currencies from "utils/currencies";
 import { Form } from "../styled";
 import { timeOfTheDay, paymentMethods } from "./utils";
@@ -75,7 +77,13 @@ const AdditionalInformationForm = ({ t, initialValues, handleSubmit }) =>
               </Box>
             ))}
           </Flex>
-          <H3 mt={3}>{t("secretCode")}</H3>
+          <HintBox
+            hint={
+              <Trans t={t} i18nKey="secretCodeHint" components={[<br />]} />
+            }
+          >
+            <H3 mt={3}>{t("secretCode")}</H3>
+          </HintBox>
           <FormInput
             name="secretCode"
             label={t("secretCodeLabel")}

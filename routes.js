@@ -156,6 +156,12 @@ module.exports = routes()
   .add("product/marketing", `/:lng(${languagesPattern})/product/marketing`)
   .add("howItWorks", `/:lng(${languagesPattern})/how-it-works`)
   .add("customers", `/:lng(${languagesPattern})/customers`)
+  .add("developers", `/:lng(${languagesPattern})/developers`)
+  .add("demo_booked", `/:lng(${languagesPattern})/demo_booked`)
+  .add(
+    "sign-up-confirmation",
+    `/:lng(${languagesPattern})/sign-up-confirmation`
+  )
   .add("app/comingSoon", [
     `/:lng(${languagesPattern})/app/app-manager`,
     `/:lng(${languagesPattern})/app/reviews`,
