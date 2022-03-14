@@ -669,6 +669,14 @@
       "title":  "¡Bienvenido a Foodetective!",
       "subtitle": "Su cuenta ha sido creada con éxito. Iniciar la incorporación",
       "cta": "Start"
+    },
+    "newsroom": {
+      "title": "Newsroom",
+      "blog": "Blog",
+      "news": "News",
+      "featured": "Destacado",
+      "other": "Otras noticias",
+      "more": "Cargar más"
     }
   },
   "step": "Step {{step}}",

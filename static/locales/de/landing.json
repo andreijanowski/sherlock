@@ -669,6 +669,14 @@
       "title":  "Willkommen bei Foodetective!",
       "subtitle": "Ihr Konto wurde erfolgreich erstellt. Mit dem Onboarding beginnen",
       "cta": "Start"
+    },
+    "newsroom": {
+      "title": "Newsroom",
+      "blog": "Blog",
+      "news": "News",
+      "featured": "Vorgestellt",
+      "other": "Andere Nachrichten",
+      "more": "Mehr Laden"
     }
   },
   "step": "Step {{step}}",
