@@ -5,7 +5,13 @@ import { useT } from "utils/hooks";
 
 import { theme } from "utils/theme";
 import { getThemeHexColor } from "utils/colors";
-import { SwitchStyles, SwitchWrapper, Officon, Handler } from "./styled";
+import {
+  SwitchStyles,
+  SwtichOnLabel,
+  SwtichOffLabel,
+  SwitchWrapper,
+  Officon
+} from "./styled";
 
 const SwitchBlogButton = ({ isFetching, isBlog, onChange }) => {
   const t = useT("landing");
@@ -13,6 +19,7 @@ const SwitchBlogButton = ({ isFetching, isBlog, onChange }) => {
   return (
     <SwitchWrapper mr={3}>
       <SwitchStyles />
+      {isBlog ? <SwtichOnLabel /> : <SwtichOffLabel />}
       <Switch
         disabled={isFetching}
         checked={isBlog}
@@ -24,11 +31,10 @@ const SwitchBlogButton = ({ isFetching, isBlog, onChange }) => {
         onColor={getThemeHexColor(theme.colors.darkBlue)}
         boxShadow={`0 1px 3px rgba(${theme.colors.blue}, 0.48)`}
         activeBoxShadow={`0 0 0 3px rgba(${theme.colors.blue}, 0.48)`}
-        uncheckedHandleIcon={<Handler>{t("landings.newsroom.blog")}</Handler>}
-        checkedHandleIcon={<Handler>{t("landings.newsroom.news")}</Handler>}
         uncheckedIcon={<Officon>{t("landings.newsroom.news")}</Officon>}
         checkedIcon={<Officon>{t("landings.newsroom.blog")}</Officon>}
         className="react-switch"
+        id="small-radius-switch"
       />
     </SwitchWrapper>
   );

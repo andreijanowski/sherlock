@@ -8,17 +8,6 @@ export const SwitchWrapper = styled(Box)`
   max-height: 40px;
 `;
 
-export const Handler = styled.div`
-  height: 100%;
-  width: 100%;
-  color: red;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  font-size: 16px;
-  z-index: 2;
-`;
-
 export const Officon = styled.div`
   color: white;
   display: flex;
@@ -33,14 +22,47 @@ export const SwitchStyles = createGlobalStyle`
     border: 1px solid white;
 
     .react-switch-bg {
+      position: initial !important;
       margin: 0 24px !important;
       height: 28px !important;
+
+      & >div:nth-child(2) {
+        right: 10px !important;
+      }
     }
   
     .react-switch-handle {
-      width: 86px !important;
+      left: -1px;
+      width: 88px !important;
       border-radius: 24px !important;
       max-height: 38px;
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+
+      &::before {
+        color: rgb(${p => p.theme.colors.b2bSecondary});
+      }
+    }
+  }
+`;
+
+export const SwtichOffLabel = createGlobalStyle`
+  .react-switch {  
+    .react-switch-handle {
+      &::before {
+        content: 'Blog';
+      }
+    }
+  }
+`;
+
+export const SwtichOnLabel = createGlobalStyle`
+  .react-switch {  
+    .react-switch-handle {
+      &::before {
+        content: 'News';
+      }
     }
   }
 `;
