@@ -1,13 +1,15 @@
 import {
   FETCH_NEWS_POSTS_REQUEST,
   FETCH_NEWS_POSTS_SUCCESS,
-  FETCH_NEWS_POSTS_FAIL
+  FETCH_NEWS_POSTS_FAIL,
+  FETCH_IMAGE_SUCCESS
 } from "types/newsroom";
 
 import { Record, Map, fromJS } from "immutable";
 
 export const initialState = Record({
   data: Map(),
+  image: Map(),
   isFetching: false,
   isFailed: false,
   isSucceeded: false
@@ -45,6 +47,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           isFailed: true
         })()
       );
+    }
+
+    case FETCH_IMAGE_SUCCESS: {
+      return state.setIn(["image"], fromJS(payload.data));
     }
 
     default: {

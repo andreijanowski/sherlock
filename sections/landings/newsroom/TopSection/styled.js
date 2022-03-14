@@ -4,7 +4,11 @@ import { Box } from "@rebass/grid";
 import { H2, H3 } from "components";
 import { H1Landing } from "components/styleguide/Typography";
 
-export const Container = styled(Box)``;
+export const Container = styled(Box)`
+  @media (max-width: ${p => p.theme.breakpoints[1]}) {
+    flex-direction: column;
+  }
+`;
 
 export const Title = styled(H1Landing)`
   text-align: center;
@@ -36,4 +40,10 @@ export const MainArticle = styled.div`
 
 export const Image = styled(Box).attrs({ as: "img" })`
   margin: 36px;
+  max-width: 440px;
+
+  @media (max-width: ${p => p.theme.breakpoints[1]}) {
+    max-width: 250px;
+    margin: 10px auto;
+  }
 `;

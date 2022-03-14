@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { arrayOf, func, shape } from "prop-types";
+import { func, shape } from "prop-types";
 
 import { Footer } from "components";
 import {
@@ -17,16 +17,20 @@ import {
   WhiteWrapper
 } from "sections/landings/product/styled";
 import { TopSection, ArticlesSection } from "sections/landings/newsroom";
-import { selectNews } from "selectors/newsroom";
-import { fetchNewsPosts as fetchNewsPostsAction } from "actions/newsroom";
+import { selectNews, selectImage } from "selectors/newsroom";
+import {
+  fetchNewsPosts as fetchNewsPostsAction,
+  fetchImage as fetchImageAction
+} from "actions/newsroom";
 
 const DOWNLOAD_SECTION_ID = "downloadApp";
 
-const NewsroomPage = ({ fetchNewsPosts, newsList }) => {
+const NewsroomPage = ({ fetchNewsPosts, fetchImage, newsList, image }) => {
   const [isBlog, setIsBlog] = useState(true);
   useEffect(() => {
     fetchNewsPosts();
-  }, [fetchNewsPosts]);
+    fetchImage();
+  }, [fetchNewsPosts, fetchImage]);
 
   return (
     <LandingWrapper width={1} alignItems="center" flexDirection="column">
@@ -37,7 +41,8 @@ const NewsroomPage = ({ fetchNewsPosts, newsList }) => {
         <TopSection
           onContentChange={setIsBlog}
           isBlog={isBlog}
-          article={newsList && newsList.toList()[0]}
+          article={newsList && newsList.first()}
+          image={image && image.first()}
         />
       </TopSectionWrapper>
       <WhiteWrapper>
@@ -58,15 +63,19 @@ const NewsroomPage = ({ fetchNewsPosts, newsList }) => {
 
 NewsroomPage.propTypes = {
   fetchNewsPosts: func.isRequired,
-  newsList: arrayOf(shape()).isRequired
+  fetchImage: func.isRequired,
+  newsList: shape().isRequired,
+  image: shape().isRequired
 };
 
 const mapState = state => ({
-  newsList: selectNews(state)
+  newsList: selectNews(state),
+  image: selectImage(state)
 });
 
 const mapDispatch = {
-  fetchNewsPosts: fetchNewsPostsAction
+  fetchNewsPosts: fetchNewsPostsAction,
+  fetchImage: fetchImageAction
 };
 
 export default compose(

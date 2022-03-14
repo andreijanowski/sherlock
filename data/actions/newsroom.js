@@ -1,4 +1,4 @@
-import { FETCH_NEWS_POSTS_REQUEST } from "types/newsroom";
+import { FETCH_NEWS_POSTS_REQUEST, FETCH_IMAGE_REQUEST } from "types/newsroom";
 
 export const fetchNewsPosts = (page = 1) => ({
   type: FETCH_NEWS_POSTS_REQUEST,
@@ -10,4 +10,12 @@ export const fetchNewsPosts = (page = 1) => ({
     }
   },
   meta: { thunk: true, page }
+});
+
+export const fetchImage = () => ({
+  type: FETCH_IMAGE_REQUEST,
+  payload: {
+    endpoint: "/api/v1/banners/newsroom"
+  },
+  meta: { thunk: true }
 });

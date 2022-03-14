@@ -1,6 +1,6 @@
 import React from "react";
 
-import { bool, func } from "prop-types";
+import { bool, func, shape } from "prop-types";
 
 import { useT } from "utils/hooks";
 import { SwitchBlogButton } from "components/Landing";
@@ -15,25 +15,30 @@ import {
   MainArticle
 } from "./styled";
 
-const TopSection = ({ onContentChange, isBlog }) => {
+const TopSection = ({ onContentChange, isBlog, article, image }) => {
   const t = useT("landing");
+  const img = image && image.getIn(["attributes", "picture", "url"]);
 
   return (
     <Container pt={[20, null, null, 20]} pb={52} px={3}>
       <Title>{t("landings.newsroom.title")}</Title>
       <SwitchBlogButton onChange={onContentChange} isBlog={isBlog} />
-      <Flex mb={250} mx={160} justifyContent="space-between">
+      <Flex
+        mb={250}
+        mx={[20, null, null, 160]}
+        justifyContent="space-between"
+        flexWrap="wrap"
+      >
         <MainArticle>
           <FeatureLabel>{t("landings.newsroom.featured")}</FeatureLabel>
           <StyledH2>
-            Sneak a peak into our Las Vegas experience at CES 2022.
+            {article && article.getIn(["attributes", "headline"])}
           </StyledH2>
           <StyledH3>
-            Explore how tech meets innovation and follow us in this cosmic ride
-            ! Read the news
+            {article && article.getIn(["attributes", "date"])}
           </StyledH3>
         </MainArticle>
-        <Image src="/static/img/newsroom.png" />
+        {img && <Image src={img} />}
       </Flex>
     </Container>
   );
@@ -41,8 +46,9 @@ const TopSection = ({ onContentChange, isBlog }) => {
 
 TopSection.propTypes = {
   onContentChange: func.isRequired,
-  isBlog: bool.isRequired
-  // article: shape().isRequired
+  isBlog: bool.isRequired,
+  article: shape().isRequired,
+  image: shape().isRequired
 };
 
 export default TopSection;
