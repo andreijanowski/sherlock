@@ -25,7 +25,6 @@ const TopSection = ({
   image
 }) => {
   const t = useT("landing");
-  console.log(article && article.toJS());
 
   return (
     <Container pt={[20, null, null, 20]} pb={52} px={3}>
