@@ -1,25 +1,36 @@
 import styled from "styled-components";
-import { Box } from "@rebass/grid";
+import { Flex, Box } from "@rebass/grid";
 
 import { H2, H3 } from "components/styleguide/Typography";
 
 export const Container = styled(Box)`
-  margin-top: -150px;
+  @media (min-width: ${p => p.theme.breakpoints[2]}) {
+    margin-top: -150px;
+  }
+`;
+
+export const FlexWrapper = styled(Flex)`
+  max-width: 1100px;
+  margin: 0 150px 250px;
+
+  @media (max-width: ${p => p.theme.breakpoints[2]}) {
+    margin: 0 20px 250px;
+  }
+
+  @media (min-width: ${p => p.theme.breakpoints[3]}) {
+    margin: 0 auto 250px;
+  }
 `;
 
 export const Title = styled(H2)`
   text-align: center;
   color: rgb(${p => p.theme.colors.b2bSecondary});
   margin-bottom: 42px;
-
-  @media (max-width: ${p => p.theme.breakpoints[1]}) {
-    color: rgb(${p => p.theme.colors.white});
-  }
 `;
 
 export const Article = styled.a`
+  width: 100%;
   padding: 40px 0;
-  margin: 0 150px;
   border-bottom: 0.5px solid #dcdfef;
   display: flex;
 
@@ -54,7 +65,7 @@ export const Image = styled(Box).attrs({ as: "img" })`
   }
 `;
 
-export const BlogPost = styled.div`
+export const BlogPost = styled.a`
   display: flex;
   flex-direction: column;
   margin: 44px 36px;
@@ -63,7 +74,7 @@ export const BlogPost = styled.div`
 
   @media (max-width: ${p => p.theme.breakpoints[1]}) {
     max-width: 250px;
-    margin: 10px auto;
+    margin: 10px 20px;
   }
 `;
 

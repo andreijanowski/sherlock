@@ -2,7 +2,7 @@ import React from "react";
 import { bool, shape } from "prop-types";
 import moment from "moment";
 import { useT } from "utils/hooks";
-import { Flex } from "@rebass/grid";
+import { addProtocol } from "utils/urls";
 import {
   Article,
   BlogPost,
@@ -13,7 +13,8 @@ import {
   InfoLabel,
   Summary,
   Text,
-  Title
+  Title,
+  FlexWrapper
 } from "./styled";
 
 const ArticlesSection = ({ isBlog, articles }) => {
@@ -24,16 +25,16 @@ const ArticlesSection = ({ isBlog, articles }) => {
     <Container pt={[20, null, null, 20]} pb={52} px={3}>
       <Title>{isBlog ? "Other articles" : t("landings.newsroom.other")}</Title>
       {isBlog && (
-        <Flex
+        <FlexWrapper
           mx={[20, null, null, 160]}
-          justifyContent="space-between"
+          justifyContent={["center", "center", "center", "space-between"]}
           flexWrap="wrap"
-          maxWidth="1300"
         >
           {articles.toList().map(article => (
             <BlogPost
               key={article.getIn(["id"])}
-              href={`//${article.getIn(["attributes", "url"])}`}
+              href={article.getIn(["links", "self"])}
+              target="_blank"
             >
               <Image
                 src={article.getIn(["attributes", "coverPicture", "url"])}
@@ -57,22 +58,30 @@ const ArticlesSection = ({ isBlog, articles }) => {
               )}`}</Summary>
             </BlogPost>
           ))}
-        </Flex>
+        </FlexWrapper>
       )}
-      {!isBlog &&
-        articles.toList().map(article => (
-          <Article
-            key={article.getIn(["id"])}
-            href={`//${article.getIn(["attributes", "url"])}`}
-          >
-            <Date>
-              {moment(article.getIn(["attributes", "date"])).format(
-                "MMMM D, YYYY"
-              )}
-            </Date>
-            <Text>{article.getIn(["attributes", "headline"])}</Text>
-          </Article>
-        ))}
+      {!isBlog && (
+        <FlexWrapper
+          mx={[20, null, null, 160]}
+          justifyContent={["center", "center", "center", "space-between"]}
+          flexWrap="wrap"
+        >
+          {articles.toList().map(article => (
+            <Article
+              key={article.getIn(["id"])}
+              href={addProtocol(article.getIn(["attributes", "url"]))}
+              target="_blank"
+            >
+              <Date>
+                {moment(article.getIn(["attributes", "date"])).format(
+                  "MMMM D, YYYY"
+                )}
+              </Date>
+              <Text>{article.getIn(["attributes", "headline"])}</Text>
+            </Article>
+          ))}
+        </FlexWrapper>
+      )}
     </Container>
   );
 };

@@ -2,11 +2,12 @@ import React from "react";
 
 import { bool, func, shape } from "prop-types";
 
+import { addProtocol } from "utils/urls";
 import { useT } from "utils/hooks";
 import { SwitchBlogButton } from "components/Landing";
-import { Flex } from "@rebass/grid";
 import {
   Container,
+  FlexWrapper,
   Title,
   StyledH2,
   StyledH3,
@@ -35,13 +36,20 @@ const TopSection = ({
         isFetching={isFetching}
       />
       {article && (
-        <Flex
+        <FlexWrapper
           mb={250}
-          mx={[20, null, null, 160]}
+          mx={[20, null, null, "atuo"]}
           justifyContent="space-between"
           flexWrap="wrap"
         >
-          <MainArticle>
+          <MainArticle
+            href={
+              isBlog
+                ? article.getIn(["links", "self"])
+                : addProtocol(article.getIn(["attributes", "url"]))
+            }
+            target="_blank"
+          >
             <FeatureLabel>{t("landings.newsroom.featured")}</FeatureLabel>
             {isBlog && (
               <InfoLabel>
@@ -65,8 +73,15 @@ const TopSection = ({
                 : article.getIn(["attributes", "date"])}
             </StyledH3>
           </MainArticle>
-          {image && <Image src={image} />}
-        </Flex>
+          {image && (
+            <MainArticle
+              href={article.getIn(["links", "self"])}
+              target="_blank"
+            >
+              <Image src={image} />
+            </MainArticle>
+          )}
+        </FlexWrapper>
       )}
     </Container>
   );
