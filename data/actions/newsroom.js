@@ -1,4 +1,20 @@
-import { FETCH_NEWS_POSTS_REQUEST, FETCH_IMAGE_REQUEST } from "types/newsroom";
+import {
+  FETCH_BLOG_POSTS_REQUEST,
+  FETCH_NEWS_POSTS_REQUEST,
+  FETCH_IMAGE_REQUEST
+} from "types/newsroom";
+
+export const fetchBlogPosts = (page = 1) => ({
+  type: FETCH_BLOG_POSTS_REQUEST,
+  payload: {
+    endpoint: "/api/v1/blog_posts",
+    params: {
+      per_page: 6,
+      page
+    }
+  },
+  meta: { thunk: true, page }
+});
 
 export const fetchNewsPosts = (page = 1) => ({
   type: FETCH_NEWS_POSTS_REQUEST,

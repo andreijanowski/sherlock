@@ -19,11 +19,11 @@ const SwitchBlogButton = ({ isFetching, isBlog, onChange }) => {
   return (
     <SwitchWrapper mr={3}>
       <SwitchStyles />
-      {isBlog ? <SwtichOnLabel /> : <SwtichOffLabel />}
+      {isBlog ? <SwtichOffLabel /> : <SwtichOnLabel />}
       <Switch
         disabled={isFetching}
-        checked={isBlog}
-        onChange={() => onChange(!isBlog)}
+        checked={!isBlog}
+        onChange={onChange}
         handleDiameter={86}
         height={38}
         width={129}

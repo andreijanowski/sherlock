@@ -25,6 +25,7 @@ export const StyledH3 = styled(H3)`
 `;
 
 export const FeatureLabel = styled.div`
+  display: inline;
   background-color: rgb(${p => p.theme.colors.blue});
   width: 92px;
   height: 28px;
@@ -34,13 +35,19 @@ export const FeatureLabel = styled.div`
   border-radius: 4px;
 `;
 
+export const InfoLabel = styled.span`
+  font-size: 16px;
+  color: rgb(${p => p.theme.colors.white});
+`;
+
 export const MainArticle = styled.div`
   max-width: 500px;
 `;
 
 export const Image = styled(Box).attrs({ as: "img" })`
-  margin: 36px;
+  margin-bottom: 42px;
   max-width: 440px;
+  border-radius: 10px;
 
   @media (max-width: ${p => p.theme.breakpoints[1]}) {
     max-width: 250px;
