@@ -4,9 +4,19 @@ const setAuthCookies = require("./utils/setAuthCookies");
 const clearAuthCookies = require("./utils/clearAuthCookies");
 
 function handleOauthCallback(req, res) {
-  if (req.query.state === req.cookies.loginStateParam) {
+  let registrationCallback = false;
+  let { state } = req.query;
+
+  if (state.endsWith("registration")) {
+    state = state.substring(0, state.length - 12);
+    registrationCallback = true;
+  }
+
+  if (state === req.cookies.loginStateParam) {
     let redirectTo = "/";
-    if (req.cookies.chosenPlan === "basic") {
+    if (registrationCallback) {
+      redirectTo = "/sign-up-confirmation";
+    } else if (req.cookies.chosenPlan === "basic") {
       redirectTo = "/app/subscriptions";
       res.clearCookie("chosenPlan");
     } else if (req.cookies.chosenPlan === "essential") {
