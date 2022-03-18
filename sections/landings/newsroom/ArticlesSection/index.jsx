@@ -39,13 +39,11 @@ const ArticlesSection = ({ isBlog, articles }) => {
               <Image
                 src={article.getIn(["attributes", "coverPicture", "url"])}
               />
-              <InfoLabel>{`  •  ${article.getIn([
-                "attributes",
-                "category"
-              ])}  •  ${article.getIn([
-                "attributes",
-                "readDuration"
-              ])} min read`}</InfoLabel>
+              <InfoLabel>
+                &nbsp;•&nbsp;
+                {article.getIn(["attributes", "category"])}&nbsp;•&nbsp;
+                {article.getIn(["attributes", "readDuration"])}&nbsp;min read
+              </InfoLabel>
               <BlogpostTitle>
                 {article.getIn(["attributes", "headline"])}
               </BlogpostTitle>
