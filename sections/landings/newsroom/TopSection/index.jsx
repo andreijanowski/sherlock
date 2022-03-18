@@ -2,44 +2,86 @@ import React from "react";
 
 import { bool, func, shape } from "prop-types";
 
+import { addProtocol } from "utils/urls";
 import { useT } from "utils/hooks";
 import { SwitchBlogButton } from "components/Landing";
-import { Flex } from "@rebass/grid";
 import {
   Container,
+  FlexWrapper,
   Title,
   StyledH2,
   StyledH3,
   Image,
   FeatureLabel,
+  InfoLabel,
   MainArticle
 } from "./styled";
 
-const TopSection = ({ onContentChange, isBlog, article, image }) => {
+const TopSection = ({
+  onContentChange,
+  isBlog,
+  isFetching,
+  article,
+  image
+}) => {
   const t = useT("landing");
-  const img = image && image.getIn(["attributes", "picture", "url"]);
 
   return (
     <Container pt={[20, null, null, 20]} pb={52} px={3}>
       <Title>{t("landings.newsroom.title")}</Title>
-      <SwitchBlogButton onChange={onContentChange} isBlog={isBlog} />
-      <Flex
-        mb={250}
-        mx={[20, null, null, 160]}
-        justifyContent="space-between"
-        flexWrap="wrap"
-      >
-        <MainArticle>
-          <FeatureLabel>{t("landings.newsroom.featured")}</FeatureLabel>
-          <StyledH2>
-            {article && article.getIn(["attributes", "headline"])}
-          </StyledH2>
-          <StyledH3>
-            {article && article.getIn(["attributes", "date"])}
-          </StyledH3>
-        </MainArticle>
-        {img && <Image src={img} />}
-      </Flex>
+      <SwitchBlogButton
+        onChange={onContentChange}
+        isBlog={isBlog}
+        isFetching={isFetching}
+      />
+      {article && (
+        <FlexWrapper
+          mb={250}
+          mx={[20, null, null, "atuo"]}
+          justifyContent="space-between"
+          flexWrap="wrap"
+        >
+          <MainArticle
+            href={
+              isBlog
+                ? article.getIn(["links", "self"])
+                : addProtocol(article.getIn(["attributes", "url"]))
+            }
+            target="_blank"
+          >
+            <FeatureLabel>{t("landings.newsroom.featured")}</FeatureLabel>
+            {isBlog && (
+              <InfoLabel>
+                {`  •  ${article.getIn([
+                  "attributes",
+                  "category"
+                ])}  •  ${article.getIn([
+                  "attributes",
+                  "readDuration"
+                ])} min read`}
+              </InfoLabel>
+            )}
+            <StyledH2>
+              {isBlog
+                ? article.getIn(["attributes", "headline"])
+                : article.getIn(["attributes", "headline"])}
+            </StyledH2>
+            <StyledH3>
+              {isBlog
+                ? article.getIn(["attributes", "summary"])
+                : article.getIn(["attributes", "date"])}
+            </StyledH3>
+          </MainArticle>
+          {image && (
+            <MainArticle
+              href={article.getIn(["links", "self"])}
+              target="_blank"
+            >
+              <Image src={image} />
+            </MainArticle>
+          )}
+        </FlexWrapper>
+      )}
     </Container>
   );
 };
@@ -48,7 +90,8 @@ TopSection.propTypes = {
   onContentChange: func.isRequired,
   isBlog: bool.isRequired,
   article: shape().isRequired,
-  image: shape().isRequired
+  image: shape().isRequired,
+  isFetching: bool.isRequired
 };
 
 export default TopSection;
