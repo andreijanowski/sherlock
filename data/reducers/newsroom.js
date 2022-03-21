@@ -1,4 +1,7 @@
 import {
+  FETCH_BLOG_POST_REQUEST,
+  FETCH_BLOG_POST_SUCCESS,
+  FETCH_BLOG_POST_FAIL,
   FETCH_BLOG_POSTS_REQUEST,
   FETCH_BLOG_POSTS_SUCCESS,
   FETCH_BLOG_POSTS_FAIL,
@@ -20,6 +23,34 @@ export const initialState = Record({
 
 const reducer = (state = initialState, { type, payload, meta }) => {
   switch (type) {
+    case FETCH_BLOG_POST_REQUEST: {
+      return state.merge(
+        Record({
+          isFetching: true,
+          isFailed: false,
+          isSucceeded: false
+        })()
+      );
+    }
+    case FETCH_BLOG_POST_SUCCESS: {
+      let newState = state.merge(
+        Record({
+          isFetching: false,
+          isSucceeded: true
+        })()
+      );
+      newState = newState.setIn(["data", "blogPost"], fromJS(payload.data));
+      return newState;
+    }
+    case FETCH_BLOG_POST_FAIL: {
+      return state.merge(
+        Record({
+          isFetching: false,
+          isFailed: true
+        })()
+      );
+    }
+
     case FETCH_NEWS_POSTS_REQUEST: {
       return state.merge(
         Record({

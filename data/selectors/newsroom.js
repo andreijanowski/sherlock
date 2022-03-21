@@ -4,6 +4,9 @@ export const selectNews = state =>
 export const selectBlog = state =>
   state.getIn(["newsroom", "data", "blogPosts", "blogPosts"]);
 
+export const selectBlogPost = state =>
+  state.getIn(["newsroom", "data", "blogPost"]);
+
 export const selectNewsIsFetching = state =>
   state.getIn(["newsroom", "isFetching"]);
 

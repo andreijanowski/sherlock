@@ -94,3 +94,8 @@ export const Summary = styled.div`
   font-size: 14px;
   color: rgb(${p => p.theme.colors.b2bSecondary});
 `;
+
+export const StyledB = styled.span`
+  font-weight: bold;
+  color: rgb(${p => p.theme.colors.blue});
+`;

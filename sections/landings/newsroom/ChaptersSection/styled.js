@@ -1,0 +1,52 @@
+import styled from "styled-components";
+import { Flex, Box } from "@rebass/grid";
+import { H3 } from "components";
+
+export const Container = styled(Box)`
+  @media (min-width: ${p => p.theme.breakpoints[2]}) {
+    margin: -350px 0;
+  }
+`;
+
+export const FlexWrapper = styled(Flex)`
+  max-width: 800px;
+  margin: 0 150px 250px;
+
+  @media (max-width: ${p => p.theme.breakpoints[2]}) {
+    margin: 0 20px 50px;
+  }
+
+  @media (min-width: ${p => p.theme.breakpoints[3]}) {
+    margin: 0 auto 450px;
+  }
+`;
+
+export const Chapter = styled(Box)`
+  margin: 20px 0;
+`;
+
+export const Title = styled(H3)`
+  margin: 36px 0;
+  text-align: center;
+  font-size: 36px !important;
+  color: rgb(${p => p.theme.colors.b2bSecondary});
+`;
+
+export const Description = styled.p`
+  margin: 20px 0;
+  font-size: 18px;
+  color: rgb(${p => p.theme.colors.b2bSecondary});
+  white-space: break-spaces;
+`;
+
+export const Image = styled(Box).attrs({ as: "img" })`
+  margin-bottom: 12px;
+  width: 100%;
+  object-fit: cover;
+  max-height: 400px;
+
+  @media (max-width: ${p => p.theme.breakpoints[1]}) {
+    max-width: 250px;
+    margin: 10px auto;
+  }
+`;
