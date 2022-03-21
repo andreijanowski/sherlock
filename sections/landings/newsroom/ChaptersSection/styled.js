@@ -4,20 +4,20 @@ import { H3 } from "components";
 
 export const Container = styled(Box)`
   @media (min-width: ${p => p.theme.breakpoints[2]}) {
-    margin: -350px 0;
+    margin: -400px 0 -350px;
   }
 `;
 
 export const FlexWrapper = styled(Flex)`
   max-width: 800px;
-  margin: 0 150px 250px;
+  margin: 0 150px 150px;
 
   @media (max-width: ${p => p.theme.breakpoints[2]}) {
     margin: 0 20px 50px;
   }
 
   @media (min-width: ${p => p.theme.breakpoints[3]}) {
-    margin: 0 auto 450px;
+    margin: 0 auto 300px;
   }
 `;
 
@@ -30,6 +30,7 @@ export const Title = styled(H3)`
   text-align: center;
   font-size: 36px !important;
   color: rgb(${p => p.theme.colors.b2bSecondary});
+  font-weight: 600;
 `;
 
 export const Description = styled.p`

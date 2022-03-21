@@ -41,7 +41,6 @@ const ArticlesSection = ({ isBlog, articles }) => {
                 src={article.getIn(["attributes", "coverPicture", "url"])}
               />
               <InfoLabel>
-                &nbsp;•&nbsp;
                 {article.getIn(["attributes", "category"])}&nbsp;•&nbsp;
                 {article.getIn(["attributes", "readDuration"])}&nbsp;min read
               </InfoLabel>

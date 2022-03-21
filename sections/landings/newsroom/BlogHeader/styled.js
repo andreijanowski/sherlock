@@ -56,6 +56,7 @@ export const Icon = styled.img`
 
 export const Title = styled(H1Landing)`
   text-align: center;
+  font-size: 46px;
 `;
 
 export const Image = styled(Box).attrs({ as: "img" })`

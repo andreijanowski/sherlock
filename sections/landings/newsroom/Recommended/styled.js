@@ -5,7 +5,8 @@ import { H2, H3 } from "components/styleguide/Typography";
 
 export const Container = styled(Box)`
   @media (min-width: ${p => p.theme.breakpoints[2]}) {
-    margin-top: -150px;
+    margin-top: 150px;
+    padding-top: 90px;
   }
 `;
 
@@ -24,7 +25,7 @@ export const FlexWrapper = styled(Flex)`
 
 export const Title = styled(H2)`
   text-align: center;
-  color: rgb(${p => p.theme.colors.b2bSecondary});
+  color: rgb(${p => p.theme.colors.white});
   margin-bottom: 42px;
 `;
 
@@ -80,14 +81,14 @@ export const BlogPost = styled.a`
 
 export const InfoLabel = styled.span`
   font-size: 16px;
-  color: rgb(${p => p.theme.colors.b2bSecondary});
+  color: rgb(${p => p.theme.colors.white});
   max-height: 250px;
   overflow: hidden;
 `;
 
 export const BlogpostTitle = styled(H3)`
   font-size: 24px;
-  color: rgb(${p => p.theme.colors.b2bSecondary});
+  color: rgb(${p => p.theme.colors.white});
   margin: 8px 0 24px;
   max-height: 300px;
   overflow: hidden;
@@ -96,12 +97,12 @@ export const BlogpostTitle = styled(H3)`
 export const Summary = styled.div`
   margin-top: 16px;
   font-size: 14px;
-  color: rgb(${p => p.theme.colors.b2bSecondary});
+  color: rgb(${p => p.theme.colors.white});
   max-height: 300px;
   overflow: hidden;
 `;
 
 export const StyledB = styled.span`
   font-weight: bold;
-  color: rgb(${p => p.theme.colors.blue});
+  color: rgb(${p => p.theme.colors.white});
 `;

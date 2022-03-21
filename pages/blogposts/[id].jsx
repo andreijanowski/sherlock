@@ -5,7 +5,11 @@ import { useRouter } from "next/router";
 import { func, shape } from "prop-types";
 
 import { Footer } from "components";
-import { BlogHeader, ChaptersSection } from "sections/landings/newsroom";
+import {
+  BlogHeader,
+  ChaptersSection,
+  Recommended
+} from "sections/landings/newsroom";
 import {
   FooterWrapper,
   GetReadyLandingTopGradientWrapper,
@@ -19,12 +23,20 @@ import {
   WhiteWrapper
 } from "sections/landings/product/styled";
 
-import { selectBlogPost } from "selectors/newsroom";
-import { fetchBlogPostContent as fetchBlogPostContentAction } from "actions/newsroom";
+import { selectBlogPost, selectBlog } from "selectors/newsroom";
+import {
+  fetchBlogPostContent as fetchBlogPostContentAction,
+  fetchBlogPosts as fetchBlogPostsAction
+} from "actions/newsroom";
 
 const DOWNLOAD_SECTION_ID = "downloadApp";
 
-const BlogPostPage = ({ fetchBlogPostContent, blogPost }) => {
+const BlogPostPage = ({
+  fetchBlogPostContent,
+  blogPost,
+  blogList,
+  fetchBlogPosts
+}) => {
   const router = useRouter();
   const { id } = router.query;
   const post = blogPost && blogPost.getIn(["blogPosts"]);
@@ -37,7 +49,8 @@ const BlogPostPage = ({ fetchBlogPostContent, blogPost }) => {
 
   useEffect(() => {
     fetchBlogPostContent(id);
-  }, [fetchBlogPostContent, id]);
+    fetchBlogPosts();
+  }, [fetchBlogPostContent, fetchBlogPosts, id]);
 
   return (
     <LandingWrapper width={1} alignItems="center" flexDirection="column">
@@ -51,6 +64,7 @@ const BlogPostPage = ({ fetchBlogPostContent, blogPost }) => {
         <ChaptersSection chapters={chapters} pictures={pictures} />
       </WhiteWrapper>
       <GetReadyLandingTopGradientWrapper>
+        <Recommended posts={blogList} />
         <GetReady />
       </GetReadyLandingTopGradientWrapper>
       <InstallAppWrapper id={DOWNLOAD_SECTION_ID}>
@@ -65,15 +79,19 @@ const BlogPostPage = ({ fetchBlogPostContent, blogPost }) => {
 
 BlogPostPage.propTypes = {
   blogPost: shape().isRequired,
-  fetchBlogPostContent: func.isRequired
+  blogList: shape().isRequired,
+  fetchBlogPostContent: func.isRequired,
+  fetchBlogPosts: func.isRequired
 };
 
 const mapState = state => ({
+  blogList: selectBlog(state),
   blogPost: selectBlogPost(state)
 });
 
 const mapDispatch = {
-  fetchBlogPostContent: fetchBlogPostContentAction
+  fetchBlogPostContent: fetchBlogPostContentAction,
+  fetchBlogPosts: fetchBlogPostsAction
 };
 
 export default compose(
