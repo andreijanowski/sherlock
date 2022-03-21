@@ -73,10 +73,7 @@ const TopSection = ({
             </StyledH3>
           </MainArticle>
           {image && (
-            <MainArticle
-              href={article.getIn(["links", "self"])}
-              target="_blank"
-            >
+            <MainArticle>
               <Image src={image} />
             </MainArticle>
           )}

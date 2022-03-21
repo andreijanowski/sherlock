@@ -33,9 +33,6 @@ const ChaptersSection = ({ chapters, pictures }) => {
           chapters.toList().map(chapter => (
             <Chapter key={chapter.getIn(["id"])}>
               <Title>{chapter.getIn(["attributes", "header"])}</Title>
-              <Description>
-                {chapter.getIn(["attributes", "description"])}
-              </Description>
               {pics && (
                 <Image
                   src={getPicture(
@@ -43,6 +40,9 @@ const ChaptersSection = ({ chapters, pictures }) => {
                   )}
                 />
               )}
+              <Description>
+                {chapter.getIn(["attributes", "description"])}
+              </Description>
             </Chapter>
           ))}
       </FlexWrapper>
