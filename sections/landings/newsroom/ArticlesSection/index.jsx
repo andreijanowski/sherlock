@@ -12,6 +12,7 @@ import {
   Image,
   InfoLabel,
   Summary,
+  StyledB,
   Text,
   Title,
   FlexWrapper
@@ -48,12 +49,15 @@ const ArticlesSection = ({ isBlog, articles }) => {
                 {article.getIn(["attributes", "headline"])}
               </BlogpostTitle>
               <InfoLabel>{article.getIn(["attributes", "summary"])}</InfoLabel>
-              <Summary>{`${article.getIn([
-                "attributes",
-                "authorName"
-              ])}, ${moment(article.getIn(["attributes", "date"])).format(
-                "DD MMMM, YYYY"
-              )}`}</Summary>
+              <Summary>
+                <StyledB>
+                  {`${article.getIn(["attributes", "authorName"])}`},
+                </StyledB>
+                &nbsp;
+                {moment(article.getIn(["attributes", "date"])).format(
+                  "DD MMMM, YYYY"
+                )}
+              </Summary>
             </BlogPost>
           ))}
         </FlexWrapper>
