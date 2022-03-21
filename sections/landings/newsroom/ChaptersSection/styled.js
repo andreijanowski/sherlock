@@ -10,14 +10,14 @@ export const Container = styled(Box)`
 
 export const FlexWrapper = styled(Flex)`
   max-width: 800px;
-  margin: 0 150px 250px;
+  margin: 0 150px 150px;
 
   @media (max-width: ${p => p.theme.breakpoints[2]}) {
     margin: 0 20px 50px;
   }
 
   @media (min-width: ${p => p.theme.breakpoints[3]}) {
-    margin: 0 auto 450px;
+    margin: 0 auto 250px;
   }
 `;
 
