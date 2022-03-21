@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
-// import { H2, H3 } from "components";
 import { H1Landing } from "components/styleguide/Typography";
 
 export const Container = styled(Box)`

@@ -25,7 +25,7 @@ const BlogHeader = ({ content, onBackClick }) => (
         flexWrap="wrap"
       >
         <BackArrow onClick={onBackClick}>&larr; Back to blog</BackArrow>
-        <Title>{content && content.getIn(["attributes", "headline"])}</Title>
+        <Title>{content.getIn(["attributes", "headline"])}</Title>
         <Summary>
           <b>{`${content.getIn(["attributes", "authorName"])}`}</b>,&nbsp;
           {moment(content.getIn(["attributes", "date"])).format(
