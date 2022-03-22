@@ -13,7 +13,7 @@ export const FlexWrapper = styled(Flex)`
   margin: 0 150px 150px;
 
   @media (max-width: ${p => p.theme.breakpoints[2]}) {
-    margin: 0 20px 50px;
+    margin: 0 auto 50px;
   }
 
   @media (min-width: ${p => p.theme.breakpoints[3]}) {
@@ -47,7 +47,6 @@ export const Image = styled(Box).attrs({ as: "img" })`
   max-height: 400px;
 
   @media (max-width: ${p => p.theme.breakpoints[1]}) {
-    max-width: 250px;
     margin: 10px auto;
   }
 `;

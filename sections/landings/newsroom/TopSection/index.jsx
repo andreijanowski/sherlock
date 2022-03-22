@@ -27,7 +27,7 @@ const TopSection = ({
   const t = useT("landing");
 
   return (
-    <Container pt={[20, null, null, 20]} pb={52} px={3}>
+    <Container pt={[20, null, null, 20]} pb={52} px={[3, null, null, 4]}>
       <Title>{t("landings.newsroom.title")}</Title>
       <SwitchBlogButton
         onChange={onContentChange}
@@ -72,11 +72,7 @@ const TopSection = ({
                 : article.getIn(["attributes", "date"])}
             </StyledH3>
           </MainArticle>
-          {image && (
-            <MainArticle>
-              <Image src={image} />
-            </MainArticle>
-          )}
+          {image && <Image src={image} />}
         </FlexWrapper>
       )}
     </Container>

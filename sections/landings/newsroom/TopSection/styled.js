@@ -11,14 +11,16 @@ export const Container = styled(Box)`
 
 export const FlexWrapper = styled(Flex)`
   max-width: 1100px;
-  margin: 0 150px 250px;
+  margin: 0 auto 250px;
 
   @media (max-width: ${p => p.theme.breakpoints[2]}) {
-    margin: 0 20px 50px;
+    margin: 0 auto 50px;
+    justify-content: center;
   }
 
-  @media (min-width: ${p => p.theme.breakpoints[3]}) {
+  @media (min-width: ${p => p.theme.breakpoints[4]}) {
     margin: 0 auto 250px;
+    justify-content: space-between;
   }
 `;
 
@@ -61,6 +63,7 @@ export const InfoLabel = styled.span`
 export const MainArticle = styled.a`
   display: block;
   max-width: 500px;
+  margin-right: 36px;
 `;
 
 export const Image = styled(Box).attrs({ as: "img" })`
