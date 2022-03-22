@@ -47,7 +47,7 @@ const TopSection = ({
                 ? article.getIn(["links", "self"])
                 : addProtocol(article.getIn(["attributes", "url"]))
             }
-            target="_blank"
+            target={isBlog ? "" : "_blank"}
           >
             <FeatureLabel>{t("landings.newsroom.featured")}</FeatureLabel>
             {isBlog && (

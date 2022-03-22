@@ -39,7 +39,7 @@ const reducer = (state = initialState, { type, payload, meta }) => {
           isSucceeded: true
         })()
       );
-      newState = newState.setIn(["data", "blogPost"], fromJS(payload.data));
+      newState = newState.mergeIn(["data", "blogPost"], fromJS(payload.data));
       return newState;
     }
     case FETCH_BLOG_POST_FAIL: {
