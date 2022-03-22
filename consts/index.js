@@ -96,8 +96,6 @@ const GET_THE_APP_IOS_LINK =
 const GET_THE_APP_ANDROID_LINK =
   "https://play.google.com/store/apps/details?id=com.sherlock.production";
 
-const NEWS_ROOM_URL = "https://foodetective.medium.com/";
-
 const PARTNERS_URL =
   "https://foodetective.typeform.com/to/tzqu8b?typeform-source=business.foodetective.co";
 
@@ -177,7 +175,6 @@ module.exports = {
   GET_THE_APP_VIDEO_URL,
   GET_THE_APP_IOS_LINK,
   GET_THE_APP_ANDROID_LINK,
-  NEWS_ROOM_URL,
   PARTNERS_URL,
   CAREERS_FOODETECTIVE_EMAIL,
   USER_GUIDES_URL,

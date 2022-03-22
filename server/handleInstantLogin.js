@@ -11,7 +11,9 @@ function handleOauthCallback(req, res) {
   );
   res.setHeader("Pragma", "no-cache");
   res.setHeader("Expires", "0");
-  res.cookie("loginStateParam", state, { expires: 7 });
+  res.cookie("loginStateParam", state, {
+    expires: new Date(Date.now() + 7 * 24 * 3600000)
+  });
   if (plan) {
     res.cookie("chosenPlan", plan);
   }

@@ -1,5 +1,4 @@
 import {
-  NEWS_ROOM_URL,
   PARTNERS_URL,
   CAREERS_FOODETECTIVE_EMAIL,
   LICENSING_TYPEFORM_LINK
@@ -46,7 +45,7 @@ export const getMenuItems = t => [
       },
       {
         label: t("landing:newsroom"),
-        href: NEWS_ROOM_URL
+        href: "/newsroom"
       },
       {
         label: t("landing:careers"),

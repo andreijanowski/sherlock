@@ -10,3 +10,4 @@ export { default as DemoButton } from "./DemoButton";
 export { default as CreateAccountButton } from "./CreateAccountButton";
 export { default as VideoPreview } from "./VideoPreview";
 export { default as LicensingButton } from "./LicensingButton";
+export { default as SwitchBlogButton } from "./SwitchBlogButton";
