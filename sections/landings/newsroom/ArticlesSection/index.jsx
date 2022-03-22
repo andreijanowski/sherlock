@@ -35,7 +35,6 @@ const ArticlesSection = ({ isBlog, articles }) => {
             <BlogPost
               key={article.getIn(["id"])}
               href={article.getIn(["links", "self"])}
-              target="_blank"
             >
               <Image
                 src={article.getIn(["attributes", "coverPicture", "url"])}
