@@ -676,7 +676,10 @@
       "news": "News",
       "featured": "In vetrina",
       "other": "Altre notizie",
-      "more": "Caricare di più"
+      "more": "Caricare di più",
+      "recommended": "Lettura consigliata",
+      "minRead": "min di lettura",
+      "backToBlog": "Torna al blog"
     }
   },
   "step": "Step {{step}}",

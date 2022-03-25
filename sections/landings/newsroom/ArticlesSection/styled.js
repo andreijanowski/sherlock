@@ -44,7 +44,7 @@ export const Date = styled.div`
   color: rgb(${p => p.theme.colors.rollingStone});
   font-size: 16px;
   padding-right: 40px;
-  min-width: 170px;
+  min-width: 190px;
 `;
 
 export const Text = styled.div`
@@ -104,4 +104,10 @@ export const Summary = styled.div`
 export const StyledB = styled.span`
   font-weight: bold;
   color: rgb(${p => p.theme.colors.blue});
+`;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: auto;
 `;

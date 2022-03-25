@@ -676,7 +676,10 @@
       "news": "News",
       "featured": "Featured",
       "other": "Other news",
-      "more": "Load more"
+      "more": "Load more",
+      "recommended": "Recommended reading",
+      "minRead": "min read",
+      "backToBlog": "Back to blog"
     }
   },
   "step": "Step {{step}}",
