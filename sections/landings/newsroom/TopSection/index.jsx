@@ -55,10 +55,9 @@ const TopSection = ({
                 {`  •  ${article.getIn([
                   "attributes",
                   "category"
-                ])}  •  ${article.getIn([
-                  "attributes",
-                  "readDuration"
-                ])} min read`}
+                ])}  •  ${article.getIn(["attributes", "readDuration"])} ${t(
+                  "landings.newsroom.minRead"
+                )}`}
               </InfoLabel>
             )}
             <StyledH2>
