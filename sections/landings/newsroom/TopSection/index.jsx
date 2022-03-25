@@ -3,7 +3,7 @@ import React from "react";
 import { bool, func, shape } from "prop-types";
 
 import { addProtocol } from "utils/urls";
-import { useT } from "utils/hooks";
+import { useT, useLng } from "utils/hooks";
 import { SwitchBlogButton } from "components/Landing";
 import {
   Container,
@@ -25,6 +25,7 @@ const TopSection = ({
   image
 }) => {
   const t = useT("landing");
+  const lng = useLng();
 
   return (
     <Container pt={[20, null, null, 20]} pb={52} px={[3, null, null, 4]}>
@@ -44,7 +45,7 @@ const TopSection = ({
           <MainArticle
             href={
               isBlog
-                ? article.getIn(["links", "self"])
+                ? `/${lng}${article.getIn(["links", "self"])}`
                 : addProtocol(article.getIn(["attributes", "url"]))
             }
             target={isBlog ? "" : "_blank"}
@@ -55,10 +56,9 @@ const TopSection = ({
                 {`  •  ${article.getIn([
                   "attributes",
                   "category"
-                ])}  •  ${article.getIn([
-                  "attributes",
-                  "readDuration"
-                ])} min read`}
+                ])}  •  ${article.getIn(["attributes", "readDuration"])} ${t(
+                  "landings.newsroom.minRead"
+                )}`}
               </InfoLabel>
             )}
             <StyledH2>

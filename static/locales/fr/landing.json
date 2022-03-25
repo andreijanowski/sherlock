@@ -679,7 +679,11 @@
       "news": "News",
       "featured": "Featured",
       "other": "Autres news",
-      "more": "Afficher plus de news"
+      "otherArticles": "Autres articles",
+      "more": "Afficher plus de news",
+      "recommended": "Articles recommandés",
+      "minRead": "min de lecture",
+      "backToBlog": "Retour au blog"
     }
   },
   "step": "Step {{step}}",

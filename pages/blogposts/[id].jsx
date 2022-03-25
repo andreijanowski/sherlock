@@ -22,6 +22,7 @@ import {
   TopSectionWrapper,
   WhiteWrapper
 } from "sections/landings/product/styled";
+import { useLng } from "utils/hooks";
 
 import { selectBlogPost, selectBlog } from "selectors/newsroom";
 import {
@@ -38,6 +39,7 @@ const BlogPostPage = ({
   fetchBlogPosts
 }) => {
   const router = useRouter();
+  const lng = useLng();
   const { id } = router.query;
   const post = blogPost && blogPost.getIn(["blogPosts"]);
   const chapters = blogPost && blogPost.getIn(["chapters"]);
@@ -48,9 +50,9 @@ const BlogPostPage = ({
   };
 
   useEffect(() => {
-    fetchBlogPostContent(id);
-    fetchBlogPosts();
-  }, [fetchBlogPostContent, fetchBlogPosts, id]);
+    fetchBlogPostContent(id, lng);
+    fetchBlogPosts(1, lng);
+  }, [fetchBlogPostContent, fetchBlogPosts, id, lng]);
 
   return (
     <LandingWrapper width={1} alignItems="center" flexDirection="column">

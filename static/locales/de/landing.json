@@ -676,7 +676,11 @@
       "news": "News",
       "featured": "Vorgestellt",
       "other": "Andere Nachrichten",
-      "more": "Mehr Laden"
+      "otherArticles": "Andere Artikel",
+      "more": "Mehr Laden",
+      "recommended": "Empfohlene Lektüre",
+      "minRead": "min lesen",
+      "backToBlog": "Zurück zum Blog"
     }
   },
   "step": "Step {{step}}",

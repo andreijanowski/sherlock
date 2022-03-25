@@ -18,7 +18,8 @@ export const initialState = Record({
   image: Map(),
   isFetching: true,
   isFailed: false,
-  isSucceeded: false
+  isSucceeded: false,
+  page: 1
 })();
 
 const reducer = (state = initialState, { type, payload, meta }) => {
@@ -64,15 +65,19 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       let newState = state.merge(
         Record({
           isFetching: false,
-          isSucceeded: true
+          isSucceeded: true,
+          page: meta.page
         })()
       );
       if (meta.page === 1) {
-        newState = newState.setIn(["data", "newsPosts"], fromJS(payload.data));
+        newState = newState.setIn(
+          ["data", "newsPosts"],
+          fromJS(payload.rawData)
+        );
       } else {
         newState = newState.mergeDeepIn(
           ["data", "newsPosts"],
-          fromJS(payload.data)
+          fromJS(payload.rawData)
         );
       }
       return newState;
@@ -99,15 +104,19 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       let newState = state.merge(
         Record({
           isFetching: false,
-          isSucceeded: true
+          isSucceeded: true,
+          page: meta.page
         })()
       );
       if (meta.page === 1) {
-        newState = newState.setIn(["data", "blogPosts"], fromJS(payload.data));
+        newState = newState.setIn(
+          ["data", "blogPosts"],
+          fromJS(payload.rawData)
+        );
       } else {
         newState = newState.mergeDeepIn(
           ["data", "blogPosts"],
-          fromJS(payload.data)
+          fromJS(payload.rawData)
         );
       }
       return newState;
