@@ -35,7 +35,11 @@ const ArticlesSection = ({
   if (!articles || !articles.getIn(["data"]).size) return null;
   return (
     <Container pt={[20, null, null, 20]} pb={52} px={3}>
-      <Title>{isBlog ? "Other articles" : t("landings.newsroom.other")}</Title>
+      <Title>
+        {isBlog
+          ? t("landings.newsroom.otherArticles")
+          : t("landings.newsroom.other")}
+      </Title>
       {isBlog && (
         <FlexWrapper
           mx={[20, null, null, 160]}
@@ -52,7 +56,8 @@ const ArticlesSection = ({
               />
               <InfoLabel>
                 {article.getIn(["attributes", "category"])}&nbsp;•&nbsp;
-                {article.getIn(["attributes", "readDuration"])}&nbsp;min read
+                {article.getIn(["attributes", "readDuration"])}&nbsp;
+                {t("landings.newsroom.minRead")}
               </InfoLabel>
               <BlogpostTitle>
                 {article.getIn(["attributes", "headline"])}
