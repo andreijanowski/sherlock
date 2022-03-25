@@ -20,6 +20,10 @@ const ChaptersSection = ({ chapters, pictures }) => {
     return (pics && id && pics[id].attributes.photo.url) || "";
   };
 
+  const orderedChapters =
+    chapters &&
+    chapters.toList().sortBy(item => item.getIn(["attributes", "order"]));
+
   return (
     <Container pt={[20, null, null, 20]} pb={52} px={3}>
       <FlexWrapper
@@ -29,8 +33,8 @@ const ChaptersSection = ({ chapters, pictures }) => {
         flexDirection="column"
         flexWrap="wrap"
       >
-        {chapters &&
-          chapters.toList().map(chapter => (
+        {orderedChapters &&
+          orderedChapters.map(chapter => (
             <Chapter key={chapter.getIn(["id"])}>
               <Title>{chapter.getIn(["attributes", "header"])}</Title>
               {pics && (
