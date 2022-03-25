@@ -52,7 +52,6 @@ const ArticlesSection = ({
               key={article.getIn(["id"])}
               href={`/${lng}${article.getIn(["links", "self"])}`}
             >
-              {console.log("ART", article.toJS())}
               <Image
                 src={article.getIn(["attributes", "coverPicture", "url"])}
               />
