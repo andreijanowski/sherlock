@@ -1,7 +1,7 @@
 import React from "react";
 import { bool, shape, func, number } from "prop-types";
 import moment from "moment";
-import { useT } from "utils/hooks";
+import { useT, useLng } from "utils/hooks";
 import { addProtocol } from "utils/urls";
 import Button from "components/styleguide/Button";
 import {
@@ -28,6 +28,7 @@ const ArticlesSection = ({
   currentPage
 }) => {
   const t = useT("landing");
+  const lng = useLng();
 
   const hasMore =
     articles && articles.getIn(["meta", "totalPages"]) > currentPage;
@@ -49,8 +50,9 @@ const ArticlesSection = ({
           {articles.getIn(["data"]).map(article => (
             <BlogPost
               key={article.getIn(["id"])}
-              href={article.getIn(["links", "self"])}
+              href={`/${lng}${article.getIn(["links", "self"])}`}
             >
+              {console.log("ART", article.toJS())}
               <Image
                 src={article.getIn(["attributes", "coverPicture", "url"])}
               />
