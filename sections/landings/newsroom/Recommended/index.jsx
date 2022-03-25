@@ -2,7 +2,7 @@ import React from "react";
 import { shape } from "prop-types";
 import moment from "moment";
 
-import { useT } from "utils/hooks";
+import { useT, useLng } from "utils/hooks";
 import {
   BlogPost,
   BlogpostTitle,
@@ -18,6 +18,7 @@ import {
 const Recommended = ({ posts }) => {
   const recommended = posts && posts.getIn(["data"]).slice(1, 3);
   const t = useT("landing");
+  const lng = useLng();
 
   if (!recommended || !recommended.size) return null;
   return (
@@ -31,7 +32,7 @@ const Recommended = ({ posts }) => {
         {recommended.map(article => (
           <BlogPost
             key={article.getIn(["id"])}
-            href={article.getIn(["links", "self"])}
+            href={`/${lng}${article.getIn(["links", "self"])}`}
             target="_blank"
           >
             <Image src={article.getIn(["attributes", "coverPicture", "url"])} />
