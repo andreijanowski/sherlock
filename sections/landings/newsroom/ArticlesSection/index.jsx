@@ -1,12 +1,14 @@
 import React from "react";
-import { bool, shape } from "prop-types";
+import { bool, shape, func, number } from "prop-types";
 import moment from "moment";
 import { useT } from "utils/hooks";
 import { addProtocol } from "utils/urls";
+import Button from "components/styleguide/Button";
 import {
   Article,
   BlogPost,
   BlogpostTitle,
+  ButtonWrapper,
   Container,
   Date,
   Image,
@@ -18,10 +20,19 @@ import {
   FlexWrapper
 } from "./styled";
 
-const ArticlesSection = ({ isBlog, articles }) => {
+const ArticlesSection = ({
+  isBlog,
+  articles,
+  onMoreClick,
+  isFetching,
+  currentPage
+}) => {
   const t = useT("landing");
 
-  if (!articles) return null;
+  const hasMore =
+    articles && articles.getIn(["meta", "totalPages"]) > currentPage;
+
+  if (!articles || !articles.getIn(["data"]).size) return null;
   return (
     <Container pt={[20, null, null, 20]} pb={52} px={3}>
       <Title>{isBlog ? "Other articles" : t("landings.newsroom.other")}</Title>
@@ -31,7 +42,7 @@ const ArticlesSection = ({ isBlog, articles }) => {
           justifyContent={["center", "center", "center", "space-between"]}
           flexWrap="wrap"
         >
-          {articles.toList().map(article => (
+          {articles.getIn(["data"]).map(article => (
             <BlogPost
               key={article.getIn(["id"])}
               href={article.getIn(["links", "self"])}
@@ -66,7 +77,7 @@ const ArticlesSection = ({ isBlog, articles }) => {
           justifyContent={["center", "center", "center", "space-between"]}
           flexWrap="wrap"
         >
-          {articles.toList().map(article => (
+          {articles.getIn(["data"]).map(article => (
             <Article
               key={article.getIn(["id"])}
               href={addProtocol(article.getIn(["attributes", "url"]))}
@@ -82,13 +93,23 @@ const ArticlesSection = ({ isBlog, articles }) => {
           ))}
         </FlexWrapper>
       )}
+      {hasMore && (
+        <ButtonWrapper>
+          <Button onClick={onMoreClick} disabled={isFetching}>
+            {t("landings.newsroom.more")}
+          </Button>
+        </ButtonWrapper>
+      )}
     </Container>
   );
 };
 
 ArticlesSection.propTypes = {
   articles: shape().isRequired,
-  isBlog: bool.isRequired
+  isBlog: bool.isRequired,
+  onMoreClick: func.isRequired,
+  isFetching: bool.isRequired,
+  currentPage: number.isRequired
 };
 
 export default ArticlesSection;
