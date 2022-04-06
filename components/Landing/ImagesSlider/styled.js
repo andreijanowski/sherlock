@@ -12,6 +12,8 @@ export const Image = styled.img`
   ${upThanBreakpoint(2)} {
     width: 680px;
   }
+  max-height: 500px;
+  object-fit: scale-down;
 `;
 
 export const Bullets = styled(Flex).attrs({ as: "ul" })`
@@ -31,13 +33,18 @@ export const Bullet = styled.li`
   display: block;
   width: 8px;
   height: 8px;
-  border: 1px solid rgb(${p => p.theme.colors.white});
+  border: 1px solid
+    rgb(${p => (p.hasBlueDots ? p.theme.colors.blue : p.theme.colors.white)});
   border-radius: 50%;
   cursor: pointer;
   ${p =>
     p.isActive &&
     `
-    background: rgb(${p.theme.colors.white});
+    background: ${
+      p.hasBlueDots
+        ? `rgb(${p.theme.colors.blue})`
+        : `rgb(${p.theme.colors.white})`
+    };
   `}
   &:not(:last-child) {
     margin-right: 7px;

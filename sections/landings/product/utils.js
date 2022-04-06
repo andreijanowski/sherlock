@@ -1,6 +1,7 @@
 export const getPrefix = name => `landings.${name}`;
 
-export const getOptionPrefix = optionIndex => `options.${optionIndex}`;
+export const getOptionPrefix = (optionIndex, index) =>
+  `options.${optionIndex}.${index}`;
 
 export const getDescriptionPrefix = optionIndex =>
   `${getOptionPrefix(optionIndex)}.description`;
