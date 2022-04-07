@@ -46,13 +46,28 @@ const contentManagementTextLinks = {
 };
 
 const contentManagementVideos = {
-  [getOptionPrefix(3)]: {
+  [getOptionPrefix(1, 0)]: {
     poster: "/static/img/marketing/advVideoPoster.png",
     width: 490,
     height: 372,
     src: MANAGEMENT_ADV_VIDEO
   }
 };
+
+const sliderImages = [
+  [
+    `/static/img/${PAGE_NAME}/contentMain.png`,
+    `/static/img/${PAGE_NAME}/contentManagement.png`
+  ],
+  [
+    `/static/img/${PAGE_NAME}/advVideoPoster.png`,
+    `/static/img/${PAGE_NAME}/contentManagement.png`
+  ],
+  [
+    `/static/img/${PAGE_NAME}/influencers.png`,
+    `/static/img/${PAGE_NAME}/contentManagement.png`
+  ]
+];
 
 const MarketingPage = () => (
   <LandingWrapper width={1} alignItems="center" flexDirection="column">
@@ -68,11 +83,12 @@ const MarketingPage = () => (
         icon={<InfluencerManagement />}
         images={[
           {
-            src: `/static/img/${PAGE_NAME}/contentManagement.png`,
+            src: `/static/img/${PAGE_NAME}/advertising.png`,
             width: ["100%", null, null, "490px"]
           }
         ]}
         videos={contentManagementVideos}
+        sliderImages={sliderImages}
         columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
         textLinks={contentManagementTextLinks}
       />
