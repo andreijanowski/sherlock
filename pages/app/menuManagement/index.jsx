@@ -159,6 +159,9 @@ const MenuPage = ({
     setShowImportModal(false);
   }, []);
 
+  const hasPosIntegration =
+    business && business.getIn(["posPartnerIntegrationExists"]);
+
   return (
     <AppManagerLayout
       {...{
@@ -187,7 +190,8 @@ const MenuPage = ({
           addPicture: onAddPicture,
           removePicture: onRemovePicture,
           isUberAvailable,
-          onShowImportModalClick
+          onShowImportModalClick,
+          hasPosIntegration
         }}
       />
       {confirmModalData && (

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Box, Flex } from "@rebass/grid";
-import { shape, func } from "prop-types";
+import { shape, func, bool } from "prop-types";
 
 import { FormInput } from "components";
 import { required } from "utils/validators";
@@ -10,7 +10,7 @@ import { useT } from "utils/hooks";
 import { normalizePrice, normalizeString } from "utils/normalizers";
 import AddEntityButton from "./AddEntityButton";
 
-const CategoryOptionsList = ({ fields }) => {
+const CategoryOptionsList = ({ fields, hasPosIntegration }) => {
   const t = useT(["lefood", "forms"]);
 
   const onAddOptionClick = () => {
@@ -61,6 +61,7 @@ const CategoryOptionsList = ({ fields }) => {
                     label={t("dishOptions.option.skuRef")}
                     placeholder={t("dishOptions.option.skuRef")}
                     parse={normalizeString}
+                    validate={hasPosIntegration && required(t)}
                   />
                 </Box>
                 <DeleteListItemBtn type="button" onClick={onDeleteOptionClick}>
@@ -92,7 +93,8 @@ CategoryOptionsList.propTypes = {
     map: func.isRequired,
     add: func.isRequired,
     remove: func.isRequired
-  }).isRequired
+  }).isRequired,
+  hasPosIntegration: bool.isRequired
 };
 
 export default CategoryOptionsList;
