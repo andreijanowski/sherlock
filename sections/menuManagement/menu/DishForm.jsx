@@ -25,7 +25,8 @@ const DishForm = ({
   removePicture,
   categories,
   isUberAvailable,
-  onShowImportModalClick
+  onShowImportModalClick,
+  hasPosIntegration
 }) => {
   const { submit, getState } = useForm();
   const { initialValues } = getState();
@@ -110,6 +111,7 @@ const DishForm = ({
           label={t("sku")}
           placeholder={t("sku")}
           parse={normalizeString}
+          validate={hasPosIntegration && required(t)}
         />
       </Box>
       <Box my={4}>
@@ -135,7 +137,8 @@ DishForm.propTypes = {
   isUberAvailable: bool.isRequired,
   onShowImportModalClick: func.isRequired,
   pictureUrl: string.isRequired,
-  setPictureUrl: func.isRequired
+  setPictureUrl: func.isRequired,
+  hasPosIntegration: bool.isRequired
 };
 
 export default DishForm;

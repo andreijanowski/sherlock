@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Flex } from "@rebass/grid";
 import { FieldArray } from "react-final-form-arrays";
+import { bool } from "prop-types";
 
 import { useT } from "utils/hooks";
 import {
@@ -18,7 +19,7 @@ const emptyCategoryTemplate = {
   dishOptions: []
 };
 
-const DishOptionsForm = () => {
+const DishOptionsForm = ({ hasPosIntegration }) => {
   const t = useT(["lefood", "forms"]);
 
   return (
@@ -72,6 +73,7 @@ const DishOptionsForm = () => {
                 <FieldArray
                   name={`${name}.dishOptions`}
                   component={CategoryOptionsList}
+                  hasPosIntegration={hasPosIntegration}
                 />
               </Box>
             );
@@ -80,6 +82,10 @@ const DishOptionsForm = () => {
       )}
     </FieldArray>
   );
+};
+
+DishOptionsForm.propTypes = {
+  hasPosIntegration: bool.isRequired
 };
 
 export default DishOptionsForm;
