@@ -188,7 +188,7 @@
       "namePlaceholder" : "Entrez la catégorie d'options",
       "limit" : "Limite",
       "min" : "Min",
-      "Max" : "Max"
+      "max" : "Max"
     },
     "option" : {
       "name" : "Nom de l'option",

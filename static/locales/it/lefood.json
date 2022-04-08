@@ -186,7 +186,7 @@
     "category": {
       "nameLabel": "Nome della categoria",
       "namePlaceholder": "Digita la categoria delle tue opzioni",
-      "limite": "Limite",
+      "limit": "Limite",
       "min": "Min",
       "max": "Max"
     },
