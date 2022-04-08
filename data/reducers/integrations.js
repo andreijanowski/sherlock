@@ -13,7 +13,8 @@ export const initialState = Record({
   isConnectedToOrkestro: false,
   isFetching: false,
   isFailed: false,
-  isSucceeded: true
+  isSucceeded: true,
+  hasPosCurrentBusiness: false
 })();
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -37,7 +38,9 @@ const reducer = (state = initialState, { type, payload }) => {
         Record({
           isFetching: false,
           isSucceeded: true,
-          isConnectedToOrkestro
+          isConnectedToOrkestro,
+          hasPosCurrentBusiness:
+            payload.rawData.data.attributes.posPartnerIntegrationExists
         })()
       );
 
