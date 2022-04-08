@@ -178,5 +178,22 @@
     ],
     "instructions_note": "Se vi sono degli errori all'interno del file, questi verranno elencati in una tabella \nDovrete correggere gli errori direttamente nel file. Ricaricate il file successivamente"
   },
-  "autoAcceptOrders": "Accettare gli ordini automaticamente"
+  "autoAcceptOrders": "Accettare gli ordini automaticamente",
+  "dontAskAgain": "Non chiedere di nuovo",
+  "dishOptions": {
+    "addCategory": "Aggiungi lista di opzioni",
+    "addOption": "Aggiungi opzione",
+    "category": {
+      "nameLabel": "Nome della categoria",
+      "namePlaceholder": "Digita la categoria delle tue opzioni",
+      "limit": "Limite",
+      "min": "Min",
+      "max": "Max"
+    },
+    "option": {
+      "name": "Nome opzione",
+      "price": "Prezzo",
+      "skuRef": "SKU"
+    }
+  }
 }

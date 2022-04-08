@@ -238,7 +238,9 @@
     "category": {
       "nameLabel": "Category name",
       "namePlaceholder": "Type in your options category",
-      "limit": "Limit"
+      "limit": "Limit",
+      "min": "Min",
+      "max": "Max"
     },
     "option": {
       "name": "Option name",

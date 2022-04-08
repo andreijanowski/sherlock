@@ -41,7 +41,8 @@ const MenuPage = ({
   business,
   businesses,
   categories,
-  isUberAvailable
+  isUberAvailable,
+  hasPosIntegration
 }) => {
   const [showImportModal, setShowImportModal] = useState(false);
   const [editedDishId, setEditedDishId] = useState(null);
@@ -159,9 +160,6 @@ const MenuPage = ({
     setShowImportModal(false);
   }, []);
 
-  const hasPosIntegration =
-    business && business.getIn(["posPartnerIntegrationExists"]);
-
   return (
     <AppManagerLayout
       {...{
@@ -225,7 +223,8 @@ MenuPage.propTypes = {
   businessId: string,
   uploadMenu: func.isRequired,
   downloadMenu: func.isRequired,
-  isUberAvailable: bool
+  isUberAvailable: bool,
+  hasPosIntegration: bool.isRequired
 };
 
 MenuPage.defaultProps = {
@@ -245,6 +244,10 @@ export default compose(
       const isUberConnected = state.getIn(["uberIntegrations"]);
       const isUberAvailable =
         isUberConnected && isUberConnected.get("isConnectedToUberEats");
+      const hasPosIntegration = state.getIn([
+        "integrations",
+        "hasPosCurrentBusiness"
+      ]);
       const businessData = state.getIn(["users", "currentBusiness", "data"]);
       const business =
         businessData &&
@@ -273,7 +276,8 @@ export default compose(
           "data",
           "businesses"
         ]),
-        lng: (i18n && i18n.language) || "en"
+        lng: (i18n && i18n.language) || "en",
+        hasPosIntegration
       };
     },
     {

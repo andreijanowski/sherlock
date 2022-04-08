@@ -39,8 +39,12 @@ const DishOptionsForm = ({ hasPosIntegration }) => {
             };
             return (
               <Box key={name}>
-                <Flex width={1} flexWrap="nowrap">
-                  <Box flex="auto" width={["100%", null, "auto"]} mr={3}>
+                <Flex
+                  width={1}
+                  flexWrap={["wrap", null, "nowrap", null]}
+                  mb={["3", "0"]}
+                >
+                  <Box flex="auto" width={["100%", null, "auto"]} mr={2}>
                     <FormInput
                       name={`${name}.name`}
                       validate={required(t)}
@@ -50,18 +54,36 @@ const DishOptionsForm = ({ hasPosIntegration }) => {
                   </Box>
                   <Box
                     flex={["auto", null, "none"]}
-                    width={[null, null, "120px"]}
-                    mr={3}
+                    width={[null, null, "150px"]}
                   >
-                    <FormInput
-                      name={`${name}.limit`}
-                      validate={composeValidators(
-                        required(t),
-                        isNotNegativeInt(t)
-                      )}
-                      label={t("dishOptions.category.limit")}
-                      placeholder={t("dishOptions.category.limit")}
-                    />
+                    <Flex width={1} flexWrap="nowrap" mb={3}>
+                      <Box
+                        flex={["auto", null, "none"]}
+                        width={[null, null, "65px"]}
+                        mr={2}
+                      >
+                        <FormInput
+                          name={`${name}.lowerLimit`}
+                          label={t("dishOptions.category.min")}
+                          placeholder={t("dishOptions.category.min")}
+                        />
+                      </Box>
+                      <Box
+                        flex={["auto", null, "none"]}
+                        width={[null, null, "65px"]}
+                        mr={2}
+                      >
+                        <FormInput
+                          name={`${name}.limit`}
+                          validate={composeValidators(
+                            required(t),
+                            isNotNegativeInt(t)
+                          )}
+                          label={t("dishOptions.category.max")}
+                          placeholder={t("dishOptions.category.max")}
+                        />
+                      </Box>
+                    </Flex>
                   </Box>
                   <DeleteListItemBtn
                     type="button"

@@ -178,5 +178,22 @@
     ],
     "instructions_note": "Si il y a des erreurs dans votre fichier, elles apparaîtront dans un tableau. Vous aurez à les corriger dans le fichier et le télécharger à nouveau"
   },
-  "autoAcceptOrders": "Accepter les commandes automatiquement"
+  "autoAcceptOrders": "Accepter les commandes automatiquement",
+  "dontAskAgain" : "Ne pas me redemander",
+  "dishOptions" : {
+    "addCategory" : "Ajouter une liste d'options",
+    "addOption" : "Ajouter une option",
+    "category" : {
+      "nameLabel" : "Nom de la catégorie",
+      "namePlaceholder" : "Entrez la catégorie d'options",
+      "limit" : "Limite",
+      "min" : "Min",
+      "max" : "Max"
+    },
+    "option" : {
+      "name" : "Nom de l'option",
+      "price" : "Prix",
+      "skuRef" : "SKU"
+    }
+  }
 }
