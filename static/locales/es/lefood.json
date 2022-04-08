@@ -178,5 +178,23 @@
     ],
     "instructions_note": "Si hay algún error en vuestro archivo, lo indicaremos con un pop-up (ventana emergente). Tendréis que corregir esos errores directamente en el archivo y volver a subirlo."
   },
-  "autoAcceptOrders": "Aceptar pedidos automáticamente"
+  "autoAcceptOrders": "Aceptar pedidos automáticamente",
+  "dontAskAgain": "No vuelvas a preguntar",
+  "dishOptions": {
+    "addCategory": "Agregar lista de opciones",
+    "addOption": "Añadir opción",
+    "category": {
+      "nameLabel": "Nombre de la categoría",
+      "namePlaceholder": "Escriba su categoría de opciones",
+      "limit": "Límite",
+      "min": "Min",
+      "max": "Max"
+    },
+    "option": {
+      "name": "Nombre de la opción",
+      "price": "Precio",
+      "skuRef": "SKU"
+    }
+  }
+
 }

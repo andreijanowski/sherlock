@@ -40,6 +40,7 @@ const reducer = (state = initialState, { type, payload }) => {
           isSucceeded: true,
           isConnectedToOrkestro,
           hasPosCurrentBusiness:
+            payload.rawData.data &&
             payload.rawData.data.attributes &&
             payload.rawData.data.attributes.posPartnerIntegrationExists
         })()
