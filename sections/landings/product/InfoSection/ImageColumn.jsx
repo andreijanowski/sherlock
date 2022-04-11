@@ -6,7 +6,7 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { arrayOf, bool, number, oneOf, shape, string } from "prop-types";
 import Link from "components/Link";
 import { useLng, useT } from "utils/hooks";
-import { VideoPreview } from "components/Landing";
+import { VideoPreview, ImagesSlider } from "components/Landing";
 import { Image, ImagesContainer } from "./styled";
 import { getOptionPrefix } from "../utils";
 
@@ -17,7 +17,8 @@ const ImageColumn = ({
   images,
   linkTo,
   activeOptionIndex,
-  videos
+  videos,
+  sliderImages
 }) => {
   const t = useT("landing");
   const lng = useLng();
@@ -25,6 +26,11 @@ const ImageColumn = ({
   const linkText = t(`${prefix}.link`);
 
   const videoData = videos[getOptionPrefix(activeOptionIndex)];
+  const hasSlider =
+    sliderImages &&
+    Boolean(sliderImages.length) &&
+    sliderImages[activeOptionIndex] &&
+    Boolean(sliderImages[activeOptionIndex].length);
 
   return (
     <Box
@@ -46,18 +52,27 @@ const ImageColumn = ({
               ml: ["auto", null, null, 0]
             })}
       >
-        {videoData ? (
-          <VideoPreview {...videoData} />
-        ) : (
-          images.map(({ src, ...styleProps }, index) => (
-            <Image
-              key={src}
-              src={src}
-              {...styleProps}
-              alt={`Image ${index + 1}`}
-              loading="lazy"
-            />
-          ))
+        {!hasSlider &&
+          (videoData ? (
+            <VideoPreview {...videoData} />
+          ) : (
+            images.map(({ src, ...styleProps }, index) => (
+              <Image
+                key={src}
+                src={src}
+                {...styleProps}
+                alt={`Image ${index + 1}`}
+                loading="lazy"
+              />
+            ))
+          ))}
+        {hasSlider && (
+          <ImagesSlider
+            images={sliderImages[activeOptionIndex]}
+            videos={videos}
+            activeOptionIndex={activeOptionIndex}
+            hasBlueDots
+          />
         )}
       </ImagesContainer>
       {linkTo && linkText && (
@@ -90,7 +105,12 @@ ImageColumn.propTypes = {
     })
   ).isRequired,
   activeOptionIndex: number.isRequired,
-  videos: shape().isRequired
+  videos: shape().isRequired,
+  sliderImages: arrayOf(shape({}))
+};
+
+ImageColumn.defaultProps = {
+  sliderImages: []
 };
 
 export default ImageColumn;

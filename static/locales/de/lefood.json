@@ -178,5 +178,22 @@
     ],
     "instructions_note": "Wenn Ihre Datei Fehler enthält, listen wir sie alle in einer Tabelle in einem Popup-Fenster auf.\nSie müssen diese Fehler in der Datei direkt korrigieren und die Datei erneut hochladen."
   },
-  "autoAcceptOrders": "Automatische Auftragsannahme"
+  "autoAcceptOrders": "Automatische Auftragsannahme",
+  "dontAskAgain": "Frag nicht noch einmal",
+  "dishOptions": {
+    "addCategory": "Optionsliste hinzufügen",
+    "addOption": "Option hinzufügen",
+    "category": {
+      "nameLabel": "Name der Kategorie",
+      "namePlaceholder": "Geben Sie Ihre Optionskategorie ein",
+      "limit": "Limit",
+      "min": "Min",
+      "max": "Max"
+    },
+    "option": {
+      "name": "Name der Option",
+      "price": "Preis",
+      "skuRef": "SKU"
+    }
+  }
 }

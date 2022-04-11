@@ -23,7 +23,8 @@ const Menu = ({
   loading,
   categories,
   isUberAvailable,
-  onShowImportModalClick
+  onShowImportModalClick,
+  hasPosIntegration
 }) => {
   const [pictureUrl, setPictureUrl] = useState("");
 
@@ -107,6 +108,7 @@ const Menu = ({
                     categories={preparedCategories}
                     isUberAvailable={isUberAvailable}
                     onShowImportModalClick={onShowImportModalClick}
+                    hasPosIntegration={hasPosIntegration}
                   />
                 </Box>
                 <Box
@@ -114,7 +116,7 @@ const Menu = ({
                   px={[0, null, null, null, 3]}
                 >
                   {editedDishId ? (
-                    <DishOptionsForm />
+                    <DishOptionsForm hasPosIntegration={hasPosIntegration} />
                   ) : (
                     <List
                       items={preparedList}
@@ -145,7 +147,8 @@ Menu.propTypes = {
   loading: bool.isRequired,
   editedDishId: string,
   isUberAvailable: bool.isRequired,
-  onShowImportModalClick: func.isRequired
+  onShowImportModalClick: func.isRequired,
+  hasPosIntegration: bool.isRequired
 };
 
 Menu.defaultProps = {

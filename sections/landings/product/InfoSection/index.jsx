@@ -20,6 +20,7 @@ const InfoSection = ({
   textLinks,
   videos,
   step,
+  sliderImages,
   isReversed = isDark,
   ctaButton,
   isAdvantagesCentered
@@ -53,6 +54,7 @@ const InfoSection = ({
         <ImageColumn
           width={columnsProportions[0]}
           images={images}
+          sliderImages={sliderImages}
           isReversed={isReversed}
           linkTo={linkTo}
           prefix={prefix}
@@ -99,6 +101,7 @@ InfoSection.propTypes = {
   textLinks: shape({}),
   videos: shape({}),
   step: number,
+  sliderImages: arrayOf(shape({})),
   ctaButton: node
 };
 
@@ -113,6 +116,7 @@ InfoSection.defaultProps = {
   textLinks: {},
   videos: {},
   images: [],
+  sliderImages: [],
   ctaButton: null
 };
 
