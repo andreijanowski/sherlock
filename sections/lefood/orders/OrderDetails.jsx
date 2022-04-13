@@ -118,7 +118,7 @@ const OrderDetails = ({
               .map(element => (
                 <OrderDetail
                   {...{
-                    key: element.getIn(["attributes", "dishName"]),
+                    key: element.getIn(["id"]),
                     name: `${element.getIn([
                       "attributes",
                       "units"
