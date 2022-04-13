@@ -63,7 +63,7 @@ const contentTypes = {
 const privacyPolicyLink = `${FOODETECTIVE_URL}/foodetective-for-business-privacy-policy`;
 const termsAndConditionsLink = `${FOODETECTIVE_URL}/foodetective-for-business-terms-of-use`;
 const mediaKitLink =
-  "https://drive.google.com/drive/folders/1zvd8jyc1lRmxuMzTu6BQ5UrbRsBJfm6v";
+  "https://drive.google.com/drive/folders/1iZyNJbszSyRPG3ZWwNKVGws9UdSrdv-z";
 const becomePartnerLink = `https://foodetective.typeform.com/to/tzqu8b`;
 
 const apiGuideLink = `${API_URL}/static_pages/api-auth-guide`;
