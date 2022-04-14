@@ -181,7 +181,34 @@ const OrderDetails = ({
           />
           {/* orkestroStatus */}
           <SliderSpacer />
+          <SliderDetail
+            {...{
+              name: t("collectionTime"),
+              value: [orderDetails.getIn(["attributes", "collectionAt"])]
+            }}
+          />
+          <SliderDetail
+            {...{
+              name: t("collectionCode"),
+              value: [orderDetails.getIn(["attributes", "collectionCode"])]
+            }}
+          />
+          <SliderDetail
+            {...{
+              name: t("customerNotes"),
+              value: [
+                orderDetails.getIn(["attributes", "notes", "deliveryNotes"])
+              ]
+            }}
+          />
+          <br />
           <SliderSubheader>{t("personalInformation")}</SliderSubheader>
+          <SliderDetail
+            {...{
+              name: t("customerName"),
+              value: [orderDetails.getIn(["attributes", "customerName"])]
+            }}
+          />
           <SliderDetail
             {...{
               name: t("email"),
