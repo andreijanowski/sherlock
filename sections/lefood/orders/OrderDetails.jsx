@@ -196,9 +196,7 @@ const OrderDetails = ({
           <SliderDetail
             {...{
               name: t("customerNotes"),
-              value: [
-                orderDetails.getIn(["attributes", "notes", "deliveryNotes"])
-              ]
+              value: [deliveryNotes]
             }}
           />
           <br />
@@ -240,14 +238,6 @@ const OrderDetails = ({
               {...{
                 name: t("deliveryAddress"),
                 value: [t("pickupAtRestaurant")]
-              }}
-            />
-          )}
-          {deliveryNotes && (
-            <SliderDetail
-              {...{
-                name: t("deliveryNotes"),
-                value: [deliveryNotes]
               }}
             />
           )}
