@@ -160,6 +160,7 @@ module.exports = routes()
   .add("demo_booked", `/:lng(${languagesPattern})/demo_booked`)
   .add("newsroom", `/:lng(${languagesPattern})/newsroom`)
   .add("blogposts/[id]", `/:lng(${languagesPattern})/blog-posts/:id`)
+  // .add("sitemap.xml", `/sitemap.xml`)
   .add(
     "sign-up-confirmation",
     `/:lng(${languagesPattern})/sign-up-confirmation`

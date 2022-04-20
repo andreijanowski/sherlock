@@ -1,7 +1,7 @@
 import { LANGUAGES } from "components/LanguageSwitcher";
 import replacePathLng from "utils/replacePathLng";
 
-const IGNORED_PATHS = ["locales", "static", "_next"];
+const IGNORED_PATHS = ["locales", "static", "_next", "sitemap.xml"];
 
 export default async ctx => {
   if (!ctx || !ctx.req) return;

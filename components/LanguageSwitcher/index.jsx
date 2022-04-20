@@ -10,11 +10,13 @@ import {
   LanguageList,
   LanguageListItem,
   SelectedLanguageWrapper,
-  FlagIcon
+  FlagIcon,
+  HiddenSEOLinks
 } from "./styled";
 
 /* Temporary list of available languages, remove after provide valid locales data */
 export const LANGUAGES = ["en", "fr", "de", "it", "es"];
+export const FULL_URL = "https://business.foodetective.co";
 
 class LanguageSwitcher extends Component {
   state = {
@@ -64,6 +66,11 @@ class LanguageSwitcher extends Component {
         onClick={this.toggleLanguageListVisible}
         tabIndex="0"
       >
+        <HiddenSEOLinks>
+          {LANGUAGES.map(lng => (
+            <a key={lng} href={`${FULL_URL}/${lng}`}>{`${FULL_URL}/${lng}`}</a>
+          ))}
+        </HiddenSEOLinks>
         <SelectedLanguageWrapper>
           {children}
           {!isServer && <FlagIcon code={selectedLanguage} />}
