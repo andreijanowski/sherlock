@@ -118,7 +118,7 @@ const OrderDetails = ({
               .map(element => (
                 <OrderDetail
                   {...{
-                    key: element.getIn(["attributes", "dishName"]),
+                    key: element.getIn(["id"]),
                     name: `${element.getIn([
                       "attributes",
                       "units"
@@ -181,7 +181,32 @@ const OrderDetails = ({
           />
           {/* orkestroStatus */}
           <SliderSpacer />
+          <SliderDetail
+            {...{
+              name: t("collectionTime"),
+              value: [orderDetails.getIn(["attributes", "collectionAt"])]
+            }}
+          />
+          <SliderDetail
+            {...{
+              name: t("collectionCode"),
+              value: [orderDetails.getIn(["attributes", "collectionCode"])]
+            }}
+          />
+          <SliderDetail
+            {...{
+              name: t("customerNotes"),
+              value: [deliveryNotes]
+            }}
+          />
+          <br />
           <SliderSubheader>{t("personalInformation")}</SliderSubheader>
+          <SliderDetail
+            {...{
+              name: t("customerName"),
+              value: [orderDetails.getIn(["attributes", "customerName"])]
+            }}
+          />
           <SliderDetail
             {...{
               name: t("email"),
@@ -213,14 +238,6 @@ const OrderDetails = ({
               {...{
                 name: t("deliveryAddress"),
                 value: [t("pickupAtRestaurant")]
-              }}
-            />
-          )}
-          {deliveryNotes && (
-            <SliderDetail
-              {...{
-                name: t("deliveryNotes"),
-                value: [deliveryNotes]
               }}
             />
           )}

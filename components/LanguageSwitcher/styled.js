@@ -91,3 +91,11 @@ export const SelectedLanguageWrapper = styled(Flex).attrs(() => ({
   width: 100%;
   justify-content: space-between;
 `;
+
+export const HiddenSEOLinks = styled(Box).attrs(() => ({
+  px: "1px",
+  py: "1px"
+}))`
+  width: 1px;
+  visibility: hidden;
+`;
