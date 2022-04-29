@@ -294,3 +294,20 @@ export const BarContainer = styled(Flex)`
     margin-bottom: 14px;
   }
 `;
+
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  margin: 20px 10px;
+  border-bottom: 1px solid rgb(${p => p.theme.colors.border});
+  padding: 20px 0;
+`;
+
+export const IconWrapper = styled.div`
+  font-size: 40px;
+  svg .primary {
+    color: rgb(${p => p.theme.colors.bombay});
+  }
+  svg .secondary {
+    color: rgb(${p => p.theme.colors.bombayDark});
+  }
+`;

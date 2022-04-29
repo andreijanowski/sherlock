@@ -99,7 +99,8 @@
   "dashboard": "Dashboard",
   "dashboardView": {
     "dashboard": "Dashboard",
-    "businessOverview": "Business Overview"
+    "businessOverview": "Business Overview",
+    "onlinePresence": "Online Presence"
   },
   "integrationHub": "Integration Hub",
   "menuManagement": "Menu management",
