@@ -51,6 +51,10 @@ const Dashboard = ({
   currency
 }) => {
   const [isPartooOn, setIsPartooOn] = useState(false);
+
+  const togglePartooWindow = () =>
+    setIsPartooOn(prevIsPartooOn => !prevIsPartooOn);
+
   return (
     <AppLayout
       {...{
@@ -65,7 +69,7 @@ const Dashboard = ({
           as="a"
           styleName="withImage"
           active={isPartooOn}
-          onClick={() => setIsPartooOn(!isPartooOn)}
+          onClick={togglePartooWindow}
           width="210px"
         >
           <ButtonWithImageIconWrapper>
