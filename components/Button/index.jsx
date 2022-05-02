@@ -327,6 +327,7 @@ const Button = styled.button`
   ${p => p.styleName === "popup" && popup};
   ${p => p.fluid && fluid};
   ${p => p.fullHeight && fullHeight};
+  margin: ${p => p.margin || "auto"};
 
   &:disabled {
     cursor: not-allowed;
