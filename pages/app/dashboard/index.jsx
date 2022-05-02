@@ -11,7 +11,7 @@ import {
   ButtonWithImageIconWrapper,
   ButtonWithImageText
 } from "components";
-import { PresenceManagement } from "components/Icons";
+import { PresenceManagement, Reviews, Restaurant } from "components/Icons";
 import AppLayout from "layout/App";
 import requireAuth from "lib/requireAuth";
 import { PaymentChart } from "components/Dashboard//pieChart";
@@ -38,6 +38,11 @@ import {
 import { selectCurrentBusiness } from "selectors/business";
 
 const namespaces = ["dashboard", "app", "forms", "lefood"];
+const tabs = [
+  { name: "businessOperations", icon: <Restaurant /> },
+  { name: "reviews", icon: <Reviews /> },
+  { name: "onlinePresence", icon: <PresenceManagement /> }
+];
 
 const Dashboard = ({
   t,
@@ -50,10 +55,9 @@ const Dashboard = ({
   fetchWorstSales,
   currency
 }) => {
-  const [isPartooOn, setIsPartooOn] = useState(false);
+  const [currentTab, setCurrentTab] = useState(tabs[0]);
 
-  const togglePartooWindow = () =>
-    setIsPartooOn(prevIsPartooOn => !prevIsPartooOn);
+  const switchCurrentTab = tabIndex => setCurrentTab(tabIndex);
 
   return (
     <AppLayout
@@ -65,101 +69,113 @@ const Dashboard = ({
       lng={lng}
     >
       <ButtonsWrapper>
-        <Button
-          as="a"
-          styleName="withImage"
-          active={isPartooOn}
-          onClick={togglePartooWindow}
-          width="210px"
-        >
-          <ButtonWithImageIconWrapper>
-            <IconWrapper>
-              <PresenceManagement />
-            </IconWrapper>
-          </ButtonWithImageIconWrapper>
-          <ButtonWithImageText>{t("onlinePresence")}</ButtonWithImageText>
-        </Button>
-      </ButtonsWrapper>
-      {isPartooOn && <PartooIframe startPage="presenceManagement" />}
-      <TileWrapper width={1}>
-        <Tile width={1}>
-          <TileHeader isBig>{t("businessOverview")}</TileHeader>
-          <Flex
-            justifyContent="space-between"
-            flexDirection={["column", "column", "column", "row"]}
+        {tabs.map(tab => (
+          <Button
+            key={tab.name}
+            as="a"
+            styleName="withImage"
+            active={currentTab.name === tab.name}
+            onClick={() => switchCurrentTab(tab)}
+            margin="10px 32px 0 0"
           >
-            <Flex width={[1, 1, 1, 31 / 64]} flexDirection="column">
-              <BarTile
-                businessId={businessId}
-                color="turquoise"
-                fetchAction={fetchAvgTicketSize}
-                title="ticket"
-                t={t}
-                currency={currency}
-              />
-              <BarTile
-                fetchAction={fetchTodaysEarnings}
-                businessId={businessId}
-                color="salmon"
-                title="earnings"
-                t={t}
-                currency={currency}
-              />
-              <BarTile
-                isDisabled
-                fetchAction={fetchTodaysEarnings}
-                businessId={businessId}
-                title="earnings"
-                t={t}
-                color="royalblue"
-                currency={currency}
-              />
+            <ButtonWithImageIconWrapper>
+              <IconWrapper active={currentTab.name === tab.name}>
+                {tab.icon}
+              </IconWrapper>
+            </ButtonWithImageIconWrapper>
+            <ButtonWithImageText>{t(tab.name)}</ButtonWithImageText>
+          </Button>
+        ))}
+      </ButtonsWrapper>
+      {currentTab.name === tabs[0].name && (
+        <>
+          <TileWrapper width={1}>
+            <Tile width={1}>
+              <TileHeader isBig>{t("businessOverview")}</TileHeader>
+              <Flex
+                justifyContent="space-between"
+                flexDirection={["column", "column", "column", "row"]}
+              >
+                <Flex width={[1, 1, 1, 31 / 64]} flexDirection="column">
+                  <BarTile
+                    businessId={businessId}
+                    color="turquoise"
+                    fetchAction={fetchAvgTicketSize}
+                    title="ticket"
+                    t={t}
+                    currency={currency}
+                  />
+                  <BarTile
+                    fetchAction={fetchTodaysEarnings}
+                    businessId={businessId}
+                    color="salmon"
+                    title="earnings"
+                    t={t}
+                    currency={currency}
+                  />
+                  <BarTile
+                    isDisabled
+                    fetchAction={fetchTodaysEarnings}
+                    businessId={businessId}
+                    title="earnings"
+                    t={t}
+                    color="royalblue"
+                    currency={currency}
+                  />
+                </Flex>
+                <Flex width={[1, 1, 1, 31 / 64]} flexDirection="column">
+                  <ProgressBarTile
+                    businessId={businessId}
+                    fetchAction={fetchRevenueBreakdown}
+                    t={t}
+                  />
+                  <Tile isDisabled height={350}>
+                    <TileHeader>{t("paymentTypes")}</TileHeader>
+                    <PaymentChart />
+                  </Tile>
+                </Flex>
+              </Flex>
+            </Tile>
+            <Tile width={1}>
+              <TileHeader isBig>{t("todaysActivity")}</TileHeader>
+              <Flex flexDirection={["column", "column", "column", "row"]}>
+                <Stream t={t} />
+                <Flex width={1} flexDirection="column">
+                  <Sales t={t} title="bestSales" fetchAction={fetchBestSales} />
+                  <Sales
+                    t={t}
+                    title="worstSales"
+                    isWorst
+                    fetchAction={fetchWorstSales}
+                  />
+                </Flex>
+              </Flex>
+            </Tile>
+          </TileWrapper>
+          <Tile isDisabled>
+            <Flex flexDirection={["column", "column", "column", "row"]}>
+              <LineChart title={t("consultation")} />
+              <LineChart isDown title={t("totalComments")} />
+              <EvaluationChart title={t("consultation")} isDown />
             </Flex>
-            <Flex width={[1, 1, 1, 31 / 64]} flexDirection="column">
-              <ProgressBarTile
-                businessId={businessId}
-                fetchAction={fetchRevenueBreakdown}
-                t={t}
-              />
-              <Tile isDisabled height={350}>
-                <TileHeader>{t("paymentTypes")}</TileHeader>
-                <PaymentChart />
-              </Tile>
+            <Flex
+              flexDirection={["column", "column", "column", "row"]}
+              justifyContent="space-between"
+            >
+              <LineChart title="Daily Budget" isDown />
+              <LineChart title="Offers & Promotions" />
+              <LineChart title="Hours Worked" isDown />
+              <LineChart title="Labour Cost" />
             </Flex>
-          </Flex>
-        </Tile>
-        <Tile width={1}>
-          <TileHeader isBig>{t("todaysActivity")}</TileHeader>
-          <Flex flexDirection={["column", "column", "column", "row"]}>
-            <Stream t={t} />
-            <Flex width={1} flexDirection="column">
-              <Sales t={t} title="bestSales" fetchAction={fetchBestSales} />
-              <Sales
-                t={t}
-                title="worstSales"
-                isWorst
-                fetchAction={fetchWorstSales}
-              />
-            </Flex>
-          </Flex>
-        </Tile>
-      </TileWrapper>
-      <Tile isDisabled>
-        <Flex flexDirection={["column", "column", "column", "row"]}>
-          <LineChart title={t("consultation")} />
-          <LineChart isDown title={t("totalComments")} />
-          <EvaluationChart title={t("consultation")} isDown />
-        </Flex>
-        <Flex
-          flexDirection={["column", "column", "column", "row"]}
-          justifyContent="space-between"
-        >
-          <LineChart title="Daily Budget" isDown />
-          <LineChart title="Offers & Promotions" />
-          <LineChart title="Hours Worked" isDown />
-          <LineChart title="Labour Cost" />
-        </Flex>
-      </Tile>
+          </Tile>
+        </>
+      )}
+      {currentTab.name === tabs[1].name && (
+        <PartooIframe startPage="reviewAnalytics" />
+      )}
+      {currentTab.name === tabs[2].name && (
+        <PartooIframe startPage="analytics" />
+      )}
     </AppLayout>
   );
 };
