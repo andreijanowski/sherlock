@@ -5,8 +5,6 @@ import { SUBSCRIPTION_PLANS } from "consts";
 import { matchPlanBySlug } from "utils/plans";
 import { Container } from "./styled";
 import TablePlansRow from "../TablePlansRow";
-import TableIntroductoryRow from "../TableIntroductoryRow";
-import TablePerfectForRow from "../TablePerfectForRow";
 
 const TableHead = ({ plans, period, currency, onPlanChooseClick }) => {
   const matchingPlans = useMemo(() => {
@@ -31,8 +29,6 @@ const TableHead = ({ plans, period, currency, onPlanChooseClick }) => {
         matchingPlans={matchingPlans}
         onPlanChooseClick={onPlanChooseClick}
       />
-      <TableIntroductoryRow matchingPlans={matchingPlans} />
-      <TablePerfectForRow />
     </Container>
   );
 };

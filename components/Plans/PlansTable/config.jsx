@@ -188,6 +188,7 @@ export const getTableConfig = ({ t, isLandingPage }) => [
           {
             icon: StockManagement,
             label: t("app:stockManagement"),
+            isComingSoon: true,
             columns: [
               { isAvailable: false },
               { isAvailable: true },
@@ -252,6 +253,7 @@ export const getTableConfig = ({ t, isLandingPage }) => [
           {
             icon: CustomerLoyalty,
             label: t("app:loyalty"),
+            isComingSoon: true,
             columns: [
               { isAvailable: false },
               { isAvailable: false },
