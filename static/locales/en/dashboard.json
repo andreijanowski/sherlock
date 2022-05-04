@@ -41,5 +41,8 @@
   "todayVS": "Today vs",
   "thisMonthVS": "This month vs",
   "thisQuarterVS": "This quarter vs",
-  "thisYearVS": "This year vs"
+  "thisYearVS": "This year vs",
+  "businessOperations": "Business Operations",
+  "reviews": "Reviews",
+  "onlinePresence": "Online Presence"
 }
