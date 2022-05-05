@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+import Button from "components/styleguide/Button";
 
 export const ModalStyles = createGlobalStyle`
   .modal-overlay {
@@ -45,4 +46,21 @@ export const Title = styled.div`
 
 export const Image = styled.img`
   margin: 32px auto 46px;
+`;
+
+export const Disclaimer = styled.p`
+  margin: 20px;
+  max-width: 100%;
+  font-size: 12px;
+`;
+
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const CancelButton = styled(Button)`
+  border: 1px solid ${p => `rgb(${p.theme.colors.b2bSecondary})`};
+  color: ${p => `rgb(${p.theme.colors.b2bSecondary})`};
+  margin-right: 20px;
 `;
