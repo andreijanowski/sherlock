@@ -668,7 +668,9 @@
     "welcome": {
       "title":  "Welcome to Foodetective!",
       "subtitle": "You have successfully created an account. Next, provide your business information to start using the platform",
-      "cta": "Start"
+      "cta": "Start",
+      "disclaimer": "By clicking start, you confirm that you are registering as Business on Foodetective",
+      "cancel": "Cancel"
     },
     "newsroom": {
       "title": "Newsroom",

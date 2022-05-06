@@ -668,7 +668,9 @@
     "welcome": {
       "title":  "¡Bienvenido a Foodetective!",
       "subtitle": "Su cuenta ha sido creada con éxito. Iniciar la incorporación",
-      "cta": "Start"
+      "cta": "Iniciar",
+      "disclaimer": "Al hacer clic en el botón Iniciar, confirma que se está registrando como empresa en Foodetective.",
+      "cancel": "Cancelar"
     },
     "newsroom": {
       "title": "Newsroom",

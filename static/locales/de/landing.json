@@ -668,7 +668,9 @@
     "welcome": {
       "title":  "Willkommen bei Foodetective!",
       "subtitle": "Ihr Konto wurde erfolgreich erstellt. Mit dem Onboarding beginnen",
-      "cta": "Start"
+      "cta": "Starten",
+      "disclaimer": "Indem Sie auf Starten klicken, bestätigen Sie, dass Sie sich als Unternehmen bei Foodetective registrieren.",
+      "cancel": "Abbrechen"
     },
     "newsroom": {
       "title": "Newsroom",
