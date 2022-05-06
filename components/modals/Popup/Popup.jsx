@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { bool, string } from "prop-types";
+import { bool, string, func } from "prop-types";
 import { useRouter } from "next/router";
 import { Modal } from "components";
 import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
@@ -25,7 +25,9 @@ const Popup = ({
   subtitle,
   image,
   hasRedirection,
-  hasCancelButton
+  hasCancelButton,
+  onConfirm,
+  onCloseModal
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
@@ -33,18 +35,20 @@ const Popup = ({
   const t = useT();
 
   const onLoginButtonClick = useCallback(() => {
+    Cookies.set("BOA", true);
     const state = uuid();
     Cookies.set("loginStateParam", state, { expires: 7 });
     window.location.href = `${API_URL}/oauth/authorize?client_id=${OAUTH_PUBLIC_CLIENT_ID}&redirect_uri=${OAUTH_CALLBACK_URL}&response_type=code&scope=trusted+refresh_token+public&state=${state}`;
   }, []);
 
   const onClose = () => {
-    router.push(`/${lng}`);
     setIsModalOpen(false);
+    router.push(`/${lng}`);
   };
 
   useEffect(() => {
     setIsModalOpen(true);
+    Cookies.remove("BOA");
   }, []);
 
   return (
@@ -61,7 +65,7 @@ const Popup = ({
           <ButtonsWrapper>
             {hasCancelButton && (
               <CancelButton
-                onClick={onClose}
+                onClick={onCloseModal || onClose}
                 styleName="popup"
                 variant={BUTTON_VARIANT.OUTLINE}
               >
@@ -69,7 +73,9 @@ const Popup = ({
               </CancelButton>
             )}
             <Button
-              onClick={hasRedirection ? onLoginButtonClick : onClose}
+              onClick={
+                hasRedirection ? onConfirm || onLoginButtonClick : onClose
+              }
               styleName="popup"
               withArrow
               variant={BUTTON_VARIANT.B2BSECONDARY}
@@ -88,7 +94,9 @@ Popup.defaultProps = {
   image: "",
   hasRedirection: false,
   hasCancelButton: false,
-  disclaimer: ""
+  disclaimer: "",
+  onConfirm: null,
+  onCloseModal: null
 };
 
 Popup.propTypes = {
@@ -98,7 +106,9 @@ Popup.propTypes = {
   subtitle: string,
   title: string.isRequired,
   image: string,
-  disclaimer: string
+  disclaimer: string,
+  onConfirm: func,
+  onCloseModal: func
 };
 
 export default Popup;

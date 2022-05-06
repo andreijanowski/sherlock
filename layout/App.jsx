@@ -1,11 +1,12 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
+import Cookies from "js-cookie";
 import { Flex } from "@rebass/grid";
-import { node, bool, func, string } from "prop-types";
+import { node, func, string } from "prop-types";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
+import { Popup } from "components/modals";
 
-import { LoadingIndicator, MainApp, NavigationContainer, H3 } from "components";
-import { Confirm } from "components/modals";
+import { MainApp, NavigationContainer } from "components";
 import { postBusiness } from "actions/businesses";
 import { logout as logoutAction } from "actions/auth";
 import { BASIC_ROLE } from "sagas/users";
@@ -21,22 +22,35 @@ const AppLayout = ({
   role,
   createBusiness,
   logout,
-  isFetching,
   containerComponent
 }) => {
+  const hasBOAgreement = Cookies.get("BOA");
   const router = useRouter();
+  const shouldShowConfirmBOModal = !hasBOAgreement && role === BASIC_ROLE;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (hasBOAgreement && role === BASIC_ROLE) {
+        createBusiness(() => {
+          router.push(`/${lng}${REDIRECT_URL}`);
+        });
+      }
+    }, 2000);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasBOAgreement, role]);
 
   const onConfirmModalSubmit = useCallback(() => {
     createBusiness(() => {
       router.push(`/${lng}${REDIRECT_URL}`);
     });
+    Cookies.set("BOA", true);
   }, [createBusiness, lng, router]);
 
   const onConfirmModalClose = useCallback(() => {
+    Cookies.remove("BOA");
     logout();
   }, [logout]);
-
-  const shouldShowConfirmBOModal = role === BASIC_ROLE;
 
   return (
     <Flex
@@ -50,24 +64,17 @@ const AppLayout = ({
         {children}
       </MainApp>
       {shouldShowConfirmBOModal && (
-        <Confirm
-          {...{
-            btnOkText: t("forms:yes"),
-            btnCancelText: t("forms:no"),
-            open: true,
-            restyled: true,
-            onConfirm: onConfirmModalSubmit,
-            onClose: onConfirmModalClose
-          }}
-        >
-          {isFetching ? (
-            <Flex pt={6} width={1} alignItems="center" justifyContent="center">
-              <LoadingIndicator />
-            </Flex>
-          ) : (
-            <H3>{t("app:becomeBOPrompt")}</H3>
-          )}
-        </Confirm>
+        <Popup
+          cta={t("landing:landings.welcome.cta")}
+          disclaimer={t("landing:landings.welcome.disclaimer")}
+          title={t("landing:landings.welcome.title")}
+          subtitle={t("landing:landings.welcome.subtitle")}
+          image="/static/img/popup1.svg"
+          hasRedirection
+          hasCancelButton
+          onConfirm={onConfirmModalSubmit}
+          onCloseModal={onConfirmModalClose}
+        />
       )}
     </Flex>
   );
@@ -80,7 +87,6 @@ AppLayout.propTypes = {
   header: node,
   t: func.isRequired,
   lng: string.isRequired,
-  isFetching: bool.isRequired,
   createBusiness: func.isRequired,
   logout: func.isRequired,
   role: string
@@ -95,14 +101,11 @@ AppLayout.defaultProps = {
 
 export default connect(
   state => {
-    const isFetching = state.getIn(["users", "currentBusiness", "isFetching"]);
-
     const users = state.getIn(["users", "profile", "data", "users"]);
     const user = users && users.first();
     const role = user && user.getIn(["attributes", "role"]);
 
     return {
-      isFetching,
       role
     };
   },
