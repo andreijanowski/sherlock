@@ -1,12 +1,11 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { bool, string, func } from "prop-types";
-import { useRouter } from "next/router";
 import { Modal } from "components";
 import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
 import Cookies from "js-cookie";
 import { API_URL, OAUTH_PUBLIC_CLIENT_ID, OAUTH_CALLBACK_URL } from "consts";
 import uuid from "uuid/v1";
-import { useLng, useT } from "utils/hooks";
+import { useT } from "utils/hooks";
 import { connect } from "react-redux";
 import { logout as logoutAction } from "actions/auth";
 import { H3, Subtitle } from "components/styleguide/Typography";
@@ -33,8 +32,6 @@ const Popup = ({
   logout
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const router = useRouter();
-  const lng = useLng();
   const t = useT();
 
   const onLoginButtonClick = useCallback(() => {
@@ -45,9 +42,8 @@ const Popup = ({
   }, []);
 
   const onClose = () => {
-    setIsModalOpen(false);
     logout();
-    router.push(`/${lng}`);
+    setIsModalOpen(false);
   };
 
   useEffect(() => {
@@ -58,7 +54,7 @@ const Popup = ({
   return (
     <>
       <ModalStyles />
-      <Modal open={isModalOpen}>
+      <Modal open={isModalOpen} onClose={() => {}}>
         <Wrapper>
           <Title>
             <H3>{title}</H3>
