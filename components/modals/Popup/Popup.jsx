@@ -7,6 +7,8 @@ import Cookies from "js-cookie";
 import { API_URL, OAUTH_PUBLIC_CLIENT_ID, OAUTH_CALLBACK_URL } from "consts";
 import uuid from "uuid/v1";
 import { useLng, useT } from "utils/hooks";
+import { connect } from "react-redux";
+import { logout as logoutAction } from "actions/auth";
 import { H3, Subtitle } from "components/styleguide/Typography";
 import {
   Image,
@@ -27,7 +29,8 @@ const Popup = ({
   hasRedirection,
   hasCancelButton,
   onConfirm,
-  onCloseModal
+  onCloseModal,
+  logout
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
@@ -43,6 +46,7 @@ const Popup = ({
 
   const onClose = () => {
     setIsModalOpen(false);
+    logout();
     router.push(`/${lng}`);
   };
 
@@ -54,7 +58,7 @@ const Popup = ({
   return (
     <>
       <ModalStyles />
-      <Modal open={isModalOpen} onClose={onClose}>
+      <Modal open={isModalOpen}>
         <Wrapper>
           <Title>
             <H3>{title}</H3>
@@ -108,7 +112,13 @@ Popup.propTypes = {
   image: string,
   disclaimer: string,
   onConfirm: func,
-  onCloseModal: func
+  onCloseModal: func,
+  logout: func.isRequired
 };
 
-export default Popup;
+export default connect(
+  null,
+  {
+    logout: logoutAction
+  }
+)(Popup);
