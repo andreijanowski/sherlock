@@ -45,7 +45,8 @@
     "food_waste": "Fighting Food waste",
     "payment": "Payment",
     "loyalty": "Loyalty",
-    "social_media": "Social media"
+    "social_media": "Social media",
+    "online_reviews": "Online Reviews"
   },
   "servicePlaceholder": "Select service",
   "urlPlaceholder": "Enter url",

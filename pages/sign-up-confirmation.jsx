@@ -53,10 +53,12 @@ const SignUpConfirmation = () => {
       </FooterWrapper>
       <Popup
         cta={t("landing:landings.welcome.cta")}
+        disclaimer={t("landing:landings.welcome.disclaimer")}
         title={t("landing:landings.welcome.title")}
         subtitle={t("landing:landings.welcome.subtitle")}
         image="/static/img/popup1.svg"
         hasRedirection
+        hasCancelButton
       />
     </LandingWrapper>
   );

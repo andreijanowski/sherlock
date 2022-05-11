@@ -566,7 +566,8 @@
             "title" : "Main",
             "advantages" : [
               "Scarica l'applicazione Foodetective Business",
-              "Non è necessario alcun addestramento, funzionano come hanno sempre fatto"
+              "Abilita le notifiche",
+              "Accettare automaticamente gli aggiornamenti delle app per una migliore esperienza"
             ]
           }
         ]
@@ -668,7 +669,9 @@
     "welcome": {
       "title":  "Benvenuti a Foodetective!",
       "subtitle": "Il tuo account è stato creato con successo. Iniziare l'onboarding",
-      "cta": "Start"
+      "cta": "Iniziare",
+      "disclaimer": "Cliccando su Iniziare, confermi che ti stai registrando come Business su Foodetective.",
+      "cancel": "Cancellare"
     },
     "newsroom": {
       "title": "Newsroom",

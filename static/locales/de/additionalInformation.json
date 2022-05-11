@@ -43,7 +43,8 @@
     "food_waste": "Gegen Lebensmittelverschwendung",
     "payment": "Zahlung",
     "loyalty": "Treueprogramme",
-    "social_media": "Sozialen Medien"
+    "social_media": "Sozialen Medien",
+    "online_reviews": "Online-Kritiken"
   },
   "secretCodeHint": "Bitte geben Sie den Code ein, der Ihnen von Ihrem Aktivierungspartner oder Vertriebsmitarbeiter mitgeteilt wurde. <0/> (Wenn Sie sich auf eigene Faust anmelden, lassen Sie dieses Feld bitte leer)"
 }

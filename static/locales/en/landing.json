@@ -566,7 +566,8 @@
             "title": "Main",
             "advantages": [
               "Download the Foodetective Business app",
-              "No training needed, they work the same way they always have."
+              "Turn on notifications",
+              "Accept app updates when notified for a better experience"
             ]
           }
         ]
@@ -668,7 +669,9 @@
     "welcome": {
       "title":  "Welcome to Foodetective!",
       "subtitle": "You have successfully created an account. Next, provide your business information to start using the platform",
-      "cta": "Start"
+      "cta": "Start",
+      "disclaimer": "By clicking start, you confirm that you are registering as Business on Foodetective",
+      "cancel": "Cancel"
     },
     "newsroom": {
       "title": "Newsroom",
