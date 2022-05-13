@@ -297,7 +297,7 @@ const Button = styled.button`
   font-size: ${p => p.fontSize || p.theme.fontSizes.f16};
   line-height: 1.5;
   text-decoration: none;
-  border-radius: ${p => p.theme.radius.default};
+  border-radius: ${p => p.radius || p.theme.radius.default};
   cursor: pointer;
   ${p => p.width && `width: ${p.width};`};
   ${p => p.styleName === "login" && login};

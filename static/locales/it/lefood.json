@@ -160,6 +160,21 @@
   "rose_wines": "Vini Rosati",
   "sandwiches": "Sandwich",
   "other": "Altro",
+  "menu_modal": {
+    "download_pos": "Scarica il menu dal mio POS",
+    "synchronize": "Sincronizzare i menu",
+    "upload_csv": "Carica in CSV",
+    "choose": "Scegli il tuo menu",
+    "confirm": "Confermare",
+    "cancel": "Cancellare",
+    "warning": "Attenzione: Una volta confermato, si sostituirà il menu attuale di Foodetective con il menu del tuo POS. (Questa azione è irreversibile)",
+    "info": "Il tuo menu <0>è stato sostituito con successo</0> con {{count}}. Assicurati che tutte le informazioni del tuo prodotto (opzioni, prezzi, SKU, ecc.) siano corrette <0>prima di sincronizzarlo con le tue piattaforme</0> di consegna collegate.",
+    "got_it": "Capito",
+    "disclaimer": "Non dimenticate di sincronizzare i vostri menu",
+    "synchronize_warning": "Questa azione sostituirà il menu delle tue piattaforme di consegna con questo. Assicurati che sia aggiornato prima di sincronizzarlo. (questa azione è irreversibile)",
+    "synchronize_anyway": "Sincronizzare",
+    "success": "I tuoi menu <0>sono stati sincronizzati con successo</0> tra le tue piattaforme di consegna!"
+  },
   "import": {
     "mode": {
       "add": "Aggiugni \"voci aggiuntive\" nel menu esistente ",

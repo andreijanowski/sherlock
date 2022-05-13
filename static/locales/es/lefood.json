@@ -160,6 +160,21 @@
   "rose_wines": "Vinos Rosados",
   "sandwiches": "Bocadillos",
   "other": "Otro",
+  "menu_modal": {
+    "download_pos": "Descargar el menú de mi TPV",
+    "synchronize": "Sincronizar mis menús",
+    "upload_csv": "Cargar en CSV",
+    "choose": "Elija su menú",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "warning": "Atención: Una vez que confirme, sustituirá su menú actual de Foodetective por el menú de su TPV. (Esta acción es irreversible)",
+    "info": "Su menú <0>ha sido sustituido</0> con éxito por {{count}}. Asegúrate de que toda la información de tu producto (opciones, precios, SKU, etc.) es correcta <0>antes de sincronizarlo con tus plataformas</0> de entrega conectadas.",
+    "got_it": "Entendido",
+    "disclaimer": "No olvides sincronizar tus menús",
+    "synchronize_warning": "Esta acción sustituirá el menú de sus plataformas de distribución por éste. Por favor, asegúrese de que está actualizado antes de sincronizarlo. (esta acción es irreversible)",
+    "synchronize_anyway": "Sincronizar",
+    "success": "Sus menús <0>se han sincronizado con éxito</0> en sus plataformas de distribución."
+  },
   "import": {
     "mode": {
       "add": "Agregar elementos adicionales al menú existente",

@@ -23,7 +23,7 @@ const Menu = ({
   loading,
   categories,
   isUberAvailable,
-  onShowImportModalClick,
+  onShowUploadModalClick,
   hasPosIntegration
 }) => {
   const [pictureUrl, setPictureUrl] = useState("");
@@ -107,7 +107,7 @@ const Menu = ({
                     removePicture={removePicture}
                     categories={preparedCategories}
                     isUberAvailable={isUberAvailable}
-                    onShowImportModalClick={onShowImportModalClick}
+                    onShowUploadModalClick={onShowUploadModalClick}
                     hasPosIntegration={hasPosIntegration}
                   />
                 </Box>
@@ -147,7 +147,7 @@ Menu.propTypes = {
   loading: bool.isRequired,
   editedDishId: string,
   isUberAvailable: bool.isRequired,
-  onShowImportModalClick: func.isRequired,
+  onShowUploadModalClick: func.isRequired,
   hasPosIntegration: bool.isRequired
 };
 

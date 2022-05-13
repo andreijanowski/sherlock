@@ -6,3 +6,4 @@ export {
 } from "./googleTagManager";
 export { default as LinkedinAdsScript } from "./LinkedinAdsScript";
 export { default as GoogleAdsScript } from "./GoogleAdsScript";
+export { default as ForencisScript } from "./ForencisScript";
