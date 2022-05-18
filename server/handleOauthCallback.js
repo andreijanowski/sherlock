@@ -15,7 +15,7 @@ function handleOauthCallback(req, res) {
   if (state === req.cookies.loginStateParam) {
     let redirectTo = "/";
     if (registrationCallback) {
-      redirectTo = "/sign-up-confirmation";
+      redirectTo = `/${req.cookies["next-i18next"]}/sign-up-confirmation`;
     } else if (req.cookies.chosenPlan === "basic") {
       redirectTo = "/app/subscriptions";
       res.clearCookie("chosenPlan");
