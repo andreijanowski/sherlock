@@ -100,6 +100,15 @@ export const ImportButton = styled(Button).attrs({
   styleName: "underline"
 })`
   margin-bottom: 16px;
+  display: flex;
+
+  > svg {
+    fill: rgb(${p => p.theme.colors.ruby});
+    margin-left: 10px;
+    margin-top: 5px;
+    height: 20px;
+    width: 20px;
+  }
 `;
 
 export const Info = styled(Flex)`

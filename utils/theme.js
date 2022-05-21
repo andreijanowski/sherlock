@@ -61,6 +61,7 @@ export const colors = {
   blackDark: "32, 32, 31",
   border: "220, 223, 239",
   b2bSecondary: "15, 21, 85",
+  yellow: "244, 181, 1, 1",
   gray: {
     "2": "79, 79, 79",
     "3": "130, 130, 130",

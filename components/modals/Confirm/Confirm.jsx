@@ -16,14 +16,17 @@ const Confirm = ({
   onClose,
   btnCancelText,
   restyled,
-  inverseColors
+  inverseColors,
+  buttonRadius,
+  maxwidth,
+  disabled
 }) => {
   const confirmStyle = restyled ? "accept" : "blue";
   const cancelStyle = "reject";
 
   return (
     <Modal open={open} onClose={onClose}>
-      <Body>
+      <Body maxwidth={maxwidth}>
         {withIcon && (
           <Icon>
             <FontAwesomeIcon
@@ -38,12 +41,15 @@ const Confirm = ({
           <Button
             styleName={inverseColors ? cancelStyle : confirmStyle}
             onClick={onConfirm}
+            radius={buttonRadius}
+            disabled={disabled}
           >
             {btnOkText}
           </Button>
           <Button
             styleName={inverseColors ? confirmStyle : cancelStyle}
             onClick={onClose}
+            radius={buttonRadius}
           >
             {btnCancelText}
           </Button>
@@ -56,6 +62,7 @@ const Confirm = ({
 Confirm.defaultProps = {
   btnOkText: "Ok",
   btnCancelText: "Cancel",
+  buttonRadius: "",
   children: null,
   contentCenter: false,
   restyled: false,
@@ -63,11 +70,14 @@ Confirm.defaultProps = {
   open: false,
   withIcon: false,
   onClose: noop,
-  onConfirm: noop
+  onConfirm: noop,
+  maxwidth: "",
+  disabled: false
 };
 Confirm.propTypes = {
   btnOkText: string,
   btnCancelText: string,
+  buttonRadius: string,
   children: node,
   contentCenter: bool,
   restyled: bool,
@@ -75,7 +85,9 @@ Confirm.propTypes = {
   open: bool,
   withIcon: bool,
   onClose: func,
-  onConfirm: func
+  onConfirm: func,
+  maxwidth: string,
+  disabled: bool
 };
 
 export default Confirm;

@@ -22,7 +22,9 @@ import {
   FETCH_REVENUE_BREAKDOWN_REQUEST,
   FETCH_BEST_SALES_REQUEST,
   FETCH_WORST_SALES_REQUEST,
-  FETCH_LIVE_STREAM_REQUEST
+  FETCH_LIVE_STREAM_REQUEST,
+  FETCH_DOWNLOAD_POS_MENU_REQUEST,
+  POST_UPLOAD_POS_MENU_REQUEST
 } from "types/businesses";
 
 const PER_PAGE = 200;
@@ -332,4 +334,22 @@ export const fetchLiveStream = (id, page = 1) => ({
     }
   },
   meta: { thunk: true, page }
+});
+
+export const downloadPOSMenu = id => ({
+  type: FETCH_DOWNLOAD_POS_MENU_REQUEST,
+  payload: {
+    method: "GET",
+    endpoint: `/api/v1/businesses/${id}/hubrise/download_catalog`
+  },
+  meta: { thunk: true, id }
+});
+
+export const uploadPOSMenu = id => ({
+  type: POST_UPLOAD_POS_MENU_REQUEST,
+  payload: {
+    method: "POST",
+    endpoint: `/api/v1/businesses/${id}/hubrise/upload_catalog`
+  },
+  meta: { thunk: true, id }
 });
