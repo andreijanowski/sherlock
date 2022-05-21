@@ -24,7 +24,6 @@ const DropdownStep = ({ t, confirmSubmit, onClose }) => (
           disabled: !values.menuPOS
         }}
       >
-        {console.log(handleSubmit)}
         <DropdownWrapper>
           <Field name="menuPOS">
             {({ input, meta }) => (
