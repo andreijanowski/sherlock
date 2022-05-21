@@ -178,7 +178,7 @@
     "warning": "Attention: Once you confirm, you will replace your current Foodetective menu with the menu from your POS. (This action is irreversible)",
     "info": "Your menu <0>was successfully replaced</0> with {{count}}. Please make sure all your product's info (options, prices, SKU, etc.) are correct <0>before synchronising it</0> with your connected delivery platforms.",
     "got_it": "Got it",
-    "disclaimer": "Don’t forget to syncronize your menus",
+    "disclaimer": "Don’t forget to synchronize your menus",
     "synchronize_warning": "This action will replace the menu on your delivery platforms with this one. Please make sure it is up-to-date before synchronising it. (this action is irreversible)",
     "synchronize_anyway": "Synchronize anyway",
     "success": "Your menus <0>were successfully synchronized</0> across your delivery platforms!"

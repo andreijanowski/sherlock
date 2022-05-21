@@ -8,6 +8,7 @@ import { STEPS } from "./utils";
 
 const OptionsStep = ({ t, setStep, onShowImportModalClick }) => {
   const hasPendingSynchPOS = Cookies.get("SynchPOS");
+  const handleClick = step => () => setStep(step);
 
   return (
     <Wrapper>
@@ -19,13 +20,13 @@ const OptionsStep = ({ t, setStep, onShowImportModalClick }) => {
       )}
       <DownloadButton
         styleName="smallBlue"
-        onClick={() => setStep(STEPS.DROPDOWN)}
+        onClick={handleClick(STEPS.DROPDOWN)}
       >
         {t("menu_modal.download_pos")}
       </DownloadButton>
       <DownloadButton
         styleName="smallBlue"
-        onClick={() => setStep(STEPS.SYNCHRONIZE)}
+        onClick={handleClick(STEPS.SYNCHRONIZE)}
       >
         {t("menu_modal.synchronize")}
       </DownloadButton>
