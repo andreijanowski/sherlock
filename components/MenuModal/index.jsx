@@ -14,14 +14,15 @@ import OptionsStep from "./OptionsStep";
 import DropdownStep from "./DropdownStep";
 import InfoStep from "./InfoStep";
 import SynchronizeStep from "./SynchronizeStep";
-import { STEPS } from "./utils";
+import { STEPS, LABEL } from "./utils";
 
 const MenuModal = ({
   businessId,
   onClose,
   onShowImportModalClick,
   downloadPOSMenu,
-  uploadPOSMenu
+  uploadPOSMenu,
+  catalogName
 }) => {
   const [step, setStep] = useState(STEPS.OPTIONS);
   const t = useT("lefood");
@@ -50,10 +51,20 @@ const MenuModal = ({
           />
         )}
         {step === STEPS.DROPDOWN && (
-          <DropdownStep t={t} confirmSubmit={confirmSubmit} onClose={onClose} />
+          <DropdownStep
+            t={t}
+            confirmSubmit={confirmSubmit}
+            onClose={onClose}
+            catalogName={catalogName}
+          />
         )}
         {step === STEPS.INFO && (
-          <InfoStep t={t} onClose={onClose} text="menu_modal.info" />
+          <InfoStep
+            t={t}
+            onClose={onClose}
+            text="menu_modal.info"
+            catalogName={catalogName}
+          />
         )}
         {step === STEPS.SYNCHRONIZE && (
           <SynchronizeStep t={t} onConfirm={onSynchConfirm} />
@@ -66,12 +77,17 @@ const MenuModal = ({
   );
 };
 
+MenuModal.defaultProps = {
+  catalogName: LABEL
+};
+
 MenuModal.propTypes = {
   onShowImportModalClick: func.isRequired,
   onClose: func.isRequired,
   businessId: string.isRequired,
   downloadPOSMenu: func.isRequired,
-  uploadPOSMenu: func.isRequired
+  uploadPOSMenu: func.isRequired,
+  catalogName: string
 };
 
 export default connect(

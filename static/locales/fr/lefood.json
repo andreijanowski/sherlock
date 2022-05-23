@@ -169,7 +169,7 @@
     "confirm": "Confirmer",
     "cancel": "Annuler",
     "warning": "Attention : Une fois que vous aurez confirmé, vous remplacerez votre menu Foodetective actuel par le menu de votre POS. (Cette action est irréversible)",
-    "info": "Votre menu a été <0>remplacé avec succès</0> par {{count}}. Veuillez vous assurer que toutes les informations relatives à vos produit (options, prix, SKU, etc.) sont correctes <0>avant de les synchroniser avec vos plateformes</0> de livraison connectées.",
+    "info": "Votre menu a été <0>remplacé avec succès</0> par \"{{count}}\". Veuillez vous assurer que toutes les informations relatives à vos produit (options, prix, SKU, etc.) sont correctes <0>avant de les synchroniser avec vos plateformes</0> de livraison connectées.",
     "got_it": "J'ai compris",
     "disclaimer": "N'oubliez pas de synchroniser vos menus",
     "synchronize_warning": "Cette action remplacera le menu de vos plateformes de livraison par celui-ci. Veuillez vous assurer qu'il est à jour avant de le synchroniser. (cette action est irréversible)",

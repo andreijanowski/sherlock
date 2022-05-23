@@ -213,6 +213,7 @@ const MenuPage = ({
           onShowImportModalClick={onShowImportModalClick}
           onClose={onHideUploadModal}
           businessId={businessId}
+          catalogName={business.getIn(["hubriseCatalogName"])}
         />
       )}
     </AppManagerLayout>
