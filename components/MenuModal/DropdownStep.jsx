@@ -20,7 +20,7 @@ const DropdownStep = ({ t, confirmSubmit, onClose, catalogName }) => (
           onConfirm: handleSubmit,
           onClose,
           maxwidth: "600px",
-          disabled: !values.menuPOS
+          disabled: !values.menuPOS || !catalogName
         }}
       >
         <DropdownWrapper>
@@ -34,7 +34,7 @@ const DropdownStep = ({ t, confirmSubmit, onClose, catalogName }) => (
                   items: [
                     {
                       label: catalogName,
-                      value: "menu1"
+                      value: catalogName
                     }
                   ]
                 }}
