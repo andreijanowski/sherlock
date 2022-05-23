@@ -27,6 +27,7 @@
   "sku": "SKU",
   "categoryPlaceholder": "Catégorie",
   "addToMenu": "Ajouter au menu",
+  "uber_availability": "Autres plateformes de livraison",
   "chooseOrDragFile": "Choisissez un fichier ou faites-le glisser ici",
   "picturesInfo": "fichier png ou jpeg",
   "invalidFiles": "Certains fichiers glissés n'ont pas un type valide",
@@ -176,6 +177,7 @@
     "success": "Vos menus ont <0>été synchronisés avec succès</0> sur vos plateformes de livraison!"
   },
   "import": {
+    "edit_menu": "Editer le menu",
     "mode": {
       "add": "Ajouter des éléments supplémentaires au menu existant",
       "replace": "Télécharger ou remplacer des éléments du menu"

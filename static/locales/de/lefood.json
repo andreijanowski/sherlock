@@ -27,6 +27,7 @@
   "sku": "SKU",
   "categoryPlaceholder": "Kategorie",
   "addToMenu": "Zum Menü hinzufügen",
+  "uber_availability": "Andere Lieferplattformen",
   "chooseOrDragFile": "Wählen Sie eine Datei aus oder hierher ziehen",
   "picturesInfo": "PNG- oder JPG-Datei",
   "invalidFiles": "Einige der gezogenen Dateien haben keinen gültigen Typ",
@@ -176,6 +177,7 @@
     "success": "Ihre Speisekarten <0>wurden erfolgreich über Ihre Lieferplattformen hinweg synchronisiert!</0>"
   },
   "import": {
+    "edit_menu": "Menü bearbeiten",
     "mode": {
       "add": "Fügen Sie dem bestehenden Menü zusätzliche Elemente hinzu",
       "replace": "Menüpunkte hochladen oder ersetzen"
