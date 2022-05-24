@@ -28,7 +28,6 @@ const DropdownStep = ({ t, confirmSubmit, onClose, catalogName }) => (
             {({ input, meta }) => (
               <FormDropdown
                 {...{
-                  disabled: !catalogName,
                   input,
                   meta,
                   label: t("menu_modal.choose"),
