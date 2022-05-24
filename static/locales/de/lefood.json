@@ -27,6 +27,7 @@
   "sku": "SKU",
   "categoryPlaceholder": "Kategorie",
   "addToMenu": "Zum Menü hinzufügen",
+  "uber_availability": "Andere Lieferplattformen",
   "chooseOrDragFile": "Wählen Sie eine Datei aus oder hierher ziehen",
   "picturesInfo": "PNG- oder JPG-Datei",
   "invalidFiles": "Einige der gezogenen Dateien haben keinen gültigen Typ",
@@ -168,7 +169,7 @@
     "confirm": "Bestätigen",
     "cancel": "Abbrechen",
     "warning": "Achtung! Sobald Sie bestätigen, wird Ihr aktuelles Foodetective-Menü durch das Menü Ihres POS ersetzt. (Diese Aktion ist nicht umkehrbar)",
-    "info": "Ihr Menü <0>wurde erfolgreich</0> durch {{count}} ersetzt. Bitte vergewissern Sie sich, dass alle Informationen zu Ihrem Produkt (Optionen, Preise, SKU usw.) korrekt sind, bevor Sie es mit Ihren angeschlossenen <0>Lieferplattformen synchronisieren.</0>",
+    "info": "Ihr Menü <0>wurde erfolgreich</0> durch \"{{count}}\" ersetzt. Bitte vergewissern Sie sich, dass alle Informationen zu Ihrem Produkt (Optionen, Preise, SKU usw.) korrekt sind, bevor Sie es mit Ihren angeschlossenen <0>Lieferplattformen synchronisieren.</0>",
     "got_it": "Einverstanden",
     "disclaimer": "Vergessen Sie nicht, Ihre Menüs zu synchronisieren",
     "synchronize_warning": "Mit dieser Aktion wird das Menü auf Ihren Lieferplattformen durch dieses Menü ersetzt. Bitte vergewissern Sie sich, dass es aktuell ist, bevor Sie es synchronisieren. (diese Aktion ist nicht umkehrbar)",
@@ -176,6 +177,7 @@
     "success": "Ihre Speisekarten <0>wurden erfolgreich über Ihre Lieferplattformen hinweg synchronisiert!</0>"
   },
   "import": {
+    "edit_menu": "Menü bearbeiten",
     "mode": {
       "add": "Fügen Sie dem bestehenden Menü zusätzliche Elemente hinzu",
       "replace": "Menüpunkte hochladen oder ersetzen"
