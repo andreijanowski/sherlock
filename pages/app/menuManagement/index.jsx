@@ -15,7 +15,7 @@ import {
   uploadMenuToUberEats
 } from "actions/integrations";
 import { convertToCents } from "utils/price";
-import { ImportModal } from "components";
+import { MenuModal, ImportModal } from "components";
 import { selectDenormalizedDishes } from "selectors/dishes";
 
 const ACTION_TYPE = {
@@ -45,6 +45,7 @@ const MenuPage = ({
   hasPosIntegration
 }) => {
   const [showImportModal, setShowImportModal] = useState(false);
+  const [showUploadModal, setShowUploadModal] = useState(false);
   const [editedDishId, setEditedDishId] = useState(null);
   const [confirmModalData, setConfirmModalData] = useState(null);
 
@@ -152,8 +153,17 @@ const MenuPage = ({
     [editedDishId, removePicture]
   );
 
+  const onShowUploadModalClick = useCallback(() => {
+    setShowUploadModal(true);
+  }, []);
+
   const onShowImportModalClick = useCallback(() => {
     setShowImportModal(true);
+    setShowUploadModal(false);
+  }, []);
+
+  const onHideUploadModal = useCallback(() => {
+    setShowUploadModal(false);
   }, []);
 
   const onHideImportModal = useCallback(() => {
@@ -188,7 +198,7 @@ const MenuPage = ({
           addPicture: onAddPicture,
           removePicture: onRemovePicture,
           isUberAvailable,
-          onShowImportModalClick,
+          onShowUploadModalClick,
           hasPosIntegration
         }}
       />
@@ -198,6 +208,14 @@ const MenuPage = ({
         </Confirm>
       )}
       {showImportModal && <ImportModal onClose={onHideImportModal} />}
+      {showUploadModal && (
+        <MenuModal
+          onShowImportModalClick={onShowImportModalClick}
+          onClose={onHideUploadModal}
+          businessId={businessId}
+          catalogName={business.getIn(["hubriseCatalogName"])}
+        />
+      )}
     </AppManagerLayout>
   );
 };

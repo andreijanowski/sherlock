@@ -1,4 +1,5 @@
 import { UPLOAD_DISHES_SUCCESS } from "types/dishes";
+import { FETCH_DOWNLOAD_POS_MENU_SUCCESS } from "types/businesses";
 import { all, select, takeEvery } from "redux-saga/effects";
 import { fetchBusinessDishes } from "actions/businesses";
 import fetchAllBusinessData from "./utils/fetchAllBusinessData";
@@ -13,4 +14,9 @@ function* refetchDishes() {
   }
 }
 
-export default all([takeEvery(UPLOAD_DISHES_SUCCESS, refetchDishes)]);
+export default all([
+  takeEvery(
+    [UPLOAD_DISHES_SUCCESS, FETCH_DOWNLOAD_POS_MENU_SUCCESS],
+    refetchDishes
+  )
+]);

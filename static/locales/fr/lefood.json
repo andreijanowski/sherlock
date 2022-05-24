@@ -27,6 +27,7 @@
   "sku": "SKU",
   "categoryPlaceholder": "Catégorie",
   "addToMenu": "Ajouter au menu",
+  "uber_availability": "Autres plateformes de livraison",
   "chooseOrDragFile": "Choisissez un fichier ou faites-le glisser ici",
   "picturesInfo": "fichier png ou jpeg",
   "invalidFiles": "Certains fichiers glissés n'ont pas un type valide",
@@ -160,7 +161,23 @@
   "rose_wines": "Vins Rosés",
   "sandwiches": "Sandwichs",
   "other": "Autre",
+  "menu_modal": {
+    "download_pos": "Télécharger le menu depuis mon POS",
+    "synchronize": "Synchroniser mes menus",
+    "upload_csv": "Upload en CSV",
+    "choose": "Choisissez votre menu",
+    "confirm": "Confirmer",
+    "cancel": "Annuler",
+    "warning": "Attention : Une fois que vous aurez confirmé, vous remplacerez votre menu Foodetective actuel par le menu de votre POS. (Cette action est irréversible)",
+    "info": "Votre menu a été <0>remplacé avec succès</0> par \"{{count}}\". Veuillez vous assurer que toutes les informations relatives à vos produit (options, prix, SKU, etc.) sont correctes <0>avant de les synchroniser avec vos plateformes</0> de livraison connectées.",
+    "got_it": "J'ai compris",
+    "disclaimer": "N'oubliez pas de synchroniser vos menus",
+    "synchronize_warning": "Cette action remplacera le menu de vos plateformes de livraison par celui-ci. Veuillez vous assurer qu'il est à jour avant de le synchroniser. (cette action est irréversible)",
+    "synchronize_anyway": "Synchroniser",
+    "success": "Vos menus ont <0>été synchronisés avec succès</0> sur vos plateformes de livraison!"
+  },
   "import": {
+    "edit_menu": "Editer le menu",
     "mode": {
       "add": "Ajouter des éléments supplémentaires au menu existant",
       "replace": "Télécharger ou remplacer des éléments du menu"

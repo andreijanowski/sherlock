@@ -2,6 +2,7 @@ import React from "react";
 import { Field, useForm } from "react-final-form";
 import { bool, func, shape, string } from "prop-types";
 import { Box, Flex } from "@rebass/grid";
+import Cookies from "js-cookie";
 
 import {
   Button,
@@ -14,6 +15,7 @@ import {
   PerfectSquare,
   Picture
 } from "components";
+import { InfoIcon } from "components/Icons";
 import { normalizePrice, normalizeString } from "utils/normalizers";
 import { required } from "utils/validators";
 import { ImportButton } from "./styled";
@@ -25,11 +27,13 @@ const DishForm = ({
   removePicture,
   categories,
   isUberAvailable,
-  onShowImportModalClick,
+  onShowUploadModalClick,
   hasPosIntegration
 }) => {
   const { submit, getState } = useForm();
   const { initialValues } = getState();
+
+  const hasPendingSynchPOS = Cookies.get("SynchPOS");
 
   const { picture: initialPicture } = initialValues;
 
@@ -37,8 +41,9 @@ const DishForm = ({
     <>
       <Flex justifyContent="space-between" flexWrap="wrap">
         <H3>{t("addDish")}</H3>
-        <ImportButton onClick={onShowImportModalClick}>
-          {t("lefood:import.upload_menu")}
+        <ImportButton onClick={onShowUploadModalClick}>
+          {t("lefood:import.edit_menu")}
+          {hasPendingSynchPOS && <InfoIcon />}
         </ImportButton>
       </Flex>
       <Flex justifyContent="center" flexWrap="wrap">
@@ -135,7 +140,7 @@ DishForm.propTypes = {
   removePicture: func.isRequired,
   categories: shape().isRequired,
   isUberAvailable: bool.isRequired,
-  onShowImportModalClick: func.isRequired,
+  onShowUploadModalClick: func.isRequired,
   pictureUrl: string.isRequired,
   setPictureUrl: func.isRequired,
   hasPosIntegration: bool.isRequired

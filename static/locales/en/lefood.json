@@ -30,7 +30,7 @@
   "sku": "SKU",
   "categoryPlaceholder": "Category",
   "addToMenu": "Add to menu",
-  "uber_availability": "Uber Eats",
+  "uber_availability": "Other delivery platforms",
   "chooseOrDragFile": "Choose a file or drag it here",
   "picturesInfo": "png or jpeg file",
   "invalidFiles": "Some of dragged files has not valid type",
@@ -168,8 +168,24 @@
   "day_plural": "days",
   "week": "week",
   "month": "month",
+  "menu_modal": {
+    "download_pos": "Download the menu from my POS",
+    "synchronize": "Synchronize my menus",
+    "upload_csv": "Upload menu in CSV",
+    "choose": "Choose your menu",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "warning": "Attention: Once you confirm, you will replace your current Foodetective menu with the menu from your POS. (This action is irreversible)",
+    "info": "Your menu <0>was successfully replaced</0> with \"{{count}}\". Please make sure all your product's info (options, prices, SKU, etc.) are correct <0>before synchronising it</0> with your connected delivery platforms.",
+    "got_it": "Got it",
+    "disclaimer": "Don’t forget to synchronize your menus",
+    "synchronize_warning": "This action will replace the menu on your delivery platforms with this one. Please make sure it is up-to-date before synchronising it. (this action is irreversible)",
+    "synchronize_anyway": "Synchronize anyway",
+    "success": "Your menus <0>were successfully synchronized</0> across your delivery platforms!"
+  },
   "import": {
     "upload_menu": "Upload the menu",
+    "edit_menu": "Edit menu",
     "mode": {
       "add": "Add additional items to existing menu",
       "replace": "Upload or Replace menu items"
