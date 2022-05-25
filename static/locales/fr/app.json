@@ -54,7 +54,11 @@
     "integrated": "Intégré",
     "noPartners": "Aucun partenaire pour cette catégorie.",
     "noPreferred": "Vous n'avez pas encore ajouté de grossistes préférés.",
-    "goToWeb": "Voir le site Web"
+    "goToWeb": "Voir le site Web",
+    "orderNow": "Commander",
+    "call": "Appeler",
+    "meeting": "Meeting",
+    "email": "Email"
   },
   "subscriptions": "Abonnements",
   "userSettings": {

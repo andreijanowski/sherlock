@@ -58,7 +58,10 @@
     "all": "All integrations",
     "goToWeb": "Go to web",
     "backToList": "Back to list",
-    "openInNewTab": "Open in a new tab"
+    "openInNewTab": "Open in a new tab",
+    "call": "Call",
+    "meeting": "Meeting",
+    "email": "Email"
   },
   "subscriptions": "Subscriptions",
   "userSettings": {
