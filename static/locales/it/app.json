@@ -53,7 +53,11 @@
     "noPreferred": "Non hai ancora aggiunto alcun grossista preferito.",
     "goToWeb": "Vai al web",
     "backToList": "Torna alla lista",
-    "openInNewTab": "Aprire in una nuova scheda"
+    "openInNewTab": "Aprire in una nuova scheda",
+    "orderNow": "Ordine",
+    "call": "Chiamata",
+    "meeting": "Riunione",
+    "email": "Email"
   },
   "subscriptions": "Iscrizioni o Abbonamenti",
   "userSettings": {

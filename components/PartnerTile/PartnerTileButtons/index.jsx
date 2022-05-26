@@ -14,6 +14,9 @@ const PartnerTileButtons = ({
   onOrderNowClick
 }) => {
   const videoUrl = partner.get("videoUrl");
+  const email = partner.get("email");
+  const phone = partner.get("phone");
+  const bookMeeting = partner.get("bookMeeting");
 
   const isBig = !isIntegration;
 
@@ -32,6 +35,42 @@ const PartnerTileButtons = ({
           {linkLabel}
         </BlueButton>
       </ButtonWrapper>
+      {phone && (
+        <ButtonWrapper>
+          <BlueButton
+            big={isBig}
+            as="a"
+            href={`tel:${phone}`}
+            styleName="navyBlue"
+          >
+            {t("app:manageIntegrations.call")}
+          </BlueButton>
+        </ButtonWrapper>
+      )}
+      {bookMeeting && (
+        <ButtonWrapper>
+          <BlueButton
+            big={isBig}
+            as="a"
+            href={`mailto: ${bookMeeting}`}
+            styleName="navyBlue"
+          >
+            {t("app:manageIntegrations.meeting")}
+          </BlueButton>
+        </ButtonWrapper>
+      )}
+      {email && (
+        <ButtonWrapper>
+          <BlueButton
+            big={isBig}
+            as="a"
+            href={`mailto: ${email}`}
+            styleName="navyBlue"
+          >
+            {t("app:manageIntegrations.email")}
+          </BlueButton>
+        </ButtonWrapper>
+      )}
     </ButtonsContainer>
   );
 };
