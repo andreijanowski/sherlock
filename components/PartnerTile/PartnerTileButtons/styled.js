@@ -15,6 +15,7 @@ export const ButtonsContainer = styled(Flex)`
 `;
 
 export const ButtonWrapper = styled(Box)`
+  min-width: 122px;
   flex: 1;
   &:not(:last-child) {
     margin-right: 16px;
