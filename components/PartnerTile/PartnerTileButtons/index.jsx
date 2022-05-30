@@ -30,12 +30,7 @@ const PartnerTileButtons = ({
           <PlayVideoButton big={isBig} t={t} url={videoUrl} />
         </ButtonWrapper>
       )}
-      <ButtonWrapper isIntegration={isIntegration} onClick={onOrderNowClick}>
-        <BlueButton big={isBig} {...getIntegrationLinkProps(partner)}>
-          {linkLabel}
-        </BlueButton>
-      </ButtonWrapper>
-      {phone && (
+      {phone ? (
         <ButtonWrapper>
           <BlueButton
             big={isBig}
@@ -46,31 +41,44 @@ const PartnerTileButtons = ({
             {t("app:manageIntegrations.call")}
           </BlueButton>
         </ButtonWrapper>
+      ) : (
+        <ButtonWrapper />
       )}
-      {bookMeeting && (
+      {bookMeeting ? (
         <ButtonWrapper>
           <BlueButton
             big={isBig}
             as="a"
+            target="_blank"
             href={`mailto: ${bookMeeting}`}
             styleName="navyBlue"
           >
             {t("app:manageIntegrations.meeting")}
           </BlueButton>
         </ButtonWrapper>
+      ) : (
+        <ButtonWrapper />
       )}
-      {email && (
+      {email ? (
         <ButtonWrapper>
           <BlueButton
             big={isBig}
             as="a"
+            target="_blank"
             href={`mailto: ${email}`}
             styleName="navyBlue"
           >
             {t("app:manageIntegrations.email")}
           </BlueButton>
         </ButtonWrapper>
+      ) : (
+        <ButtonWrapper />
       )}
+      <ButtonWrapper isIntegration={isIntegration} onClick={onOrderNowClick}>
+        <BlueButton big={isBig} {...getIntegrationLinkProps(partner)}>
+          {linkLabel}
+        </BlueButton>
+      </ButtonWrapper>
     </ButtonsContainer>
   );
 };
