@@ -4,7 +4,7 @@ import { Flex } from "@rebass/grid";
 import { node, func, string } from "prop-types";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
-import { Popup } from "components/modals";
+import { Popup, OnboardingModal } from "components/modals";
 
 import { MainApp, NavigationContainer } from "components";
 import { postBusiness } from "actions/businesses";
@@ -25,6 +25,7 @@ const AppLayout = ({
   containerComponent
 }) => {
   const hasBOAgreement = Cookies.get("BOA");
+  const hasOnboarding = Cookies.get("Onboarding");
   const router = useRouter();
   const shouldShowConfirmBOModal = !hasBOAgreement && role === BASIC_ROLE;
 
@@ -45,6 +46,7 @@ const AppLayout = ({
       router.push(`/${lng}${REDIRECT_URL}`);
     });
     Cookies.set("BOA", true);
+    Cookies.set("Onboarding", true);
   }, [createBusiness, lng, router]);
 
   const onConfirmModalClose = useCallback(() => {
@@ -76,6 +78,7 @@ const AppLayout = ({
           onCloseModal={onConfirmModalClose}
         />
       )}
+      {hasOnboarding && <OnboardingModal />}
     </Flex>
   );
 };
