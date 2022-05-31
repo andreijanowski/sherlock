@@ -26,7 +26,6 @@ const DishForm = ({
   setPictureUrl,
   removePicture,
   categories,
-  isUberAvailable,
   onShowUploadModalClick,
   hasPosIntegration
 }) => {
@@ -122,9 +121,7 @@ const DishForm = ({
       <Box my={4}>
         <H3>Available in: </H3>
         <FormCheckbox name="available" label="Foodetective Orders" />
-        {isUberAvailable && (
-          <FormCheckbox name="onUberEats" label={t("uber_availability")} />
-        )}
+        <FormCheckbox name="onUberEats" label={t("uber_availability")} />
       </Box>
       <Box mb={3}>
         <Button fluid styleName="blue" type="button" onClick={submit}>
@@ -139,7 +136,6 @@ DishForm.propTypes = {
   t: func.isRequired,
   removePicture: func.isRequired,
   categories: shape().isRequired,
-  isUberAvailable: bool.isRequired,
   onShowUploadModalClick: func.isRequired,
   pictureUrl: string.isRequired,
   setPictureUrl: func.isRequired,

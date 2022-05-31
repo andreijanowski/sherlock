@@ -33,8 +33,8 @@ const DropdownStep = ({ t, confirmSubmit, onClose, catalogName }) => (
                   label: t("menu_modal.choose"),
                   items: [
                     {
-                      label: catalogName,
-                      value: catalogName
+                      label: catalogName || "",
+                      value: catalogName || ""
                     }
                   ]
                 }}
