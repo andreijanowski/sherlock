@@ -1,0 +1,17 @@
+{
+  "intro": {
+    "header": "<0>Lo primero es lo primero</0>. Este es el resumen de nuestro proceso de incorporación, que consta de <0>dos pasos</0>.",
+    "tiles": {
+      "step1": {
+        "header": "Paso 1",
+        "content": "Cree su perfil para impulsar su presencia en línea. Añada la información de su negocio, su menú, sus fotos, sus plataformas de entrega, etc."
+      },
+      "step2": {
+        "header": "Paso 2",
+        "content": "Haga el tour del producto para entender cómo gestionar todas sus operaciones desde nuestra plataforma."
+      }
+    },
+    "letsgo": "Aquí vamos",
+    "next": "Próximo"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "intro": {
+    "header": "<0>Commençons par le commencement</0>. Voici un bref aperçu de notre processus d'onboarding, qui se déroule en <0>deux étapes</0>.",
+    "tiles": {
+      "step1": {
+        "header": "Étape 1",
+        "content": "Créez votre profil afin de booster votre présence en ligne. Ajoutez vos informations commerciales, votre menu, vos photos, vos plateformes de livraison, etc."
+      },
+      "step2": {
+        "header": "Étape 2",
+        "content": "Suivez la visite guidée de notre produit afin de comprendre comment gérer toutes vos opérations depuis notre plateforme."
+      }
+    },
+    "letsgo": "C'est parti",
+    "next": "Suivant"
+  }
+}

@@ -1,31 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { Modal } from "components";
-import { STEP } from "components/Onboarding/utils";
-import { IntroStep, Step1 } from "components/Onboarding";
-import { ModalStyles } from "./styled";
+import { useT } from "utils/hooks";
+import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
+import { STEP, CLOSE, getContent } from "components/Onboarding/utils";
+import { ModalStyles, BottomNavigation } from "./styled";
 
 const OnboardingModal = () => {
+  const t = useT("onboarding");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentStep, setCurrentStep] = useState(STEP.INTRO);
+  const [currentStep, setCurrentStep] = useState(getContent(t)[STEP.INTRO]);
 
   const onClose = () => {
     setIsModalOpen(false);
-  };
-
-  const content = {
-    [STEP.INTRO]: <IntroStep handleNextStep={setCurrentStep} />,
-    [STEP.FIRST]: <Step1 handleNextStep={setCurrentStep} />
   };
 
   useEffect(() => {
     setIsModalOpen(true);
   }, []);
 
+  const handleNextClick = () =>
+    currentStep.nextStep === CLOSE
+      ? onClose()
+      : setCurrentStep(getContent(t)[currentStep.nextStep]);
+
   return (
     <>
       <ModalStyles />
-      <Modal open={isModalOpen} onClose={onClose}>
-        {content[currentStep]}
+      <Modal open={isModalOpen} onClose={() => null}>
+        {currentStep.component}
+        <BottomNavigation>
+          <Button
+            onClick={handleNextClick}
+            styleName="popup"
+            withArrow
+            variant={BUTTON_VARIANT.GRADIENT}
+          >
+            {currentStep.buttonText}
+          </Button>
+        </BottomNavigation>
       </Modal>
     </>
   );

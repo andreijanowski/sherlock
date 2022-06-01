@@ -1,0 +1,17 @@
+{
+  "intro": {
+    "header": "<0>First thing's first</0>. Here is the a quick overview of our onboarding process that consists of <0>two steps</0>.",
+    "tiles": {
+      "step1": {
+        "header": "Step 1",
+        "content": "Create your business profile to boost your digital presence. Add your business information, menu offering, photo gallery, delivery partners, among others."
+      },
+      "step2": {
+        "header": "Step 2",
+        "content": "Follow our product tour to set up your business operations and manage it all from a single platform. "
+      }
+    },
+    "letsgo": "Let's go",
+    "next": "Next"
+  }
+}

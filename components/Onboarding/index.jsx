@@ -1,2 +1,2 @@
-export { default as IntroStep } from "./IntroStep";
-export { default as Step1 } from "./Step1";
+export { default as IntroStep } from "./Intro/IntroStep";
+export { default as Step1 } from "./Intro/Step1";

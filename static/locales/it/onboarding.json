@@ -1,0 +1,17 @@
+{
+  "intro": {
+    "header": "<0>Prima di tutto</0>. Ecco una rapida panoramica del nostro processo di onboarding, che consiste in <0>due fasi</0>.",
+    "tiles": {
+      "step1": {
+        "header": "Passo 1",
+        "content": "Create il vostro profilo per aumentare la vostra presenza online. Aggiungete le informazioni sulla vostra attività, il vostro menu, le vostre foto, le vostre piattaforme di consegna, ecc."
+      },
+      "step2": {
+        "header": "Passo 2",
+        "content": "Partecipate al tour del prodotto per capire come gestire tutte le vostre operazioni dalla nostra piattaforma."
+      }
+    },
+    "letsgo": "Ecco a voi",
+    "next": "Avanti"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "intro": {
+    "header": "<0>Eins nach dem anderen</0>. Hier ist ein kurzer Überblick über unseren Onboarding-Prozess, der aus <0>zwei Schritten</0> besteht.",
+    "tiles": {
+      "step1": {
+        "header": "Schritt 1",
+        "content": "Erstellen Sie Ihr Profil, um Ihre Online-Präsenz zu steigern. Fügen Sie Ihre Geschäftsinformationen, Ihr Menü, Ihre Fotos, Ihre Lieferplattformen usw. hinzu."
+      },
+      "step2": {
+        "header": "Schritt 2",
+        "content": "Folgen Sie der Produkttour, um zu verstehen, wie Sie alle Ihre Operationen von unserer Plattform aus verwalten können."
+      }
+    },
+    "letsgo": "Los geht's",
+    "next": "Weiter"
+  }
+}
