@@ -24,7 +24,7 @@
       },
       "service": {
         "buttons": "Service Redirection Buttons",
-        "content": "We strongly recommend you add service redirections links to your own website & your partner platforms."
+        "content": "We strongly recommend you <0>add service redirections links</0> to your own website & your partner platforms."
       },
       "swipe": "Swipe the phone up and down to see the full profile",
       "gotit": "Got it"

@@ -1,5 +1,5 @@
 import React from "react";
-// import { func } from "prop-types";
+
 import { Trans } from "i18n";
 import { useT } from "utils/hooks";
 import {
@@ -27,22 +27,24 @@ const Step1 = () => {
             <StyledH3>{t("intro.tiles.step1.header")}</StyledH3>
             {t("intro.tiles.step1.content")}
           </TileHeader>
-          <Image src="/static/img/onboarding/introstep1.svg" />
+          <Image
+            src="/static/img/onboarding/introstep1.svg"
+            margin="32px auto 46px"
+          />
         </StepTile>
         <StepTile>
           <TileHeader>
             <StyledH3>{t("intro.tiles.step2.header")}</StyledH3>
             {t("intro.tiles.step2.content")}
           </TileHeader>
-          <Image src="/static/img/onboarding/introstep2.svg" />
+          <Image
+            src="/static/img/onboarding/introstep2.svg"
+            margin="32px auto 46px"
+          />
         </StepTile>
       </TilesWrapper>
     </Wrapper>
   );
 };
-
-// Step1.propTypes = {
-//   handleNextStep: func.isRequired
-// };
 
 export default Step1;
