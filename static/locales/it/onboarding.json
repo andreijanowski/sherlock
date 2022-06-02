@@ -12,6 +12,22 @@
       }
     },
     "letsgo": "Ecco a voi",
-    "next": "Avanti"
+    "next": "Avanti",
+    "step1": {
+      "title": "Crea il tuo profilo",
+      "subtitle": "Questo è un esempio di profilo una volta completato l'onboarding.",
+      "hints": {
+        "header": "Un profilo completo vi permette di:",
+        "first": "Aumentare la vostra visibilità online",
+        "second": "Migliorare la vostra reputazione aziendale",
+        "third": "Raggiungere nuovi clienti"
+      },
+      "service": {
+        "buttons": "Pulsanti di reindirizzamento",
+        "content": "Si consiglia vivamente di aggiungere link di reindirizzamento al proprio sito web e ad altre piattaforme partner."
+      },
+      "swipe": "Scorrere il telefono per visualizzare il profilo completo",
+      "gotit": "Ok"
+    }
   }
 }

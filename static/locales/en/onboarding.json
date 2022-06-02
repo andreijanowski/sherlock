@@ -1,6 +1,6 @@
 {
   "intro": {
-    "header": "<0>First thing's first</0>. Here is the a quick overview of our onboarding process that consists of <0>two steps</0>.",
+    "header": "<0>First thing's first</0>. Here is the quick overview of our onboarding process that consists of <0>two steps</0>.",
     "tiles": {
       "step1": {
         "header": "Step 1",
@@ -12,6 +12,22 @@
       }
     },
     "letsgo": "Let's go",
-    "next": "Next"
+    "next": "Next",
+    "step1": {
+      "title": "Create Your Business Profile",
+      "subtitle": "This is an example of a business profile once onboarding is completed.",
+      "hints": {
+        "header": "A complete profile will:",
+        "first": "Boost your Online Visibility",
+        "second": "Enhance your Business Reputation",
+        "third": "Reach new Customer Leads"
+      },
+      "service": {
+        "buttons": "Service Redirection Buttons",
+        "content": "We strongly recommend you add service redirections links to your own website & your partner platforms."
+      },
+      "swipe": "Swipe the phone up and down to see the full profile",
+      "gotit": "Got it"
+    }
   }
 }

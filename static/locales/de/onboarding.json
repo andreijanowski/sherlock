@@ -12,6 +12,22 @@
       }
     },
     "letsgo": "Los geht's",
-    "next": "Weiter"
+    "next": "Weiter",
+    "step1": {
+      "title": "Erstellen Sie Ihr Business-Profil",
+      "subtitle": "Dies ist ein Beispiel für ein Profil nach Abschluss des Onboardings.",
+      "hints": {
+        "header": "Ein vollständiges Profil ermöglicht es Ihnen:",
+        "first": "Ihre Online-Sichtbarkeit zu erhöhen",
+        "second": "Ihren Ruf als Unternehmen zu verbessern",
+        "third": "Erreichen Sie neue Kundenkontakte"
+      },
+      "service": {
+        "buttons": "Buttons für Weiterleitungen",
+        "content": "Wir empfehlen Ihnen dringend, Weiterleitungslinks zu Ihrer eigenen Website und anderen Partnerplattformen einzufügen."
+      },
+      "swipe": "Wischen Sie das Telefon, um das vollständige Profil anzuzeigen",
+      "gotit": "Ok"
+    }
   }
 }

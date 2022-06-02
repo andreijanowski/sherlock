@@ -12,6 +12,22 @@
       }
     },
     "letsgo": "Aquí vamos",
-    "next": "Próximo"
+    "next": "Próximo",
+    "step1": {
+      "title": "Cree su perfil",
+      "subtitle": "Este es un ejemplo de perfil una vez completada la incorporación.",
+      "hints": {
+        "header": "Un perfil completo le permite:",
+        "first": "Aumentar su visibilidad en línea",
+        "second": "Mejorar la reputación de su negocio",
+        "third": "Llegar a nuevos clientes potenciales"
+      },
+      "service": {
+        "buttons": "Botones de redirección",
+        "content": "Le recomendamos encarecidamente que añada enlaces de redirección a su propio sitio web y a otras plataformas asociadas."
+      },
+      "swipe": "Desliza el teléfono para ver el perfil completo",
+      "gotit": "Ok"
+    }
   }
 }

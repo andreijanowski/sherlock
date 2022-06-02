@@ -12,6 +12,22 @@
       }
     },
     "letsgo": "C'est parti",
-    "next": "Suivant"
+    "next": "Suivant",
+    "step1": {
+      "title": "Créez votre profil",
+      "subtitle": "Voici un exemple de profil une fois l'onboarding terminé.",
+      "hints": {
+        "header": "Un profil complet vous permet:",
+        "first": "d'augmenter votre visibilité en ligne",
+        "second": "Améliorer la réputation de votre entreprise",
+        "third": "Atteindre de nouveaux clients potentiels"
+      },
+      "service": {
+        "buttons": "Boutons de redirection",
+        "content": "Nous vous recommandons vivement d'ajouter les liens de redirection vers vos propre site web et autres plateformes partenaires."
+      },
+      "swipe": "Faites glisser pour voir le profil complet",
+      "gotit": "Ok"
+    }
   }
 }
