@@ -67,7 +67,9 @@ export const colors = {
     "3": "130, 130, 130",
     "4": "189, 189, 189",
     "5": "192, 192, 192"
-  }
+  },
+  gradient: `linear-gradient(89.71deg, #050732 21.63%, rgba(0, 0, 0, 0) 98.23%,
+    rgba(5, 7, 50, 0) 98.23%), #4C68FF;`
 };
 
 const fontSizes = {

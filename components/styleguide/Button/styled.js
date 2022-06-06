@@ -9,13 +9,15 @@ const getColorByVariant = props => {
   } = props;
   switch (variant) {
     case BUTTON_VARIANT.SECONDARY:
-      return colors.buttonSecondary;
+      return `rgb(${colors.buttonSecondary})`;
     case BUTTON_VARIANT.OUTLINE:
       return "transparent";
     case BUTTON_VARIANT.B2BSECONDARY:
-      return colors.landingDarkBlue;
+      return `rgb(${colors.landingDarkBlue})`;
+    case BUTTON_VARIANT.GRADIENT:
+      return colors.gradient;
     default:
-      return colors.blue;
+      return `rgb(${colors.blue})`;
   }
 };
 
@@ -45,7 +47,7 @@ export const ButtonContainer = styled(Flex)`
   text-decoration: none;
   border: 1px solid rgba(${getBorderColorByVariant});
   box-shadow: none;
-  background: rgb(${getColorByVariant});
+  background: ${getColorByVariant};
   &:hover {
     box-shadow: none;
     background: rgba(${getColorByVariant}, 0.8);

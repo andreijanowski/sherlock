@@ -1,0 +1,33 @@
+{
+  "intro": {
+    "header": "<0>Lo primero es lo primero</0>. Este es el resumen de nuestro proceso de incorporación, que consta de <0>dos pasos</0>.",
+    "tiles": {
+      "step1": {
+        "header": "Paso 1",
+        "content": "Cree su perfil para impulsar su presencia en línea. Añada la información de su negocio, su menú, sus fotos, sus plataformas de entrega, etc."
+      },
+      "step2": {
+        "header": "Paso 2",
+        "content": "Haga el tour del producto para entender cómo gestionar todas sus operaciones desde nuestra plataforma."
+      }
+    },
+    "letsgo": "Aquí vamos",
+    "next": "Próximo",
+    "step1": {
+      "title": "Cree su perfil",
+      "subtitle": "Este es un ejemplo de perfil una vez completada la incorporación.",
+      "hints": {
+        "header": "Un perfil completo le permite:",
+        "first": "Aumentar su visibilidad en línea",
+        "second": "Mejorar la reputación de su negocio",
+        "third": "Llegar a nuevos clientes potenciales"
+      },
+      "service": {
+        "buttons": "Botones de redirección",
+        "content": "Le recomendamos encarecidamente que añada enlaces de redirección a su propio sitio web y a otras plataformas asociadas."
+      },
+      "swipe": "Desliza el teléfono para ver el perfil completo",
+      "gotit": "Ok"
+    }
+  }
+}
