@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Modal } from "components";
 import { useT } from "utils/hooks";
 import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
@@ -7,16 +7,12 @@ import { ModalStyles, BottomNavigation } from "./styled";
 
 const OnboardingModal = () => {
   const t = useT("onboarding");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const [currentStep, setCurrentStep] = useState(getContent(t)[STEP.INTRO]);
 
   const onClose = () => {
     setIsModalOpen(false);
   };
-
-  useEffect(() => {
-    setIsModalOpen(true);
-  }, []);
 
   const handleNextClick = () =>
     currentStep.nextStep === CLOSE
