@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Box, Flex } from "@rebass/grid";
-import { H2, H3, H4 } from "components";
 
 export const Wrapper = styled(Flex).attrs(() => ({
   justifyContent: "space-between"
@@ -11,7 +10,7 @@ export const Wrapper = styled(Flex).attrs(() => ({
   flex-direction: ${p => (p.row ? "row" : "column")};
 `;
 
-export const Header = styled(H2)`
+export const Header = styled.h2`
   font-size: 36px;
   text-align: center;
 `;
@@ -54,7 +53,7 @@ export const TileHeader = styled.div`
   color: rgb(${p => p.theme.colors.white});
 `;
 
-export const StyledH3 = styled(H3)`
+export const StyledH3 = styled.h3`
   font-weight: 600;
   font-size: 24px !important;
   color: rgb(${p => p.theme.colors.white});
@@ -67,7 +66,7 @@ export const Breadcrumb = styled.p`
   margin: 0;
 `;
 
-export const Title = styled(H4)`
+export const Title = styled.h4`
   font-weight: 700;
   font-size: 24px !important;
   color: rgb(${p => p.theme.colors.b2bSecondary});
