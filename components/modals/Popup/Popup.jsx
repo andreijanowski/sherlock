@@ -36,6 +36,7 @@ const Popup = ({
 
   const onLoginButtonClick = useCallback(() => {
     Cookies.set("BOA", true);
+    Cookies.set("Onboarding", true);
     const state = uuid();
     Cookies.set("loginStateParam", state, { expires: 7 });
     window.location.href = `${API_URL}/oauth/authorize?client_id=${OAUTH_PUBLIC_CLIENT_ID}&redirect_uri=${OAUTH_CALLBACK_URL}&response_type=code&scope=trusted+refresh_token+public&state=${state}`;

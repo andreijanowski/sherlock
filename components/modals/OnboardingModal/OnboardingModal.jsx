@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Modal } from "components";
+import Cookies from "js-cookie";
 import { useT } from "utils/hooks";
 import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
 import { STEP, CLOSE, getContent } from "components/Onboarding/utils";
@@ -12,6 +13,7 @@ const OnboardingModal = () => {
 
   const onClose = () => {
     setIsModalOpen(false);
+    Cookies.remove("Onboarding");
   };
 
   const handleNextClick = () =>

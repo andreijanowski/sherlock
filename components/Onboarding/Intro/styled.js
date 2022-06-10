@@ -5,7 +5,7 @@ export const Wrapper = styled(Flex).attrs(() => ({
   justifyContent: "space-between"
 }))`
   position: relative;
-  max-height: 60vh;
+  max-height: 75vh;
   overflow: scroll;
   display: flex;
   flex-direction: ${p => (p.row ? "row" : "column")};
@@ -15,11 +15,19 @@ export const Wrapper = styled(Flex).attrs(() => ({
   &::-webkit-scrollbar {
     display: none;
   }
+
+  @media (max-width: 1400px) {
+    max-height: 85vh;
+  }
 `;
 
 export const Header = styled.h2`
   font-size: 36px;
   text-align: center;
+
+  @media (max-width: 1400px) {
+    font-size: 24px;
+  }
 `;
 
 export const Blue = styled.span`
