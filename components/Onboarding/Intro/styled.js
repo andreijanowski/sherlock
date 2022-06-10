@@ -5,9 +5,16 @@ export const Wrapper = styled(Flex).attrs(() => ({
   justifyContent: "space-between"
 }))`
   position: relative;
+  max-height: 60vh;
+  overflow: scroll;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: ${p => (p.row ? "row" : "column")};
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const Header = styled.h2`
