@@ -22,7 +22,7 @@ const OnboardingModal = () => {
   return (
     <>
       <ModalStyles />
-      <Modal open={isModalOpen} onClose={() => null}>
+      <Modal open={isModalOpen} onClose={onClose}>
         {currentStep.component}
         <BottomNavigation>
           <Button
