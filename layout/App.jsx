@@ -25,6 +25,7 @@ const AppLayout = ({
   containerComponent
 }) => {
   const hasBOAgreement = Cookies.get("BOA");
+  // const hasOnboarding = Cookies.get("Onboarding");
   const router = useRouter();
   const shouldShowConfirmBOModal = !hasBOAgreement && role === BASIC_ROLE;
 
@@ -45,6 +46,7 @@ const AppLayout = ({
       router.push(`/${lng}${REDIRECT_URL}`);
     });
     Cookies.set("BOA", true);
+    Cookies.set("Onboarding", true);
   }, [createBusiness, lng, router]);
 
   const onConfirmModalClose = useCallback(() => {
@@ -76,6 +78,7 @@ const AppLayout = ({
           onCloseModal={onConfirmModalClose}
         />
       )}
+      {/* {hasOnboarding && <OnboardingModal />} */}
     </Flex>
   );
 };

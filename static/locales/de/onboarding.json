@@ -1,0 +1,33 @@
+{
+  "intro": {
+    "header": "<0>Eins nach dem anderen</0>. Hier ist ein kurzer Überblick über unseren Onboarding-Prozess, der aus <0>zwei Schritten</0> besteht.",
+    "tiles": {
+      "step1": {
+        "header": "Schritt 1",
+        "content": "Erstellen Sie Ihr Profil, um Ihre Online-Präsenz zu steigern. Fügen Sie Ihre Geschäftsinformationen, Ihr Menü, Ihre Fotos, Ihre Lieferplattformen usw. hinzu."
+      },
+      "step2": {
+        "header": "Schritt 2",
+        "content": "Folgen Sie der Produkttour, um zu verstehen, wie Sie alle Ihre Operationen von unserer Plattform aus verwalten können."
+      }
+    },
+    "letsgo": "Los geht's",
+    "next": "Weiter",
+    "step1": {
+      "title": "Erstellen Sie Ihr Business-Profil",
+      "subtitle": "Dies ist ein Beispiel für ein Profil nach Abschluss des Onboardings.",
+      "hints": {
+        "header": "Ein vollständiges Profil ermöglicht es Ihnen:",
+        "first": "Ihre Online-Sichtbarkeit zu erhöhen",
+        "second": "Ihren Ruf als Unternehmen zu verbessern",
+        "third": "Erreichen Sie neue Kundenkontakte"
+      },
+      "service": {
+        "buttons": "Buttons für Weiterleitungen",
+        "content": "Wir empfehlen Ihnen dringend, Weiterleitungslinks zu Ihrer eigenen Website und anderen Partnerplattformen einzufügen."
+      },
+      "swipe": "Wischen Sie das Telefon, um das vollständige Profil anzuzeigen",
+      "gotit": "Ok"
+    }
+  }
+}
