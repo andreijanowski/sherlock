@@ -24,8 +24,8 @@ import {
 const Step1 = () => {
   const [hasHintOpen, setHasHintOpen] = useState(true);
   const t = useT("onboarding");
-
   const setHahandleCloseHint = () => setHasHintOpen(false);
+
   return (
     <Wrapper row>
       <InfoWrapper>

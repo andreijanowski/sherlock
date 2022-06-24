@@ -28,6 +28,24 @@
       },
       "swipe": "Faites glisser pour voir le profil complet",
       "gotit": "Ok"
+    },
+    "basicinfo": {
+      "hint": {
+        "title": "Ceci est votre profil",
+        "subtitle": "Complétez vos informations afin d'avoir un aperçu en direct sur le téléphone."
+      }
+    },
+    "imagesmenus": {
+      "logo": {
+        "hint": "Ajoutez votre logo",
+        "drag_file": "Choisissez un fichier ou faites-le glisser ici"
+      },
+      "upload_pictures": {
+        "hint": "Ajoutez une image de qualité qui montre l'atmosphère de votre établissement (de préférence l'intérieur)."
+      },
+      "must_try": {
+        "hint": "Mettez en avant vos best-seller."
+      }
     }
   }
 }

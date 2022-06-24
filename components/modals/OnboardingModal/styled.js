@@ -30,6 +30,7 @@ export const BottomNavigation = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: rgb(${p => p.theme.colors.white});
   z-index: 1;
   padding-top: 36px;

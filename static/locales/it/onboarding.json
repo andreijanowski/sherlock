@@ -28,6 +28,24 @@
       },
       "swipe": "Scorrere il telefono per visualizzare il profilo completo",
       "gotit": "Ok"
+    },
+    "basicinfo": {
+      "hint": {
+        "title": "Questo è il vostro profilo",
+        "subtitle": "Inserite i vostri dati per ottenere una visione dal vivo sul telefono"
+      }
+    },
+    "imagesmenus": {
+      "logo": {
+        "hint": "Inserite il vostro logo",
+        "drag_file": "Scegliere un file o trascinarlo qui"
+      },
+      "upload_pictures": {
+        "hint": "Inserire un'immagine di alta qualità che mostri l'atmosfera della vostra attività (preferibilmente l'interno)."
+      },
+      "must_try": {
+        "hint": "Promuovete i vostri bestseller."
+      }
     }
   }
 }

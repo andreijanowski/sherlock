@@ -28,6 +28,24 @@
       },
       "swipe": "Desliza el teléfono para ver el perfil completo",
       "gotit": "Ok"
+    },
+    "basicinfo": {
+      "hint": {
+        "title": "Este es su perfil",
+        "subtitle": "Rellena tus datos para obtener una vista en directo del teléfono."
+      }
+    },
+    "imagesmenus": {
+      "logo": {
+        "hint": "Por favor, inserte su logo",
+        "drag_file": "Elija un archivo o arrástrelo hasta aquí"
+      },
+      "upload_pictures": {
+        "hint": "Por favor, inserte una foto de alta calidad que muestre el ambiente de su negocio (preferiblemente el interior)"
+      },
+      "must_try": {
+        "hint": "Promocione sus bestsellers."
+      }
     }
   }
 }

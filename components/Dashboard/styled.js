@@ -7,6 +7,7 @@ import { downThanBreakpoint } from "utils/theme";
 export const DashboardWrapper = styled(Flex)`
   flex-direction: column;
 `;
+
 export const TileWrapper = styled(Flex)`
   @media (max-width: ${p => p.theme.breakpointsPx[4]}) {
     flex-direction: column;
@@ -42,13 +43,14 @@ export const TileHeader = styled(Box).attrs({ as: "h2" })`
 `;
 
 export const ProgressBarBackground = styled.div`
-  background-color: #f2f2f2;
+  background-color: ${p => `${p.bgcolor}`};
   width: 100%;
   border-radius: 16px;
 `;
 
 export const ProgressBar = styled(ProgressBarBackground)`
-  height: 18px;
+  height: ${p => `${p.height}` || "18px"};
+  border-radius: ${p => `${p.radius}` || "16px"};
   width: ${p => `${p.width}%` || 0};
   background-color: ${p => p.color || "red"};
   transition: 0.4s;
