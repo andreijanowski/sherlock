@@ -83,6 +83,10 @@ export const Arrow = styled.img`
   @media (min-width: 1400px) {
     bottom: calc(80vh - 800px);
   }
+
+  @media (min-height: 1150px) {
+    bottom: 140px;
+  }
 `;
 
 export const Breadcrumb = styled.p`
