@@ -4,6 +4,7 @@ import { Trans } from "i18n";
 import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
 import { useT } from "utils/hooks";
 import {
+  Arrow,
   Bold,
   Breadcrumb,
   InfoWrapper,
@@ -68,6 +69,7 @@ const Step1 = () => {
         <Image src="/static/img/onboarding/liveapp.png" fullWidth />
         <PreviewButtons src="/static/img/onboarding/previewbuttons.png" />
       </PreviewWrapper>
+      <Arrow src="/static/img/onboarding/arrow16.svg" />
     </Wrapper>
   );
 };
