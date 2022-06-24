@@ -32,14 +32,11 @@ const AppLayout = ({
   useEffect(() => {
     const timer = setTimeout(() => {
       if (hasBOAgreement && role === BASIC_ROLE) {
-        createBusiness(() => {
-          router.push(`/${lng}${REDIRECT_URL}`);
-        });
+        createBusiness();
       }
     }, 2000);
     return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasBOAgreement, role]);
+  }, [createBusiness, hasBOAgreement, role]);
 
   const onConfirmModalSubmit = useCallback(() => {
     createBusiness(() => {

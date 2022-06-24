@@ -74,6 +74,17 @@ export const StyledH3 = styled.h3`
   color: rgb(${p => p.theme.colors.white});
 `;
 
+export const Arrow = styled.img`
+  position: absolute;
+  bottom: calc(80vh - 700px);
+  left: 350px;
+  transform: scale(0.7);
+
+  @media (min-width: 1400px) {
+    bottom: calc(80vh - 800px);
+  }
+`;
+
 export const Breadcrumb = styled.p`
   font-weight: 700;
   font-size: 18px !important;
@@ -98,6 +109,7 @@ export const Subtitle = styled.p`
 
 export const InfoWrapper = styled(Box)`
   margin: 10px auto;
+  height: 100%;
 `;
 
 export const PreviewWrapper = styled(Box)`
