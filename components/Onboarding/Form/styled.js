@@ -34,34 +34,9 @@ export const Title = styled.h4`
   margin: 10px 0;
 `;
 
-export const Form = styled(Flex).attrs(() => ({
-  as: "form",
-  flexDirection: "column",
-  width: 1
-}))`
-  margin-top: 24px;
-  background-color: rgb(${p => p.theme.colors.white});
-`;
-
 export const InfoWrapper = styled(Box)`
   margin: 10px auto;
   height: 100%;
-`;
-
-export const PreviewWrapper = styled(Box)`
-  margin: 10px 100px;
-  border-radius: 28px;
-  border: 1px solid rgb(${p => p.theme.colors.snuff});
-  width: 268px;
-  min-width: 268px;
-  height: 580px;
-  overflow: ${p => (p.scroll ? "scroll" : "hidden")};
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
 export const HintModal = styled.div`

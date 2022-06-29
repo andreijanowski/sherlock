@@ -1,10 +1,12 @@
 import React from "react";
+import { shape } from "prop-types";
 
 import { useT } from "utils/hooks";
 import { Periods } from "components";
-import { Content, Wrapper, Title, InfoWrapper, PreviewWrapper } from "./styled";
+import { MobilePreview } from "components/Onboarding";
+import { Content, Wrapper, Title, InfoWrapper } from "./styled";
 
-const OpeningHours = () => {
+const OpeningHours = ({ values }) => {
   const t = useT("onboarding");
 
   const addPeriod = openPeriod => {
@@ -36,12 +38,14 @@ const OpeningHours = () => {
             }}
           />
         </InfoWrapper>
-        <PreviewWrapper>
-          <div>.</div>
-        </PreviewWrapper>
+        <MobilePreview {...values} />
       </Content>
     </Wrapper>
   );
+};
+
+OpeningHours.propTypes = {
+  values: shape().isRequired
 };
 
 export default OpeningHours;

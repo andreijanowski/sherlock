@@ -1,7 +1,8 @@
 import React from "react";
 
 import { useT } from "utils/hooks";
-import { Content, Wrapper, Title, InfoWrapper, PreviewWrapper } from "./styled";
+import { MobilePreview } from "components/Onboarding";
+import { Content, Wrapper, Title, InfoWrapper } from "./styled";
 
 const ImagesMenus = () => {
   const t = useT("onboarding");
@@ -13,9 +14,7 @@ const ImagesMenus = () => {
         <InfoWrapper>
           <b>Images & Menus</b>
         </InfoWrapper>
-        <PreviewWrapper>
-          <div>.</div>
-        </PreviewWrapper>
+        <MobilePreview />
       </Content>
     </Wrapper>
   );
