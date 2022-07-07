@@ -53,16 +53,18 @@ export const Name = styled.div`
   font-size: 18px;
   line-height: 25.2px;
   word-wrap: break-word;
+  margin-bottom: -3px;
 
   > div {
     position: absolute;
-    bottom: 0;
+    bottom: 3px;
     width: 110px;
     height: 18px;
   }
 `;
 
 export const Logo = styled.div`
+  position: relative;
   display: flex;
   width: 22px;
   height: 22px;
@@ -97,6 +99,26 @@ export const Hours = styled.div`
   }
 `;
 
+export const HoursWrapper = styled.span`
+  display: flex;
+  position: relative;
+  align-items: center;
+
+  img {
+    top: -2px;
+    left: 0;
+  }
+
+  span:nth-child(3) {
+    text-decoration: underline;
+  }
+`;
+
+export const Green = styled.span`
+  margin-left: 16px;
+  color: rgb(${p => p.theme.colors.greenHaze});
+`;
+
 export const FeaturesWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -108,8 +130,41 @@ export const FeaturesWrapper = styled.div`
 `;
 
 export const Feature = styled.div`
+  > div {
+    width: 28px;
+    height: 28px;
+  }
+`;
+
+export const IconWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+`;
+
+export const Icon = styled.div`
+  border: 1px solid rgb(${p => p.theme.colors.black});
+  border-radius: 50%;
   width: 28px;
   height: 28px;
+`;
+
+export const FeatureName = styled.p`
+  position: absolute;
+  bottom: -25px;
+  font-size: 8px;
+`;
+
+export const IconImg = styled.img`
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  width: 14px;
+  height: 14px;
 `;
 
 export const ReadMore = styled.div`

@@ -1,11 +1,18 @@
 import React from "react";
-import { string } from "prop-types";
+import { bool, string } from "prop-types";
+import { useT } from "utils/hooks";
 
 import {
   Description,
   Feature,
+  FeatureName,
   FeaturesWrapper,
+  Green,
   Hours,
+  HoursWrapper,
+  Icon,
+  IconImg,
+  IconWrapper,
   Image,
   Logo,
   Name,
@@ -20,21 +27,33 @@ import {
 } from "./styled";
 
 const MobilePreview = ({
+  city,
   cuisine,
   description,
+  hasHours,
   img,
   logo,
-  maps,
   menus,
   name,
-  openingHours,
   phone,
   priceRange,
-  reviews,
-  type
+  street,
+  type,
+  website
 }) => {
+  const t = useT("app");
   const checkProp = prop => prop || <Placeholder />;
-  const hasPhone = phone.length;
+  const hasPhone = !!(phone && phone.length);
+  const hasMap = !!(street && street.length) || !!(city && city.length);
+  const hasWebsite = !!(website && website.length);
+
+  const HoursInfo = () => (
+    <HoursWrapper>
+      <IconImg src="/static/img/onboarding/clock.svg" />
+      <Green>Open now:&nbsp;</Green>
+      <span>See all hours</span>
+    </HoursWrapper>
+  );
 
   return (
     <PreviewWrapper>
@@ -42,19 +61,52 @@ const MobilePreview = ({
       <Wrapper>
         <TitleWrapper>
           <Name>{checkProp(name)}</Name>
-          <Logo>{checkProp(logo)}</Logo>
+          <Logo>{logo ? <IconImg src={logo} /> : <Placeholder />}</Logo>
         </TitleWrapper>
         <TagsWrapper>
           <Tag>{checkProp(priceRange)}</Tag>
           <Tag>{checkProp(cuisine)}</Tag>
           <Tag>{checkProp(type)}</Tag>
         </TagsWrapper>
-        <Hours>{checkProp(openingHours)}</Hours>
+        <Hours>{hasHours ? <HoursInfo /> : <Placeholder />}</Hours>
         <FeaturesWrapper>
-          <Feature>{checkProp(hasPhone)}</Feature>
-          <Feature>{checkProp(maps)}</Feature>
-          <Feature>{checkProp(menus)}</Feature>
-          <Feature>{checkProp(reviews)}</Feature>
+          <Feature>
+            {hasPhone ? (
+              <IconWrapper>
+                <Icon>
+                  <IconImg src="/static/img/onboarding/phone.svg" />
+                </Icon>
+                <FeatureName>{t("manageIntegrations.call")}</FeatureName>
+              </IconWrapper>
+            ) : (
+              <Placeholder />
+            )}
+          </Feature>
+          <Feature>
+            {hasMap ? (
+              <IconWrapper>
+                <Icon>
+                  <IconImg src="/static/img/onboarding/mappin.svg" />
+                </Icon>
+                <FeatureName>{t("manageIntegrations.map")}</FeatureName>
+              </IconWrapper>
+            ) : (
+              <Placeholder />
+            )}
+          </Feature>
+          <Feature>{menus ? <IconWrapper /> : <Placeholder />}</Feature>
+          <Feature>
+            {hasWebsite ? (
+              <IconWrapper>
+                <Icon>
+                  <IconImg src="/static/img/onboarding/reviews.svg" />
+                </Icon>
+                <FeatureName>{t("manageIntegrations.reviews")}</FeatureName>
+              </IconWrapper>
+            ) : (
+              <Placeholder />
+            )}
+          </Feature>
         </FeaturesWrapper>
         <Description>
           {description || (
@@ -77,33 +129,35 @@ const MobilePreview = ({
 };
 
 MobilePreview.propTypes = {
+  city: string,
   cuisine: string,
   description: string,
+  hasHours: bool,
   img: string,
   logo: string,
-  maps: string,
   menus: string,
   name: string,
-  openingHours: string,
   phone: string,
   priceRange: string,
-  reviews: string,
-  type: string
+  street: string,
+  type: string,
+  website: string
 };
 
 MobilePreview.defaultProps = {
+  city: "",
   cuisine: "",
   description: "",
+  hasHours: false,
   img: "",
   logo: "",
-  maps: "",
   menus: "",
   name: "",
-  openingHours: "",
   phone: "",
   priceRange: "",
-  reviews: "",
-  type: ""
+  street: "",
+  type: "",
+  website: ""
 };
 
 export default MobilePreview;

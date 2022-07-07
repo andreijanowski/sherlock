@@ -49,7 +49,7 @@ export const getContent = t => ({
     nextStep: STEP.BASIC_INFO,
     buttonText: t("intro.next"),
     progress: 30,
-    prevStep: STEP.BASIC_INFO,
+    prevStep: STEP.OPENING_HOURS,
     prevButtonText: "Previous"
   }
 });

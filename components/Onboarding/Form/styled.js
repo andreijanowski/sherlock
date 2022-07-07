@@ -1,6 +1,15 @@
 import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 
+export const Form = styled(Flex).attrs(() => ({
+  as: "form",
+  flexDirection: "column",
+  width: 1
+}))`
+  margin-top: 24px;
+  background-color: rgb(${p => p.theme.colors.white});
+`;
+
 export const Wrapper = styled(Flex).attrs(() => ({
   justifyContent: "space-between"
 }))`
@@ -36,7 +45,14 @@ export const Title = styled.h4`
 
 export const InfoWrapper = styled(Box)`
   margin: 10px auto;
-  height: 100%;
+  height: ${p => p.height || "100%"};
+  min-width: ${p => p.minWidth};
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const HintModal = styled.div`

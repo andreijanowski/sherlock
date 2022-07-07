@@ -57,7 +57,9 @@
     "orderNow": "Ordine",
     "call": "Chiamata",
     "meeting": "Riunione",
-    "email": "Email"
+    "email": "Email",
+    "map": "Carta",
+    "reviews": "Recensioni"
   },
   "subscriptions": "Iscrizioni o Abbonamenti",
   "userSettings": {

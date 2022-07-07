@@ -1,16 +1,28 @@
 import React, { cloneElement, useState } from "react";
-import { Modal, WhenFieldChanges } from "components";
+import { shape, string } from "prop-types";
+import { Modal, parsePeriods } from "components";
+import { connect } from "react-redux";
 // import Cookies from "js-cookie";
 import { useT } from "utils/hooks";
 import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
 import ProgressBar from "components/Dashboard/progressBar";
-import { Form as FinalForm } from "react-final-form";
 import { STEP, CLOSE, getContent } from "components/Onboarding/utils";
-import { ModalStyles, BottomNavigation, Form } from "./styled";
+import { getInitialValues as getBasicValues } from "sections/profile/basicInformation/utils";
+import { getInitialValues } from "sections/profile/picturesAndMenus/utils";
+import { ModalStyles, BottomNavigation } from "./styled";
 
-const OnboardingModal = () => {
+const OnboardingModal = ({
+  business,
+  businessId,
+  businessGroups,
+  businessOpenPeriods,
+  businessMenus,
+  businessPictures,
+  businessProducts
+}) => {
   const t = useT("onboarding");
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const [hasHintOpen, setHasHintOpen] = useState(true);
   // remove comment
   const [currentStep, setCurrentStep] = useState(
     getContent(t)[STEP.BASIC_INFO]
@@ -30,33 +42,34 @@ const OnboardingModal = () => {
   const handlePrevClick = () =>
     setCurrentStep(getContent(t)[currentStep.prevStep]);
 
-  const handleSubmit = values => console.log(values);
+  const initialValues = business && {
+    ...getBasicValues({ business, businessGroups }),
+    ...parsePeriods(businessOpenPeriods),
+    ...getInitialValues(
+      business,
+      businessMenus,
+      businessPictures,
+      businessProducts
+    )
+  };
+
+  console.log("INITIALS", initialValues);
 
   return (
     <>
       <ModalStyles />
       <Modal open={isModalOpen} onClose={onClose}>
-        <FinalForm
-          onSubmit={handleSubmit}
-          subscription={{ values: true, form: true }}
-          render={({ values }) => (
-            <Form>
-              <WhenFieldChanges
-                field="country"
-                set="region"
-                to={undefined}
-                shouldChange={
-                  values.region &&
-                  values.region.value &&
-                  values.country &&
-                  values.country.value &&
-                  !values.region.value.includes(values.country.value)
-                }
-              />
-              {cloneElement(currentStep.component, { values }, null)}
-            </Form>
-          )}
-        />
+        {cloneElement(
+          currentStep.component,
+          {
+            values: initialValues,
+            business,
+            businessId,
+            hasHintOpen,
+            setHasHintOpen
+          },
+          null
+        )}
         <BottomNavigation>
           <ProgressBar
             color="midnightblue"
@@ -92,4 +105,42 @@ const OnboardingModal = () => {
   );
 };
 
-export default OnboardingModal;
+OnboardingModal.propTypes = {
+  business: shape(),
+  businessId: string,
+  businessGroups: shape(),
+  businessOpenPeriods: shape(),
+  businessMenus: shape(),
+  businessPictures: shape(),
+  businessProducts: shape()
+};
+
+OnboardingModal.defaultProps = {
+  business: {},
+  businessId: "",
+  businessGroups: null,
+  businessOpenPeriods: null,
+  businessMenus: null,
+  businessPictures: null,
+  businessProducts: null
+};
+
+export default connect(
+  state => {
+    const businessData = state.getIn(["users", "currentBusiness", "data"]);
+    const business =
+      businessData &&
+      businessData.get("businesses") &&
+      businessData.get("businesses").first();
+    return {
+      business: business && business.get("attributes"),
+      businessId: business && business.get("id"),
+      businessGroups: businessData && businessData.get("groups"),
+      businessOpenPeriods: businessData && businessData.get("openPeriods"),
+      businessMenus: businessData && businessData.get("menus"),
+      businessPictures: businessData && businessData.get("pictures"),
+      businessProducts: businessData && businessData.get("products")
+    };
+  },
+  null
+)(OnboardingModal);

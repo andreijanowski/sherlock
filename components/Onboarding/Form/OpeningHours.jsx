@@ -1,51 +1,94 @@
 import React from "react";
-import { shape } from "prop-types";
+import { shape, string, func } from "prop-types";
+import { connect } from "react-redux";
 
+import {
+  postOpenPeriod,
+  patchOpenPeriod,
+  deleteOpenPeriod
+} from "actions/openPeriods";
 import { useT } from "utils/hooks";
-import { Periods } from "components";
+import { Periods, parsePeriods } from "components";
 import { MobilePreview } from "components/Onboarding";
 import { Content, Wrapper, Title, InfoWrapper } from "./styled";
 
-const OpeningHours = ({ values }) => {
-  const t = useT("onboarding");
+const OpeningHours = ({
+  values,
+  addOpenPeriod,
+  removeOpenPeriod,
+  updateOpenPeriod,
+  businessId,
+  businessOpenPeriods
+}) => {
+  const t = useT(["lefood", "app"]);
 
-  const addPeriod = openPeriod => {
-    console.log(openPeriod);
-  };
+  const addOpenPeriodAction = openPeriod =>
+    addOpenPeriod(businessId, openPeriod);
 
-  const updatePeriod = openPeriod => {
-    console.log(openPeriod);
-  };
+  const updateOpenPeriodAction = openPeriod =>
+    updateOpenPeriod(openPeriod.id, openPeriod);
 
-  const removePeriod = id => {
-    console.log(id);
-  };
+  const removeOpenPeriodAction = id => removeOpenPeriod(id);
+
+  const initialValues = parsePeriods(businessOpenPeriods);
+
+  // eslint-disable-next-line
+  values.hasHours = !!Object.keys(initialValues).length;
 
   return (
     <Wrapper>
       <Title>{t("app:manageProfile.openingHours")}</Title>
       <Content>
-        <InfoWrapper>
+        <InfoWrapper minWidth="690px" height="550px">
           <Periods
             {...{
               t,
-              isLocationVisible: true,
-              initialValues: {},
-              addPeriod,
-              updatePeriod,
-              removePeriod,
-              currentPage: "openingHours"
+              initialValues,
+              isLocationVisible: false,
+              addPeriod: addOpenPeriodAction,
+              updatePeriod: updateOpenPeriodAction,
+              removePeriod: removeOpenPeriodAction,
+              currentPage: "",
+              hasHiddenTitle: true,
+              padding: "0"
             }}
           />
         </InfoWrapper>
-        <MobilePreview {...values} />
+        <MobilePreview {...initialValues} {...values} />
       </Content>
     </Wrapper>
   );
 };
 
 OpeningHours.propTypes = {
+  addOpenPeriod: func.isRequired,
+  updateOpenPeriod: func.isRequired,
+  removeOpenPeriod: func.isRequired,
+  businessId: string,
+  businessOpenPeriods: shape(),
   values: shape().isRequired
 };
 
-export default OpeningHours;
+OpeningHours.defaultProps = {
+  businessId: "",
+  businessOpenPeriods: null
+};
+
+export default connect(
+  state => {
+    const businessData = state.getIn(["users", "currentBusiness", "data"]);
+    const business =
+      businessData &&
+      businessData.get("businesses") &&
+      businessData.get("businesses").first();
+    return {
+      businessId: business && business.get("id"),
+      businessOpenPeriods: businessData && businessData.get("openPeriods")
+    };
+  },
+  {
+    addOpenPeriod: postOpenPeriod,
+    updateOpenPeriod: patchOpenPeriod,
+    removeOpenPeriod: deleteOpenPeriod
+  }
+)(OpeningHours);

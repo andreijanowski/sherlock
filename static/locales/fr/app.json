@@ -60,7 +60,9 @@
     "orderNow": "Commander",
     "call": "Appeler",
     "meeting": "Meeting",
-    "email": "Email"
+    "email": "Email",
+    "map": "Carte",
+    "reviews": "Commentaires"
   },
   "subscriptions": "Abonnements",
   "userSettings": {
