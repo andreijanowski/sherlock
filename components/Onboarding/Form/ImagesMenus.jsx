@@ -73,7 +73,14 @@ const ImagesMenus = ({
 
   const uploadMenu = id => uploadMenuToUberEats(id);
 
-  console.log("INIT PICTURES", initialValues);
+  /* eslint-disable */
+  if (values && initialValues) {
+    values.logo = initialValues.logo;
+    values.pictures = initialValues.pictures;
+    values.menus = initialValues.menus;
+    values.products = initialValues.products;
+  };
+  /* eslint-enable */
 
   return (
     <Wrapper>
@@ -94,19 +101,18 @@ const ImagesMenus = ({
               updateProduct,
               removeProduct,
               addToUber: uploadMenu,
-              padding: "0"
+              padding: "0",
+              onboarding: true
             }}
           />
         </InfoWrapper>
-        <MobilePreview {...initialValues} {...values} />
+        <MobilePreview {...values} />
       </Content>
     </Wrapper>
   );
 };
 
 ImagesMenus.propTypes = {
-  t: func.isRequired,
-  lng: string.isRequired,
   addBusiness: func.isRequired,
   updateBusiness: func.isRequired,
   addPicture: func.isRequired,
@@ -119,7 +125,6 @@ ImagesMenus.propTypes = {
   removeProduct: func.isRequired,
   business: shape(),
   businessId: string,
-  businessGroups: shape(),
   businessMenus: shape(),
   businessPictures: shape(),
   businessProducts: shape(),
@@ -133,7 +138,6 @@ ImagesMenus.propTypes = {
 ImagesMenus.defaultProps = {
   businesses: null,
   businessId: "",
-  businessGroups: null,
   businessMenus: null,
   businessPictures: null,
   businessProducts: null,

@@ -39,6 +39,12 @@ export const Image = styled.div`
   }
 `;
 
+export const Picture = styled.img`
+  width: 100%;
+  height: 187px;
+  object-fit: cover;
+`;
+
 export const TitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -68,6 +74,13 @@ export const Logo = styled.div`
   display: flex;
   width: 22px;
   height: 22px;
+`;
+
+export const LogoImg = styled.img`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 `;
 
 export const TagsWrapper = styled.div`
@@ -199,4 +212,86 @@ export const Description = styled.div`
     height: 9px;
     margin: 9px 0 0;
   }
+`;
+
+export const MustTrySection = styled.div`
+  padding: 12px 0 8px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+export const Label = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 8px;
+
+  div {
+    width: 109px;
+    height: 17px;
+  }
+
+  div:nth-child(2) {
+    width: 69px;
+  }
+`;
+
+export const MustTry = styled.span`
+  font-weight: 600;
+  font-size: 12px;
+`;
+
+export const OrderNow = styled.button`
+  border: 1px solid rgb(${p => p.theme.colors.black});
+  background-color: rgb(${p => p.theme.colors.white});
+  border-radius: 16px;
+  font-size: 8.5px;
+`;
+
+export const Products = styled.div`
+  display: flex;
+  overflow-x: scroll;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+// stylelint-disable
+
+export const Product = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 8px;
+
+  & > div {
+    width: 100px;
+    height: 95px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+  }
+
+  & > div:nth-child(2) {
+    width: 65px;
+    height: 9px;
+  }
+`;
+
+// stylelint-enable
+
+export const ProductImage = styled.img`
+  width: 100px;
+  height: 95px;
+  border-radius: 8px;
+  object-fit: cover;
+`;
+
+export const ProductName = styled.p`
+  font-size: 8px;
+  color: rgb(${p => p.theme.colors.blue});
+  margin: 6px 0;
 `;

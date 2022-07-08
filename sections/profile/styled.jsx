@@ -9,6 +9,22 @@ export const Form = styled(Flex).attrs(() => ({
   background-color: rgb(${p => p.theme.colors.white});
   border-radius: ${p => p.theme.radius.default};
   box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.blue}, 0.08);
+  max-width: ${p => p.onboarding && "100%"};
+
+  h3 {
+    color: rgb(
+      ${p =>
+        p.onboarding ? p.theme.colors.b2bSecondary : p.theme.colors.black}
+    );
+    font-weight: ${p => (p.onboarding ? "700" : "400")};
+    font-size: ${p => (p.onboarding ? "24px" : "21px")};
+    margin-bottom: ${p => (p.onboarding ? "6px" : "16px")};
+  }
+
+  p {
+    font-size: ${p => (p.onboarding ? "14px" : "18x")};
+    color: rgb(${p => p.onboarding && p.theme.colors.buttonSecondary});
+  }
 `;
 
 export const Actions = styled(Flex).attrs(() => ({

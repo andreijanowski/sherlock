@@ -1,4 +1,4 @@
-import { func, shape, string } from "prop-types";
+import { bool, func, shape, string } from "prop-types";
 import { LoadingIndicator, MenusUploader } from "components";
 import { Form } from "../styled";
 import Logo from "./Logo";
@@ -18,10 +18,11 @@ const PicturesAndMenusForm = ({
   updateProduct,
   removeProduct,
   addToUber,
-  padding
+  padding,
+  onboarding
 }) =>
   initialValues ? (
-    <Form p={padding || [3, 4]}>
+    <Form p={padding || [3, 4]} onboarding={onboarding}>
       <Logo {...{ t, logo: initialValues.logo, saveLogo }} />
       <Pictures
         {...{
@@ -68,12 +69,14 @@ PicturesAndMenusForm.propTypes = {
   updateProduct: func.isRequired,
   removeProduct: func.isRequired,
   addToUber: func.isRequired,
-  padding: string
+  padding: string,
+  onboarding: bool
 };
 
 PicturesAndMenusForm.defaultProps = {
   initialValues: null,
-  padding: ""
+  padding: "",
+  onboarding: false
 };
 
 export default PicturesAndMenusForm;

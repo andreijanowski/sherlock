@@ -1,5 +1,5 @@
 import React from "react";
-import { bool, string } from "prop-types";
+import { arrayOf, bool, string, shape } from "prop-types";
 import { useT } from "utils/hooks";
 
 import {
@@ -14,11 +14,21 @@ import {
   IconImg,
   IconWrapper,
   Image,
+  Label,
   Logo,
+  LogoImg,
   Name,
+  MustTry,
+  MustTrySection,
+  OrderNow,
   Placeholder,
   Placeholders,
+  Picture,
   PreviewWrapper,
+  Product,
+  Products,
+  ProductImage,
+  ProductName,
   ReadMore,
   Tag,
   TagsWrapper,
@@ -31,12 +41,13 @@ const MobilePreview = ({
   cuisine,
   description,
   hasHours,
-  img,
   logo,
   menus,
   name,
   phone,
+  pictures,
   priceRange,
+  products,
   street,
   type,
   website
@@ -46,6 +57,8 @@ const MobilePreview = ({
   const hasPhone = !!(phone && phone.length);
   const hasMap = !!(street && street.length) || !!(city && city.length);
   const hasWebsite = !!(website && website.length);
+  const hasMenus = menus && menus.length > 0;
+  const hasProducts = products && products.length > 0;
 
   const HoursInfo = () => (
     <HoursWrapper>
@@ -57,11 +70,17 @@ const MobilePreview = ({
 
   return (
     <PreviewWrapper>
-      <Image>{checkProp(img)}</Image>
+      <Image>
+        {pictures && pictures.length > 0 ? (
+          <Picture src={pictures[0].url} />
+        ) : (
+          <Placeholder />
+        )}
+      </Image>
       <Wrapper>
         <TitleWrapper>
           <Name>{checkProp(name)}</Name>
-          <Logo>{logo ? <IconImg src={logo} /> : <Placeholder />}</Logo>
+          <Logo>{logo ? <LogoImg src={logo} /> : <Placeholder />}</Logo>
         </TitleWrapper>
         <TagsWrapper>
           <Tag>{checkProp(priceRange)}</Tag>
@@ -94,7 +113,18 @@ const MobilePreview = ({
               <Placeholder />
             )}
           </Feature>
-          <Feature>{menus ? <IconWrapper /> : <Placeholder />}</Feature>
+          <Feature>
+            {hasMenus ? (
+              <IconWrapper>
+                <Icon>
+                  <IconImg src="/static/img/onboarding/sheet.svg" />
+                </Icon>
+                <FeatureName>{t("manageIntegrations.menus")}</FeatureName>
+              </IconWrapper>
+            ) : (
+              <Placeholder />
+            )}
+          </Feature>
           <Feature>
             {hasWebsite ? (
               <IconWrapper>
@@ -123,6 +153,34 @@ const MobilePreview = ({
             </p>
           )}
         </Description>
+        <MustTrySection>
+          {hasProducts ? (
+            <Label>
+              <MustTry>Must Try</MustTry>
+              <OrderNow>Order Now</OrderNow>
+            </Label>
+          ) : (
+            <Label>
+              <Placeholder />
+              <Placeholder />
+            </Label>
+          )}
+          <Products>
+            {hasProducts
+              ? products.map(product => (
+                  <Product key={product.name}>
+                    <ProductImage src={product.url} />
+                    <ProductName>{product.name}</ProductName>
+                  </Product>
+                ))
+              : [1, 2, 3].map(el => (
+                  <Product key={el}>
+                    <Placeholder />
+                    <Placeholder />
+                  </Product>
+                ))}
+          </Products>
+        </MustTrySection>
       </Wrapper>
     </PreviewWrapper>
   );
@@ -133,12 +191,13 @@ MobilePreview.propTypes = {
   cuisine: string,
   description: string,
   hasHours: bool,
-  img: string,
   logo: string,
   menus: string,
   name: string,
   phone: string,
+  pictures: arrayOf(shape()),
   priceRange: string,
+  products: arrayOf(shape()),
   street: string,
   type: string,
   website: string
@@ -149,12 +208,13 @@ MobilePreview.defaultProps = {
   cuisine: "",
   description: "",
   hasHours: false,
-  img: "",
   logo: "",
   menus: "",
   name: "",
   phone: "",
+  pictures: [],
   priceRange: "",
+  products: [],
   street: "",
   type: "",
   website: ""

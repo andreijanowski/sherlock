@@ -38,7 +38,7 @@ export const Content = styled(Flex).attrs(() => ({
 
 export const Title = styled.h4`
   font-weight: 700;
-  font-size: 24px !important;
+  font-size: 36px !important;
   color: rgb(${p => p.theme.colors.b2bSecondary});
   margin: 10px 0;
 `;

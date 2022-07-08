@@ -22,7 +22,7 @@ const Logo = ({ t, logo, saveLogo }) => (
             maxHeight={300}
             image={logo || undefined}
             saveImage={saveLogo}
-            aspectRatio={1}
+            aspectRatio={2}
           />
         </PerfectSquare>
       </Box>

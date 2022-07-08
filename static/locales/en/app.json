@@ -63,7 +63,8 @@
     "meeting": "Meeting",
     "email": "Email",
     "map": "Map",
-    "reviews": "Reviews"
+    "reviews": "Reviews",
+    "menus": "Menus"
   },
   "subscriptions": "Subscriptions",
   "userSettings": {
