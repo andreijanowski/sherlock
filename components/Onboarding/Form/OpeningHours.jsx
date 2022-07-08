@@ -39,7 +39,7 @@ const OpeningHours = ({
     <Wrapper>
       <Title>{t("app:manageProfile.openingHours")}</Title>
       <Content>
-        <InfoWrapper minWidth="690px" height="550px">
+        <InfoWrapper minWidth="706px" height="550px">
           <Periods
             {...{
               t,

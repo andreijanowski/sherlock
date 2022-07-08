@@ -81,6 +81,7 @@ export const LogoImg = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  object-fit: cover;
 `;
 
 export const TagsWrapper = styled.div`
@@ -224,6 +225,7 @@ export const MustTrySection = styled.div`
 export const Label = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   padding-bottom: 8px;
 
@@ -247,6 +249,7 @@ export const OrderNow = styled.button`
   background-color: rgb(${p => p.theme.colors.white});
   border-radius: 16px;
   font-size: 8.5px;
+  padding: 4px 10px 2px;
 `;
 
 export const Products = styled.div`
