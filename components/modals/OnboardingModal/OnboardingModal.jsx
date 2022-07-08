@@ -1,6 +1,6 @@
 import React, { cloneElement, useState } from "react";
 import { Modal, WhenFieldChanges } from "components";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import { useT } from "utils/hooks";
 import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
 import ProgressBar from "components/Dashboard/progressBar";
@@ -12,11 +12,13 @@ const OnboardingModal = () => {
   const t = useT("onboarding");
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [hasHintOpen, setHasHintOpen] = useState(true);
+
   const [currentStep, setCurrentStep] = useState(getContent(t)[STEP.INTRO]);
 
   const onClose = () => {
     setIsModalOpen(false);
-    Cookies.remove("Onboarding");
+    // remove comment
+    // Cookies.remove("Onboarding");
   };
 
   const handleNextClick = () =>
