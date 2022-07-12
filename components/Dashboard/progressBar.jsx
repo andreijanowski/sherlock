@@ -25,7 +25,7 @@ export default function Bar({
       <ProgressBarBackground bgcolor={bgcolor}>
         <ProgressBar
           color={color}
-          width={Math.min(100, width)}
+          width={`${Math.min(100, width)}%`}
           height={height}
           radius={radius}
         />

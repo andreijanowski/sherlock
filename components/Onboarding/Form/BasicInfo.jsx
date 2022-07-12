@@ -17,6 +17,7 @@ const BasicInfo = ({ values, hasHintOpen, setHasHintOpen }) => {
   const regionItems = country =>
     (country && country.value && getSubdivisions(country.value)) || [];
   const setHahandleCloseHint = () => setHasHintOpen(false);
+  const commonStyles = { width: [1, 1 / 2], px: 2 };
 
   return (
     <Wrapper>
@@ -34,7 +35,7 @@ const BasicInfo = ({ values, hasHintOpen, setHasHintOpen }) => {
             placeholder={t("contactInformation:websitePlaceholder")}
           />
           <Flex mx={-2} flexWrap="wrap">
-            <Box width={[1, 1 / 2]} px={2}>
+            <Box {...commonStyles}>
               <Field
                 name="country"
                 component={FormSelect}
@@ -44,7 +45,7 @@ const BasicInfo = ({ values, hasHintOpen, setHasHintOpen }) => {
                 showFlag
               />
             </Box>
-            <Box width={[1, 1 / 2]} px={2}>
+            <Box {...commonStyles}>
               <Field
                 name="region"
                 component={FormSelect}
@@ -56,28 +57,28 @@ const BasicInfo = ({ values, hasHintOpen, setHasHintOpen }) => {
             </Box>
           </Flex>
           <Flex mx={-2} flexWrap="wrap">
-            <Box width={[1, 1 / 2]} px={2}>
+            <Box {...commonStyles}>
               <FormInput
                 name="street"
                 label={t("streetLabel")}
                 placeholder={t("streetPlaceholder")}
               />
             </Box>
-            <Box width={[1, 1 / 2]} px={2}>
+            <Box {...commonStyles}>
               <FormInput
                 name="streetNumber"
                 label={t("streetNumberLabel")}
                 placeholder={t("streetNumberPlaceholder")}
               />
             </Box>
-            <Box width={[1, 1 / 2]} px={2}>
+            <Box {...commonStyles}>
               <FormInput
                 name="city"
                 label={t("cityLabel")}
                 placeholder={t("cityPlaceholder")}
               />
             </Box>
-            <Box width={[1, 1 / 2]} px={2}>
+            <Box {...commonStyles}>
               <FormInput
                 name="postCode"
                 label={t("postCodeLabel")}
@@ -91,7 +92,7 @@ const BasicInfo = ({ values, hasHintOpen, setHasHintOpen }) => {
             placeholder={t("contactInformation:emailPlaceholder")}
           />
           <Flex mx={-2} flexWrap="wrap">
-            <Box width={[1, 1 / 2]} px={2}>
+            <Box {...commonStyles}>
               <Field
                 name="phoneCountry"
                 component={FormSelect}
@@ -101,7 +102,7 @@ const BasicInfo = ({ values, hasHintOpen, setHasHintOpen }) => {
                 showFlag
               />
             </Box>
-            <Box width={[1, 1 / 2]} px={2}>
+            <Box {...commonStyles}>
               <FormInput
                 name="phone"
                 label={t("contactInformation:phoneLabel")}

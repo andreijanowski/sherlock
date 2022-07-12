@@ -57,8 +57,9 @@ const MobilePreview = ({
   const hasPhone = !!(phone && phone.length);
   const hasMap = !!(street && street.length) || !!(city && city.length);
   const hasWebsite = !!(website && website.length);
-  const hasMenus = menus && menus.length > 0;
-  const hasProducts = products && products.length > 0;
+  const hasMenus = !!(menus && menus.length);
+  const hasProducts = !!(products && products.length);
+  const hasPictures = !!(pictures && pictures.length);
 
   const HoursInfo = () => (
     <HoursWrapper>
@@ -69,13 +70,9 @@ const MobilePreview = ({
   );
 
   return (
-    <PreviewWrapper>
+    <PreviewWrapper scroll>
       <Image>
-        {pictures && pictures.length > 0 ? (
-          <Picture src={pictures[0].url} />
-        ) : (
-          <Placeholder />
-        )}
+        {hasPictures ? <Picture src={pictures[0].url} /> : <Placeholder />}
       </Image>
       <Wrapper>
         <TitleWrapper>
@@ -181,6 +178,21 @@ const MobilePreview = ({
                 ))}
           </Products>
         </MustTrySection>
+        <Description>
+          {description || (
+            <Placeholders>
+              <Placeholder />
+              <Placeholder />
+            </Placeholders>
+          )}
+          {description ? (
+            <ReadMore>Read more</ReadMore>
+          ) : (
+            <p>
+              <Placeholder />
+            </p>
+          )}
+        </Description>
       </Wrapper>
     </PreviewWrapper>
   );
