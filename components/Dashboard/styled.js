@@ -7,6 +7,7 @@ import { downThanBreakpoint } from "utils/theme";
 export const DashboardWrapper = styled(Flex)`
   flex-direction: column;
 `;
+
 export const TileWrapper = styled(Flex)`
   @media (max-width: ${p => p.theme.breakpointsPx[4]}) {
     flex-direction: column;
@@ -22,8 +23,8 @@ export const Tile = styled(Flex)`
   padding: 16px;
   margin: 8px;
   ${p => p.isDisabled && "pointer-events: none; opacity: 0.4;"}
-  ${p => p.height && `height:  ${p.height}px`};
-  ${p => p.height && `max-height:  ${p.height}px`};
+  ${p => p.height && `height: ${p.height}px`};
+  ${p => p.height && `max-height: ${p.height}px`};
   background-color: ${p => `rgb(${p.theme.colors.white})`};
   position: relative;
   @media (max-width: ${p => p.theme.breakpoints[3]}) {
@@ -42,14 +43,15 @@ export const TileHeader = styled(Box).attrs({ as: "h2" })`
 `;
 
 export const ProgressBarBackground = styled.div`
-  background-color: #f2f2f2;
+  background-color: ${p => `${p.bgcolor}`};
   width: 100%;
   border-radius: 16px;
 `;
 
 export const ProgressBar = styled(ProgressBarBackground)`
-  height: 18px;
-  width: ${p => `${p.width}%` || 0};
+  height: ${p => p.height || "18px"};
+  border-radius: ${p => p.radius || "16px"};
+  width: ${p => p.width || 0};
   background-color: ${p => p.color || "red"};
   transition: 0.4s;
 `;
@@ -57,13 +59,13 @@ export const ProgressBar = styled(ProgressBarBackground)`
 export const ProgressTitle = styled.h4`
   font-size: 12px;
   margin: 4px 0;
-  color: ${p => `${p.color}` || "black"};
+  color: ${p => p.color || "black"};
 `;
 
 export const Value = styled.span`
   font-size: ${p => (p.isSmall ? "12px" : "16px")};
   font-weight: 600;
-  color: ${p => `${p.color}` || "black"};
+  color: ${p => p.color || "black"};
 `;
 export const Currency = styled(Value)`
   font-size: 14px;

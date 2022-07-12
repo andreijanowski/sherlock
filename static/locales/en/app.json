@@ -61,7 +61,10 @@
     "openInNewTab": "Open in a new tab",
     "call": "Call",
     "meeting": "Meeting",
-    "email": "Email"
+    "email": "Email",
+    "map": "Map",
+    "reviews": "Reviews",
+    "menus": "Menus"
   },
   "subscriptions": "Subscriptions",
   "userSettings": {

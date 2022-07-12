@@ -28,6 +28,24 @@
       },
       "swipe": "Swipe the phone up and down to see the full profile",
       "gotit": "Got it"
+    },
+    "basicinfo": {
+      "hint": {
+        "title": "This is your business profile",
+        "subtitle": "Fill in your basic information. Once done, it will automatically be displayed on the phone screen as a preview."
+      }
+    },
+    "imagesmenus": {
+      "logo": {
+        "hint": "Please, insert your logo",
+        "drag_file": "Choose a file or drag it here"
+      },
+      "upload_pictures": {
+        "hint": "Please insert a high quality picture/photo that shows the atmosphere of your business (preferably the interior)."
+      },
+      "must_try": {
+        "hint": "Highlight your best sellers directly on your profile."
+      }
     }
   }
 }

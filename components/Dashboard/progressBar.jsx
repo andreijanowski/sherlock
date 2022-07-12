@@ -1,32 +1,55 @@
-import { bool, string } from "prop-types";
+import { bool, shape, string } from "prop-types";
 import React from "react";
 import { Flex } from "@rebass/grid";
+import { number } from "currency-codes";
 import { ProgressBar, ProgressBarBackground, ProgressTitle } from "./styled";
 
-export default function Bar({ title, width, withPercentage, color }) {
+export default function Bar({
+  bgcolor,
+  title,
+  width,
+  withPercentage,
+  color,
+  height,
+  radius,
+  wrapperStyles
+}) {
   return (
-    <Flex flexDirection="column" mb={10}>
+    <Flex flexDirection="column" mb={10} style={wrapperStyles}>
       <Flex justifyContent="space-between">
         <ProgressTitle>{title}</ProgressTitle>
         {withPercentage && (
           <ProgressTitle color={color}>{width}%</ProgressTitle>
         )}
       </Flex>
-      <ProgressBarBackground>
-        <ProgressBar color={color} width={Math.min(100, width)} />
+      <ProgressBarBackground bgcolor={bgcolor}>
+        <ProgressBar
+          color={color}
+          width={`${Math.min(100, width)}%`}
+          height={height}
+          radius={radius}
+        />
       </ProgressBarBackground>
     </Flex>
   );
 }
 
 Bar.propTypes = {
+  bgcolor: string,
   width: string,
   title: string.isRequired,
   withPercentage: bool,
-  color: string.isRequired
+  color: string.isRequired,
+  height: number,
+  radius: number,
+  wrapperStyles: shape()
 };
 
 Bar.defaultProps = {
+  bgcolor: "#f2f2f2",
   width: 0,
-  withPercentage: false
+  withPercentage: false,
+  height: "18px",
+  radius: "16px",
+  wrapperStyles: {}
 };

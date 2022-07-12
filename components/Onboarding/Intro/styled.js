@@ -191,6 +191,7 @@ export const HintModal = styled.div`
     margin: 15px auto;
   }
 `;
+
 export const Bold = styled.span`
   font-weight: 600;
 `;

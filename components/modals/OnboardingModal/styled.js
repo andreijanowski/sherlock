@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { Flex } from "@rebass/grid";
 
 export const ModalStyles = createGlobalStyle`
   .modal-overlay {
@@ -30,7 +31,17 @@ export const BottomNavigation = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: rgb(${p => p.theme.colors.white});
   z-index: 1;
   padding-top: 36px;
+`;
+
+export const Form = styled(Flex).attrs(() => ({
+  as: "form",
+  flexDirection: "column",
+  width: 1
+}))`
+  margin-top: 24px;
+  background-color: rgb(${p => p.theme.colors.white});
 `;

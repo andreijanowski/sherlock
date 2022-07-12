@@ -382,7 +382,7 @@ export const Checkmark = styled(Flex).attrs(p => ({
   height: 40px;
   color: rgb(${p => p.theme.colors.white});
   background-color: rgb(
-    ${p => (p.isChecked ? p.theme.colors.blue : p.theme.colors.white)}
+    ${p => (p.isChecked ? p.theme.colors.b2bSecondary : p.theme.colors.white)}
   );
   border-radius: ${p => p.theme.radius.small};
   ${p =>

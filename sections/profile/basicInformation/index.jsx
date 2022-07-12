@@ -62,7 +62,7 @@ class BasicInformationForm extends PureComponent {
         mutators={{ setFieldData }}
         subscription={{ values: true, form: true }}
         render={({ values, form: { mutators } }) => (
-          <Form>
+          <Form p={[3, 4]}>
             <AutoSave
               setFieldData={mutators.setFieldData}
               save={handleSubmit}

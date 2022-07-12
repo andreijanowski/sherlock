@@ -1,19 +1,24 @@
-import React, { useState } from "react";
-import { Modal } from "components";
-import Cookies from "js-cookie";
+import React, { cloneElement, useState } from "react";
+import { Modal, WhenFieldChanges } from "components";
+// import Cookies from "js-cookie";
 import { useT } from "utils/hooks";
 import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
+import ProgressBar from "components/Dashboard/progressBar";
+import { Form as FinalForm } from "react-final-form";
 import { STEP, CLOSE, getContent } from "components/Onboarding/utils";
-import { ModalStyles, BottomNavigation } from "./styled";
+import { ModalStyles, BottomNavigation, Form } from "./styled";
 
 const OnboardingModal = () => {
   const t = useT("onboarding");
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const [hasHintOpen, setHasHintOpen] = useState(true);
+
   const [currentStep, setCurrentStep] = useState(getContent(t)[STEP.INTRO]);
 
   const onClose = () => {
     setIsModalOpen(false);
-    Cookies.remove("Onboarding");
+    // remove comment
+    // Cookies.remove("Onboarding");
   };
 
   const handleNextClick = () =>
@@ -21,15 +26,64 @@ const OnboardingModal = () => {
       ? onClose()
       : setCurrentStep(getContent(t)[currentStep.nextStep]);
 
+  const handlePrevClick = () =>
+    setCurrentStep(getContent(t)[currentStep.prevStep]);
+
+  const handleSubmit = values => console.log(values);
+
   return (
     <>
       <ModalStyles />
       <Modal open={isModalOpen} onClose={onClose}>
-        {currentStep.component}
+        <FinalForm
+          onSubmit={handleSubmit}
+          subscription={{ values: true, form: true }}
+          render={({ values }) => (
+            <Form>
+              <WhenFieldChanges
+                field="country"
+                set="region"
+                to={undefined}
+                shouldChange={
+                  values.region &&
+                  values.region.value &&
+                  values.country &&
+                  values.country.value &&
+                  !values.region.value.includes(values.country.value)
+                }
+              />
+              {cloneElement(
+                currentStep.component,
+                { values, hasHintOpen, setHasHintOpen },
+                null
+              )}
+            </Form>
+          )}
+        />
         <BottomNavigation>
+          <ProgressBar
+            color="midnightblue"
+            width={currentStep.progress}
+            height="5px"
+            radius="5px"
+            bgcolor="#fff"
+            wrapperStyles={{
+              width: "calc(100% + 76px)",
+              position: "absolute",
+              top: "-10px"
+            }}
+          />
+          {currentStep.prevButtonText && (
+            <Button
+              onClick={handlePrevClick}
+              color="black"
+              variant={BUTTON_VARIANT.OUTLINE}
+            >
+              {currentStep.prevButtonText}
+            </Button>
+          )}
           <Button
             onClick={handleNextClick}
-            styleName="popup"
             withArrow
             variant={BUTTON_VARIANT.GRADIENT}
           >

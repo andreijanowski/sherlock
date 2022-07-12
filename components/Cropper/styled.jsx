@@ -5,7 +5,7 @@ export const Wrapper = styled(Flex).attrs(() => ({
   flexDirection: "column"
 }))`
   width: calc(100vw - 128px);
-  max-width: 100vw;
+  max-width: 100%;
   height: calc(100vh - 128px);
   max-height: 100vh;
 `;

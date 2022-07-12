@@ -37,7 +37,7 @@ const getBorderColorByVariant = props => {
 export const ButtonContainer = styled(Flex)`
   padding: 7px 24px;
   justify-content: center;
-  color: rgb(${p => p.theme.colors.white});
+  color: ${p => p.color || `rgb(${p.theme.colors.white})`};
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: ${p => p.theme.fontSizes.f22};
