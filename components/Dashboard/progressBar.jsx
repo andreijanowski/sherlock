@@ -4,7 +4,7 @@ import { Flex } from "@rebass/grid";
 import { number } from "currency-codes";
 import { ProgressBar, ProgressBarBackground, ProgressTitle } from "./styled";
 
-export default function Bar({
+const Bar = ({
   bgcolor,
   title,
   width,
@@ -13,26 +13,22 @@ export default function Bar({
   height,
   radius,
   wrapperStyles
-}) {
-  return (
-    <Flex flexDirection="column" mb={10} style={wrapperStyles}>
-      <Flex justifyContent="space-between">
-        <ProgressTitle>{title}</ProgressTitle>
-        {withPercentage && (
-          <ProgressTitle color={color}>{width}%</ProgressTitle>
-        )}
-      </Flex>
-      <ProgressBarBackground bgcolor={bgcolor}>
-        <ProgressBar
-          color={color}
-          width={`${Math.min(100, width)}%`}
-          height={height}
-          radius={radius}
-        />
-      </ProgressBarBackground>
+}) => (
+  <Flex flexDirection="column" mb={10} style={wrapperStyles}>
+    <Flex justifyContent="space-between">
+      <ProgressTitle>{title}</ProgressTitle>
+      {withPercentage && <ProgressTitle color={color}>{width}%</ProgressTitle>}
     </Flex>
-  );
-}
+    <ProgressBarBackground bgcolor={bgcolor}>
+      <ProgressBar
+        color={color}
+        width={`${Math.min(100, width)}%`}
+        height={height}
+        radius={radius}
+      />
+    </ProgressBarBackground>
+  </Flex>
+);
 
 Bar.propTypes = {
   bgcolor: string,
@@ -47,9 +43,11 @@ Bar.propTypes = {
 
 Bar.defaultProps = {
   bgcolor: "#f2f2f2",
-  width: 0,
+  width: "0",
   withPercentage: false,
   height: "18px",
   radius: "16px",
   wrapperStyles: {}
 };
+
+export default Bar;

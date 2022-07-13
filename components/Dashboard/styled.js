@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 
-import { H3 } from "components";
 import { downThanBreakpoint } from "utils/theme";
 
 export const DashboardWrapper = styled(Flex)`
@@ -43,12 +42,12 @@ export const TileHeader = styled(Box).attrs({ as: "h2" })`
 `;
 
 export const ProgressBarBackground = styled.div`
-  background-color: ${p => `${p.bgcolor}`};
+  background-color: ${p => p.bgcolor || "transparent"};
   width: 100%;
   border-radius: 16px;
 `;
 
-export const ProgressBar = styled(ProgressBarBackground)`
+export const ProgressBar = styled.div`
   height: ${p => p.height || "18px"};
   border-radius: ${p => p.radius || "16px"};
   width: ${p => p.width || 0};
@@ -278,7 +277,7 @@ export const StreamHeader = styled(Flex)`
   z-index: 3;
 `;
 
-export const EmptyData = styled(H3)`
+export const EmptyData = styled.h3`
   flex: 1;
   text-align: center;
   margin: 20px 0;

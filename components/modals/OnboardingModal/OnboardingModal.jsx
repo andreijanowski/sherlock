@@ -3,7 +3,7 @@ import { Modal, WhenFieldChanges } from "components";
 // import Cookies from "js-cookie";
 import { useT } from "utils/hooks";
 import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
-import ProgressBar from "components/Dashboard/progressBar";
+import Bar from "components/Dashboard/progressBar";
 import { Form as FinalForm } from "react-final-form";
 import { STEP, CLOSE, getContent } from "components/Onboarding/utils";
 import { ModalStyles, BottomNavigation, Form } from "./styled";
@@ -61,9 +61,9 @@ const OnboardingModal = () => {
           )}
         />
         <BottomNavigation>
-          <ProgressBar
+          <Bar
             color="midnightblue"
-            width={currentStep.progress}
+            width={currentStep.progress || "0"}
             height="5px"
             radius="5px"
             bgcolor="#fff"
