@@ -34,7 +34,7 @@ export const getContent = t => ({
     buttonText: t("intro.next"),
     progress: 10,
     prevStep: STEP.FIRST,
-    prevButtonText: "Previous"
+    prevButtonText: t("intro.previous")
   },
   [STEP.OPENING_HOURS]: {
     component: <OpeningHours />,
@@ -42,7 +42,7 @@ export const getContent = t => ({
     buttonText: t("intro.next"),
     progress: 20,
     prevStep: STEP.BASIC_INFO,
-    prevButtonText: "Previous"
+    prevButtonText: t("intro.previous")
   },
   [STEP.IMAGES_MENUS]: {
     component: <ImagesMenus />,
@@ -50,6 +50,6 @@ export const getContent = t => ({
     buttonText: t("intro.next"),
     progress: 30,
     prevStep: STEP.OPENING_HOURS,
-    prevButtonText: "Previous"
+    prevButtonText: t("intro.previous")
   }
 });

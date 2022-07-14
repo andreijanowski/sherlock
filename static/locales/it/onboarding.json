@@ -8,11 +8,12 @@
       },
       "step2": {
         "header": "Passo 2",
-        "content": "Partecipate al tour del prodotto per capire come gestire tutte le vostre operazioni dalla nostra piattaforma."
+        "content": "Scoprite i nostri prodotti e se avete domande, non esitate a porle attraverso il pulsante del nostro chatbot."
       }
     },
     "letsgo": "Ecco a voi",
     "next": "Avanti",
+    "previous": "Precedente",
     "step1": {
       "title": "Crea il tuo profilo",
       "subtitle": "Questo è un esempio di profilo una volta completato l'onboarding.",

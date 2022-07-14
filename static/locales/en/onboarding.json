@@ -8,11 +8,12 @@
       },
       "step2": {
         "header": "Step 2",
-        "content": "Follow our product tour to set up your business operations and manage it all from a single platform. "
+        "content": "Discover our product and if you have any question, feel free to ask them through our chatbot button."
       }
     },
     "letsgo": "Let's go",
     "next": "Next",
+    "previous": "Previous",
     "step1": {
       "title": "Create Your Business Profile",
       "subtitle": "This is an example of a business profile once onboarding is completed.",

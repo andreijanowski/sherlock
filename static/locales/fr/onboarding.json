@@ -8,11 +8,12 @@
       },
       "step2": {
         "header": "Étape 2",
-        "content": "Suivez la visite guidée de notre produit afin de comprendre comment gérer toutes vos opérations depuis notre plateforme."
+        "content": "Découvrez notre plateforme et si vous avez des questions, n'hésitez pas à nous les poser via notre chatbot."
       }
     },
     "letsgo": "C'est parti",
     "next": "Suivant",
+    "previous": "Précédent",
     "step1": {
       "title": "Créez votre profil",
       "subtitle": "Voici un exemple de profil une fois l'onboarding terminé.",

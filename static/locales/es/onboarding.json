@@ -8,11 +8,12 @@
       },
       "step2": {
         "header": "Paso 2",
-        "content": "Haga el tour del producto para entender cómo gestionar todas sus operaciones desde nuestra plataforma."
+        "content": "Descubre nuestro producto y si tienes alguna pregunta, no dudes en hacerla a través de nuestro chatbot"
       }
     },
     "letsgo": "Aquí vamos",
     "next": "Próximo",
+    "previous": "Anterior",
     "step1": {
       "title": "Cree su perfil",
       "subtitle": "Este es un ejemplo de perfil una vez completada la incorporación.",
