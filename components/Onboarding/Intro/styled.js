@@ -16,7 +16,7 @@ export const Wrapper = styled(Flex).attrs(() => ({
     display: none;
   }
 
-  @media (max-width: 1400px) {
+  @media (max-width: 1450px) {
     max-height: 85vh;
   }
 `;
@@ -25,7 +25,7 @@ export const Header = styled.h2`
   font-size: 36px;
   text-align: center;
 
-  @media (max-width: 1400px) {
+  @media (max-width: 1450px) {
     font-size: 24px;
   }
 `;

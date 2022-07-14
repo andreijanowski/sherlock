@@ -8,11 +8,12 @@
       },
       "step2": {
         "header": "Schritt 2",
-        "content": "Folgen Sie der Produkttour, um zu verstehen, wie Sie alle Ihre Operationen von unserer Plattform aus verwalten können."
+        "content": "Entdecken Sie unser Produkt und wenn Sie eine Frage haben, können Sie diese über unseren Chatbot stellen"
       }
     },
     "letsgo": "Los geht's",
     "next": "Weiter",
+    "previous": "Vorige",
     "step1": {
       "title": "Erstellen Sie Ihr Business-Profil",
       "subtitle": "Dies ist ein Beispiel für ein Profil nach Abschluss des Onboardings.",

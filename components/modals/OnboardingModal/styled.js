@@ -7,12 +7,12 @@ export const ModalStyles = createGlobalStyle`
   }
 
   .modal-modal {
-    padding: 38px;
+    padding: 0 38px 38px;
     border-radius: 10px;
     max-width: 1250px;
 
-    @media (max-width: 1400px) {
-      transform: scale(0.9);
+    @media (max-width: 1450px) {
+      transform: scale(0.85);
       margin-top: -50px;
     }
   }

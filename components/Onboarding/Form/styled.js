@@ -25,7 +25,7 @@ export const Wrapper = styled(Flex).attrs(() => ({
     display: none;
   }
 
-  @media (max-width: 1400px) {
+  @media (max-width: 1450px) {
     max-height: 85vh;
   }
 `;
