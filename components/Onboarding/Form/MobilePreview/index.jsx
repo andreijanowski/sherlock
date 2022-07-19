@@ -1,5 +1,5 @@
 import React from "react";
-import { arrayOf, bool, string, shape } from "prop-types";
+import { arrayOf, string, shape } from "prop-types";
 import { useT } from "utils/hooks";
 
 import {
@@ -40,7 +40,7 @@ const MobilePreview = ({
   city,
   cuisine,
   description,
-  hasHours,
+  periods,
   logo,
   menus,
   name,
@@ -60,6 +60,7 @@ const MobilePreview = ({
   const hasMenus = !!(menus && menus.length);
   const hasProducts = !!(products && products.length);
   const hasPictures = !!(pictures && pictures.length);
+  const hasHours = !!(periods && Object.keys(periods).length);
 
   const HoursInfo = () => (
     <HoursWrapper>
@@ -202,10 +203,10 @@ MobilePreview.propTypes = {
   city: string,
   cuisine: string,
   description: string,
-  hasHours: bool,
   logo: string,
-  menus: string,
+  menus: arrayOf(shape()),
   name: string,
+  periods: arrayOf(shape()),
   phone: string,
   pictures: arrayOf(shape()),
   priceRange: string,
@@ -219,10 +220,10 @@ MobilePreview.defaultProps = {
   city: "",
   cuisine: "",
   description: "",
-  hasHours: false,
   logo: "",
-  menus: "",
+  menus: [],
   name: "",
+  periods: [],
   phone: "",
   pictures: [],
   priceRange: "",

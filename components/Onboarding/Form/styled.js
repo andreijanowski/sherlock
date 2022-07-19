@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 
-export const Form = styled(Flex).attrs(() => ({
-  as: "form",
+export const FormWrapper = styled(Flex).attrs(() => ({
   flexDirection: "column",
   width: 1
 }))`
