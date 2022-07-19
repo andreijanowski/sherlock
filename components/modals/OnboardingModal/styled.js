@@ -16,14 +16,6 @@ export const ModalStyles = createGlobalStyle`
       margin-top: -50px;
     }
   }
-
-  .modal-closeButton {
-    display: none;
-  }
-
-  .modal-closeIcon {
-    display: none;
-  }
 `;
 
 export const BottomNavigation = styled.div`

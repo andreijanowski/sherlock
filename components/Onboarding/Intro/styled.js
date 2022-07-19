@@ -59,10 +59,11 @@ export const StepTile = styled.div`
 
 export const TileHeader = styled.div`
   width: 100%;
+  height: 230px;
   font-size: 16px;
   line-height: 140%;
   font-weight: 400;
-  padding: 24px 32px;
+  padding: 14px 32px 24px;
   border-radius: 16px 16px 0 0;
   background: ${p => p.theme.colors.gradient};
   color: rgb(${p => p.theme.colors.white});
