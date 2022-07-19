@@ -29,7 +29,7 @@ const Step1 = () => {
           </TileHeader>
           <Image
             src="/static/img/onboarding/introstep1.svg"
-            margin="32px auto 46px"
+            margin="32px auto 8px"
           />
         </StepTile>
         <StepTile>
@@ -39,7 +39,7 @@ const Step1 = () => {
           </TileHeader>
           <Image
             src="/static/img/onboarding/introstep2.svg"
-            margin="32px auto 46px"
+            margin="32px auto 8px"
           />
         </StepTile>
       </TilesWrapper>

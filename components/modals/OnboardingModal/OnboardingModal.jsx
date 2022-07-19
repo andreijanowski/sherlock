@@ -1,6 +1,6 @@
 import React, { cloneElement, useState } from "react";
 import { Modal, WhenFieldChanges } from "components";
-// import Cookies from "js-cookie";
+import Cookies from "js-cookie";
 import { useT } from "utils/hooks";
 import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
 import Bar from "components/Dashboard/progressBar";
@@ -17,8 +17,7 @@ const OnboardingModal = () => {
 
   const onClose = () => {
     setIsModalOpen(false);
-    // remove comment
-    // Cookies.remove("Onboarding");
+    Cookies.remove("Onboarding");
   };
 
   const handleNextClick = () =>
@@ -34,7 +33,11 @@ const OnboardingModal = () => {
   return (
     <>
       <ModalStyles />
-      <Modal open={isModalOpen} onClose={onClose}>
+      <Modal
+        open={isModalOpen}
+        onClose={onClose}
+        btnCancelText={t("forms:cancel")}
+      >
         <FinalForm
           onSubmit={handleSubmit}
           subscription={{ values: true, form: true }}
