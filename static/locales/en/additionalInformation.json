@@ -53,5 +53,5 @@
   "deletePrompt": "Do you want to delete {{service}} link?",
   "redirectionWebsiteLinks": "Links to your websites",
   "redirectionServicesLinks": "Links to partners external services",
-  "secretCodeHint": "Please enter the code which has been communicated to you by your activation partner or sales rep. <0/> (If you are registering on your own initiative, please leave this empty)"
+  "secretCodeHint": "Please enter the code which has been communicated to you by your activation partner or sales rep. <0/> (<1>If you are registering on your own initiative, please leave this empty</1>)"
 }

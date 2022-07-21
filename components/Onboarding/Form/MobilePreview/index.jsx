@@ -3,6 +3,7 @@ import { arrayOf, string, shape } from "prop-types";
 import { useT } from "utils/hooks";
 
 import {
+  AddInfo,
   Description,
   Feature,
   FeatureName,
@@ -14,12 +15,14 @@ import {
   IconImg,
   IconWrapper,
   Image,
+  Info,
   Label,
   Logo,
   LogoImg,
-  Name,
+  Media,
   MustTry,
   MustTrySection,
+  Name,
   OrderNow,
   Placeholder,
   Placeholders,
@@ -30,16 +33,20 @@ import {
   ProductImage,
   ProductName,
   ReadMore,
+  // RevealButton,
+  Review,
+  Reviews,
   Tag,
   TagsWrapper,
   TitleWrapper,
-  Wrapper
+  Wrapper,
+  RevealButtonWrapper
 } from "./styled";
 
 const MobilePreview = ({
   city,
   cuisine,
-  description,
+  bio,
   periods,
   logo,
   menus,
@@ -137,18 +144,20 @@ const MobilePreview = ({
           </Feature>
         </FeaturesWrapper>
         <Description>
-          {description || (
+          {bio ? (
+            <p>{bio}</p>
+          ) : (
             <Placeholders>
               <Placeholder />
               <Placeholder />
             </Placeholders>
           )}
-          {description ? (
+          {bio ? (
             <ReadMore>Read more</ReadMore>
           ) : (
-            <p>
+            <b>
               <Placeholder />
-            </p>
+            </b>
           )}
         </Description>
         <MustTrySection>
@@ -179,21 +188,47 @@ const MobilePreview = ({
                 ))}
           </Products>
         </MustTrySection>
-        <Description>
-          {description || (
-            <Placeholders>
+        <Reviews>
+          <Label>
+            <Placeholder />
+          </Label>
+          <Products>
+            <Review>
               <Placeholder />
+            </Review>
+            <Review>
               <Placeholder />
-            </Placeholders>
-          )}
-          {description ? (
-            <ReadMore>Read more</ReadMore>
-          ) : (
-            <p>
+            </Review>
+          </Products>
+          <RevealButtonWrapper>
+            <Placeholder />
+          </RevealButtonWrapper>
+        </Reviews>
+        <AddInfo>
+          <Label>
+            <Placeholder />
+          </Label>
+          {[1, 2, 3, 4].map(el => (
+            <Info key={el}>
               <Placeholder />
-            </p>
-          )}
-        </Description>
+            </Info>
+          ))}
+          <RevealButtonWrapper>
+            <Placeholder />
+          </RevealButtonWrapper>
+        </AddInfo>
+        <Media>
+          <Label>
+            <Placeholder />
+          </Label>
+          <TagsWrapper>
+            {[1, 2, 3].map(el => (
+              <Feature key={el}>
+                <Placeholder />
+              </Feature>
+            ))}
+          </TagsWrapper>
+        </Media>
       </Wrapper>
     </PreviewWrapper>
   );
@@ -202,11 +237,11 @@ const MobilePreview = ({
 MobilePreview.propTypes = {
   city: string,
   cuisine: string,
-  description: string,
+  bio: string,
   logo: string,
   menus: arrayOf(shape()),
   name: string,
-  periods: arrayOf(shape()),
+  periods: shape(),
   phone: string,
   pictures: arrayOf(shape()),
   priceRange: string,
@@ -219,11 +254,11 @@ MobilePreview.propTypes = {
 MobilePreview.defaultProps = {
   city: "",
   cuisine: "",
-  description: "",
+  bio: "",
   logo: "",
   menus: [],
   name: "",
-  periods: [],
+  periods: {},
   phone: "",
   pictures: [],
   priceRange: "",

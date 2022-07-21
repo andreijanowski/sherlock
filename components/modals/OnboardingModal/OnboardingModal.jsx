@@ -37,7 +37,10 @@ const OnboardingModal = ({
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [hasHintOpen, setHasHintOpen] = useState(true);
 
-  const [currentStep, setCurrentStep] = useState(getContent(t)[STEP.INTRO]);
+  // const [currentStep, setCurrentStep] = useState(getContent(t)[STEP.INTRO]);
+  const [currentStep, setCurrentStep] = useState(
+    getContent(t)[STEP.SECRET_CODE]
+  );
 
   const onClose = () => {
     setIsModalOpen(false);
@@ -67,6 +70,7 @@ const OnboardingModal = ({
       email,
       phone,
       phoneCountry,
+      secretCode,
       website,
       facebook,
       instagram,
@@ -122,6 +126,7 @@ const OnboardingModal = ({
         phoneCountry && phoneCountry.value
           ? phoneCountry.value.code
           : undefined,
+      secretCode,
       website: addProtocol(website),
       facebook: addProtocol(facebook),
       instagram: addProtocol(instagram),

@@ -143,5 +143,6 @@
   "connectPartoo": "You are not yet connected to this feature. To request a connection, do the following steps: <0><1>Go to the Integration Hub</1><1>Search for Partoo in the search bar</1><1>Click on connect.</1></0> We will notify you by email as soon as the connection is finalized.",
   "analytics": "Analytics",
   "ordersNotifications": "Orders notifications",
-  "reservationsNotifications": "Reservation notifications"
+  "reservationsNotifications": "Reservation notifications",
+  "description": "Description"
 }

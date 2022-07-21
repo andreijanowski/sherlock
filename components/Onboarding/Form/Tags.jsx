@@ -1,0 +1,150 @@
+import React from "react";
+// import { connect } from "react-redux";
+import { func, shape } from "prop-types";
+import { Field, Form as FinalForm } from "react-final-form";
+import setFieldData from "final-form-set-field-data";
+
+import { useT } from "utils/hooks";
+import { MobilePreview } from "components/Onboarding";
+import { FormMultipleSelect, AutoSave } from "components";
+
+import {
+  Content,
+  Wrapper,
+  Title,
+  Info,
+  InfoWrapper,
+  FormWrapper,
+  FieldLabel,
+  Optional
+} from "./styled";
+
+const Tags = ({ values: initialValues, handleSubmit }) => {
+  const t = useT(["basicInformation", "contactInformation"]);
+
+  const {
+    types,
+    cuisines,
+    foodsAndDrinks,
+    quirks,
+    diets,
+    michelinStars
+  } = initialValues;
+
+  return (
+    <FinalForm
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+      mutators={{ setFieldData }}
+      subscription={{
+        form: true
+      }}
+      render={({ form: { mutators } }) => (
+        <FormWrapper>
+          <AutoSave
+            setFieldData={mutators.setFieldData}
+            save={handleSubmit}
+            t={t}
+          />
+          <Wrapper>
+            <Title>{t("tags")}</Title>
+            <Content>
+              <InfoWrapper minWidth="690px" height="550px">
+                <Info>{t("tagsDescription")}</Info>
+                <FieldLabel>
+                  {t("types")}
+                  <Optional>{t("optional")}</Optional>
+                </FieldLabel>
+                <Field
+                  name="types"
+                  placeholder={t("typesPlaceholder")}
+                  component={FormMultipleSelect}
+                  items={types}
+                  max={3}
+                  min={1}
+                  // isErrorVisibilityRequired={isErrorVisibilityRequired}
+                  // validate={this.validateTypesLength}
+                />
+                <FieldLabel>
+                  {t("cuisines")}
+                  <Optional>{t("optional")}</Optional>
+                </FieldLabel>
+                <Field
+                  name="cuisines"
+                  placeholder={t("cuisinesPlaceholder")}
+                  component={FormMultipleSelect}
+                  items={cuisines}
+                  max={5}
+                  min={1}
+                  // isErrorVisibilityRequired={isErrorVisibilityRequired}
+                  // validate={this.validateCuisinesLength}
+                />
+                <FieldLabel>
+                  {t("foodsAndDrinks")}
+                  <Optional>{t("optional")}</Optional>
+                </FieldLabel>
+                <Field
+                  name="foodsAndDrinks"
+                  placeholder={t("foodsAndDrinksPlaceholder")}
+                  component={FormMultipleSelect}
+                  items={foodsAndDrinks}
+                  max={6}
+                  min={1}
+                  // isErrorVisibilityRequired={isErrorVisibilityRequired}
+                  // validate={this.validateFoodsAndDrinksLength}
+                />
+                <FieldLabel>
+                  {t("quirks")}
+                  <Optional>{t("optional")}</Optional>
+                </FieldLabel>
+                <Field
+                  name="quirks"
+                  placeholder={t("quirksPlaceholder")}
+                  component={FormMultipleSelect}
+                  items={quirks}
+                  max={10}
+                  min={3}
+                  // isErrorVisibilityRequired={isErrorVisibilityRequired}
+                  // validate={this.validateQuirksLength}
+                />
+                <FieldLabel>
+                  {t("diets")}
+                  <Optional>{t("optional")}</Optional>
+                </FieldLabel>
+                <Field
+                  name="diets"
+                  placeholder={t("dietsPlaceholder")}
+                  component={FormMultipleSelect}
+                  items={diets}
+                  // isErrorVisibilityRequired={isErrorVisibilityRequired}
+                />
+                <FieldLabel>
+                  {t("labelsDistinctions")}
+                  <Optional>{t("optional")}</Optional>
+                </FieldLabel>
+                <Field
+                  name="michelinStars"
+                  placeholder={t("michelinStarsPlaceholder")}
+                  component={FormMultipleSelect}
+                  items={michelinStars}
+                  // isErrorVisibilityRequired={isErrorVisibilityRequired}
+                  max={1}
+                  min={0}
+                  // validate={this.validateMichelinStarsLength}
+                />
+              </InfoWrapper>
+              <MobilePreview {...initialValues} />
+            </Content>
+          </Wrapper>
+        </FormWrapper>
+      )}
+    />
+  );
+};
+
+Tags.propTypes = {
+  values: shape().isRequired,
+  handleSubmit: func.isRequired
+};
+
+export default Tags;

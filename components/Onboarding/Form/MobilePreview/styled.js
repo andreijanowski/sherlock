@@ -3,7 +3,7 @@ import { Box } from "@rebass/grid";
 
 export const PreviewWrapper = styled(Box)`
   position: relative;
-  margin: 10px 100px;
+  margin: -40px 55px 50px;
   border-radius: 28px;
   border: 1px solid rgb(${p => p.theme.colors.snuff});
   width: 268px;
@@ -144,6 +144,8 @@ export const FeaturesWrapper = styled.div`
 `;
 
 export const Feature = styled.div`
+  margin-right: 11px;
+
   > div {
     width: 28px;
     height: 28px;
@@ -184,6 +186,10 @@ export const IconImg = styled.img`
 export const ReadMore = styled.div`
   display: flex;
   width: 100%;
+  font-weight: 500;
+  font-size: 10px;
+  text-decoration: underline;
+  margin-top: 5px;
 `;
 
 export const Placeholders = styled.div`
@@ -200,15 +206,24 @@ export const Description = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 60px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 140%;
   width: 100%;
-  padding: 20px 0;
+  padding: 16px 0;
   border-bottom: 1px solid rgb(${p => p.theme.colors.border});
 
   > div {
     width: 100%;
   }
 
-  p {
+  > p {
+    overflow: hidden;
+    max-height: 30px;
+    margin: 0;
+  }
+
+  b {
     width: 65px;
     height: 9px;
     margin: 9px 0 0;
@@ -220,23 +235,7 @@ export const MustTrySection = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-`;
-
-export const Label = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding-bottom: 8px;
-
-  div {
-    width: 109px;
-    height: 17px;
-  }
-
-  div:nth-child(2) {
-    width: 69px;
-  }
+  border-bottom: 1px solid rgb(${p => p.theme.colors.border});
 `;
 
 export const MustTry = styled.span`
@@ -264,6 +263,107 @@ export const Products = styled.div`
   }
 `;
 
+export const ProductImage = styled.img`
+  width: 100px;
+  height: 95px;
+  border-radius: 8px;
+  object-fit: cover;
+`;
+
+export const ProductName = styled.p`
+  font-size: 8px;
+  color: rgb(${p => p.theme.colors.blue});
+  margin: 6px 0;
+`;
+
+export const Reviews = styled.div`
+  padding: 12px 0 8px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid rgb(${p => p.theme.colors.border});
+`;
+
+export const Review = styled.div`
+  min-width: 180px;
+  height: 120px;
+  border-radius: 8px;
+  margin: 8px 8px 12px 0;
+
+  > div {
+    border-radius: 8px;
+  }
+`;
+
+export const RevealButtonWrapper = styled.div`
+  position: relative;
+  border-radius: 24px;
+  padding: 4px 0 2px;
+  min-height: 26px;
+  margin-top: 10px;
+
+  > div {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    min-height: 26px;
+  }
+`;
+
+export const RevealButton = styled.button`
+  position: relative;
+  border: 1px solid rgb(${p => p.theme.colors.black});
+  background-color: rgb(${p => p.theme.colors.white});
+  border-radius: 24px;
+  font-size: 8.5px;
+  min-height: 26px;
+  padding: 4px 0 2px;
+`;
+
+export const AddInfo = styled.div`
+  padding: 12px 0 8px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid rgb(${p => p.theme.colors.border});
+`;
+
+export const Info = styled.div`
+  font-size: 14px;
+  margin-bottom: 5px;
+
+  > div {
+    position: relative;
+    max-width: 50px;
+    min-height: 9px;
+  }
+`;
+
+export const Media = styled.div`
+  padding: 12px 0 8px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 60px;
+`;
+
+export const Label = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 8px;
+
+  div {
+    width: 109px;
+    height: 17px;
+  }
+
+  div:nth-child(2) {
+    width: 69px;
+  }
+`;
+
 // stylelint-disable
 
 export const Product = styled.div`
@@ -285,16 +385,3 @@ export const Product = styled.div`
 `;
 
 // stylelint-enable
-
-export const ProductImage = styled.img`
-  width: 100px;
-  height: 95px;
-  border-radius: 8px;
-  object-fit: cover;
-`;
-
-export const ProductName = styled.p`
-  font-size: 8px;
-  color: rgb(${p => p.theme.colors.blue});
-  margin: 6px 0;
-`;

@@ -38,5 +38,11 @@
   "rolePlaceholder": "Owner",
   "bioLabel": "Restaurant bio (optional)",
   "bioPlaceholder": "It's a small place in...",
-  "bio": "Bio"
+  "bio": "Bio",
+  "businessBio": "Business Bio / About Us",
+  "businessBioPlaceholder": "“It is a cosy restaurant with authentic Italian cuisine..”",
+  "description": "Description",
+  "optional": "(optional)",
+  "tags": "Tags",
+  "tagsDescription": "Tags are labels that describe your business and help users find your business through filters."
 }

@@ -6,3 +6,6 @@ export { default as MobilePreview } from "./Form/MobilePreview";
 export { default as BasicInfo } from "./Form/BasicInfo";
 export { default as OpeningHours } from "./Form/OpeningHours";
 export { default as ImagesMenus } from "./Form/ImagesMenus";
+export { default as SecretCode } from "./Form/SecretCode";
+export { default as Description } from "./Form/Description";
+export { default as Tags } from "./Form/Tags";

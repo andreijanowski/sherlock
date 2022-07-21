@@ -28,7 +28,7 @@ const AdditionalInformationForm = ({ t, initialValues, handleSubmit }) =>
         form: true
       }}
       render={({ form: { mutators } }) => (
-        <Form>
+        <Form p={[3, 4]}>
           <AutoSave
             setFieldData={mutators.setFieldData}
             save={handleSubmit}

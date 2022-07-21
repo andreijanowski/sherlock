@@ -38,7 +38,7 @@ const RedirectionLinksForm = ({
         form: true
       }}
       render={({ form: { mutators } }) => (
-        <Form>
+        <Form p={[3, 4]}>
           <AutoSave
             setFieldData={mutators.setFieldData}
             save={handleSubmit}

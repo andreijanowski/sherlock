@@ -46,5 +46,5 @@
     "social_media": "Redes Sociales",
     "online_reviews": "Reseñas online"
   },
-  "secretCodeHint": "Por favor, introduzca el código que le ha comunicado su socio de activación o representante de ventas. <0/> (Si se registra por iniciativa propia, deje este campo vacío)"
+  "secretCodeHint": "Por favor, introduzca el código que le ha comunicado su socio de activación o representante de ventas. <0/> (<1>Si se registra por iniciativa propia, deje este campo vacío</1>)"
 }

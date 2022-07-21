@@ -42,6 +42,13 @@ export const Title = styled.h4`
   margin: 10px 0;
 `;
 
+export const Header = styled.h5`
+  font-weight: 700;
+  font-size: 24px !important;
+  color: rgb(${p => p.theme.colors.b2bSecondary});
+  margin: 46px 0 12px;
+`;
+
 export const InfoWrapper = styled(Box)`
   margin: 10px auto;
   height: ${p => p.height || "100%"};
@@ -52,6 +59,32 @@ export const InfoWrapper = styled(Box)`
   &::-webkit-scrollbar {
     display: none;
   }
+`;
+
+export const Info = styled.h5`
+  font-weight: 400;
+  font-size: ${p => p.fs || "18px"};
+  color: rgb(${p => p.theme.colors.buttonSecondary});
+  margin: 12px 0 46px;
+  max-width: 700px;
+`;
+
+export const InputWrapper = styled.div`
+  input {
+    max-width: 515px;
+  }
+`;
+
+export const FieldLabel = styled.div`
+  font-weight: 500;
+  font-size: 16px;
+  color: rgb(${p => p.theme.colors.b2bSecondary});
+  padding: 8px 0;
+`;
+
+export const Optional = styled.span`
+  color: rgb(${p => p.theme.colors.mischka});
+  margin-left: 5px;
 `;
 
 export const HintModal = styled.div`

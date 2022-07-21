@@ -16,5 +16,7 @@
   "instagramLabel": "Instagram (opcional, p.ej.  https://instagram.com/profile)",
   "instagramPlaceholder": "https://instagram.com/profile",
   "youtubeLabel": "Youtube video (optional)",
-  "youtubePlaceholder": "https://www.youtube.com/watch?v=12341234"
+  "youtubePlaceholder": "https://www.youtube.com/watch?v=12341234",
+  "youtube": "Youtube video",
+  "youtubeDescription": "<0>¿No hay vídeo en YouTube? </0> Siempre puedes subir tu vídeo a YouTube y copiar/pegar la URL generada aquí después. Asegúrese de que el vídeo es de buena calidad, ya que se mostrará en el perfil de su empresa."
 }
