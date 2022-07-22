@@ -1,5 +1,5 @@
 import React from "react";
-// import { connect } from "react-redux";
+
 import { Flex, Box } from "@rebass/grid";
 import { func, shape } from "prop-types";
 import { Field, Form as FinalForm } from "react-final-form";

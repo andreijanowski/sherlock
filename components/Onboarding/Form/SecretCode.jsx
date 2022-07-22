@@ -1,12 +1,12 @@
 import React from "react";
-// import { connect } from "react-redux";
+
 import { func, shape } from "prop-types";
 import { Form as FinalForm } from "react-final-form";
 import setFieldData from "final-form-set-field-data";
 import { Trans } from "i18n";
 
 import { useT } from "utils/hooks";
-// import { MobilePreview } from "components/Onboarding";
+
 import { FormInput, AutoSave } from "components";
 
 import {

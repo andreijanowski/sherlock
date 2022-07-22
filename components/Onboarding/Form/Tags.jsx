@@ -1,5 +1,5 @@
 import React from "react";
-// import { connect } from "react-redux";
+
 import { func, shape } from "prop-types";
 import { Field, Form as FinalForm } from "react-final-form";
 import setFieldData from "final-form-set-field-data";
@@ -62,7 +62,6 @@ const Tags = ({ values: initialValues, handleSubmit, groupsData }) => {
                   items={types}
                   max={3}
                   min={1}
-                  // validate={this.validateTypesLength}
                 />
                 <FieldLabel>
                   {t("cuisines")}
@@ -75,7 +74,6 @@ const Tags = ({ values: initialValues, handleSubmit, groupsData }) => {
                   items={cuisines}
                   max={5}
                   min={1}
-                  // validate={this.validateCuisinesLength}
                 />
                 <FieldLabel>
                   {t("foodsAndDrinks")}
@@ -88,7 +86,6 @@ const Tags = ({ values: initialValues, handleSubmit, groupsData }) => {
                   items={foodsAndDrinks}
                   max={6}
                   min={1}
-                  // validate={this.validateFoodsAndDrinksLength}
                 />
                 <FieldLabel>
                   {t("quirks")}
@@ -101,7 +98,6 @@ const Tags = ({ values: initialValues, handleSubmit, groupsData }) => {
                   items={quirks}
                   max={10}
                   min={3}
-                  // validate={this.validateQuirksLength}
                 />
                 <FieldLabel>
                   {t("diets")}
@@ -124,7 +120,6 @@ const Tags = ({ values: initialValues, handleSubmit, groupsData }) => {
                   items={michelinStars}
                   max={1}
                   min={0}
-                  // validate={this.validateMichelinStarsLength}
                 />
               </InfoWrapper>
               <MobilePreview {...initialValues} />
