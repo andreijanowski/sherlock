@@ -19,7 +19,7 @@ import {
   Optional
 } from "./styled";
 
-const Tags = ({ values: initialValues, handleSubmit }) => {
+const Tags = ({ values: initialValues, handleSubmit, groupsData }) => {
   const t = useT(["basicInformation", "contactInformation"]);
 
   const {
@@ -29,7 +29,7 @@ const Tags = ({ values: initialValues, handleSubmit }) => {
     quirks,
     diets,
     michelinStars
-  } = initialValues;
+  } = groupsData;
 
   return (
     <FinalForm
@@ -49,7 +49,7 @@ const Tags = ({ values: initialValues, handleSubmit }) => {
           <Wrapper>
             <Title>{t("tags")}</Title>
             <Content>
-              <InfoWrapper minWidth="690px" height="550px">
+              <InfoWrapper minWidth="800px" height="550px">
                 <Info>{t("tagsDescription")}</Info>
                 <FieldLabel>
                   {t("types")}
@@ -62,7 +62,6 @@ const Tags = ({ values: initialValues, handleSubmit }) => {
                   items={types}
                   max={3}
                   min={1}
-                  // isErrorVisibilityRequired={isErrorVisibilityRequired}
                   // validate={this.validateTypesLength}
                 />
                 <FieldLabel>
@@ -76,7 +75,6 @@ const Tags = ({ values: initialValues, handleSubmit }) => {
                   items={cuisines}
                   max={5}
                   min={1}
-                  // isErrorVisibilityRequired={isErrorVisibilityRequired}
                   // validate={this.validateCuisinesLength}
                 />
                 <FieldLabel>
@@ -90,7 +88,6 @@ const Tags = ({ values: initialValues, handleSubmit }) => {
                   items={foodsAndDrinks}
                   max={6}
                   min={1}
-                  // isErrorVisibilityRequired={isErrorVisibilityRequired}
                   // validate={this.validateFoodsAndDrinksLength}
                 />
                 <FieldLabel>
@@ -104,7 +101,6 @@ const Tags = ({ values: initialValues, handleSubmit }) => {
                   items={quirks}
                   max={10}
                   min={3}
-                  // isErrorVisibilityRequired={isErrorVisibilityRequired}
                   // validate={this.validateQuirksLength}
                 />
                 <FieldLabel>
@@ -116,7 +112,6 @@ const Tags = ({ values: initialValues, handleSubmit }) => {
                   placeholder={t("dietsPlaceholder")}
                   component={FormMultipleSelect}
                   items={diets}
-                  // isErrorVisibilityRequired={isErrorVisibilityRequired}
                 />
                 <FieldLabel>
                   {t("labelsDistinctions")}
@@ -127,7 +122,6 @@ const Tags = ({ values: initialValues, handleSubmit }) => {
                   placeholder={t("michelinStarsPlaceholder")}
                   component={FormMultipleSelect}
                   items={michelinStars}
-                  // isErrorVisibilityRequired={isErrorVisibilityRequired}
                   max={1}
                   min={0}
                   // validate={this.validateMichelinStarsLength}
@@ -144,7 +138,12 @@ const Tags = ({ values: initialValues, handleSubmit }) => {
 
 Tags.propTypes = {
   values: shape().isRequired,
-  handleSubmit: func.isRequired
+  handleSubmit: func.isRequired,
+  groupsData: shape()
+};
+
+Tags.defaultProps = {
+  groupsData: null
 };
 
 export default Tags;

@@ -3,7 +3,7 @@ import { Box } from "@rebass/grid";
 
 export const PreviewWrapper = styled(Box)`
   position: relative;
-  margin: -40px 55px 50px;
+  margin: -48px 55px 50px;
   border-radius: 28px;
   border: 1px solid rgb(${p => p.theme.colors.snuff});
   width: 268px;
@@ -16,6 +16,15 @@ export const PreviewWrapper = styled(Box)`
   &::-webkit-scrollbar {
     display: none;
   }
+`;
+
+export const PreviewButtons = styled.img`
+  width: 100%;
+  position: sticky;
+  cursor: pointer;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
 `;
 
 export const Placeholder = styled.div`
@@ -110,6 +119,17 @@ export const Hours = styled.div`
 
   > div {
     width: 156px;
+  }
+`;
+
+export const Price = styled.p`
+  font-size: 10px;
+  margin: 0;
+  margin-bottom: 5px;
+  color: rgb(${p => p.theme.colors.black});
+
+  span {
+    color: rgb(${p => p.theme.colors.mischka});
   }
 `;
 
@@ -312,12 +332,13 @@ export const RevealButtonWrapper = styled.div`
 
 export const RevealButton = styled.button`
   position: relative;
+  width: 100%;
   border: 1px solid rgb(${p => p.theme.colors.black});
   background-color: rgb(${p => p.theme.colors.white});
   border-radius: 24px;
-  font-size: 8.5px;
+  font-size: 10px;
   min-height: 26px;
-  padding: 4px 0 2px;
+  padding: 2px auto;
 `;
 
 export const AddInfo = styled.div`
@@ -329,7 +350,7 @@ export const AddInfo = styled.div`
 `;
 
 export const Info = styled.div`
-  font-size: 14px;
+  font-size: 10px;
   margin-bottom: 5px;
 
   > div {
@@ -344,7 +365,7 @@ export const Media = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 60px;
+  margin-bottom: -60px;
 `;
 
 export const Label = styled.div`

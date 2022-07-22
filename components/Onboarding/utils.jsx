@@ -6,7 +6,9 @@ import {
   OpeningHours,
   ImagesMenus,
   SecretCode,
-  Tags
+  Tags,
+  AdditionalInfo,
+  RedirectionLinks
 } from "components/Onboarding";
 
 export const CLOSE = "close";
@@ -81,14 +83,14 @@ export const getContent = t => ({
   },
   [STEP.TAGS]: {
     component: <Tags />,
-    nextStep: STEP.DESCRIPTION,
+    nextStep: STEP.ADDITIONAL_INFO,
     buttonText: t("intro.next"),
     progress: 60,
     prevStep: STEP.DESCRIPTION,
     prevButtonText: t("intro.previous")
   },
   [STEP.ADDITIONAL_INFO]: {
-    component: <div>Additional Info</div>,
+    component: <AdditionalInfo />,
     nextStep: STEP.REDIRECTION_LINKS,
     buttonText: t("intro.next"),
     progress: 70,
@@ -96,8 +98,8 @@ export const getContent = t => ({
     prevButtonText: t("intro.previous")
   },
   [STEP.REDIRECTION_LINKS]: {
-    component: <div>Redirection Links</div>,
-    nextStep: STEP.LIVE_INFO,
+    component: <RedirectionLinks />,
+    nextStep: STEP.BASIC_INFO,
     buttonText: t("intro.next"),
     progress: 80,
     prevStep: STEP.ADDITIONAL_INFO,

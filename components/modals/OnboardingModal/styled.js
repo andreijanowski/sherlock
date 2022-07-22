@@ -6,7 +6,7 @@ export const ModalStyles = createGlobalStyle`
   }
 
   .modal-modal {
-    padding: 0 38px 38px;
+    padding: 38px;
     border-radius: 10px;
     max-width: 1250px;
 

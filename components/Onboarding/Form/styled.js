@@ -5,7 +5,6 @@ export const FormWrapper = styled(Flex).attrs(() => ({
   flexDirection: "column",
   width: 1
 }))`
-  margin-top: 24px;
   background-color: rgb(${p => p.theme.colors.white});
 `;
 
@@ -59,6 +58,10 @@ export const InfoWrapper = styled(Box)`
   &::-webkit-scrollbar {
     display: none;
   }
+
+  label {
+    margin-bottom: 14px;
+  }
 `;
 
 export const Info = styled.h5`
@@ -66,7 +69,6 @@ export const Info = styled.h5`
   font-size: ${p => p.fs || "18px"};
   color: rgb(${p => p.theme.colors.buttonSecondary});
   margin: 12px 0 46px;
-  max-width: 700px;
 `;
 
 export const InputWrapper = styled.div`
@@ -85,6 +87,17 @@ export const FieldLabel = styled.div`
 export const Optional = styled.span`
   color: rgb(${p => p.theme.colors.mischka});
   margin-left: 5px;
+`;
+
+export const Link = styled.button`
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  color: rgb(${p => p.theme.colors.deepSkyBlue});
 `;
 
 export const HintModal = styled.div`

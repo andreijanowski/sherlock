@@ -41,7 +41,7 @@ const SecretCode = ({ values: initialValues, handleSubmit }) => {
           <Wrapper>
             <Title>{t("secretCodeLabel")}</Title>
             <Content>
-              <InfoWrapper minWidth="1152px" height="550px">
+              <InfoWrapper minWidth="1174px" height="562px">
                 <Header>{t("secretCodeLabel")}</Header>
                 <Info>
                   <Trans

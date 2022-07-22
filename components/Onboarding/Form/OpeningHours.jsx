@@ -29,14 +29,12 @@ const OpeningHours = ({
 
   const removeOpenPeriodAction = id => removeOpenPeriod(id);
 
-  console.log("initialHours", initialValues.periods);
-
   return (
     <FormWrapper>
       <Wrapper>
         <Title>{t("app:manageProfile.openingHours")}</Title>
         <Content>
-          <InfoWrapper minWidth="706px" height="550px">
+          <InfoWrapper minWidth="800px" height="550px">
             <Periods
               {...{
                 t,

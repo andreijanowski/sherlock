@@ -32,7 +32,6 @@ const BasicInfo = ({
   const setHahandleCloseHint = () => setHasHintOpen(false);
 
   const commonStyles = { width: [1, 1 / 2], px: 2 };
-  console.log("initial", initialValues);
 
   return (
     <FinalForm
@@ -62,7 +61,7 @@ const BasicInfo = ({
           <Wrapper>
             <Title>{t("app:manageProfile.basicInformation")}</Title>
             <Content>
-              <InfoWrapper>
+              <InfoWrapper minWidth="800px" height="550px">
                 <FormInput
                   name="name"
                   label={t("nameLabel")}

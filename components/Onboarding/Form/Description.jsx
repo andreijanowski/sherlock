@@ -42,7 +42,7 @@ const Description = ({ values: initialValues, handleSubmit }) => {
           <Wrapper>
             <Title>{t("description")}</Title>
             <Content>
-              <InfoWrapper minWidth="690px" height="550px">
+              <InfoWrapper minWidth="800px" height="550px">
                 <FieldLabel>
                   {t("businessBio")}
                   <Optional>{t("optional")}</Optional>

@@ -1,5 +1,5 @@
 import React from "react";
-import { arrayOf, string, shape } from "prop-types";
+import { arrayOf, string, shape, number, bool } from "prop-types";
 import { useT } from "utils/hooks";
 
 import {
@@ -27,37 +27,47 @@ import {
   Placeholder,
   Placeholders,
   Picture,
+  PreviewButtons,
   PreviewWrapper,
+  Price,
   Product,
   Products,
   ProductImage,
   ProductName,
   ReadMore,
-  // RevealButton,
+  RevealButton,
+  RevealButtonWrapper,
   Review,
   Reviews,
   Tag,
   TagsWrapper,
   TitleWrapper,
-  Wrapper,
-  RevealButtonWrapper
+  Wrapper
 } from "./styled";
 
 const MobilePreview = ({
   city,
-  cuisine,
+  cuisines,
   bio,
+  foodsAndDrinks,
+  quirks,
+  diets,
   periods,
   logo,
   menus,
+  michelinStars,
   name,
   phone,
   pictures,
-  priceRange,
+  pricePerPerson,
   products,
   street,
-  type,
-  website
+  types,
+  website,
+  hasCatering,
+  hasPrivateEvents,
+  hasReservations,
+  canPayWithMobile
 }) => {
   const t = useT("app");
   const checkProp = prop => prop || <Placeholder />;
@@ -68,6 +78,25 @@ const MobilePreview = ({
   const hasProducts = !!(products && products.length);
   const hasPictures = !!(pictures && pictures.length);
   const hasHours = !!(periods && Object.keys(periods).length);
+  const hasAddInfo = !!(
+    (foodsAndDrinks && foodsAndDrinks.length) ||
+    (quirks && quirks.length) ||
+    (diets && diets.length) ||
+    (michelinStars && michelinStars.length)
+  );
+  const hasButtons = !!(
+    hasCatering ||
+    hasPrivateEvents ||
+    hasReservations ||
+    canPayWithMobile
+  );
+
+  const additionalItems = [
+    ...foodsAndDrinks,
+    ...quirks,
+    ...diets,
+    ...michelinStars
+  ].slice(0, 4);
 
   const HoursInfo = () => (
     <HoursWrapper>
@@ -88,9 +117,21 @@ const MobilePreview = ({
           <Logo>{logo ? <LogoImg src={logo} /> : <Placeholder />}</Logo>
         </TitleWrapper>
         <TagsWrapper>
-          <Tag>{checkProp(priceRange)}</Tag>
-          <Tag>{checkProp(cuisine)}</Tag>
-          <Tag>{checkProp(type)}</Tag>
+          <Tag>
+            {pricePerPerson ? (
+              <Price>
+                €€€<span>€€</span>
+              </Price>
+            ) : (
+              <Placeholder />
+            )}
+          </Tag>
+          <Tag>
+            {(cuisines && cuisines[0] && ` • ${cuisines[0].label} • `) || (
+              <Placeholder />
+            )}
+          </Tag>
+          <Tag>{checkProp(types && types[0] && types[0].label)}</Tag>
         </TagsWrapper>
         <Hours>{hasHours ? <HoursInfo /> : <Placeholder />}</Hours>
         <FeaturesWrapper>
@@ -206,15 +247,21 @@ const MobilePreview = ({
         </Reviews>
         <AddInfo>
           <Label>
-            <Placeholder />
+            {hasAddInfo ? <MustTry>Additional Info</MustTry> : <Placeholder />}
           </Label>
-          {[1, 2, 3, 4].map(el => (
-            <Info key={el}>
-              <Placeholder />
-            </Info>
-          ))}
+          {hasAddInfo
+            ? additionalItems.map(i => <Info key={i.label}> • {i.label}</Info>)
+            : [1, 2, 3, 4].map(el => (
+                <Info key={el}>
+                  <Placeholder />
+                </Info>
+              ))}
           <RevealButtonWrapper>
-            <Placeholder />
+            {hasAddInfo ? (
+              <RevealButton> See all information </RevealButton>
+            ) : (
+              <Placeholder />
+            )}
           </RevealButtonWrapper>
         </AddInfo>
         <Media>
@@ -230,42 +277,61 @@ const MobilePreview = ({
           </TagsWrapper>
         </Media>
       </Wrapper>
+      {hasButtons && (
+        <PreviewButtons src="/static/img/onboarding/previewbuttons.png" />
+      )}
     </PreviewWrapper>
   );
 };
 
 MobilePreview.propTypes = {
   city: string,
-  cuisine: string,
+  cuisines: arrayOf(shape()),
   bio: string,
+  foodsAndDrinks: arrayOf(shape()),
+  diets: arrayOf(shape()),
+  quirks: arrayOf(shape()),
   logo: string,
   menus: arrayOf(shape()),
+  michelinStars: arrayOf(shape()),
   name: string,
   periods: shape(),
   phone: string,
   pictures: arrayOf(shape()),
-  priceRange: string,
+  pricePerPerson: number,
   products: arrayOf(shape()),
   street: string,
-  type: string,
-  website: string
+  types: arrayOf(shape()),
+  website: string,
+  hasCatering: bool,
+  hasPrivateEvents: bool,
+  hasReservations: bool,
+  canPayWithMobile: bool
 };
 
 MobilePreview.defaultProps = {
   city: "",
-  cuisine: "",
+  cuisines: [],
   bio: "",
+  foodsAndDrinks: [],
+  diets: [],
+  quirks: [],
   logo: "",
   menus: [],
+  michelinStars: [],
   name: "",
   periods: {},
   phone: "",
   pictures: [],
-  priceRange: "",
+  pricePerPerson: 0,
   products: [],
   street: "",
-  type: "",
-  website: ""
+  types: [],
+  website: "",
+  hasCatering: false,
+  hasPrivateEvents: false,
+  hasReservations: false,
+  canPayWithMobile: false
 };
 
 export default MobilePreview;
