@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { postBusiness, patchBusiness } from "actions/businesses";
 import { fetchProfileBusiness } from "actions/users";
 import { setCurrentBusiness } from "actions/app";
+import { deleteServiceLink, patchServiceLink } from "actions/externalServices";
 
 import {
   getInitialValues,
@@ -390,6 +391,8 @@ export default connect(
     updateBusiness: patchBusiness,
     changeCurrentBusiness: setCurrentBusiness,
     addBusiness: postBusiness,
-    getProfileBusiness: fetchProfileBusiness
+    getProfileBusiness: fetchProfileBusiness,
+    updateServiceLink: patchServiceLink,
+    removeServiceLink: deleteServiceLink
   }
 )(OnboardingModal);
