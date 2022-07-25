@@ -33,7 +33,7 @@ const MembersForm = ({ t, members, removeMember, handleSubmit }) => {
         form: true
       }}
       render={({ form: { mutators } }) => (
-        <Form>
+        <Form p={[3, 4]}>
           <H3>{t("members")}</H3>
           <FieldArray name="members">
             {({ fields }) => {

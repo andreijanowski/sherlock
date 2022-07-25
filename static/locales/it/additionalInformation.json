@@ -1,5 +1,6 @@
 {
   "header": "Informazioni aggiuntive",
+  "shortHeader": "Informazioni aggiuntive",
   "timeOfTheDay": "Ora del giorno",
   "breakfastService": "Prima colazione",
   "lunchService": "Pranzo",
@@ -46,5 +47,5 @@
     "social_media": "Social media",
     "online_reviews": "Recensioni online"
   },
-  "secretCodeHint": "Inserisci il codice che ti è stato comunicato dal tuo partner di attivazione o dal tuo rappresentante. <0/> (Se ti stai registrando di tua iniziativa, lascia questo campo vuoto)"
+  "secretCodeHint": "Inserisci il codice che ti è stato comunicato dal tuo partner di attivazione o dal tuo rappresentante. <0/> (<1>Se ti stai registrando di tua iniziativa, lascia questo campo vuoto</1>)"
 }

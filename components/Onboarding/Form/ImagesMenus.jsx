@@ -5,8 +5,8 @@ import { func, string, shape } from "prop-types";
 
 import { useT } from "utils/hooks";
 import { MobilePreview } from "components/Onboarding";
-import Form from "sections/profile/picturesAndMenus";
-import { getInitialValues } from "sections/profile/picturesAndMenus/utils";
+import PicturesForm from "sections/profile/picturesAndMenus";
+
 import { uploadMenuToUberEats } from "actions/integrations";
 import { postMenu, patchMenu, deleteMenu } from "actions/menus";
 import { postBusiness, patchBusiness } from "actions/businesses";
@@ -15,13 +15,9 @@ import { postProduct, patchProduct, deleteProduct } from "actions/products";
 import { fetchProfileBusiness } from "actions/users";
 import { setCurrentBusiness } from "actions/app";
 
-import { Content, Wrapper, Title, InfoWrapper } from "./styled";
+import { Content, Wrapper, Title, InfoWrapper, FormWrapper } from "./styled";
 
 const ImagesMenus = ({
-  business,
-  businessMenus,
-  businessPictures,
-  businessProducts,
   addMenu,
   addPicture,
   addProduct,
@@ -29,19 +25,12 @@ const ImagesMenus = ({
   removeMenu,
   removeProduct,
   businessId,
-  values,
+  values: initialValues,
   updateBusiness,
   updateProduct,
   updateMenu
 }) => {
   const t = useT(["picturesAndMenus", "app", "publishModal", "forms"]);
-
-  const initialValues = getInitialValues({
-    business,
-    businessMenus,
-    businessPictures,
-    businessProducts
-  });
 
   const saveLogo = logo => updateBusiness(businessId, { logo });
 
@@ -73,42 +62,35 @@ const ImagesMenus = ({
 
   const uploadMenu = id => uploadMenuToUberEats(id);
 
-  /* eslint-disable */
-  if (values && initialValues) {
-    values.logo = initialValues.logo;
-    values.pictures = initialValues.pictures;
-    values.menus = initialValues.menus;
-    values.products = initialValues.products;
-  };
-  /* eslint-enable */
-
   return (
-    <Wrapper>
-      <Title>{t("app:manageProfile.picturesAndMenus")}</Title>
-      <Content>
-        <InfoWrapper minWidth="690px" height="550px">
-          <Form
-            {...{
-              t,
-              initialValues,
-              saveLogo,
-              addPicture: addPictureAction,
-              removePicture: removePictureAction,
-              addMenu: addMenus,
-              updateMenu,
-              removeMenu,
-              addProduct: addProductAction,
-              updateProduct,
-              removeProduct,
-              addToUber: uploadMenu,
-              padding: "0",
-              onboarding: true
-            }}
-          />
-        </InfoWrapper>
-        <MobilePreview {...values} />
-      </Content>
-    </Wrapper>
+    <FormWrapper>
+      <Wrapper>
+        <Title>{t("app:manageProfile.picturesAndMenus")}</Title>
+        <Content>
+          <InfoWrapper minWidth="800px" height="550px">
+            <PicturesForm
+              {...{
+                t,
+                initialValues,
+                saveLogo,
+                addPicture: addPictureAction,
+                removePicture: removePictureAction,
+                addMenu: addMenus,
+                updateMenu,
+                removeMenu,
+                addProduct: addProductAction,
+                updateProduct,
+                removeProduct,
+                addToUber: uploadMenu,
+                padding: "0",
+                onboarding: true
+              }}
+            />
+          </InfoWrapper>
+          <MobilePreview {...initialValues} />
+        </Content>
+      </Wrapper>
+    </FormWrapper>
   );
 };
 
@@ -123,11 +105,8 @@ ImagesMenus.propTypes = {
   addProduct: func.isRequired,
   updateProduct: func.isRequired,
   removeProduct: func.isRequired,
-  business: shape(),
   businessId: string,
-  businessMenus: shape(),
-  businessPictures: shape(),
-  businessProducts: shape(),
+
   businessOpenPeriods: shape(),
   changeCurrentBusiness: func.isRequired,
   getProfileBusiness: func.isRequired,
@@ -138,37 +117,11 @@ ImagesMenus.propTypes = {
 ImagesMenus.defaultProps = {
   businesses: null,
   businessId: "",
-  businessMenus: null,
-  businessPictures: null,
-  businessProducts: null,
-  businessOpenPeriods: null,
-  business: null
+  businessOpenPeriods: null
 };
 
 export default connect(
-  (state, { i18n }) => {
-    const businessData = state.getIn(["users", "currentBusiness", "data"]);
-    const business =
-      businessData &&
-      businessData.get("businesses") &&
-      businessData.get("businesses").first();
-    return {
-      business: business && business.get("attributes"),
-      businessId: business && business.get("id"),
-      businessGroups: businessData && businessData.get("groups"),
-      businessMenus: businessData && businessData.get("menus"),
-      businessPictures: businessData && businessData.get("pictures"),
-      businessProducts: businessData && businessData.get("products"),
-      businessOpenPeriods: businessData && businessData.get("openPeriods"),
-      businesses: state.getIn([
-        "users",
-        "profileBusinesses",
-        "data",
-        "businesses"
-      ]),
-      lng: (i18n && i18n.language) || "en"
-    };
-  },
+  null,
   {
     addBusiness: postBusiness,
     updateBusiness: patchBusiness,

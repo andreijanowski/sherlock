@@ -1,6 +1,14 @@
 import styled from "styled-components";
 import { Box, Flex } from "@rebass/grid";
 
+export const FormWrapper = styled(Flex).attrs(() => ({
+  flexDirection: "column",
+  width: 1
+}))`
+  margin-top: 24px;
+  background-color: rgb(${p => p.theme.colors.white});
+`;
+
 export const Wrapper = styled(Flex).attrs(() => ({
   justifyContent: "space-between"
 }))`

@@ -1,4 +1,4 @@
-import { string } from "prop-types";
+import { string, number, oneOfType } from "prop-types";
 import { Flex } from "@rebass/grid";
 import { normalizePrice } from "utils/normalizers";
 import {
@@ -29,7 +29,7 @@ export const Bar = ({ value, currency, color }) => (
 );
 
 Bar.propTypes = {
-  value: string.isRequired,
+  value: oneOfType([number, string]).isRequired,
   currency: string.isRequired,
   color: string.isRequired
 };

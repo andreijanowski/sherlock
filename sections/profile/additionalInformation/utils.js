@@ -15,6 +15,13 @@ export const paymentMethods = [
   "canPayWithMobile"
 ];
 
+export const checkboxes = [
+  "hasCatering",
+  "hasReservations",
+  "hasPrivateEvents",
+  "availableInLefood"
+];
+
 export const getInitialValues = business => {
   if (business) {
     return {

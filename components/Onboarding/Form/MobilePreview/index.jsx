@@ -1,8 +1,9 @@
 import React from "react";
-import { arrayOf, bool, string, shape } from "prop-types";
+import { arrayOf, string, shape, number, bool } from "prop-types";
 import { useT } from "utils/hooks";
 
 import {
+  AddInfo,
   Description,
   Feature,
   FeatureName,
@@ -14,22 +15,30 @@ import {
   IconImg,
   IconWrapper,
   Image,
+  Info,
   Label,
   Logo,
   LogoImg,
-  Name,
+  Media,
   MustTry,
   MustTrySection,
+  Name,
   OrderNow,
   Placeholder,
   Placeholders,
   Picture,
+  PreviewButtons,
   PreviewWrapper,
+  Price,
   Product,
   Products,
   ProductImage,
   ProductName,
   ReadMore,
+  RevealButton,
+  RevealButtonWrapper,
+  Review,
+  Reviews,
   Tag,
   TagsWrapper,
   TitleWrapper,
@@ -38,19 +47,27 @@ import {
 
 const MobilePreview = ({
   city,
-  cuisine,
-  description,
-  hasHours,
+  cuisines,
+  bio,
+  foodsAndDrinks,
+  quirks,
+  diets,
+  periods,
   logo,
   menus,
+  michelinStars,
   name,
   phone,
   pictures,
-  priceRange,
+  pricePerPerson,
   products,
   street,
-  type,
-  website
+  types,
+  website,
+  hasCatering,
+  hasPrivateEvents,
+  hasReservations,
+  canPayWithMobile
 }) => {
   const t = useT("app");
   const checkProp = prop => prop || <Placeholder />;
@@ -60,6 +77,26 @@ const MobilePreview = ({
   const hasMenus = !!(menus && menus.length);
   const hasProducts = !!(products && products.length);
   const hasPictures = !!(pictures && pictures.length);
+  const hasHours = !!(periods && Object.keys(periods).length);
+  const hasAddInfo = !!(
+    (foodsAndDrinks && foodsAndDrinks.length) ||
+    (quirks && quirks.length) ||
+    (diets && diets.length) ||
+    (michelinStars && michelinStars.length)
+  );
+  const hasButtons = !!(
+    hasCatering ||
+    hasPrivateEvents ||
+    hasReservations ||
+    canPayWithMobile
+  );
+
+  const additionalItems = [
+    ...foodsAndDrinks,
+    ...quirks,
+    ...diets,
+    ...michelinStars
+  ].slice(0, 4);
 
   const HoursInfo = () => (
     <HoursWrapper>
@@ -80,9 +117,21 @@ const MobilePreview = ({
           <Logo>{logo ? <LogoImg src={logo} /> : <Placeholder />}</Logo>
         </TitleWrapper>
         <TagsWrapper>
-          <Tag>{checkProp(priceRange)}</Tag>
-          <Tag>{checkProp(cuisine)}</Tag>
-          <Tag>{checkProp(type)}</Tag>
+          <Tag>
+            {pricePerPerson ? (
+              <Price>
+                €€€<span>€€</span>
+              </Price>
+            ) : (
+              <Placeholder />
+            )}
+          </Tag>
+          <Tag>
+            {(cuisines && cuisines[0] && ` • ${cuisines[0].label} • `) || (
+              <Placeholder />
+            )}
+          </Tag>
+          <Tag>{checkProp(types && types[0] && types[0].label)}</Tag>
         </TagsWrapper>
         <Hours>{hasHours ? <HoursInfo /> : <Placeholder />}</Hours>
         <FeaturesWrapper>
@@ -136,18 +185,20 @@ const MobilePreview = ({
           </Feature>
         </FeaturesWrapper>
         <Description>
-          {description || (
+          {bio ? (
+            <p>{bio}</p>
+          ) : (
             <Placeholders>
               <Placeholder />
               <Placeholder />
             </Placeholders>
           )}
-          {description ? (
+          {bio ? (
             <ReadMore>Read more</ReadMore>
           ) : (
-            <p>
+            <b>
               <Placeholder />
-            </p>
+            </b>
           )}
         </Description>
         <MustTrySection>
@@ -178,58 +229,109 @@ const MobilePreview = ({
                 ))}
           </Products>
         </MustTrySection>
-        <Description>
-          {description || (
-            <Placeholders>
+        <Reviews>
+          <Label>
+            <Placeholder />
+          </Label>
+          <Products>
+            <Review>
               <Placeholder />
+            </Review>
+            <Review>
               <Placeholder />
-            </Placeholders>
-          )}
-          {description ? (
-            <ReadMore>Read more</ReadMore>
-          ) : (
-            <p>
+            </Review>
+          </Products>
+          <RevealButtonWrapper>
+            <Placeholder />
+          </RevealButtonWrapper>
+        </Reviews>
+        <AddInfo>
+          <Label>
+            {hasAddInfo ? <MustTry>Additional Info</MustTry> : <Placeholder />}
+          </Label>
+          {hasAddInfo
+            ? additionalItems.map(i => <Info key={i.label}> • {i.label}</Info>)
+            : [0, 1, 2, 3].map(el => (
+                <Info key={el}>
+                  <Placeholder />
+                </Info>
+              ))}
+          <RevealButtonWrapper>
+            {hasAddInfo ? (
+              <RevealButton> See all information </RevealButton>
+            ) : (
               <Placeholder />
-            </p>
-          )}
-        </Description>
+            )}
+          </RevealButtonWrapper>
+        </AddInfo>
+        <Media>
+          <Label>
+            <Placeholder />
+          </Label>
+          <TagsWrapper>
+            {[0, 1, 2].map(el => (
+              <Feature key={el}>
+                <Placeholder />
+              </Feature>
+            ))}
+          </TagsWrapper>
+        </Media>
       </Wrapper>
+      {hasButtons && (
+        <PreviewButtons src="/static/img/onboarding/previewbuttons.png" />
+      )}
     </PreviewWrapper>
   );
 };
 
 MobilePreview.propTypes = {
   city: string,
-  cuisine: string,
-  description: string,
-  hasHours: bool,
+  cuisines: arrayOf(shape()),
+  bio: string,
+  foodsAndDrinks: arrayOf(shape()),
+  diets: arrayOf(shape()),
+  quirks: arrayOf(shape()),
   logo: string,
-  menus: string,
+  menus: arrayOf(shape()),
+  michelinStars: arrayOf(shape()),
   name: string,
+  periods: shape(),
   phone: string,
   pictures: arrayOf(shape()),
-  priceRange: string,
+  pricePerPerson: number,
   products: arrayOf(shape()),
   street: string,
-  type: string,
-  website: string
+  types: arrayOf(shape()),
+  website: string,
+  hasCatering: bool,
+  hasPrivateEvents: bool,
+  hasReservations: bool,
+  canPayWithMobile: bool
 };
 
 MobilePreview.defaultProps = {
   city: "",
-  cuisine: "",
-  description: "",
-  hasHours: false,
+  cuisines: [],
+  bio: "",
+  foodsAndDrinks: [],
+  diets: [],
+  quirks: [],
   logo: "",
-  menus: "",
+  menus: [],
+  michelinStars: [],
   name: "",
+  periods: {},
   phone: "",
   pictures: [],
-  priceRange: "",
+  pricePerPerson: 0,
   products: [],
   street: "",
-  type: "",
-  website: ""
+  types: [],
+  website: "",
+  hasCatering: false,
+  hasPrivateEvents: false,
+  hasReservations: false,
+  canPayWithMobile: false
 };
 
 export default MobilePreview;
