@@ -5,8 +5,10 @@ import { H3, FormInput, AutoSave, LoadingIndicator } from "components";
 import setFieldData from "final-form-set-field-data";
 import { Form } from "../styled";
 
-const ContactInformationForm = ({ t, initialValues, handleSubmit }) =>
-  initialValues ? (
+const ContactInformationForm = ({ t, initialValues, handleSubmit }) => {
+  const preventDefault = e => e.preventDefault();
+
+  return initialValues ? (
     <FinalForm
       initialValues={initialValues}
       onSubmit={handleSubmit}
@@ -15,7 +17,7 @@ const ContactInformationForm = ({ t, initialValues, handleSubmit }) =>
         form: true
       }}
       render={({ form: { mutators } }) => (
-        <Form onSubmit={e => e.preventDefault()} p={[3, 4]}>
+        <Form onSubmit={preventDefault} p={[3, 4]}>
           <AutoSave
             setFieldData={mutators.setFieldData}
             save={handleSubmit}
@@ -33,6 +35,7 @@ const ContactInformationForm = ({ t, initialValues, handleSubmit }) =>
   ) : (
     <LoadingIndicator />
   );
+};
 
 ContactInformationForm.propTypes = {
   t: func.isRequired,

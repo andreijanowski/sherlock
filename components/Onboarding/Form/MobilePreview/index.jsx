@@ -251,7 +251,7 @@ const MobilePreview = ({
           </Label>
           {hasAddInfo
             ? additionalItems.map(i => <Info key={i.label}> • {i.label}</Info>)
-            : [1, 2, 3, 4].map(el => (
+            : [0, 1, 2, 3].map(el => (
                 <Info key={el}>
                   <Placeholder />
                 </Info>
@@ -269,7 +269,7 @@ const MobilePreview = ({
             <Placeholder />
           </Label>
           <TagsWrapper>
-            {[1, 2, 3].map(el => (
+            {[0, 1, 2].map(el => (
               <Feature key={el}>
                 <Placeholder />
               </Feature>

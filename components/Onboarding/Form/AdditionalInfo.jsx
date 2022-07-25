@@ -12,7 +12,8 @@ import { FormCheckbox, FormSelect, FormInput, AutoSave } from "components";
 import currencies from "utils/currencies";
 import {
   timeOfTheDay,
-  paymentMethods
+  paymentMethods,
+  checkboxes
 } from "sections/profile/additionalInformation/utils";
 
 import {
@@ -86,19 +87,9 @@ const AdditionalInfo = ({ values: initialValues, handleSubmit }) => {
                       {t("services")}
                       <Optional>{t("basicInformation:optional")}</Optional>
                     </FieldLabel>
-                    <FormCheckbox name="hasCatering" label={t("hasCatering")} />
-                    <FormCheckbox
-                      name="hasReservations"
-                      label={t("hasReservations")}
-                    />
-                    <FormCheckbox
-                      name="hasPrivateEvents"
-                      label={t("hasPrivateEvents")}
-                    />
-                    <FormCheckbox
-                      name="availableInLefood"
-                      label={t("availableInLefood")}
-                    />
+                    {checkboxes.map(box => (
+                      <FormCheckbox key={box} name={box} label={t(box)} />
+                    ))}
                   </Box>
                   <Box>
                     <FieldLabel>

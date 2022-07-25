@@ -69,7 +69,7 @@ const BasicInfo = ({
                 />
                 <FormInput
                   name="website"
-                  label="Website (optional)"
+                  label={t("contactInformation:websiteLabel")}
                   placeholder={t("contactInformation:websitePlaceholder")}
                 />
                 <Flex mx={-2} flexWrap="wrap">
