@@ -187,13 +187,18 @@ Dashboard.getInitialPageProps = async () => ({
 Dashboard.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  businessId: string.isRequired,
+  businessId: string,
   fetchAvgTicketSize: func.isRequired,
   fetchTodaysEarnings: func.isRequired,
   fetchRevenueBreakdown: func.isRequired,
   fetchBestSales: func.isRequired,
   fetchWorstSales: func.isRequired,
-  currency: string.isRequired
+  currency: string
+};
+
+Dashboard.defaultProps = {
+  businessId: "",
+  currency: ""
 };
 
 const mapState = (state, { i18n }) => {

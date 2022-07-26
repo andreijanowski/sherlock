@@ -107,7 +107,10 @@ const NavBar = ({
                 const isGroup = !!menuItem.groupTitle;
 
                 return isGroup ? (
-                  <CollapsingGroup title={menuItem.groupTitle}>
+                  <CollapsingGroup
+                    key={menuItem.groupTitle}
+                    title={menuItem.groupTitle}
+                  >
                     {menuItem.items.map(renderItem)}
                   </CollapsingGroup>
                 ) : (

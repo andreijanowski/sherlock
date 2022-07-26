@@ -32,7 +32,7 @@ const Bar = ({
 
 Bar.propTypes = {
   bgcolor: string,
-  width: string,
+  width: number,
   title: string.isRequired,
   withPercentage: bool,
   color: string.isRequired,
@@ -43,7 +43,7 @@ Bar.propTypes = {
 
 Bar.defaultProps = {
   bgcolor: "#f2f2f2",
-  width: "0",
+  width: 0,
   withPercentage: false,
   height: "18px",
   radius: "16px",

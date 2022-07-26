@@ -29,7 +29,12 @@ export const Bar = ({ value, currency, color }) => (
 );
 
 Bar.propTypes = {
-  value: oneOfType([number, string]).isRequired,
-  currency: string.isRequired,
+  value: oneOfType([number, string]),
+  currency: string,
   color: string.isRequired
+};
+
+Bar.defaultProps = {
+  value: "",
+  currency: ""
 };
