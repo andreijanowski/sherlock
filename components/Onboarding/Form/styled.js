@@ -73,8 +73,12 @@ export const InfoWrapper = styled(Box)`
 export const Info = styled.h5`
   font-weight: ${p => p.fw || "400"};
   font-size: ${p => p.fs || "18px"};
-  color: rgb(${p => p.theme.colors.buttonSecondary});
+  color: rgb(
+    ${p => (p.black ? p.theme.colors.black : p.theme.colors.buttonSecondary)}
+  );
   margin: 12px 0 46px;
+  text-align: ${p => p.align || "initial"};
+  line-height: ${p => p.lh || "normal"};
 `;
 
 export const InputWrapper = styled.div`

@@ -9,7 +9,8 @@ import {
   Tags,
   AdditionalInfo,
   RedirectionLinks,
-  LiveInfo
+  LiveInfo,
+  FinalConfirmation
 } from "components/Onboarding";
 import LookingGood from "./Form/LookingGood";
 
@@ -120,14 +121,13 @@ export const getContent = t => ({
     nextStep: STEP.CONFIRM,
     buttonText: t("intro.publish"),
     progress: 100,
-    prevStep: STEP.ADDITIONAL_INFO,
+    prevStep: STEP.LIVE_INFO,
     prevButtonText: t("intro.previous")
   },
   [STEP.CONFIRM]: {
-    component: <div>Confirm</div>,
-    buttonText: t("intro.next"),
-    progress: 100,
-    prevStep: STEP.LOOKING_GOOD,
-    prevButtonText: t("intro.previous")
+    component: <FinalConfirmation />,
+    nextStep: CLOSE,
+    buttonText: t("confirmation.gotit"),
+    progress: 0
   }
 });

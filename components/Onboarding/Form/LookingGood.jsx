@@ -37,15 +37,13 @@ const LookingGood = ({ values: initialValues, handleSubmit }) => {
             <Title>{t("lookingGood.header")}</Title>
             <Content>
               <InfoWrapper minWidth="800px" height="550px">
-                <b>
-                  <Info fs="24px" fw="700">
-                    <Trans
-                      t={t}
-                      i18nKey="lookingGood.subheader"
-                      components={[<Blue />]}
-                    />
-                  </Info>
-                </b>
+                <Info fs="24px" fw="700" black>
+                  <Trans
+                    t={t}
+                    i18nKey="lookingGood.subheader"
+                    components={[<Blue />]}
+                  />
+                </Info>
                 <Info>
                   <Trans
                     t={t}

@@ -54,7 +54,7 @@ const OnboardingModal = ({
   const [updatedValues, setUpdatedValues] = useState();
   const [modalData, setModalData] = useState(null);
 
-  const [currentStep, setCurrentStep] = useState(getContent(t)[STEP.LIVE_INFO]);
+  const [currentStep, setCurrentStep] = useState(getContent(t)[STEP.INTRO]);
 
   const onClose = () => {
     setIsModalOpen(false);
