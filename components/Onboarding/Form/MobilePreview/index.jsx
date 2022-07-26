@@ -17,6 +17,7 @@ import {
   Image,
   Info,
   Label,
+  LiveInfo,
   Logo,
   LogoImg,
   Media,
@@ -53,6 +54,7 @@ const MobilePreview = ({
   quirks,
   diets,
   periods,
+  liveInfo,
   logo,
   menus,
   michelinStars,
@@ -109,6 +111,7 @@ const MobilePreview = ({
   return (
     <PreviewWrapper scroll>
       <Image>
+        {liveInfo && <LiveInfo>{liveInfo}</LiveInfo>}
         {hasPictures ? <Picture src={pictures[0].url} /> : <Placeholder />}
       </Image>
       <Wrapper>
@@ -291,6 +294,7 @@ MobilePreview.propTypes = {
   foodsAndDrinks: arrayOf(shape()),
   diets: arrayOf(shape()),
   quirks: arrayOf(shape()),
+  liveInfo: string,
   logo: string,
   menus: arrayOf(shape()),
   michelinStars: arrayOf(shape()),
@@ -316,6 +320,7 @@ MobilePreview.defaultProps = {
   foodsAndDrinks: [],
   diets: [],
   quirks: [],
+  liveInfo: "",
   logo: "",
   menus: [],
   michelinStars: [],

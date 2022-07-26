@@ -2,5 +2,6 @@
   "header": "Live info",
   "liveInfo": "Live info",
   "liveInfoLabel": "Live info",
-  "liveInfoPlaceholder": "70% off on sunday 01.01.19"
+  "liveInfoPlaceholder": "70% off on sunday 01.01.19",
+  "liveInfoHint": "Here you can add events, promotions, or business updates. You can change the live info as often as you need. It will appear on the top left corner of your profile."
 }

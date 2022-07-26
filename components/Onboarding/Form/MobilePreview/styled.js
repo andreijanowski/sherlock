@@ -40,12 +40,25 @@ export const Wrapper = styled.div`
 `;
 
 export const Image = styled.div`
+  position: relative;
   width: 100%;
   height: 187px;
 
   > div {
     border-radius: 0;
   }
+`;
+
+export const LiveInfo = styled.span`
+  position: absolute;
+  display: block;
+  top: 12px;
+  left: 0;
+  background-color: rgb(${p => p.theme.colors.blue});
+  color: rgb(${p => p.theme.colors.white});
+  font-size: 12px;
+  padding: 6px 9px;
+  border-radius: 0 34px 34px 0;
 `;
 
 export const Picture = styled.img`

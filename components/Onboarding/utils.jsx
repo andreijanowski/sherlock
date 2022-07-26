@@ -8,8 +8,10 @@ import {
   SecretCode,
   Tags,
   AdditionalInfo,
-  RedirectionLinks
+  RedirectionLinks,
+  LiveInfo
 } from "components/Onboarding";
+import LookingGood from "./Form/LookingGood";
 
 export const CLOSE = "close";
 export const STEP = {
@@ -99,14 +101,14 @@ export const getContent = t => ({
   },
   [STEP.REDIRECTION_LINKS]: {
     component: <RedirectionLinks />,
-    nextStep: STEP.BASIC_INFO,
+    nextStep: STEP.LIVE_INFO,
     buttonText: t("intro.next"),
     progress: 80,
     prevStep: STEP.ADDITIONAL_INFO,
     prevButtonText: t("intro.previous")
   },
   [STEP.LIVE_INFO]: {
-    component: <div>Live Info</div>,
+    component: <LiveInfo />,
     nextStep: STEP.LOOKING_GOOD,
     buttonText: t("intro.next"),
     progress: 90,
@@ -114,9 +116,9 @@ export const getContent = t => ({
     prevButtonText: t("intro.previous")
   },
   [STEP.LOOKING_GOOD]: {
-    component: <div>Looking Good</div>,
+    component: <LookingGood />,
     nextStep: STEP.CONFIRM,
-    buttonText: t("intro.next"),
+    buttonText: t("intro.publish"),
     progress: 100,
     prevStep: STEP.ADDITIONAL_INFO,
     prevButtonText: t("intro.previous")

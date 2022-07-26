@@ -54,7 +54,7 @@ const OnboardingModal = ({
   const [updatedValues, setUpdatedValues] = useState();
   const [modalData, setModalData] = useState(null);
 
-  const [currentStep, setCurrentStep] = useState(getContent(t)[STEP.INTRO]);
+  const [currentStep, setCurrentStep] = useState(getContent(t)[STEP.LIVE_INFO]);
 
   const onClose = () => {
     setIsModalOpen(false);
@@ -104,6 +104,7 @@ const OnboardingModal = ({
         cafeService,
         snackService,
         currency,
+        liveInfo,
         pricePerPerson,
         hasCatering,
         hasReservations,
@@ -184,6 +185,7 @@ const OnboardingModal = ({
         cafeService,
         snackService,
         currency: currency && currency.value,
+        liveInfo,
         pricePerPerson,
         hasCatering,
         hasReservations,

@@ -41,7 +41,8 @@ export const getInitialValues = business => {
       canPayWithCards: business.get("canPayWithCards"),
       canPayWithCash: business.get("canPayWithCash"),
       canPayWithMobile: business.get("canPayWithMobile"),
-      secretCode: business.get("secretCode")
+      secretCode: business.get("secretCode"),
+      liveInfo: business.get("liveInfo")
     };
   }
   return undefined;
