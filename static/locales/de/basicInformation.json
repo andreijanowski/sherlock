@@ -38,5 +38,11 @@
   "labelsDistinctions": "Labels und Auszeichnungen (optional)",
   "michelinStars": "Michelin Sterne",
   "michelinStarsPlaceholder": "1 Michelin Stern",
-  "bio": "Bio"
+  "bio": "Bio",
+  "businessBio": "Business Bio / About Us",
+  "businessBioPlaceholder": "“Es ist ein kleiner Ort in ...”",
+  "description": "Description",
+  "optional": "(optional)",
+  "tags": "Tags",
+  "tagsDescription": "Tags sind Filter, die Ihr Geschäft beschreiben und den Nutzern helfen, Sie zu finden."
 }

@@ -71,7 +71,7 @@ const MobilePreview = ({
   hasReservations,
   canPayWithMobile
 }) => {
-  const t = useT("app");
+  const t = useT(["app", "additionalInformation"]);
   const checkProp = prop => prop || <Placeholder />;
   const hasPhone = !!(phone && phone.length);
   const hasMap = !!(street && street.length) || !!(city && city.length);
@@ -103,8 +103,8 @@ const MobilePreview = ({
   const HoursInfo = () => (
     <HoursWrapper>
       <IconImg src="/static/img/onboarding/clock.svg" />
-      <Green>Open now:&nbsp;</Green>
-      <span>See all hours</span>
+      <Green>{t("openNow")}&nbsp;</Green>
+      <span>{t("seeAllHours")}</span>
     </HoursWrapper>
   );
 
@@ -197,7 +197,7 @@ const MobilePreview = ({
             </Placeholders>
           )}
           {bio ? (
-            <ReadMore>Read more</ReadMore>
+            <ReadMore>{t("readMore")}</ReadMore>
           ) : (
             <b>
               <Placeholder />
@@ -207,8 +207,8 @@ const MobilePreview = ({
         <MustTrySection>
           {hasProducts ? (
             <Label>
-              <MustTry>Must Try</MustTry>
-              <OrderNow>Order Now</OrderNow>
+              <MustTry>{t("mustTry")}</MustTry>
+              <OrderNow>{t("manageIntegrations.orderNow")}</OrderNow>
             </Label>
           ) : (
             <Label>
@@ -250,7 +250,11 @@ const MobilePreview = ({
         </Reviews>
         <AddInfo>
           <Label>
-            {hasAddInfo ? <MustTry>Additional Info</MustTry> : <Placeholder />}
+            {hasAddInfo ? (
+              <MustTry>{t("additionalInformation:shortHeader")}</MustTry>
+            ) : (
+              <Placeholder />
+            )}
           </Label>
           {hasAddInfo
             ? additionalItems.map(i => <Info key={i.label}> • {i.label}</Info>)
@@ -261,7 +265,7 @@ const MobilePreview = ({
               ))}
           <RevealButtonWrapper>
             {hasAddInfo ? (
-              <RevealButton> See all information </RevealButton>
+              <RevealButton>{t("additionalInformation:seeAll")}</RevealButton>
             ) : (
               <Placeholder />
             )}

@@ -50,9 +50,9 @@
     }
   },
   "lookingGood": {
-    "header": "Looking good?",
-    "subheader": "Please <0>check your profile</0> preview by swiping the phone up and down before publishing it.",
-    "hint": "You will be able to add more information after publishing your profile."
+    "header": "Sembra buono ?",
+    "subheader": "Per favore <0>controlla l'anteprima del tuo profilo</0> scorrendo il telefono su e giù prima di pubblicarlo",
+    "hint": "Potrai aggiungere altre informazioni dopo aver pubblicato il tuo profilo."
   },
   "confirmation": {
     "header": "Congratulazioni, la <0>richiesta di pubblicazione</0> della vostra attività è stata ricevuta.",

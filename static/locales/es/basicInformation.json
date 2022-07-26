@@ -38,5 +38,11 @@
   "labelsDistinctions": "Premios y Reconocimientos (opcional)",
   "michelinStarsPlaceholder": "1 estrella Michelin",
   "michelinStars": "Estrellas Michelin",
-  "bio": "Bio"
+  "bio": "Bio",
+  "businessBio": "Business Bio / About Us",
+  "businessBioPlaceholder": "“Es un lugar pequeño en ...”",
+  "description": "Description",
+  "optional": "(opcional)",
+  "tags": "Etiquetas",
+  "tagsDescription": "Las etiquetas son filtros que describen tu negocio y ayudan a los usuarios a encontrarte"
 }

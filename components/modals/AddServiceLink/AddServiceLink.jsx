@@ -71,6 +71,8 @@ const AddServiceLink = ({
     }));
   }, [connectedServicesIds, services, t]);
 
+  console.log("ITEMS", serviceItems);
+
   return (
     <Modal open={open} onClose={onClose}>
       <AddServiceLinkForm

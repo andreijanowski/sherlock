@@ -1,6 +1,12 @@
-import React, { cloneElement, useState, useCallback, useMemo } from "react";
+import React, {
+  cloneElement,
+  useState,
+  useCallback,
+  useMemo,
+  useEffect
+} from "react";
 import { Modal, parsePeriods } from "components";
-import { func, string, shape } from "prop-types";
+import { arrayOf, func, string, shape } from "prop-types";
 import Cookies from "js-cookie";
 import { useT } from "utils/hooks";
 import { connect } from "react-redux";
@@ -8,7 +14,11 @@ import { connect } from "react-redux";
 import { postBusiness, patchBusiness } from "actions/businesses";
 import { fetchProfileBusiness } from "actions/users";
 import { setCurrentBusiness } from "actions/app";
-import { deleteServiceLink, patchServiceLink } from "actions/externalServices";
+import {
+  deleteServiceLink,
+  fetchExternalServices,
+  patchServiceLink
+} from "actions/externalServices";
 
 import {
   getInitialValues,
@@ -43,6 +53,7 @@ const OnboardingModal = ({
   businessPictures,
   businessProducts,
   groups,
+  getExternalServices,
   serviceLinks,
   updateServiceLink,
   removeServiceLink
@@ -276,6 +287,11 @@ const OnboardingModal = ({
 
   const groupsData = getGroupsData(groups);
 
+  useEffect(() => {
+    getExternalServices();
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <>
       <ModalStyles />
@@ -346,6 +362,8 @@ OnboardingModal.propTypes = {
   business: shape(),
   businessId: string,
   businessGroups: shape(),
+  externalServices: arrayOf(shape()),
+  getExternalServices: func.isRequired,
   updateBusiness: func.isRequired,
   businessOpenPeriods: shape(),
   businessMenus: shape(),
@@ -365,6 +383,7 @@ OnboardingModal.defaultProps = {
   businessMenus: null,
   businessPictures: null,
   businessProducts: null,
+  externalServices: [],
   groups: null,
   serviceLinks: null
 };
@@ -395,6 +414,7 @@ export default connect(
     addBusiness: postBusiness,
     getProfileBusiness: fetchProfileBusiness,
     updateServiceLink: patchServiceLink,
-    removeServiceLink: deleteServiceLink
+    removeServiceLink: deleteServiceLink,
+    getExternalServices: fetchExternalServices
   }
 )(OnboardingModal);

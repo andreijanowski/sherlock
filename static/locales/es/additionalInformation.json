@@ -38,6 +38,7 @@
   "secretCodePlaceholder": "32543cdsSD4ewcbwt6654",
   "redirectionLinks": "Enlaces de Redireccionamiento",
   "redirectionLinksTooltip": "Introduzca los enlaces a sus servicios/perfiles externos",
+  "addExternalServiceLink": "Añadir un enlace a mi perfil",
   "serviceLinkCategory": {
     "delivery": "A domicilio y Para Llevar",
     "booking": "Reservas",
@@ -47,5 +48,10 @@
     "social_media": "Redes Sociales",
     "online_reviews": "Reseñas online"
   },
+  "servicePlaceholder": "Seleccionar servicio",
+  "urlPlaceholder": "Introducir url",
+  "deletePrompt": "¿Desea eliminar el enlace {{service}}?",
+  "redirectionWebsiteLinks": "Enlaces a sus sitios web",
+  "redirectionServicesLinks": "Enlaces a servicios externos de los socios",
   "secretCodeHint": "Por favor, introduzca el código que le ha comunicado su socio de activación o representante de ventas. <0/> (<1>Si se registra por iniciativa propia, deje este campo vacío</1>)"
 }
