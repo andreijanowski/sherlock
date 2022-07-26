@@ -48,5 +48,15 @@
         "hint": "Stellen Sie Ihre Bestseller heraus."
       }
     }
+  },
+  "lookingGood": {
+    "header": "Looking good?",
+    "subheader": "Please <0>check your profile</0> preview by swiping the phone up and down before publishing it.",
+    "hint": "You will be able to add more information after publishing your profile."
+  },
+  "confirmation": {
+    "header": "Wunderbar! Ihre <0>Anfrage zur Veröffentlichung</0> Ihres Geschäfts ist eingegangen.",
+    "subheader": "Ihr Geschäft wird <0>innerhalb von 24 Stunden veröffentlicht</0>. (es sei denn, Ihr Profil ist bereits auf unserer Plattform gelistet: In diesem Fall ist alles vorbereitet). <1/>Sobald Ihr Profil veröffentlicht ist, erhalten Sie eine Bestätigungs-E-Mail. <1/><0>Sie haben immer die Möglichkeit</0> Ihr Profil nach der Veröffentlichung zu bearbeiten.",
+    "gotit": "Einverstanden, danke"
   }
 }

@@ -48,5 +48,15 @@
         "hint": "Promocione sus bestsellers."
       }
     }
+  },
+  "lookingGood": {
+    "header": "Looking good?",
+    "subheader": "Please <0>check your profile</0> preview by swiping the phone up and down before publishing it.",
+    "hint": "You will be able to add more information after publishing your profile."
+  },
+  "confirmation": {
+    "header": "Enhorabuena, la <0>solicitud de publicación</0> de su empresa ha sido recibida.",
+    "subheader": "Su negocio será <0>publicado en 24 horas</0>. (a menos que su perfil ya figure en nuestra plataforma: en ese caso, todo está listo). <1/> Una vez publicado su perfil, recibirá un correo electrónico de confirmación. <1/> <0>Siempre tendrá la posibilidad de editar</0> su perfil después de la publicación.",
+    "gotit": "Lo tengo, gracias"
   }
 }

@@ -48,6 +48,12 @@ export const Header = styled.h5`
   margin: 46px 0 12px;
 `;
 
+export const Center = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+`;
+
 export const InfoWrapper = styled(Box)`
   margin: 10px auto;
   height: ${p => p.height || "100%"};
@@ -65,10 +71,14 @@ export const InfoWrapper = styled(Box)`
 `;
 
 export const Info = styled.h5`
-  font-weight: 400;
+  font-weight: ${p => p.fw || "400"};
   font-size: ${p => p.fs || "18px"};
-  color: rgb(${p => p.theme.colors.buttonSecondary});
+  color: rgb(
+    ${p => (p.black ? p.theme.colors.black : p.theme.colors.buttonSecondary)}
+  );
   margin: 12px 0 46px;
+  text-align: ${p => p.align || "initial"};
+  line-height: ${p => p.lh || "normal"};
 `;
 
 export const InputWrapper = styled.div`

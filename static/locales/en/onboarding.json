@@ -13,6 +13,7 @@
     },
     "letsgo": "Let's go",
     "next": "Next",
+    "publish": "Publish",
     "previous": "Previous",
     "step1": {
       "title": "Create Your Business Profile",
@@ -48,5 +49,15 @@
         "hint": "Highlight your best sellers directly on your profile."
       }
     }
+  },
+  "lookingGood": {
+    "header": "Looking good?",
+    "subheader": "Please <0>check your profile</0> preview by swiping the phone up and down before publishing it.",
+    "hint": "You will be able to add more information after publishing your profile."
+  },
+  "confirmation": {
+    "header": "Congratulations, you <0>requested to publish</0> your business profile",
+    "subheader": "It will take <0>24 hours to be live</0>. (unless your business profile was already listed on our platform: in that case you are all set!) <1/> Once your profile is published you will receive a confirmation email. <1/><0>You will always be able to make any changes</0> to your profile once it is published.",
+    "gotit": "Got it, thanks"
   }
 }

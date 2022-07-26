@@ -11,3 +11,7 @@ export { default as Description } from "./Form/Description";
 export { default as Tags } from "./Form/Tags";
 export { default as AdditionalInfo } from "./Form/AdditionalInfo";
 export { default as RedirectionLinks } from "./Form/RedirectionLinks";
+export { default as LiveInfo } from "./Form/LiveInfo";
+export { default as LookingGood } from "./Form/LookingGood";
+
+export { default as FinalConfirmation } from "./Form/FinalConfirmation";

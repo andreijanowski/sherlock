@@ -48,5 +48,15 @@
         "hint": "Promuovete i vostri bestseller."
       }
     }
+  },
+  "lookingGood": {
+    "header": "Looking good?",
+    "subheader": "Please <0>check your profile</0> preview by swiping the phone up and down before publishing it.",
+    "hint": "You will be able to add more information after publishing your profile."
+  },
+  "confirmation": {
+    "header": "Congratulazioni, la <0>richiesta di pubblicazione</0> della vostra attività è stata ricevuta.",
+    "subheader": "La vostra attività sarà <0>pubblicata entro 24 ore</0>. (a meno che il vostro profilo non sia già presente sulla nostra piattaforma: in tal caso, tutto è pronto). <1/> Una volta pubblicato il profilo, si riceverà un'e-mail di conferma.  <1/> <0>Avrete sempre la possibilità di modificare</0> il vostro profilo dopo la pubblicazione.",
+    "gotit": "Capito, grazie"
   }
 }
