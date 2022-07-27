@@ -39,9 +39,9 @@
   "michelinStarsPlaceholder": "1 estrella Michelin",
   "michelinStars": "Estrellas Michelin",
   "bio": "Bio",
-  "businessBio": "Business Bio / About Us",
+  "businessBio": "Business Bio / Sobre nosotros",
   "businessBioPlaceholder": "“Es un lugar pequeño en ...”",
-  "description": "Description",
+  "description": "Descripción",
   "optional": "(opcional)",
   "tags": "Etiquetas",
   "tagsDescription": "Las etiquetas son filtros que describen tu negocio y ayudan a los usuarios a encontrarte"

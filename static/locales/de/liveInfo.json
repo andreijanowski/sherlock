@@ -2,5 +2,6 @@
   "header": "Live-Infos",
   "liveInfo": "Live-Infos",
   "liveInfoLabel": "Live-Infos",
-  "liveInfoPlaceholder": "70% Rabatt am Sonntag, den 01.01.19"
+  "liveInfoPlaceholder": "70% Rabatt am Sonntag, den 01.01.19",
+  "liveInfoHint": "Hier können Sie Veranstaltungen, Werbeaktionen und alle anderen Aktualisierungen hinzufügen. Du kannst dieses Banner so oft du willst ändern und es wird in der oberen linken Ecke deines Profils erscheinen."
 }

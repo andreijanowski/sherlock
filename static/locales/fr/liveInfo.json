@@ -2,5 +2,6 @@
   "header": "Infos en direct",
   "liveInfo": "Infos en direct",
   "liveInfoLabel": "Infos en direct",
-  "liveInfoPlaceholder": "70% de réduction le dimanche 01.01.19"
+  "liveInfoPlaceholder": "70% de réduction le dimanche 01.01.19",
+  "liveInfoHint": "Ici vous pouvez ajouter des événements, des promotions et toutes autres mises à jours. Vous pouvez modifier ce banner aussi souvent que vous le souhaitez et il apparaîtra dans le coin supérieur gauche de votre profil."
 }
