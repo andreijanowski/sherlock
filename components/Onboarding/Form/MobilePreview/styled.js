@@ -12,6 +12,7 @@ export const PreviewWrapper = styled(Box)`
   overflow: ${p => (p.scroll ? "scroll" : "hidden")};
   -ms-overflow-style: none;
   scrollbar-width: none;
+  transform: translateZ(0);
 
   &::-webkit-scrollbar {
     display: none;

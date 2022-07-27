@@ -6,7 +6,9 @@ import AppLayout from "layout/App";
 import { Flex } from "@rebass/grid";
 import { connect } from "react-redux";
 import { Router } from "routes";
+import Cookies from "js-cookie";
 import { LoadingIndicator } from "components";
+import { OnboardingModal } from "components/modals";
 
 const namespaces = ["app"];
 
@@ -27,13 +29,16 @@ class AppLanding extends PureComponent {
 
   redirectToDashboard = () => {
     const { canRedirect, lng } = this.props;
-    if (canRedirect) {
+    const hasOnboarding = Cookies.get("Onboarding");
+    if (canRedirect && !hasOnboarding) {
       Router.pushRoute(`/${lng}/app/dashboard/`);
     }
   };
 
   render() {
+    console.log("newPage");
     const { t, lng } = this.props;
+    const hasOnboarding = Cookies.get("Onboarding");
     return (
       <AppLayout
         {...{
@@ -42,8 +47,10 @@ class AppLanding extends PureComponent {
         }}
       >
         <Flex pt={6} width={1} alignItems="center" justifyContent="center">
-          <LoadingIndicator />
+          {!hasOnboarding && <LoadingIndicator />}
         </Flex>
+        {console.log("newPage2")}
+        {hasOnboarding && <OnboardingModal />}
       </AppLayout>
     );
   }
