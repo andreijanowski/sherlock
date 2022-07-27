@@ -36,7 +36,6 @@ class AppLanding extends PureComponent {
   };
 
   render() {
-    console.log("newPage");
     const { t, lng } = this.props;
     const hasOnboarding = Cookies.get("Onboarding");
     return (
@@ -49,7 +48,6 @@ class AppLanding extends PureComponent {
         <Flex pt={6} width={1} alignItems="center" justifyContent="center">
           {!hasOnboarding && <LoadingIndicator />}
         </Flex>
-        {console.log("newPage2")}
         {hasOnboarding && <OnboardingModal />}
       </AppLayout>
     );

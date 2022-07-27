@@ -44,5 +44,12 @@
   "description": "Beschreibung",
   "optional": "(optional)",
   "tags": "Tags",
-  "tagsDescription": "Tags sind Filter, die Ihr Geschäft beschreiben und den Nutzern helfen, Sie zu finden."
+  "tagsDescription": "Tags sind Filter, die Ihr Geschäft beschreiben und den Nutzern helfen, Sie zu finden.",
+  "hints": [
+    "<0>Tipp:</0> Schreiben Sie ein paar Zeilen, um Ihre Einrichtung zu beschreiben. Wahrscheinlich haben Sie eine Beschreibung auf Ihrer Website, die Sie hier kopieren können.",
+    "“Gemütliches Restaurant mit gutem Essen und freundlichem Personal”",
+    "“Geräumiges Lokal mit Live-Musik und toller Aussicht”",
+    "“Kleines Familienrestaurant mit gemütlicher Atmosphäre”",
+    "“Netter Ort für Getränke und Snacks”"
+  ]
 }

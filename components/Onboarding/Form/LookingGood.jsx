@@ -36,7 +36,7 @@ const LookingGood = ({ values: initialValues, handleSubmit }) => {
           <Wrapper>
             <Title>{t("lookingGood.header")}</Title>
             <Content>
-              <InfoWrapper minWidth="800px" height="550px">
+              <InfoWrapper minWidth="800px" height="570px">
                 <Info fs="24px" fw="700" black>
                   <Trans
                     t={t}

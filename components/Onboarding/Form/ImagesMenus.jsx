@@ -67,7 +67,7 @@ const ImagesMenus = ({
       <Wrapper>
         <Title>{t("app:manageProfile.picturesAndMenus")}</Title>
         <Content>
-          <InfoWrapper minWidth="800px" height="550px">
+          <InfoWrapper minWidth="800px" height="570px">
             <PicturesForm
               {...{
                 t,

@@ -34,7 +34,7 @@ const OpeningHours = ({
       <Wrapper>
         <Title>{t("app:manageProfile.openingHours")}</Title>
         <Content>
-          <InfoWrapper minWidth="800px" height="550px">
+          <InfoWrapper minWidth="800px" height="570px">
             <Periods
               {...{
                 t,
@@ -45,7 +45,8 @@ const OpeningHours = ({
                 removePeriod: removeOpenPeriodAction,
                 currentPage: "",
                 hasHiddenTitle: true,
-                padding: "0"
+                padding: "0",
+                hasHiddenMessages: true
               }}
             />
           </InfoWrapper>

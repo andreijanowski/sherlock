@@ -44,5 +44,12 @@
   "description": "Descrizione",
   "optional": "(opzionale)",
   "tags": "Tag",
-  "tagsDescription": "I tag sono filtri che descrivono la vostra attività e aiutano gli utenti a trovarvi"
+  "tagsDescription": "I tag sono filtri che descrivono la vostra attività e aiutano gli utenti a trovarvi",
+  "hints": [
+    "<0>Suggerimento:</0> scrivete qualche riga per descrivere il vostro locale. Probabilmente avete una descrizione sul vostro sito web che potete copiare qui.",
+    "“Ristorante accogliente con buon cibo e personale cordiale”",
+    "“Locale spazioso con musica dal vivo e ottima vista”",
+    "“Piccolo ristorante familiare con un'atmosfera accogliente”",
+    "“Bel posto per bere e fare uno spuntino”"
+  ]
 }

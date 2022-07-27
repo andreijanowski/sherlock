@@ -45,6 +45,7 @@ const BasicInfo = ({
             setFieldData={mutators.setFieldData}
             save={handleSubmit}
             t={t}
+            hasHiddenMessages
           />
           <WhenFieldChanges
             field="country"
@@ -61,7 +62,7 @@ const BasicInfo = ({
           <Wrapper>
             <Title>{t("app:manageProfile.basicInformation")}</Title>
             <Content>
-              <InfoWrapper minWidth="800px" height="550px">
+              <InfoWrapper minWidth="800px" height="570px">
                 <FormInput
                   name="name"
                   label={t("nameLabel")}

@@ -25,7 +25,8 @@ const PeriodsForm = ({
   isLocationVisible,
   currentPage,
   hasHiddenTitle,
-  padding
+  padding,
+  hasHiddenMessages
 }) => {
   const [isAlwaysOpen, setIsAlwaysOpen] = useState(
     checkIfAlwaysOpen(initialValues)
@@ -84,6 +85,7 @@ const PeriodsForm = ({
               isLocationVisible={isLocationVisible}
               mutators={mutators}
               key={weekday}
+              hasHiddenMessages={hasHiddenMessages}
             />
           ))}
         </Form>
@@ -103,14 +105,16 @@ PeriodsForm.propTypes = {
   isLocationVisible: bool,
   currentPage: string.isRequired,
   hasHiddenTitle: bool,
-  padding: string
+  padding: string,
+  hasHiddenMessages: bool
 };
 
 PeriodsForm.defaultProps = {
   initialValues: null,
   isLocationVisible: false,
   hasHiddenTitle: false,
-  padding: 4
+  padding: 4,
+  hasHiddenMessages: false
 };
 
 export default PeriodsForm;

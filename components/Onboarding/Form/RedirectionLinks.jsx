@@ -49,11 +49,12 @@ const RedirectionLinks = ({
             setFieldData={mutators.setFieldData}
             save={handleSubmit}
             t={t}
+            hasHiddenMessages
           />
           <Wrapper>
             <Title>{t("redirectionLinks")}</Title>
             <Content>
-              <InfoWrapper minWidth="800px" height="550px">
+              <InfoWrapper minWidth="800px" height="570px">
                 <FieldLabel>
                   {t("redirectionWebsiteLinks")}
                   <Optional>{t("basicInformation:optional")}</Optional>

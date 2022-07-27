@@ -37,11 +37,12 @@ const SecretCode = ({ values: initialValues, handleSubmit }) => {
             setFieldData={mutators.setFieldData}
             save={handleSubmit}
             t={t}
+            hasHiddenMessages
           />
           <Wrapper>
             <Title>{t("secretCodeLabel")}</Title>
             <Content>
-              <InfoWrapper minWidth="1174px" height="562px">
+              <InfoWrapper minWidth="1174px" height="572px">
                 <Header>{t("secretCodeLabel")}</Header>
                 <Info>
                   <Trans

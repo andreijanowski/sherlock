@@ -43,11 +43,12 @@ const AdditionalInfo = ({ values: initialValues, handleSubmit }) => {
             setFieldData={mutators.setFieldData}
             save={handleSubmit}
             t={t}
+            hasHiddenMessages
           />
           <Wrapper>
             <Title>{t("shortHeader")}</Title>
             <Content>
-              <InfoWrapper minWidth="800px" height="550px">
+              <InfoWrapper minWidth="800px" height="570px">
                 <FieldLabel>
                   {t("timeOfTheDay")}
                   <Optional>{t("basicInformation:optional")}</Optional>

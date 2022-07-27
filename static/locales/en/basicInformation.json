@@ -44,5 +44,12 @@
   "description": "Description",
   "optional": "(optional)",
   "tags": "Tags",
-  "tagsDescription": "Tags are labels that describe your business and help users find your business through filters."
+  "tagsDescription": "Tags are labels that describe your business and help users find your business through filters.",
+  "hints": [
+    "<0>Hint:</0> Write a few lines to describe your establishment. You likely have a description on your website. You can copy and paste it here.",
+    "“It is a cosy restaurant with good quality food and friendly staff.”",
+    "“It is a specious place with live music and great views”",
+    "“It is a small family restaurant with cosy atmoshpere”",
+    "“It is a nice place to have drinks and snacks”"
+  ]
 }

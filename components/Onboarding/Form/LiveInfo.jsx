@@ -15,9 +15,9 @@ import {
   Wrapper,
   Title,
   Header,
+  Hint,
   Info,
   InfoWrapper,
-  InputWrapper,
   FormWrapper,
   FieldLabel,
   Optional
@@ -31,20 +31,19 @@ const LiveInfo = ({ values: initialValues, handleSubmit }) => {
       initialValues={initialValues}
       onSubmit={handleSubmit}
       mutators={{ setFieldData }}
-      subscription={{
-        form: true
-      }}
-      render={({ form: { mutators } }) => (
+      subscription={{ values: true, form: true }}
+      render={({ values, form: { mutators } }) => (
         <FormWrapper>
           <AutoSave
             setFieldData={mutators.setFieldData}
             save={handleSubmit}
             t={t}
+            hasHiddenMessages
           />
           <Wrapper>
             <Title>{t("header")}</Title>
             <Content>
-              <InfoWrapper minWidth="800px" height="550px">
+              <InfoWrapper minWidth="800px" height="570px">
                 <FieldLabel>
                   <Header>
                     {t("liveInfoLabel")}
@@ -54,15 +53,25 @@ const LiveInfo = ({ values: initialValues, handleSubmit }) => {
                 <Info>
                   <Trans t={t} i18nKey="liveInfoHint" components={[<br />]} />
                 </Info>
-                <InputWrapper>
-                  <FormInput
-                    name="liveInfo"
-                    label={t("liveInfoLabel")}
-                    placeholder={t("liveInfoPlaceholder")}
-                  />
-                </InputWrapper>
+                <FormInput
+                  name="liveInfo"
+                  label={t("liveInfoLabel")}
+                  placeholder={t("liveInfoPlaceholder")}
+                />
+                {!values.liveInfo && (
+                  <Hint>
+                    <Info fs="16px" fw="600" margin="0 0 9px">
+                      {t("hints.0")}
+                    </Info>
+                    {[1, 2, 3, 4].map(el => (
+                      <Info fs="14px" key={el} margin="18px 0 0">
+                        {t(`hints.${el}`)}
+                      </Info>
+                    ))}
+                  </Hint>
+                )}
               </InfoWrapper>
-              <MobilePreview {...initialValues} />
+              <MobilePreview {...values} />
             </Content>
           </Wrapper>
         </FormWrapper>

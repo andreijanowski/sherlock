@@ -44,5 +44,12 @@
   "description": "Description",
   "optional": "(facultatif)",
   "tags": "Tags",
-  "tagsDescription": "Les tags sont des filtres qui décrivent votre business et aident les utilisateurs à vous trouver."
+  "tagsDescription": "Les tags sont des filtres qui décrivent votre business et aident les utilisateurs à vous trouver.",
+  "hints": [
+    "<0>Astuce:</0> écrivez quelques lignes pour décrire votre établissement. Vous avez sans doute une description sur votre site Web que vous pouvez  copier ici.",
+    "“Restaurant confortable avec de la  bonne nourriture et un personnel sympathique”",
+    "“Endroit spacieux avec de la musique live et une belle vue”",
+    "“Petit restaurant familial avec une atmosphère chaleureuse”",
+    "“Endroit agréable pour prendre des boissons et des snacks”"
+  ]
 }

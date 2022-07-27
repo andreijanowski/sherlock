@@ -45,11 +45,12 @@ const Tags = ({ values: initialValues, handleSubmit, groupsData }) => {
             setFieldData={mutators.setFieldData}
             save={handleSubmit}
             t={t}
+            hasHiddenMessages
           />
           <Wrapper>
             <Title>{t("tags")}</Title>
             <Content>
-              <InfoWrapper minWidth="800px" height="550px">
+              <InfoWrapper minWidth="800px" height="572px">
                 <Info>{t("tagsDescription")}</Info>
                 <FieldLabel>
                   {t("types")}

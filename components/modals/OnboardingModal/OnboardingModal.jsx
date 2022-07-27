@@ -9,8 +9,9 @@ import React, {
 import { Modal, parsePeriods } from "components";
 import { arrayOf, func, string, shape } from "prop-types";
 import Cookies from "js-cookie";
-import { useT } from "utils/hooks";
+import { useLng, useT } from "utils/hooks";
 import { connect } from "react-redux";
+import { Router } from "routes";
 
 import { postBusiness, patchBusiness } from "actions/businesses";
 import { fetchProfileBusiness } from "actions/users";
@@ -61,6 +62,7 @@ const OnboardingModal = memo(
     removeServiceLink
   }) => {
     const t = useT("onboarding");
+    const lng = useLng();
 
     const [isModalOpen, setIsModalOpen] = useState(true);
     const [hasHintOpen, setHasHintOpen] = useState(true);
@@ -72,19 +74,40 @@ const OnboardingModal = memo(
     const onClose = useCallback(() => {
       setIsModalOpen(false);
       Cookies.remove("Onboarding");
-    }, []);
+      Router.pushRoute(`/${lng}/app/dashboard/`);
+    }, [lng]);
 
     const hideModal = useCallback(() => {
       setModalData(null);
     }, []);
 
-    const handleNextClick = useCallback(
-      () =>
-        currentStep.nextStep === CLOSE
-          ? onClose()
-          : setCurrentStep(getContent(t)[currentStep.nextStep]),
-      [currentStep.nextStep, onClose, t]
-    );
+    const showBasicInfoErrors = useCallback(() => {
+      Router.pushRoute(
+        `/${lng}/app/profile/basic-information/?isErrorVisibilityRequired=true`
+      );
+    }, [lng]);
+
+    const handleNextClick = useCallback(() => {
+      if (currentStep.nextStep === STEP.CONFIRM) {
+        const state = business.get("approvedForLefood")
+          ? "published"
+          : "waiting_for_approval";
+        updateBusiness(businessId, { state }).catch(showBasicInfoErrors);
+        setCurrentStep(getContent(t)[currentStep.nextStep]);
+      } else if (currentStep.nextStep === CLOSE) {
+        onClose();
+      } else {
+        setCurrentStep(getContent(t)[currentStep.nextStep]);
+      }
+    }, [
+      business,
+      businessId,
+      currentStep.nextStep,
+      onClose,
+      showBasicInfoErrors,
+      t,
+      updateBusiness
+    ]);
 
     const handlePrevClick = () =>
       setCurrentStep(getContent(t)[currentStep.prevStep]);
@@ -216,7 +239,6 @@ const OnboardingModal = memo(
         };
         if (Object.values(requestValues).some(v => !!v)) {
           setUpdatedValues({
-            ...requestValues,
             types,
             cuisines,
             foodsAndDrinks,
@@ -226,7 +248,6 @@ const OnboardingModal = memo(
             country: newCountry,
             region: newRegion
           });
-          console.log("update form!");
           return updateBusiness(businessId, requestValues, true);
         }
         return null;
@@ -308,8 +329,6 @@ const OnboardingModal = memo(
       [initialValues, updatedValues]
     );
 
-    console.log("VALUES", initialValues);
-
     return (
       <div>
         <ModalStyles />
@@ -317,6 +336,7 @@ const OnboardingModal = memo(
           open={isModalOpen}
           onClose={onClose}
           btnCancelText={t("forms:cancel")}
+          closeOnOverlayClick={false}
         >
           {cloneElement(
             currentStep.component,

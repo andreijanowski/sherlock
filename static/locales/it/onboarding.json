@@ -56,7 +56,7 @@
   },
   "confirmation": {
     "header": "Congratulazioni, la <0>richiesta di pubblicazione</0> della vostra attività è stata ricevuta.",
-    "subheader": "La vostra attività sarà <0>pubblicata entro 24 ore</0>. (a meno che il vostro profilo non sia già presente sulla nostra piattaforma: in tal caso, tutto è pronto). <1/> Una volta pubblicato il profilo, si riceverà un'e-mail di conferma.  <1/> <0>Avrete sempre la possibilità di modificare</0> il vostro profilo dopo la pubblicazione.",
+    "subheader": "La vostra attività sarà <0>pubblicata entro 24 ore</0>. <1/>(a meno che il vostro profilo non sia già presente sulla nostra piattaforma: in tal caso, tutto è pronto). <1/> Una volta pubblicato il profilo, si riceverà un'e-mail di conferma.  <1/> <0>Avrete sempre la possibilità di modificare</0> il vostro profilo dopo la pubblicazione.",
     "gotit": "Capito, grazie"
   }
 }
