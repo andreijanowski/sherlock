@@ -68,8 +68,13 @@ const LookingGood = ({ values: initialValues, handleSubmit }) => {
 };
 
 LookingGood.propTypes = {
-  values: shape().isRequired,
-  handleSubmit: func.isRequired
+  values: shape(),
+  handleSubmit: func
+};
+
+LookingGood.defaultProps = {
+  values: null,
+  handleSubmit: null
 };
 
 export default LookingGood;

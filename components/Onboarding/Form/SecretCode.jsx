@@ -68,8 +68,13 @@ const SecretCode = ({ values: initialValues, handleSubmit }) => {
 };
 
 SecretCode.propTypes = {
-  values: shape().isRequired,
-  handleSubmit: func.isRequired
+  values: shape(),
+  handleSubmit: func
+};
+
+SecretCode.defaultProps = {
+  values: null,
+  handleSubmit: null
 };
 
 export default SecretCode;

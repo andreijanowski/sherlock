@@ -111,13 +111,14 @@ ImagesMenus.propTypes = {
   changeCurrentBusiness: func.isRequired,
   getProfileBusiness: func.isRequired,
   businesses: shape(),
-  values: shape().isRequired
+  values: shape()
 };
 
 ImagesMenus.defaultProps = {
   businesses: null,
   businessId: "",
-  businessOpenPeriods: null
+  businessOpenPeriods: null,
+  values: null
 };
 
 export default connect(

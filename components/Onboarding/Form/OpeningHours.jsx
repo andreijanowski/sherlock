@@ -62,11 +62,12 @@ OpeningHours.propTypes = {
   updateOpenPeriod: func.isRequired,
   removeOpenPeriod: func.isRequired,
   businessId: string,
-  values: shape().isRequired
+  values: shape()
 };
 
 OpeningHours.defaultProps = {
-  businessId: ""
+  businessId: "",
+  values: null
 };
 
 export default connect(

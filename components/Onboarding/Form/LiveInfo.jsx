@@ -81,8 +81,13 @@ const LiveInfo = ({ values: initialValues, handleSubmit }) => {
 };
 
 LiveInfo.propTypes = {
-  values: shape().isRequired,
-  handleSubmit: func.isRequired
+  values: shape(),
+  handleSubmit: func
+};
+
+LiveInfo.defaultProps = {
+  values: null,
+  handleSubmit: null
 };
 
 export default LiveInfo;

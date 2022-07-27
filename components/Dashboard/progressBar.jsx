@@ -33,7 +33,7 @@ const Bar = ({
 Bar.propTypes = {
   bgcolor: string,
   width: number,
-  title: string.isRequired,
+  title: string,
   withPercentage: bool,
   color: string.isRequired,
   height: number,
@@ -47,7 +47,8 @@ Bar.defaultProps = {
   withPercentage: false,
   height: "18px",
   radius: "16px",
-  wrapperStyles: {}
+  wrapperStyles: {},
+  title: ""
 };
 
 export default Bar;

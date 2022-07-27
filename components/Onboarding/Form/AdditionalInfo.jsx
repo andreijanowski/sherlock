@@ -117,12 +117,14 @@ const AdditionalInfo = ({ values: initialValues, handleSubmit }) => {
 };
 
 AdditionalInfo.propTypes = {
-  values: shape().isRequired,
-  handleSubmit: func.isRequired,
+  values: shape(),
+  handleSubmit: func,
   groupsData: shape()
 };
 
 AdditionalInfo.defaultProps = {
+  values: null,
+  handleSubmit: null,
   groupsData: null
 };
 

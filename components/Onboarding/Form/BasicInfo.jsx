@@ -175,14 +175,17 @@ const BasicInfo = ({
 };
 
 BasicInfo.propTypes = {
-  values: shape().isRequired,
+  values: shape(),
   hasHintOpen: bool,
-  setHasHintOpen: func.isRequired,
-  handleSubmit: func.isRequired
+  setHasHintOpen: func,
+  handleSubmit: func
 };
 
 BasicInfo.defaultProps = {
-  hasHintOpen: true
+  hasHintOpen: true,
+  values: null,
+  setHasHintOpen: null,
+  handleSubmit: null
 };
 
 export default BasicInfo;

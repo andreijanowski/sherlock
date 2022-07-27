@@ -103,16 +103,21 @@ const RedirectionLinks = ({
 };
 
 RedirectionLinks.propTypes = {
-  values: shape().isRequired,
-  handleSubmit: func.isRequired,
-  onServiceAdd: func.isRequired,
-  onServiceLinkChange: func.isRequired,
-  onServiceLinkDelete: func.isRequired,
+  values: shape(),
+  handleSubmit: func,
+  onServiceAdd: func,
+  onServiceLinkChange: func,
+  onServiceLinkDelete: func,
   serviceLinks: shape()
 };
 
 RedirectionLinks.defaultProps = {
-  serviceLinks: null
+  serviceLinks: null,
+  values: null,
+  handleSubmit: null,
+  onServiceAdd: null,
+  onServiceLinkChange: null,
+  onServiceLinkDelete: null
 };
 
 export default RedirectionLinks;

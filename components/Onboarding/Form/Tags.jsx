@@ -133,12 +133,14 @@ const Tags = ({ values: initialValues, handleSubmit, groupsData }) => {
 };
 
 Tags.propTypes = {
-  values: shape().isRequired,
-  handleSubmit: func.isRequired,
+  values: shape(),
+  handleSubmit: func,
   groupsData: shape()
 };
 
 Tags.defaultProps = {
+  values: null,
+  handleSubmit: null,
   groupsData: null
 };
 

@@ -27,3 +27,10 @@ export const BottomNavigation = styled.div`
   z-index: 1;
   padding-top: 36px;
 `;
+
+export const Error = styled.div`
+  position: absolute;
+  font-size: 14px;
+  top: 10px;
+  color: rgb(${p => p.theme.colors.ruby});
+`;

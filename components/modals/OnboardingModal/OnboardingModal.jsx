@@ -38,7 +38,7 @@ import { STEP, CLOSE, getContent } from "components/Onboarding/utils";
 import { AddServiceLink, Confirm } from "components/modals";
 import H3 from "components/H3";
 import { addProtocol } from "utils/urls";
-import { ModalStyles, BottomNavigation } from "./styled";
+import { ModalStyles, BottomNavigation, Error } from "./styled";
 
 const MODALS = {
   ADD_SERVICE_LINK: "ADD_SERVICE_LINK",
@@ -68,6 +68,7 @@ const OnboardingModal = memo(
     const [hasHintOpen, setHasHintOpen] = useState(true);
     const [updatedValues, setUpdatedValues] = useState();
     const [modalData, setModalData] = useState(null);
+    const [error, setError] = useState();
 
     const [currentStep, setCurrentStep] = useState(getContent(t)[STEP.INTRO]);
 
@@ -81,19 +82,16 @@ const OnboardingModal = memo(
       setModalData(null);
     }, []);
 
-    const showBasicInfoErrors = useCallback(() => {
-      Router.pushRoute(
-        `/${lng}/app/profile/basic-information/?isErrorVisibilityRequired=true`
-      );
-    }, [lng]);
-
     const handleNextClick = useCallback(() => {
       if (currentStep.nextStep === STEP.CONFIRM) {
         const state = business.get("approvedForLefood")
           ? "published"
           : "waiting_for_approval";
-        updateBusiness(businessId, { state }).catch(showBasicInfoErrors);
-        setCurrentStep(getContent(t)[currentStep.nextStep]);
+        updateBusiness(businessId, {
+          state
+        })
+          .then(() => setCurrentStep(getContent(t)[currentStep.nextStep]))
+          .catch(() => setError("Publishing error - please check form values"));
       } else if (currentStep.nextStep === CLOSE) {
         onClose();
       } else {
@@ -104,13 +102,14 @@ const OnboardingModal = memo(
       businessId,
       currentStep.nextStep,
       onClose,
-      showBasicInfoErrors,
       t,
       updateBusiness
     ]);
 
-    const handlePrevClick = () =>
-      setCurrentStep(getContent(t)[currentStep.prevStep]);
+    const handlePrevClick = () => {
+      setError();
+      return setCurrentStep(getContent(t)[currentStep.prevStep]);
+    };
 
     const handleSubmit = useCallback(
       (newValue, newValuesList, prevValues) => {
@@ -355,6 +354,7 @@ const OnboardingModal = memo(
             null
           )}
           <BottomNavigation>
+            {error && <Error>{error}</Error>}
             <Bar
               color="midnightblue"
               width={currentStep.progress || "0"}
@@ -381,6 +381,7 @@ const OnboardingModal = memo(
               withArrow
               type="submit"
               variant={BUTTON_VARIANT.GRADIENT}
+              disabled={error}
             >
               {currentStep.buttonText}
             </Button>
