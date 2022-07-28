@@ -10,9 +10,10 @@ import {
   AdditionalInfo,
   RedirectionLinks,
   LiveInfo,
+  LookingGood,
   FinalConfirmation
 } from "components/Onboarding";
-import LookingGood from "./Form/LookingGood";
+import { checkLength } from "utils/validators";
 
 export const CLOSE = "close";
 export const STEP = {
@@ -131,3 +132,34 @@ export const getContent = t => ({
     progress: 0
   }
 });
+
+export const FORM_STATUS = {
+  CLEAR: "clear",
+  UNCLEAR: "unlcear"
+};
+
+export const checkValidFields = (values, step) => {
+  switch (step) {
+    case STEP.BASIC_INFO:
+      return Boolean(
+        values.name &&
+          values.country &&
+          values.street &&
+          values.streetNumber &&
+          values.city &&
+          values.postCode &&
+          values.email &&
+          values.phoneCountry &&
+          values.phone
+      );
+    case STEP.TAGS:
+      return Boolean(
+        checkLength(values.types, 1, 3) &&
+          checkLength(values.cuisines, 1, 5) &&
+          checkLength(values.foodsAndDrinks, 1, 6) &&
+          checkLength(values.quirks, 3, 10)
+      );
+    default:
+      return false;
+  }
+};

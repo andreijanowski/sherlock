@@ -34,11 +34,16 @@ import { getGroupsData } from "sections/profile/utils";
 
 import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
 import Bar from "components/Dashboard/progressBar";
-import { STEP, CLOSE, getContent } from "components/Onboarding/utils";
+import {
+  STEP,
+  CLOSE,
+  getContent,
+  checkValidFields
+} from "components/Onboarding/utils";
 import { AddServiceLink, Confirm } from "components/modals";
 import H3 from "components/H3";
 import { addProtocol } from "utils/urls";
-import { ModalStyles, BottomNavigation, Error } from "./styled";
+import { ModalStyles, BottomNavigation } from "./styled";
 
 const MODALS = {
   ADD_SERVICE_LINK: "ADD_SERVICE_LINK",
@@ -65,12 +70,52 @@ const OnboardingModal = memo(
     const lng = useLng();
 
     const [isModalOpen, setIsModalOpen] = useState(true);
+    const [hasValidationError, setValidationError] = useState(false);
     const [hasHintOpen, setHasHintOpen] = useState(true);
     const [updatedValues, setUpdatedValues] = useState();
     const [modalData, setModalData] = useState(null);
-    const [error, setError] = useState();
 
     const [currentStep, setCurrentStep] = useState(getContent(t)[STEP.INTRO]);
+
+    useEffect(() => {
+      getExternalServices();
+      // eslint-disable-next-line
+    }, []);
+
+    const initialPeriods = businessOpenPeriods
+      ? parsePeriods(businessOpenPeriods)
+      : {};
+
+    const initialValues = useMemo(
+      () => ({
+        ...getInitialValues({ business, businessGroups }),
+        periods: initialPeriods,
+        ...getImagesValues({
+          business,
+          businessMenus,
+          businessPictures,
+          businessProducts
+        }),
+        ...getInitialAdditionalInfo(business),
+        ...getInitialLinks(business)
+      }),
+      [
+        business,
+        businessGroups,
+        businessMenus,
+        businessPictures,
+        businessProducts,
+        initialPeriods
+      ]
+    );
+
+    const values = useMemo(
+      () => ({
+        ...initialValues,
+        ...updatedValues
+      }),
+      [initialValues, updatedValues]
+    );
 
     const onClose = useCallback(() => {
       setIsModalOpen(false);
@@ -83,31 +128,45 @@ const OnboardingModal = memo(
     }, []);
 
     const handleNextClick = useCallback(() => {
+      if (
+        currentStep.nextStep === STEP.OPENING_HOURS &&
+        !checkValidFields(values, STEP.BASIC_INFO)
+      ) {
+        return setValidationError(true);
+      }
+      if (
+        currentStep.nextStep === STEP.ADDITIONAL_INFO &&
+        !checkValidFields(values, STEP.TAGS)
+      ) {
+        return setValidationError(true);
+      }
       if (currentStep.nextStep === STEP.CONFIRM) {
         const state = business.get("approvedForLefood")
           ? "published"
           : "waiting_for_approval";
         updateBusiness(businessId, {
           state
-        })
-          .then(() => setCurrentStep(getContent(t)[currentStep.nextStep]))
-          .catch(() => setError("Publishing error - please check form values"));
+        });
       } else if (currentStep.nextStep === CLOSE) {
-        onClose();
-      } else {
-        setCurrentStep(getContent(t)[currentStep.nextStep]);
+        return onClose();
       }
+      return (
+        !hasValidationError &&
+        setCurrentStep(getContent(t)[currentStep.nextStep])
+      );
     }, [
       business,
       businessId,
       currentStep.nextStep,
       onClose,
       t,
-      updateBusiness
+      hasValidationError,
+      updateBusiness,
+      values
     ]);
 
     const handlePrevClick = () => {
-      setError();
+      setValidationError(false);
       return setCurrentStep(getContent(t)[currentStep.prevStep]);
     };
 
@@ -236,6 +295,18 @@ const OnboardingModal = memo(
           onlineBookingUrl: addProtocol(onlineBookingUrl),
           takeawayUrl: addProtocol(takeawayUrl)
         };
+        if (
+          currentStep.nextStep === STEP.OPENING_HOURS &&
+          checkValidFields(newValuesList, STEP.BASIC_INFO)
+        ) {
+          setValidationError(false);
+        }
+        if (
+          currentStep.nextStep === STEP.ADDITIONAL_INFO &&
+          checkValidFields(newValuesList, STEP.TAGS)
+        ) {
+          setValidationError(false);
+        }
         if (Object.values(requestValues).some(v => !!v)) {
           setUpdatedValues({
             types,
@@ -251,38 +322,11 @@ const OnboardingModal = memo(
         }
         return null;
       },
-      [businessId, updateBusiness]
-    );
-
-    const initialPeriods = businessOpenPeriods
-      ? parsePeriods(businessOpenPeriods)
-      : {};
-
-    const initialValues = useMemo(
-      () => ({
-        ...getInitialValues({ business, businessGroups }),
-        periods: initialPeriods,
-        ...getImagesValues({
-          business,
-          businessMenus,
-          businessPictures,
-          businessProducts
-        }),
-        ...getInitialAdditionalInfo(business),
-        ...getInitialLinks(business)
-      }),
-      [
-        business,
-        businessGroups,
-        businessMenus,
-        businessPictures,
-        businessProducts,
-        initialPeriods
-      ]
+      [businessId, updateBusiness, currentStep]
     );
 
     const onServiceLinkChange = useCallback(
-      (id, values) => updateServiceLink(id, values),
+      (id, vals) => updateServiceLink(id, vals),
       [updateServiceLink]
     );
 
@@ -315,19 +359,6 @@ const OnboardingModal = memo(
 
     const groupsData = getGroupsData(groups);
 
-    useEffect(() => {
-      getExternalServices();
-      // eslint-disable-next-line
-  }, []);
-
-    const values = useMemo(
-      () => ({
-        ...initialValues,
-        ...updatedValues
-      }),
-      [initialValues, updatedValues]
-    );
-
     return (
       <div>
         <ModalStyles />
@@ -349,12 +380,12 @@ const OnboardingModal = memo(
               serviceLinks,
               onServiceAdd,
               onServiceLinkChange,
-              onServiceLinkDelete
+              onServiceLinkDelete,
+              hasValidationError
             },
             null
           )}
           <BottomNavigation>
-            {error && <Error>{error}</Error>}
             <Bar
               color="midnightblue"
               width={currentStep.progress || "0"}
@@ -381,7 +412,9 @@ const OnboardingModal = memo(
               withArrow
               type="submit"
               variant={
-                error ? BUTTON_VARIANT.SECONDARY : BUTTON_VARIANT.GRADIENT
+                hasValidationError
+                  ? BUTTON_VARIANT.SECONDARY
+                  : BUTTON_VARIANT.GRADIENT
               }
             >
               {currentStep.buttonText}

@@ -68,9 +68,9 @@ const MobilePreview = ({
   street,
   types,
   website,
-  hasCatering,
-  hasPrivateEvents,
-  hasReservations,
+  deliveryUrl,
+  onlineBookingUrl,
+  takeawayUrl,
   canPayWithMobile
 }) => {
   const t = useT(["app", "additionalInformation"]);
@@ -89,9 +89,9 @@ const MobilePreview = ({
     (michelinStars && michelinStars.length)
   );
   const hasButtons = !!(
-    hasCatering ||
-    hasPrivateEvents ||
-    hasReservations ||
+    deliveryUrl ||
+    onlineBookingUrl ||
+    takeawayUrl ||
     canPayWithMobile
   );
   const hasMedia = facebook || instagram || website;
@@ -331,9 +331,9 @@ MobilePreview.propTypes = {
   street: string,
   types: arrayOf(shape()),
   website: string,
-  hasCatering: bool,
-  hasPrivateEvents: bool,
-  hasReservations: bool,
+  deliveryUrl: string,
+  onlineBookingUrl: string,
+  takeawayUrl: string,
   canPayWithMobile: bool,
   facebook: string,
   instagram: string
@@ -361,9 +361,9 @@ MobilePreview.defaultProps = {
   website: "",
   facebook: "",
   instagram: "",
-  hasCatering: false,
-  hasPrivateEvents: false,
-  hasReservations: false,
+  deliveryUrl: "",
+  onlineBookingUrl: "",
+  takeawayUrl: "",
   canPayWithMobile: false
 };
 
