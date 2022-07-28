@@ -28,7 +28,7 @@
   "canPayWithCards": "Puede pagar con tarjetas",
   "canPayWithCash": "Efectivo",
   "canPayWithMobile": "Puede pagar con el móvil",
-  "secretCode": "Código secreto",
+  "secretCode": "Código Secreto",
   "referenceCodes": "Código de referencia",
   "deliveryChargeRef": "Referencia de los gastos de envío",
   "stripePaymentRef": "Referencia de pago de Stripe",

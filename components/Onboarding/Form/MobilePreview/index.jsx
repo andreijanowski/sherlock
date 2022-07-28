@@ -232,7 +232,7 @@ const MobilePreview = ({
                     <ProductName>{product.name}</ProductName>
                   </Product>
                 ))
-              : [1, 2, 3].map(el => (
+              : [...Array(3)].map(el => (
                   <Product key={el}>
                     <Placeholder />
                     <Placeholder />
