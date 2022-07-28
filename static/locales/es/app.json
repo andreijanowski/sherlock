@@ -116,5 +116,10 @@
   "influencersPoweredBy": "Influenciadores impulsados por Foodetective.co",
   "communityMgmt": "Community Mgmt",
   "photographyMgmt": "Fotografía",
-  "connectPartoo": "Todavía no has iniciado sesión en esta función. Para solicitar una conexión, siga los siguientes pasos: <0><1>Ir a la pestaña del centro de integración</1><1>Busca Partoo en la barra de búsqueda</1><1>Haz clic en conectar.</1></0> Se lo notificaremos por correo electrónico en cuanto se finalice la conexión."
+  "connectPartoo": "Todavía no has iniciado sesión en esta función. Para solicitar una conexión, siga los siguientes pasos: <0><1>Ir a la pestaña del centro de integración</1><1>Busca Partoo en la barra de búsqueda</1><1>Haz clic en conectar.</1></0> Se lo notificaremos por correo electrónico en cuanto se finalice la conexión.",
+  "description": "Descripción",
+  "openNow": "Abierto: ",
+  "seeAllHours": "Ver todos los horarios",
+  "readMore": "Ver más",
+  "mustTry": "Deberías intentar"
 }

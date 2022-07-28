@@ -178,11 +178,13 @@ export const FeaturesWrapper = styled.div`
 `;
 
 export const Feature = styled.div`
-  margin-right: 11px;
+  margin-right: ${p => p.mr || "0"};
 
   > div {
-    width: 28px;
-    height: 28px;
+    min-width: ${p => p.size || "28px"};
+    width: ${p => p.size || "28px"};
+    min-height: ${p => p.size || "28px"};
+    height: ${p => p.size || "28px"};
   }
 `;
 
@@ -380,6 +382,10 @@ export const Media = styled.div`
   flex-direction: column;
   width: 100%;
   margin-bottom: -60px;
+
+  > div {
+    min-height: 25px;
+  }
 `;
 
 export const Label = styled.div`

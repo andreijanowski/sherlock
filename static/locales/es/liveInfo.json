@@ -3,5 +3,12 @@
   "liveInfo": "Información en vivo",
   "liveInfoLabel": "Información en vivo",
   "liveInfoPlaceholder": "70% de descuento el domingo 01.01.19",
-  "liveInfoHint": "Aquí puedes añadir eventos, promociones y cualquier otra actualización. Puedes editar este banner tantas veces como quieras y aparecerá en la esquina superior izquierda de tu perfil."
+  "liveInfoHint": "Aquí puedes añadir eventos, promociones y cualquier otra actualización. Puedes editar este banner tantas veces como quieras y aparecerá en la esquina superior izquierda de tu perfil.",
+  "hints": [
+    "Puedes elegir uno de los siguientes modelos",
+    "“Primera orden 50%“",
+    "“Terraza cerrada por reformas“",
+    "“Compre una pizza gratis“",
+    "“¡Ampliación del horario de apertura este fin de semana!“"
+  ]
 }

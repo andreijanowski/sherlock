@@ -82,8 +82,26 @@ const Description = ({ values: initialValues, handleSubmit }) => {
                     components={[<b />]}
                   />
                 </Info>
+                <FieldLabel>
+                  Facebook
+                  <Optional>{t("optional")}</Optional>
+                </FieldLabel>
+                <FormInput
+                  name="facebook"
+                  label="Facebook (optional)"
+                  placeholder={t("contactInformation:facebookPlaceholder")}
+                />
+                <FieldLabel>
+                  Instagram
+                  <Optional>{t("optional")}</Optional>
+                </FieldLabel>
+                <FormInput
+                  name="instagram"
+                  label="Instagram (optional)"
+                  placeholder={t("contactInformation:instagramPlaceholder")}
+                />
               </InfoWrapper>
-              <MobilePreview {...initialValues} />
+              <MobilePreview {...values} />
             </Content>
           </Wrapper>
         </FormWrapper>

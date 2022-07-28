@@ -50,12 +50,14 @@ const MobilePreview = ({
   city,
   cuisines,
   bio,
+  diets,
+  facebook,
+  instagram,
+  logo,
+  liveInfo,
   foodsAndDrinks,
   quirks,
-  diets,
   periods,
-  liveInfo,
-  logo,
   menus,
   michelinStars,
   name,
@@ -92,6 +94,12 @@ const MobilePreview = ({
     hasReservations ||
     canPayWithMobile
   );
+  const hasMedia = facebook || instagram || website;
+  const media = {
+    facebook,
+    instagram,
+    website
+  };
 
   const additionalItems = [
     ...foodsAndDrinks,
@@ -273,12 +281,24 @@ const MobilePreview = ({
         </AddInfo>
         <Media>
           <Label>
-            <Placeholder />
+            {hasMedia ? (
+              <MustTry>
+                {t("additionalInformation:serviceLinkCategory.social_media")}
+              </MustTry>
+            ) : (
+              <Placeholder />
+            )}
           </Label>
           <TagsWrapper>
-            {[0, 1, 2].map(el => (
-              <Feature key={el}>
-                <Placeholder />
+            {["instagram", "facebook", "website"].map(site => (
+              <Feature key={site} mr="16px" size="22px">
+                <Logo>
+                  {media[site] ? (
+                    <LogoImg src={`/static/img/onboarding/${site}Logo.svg`} />
+                  ) : (
+                    <Placeholder />
+                  )}
+                </Logo>
               </Feature>
             ))}
           </TagsWrapper>
@@ -314,7 +334,9 @@ MobilePreview.propTypes = {
   hasCatering: bool,
   hasPrivateEvents: bool,
   hasReservations: bool,
-  canPayWithMobile: bool
+  canPayWithMobile: bool,
+  facebook: string,
+  instagram: string
 };
 
 MobilePreview.defaultProps = {
@@ -337,6 +359,8 @@ MobilePreview.defaultProps = {
   street: "",
   types: [],
   website: "",
+  facebook: "",
+  instagram: "",
   hasCatering: false,
   hasPrivateEvents: false,
   hasReservations: false,
