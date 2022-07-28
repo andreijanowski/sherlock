@@ -8,11 +8,14 @@ export const ModalStyles = createGlobalStyle`
   .modal-modal {
     padding: 38px;
     border-radius: 10px;
-    max-width: 1250px;
 
     @media (max-width: 1450px) {
       transform: scale(0.85);
       margin-top: -50px;
+    }
+
+    @media (min-width: 1250px) {
+      max-width: 1250px;
     }
   }
 `;

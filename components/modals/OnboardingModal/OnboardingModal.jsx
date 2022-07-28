@@ -380,8 +380,9 @@ const OnboardingModal = memo(
               onClick={handleNextClick}
               withArrow
               type="submit"
-              variant={BUTTON_VARIANT.GRADIENT}
-              disabled={error}
+              variant={
+                error ? BUTTON_VARIANT.SECONDARY : BUTTON_VARIANT.GRADIENT
+              }
             >
               {currentStep.buttonText}
             </Button>
