@@ -135,6 +135,7 @@ export const PreviewWrapper = styled(Box)`
   overflow: ${p => (p.scroll ? "scroll" : "hidden")};
   -ms-overflow-style: none;
   scrollbar-width: none;
+  transform: translateZ(0);
 
   &::-webkit-scrollbar {
     display: none;
@@ -142,12 +143,26 @@ export const PreviewWrapper = styled(Box)`
 `;
 
 export const PreviewButtons = styled.img`
+  display: block;
   width: 100%;
   position: sticky;
   cursor: pointer;
-  bottom: 0;
   left: 0;
   z-index: 1;
+
+  @media (max-width: 1450px) {
+    bottom: 0;
+  }
+
+  @media not all and (-webkit-min-device-pixel-ratio: 1) and (min-resolution: 0.001dpcm) and (max-width: 1450px) {
+    @supports (-webkit-appearance: none) {
+      bottom: -87px;
+    }
+  }
+
+  @media (min-width: 1450px) {
+    bottom: 0;
+  }
 `;
 
 export const Hints = styled.ul`

@@ -11,6 +11,7 @@ import { getSubdivisions, countries } from "utils/iso-3166-2";
 import { useT } from "utils/hooks";
 import countriesPhoneCodes from "utils/countriesPhoneCodes";
 import { normalizePhone } from "utils/normalizers";
+import { required } from "utils/validators";
 import {
   Content,
   Wrapper,
@@ -67,6 +68,7 @@ const BasicInfo = ({
                   name="name"
                   label={t("nameLabel")}
                   placeholder={t("namePlaceholder")}
+                  validate={required(t)}
                 />
                 <FormInput
                   name="website"
