@@ -63,7 +63,7 @@ const LiveInfo = ({ values: initialValues, handleSubmit }) => {
                     <Info fs="16px" fw="600" margin="0 0 9px">
                       {t("hints.0")}
                     </Info>
-                    {[...Array(4)].map(el => (
+                    {[1, 2, 3, 4].map(el => (
                       <Info fs="14px" key={el} margin="18px 0 0">
                         {t(`hints.${el}`)}
                       </Info>
