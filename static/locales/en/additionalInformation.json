@@ -28,13 +28,13 @@
   "canPayWithCards": "Can pay with cards",
   "canPayWithCash": "Cash",
   "canPayWithMobile": "Can pay with mobile",
-  "secretCode": "Secret code",
+  "secretCode": "Secret Code",
   "referenceCodes": "Reference codes",
   "deliveryChargeRef": "Delivery charge ref",
   "stripePaymentRef": "Stripe payment ref",
   "deliveryServiceTypeRef": "Delivery service type ref",
   "takeawayServiceTypeRef": "Takeaway service type ref",
-  "secretCodeLabel": "Secret code",
+  "secretCodeLabel": "Secret Code",
   "secretCodePlaceholder": "32543cdsSD4ewcbwt6654",
   "redirectionLinks": "Redirection Links",
   "redirectionLinksTooltip": "Enter links to your external services/profiles",
@@ -54,5 +54,6 @@
   "deletePrompt": "Do you want to delete {{service}} link?",
   "redirectionWebsiteLinks": "Links to your websites",
   "redirectionServicesLinks": "Links to partners external services",
-  "secretCodeHint": "Please enter the code which has been communicated to you by your activation partner or sales rep. <0/> (<1>If you are registering on your own initiative, please leave this empty</1>)"
+  "secretCodeHint": "Please enter the code which has been communicated to you by your activation partner or sales rep. <0/> (<1>If you are registering on your own initiative, please leave this empty</1>)",
+  "seeAll": "See all information"
 }

@@ -73,7 +73,7 @@ const NavigationList = ({ isMenuOpened, hideMenu }) => {
           : NavigationListLink;
 
         return (
-          <Box mr={[0, null, null, isLastChild ? 0 : "40px"]}>
+          <Box mr={[0, null, null, isLastChild ? 0 : "40px"]} key={key}>
             <Component key={key} link={mixedLink} onLinkClick={onLinkClick} />
           </Box>
         );

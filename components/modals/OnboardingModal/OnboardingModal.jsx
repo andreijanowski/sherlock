@@ -1,14 +1,26 @@
-import React, { cloneElement, useState, useCallback, useMemo } from "react";
+import React, {
+  cloneElement,
+  useState,
+  useCallback,
+  useMemo,
+  useEffect,
+  memo
+} from "react";
 import { Modal, parsePeriods } from "components";
-import { func, string, shape } from "prop-types";
+import { arrayOf, func, string, shape } from "prop-types";
 import Cookies from "js-cookie";
-import { useT } from "utils/hooks";
+import { useLng, useT } from "utils/hooks";
 import { connect } from "react-redux";
+import { Router } from "routes";
 
 import { postBusiness, patchBusiness } from "actions/businesses";
 import { fetchProfileBusiness } from "actions/users";
 import { setCurrentBusiness } from "actions/app";
-import { deleteServiceLink, patchServiceLink } from "actions/externalServices";
+import {
+  deleteServiceLink,
+  fetchExternalServices,
+  patchServiceLink
+} from "actions/externalServices";
 
 import {
   getInitialValues,
@@ -26,180 +38,121 @@ import { STEP, CLOSE, getContent } from "components/Onboarding/utils";
 import { AddServiceLink, Confirm } from "components/modals";
 import H3 from "components/H3";
 import { addProtocol } from "utils/urls";
-import { ModalStyles, BottomNavigation } from "./styled";
+import { ModalStyles, BottomNavigation, Error } from "./styled";
 
 const MODALS = {
   ADD_SERVICE_LINK: "ADD_SERVICE_LINK",
   REMOVE_SERVICE_LINK: "REMOVE_SERVICE_LINK"
 };
 
-const OnboardingModal = ({
-  business,
-  businessId,
-  businessGroups,
-  updateBusiness,
-  businessOpenPeriods,
-  businessMenus,
-  businessPictures,
-  businessProducts,
-  groups,
-  serviceLinks,
-  updateServiceLink,
-  removeServiceLink
-}) => {
-  const t = useT("onboarding");
+const OnboardingModal = memo(
+  ({
+    business,
+    businessId,
+    businessGroups,
+    updateBusiness,
+    businessOpenPeriods,
+    businessMenus,
+    businessPictures,
+    businessProducts,
+    groups,
+    getExternalServices,
+    serviceLinks,
+    updateServiceLink,
+    removeServiceLink
+  }) => {
+    const t = useT("onboarding");
+    const lng = useLng();
 
-  const [isModalOpen, setIsModalOpen] = useState(true);
-  const [hasHintOpen, setHasHintOpen] = useState(true);
-  const [updatedValues, setUpdatedValues] = useState();
-  const [modalData, setModalData] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(true);
+    const [hasHintOpen, setHasHintOpen] = useState(true);
+    const [updatedValues, setUpdatedValues] = useState();
+    const [modalData, setModalData] = useState(null);
+    const [error, setError] = useState();
 
-  const [currentStep, setCurrentStep] = useState(getContent(t)[STEP.INTRO]);
+    const [currentStep, setCurrentStep] = useState(getContent(t)[STEP.INTRO]);
 
-  const onClose = () => {
-    setIsModalOpen(false);
-    Cookies.remove("Onboarding");
-  };
+    const onClose = useCallback(() => {
+      setIsModalOpen(false);
+      Cookies.remove("Onboarding");
+      Router.pushRoute(`/${lng}/app/dashboard/`);
+    }, [lng]);
 
-  const hideModal = useCallback(() => {
-    setModalData(null);
-  }, []);
+    const hideModal = useCallback(() => {
+      setModalData(null);
+    }, []);
 
-  const handleNextClick = () =>
-    currentStep.nextStep === CLOSE
-      ? onClose()
-      : setCurrentStep(getContent(t)[currentStep.nextStep]);
+    const handleNextClick = useCallback(() => {
+      if (currentStep.nextStep === STEP.CONFIRM) {
+        const state = business.get("approvedForLefood")
+          ? "published"
+          : "waiting_for_approval";
+        updateBusiness(businessId, {
+          state
+        })
+          .then(() => setCurrentStep(getContent(t)[currentStep.nextStep]))
+          .catch(() => setError("Publishing error - please check form values"));
+      } else if (currentStep.nextStep === CLOSE) {
+        onClose();
+      } else {
+        setCurrentStep(getContent(t)[currentStep.nextStep]);
+      }
+    }, [
+      business,
+      businessId,
+      currentStep.nextStep,
+      onClose,
+      t,
+      updateBusiness
+    ]);
 
-  const handlePrevClick = () =>
-    setCurrentStep(getContent(t)[currentStep.prevStep]);
+    const handlePrevClick = () => {
+      setError();
+      return setCurrentStep(getContent(t)[currentStep.prevStep]);
+    };
 
-  const handleSubmit = useCallback(
-    (newValue, newValuesList, prevValues) => {
-      const {
-        deliveryUrl,
-        onlineBookingUrl,
-        takeawayUrl,
-        name,
-        tagline,
-        country,
-        region,
-        street,
-        streetNumber,
-        city,
-        postCode,
-        ownerRole,
-        bio,
-        email,
-        phone,
-        phoneCountry,
-        secretCode,
-        website,
-        facebook,
-        instagram,
-        youtube,
-        breakfastService,
-        lunchService,
-        dinnerService,
-        brunchService,
-        cafeService,
-        snackService,
-        currency,
-        liveInfo,
-        pricePerPerson,
-        hasCatering,
-        hasReservations,
-        hasPrivateEvents,
-        availableInLefood,
-        canPayWithCards,
-        canPayWithCash,
-        canPayWithMobile
-      } = newValue;
-      const {
-        types,
-        cuisines,
-        foodsAndDrinks,
-        quirks,
-        diets,
-        michelinStars,
-        country: newCountry,
-        region: newRegion
-      } = newValuesList;
-      const { country: countryValue, region: regionValue } = prevValues;
-
-      const sendGroupsList =
-        !name &&
-        !tagline &&
-        !(country && country.value) &&
-        !(region && region.value) &&
-        !street &&
-        !streetNumber &&
-        !city &&
-        !postCode &&
-        !ownerRole &&
-        !bio;
-
-      const requestValues = {
-        name,
-        tagline,
-        countryCode: isSelectValueChanged(country, countryValue)
-          ? country.value
-          : undefined,
-        regionCode: isSelectValueChanged(region, regionValue)
-          ? region.value
-          : undefined,
-        street,
-        streetNumber,
-        city,
-        postCode,
-        groupsList: sendGroupsList
-          ? getGroupsValues([
-              ...types.slice(0, 3),
-              ...cuisines.slice(0, 5),
-              ...foodsAndDrinks.slice(0, 6),
-              ...quirks.slice(0, 10),
-              ...diets,
-              ...michelinStars.slice(0, 1)
-            ])
-          : undefined,
-        ownerRole,
-        bio,
-        email,
-        phone,
-        phoneCountryPrefix:
-          phoneCountry && phoneCountry.value
-            ? phoneCountry.value.prefix
-            : undefined,
-        phoneCountryCode:
-          phoneCountry && phoneCountry.value
-            ? phoneCountry.value.code
-            : undefined,
-        secretCode,
-        website: addProtocol(website),
-        facebook: addProtocol(facebook),
-        instagram: addProtocol(instagram),
-        youtube: addProtocol(youtube),
-        breakfastService,
-        lunchService,
-        dinnerService,
-        brunchService,
-        cafeService,
-        snackService,
-        currency: currency && currency.value,
-        liveInfo,
-        pricePerPerson,
-        hasCatering,
-        hasReservations,
-        hasPrivateEvents,
-        availableInLefood,
-        canPayWithCards,
-        canPayWithCash,
-        canPayWithMobile,
-        deliveryUrl: addProtocol(deliveryUrl),
-        onlineBookingUrl: addProtocol(onlineBookingUrl),
-        takeawayUrl: addProtocol(takeawayUrl)
-      };
-      if (Object.values(requestValues).some(v => !!v)) {
-        setUpdatedValues({
+    const handleSubmit = useCallback(
+      (newValue, newValuesList, prevValues) => {
+        const {
+          deliveryUrl,
+          onlineBookingUrl,
+          takeawayUrl,
+          name,
+          tagline,
+          country,
+          region,
+          street,
+          streetNumber,
+          city,
+          postCode,
+          ownerRole,
+          bio,
+          email,
+          phone,
+          phoneCountry,
+          secretCode,
+          website,
+          facebook,
+          instagram,
+          youtube,
+          breakfastService,
+          lunchService,
+          dinnerService,
+          brunchService,
+          cafeService,
+          snackService,
+          currency,
+          liveInfo,
+          pricePerPerson,
+          hasCatering,
+          hasReservations,
+          hasPrivateEvents,
+          availableInLefood,
+          canPayWithCards,
+          canPayWithCash,
+          canPayWithMobile
+        } = newValue;
+        const {
           types,
           cuisines,
           foodsAndDrinks,
@@ -208,144 +161,250 @@ const OnboardingModal = ({
           michelinStars,
           country: newCountry,
           region: newRegion
-        });
+        } = newValuesList;
+        const { country: countryValue, region: regionValue } = prevValues;
 
-        return updateBusiness(businessId, requestValues, true);
-      }
-      return null;
-    },
-    [businessId, updateBusiness]
-  );
+        const sendGroupsList =
+          !name &&
+          !tagline &&
+          !(country && country.value) &&
+          !(region && region.value) &&
+          !street &&
+          !streetNumber &&
+          !city &&
+          !postCode &&
+          !ownerRole &&
+          !bio;
 
-  const initialPeriods = businessOpenPeriods
-    ? parsePeriods(businessOpenPeriods)
-    : {};
+        const requestValues = {
+          name,
+          tagline,
+          countryCode: isSelectValueChanged(country, countryValue)
+            ? country.value
+            : undefined,
+          regionCode: isSelectValueChanged(region, regionValue)
+            ? region.value
+            : undefined,
+          street,
+          streetNumber,
+          city,
+          postCode,
+          groupsList: sendGroupsList
+            ? getGroupsValues([
+                ...types.slice(0, 3),
+                ...cuisines.slice(0, 5),
+                ...foodsAndDrinks.slice(0, 6),
+                ...quirks.slice(0, 10),
+                ...diets,
+                ...michelinStars.slice(0, 1)
+              ])
+            : undefined,
+          ownerRole,
+          bio,
+          email,
+          phone,
+          phoneCountryPrefix:
+            phoneCountry && phoneCountry.value
+              ? phoneCountry.value.prefix
+              : undefined,
+          phoneCountryCode:
+            phoneCountry && phoneCountry.value
+              ? phoneCountry.value.code
+              : undefined,
+          secretCode,
+          website: addProtocol(website),
+          facebook: addProtocol(facebook),
+          instagram: addProtocol(instagram),
+          youtube: addProtocol(youtube),
+          breakfastService,
+          lunchService,
+          dinnerService,
+          brunchService,
+          cafeService,
+          snackService,
+          currency: currency && currency.value,
+          liveInfo,
+          pricePerPerson,
+          hasCatering,
+          hasReservations,
+          hasPrivateEvents,
+          availableInLefood,
+          canPayWithCards,
+          canPayWithCash,
+          canPayWithMobile,
+          deliveryUrl: addProtocol(deliveryUrl),
+          onlineBookingUrl: addProtocol(onlineBookingUrl),
+          takeawayUrl: addProtocol(takeawayUrl)
+        };
+        if (Object.values(requestValues).some(v => !!v)) {
+          setUpdatedValues({
+            types,
+            cuisines,
+            foodsAndDrinks,
+            quirks,
+            diets,
+            michelinStars,
+            country: newCountry,
+            region: newRegion
+          });
+          return updateBusiness(businessId, requestValues, true);
+        }
+        return null;
+      },
+      [businessId, updateBusiness]
+    );
 
-  const initialValues = useMemo(
-    () => ({
-      ...getInitialValues({ business, businessGroups }),
-      periods: initialPeriods,
-      ...getImagesValues({
+    const initialPeriods = businessOpenPeriods
+      ? parsePeriods(businessOpenPeriods)
+      : {};
+
+    const initialValues = useMemo(
+      () => ({
+        ...getInitialValues({ business, businessGroups }),
+        periods: initialPeriods,
+        ...getImagesValues({
+          business,
+          businessMenus,
+          businessPictures,
+          businessProducts
+        }),
+        ...getInitialAdditionalInfo(business),
+        ...getInitialLinks(business)
+      }),
+      [
         business,
+        businessGroups,
         businessMenus,
         businessPictures,
-        businessProducts
-      }),
-      ...getInitialAdditionalInfo(business),
-      ...getInitialLinks(business)
-    }),
-    [
-      business,
-      businessGroups,
-      businessMenus,
-      businessPictures,
-      businessProducts,
-      initialPeriods
-    ]
-  );
+        businessProducts,
+        initialPeriods
+      ]
+    );
 
-  const onServiceLinkChange = useCallback(
-    (id, values) => updateServiceLink(id, values),
-    [updateServiceLink]
-  );
+    const onServiceLinkChange = useCallback(
+      (id, values) => updateServiceLink(id, values),
+      [updateServiceLink]
+    );
 
-  const onServiceLinkDelete = useCallback(
-    ({ id, name }) => {
-      const modalProps = {
-        children: (
-          <H3>{t("additionalInformation:deletePrompt", { service: name })}</H3>
-        ),
-        btnOkText: t("forms:delete"),
-        btnCancelText: t("forms:cancel"),
-        restyled: true,
-        inverseColors: true,
-        onConfirm: async () => {
-          await removeServiceLink(id);
-          hideModal();
-        }
-      };
+    const onServiceLinkDelete = useCallback(
+      ({ id, name }) => {
+        const modalProps = {
+          children: (
+            <H3>
+              {t("additionalInformation:deletePrompt", { service: name })}
+            </H3>
+          ),
+          btnOkText: t("forms:delete"),
+          btnCancelText: t("forms:cancel"),
+          restyled: true,
+          inverseColors: true,
+          onConfirm: async () => {
+            await removeServiceLink(id);
+            hideModal();
+          }
+        };
 
-      setModalData({ name: MODALS.REMOVE_SERVICE_LINK, props: modalProps });
-    },
-    [hideModal, removeServiceLink, t]
-  );
+        setModalData({ name: MODALS.REMOVE_SERVICE_LINK, props: modalProps });
+      },
+      [hideModal, removeServiceLink, t]
+    );
 
-  const onServiceAdd = useCallback(() => {
-    setModalData({ name: MODALS.ADD_SERVICE_LINK });
+    const onServiceAdd = useCallback(() => {
+      setModalData({ name: MODALS.ADD_SERVICE_LINK });
+    }, []);
+
+    const groupsData = getGroupsData(groups);
+
+    useEffect(() => {
+      getExternalServices();
+      // eslint-disable-next-line
   }, []);
 
-  const groupsData = getGroupsData(groups);
+    const values = useMemo(
+      () => ({
+        ...initialValues,
+        ...updatedValues
+      }),
+      [initialValues, updatedValues]
+    );
 
-  return (
-    <>
-      <ModalStyles />
-      <Modal
-        open={isModalOpen}
-        onClose={onClose}
-        btnCancelText={t("forms:cancel")}
-      >
-        {cloneElement(
-          currentStep.component,
-          {
-            values: { ...initialValues, ...updatedValues },
-            hasHintOpen,
-            setHasHintOpen,
-            handleSubmit,
-            businessId,
-            groupsData,
-            serviceLinks,
-            onServiceAdd,
-            onServiceLinkChange,
-            onServiceLinkDelete
-          },
-          null
-        )}
-        <BottomNavigation>
-          <Bar
-            color="midnightblue"
-            width={currentStep.progress || "0"}
-            height="5px"
-            radius="5px"
-            bgcolor="#fff"
-            wrapperStyles={{
-              width: "calc(100% + 76px)",
-              position: "absolute",
-              top: "-10px"
-            }}
-          />
-          {currentStep.prevButtonText && (
-            <Button
-              onClick={handlePrevClick}
-              color="black"
-              variant={BUTTON_VARIANT.NAKED}
-            >
-              {currentStep.prevButtonText}
-            </Button>
+    return (
+      <div>
+        <ModalStyles />
+        <Modal
+          open={isModalOpen}
+          onClose={onClose}
+          btnCancelText={t("forms:cancel")}
+          closeOnOverlayClick={false}
+        >
+          {cloneElement(
+            currentStep.component,
+            {
+              values,
+              hasHintOpen,
+              setHasHintOpen,
+              handleSubmit,
+              businessId,
+              groupsData,
+              serviceLinks,
+              onServiceAdd,
+              onServiceLinkChange,
+              onServiceLinkDelete
+            },
+            null
           )}
-          <Button
-            onClick={handleNextClick}
-            withArrow
-            type="submit"
-            variant={BUTTON_VARIANT.GRADIENT}
-          >
-            {currentStep.buttonText}
-          </Button>
-        </BottomNavigation>
-        {modalData && modalData.name === MODALS.ADD_SERVICE_LINK && (
-          <AddServiceLink open onClose={hideModal} />
-        )}
-        {modalData && modalData.name === MODALS.REMOVE_SERVICE_LINK && (
-          <Confirm open onClose={hideModal} {...modalData.props} />
-        )}
-      </Modal>
-    </>
-  );
-};
+          <BottomNavigation>
+            {error && <Error>{error}</Error>}
+            <Bar
+              color="midnightblue"
+              width={currentStep.progress || "0"}
+              height="5px"
+              radius="5px"
+              bgcolor="#fff"
+              wrapperStyles={{
+                width: "calc(100% + 76px)",
+                position: "absolute",
+                top: "-10px"
+              }}
+            />
+            {currentStep.prevButtonText && (
+              <Button
+                onClick={handlePrevClick}
+                color="black"
+                variant={BUTTON_VARIANT.NAKED}
+              >
+                {currentStep.prevButtonText}
+              </Button>
+            )}
+            <Button
+              onClick={handleNextClick}
+              withArrow
+              type="submit"
+              variant={
+                error ? BUTTON_VARIANT.SECONDARY : BUTTON_VARIANT.GRADIENT
+              }
+            >
+              {currentStep.buttonText}
+            </Button>
+          </BottomNavigation>
+          {modalData && modalData.name === MODALS.ADD_SERVICE_LINK && (
+            <AddServiceLink open onClose={hideModal} />
+          )}
+          {modalData && modalData.name === MODALS.REMOVE_SERVICE_LINK && (
+            <Confirm open onClose={hideModal} {...modalData.props} />
+          )}
+        </Modal>
+      </div>
+    );
+  }
+);
 
 OnboardingModal.propTypes = {
   business: shape(),
   businessId: string,
   businessGroups: shape(),
+  externalServices: arrayOf(shape()),
+  getExternalServices: func.isRequired,
   updateBusiness: func.isRequired,
   businessOpenPeriods: shape(),
   businessMenus: shape(),
@@ -365,6 +424,7 @@ OnboardingModal.defaultProps = {
   businessMenus: null,
   businessPictures: null,
   businessProducts: null,
+  externalServices: [],
   groups: null,
   serviceLinks: null
 };
@@ -395,6 +455,7 @@ export default connect(
     addBusiness: postBusiness,
     getProfileBusiness: fetchProfileBusiness,
     updateServiceLink: patchServiceLink,
-    removeServiceLink: deleteServiceLink
+    removeServiceLink: deleteServiceLink,
+    getExternalServices: fetchExternalServices
   }
 )(OnboardingModal);

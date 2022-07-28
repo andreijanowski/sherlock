@@ -12,6 +12,7 @@ export const PreviewWrapper = styled(Box)`
   overflow: ${p => (p.scroll ? "scroll" : "hidden")};
   -ms-overflow-style: none;
   scrollbar-width: none;
+  transform: translateZ(0);
 
   &::-webkit-scrollbar {
     display: none;
@@ -19,12 +20,26 @@ export const PreviewWrapper = styled(Box)`
 `;
 
 export const PreviewButtons = styled.img`
+  display: block;
   width: 100%;
   position: sticky;
   cursor: pointer;
-  bottom: 0;
   left: 0;
   z-index: 1;
+
+  @media (max-width: 1450px) {
+    bottom: 0;
+  }
+
+  @media not all and (-webkit-min-device-pixel-ratio: 1) and (min-resolution: 0.001dpcm) and (max-width: 1450px) {
+    @supports (-webkit-appearance: none) {
+      bottom: -87px;
+    }
+  }
+
+  @media (min-width: 1450px) {
+    bottom: 0;
+  }
 `;
 
 export const Placeholder = styled.div`
@@ -177,11 +192,13 @@ export const FeaturesWrapper = styled.div`
 `;
 
 export const Feature = styled.div`
-  margin-right: 11px;
+  margin-right: ${p => p.mr || "0"};
 
   > div {
-    width: 28px;
-    height: 28px;
+    min-width: ${p => p.size || "28px"};
+    width: ${p => p.size || "28px"};
+    min-height: ${p => p.size || "28px"};
+    height: ${p => p.size || "28px"};
   }
 `;
 
@@ -379,6 +396,10 @@ export const Media = styled.div`
   flex-direction: column;
   width: 100%;
   margin-bottom: -60px;
+
+  > div {
+    min-height: 25px;
+  }
 `;
 
 export const Label = styled.div`

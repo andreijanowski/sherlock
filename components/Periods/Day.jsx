@@ -58,7 +58,14 @@ class Day extends PureComponent {
   };
 
   render() {
-    const { t, weekday, addPeriod, isLocationVisible, mutators } = this.props;
+    const {
+      t,
+      weekday,
+      addPeriod,
+      isLocationVisible,
+      mutators,
+      hasHiddenMessages
+    } = this.props;
     const { isRequestPending, isUpdating } = this.state;
     return (
       <FieldArray name={`day-${weekday}`}>
@@ -70,6 +77,7 @@ class Day extends PureComponent {
               t={t}
               arrayName={`day-${weekday}`}
               key="autoSave"
+              hasHiddenMessages={hasHiddenMessages}
             />
             <DayContainer
               width={1}
@@ -174,7 +182,12 @@ Day.propTypes = {
   weekday: number.isRequired,
   isLocationVisible: bool.isRequired,
   mutators: shape().isRequired,
-  values: shape().isRequired
+  values: shape().isRequired,
+  hasHiddenMessages: bool
+};
+
+Day.defaultProps = {
+  hasHiddenMessages: false
 };
 
 export default Day;

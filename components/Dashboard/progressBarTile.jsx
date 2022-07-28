@@ -68,6 +68,7 @@ const ProgressBarTile = ({
 
             return (
               <ProgressBar
+                key={title}
                 color={color}
                 withPercentage
                 title={t(title)}
@@ -83,10 +84,15 @@ const ProgressBarTile = ({
 
 ProgressBarTile.propTypes = {
   fetchAction: func.isRequired,
-  businessId: string.isRequired,
-  dashboard: shape().isRequired,
+  businessId: string,
+  dashboard: shape(),
   t: func.isRequired,
   isFetching: bool.isRequired
+};
+
+ProgressBarTile.defaultProps = {
+  dashboard: null,
+  businessId: ""
 };
 
 export default connect(state => {

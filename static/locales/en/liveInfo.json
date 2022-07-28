@@ -1,7 +1,14 @@
 {
-  "header": "Live info",
-  "liveInfo": "Live info",
-  "liveInfoLabel": "Live info",
+  "header": "Live Info",
+  "liveInfo": "Live Info",
+  "liveInfoLabel": "Live Info",
   "liveInfoPlaceholder": "70% off on sunday 01.01.19",
-  "liveInfoHint": "Here you can add events, promotions, or business updates. You can change the live info as often as you need. It will appear on the top left corner of your profile."
+  "liveInfoHint": "Here you can add events, promotions, or business updates. You can change the live info as often as you need. It will appear on the top left corner of your profile.",
+  "hints": [
+    "You can choose one of the following templates that we suggest to use",
+    "“First order 50%“",
+    "“Terrace closed due to renovation“",
+    "“Buy 1 Margharita Pizza get 1 Free“",
+    "“We have extended our business hours this long weekend!“"
+  ]
 }

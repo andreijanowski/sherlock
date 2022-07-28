@@ -67,7 +67,7 @@ const ImagesMenus = ({
       <Wrapper>
         <Title>{t("app:manageProfile.picturesAndMenus")}</Title>
         <Content>
-          <InfoWrapper minWidth="800px" height="550px">
+          <InfoWrapper minWidth="800px" height="570px">
             <PicturesForm
               {...{
                 t,
@@ -111,13 +111,14 @@ ImagesMenus.propTypes = {
   changeCurrentBusiness: func.isRequired,
   getProfileBusiness: func.isRequired,
   businesses: shape(),
-  values: shape().isRequired
+  values: shape()
 };
 
 ImagesMenus.defaultProps = {
   businesses: null,
   businessId: "",
-  businessOpenPeriods: null
+  businessOpenPeriods: null,
+  values: null
 };
 
 export default connect(

@@ -36,7 +36,7 @@ const LookingGood = ({ values: initialValues, handleSubmit }) => {
           <Wrapper>
             <Title>{t("lookingGood.header")}</Title>
             <Content>
-              <InfoWrapper minWidth="800px" height="550px">
+              <InfoWrapper minWidth="800px" height="570px">
                 <Info fs="24px" fw="700" black>
                   <Trans
                     t={t}
@@ -68,8 +68,13 @@ const LookingGood = ({ values: initialValues, handleSubmit }) => {
 };
 
 LookingGood.propTypes = {
-  values: shape().isRequired,
-  handleSubmit: func.isRequired
+  values: shape(),
+  handleSubmit: func
+};
+
+LookingGood.defaultProps = {
+  values: null,
+  handleSubmit: null
 };
 
 export default LookingGood;

@@ -11,7 +11,7 @@ const TextScroller = ({ words, scrollerProps }) => (
       count={words.length + 1}
       {...scrollerProps}
     >
-      {words.map((word, index) => (
+      {[...words].map((word, index) => (
         <Word key={word} index={index}>
           {word}
         </Word>

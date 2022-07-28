@@ -144,5 +144,9 @@
   "analytics": "Analytics",
   "ordersNotifications": "Orders notifications",
   "reservationsNotifications": "Reservation notifications",
-  "description": "Description"
+  "description": "Description",
+  "openNow": "Open now: ",
+  "seeAllHours": "See all hours",
+  "readMore": "Read more",
+  "mustTry": "Must Try"
 }

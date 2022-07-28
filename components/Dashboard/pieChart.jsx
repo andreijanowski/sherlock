@@ -1,7 +1,7 @@
 import React from "react";
 import { PieChart, Pie, Cell, Legend, ResponsiveContainer } from "recharts";
 import { Flex } from "@rebass/grid";
-import { shape } from "prop-types";
+import { shape, arrayOf } from "prop-types";
 import { randomChartGenerator } from "./utils";
 import { Bullet } from "./styled";
 
@@ -16,6 +16,7 @@ const CustomizedLegend = props => {
             mb={isLastChild ? 0 : 3}
             justifyContent="space-between"
             alignItems="center"
+            key={entry.payload.value}
           >
             <Flex alignItems="center">
               <Bullet background={entry.color} />
@@ -30,7 +31,11 @@ const CustomizedLegend = props => {
 };
 
 CustomizedLegend.propTypes = {
-  payload: shape.isRequired
+  payload: arrayOf(shape())
+};
+
+CustomizedLegend.defaultProps = {
+  payload: []
 };
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];

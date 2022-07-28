@@ -38,5 +38,18 @@
   "labelsDistinctions": "Premios y Reconocimientos (opcional)",
   "michelinStarsPlaceholder": "1 estrella Michelin",
   "michelinStars": "Estrellas Michelin",
-  "bio": "Bio"
+  "bio": "Bio",
+  "businessBio": "Business Bio / Sobre nosotros",
+  "businessBioPlaceholder": "“Es un lugar pequeño en ...”",
+  "description": "Descripción",
+  "optional": "(opcional)",
+  "tags": "Etiquetas",
+  "tagsDescription": "Las etiquetas son filtros que describen tu negocio y ayudan a los usuarios a encontrarte",
+  "hints": [
+    "<0>Consejo:</0> escriba unas líneas para describir su establecimiento. Probablemente tenga una descripción en su sitio web que puede copiar aquí.",
+    "“Restaurante acogedor con buena comida y personal amable”",
+    "“Lugar amplio con música en vivo y gran vista”",
+    "“Pequeño restaurante familiar con ambiente acogedor”",
+    "“Bonito lugar para tomar bebidas y aperitivos”"
+  ]
 }

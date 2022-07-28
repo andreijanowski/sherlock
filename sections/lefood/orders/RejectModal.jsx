@@ -133,13 +133,14 @@ const RejectModal = ({
 
 RejectModal.propTypes = {
   pendingRejectionOrder: shape(),
-  isOpen: bool.isRequired,
+  isOpen: bool,
   onClose: func.isRequired,
   handleRejectionSubmit: func.isRequired
 };
 
 RejectModal.defaultProps = {
-  pendingRejectionOrder: undefined
+  pendingRejectionOrder: undefined,
+  isOpen: false
 };
 
 export default RejectModal;

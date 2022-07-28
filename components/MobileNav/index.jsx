@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Flex } from "@rebass/grid";
-import { func, string, shape } from "prop-types";
+import { func, string, shape, arrayOf } from "prop-types";
 import { connect } from "react-redux";
 
 import { postBusiness } from "actions/businesses";
@@ -80,6 +80,7 @@ const MobileNav = ({
           {config.map(subitem => {
             const renderItem = item => (
               <SubItem
+                key={item.label}
                 {...{
                   lng,
                   t,
@@ -96,7 +97,10 @@ const MobileNav = ({
             const isGroup = !!subitem.groupTitle;
 
             return isGroup ? (
-              <CollapsingGroup title={subitem.groupTitle}>
+              <CollapsingGroup
+                key={subitem.groupTitle}
+                title={subitem.groupTitle}
+              >
                 {subitem.items.map(renderItem)}
               </CollapsingGroup>
             ) : (
@@ -118,22 +122,18 @@ const MobileNav = ({
 MobileNav.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  currentPage: string.isRequired,
+  currentPage: string,
   business: shape(),
   businesses: shape(),
   changeCurrentBusiness: func.isRequired,
   addBusiness: func.isRequired,
-  config: shape().isRequired
+  config: arrayOf(shape()).isRequired
 };
 
 MobileNav.defaultProps = {
   business: null,
-  businesses: null
-};
-
-MobileNav.defaultProps = {
-  business: null,
-  businesses: null
+  businesses: null,
+  currentPage: ""
 };
 
 export default connect(

@@ -50,13 +50,13 @@
     }
   },
   "lookingGood": {
-    "header": "Looking good?",
-    "subheader": "Please <0>check your profile</0> preview by swiping the phone up and down before publishing it.",
-    "hint": "You will be able to add more information after publishing your profile."
+    "header": "Cela vous convient ?",
+    "subheader": "Veuillez <0>vérifier l'aperçu de votre profil</0> en faisant glisser le téléphone de haut en bas avant de le publier.",
+    "hint": "Vous pourrez ajouter plus d'informations après avoir publié votre profil."
   },
   "confirmation": {
     "header": "Félicitations, la <0>demande de publication</0> de votre business à bien été reçue.",
-    "subheader": "Votre business sera <0>publié sous 24 heures</0>. (à moins que votre profil ne soit déjà référencé sur notre plateforme : dans ce cas, tout est prêt). <1/>Une fois votre profil publié, vous recevrez un email de confirmation. <1/><0>Vous aurez toujours la possibilité de modifier</0> vos profil après sa publication.",
+    "subheader": "Votre business sera <0>publié sous 24 heures</0>. <1/>(à moins que votre profil ne soit déjà référencé sur notre plateforme : dans ce cas, tout est prêt). <1/>Une fois votre profil publié, vous recevrez un email de confirmation. <1/><0>Vous aurez toujours la possibilité de modifier</0> vos profil après sa publication.",
     "gotit": "C'est compris, merci"
   }
 }

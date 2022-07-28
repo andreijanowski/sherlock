@@ -11,6 +11,7 @@ import { getSubdivisions, countries } from "utils/iso-3166-2";
 import { useT } from "utils/hooks";
 import countriesPhoneCodes from "utils/countriesPhoneCodes";
 import { normalizePhone } from "utils/normalizers";
+import { required } from "utils/validators";
 import {
   Content,
   Wrapper,
@@ -45,6 +46,7 @@ const BasicInfo = ({
             setFieldData={mutators.setFieldData}
             save={handleSubmit}
             t={t}
+            hasHiddenMessages
           />
           <WhenFieldChanges
             field="country"
@@ -61,11 +63,12 @@ const BasicInfo = ({
           <Wrapper>
             <Title>{t("app:manageProfile.basicInformation")}</Title>
             <Content>
-              <InfoWrapper minWidth="800px" height="550px">
+              <InfoWrapper minWidth="800px" height="570px">
                 <FormInput
                   name="name"
                   label={t("nameLabel")}
                   placeholder={t("namePlaceholder")}
+                  validate={required(t)}
                 />
                 <FormInput
                   name="website"
@@ -174,14 +177,17 @@ const BasicInfo = ({
 };
 
 BasicInfo.propTypes = {
-  values: shape().isRequired,
+  values: shape(),
   hasHintOpen: bool,
-  setHasHintOpen: func.isRequired,
-  handleSubmit: func.isRequired
+  setHasHintOpen: func,
+  handleSubmit: func
 };
 
 BasicInfo.defaultProps = {
-  hasHintOpen: true
+  hasHintOpen: true,
+  values: null,
+  setHasHintOpen: null,
+  handleSubmit: null
 };
 
 export default BasicInfo;

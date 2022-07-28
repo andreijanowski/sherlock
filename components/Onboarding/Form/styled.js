@@ -55,7 +55,7 @@ export const Center = styled.div`
 `;
 
 export const InfoWrapper = styled(Box)`
-  margin: 10px auto;
+  margin: 10px auto 0;
   height: ${p => p.height || "100%"};
   min-width: ${p => p.minWidth};
   overflow-y: scroll;
@@ -76,7 +76,7 @@ export const Info = styled.h5`
   color: rgb(
     ${p => (p.black ? p.theme.colors.black : p.theme.colors.buttonSecondary)}
   );
-  margin: 12px 0 46px;
+  margin: ${p => p.margin || "12px 0 46px"};
   text-align: ${p => p.align || "initial"};
   line-height: ${p => p.lh || "normal"};
 `;
@@ -108,6 +108,21 @@ export const Link = styled.button`
   text-decoration: underline;
   cursor: pointer;
   color: rgb(${p => p.theme.colors.deepSkyBlue});
+`;
+
+export const Hint = styled.div`
+  position: relative;
+  padding: 24px;
+  top: -12px;
+  left: 3px;
+  width: calc(100% - 6px);
+  background-color: rgb(${p => p.theme.colors.white});
+  box-shadow: 0px 0px 10px rgba(55, 81, 255, 0.15);
+  border-radius: 4px;
+`;
+
+export const Blue = styled.span`
+  color: rgb(${p => p.theme.colors.blue});
 `;
 
 export const HintModal = styled.div`

@@ -50,12 +50,14 @@ const MobilePreview = ({
   city,
   cuisines,
   bio,
+  diets,
+  facebook,
+  instagram,
+  logo,
+  liveInfo,
   foodsAndDrinks,
   quirks,
-  diets,
   periods,
-  liveInfo,
-  logo,
   menus,
   michelinStars,
   name,
@@ -71,7 +73,7 @@ const MobilePreview = ({
   hasReservations,
   canPayWithMobile
 }) => {
-  const t = useT("app");
+  const t = useT(["app", "additionalInformation"]);
   const checkProp = prop => prop || <Placeholder />;
   const hasPhone = !!(phone && phone.length);
   const hasMap = !!(street && street.length) || !!(city && city.length);
@@ -92,6 +94,12 @@ const MobilePreview = ({
     hasReservations ||
     canPayWithMobile
   );
+  const hasMedia = facebook || instagram || website;
+  const media = {
+    facebook,
+    instagram,
+    website
+  };
 
   const additionalItems = [
     ...foodsAndDrinks,
@@ -103,8 +111,8 @@ const MobilePreview = ({
   const HoursInfo = () => (
     <HoursWrapper>
       <IconImg src="/static/img/onboarding/clock.svg" />
-      <Green>Open now:&nbsp;</Green>
-      <span>See all hours</span>
+      <Green>{t("openNow")}&nbsp;</Green>
+      <span>{t("seeAllHours")}</span>
     </HoursWrapper>
   );
 
@@ -197,7 +205,7 @@ const MobilePreview = ({
             </Placeholders>
           )}
           {bio ? (
-            <ReadMore>Read more</ReadMore>
+            <ReadMore>{t("readMore")}</ReadMore>
           ) : (
             <b>
               <Placeholder />
@@ -207,8 +215,8 @@ const MobilePreview = ({
         <MustTrySection>
           {hasProducts ? (
             <Label>
-              <MustTry>Must Try</MustTry>
-              <OrderNow>Order Now</OrderNow>
+              <MustTry>{t("mustTry")}</MustTry>
+              <OrderNow>{t("manageIntegrations.orderNow")}</OrderNow>
             </Label>
           ) : (
             <Label>
@@ -250,7 +258,11 @@ const MobilePreview = ({
         </Reviews>
         <AddInfo>
           <Label>
-            {hasAddInfo ? <MustTry>Additional Info</MustTry> : <Placeholder />}
+            {hasAddInfo ? (
+              <MustTry>{t("additionalInformation:shortHeader")}</MustTry>
+            ) : (
+              <Placeholder />
+            )}
           </Label>
           {hasAddInfo
             ? additionalItems.map(i => <Info key={i.label}> • {i.label}</Info>)
@@ -261,7 +273,7 @@ const MobilePreview = ({
               ))}
           <RevealButtonWrapper>
             {hasAddInfo ? (
-              <RevealButton> See all information </RevealButton>
+              <RevealButton>{t("additionalInformation:seeAll")}</RevealButton>
             ) : (
               <Placeholder />
             )}
@@ -269,12 +281,24 @@ const MobilePreview = ({
         </AddInfo>
         <Media>
           <Label>
-            <Placeholder />
+            {hasMedia ? (
+              <MustTry>
+                {t("additionalInformation:serviceLinkCategory.social_media")}
+              </MustTry>
+            ) : (
+              <Placeholder />
+            )}
           </Label>
           <TagsWrapper>
-            {[0, 1, 2].map(el => (
-              <Feature key={el}>
-                <Placeholder />
+            {["instagram", "facebook", "website"].map(site => (
+              <Feature key={site} mr="16px" size="22px">
+                <Logo>
+                  {media[site] ? (
+                    <LogoImg src={`/static/img/onboarding/${site}Logo.svg`} />
+                  ) : (
+                    <Placeholder />
+                  )}
+                </Logo>
               </Feature>
             ))}
           </TagsWrapper>
@@ -310,7 +334,9 @@ MobilePreview.propTypes = {
   hasCatering: bool,
   hasPrivateEvents: bool,
   hasReservations: bool,
-  canPayWithMobile: bool
+  canPayWithMobile: bool,
+  facebook: string,
+  instagram: string
 };
 
 MobilePreview.defaultProps = {
@@ -333,6 +359,8 @@ MobilePreview.defaultProps = {
   street: "",
   types: [],
   website: "",
+  facebook: "",
+  instagram: "",
   hasCatering: false,
   hasPrivateEvents: false,
   hasReservations: false,

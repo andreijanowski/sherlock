@@ -11,9 +11,11 @@ import { MobilePreview } from "components/Onboarding";
 import { FormInput, AutoSave } from "components";
 
 import {
+  Blue,
   Content,
   Wrapper,
   Title,
+  Hint,
   Info,
   InfoWrapper,
   FormWrapper,
@@ -29,20 +31,19 @@ const Description = ({ values: initialValues, handleSubmit }) => {
       initialValues={initialValues}
       onSubmit={handleSubmit}
       mutators={{ setFieldData }}
-      subscription={{
-        form: true
-      }}
-      render={({ form: { mutators } }) => (
+      subscription={{ values: true, form: true }}
+      render={({ values, form: { mutators } }) => (
         <FormWrapper>
           <AutoSave
             setFieldData={mutators.setFieldData}
             save={handleSubmit}
             t={t}
+            hasHiddenMessages
           />
           <Wrapper>
             <Title>{t("description")}</Title>
             <Content>
-              <InfoWrapper minWidth="800px" height="550px">
+              <InfoWrapper minWidth="800px" height="570px">
                 <FieldLabel>
                   {t("businessBio")}
                   <Optional>{t("optional")}</Optional>
@@ -52,6 +53,18 @@ const Description = ({ values: initialValues, handleSubmit }) => {
                   label={t("bioLabel")}
                   placeholder={t("businessBioPlaceholder")}
                 />
+                {!values.bio && (
+                  <Hint>
+                    <Info fs="16px" fw="600" margin="0 0 9px">
+                      <Trans t={t} i18nKey="hints.0" components={[<Blue />]} />
+                    </Info>
+                    {[1, 2, 3, 4].map(el => (
+                      <Info fs="14px" key={el} margin="18px 0 0">
+                        {t(`hints.${el}`)}
+                      </Info>
+                    ))}
+                  </Hint>
+                )}
                 <FieldLabel>
                   {t("contactInformation:youtube")}
                   <Optional>{t("optional")}</Optional>
@@ -69,8 +82,26 @@ const Description = ({ values: initialValues, handleSubmit }) => {
                     components={[<b />]}
                   />
                 </Info>
+                <FieldLabel>
+                  Facebook
+                  <Optional>{t("optional")}</Optional>
+                </FieldLabel>
+                <FormInput
+                  name="facebook"
+                  label="Facebook (optional)"
+                  placeholder={t("contactInformation:facebookPlaceholder")}
+                />
+                <FieldLabel>
+                  Instagram
+                  <Optional>{t("optional")}</Optional>
+                </FieldLabel>
+                <FormInput
+                  name="instagram"
+                  label="Instagram (optional)"
+                  placeholder={t("contactInformation:instagramPlaceholder")}
+                />
               </InfoWrapper>
-              <MobilePreview {...initialValues} />
+              <MobilePreview {...values} />
             </Content>
           </Wrapper>
         </FormWrapper>
@@ -80,8 +111,13 @@ const Description = ({ values: initialValues, handleSubmit }) => {
 };
 
 Description.propTypes = {
-  values: shape().isRequired,
-  handleSubmit: func.isRequired
+  values: shape(),
+  handleSubmit: func
+};
+
+Description.defaultProps = {
+  values: null,
+  handleSubmit: null
 };
 
 export default Description;
