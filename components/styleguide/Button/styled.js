@@ -31,8 +31,9 @@ const getBorderColorByVariant = props => {
     case BUTTON_VARIANT.OUTLINE:
       return `1px solid rgba(${[colors.white, 1].join(", ")})`;
     case BUTTON_VARIANT.NAKED:
-    case BUTTON_VARIANT.GRADIENT:
       return "0";
+    case BUTTON_VARIANT.GRADIENT:
+      return `1px solid rgba(${colors.blue})`;
     default:
       return `1px solid rgba(${[colors.white, 0].join(", ")})`;
   }
