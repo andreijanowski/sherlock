@@ -11,7 +11,7 @@ import { getSubdivisions, countries } from "utils/iso-3166-2";
 import { useT } from "utils/hooks";
 import countriesPhoneCodes from "utils/countriesPhoneCodes";
 import { normalizePhone } from "utils/normalizers";
-import { required } from "utils/validators";
+import { required, requiredProperty } from "utils/validators";
 
 import {
   Content,
@@ -88,7 +88,7 @@ const BasicInfo = ({
                       items={countries}
                       showFlag
                       isErrorVisibilityRequired={hasValidationError}
-                      validate={required(t)}
+                      validate={requiredProperty(t, "value")}
                     />
                   </Box>
                   <Box {...commonStyles}>
