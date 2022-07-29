@@ -11,7 +11,8 @@ import { getSubdivisions, countries } from "utils/iso-3166-2";
 import { useT } from "utils/hooks";
 import countriesPhoneCodes from "utils/countriesPhoneCodes";
 import { normalizePhone } from "utils/normalizers";
-import { required } from "utils/validators";
+import { required, requiredProperty } from "utils/validators";
+
 import {
   Content,
   Wrapper,
@@ -25,7 +26,8 @@ const BasicInfo = ({
   hasHintOpen,
   setHasHintOpen,
   handleSubmit,
-  values: initialValues
+  values: initialValues,
+  hasValidationError
 }) => {
   const t = useT("basicInformation");
   const regionItems = country =>
@@ -68,6 +70,7 @@ const BasicInfo = ({
                   name="name"
                   label={t("nameLabel")}
                   placeholder={t("namePlaceholder")}
+                  isErrorVisibilityRequired={hasValidationError}
                   validate={required(t)}
                 />
                 <FormInput
@@ -84,6 +87,8 @@ const BasicInfo = ({
                       placeholder={t("countryPlaceholder")}
                       items={countries}
                       showFlag
+                      isErrorVisibilityRequired={hasValidationError}
+                      validate={requiredProperty(t, "value")}
                     />
                   </Box>
                   <Box {...commonStyles}>
@@ -103,6 +108,8 @@ const BasicInfo = ({
                       name="street"
                       label={t("streetLabel")}
                       placeholder={t("streetPlaceholder")}
+                      isErrorVisibilityRequired={hasValidationError}
+                      validate={required(t)}
                     />
                   </Box>
                   <Box {...commonStyles}>
@@ -110,6 +117,8 @@ const BasicInfo = ({
                       name="streetNumber"
                       label={t("streetNumberLabel")}
                       placeholder={t("streetNumberPlaceholder")}
+                      isErrorVisibilityRequired={hasValidationError}
+                      validate={required(t)}
                     />
                   </Box>
                   <Box {...commonStyles}>
@@ -117,6 +126,8 @@ const BasicInfo = ({
                       name="city"
                       label={t("cityLabel")}
                       placeholder={t("cityPlaceholder")}
+                      isErrorVisibilityRequired={hasValidationError}
+                      validate={required(t)}
                     />
                   </Box>
                   <Box {...commonStyles}>
@@ -124,6 +135,8 @@ const BasicInfo = ({
                       name="postCode"
                       label={t("postCodeLabel")}
                       placeholder={t("postCodePlaceholder")}
+                      isErrorVisibilityRequired={hasValidationError}
+                      validate={required(t)}
                     />
                   </Box>
                 </Flex>
@@ -131,6 +144,8 @@ const BasicInfo = ({
                   name="email"
                   label={t("contactInformation:emailLabel")}
                   placeholder={t("contactInformation:emailPlaceholder")}
+                  isErrorVisibilityRequired={hasValidationError}
+                  validate={required(t)}
                 />
                 <Flex mx={-2} flexWrap="wrap">
                   <Box {...commonStyles}>
@@ -140,6 +155,8 @@ const BasicInfo = ({
                       label={t("contactInformation:countryLabel")}
                       placeholder={t("contactInformation:countryPlaceholder")}
                       items={countriesPhoneCodes}
+                      isErrorVisibilityRequired={hasValidationError}
+                      validate={required(t)}
                       showFlag
                     />
                   </Box>
@@ -148,6 +165,8 @@ const BasicInfo = ({
                       name="phone"
                       label={t("contactInformation:phoneLabel")}
                       placeholder={t("contactInformation:phonePlaceholder")}
+                      isErrorVisibilityRequired={hasValidationError}
+                      validate={required(t)}
                       parse={normalizePhone}
                     />
                   </Box>
@@ -180,14 +199,16 @@ BasicInfo.propTypes = {
   values: shape(),
   hasHintOpen: bool,
   setHasHintOpen: func,
-  handleSubmit: func
+  handleSubmit: func,
+  hasValidationError: bool
 };
 
 BasicInfo.defaultProps = {
   hasHintOpen: true,
   values: null,
   setHasHintOpen: null,
-  handleSubmit: null
+  handleSubmit: null,
+  hasValidationError: false
 };
 
 export default BasicInfo;

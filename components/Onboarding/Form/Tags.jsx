@@ -1,12 +1,13 @@
 import React from "react";
 
-import { func, shape } from "prop-types";
+import { bool, func, shape } from "prop-types";
 import { Field, Form as FinalForm } from "react-final-form";
 import setFieldData from "final-form-set-field-data";
 
 import { useT } from "utils/hooks";
 import { MobilePreview } from "components/Onboarding";
 import { FormMultipleSelect, AutoSave } from "components";
+import { validateLength } from "utils/validators";
 
 import {
   Content,
@@ -19,7 +20,12 @@ import {
   Optional
 } from "./styled";
 
-const Tags = ({ values: initialValues, handleSubmit, groupsData }) => {
+const Tags = ({
+  values: initialValues,
+  handleSubmit,
+  groupsData,
+  hasValidationError
+}) => {
   const t = useT(["basicInformation", "contactInformation"]);
 
   const {
@@ -52,10 +58,7 @@ const Tags = ({ values: initialValues, handleSubmit, groupsData }) => {
             <Content>
               <InfoWrapper minWidth="800px" height="572px">
                 <Info>{t("tagsDescription")}</Info>
-                <FieldLabel>
-                  {t("types")}
-                  <Optional>{t("optional")}</Optional>
-                </FieldLabel>
+                <FieldLabel>{t("types")}</FieldLabel>
                 <Field
                   name="types"
                   placeholder={t("typesPlaceholder")}
@@ -63,11 +66,10 @@ const Tags = ({ values: initialValues, handleSubmit, groupsData }) => {
                   items={types}
                   max={3}
                   min={1}
+                  isErrorVisibilityRequired={hasValidationError}
+                  validate={validateLength(t, 1, 3)}
                 />
-                <FieldLabel>
-                  {t("cuisines")}
-                  <Optional>{t("optional")}</Optional>
-                </FieldLabel>
+                <FieldLabel>{t("cuisines")}</FieldLabel>
                 <Field
                   name="cuisines"
                   placeholder={t("cuisinesPlaceholder")}
@@ -75,11 +77,10 @@ const Tags = ({ values: initialValues, handleSubmit, groupsData }) => {
                   items={cuisines}
                   max={5}
                   min={1}
+                  isErrorVisibilityRequired={hasValidationError}
+                  validate={validateLength(t, 1, 5)}
                 />
-                <FieldLabel>
-                  {t("foodsAndDrinks")}
-                  <Optional>{t("optional")}</Optional>
-                </FieldLabel>
+                <FieldLabel>{t("foodsAndDrinks")}</FieldLabel>
                 <Field
                   name="foodsAndDrinks"
                   placeholder={t("foodsAndDrinksPlaceholder")}
@@ -87,11 +88,10 @@ const Tags = ({ values: initialValues, handleSubmit, groupsData }) => {
                   items={foodsAndDrinks}
                   max={6}
                   min={1}
+                  isErrorVisibilityRequired={hasValidationError}
+                  validate={validateLength(t, 1, 6)}
                 />
-                <FieldLabel>
-                  {t("quirks")}
-                  <Optional>{t("optional")}</Optional>
-                </FieldLabel>
+                <FieldLabel>{t("quirks")}</FieldLabel>
                 <Field
                   name="quirks"
                   placeholder={t("quirksPlaceholder")}
@@ -99,6 +99,8 @@ const Tags = ({ values: initialValues, handleSubmit, groupsData }) => {
                   items={quirks}
                   max={10}
                   min={3}
+                  isErrorVisibilityRequired={hasValidationError}
+                  validate={validateLength(t, 3, 10)}
                 />
                 <FieldLabel>
                   {t("diets")}
@@ -135,13 +137,15 @@ const Tags = ({ values: initialValues, handleSubmit, groupsData }) => {
 Tags.propTypes = {
   values: shape(),
   handleSubmit: func,
-  groupsData: shape()
+  groupsData: shape(),
+  hasValidationError: bool
 };
 
 Tags.defaultProps = {
   values: null,
   handleSubmit: null,
-  groupsData: null
+  groupsData: null,
+  hasValidationError: false
 };
 
 export default Tags;

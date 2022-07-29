@@ -97,3 +97,6 @@ export const validateTimeString = t => date => {
 
 export const validateEndDateFormat = t => date =>
   date === 0 ? t("forms:validation.error.wrong_end_date_format") : undefined;
+
+export const checkLength = (field, min, max) =>
+  field && !(field.length > max || field.length < min);
