@@ -1,11 +1,19 @@
 import styled from "styled-components";
 import { Box, Flex } from "@rebass/grid";
 
+export const FormWrapper = styled(Flex).attrs(() => ({
+  flexDirection: "column",
+  width: 1
+}))`
+  margin-top: 0;
+  background-color: rgb(${p => p.theme.colors.white});
+`;
+
 export const Wrapper = styled(Flex).attrs(() => ({
   justifyContent: "space-between"
 }))`
   position: relative;
-  max-height: 60vh;
+  max-height: 75vh;
   overflow: scroll;
   display: flex;
   flex-direction: ${p => (p.row ? "row" : "column")};
@@ -15,11 +23,19 @@ export const Wrapper = styled(Flex).attrs(() => ({
   &::-webkit-scrollbar {
     display: none;
   }
+
+  @media (max-width: 1450px) {
+    max-height: 85vh;
+  }
 `;
 
 export const Header = styled.h2`
   font-size: 36px;
   text-align: center;
+
+  @media (max-width: 1450px) {
+    font-size: 24px;
+  }
 `;
 
 export const Blue = styled.span`
@@ -51,10 +67,11 @@ export const StepTile = styled.div`
 
 export const TileHeader = styled.div`
   width: 100%;
+  height: 230px;
   font-size: 16px;
   line-height: 140%;
   font-weight: 400;
-  padding: 24px 32px;
+  padding: 14px 32px 24px;
   border-radius: 16px 16px 0 0;
   background: ${p => p.theme.colors.gradient};
   color: rgb(${p => p.theme.colors.white});
@@ -64,6 +81,21 @@ export const StyledH3 = styled.h3`
   font-weight: 600;
   font-size: 24px !important;
   color: rgb(${p => p.theme.colors.white});
+`;
+
+export const Arrow = styled.img`
+  position: absolute;
+  bottom: calc(80vh - 700px);
+  left: 350px;
+  transform: scale(0.7);
+
+  @media (min-width: 1400px) {
+    bottom: calc(80vh - 800px);
+  }
+
+  @media (min-height: 1150px) {
+    bottom: 140px;
+  }
 `;
 
 export const Breadcrumb = styled.p`
@@ -90,6 +122,7 @@ export const Subtitle = styled.p`
 
 export const InfoWrapper = styled(Box)`
   margin: 10px auto;
+  height: 100%;
 `;
 
 export const PreviewWrapper = styled(Box)`
@@ -102,6 +135,7 @@ export const PreviewWrapper = styled(Box)`
   overflow: ${p => (p.scroll ? "scroll" : "hidden")};
   -ms-overflow-style: none;
   scrollbar-width: none;
+  transform: translateZ(0);
 
   &::-webkit-scrollbar {
     display: none;
@@ -109,12 +143,26 @@ export const PreviewWrapper = styled(Box)`
 `;
 
 export const PreviewButtons = styled.img`
+  display: block;
   width: 100%;
   position: sticky;
   cursor: pointer;
-  bottom: 0;
   left: 0;
   z-index: 1;
+
+  @media (max-width: 1450px) {
+    bottom: 0;
+  }
+
+  @media not all and (-webkit-min-device-pixel-ratio: 1) and (min-resolution: 0.001dpcm) and (max-width: 1450px) {
+    @supports (-webkit-appearance: none) {
+      bottom: -87px;
+    }
+  }
+
+  @media (min-width: 1450px) {
+    bottom: 0;
+  }
 `;
 
 export const Hints = styled.ul`
@@ -167,6 +215,7 @@ export const HintModal = styled.div`
     margin: 15px auto;
   }
 `;
+
 export const Bold = styled.span`
   font-weight: 600;
 `;

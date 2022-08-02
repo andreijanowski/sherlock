@@ -1,5 +1,6 @@
 {
   "header": "Información Adicional",
+  "shortHeader": "Información Adicional",
   "timeOfTheDay": "Hora del día",
   "breakfastService": "Desayuno",
   "lunchService": "Almuerzo",
@@ -27,7 +28,7 @@
   "canPayWithCards": "Puede pagar con tarjetas",
   "canPayWithCash": "Efectivo",
   "canPayWithMobile": "Puede pagar con el móvil",
-  "secretCode": "Código secreto",
+  "secretCode": "Código Secreto",
   "referenceCodes": "Código de referencia",
   "deliveryChargeRef": "Referencia de los gastos de envío",
   "stripePaymentRef": "Referencia de pago de Stripe",
@@ -37,6 +38,7 @@
   "secretCodePlaceholder": "32543cdsSD4ewcbwt6654",
   "redirectionLinks": "Enlaces de Redireccionamiento",
   "redirectionLinksTooltip": "Introduzca los enlaces a sus servicios/perfiles externos",
+  "addExternalServiceLink": "Añadir un enlace a mi perfil",
   "serviceLinkCategory": {
     "delivery": "A domicilio y Para Llevar",
     "booking": "Reservas",
@@ -46,5 +48,11 @@
     "social_media": "Redes Sociales",
     "online_reviews": "Reseñas online"
   },
-  "secretCodeHint": "Por favor, introduzca el código que le ha comunicado su socio de activación o representante de ventas. <0/> (Si se registra por iniciativa propia, deje este campo vacío)"
+  "servicePlaceholder": "Seleccionar servicio",
+  "urlPlaceholder": "Introducir url",
+  "deletePrompt": "¿Desea eliminar el enlace {{service}}?",
+  "redirectionWebsiteLinks": "Enlaces a sus sitios web",
+  "redirectionServicesLinks": "Enlaces a servicios externos de los socios",
+  "secretCodeHint": "Por favor, introduzca el código que le ha comunicado su socio de activación o representante de ventas. <0/> (<1>Si se registra por iniciativa propia, deje este campo vacío</1>)",
+  "seeAll": "Ver toda la información"
 }

@@ -25,21 +25,17 @@ const AppLayout = ({
   containerComponent
 }) => {
   const hasBOAgreement = Cookies.get("BOA");
-  // const hasOnboarding = Cookies.get("Onboarding");
   const router = useRouter();
   const shouldShowConfirmBOModal = !hasBOAgreement && role === BASIC_ROLE;
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (hasBOAgreement && role === BASIC_ROLE) {
-        createBusiness(() => {
-          router.push(`/${lng}${REDIRECT_URL}`);
-        });
+        createBusiness();
       }
     }, 2000);
     return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasBOAgreement, role]);
+  }, [createBusiness, hasBOAgreement, role]);
 
   const onConfirmModalSubmit = useCallback(() => {
     createBusiness(() => {
@@ -78,7 +74,6 @@ const AppLayout = ({
           onCloseModal={onConfirmModalClose}
         />
       )}
-      {/* {hasOnboarding && <OnboardingModal />} */}
     </Flex>
   );
 };

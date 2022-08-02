@@ -57,7 +57,9 @@
     "orderNow": "Ordine",
     "call": "Chiamata",
     "meeting": "Riunione",
-    "email": "Email"
+    "email": "Email",
+    "map": "Carta",
+    "reviews": "Recensioni"
   },
   "subscriptions": "Iscrizioni o Abbonamenti",
   "userSettings": {
@@ -115,5 +117,10 @@
   "influencersPoweredBy": "Influencer alimentati da Foodetective.co",
   "communityMgmt": "Community Mgmt",
   "photographyMgmt": "Fotografia",
-  "connectPartoo": "Non hai ancora effettuato l'accesso a questa funzione. Per richiedere una connessione, fate i seguenti passi: <0><1>Vai alla scheda dell'hub di integrazione</1><1>Cerca Partoo nella barra di ricerca</1><1>Cliccare su connect.</1></0> Vi informeremo via e-mail non appena la connessione sarà completata."
+  "connectPartoo": "Non hai ancora effettuato l'accesso a questa funzione. Per richiedere una connessione, fate i seguenti passi: <0><1>Vai alla scheda dell'hub di integrazione</1><1>Cerca Partoo nella barra di ricerca</1><1>Cliccare su connect.</1></0> Vi informeremo via e-mail non appena la connessione sarà completata.",
+  "description": "Descrizione",
+  "openNow": "Aperto: ",
+  "seeAllHours": "Vedi tutti gli orari",
+  "readMore": "Vedi piu",
+  "mustTry": "Bisogna provare"
 }

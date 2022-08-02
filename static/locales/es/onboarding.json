@@ -8,11 +8,12 @@
       },
       "step2": {
         "header": "Paso 2",
-        "content": "Haga el tour del producto para entender cómo gestionar todas sus operaciones desde nuestra plataforma."
+        "content": "Descubre nuestro producto y si tienes alguna pregunta, no dudes en hacerla a través de nuestro chatbot"
       }
     },
     "letsgo": "Aquí vamos",
     "next": "Próximo",
+    "previous": "Anterior",
     "step1": {
       "title": "Cree su perfil",
       "subtitle": "Este es un ejemplo de perfil una vez completada la incorporación.",
@@ -28,6 +29,34 @@
       },
       "swipe": "Desliza el teléfono para ver el perfil completo",
       "gotit": "Ok"
+    },
+    "basicinfo": {
+      "hint": {
+        "title": "Este es su perfil",
+        "subtitle": "Rellena tus datos para obtener una vista en directo del teléfono."
+      }
+    },
+    "imagesmenus": {
+      "logo": {
+        "hint": "Por favor, inserte su logo",
+        "drag_file": "Elija un archivo o arrástrelo hasta aquí"
+      },
+      "upload_pictures": {
+        "hint": "Por favor, inserte una foto de alta calidad que muestre el ambiente de su negocio (preferiblemente el interior)"
+      },
+      "must_try": {
+        "hint": "Promocione sus bestsellers."
+      }
     }
+  },
+  "lookingGood": {
+    "header": "¿Te ves bien ?",
+    "subheader": "Por favor, <0>comprueba la vista previa de tu perfil</0> deslizando el teléfono hacia arriba y hacia abajo antes de publicarlo",
+    "hint": "Podrás añadir más información después de publicar tu perfil."
+  },
+  "confirmation": {
+    "header": "Enhorabuena, la <0>solicitud de publicación</0> de su empresa ha sido recibida.",
+    "subheader": "Su negocio será <0>publicado en 24 horas</0>. <1/>(a menos que su perfil ya figure en nuestra plataforma: en ese caso, todo está listo). <1/> Una vez publicado su perfil, recibirá un correo electrónico de confirmación. <1/> <0>Siempre tendrá la posibilidad de editar</0> su perfil después de la publicación.",
+    "gotit": "Lo tengo, gracias"
   }
 }

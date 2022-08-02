@@ -91,7 +91,7 @@ const CurrencyGuard = ({
 CurrencyGuard.propTypes = {
   t: func.isRequired,
   business: shape().isRequired,
-  children: oneOf(arrayOf(node), node).isRequired,
+  children: oneOf([arrayOf(node), node]).isRequired,
   updateBusiness: func.isRequired,
   businessId: string.isRequired,
   changeCurrentBusiness: func.isRequired,

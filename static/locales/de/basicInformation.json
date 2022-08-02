@@ -38,5 +38,18 @@
   "labelsDistinctions": "Labels und Auszeichnungen (optional)",
   "michelinStars": "Michelin Sterne",
   "michelinStarsPlaceholder": "1 Michelin Stern",
-  "bio": "Bio"
+  "bio": "Bio",
+  "businessBio": "Business Bio / Über uns",
+  "businessBioPlaceholder": "“Es ist ein kleiner Ort in ...”",
+  "description": "Beschreibung",
+  "optional": "(optional)",
+  "tags": "Tags",
+  "tagsDescription": "Tags sind Filter, die Ihr Geschäft beschreiben und den Nutzern helfen, Sie zu finden.",
+  "hints": [
+    "<0>Tipp:</0> Schreiben Sie ein paar Zeilen, um Ihre Einrichtung zu beschreiben. Wahrscheinlich haben Sie eine Beschreibung auf Ihrer Website, die Sie hier kopieren können.",
+    "“Gemütliches Restaurant mit gutem Essen und freundlichem Personal”",
+    "“Geräumiges Lokal mit Live-Musik und toller Aussicht”",
+    "“Kleines Familienrestaurant mit gemütlicher Atmosphäre”",
+    "“Netter Ort für Getränke und Snacks”"
+  ]
 }

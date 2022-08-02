@@ -53,7 +53,7 @@ const SubItem = ({ t, lng, route, label, Icon, submenuItems, toggleMenu }) => {
                 </Flex>
               </Link>
             ) : (
-              <Flex align="center" onClick={item.onClick}>
+              <Flex align="center" onClick={item.onClick} key={item.label}>
                 <IconWrapper dark noFill>
                   {item.icon && React.createElement(item.icon)}
                 </IconWrapper>

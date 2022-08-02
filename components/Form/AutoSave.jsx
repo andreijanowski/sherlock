@@ -1,7 +1,7 @@
 import React from "react";
 import { FormSpy } from "react-final-form";
 import { diff } from "deep-object-diff";
-import { shape, string, func } from "prop-types";
+import { bool, shape, string, func } from "prop-types";
 import Notifications from "react-notification-system-redux";
 import { connect } from "react-redux";
 import { getErrorMessageKey, getValidMessageKey } from "utils/getErrorMessage";
@@ -28,7 +28,8 @@ class AutoSave extends React.Component {
       values,
       save,
       errors,
-      showSavedMessage
+      showSavedMessage,
+      hasHiddenMessages
     } = this.props;
     try {
       if (this.promise) {
@@ -85,7 +86,9 @@ class AutoSave extends React.Component {
           });
         }
         setFieldData(blurredField, { saving: false });
-        showSavedMessage();
+        if (!hasHiddenMessages) {
+          showSavedMessage();
+        }
       }
     } catch (e) {
       if (e.response) {
@@ -169,13 +172,15 @@ AutoSave.propTypes = {
   t: func.isRequired,
   errors: shape(),
   arrayName: string,
-  showSavedMessage: func.isRequired
+  showSavedMessage: func.isRequired,
+  hasHiddenMessages: bool
 };
 
 AutoSave.defaultProps = {
   active: "",
   errors: null,
-  arrayName: undefined
+  arrayName: undefined,
+  hasHiddenMessages: false
 };
 
 const Spy = props => (

@@ -68,18 +68,21 @@ const BarTile = ({
 
 BarTile.propTypes = {
   color: string.isRequired,
-  businessId: string.isRequired,
+  businessId: string,
   fetchAction: func.isRequired,
   title: string.isRequired,
-  dashboard: shape().isRequired,
+  dashboard: shape(),
   isFetching: bool.isRequired,
   t: func.isRequired,
   isDisabled: bool,
-  currency: string.isRequired
+  currency: string
 };
 
 BarTile.defaultProps = {
-  isDisabled: false
+  isDisabled: false,
+  dashboard: null,
+  currency: "",
+  businessId: ""
 };
 
 export default connect(state => {

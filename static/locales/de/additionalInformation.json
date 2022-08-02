@@ -1,5 +1,6 @@
 {
   "header": "Zusätzliche Information",
+  "shortHeader": "Zusätzliche Information",
   "timeOfTheDay": "Tageszeit",
   "breakfastService": "Frühstück",
   "lunchService": "Mittagessen",
@@ -37,6 +38,7 @@
   "secretCodePlaceholder": "32543cdsSD4ewcbwt6654",
   "redirectionLinks": "Weiterleitungslinks",
   "redirectionLinksTooltip": "Geben Sie Links zu Ihren externen Dienstleistungen/Profilen ein",
+  "addExternalServiceLink": "Einen Link zu meinem Profil hinzufügen",
   "serviceLinkCategory": {
     "delivery": "Lieferung & zum Mitnehmen",
     "booking": "Buchung",
@@ -46,5 +48,11 @@
     "social_media": "Sozialen Medien",
     "online_reviews": "Online-Kritiken"
   },
-  "secretCodeHint": "Bitte geben Sie den Code ein, der Ihnen von Ihrem Aktivierungspartner oder Vertriebsmitarbeiter mitgeteilt wurde. <0/> (Wenn Sie sich auf eigene Faust anmelden, lassen Sie dieses Feld bitte leer)"
+  "servicePlaceholder": "Dienst auswählen",
+  "urlPlaceholder": "Url eingeben",
+  "deletePrompt": "Möchten Sie den {{service}}-Link löschen?",
+  "redirectionWebsiteLinks": "Links zu Ihren Websites",
+  "redirectionServicesLinks": "Links zu externen Partnerdiensten",
+  "secretCodeHint": "Bitte geben Sie den Code ein, der Ihnen von Ihrem Aktivierungspartner oder Vertriebsmitarbeiter mitgeteilt wurde. <0/> (<1>Wenn Sie sich auf eigene Faust anmelden, lassen Sie dieses Feld bitte leer</1>)",
+  "seeAll": "Alle Informationen anzeigen."
 }

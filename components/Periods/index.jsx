@@ -23,7 +23,10 @@ const PeriodsForm = ({
   updatePeriod,
   removePeriod,
   isLocationVisible,
-  currentPage
+  currentPage,
+  hasHiddenTitle,
+  padding,
+  hasHiddenMessages
 }) => {
   const [isAlwaysOpen, setIsAlwaysOpen] = useState(
     checkIfAlwaysOpen(initialValues)
@@ -55,9 +58,9 @@ const PeriodsForm = ({
       mutators={{ ...{ ...arrayMutators, setFieldData } }}
       subscription={{ form: true, values: true }}
       render={({ form: { mutators }, values }) => (
-        <Form>
+        <Form p={padding || "4"}>
           <Flex alignItems="center" justifyContent="space-between">
-            <H3>{t("openingHours")}</H3>
+            {!hasHiddenTitle && <H3>{t("openingHours")}</H3>}
             {currentPage === "orderingHours" && (
               <RawCheckbox
                 label="24/7"
@@ -82,6 +85,7 @@ const PeriodsForm = ({
               isLocationVisible={isLocationVisible}
               mutators={mutators}
               key={weekday}
+              hasHiddenMessages={hasHiddenMessages}
             />
           ))}
         </Form>
@@ -99,12 +103,18 @@ PeriodsForm.propTypes = {
   removePeriod: func.isRequired,
   initialValues: shape(),
   isLocationVisible: bool,
-  currentPage: string.isRequired
+  currentPage: string.isRequired,
+  hasHiddenTitle: bool,
+  padding: string,
+  hasHiddenMessages: bool
 };
 
 PeriodsForm.defaultProps = {
   initialValues: null,
-  isLocationVisible: false
+  isLocationVisible: false,
+  hasHiddenTitle: false,
+  padding: 4,
+  hasHiddenMessages: false
 };
 
 export default PeriodsForm;

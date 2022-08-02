@@ -8,11 +8,12 @@
       },
       "step2": {
         "header": "Passo 2",
-        "content": "Partecipate al tour del prodotto per capire come gestire tutte le vostre operazioni dalla nostra piattaforma."
+        "content": "Scoprite i nostri prodotti e se avete domande, non esitate a porle attraverso il pulsante del nostro chatbot."
       }
     },
     "letsgo": "Ecco a voi",
     "next": "Avanti",
+    "previous": "Precedente",
     "step1": {
       "title": "Crea il tuo profilo",
       "subtitle": "Questo è un esempio di profilo una volta completato l'onboarding.",
@@ -28,6 +29,34 @@
       },
       "swipe": "Scorrere il telefono per visualizzare il profilo completo",
       "gotit": "Ok"
+    },
+    "basicinfo": {
+      "hint": {
+        "title": "Questo è il vostro profilo",
+        "subtitle": "Inserite i vostri dati per ottenere una visione dal vivo sul telefono"
+      }
+    },
+    "imagesmenus": {
+      "logo": {
+        "hint": "Inserite il vostro logo",
+        "drag_file": "Scegliere un file o trascinarlo qui"
+      },
+      "upload_pictures": {
+        "hint": "Inserire un'immagine di alta qualità che mostri l'atmosfera della vostra attività (preferibilmente l'interno)."
+      },
+      "must_try": {
+        "hint": "Promuovete i vostri bestseller."
+      }
     }
+  },
+  "lookingGood": {
+    "header": "Sembra buono ?",
+    "subheader": "Per favore <0>controlla l'anteprima del tuo profilo</0> scorrendo il telefono su e giù prima di pubblicarlo",
+    "hint": "Potrai aggiungere altre informazioni dopo aver pubblicato il tuo profilo."
+  },
+  "confirmation": {
+    "header": "Congratulazioni, la <0>richiesta di pubblicazione</0> della vostra attività è stata ricevuta.",
+    "subheader": "La vostra attività sarà <0>pubblicata entro 24 ore</0>. <1/>(a meno che il vostro profilo non sia già presente sulla nostra piattaforma: in tal caso, tutto è pronto). <1/> Una volta pubblicato il profilo, si riceverà un'e-mail di conferma.  <1/> <0>Avrete sempre la possibilità di modificare</0> il vostro profilo dopo la pubblicazione.",
+    "gotit": "Capito, grazie"
   }
 }

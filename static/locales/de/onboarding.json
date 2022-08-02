@@ -8,11 +8,12 @@
       },
       "step2": {
         "header": "Schritt 2",
-        "content": "Folgen Sie der Produkttour, um zu verstehen, wie Sie alle Ihre Operationen von unserer Plattform aus verwalten können."
+        "content": "Entdecken Sie unser Produkt und wenn Sie eine Frage haben, können Sie diese über unseren Chatbot stellen"
       }
     },
     "letsgo": "Los geht's",
     "next": "Weiter",
+    "previous": "Vorige",
     "step1": {
       "title": "Erstellen Sie Ihr Business-Profil",
       "subtitle": "Dies ist ein Beispiel für ein Profil nach Abschluss des Onboardings.",
@@ -28,6 +29,34 @@
       },
       "swipe": "Wischen Sie das Telefon, um das vollständige Profil anzuzeigen",
       "gotit": "Ok"
+    },
+    "basicinfo": {
+      "hint": {
+        "title": "Dies ist Ihr Profil",
+        "subtitle": "Vervollständigen Sie Ihre Angaben, um eine Live-Vorschau auf dem Telefon zu erhalten."
+      }
+    },
+    "imagesmenus": {
+      "logo": {
+        "hint": "Bitte, fügen Sie Ihr Logo ein",
+        "drag_file": "Wählen Sie eine Datei oder ziehen Sie sie hierher"
+      },
+      "upload_pictures": {
+        "hint": "Bitte fügen Sie ein qualitativ Bild ein, das die Atmosphäre Ihres Unternehmens zeigt (vorzugsweise die Inneneinrichtung)"
+      },
+      "must_try": {
+        "hint": "Stellen Sie Ihre Bestseller heraus."
+      }
     }
+  },
+  "lookingGood": {
+    "header": "Sieht es gut aus ?",
+    "subheader": "Bitte <0>überprüfen Sie Ihr Profil</0> in der Vorschau, indem Sie mit dem Telefon nach oben und unten wischen, bevor Sie es veröffentlichen.",
+    "hint": "Sie können weitere Informationen hinzufügen, nachdem Sie Ihr Profil veröffentlicht haben."
+  },
+  "confirmation": {
+    "header": "Wunderbar! Ihre <0>Anfrage zur Veröffentlichung</0> Ihres Geschäfts ist eingegangen.",
+    "subheader": "Ihr Geschäft wird <0>innerhalb von 24 Stunden veröffentlicht</0>. <1/>(es sei denn, Ihr Profil ist bereits auf unserer Plattform gelistet: In diesem Fall ist alles vorbereitet). <1/>Sobald Ihr Profil veröffentlicht ist, erhalten Sie eine Bestätigungs-E-Mail. <1/><0>Sie haben immer die Möglichkeit</0> Ihr Profil nach der Veröffentlichung zu bearbeiten.",
+    "gotit": "Einverstanden, danke"
   }
 }

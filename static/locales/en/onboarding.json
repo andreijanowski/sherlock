@@ -8,11 +8,13 @@
       },
       "step2": {
         "header": "Step 2",
-        "content": "Follow our product tour to set up your business operations and manage it all from a single platform. "
+        "content": "Discover our product and if you have any question, feel free to ask them through our chatbot button."
       }
     },
     "letsgo": "Let's go",
     "next": "Next",
+    "publish": "Publish",
+    "previous": "Previous",
     "step1": {
       "title": "Create Your Business Profile",
       "subtitle": "This is an example of a business profile once onboarding is completed.",
@@ -28,6 +30,34 @@
       },
       "swipe": "Swipe the phone up and down to see the full profile",
       "gotit": "Got it"
+    },
+    "basicinfo": {
+      "hint": {
+        "title": "This is your business profile",
+        "subtitle": "Fill in your basic information. Once done, it will automatically be displayed on the phone screen as a preview."
+      }
+    },
+    "imagesmenus": {
+      "logo": {
+        "hint": "Please, insert your logo",
+        "drag_file": "Choose a file or drag it here"
+      },
+      "upload_pictures": {
+        "hint": "Please insert a high quality picture/photo that shows the atmosphere of your business (preferably the interior)."
+      },
+      "must_try": {
+        "hint": "Highlight your best sellers directly on your profile."
+      }
     }
+  },
+  "lookingGood": {
+    "header": "Looking Good ?",
+    "subheader": "Please <0>check your profile</0> preview by swiping the phone up and down before publishing it.",
+    "hint": "You will be able to add more information after publishing your profile."
+  },
+  "confirmation": {
+    "header": "Congratulations, you <0>requested to publish</0> your business profile",
+    "subheader": "It will take <0>24 hours to be live</0>. <1/>(unless your business profile was already listed on our platform: in that case you are all set!) <1/> Once your profile is published you will receive a confirmation email. <1/><0>You will always be able to make any changes</0> to your profile once it is published.",
+    "gotit": "Got it, thanks"
   }
 }

@@ -83,7 +83,7 @@ NavigationContainer.propTypes = {
   mainIcon: string,
   t: func.isRequired,
   lng: string.isRequired,
-  isNestedMenuVisible: bool.isRequired,
+  isNestedMenuVisible: bool,
   updateNestedMenuVisibility: func.isRequired,
   ordersUpdates: number.isRequired,
   reservationsUpdates: number.isRequired,
@@ -91,7 +91,8 @@ NavigationContainer.propTypes = {
 };
 
 NavigationContainer.defaultProps = {
-  mainIcon: null
+  mainIcon: null,
+  isNestedMenuVisible: false
 };
 
 export default connect(

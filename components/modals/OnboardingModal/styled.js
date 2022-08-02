@@ -8,15 +8,15 @@ export const ModalStyles = createGlobalStyle`
   .modal-modal {
     padding: 38px;
     border-radius: 10px;
-    max-width: 1250px;
-  }
 
-  .modal-closeButton {
-    display: none;
-  }
+    @media (max-width: 1450px) {
+      transform: scale(0.85);
+      margin-top: -50px;
+    }
 
-  .modal-closeIcon {
-    display: none;
+    @media (min-width: 1250px) {
+      max-width: 1250px;
+    }
   }
 `;
 
@@ -25,7 +25,15 @@ export const BottomNavigation = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: rgb(${p => p.theme.colors.white});
   z-index: 1;
   padding-top: 36px;
+`;
+
+export const Error = styled.div`
+  position: absolute;
+  font-size: 14px;
+  top: 10px;
+  color: rgb(${p => p.theme.colors.ruby});
 `;

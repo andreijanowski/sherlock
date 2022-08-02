@@ -3,5 +3,6 @@ export const BUTTON_VARIANT = {
   SECONDARY: "secondary",
   OUTLINE: "outline",
   B2BSECONDARY: "b2bsecondary",
-  GRADIENT: "gradient"
+  GRADIENT: "gradient",
+  NAKED: "naked"
 };

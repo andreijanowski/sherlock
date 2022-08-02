@@ -15,6 +15,13 @@ export const paymentMethods = [
   "canPayWithMobile"
 ];
 
+export const checkboxes = [
+  "hasCatering",
+  "hasReservations",
+  "hasPrivateEvents",
+  "availableInLefood"
+];
+
 export const getInitialValues = business => {
   if (business) {
     return {
@@ -34,7 +41,8 @@ export const getInitialValues = business => {
       canPayWithCards: business.get("canPayWithCards"),
       canPayWithCash: business.get("canPayWithCash"),
       canPayWithMobile: business.get("canPayWithMobile"),
-      secretCode: business.get("secretCode")
+      secretCode: business.get("secretCode"),
+      liveInfo: business.get("liveInfo")
     };
   }
   return undefined;

@@ -2,5 +2,13 @@
   "header": "Informazioni dirette",
   "liveInfo": "Informazioni dirette",
   "liveInfoLabel": "Informazioni dirette",
-  "liveInfoPlaceholder": "70% di sconto domenica 01.01.19"
+  "liveInfoPlaceholder": "70% di sconto domenica 01.01.19",
+  "liveInfoHint": "Qui è possibile aggiungere eventi, promozioni e qualsiasi altro aggiornamento. Potete modificare questo banner tutte le volte che volete e apparirà nell'angolo in alto a sinistra del vostro profilo.",
+  "hints": [
+    "È possibile scegliere uno dei seguenti modelli",
+    "“Primo ordine 50%“",
+    "“Terrazza chiusa per ristrutturazione“",
+    "“Uno lo compri e uno lo prendi gratis“",
+    "“Orari di apertura prolungati questo fine settimana!“"
+  ]
 }
