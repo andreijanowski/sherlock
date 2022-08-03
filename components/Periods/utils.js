@@ -1,3 +1,10 @@
+export const weekdays = [1, 2, 3, 4, 5, 6, 0];
+
+// we store our hours in seconds from midnight
+export const defaultOpenTime = 0;
+// 23 hours 59 minutes as seconds
+export const defaultCloseTime = 60 * 60 * 23 + 60 * 59;
+
 export const parsePeriods = periods => {
   const days = {};
   if (periods && periods.forEach) {
@@ -18,17 +25,21 @@ export const parsePeriods = periods => {
     });
   }
   Object.entries(days).forEach(([key, value]) => {
-    days[key] = value.sort((a, b) => a.openedFrom - b.openedFrom);
+    days[key] = value.sort((a, b) => {
+      const haveDefaultValues = entry =>
+        entry.openedFrom === defaultOpenTime &&
+        entry.openedTo === defaultCloseTime;
+      if (haveDefaultValues(a)) {
+        return 1;
+      }
+      if (haveDefaultValues(b)) {
+        return -1;
+      }
+      return a.openedFrom - b.openedFrom;
+    });
   });
   return days;
 };
-
-export const weekdays = [1, 2, 3, 4, 5, 6, 0];
-
-// we store our hours in seconds from midnight
-export const defaultOpenTime = 0;
-// 23 hours 59 minutes as seconds
-export const defaultCloseTime = 60 * 60 * 23 + 60 * 59;
 
 export const addNewPeriod = (addPeriod, weekday, formValues) => {
   let prevWeekdayData;
