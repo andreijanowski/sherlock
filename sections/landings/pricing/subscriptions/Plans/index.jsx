@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { func, shape } from "prop-types";
 import { Box, Flex } from "@rebass/grid";
-
 import { fetchPlans as fetchPlansAction } from "actions/plans";
 import { selectPlans } from "selectors/plans";
 import { SUBSCRIPTION_CURRENCY, SUBSCRIPTION_PERIOD } from "consts";
@@ -95,7 +94,4 @@ const mapDispatch = {
   fetchPlans: fetchPlansAction
 };
 
-export default connect(
-  mapState,
-  mapDispatch
-)(Plans);
+export default connect(mapState, mapDispatch)(Plans);

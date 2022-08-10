@@ -96,9 +96,4 @@ const mapDispatch = {
   fetchBlogPosts: fetchBlogPostsAction
 };
 
-export default compose(
-  connect(
-    mapState,
-    mapDispatch
-  )
-)(BlogPostPage);
+export default compose(connect(mapState, mapDispatch))(BlogPostPage);

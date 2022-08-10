@@ -132,7 +132,4 @@ const mapDispatch = {
   updateBusiness: patchBusiness
 };
 
-export default connect(
-  mapState,
-  mapDispatch
-)(NotificationsSwitch);
+export default connect(mapState, mapDispatch)(NotificationsSwitch);

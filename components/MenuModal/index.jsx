@@ -90,7 +90,7 @@ MenuModal.propTypes = {
   catalogName: string
 };
 
-export default connect(
-  null,
-  { downloadPOSMenu: downloadPOSMenuAction, uploadPOSMenu: uploadPOSMenuAction }
-)(MenuModal);
+export default connect(null, {
+  downloadPOSMenu: downloadPOSMenuAction,
+  uploadPOSMenu: uploadPOSMenuAction
+})(MenuModal);

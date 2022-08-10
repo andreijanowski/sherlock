@@ -6,9 +6,7 @@ export default () =>
     <>
       <script
         async
-        src={`https://www.googletagmanager.com/gtag/js?id=${
-          GOOGLE_ADS_IDS.MAIN
-        }`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_IDS.MAIN}`}
       />
       <script
         dangerouslySetInnerHTML={{

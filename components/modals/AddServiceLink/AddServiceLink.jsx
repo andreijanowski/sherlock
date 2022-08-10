@@ -120,8 +120,5 @@ const mapDispatchToProps = {
 
 export default compose(
   withTranslation(namespaces),
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )
+  connect(mapStateToProps, mapDispatchToProps)
 )(AddServiceLink);

@@ -119,8 +119,5 @@ const mapDispatch = {
 
 export default compose(
   withTranslation(namespaces),
-  connect(
-    mapState,
-    mapDispatch
-  )
+  connect(mapState, mapDispatch)
 )(PaymentsTable);

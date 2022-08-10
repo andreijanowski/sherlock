@@ -89,7 +89,10 @@ const MarketingPage = () => (
         ]}
         videos={contentManagementVideos}
         sliderImages={sliderImages}
-        columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
+        columnsProportions={[
+          [1, null, null, 1 / 2],
+          [1, null, null, 1 / 2]
+        ]}
         textLinks={contentManagementTextLinks}
       />
     </WhiteWrapper>
@@ -111,7 +114,10 @@ const MarketingPage = () => (
             right: [-5, null, null, 130]
           }
         ]}
-        columnsProportions={[[1, null, null, 2 / 5], [1, null, null, 3 / 5]]}
+        columnsProportions={[
+          [1, null, null, 2 / 5],
+          [1, null, null, 3 / 5]
+        ]}
         isDark
       />
     </DarkWrapper>
@@ -126,7 +132,10 @@ const MarketingPage = () => (
             width: ["100%", null, null, "650px"]
           }
         ]}
-        columnsProportions={[[1, null, null, 3 / 5], [1, null, null, 2 / 5]]}
+        columnsProportions={[
+          [1, null, null, 3 / 5],
+          [1, null, null, 2 / 5]
+        ]}
         advantagesColumnsWidth={1}
       />
     </WhiteWrapper>

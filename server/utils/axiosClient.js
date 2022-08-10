@@ -8,9 +8,7 @@ const axiosClient = axios.create({
   headers: {
     Accept: "application/vnd.api+json",
     "Content-Type": "application/vnd.api+json",
-    Cookie: `staging_auth=${process.env.STAGING_AUTH}; domain=${
-      process.env.PUBLIC_API_URL
-    }; expires=30-Dec-2039 3:59:59 #GMT`
+    Cookie: `staging_auth=${process.env.STAGING_AUTH}; domain=${process.env.PUBLIC_API_URL}; expires=30-Dec-2039 3:59:59 #GMT`
   },
   transformResponse: [
     ...axios.defaults.transformResponse,

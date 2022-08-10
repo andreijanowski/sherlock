@@ -171,7 +171,4 @@ const mapDispatch = {
   fetchProfileBusiness: fetchProfileBusinessAction
 };
 
-export default connect(
-  mapState,
-  mapDispatch
-)(PublishBusinessButton);
+export default connect(mapState, mapDispatch)(PublishBusinessButton);

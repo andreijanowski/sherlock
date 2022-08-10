@@ -94,7 +94,7 @@
     "react-window": "^1.8.5",
     "react-window-infinite-loader": "^1.0.5",
     "react-youtube": "^7.9.0",
-    "recharts": "^2.0.10",
+    "recharts": "2.1.12",
     "redux": "^4.0.1",
     "redux-burger-menu": "^0.2.8",
     "redux-immutable": "^4.0.0",

@@ -123,8 +123,5 @@ const mapDispatch = {
 export default compose(
   withVisibilityRange,
   withTranslation(namespaces),
-  connect(
-    mapState,
-    mapDispatch
-  )
+  connect(mapState, mapDispatch)
 )(PartnersSearchBox);

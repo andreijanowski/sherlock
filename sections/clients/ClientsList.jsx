@@ -128,7 +128,4 @@ const mapDispatch = {
   fetchBusinessClients: fetchBusinessClientsActions
 };
 
-export default connect(
-  mapState,
-  mapDispatch
-)(ClientsList);
+export default connect(mapState, mapDispatch)(ClientsList);

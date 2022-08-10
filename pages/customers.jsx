@@ -44,7 +44,10 @@ const getSectionVideos = sectionName => ({
 
 const commonSectionsProps = {
   isAdvantagesCentered: true,
-  columnsProportions: [[1, null, null, 1 / 2], [1, null, null, 1 / 2]],
+  columnsProportions: [
+    [1, null, null, 1 / 2],
+    [1, null, null, 1 / 2]
+  ],
   advantagesColumnsWidth: 1
 };
 
