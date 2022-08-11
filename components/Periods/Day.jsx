@@ -40,12 +40,17 @@ class Day extends PureComponent {
     }
   };
 
-  handleBlur = value => {
-    const { updatePeriod, addPeriod } = this.props;
+  handleBlur = (value, fields) => {
+    const { updatePeriod, removePeriod } = this.props;
+
     value.forEach(v => {
-      const { updatedPeriod, newPeriod } = preparePeriodUpdate(v);
-      if (newPeriod) {
-        addPeriod(newPeriod);
+      const { updatedPeriod, idToDelete } = preparePeriodUpdate(
+        v,
+        fields.value
+      );
+      if (idToDelete) {
+        removePeriod(idToDelete);
+        fields.remove(0);
       }
       updatePeriod(updatedPeriod);
     });
