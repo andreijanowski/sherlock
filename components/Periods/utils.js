@@ -76,25 +76,28 @@ export const addNewPeriod = (addPeriod, weekday, formValues) => {
   );
 };
 
-export const preparePeriodUpdate = value => {
-  let newPeriod;
+export const preparePeriodUpdate = (value, fields) => {
+  const lastShift = fields.length > 1 && fields[fields.length - 2];
   let updatedPeriod = value;
-  if (updatedPeriod.openedFrom > updatedPeriod.openedTo) {
-    newPeriod = {
-      ...updatedPeriod,
-      openedFrom: defaultOpenTime,
-      weekday: (updatedPeriod.weekday + 1) % 7
-    };
+  let idToDelete;
+
+  if (
+    lastShift &&
+    updatedPeriod.weekday === lastShift.weekday &&
+    updatedPeriod.openedFrom === defaultOpenTime &&
+    lastShift.openedTo === defaultCloseTime
+  ) {
     updatedPeriod = {
       ...updatedPeriod,
-      openedTo: defaultCloseTime
+      openedFrom: lastShift.openedFrom
     };
+    idToDelete = lastShift.id;
   }
   updatedPeriod = {
     ...updatedPeriod,
     id: value.id
   };
-  return { newPeriod, updatedPeriod };
+  return { updatedPeriod, idToDelete };
 };
 
 export const isMovableBusiness = groups =>

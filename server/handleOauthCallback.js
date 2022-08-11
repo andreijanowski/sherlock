@@ -8,7 +8,10 @@ function handleOauthCallback(req, res) {
   let lang = "en";
   let { state } = req.query;
 
-  if (typeof state !== "undefined" && state.slice(0, -2).endsWith("registration")) {
+  if (
+    typeof state !== "undefined" &&
+    state.slice(0, -2).endsWith("registration")
+  ) {
     lang = state.slice(-2);
     state = state.substring(0, state.length - 14);
     registrationCallback = true;
