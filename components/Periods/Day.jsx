@@ -46,8 +46,7 @@ class Day extends PureComponent {
     value.forEach(v => {
       const { updatedPeriod, idToDelete } = preparePeriodUpdate(
         v,
-        fields.value,
-        removePeriod
+        fields.value
       );
       if (idToDelete) {
         removePeriod(idToDelete);
