@@ -102,7 +102,4 @@ const mapDispatch = {
   generatePartooToken: generatePartooTokenAction
 };
 
-export default connect(
-  mapState,
-  mapDispatch
-)(PartooIframe);
+export default connect(mapState, mapDispatch)(PartooIframe);

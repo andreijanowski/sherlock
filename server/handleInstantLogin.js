@@ -19,11 +19,7 @@ function handleOauthCallback(req, res) {
   }
   res.redirect(
     302,
-    `${process.env.PUBLIC_API_URL}/oauth/authorize?client_id=${
-      process.env.OAUTH_PUBLIC_CLIENT_ID
-    }&redirect_uri=${
-      process.env.OAUTH_CALLBACK_URL
-    }&response_type=code&scope=trusted+refresh_token+public&state=${state}`
+    `${process.env.PUBLIC_API_URL}/oauth/authorize?client_id=${process.env.OAUTH_PUBLIC_CLIENT_ID}&redirect_uri=${process.env.OAUTH_CALLBACK_URL}&response_type=code&scope=trusted+refresh_token+public&state=${state}`
   );
 }
 

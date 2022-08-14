@@ -70,11 +70,8 @@ OpeningHours.defaultProps = {
   values: null
 };
 
-export default connect(
-  null,
-  {
-    addOpenPeriod: postOpenPeriod,
-    updateOpenPeriod: patchOpenPeriod,
-    removeOpenPeriod: deleteOpenPeriod
-  }
-)(OpeningHours);
+export default connect(null, {
+  addOpenPeriod: postOpenPeriod,
+  updateOpenPeriod: patchOpenPeriod,
+  removeOpenPeriod: deleteOpenPeriod
+})(OpeningHours);

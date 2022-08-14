@@ -120,9 +120,7 @@ const EventDetails = ({
       {event.resource.phone && (
         <Detail>
           <DetailName>{t("events:phoneNumber")}</DetailName>
-          <DetailContent>{`${event.resource.phoneCountryPrefix} ${
-            event.resource.phone
-          }`}</DetailContent>
+          <DetailContent>{`${event.resource.phoneCountryPrefix} ${event.resource.phone}`}</DetailContent>
         </Detail>
       )}
     </Details>
@@ -130,9 +128,7 @@ const EventDetails = ({
       <>
         <AdditionalHeader>{t("events:address")}</AdditionalHeader>
         <AdditionalParagraph>
-          {`${event.resource.address.street} ${
-            event.resource.address.streetNumber
-          }`}
+          {`${event.resource.address.street} ${event.resource.address.streetNumber}`}
           <br />
           {`${event.resource.address.postCode} ${event.resource.address.city}`}
           <br />

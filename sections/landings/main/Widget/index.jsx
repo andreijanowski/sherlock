@@ -14,6 +14,7 @@ const Widget = ({ t, widgetRef }) => (
 
 Widget.propTypes = {
   t: func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
   widgetRef: oneOfType([func, shape({ current: any })]).isRequired
 };
 

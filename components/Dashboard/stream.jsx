@@ -213,7 +213,4 @@ const mapDispatch = {
   rejectOrder: patchOrderRejectAction
 };
 
-export default connect(
-  mapState,
-  mapDispatch
-)(Stream);
+export default connect(mapState, mapDispatch)(Stream);

@@ -191,15 +191,12 @@ const Spy = props => (
   />
 );
 
-export default connect(
-  null,
-  dispatch => ({
-    showSavedMessage: () => {
-      dispatch(
-        Notifications.success({
-          message: "formSavedSuccessfully"
-        })
-      );
-    }
-  })
-)(Spy);
+export default connect(null, dispatch => ({
+  showSavedMessage: () => {
+    dispatch(
+      Notifications.success({
+        message: "formSavedSuccessfully"
+      })
+    );
+  }
+}))(Spy);

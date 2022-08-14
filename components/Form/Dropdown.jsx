@@ -136,8 +136,10 @@ FormDropdown.propTypes = {
   items: arrayOf(
     oneOf([
       shape({
+        // eslint-disable-next-line react/forbid-prop-types
         label: any.isRequired,
         items: arrayOf(
+          // eslint-disable-next-line react/forbid-prop-types
           shape({ label: any.isRequired, value: any.isRequired, src: string })
         )
       }),

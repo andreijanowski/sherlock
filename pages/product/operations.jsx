@@ -38,7 +38,10 @@ const OperationsPage = () => (
             width: ["100%", null, null, "550px", "622px"]
           }
         ]}
-        columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
+        columnsProportions={[
+          [1, null, null, 1 / 2],
+          [1, null, null, 1 / 2]
+        ]}
         advantagesColumnsWidth={1}
       />
     </WhiteWrapper>
@@ -67,7 +70,10 @@ const OperationsPage = () => (
             width: ["138px", "160px", null, "160px"]
           }
         ]}
-        columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
+        columnsProportions={[
+          [1, null, null, 1 / 2],
+          [1, null, null, 1 / 2]
+        ]}
         isDark
       />
     </DarkWrapper>
@@ -82,7 +88,10 @@ const OperationsPage = () => (
             mb: [15, null, null, 0]
           }
         ]}
-        columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
+        columnsProportions={[
+          [1, null, null, 1 / 2],
+          [1, null, null, 1 / 2]
+        ]}
       />
     </WhiteWrapper>
     <GetReadyLandingTopGradientWrapper>

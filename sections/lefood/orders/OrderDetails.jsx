@@ -343,9 +343,4 @@ const mapState = state => ({
 
 const mapDispatch = { fetchOrkestroOrderStatus: fetchOrkestroOrder };
 
-export default reduxBurgerMenu(
-  connect(
-    mapState,
-    mapDispatch
-  )(OrderDetails)
-);
+export default reduxBurgerMenu(connect(mapState, mapDispatch)(OrderDetails));

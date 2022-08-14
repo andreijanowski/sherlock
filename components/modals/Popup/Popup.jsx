@@ -113,9 +113,6 @@ Popup.propTypes = {
   logout: func.isRequired
 };
 
-export default connect(
-  null,
-  {
-    logout: logoutAction
-  }
-)(Popup);
+export default connect(null, {
+  logout: logoutAction
+})(Popup);

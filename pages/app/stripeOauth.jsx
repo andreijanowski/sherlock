@@ -145,12 +145,9 @@ StripeOauth.propTypes = {
 
 export default requireAuth(true)(
   withTranslation(namespaces)(
-    connect(
-      (state, { i18n }) => ({ lng: (i18n && i18n.language) || "en" }),
-      {
-        connectWithStripe: connectStripe,
-        getBusiness: fetchProfileBusiness
-      }
-    )(StripeOauth)
+    connect((state, { i18n }) => ({ lng: (i18n && i18n.language) || "en" }), {
+      connectWithStripe: connectStripe,
+      getBusiness: fetchProfileBusiness
+    })(StripeOauth)
   )
 );

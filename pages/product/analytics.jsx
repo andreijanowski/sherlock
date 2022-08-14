@@ -72,7 +72,10 @@ const AnalyticsPage = () => {
               width: ["138px", "160px", null, "228px"]
             }
           ]}
-          columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
+          columnsProportions={[
+            [1, null, null, 1 / 2],
+            [1, null, null, 1 / 2]
+          ]}
           advantagesColumnsWidth={1}
           textLinks={{
             [getDescriptionPrefix(0)]: [
@@ -111,7 +114,10 @@ const AnalyticsPage = () => {
               width: ["138px", "160px", null, "216px"]
             }
           ]}
-          columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
+          columnsProportions={[
+            [1, null, null, 1 / 2],
+            [1, null, null, 1 / 2]
+          ]}
           advantagesColumnsWidth={1}
           isDark
         />
@@ -147,7 +153,10 @@ const AnalyticsPage = () => {
               width: ["138px", "160px", null, "216px"]
             }
           ]}
-          columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
+          columnsProportions={[
+            [1, null, null, 1 / 2],
+            [1, null, null, 1 / 2]
+          ]}
           textLinks={{
             [getAdvPrefix({ optionIndex: 0, advIndex: 0 })]: {
               href: `${API_URL}/users/sign_up?locale=${lng}`,
@@ -188,7 +197,10 @@ const AnalyticsPage = () => {
               width: ["138px", "160px", null, "216px"]
             }
           ]}
-          columnsProportions={[[1, null, null, 3 / 5], [1, null, null, 2 / 5]]}
+          columnsProportions={[
+            [1, null, null, 3 / 5],
+            [1, null, null, 2 / 5]
+          ]}
           advantagesColumnsWidth={1}
           isDark
         />
@@ -217,7 +229,10 @@ const AnalyticsPage = () => {
               bottom: [0, null, null, -20]
             }
           ]}
-          columnsProportions={[[1, null, null, 3 / 5], [1, null, null, 2 / 5]]}
+          columnsProportions={[
+            [1, null, null, 3 / 5],
+            [1, null, null, 2 / 5]
+          ]}
           advantagesColumnsWidth={1}
         />
       </WhiteWrapper>

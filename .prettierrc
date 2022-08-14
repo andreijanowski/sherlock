@@ -12,6 +12,7 @@
   "insertPragma": false,
   "parser": "flow",
   "proseWrap": "preserve",
+  "endOfLine": "auto",
   "overrides": [
     {
       "files": "*.md",

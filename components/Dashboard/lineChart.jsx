@@ -1,15 +1,7 @@
 import React from "react";
 import { Flex } from "@rebass/grid";
 import { bool, string } from "prop-types";
-
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  Tooltip,
-  linearGradient,
-  ResponsiveContainer
-} from "recharts";
+import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { getRandomInt, randomChartGenerator } from "./utils";
 import { Percentage, TileHeader, Tile } from "./styled";
 import ArrowComponent from "./arrow";
