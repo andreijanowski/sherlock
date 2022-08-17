@@ -16,9 +16,25 @@ export const H2Styled = styled(H2)`
 export const SubtitleStyled = styled(Subtitle)`
   max-width: 670px;
   color: rgb(${p => p.theme.colors.landingDarkBlue});
+  margin: auto;
 `;
 
 export const BlueText = styled.span`
   display: block;
   color: rgb(${p => p.theme.colors.blue});
+`;
+
+export const ImageContainer = styled.div`
+  position: relative;
+  text-align: center;
+
+  @media (max-width: ${p => p.theme.breakpoints[1]}) {
+    width: 100%;
+  }
+`;
+
+export const Image = styled.img`
+  @media (max-width: ${p => p.theme.breakpoints[2]}) {
+    max-width: 100%;
+  }
 `;
