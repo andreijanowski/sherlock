@@ -7,7 +7,7 @@ import { INTEGRATIONS_VIDEO_URL } from "consts";
 import { AdaptiveBox } from "components/styleguide/common";
 import { getConfig } from "./utils";
 import Menu from "./Menu";
-import Canvas from "./Canvas";
+import Partners from "./Partners";
 import MobileVideoButton from "../MobileVideoButton";
 
 const IntegrationsLandingList = () => {
@@ -45,7 +45,7 @@ const IntegrationsLandingList = () => {
         <MobileVideoButton url={INTEGRATIONS_VIDEO_URL} />
       </AdaptiveBox>
       <AdaptiveBox display={["none", null, "flex"]} flexDirection="column">
-        <Canvas activeItem={activeItem} />
+        <Partners activeItem={activeItem} />
       </AdaptiveBox>
     </Flex>
   );

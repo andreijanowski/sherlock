@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { func, shape } from "prop-types";
+import { bool, func, shape } from "prop-types";
 import { withTranslation } from "i18n";
 import { compose } from "redux";
 import { connect } from "react-redux";
@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import debounce from "debounce";
 
 import { CloseIcon, SearchIcon } from "components/Icons";
-import { fetchPartners } from "actions/partners";
+import { fetchPartners, fetchAvailablePartners } from "actions/partners";
 import { WHOLESALERS_URL } from "sections/integrations/utils";
 import { withVisibilityRange } from "utils/hoc/withVisibilityRange";
 import { Input, LeftIcon, RightIcon, Wrapper } from "./styled";
@@ -17,7 +17,7 @@ const namespaces = ["app"];
 
 const DEBOUNCE = 300;
 
-const DebouncedInput = ({ t, onChange }) => {
+const DebouncedInput = ({ t, onChange, hasAvailablePartners }) => {
   const [value, setValue] = useState("");
 
   const debouncedOnChange = useCallback(debounce(onChange, DEBOUNCE), [
@@ -38,7 +38,7 @@ const DebouncedInput = ({ t, onChange }) => {
   );
 
   return (
-    <Wrapper>
+    <Wrapper centered={hasAvailablePartners}>
       <LeftIcon>
         <SearchIcon />
       </LeftIcon>
@@ -46,7 +46,9 @@ const DebouncedInput = ({ t, onChange }) => {
         value={value}
         onChange={onInputChange}
         autoComplete="off"
-        placeholder={t("search")}
+        placeholder={
+          hasAvailablePartners ? "Type a partner’s name" : t("search")
+        }
       />
       {value && (
         <RightIcon clickable onClick={clearSearch}>
@@ -59,10 +61,18 @@ const DebouncedInput = ({ t, onChange }) => {
 
 DebouncedInput.propTypes = {
   t: func.isRequired,
-  onChange: func.isRequired
+  onChange: func.isRequired,
+  hasAvailablePartners: bool.isRequired
 };
 
-const PartnersSearchBox = ({ t, business, fetchPartnersHandler }) => {
+const PartnersSearchBox = ({
+  t,
+  business,
+  fetchPartnersHandler,
+  fetchAvailablePartnersHandler,
+  hasAvailablePartners,
+  activeFilter
+}) => {
   const [search, setSearch] = useState("");
   const {
     pathname,
@@ -72,8 +82,9 @@ const PartnersSearchBox = ({ t, business, fetchPartnersHandler }) => {
   const isWholesalersPage = pathname === WHOLESALERS_URL;
 
   const filter = useMemo(
-    () => getPartnersFilter(isWholesalersPage, category, business),
-    [isWholesalersPage, category, business]
+    () =>
+      getPartnersFilter(isWholesalersPage, category || activeFilter, business),
+    [isWholesalersPage, category, business, activeFilter]
   );
 
   const onSearchChange = useCallback(newSearch => {
@@ -94,17 +105,46 @@ const PartnersSearchBox = ({ t, business, fetchPartnersHandler }) => {
     }
   }, [businessId, fetchPartnersHandler, filter, search]);
 
-  return <DebouncedInput t={t} onChange={onSearchChange} />;
+  useEffect(() => {
+    if (hasAvailablePartners) {
+      fetchAvailablePartnersHandler({
+        search,
+        filter: {
+          categories: [activeFilter]
+        },
+        page: 1
+      });
+    }
+  }, [
+    fetchAvailablePartnersHandler,
+    filter,
+    search,
+    hasAvailablePartners,
+    activeFilter
+  ]);
+
+  return (
+    <DebouncedInput
+      t={t}
+      onChange={onSearchChange}
+      hasAvailablePartners={hasAvailablePartners}
+    />
+  );
 };
 
 PartnersSearchBox.propTypes = {
   t: func.isRequired,
   fetchPartnersHandler: func.isRequired,
-  business: shape()
+  fetchAvailablePartnersHandler: func.isRequired,
+  business: shape(),
+  hasAvailablePartners: bool,
+  activeFilter: bool
 };
 
 PartnersSearchBox.defaultProps = {
-  business: null
+  business: null,
+  hasAvailablePartners: false,
+  activeFilter: ""
 };
 
 const mapState = state => {
@@ -117,7 +157,8 @@ const mapState = state => {
 };
 
 const mapDispatch = {
-  fetchPartnersHandler: fetchPartners
+  fetchPartnersHandler: fetchPartners,
+  fetchAvailablePartnersHandler: fetchAvailablePartners
 };
 
 export default compose(
