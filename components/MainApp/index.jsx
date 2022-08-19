@@ -103,7 +103,9 @@ const MainApp = ({
           >
             Watch tutorials
           </TutorialButton>
+          {/* <Icon> */}
           <NotificationsSwitch mx={1} />
+          {/* </Icon> */}
           <Icon
             as="a"
             target="_blank"
