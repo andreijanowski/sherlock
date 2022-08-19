@@ -1,7 +1,7 @@
 {
   "contactInformation": "Información de Contacto",
-  "nameLabel": "Name",
-  "namePlaceholder": "John Smith",
+  "nameLabel": "Nombre",
+  "namePlaceholder": "Juan Pérez",
   "emailLabel": "Email",
   "emailPlaceholder": "nombre@empresa.com",
   "countryLabel": "Código de país",

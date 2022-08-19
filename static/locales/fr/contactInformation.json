@@ -1,10 +1,10 @@
 {
   "contactInformation": "Informations de contact",
-  "nameLabel": "Name",
+  "nameLabel": "Nome",
   "namePlaceholder": "John Smith",
   "emailLabel": "Email",
   "emailPlaceholder": "nom@entreprise.com",
-  "countryLabel": "Code postal",
+  "countryLabel": "Indicatif international",
   "countryPlaceholder": "+48",
   "phoneLabel": "Téléphone",
   "phonePlaceholder": "543 423 534",

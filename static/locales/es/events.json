@@ -11,7 +11,7 @@
     "price": "Precio",
     "from": "Desde",
     "to": "A",
-    "date": "Date",
+    "date": "Fecha",
     "details": "Detalles del evento",
     "numberOfServings": "Numero de porciones",
     "typeOfEvent": "Presupuesto",
@@ -21,7 +21,7 @@
       "yes": "Sí",
       "no": "No"
     },
-    "chefAttendance": "Chef attendance",
+    "chefAttendance": "Asistencia del chef",
     "chefAttendanceOption": {
       "yes": "Sí",
       "no": "No"
@@ -31,12 +31,12 @@
       "yes": "Sí",
       "no": "No"
     },
-    "corporateEvent": "Corporate event",
+    "corporateEvent": "Evento corporativo",
     "corporateEventOption": {
       "yes": "Sí",
       "no": "No"
     },
-    "companyName": "Company name",
+    "companyName": "Nombre de empresa",
     "specifications": "Presupuesto",
     "additional": "Adicional",
     "location": "Ubicación",
@@ -52,7 +52,7 @@
     "street": "Calle",
     "streetNumber": "número de calle",
     "client": "Cliente",
-    "userName": "Name",
+    "userName": "Nombre",
     "email": "Email",
     "notes": "Notas",
     "country": "País",
@@ -71,11 +71,11 @@
   "no": "No",
   "address": "Dirección",
   "outdoors": "Al aire libre",
-  "corporateEvent": "Corporate event",
-  "companyName": "Company name",
+  "corporateEvent": "Evento corporativo",
+  "companyName": "Nombre de empresa",
   "contactPerson": "Persona de contacto",
   "email": "Email",
-  "phoneNumber": "Phone number",
+  "phoneNumber": "Número de teléfono",
   "sendOffer": "Enviar una oferta",
   "resendOffer": "Reenviar una oferta",
   "prepareOfer": "Preparar una oferta",

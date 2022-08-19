@@ -1,6 +1,6 @@
 {
   "table": {
-    "date": "Date",
+    "date": "Datum",
     "client": "Klient",
     "amount": "Betrag",
     "currency": "Währung"

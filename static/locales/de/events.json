@@ -11,7 +11,7 @@
     "price": "Preis",
     "from": "Von",
     "to": "Zu",
-    "date": "Date",
+    "date": "Datum",
     "details": "Details zur Veranstaltung",
     "numberOfServings": "Anzahl der Personen",
     "typeOfEvent": "Haushalt",
@@ -21,7 +21,7 @@
       "yes": "Ja",
       "no": "Nein"
     },
-    "chefAttendance": "Chef attendance",
+    "chefAttendance": "Anwesenheit des Chefs",
     "chefAttendanceOption": {
       "yes": "Ja",
       "no": "Nein"
@@ -31,12 +31,12 @@
       "yes": "Ja",
       "no": "Nein"
     },
-    "corporateEvent": "Corporate event",
+    "corporateEvent": "Firmenveranstaltung",
     "corporateEventOption": {
       "yes": "Ja",
       "no": "Nein"
     },
-    "companyName": "Company name",
+    "companyName": "Name der Firma",
     "specifications": "Spezifikationen",
     "additional": "Zusätzlich",
     "location": "Lage",
@@ -71,11 +71,11 @@
   "no": "Nein",
   "address": "Adresse",
   "outdoors": "Draußen",
-  "corporateEvent": "Corporate event",
-  "companyName": "Company name",
+  "corporateEvent": "Firmenveranstaltung",
+  "companyName": "Name der Firma",
   "contactPerson": "Gesprächspartner",
   "email": "Email",
-  "phoneNumber": "Phone number",
+  "phoneNumber": "Telefonnummer",
   "sendOffer": "Senden Sie ein Angebot",
   "resendOffer": "Senden Sie ein Angebot erneut",
   "prepareOfer": "Bereiten Sie ein Angebot vor",

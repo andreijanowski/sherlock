@@ -21,7 +21,7 @@
       "yes": "sì",
       "no": "No"
     },
-    "chefAttendance": "Chef attendance",
+    "chefAttendance": "Presenza dello chef",
     "chefAttendanceOption": {
       "yes": "sì",
       "no": "No"
@@ -31,12 +31,12 @@
       "yes": "sì",
       "no": "No"
     },
-    "corporateEvent": "Corporate event",
+    "corporateEvent": "Evento aziendale",
     "corporateEventOption": {
       "yes": "sì",
       "no": "No"
     },
-    "companyName": "Company name",
+    "companyName": "Nome della ditta",
     "specifications": "Specificazioni",
     "additional": "Addizionale",
     "location": "Posizione",
@@ -71,8 +71,8 @@
   "no": "No",
   "address": "Indirizzo",
   "outdoors": "All'aperto",
-  "corporateEvent": "Corporate event",
-  "companyName": "Company name",
+  "corporateEvent": "Evento aziendale",
+  "companyName": "Nome della ditta",
   "contactPerson": "Referente",
   "email": "E-mail",
   "phoneNumber": "Phone number",
