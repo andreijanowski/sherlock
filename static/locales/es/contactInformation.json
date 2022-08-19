@@ -1,10 +1,9 @@
 {
-  "header": "Información del contacto",
   "contactInformation": "Información de Contacto",
-  "nameLabel": "Nombre",
+  "nameLabel": "Name",
   "namePlaceholder": "John Smith",
   "emailLabel": "Email",
-  "emailPlaceholder": "nome@empresa.com",
+  "emailPlaceholder": "nombre@empresa.com",
   "countryLabel": "Código de país",
   "countryPlaceholder": "+48",
   "phoneLabel": "Teléfono",

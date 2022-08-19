@@ -1,0 +1,31 @@
+{
+  "total": "Kunden insgesamt",
+  "table": {
+    "name": "Name",
+    "budget": "Gesamtes Budget",
+    "email": "Email",
+    "phone": "Telefon"
+  },
+  "gender": {
+    "male": "Männlich",
+    "female": "Weiblich"
+  },
+  "years": "{{count} Jahr",
+  "years_plural": "{{count} Jahre",
+  "personal": {
+    "title": "Persönliche Angaben",
+    "phone": "Telefon Nummer",
+    "email": "E-Mail Adresse",
+    "country": "Land",
+    "birthday": "Geburtstag"
+  },
+  "allergies": "Allergien",
+  "favouriteFood": "Bevorzugtes Essen",
+  "favouriteDrink": "Bevorzugtes Getränk",
+  "totalMonthlyBudget": "Monatliches Gesamtbudget",
+  "monthlyBarsBudget": "Monatliches Bar-Budget",
+  "monthlyRestaurantsBudget": "Monatliches Restaurant-Budget",
+  "monthlyDeliveryTakeawayBudget": "Monatliches Budget für Lieferservice und Takeaway",
+  "acceptedDetective": "Detektiv",
+  "search": "Suche"
+}

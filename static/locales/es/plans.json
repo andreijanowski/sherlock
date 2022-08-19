@@ -27,7 +27,7 @@
   "successMessage": "¡Su suscripción se actualizó correctamente!",
   "goBackToPlans": "Volver a los planes",
   "dashboardAnalytics": {
-    "basic": "Básico",
+    "basic": "Basic",
     "essential": "Avanzado",
     "ultimate": "A medida"
   },
@@ -90,7 +90,7 @@
   "ourPlans": "Nuestros planes",
   "plansTitle": {
     "basic": "Basic",
-    "essential": "Essential",
+    "essential": "Esencial",
     "ultimate": "Ultimate desde"
   },
   "choosePlan": "Elige {{name}}",

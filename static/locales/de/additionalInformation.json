@@ -1,5 +1,5 @@
 {
-  "header": "Zusätzliche Information",
+  "header": "Zusätzliche Informationen & Tags",
   "shortHeader": "Zusätzliche Information",
   "timeOfTheDay": "Tageszeit",
   "breakfastService": "Frühstück",
@@ -14,7 +14,7 @@
   "pricePerPersonLabel": "Durchschnittspreis pro Person",
   "pricePerPersonPlaceholder": "40",
   "services": "Dienstleistungen",
-  "hasCatering": "Gastronomie",
+  "hasCatering": "Catering",
   "hasReservations": "Reservierungen",
   "hasPrivateEvents": "Privatisierungen",
   "availableInLefood": "Bestellungen",
@@ -39,13 +39,14 @@
   "redirectionLinks": "Weiterleitungslinks",
   "redirectionLinksTooltip": "Geben Sie Links zu Ihren externen Dienstleistungen/Profilen ein",
   "addExternalServiceLink": "Einen Link zu meinem Profil hinzufügen",
+  "serviceLinkUrlPlaceholder": "Kopieren und Einfügen Ihrer {{service} url hier",
   "serviceLinkCategory": {
     "delivery": "Lieferung & zum Mitnehmen",
     "booking": "Buchung",
     "food_waste": "Gegen Lebensmittelverschwendung",
     "payment": "Zahlung",
     "loyalty": "Treueprogramme",
-    "social_media": "Sozialen Medien",
+    "social_media": "Sozialen medien",
     "online_reviews": "Online-Kritiken"
   },
   "servicePlaceholder": "Dienst auswählen",

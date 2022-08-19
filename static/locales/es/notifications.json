@@ -22,8 +22,9 @@
       "base": "No se pudieron encontrar elementos dados para este pedido"
     }
   },
-  "reservationUpdate": "La reserva se acaba de actualizar. Por favor, consulte la página de reservas para más detalles.",
   "orderUpdate": "El pedido se acaba de actualizar. Por favor, consulte la página de entrega / comida para llevar para más detalles.",
+  "reservationUpdate": "La reserva se acaba de actualizar. Por favor, consulte la página de reservas para más detalles.",
+  "formSavedSuccessfully": "Guardado",
   "orderCreate": "Nueva orden",
   "reservationCreate": "Nueva reserva"
 }

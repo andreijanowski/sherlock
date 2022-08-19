@@ -8,11 +8,11 @@
         "Bars & Pubs",
         "Ghost Kitchens",
         "Détaillants",
-        "Bouchers",
+        "Boucheries",
         "Épiceries",
         "Kiosks"
       ],
-      "end": ""
+      "end": "des vies beaucoup plus faciles"
     },
     "paragraph": "Foodetective intègre tous vos logiciels et systèmes sur une seule plateforme. Les établissements de toutes tailles peuvent s’appuyer sur notre API pour gérer l’ensemble de leurs technologies, optimiser leurs opérations et améliorer leur connaissance du marché.",
     "getStartedForFree": "Commencez gratuitement",
@@ -27,9 +27,6 @@
       "start": "Téléchargez votre application dès aujourd’hui.",
       "end": " Foodetective Business."
     }
-  },
-  "developerAndApi": {
-    "header": "developer & API"
   },
   "cooperations": {
     "clients": "Les clients",
@@ -83,7 +80,7 @@
   },
   "bookDemo": "Réserver une démonstration",
   "registerNow": "S'inscrire",
-  "pricing": "Tarifs",
+  "pricing": "Souscrivez en fonction de votre croissance",
   "appSwitcher": {
     "lefood": "Foodies",
     "sherlock": "Businesses"
@@ -92,7 +89,7 @@
   "getTheApp": "Téléchargez l'App",
   "howItWorks": "Comment ça marche",
   "product": "Produit",
-  "developersAndApi": "Développeurs & API",
+  "developersAndApi": "Developers & API",
   "company": "Entreprise",
   "management": "Management",
   "operations": "Operations",
@@ -103,7 +100,7 @@
   "aboutUs": "A propos de nous",
   "newsroom": "Newsroom",
   "careers": "Carrières",
-  "partners": "Partenaires",
+  "partners": "Les partenaires",
   "unifiedApiSection": {
     "title": "API unifiée pour l'industrie F&B",
     "description": "Grâce à notre API, il n'est plus nécessaire d'utiliser plusieurs applications et logiciels pour gérer votre établissement. Retrouvez tous vos services sur une seule et même plateforme."
@@ -242,7 +239,7 @@
           {
             "title": "Main",
             "description": "Vos données clients dans un seul endroit avec des informations exploitables.",
-            "advantages":[
+            "advantages": [
               "<0>Des profiles clients automatiques</0> grâce à la capture de données exploitables.",
               "<0>Historiques des réservations</0> afin de connaître vos clients les plus fidèles.",
               "Coming soon: <0>Filtrez vos clients par groupes</0> et envoyez-leur des promotions et offres ciblées."
@@ -507,30 +504,30 @@
         }
       ]
     },
-    "howItWorks" : {
-      "title" : "Un produit fait pour le self-service",
-      "subtitle" : "Qu'est-ce que cela signifie ? Pas besoin de longs appels avec le support client ou de frais de mise en service, nous avons conçu un logiciel facile à gérer et ne nécessitant aucune connaissance technique",
-      "step1" : {
-        "title" : "Comment ça marche",
-        "subtitle" : "Créer votre compte",
-        "options" : [
+    "howItWorks": {
+      "title": "Un produit fait pour le self-service",
+      "subtitle": "Qu'est-ce que cela signifie ? Pas besoin de longs appels avec le support client ou de frais de mise en service, nous avons conçu un logiciel facile à gérer et ne nécessitant aucune connaissance technique",
+      "step1": {
+        "title": "Comment ça marche",
+        "subtitle": "Créer votre compte",
+        "options": [
           {
-            "title" : "Main",
-            "description" : "Les nouveaux établissements s'enregistrent en moyenne en <0>15 minutes.</0>",
-            "advantages" : [
+            "title": "Main",
+            "description": "Les nouveaux établissements s'enregistrent en moyenne en <0>15 minutes.</0>",
+            "advantages": [
               "Remplissez les informations de votre établissement sur votre <1>Business Profile</1> telles que les heures d'ouverture, les services disponibles, vos photos et tous les éléments essentiels.",
               "Si vous devez mettre à jour ces informations, faites-le une seule fois et cela sera mis à jour sur toutes vos plateformes <1>en ligne</1>."
             ]
           }
         ]
       },
-      "step2" : {
-        "subtitle" : "Click & Connect",
-        "options" : [
+      "step2": {
+        "subtitle": "Click & Connect",
+        "options": [
           {
-            "title" : "Main",
-            "description" : "Ne vous préoccupez pas de l'aspect <0>technique des choses.</0>",
-            "advantages" : [
+            "title": "Main",
+            "description": "Ne vous préoccupez pas de l'aspect <0>technique des choses.</0>",
+            "advantages": [
               "Allez sur le <1>Integrations Hub</1> et <0>cliquez et connectez</0> vos plateformes préférées.",
               "Vous pouvez toujours ajouter ou supprimer des plateformes si vous le jugez nécessaire.",
               "Ajoutez vos identifiants une seule fois et c'est prêt à être utilisé !"
@@ -538,36 +535,36 @@
           }
         ]
       },
-      "step3" : {
-        "subtitle" : "Commencez à gérer votre établissement de manière transparente",
-        "options" : [
+      "step3": {
+        "subtitle": "Commencez à gérer votre établissement de manière transparente",
+        "options": [
           {
-            "title" : "Main",
-            "advantages" : [
+            "title": "Main",
+            "advantages": [
               "Accédez facilement à tous vos outils via notre menu",
               "Aucune formation nécessaire, ils fonctionnent comme ils l'ont toujours fait"
             ]
           }
         ]
       },
-      "step4" : {
-        "subtitle" : "Gérer tous vos systèmes à partir d'une seule plateforme",
-        "options" : [
+      "step4": {
+        "subtitle": "Gérer tous vos systèmes à partir d'une seule plateforme",
+        "options": [
           {
-            "title" : "Main",
-            "advantages" : [
+            "title": "Main",
+            "advantages": [
               "La centralisation de votre tech-stack vous permettra d'obtenir des informations en temps réel sur votre <1>dashboard personnalisé.</1>",
-              "Utilisez Foodetective au quotidien \uD83D\uDE09"
+              "Utilisez Foodetective au quotidien 😉"
             ]
           }
         ]
       },
-      "step5" : {
-        "subtitle" : "Accès 24/7 depuis votre poche",
-        "options" : [
+      "step5": {
+        "subtitle": "Accès 24/7 depuis votre poche",
+        "options": [
           {
-            "title" : "Main",
-            "advantages" : [
+            "title": "Main",
+            "advantages": [
               "Télécharger l'application Foodetective Business",
               "Activez les notifications",
               "Acceptez automatiquement les mises à jour de l'app pour une meilleure expérience"
@@ -576,7 +573,7 @@
         ]
       }
     },
-    "customers" : {
+    "customers": {
       "independent": {
         "title": "Restaurants indépendants",
         "subtitle": "Fini les tablettes qui s'empilent",
@@ -610,7 +607,7 @@
         ]
       },
       "kitchens": {
-        "titre": "Dark Kitchens",
+        "title": "Cuisines sombres",
         "subtitle": "Pas besoin d'avance dans l'obscurité",
         "options": [
           {
@@ -667,10 +664,10 @@
     "demo": {
       "cta": "Retourner au site web",
       "title": "Votre démo à été réservée avec succès!",
-      "subtitle": "Nous vous contacterons dans les 24h" 
+      "subtitle": "Nous vous contacterons dans les 24h"
     },
     "welcome": {
-      "title":  "Bienvenue chez Foodetective!",
+      "title": "Bienvenue chez Foodetective!",
       "subtitle": "Votre compte à été créé avec succès. Commencer l'onboarding",
       "cta": "Démarrer",
       "disclaimer": "En cliquant sur Démarrer, vous confirmez votre inscription en tant que Business sur Foodetective.",

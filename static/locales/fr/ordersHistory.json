@@ -1,0 +1,8 @@
+{
+  "table": {
+    "date": "Date",
+    "client": "Client",
+    "amount": "Montant",
+    "currency": "Devise"
+  }
+}

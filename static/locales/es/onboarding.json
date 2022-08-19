@@ -13,6 +13,7 @@
     },
     "letsgo": "Aquí vamos",
     "next": "Próximo",
+    "publish": "Publicar",
     "previous": "Anterior",
     "step1": {
       "title": "Cree su perfil",
@@ -39,13 +40,13 @@
     "imagesmenus": {
       "logo": {
         "hint": "Por favor, inserte su logo",
-        "drag_file": "Elija un archivo o arrástrelo hasta aquí"
+        "drag_file": "Elija un archivo o arrástrelo aquí"
       },
       "upload_pictures": {
-        "hint": "Por favor, inserte una foto de alta calidad que muestre el ambiente de su negocio (preferiblemente el interior)"
+        "hint": "Por favor, Inserte una imagen / foto de alta calidad que muestre la atmósfera de su negocio (preferiblemente el interior)"
       },
       "must_try": {
-        "hint": "Promocione sus bestsellers."
+        "hint": "Si cree que hay un plato que recomendaría tener en este lugar en particular, háganoslo saber y comparta una foto de él"
       }
     }
   },

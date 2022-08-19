@@ -13,6 +13,7 @@
     },
     "letsgo": "C'est parti",
     "next": "Suivant",
+    "publish": "Publier",
     "previous": "Précédent",
     "step1": {
       "title": "Créez votre profil",
@@ -42,10 +43,10 @@
         "drag_file": "Choisissez un fichier ou faites-le glisser ici"
       },
       "upload_pictures": {
-        "hint": "Ajoutez une image de qualité qui montre l'atmosphère de votre établissement (de préférence l'intérieur)."
+        "hint": "S.V.P.,Veuillez insérer une image / photo de haute qualité montrant l’atmosphère de votre entreprise (de préférence son intérieur)."
       },
       "must_try": {
-        "hint": "Mettez en avant vos best-seller."
+        "hint": "Si vous croyez qu'il y a un plat que vous recommanderiez d'avoir à cet endroit, veuillez nous en informer et partager une photo de celui-ci."
       }
     }
   },

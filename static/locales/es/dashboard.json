@@ -20,7 +20,7 @@
   "deliveryRevenue": "Entrega",
   "takeawayRevenue": "Para llevar ",
   "onSiteRevenue": "En el sitio",
-  "otherRevenue": "Otros",
+  "otherRevenue": "Otro",
   "ticket": "Importe medio del billete",
   "earnings": "Los ingresos de hoy",
   "today": "Hoy",
@@ -41,5 +41,8 @@
   "todayVS": "Hoy vs",
   "thisMonthVS": "Este mes vs",
   "thisQuarterVS": "Este trimestre vs",
-  "thisYearVS": "Este año vs"
+  "thisYearVS": "Este año vs",
+  "businessOperations": "Operaciones comerciales",
+  "reviews": "Reseñas",
+  "onlinePresence": "Presencia en línea"
 }
