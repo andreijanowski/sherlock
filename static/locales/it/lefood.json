@@ -218,8 +218,8 @@
     "success": "Il vostro menu è stato pubblicato con successo!",
     "upload_again": "Caricare di nuovo",
     "error": {
-      "missing_data": "Abbiamo trovato <0>{{count} errori nel tuo documento.<1/> Per favore, rivedi il file CSV e caricalo di nuovo",
-      "missing_data_plural": "Abbiamo trovato <0>{{count} errori nel tuo documento.<1/> Per favore, rivedi il file CSV e caricalo di nuovo",
+      "missing_data": "Abbiamo trovato <0>{{count}} errori nel tuo documento.<1/> Per favore, rivedi il file CSV e caricalo di nuovo",
+      "missing_data_plural": "Abbiamo trovato <0>{{count}} errori nel tuo documento.<1/> Per favore, rivedi il file CSV e caricalo di nuovo",
       "other": "C'è stato un problema. Si prega di riprovare"
     },
     "table": {
@@ -227,22 +227,22 @@
       "error": "Errore"
     },
     "row_error": {
-      "missing": "{{column} manca",
-      "missing_header": "Manca l'intestazione{{column}",
-      "unknown": "{{column} è sconosciuto",
-      "unknown_header": "L'intestazione{{column} è sconosciuta",
-      "too_long": "{{column} è troppo lunga",
-      "too_long_header": "L'intestazione{{column} è troppo lunga",
-      "wrong_order": "{{column} è in posizione errata",
+      "missing": "{{column}} manca",
+      "missing_header": "Manca l'intestazione{{column}}",
+      "unknown": "{{column}} è sconosciuto",
+      "unknown_header": "L'intestazione{{column}} è sconosciuta",
+      "too_long": "{{column}} è troppo lunga",
+      "too_long_header": "L'intestazione{{column}} è troppo lunga",
+      "wrong_order": "{{column}} è in posizione errata",
       "wrong_order_header": "L'intestazione{{column} è in posizione errata",
-      "invalid": "{{column} non è valido",
-      "invalid_header": "L'intestazione{{column} non è valida",
-      "too_low": "{{column} è troppo bassa",
-      "too_low_header": "L'intestazione{{column} è troppo bassa",
-      "too_high": "{{column} è troppo alta",
-      "too_high_header": "L'intestazione{{column} è troppo alta",
-      "already_exists": "{{column} esiste già",
-      "already_exists_header": "{{column} l'intestazione esiste già"
+      "invalid": "{{column}} non è valido",
+      "invalid_header": "L'intestazione{{column}} non è valida",
+      "too_low": "{{column}} è troppo bassa",
+      "too_low_header": "L'intestazione{{column}} è troppo bassa",
+      "too_high": "{{column}} è troppo alta",
+      "too_high_header": "L'intestazione{{column}} è troppo alta",
+      "already_exists": "{{column}} esiste già",
+      "already_exists_header": "{{column}} l'intestazione esiste già"
     },
     "upload_to_uber": "Caricare il menu su Uber Eats",
     "upload_to_uber_confirm": "Siete sicuri di voler inviare il menu a Uber Eats? Sostituirà il vostro menu attuale in Uber.",

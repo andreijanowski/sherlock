@@ -10,8 +10,8 @@
     "male": "Hombre",
     "female": "Mujer"
   },
-  "years": "{{count} años",
-  "years_plural": "{{count} años",
+  "years": "{{count}} años",
+  "years_plural": "{{count}} años",
   "personal": {
     "title": "Informacion personal",
     "phone": "Número de teléfono",
