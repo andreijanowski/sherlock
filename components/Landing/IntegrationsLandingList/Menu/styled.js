@@ -7,6 +7,7 @@ export const List = styled.ul`
   padding: 0;
   margin: 0;
   list-style: none;
+  min-width: 250px;
   ${downThanBreakpoint(1)} {
     width: 100%;
   }
@@ -15,7 +16,6 @@ export const List = styled.ul`
 export const ListGroupLabel = styled(H3).attrs({ as: "li" })`
   margin-top: 18px;
   margin-bottom: 10px;
-  padding-left: 14px;
   color: rgb(${p => p.theme.colors.landingDarkBlue});
   ${downThanBreakpoint(1)} {
     ${p =>

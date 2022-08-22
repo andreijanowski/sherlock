@@ -3,7 +3,8 @@ import {
   DISCONNECT_PARTNER_REQUEST,
   FETCH_PARTNERS_REQUEST,
   PARTNERS_PREFERRED_ADD_REQUEST,
-  PARTNERS_PREFERRED_DELETE_REQUEST
+  PARTNERS_PREFERRED_DELETE_REQUEST,
+  FETCH_PARTNERS_AVAILABLE_REQUEST
 } from "types/partners";
 import { getRelationships } from "./utils";
 
@@ -63,6 +64,23 @@ export const fetchPartners = config => {
       }
     },
     meta: { thunk: true, merge, config }
+  };
+};
+
+export const fetchAvailablePartners = config => {
+  const { filter, search, page } = config;
+  return {
+    type: FETCH_PARTNERS_AVAILABLE_REQUEST,
+    payload: {
+      endpoint: "/api/v1/partners/available",
+      params: {
+        per_page: 12,
+        filter,
+        search,
+        page
+      }
+    },
+    meta: { thunk: true, config }
   };
 };
 
