@@ -7,6 +7,7 @@ export const List = styled.ul`
   padding: 0;
   margin: 0;
   list-style: none;
+  min-width: 250px;
   ${downThanBreakpoint(1)} {
     width: 100%;
   }

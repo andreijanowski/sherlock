@@ -7,14 +7,19 @@ import VideoButton from "components/Landing/VideoButton";
 import { INTEGRATIONS_VIDEO_URL } from "consts";
 import PartnersSearchBox from "components/PartnersSearchBox";
 import { AdaptiveBox } from "components/styleguide/common";
-import IntegrationsList from "sections/integrations";
+import { PartnerTile } from "components/PartnerTile";
 import { LoadingIndicator } from "components";
 import { sectionItemShape } from "../types";
-import { Container, SubtitleStyled, PartnersListContainer } from "./styled";
+import {
+  Container,
+  SubtitleStyled,
+  PartnersListContainer,
+  PartnersWrapper
+} from "./styled";
 
 const Partners = ({ activeItem, partners, isLoading }) => {
-  console.log("partners", partners && partners.toJS(), activeItem);
   const t = useT("app");
+  const hasPartners = !isLoading && partners && partners.size > 0;
 
   return (
     <Container>
@@ -27,8 +32,21 @@ const Partners = ({ activeItem, partners, isLoading }) => {
         <SubtitleStyled mb={4}>{activeItem.label}</SubtitleStyled>
       </AdaptiveBox>
       <PartnersListContainer>
-        {!isLoading && partners && partners.size > 0 && (
-          <IntegrationsList partners={partners} isIntegrations t={t} />
+        {hasPartners && (
+          <PartnersWrapper>
+            {partners.map(partner => {
+              const partnerId = partner.get("id");
+
+              return (
+                <PartnerTile
+                  key={partnerId}
+                  t={t}
+                  partner={partner.get("attributes")}
+                  partnerId={partnerId}
+                />
+              );
+            })}
+          </PartnersWrapper>
         )}
         {isLoading && <LoadingIndicator hasTransparentBackground />}
       </PartnersListContainer>

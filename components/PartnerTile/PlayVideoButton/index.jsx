@@ -8,7 +8,7 @@ import { Modal } from "components/index";
 import YoutubeVideo from "components/YoutubeVideo";
 import { OutlineButton } from "../styled";
 
-const PlayVideoButton = ({ t, url, big }) => {
+const PlayVideoButton = ({ t, url, big, isLP }) => {
   const [showModal, setShowModal] = useState(false);
 
   const onPlayVideoClick = useCallback(() => {
@@ -29,7 +29,7 @@ const PlayVideoButton = ({ t, url, big }) => {
         alignItems="center"
         styleName="outlineBlue"
       >
-        <Box mr={2}>{t("app:playVideo")}</Box>
+        <Box mr={2}>{t(isLP ? "app:Video" : "app:playVideo")}</Box>
         <FontAwesomeIcon icon={faPlay} />
       </Flex>
       {showModal && (
@@ -44,11 +44,13 @@ const PlayVideoButton = ({ t, url, big }) => {
 PlayVideoButton.propTypes = {
   url: string.isRequired,
   t: func.isRequired,
-  big: bool
+  big: bool,
+  isLP: bool
 };
 
 PlayVideoButton.defaultProps = {
-  big: false
+  big: false,
+  isLP: false
 };
 
 export default PlayVideoButton;

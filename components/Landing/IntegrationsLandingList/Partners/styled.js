@@ -28,3 +28,9 @@ export const SubtitleStyled = styled(Subtitle)`
   color: rgb(${p => p.theme.colors.landingDarkBlue});
   text-align: center;
 `;
+
+export const PartnersWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+`;
