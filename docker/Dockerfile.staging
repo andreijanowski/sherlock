@@ -7,6 +7,6 @@ ENV PATH $PATH:$APP_HOME/node_modules/.bin
 ADD . $APP_HOME
 WORKDIR $APP_HOME
 
-RUN yarn install
+RUN yarn install --ignore-engines
 EXPOSE 3000
 CMD ["yarn", "start"]
