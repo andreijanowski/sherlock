@@ -24,10 +24,10 @@
   "onlineBookingUrlPlaceholder": "https://business.co/booking",
   "takeawayUrlLabel": "Takeaway url",
   "takeawayUrlPlaceholder": "https://business.co/takeaway",
-  "paymentMethods": "Payment Methods",
-  "canPayWithCards": "Can pay with cards",
+  "paymentMethods": "Accepted Payment Methods",
+  "canPayWithCards": "Cards",
   "canPayWithCash": "Cash",
-  "canPayWithMobile": "Can pay with mobile",
+  "canPayWithMobile": "Pay by Phone",
   "secretCode": "Secret Code",
   "referenceCodes": "Reference codes",
   "deliveryChargeRef": "Delivery charge ref",
@@ -55,5 +55,6 @@
   "redirectionWebsiteLinks": "Links to your websites",
   "redirectionServicesLinks": "Links to partners external services",
   "secretCodeHint": "Please enter the code which has been communicated to you by your activation partner or sales rep. <0/> (<1>If you are registering on your own initiative, please leave this empty</1>)",
+  "servicesHint": "Ticking a box here will activate the chosen services <0>directly on Foodetective</0>. If you wish to only provide these services through other platforms, go in the Redirection Link section in the left menu.",
   "seeAll": "See all information"
 }

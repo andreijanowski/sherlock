@@ -61,7 +61,11 @@ const AdditionalInformationForm = ({ t, initialValues, handleSubmit }) =>
               />
             </Box>
           </Flex>
-          <H3 mt={3}>{t("services")}</H3>
+          <HintBox
+            hint={<Trans t={t} i18nKey="servicesHint" components={[<b />]} />}
+          >
+            <H3 mt={3}>{t("services")}</H3>
+          </HintBox>
           <FormCheckbox name="hasCatering" label={t("hasCatering")} />
           <FormCheckbox name="hasReservations" label={t("hasReservations")} />
           <FormCheckbox name="hasPrivateEvents" label={t("hasPrivateEvents")} />
