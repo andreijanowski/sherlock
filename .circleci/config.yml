@@ -14,7 +14,7 @@ references:
   node_machine: &node_machine
     working_directory: ~/repo
     docker:
-      - image: circleci/node:14.2.0
+      - image: circleci/node:14.20.0
 
 jobs:
   checkout_code:
