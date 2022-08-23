@@ -4,8 +4,11 @@ import { Flex, Box } from "@rebass/grid";
 export const Container = styled(Flex)`
   position: relative;
   max-height: 150px;
-  min-width: 240px;
-  margin-right: 27px;
+  min-width: 250px;
+  max-width: 250px;
+  margin-right: 14px;
+  margin-left: 14px;
+  margin-bottom: 27px;
   flex-direction: column;
   padding: 24px 12px;
   border: ${p =>
@@ -38,6 +41,22 @@ export const Name = styled.div`
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f16};
   line-height: ${p => p.theme.fontSizes.f16};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 170px;
+`;
+
+export const Category = styled.div`
+  font-weight: 400;
+  font-size: ${p => p.theme.fontSizes.f10};
+  line-height: ${p => p.theme.fontSizes.f10};
+  color: rgb(${p => p.theme.colors.mischka});
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 170px;
+  margin-top: -5px;
 `;
 
 export const Status = styled.div`

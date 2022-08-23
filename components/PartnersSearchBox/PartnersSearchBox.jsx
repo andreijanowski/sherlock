@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { bool, func, shape } from "prop-types";
+import { bool, func, shape, number } from "prop-types";
 import { withTranslation } from "i18n";
 import { compose } from "redux";
 import { connect } from "react-redux";
@@ -71,7 +71,9 @@ const PartnersSearchBox = ({
   fetchPartnersHandler,
   fetchAvailablePartnersHandler,
   hasAvailablePartners,
-  activeFilter
+  activeFilter,
+  page,
+  clearPage
 }) => {
   const [search, setSearch] = useState("");
   const {
@@ -87,9 +89,13 @@ const PartnersSearchBox = ({
     [isWholesalersPage, category, business, activeFilter]
   );
 
-  const onSearchChange = useCallback(newSearch => {
-    setSearch(newSearch);
-  }, []);
+  const onSearchChange = useCallback(
+    newSearch => {
+      setSearch(newSearch);
+      clearPage();
+    },
+    [clearPage]
+  );
 
   const businessId = business && business.get("id");
 
@@ -112,7 +118,8 @@ const PartnersSearchBox = ({
         filter: {
           categories: [activeFilter]
         },
-        page: 1
+        merge: page > 1,
+        page
       });
     }
   }, [
@@ -120,7 +127,8 @@ const PartnersSearchBox = ({
     filter,
     search,
     hasAvailablePartners,
-    activeFilter
+    activeFilter,
+    page
   ]);
 
   return (
@@ -138,13 +146,16 @@ PartnersSearchBox.propTypes = {
   fetchAvailablePartnersHandler: func.isRequired,
   business: shape(),
   hasAvailablePartners: bool,
-  activeFilter: bool
+  activeFilter: bool,
+  page: number,
+  clearPage: func.isRequired
 };
 
 PartnersSearchBox.defaultProps = {
   business: null,
   hasAvailablePartners: false,
-  activeFilter: ""
+  activeFilter: "",
+  page: 1
 };
 
 const mapState = state => {

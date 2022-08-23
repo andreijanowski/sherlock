@@ -6,7 +6,7 @@ import { Router } from "routes";
 import { AdaptiveBox } from "components/styleguide/common";
 import { useLng } from "utils/hooks";
 import { ListGroupItem } from "./styled";
-import Canvas from "../Canvas";
+import Partners from "../Partners";
 import { sectionItemShape } from "../types";
 
 const MenuItem = ({ item, activeItem }) => {
@@ -42,7 +42,7 @@ const MenuItem = ({ item, activeItem }) => {
       </ListGroupItem>
       {isActive && isOpened && (
         <AdaptiveBox as="li" display={["block", null, "none"]}>
-          <Canvas activeItem={item} />
+          <Partners activeItem={activeItem} />
         </AdaptiveBox>
       )}
     </Fragment>

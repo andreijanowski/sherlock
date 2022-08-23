@@ -15,3 +15,21 @@ export const getConfig = t => [
     }))
   }
 ];
+
+export const getFilteredPartners = partners =>
+  Boolean(partners.length) &&
+  partners.sort((a, b) => {
+    if (
+      a.attributes.status === "available" &&
+      b.attributes.status !== "available"
+    ) {
+      return -1;
+    }
+    if (
+      b.attributes.status === "available" &&
+      a.attributes.status !== "available"
+    ) {
+      return 1;
+    }
+    return 0;
+  });

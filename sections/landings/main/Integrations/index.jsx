@@ -17,7 +17,7 @@ import {
 const Integrations = () => {
   const t = useT("landing");
   return (
-    <Container pt="50px" pb={[95, null, null, "220px"]} px={3}>
+    <Container pt="50px" pb={[95, null, null, "260px"]} px={3}>
       <Box
         width={[1, null, null, 1 / 2]}
         mb={[3, null, 5]}
