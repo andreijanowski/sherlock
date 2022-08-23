@@ -1,7 +1,6 @@
 import { Component } from "react";
 import { oneOf, bool, func, node } from "prop-types";
 import { i18n, withTranslation } from "i18n";
-
 import { Router } from "routes";
 import isServer from "utils/isServer";
 import replacePathLng from "utils/replacePathLng";

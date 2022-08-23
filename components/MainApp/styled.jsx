@@ -86,31 +86,26 @@ export const Header = styled(Flex).attrs(() => ({
 `;
 
 export const Icon = styled(Flex).attrs(() => ({
-  width: 32,
-  alignItems: "center",
-  justifyContent: "center",
+  width: 36,
   mx: 1
 }))`
-  height: 32px;
+  background-color: rgb(${p => p.theme.colors.white});
+  height: 36px;
   font-size: 24px;
-  border-radius: 16px;
+  border-radius: 18px;
   cursor: pointer;
+  box-shadow: 0 4px 2px -2px gray;
 
   path,
   circle,
-  rect {
-    fill: rgb(${p => (p.active ? p.theme.colors.blue : p.theme.colors.dark)});
-    stroke: rgb(${p => (p.active ? p.theme.colors.blue : p.theme.colors.dark)});
-  }
-
   &:hover {
-    background-color: rgb(${p => p.theme.colors.dark});
+    background-color: rgb(${p => p.theme.colors.darkBlue});
     box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.dark}, 0.48);
 
     path,
     circle,
     rect {
-      fill: rgb(${p => p.theme.colors.white});
+      fill: rgb(${p => p.theme.colors.darkBlue});
       stroke: rgb(${p => p.theme.colors.white});
     }
   }
@@ -125,15 +120,53 @@ export const IconsWrapper = styled(Flex)`
 `;
 
 export const Avatar = styled.div`
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   margin-left: 4px;
+  box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.dark}, 0.48);
   background-color: rgb(${p => p.theme.colors.dark});
   background-position: center;
   background-size: cover;
-  border-radius: 16px;
+  border-radius: 18px;
   cursor: pointer;
   ${p => p.src && `background-image: url(${p.src});`}
+`;
+
+export const DropDownContainer = styled("div")`
+  width: 10.5em;
+  margin: 0 auto;
+`;
+
+export const DropDownHeader = styled("div")`
+  margin-bottom: 0.8em;
+  padding: 0.4em 2em 0.4em 1em;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: #3faffa;
+  background: #ffffff;
+`;
+
+export const DropDownListContainer = styled("div")``;
+
+export const DropDownList = styled("ul")`
+  padding: 0;
+  margin: 0;
+  padding-left: 1em;
+  background: #ffffff;
+  border: 2px solid #e5e5e5;
+  box-sizing: border-box;
+  color: #3faffa;
+  font-size: 1.3rem;
+  font-weight: 500;
+  &:first-child {
+    padding-top: 0.8em;
+  }
+`;
+
+export const ListItem = styled("li")`
+  list-style: none;
+  margin-bottom: 0.8em;
 `;
 
 export const TutorialButton = styled.div`

@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { bool, func, shape, string } from "prop-types";
 import Tippy from "@tippyjs/react/headless";
 import { Form as FinalForm, FormSpy } from "react-final-form";
 import { Box } from "@rebass/grid";
 import { diff } from "deep-object-diff";
 import _ from "lodash";
-
 import { FormCheckbox, LoadingIndicator } from "components";
 import { useT } from "utils/hooks";
 import {
@@ -17,7 +15,9 @@ import {
 } from "selectors/business";
 import { patchBusiness } from "actions/businesses";
 import { BUSINESS_SETTINGS_KEYS } from "utils/businessUtils";
-import { CheckboxesContainer, Container, YoutubeIcon } from "./styled";
+import { CheckboxesContainer, Container } from "./styled";
+import { Icon } from "../MainApp/styled";
+import { BellIcon } from "../Icons/mainControls";
 
 const NotificationsSwitch = ({
   settings,
@@ -100,10 +100,11 @@ const NotificationsSwitch = ({
       placement="bottom"
     >
       <Container {...rest}>
-        <FontAwesomeIcon
-          onClick={toggleVisibility}
-          icon={isActive ? <YoutubeIcon /> : <YoutubeIcon />}
-        />
+        {isActive && (
+          <Icon onClick={toggleVisibility}>
+            <BellIcon />
+          </Icon>
+        )}
       </Container>
     </Tippy>
   );

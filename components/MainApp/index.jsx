@@ -3,7 +3,6 @@ import { Flex } from "@rebass/grid";
 import { bool, func, node, string } from "prop-types";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
-
 import { InfoIcon } from "components/Icons";
 import {
   Button,
@@ -23,12 +22,16 @@ import {
   Icon,
   IconsWrapper,
   MainIconWrapper,
-  TutorialButton,
   Wrapper,
   YoutubeWrapper,
-  LanguageSwitcherWrapper
+  LanguageSwitcherWrapper,
+  DropDownListContainer,
+  DropDownContainer,
+  DropDownList,
+  ListItem
 } from "./styled";
 import { chooseIcon, getButtonRoutes, getInfoHref } from "./utils";
+import { WatchVideosIcon } from "../Icons";
 
 const MainApp = ({
   t,
@@ -64,6 +67,9 @@ const MainApp = ({
   }, [shouldPlayNotification, toggleSound]);
 
   const hasRoutesBar = !!(prevRoute || nextRoute);
+  const toggleModalOpen = () => {
+    setIsModalOpen(value => !value);
+  };
 
   return (
     <Wrapper mainIcon={mainIcon}>
@@ -95,17 +101,10 @@ const MainApp = ({
           </YoutubeWrapper>
         </Modal>
         <IconsWrapper>
-          <TutorialButton
-            role="button"
-            tabIndex="0"
-            onClick={() => setIsModalOpen(true)}
-            onKeyDown={() => setIsModalOpen(true)}
-          >
-            Watch tutorials
-          </TutorialButton>
-          {/* <Icon> */}
+          <Icon onClick={toggleModalOpen} onKeyDown={toggleModalOpen}>
+            <WatchVideosIcon />
+          </Icon>
           <NotificationsSwitch mx={1} />
-          {/* </Icon> */}
           <Icon
             as="a"
             target="_blank"
@@ -114,10 +113,17 @@ const MainApp = ({
           >
             <InfoIcon />
           </Icon>
+          <DropDownContainer>
+            <Avatar src={avatar} />
+            <DropDownListContainer>
+              <DropDownList>
+                <ListItem>See Profile</ListItem>
+              </DropDownList>
+            </DropDownListContainer>
+          </DropDownContainer>
           <LanguageSwitcherWrapper>
             <LanguageSwitcher />
           </LanguageSwitcherWrapper>
-          <Avatar src={avatar} />
         </IconsWrapper>
       </HeaderWrapper>
       {children}
