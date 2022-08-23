@@ -1,12 +1,15 @@
 import React from "react";
-import { arrayOf, oneOfType, shape } from "prop-types";
+import { oneOfType, shape } from "prop-types";
 import { Box, Flex } from "@rebass/grid";
 import { useT } from "utils/hooks";
+import { without } from "lodash";
+import { WHOLESALER, AVAILABLE } from "consts";
 
 import PlayVideoButton from "../PlayVideoButton";
 import {
   ButtonWrapper,
   InfoButton,
+  Category,
   Container,
   Image,
   ImageContainer,
@@ -15,19 +18,18 @@ import {
   Status
 } from "./styled";
 
-const PartnerTile = ({ partner }) => {
+const PartnerTile = ({
+  partner: { name, status, videoUrl, websiteUrl, logo, categories }
+}) => {
   const t = useT("app");
-  const name = partner.get("name");
-  const status = partner.get("status");
-  const isAvailable = status === "available";
-  const videoUrl = partner.get("videoUrl");
-  const websiteUrl = partner.get("websiteUrl");
+  const isAvailable = status === AVAILABLE;
+  const category = without(categories, WHOLESALER);
 
   return (
     <Container isAvailable={isAvailable}>
       <Flex mb={3}>
         <Box as={ImageContainer} mr={2}>
-          <Image src={partner.getIn(["logo", "url"])} />
+          <Image src={logo.url} />
         </Box>
         <Flex
           flexDirection="column"
@@ -35,6 +37,7 @@ const PartnerTile = ({ partner }) => {
           justifyContent="space-between"
         >
           <Name>{name}</Name>
+          <Category>{t(`app:manageIntegrations.${category[0]}`)}</Category>
           {isAvailable ? (
             <Status>
               <ParnterFullyConnectedCheckmark /> &nbsp;Available
@@ -64,7 +67,7 @@ const PartnerTile = ({ partner }) => {
 };
 
 PartnerTile.propTypes = {
-  partner: oneOfType([arrayOf(), shape()]).isRequired
+  partner: oneOfType([shape()]).isRequired
 };
 
 export default PartnerTile;

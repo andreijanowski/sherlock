@@ -68,7 +68,7 @@ export const fetchPartners = config => {
 };
 
 export const fetchAvailablePartners = config => {
-  const { filter, search, page } = config;
+  const { filter, search, merge, page } = config;
   return {
     type: FETCH_PARTNERS_AVAILABLE_REQUEST,
     payload: {
@@ -80,7 +80,7 @@ export const fetchAvailablePartners = config => {
         page
       }
     },
-    meta: { thunk: true, config }
+    meta: { thunk: true, merge, config }
   };
 };
 
