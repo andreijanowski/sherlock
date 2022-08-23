@@ -40,7 +40,7 @@ const PartnerTile = ({
           <Category>{t(`app:manageIntegrations.${category[0]}`)}</Category>
           {isAvailable ? (
             <Status>
-              <ParnterFullyConnectedCheckmark /> &nbsp;Available
+              <ParnterFullyConnectedCheckmark /> &nbsp;{t("app:available")}
             </Status>
           ) : (
             <Status>Coming soon</Status>

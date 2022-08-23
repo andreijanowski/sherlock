@@ -108,6 +108,7 @@
   "settings": "Einstellungen",
   "payments": "Zahlungen",
   "playVideo": "Video abspielen",
+  "loadMore": "Mehr Laden",
   "payroll": "HR & Gehalt",
   "foodWaste": "Unverkaufte Lebensmittel",
   "presenceManagement": "Online-Präsenz",
@@ -123,5 +124,7 @@
   "seeAllHours": "See all hours",
   "readMore": "Read more",
   "mustTry": "Must Try",
-  "allOurCategories": "Alle unseren Kategorien"
+  "allOurCategories": "Alle unseren Kategorien",
+  "available": "Verfügbar",
+  "typeName": "Namen des Partners"
 }

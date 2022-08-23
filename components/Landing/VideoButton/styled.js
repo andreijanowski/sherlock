@@ -18,3 +18,10 @@ export const Label = styled.div`
   font-weight: ${p => p.theme.fontWeights.medium};
   line-height: 25px;
 `;
+
+export const Icon = styled.div`
+  svg {
+    height: 62px;
+    width: 62px;
+  }
+`;

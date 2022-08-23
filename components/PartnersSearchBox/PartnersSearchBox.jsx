@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { bool, func, shape, number } from "prop-types";
+import { bool, func, shape, number, string } from "prop-types";
 import { withTranslation } from "i18n";
 import { compose } from "redux";
 import { connect } from "react-redux";
@@ -17,7 +17,12 @@ const namespaces = ["app"];
 
 const DEBOUNCE = 300;
 
-const DebouncedInput = ({ t, onChange, hasAvailablePartners }) => {
+const DebouncedInput = ({
+  t,
+  onChange,
+  hasAvailablePartners,
+  activeFilter
+}) => {
   const [value, setValue] = useState("");
 
   const debouncedOnChange = useCallback(debounce(onChange, DEBOUNCE), [
@@ -37,6 +42,10 @@ const DebouncedInput = ({ t, onChange, hasAvailablePartners }) => {
     [debouncedOnChange]
   );
 
+  useEffect(() => {
+    setValue("");
+  }, [activeFilter]);
+
   return (
     <Wrapper centered={hasAvailablePartners}>
       <LeftIcon>
@@ -46,9 +55,7 @@ const DebouncedInput = ({ t, onChange, hasAvailablePartners }) => {
         value={value}
         onChange={onInputChange}
         autoComplete="off"
-        placeholder={
-          hasAvailablePartners ? "Type a partner’s name" : t("search")
-        }
+        placeholder={hasAvailablePartners ? t("typeName") : t("search")}
       />
       {value && (
         <RightIcon clickable onClick={clearSearch}>
@@ -62,7 +69,8 @@ const DebouncedInput = ({ t, onChange, hasAvailablePartners }) => {
 DebouncedInput.propTypes = {
   t: func.isRequired,
   onChange: func.isRequired,
-  hasAvailablePartners: bool.isRequired
+  hasAvailablePartners: bool.isRequired,
+  activeFilter: string.isRequired
 };
 
 const PartnersSearchBox = ({
@@ -98,6 +106,10 @@ const PartnersSearchBox = ({
   );
 
   const businessId = business && business.get("id");
+
+  useEffect(() => {
+    setSearch("");
+  }, [activeFilter]);
 
   useEffect(() => {
     if (businessId) {
@@ -136,6 +148,7 @@ const PartnersSearchBox = ({
       t={t}
       onChange={onSearchChange}
       hasAvailablePartners={hasAvailablePartners}
+      activeFilter={hasAvailablePartners ? activeFilter : ""}
     />
   );
 };
