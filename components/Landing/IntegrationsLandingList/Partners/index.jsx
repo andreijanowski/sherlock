@@ -10,7 +10,7 @@ import { AdaptiveBox } from "components/styleguide/common";
 import { PartnerTile } from "components/PartnerTile";
 import { LoadingIndicator } from "components";
 import { sectionItemShape } from "../types";
-import { getFilteredPartners } from "../utils";
+import { getSortedPartners } from "../utils";
 import {
   Container,
   SubtitleStyled,
@@ -23,7 +23,7 @@ const Partners = ({ activeItem, partners, isLoading, hasMore, page }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const t = useT("app");
   const normalisedPartnters = partners && partners.toJS();
-  const filteredPartners = getFilteredPartners(normalisedPartnters);
+  const filteredPartners = getSortedPartners(normalisedPartnters);
 
   const hasPartners =
     !isLoading && filteredPartners && filteredPartners.length > 0;

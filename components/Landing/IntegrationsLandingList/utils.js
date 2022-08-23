@@ -17,12 +17,13 @@ export const getConfig = t => [
 ];
 
 export const getSortedPartners = partners =>
-  partners?.sort((a, b) => {
+  Boolean(partners.length) &&
+  partners.sort((a, b) => {
     const aStatus = a.attributes.status;
     const bStatus = b.attributes.status;
 
-    if (aStatus === 'available' && bStatus !== 'available') return -1;
-    if (aStatus !== 'available' && bStatus === 'available') return 1;
+    if (aStatus === "available" && bStatus !== "available") return -1;
+    if (aStatus !== "available" && bStatus === "available") return 1;
 
     return 0;
   });
