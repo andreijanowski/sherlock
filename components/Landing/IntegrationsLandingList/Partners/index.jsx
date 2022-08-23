@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { bool, shape, number } from "prop-types";
 import { useT } from "utils/hooks";
@@ -30,10 +30,6 @@ const Partners = ({ activeItem, partners, isLoading, hasMore, page }) => {
 
   const loadMore = () => setCurrentPage(page + 1);
   const clearPage = () => setCurrentPage(1);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [activeItem]);
 
   return (
     <Container>

@@ -107,6 +107,7 @@
   "privateEvents": "Eventos Privados",
   "settings": "Ajustes",
   "playVideo": "Reproducir vídeo",
+  "loadMore": "Cargar más",
   "payroll": "Recursos Humanos y salarios",
   "foodWaste": "Comidas no vendidas",
   "presenceManagement": "Presencia en línea",
@@ -122,5 +123,7 @@
   "seeAllHours": "Ver todos los horarios",
   "readMore": "Ver más",
   "mustTry": "Deberías intentar",
-  "allOurCategories": "Todas las categorías"
+  "allOurCategories": "Todas las categorías",
+  "available": "Disponible",
+  "typeName": "Escriba el nombre del socio"
 }

@@ -108,6 +108,7 @@
   "payments": "Pagamenti",
   "integrationHub": "Hub di Integrazione",
   "playVideo": "Riproduci video",
+  "loadMore": "Caricare di più",
   "payroll": "Risorse umane e stipendio",
   "foodWaste": "Pasti invenduti",
   "presenceManagement": "Presenza online",
@@ -123,5 +124,7 @@
   "seeAllHours": "Vedi tutti gli orari",
   "readMore": "Vedi piu",
   "mustTry": "Bisogna provare",
-  "allOurCategories": "Tutte le categorie"
+  "allOurCategories": "Tutte le categorie",
+  "available": "Disponibile",
+  "typeName": "Digitare il nome del partner"
 }
