@@ -1,14 +1,11 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell, faBellSlash } from "@fortawesome/free-solid-svg-icons";
 import { bool, func, shape, string } from "prop-types";
 import Tippy from "@tippyjs/react/headless";
 import { Form as FinalForm, FormSpy } from "react-final-form";
 import { Box } from "@rebass/grid";
 import { diff } from "deep-object-diff";
-import * as _ from "lodash";
-
+import _ from "lodash";
 import { FormCheckbox, LoadingIndicator } from "components";
 import { useT } from "utils/hooks";
 import {
@@ -19,6 +16,8 @@ import {
 import { patchBusiness } from "actions/businesses";
 import { BUSINESS_SETTINGS_KEYS } from "utils/businessUtils";
 import { CheckboxesContainer, Container } from "./styled";
+import { Icon } from "../MainApp/styled";
+import { BellIcon } from "../Icons/mainControls";
 
 const NotificationsSwitch = ({
   settings,
@@ -28,10 +27,10 @@ const NotificationsSwitch = ({
   ...rest
 }) => {
   const t = useT("app");
-  const [visible, setVisible] = useState(false);
-
-  const showMenu = useCallback(() => setVisible(true), []);
-  const hideMenu = useCallback(() => setVisible(false), []);
+  const [visible, setVisibility] = useState(false);
+  const toggleVisibility = () => {
+    setVisibility(value => !value);
+  };
 
   if (!settings) return null;
 
@@ -97,14 +96,15 @@ const NotificationsSwitch = ({
       interactiveBorder={20}
       render={renderContent}
       visible={visible}
-      onClickOutside={hideMenu}
+      onClickOutside={toggleVisibility}
       placement="bottom"
     >
       <Container {...rest}>
-        <FontAwesomeIcon
-          onClick={showMenu}
-          icon={isActive ? faBell : faBellSlash}
-        />
+        {isActive && (
+          <Icon onClick={toggleVisibility}>
+            <BellIcon />
+          </Icon>
+        )}
       </Container>
     </Tippy>
   );
