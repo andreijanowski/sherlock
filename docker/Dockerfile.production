@@ -1,4 +1,4 @@
-FROM node:10-alpine
+FROM node:14.20.0-alpine
 
 ENV APP_HOME /app
 ENV PATH $PATH:$APP_HOME/node_modules/.bin

@@ -67,16 +67,12 @@ const MainApp = ({
         business &&
         business
           // eslint-disable-next-line react/prop-types
-          .get("name")
-          .replace(/\s+/g, "-")
-          .toLowerCase()
-          .replace(/[{()}]/g, "")
+          .get("slug")
     }),
     [business]
   );
 
   useEffect(() => {
-    console.log(businessName.label, "name");
     let notification = new Audio("/static/sounds/notification.mp3");
     if (!isServer && shouldPlayNotification) {
       notification.play();
