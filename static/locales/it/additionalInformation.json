@@ -24,10 +24,10 @@
   "onlineBookingUrlPlaceholder": "https://business.co/booking",
   "takeawayUrlLabel": "URL da asporto",
   "takeawayUrlPlaceholder": "https://business.co/takeaway",
-  "paymentMethods": "Modalità di pagamento",
-  "canPayWithCards": "Può pagare con le carte",
+  "paymentMethods": "Metodi di pagamento accettati",
+  "canPayWithCards": "Carte",
   "canPayWithCash": "Contanti",
-  "canPayWithMobile": "Può pagare con il cellulare",
+  "canPayWithMobile": "Pagamento mobile",
   "secretCode": "Codice Segreto",
   "referenceCodes": "Codice di riferimento",
   "deliveryChargeRef": "Riferimento dei costi di consegna",
@@ -54,5 +54,6 @@
   "redirectionWebsiteLinks": "Link ai vostri siti web",
   "redirectionServicesLinks": "Link ai servizi esterni dei partner",
   "secretCodeHint": "Inserisci il codice che ti è stato comunicato dal tuo partner di attivazione o dal tuo rappresentante. <0/> (<1>Se ti stai registrando di tua iniziativa, lascia questo campo vuoto</1>)",
+  "servicesHint": "Selezionando una casella si attiveranno i servizi selezionati <0>in diretta su Foodetective</0>. Se desiderate fornire questi servizi solo tramite altre piattaforme, accedete alla sezione Link di reindirizzamento nel menu a sinistra.",
   "seeAll": "Vedi tutte le informazioni."
 }
