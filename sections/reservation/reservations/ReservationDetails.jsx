@@ -165,6 +165,12 @@ const ReservationDetails = ({
             ]
           }}
         />
+        <SliderDetail
+          {...{
+            name: t("Comment"),
+            value: [reservationDetails.getIn(["attributes", "comment"])]
+          }}
+        />
         <Flex mx={-1} mt={3} pb={3}>
           <Box width={1 / 2} px={1}>
             <Button
