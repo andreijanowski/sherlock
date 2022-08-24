@@ -4,7 +4,7 @@ import { bool, func, node, string } from "prop-types";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import { Form as FinalForm, FormSpy } from "react-final-form";
-import { InfoIcon } from "components/Icons";
+import { MainInfoIcon } from "components/Icons";
 import {
   Button,
   InfoBar,
@@ -15,7 +15,7 @@ import {
 } from "components";
 import isServer from "utils/isServer";
 import { togglePlayNotification } from "actions/app";
-import { useLng } from "utils/hooks";
+import { useLng, useT } from "utils/hooks";
 import Tippy from "@tippyjs/react/headless";
 import {
   Avatar,
@@ -34,7 +34,6 @@ import { chooseIcon, getButtonRoutes, getInfoHref } from "./utils";
 import { WatchVideosIcon } from "../Icons";
 
 const MainApp = ({
-  t,
   mainIcon,
   header,
   children,
@@ -45,6 +44,7 @@ const MainApp = ({
 }) => {
   const router = useRouter();
   const lng = useLng();
+  const t = useT();
   const MainIcon = chooseIcon(mainIcon);
   const { prevRoute, nextRoute } = getButtonRoutes({
     lng,
@@ -92,7 +92,7 @@ const MainApp = ({
             passHref
             target="_blank"
           >
-            {t("common.seeProfile")}
+            {t("common:seeProfile")}
           </Link>
         </CheckboxesContainer>
       )}
@@ -139,7 +139,7 @@ const MainApp = ({
             rel="noopener nofollower"
             href={getInfoHref(lng)}
           >
-            <InfoIcon />
+            <MainInfoIcon />
           </Icon>
 
           <Tippy
