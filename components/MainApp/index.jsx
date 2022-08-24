@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Flex } from "@rebass/grid";
 import { bool, func, node, string } from "prop-types";
 import { connect } from "react-redux";
@@ -40,11 +40,14 @@ const MainApp = ({
   avatar,
   isAccountConfirmed,
   shouldPlayNotification,
-  toggleSound
+  toggleSound,
+  // eslint-disable-next-line react/prop-types
+  business
 }) => {
   const router = useRouter();
   const lng = useLng();
   const t = useT();
+  const businessProfile = process.env.EXTERNALNAVIGATION;
   const MainIcon = chooseIcon(mainIcon);
   const { prevRoute, nextRoute } = getButtonRoutes({
     lng,
@@ -58,7 +61,22 @@ const MainApp = ({
     setVisibility(value => !value);
   };
 
+  const businessName = useMemo(
+    () => ({
+      label:
+        business &&
+        business
+          // eslint-disable-next-line react/prop-types
+          .get("name")
+          .replace(/\s+/g, "-")
+          .toLowerCase()
+          .replace(/[{()}]/g, "")
+    }),
+    [business]
+  );
+
   useEffect(() => {
+    console.log(businessName.label, "name");
     let notification = new Audio("/static/sounds/notification.mp3");
     if (!isServer && shouldPlayNotification) {
       notification.play();
@@ -86,14 +104,13 @@ const MainApp = ({
             }}
             onChange={handleSubmit}
           />
-          <Link
-            route="/app/profile/basic-information/"
-            lng="en"
-            passHref
+          <a
             target="_blank"
+            href={`${businessProfile}/en/business/${businessName.label}`}
+            rel="noopener noreferrer"
           >
             {t("common:seeProfile")}
-          </Link>
+          </a>
         </CheckboxesContainer>
       )}
     />
@@ -207,10 +224,13 @@ export default connect(
   state => {
     const users = state.getIn(["users", "profile", "data", "users"]);
     const user = users && users.first();
+    const businessData = state.getIn(["users", "currentBusiness", "data"]);
+    const business = businessData && businessData.get("businesses").first();
     return {
       avatar: user && user.getIn(["attributes", "avatar", "url"]),
       isAccountConfirmed: user && user.getIn(["attributes", "confirmed"]),
-      shouldPlayNotification: state.getIn(["app", "playNotification"])
+      shouldPlayNotification: state.getIn(["app", "playNotification"]),
+      business: business && business.get("attributes")
     };
   },
   { toggleSound: togglePlayNotification }
