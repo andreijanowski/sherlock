@@ -127,6 +127,7 @@
   "becomeBOPrompt": "Voulez-vous devenir propriétaire d'une entreprise ?",
   "playVideo": "Voir vidéo",
   "appManager": "App Manager",
+  "loadMore": "Charger plus",
   "payroll": "RH & Salaires",
   "foodWaste": "Déchets alimentaires",
   "presenceManagement": "Présence en ligne",
@@ -148,5 +149,8 @@
   "openNow": "Ouvert: ",
   "seeAllHours": "Horaires",
   "readMore": "Voir plus",
-  "mustTry": "À essayer"
+  "mustTry": "À essayer",
+  "allOurCategories": "Toutes nos catégories",
+  "available": "Disponible",
+  "typeName": "Entrez le nom d'un partenaire"
 }

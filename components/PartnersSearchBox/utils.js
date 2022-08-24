@@ -1,4 +1,4 @@
-import { WHOLESALERS_CATEGORY } from "consts";
+import { WHOLESALERS_CATEGORY, WHOLESALER } from "consts";
 
 export const getPartnersFilter = (isWholesalers, category, business) => {
   const commonFilter = {
@@ -9,7 +9,7 @@ export const getPartnersFilter = (isWholesalers, category, business) => {
   if (isWholesalers) {
     const baseWholesalersFilter = {
       ...commonFilter,
-      categories: ["wholesaler"]
+      categories: [WHOLESALER]
     };
     if (category === WHOLESALERS_CATEGORY.PREFERRED) {
       return {
@@ -25,6 +25,6 @@ export const getPartnersFilter = (isWholesalers, category, business) => {
   return {
     ...commonFilter,
     categories: [category],
-    excluded_categories: ["wholesaler"]
+    excluded_categories: [WHOLESALER]
   };
 };

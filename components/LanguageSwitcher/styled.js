@@ -9,6 +9,7 @@ const MOBILE_BREAKPOINT = 0;
 export const FlagIcon = styled.img.attrs(({ code }) => ({
   src: `/static/flags/${code}.svg`
 }))`
+  box-shadow: 2px 0 6px 0 rgba(${p => p.theme.colors.dark}, 0.48);
   width: 17px;
   height: 12px;
 `;

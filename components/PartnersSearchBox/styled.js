@@ -2,10 +2,13 @@ import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
   position: relative;
+  margin: ${p => (p.centered ? "24px auto" : "0")};
   margin-bottom: 24px;
+  max-width: 440px;
 `;
 
 export const Input = styled.input`
+  position: relative;
   width: 100%;
   padding-left: 48px;
   padding-right: 40px;
@@ -28,6 +31,7 @@ const BaseIconCSS = css`
   font-size: 24px;
   line-height: 0;
   ${p => p.clickable && "cursor: pointer"};
+  z-index: 1;
 `;
 
 export const LeftIcon = styled.div`

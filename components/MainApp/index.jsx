@@ -3,7 +3,7 @@ import { Flex } from "@rebass/grid";
 import { bool, func, node, string } from "prop-types";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
-
+import { Form as FinalForm, FormSpy } from "react-final-form";
 import { InfoIcon } from "components/Icons";
 import {
   Button,
@@ -16,6 +16,7 @@ import {
 import isServer from "utils/isServer";
 import { togglePlayNotification } from "actions/app";
 import { useLng } from "utils/hooks";
+import Tippy from "@tippyjs/react/headless";
 import {
   Avatar,
   Header,
@@ -23,12 +24,14 @@ import {
   Icon,
   IconsWrapper,
   MainIconWrapper,
-  TutorialButton,
   Wrapper,
   YoutubeWrapper,
-  LanguageSwitcherWrapper
+  LanguageSwitcherWrapper,
+  Container,
+  CheckboxesContainer
 } from "./styled";
 import { chooseIcon, getButtonRoutes, getInfoHref } from "./utils";
+import { WatchVideosIcon } from "../Icons";
 
 const MainApp = ({
   t,
@@ -50,20 +53,51 @@ const MainApp = ({
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const isProfile = router.pathname.includes("profile");
+  const [visible, setVisibility] = useState(false);
+  const toggleVisibility = () => {
+    setVisibility(value => !value);
+  };
+
   useEffect(() => {
     let notification = new Audio("/static/sounds/notification.mp3");
-
     if (!isServer && shouldPlayNotification) {
       notification.play();
       toggleSound(false);
     }
-
     return () => {
       notification = undefined;
     };
   }, [shouldPlayNotification, toggleSound]);
 
   const hasRoutesBar = !!(prevRoute || nextRoute);
+  const toggleModalOpen = () => {
+    setIsModalOpen(value => !value);
+  };
+
+  const renderAvatar = attrs => (
+    <FinalForm
+      onSubmit={() => null}
+      subscription={{}}
+      render={({ handleSubmit }) => (
+        <CheckboxesContainer onSubmit={handleSubmit} {...attrs}>
+          <FormSpy
+            subscription={{
+              values: true
+            }}
+            onChange={handleSubmit}
+          />
+          <Link
+            route="/app/profile/basic-information/"
+            lng="en"
+            passHref
+            target="_blank"
+          >
+            {t("common.seeProfile")}
+          </Link>
+        </CheckboxesContainer>
+      )}
+    />
+  );
 
   return (
     <Wrapper mainIcon={mainIcon}>
@@ -95,14 +129,9 @@ const MainApp = ({
           </YoutubeWrapper>
         </Modal>
         <IconsWrapper>
-          <TutorialButton
-            role="button"
-            tabIndex="0"
-            onClick={() => setIsModalOpen(true)}
-            onKeyDown={() => setIsModalOpen(true)}
-          >
-            Watch tutorials
-          </TutorialButton>
+          <Icon onClick={toggleModalOpen} onKeyDown={toggleModalOpen}>
+            <WatchVideosIcon />
+          </Icon>
           <NotificationsSwitch mx={1} />
           <Icon
             as="a"
@@ -112,10 +141,23 @@ const MainApp = ({
           >
             <InfoIcon />
           </Icon>
+
+          <Tippy
+            interactive
+            interactiveBorder={20}
+            render={renderAvatar}
+            visible={visible}
+            onClickOutside={toggleVisibility}
+            placement="bottom"
+          >
+            <Container onClick={toggleVisibility}>
+              <Avatar src={avatar} />
+            </Container>
+          </Tippy>
+
           <LanguageSwitcherWrapper>
             <LanguageSwitcher />
           </LanguageSwitcherWrapper>
-          <Avatar src={avatar} />
         </IconsWrapper>
       </HeaderWrapper>
       {children}

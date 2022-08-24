@@ -23,6 +23,7 @@ export const RawCheckbox = ({
   className
 }) => {
   const checkbox = useRef();
+  const isChecked = input.value || input.checked;
 
   const handleChange = e => {
     Promise.all([input.onChange(e)]).then(() =>
@@ -43,12 +44,12 @@ export const RawCheckbox = ({
             disabled={disabled}
           />
           <Checkmark
-            isChecked={input.value}
+            isChecked={isChecked}
             invalid={error ? "true" : undefined}
             hasCloserText={hasCloserText}
             disabled={disabled}
           >
-            {input.value && <Icon icon={["fa", "check"]} />}
+            {isChecked && <Icon icon={["fa", "check"]} />}
           </Checkmark>
           <CheckboxText hasCloserText={hasCloserText}>{label}</CheckboxText>
           {error && <Error>{error}</Error>}

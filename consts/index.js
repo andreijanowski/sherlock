@@ -54,6 +54,9 @@ const WHOLESALERS_CATEGORY = {
   PREFERRED: "preferred"
 };
 
+const WHOLESALER = "wholesaler";
+const AVAILABLE = "available";
+
 const contentTypes = {
   JSON: "application/json",
   JSONAPI: "application/vnd.api+json",
@@ -187,5 +190,7 @@ module.exports = {
   GOOGLE_ADS_IDS,
   NEWSLETTER_GOOGLE_SHEET_ID,
   GOOGLE_SHEET_SERVICE_ACCOUNT_EMAIL,
-  GOOGLE_SHEET_SERVICE_ACCOUNT_KEY
+  GOOGLE_SHEET_SERVICE_ACCOUNT_KEY,
+  WHOLESALER,
+  AVAILABLE
 };
