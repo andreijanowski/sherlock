@@ -49,8 +49,8 @@ const MainApp = ({
   const t = useT();
   const isDev = process.env.NODE_ENV !== "production";
   const businessProfile = isDev
-    ? process.env.STAGING_FOODETECTIVE_URL
-    : process.env.PROD_FOODETECTIVE_URL;
+    ? "https://api.staging.foodtekk.com"
+    : "https://foodetective.co";
   const MainIcon = chooseIcon(mainIcon);
   const { prevRoute, nextRoute } = getButtonRoutes({
     lng,
