@@ -12,7 +12,8 @@
     "lint:stylelint": "stylelint './**/*.js' './**/*.jsx'",
     "lint": "yarn lint:js && yarn lint:jsx && yarn lint:stylelint",
     "lint:fix": "yarn lint:js --fix && yarn lint:jsx --fix  && yarn lint:stylelint --fix",
-    "test": "NODE_ENV=test jest"
+    "test": "NODE_ENV=test jest",
+    "translate": "simpleen translate"
   },
   "husky": {
     "hooks": {
@@ -131,6 +132,7 @@
     "react-test-renderer": "^16.6.3",
     "redux-devtools-extension": "^2.13.7",
     "redux-logger": "^3.0.6",
+    "simpleen": "^0.6.3",
     "stylelint": "^10.0.1",
     "stylelint-config-recommended": "^2.2.0",
     "stylelint-config-styled-components": "^0.1.1",

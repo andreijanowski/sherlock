@@ -3,16 +3,16 @@
     "header": {
       "start": "Facilitamos la vida de los",
       "middle": [
-        "Restaurantes",
+        "Los restaurantes",
         "Cafés",
         "Bares y pubs",
         "Ghost Kitchens",
         "Minoristas",
-        "Carniceros",
+        "Carnicería",
         "Comerciantes",
         "Quioscos"
       ],
-      "end": ""
+      "end": "la vida es mucho más fácil"
     },
     "paragraph": "Foodetective integra todo su software y sistemas en una única plataforma online. Empresas de restauración de todos los tamaños confían en la API de Foodetective para gestionar toda su pila tecnológica, reducir las ineficiencias operativas y mejorar la información empresarial.",
     "getStartedForFree": "Comienza gratis",
@@ -35,7 +35,7 @@
     "industries": {
       "header": "Industrias",
       "names": {
-        "restaurants": "Restaurantes",
+        "restaurants": "Los restaurantes",
         "hotel": "Hoteles",
         "coffee-shops": "Cafeterías",
         "food-trucks": "Camiones de comida",
@@ -80,7 +80,7 @@
   },
   "bookDemo": "Reservar una demostración",
   "registerNow": "Regístrese ahora",
-  "pricing": "Precios",
+  "pricing": "Pague en función de su crecimiento",
   "appSwitcher": {
     "lefood": "Foodies",
     "sherlock": "Businesses"
@@ -89,7 +89,7 @@
   "getTheApp": "Obtener la aplicación",
   "howItWorks": "Cómo funciona",
   "product": "Producto",
-  "developersAndApi": "Desarrolladores y API",
+  "developersAndApi": "Developers & API",
   "company": "Empresa",
   "management": "Management",
   "operations": "Operations",
@@ -100,7 +100,7 @@
   "aboutUs": "Sobre nosotros",
   "newsroom": "Newsroom",
   "careers": "Carreras",
-  "partners": "Socios",
+  "partners": "Fogonadura",
   "unifiedApiSection": {
     "title": "API unificada para el sector de la restauración",
     "description": "Con nuestra API unificada, se acabaron los días de tener que lidiar con múltiples aplicaciones y hardware para gestionar su negocio de restauración. La información ya no está fragmentada entre los sistemas."
@@ -135,7 +135,7 @@
   },
   "centralizedManagement": "Gestión centralizada",
   "features": "funcionalidad",
-  "integrations": "integraciones",
+  "integrations": "Integraciones",
   "careersSubject": "Únase al equipo",
   "language": "Idioma",
   "seeSubscriptionPlans": "Ver los planes de suscripción",
@@ -181,20 +181,20 @@
           }
         ]
       },
-      "menú": {
+      "menu": {
         "title": "Gestión de menús",
-        "subtitle": "Actualización simultánea de menús",
+        "subtitle": "Menús actualizados simultáneamente",
         "options": [
           {
             "title": "Main",
-            "description": "Ya no necesitas una semana para hacer cambios en tu menú. Sincronización automática de su menú en todas las plataformas",
+            "description": "Ya no necesita una semana para realizar cambios en su menú. Sincronización automática de su menú en todas las plataformas.",
             "advantages": [
-              "<0>Actualiza todos</0> los menús digitales en plataformas de reparto de terceros a través de una única pantalla.",
-              "Reciba notificaciones cuando necesite <0>reabastecer productos</0>",
-              "Elimine el potencial de pedidos fallidos debido a <0>artículos sin existencias.</0>",
-              "<0>Observaciones</0> sobre los artículos más vendidos que se muestran en su panel de control personalizado",
-              "<0>Gestión flexible del menú</0>. Ahora puedes probar nuevos platos de temporada",
-              "Próximamente: integraciones con <0>soluciones de menús digitales</0>"
+              "<0>Actualice todos los menús digitales en plataformas de entrega de terceros a través de una sola pantalla.",
+              "Reciba notificaciones cuando necesite <0>reponer productos.",
+              "Elimine el potencial de pedidos fallidos debido a <0>artículos sin existencias.",
+              "<0>Información sobre los artículos más vendidos mostrada en su panel de control personalizado.",
+              "<0>Gestión flexible del menú. Ahora puede probar nuevos platos de temporada.",
+              "Próximamente: integraciones con <0>soluciones de menú digital."
             ]
           }
         ]
@@ -505,30 +505,30 @@
         }
       ]
     },
-    "howItWorks" : {
+    "howItWorks": {
       "title": "Un producto hecho para el autoservicio",
       "subtitle": "¿Qué significa esto? No hay necesidad de largas llamadas con el servicio de atención al cliente ni de gastos de instalación, hemos diseñado un software que es fácil de manejar y no requiere conocimientos técnicos",
       "step1": {
         "title": "Cómo funciona",
-        "subtitle" : "Crea tu cuenta",
-        "options" : [
+        "subtitle": "Crea tu cuenta",
+        "options": [
           {
-            "title" : "Main",
-            "description" : "Las nuevas ubicaciones se registran de media en <0>15 minutos.</0>",
-            "advantages" : [
+            "title": "Main",
+            "description": "Las nuevas ubicaciones se registran de media en <0>15 minutos.</0>",
+            "advantages": [
               "Rellena la información de tu establecimiento en tu <1>Perfil de Negocio</1> como los horarios de apertura, los servicios disponibles, tus fotos y todo lo esencial",
               "Si necesitas actualizar esta información, hazlo una vez y se actualizará en todas tus plataformas <1>online</1>"
             ]
           }
         ]
       },
-      "step2" : {
-        "subtitle" : "Click & Connect",
-        "options" : [
+      "step2": {
+        "subtitle": "Click & Connect",
+        "options": [
           {
-            "title" : "Main",
-            "description" : "No te preocupes por la <0>parte técnica de las cosas.</0>",
-            "advantages" : [
+            "title": "Main",
+            "description": "No te preocupes por la <0>parte técnica de las cosas.</0>",
+            "advantages": [
               "Ve al <1>Hub de Integraciones</1> y <0>haz clic y conecta</0> tus plataformas favoritas",
               "Siempre se pueden añadir o quitar plataformas según se considere oportuno",
               "Añade tus credenciales una vez y ya está listo para usar"
@@ -536,12 +536,12 @@
           }
         ]
       },
-      "step3" : {
-        "subtitle" : "Empiece a gestionar su instalación sin problemas",
-        "options" : [
+      "step3": {
+        "subtitle": "Empiece a gestionar su instalación sin problemas",
+        "options": [
           {
-            "title" : "Main",
-            "advantages" : [
+            "title": "Main",
+            "advantages": [
               "Acceda fácilmente a todas sus herramientas a través de nuestro menú",
               "No se necesita formación, funcionan como siempre"
             ]
@@ -550,22 +550,22 @@
       },
       "step4": {
         "subtitle": "Gestiona todos tus sistemas desde una sola plataforma",
-        "options" : [
+        "options": [
           {
-            "title" : "Main",
-            "advantages" : [
+            "title": "Main",
+            "advantages": [
               "La centralización de su pila tecnológica le permitirá obtener información en tiempo real en su <1>panel de control personalizado.</1>",
-              "Utiliza Foodetective a diario \uD83D\uDE09"
+              "Utiliza Foodetective a diario 😉"
             ]
           }
         ]
       },
-      "step5" : {
+      "step5": {
         "subtitle": "Acceso 24/7 desde tu bolsillo",
-        "options" : [
+        "options": [
           {
-            "title" : "Main",
-            "advantages" : [
+            "title": "Main",
+            "advantages": [
               "Descargue la aplicación Foodetective Business",
               "Activar las notificaciones",
               "Acepta automáticamente las actualizaciones de la aplicación para una mejor experiencia"
@@ -574,14 +574,14 @@
         ]
       }
     },
-    "customers" : {
-      "independent" : {
-        "title" : "Restaurantes independientes",
-        "subtitle" : "Se acabaron los estantes apilados",
-        "options" : [
+    "customers": {
+      "independent": {
+        "title": "Restaurantes independientes",
+        "subtitle": "Se acabaron los estantes apilados",
+        "options": [
           {
-            "title" : "Main",
-            "description" : "Trabajamos con restaurantes independientes para ayudarles a mejorar su gestión, operaciones y marketing. <1/> <0>Esto significa:</0>",
+            "title": "Main",
+            "description": "Trabajamos con restaurantes independientes para ayudarles a mejorar su gestión, operaciones y marketing. <1/> <0>Esto significa:</0>",
             "advantages": [
               "Reducción del tiempo de administración",
               "Mayor visibilidad",
@@ -591,13 +591,13 @@
           }
         ]
       },
-      "chains" : {
-        "title" : "Cadenas de restaurantes",
-        "subtitle" : "Gestión transparente de múltiples ubicaciones",
-        "options" : [
+      "chains": {
+        "title": "Cadenas de restaurantes",
+        "subtitle": "Gestión transparente de múltiples ubicaciones",
+        "options": [
           {
-            "title" : "Main",
-            "description" : "Trabajamos con cadenas de todos los tamaños para ayudarles a aprovechar y comparar la información de múltiples ubicaciones. <1/> <0>Esto significa:</0>",
+            "title": "Main",
+            "description": "Trabajamos con cadenas de todos los tamaños para ayudarles a aprovechar y comparar la información de múltiples ubicaciones. <1/> <0>Esto significa:</0>",
             "advantages": [
               "Control sobre las operaciones",
               "Datos consolidados",
@@ -607,13 +607,13 @@
           }
         ]
       },
-      "kitchens" : {
-        "title" : "Dark Kitchens",
-        "subtitle" : "No es necesario avanzar en la oscuridad",
-        "options" : [
+      "kitchens": {
+        "title": "Dark Kitchens",
+        "subtitle": "No es necesario avanzar en la oscuridad",
+        "options": [
           {
-            "title" : "Main",
-            "description" : "Las Dark Kitchens necesitan acceder a las herramientas adecuadas y a flujos de trabajo sencillos para avanzar. <1/> <0>Esto significa:</0>",
+            "title": "Main",
+            "description": "Las Dark Kitchens necesitan acceder a las herramientas adecuadas y a flujos de trabajo sencillos para avanzar. <1/> <0>Esto significa:</0>",
             "advantages": [
               "KPIs medibles",
               "Previsiones precisas",
@@ -623,14 +623,14 @@
           }
         ]
       },
-      "kiosks" : {
+      "kiosks": {
         "title": "Tienda de comestibles, comercio minorista y quioscos",
-        "subtitle" : "Alcanza todo tu potencial",
-        "options" : [
+        "subtitle": "Alcanza todo tu potencial",
+        "options": [
           {
-            "title" : "Main",
-            "description" : "Sea cual sea su área de especialización, le ayudaremos. Añade o elimina servicios e integraciones en cualquier momento. <1/> <0>Eso significa:</0>",
-            "advantages" : [
+            "title": "Main",
+            "description": "Sea cual sea su área de especialización, le ayudaremos. Añade o elimina servicios e integraciones en cualquier momento. <1/> <0>Eso significa:</0>",
+            "advantages": [
               "Sistema de gestión a medida",
               "Mayor visibilidad B2C y B2B",
               "Aumento de los ingresos",
@@ -639,13 +639,13 @@
           }
         ]
       },
-      "wholesalers" : {
-        "title" : "Proveedores",
-        "subtitle" : "Un nuevo canal de ventas",
-        "options" : [
+      "wholesalers": {
+        "title": "Proveedores",
+        "subtitle": "Un nuevo canal de ventas",
+        "options": [
           {
-            "title" : "Main",
-            "description" : "Trabajamos con proveedores que entienden el valor de mostrar sus productos y facilitar las compras. Se descubre desde nuestra <1>sección de compras.</1> <2 /> <0>Eso significa:</0>",
+            "title": "Main",
+            "description": "Trabajamos con proveedores que entienden el valor de mostrar sus productos y facilitar las compras. Se descubre desde nuestra <1>sección de compras.</1> <2 /> <0>Eso significa:</0>",
             "advantages": [
               "Adquisición de plomo",
               "Mejora de las relaciones con los clientes",
@@ -665,10 +665,10 @@
     "demo": {
       "cta": "Volver al sitio web",
       "title": "¡Su demostración ha sido reservada con éxito!",
-      "subtitle": "Nos pondremos en contacto con usted en un plazo de 24 horas" 
+      "subtitle": "Nos pondremos en contacto con usted en un plazo de 24 horas"
     },
     "welcome": {
-      "title":  "¡Bienvenido a Foodetective!",
+      "title": "¡Bienvenido a Foodetective!",
       "subtitle": "Su cuenta ha sido creada con éxito. Iniciar la incorporación",
       "cta": "Iniciar",
       "disclaimer": "Al hacer clic en el botón Iniciar, confirma que se está registrando como empresa en Foodetective.",

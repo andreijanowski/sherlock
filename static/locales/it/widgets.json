@@ -10,5 +10,5 @@
   "widgetScriptDescription": "Lo script del widget Foodetecive può essere aggiunto in fondo al documento HTML. La stringa \"YOUR_WRAPPER_ID_HERE\" deve essere sostituita con l'ID dell'elemento wrapper. La lingua del widget verrà impostata in base al valore navigator.language per impostazione predefinita. È possibile impostare la lingua del widget impostando il terzo parametro della funzione window.foodetectiveWidget.init. La lingua di fallback è l'inglese.",
   "removeModalHeader": "Sei sicuro di voler eliminare questo widget? Se lo fai, smetterà di funzionare sul tuo sito web.",
   "confirm": "Confermare",
-  "cancel": "Annulla"
+  "cancel": "Cancella"
 }

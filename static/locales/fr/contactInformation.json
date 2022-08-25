@@ -1,7 +1,6 @@
 {
-  "header": "Informations de contact",
   "contactInformation": "Informations de contact",
-  "nameLabel": "Nom",
+  "nameLabel": "Nome",
   "namePlaceholder": "John Smith",
   "emailLabel": "Email",
   "emailPlaceholder": "nom@entreprise.com",

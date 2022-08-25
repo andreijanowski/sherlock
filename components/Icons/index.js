@@ -68,9 +68,10 @@ export {
   Arrow,
   ArrowDown,
   AcceptedDetectiveIcon,
-  InfoIcon,
   BellIcon,
-  WatchVideosIcon
+  WatchVideosIcon,
+  MainInfoIcon,
+  InfoIcon
 } from "./mainControls";
 export {
   Orders,

@@ -3,7 +3,7 @@
   "openingHours": "Orari di apertura",
   "openedFromLabel": "A partire dal",
   "openedFromPlaceholder": "10:00 DEL MATTINO",
-  "openedToLabel": "Per",
+  "openedToLabel": "A",
   "openedToPlaceholder": "20:00",
   "weekdays": [
     "Domenica",

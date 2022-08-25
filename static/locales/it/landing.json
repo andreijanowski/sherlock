@@ -3,16 +3,16 @@
     "header": {
       "start": "Rendiamo la vita più facile per",
       "middle": [
-        "ristoranti",
+        "Ristoranti",
         "Caffè",
         "Bar e pub",
         "Ghost Kitchens",
         "Rivenditori",
-        "Macellai",
+        "Macellaie",
         "Drogherie",
         "Chioschi"
       ],
-      "end": ""
+      "end": "vita molto più facile"
     },
     "paragraph": "Foodetective integra tutti i vostri software e sistemi in un'unica piattaforma online. Le aziende F&B di tutte le dimensioni si affidano alle API di Foodetective per gestire il loro intero stack tecnologico, ridurre le inefficienze operative e migliorare le conoscenze aziendali.",
     "getStartedForFree": "Inizia gratuitamente",
@@ -54,7 +54,7 @@
     "header": "Testimonianze",
     "list": [
       {
-        "position": "Proprietario",
+        "position": "Propietario",
         "company": "cipollino",
         "increase": "Aumenta le tue entrate del 29%",
         "quote": "Revoluzionario! Facile da configurare, utilizzare e gestire. L'intero team lo adora per la sua semplicità e la sua interfaccia unica."
@@ -80,7 +80,7 @@
   },
   "bookDemo": "Prenota una dimostrazione",
   "registerNow": "Registrati ora",
-  "pricing": "Prezzi",
+  "pricing": "Paga in base alla tua crescita",
   "appSwitcher": {
     "lefood": "Foodies",
     "sherlock": "Businesses"
@@ -89,7 +89,7 @@
   "getTheApp": "Ottieni l'App",
   "howItWorks": "Come funziona",
   "product": "Prodotto",
-  "developersAndApi": "Sviluppatori e API",
+  "developersAndApi": "Developers & API",
   "company": "Azienda",
   "management": "Management",
   "operations": "Operations",
@@ -100,7 +100,7 @@
   "aboutUs": "Chi siamo",
   "newsroom": "Newsroom",
   "careers": "Carriere",
-  "partners": "Partners",
+  "partners": "Partner",
   "unifiedApiSection": {
     "title": "API unificata per l'industria F&B",
     "description": "Con la nostra Unified API, sono finiti i giorni in cui si aveva a che fare con più app e hardware per gestire il vostro business F&B. Gli approfondimenti non sono più frammentati tra i sistemi."
@@ -135,7 +135,7 @@
   },
   "centralizedManagement": "Gestione centralizzata",
   "features": "funzionalità",
-  "integrations": "integrazioni",
+  "integrations": "Integrazioni",
   "careersSubject": "Unisciti alla squadra",
   "language": "Lingua",
   "seeSubscriptionPlans": "Vedere i piani di abbonamento",
@@ -293,7 +293,7 @@
         "options": [
           {
             "title": "Main",
-            "subtitle": "Ordina quello che ti serve quando ti serve. <0>85%</0> delle aziende preferisce ordinare online, sappiamo che lo farai anche tu!",
+            "description": "Ordinate ciò che vi serve quando vi serve. <0>L'85% delle aziende preferisce ordinare online, sappiamo che lo farete anche voi!",
             "advantages": [
               "<0>Lista variegata di categorie di grossisti</0> tra cui FMCG, bevande, igiene, tra gli altri.",
               "<0>Non più dimenticato.</0> Ordinate piccoli volumi, meno frequentemente? Siate in \"top of mind\" del vostro grossista a prescindere.",
@@ -505,30 +505,30 @@
         }
       ]
     },
-    "howItWorks" : {
+    "howItWorks": {
       "title": "Un prodotto fatto per il self-service",
       "subtitle": "Cosa significa questo? Non c'è bisogno di lunghe chiamate con l'assistenza clienti e non ci sono costi di installazione, abbiamo progettato un software che è facile da gestire e non richiede alcuna conoscenza tecnica",
       "step1": {
         "title": "Come funziona",
-        "subtitle" : "Crea il tuo account",
-        "options" : [
+        "subtitle": "Crea il tuo account",
+        "options": [
           {
-            "title" : "Main",
-            "description" : "I nuovi luoghi si registrano in media in <0>15 minuti.</0>",
-            "advantages" : [
+            "title": "Main",
+            "description": "I nuovi luoghi si registrano in media in <0>15 minuti.</0>",
+            "advantages": [
               "Compila le informazioni del tuo stabilimento sul tuo <1>Profilo Aziendale</1> come gli orari di apertura, i servizi disponibili, le tue foto e tutto l'essenziale",
               "Se hai bisogno di aggiornare queste informazioni, fallo una volta e saranno aggiornate su tutte le tue <1>piattaforme online</1>"
             ]
           }
         ]
       },
-      "step2" : {
-        "subtitle" : "Click & Connect",
-        "options" : [
+      "step2": {
+        "subtitle": "Click & Connect",
+        "options": [
           {
-            "title" : "Main",
-            "description" : "Non preoccuparti del <0>lato tecnico delle cose.</0>",
-            "advantages" : [
+            "title": "Main",
+            "description": "Non preoccuparti del <0>lato tecnico delle cose.</0>",
+            "advantages": [
               "Vai su <1>Integrations Hub</1> e <0>clicca e connetti</0> le tue piattaforme preferite",
               "Puoi sempre aggiungere o rimuovere le piattaforme come meglio credi",
               "Aggiungi le tue credenziali una volta ed è pronto all'uso!"
@@ -536,12 +536,12 @@
           }
         ]
       },
-      "step3" : {
-        "subtitle" : "Inizia a gestire la tua struttura senza soluzione di continuità",
-        "options" : [
+      "step3": {
+        "subtitle": "Inizia a gestire la tua struttura senza soluzione di continuità",
+        "options": [
           {
-            "title" : "Main",
-            "advantages" : [
+            "title": "Main",
+            "advantages": [
               "Accedi facilmente a tutti i tuoi strumenti tramite il nostro menu",
               "Non c'è bisogno di formazione, funzionano come hanno sempre fatto"
             ]
@@ -550,22 +550,22 @@
       },
       "step4": {
         "subtitle": "Gestisci tutti i tuoi sistemi da una sola piattaforma",
-        "options" : [
+        "options": [
           {
-            "title" : "Main",
-            "advantages" : [
+            "title": "Main",
+            "advantages": [
               "Centralizzare il vostro tech-stack vi permetterà di ottenere informazioni in tempo reale sul vostro <1>pannello personalizzato.</1>",
               "Utilizzare Foodetective su base giornaliera"
             ]
           }
         ]
       },
-      "step5" : {
+      "step5": {
         "subtitle": "accesso 24/7 dalla tua tasca",
-        "options" : [
+        "options": [
           {
-            "title" : "Main",
-            "advantages" : [
+            "title": "Main",
+            "advantages": [
               "Scarica l'applicazione Foodetective Business",
               "Abilita le notifiche",
               "Accettare automaticamente gli aggiornamenti delle app per una migliore esperienza"
@@ -574,14 +574,14 @@
         ]
       }
     },
-    "customers" : {
-      "independent" : {
-        "title" : "Ristoranti indipendenti",
-        "subtitle" : "Basta impilare gli scaffali",
-        "options" : [
+    "customers": {
+      "independent": {
+        "title": "Ristoranti indipendenti",
+        "subtitle": "Basta impilare gli scaffali",
+        "options": [
           {
-            "title" : "Main",
-            "description" : "Lavoriamo con ristoranti indipendenti per aiutarli a migliorare la loro gestione, operazioni e marketing. <1/> <0>Questo significa:</0>",
+            "title": "Main",
+            "description": "Lavoriamo con ristoranti indipendenti per aiutarli a migliorare la loro gestione, operazioni e marketing. <1/> <0>Questo significa:</0>",
             "advantages": [
               "Tempo di amministrazione ridotto",
               "Maggiore visibilità",
@@ -591,13 +591,13 @@
           }
         ]
       },
-      "chains" : {
-        "title" : "Catene di ristoranti",
-        "subtitle" : "Gestione trasparente di più sedi",
-        "options" : [
+      "chains": {
+        "title": "Catene di ristoranti",
+        "subtitle": "Gestione trasparente di più sedi",
+        "options": [
           {
-            "title" : "Main",
-            "description" : "Lavoriamo con catene di tutte le dimensioni per aiutarle a sfruttare e confrontare le intuizioni in più sedi. <1/> <0>Questo significa:</0>",
+            "title": "Main",
+            "description": "Lavoriamo con catene di tutte le dimensioni per aiutarle a sfruttare e confrontare le intuizioni in più sedi. <1/> <0>Questo significa:</0>",
             "advantages": [
               "Controllo delle operazioni",
               "Dati consolidati",
@@ -607,13 +607,13 @@
           }
         ]
       },
-      "kitchens" : {
-        "title" : "Dark Kitchens",
-        "subtitle" : "Non c'è bisogno di avanzare nel buio",
-        "options" : [
+      "kitchens": {
+        "title": "Dark Kitchens",
+        "subtitle": "Non c'è bisogno di avanzare nel buio",
+        "options": [
           {
-            "title" : "Main",
-            "description" : "Le Dark Kitchens hanno bisogno di accedere agli strumenti giusti e a flussi di lavoro semplici per andare avanti. <1/> <0>Questo significa:</0>",
+            "title": "Main",
+            "description": "Le Dark Kitchens hanno bisogno di accedere agli strumenti giusti e a flussi di lavoro semplici per andare avanti. <1/> <0>Questo significa:</0>",
             "advantages": [
               "KPI misurabili",
               "Previsioni accurate",
@@ -623,14 +623,14 @@
           }
         ]
       },
-      "kiosks" : {
+      "kiosks": {
         "title": "Drogheria, vendita al dettaglio e chioschi",
-        "subtitle" : "Raggiungi il tuo pieno potenziale",
-        "options" : [
+        "subtitle": "Raggiungi il tuo pieno potenziale",
+        "options": [
           {
-            "title" : "Main",
-            "description" : "Qualunque sia la tua area di specializzazione, ti aiuteremo. Aggiungere o rimuovere servizi e integrazioni in qualsiasi momento. <1/> <0>Questo significa:</0>",
-            "advantages" : [
+            "title": "Main",
+            "description": "Qualunque sia la tua area di specializzazione, ti aiuteremo. Aggiungere o rimuovere servizi e integrazioni in qualsiasi momento. <1/> <0>Questo significa:</0>",
+            "advantages": [
               "Sistema di gestione su misura",
               "Aumento della visibilità B2C e B2B",
               "Aumento delle entrate",
@@ -639,13 +639,13 @@
           }
         ]
       },
-      "wholesalers" : {
-        "title" : "Fornitori",
-        "subtitle" : "Un nuovo canale di vendita",
-        "options" : [
+      "wholesalers": {
+        "title": "Fornitori",
+        "subtitle": "Un nuovo canale di vendita",
+        "options": [
           {
-            "title" : "Main",
-            "description" : "Lavoriamo con i fornitori che capiscono il valore di mettere in mostra i loro prodotti e rendere lo shopping più facile. Essere scoperto dalla nostra <1>sezione appalti.</1> <2 /> <0>Questo significa:</0>",
+            "title": "Main",
+            "description": "Lavoriamo con i fornitori che capiscono il valore di mettere in mostra i loro prodotti e rendere lo shopping più facile. Essere scoperto dalla nostra <1>sezione appalti.</1> <2 /> <0>Questo significa:</0>",
             "advantages": [
               "Acquisizione di piombo",
               "Miglioramento delle relazioni con i clienti",
@@ -665,14 +665,14 @@
     "demo": {
       "cta": "Torna al sito web",
       "title": "La tua demo è stata prenotata con successo!",
-      "subtitle": "Vi contatteremo entro 24 ore" 
+      "subtitle": "Vi contatteremo entro 24 ore"
     },
     "welcome": {
-      "title":  "Benvenuti a Foodetective!",
+      "title": "Benvenuti a Foodetective!",
       "subtitle": "Il tuo account è stato creato con successo. Iniziare l'onboarding",
       "cta": "Iniziare",
       "disclaimer": "Cliccando su Iniziare, confermi che ti stai registrando come Business su Foodetective.",
-      "cancel": "Cancellare"
+      "cancel": "Cancella"
     },
     "newsroom": {
       "title": "Newsroom",

@@ -25,7 +25,7 @@
   "earnings": "Revenus du jour",
   "today": "Aujourd'hui",
   "yesterday": "Hier",
-  "lastMonth": "Le dernier mois",
+  "lastMonth": "Le mois dernier",
   "last3Months": "Le dernier trimestre",
   "lastYear": "L'année dernière",
   "sumToday": "Aujourd'hui",
@@ -41,5 +41,8 @@
   "todayVS": "Aujourd'hui vs",
   "thisMonthVS": "Ce mois vs",
   "thisQuarterVS": "Ce trimestre vs",
-  "thisYearVS": "Cette année vs"
+  "thisYearVS": "Cette année vs",
+  "businessOperations": "Opérations commerciales",
+  "reviews": "Commentaires",
+  "onlinePresence": "Présence en ligne"
 }

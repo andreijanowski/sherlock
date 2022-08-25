@@ -22,8 +22,9 @@
       "base": "Konnte keine angegebenen Elemente für diese Bestellung finden"
     }
   },
-  "reservationUpdate": "Reservierung wurde gerade aktualisiert. Weitere Informationen finden Sie auf der Seite Reservierungen.",
   "orderUpdate": "Bestellung wurde gerade aktualisiert. Weitere Informationen finden Sie auf der Seite Lieferung / Zum Mitnehmen.",
+  "reservationUpdate": "Reservierung wurde gerade aktualisiert. Weitere Informationen finden Sie auf der Seite Reservierungen.",
+  "formSavedSuccessfully": "Gerettet",
   "orderCreate": "Neue Ordnung",
   "reservationCreate": "Neue Buchung"
 }

@@ -8,11 +8,11 @@
         "Kneipen & Bars",
         "Ghost Kitchens",
         "Einzelhändler",
-        "Fleischer",
+        "Metzgerei",
         "Gemüsehändler",
         "Kiosks"
       ],
-      "end": ""
+      "end": "Leben viel einfacher"
     },
     "paragraph": "Foodetective integriert alle Ihre Software und Systeme in eine einzige Online-Plattform. F&B-Unternehmen jeder Größe verlassen sich auf Foodetective's API, um ihren gesamten Tech-Stack zu verwalten, betriebliche Ineffizienzen zu reduzieren und Geschäftseinblicke zu verbessern.",
     "getStartedForFree": "Kostenlos loslegen",
@@ -80,7 +80,7 @@
   },
   "bookDemo": "Demo buchen",
   "registerNow": "Jetzt anmelden",
-  "pricing": "Preisgestaltung",
+  "pricing": "Zahlen Sie, wenn Sie wachsen",
   "appSwitcher": {
     "lefood": "Foodies",
     "sherlock": "Businesses"
@@ -100,7 +100,7 @@
   "aboutUs": "Über uns",
   "newsroom": "Newsroom",
   "careers": "Karriere",
-  "partners": "Partners",
+  "partners": "Partner",
   "unifiedApiSection": {
     "title": "Einheitliche API für die F&B-Industrie",
     "description": "Mit unserer Unified API sind die Zeiten vorbei, in denen Sie sich mit mehreren Anwendungen und Hardware auseinandersetzen mussten, um Ihr F&B-Geschäft zu verwalten. Einblicke sind nicht mehr über verschiedene Systeme hinweg fragmentiert."
@@ -182,7 +182,7 @@
         ]
       },
       "menu": {
-        "Titel": "Menüverwaltung",
+        "title": "Menü-Verwaltung",
         "subtitle": "Simultan aktualisierte Menüs",
         "options": [
           {
@@ -200,7 +200,7 @@
         ]
       },
       "reservation": {
-        "Titel": "Reservierungsmanagement",
+        "title": "Reservierungsmanagement",
         "subtitle": "Ihr virtueller Grundriss mit vollem Haus",
         "options": [
           {
@@ -223,7 +223,7 @@
         "subtitle": "Ein Bildschirm für alle Ereignisse",
         "options": [
           {
-            "Titel": "Main",
+            "title": "Main",
             "description": "Steigern Sie Ihre Produktivität mit einer Kalenderansicht Ihrer bevorstehenden Ereignisse",
             "advantages": [
               "<0>Keine manuellen Einträge mehr</0> Haben Sie einen automatisierten Überblick über den Monat.",
@@ -555,7 +555,7 @@
             "title": "Main",
             "advantages": [
               "Durch die Zentralisierung Ihres Tech-Stacks erhalten Sie Informationen in Echtzeit auf Ihrem <1>angepassten Dashboard.</1>",
-              "Verwenden Sie Foodetective täglich \uD83D\uDE09"
+              "Verwenden Sie Foodetective täglich 😉"
             ]
           }
         ]
@@ -585,7 +585,7 @@
             "advantages": [
               "Verringerung des Zeitaufwands für die Verwaltung",
               "Erhöhung der Sichtbarkeit",
-              "Erhöhung der Einnahmen",
+              "Steigerung der Einnahmen",
               "Datenbasierte Entscheidungen"
             ]
           }
@@ -610,13 +610,13 @@
       "kitchens": {
         "title": "Dark Kitchens",
         "subtitle": "Kein Vorankommen im Dunkeln",
-        "optionen": [
+        "options": [
           {
             "title": "Main",
-            "description": "Dark Kitchens brauchen Zugang zu den richtigen Werkzeugen und einfachen Arbeitsabläufen, um sich weiterentwickeln zu können. <1/> <0>Das bedeutet:</0>",
+            "description": "Dunkle Küchen brauchen Zugang zu den richtigen Tools und unkomplizierten Arbeitsabläufen, um zu skalieren. <1/> <0>Das führt zu:",
             "advantages": [
-              "Messbare KPIs",
-              "Präzise Prognosen",
+              "Datenbasierte Entscheidungen",
+              "Genaue Prognosen",
               "Bessere Kostenkontrolle",
               "Datenbasierte Entscheidungen"
             ]
@@ -665,10 +665,10 @@
     "demo": {
       "cta": "Zurück zur Website",
       "title": "Ihre Demo wurde erfolgreich gebucht!",
-      "subtitle": "Wir werden Sie innerhalb von 24 Stunden kontaktieren." 
+      "subtitle": "Wir werden Sie innerhalb von 24 Stunden kontaktieren."
     },
     "welcome": {
-      "title":  "Willkommen bei Foodetective!",
+      "title": "Willkommen bei Foodetective!",
       "subtitle": "Ihr Konto wurde erfolgreich erstellt. Mit dem Onboarding beginnen",
       "cta": "Starten",
       "disclaimer": "Indem Sie auf Starten klicken, bestätigen Sie, dass Sie sich als Unternehmen bei Foodetective registrieren.",

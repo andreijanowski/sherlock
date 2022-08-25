@@ -1,5 +1,5 @@
 {
-  "header": "Información Adicional",
+  "header": "Información Adicional y Etiquetas",
   "shortHeader": "Información Adicional",
   "timeOfTheDay": "Hora del día",
   "breakfastService": "Desayuno",
@@ -27,8 +27,8 @@
   "paymentMethods": "Formas de pago aceptadas",
   "canPayWithCards": "Tarjetas",
   "canPayWithCash": "Efectivo",
-  "canPayWithMobile": "Pago por móvil",
-  "secretCode": "Código Secreto",
+  "canPayWithMobile": "Puede pagar con el móvil",
+  "secretCode": "Código secreto",
   "referenceCodes": "Código de referencia",
   "deliveryChargeRef": "Referencia de los gastos de envío",
   "stripePaymentRef": "Referencia de pago de Stripe",
@@ -39,13 +39,14 @@
   "redirectionLinks": "Enlaces de Redireccionamiento",
   "redirectionLinksTooltip": "Introduzca los enlaces a sus servicios/perfiles externos",
   "addExternalServiceLink": "Añadir un enlace a mi perfil",
+  "serviceLinkUrlPlaceholder": "Copie y pegue la url de su {{service} aquí",
   "serviceLinkCategory": {
     "delivery": "A domicilio y Para Llevar",
     "booking": "Reservas",
     "food_waste": "Contra el desperdicio de alimentos",
     "payment": "Pagos",
     "loyalty": "Programa de fidelización",
-    "social_media": "Redes Sociales",
+    "social_media": "Social media",
     "online_reviews": "Reseñas online"
   },
   "servicePlaceholder": "Seleccionar servicio",
