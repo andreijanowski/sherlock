@@ -47,7 +47,10 @@ const MainApp = ({
   const router = useRouter();
   const lng = useLng();
   const t = useT();
-  const businessProfile = process.env.EXTERNALNAVIGATION;
+  const isDev = process.env.NODE_ENV !== "production";
+  const businessProfile = isDev
+    ? process.env.STAGING_FOODETECTIVE_URL
+    : process.env.PROD_FOODETECTIVE_URL;
   const MainIcon = chooseIcon(mainIcon);
   const { prevRoute, nextRoute } = getButtonRoutes({
     lng,
@@ -102,7 +105,11 @@ const MainApp = ({
           />
           <a
             target="_blank"
-            href={`${businessProfile}/en/business/${businessName.label}`}
+            href={
+              businessName.label
+                ? `${businessProfile}/${lng}/business/${businessName.label}`
+                : `${businessProfile}/${lng}`
+            }
             rel="noopener noreferrer"
           >
             {t("common:seeProfile")}
