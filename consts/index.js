@@ -84,6 +84,11 @@ const LINKEDIN_ADS_ID = process.env.LINKEDIN_ADS_ID;
 
 const UBER_EATS_RESTAURANT_URL = "https://restaurant.uber.com/";
 
+const PRODUCTION_URL = "business.foodetective.co";
+
+const LP_STAGING_URL = "https://staging.foodtekk.com";
+const LP_PROD_URL = "https://foodetective.co";
+
 const FOODETECTIVE_MAIL = "support@foodetective.co";
 
 const FOODETECTIVE_ADDRESS =
@@ -192,5 +197,8 @@ module.exports = {
   GOOGLE_SHEET_SERVICE_ACCOUNT_EMAIL,
   GOOGLE_SHEET_SERVICE_ACCOUNT_KEY,
   WHOLESALER,
-  AVAILABLE
+  AVAILABLE,
+  PRODUCTION_URL,
+  LP_STAGING_URL,
+  LP_PROD_URL
 };

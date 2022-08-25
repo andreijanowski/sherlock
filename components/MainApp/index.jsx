@@ -30,7 +30,12 @@ import {
   Container,
   CheckboxesContainer
 } from "./styled";
-import { chooseIcon, getButtonRoutes, getInfoHref } from "./utils";
+import {
+  chooseIcon,
+  getButtonRoutes,
+  getInfoHref,
+  getLandingPageUrl
+} from "./utils";
 import { WatchVideosIcon } from "../Icons";
 
 const MainApp = ({
@@ -47,10 +52,7 @@ const MainApp = ({
   const router = useRouter();
   const lng = useLng();
   const t = useT();
-  const isDev = process.env.NODE_ENV !== "production";
-  const businessProfile = isDev
-    ? "https://api.staging.foodtekk.com"
-    : "https://foodetective.co";
+
   const MainIcon = chooseIcon(mainIcon);
   const { prevRoute, nextRoute } = getButtonRoutes({
     lng,
@@ -107,8 +109,8 @@ const MainApp = ({
             target="_blank"
             href={
               businessName.label
-                ? `${businessProfile}/${lng}/business/${businessName.label}`
-                : `${businessProfile}/${lng}`
+                ? `${getLandingPageUrl()}/${lng}/business/${businessName.label}`
+                : `${getLandingPageUrl()}/${lng}`
             }
             rel="noopener noreferrer"
           >
