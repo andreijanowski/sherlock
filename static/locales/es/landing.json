@@ -12,7 +12,7 @@
         "Comerciantes",
         "Quioscos"
       ],
-      "end": "la vida es mucho más fácil"
+      "end": ""
     },
     "paragraph": "Foodetective integra todo su software y sistemas en una única plataforma online. Empresas de restauración de todos los tamaños confían en la API de Foodetective para gestionar toda su pila tecnológica, reducir las ineficiencias operativas y mejorar la información empresarial.",
     "getStartedForFree": "Comienza gratis",
@@ -80,7 +80,7 @@
   },
   "bookDemo": "Reservar una demostración",
   "registerNow": "Regístrese ahora",
-  "pricing": "Pague en función de su crecimiento",
+  "pricing": "Precios",
   "appSwitcher": {
     "lefood": "Foodies",
     "sherlock": "Businesses"
