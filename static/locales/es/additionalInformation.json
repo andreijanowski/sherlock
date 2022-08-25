@@ -1,5 +1,5 @@
 {
-  "header": "Información Adicional",
+  "header": "Información Adicional y Etiquetas",
   "shortHeader": "Información Adicional",
   "timeOfTheDay": "Hora del día",
   "breakfastService": "Desayuno",
@@ -14,7 +14,7 @@
   "pricePerPersonLabel": "Precio promedio por persona",
   "pricePerPersonPlaceholder": "40",
   "services": "Servicios",
-  "hasCatering": "Abastecimiento",
+  "hasCatering": "Catering",
   "hasReservations": "Reservaciones",
   "hasPrivateEvents": "Privatizaciones",
   "availableInLefood": "Órdenes",
@@ -24,11 +24,11 @@
   "onlineBookingUrlPlaceholder": "https://business.co/booking",
   "takeawayUrlLabel": "URL para llevar",
   "takeawayUrlPlaceholder": "https://business.co/takeaway",
-  "paymentMethods": "Métodos de pago",
-  "canPayWithCards": "Puede pagar con tarjetas",
+  "paymentMethods": "Formas de pago aceptadas",
+  "canPayWithCards": "Tarjetas",
   "canPayWithCash": "Efectivo",
   "canPayWithMobile": "Puede pagar con el móvil",
-  "secretCode": "Código Secreto",
+  "secretCode": "Código secreto",
   "referenceCodes": "Código de referencia",
   "deliveryChargeRef": "Referencia de los gastos de envío",
   "stripePaymentRef": "Referencia de pago de Stripe",
@@ -39,13 +39,14 @@
   "redirectionLinks": "Enlaces de Redireccionamiento",
   "redirectionLinksTooltip": "Introduzca los enlaces a sus servicios/perfiles externos",
   "addExternalServiceLink": "Añadir un enlace a mi perfil",
+  "serviceLinkUrlPlaceholder": "Copie y pegue la url de su {{service} aquí",
   "serviceLinkCategory": {
     "delivery": "A domicilio y Para Llevar",
     "booking": "Reservas",
     "food_waste": "Contra el desperdicio de alimentos",
     "payment": "Pagos",
     "loyalty": "Programa de fidelización",
-    "social_media": "Redes Sociales",
+    "social_media": "Social media",
     "online_reviews": "Reseñas online"
   },
   "servicePlaceholder": "Seleccionar servicio",
@@ -54,5 +55,6 @@
   "redirectionWebsiteLinks": "Enlaces a sus sitios web",
   "redirectionServicesLinks": "Enlaces a servicios externos de los socios",
   "secretCodeHint": "Por favor, introduzca el código que le ha comunicado su socio de activación o representante de ventas. <0/> (<1>Si se registra por iniciativa propia, deje este campo vacío</1>)",
+  "servicesHint": "Al marcar una casilla se activan los servicios seleccionados en <0>directo en Foodetective</0>. Si desea prestar estos servicios sólo a través de otras plataformas, vaya a la sección de enlaces de redirección en el menú de la izquierda.",
   "seeAll": "Ver toda la información"
 }

@@ -1,5 +1,5 @@
 {
-  "header": "Zusätzliche Information",
+  "header": "Zusätzliche Informationen & Tags",
   "shortHeader": "Zusätzliche Information",
   "timeOfTheDay": "Tageszeit",
   "breakfastService": "Frühstück",
@@ -14,7 +14,7 @@
   "pricePerPersonLabel": "Durchschnittspreis pro Person",
   "pricePerPersonPlaceholder": "40",
   "services": "Dienstleistungen",
-  "hasCatering": "Gastronomie",
+  "hasCatering": "Catering",
   "hasReservations": "Reservierungen",
   "hasPrivateEvents": "Privatisierungen",
   "availableInLefood": "Bestellungen",
@@ -24,10 +24,10 @@
   "onlineBookingUrlPlaceholder": "https://business.co/booking",
   "takeawayUrlLabel": "URL zum Mitnehmen",
   "takeawayUrlPlaceholder": "https://business.co/takeaway",
-  "paymentMethods": "Zahlungsarten",
-  "canPayWithCards": "Kann mit Karten bezahlen",
-  "canPayWithCash": "Kasse",
-  "canPayWithMobile": "Kann mit Handy bezahlen",
+  "paymentMethods": "Akzeptierte Zahlungsmethoden",
+  "canPayWithCards": "Karten",
+  "canPayWithCash": "Bargeld",
+  "canPayWithMobile": "Mobile Zahlung",
   "secretCode": "Geheim Code",
   "referenceCodes": "Referenzcode",
   "deliveryChargeRef": "Referenz der Lieferkosten",
@@ -39,13 +39,14 @@
   "redirectionLinks": "Weiterleitungslinks",
   "redirectionLinksTooltip": "Geben Sie Links zu Ihren externen Dienstleistungen/Profilen ein",
   "addExternalServiceLink": "Einen Link zu meinem Profil hinzufügen",
+  "serviceLinkUrlPlaceholder": "Kopieren und Einfügen Ihrer {{service} url hier",
   "serviceLinkCategory": {
     "delivery": "Lieferung & zum Mitnehmen",
     "booking": "Buchung",
     "food_waste": "Gegen Lebensmittelverschwendung",
     "payment": "Zahlung",
     "loyalty": "Treueprogramme",
-    "social_media": "Sozialen Medien",
+    "social_media": "Sozialen medien",
     "online_reviews": "Online-Kritiken"
   },
   "servicePlaceholder": "Dienst auswählen",
@@ -54,5 +55,6 @@
   "redirectionWebsiteLinks": "Links zu Ihren Websites",
   "redirectionServicesLinks": "Links zu externen Partnerdiensten",
   "secretCodeHint": "Bitte geben Sie den Code ein, der Ihnen von Ihrem Aktivierungspartner oder Vertriebsmitarbeiter mitgeteilt wurde. <0/> (<1>Wenn Sie sich auf eigene Faust anmelden, lassen Sie dieses Feld bitte leer</1>)",
+  "servicesHint": "Wenn Sie hier ein Kästchen ankreuzen, werden die ausgewählten Dienste <0>direkt auf Foodetective aktiviert</0>. Wenn Sie diese Dienste nur über andere Plattformen anbieten möchten, gehen Sie zum Abschnitt Weiterleitungslink im Menü links.",
   "seeAll": "Alle Informationen anzeigen."
 }

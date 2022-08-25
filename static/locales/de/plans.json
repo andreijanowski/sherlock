@@ -28,7 +28,7 @@
   "goBackToPlans": "Gehe zurück zu den Plänen",
   "dashboardAnalytics": {
     "basic": "Grundlegend",
-    "essential": "Erweitert",
+    "essential": "Fortgeschrittene",
     "ultimate": "Maßgeschneidert"
   },
   "hints": {
@@ -90,7 +90,7 @@
   "ourPlans": "Unsere Pläne",
   "plansTitle": {
     "basic": "Basic",
-    "essential": "Essential",
+    "essential": "Wesentlich",
     "ultimate": "Ultimate ab"
   },
   "choosePlan": "Wählen {{name}}",

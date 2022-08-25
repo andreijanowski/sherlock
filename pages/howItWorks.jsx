@@ -58,7 +58,10 @@ const HowItWorksPage = () => {
               right: [-5, null, null, -100]
             }
           ]}
-          columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
+          columnsProportions={[
+            [1, null, null, 1 / 2],
+            [1, null, null, 1 / 2]
+          ]}
           advantagesColumnsWidth={1}
           textLinks={{
             [getAdvPrefix({ optionIndex: 0, advIndex: 0 })]: {
@@ -89,7 +92,10 @@ const HowItWorksPage = () => {
               left: [-5, null, null, -170]
             }
           ]}
-          columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
+          columnsProportions={[
+            [1, null, null, 1 / 2],
+            [1, null, null, 1 / 2]
+          ]}
           advantagesColumnsWidth={1}
           textLinks={{
             [getAdvPrefix({ optionIndex: 0, advIndex: 0 })]: {
@@ -118,7 +124,10 @@ const HowItWorksPage = () => {
               right: [-5, null, null, -170]
             }
           ]}
-          columnsProportions={[[1, null, null, 3 / 5], [1, null, null, 2 / 5]]}
+          columnsProportions={[
+            [1, null, null, 3 / 5],
+            [1, null, null, 2 / 5]
+          ]}
           advantagesColumnsWidth={1}
           ctaButton={<DemoButton />}
         />
@@ -147,7 +156,10 @@ const HowItWorksPage = () => {
               right: [-5, null, null, -90]
             }
           ]}
-          columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
+          columnsProportions={[
+            [1, null, null, 1 / 2],
+            [1, null, null, 1 / 2]
+          ]}
           advantagesColumnsWidth={1}
           textLinks={{
             [getAdvPrefix({ optionIndex: 0, advIndex: 0 })]: {
@@ -176,7 +188,10 @@ const HowItWorksPage = () => {
               right: [-5, null, null, -140]
             }
           ]}
-          columnsProportions={[[1, null, null, 3 / 5], [1, null, null, 2 / 5]]}
+          columnsProportions={[
+            [1, null, null, 3 / 5],
+            [1, null, null, 2 / 5]
+          ]}
           advantagesColumnsWidth={1}
           ctaButton={<DownloadButton sectionId={DOWNLOAD_SECTION_ID} />}
         />

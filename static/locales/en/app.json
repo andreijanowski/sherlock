@@ -126,6 +126,9 @@
   "search": "Search...",
   "becomeBOPrompt": "Do you want to become Business Owner?",
   "playVideo": "Play video",
+  "video": "Video",
+  "info": "Info",
+  "loadMore": "Load more",
   "appManager": "App Manager",
   "payroll": "HR & Payroll",
   "foodWaste": "Food waste",
@@ -148,5 +151,8 @@
   "openNow": "Open now: ",
   "seeAllHours": "See all hours",
   "readMore": "Read more",
-  "mustTry": "Must Try"
+  "mustTry": "Must Try",
+  "allOurCategories": "All Our Categories",
+  "available": "Available",
+  "typeName": "Type a partner’s name"
 }

@@ -81,4 +81,11 @@ export default createGlobalStyle`
       color: rgb(${p => p.theme.colors.blue});
       text-decoration: none;
     }
+
+    .svg-inline--fa {
+      display: var(--fa-display, inline-block);
+      height: 1em;
+      overflow: visible;
+      vertical-align: -0.125em;
+    }
 `;

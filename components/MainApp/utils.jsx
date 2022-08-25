@@ -20,7 +20,12 @@ import {
   PresenceManagement
 } from "icons";
 import { generateProfileSubmenu, isMenuItemActive } from "utils/menuConfig";
-import { USER_GUIDES_URL } from "consts";
+import {
+  USER_GUIDES_URL,
+  PRODUCTION_URL,
+  LP_STAGING_URL,
+  LP_PROD_URL
+} from "consts";
 
 export const chooseIcon = icon => {
   switch (icon) {
@@ -72,6 +77,11 @@ const getPrevAndNextButtons = (items, activeIndex) => ({
   nextRoute:
     activeIndex + 1 < items.length ? items[activeIndex + 1].route : null
 });
+
+export const getLandingPageUrl = () => {
+  const isDev = window.location.host !== PRODUCTION_URL;
+  return isDev ? LP_STAGING_URL : LP_PROD_URL;
+};
 
 export const getButtonRoutes = ({ lng, asPath, mainIcon }) => {
   if (mainIcon === "profile") {

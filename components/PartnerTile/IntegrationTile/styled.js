@@ -6,7 +6,11 @@ export const Container = styled(Flex)`
   min-height: 100%;
   flex-direction: column;
   padding: 24px 12px;
-  border: 1px solid rgba(${p => p.theme.colors.gray["3"]});
+  border: 1px solid
+    rgba(
+      ${p =>
+        p.isLandingPage ? p.theme.colors.navyBlue : p.theme.colors.gray["3"]}
+    );
   border-radius: ${p => p.theme.radius.double};
   box-shadow: 0px 0px 14.5193px rgba(55, 81, 255, 0.15);
   transition: border-color 0.2s;

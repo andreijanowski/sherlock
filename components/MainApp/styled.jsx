@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { Flex } from "@rebass/grid";
+import { Flex, Box } from "@rebass/grid";
+import { themeGet } from "utils/theme";
 
 export const Wrapper = styled(Flex).attrs(() => ({
   width: [1, "calc(100% - 300px)"],
@@ -86,31 +87,26 @@ export const Header = styled(Flex).attrs(() => ({
 `;
 
 export const Icon = styled(Flex).attrs(() => ({
-  width: 32,
-  alignItems: "center",
-  justifyContent: "center",
+  width: 36,
   mx: 1
 }))`
-  height: 32px;
+  background-color: rgb(${p => p.theme.colors.white});
+  height: 36px;
   font-size: 24px;
-  border-radius: 16px;
+  border-radius: 18px;
   cursor: pointer;
+  box-shadow: 0 4px 2px -2px gray;
 
   path,
   circle,
-  rect {
-    fill: rgb(${p => (p.active ? p.theme.colors.blue : p.theme.colors.dark)});
-    stroke: rgb(${p => (p.active ? p.theme.colors.blue : p.theme.colors.dark)});
-  }
-
   &:hover {
-    background-color: rgb(${p => p.theme.colors.dark});
+    background-color: rgb(${p => p.theme.colors.darkBlue});
     box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.dark}, 0.48);
 
     path,
     circle,
     rect {
-      fill: rgb(${p => p.theme.colors.white});
+      fill: rgb(${p => p.theme.colors.darkBlue});
       stroke: rgb(${p => p.theme.colors.white});
     }
   }
@@ -125,15 +121,32 @@ export const IconsWrapper = styled(Flex)`
 `;
 
 export const Avatar = styled.div`
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   margin-left: 4px;
+  box-shadow: 0 2px 6px 0 rgba(${p => p.theme.colors.dark}, 0.48);
   background-color: rgb(${p => p.theme.colors.dark});
   background-position: center;
   background-size: cover;
-  border-radius: 16px;
+  border-radius: 18px;
   cursor: pointer;
   ${p => p.src && `background-image: url(${p.src});`}
+`;
+
+export const Container = styled(Box)`
+  cursor: pointer;
+`;
+
+export const CheckboxesContainer = styled.form`
+  padding: 16px;
+  border-radius: 8px;
+  background: rgb(${themeGet("colors.white")});
+  box-shadow: 0 0 4px 0 rgba(${themeGet("colors.boxShadow")}, 0.5);
+`;
+
+export const ListItem = styled("li")`
+  list-style: none;
+  margin-bottom: 0.8em;
 `;
 
 export const TutorialButton = styled.div`

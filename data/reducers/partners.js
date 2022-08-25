@@ -5,7 +5,10 @@ import {
   PARTNERS_PREFERRED_ADD_SUCCESS,
   PARTNERS_PREFERRED_DELETE_SUCCESS,
   CONNECT_PARTNER_SUCCESS,
-  DISCONNECT_PARTNER_SUCCESS
+  DISCONNECT_PARTNER_SUCCESS,
+  FETCH_PARTNERS_AVAILABLE_REQUEST,
+  FETCH_PARTNERS_AVAILABLE_SUCCESS,
+  FETCH_PARTNERS_AVAILABLE_FAIL
 } from "types/partners";
 import { LOGOUT } from "types/auth";
 import { Record, Map, fromJS } from "immutable";
@@ -49,6 +52,44 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       return newState;
     }
     case FETCH_PARTNERS_FAIL: {
+      return state.merge(
+        Record({
+          isFetching: false,
+          isFailed: true
+        })()
+      );
+    }
+
+    case FETCH_PARTNERS_AVAILABLE_REQUEST: {
+      return state.merge(
+        Record({
+          isFetching: true,
+          isFailed: false,
+          isSucceeded: false
+        })()
+      );
+    }
+    case FETCH_PARTNERS_AVAILABLE_SUCCESS: {
+      let newState = state.merge(
+        Record({
+          isFetching: false,
+          isSucceeded: true,
+          previousConfig: meta.config,
+          hasMore: meta.config.page < payload.rawData.meta.totalPages
+        })()
+      );
+
+      const preparedData = fromJS(payload.rawData.data);
+
+      if (meta.merge) {
+        newState = newState.mergeIn(["data"], preparedData);
+      } else {
+        newState = newState.set("data", preparedData);
+      }
+
+      return newState;
+    }
+    case FETCH_PARTNERS_AVAILABLE_FAIL: {
       return state.merge(
         Record({
           isFetching: false,

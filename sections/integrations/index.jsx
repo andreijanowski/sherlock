@@ -194,7 +194,4 @@ const mapDispatch = {
   fetchPartnersHandler: fetchPartners
 };
 
-export default connect(
-  mapState,
-  mapDispatch
-)(IntegrationsList);
+export default connect(mapState, mapDispatch)(IntegrationsList);

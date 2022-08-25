@@ -58,7 +58,7 @@ const AppLayout = ({
       id="app"
     >
       <NavigationContainer t={t} lng={lng} />
-      <MainApp mainIcon={mainIcon} header={header} t={t}>
+      <MainApp mainIcon={mainIcon} header={header}>
         {children}
       </MainApp>
       {shouldShowConfirmBOModal && (

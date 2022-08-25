@@ -54,9 +54,7 @@ class EditPrivatisationPage extends PureComponent {
       .then(res => {
         sendOffer(res.rawData.data.id);
         Router.pushRoute(
-          `/${lng}/app/events-management/privatisation/month?date=${
-            values.date
-          }`
+          `/${lng}/app/events-management/privatisation/month?date=${values.date}`
         );
       })
       .catch(() => this.setState({ isSending: false }));

@@ -27,7 +27,7 @@
   "successMessage": "Votre abonnement a été mis à jour avec succès!",
   "goBackToPlans": "Retourner aux plans",
   "dashboardAnalytics": {
-    "basic": "Basique",
+    "basic": "Basic",
     "essential": "Avancé",
     "ultimate": "Sur mesure"
   },
@@ -90,7 +90,7 @@
   "ourPlans": "Nos plans",
   "plansTitle": {
     "basic": "Basic",
-    "essential": "Essential",
+    "essential": "Essentiel",
     "ultimate": "Ultimate à partir de"
   },
   "choosePlan": "Choisir {{name}}",
@@ -102,4 +102,4 @@
     "title": "Prêt à commencer ?",
     "description": "Nous serions heureux d'en savoir plus sur votre établissement et d'organiser une démonstration de Foodetective Business."
   }
- }
+}

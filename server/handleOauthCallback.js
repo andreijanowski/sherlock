@@ -5,11 +5,17 @@ const clearAuthCookies = require("./utils/clearAuthCookies");
 
 function handleOauthCallback(req, res) {
   let registrationCallback = false;
+  let lang = "en";
   let { state } = req.query;
 
-  if (typeof state !== "undefined" && state.endsWith("registration")) {
-    state = state.substring(0, state.length - 12);
+  if (
+    typeof state !== "undefined" &&
+    state.slice(0, -2).endsWith("registration")
+  ) {
+    lang = state.slice(-2);
+    state = state.substring(0, state.length - 14);
     registrationCallback = true;
+    req.cookies["next-i18next"] = lang;
   }
 
   if (state === req.cookies.loginStateParam) {

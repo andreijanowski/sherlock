@@ -222,8 +222,5 @@ const mapDispatch = {
 export default compose(
   requireAuth(true),
   withTranslation(namespaces),
-  connect(
-    mapState,
-    mapDispatch
-  )
+  connect(mapState, mapDispatch)
 )(Dashboard);

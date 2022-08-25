@@ -149,14 +149,11 @@ export default withRedux(createStore, {
   deserializeState: state => fromJS(state)
 })(
   withReduxSaga(
-    connect(
-      state => ({ state }),
-      {
-        pathChanged: pathChangedAction,
-        loadUserData: loadUserDataAction,
-        refreshToken: refreshTokenAction,
-        setAppInstanceUuid: setInstanceUuid
-      }
-    )(appWithTranslation(MyApp))
+    connect(state => ({ state }), {
+      pathChanged: pathChangedAction,
+      loadUserData: loadUserDataAction,
+      refreshToken: refreshTokenAction,
+      setAppInstanceUuid: setInstanceUuid
+    })(appWithTranslation(MyApp))
   )
 );

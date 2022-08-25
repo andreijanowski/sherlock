@@ -370,6 +370,59 @@ export const AcceptedDetectiveIcon = () => (
   </svg>
 );
 
+export const MainInfoIcon = () => (
+  <svg
+    width="43"
+    height="43"
+    viewBox="0 0 43 43"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="21.5001" cy="9.95097" r="2.40196" fill="#0F1554" />
+    <path
+      d="M19.0981 16.8137C19.0981 15.4872 20.1735 14.4118 21.5001 14.4118V14.4118C22.8267 14.4118 23.9021 15.4872 23.9021 16.8137V22.9902C23.9021 24.3168 22.8267 25.3922 21.5001 25.3922V25.3922C20.1735 25.3922 19.0981 24.3168 19.0981 22.9902V16.8137Z"
+      fill="#0F1554"
+    />
+    <defs>
+      <filter
+        id="filter0_d_207_1057"
+        x="0"
+        y="0"
+        width="43"
+        height="43"
+        filterUnits="userSpaceOnUse"
+        colorInterpolationFilters="sRGB"
+      >
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          result="hardAlpha"
+        />
+        <feOffset dy="4" />
+        <feGaussianBlur stdDeviation="2" />
+        <feComposite in2="hardAlpha" operator="out" />
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+        />
+        <feBlend
+          mode="normal"
+          in2="BackgroundImageFix"
+          result="effect1_dropShadow_207_1057"
+        />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="effect1_dropShadow_207_1057"
+          result="shape"
+        />
+      </filter>
+    </defs>
+  </svg>
+);
+
 export const InfoIcon = () => (
   <svg
     width="1em"
@@ -390,5 +443,132 @@ export const InfoIcon = () => (
       id="p1BGpt0d23"
       d="M5735 4666 c-296 -68 -527 -277 -627 -566 -32 -92 -33 -100 -32 -255 0 -148 2 -167 28 -245 98 -298 335 -515 630 -576 104 -22 273 -19 371 6 376 96 635 425 636 807 0 375 -227 688 -584 806 -80 26 -110 30 -227 33 -91 3 -155 -1 -195 -10z"
     />
+  </svg>
+);
+
+export const BellIcon = () => (
+  <svg
+    width="43"
+    height="43"
+    viewBox="0 0 43 43"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M25.5032 16.0131C25.5032 15.0423 25.1176 14.1114 24.4312 13.425C23.7448 12.7386 22.8138 12.3529 21.8431 12.3529C20.8724 12.3529 19.9414 12.7386 19.255 13.425C18.5686 14.1114 18.183 15.0423 18.183 16.0131C18.183 20.2832 16.3529 21.5033 16.3529 21.5033H27.3333C27.3333 21.5033 25.5032 20.2832 25.5032 16.0131Z"
+      fill="#0F1554"
+      stroke="#0F1554"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M22.8985 23.9434C22.7913 24.1282 22.6373 24.2817 22.4521 24.3884C22.2669 24.4951 22.0569 24.5512 21.8432 24.5512C21.6294 24.5512 21.4195 24.4951 21.2342 24.3884C21.049 24.2817 20.8951 24.1282 20.7878 23.9434"
+      stroke="#0F1554"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <defs>
+      <filter
+        id="filter0_d_207_1061"
+        x="0"
+        y="0"
+        width="43"
+        height="43"
+        filterUnits="userSpaceOnUse"
+        colorInterpolationFilters="sRGB"
+      >
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          result="hardAlpha"
+        />
+        <feOffset dy="4" />
+        <feGaussianBlur stdDeviation="2" />
+        <feComposite in2="hardAlpha" operator="out" />
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+        />
+        <feBlend
+          mode="normal"
+          in2="BackgroundImageFix"
+          result="effect1_dropShadow_207_1061"
+        />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="effect1_dropShadow_207_1061"
+          result="shape"
+        />
+      </filter>
+    </defs>
+  </svg>
+);
+
+export const WatchVideosIcon = () => (
+  <svg
+    width="43"
+    height="43"
+    viewBox="0 0 43 43"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M31.0344 12.55C30.927 12.1076 30.7081 11.7022 30.4 11.3749C30.0918 11.0475 29.7053 10.8098 29.2795 10.6856C27.7236 10.2941 21.5001 10.2941 21.5001 10.2941C21.5001 10.2941 15.2765 10.2941 13.7206 10.7229C13.2948 10.8471 12.9083 11.0848 12.6001 11.4122C12.292 11.7395 12.0732 12.1449 11.9657 12.5873C11.6809 14.2145 11.5417 15.8652 11.5496 17.5186C11.5394 19.1845 11.6787 20.8478 11.9657 22.4872C12.0842 22.9159 12.3079 23.3058 12.6153 23.6194C12.9227 23.9329 13.3034 24.1594 13.7206 24.2771C15.2765 24.7059 21.5001 24.7059 21.5001 24.7059C21.5001 24.7059 27.7236 24.7059 29.2795 24.2771C29.7053 24.1529 30.0918 23.9151 30.4 23.5878C30.7081 23.2604 30.927 22.8551 31.0344 22.4127C31.317 20.7977 31.4562 19.1596 31.4505 17.5186C31.4607 15.8527 31.3214 14.1895 31.0344 12.55Z"
+      fill="white"
+      stroke="#0F1554"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M19.098 20.5882L25.9608 17.5L19.098 14.4118V20.5882Z"
+      fill="#0F1554"
+      stroke="#0F1554"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <defs>
+      <filter
+        id="filter0_d_207_1065"
+        x="0"
+        y="0"
+        width="43"
+        height="43"
+        filterUnits="userSpaceOnUse"
+        colorInterpolationFilters="sRGB"
+      >
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          result="hardAlpha"
+        />
+        <feOffset dy="4" />
+        <feGaussianBlur stdDeviation="2" />
+        <feComposite in2="hardAlpha" operator="out" />
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+        />
+        <feBlend
+          mode="normal"
+          in2="BackgroundImageFix"
+          result="effect1_dropShadow_207_1065"
+        />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="effect1_dropShadow_207_1065"
+          result="shape"
+        />
+      </filter>
+    </defs>
   </svg>
 );

@@ -13,6 +13,7 @@
     },
     "letsgo": "Ecco a voi",
     "next": "Avanti",
+    "publish": "Pubblicare",
     "previous": "Precedente",
     "step1": {
       "title": "Crea il tuo profilo",
@@ -39,13 +40,13 @@
     "imagesmenus": {
       "logo": {
         "hint": "Inserite il vostro logo",
-        "drag_file": "Scegliere un file o trascinarlo qui"
+        "drag_file": "Scegli un file o trascinalo qui"
       },
       "upload_pictures": {
-        "hint": "Inserire un'immagine di alta qualità che mostri l'atmosfera della vostra attività (preferibilmente l'interno)."
+        "hint": "Per favore,Inserisci un'immagine / foto di alta qualità che mostri l'atmosfera della tua attività (preferibilmente l'interno)."
       },
       "must_try": {
-        "hint": "Promuovete i vostri bestseller."
+        "hint": "Se ritieni che ci sia un piatto che consiglieresti di avere in questo particolare posto, ti preghiamo di farcelo sapere e condividere una sua foto."
       }
     }
   },

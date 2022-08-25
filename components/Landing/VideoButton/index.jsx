@@ -7,7 +7,7 @@ import { string, bool } from "prop-types";
 import { useT } from "utils/hooks";
 import { Modal } from "components";
 import YoutubeVideo from "components/YoutubeVideo";
-import { Container, Label } from "./styled";
+import { Container, Label, Icon } from "./styled";
 
 const VideoButton = ({ url, isVertical }) => {
   const t = useT("landing");
@@ -25,7 +25,9 @@ const VideoButton = ({ url, isVertical }) => {
     <>
       <Container isVertical={isVertical} onClick={showModal}>
         <Box {...(isVertical ? { mb: "24px" } : { mr: "24px" })}>
-          <FontAwesomeIcon icon={faPlayCircle} size="4x" />
+          <Icon>
+            <FontAwesomeIcon icon={faPlayCircle} size="4x" />
+          </Icon>
         </Box>
         <Label>{t("topSection.watchVideo")}</Label>
       </Container>

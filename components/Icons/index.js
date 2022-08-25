@@ -68,6 +68,9 @@ export {
   Arrow,
   ArrowDown,
   AcceptedDetectiveIcon,
+  BellIcon,
+  WatchVideosIcon,
+  MainInfoIcon,
   InfoIcon
 } from "./mainControls";
 export {

@@ -54,7 +54,7 @@ Optional:
 
   
 
-Create `.env` file inside the main directory. You can find all envs in 1pass for foodetective project.
+Create `.env` file inside the main directory. You can find all envs in 1pass for foodetective project in "Sherlock FE .env"
 
   
 

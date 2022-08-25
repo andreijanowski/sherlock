@@ -56,9 +56,8 @@ AddManager.propTypes = {
 
 export default requireAuth(true)(
   withTranslation(namespaces)(
-    connect(
-      (state, { i18n }) => ({ lng: (i18n && i18n.language) || "en" }),
-      { addReferrals: postReferrals }
-    )(AddManager)
+    connect((state, { i18n }) => ({ lng: (i18n && i18n.language) || "en" }), {
+      addReferrals: postReferrals
+    })(AddManager)
   )
 );

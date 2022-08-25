@@ -1,11 +1,10 @@
 {
-  "header": "Kontakt Informationen",
   "contactInformation": "Kontakt Informationen",
   "nameLabel": "Name",
   "namePlaceholder": "John Smith",
   "emailLabel": "Email",
-  "emailPlaceholder": "name@firma.com",
-  "countryLabel": "Landes Vorwahl",
+  "emailPlaceholder": "name@company.com",
+  "countryLabel": "Landesvorwahl",
   "countryPlaceholder": "+48",
   "phoneLabel": "Telefon",
   "phonePlaceholder": "543 423 534",

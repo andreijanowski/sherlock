@@ -1,0 +1,13 @@
+{
+    "source_language": "EN",
+    "target_languages": [
+        "DE",
+        "ES",
+        "FR",
+        "IT"
+    ],
+    "interpolation": "i18n",
+    "input_path": "./static/locales/en/*.json",
+    "output_path": "./static/locales/$locale/$FILE.json",
+    "auth_key": "189a1982-4c03-4612-8f35-e2d61e35c2f6"
+}

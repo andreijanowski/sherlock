@@ -1,7 +1,6 @@
 import React from "react";
 import { string, bool, arrayOf, shape, func } from "prop-types";
 import { useRouter } from "next/router";
-
 import { Link } from "components";
 import MenuArrowIcon from "components/MenuArrowIcon";
 import PartnersSearchBox from "components/PartnersSearchBox";

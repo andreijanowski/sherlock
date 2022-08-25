@@ -121,21 +121,18 @@ ImagesMenus.defaultProps = {
   values: null
 };
 
-export default connect(
-  null,
-  {
-    addBusiness: postBusiness,
-    updateBusiness: patchBusiness,
-    addPicture: postPicture,
-    removePicture: deletePicture,
-    addMenu: postMenu,
-    updateMenu: patchMenu,
-    removeMenu: deleteMenu,
-    addProduct: postProduct,
-    updateProduct: patchProduct,
-    removeProduct: deleteProduct,
-    changeCurrentBusiness: setCurrentBusiness,
-    getProfileBusiness: fetchProfileBusiness,
-    uploadMenuToUberEats
-  }
-)(ImagesMenus);
+export default connect(null, {
+  addBusiness: postBusiness,
+  updateBusiness: patchBusiness,
+  addPicture: postPicture,
+  removePicture: deletePicture,
+  addMenu: postMenu,
+  updateMenu: patchMenu,
+  removeMenu: deleteMenu,
+  addProduct: postProduct,
+  updateProduct: patchProduct,
+  removeProduct: deleteProduct,
+  changeCurrentBusiness: setCurrentBusiness,
+  getProfileBusiness: fetchProfileBusiness,
+  uploadMenuToUberEats
+})(ImagesMenus);

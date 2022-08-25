@@ -45,7 +45,10 @@ const ManagementPage = () => (
             width: ["100%", null, null, "490px"]
           }
         ]}
-        columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
+        columnsProportions={[
+          [1, null, null, 1 / 2],
+          [1, null, null, 1 / 2]
+        ]}
         linkTo="/#integrations"
       />
     </WhiteWrapper>
@@ -74,7 +77,10 @@ const ManagementPage = () => (
             width: ["138px", "160px", null, "206px"]
           }
         ]}
-        columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
+        columnsProportions={[
+          [1, null, null, 1 / 2],
+          [1, null, null, 1 / 2]
+        ]}
         isDark
       />
     </DarkWrapper>
@@ -95,7 +101,10 @@ const ManagementPage = () => (
             right: [0, null, null, -33]
           }
         ]}
-        columnsProportions={[[1, null, null, 1 / 2], [1, null, null, 1 / 2]]}
+        columnsProportions={[
+          [1, null, null, 1 / 2],
+          [1, null, null, 1 / 2]
+        ]}
       />
     </WhiteWrapper>
     <DarkWrapper id="events">
@@ -109,7 +118,10 @@ const ManagementPage = () => (
             mb: [44, null, null, 0]
           }
         ]}
-        columnsProportions={[[1, null, null, 3 / 5], [1, null, null, 2 / 5]]}
+        columnsProportions={[
+          [1, null, null, 3 / 5],
+          [1, null, null, 2 / 5]
+        ]}
         advantagesColumnsWidth={1}
         isDark
       />
@@ -132,7 +144,10 @@ const ManagementPage = () => (
             right: [0, null, null, -10]
           }
         ]}
-        columnsProportions={[[1, null, null, 3 / 5], [1, null, null, 2 / 5]]}
+        columnsProportions={[
+          [1, null, null, 3 / 5],
+          [1, null, null, 2 / 5]
+        ]}
         advantagesColumnsWidth={1}
       />
     </WhiteWrapper>

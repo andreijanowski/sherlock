@@ -121,9 +121,4 @@ const mapDispatch = {
   fetchImage: fetchImageAction
 };
 
-export default compose(
-  connect(
-    mapState,
-    mapDispatch
-  )
-)(NewsroomPage);
+export default compose(connect(mapState, mapDispatch))(NewsroomPage);
