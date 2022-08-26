@@ -81,7 +81,8 @@ const PartnersSearchBox = ({
   hasAvailablePartners,
   activeFilter,
   page,
-  clearPage
+  clearPage,
+  shouldLoadMore
 }) => {
   const [search, setSearch] = useState("");
   const {
@@ -140,7 +141,8 @@ const PartnersSearchBox = ({
     search,
     hasAvailablePartners,
     activeFilter,
-    page
+    page,
+    shouldLoadMore
   ]);
 
   return (
@@ -161,14 +163,16 @@ PartnersSearchBox.propTypes = {
   hasAvailablePartners: bool,
   activeFilter: bool,
   page: number,
-  clearPage: func.isRequired
+  clearPage: func.isRequired,
+  shouldLoadMore: bool
 };
 
 PartnersSearchBox.defaultProps = {
   business: null,
   hasAvailablePartners: false,
   activeFilter: "",
-  page: 1
+  page: 1,
+  shouldLoadMore: false
 };
 
 const mapState = state => {

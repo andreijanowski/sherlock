@@ -12,7 +12,7 @@
         "Gemüsehändler",
         "Kiosks"
       ],
-      "end": "Leben viel einfacher"
+      "end": ""
     },
     "paragraph": "Foodetective integriert alle Ihre Software und Systeme in eine einzige Online-Plattform. F&B-Unternehmen jeder Größe verlassen sich auf Foodetective's API, um ihren gesamten Tech-Stack zu verwalten, betriebliche Ineffizienzen zu reduzieren und Geschäftseinblicke zu verbessern.",
     "getStartedForFree": "Kostenlos loslegen",
@@ -80,7 +80,7 @@
   },
   "bookDemo": "Demo buchen",
   "registerNow": "Jetzt anmelden",
-  "pricing": "Zahlen Sie, wenn Sie wachsen",
+  "pricing": "Preisgestaltung",
   "appSwitcher": {
     "lefood": "Foodies",
     "sherlock": "Businesses"
