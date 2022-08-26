@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bool, shape, number } from "prop-types";
 import { useT } from "utils/hooks";
@@ -21,6 +21,7 @@ import {
 
 const Partners = ({ activeItem, partners, isLoading, hasMore, page }) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [shouldLoadMore, setShouldLoadMore] = useState(false);
   const t = useT("app");
   const normalisedPartnters = partners && partners.toJS();
   const filteredPartners = getSortedPartners(normalisedPartnters);
@@ -28,7 +29,16 @@ const Partners = ({ activeItem, partners, isLoading, hasMore, page }) => {
   const hasPartners =
     !isLoading && filteredPartners && filteredPartners.length > 0;
 
-  const loadMore = () => setCurrentPage(page + 1);
+  const loadMore = () => {
+    setShouldLoadMore(true);
+    setCurrentPage(page + 1);
+  };
+
+  useEffect(() => {
+    setShouldLoadMore(false);
+    setCurrentPage(1);
+  }, [activeItem]);
+
   const clearPage = () => setCurrentPage(1);
 
   return (
@@ -41,6 +51,7 @@ const Partners = ({ activeItem, partners, isLoading, hasMore, page }) => {
           loadMore={loadMore}
           page={currentPage}
           clearPage={clearPage}
+          shouldLoadMore={shouldLoadMore}
         />
         <SubtitleStyled mb={4}>{activeItem.label}</SubtitleStyled>
       </AdaptiveBox>
