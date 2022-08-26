@@ -148,8 +148,8 @@ export const IntegrationsWrapper = styled(Box)`
   width: 100%;
   background: linear-gradient(
     ${LANDING_BLOCK_ANGLE},
-    rgb(${p => p.theme.colors.white}) calc(90% - 1px),
-    rgb(${p => p.theme.colors.landingDarkBlue}) 90%
+    rgb(${p => p.theme.colors.white}) calc(96% - 1px),
+    rgb(${p => p.theme.colors.landingDarkBlue}) 96%
   );
   ${downThanBreakpoint(2)} {
     background: rgb(${p => p.theme.colors.white});
