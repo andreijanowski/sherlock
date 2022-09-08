@@ -10,12 +10,10 @@ import { AdaptiveBox } from "components/styleguide/common";
 import { DemoButton } from "components/Landing";
 import {
   Container,
-  LanguageSwitcherContainer,
   MobileCTAButtons,
   MobileLanguageSwitcherContainer
 } from "./styled";
 import { getMenuItems } from "./utils";
-import NavigationListNestedLink from "./NavigationListNestedLink";
 import NavigationListLink from "./NavigationListLink";
 import NavigationCTAButtons from "../NavigationCTAButtons";
 
@@ -66,21 +64,18 @@ const NavigationList = ({ isMenuOpened, hideMenu }) => {
       </MobileLanguageSwitcherContainer>
       {menuItems.map((mixedLink, index) => {
         const key = mixedLink.label;
-        const isNested = !!(mixedLink.items || mixedLink.component);
         const isLastChild = index === menuItems.length - 1;
-        const Component = isNested
-          ? NavigationListNestedLink
-          : NavigationListLink;
 
         return (
           <Box mr={[0, null, null, isLastChild ? 0 : "40px"]} key={key}>
-            <Component key={key} link={mixedLink} onLinkClick={onLinkClick} />
+            <NavigationListLink
+              key={key}
+              link={mixedLink}
+              onLinkClick={onLinkClick}
+            />
           </Box>
         );
       })}
-      <LanguageSwitcherContainer display={["none", null, null, "block"]}>
-        <LanguageSwitcher />
-      </LanguageSwitcherContainer>
       <AdaptiveBox
         display={["flex", null, null, "none"]}
         justifyContent="center"
