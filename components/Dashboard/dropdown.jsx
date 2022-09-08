@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { func, string } from "prop-types";
+import { bool, func, string } from "prop-types";
 
 import { DropdownArrow } from "icons";
-import { OPTIONS } from "./consts";
+import { OPTIONS, RB_OPTIONS } from "./consts";
 
 import {
   DropdownButton,
@@ -13,9 +13,10 @@ import {
 } from "./styled";
 import { getDropdownLabel } from "./utils";
 
-export default function Dropdown({ onChange, value, t }) {
+export default function Dropdown({ onChange, value, t, isRB }) {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
+  const options = isRB ? RB_OPTIONS : OPTIONS;
 
   return (
     <DropdownWrapper
@@ -24,15 +25,15 @@ export default function Dropdown({ onChange, value, t }) {
       onKeyDown={toggleDropdown}
       onClick={toggleDropdown}
     >
-      <DropdownLabel>{getDropdownLabel(t, value)}</DropdownLabel>
+      {!isRB && <DropdownLabel>{getDropdownLabel(t, value)}</DropdownLabel>}
       <DropdownButton isDropdownOpen={isDropdownOpen}>
-        {t(OPTIONS.find(el => el.value === value).name)}
+        {!isRB ? t(OPTIONS.find(el => el.value === value).name) : t(value)}
         <DropdownArrow />
       </DropdownButton>
 
       {isDropdownOpen && (
         <ItemsWrapper>
-          {OPTIONS.map(option => (
+          {options.map(option => (
             <DropdownItem
               isActive={value === option.value}
               tabIndex="0"
@@ -52,5 +53,10 @@ export default function Dropdown({ onChange, value, t }) {
 Dropdown.propTypes = {
   onChange: func.isRequired,
   value: string.isRequired,
-  t: func.isRequired
+  t: func.isRequired,
+  isRB: bool
+};
+
+Dropdown.defaultProps = {
+  isRB: false
 };
