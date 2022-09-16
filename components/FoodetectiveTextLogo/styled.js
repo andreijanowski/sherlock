@@ -7,6 +7,10 @@ export const IconContainer = styled(Box)`
   font-size: 36px;
 `;
 
+export const Business = styled(Box)`
+  font-weight: ${themeGet("fontWeights.medium")};
+`;
+
 export const LogoContainer = styled(Flex)`
   color: rgb(
     ${p => (p.isDark ? p.theme.colors.landingDarkBlue : p.theme.colors.white)}

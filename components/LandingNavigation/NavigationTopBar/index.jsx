@@ -19,7 +19,7 @@ const NavigationTopBar = ({ isMenuOpened, onBurgerClick, hideMenu }) => (
     isMenuOpened={isMenuOpened}
   >
     <Flex>
-      <FoodetectiveTextLogo isDark={isMenuOpened} />
+      <FoodetectiveTextLogo isDark={isMenuOpened} hasIcon />
     </Flex>
     <AdaptiveBox display={["block", null, null, "none"]}>
       <FontAwesomeIcon

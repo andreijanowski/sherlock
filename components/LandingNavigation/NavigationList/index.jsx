@@ -14,6 +14,7 @@ import {
   MobileLanguageSwitcherContainer
 } from "./styled";
 import { getMenuItems } from "./utils";
+import NavigationListNestedLink from "./NavigationListNestedLink";
 import NavigationListLink from "./NavigationListLink";
 import NavigationCTAButtons from "../NavigationCTAButtons";
 
@@ -64,15 +65,15 @@ const NavigationList = ({ isMenuOpened, hideMenu }) => {
       </MobileLanguageSwitcherContainer>
       {menuItems.map((mixedLink, index) => {
         const key = mixedLink.label;
+        const isNested = !!(mixedLink.sections || mixedLink.component);
         const isLastChild = index === menuItems.length - 1;
+        const Component = isNested
+          ? NavigationListNestedLink
+          : NavigationListLink;
 
         return (
           <Box mr={[0, null, null, isLastChild ? 0 : "40px"]} key={key}>
-            <NavigationListLink
-              key={key}
-              link={mixedLink}
-              onLinkClick={onLinkClick}
-            />
+            <Component key={key} link={mixedLink} onLinkClick={onLinkClick} />
           </Box>
         );
       })}

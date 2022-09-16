@@ -85,9 +85,26 @@ export const SocialsItem = styled.li`
 export const SocialsItemLink = styled.a``;
 
 export const CopyrightsContainer = styled.div`
-  color: rgb(${p => p.theme.colors.white});
+  color: rgb(${p => p.theme.colors.black});
   font-weight: ${p => p.theme.fontWeights.thin};
   font-size: ${p => p.theme.fontSizes.f12};
   line-height: ${p => p.theme.fontSizes.f18};
   letter-spacing: 0.7px;
+  padding: 24px;
+  display: flex;
+  background: rgb(${p => p.theme.colors.white});
+  box-shadow: 0px 4px 27px rgba(${p => p.theme.colors.black}, 0.3);
+  border-radius: 13px;
+`;
+
+export const Copywrite = styled.div`
+  margin-left: 32px;
+  font-size: ${p => p.theme.fontSizes.f14};
+  cursor: pointer;
+`;
+
+export const GlobalIcon = styled.img`
+  margin-left: 32px;
+  width: 20px;
+  height: 20px;
 `;

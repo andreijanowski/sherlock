@@ -5,6 +5,7 @@ import { downThanBreakpoint, themeGet } from "utils/theme";
 
 export const PopupContainer = styled.div`
   padding: 24px;
+  display: flex;
   background: rgb(${p => p.theme.colors.white});
   box-shadow: 0px 4px 27px rgba(${p => p.theme.colors.black}, 0.3);
   border-radius: 13px;
@@ -22,11 +23,12 @@ export const NestedLinkContainer = styled(Flex)`
 `;
 
 export const Link = styled.a`
-  display: block;
-  font-weight: ${p => p.theme.fontWeights.medium};
-  font-size: ${p => p.theme.fontSizes.f18};
+  display: flex;
+  align-items: center;
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+  font-size: ${p => p.theme.fontSizes.f14};
   line-height: 20px;
-  color: #0e113b;
+  color: rgb(${p => p.theme.colors.b2bSecondary});
   &:not(:last-child) {
     margin-bottom: 8px;
   }
@@ -41,4 +43,24 @@ export const Link = styled.a`
         opacity: 0.8;
       }
     `}
+`;
+
+export const Section = styled.div`
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  font-size: ${p => p.theme.fontSizes.f14};
+  font-weight: ${p => p.theme.fontWeights.semiBold};
+`;
+
+export const Title = styled.div`
+  color: rgb(${p => p.theme.colors.mischka});
+  text-transform: uppercase;
+  margin-bottom: 32px;
+`;
+
+export const Icon = styled.img`
+  width: 16px;
+  height: 16px;
+  margin-right: 12px;
 `;

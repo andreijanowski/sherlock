@@ -1,24 +1,21 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { func } from "prop-types";
-import { useRouter } from "next/router";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Tippy from "@tippyjs/react/headless";
 
-import { useLng, useWindowWidthLessThen } from "utils/hooks";
+import { useWindowWidthLessThen } from "utils/hooks";
 import { AdaptiveBox } from "components/styleguide/common";
 import { emToPx, theme } from "utils/theme";
 import { nestedLinkShape } from "../types";
 import { NavigationListItem } from "../styled";
-import { NestedLinkContainer, PopupContainer } from "./styled";
+import { NestedLinkContainer, PopupContainer, Section, Title } from "./styled";
 import LinkItem from "./LinkItem";
 
 const NavigationListNestedLink = ({
-  link: { label, items, component: ChildrenComponent },
+  link: { label, sections, component: ChildrenComponent },
   onLinkClick
 }) => {
-  const { asPath } = useRouter();
-  const lng = useLng();
   const [visible, setVisible] = useState(false);
 
   const showMenu = useCallback(() => setVisible(true), []);
@@ -34,43 +31,48 @@ const NavigationListNestedLink = ({
 
   const renderContent = useCallback(
     attrs => (
-      <PopupContainer {...attrs}>
+      <PopupContainer {...attrs} onMouseLeave={hideMenu}>
         {ChildrenComponent ? (
           <ChildrenComponent onLinkClick={handleLinkClick} />
         ) : (
-          items.map(item => {
-            const key = `${item.label}-${item.href}`;
-            return (
-              <LinkItem key={key} item={item} onLinkClick={handleLinkClick} />
-            );
-          })
+          sections.map(section => (
+            <Section key={section.id}>
+              {section.title && <Title>{section.title}</Title>}
+              {section.items.map(item => {
+                const key = `${item.label}-${item.href}`;
+                return (
+                  <LinkItem
+                    key={key}
+                    item={item}
+                    onLinkClick={handleLinkClick}
+                  />
+                );
+              })}
+            </Section>
+          ))
         )}
       </PopupContainer>
     ),
-    [ChildrenComponent, handleLinkClick, items]
+    [ChildrenComponent, handleLinkClick, hideMenu, sections]
   );
 
-  const renderLink = useCallback(() => {
-    const isActive =
-      items && items.some(link => `/${lng}${link.href}` === asPath);
-    return (
+  const renderLink = useCallback(
+    () => (
       <NestedLinkContainer
         alignItems="center"
         flexWrap="nowrap"
-        onClick={visible ? hideMenu : showMenu}
+        onMouseEnter={visible ? hideMenu : showMenu}
       >
-        <NavigationListItem display="flex" isActive={isActive}>
+        <NavigationListItem display="flex">
           {label}
           <AdaptiveBox display={["block", null, null, "none"]} ml={2}>
             <FontAwesomeIcon icon={faChevronDown} />
           </AdaptiveBox>
         </NavigationListItem>
-        <AdaptiveBox display={["none", null, null, "block"]} ml={2}>
-          <FontAwesomeIcon icon={faChevronDown} />
-        </AdaptiveBox>
       </NestedLinkContainer>
-    );
-  }, [asPath, hideMenu, items, label, lng, showMenu, visible]);
+    ),
+    [hideMenu, label, showMenu, visible]
+  );
 
   const isTablet = useWindowWidthLessThen(emToPx(theme.breakpoints[2]));
 
