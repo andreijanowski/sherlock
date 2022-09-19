@@ -11,9 +11,9 @@ export const Container = styled(Flex)`
 
 export const LinksGroupTitle = styled(Box)`
   font-weight: 600;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 25px;
-  color: rgb(${themeGet("colors.b2bSecondary")});
+  color: rgb(${themeGet("colors.mischka")});
   ${downThanBreakpoint(2)} {
     text-align: center;
   }

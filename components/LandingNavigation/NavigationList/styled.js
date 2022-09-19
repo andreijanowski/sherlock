@@ -6,6 +6,7 @@ import { AdaptiveBox } from "components/styleguide/common";
 
 export const Container = styled(Flex)`
   width: 100%;
+  margin: auto;
   position: relative;
   justify-content: center;
   ${downThanBreakpoint(2)} {
@@ -21,7 +22,7 @@ export const Container = styled(Flex)`
 export const NavigationListItem = styled(AdaptiveBox)`
   position: relative;
   font-weight: ${p => p.theme.fontWeights.semiBold};
-  font-size: ${p => p.theme.fontSizes.f18};
+  font-size: ${p => p.theme.fontSizes.f14};
   line-height: 25px;
   color: rgb(${p => p.theme.colors.white});
   ${p =>
@@ -39,6 +40,10 @@ export const NavigationListItem = styled(AdaptiveBox)`
       border-radius: 10px;
     }
   `}
+
+  &:hover {
+    opacity: 0.5;
+  }
 
   ${downThanBreakpoint(2)} {
     width: 100%;

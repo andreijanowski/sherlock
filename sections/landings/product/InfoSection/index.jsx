@@ -12,6 +12,7 @@ import Header from "./Header";
 const InfoSection = ({
   name,
   icon,
+  id,
   images,
   isDark,
   columnsProportions,
@@ -32,7 +33,7 @@ const InfoSection = ({
   const [activeOptionIndex, setActiveOptionIndex] = useState(0);
 
   return (
-    <Container>
+    <Container id={id}>
       <Header
         isDark={isDark}
         icon={icon}
@@ -102,7 +103,8 @@ InfoSection.propTypes = {
   videos: shape({}),
   step: number,
   sliderImages: arrayOf(shape({})),
-  ctaButton: node
+  ctaButton: node,
+  id: string
 };
 
 InfoSection.defaultProps = {
@@ -117,7 +119,8 @@ InfoSection.defaultProps = {
   videos: {},
   images: [],
   sliderImages: [],
-  ctaButton: null
+  ctaButton: null,
+  id: ""
 };
 
 export default InfoSection;

@@ -7,19 +7,17 @@ import { themeGet } from "utils/theme";
 import { WORK_STATUS } from "../utils";
 
 export const IconContainer = styled(NavItemIcon)`
-  left: 13px;
+  left: 0;
 `;
 
 export const Container = styled(Box)`
   display: block;
   position: relative;
-  padding: 12px 18px 12px 66px;
+  padding: 2px 5px 2px 50px;
   color: rgb(${themeGet("colors.b2bSecondary")});
-  border: 1px solid rgb(${themeGet("colors.gray.5")});
   border-radius: 8px;
   &:hover {
-    color: rgb(${themeGet("colors.blue")});
-    background-color: rgb(${themeGet("colors.blue")}, 0.1);
+    color: rgb(${themeGet("colors.b2bSecondary")});
     border-color: transparent;
     ${IconContainer} {
       svg .primary {
@@ -29,7 +27,18 @@ export const Container = styled(Box)`
         color: rgb(${themeGet("colors.white")});
       }
       &:before {
-        background: rgb(${themeGet("colors.blue")});
+        background: rgb(${themeGet("colors.b2bSecondary")});
+      }
+    }
+
+    p {
+      color: rgb(${themeGet("colors.b2bSecondary")});
+
+      :not(:last-child) {
+        :after {
+          margin-left: 8px;
+          content: "➔";
+        }
       }
     }
   }
@@ -37,11 +46,13 @@ export const Container = styled(Box)`
 
 export const Title = styled(Body)`
   font-weight: 600;
+  font-size: 14px;
   color: inherit;
 `;
 
 export const Description = styled(Body)`
-  color: inherit;
+  font-size: 14px;
+  color: rgb(${themeGet("colors.rollingStone")});
 `;
 
 export const Status = styled.div`

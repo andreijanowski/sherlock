@@ -57,7 +57,7 @@ class LanguageSwitcher extends Component {
 
   render() {
     const { listIsVisible, selectedLanguage } = this.state;
-    const { listPosition, t, children } = this.props;
+    const { listPosition, t, children, withNoFlag } = this.props;
 
     return (
       <LanguageSwitcherWrapper
@@ -72,7 +72,8 @@ class LanguageSwitcher extends Component {
         </HiddenSEOLinks>
         <SelectedLanguageWrapper>
           {children}
-          {!isServer && <FlagIcon code={selectedLanguage} />}
+          {t(selectedLanguage)}
+          {!isServer && !withNoFlag && <FlagIcon code={selectedLanguage} />}
         </SelectedLanguageWrapper>
         {listIsVisible && (
           <LanguageList {...{ listPosition }}>
@@ -98,13 +99,15 @@ LanguageSwitcher.propTypes = {
   withBorder: bool,
   listPosition: oneOf(["top", "bottom"]),
   t: func.isRequired,
-  children: node
+  children: node,
+  withNoFlag: bool
 };
 
 LanguageSwitcher.defaultProps = {
   withBorder: true,
   listPosition: "bottom",
-  children: null
+  children: null,
+  withNoFlag: false
 };
 
 export default withTranslation("languages")(LanguageSwitcher);

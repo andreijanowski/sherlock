@@ -5,19 +5,21 @@ import { bool } from "prop-types";
 import { Link } from "components";
 import { useLng } from "utils/hooks";
 import { Fork } from "components/Icons";
-import { IconContainer, LogoContainer } from "./styled";
+import { IconContainer, LogoContainer, Business } from "./styled";
 
-const FoodetectiveTextLogo = ({ isDark }) => {
+const FoodetectiveTextLogo = ({ isDark, hasIcon }) => {
   const lng = useLng();
   return (
     <Link route="/" lng={lng}>
       <LogoContainer as="a" isDark={isDark} alignItems="center">
-        <IconContainer mr={1}>
-          <Fork />
-        </IconContainer>
+        {hasIcon && (
+          <IconContainer mr={1}>
+            <Fork />
+          </IconContainer>
+        )}
         <Box>
           Foodetective <br />
-          Business
+          {hasIcon ? <span>Business</span> : <Business>For Business</Business>}
         </Box>
       </LogoContainer>
     </Link>
@@ -25,11 +27,13 @@ const FoodetectiveTextLogo = ({ isDark }) => {
 };
 
 FoodetectiveTextLogo.propTypes = {
-  isDark: bool
+  isDark: bool,
+  hasIcon: bool
 };
 
 FoodetectiveTextLogo.defaultProps = {
-  isDark: false
+  isDark: false,
+  hasIcon: false
 };
 
 export default FoodetectiveTextLogo;

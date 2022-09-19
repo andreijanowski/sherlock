@@ -2,14 +2,19 @@ import React from "react";
 import { func } from "prop-types";
 
 import { useLng } from "utils/hooks";
-import { Link } from "./styled";
+import { Link, Icon } from "./styled";
 import { linkShape } from "../types";
 
-const LinkItem = ({ item: { href, label, isDisabled }, onLinkClick }) => {
+const LinkItem = ({ item: { href, label, isDisabled, icon }, onLinkClick }) => {
   const lng = useLng();
 
   if (isDisabled) {
-    return <Link isDisabled>{label}</Link>;
+    return (
+      <Link isDisabled>
+        {icon && <Icon src={icon} />}
+        {label}
+      </Link>
+    );
   }
 
   const isInternalHref = href.startsWith("/");
@@ -31,6 +36,7 @@ const LinkItem = ({ item: { href, label, isDisabled }, onLinkClick }) => {
             rel: "nofollow noopener"
           })}
     >
+      {icon && <Icon src={icon} />}
       {label}
     </Link>
   );

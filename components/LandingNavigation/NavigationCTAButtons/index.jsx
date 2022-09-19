@@ -1,19 +1,14 @@
 import React, { useCallback } from "react";
-import { func } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import uuid from "uuid/v1";
 import Cookies from "js-cookie";
 
 import { API_URL, OAUTH_PUBLIC_CLIENT_ID, OAUTH_CALLBACK_URL } from "consts";
-import { useLng, useT, useWindowWidthLessThen } from "utils/hooks";
+import { useT } from "utils/hooks";
 import Button, { BUTTON_VARIANT } from "components/styleguide/Button";
-import { emToPx, theme } from "utils/theme";
 
-const NavigationCTAButtons = ({ onGetTheAppClick }) => {
+const NavigationCTAButtons = () => {
   const t = useT();
-  const lng = useLng();
-
-  const isTablet = useWindowWidthLessThen(emToPx(theme.breakpoints[2]));
 
   const onLoginButtonClick = useCallback(() => {
     const state = uuid();
@@ -28,24 +23,8 @@ const NavigationCTAButtons = ({ onGetTheAppClick }) => {
           {t("landing:loginAndRegister")}
         </Button>
       </Box>
-      <Button
-        as="a"
-        variant={isTablet ? BUTTON_VARIANT.OUTLINE : BUTTON_VARIANT.PRIMARY}
-        href={`/${lng}/#app`}
-        onClick={onGetTheAppClick}
-      >
-        {t("landing:getTheApp")}
-      </Button>
     </Flex>
   );
-};
-
-NavigationCTAButtons.propTypes = {
-  onGetTheAppClick: func
-};
-
-NavigationCTAButtons.defaultProps = {
-  onGetTheAppClick: undefined
 };
 
 export default NavigationCTAButtons;

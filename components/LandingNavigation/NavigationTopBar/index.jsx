@@ -4,12 +4,13 @@ import { bool, func } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
+import { NavigationList } from "components/LandingNavigation";
 import FoodetectiveTextLogo from "components/FoodetectiveTextLogo";
 import { AdaptiveBox } from "components/styleguide/common";
 import { Container } from "./styled";
 import NavigationCTAButtons from "../NavigationCTAButtons";
 
-const NavigationTopBar = ({ isMenuOpened, onBurgerClick }) => (
+const NavigationTopBar = ({ isMenuOpened, onBurgerClick, hideMenu }) => (
   <Container
     px={3}
     pt={[13, null, null, 0]}
@@ -18,7 +19,7 @@ const NavigationTopBar = ({ isMenuOpened, onBurgerClick }) => (
     isMenuOpened={isMenuOpened}
   >
     <Flex>
-      <FoodetectiveTextLogo isDark={isMenuOpened} />
+      <FoodetectiveTextLogo isDark={isMenuOpened} hasIcon />
     </Flex>
     <AdaptiveBox display={["block", null, null, "none"]}>
       <FontAwesomeIcon
@@ -30,14 +31,16 @@ const NavigationTopBar = ({ isMenuOpened, onBurgerClick }) => (
       display={["none", null, null, "flex"]}
       justifyContent="flex-end"
     >
-      <NavigationCTAButtons />
+      <NavigationList isMenuOpened={isMenuOpened} hideMenu={hideMenu} />
     </AdaptiveBox>
+    <NavigationCTAButtons />
   </Container>
 );
 
 NavigationTopBar.propTypes = {
   isMenuOpened: bool.isRequired,
-  onBurgerClick: func.isRequired
+  onBurgerClick: func.isRequired,
+  hideMenu: func.isRequired
 };
 
 export default NavigationTopBar;

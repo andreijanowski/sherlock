@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-import { NavigationList, NavigationTopBar } from "components/LandingNavigation";
+import { NavigationTopBar } from "components/LandingNavigation";
 import { useWindowWidthLessThen } from "utils/hooks";
 import { emToPx, theme } from "utils/theme";
 import { Header } from "./styled";
@@ -35,8 +35,8 @@ const Navigation = () => {
       <NavigationTopBar
         isMenuOpened={isMenuOpened}
         onBurgerClick={onBurgerClick}
+        hideMenu={hideMenu}
       />
-      <NavigationList isMenuOpened={isMenuOpened} hideMenu={hideMenu} />
     </Header>
   );
 };
