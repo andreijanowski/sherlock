@@ -7,7 +7,7 @@ import Dropdown from "./dropdown";
 import Loader from "./loader";
 import ProgressBar from "./progressBar";
 import { Tile, TileHeader } from "./styled";
-import { getPercentageStats } from "./utils";
+import { getPercentage } from "./utils";
 import { TRANSLATIONS } from "./consts";
 
 const SAMPLE_DATA = [
@@ -59,11 +59,11 @@ const ProgressBarTile = ({
               dashboard &&
               dashboard.getIn(["revenueBreakdown", "revenue", dropdownValue]);
 
-            const { percentage } = getPercentageStats(currentValue, totalValue);
+            const { percentage } = getPercentage(currentValue, totalValue);
 
             return (
               <ProgressBar
-                key={title}
+                key={`${title}-${dropdownValue}`}
                 color={color}
                 withPercentage
                 title={t(title)}
