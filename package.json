@@ -31,6 +31,7 @@
     "@tippy.js/react": "^2.2.0",
     "@tippyjs/react": "^4.2.6",
     "@typeform/embed": "^1.0.2",
+    "@typeform/embed-react": "^1.21.0",
     "@zeit/next-css": "^1.0.1",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
