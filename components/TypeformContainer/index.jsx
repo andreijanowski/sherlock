@@ -8,7 +8,7 @@ import { Container } from "./styled";
 
 const TypeformContainer = ({ formId }) => {
   const containerRef = useRef(null);
-  console.log("REF", containerRef, formId);
+
   useEffect(() => {
     if (containerRef.current) {
       try {
