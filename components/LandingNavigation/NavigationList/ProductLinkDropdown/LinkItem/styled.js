@@ -58,7 +58,7 @@ export const Description = styled(Body)`
 export const Status = styled.div`
   position: absolute;
   right: 8px;
-  top: 0;
+  top: -5px;
   transform: translateY(-50%);
   padding: 6px 10px;
   border-radius: 24px;

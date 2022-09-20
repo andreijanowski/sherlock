@@ -232,7 +232,7 @@ export default connect(
     const businessData = state.getIn(["users", "currentBusiness", "data"]);
     const business = businessData && businessData.get("businesses").first();
     return {
-      avatar: user && user.getIn(["attributes", "avatar", "url"]),
+      avatar: business && business.getIn(["attributes", "logo", "url"]),
       isAccountConfirmed: user && user.getIn(["attributes", "confirmed"]),
       shouldPlayNotification: state.getIn(["app", "playNotification"]),
       business: business && business.get("attributes")
