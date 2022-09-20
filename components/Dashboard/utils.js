@@ -28,6 +28,10 @@ export const randomChartGenerator = (isPaymentChart = false) => {
   return sampleData;
 };
 
+export const getPercentage = (base, total) => ({
+  percentage: Math.round((base * 100) / total) || 0
+});
+
 export const getPercentageStats = (baseCount, comparedCount) => {
   const isDown = baseCount < comparedCount;
 
