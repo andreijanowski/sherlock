@@ -13,7 +13,9 @@ const PlayVideoButton = ({ t, url, big, isLP, trackClickEvent }) => {
 
   const onPlayVideoClick = useCallback(() => {
     setShowModal(true);
-    trackClickEvent("VIDEO");
+    if (trackClickEvent) {
+      trackClickEvent("VIDEO");
+    }
   }, [trackClickEvent]);
 
   const onModalClose = useCallback(() => {
