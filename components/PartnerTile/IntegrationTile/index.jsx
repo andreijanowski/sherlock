@@ -13,6 +13,8 @@ import {
   getIntegrationStates,
   getServiceIntegrationMeta
 } from "utils/integrations";
+import { createPartnerClickEvent } from "actions/partners";
+import PartnerTileButtons from "../PartnerTileButtons";
 import {
   Container,
   Image,
@@ -21,9 +23,14 @@ import {
   IntegrationStatus,
   Name
 } from "./styled";
-import PartnerTileButtons from "../PartnerTileButtons";
 
-const IntegrationTile = ({ partner, partnerId, t, isOrkestroConnected }) => {
+const IntegrationTile = ({
+  partner,
+  partnerId,
+  t,
+  isOrkestroConnected,
+  handleTrackClickEvent
+}) => {
   const name = partner.get("name");
   const {
     isOrkestroIntegration,
@@ -38,6 +45,10 @@ const IntegrationTile = ({ partner, partnerId, t, isOrkestroConnected }) => {
   );
 
   const status = getIntegrationColoredStatus(partner, isOrkestroConnected);
+
+  const trackClickEvent = eventType => {
+    handleTrackClickEvent(partnerId, { event_type: eventType });
+  };
 
   return (
     <Container isConnectedOrPending={isConnectedOrPending}>
@@ -68,6 +79,7 @@ const IntegrationTile = ({ partner, partnerId, t, isOrkestroConnected }) => {
         partner={partner}
         isIntegration
         linkLabel={t("app:manageIntegrations.goToWeb")}
+        trackClickEvent={trackClickEvent}
       />
     </Container>
   );
@@ -77,15 +89,21 @@ IntegrationTile.propTypes = {
   partner: oneOfType([arrayOf(), shape()]).isRequired,
   partnerId: string.isRequired,
   t: func.isRequired,
-  isOrkestroConnected: bool.isRequired
+  isOrkestroConnected: bool.isRequired,
+  handleTrackClickEvent: func.isRequired
 };
 
-export default connect(state => {
-  const isOrkestroConnected = state.getIn([
-    "integrations",
-    "isConnectedToOrkestro"
-  ]);
-  return {
-    isOrkestroConnected
-  };
-})(IntegrationTile);
+export default connect(
+  state => {
+    const isOrkestroConnected = state.getIn([
+      "integrations",
+      "isConnectedToOrkestro"
+    ]);
+    return {
+      isOrkestroConnected
+    };
+  },
+  {
+    handleTrackClickEvent: createPartnerClickEvent
+  }
+)(IntegrationTile);

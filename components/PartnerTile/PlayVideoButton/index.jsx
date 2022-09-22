@@ -8,12 +8,15 @@ import { Modal } from "components/index";
 import YoutubeVideo from "components/YoutubeVideo";
 import { OutlineButton } from "../styled";
 
-const PlayVideoButton = ({ t, url, big, isLP }) => {
+const PlayVideoButton = ({ t, url, big, isLP, trackClickEvent }) => {
   const [showModal, setShowModal] = useState(false);
 
   const onPlayVideoClick = useCallback(() => {
     setShowModal(true);
-  }, []);
+    if (trackClickEvent) {
+      trackClickEvent("VIDEO");
+    }
+  }, [trackClickEvent]);
 
   const onModalClose = useCallback(() => {
     setShowModal(false);
@@ -45,12 +48,14 @@ PlayVideoButton.propTypes = {
   url: string.isRequired,
   t: func.isRequired,
   big: bool,
-  isLP: bool
+  isLP: bool,
+  trackClickEvent: func
 };
 
 PlayVideoButton.defaultProps = {
   big: false,
-  isLP: false
+  isLP: false,
+  trackClickEvent: null
 };
 
 export default PlayVideoButton;
