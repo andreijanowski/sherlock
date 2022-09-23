@@ -45,7 +45,7 @@ const ChaptersSection = ({ chapters, pictures }) => {
                 />
               )}
               <Description>
-                {chapter.getIn(["attributes", "description"])}
+                <div dangerouslySetInnerHTML={{__html: chapter.getIn(["attributes", "description"])}} />
               </Description>
             </Chapter>
           ))}
