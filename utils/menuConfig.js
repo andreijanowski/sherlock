@@ -22,7 +22,6 @@ import {
   Photography,
   Reviews,
   StockManagement,
-  AppManager,
   Payroll,
   FoodWaste,
   PresenceManagement,
@@ -30,7 +29,8 @@ import {
   EventsManagement,
   Catering,
   PrivateEvents,
-  InfluencerManagement
+  InfluencerManagement,
+  Intelligence
 } from "components/Icons";
 import {
   PARTNERS_CATEGORIES,
@@ -198,6 +198,12 @@ export const getMenuConfig = ({
     label: t("app:dashboardView.dashboard")
   },
   {
+    basePath: "/app/intelligence",
+    route: "/app/intelligence",
+    icon: Intelligence,
+    label: t("app:Intelligence")
+  },
+  {
     basePath: PROFILE_BASE_PATH,
     route: `${PROFILE_BASE_PATH}/basic-information/`,
     icon: Restaurant,
@@ -210,12 +216,6 @@ export const getMenuConfig = ({
     icon: IntegrationHub,
     label: t("app:integrationHub"),
     submenuItems: generateIntegrationsSubmenu(t)
-  },
-  {
-    basePath: "/app/app-manager",
-    route: "/app/app-manager",
-    icon: AppManager,
-    label: t("app:appManager")
   },
   {
     groupTitle: t("app:managementIntegrations"),
