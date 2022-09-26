@@ -6,7 +6,7 @@ import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
 import AppLayout from "layout/App";
 import { useLng } from "utils/hooks";
-import PartooIframe from "components/PartooIframe";
+import ReviewIframe from "components/ReviewIframe";
 
 const namespaces = ["forms", "app"];
 
@@ -21,7 +21,7 @@ const ReviewsPage = ({ t }) => {
         header: t("app:reviews")
       }}
     >
-      <PartooIframe startPage="reviewManagement" />
+      <ReviewIframe />
     </AppLayout>
   );
 };
