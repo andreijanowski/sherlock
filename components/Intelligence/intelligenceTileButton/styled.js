@@ -25,7 +25,6 @@ export const Container = styled(Flex)`
 export const ButtonWrapper = styled(Box)`
   min-width: 122px;
   flex: 1;
-  margin-right: 16px;
   padding: 4px;
 `;
 
@@ -36,5 +35,4 @@ export const BlueButton = styled(Button).attrs({
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid rgb(${p => p.theme.colors.darkBlue});
 `;
