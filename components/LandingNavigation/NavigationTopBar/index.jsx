@@ -10,7 +10,12 @@ import { AdaptiveBox } from "components/styleguide/common";
 import { Container } from "./styled";
 import NavigationCTAButtons from "../NavigationCTAButtons";
 
-const NavigationTopBar = ({ isMenuOpened, onBurgerClick, hideMenu }) => (
+const NavigationTopBar = ({
+  isMenuOpened,
+  onBurgerClick,
+  hideMenu,
+  isTablet
+}) => (
   <Container
     px={3}
     pt={[13, null, null, 0]}
@@ -31,16 +36,18 @@ const NavigationTopBar = ({ isMenuOpened, onBurgerClick, hideMenu }) => (
       display={["none", null, null, "flex"]}
       justifyContent="flex-end"
     >
+      {isTablet && <NavigationCTAButtons />}
       <NavigationList isMenuOpened={isMenuOpened} hideMenu={hideMenu} />
     </AdaptiveBox>
-    <NavigationCTAButtons />
+    {!isTablet && <NavigationCTAButtons />}
   </Container>
 );
 
 NavigationTopBar.propTypes = {
   isMenuOpened: bool.isRequired,
   onBurgerClick: func.isRequired,
-  hideMenu: func.isRequired
+  hideMenu: func.isRequired,
+  isTablet: bool.isRequired
 };
 
 export default NavigationTopBar;

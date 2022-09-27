@@ -4,7 +4,7 @@ import { Flex, Box } from "@rebass/grid";
 import { downThanBreakpoint, themeGet } from "utils/theme";
 
 export const Container = styled(Flex)`
-  @media (max-width: 1330px) {
+  @media (max-width: 1024px) {
     flex-wrap: wrap;
   }
 `;

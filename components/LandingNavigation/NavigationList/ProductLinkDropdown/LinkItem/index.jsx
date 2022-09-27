@@ -33,7 +33,7 @@ const LinkItem = ({
     : { as: "div" };
 
   return wrapContent(
-    <Container width={["100%", null, null, null, 285]} {...props}>
+    <Container width={["100%", null, null, 210, 285]} {...props}>
       <IconContainer>
         <Icon />
       </IconContainer>

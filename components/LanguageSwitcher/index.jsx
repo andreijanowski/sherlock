@@ -72,7 +72,7 @@ class LanguageSwitcher extends Component {
         </HiddenSEOLinks>
         <SelectedLanguageWrapper>
           {children}
-          {t(selectedLanguage)}
+          {withNoFlag && t(selectedLanguage)}
           {!isServer && !withNoFlag && <FlagIcon code={selectedLanguage} />}
         </SelectedLanguageWrapper>
         {listIsVisible && (
