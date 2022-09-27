@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-
+import { Flex, Box } from "@rebass/grid";
 import { Button } from "components";
 
 const CommonButtonStyles = css`
@@ -18,16 +18,21 @@ const CommonButtonStyles = css`
   `};
 `;
 
-export const OutlineButton = styled(Button)`
-  ${CommonButtonStyles};
+export const Container = styled(Flex)`
+  ${p => (p.hasUrl ? `flex-direction: row;` : `flex-direction: column;`)};
+`;
+
+export const ButtonWrapper = styled(Box)`
+  min-width: 122px;
+  flex: 1;
+  padding: 4px;
 `;
 
 export const BlueButton = styled(Button).attrs({
-  styleName: "navyBlue"
+  styleName: "darkBlue"
 })`
   ${CommonButtonStyles}
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid rgb(${p => p.theme.colors.navyBlue});
 `;

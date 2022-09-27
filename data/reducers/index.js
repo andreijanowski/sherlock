@@ -23,6 +23,7 @@ import plans from "./plans";
 import payments from "./payments";
 import dashboard from "./dashboard";
 import newsroom from "./newsroom";
+import intelligence from "./intelligence";
 
 export default {
   app,
@@ -49,5 +50,6 @@ export default {
   detectives,
   plans,
   payments,
-  newsroom
+  newsroom,
+  intelligence
 };
