@@ -11,25 +11,22 @@ import { defaultLanguage, withTranslation } from "i18n";
 
 const namespaces = ["app"];
 
-// eslint-disable-next-line arrow-body-style
-const IntelligencePage = ({ t, lng, businessId }) => {
-  return (
-    <AppLayout
-      {...{
-        t,
-        lng,
-        mainIcon: "intelligence",
-        header: t("app:intelligence")
-      }}
-    >
-      {!businessId ? (
-        <LoadingIndicator />
-      ) : (
-        <IntelligenceSection businessId={businessId} t={t} />
-      )}
-    </AppLayout>
-  );
-};
+const IntelligencePage = ({ t, lng, businessId }) => (
+  <AppLayout
+    {...{
+      t,
+      lng,
+      mainIcon: "intelligence",
+      header: t("app:intelligence")
+    }}
+  >
+    {!businessId ? (
+      <LoadingIndicator />
+    ) : (
+      <IntelligenceSection businessId={businessId} t={t} />
+    )}
+  </AppLayout>
+);
 
 IntelligencePage.defaultProps = {
   businessId: string

@@ -65,7 +65,7 @@ const IntelligenceSection = ({
           <LoadingIndicator />
         ) : (
           <>
-            {intelligenceData.map(intelligence => {
+            {intelligenceData.toArray().map(intelligence => {
               const id = intelligence.get("id");
               return <IntelligenceTile key={id} data={intelligence} t={t} />;
             })}
