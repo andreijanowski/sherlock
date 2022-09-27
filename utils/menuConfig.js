@@ -189,7 +189,8 @@ export const getMenuConfig = ({
   t,
   ordersUpdates,
   reservationsUpdates,
-  logout
+  logout,
+  intelligenceUpdates
 }) => [
   {
     basePath: "/app/dashboard",
@@ -201,7 +202,8 @@ export const getMenuConfig = ({
     basePath: "/app/intelligence",
     route: "/app/intelligence",
     icon: Intelligence,
-    label: t("app:Intelligence")
+    label: t("app:Intelligence"),
+    badge: prepareBadge(intelligenceUpdates)
   },
   {
     basePath: PROFILE_BASE_PATH,

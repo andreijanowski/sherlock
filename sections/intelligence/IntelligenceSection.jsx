@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { func, string, shape, bool } from "prop-types";
+import { useEffect, useState, useCallback } from "react";
+import { func, string, shape, bool, number } from "prop-types";
 import { connect } from "react-redux";
 import { LoadingIndicator } from "components";
 import { getIntelligenceNotifications } from "actions/intelligence";
@@ -8,20 +8,26 @@ import {
   selectIntelligenceCount,
   selectIntelligenceIsFetching
 } from "selectors/intelligence";
+import { debounce } from "lodash";
 import { GridWrapper } from "./styled";
-
-import IntelligenceTile from "../../components/IntelligenceTile";
+import IntelligenceTile from "../../components/Intelligence/intelligenceTile";
+import { IntelligenceFilter } from "../../components";
 
 const INITIAL_PAGE = 1;
+const INITIAL_SEARCH = "";
+const INPUT_DELAY = 300;
 
 const IntelligenceSection = ({
   t,
   fetchIntelligenceNotifications,
   isFetching,
   intelligenceData,
-  businessId
+  businessId,
+  totalCount
 }) => {
   const [, setPage] = useState(INITIAL_PAGE);
+  const [, setSearch] = useState(INITIAL_SEARCH);
+
   useEffect(() => {
     setPage(INITIAL_PAGE);
     if (businessId) {
@@ -32,21 +38,37 @@ const IntelligenceSection = ({
     }
   }, [businessId, fetchIntelligenceNotifications]);
 
+  const onSearchUpdate = useCallback(
+    debounce(newSearch => {
+      setPage(INITIAL_PAGE);
+      setSearch(newSearch);
+    }, INPUT_DELAY),
+    [businessId]
+  );
+
   if (!intelligenceData) return null;
 
   return (
-    <GridWrapper justifyContent="flex-start">
-      {isFetching ? (
-        <LoadingIndicator />
-      ) : (
-        <>
-          {intelligenceData.map(intelligence => {
-            const id = intelligence.get("id");
-            return <IntelligenceTile key={id} data={intelligence} t={t} />;
-          })}
-        </>
-      )}
-    </GridWrapper>
+    <>
+      <IntelligenceFilter
+        t={t}
+        totalCount={totalCount}
+        onSearchUpdate={onSearchUpdate}
+        currentBusinessId={businessId}
+      />
+      <GridWrapper justifyContent="flex-start" id="intelligence-section">
+        {isFetching ? (
+          <LoadingIndicator />
+        ) : (
+          <>
+            {intelligenceData.map(intelligence => {
+              const id = intelligence.get("id");
+              return <IntelligenceTile key={id} data={intelligence} t={t} />;
+            })}
+          </>
+        )}
+      </GridWrapper>
+    </>
   );
 };
 
@@ -55,13 +77,13 @@ IntelligenceSection.propTypes = {
   fetchIntelligenceNotifications: func.isRequired,
   intelligenceData: shape(),
   businessId: string.isRequired,
-  // totalCount: number,
+  totalCount: number,
   isFetching: bool.isRequired
 };
 
 IntelligenceSection.defaultProps = {
-  intelligenceData: null
-  // totalCount: 0
+  intelligenceData: null,
+  totalCount: 0
 };
 
 const mapState = state => ({

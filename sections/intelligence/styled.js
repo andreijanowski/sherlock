@@ -15,6 +15,7 @@ export const Wrapper = styled(Flex).attrs(() => ({
 
 export const GridWrapper = styled(Wrapper)`
   display: grid;
+  position: relative;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 32px;
   @media (max-width: 1400px) {

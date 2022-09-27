@@ -31,10 +31,14 @@ const IntelligencePage = ({ t, lng, businessId }) => {
   );
 };
 
+IntelligencePage.defaultProps = {
+  businessId: string
+};
+
 IntelligencePage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  businessId: string.isRequired
+  businessId: string
 };
 
 export default compose(

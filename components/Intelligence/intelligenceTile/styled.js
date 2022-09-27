@@ -39,6 +39,7 @@ export const Image = styled.img`
 `;
 
 export const Name = styled.div`
+  color: rgb(${p => p.theme.colors.darkBlue});
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.f14};
   line-height: ${p => p.theme.fontSizes.f21};
@@ -48,23 +49,4 @@ export const Description = styled.div`
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes.f12};
   line-height: ${p => p.theme.fontSizes.f16};
-`;
-
-export const IntegrationFullyConnectedCheckmark = styled.img.attrs({
-  src: "/static/img/integrationConnected.svg"
-})`
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translate(50%, -50%);
-`;
-
-export const IntegrationStatus = styled.div`
-  position: absolute;
-  top: 9px;
-  right: 24px;
-  font-weight: ${p => p.theme.fontWeights.semiBold};
-  font-size: 8px;
-  line-height: ${p => p.theme.fontSizes.f12};
-  color: rgb(${p => p.color});
 `;

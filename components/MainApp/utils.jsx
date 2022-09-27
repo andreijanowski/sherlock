@@ -17,7 +17,8 @@ import {
   Clients,
   Payments,
   Reviews,
-  PresenceManagement
+  PresenceManagement,
+  Intelligence
 } from "icons";
 import { generateProfileSubmenu, isMenuItemActive } from "utils/menuConfig";
 import {
@@ -67,6 +68,8 @@ export const chooseIcon = icon => {
       return Reviews;
     case "presenceManagement":
       return PresenceManagement;
+    case "intelligence":
+      return Intelligence;
     default:
       return () => "";
   }

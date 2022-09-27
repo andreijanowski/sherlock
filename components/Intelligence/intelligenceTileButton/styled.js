@@ -18,48 +18,23 @@ const CommonButtonStyles = css`
   `};
 `;
 
-export const ButtonsContainer = styled(Flex)`
-  ${p =>
-    p.isIntegration &&
-    `
-    flex-direction: column;
-  `}
-  @media (max-width: 1200px) {
-    flex-direction: column;
-  }
+export const Container = styled(Flex)`
+  ${p => (p.hasUrl ? `flex-direction: row;` : `flex-direction: column;`)};
 `;
 
 export const ButtonWrapper = styled(Box)`
   min-width: 122px;
   flex: 1;
-  &:not(:last-child) {
-    margin-right: 16px;
-  }
-  ${p =>
-    p.isIntegration &&
-    `
-    @media (max-width: 1600px) {
-      &:not(:last-child) {
-        margin-right: 0;
-        margin-bottom: 16px;
-      } 
-    }
-    
-  `}
-  @media (max-width: 1200px) {
-    &:not(:last-child) {
-      margin-right: 0;
-      margin-bottom: 16px;
-    }
-  }
+  margin-right: 16px;
+  padding: 4px;
 `;
 
 export const BlueButton = styled(Button).attrs({
-  styleName: "navyBlue"
+  styleName: "darkBlue"
 })`
   ${CommonButtonStyles}
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid rgb(${p => p.theme.colors.navyBlue});
+  border: 2px solid rgb(${p => p.theme.colors.darkBlue});
 `;

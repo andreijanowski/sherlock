@@ -11,6 +11,7 @@ export const getIntelligenceDataDetails = intelligenceData => {
     "redirectionText"
   ]);
   const subtitle = intelligenceData.getIn(["attributes", "subtitle"]);
+  const description = intelligenceData.getIn(["attributes", "description"]);
   const logoUrl = intelligenceData.getIn(["attributes", "logo", "url"]);
 
   return {
@@ -20,6 +21,7 @@ export const getIntelligenceDataDetails = intelligenceData => {
     videoUrl,
     redirectionText,
     subtitle,
-    logoUrl
+    logoUrl,
+    description
   };
 };

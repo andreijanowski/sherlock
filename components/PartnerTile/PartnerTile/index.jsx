@@ -49,7 +49,14 @@ const PartnerTile = ({
       </Flex>
       <Box width={1} mb="24px" flex="auto">
         <ButtonWrapper>
-          {videoUrl && <PlayVideoButton t={t} isLP url={videoUrl} />}
+          {videoUrl && (
+            <PlayVideoButton
+              t={t}
+              isLP
+              url={videoUrl}
+              styleName="outlineBlue"
+            />
+          )}
           {websiteUrl && (
             <InfoButton
               as="a"

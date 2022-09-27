@@ -42,6 +42,7 @@ const PartnerTileButtons = ({
             big={isBig}
             t={t}
             url={videoUrl}
+            styleName="outlineBlue"
           />
         </ButtonWrapper>
       )}

@@ -18,10 +18,8 @@ const CommonButtonStyles = css`
   `};
 `;
 
-export const OutlineButton = styled(Button).attrs({
-  styleName: "outlineBlue"
-})`
-  ${CommonButtonStyles}
+export const OutlineButton = styled(Button)`
+  ${CommonButtonStyles};
 `;
 
 export const BlueButton = styled(Button).attrs({
