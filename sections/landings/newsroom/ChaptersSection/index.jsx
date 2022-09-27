@@ -1,5 +1,4 @@
 import React from "react";
-
 import { shape } from "prop-types";
 
 import {
@@ -45,7 +44,12 @@ const ChaptersSection = ({ chapters, pictures }) => {
                 />
               )}
               <Description>
-                <div dangerouslySetInnerHTML={{__html: chapter.getIn(["attributes", "description"])}} />
+                <div
+                  // eslint-disable-next-line react/no-danger
+                  dangerouslySetInnerHTML={{
+                    __html: chapter.getIn(["attributes", "description"])
+                  }}
+                />
               </Description>
             </Chapter>
           ))}

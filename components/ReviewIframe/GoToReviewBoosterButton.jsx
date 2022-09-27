@@ -1,15 +1,21 @@
 import React, { useCallback } from "react";
 import { shape, func, string, bool } from "prop-types";
-
 import { ButtonStyled } from "./styled";
 
-const GoToReviewBoosterButton = ({ partooPage, setStartPage, startPage, connected, setConnected }) => {
+const GoToReviewBoosterButton = ({
+  partooPage,
+  setStartPage,
+  startPage,
+  connected,
+  setConnected
+}) => {
   const onButtonClick = useCallback(() => {
-    partooPage.navigate(connected ? startPage : 'partnerConnections');
+    partooPage.navigate(connected ? startPage : "partnerConnections");
     setConnected(prevState => !prevState);
     if (!connected) {
-      setStartPage('reviewBooster');
+      setStartPage("reviewBooster");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [connected, startPage, partooPage]);
 
   return (

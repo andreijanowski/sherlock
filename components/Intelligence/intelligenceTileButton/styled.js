@@ -23,9 +23,26 @@ export const Container = styled(Flex)`
 `;
 
 export const ButtonWrapper = styled(Box)`
-  min-width: 122px;
-  flex: 1;
-  padding: 4px;
+  width: 100%;
+  display: flex;
+  padding: 1px;
+  padding-bottom: 2px;
+  &:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  @media (max-width: 1200px) {
+    &:not(:last-child) {
+      margin-right: 0;
+      margin-bottom: 8px;
+    }
+  }
+
+  > button {
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
 `;
 
 export const BlueButton = styled(Button).attrs({

@@ -1,19 +1,25 @@
 import React, { useCallback } from "react";
 import { Box } from "@rebass/grid";
-import {shape, func, string, bool} from "prop-types";
+import { shape, func, string, bool } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import { ButtonStyled } from "./styled";
 
-const GoToConnectionsButton = ({ partooPage, setStartPage, startPage, connected, setConnected }) => {
-
+const GoToConnectionsButton = ({
+  partooPage,
+  setStartPage,
+  startPage,
+  connected,
+  setConnected
+}) => {
   const onButtonClick = useCallback(() => {
-    partooPage.navigate(connected ? startPage : 'partnerConnections');
+    partooPage.navigate(connected ? startPage : "partnerConnections");
     setConnected(prevState => !prevState);
     if (!connected) {
-      setStartPage('reviewManagement');
+      setStartPage("reviewManagement");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [connected, partooPage, startPage]);
 
   return (
@@ -31,7 +37,7 @@ GoToConnectionsButton.propTypes = {
   startPage: string.isRequired,
   setStartPage: func.isRequired,
   connected: bool.isRequired,
-  setConnected: func.isRequired,
+  setConnected: func.isRequired
 };
 
 export default GoToConnectionsButton;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { func, shape } from "prop-types";
 import { IntelligenceModal } from "components/modals";
-import PlayVideoButton from "../../PartnerTile/PlayVideoButton";
-import { ButtonWrapper, BlueButton, Container } from "./styled";
+import IntelligenceVideoButton from "../PlayVideoButton";
+import { Container, ButtonWrapper, BlueButton } from "./styled";
 
 const IntelligenceTileButton = ({ t, data }) => {
   const {
@@ -33,7 +33,12 @@ const IntelligenceTileButton = ({ t, data }) => {
         {videoUrl && (
           <ButtonWrapper>
             {videoUrl && (
-              <PlayVideoButton t={t} big url={videoUrl} styleName="darkBlue" />
+              <IntelligenceVideoButton
+                t={t}
+                big
+                url={videoUrl}
+                styleName="darkBlue"
+              />
             )}
           </ButtonWrapper>
         )}

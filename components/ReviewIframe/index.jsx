@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { bool, func } from "prop-types";
 import { connect } from "react-redux";
-
 import { Trans } from "i18n";
 import { generatePartooToken as generatePartooTokenAction } from "actions/users";
 import { selectIsPartooConnected } from "selectors/users";
@@ -13,14 +12,14 @@ import GoToReviewBoosterButton from "./GoToReviewBoosterButton";
 
 const BASE_CONTAINER_ID = "partoo-container";
 
-const ReviewIframe = ({
-  generatePartooToken,
-  isPartooConnected
-}) => {
+const ReviewIframe = ({ generatePartooToken, isPartooConnected }) => {
   const [partooPage, setPartooPage] = useState(null);
   const t = useT();
-  const [startPage, setStartPage] = useState('reviewManagement');
-  const containerId = useMemo(() => `${startPage || 'reviewManagement'}-${BASE_CONTAINER_ID}`, [startPage]);
+  const [startPage, setStartPage] = useState("reviewManagement");
+  const containerId = useMemo(
+    () => `${startPage || "reviewManagement"}-${BASE_CONTAINER_ID}`,
+    [startPage]
+  );
   const [managementConnected, setManagementConnected] = useState(false);
   const [boosterConnected, setBoosterConnected] = useState(false);
 
@@ -35,12 +34,15 @@ const ReviewIframe = ({
           rawData: { token }
         } = await generatePartooToken();
 
-        const options = startPage === 'reviewManagement' ? {
-          startPage,
-          displayIntercom: false,
-          displayUserParams: false,
-          displayAddButton: false
-        } : { startPage };
+        const options =
+          startPage === "reviewManagement"
+            ? {
+                startPage,
+                displayIntercom: false,
+                displayUserParams: false,
+                displayAddButton: false
+              }
+            : { startPage };
 
         managementPage = window.Partoo.init(containerId, options);
         managementPage.login(token);

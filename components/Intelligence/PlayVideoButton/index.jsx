@@ -5,9 +5,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { Modal } from "components/index";
 import YoutubeVideo from "components/YoutubeVideo";
-import { OutlineButton } from "../styled";
+import { OutlineButton } from "./styled";
 
-const PlayVideoButton = ({ t, url, big, isLP, trackClickEvent, styleName }) => {
+const IntelligenceVideoButton = ({
+  t,
+  url,
+  big,
+  isLP,
+  trackClickEvent,
+  styleName
+}) => {
   const [showModal, setShowModal] = useState(false);
 
   const onPlayVideoClick = useCallback(() => {
@@ -31,7 +38,7 @@ const PlayVideoButton = ({ t, url, big, isLP, trackClickEvent, styleName }) => {
         alignItems="center"
         styleName={styleName}
       >
-        <Box mr={2}>{t(isLP ? "app:Video" : "app:playVideo")}</Box>
+        <Box mr={2}>{t(isLP ? "Play" : "Play")}</Box>
         <FontAwesomeIcon icon={faPlay} />
       </Flex>
       {showModal && (
@@ -43,7 +50,7 @@ const PlayVideoButton = ({ t, url, big, isLP, trackClickEvent, styleName }) => {
   );
 };
 
-PlayVideoButton.propTypes = {
+IntelligenceVideoButton.propTypes = {
   url: string.isRequired,
   t: func.isRequired,
   big: bool,
@@ -52,11 +59,11 @@ PlayVideoButton.propTypes = {
   styleName: string
 };
 
-PlayVideoButton.defaultProps = {
+IntelligenceVideoButton.defaultProps = {
   big: false,
   isLP: false,
   trackClickEvent: null,
   styleName: ""
 };
 
-export default PlayVideoButton;
+export default IntelligenceVideoButton;
