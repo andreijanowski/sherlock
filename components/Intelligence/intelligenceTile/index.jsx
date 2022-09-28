@@ -1,9 +1,9 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { Box, Flex } from "@rebass/grid";
 import { func, shape } from "prop-types";
+import IntelligenceTileButton from "../IntelligenceTileButton";
 import { Container, Image, ImageContainer, Name, Description } from "./styled";
 import { getIntelligenceDataDetails } from "../utils";
-import IntelligenceTileButton from "../IntelligenceTileButton";
 
 const IntelligenceTile = ({ data, t }) => {
   const [state, setState] = useState();

@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { func, string } from "prop-types";
 import { CloseIcon, SearchIcon } from "components/Icons";
-import { Input, InputIcon, InputWrapper } from "./styled";
+import { Input, InputIcon, InputWrapper } from "../IntelligenceFilter/styled";
 
 const Search = ({ t, onSearchUpdate, currentBusinessId }) => {
   const [value, setValue] = useState("");

@@ -2,7 +2,7 @@ import React from "react";
 import { func, number, string } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import { TotalClientsCount, TotalClientsLabel, Pane } from "./styled";
-import Search from "./Search";
+import Search from "../Search";
 
 const IntelligenceFilter = ({
   t,

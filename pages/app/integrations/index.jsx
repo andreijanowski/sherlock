@@ -6,7 +6,6 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import PartnersSearchBox from "components/PartnersSearchBox";
-
 import AppLayout from "layout/App";
 import { PARTNERS_CATEGORIES, PARTNERS_URL } from "sections/integrations/utils";
 import { LoadingIndicator } from "components";

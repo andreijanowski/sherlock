@@ -5,8 +5,7 @@ import { LoadingIndicator } from "components";
 import requireAuth from "lib/requireAuth";
 import AppLayout from "layout/App";
 import { selectCurrentBusinessId } from "selectors/business";
-import IntelligenceSection from "sections/intelligence/IntelligenceSection";
-
+import IntelligenceSection from "sections/intelligence";
 import { defaultLanguage, withTranslation } from "i18n";
 
 const namespaces = ["app"];
