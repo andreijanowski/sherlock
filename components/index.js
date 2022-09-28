@@ -89,4 +89,3 @@ export { default as TextScroller } from "./TextScroller";
 export { default as HintBox } from "./HintBox";
 export { default as IntelligenceTileButton } from "./Intelligence/IntelligenceTileButton";
 export { default as IntelligenceTile } from "./Intelligence/IntelligenceTile";
-export { default as IntelligenceFilter } from "./Intelligence/IntelligenceFilter";
