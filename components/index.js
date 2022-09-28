@@ -87,5 +87,3 @@ export { default as Input } from "./Input";
 export { default as NotificationsSwitch } from "./NotificationsSwitch";
 export { default as TextScroller } from "./TextScroller";
 export { default as HintBox } from "./HintBox";
-export { default as IntelligenceTileButton } from "./Intelligence/IntelligenceTileButton";
-export { default as IntelligenceTile } from "./Intelligence/IntelligenceTile";

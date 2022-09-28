@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { func, string, shape, bool } from "prop-types";
 import { connect } from "react-redux";
-import { LoadingIndicator, IntelligenceTile } from "components";
+import { LoadingIndicator } from "components";
+import { IntelligenceTile } from "components/Intelligence";
 import { getIntelligenceNotifications } from "actions/intelligence";
 import {
   selectIntelligence,
