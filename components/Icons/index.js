@@ -85,3 +85,5 @@ export {
   StopOrdersModalIcon,
   WarningIcon
 } from "./lefoodNavigation";
+
+export { Globe, ChevronDownIcon } from "./footer";

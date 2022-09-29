@@ -91,6 +91,13 @@ export const SelectedLanguageWrapper = styled(Flex).attrs(() => ({
 }))`
   width: 100%;
   justify-content: space-between;
+  font-size: 14px;
+
+  svg {
+    &:last-child {
+      margin-left: 5px;
+    }
+  }
 `;
 
 export const HiddenSEOLinks = styled(Box).attrs(() => ({
