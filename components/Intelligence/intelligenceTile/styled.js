@@ -4,6 +4,7 @@ import { Flex } from "@rebass/grid";
 export const Container = styled(Flex)`
   position: relative;
   min-height: 100%;
+  min-width: 100%;
   flex-direction: column;
   padding: 24px 12px;
   border: 1px solid
@@ -46,6 +47,7 @@ export const Name = styled.div`
 `;
 
 export const Description = styled.div`
+  color: rgb(${p => p.theme.colors.gray});
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes.f12};
   line-height: ${p => p.theme.fontSizes.f16};

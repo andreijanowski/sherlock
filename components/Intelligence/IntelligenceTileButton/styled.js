@@ -22,11 +22,24 @@ export const Container = styled(Flex)`
   ${p => (p.hasUrl ? `flex-direction: row;` : `flex-direction: column;`)};
 `;
 
+export const ButtonsContainer = styled(Flex)`
+  ${p =>
+    p.isIntegration &&
+    `
+    @media (max-width: 1200px) {
+    flex-direction: column;
+    }
+  `}
+  @media (max-width: 1200px) {
+    flex-direction: column;
+  }
+`;
+
 export const ButtonWrapper = styled(Box)`
+  padding: 2px;
   width: 100%;
   display: flex;
-  padding: 1px;
-  padding-bottom: 2px;
+  margin-bottom: 4px;
   &:not(:last-child) {
     margin-right: 8px;
   }
@@ -42,6 +55,10 @@ export const ButtonWrapper = styled(Box)`
     &:not(:last-child) {
       margin-right: 8px;
     }
+
+    &:hover {
+      border: 1px solid rgba(${p => p.theme.colors.blue}) !important;
+    }
   }
 `;
 
@@ -49,6 +66,7 @@ export const BlueButton = styled(Button).attrs({
   styleName: "darkBlue"
 })`
   ${CommonButtonStyles}
+  max-height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -38,7 +38,7 @@ const IntelligenceVideoButton = ({
         alignItems="center"
         styleName={styleName}
       >
-        <Box mr={2}>{t(isLP ? "Play" : "Play")}</Box>
+        <Box mr={2}>{t(isLP ? "Video" : "Video")}</Box>
         <FontAwesomeIcon icon={faPlay} />
       </Flex>
       {showModal && (
