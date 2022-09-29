@@ -59,6 +59,7 @@ const SignUpConfirmation = () => {
         image="/static/img/popup1.svg"
         hasRedirection
         hasCancelButton
+        maxWidth="600px"
       />
     </LandingWrapper>
   );

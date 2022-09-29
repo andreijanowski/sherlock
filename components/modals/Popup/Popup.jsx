@@ -29,7 +29,8 @@ const Popup = ({
   hasCancelButton,
   onConfirm,
   onCloseModal,
-  logout
+  logout,
+  maxWidth
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const t = useT();
@@ -56,7 +57,7 @@ const Popup = ({
     <>
       <ModalStyles />
       <Modal open={isModalOpen} onClose={() => {}}>
-        <Wrapper>
+        <Wrapper maxWidth={maxWidth}>
           <Title>
             <H3>{title}</H3>
             <Subtitle>{subtitle}</Subtitle>
@@ -97,7 +98,8 @@ Popup.defaultProps = {
   hasCancelButton: false,
   disclaimer: "",
   onConfirm: null,
-  onCloseModal: null
+  onCloseModal: null,
+  maxWidth: ""
 };
 
 Popup.propTypes = {
@@ -110,7 +112,8 @@ Popup.propTypes = {
   disclaimer: string,
   onConfirm: func,
   onCloseModal: func,
-  logout: func.isRequired
+  logout: func.isRequired,
+  maxWidth: string
 };
 
 export default connect(null, {
