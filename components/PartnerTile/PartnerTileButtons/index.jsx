@@ -21,9 +21,9 @@ const PartnerTileButtons = ({
 
   const isBig = !isIntegration;
 
-  const handleOrder = () => {
+  const handleOrder = (e) => {
     if (onOrderNowClick) {
-      onOrderNowClick();
+      onOrderNowClick(e);
     }
     if (trackClickEvent) {
       trackClickEvent("WEBSITE");
