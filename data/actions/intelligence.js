@@ -1,6 +1,6 @@
 import { FETCH_INTELLIGENCE_NOTIFICATIONS_REQUEST } from "types/intelligence";
 
-const PER_PAGE = 10;
+const PER_PAGE = 100;
 
 export const getIntelligenceNotifications = (
   businessId,

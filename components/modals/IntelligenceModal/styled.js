@@ -9,6 +9,7 @@ export const ModalStyles = createGlobalStyle`
     left: 60%;
     transform: translate(-60%, 0);
     min-width: 450px;
+    border: solid 1px #000;
   }
 
   .modal-closeButton {
@@ -76,8 +77,15 @@ export const Image = styled.img`
 export const Name = styled.div`
   color: rgb(${p => p.theme.colors.darkBlue});
   font-weight: ${p => p.theme.fontWeights.semiBold};
-  font-size: ${p => p.theme.fontSizes.f14};
-  line-height: ${p => p.theme.fontSizes.f21};
+  font-size: ${p => p.theme.fontSizes.f24};
+  line-height: ${p => p.theme.fontSizes.f24};
+`;
+
+export const Subtitle = styled.div`
+  color: rgb(${p => p.theme.colors.darkGreyText});
+  font-weight: ${p => p.theme.fontWeights.medium};
+  font-size: ${p => p.theme.fontSizes.f16};
+  line-height: ${p => p.theme.fontSizes.f22};
 `;
 
 export const Description = styled.div`

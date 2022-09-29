@@ -10,7 +10,8 @@ import {
   Wrapper,
   Name,
   Description,
-  Header
+  Header,
+  Subtitle
 } from "./styled";
 
 const IntelligenceModal = ({
@@ -42,7 +43,7 @@ const IntelligenceModal = ({
               </Box>
               <Flex flexDirection="column">
                 <Name>{title}</Name>
-                <Description>{subtitle}</Description>
+                <Subtitle>{subtitle}</Subtitle>
               </Flex>
             </Flex>
           </Header>
