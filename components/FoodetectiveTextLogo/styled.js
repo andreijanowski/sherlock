@@ -19,4 +19,5 @@ export const LogoContainer = styled(Flex)`
   font-size: ${themeGet("fontSizes.f18")};
   line-height: ${themeGet("fontSizes.f18")};
   letter-spacing: 0.5px;
+  padding: 9px;
 `;

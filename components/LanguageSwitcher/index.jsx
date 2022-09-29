@@ -12,6 +12,7 @@ import {
   FlagIcon,
   HiddenSEOLinks
 } from "./styled";
+import { ChevronDownIcon } from "../Icons";
 
 /* Temporary list of available languages, remove after provide valid locales data */
 export const LANGUAGES = ["en", "fr", "de", "it", "es"];
@@ -74,6 +75,7 @@ class LanguageSwitcher extends Component {
           {children}
           {withNoFlag && t(selectedLanguage)}
           {!isServer && !withNoFlag && <FlagIcon code={selectedLanguage} />}
+          <ChevronDownIcon />
         </SelectedLanguageWrapper>
         {listIsVisible && (
           <LanguageList {...{ listPosition }}>

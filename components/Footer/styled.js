@@ -63,7 +63,7 @@ export const Line = styled.hr`
   width: 100%;
   margin: 70px 0 20px;
   border: none;
-  border-bottom: 1px solid rgb(${p => p.theme.colors.gray["4"]});
+  border-bottom: 1px solid rgb(${p => p.theme.colors.gray["6"]});
 `;
 
 export const SocialsContainer = styled(Flex).attrs({
@@ -74,6 +74,9 @@ export const SocialsContainer = styled(Flex).attrs({
   margin: 0;
   padding: 0;
   list-style: none;
+  position: absolute;
+  top: 0;
+  right: -65px;
 `;
 
 export const SocialsItem = styled.li`
@@ -103,8 +106,6 @@ export const Copywrite = styled.div`
   cursor: pointer;
 `;
 
-export const GlobalIcon = styled.img`
-  margin-left: 32px;
-  width: 20px;
-  height: 20px;
+export const RelativeWrapper = styled(Flex)`
+  position: relative;
 `;

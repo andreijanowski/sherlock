@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { Flex } from "@rebass/grid";
+import { Flex, Box } from "@rebass/grid";
 import Tippy from "@tippyjs/react";
 
 import LanguageSwitcher from "components/LanguageSwitcher";
@@ -12,13 +12,14 @@ import {
   MenuWrapper,
   NavItem,
   Copywrite,
-  GlobalIcon
+  RelativeWrapper
 } from "./styled";
 import NavigationList from "./navigationList";
 import { getConfig } from "./utils";
 import Socials from "./Socials";
 import Copyrights from "./Copyrights";
 import NewsletterForm from "./NewsletterForm";
+import { Globe } from "../Icons";
 
 const Footer = () => {
   const t = useT("footer");
@@ -45,23 +46,25 @@ const Footer = () => {
         ))}
       </MenuWrapper>
       <Line />
-      <Flex
+      <RelativeWrapper
         mb={2}
         justifyContent="space-between"
-        alignItems="center"
+        alignItems="flex-start"
         width="100%"
       >
         <Flex alignItems="center" flexWrap="wrap">
           <FoodetectiveTextLogo />
-          <LanguageSwitcher withNoFlag listPosition="top">
-            <GlobalIcon src="/static/img/global.svg" />
-          </LanguageSwitcher>
+          <Box ml={32}>
+            <LanguageSwitcher withNoFlag listPosition="top">
+              <Globe />
+            </LanguageSwitcher>
+          </Box>
           <Tippy maxWidth="none" placement="top-end" content={<Copyrights />}>
             <Copywrite>Copywrite notice</Copywrite>
           </Tippy>
         </Flex>
         <Socials />
-      </Flex>
+      </RelativeWrapper>
     </FooterWrapper>
   );
 };

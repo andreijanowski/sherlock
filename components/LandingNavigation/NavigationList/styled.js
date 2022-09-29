@@ -25,21 +25,7 @@ export const NavigationListItem = styled(AdaptiveBox)`
   font-size: ${p => p.theme.fontSizes.f14};
   line-height: 25px;
   color: rgb(${p => p.theme.colors.white});
-  ${p =>
-    p.isActive &&
-    `
-    &:after {
-      content: "";
-      display: block;
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -10px;
-      border: 1px solid rgb(${p.theme.colors.white});
-      background: rgb(${p.theme.colors.white});
-      border-radius: 10px;
-    }
-  `}
+  ${p => p.isActive && `opacity: 0.5;`}
 
   &:hover {
     opacity: 0.5;
