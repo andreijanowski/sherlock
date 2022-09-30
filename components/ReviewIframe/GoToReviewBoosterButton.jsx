@@ -11,12 +11,13 @@ const GoToReviewBoosterButton = ({
 }) => {
   const onButtonClick = useCallback(() => {
     partooPage.navigate(connected ? startPage : "partnerConnections");
-    setConnected(prevState => !prevState);
+    setConnected(!connected);
     if (!connected) {
       setStartPage("reviewBooster");
+    } else {
+      setStartPage("reviewManagement");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [connected, startPage, partooPage]);
+  }, [connected, startPage, partooPage, setStartPage]);
 
   return (
     <ButtonStyled onClick={onButtonClick}>
