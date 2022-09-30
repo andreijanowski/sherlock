@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
-import { WRAPPER_WIDTH } from "utils/theme";
+import { WRAPPER_WIDTH, downThanBreakpoint} from "utils/theme";
 
 export const FooterWrapper = styled(Flex).attrs(() => ({
   as: "footer",
@@ -77,6 +77,10 @@ export const SocialsContainer = styled(Flex).attrs({
   position: absolute;
   top: 0;
   right: -65px;
+
+  ${downThanBreakpoint(1)} {
+    right: 0;
+  }
 `;
 
 export const SocialsItem = styled.li`
@@ -101,11 +105,31 @@ export const CopyrightsContainer = styled.div`
 `;
 
 export const Copywrite = styled.div`
-  margin-left: 32px;
   font-size: ${p => p.theme.fontSizes.f14};
   cursor: pointer;
 `;
 
 export const RelativeWrapper = styled(Flex)`
   position: relative;
+`;
+
+export const StyledFlexWrapper = styled(Flex)`
+  &> :not([hidden]) ~ :not([hidden]) {
+    margin-left: 32px;
+  }
+
+  ${downThanBreakpoint(1)} {
+    flex-direction: column;
+    align-items: flex-start;
+
+    &> :not([hidden]) ~ :not([hidden]) {
+      margin-left: 0;
+      margin-top: 8px;
+      padding: 2px;
+
+      &:last-child {
+        padding: 9px;
+      }
+    }
+  }
 `;

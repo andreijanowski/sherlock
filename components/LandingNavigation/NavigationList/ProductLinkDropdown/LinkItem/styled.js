@@ -33,13 +33,6 @@ export const Container = styled(Box)`
 
     p {
       color: rgb(${themeGet("colors.b2bSecondary")});
-
-      :not(:last-child) {
-        :after {
-          margin-left: 8px;
-          content: "➔";
-        }
-      }
     }
   }
 `;
@@ -48,6 +41,13 @@ export const Title = styled(Body)`
   font-weight: 600;
   font-size: 14px;
   color: inherit;
+
+  &:hover {
+    &:after {
+      margin-left: 8px;
+      content: "➔";
+    }
+  }
 `;
 
 export const Description = styled(Body)`

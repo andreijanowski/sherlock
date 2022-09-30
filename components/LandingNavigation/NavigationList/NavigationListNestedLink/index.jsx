@@ -7,7 +7,7 @@ import Tippy from "@tippyjs/react/headless";
 import { AdaptiveBox } from "components/styleguide/common";
 import { nestedLinkShape } from "../types";
 import { NavigationListItem } from "../styled";
-import { NestedLinkContainer, PopupContainer, Section, Title } from "./styled";
+import { NestedLinkContainer, PopupContainer, Section, Title, LinkWrapper } from "./styled";
 import LinkItem from "./LinkItem";
 
 const NavigationListNestedLink = ({
@@ -34,7 +34,9 @@ const NavigationListNestedLink = ({
           items.map(item => {
             const key = `${item.label}-${item.href}`;
             return (
-              <LinkItem key={key} item={item} onLinkClick={handleLinkClick} />
+              <LinkWrapper>
+                <LinkItem key={key} item={item} onLinkClick={handleLinkClick} />
+              </LinkWrapper>
             );
           })
         : sections &&
@@ -45,11 +47,13 @@ const NavigationListNestedLink = ({
               {section.items.map(item => {
                 const key = `${item.label}-${item.href}`;
                 return (
-                  <LinkItem
-                    key={key}
-                    item={item}
-                    onLinkClick={handleLinkClick}
-                  />
+                  <div>
+                    <LinkItem
+                      key={key}
+                      item={item}
+                      onLinkClick={handleLinkClick}
+                    />
+                  </div>
                 );
               })}
             </Section>
@@ -70,9 +74,13 @@ const NavigationListNestedLink = ({
     [ChildrenComponent, getSections, handleLinkClick]
   );
 
+  const onToggleMenu = useCallback(() => {
+    setVisible(!visible);
+  }, [visible, isTablet]);
+
   const renderLink = useCallback(
     () => (
-      <NestedLinkContainer alignItems="center" flexWrap="nowrap">
+      <NestedLinkContainer alignItems="center" flexWrap="nowrap" onClick={onToggleMenu}>
         <NavigationListItem display="flex">
           {label}
           <AdaptiveBox display={["block", null, null, "none"]} ml={2}>
@@ -81,7 +89,7 @@ const NavigationListNestedLink = ({
         </NavigationListItem>
       </NestedLinkContainer>
     ),
-    [label]
+    [label, onToggleMenu]
   );
 
   useEffect(() => {
@@ -102,6 +110,7 @@ const NavigationListNestedLink = ({
       render={renderContent}
       onClickOutside={hideMenu}
       placement="bottom"
+      visible={visible}
     >
       {renderLink()}
     </Tippy>
