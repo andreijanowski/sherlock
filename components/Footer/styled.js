@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
-import { WRAPPER_WIDTH } from "utils/theme";
+import { WRAPPER_WIDTH, downThanBreakpoint} from "utils/theme";
 
 export const FooterWrapper = styled(Flex).attrs(() => ({
   as: "footer",
@@ -63,7 +63,7 @@ export const Line = styled.hr`
   width: 100%;
   margin: 70px 0 20px;
   border: none;
-  border-bottom: 1px solid rgb(${p => p.theme.colors.gray["4"]});
+  border-bottom: 1px solid rgb(${p => p.theme.colors.gray["6"]});
 `;
 
 export const SocialsContainer = styled(Flex).attrs({
@@ -74,6 +74,13 @@ export const SocialsContainer = styled(Flex).attrs({
   margin: 0;
   padding: 0;
   list-style: none;
+  position: absolute;
+  top: 0;
+  right: -65px;
+
+  ${downThanBreakpoint(1)} {
+    right: 0;
+  }
 `;
 
 export const SocialsItem = styled.li`
@@ -85,9 +92,44 @@ export const SocialsItem = styled.li`
 export const SocialsItemLink = styled.a``;
 
 export const CopyrightsContainer = styled.div`
-  color: rgb(${p => p.theme.colors.white});
+  color: rgb(${p => p.theme.colors.black});
   font-weight: ${p => p.theme.fontWeights.thin};
   font-size: ${p => p.theme.fontSizes.f12};
   line-height: ${p => p.theme.fontSizes.f18};
   letter-spacing: 0.7px;
+  padding: 24px;
+  display: flex;
+  background: rgb(${p => p.theme.colors.white});
+  box-shadow: 0px 4px 27px rgba(${p => p.theme.colors.black}, 0.3);
+  border-radius: 13px;
+`;
+
+export const Copywrite = styled.div`
+  font-size: ${p => p.theme.fontSizes.f14};
+  cursor: pointer;
+`;
+
+export const RelativeWrapper = styled(Flex)`
+  position: relative;
+`;
+
+export const StyledFlexWrapper = styled(Flex)`
+  &> :not([hidden]) ~ :not([hidden]) {
+    margin-left: 32px;
+  }
+
+  ${downThanBreakpoint(1)} {
+    flex-direction: column;
+    align-items: flex-start;
+
+    &> :not([hidden]) ~ :not([hidden]) {
+      margin-left: 0;
+      margin-top: 8px;
+      padding: 2px;
+
+      &:last-child {
+        padding: 9px;
+      }
+    }
+  }
 `;

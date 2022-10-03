@@ -35,8 +35,12 @@ const Navigation = () => {
       <NavigationTopBar
         isMenuOpened={isMenuOpened}
         onBurgerClick={onBurgerClick}
+        hideMenu={hideMenu}
+        isTablet={isTablet}
       />
-      <NavigationList isMenuOpened={isMenuOpened} hideMenu={hideMenu} />
+      {isTablet && (
+        <NavigationList isMenuOpened={isMenuOpened} hideMenu={hideMenu} />
+      )}
     </Header>
   );
 };

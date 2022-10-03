@@ -53,9 +53,9 @@ export const LanguageList = styled(Flex).attrs(() => ({
   ${({ listPosition }) => listPosition === "top" && LanguageListTop}
   ${({ listPosition }) => listPosition === "bottom" && LanguageListBottom}
   
-  ${downThanBreakpoint(MOBILE_BREAKPOINT)} {
-    width: 100%;
-    right: 0;
+  ${downThanBreakpoint(1)} {
+    width: 150px;
+    left: 0;
   }
 `;
 
@@ -91,6 +91,13 @@ export const SelectedLanguageWrapper = styled(Flex).attrs(() => ({
 }))`
   width: 100%;
   justify-content: space-between;
+  font-size: 14px;
+
+  svg {
+    &:last-child {
+      margin-left: 8px;
+    }
+  }
 `;
 
 export const HiddenSEOLinks = styled(Box).attrs(() => ({

@@ -1,6 +1,8 @@
 import React, { useMemo } from "react";
-import { Box } from "@rebass/grid";
+import { Flex, Box } from "@rebass/grid";
+import Tippy from "@tippyjs/react";
 
+import LanguageSwitcher from "components/LanguageSwitcher";
 import FoodetectiveTextLogo from "components/FoodetectiveTextLogo";
 import { useT } from "utils/hooks";
 import {
@@ -8,13 +10,16 @@ import {
   FooterWrapper,
   Line,
   MenuWrapper,
-  NavItem
+  NavItem,
+  Copywrite,
+  RelativeWrapper, StyledFlexWrapper
 } from "./styled";
 import NavigationList from "./navigationList";
 import { getConfig } from "./utils";
 import Socials from "./Socials";
 import Copyrights from "./Copyrights";
 import NewsletterForm from "./NewsletterForm";
+import { Globe } from "../Icons";
 
 const Footer = () => {
   const t = useT("footer");
@@ -26,8 +31,6 @@ const Footer = () => {
         <NavItem width={[1, 1 / 2, 2 / 5]} p={2}>
           <ColumnTitle>{t("newsletter.title")}</ColumnTitle>
           <NewsletterForm />
-          <ColumnTitle>{t("navigation.columnFour.title")}</ColumnTitle>
-          <Socials />
         </NavItem>
         {config.map(({ title, name, hrefs }) => (
           <NavItem key={name} width={[1, 1 / 2, 1 / 5]} p={2}>
@@ -43,10 +46,23 @@ const Footer = () => {
         ))}
       </MenuWrapper>
       <Line />
-      <Box mb={2}>
-        <FoodetectiveTextLogo />
-      </Box>
-      <Copyrights />
+      <RelativeWrapper
+        mb={2}
+        justifyContent="space-between"
+        alignItems="flex-start"
+        width="100%"
+      >
+        <StyledFlexWrapper alignItems="center" flexWrap="wrap">
+          <FoodetectiveTextLogo />
+          <LanguageSwitcher withNoFlag listPosition="top">
+            <Globe />
+          </LanguageSwitcher>
+          <Tippy maxWidth="none" placement="top-end" content={<Copyrights />}>
+            <Copywrite>Copyright notice</Copywrite>
+          </Tippy>
+        </StyledFlexWrapper>
+        <Socials />
+      </RelativeWrapper>
     </FooterWrapper>
   );
 };

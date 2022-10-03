@@ -5,7 +5,6 @@ import { node, func, string } from "prop-types";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import { Popup } from "components/modals";
-
 import { MainApp, NavigationContainer } from "components";
 import { postBusiness } from "actions/businesses";
 import { logout as logoutAction } from "actions/auth";

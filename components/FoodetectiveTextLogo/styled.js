@@ -7,6 +7,10 @@ export const IconContainer = styled(Box)`
   font-size: 36px;
 `;
 
+export const Business = styled(Box)`
+  font-weight: ${themeGet("fontWeights.medium")};
+`;
+
 export const LogoContainer = styled(Flex)`
   color: rgb(
     ${p => (p.isDark ? p.theme.colors.landingDarkBlue : p.theme.colors.white)}
@@ -15,4 +19,5 @@ export const LogoContainer = styled(Flex)`
   font-size: ${themeGet("fontSizes.f18")};
   line-height: ${themeGet("fontSizes.f18")};
   letter-spacing: 0.5px;
+  padding: 9px;
 `;

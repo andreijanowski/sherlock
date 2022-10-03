@@ -11,7 +11,8 @@ const PartnerTileButtons = ({
   partner,
   isIntegration,
   linkLabel,
-  onOrderNowClick
+  onOrderNowClick,
+  trackClickEvent
 }) => {
   const videoUrl = partner.get("videoUrl");
   const email = partner.get("email");
@@ -20,6 +21,15 @@ const PartnerTileButtons = ({
 
   const isBig = !isIntegration;
 
+  const handleOrder = e => {
+    if (onOrderNowClick) {
+      onOrderNowClick(e);
+    }
+    if (trackClickEvent) {
+      trackClickEvent("WEBSITE");
+    }
+  };
+
   return (
     <ButtonsContainer
       width={isIntegration ? 1 : undefined}
@@ -27,7 +37,13 @@ const PartnerTileButtons = ({
     >
       {videoUrl && (
         <ButtonWrapper isIntegration={isIntegration}>
-          <PlayVideoButton big={isBig} t={t} url={videoUrl} />
+          <PlayVideoButton
+            trackClickEvent={trackClickEvent}
+            big={isBig}
+            t={t}
+            url={videoUrl}
+            styleName="outlineBlue"
+          />
         </ButtonWrapper>
       )}
       {phone ? (
@@ -74,7 +90,7 @@ const PartnerTileButtons = ({
       ) : (
         <ButtonWrapper />
       )}
-      <ButtonWrapper isIntegration={isIntegration} onClick={onOrderNowClick}>
+      <ButtonWrapper isIntegration={isIntegration} onClick={handleOrder}>
         <BlueButton big={isBig} {...getIntegrationLinkProps(partner)}>
           {linkLabel}
         </BlueButton>
@@ -88,12 +104,14 @@ PartnerTileButtons.propTypes = {
   linkLabel: string.isRequired,
   isIntegration: bool,
   t: func.isRequired,
-  onOrderNowClick: func
+  onOrderNowClick: func,
+  trackClickEvent: func
 };
 
 PartnerTileButtons.defaultProps = {
   isIntegration: false,
-  onOrderNowClick: null
+  onOrderNowClick: null,
+  trackClickEvent: null
 };
 
 export default PartnerTileButtons;

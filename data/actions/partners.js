@@ -4,7 +4,8 @@ import {
   FETCH_PARTNERS_REQUEST,
   PARTNERS_PREFERRED_ADD_REQUEST,
   PARTNERS_PREFERRED_DELETE_REQUEST,
-  FETCH_PARTNERS_AVAILABLE_REQUEST
+  FETCH_PARTNERS_AVAILABLE_REQUEST,
+  CREATE_PARTNER_CLICK_EVENT_REQUEST
 } from "types/partners";
 import { getRelationships } from "./utils";
 
@@ -123,3 +124,22 @@ export const preferredAdd = (config = {}) => {
       : PARTNERS_PREFERRED_ADD_REQUEST
   };
 };
+
+export const createPartnerClickEvent = (partnerId, attributes) => ({
+  type: CREATE_PARTNER_CLICK_EVENT_REQUEST,
+  payload: {
+    method: "POST",
+    endpoint: `/api/v1/partners/${partnerId}/click_event`,
+    data: {
+      data: {
+        type: "partner_click_events",
+        attributes,
+        relationships: {
+          ...getRelationships("partner", partnerId)
+        },
+        id: partnerId
+      }
+    }
+  },
+  meta: { thunk: true, partnerId }
+});

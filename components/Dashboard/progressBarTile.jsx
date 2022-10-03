@@ -7,7 +7,8 @@ import Dropdown from "./dropdown";
 import Loader from "./loader";
 import ProgressBar from "./progressBar";
 import { Tile, TileHeader } from "./styled";
-import { getComparedDataKeys, getPercentageStats } from "./utils";
+import { getPercentage } from "./utils";
+import { TRANSLATIONS } from "./consts";
 
 const SAMPLE_DATA = [
   { color: "salmon", title: "deliveryRevenue" },
@@ -23,15 +24,15 @@ const ProgressBarTile = ({
   t,
   isFetching
 }) => {
-  const [dropdownValue, setDropdonwValue] = useState("month");
+  const [dropdownValue, setDropdonwValue] = useState(
+    TRANSLATIONS.PREVIOUS_MONTH
+  );
 
   useEffect(() => {
     if (businessId) {
       fetchAction(businessId);
     }
   }, [fetchAction, businessId]);
-
-  const comparedKeys = getComparedDataKeys(dropdownValue);
 
   return (
     <Tile height="310" isSmall>
@@ -43,32 +44,26 @@ const ProgressBarTile = ({
             <TileHeader>{t("revenueBreakdown")}</TileHeader>
           </Box>
           <Box mb={10}>
-            <Dropdown t={t} value={dropdownValue} onChange={setDropdonwValue} />
+            <Dropdown
+              t={t}
+              value={dropdownValue}
+              onChange={setDropdonwValue}
+              isRB
+            />
           </Box>
           {SAMPLE_DATA.map(({ color, title }) => {
             const currentValue =
               dashboard &&
-              dashboard.getIn([
-                "revenueBreakdown",
-                title,
-                comparedKeys.current
-              ]);
-            const previousValue =
+              dashboard.getIn(["revenueBreakdown", title, dropdownValue]);
+            const totalValue =
               dashboard &&
-              dashboard.getIn([
-                "revenueBreakdown",
-                title,
-                comparedKeys.previous
-              ]);
+              dashboard.getIn(["revenueBreakdown", "revenue", dropdownValue]);
 
-            const { percentage } = getPercentageStats(
-              currentValue,
-              previousValue
-            );
+            const { percentage } = getPercentage(currentValue, totalValue);
 
             return (
               <ProgressBar
-                key={title}
+                key={`${title}-${dropdownValue}`}
                 color={color}
                 withPercentage
                 title={t(title)}

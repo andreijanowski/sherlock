@@ -28,14 +28,16 @@ const NavigationCTAButtons = ({ onGetTheAppClick }) => {
           {t("landing:loginAndRegister")}
         </Button>
       </Box>
-      <Button
-        as="a"
-        variant={isTablet ? BUTTON_VARIANT.OUTLINE : BUTTON_VARIANT.PRIMARY}
-        href={`/${lng}/#app`}
-        onClick={onGetTheAppClick}
-      >
-        {t("landing:getTheApp")}
-      </Button>
+      {isTablet && (
+        <Button
+          as="a"
+          variant={BUTTON_VARIANT.OUTLINE}
+          href={`/${lng}/#app`}
+          onClick={onGetTheAppClick}
+        >
+          {t("landing:getTheApp")}
+        </Button>
+      )}
     </Flex>
   );
 };

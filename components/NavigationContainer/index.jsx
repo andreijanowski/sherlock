@@ -16,13 +16,21 @@ const NavigationContainer = ({
   isNestedMenuVisible,
   ordersUpdates,
   reservationsUpdates,
+  intelligenceUpdates,
   logout
 }) => {
   const { asPath } = useRouter();
 
   const config = useMemo(
-    () => getMenuConfig({ t, ordersUpdates, reservationsUpdates, logout }),
-    [t, ordersUpdates, reservationsUpdates, logout]
+    () =>
+      getMenuConfig({
+        t,
+        ordersUpdates,
+        reservationsUpdates,
+        logout,
+        intelligenceUpdates
+      }),
+    [t, ordersUpdates, reservationsUpdates, logout, intelligenceUpdates]
   );
 
   const mainMenuActiveItem = useMemo(() => {
@@ -86,6 +94,7 @@ NavigationContainer.propTypes = {
   isNestedMenuVisible: bool,
   updateNestedMenuVisibility: func.isRequired,
   ordersUpdates: number.isRequired,
+  intelligenceUpdates: number.isRequired,
   reservationsUpdates: number.isRequired,
   logout: func.isRequired
 };
@@ -99,7 +108,8 @@ export default connect(
   state => ({
     isNestedMenuVisible: state.getIn(["app", "isNestedMenuVisible"]),
     ordersUpdates: state.getIn(["app", "ordersUpdates"]).size,
-    reservationsUpdates: state.getIn(["app", "reservationsUpdates"]).size
+    reservationsUpdates: state.getIn(["app", "reservationsUpdates"]).size,
+    intelligenceUpdates: state.getIn(["intelligence", "totalCount"])
   }),
   { updateNestedMenuVisibility: setNestedMenuVisibility, logout: logoutAction }
 )(NavigationContainer);

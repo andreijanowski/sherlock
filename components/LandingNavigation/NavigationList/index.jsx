@@ -4,17 +4,18 @@ import { bool, func } from "prop-types";
 
 import { APP_URL } from "consts";
 import LanguageSwitcher from "components/LanguageSwitcher";
-import { useT } from "utils/hooks";
+import { useT, useWindowWidthLessThen } from "utils/hooks";
+import { emToPx, theme } from "utils/theme";
 import { Router } from "routes";
 import { AdaptiveBox } from "components/styleguide/common";
 import { DemoButton } from "components/Landing";
+
 import {
   Container,
-  LanguageSwitcherContainer,
   MobileCTAButtons,
   MobileLanguageSwitcherContainer
 } from "./styled";
-import { getMenuItems } from "./utils";
+import { getMenuItems, getMobileMenuItems } from "./utils";
 import NavigationListNestedLink from "./NavigationListNestedLink";
 import NavigationListLink from "./NavigationListLink";
 import NavigationCTAButtons from "../NavigationCTAButtons";
@@ -23,8 +24,12 @@ const SCROLL_GAP = 50;
 
 const NavigationList = ({ isMenuOpened, hideMenu }) => {
   const t = useT();
+  const isTablet = useWindowWidthLessThen(emToPx(theme.breakpoints[2]));
 
-  const menuItems = useMemo(() => getMenuItems(t), [t]);
+  const menuItems = useMemo(
+    () => (isTablet ? getMobileMenuItems(t) : getMenuItems(t)),
+    [isTablet, t]
+  );
 
   const onLinkClick = useCallback(
     href => {
@@ -62,11 +67,15 @@ const NavigationList = ({ isMenuOpened, hideMenu }) => {
         <NavigationCTAButtons onGetTheAppClick={onGetTheAppClick} />
       </MobileCTAButtons>
       <MobileLanguageSwitcherContainer display={["block", null, null, "none"]}>
-        <LanguageSwitcher>{t("landing:language")}</LanguageSwitcher>
+        <LanguageSwitcher />
       </MobileLanguageSwitcherContainer>
       {menuItems.map((mixedLink, index) => {
         const key = mixedLink.label;
-        const isNested = !!(mixedLink.items || mixedLink.component);
+        const isNested = !!(
+          mixedLink.items ||
+          mixedLink.sections ||
+          mixedLink.component
+        );
         const isLastChild = index === menuItems.length - 1;
         const Component = isNested
           ? NavigationListNestedLink
@@ -74,13 +83,15 @@ const NavigationList = ({ isMenuOpened, hideMenu }) => {
 
         return (
           <Box mr={[0, null, null, isLastChild ? 0 : "40px"]} key={key}>
-            <Component key={key} link={mixedLink} onLinkClick={onLinkClick} />
+            <Component
+              key={key}
+              link={{...mixedLink, isTablet }}
+              onLinkClick={onLinkClick}
+              isTablet={isTablet}
+            />
           </Box>
         );
       })}
-      <LanguageSwitcherContainer display={["none", null, null, "block"]}>
-        <LanguageSwitcher />
-      </LanguageSwitcherContainer>
       <AdaptiveBox
         display={["flex", null, null, "none"]}
         justifyContent="center"

@@ -3,17 +3,19 @@ import { Flex, Box } from "@rebass/grid";
 import { func, string, bool } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
-
 import { Modal } from "components/index";
 import YoutubeVideo from "components/YoutubeVideo";
 import { OutlineButton } from "../styled";
 
-const PlayVideoButton = ({ t, url, big, isLP }) => {
+const PlayVideoButton = ({ t, url, big, isLP, trackClickEvent, styleName }) => {
   const [showModal, setShowModal] = useState(false);
 
   const onPlayVideoClick = useCallback(() => {
     setShowModal(true);
-  }, []);
+    if (trackClickEvent) {
+      trackClickEvent("VIDEO");
+    }
+  }, [trackClickEvent]);
 
   const onModalClose = useCallback(() => {
     setShowModal(false);
@@ -27,7 +29,7 @@ const PlayVideoButton = ({ t, url, big, isLP }) => {
         onClick={onPlayVideoClick}
         justifyContent="center"
         alignItems="center"
-        styleName="outlineBlue"
+        styleName={styleName}
       >
         <Box mr={2}>{t(isLP ? "app:Video" : "app:playVideo")}</Box>
         <FontAwesomeIcon icon={faPlay} />
@@ -45,12 +47,16 @@ PlayVideoButton.propTypes = {
   url: string.isRequired,
   t: func.isRequired,
   big: bool,
-  isLP: bool
+  isLP: bool,
+  trackClickEvent: func,
+  styleName: string
 };
 
 PlayVideoButton.defaultProps = {
   big: false,
-  isLP: false
+  isLP: false,
+  trackClickEvent: null,
+  styleName: ""
 };
 
 export default PlayVideoButton;

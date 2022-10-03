@@ -119,7 +119,7 @@ export const InstallAppWrapper = styled(Box)`
   background: ${p => {
     const {
       theme: {
-        colors: { darkBlue, landingDarkBlue }
+        colors: { landingDarkBlue }
       }
     } = p;
     return `linear-gradient(
@@ -127,21 +127,21 @@ export const InstallAppWrapper = styled(Box)`
     rgb(${landingDarkBlue}) calc(20% - 1px), 
     white 20%, 
     white calc(80% - 1px), 
-    rgb(${darkBlue}) 80%
+    rgb(${landingDarkBlue}) 80%
     );`;
   }};
   ${downThanBreakpoint(2)} {
     background: linear-gradient(
       ${LANDING_BLOCK_ANGLE},
       rgb(${themeGet("colors.white")}) calc(50% - 1px),
-      rgb(${themeGet("colors.darkBlue")}) 50%
+      rgb(${themeGet("colors.landingDarkBlue")}) 50%
     );
   }
 `;
 
 export const FooterWrapper = styled.div`
   width: 100%;
-  background: rgb(${p => p.theme.colors.darkBlue});
+  background: rgb(${p => p.theme.colors.landingDarkBlue});
 `;
 
 export const IntegrationsWrapper = styled(Box)`

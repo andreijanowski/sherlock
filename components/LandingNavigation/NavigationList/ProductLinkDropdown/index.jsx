@@ -9,7 +9,7 @@ import { Container } from "./styled";
 const ProductLinkDropdown = ({ onLinkClick }) => (
   <Container width={1}>
     {menuItems.map(group => (
-      <Box px={3} key={group.title} width={[1, null, 1 / 2, 1 / 3]}>
+      <Box px={3} key={group.title} width={[1, null, 1 / 2, 1]}>
         <LinksGroup group={group} onLinkClick={onLinkClick} />
       </Box>
     ))}

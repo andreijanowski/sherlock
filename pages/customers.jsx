@@ -67,6 +67,7 @@ const CustomersPage = () => {
           isDark
           isReversed={false}
           ctaButton={<DemoButton />}
+          id="independent"
         />
         <OnboardPartners
           isDark
@@ -81,6 +82,7 @@ const CustomersPage = () => {
           videos={getSectionVideos("chains")}
           isReversed
           ctaButton={<DemoButton />}
+          id="chains"
         />
         <OnboardPartners prefix="/static/img/customers/partners/2" count={5} />
       </WhiteWrapper>
@@ -92,6 +94,7 @@ const CustomersPage = () => {
           isDark
           isReversed={false}
           ctaButton={<DemoButton />}
+          id="kitchens"
         />
         <OnboardPartners
           isDark
@@ -106,6 +109,7 @@ const CustomersPage = () => {
           videos={getSectionVideos("kiosks")}
           isReversed
           ctaButton={<DemoButton />}
+          id="kiosks"
         />
         <OnboardPartners prefix="/static/img/customers/partners/4" count={5} />
       </WhiteWrapper>
@@ -133,6 +137,7 @@ const CustomersPage = () => {
               }
             ]
           }}
+          id="wholesalers"
         />
         <OnboardPartners
           isDark

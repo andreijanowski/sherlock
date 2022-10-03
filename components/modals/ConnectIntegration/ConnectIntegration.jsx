@@ -1,6 +1,5 @@
 import React from "react";
 import { func, shape } from "prop-types";
-
 import { Modal } from "components";
 import ConnectIntegrationForm from "./ConnectIntegrationForm";
 

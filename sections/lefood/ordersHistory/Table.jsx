@@ -40,7 +40,8 @@ const Table = ({
   const itemCount = hasNextPage ? rows.length + 1 : rows.length;
   const loadMoreItems = isNextPageLoading ? () => {} : loadNextPage;
   const isItemLoaded = useCallback(
-    index => !hasNextPage || index < rows.length
+    index => !hasNextPage || index < rows.length,
+    [hasNextPage, rows.length]
   );
 
   const RenderRow = useCallback(

@@ -30,6 +30,7 @@ export const Wrapper = styled.div`
   border-radius: 18px;
   background-color: white;
   padding-bottom: 24px;
+  max-width: ${p => p.maxWidth};
 `;
 
 export const Title = styled.div`
@@ -52,6 +53,7 @@ export const Disclaimer = styled.p`
   margin: 20px;
   max-width: 100%;
   font-size: 12px;
+  text-align: center;
 `;
 
 export const ButtonsWrapper = styled.div`

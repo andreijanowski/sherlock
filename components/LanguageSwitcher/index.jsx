@@ -12,6 +12,7 @@ import {
   FlagIcon,
   HiddenSEOLinks
 } from "./styled";
+import { ChevronDownIcon } from "../Icons";
 
 /* Temporary list of available languages, remove after provide valid locales data */
 export const LANGUAGES = ["en", "fr", "de", "it", "es"];
@@ -57,7 +58,7 @@ class LanguageSwitcher extends Component {
 
   render() {
     const { listIsVisible, selectedLanguage } = this.state;
-    const { listPosition, t, children } = this.props;
+    const { listPosition, t, children, withNoFlag } = this.props;
 
     return (
       <LanguageSwitcherWrapper
@@ -72,7 +73,9 @@ class LanguageSwitcher extends Component {
         </HiddenSEOLinks>
         <SelectedLanguageWrapper>
           {children}
-          {!isServer && <FlagIcon code={selectedLanguage} />}
+          {withNoFlag && t(selectedLanguage)}
+          {!isServer && !withNoFlag && <FlagIcon code={selectedLanguage} />}
+          <ChevronDownIcon />
         </SelectedLanguageWrapper>
         {listIsVisible && (
           <LanguageList {...{ listPosition }}>
@@ -98,13 +101,15 @@ LanguageSwitcher.propTypes = {
   withBorder: bool,
   listPosition: oneOf(["top", "bottom"]),
   t: func.isRequired,
-  children: node
+  children: node,
+  withNoFlag: bool
 };
 
 LanguageSwitcher.defaultProps = {
   withBorder: true,
   listPosition: "bottom",
-  children: null
+  children: null,
+  withNoFlag: false
 };
 
 export default withTranslation("languages")(LanguageSwitcher);
