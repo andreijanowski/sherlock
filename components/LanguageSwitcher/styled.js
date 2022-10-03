@@ -53,9 +53,9 @@ export const LanguageList = styled(Flex).attrs(() => ({
   ${({ listPosition }) => listPosition === "top" && LanguageListTop}
   ${({ listPosition }) => listPosition === "bottom" && LanguageListBottom}
   
-  ${downThanBreakpoint(MOBILE_BREAKPOINT)} {
-    width: 100%;
-    right: 0;
+  ${downThanBreakpoint(1)} {
+    width: 150px;
+    left: 0;
   }
 `;
 

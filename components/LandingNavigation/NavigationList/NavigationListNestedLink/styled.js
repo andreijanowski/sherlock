@@ -9,6 +9,7 @@ export const PopupContainer = styled.div`
   background: rgb(${p => p.theme.colors.white});
   box-shadow: 0px 4px 27px rgba(${p => p.theme.colors.black}, 0.3);
   border-radius: 13px;
+
   ${downThanBreakpoint(2)} {
     display: block;
     padding: 16px;
@@ -21,6 +22,23 @@ export const PopupContainer = styled.div`
 export const NestedLinkContainer = styled(Flex)`
   color: rgb(${p => p.theme.colors.white});
   cursor: pointer;
+  position: relative;
+  
+  &[aria-expanded='true'] {
+    &:before {
+      content: ' ';
+      display: block;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid white;
+      width: 0;
+      position: absolute;
+      bottom: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999999;
+    }
+  }
 `;
 
 export const Link = styled.a`
