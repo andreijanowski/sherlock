@@ -12,7 +12,7 @@ import {
   MenuWrapper,
   NavItem,
   Copywrite,
-  RelativeWrapper
+  RelativeWrapper, StyledFlexWrapper
 } from "./styled";
 import NavigationList from "./navigationList";
 import { getConfig } from "./utils";
@@ -52,17 +52,15 @@ const Footer = () => {
         alignItems="flex-start"
         width="100%"
       >
-        <Flex alignItems="center" flexWrap="wrap">
+        <StyledFlexWrapper alignItems="center" flexWrap="wrap">
           <FoodetectiveTextLogo />
-          <Box ml={32}>
-            <LanguageSwitcher withNoFlag listPosition="top">
-              <Globe />
-            </LanguageSwitcher>
-          </Box>
+          <LanguageSwitcher withNoFlag listPosition="top">
+            <Globe />
+          </LanguageSwitcher>
           <Tippy maxWidth="none" placement="top-end" content={<Copyrights />}>
-            <Copywrite>Copywrite notice</Copywrite>
+            <Copywrite>Copyright notice</Copywrite>
           </Tippy>
-        </Flex>
+        </StyledFlexWrapper>
         <Socials />
       </RelativeWrapper>
     </FooterWrapper>

@@ -10,6 +10,7 @@ export const PopupContainer = styled.div`
   box-shadow: 0px 4px 27px rgba(${p => p.theme.colors.black}, 0.3);
   border-radius: 13px;
   ${downThanBreakpoint(2)} {
+    display: block;
     padding: 16px;
     border-radius: 0;
     box-shadow: none;
@@ -63,4 +64,8 @@ export const Icon = styled.img`
   width: 16px;
   height: 16px;
   margin-right: 12px;
+`;
+
+export const LinkWrapper = styled.div`
+  padding: 16px 0;
 `;

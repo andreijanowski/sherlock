@@ -95,7 +95,7 @@ export const SelectedLanguageWrapper = styled(Flex).attrs(() => ({
 
   svg {
     &:last-child {
-      margin-left: 5px;
+      margin-left: 8px;
     }
   }
 `;
