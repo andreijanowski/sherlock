@@ -69,7 +69,8 @@ const IntelligenceTileButton = ({ t, data }) => {
             href={`${redirectionUrl}`}
             styleName="darkBlue"
           >
-            {t(redirectionText)}
+            {redirectionText.substring(0, 20)}{" "}
+            {redirectionText.length >= 20 && "..."}
           </BlueButton>
         </ButtonWrapper>
       )}

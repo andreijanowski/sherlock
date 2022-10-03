@@ -21,7 +21,7 @@ const PartnerTileButtons = ({
 
   const isBig = !isIntegration;
 
-  const handleOrder = (e) => {
+  const handleOrder = e => {
     if (onOrderNowClick) {
       onOrderNowClick(e);
     }
