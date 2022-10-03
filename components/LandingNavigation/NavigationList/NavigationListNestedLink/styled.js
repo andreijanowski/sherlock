@@ -9,6 +9,20 @@ export const PopupContainer = styled.div`
   background: rgb(${p => p.theme.colors.white});
   box-shadow: 0px 4px 27px rgba(${p => p.theme.colors.black}, 0.3);
   border-radius: 13px;
+
+  &:before {
+    content: ' ';
+    display: block;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid white;
+    width: 0px;
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
   ${downThanBreakpoint(2)} {
     display: block;
     padding: 16px;

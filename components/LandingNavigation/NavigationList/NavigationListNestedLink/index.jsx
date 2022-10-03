@@ -110,7 +110,6 @@ const NavigationListNestedLink = ({
       render={renderContent}
       onClickOutside={hideMenu}
       placement="bottom"
-      visible={visible}
     >
       {renderLink()}
     </Tippy>
