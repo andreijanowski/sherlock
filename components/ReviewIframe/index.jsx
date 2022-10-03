@@ -34,15 +34,12 @@ const ReviewIframe = ({ generatePartooToken, isPartooConnected }) => {
           rawData: { token }
         } = await generatePartooToken();
 
-        const options =
-          startPage === "reviewManagement"
-            ? {
-                startPage,
-                displayIntercom: false,
-                displayUserParams: false,
-                displayAddButton: false
-              }
-            : { startPage };
+        const options = {
+          startPage,
+          displayIntercom: false,
+          displayUserParams: false,
+          displayAddButton: false
+        };
 
         managementPage = window.Partoo.init(containerId, options);
         managementPage.login(token);
@@ -83,7 +80,16 @@ const ReviewIframe = ({ generatePartooToken, isPartooConnected }) => {
           />
         )}
       </TopPane>
-      <IFrameContainer id={containerId} />
+      {
+        containerId === `reviewManagement-${BASE_CONTAINER_ID}` && (
+          <IFrameContainer id={containerId} />
+        )
+      }
+      {
+        containerId === `reviewBooster-${BASE_CONTAINER_ID}` && (
+          <IFrameContainer id={containerId} />
+        )
+      }
     </ConnectedContainer>
   ) : (
     <CenteredSection>
