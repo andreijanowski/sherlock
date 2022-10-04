@@ -162,13 +162,13 @@ workflows:
             - checkout_code
           filters:
             branches:
-              only: master
+              only: Develop
       - deploy_staging:
           requires:
             - build_image_staging
           filters:
             branches:
-              only: master
+              only: Develop
 
       ###   PRODUCTION   ###
       - build_push_docker:
@@ -176,15 +176,11 @@ workflows:
             - checkout_code
           filters:
             branches:
-              only:
-                - production
-                - production-setup
+              only: Main
       - deploy_production_front:
           requires:
             - checkout_code
             - build_push_docker
           filters:
             branches:
-              only:
-                - production
-                - production-setup
+              only: Main
