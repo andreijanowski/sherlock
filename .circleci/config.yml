@@ -4,6 +4,7 @@ orbs:
   aws-cli: circleci/aws-cli@2.0.6
   aws-code-deploy: circleci/aws-code-deploy@2.0.0
   aws-ecr: circleci/aws-ecr@7.3.0
+  slack: circleci/slack@4.9.3
 
 references:
   deploy: &deploy
@@ -150,6 +151,20 @@ jobs:
             $(aws ecr get-login --no-include-email --region eu-central-1)
             bundle install; bundle exec cap production deploy
 
+  notify:
+    docker:
+      - image: 'cimg/base:stable'
+        auth:
+          username: foodetective
+          password: $DOCKERHUB_PASSWORD  # Circle/CI context
+    steps:
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: basic_success_1
+
 workflows:
   version: 2
   build-and-deploy:
@@ -184,3 +199,24 @@ workflows:
           filters:
             branches:
               only: Main
+
+      ### NOTIFY SLACK ###
+      - notify:
+          requires:
+            - deploy_staging
+          filters:
+            branches:
+              only: Develop
+          context: 
+            - slack-secrets
+            - docker-hub
+
+      - notify:
+          requires:
+            - deploy_production_front
+          filters:
+            branches:
+              only: Main
+          context: 
+            - slack-secrets
+            - docker-hub
