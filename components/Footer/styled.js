@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
-import { WRAPPER_WIDTH, downThanBreakpoint} from "utils/theme";
+import { WRAPPER_WIDTH, downThanBreakpoint } from "utils/theme";
 
 export const FooterWrapper = styled(Flex).attrs(() => ({
   as: "footer",
@@ -114,7 +114,7 @@ export const RelativeWrapper = styled(Flex)`
 `;
 
 export const StyledFlexWrapper = styled(Flex)`
-  &> :not([hidden]) ~ :not([hidden]) {
+  & > :not([hidden]) ~ :not([hidden]) {
     margin-left: 32px;
   }
 
@@ -122,7 +122,7 @@ export const StyledFlexWrapper = styled(Flex)`
     flex-direction: column;
     align-items: flex-start;
 
-    &> :not([hidden]) ~ :not([hidden]) {
+    & > :not([hidden]) ~ :not([hidden]) {
       margin-left: 0;
       margin-top: 8px;
       padding: 2px;

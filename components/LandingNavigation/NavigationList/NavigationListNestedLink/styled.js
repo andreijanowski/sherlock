@@ -23,10 +23,10 @@ export const NestedLinkContainer = styled(Flex)`
   color: rgb(${p => p.theme.colors.white});
   cursor: pointer;
   position: relative;
-  
-  &[aria-expanded='true'] {
+
+  &[aria-expanded="true"] {
     &:before {
-      content: ' ';
+      content: " ";
       display: block;
       border-left: 8px solid transparent;
       border-right: 8px solid transparent;
