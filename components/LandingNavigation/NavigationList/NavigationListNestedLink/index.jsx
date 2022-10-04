@@ -7,7 +7,13 @@ import Tippy from "@tippyjs/react/headless";
 import { AdaptiveBox } from "components/styleguide/common";
 import { nestedLinkShape } from "../types";
 import { NavigationListItem } from "../styled";
-import { NestedLinkContainer, PopupContainer, Section, Title, LinkWrapper } from "./styled";
+import {
+  NestedLinkContainer,
+  PopupContainer,
+  Section,
+  Title,
+  LinkWrapper
+} from "./styled";
 import LinkItem from "./LinkItem";
 
 const NavigationListNestedLink = ({
@@ -76,11 +82,15 @@ const NavigationListNestedLink = ({
 
   const onToggleMenu = useCallback(() => {
     setVisible(!visible);
-  }, [visible, isTablet]);
+  }, [visible]);
 
   const renderLink = useCallback(
     () => (
-      <NestedLinkContainer alignItems="center" flexWrap="nowrap" onClick={onToggleMenu}>
+      <NestedLinkContainer
+        alignItems="center"
+        flexWrap="nowrap"
+        onClick={onToggleMenu}
+      >
         <NavigationListItem display="flex">
           {label}
           <AdaptiveBox display={["block", null, null, "none"]} ml={2}>

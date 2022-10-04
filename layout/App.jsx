@@ -10,8 +10,6 @@ import { postBusiness } from "actions/businesses";
 import { logout as logoutAction } from "actions/auth";
 import { BASIC_ROLE } from "sagas/users";
 
-const REDIRECT_URL = "/app/subscriptions/";
-
 const AppLayout = ({
   children,
   mainIcon,
@@ -37,11 +35,11 @@ const AppLayout = ({
   }, [createBusiness, hasBOAgreement, role]);
 
   const onConfirmModalSubmit = useCallback(() => {
-    createBusiness(() => {
-      router.push(`/${lng}${REDIRECT_URL}`);
-    });
     Cookies.set("BOA", true);
     Cookies.set("Onboarding", true);
+    createBusiness(() => {
+      router.push(`/${lng}/app`);
+    });
   }, [createBusiness, lng, router]);
 
   const onConfirmModalClose = useCallback(() => {
