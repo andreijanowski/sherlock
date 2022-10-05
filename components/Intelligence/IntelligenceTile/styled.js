@@ -3,8 +3,8 @@ import { Flex } from "@rebass/grid";
 
 export const Container = styled(Flex)`
   position: relative;
-  min-height: 100%;
   min-width: 100%;
+  min-height: 238px;
   flex-direction: column;
   padding: 24px 12px;
   border: 1px solid
