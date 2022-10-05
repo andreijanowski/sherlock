@@ -27,3 +27,5 @@ localhost.pem
 # IDEs
 .vscode
 .idea
+# Sentry
+.sentryclirc
