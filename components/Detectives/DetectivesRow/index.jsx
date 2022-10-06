@@ -1,7 +1,6 @@
 import React from "react";
 import { Flex, Box } from "@rebass/grid";
 import { shape, func, string } from "prop-types";
-
 import { Wrapper, StyledHeading } from "../styled";
 import Detective from "../Detective";
 

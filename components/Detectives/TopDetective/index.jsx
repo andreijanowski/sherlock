@@ -1,8 +1,7 @@
 import React from "react";
 import { Flex } from "@rebass/grid";
 import { shape, func, string } from "prop-types";
-
-import { getDetectiveUrl } from "pages/app/influencerManagement/detectives/config";
+import { getDetectiveUrl } from "pages/app/influencerManagement/detectives";
 import { Wrapper, StyledHeading, DetectiveImage } from "../styled";
 
 const TopDetective = ({ t, lng, detective, theme }) =>
