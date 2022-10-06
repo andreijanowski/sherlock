@@ -10,6 +10,22 @@ import TopDetectiveSection from "sections/detectives/TopDetectiveSection";
 import DetectivesSection from "sections/detectives/DetectivesSection";
 import { LoadingIndicator } from "components";
 
+import { FOODETECTIVE_URL } from "consts";
+
+export const DETECTIVES_CITIES = [
+  "Paris",
+  "London",
+  "Geneva",
+  "Berlin",
+  "Madrid"
+];
+
+export const getDetectiveUrl = ({ lng, detective }) =>
+  `${FOODETECTIVE_URL}/${lng}/public-profile/${detective.getIn([
+    "attributes",
+    "slug"
+  ])}`;
+
 const namespaces = ["detectives", "app"];
 
 const DetectivesPage = ({ t, lng, isLoading }) => (
