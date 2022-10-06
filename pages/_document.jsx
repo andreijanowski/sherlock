@@ -1,4 +1,4 @@
-import Document, { Head, Main, NextScript } from "next/document";
+import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 import {
   FacebookPixelScript,
@@ -12,18 +12,34 @@ import {
 import { PARTOO_SDK_URL } from "consts";
 
 export default class MyDocument extends Document {
-  static getInitialProps({ renderPage }) {
+  static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
-    const page = renderPage(App => props =>
-      sheet.collectStyles(<App {...props} />)
-    );
-    const styleTags = sheet.getStyleElement();
-    return { ...page, styleTags };
+    const originalRenderPage = ctx.renderPage;
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: App => props => sheet.collectStyles(<App {...props} />)
+        });
+
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: [
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ]
+      };
+    } finally {
+      sheet.seal();
+    }
   }
 
   render() {
     return (
-      <html lang={this.props.__NEXT_DATA__.query.lng}>
+      <Html lang={this.props.__NEXT_DATA__.query.lng}>
         <Head>
           <meta charSet="UTF-8" />
           <GoogleTagManagerScript />
@@ -89,7 +105,7 @@ export default class MyDocument extends Document {
           <NextScript />
         </body>
         <script id="stripe-js" src="https://js.stripe.com/v3/" async />
-      </html>
+      </Html>
     );
   }
 }

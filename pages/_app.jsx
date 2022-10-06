@@ -1,4 +1,4 @@
-import App, { Container } from "next/app";
+import App from "next/app";
 import { Provider, connect } from "react-redux";
 import withRedux from "next-redux-wrapper";
 import withReduxSaga from "next-redux-saga";
@@ -54,16 +54,6 @@ if (!isServer) {
   handlePageViewWithAds();
 }
 
-Router.events.on("routeChangeStart", () => {
-  NProgress.start();
-});
-Router.events.on("routeChangeComplete", route => {
-  NProgress.done();
-  ReactGA.pageview(route);
-  handlePageViewWithAds();
-});
-Router.events.on("routeChangeError", () => NProgress.done());
-
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
@@ -85,6 +75,16 @@ class MyApp extends App {
   };
 
   componentDidMount() {
+    Router.events.on("routeChangeStart", () => {
+      NProgress.start();
+    });
+    Router.events.on("routeChangeComplete", route => {
+      NProgress.done();
+      ReactGA.pageview(route);
+      handlePageViewWithAds();
+    });
+    Router.events.on("routeChangeError", () => NProgress.done());
+
     window.addEventListener("beforeunload", () => {
       if (window.localStorage.getItem("refreshingToken") === "true") {
         window.localStorage.setItem("refreshingToken", "false");
@@ -125,19 +125,19 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps, store } = this.props;
-
+    if (typeof window === "undefined") {
+      return <></>;
+    }
     return (
       <ErrorBoundaryProvider config={rollbarConfig}>
         <ErrorBoundary>
-          <Container>
-            <Provider store={store}>
-              <ThemeProvider theme={theme}>
-                <StripeProvider stripe={this.state.stripe}>
-                  <Layout {...{ pageProps, Component }} />
-                </StripeProvider>
-              </ThemeProvider>
-            </Provider>
-          </Container>
+          <Provider store={store}>
+            <ThemeProvider theme={theme}>
+              <StripeProvider stripe={this.state.stripe}>
+                <Layout {...{ pageProps, Component }} />
+              </StripeProvider>
+            </ThemeProvider>
+          </Provider>
         </ErrorBoundary>
       </ErrorBoundaryProvider>
     );

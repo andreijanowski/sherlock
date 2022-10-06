@@ -1,6 +1,5 @@
 import styled from "styled-components";
-
-import { RawCheckbox } from "components";
+import { RawCheckbox } from "../Form/Checkbox";
 
 export const Checkbox = styled(RawCheckbox)`
   margin-bottom: 0;
