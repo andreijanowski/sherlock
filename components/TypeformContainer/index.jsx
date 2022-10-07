@@ -11,7 +11,7 @@ const TypeformContainer = ({ formId }) => {
     <Container ref={containerRef}>
       <Widget
         id={formId}
-        style={{ height: "500px", width: "100%" }}
+        style={{ height: "calc(100vh - 100px)", width: "100%" }}
         className="my-form"
       />
     </Container>
