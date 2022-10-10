@@ -13,26 +13,26 @@ export const ButtonsContainer = styled(Flex)`
 `;
 
 export const ButtonWrapper = styled(Box)`
-  min-width: 122px;
-  flex: 1;
+  padding: 2px;
+  width: 100%;
+  display: flex;
   &:not(:last-child) {
-    margin-right: 16px;
+    margin-right: 8px;
   }
-  ${p =>
-    p.isIntegration &&
-    `
-    @media (max-width: 1600px) {
-      &:not(:last-child) {
-        margin-right: 0;
-        margin-bottom: 16px;
-      } 
-    }
-    
-  `}
+
   @media (max-width: 1200px) {
     &:not(:last-child) {
       margin-right: 0;
-      margin-bottom: 16px;
+    }
+  }
+
+  > button {
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+
+    &:hover {
+      border: 1px solid rgba(${p => p.theme.colors.blue}) !important;
     }
   }
 `;
