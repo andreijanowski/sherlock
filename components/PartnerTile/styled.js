@@ -8,7 +8,7 @@ const CommonButtonStyles = css`
   ${p =>
     p.big
       ? `
-      padding: 8px;
+      padding: 0px;
     `
       : `
     padding: 6px;
