@@ -160,7 +160,7 @@ module.exports = routes()
   .add("developers", `/:lng(${languagesPattern})/developers`)
   .add("demo_booked", `/:lng(${languagesPattern})/demo_booked`)
   .add("newsroom", `/:lng(${languagesPattern})/newsroom`)
-  .add("blogposts/[id]", `/:lng(${languagesPattern})/blog-posts/:id`)
+  .add("blogposts/detail", `/:lng(${languagesPattern})/blog-posts/:id`)
   .add(
     "sign-up-confirmation",
     `/:lng(${languagesPattern})/sign-up-confirmation`
