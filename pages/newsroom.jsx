@@ -56,6 +56,9 @@ const NewsroomPage = ({
   const mainImage = isBlog
     ? mainArticle && mainArticle.getIn(["attributes", "coverPicture", "url"])
     : image && image.first().getIn(["attributes", "picture", "url"]);
+  const mainAltText = isBlog
+    ? mainArticle && mainArticle.getIn(["attributes", "altText"])
+    : image && image.first().getIn(["attributes", "altText"]);
 
   const handleMoreClick = () =>
     isBlog ? fetchBlogPosts(page + 1, lng) : fetchNewsPosts(page + 1, lng);
@@ -72,6 +75,7 @@ const NewsroomPage = ({
           isFetching={isFetching}
           article={mainArticle}
           image={mainImage}
+          altText={mainAltText}
         />
       </TopSectionWrapper>
       <WhiteWrapper>

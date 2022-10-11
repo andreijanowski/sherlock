@@ -1,6 +1,6 @@
 import React from "react";
 
-import { bool, func, shape } from "prop-types";
+import { bool, func, shape, string } from "prop-types";
 
 import { addProtocol } from "utils/urls";
 import { useT, useLng } from "utils/hooks";
@@ -22,7 +22,8 @@ const TopSection = ({
   isBlog,
   isFetching,
   article,
-  image
+  image,
+  altText
 }) => {
   const t = useT("landing");
   const lng = useLng();
@@ -72,7 +73,7 @@ const TopSection = ({
                 : article.getIn(["attributes", "date"])}
             </StyledH3>
           </MainArticle>
-          {image && <Image src={image} />}
+          {image && <Image src={image} alt={altText} />}
         </FlexWrapper>
       )}
     </Container>
@@ -84,7 +85,8 @@ TopSection.propTypes = {
   isBlog: bool.isRequired,
   article: shape().isRequired,
   image: shape().isRequired,
-  isFetching: bool.isRequired
+  isFetching: bool.isRequired,
+  altText: string.isRequired
 };
 
 export default TopSection;
