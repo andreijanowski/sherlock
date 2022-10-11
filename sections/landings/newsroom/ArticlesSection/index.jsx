@@ -54,6 +54,7 @@ const ArticlesSection = ({
             >
               <Image
                 src={article.getIn(["attributes", "coverPicture", "url"])}
+                alt={article.getIn(["attributes", "altText"])}
               />
               <InfoLabel>
                 {article.getIn(["attributes", "category"])}&nbsp;•&nbsp;
