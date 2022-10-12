@@ -35,7 +35,10 @@ const Recommended = ({ posts }) => {
             href={`/${lng}${article.getIn(["links", "self"])}`}
             target="_blank"
           >
-            <Image src={article.getIn(["attributes", "coverPicture", "url"])} />
+            <Image
+              src={article.getIn(["attributes", "coverPicture", "url"])}
+              alt={article.getIn(["attributes", "altText"])}
+            />
             <InfoLabel>
               {article.getIn(["attributes", "category"])}&nbsp;•&nbsp;
               {article.getIn(["attributes", "readDuration"])}&nbsp;
