@@ -29,8 +29,8 @@ export const FlexWrapper = styled(Flex)`
     margin: 0 auto 50px;
   }
 
-  @media (min-width: ${p => p.theme.breakpoints[3]}) {
-    margin: 0 auto 450px;
+  @media (min-width: ${p => p.theme.breakpoints[2]}) {
+    margin: 0 auto 400px;
   }
 `;
 
