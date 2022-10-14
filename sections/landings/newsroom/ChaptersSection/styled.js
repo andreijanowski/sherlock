@@ -4,7 +4,7 @@ import { H3 } from "components";
 
 export const Container = styled(Box)`
   @media (min-width: ${p => p.theme.breakpoints[2]}) {
-    margin: -400px 0 -350px;
+    margin: -400px 0 -200px;
   }
 `;
 
