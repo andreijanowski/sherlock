@@ -19,6 +19,12 @@ const ChaptersSection = ({ chapters, pictures }) => {
     return (pics && id && pics[id].attributes.photo.url) || "";
   };
 
+  const getAltText = data => {
+    const item = data && data.first();
+    const id = item && item.getIn(["id"]);
+    return (pics && id && pics[id].attributes.altText) || "";
+  };
+
   const orderedChapters =
     chapters &&
     chapters.toList().sortBy(item => item.getIn(["attributes", "order"]));
@@ -39,6 +45,9 @@ const ChaptersSection = ({ chapters, pictures }) => {
               {pics && (
                 <Image
                   src={getPicture(
+                    chapter.getIn(["relationships", "pictures", "data"])
+                  )}
+                  alt={getAltText(
                     chapter.getIn(["relationships", "pictures", "data"])
                   )}
                 />
