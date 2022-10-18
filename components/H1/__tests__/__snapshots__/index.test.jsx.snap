@@ -27,7 +27,6 @@ exports[`H1 component renders correctly 1`] = `
           ";}",
         ],
       },
-      "displayName": "H1",
       "foldedComponentIds": Array [
         "src__Box-sc-1sbtrzs-0",
       ],

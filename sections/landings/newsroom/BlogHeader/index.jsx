@@ -43,7 +43,10 @@ const BlogHeader = ({ content, onBackClick }) => {
             {content.getIn(["attributes", "readDuration"])}
             &nbsp;{t("landings.newsroom.minRead")}
           </InfoLabel>
-          <Image src={content.getIn(["attributes", "coverPicture", "url"])} />
+          <Image
+            src={content.getIn(["attributes", "coverPicture", "url"])}
+            alt={content.getIn(["attributes", "altText"])}
+          />
         </FlexWrapper>
       )}
     </Container>

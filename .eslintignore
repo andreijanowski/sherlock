@@ -2,3 +2,4 @@
 /static/widget/**/*.js
 **/__tests__/**
 **/*.test.js
+/next.config.js

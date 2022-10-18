@@ -80,16 +80,12 @@ const ReviewIframe = ({ generatePartooToken, isPartooConnected }) => {
           />
         )}
       </TopPane>
-      {
-        containerId === `reviewManagement-${BASE_CONTAINER_ID}` && (
-          <IFrameContainer id={containerId} />
-        )
-      }
-      {
-        containerId === `reviewBooster-${BASE_CONTAINER_ID}` && (
-          <IFrameContainer id={containerId} />
-        )
-      }
+      {containerId === `reviewManagement-${BASE_CONTAINER_ID}` && (
+        <IFrameContainer id={containerId} />
+      )}
+      {containerId === `reviewBooster-${BASE_CONTAINER_ID}` && (
+        <IFrameContainer id={containerId} />
+      )}
     </ConnectedContainer>
   ) : (
     <CenteredSection>

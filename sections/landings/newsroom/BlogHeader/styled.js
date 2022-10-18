@@ -9,16 +9,12 @@ export const Container = styled(Box)`
 `;
 
 export const BackArrow = styled.button`
-  margin: 12px 0;
+  margin: 12px 0 12px -15px;
   width: 150px;
   background-color: transparent;
   color: rgb(${p => p.theme.colors.white});
   border: 0;
   cursor: pointer;
-
-  @media (min-width: ${p => p.theme.breakpoints[2]}) {
-    margin-left: -150px;
-  }
 `;
 
 export const FlexWrapper = styled(Flex)`
@@ -29,8 +25,8 @@ export const FlexWrapper = styled(Flex)`
     margin: 0 auto 50px;
   }
 
-  @media (min-width: ${p => p.theme.breakpoints[3]}) {
-    margin: 0 auto 450px;
+  @media (min-width: ${p => p.theme.breakpoints[2]}) {
+    margin: 0 auto 400px;
   }
 `;
 

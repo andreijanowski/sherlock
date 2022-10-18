@@ -4,6 +4,7 @@ orbs:
   aws-cli: circleci/aws-cli@2.0.6
   aws-code-deploy: circleci/aws-code-deploy@2.0.0
   aws-ecr: circleci/aws-ecr@7.3.0
+  slack: circleci/slack@4.9.3
 
 references:
   deploy: &deploy
@@ -48,6 +49,9 @@ jobs:
       - run:
           name: Run CSS Linter
           command: yarn lint:css
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
   build_image_staging:
     <<: *node_machine
@@ -69,6 +73,9 @@ jobs:
           tag: ${CIRCLE_SHA1}
           dockerfile: docker/Dockerfile.staging
           setup-remote-docker: true
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
   deploy_staging:
     working_directory: ~/repo
@@ -100,6 +107,12 @@ jobs:
           deployment-group: foodetective-staging-sherlock-group
           bundle-bucket: foodetective-staging-codedeploy
           bundle-key: sherlock/$CIRCLE_PROJECT_REPONAME-$CIRCLE_SHA1
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
 
   build_push_docker:
     docker:
@@ -127,6 +140,9 @@ jobs:
             docker tag ${CIRCLE_PROJECT_REPONAME}-${CIRCLE_BRANCH}-${CIRCLE_SHA1} ${AWS_ECR_REPO_URL_BUSINESS}:${CIRCLE_SHA1}
             docker push ${AWS_ECR_REPO_URL_BUSINESS}:latest
             docker push ${AWS_ECR_REPO_URL_BUSINESS}:${CIRCLE_SHA1}
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
 
   deploy_production_front:
     <<: *deploy
@@ -149,42 +165,50 @@ jobs:
           command: |
             $(aws ecr get-login --no-include-email --region eu-central-1)
             bundle install; bundle exec cap production deploy
+      - slack/notify:
+          event: fail
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
 
 workflows:
   version: 2
   build-and-deploy:
     jobs:
       - checkout_code
-
       ###   STAGING   ###
       - build_image_staging:
           requires:
             - checkout_code
           filters:
             branches:
-              only: master
+              only: Develop
+          context: 
+            - slack-secrets
       - deploy_staging:
           requires:
             - build_image_staging
           filters:
             branches:
-              only: master
-
+              only: Develop
+          context: 
+            - slack-secrets
       ###   PRODUCTION   ###
       - build_push_docker:
           requires:
             - checkout_code
           filters:
             branches:
-              only:
-                - production
-                - production-setup
+              only: Main
+          context: 
+            - slack-secrets
       - deploy_production_front:
           requires:
             - checkout_code
             - build_push_docker
           filters:
             branches:
-              only:
-                - production
-                - production-setup
+              only: Main
+          context: 
+            - slack-secrets

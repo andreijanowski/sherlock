@@ -17,7 +17,7 @@ const GoToReviewBoosterButton = ({
     } else {
       setStartPage("reviewManagement");
     }
-  }, [connected, startPage, partooPage, setStartPage]);
+  }, [partooPage, connected, startPage, setConnected, setStartPage]);
 
   return (
     <ButtonStyled onClick={onButtonClick}>

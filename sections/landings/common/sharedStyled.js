@@ -50,7 +50,6 @@ export const ParagraphStyled = styled("p")`
 
 export const LandingWrapper = styled(Flex)`
   width: 100%;
-  background: rgb(${p => p.theme.colors.darkBlue});
 `;
 
 export const NavigationWrapper = styled(Box).attrs(() => ({}))`

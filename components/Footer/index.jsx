@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import { Flex, Box } from "@rebass/grid";
 import Tippy from "@tippyjs/react";
 
 import LanguageSwitcher from "components/LanguageSwitcher";
@@ -12,7 +11,8 @@ import {
   MenuWrapper,
   NavItem,
   Copywrite,
-  RelativeWrapper, StyledFlexWrapper
+  RelativeWrapper,
+  StyledFlexWrapper
 } from "./styled";
 import NavigationList from "./navigationList";
 import { getConfig } from "./utils";
