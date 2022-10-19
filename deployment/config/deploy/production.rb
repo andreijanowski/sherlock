@@ -5,11 +5,11 @@ server 'sherlock-web-1.production.devguru.co', user: 'deploy', roles: %w[front b
 server 'sherlock-web-2.production.devguru.co', user: 'deploy', roles: %w[front]
 
 set :application, 'sherlock'
-set :repo_url, 'git@github.com:netguru/sherlock.git'
+set :repo_url, 'git@github.com:Foodetective/Foodetective-btb-web'
 set :deploy_to, -> { "/home/deploy/apps/#{fetch(:application)}" }
 set :dockerfile, -> { 'docker/Dockerfile.staging' }
 
-set :branch, 'production'
+set :branch, 'Main'
 
 namespace :deploy do
     def compose(cmd, role)
