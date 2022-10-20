@@ -27,6 +27,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.6.3",
     "@fortawesome/react-fontawesome": "^0.1.3",
     "@rebass/grid": "^6.0.0-7",
+    "@reduxjs/toolkit": "^1.8.6",
     "@rollbar/react": "^0.8.0",
     "@sentry/nextjs": "^7.14.0",
     "@tippy.js/react": "^2.2.0",
@@ -111,6 +112,7 @@
     "validator": "^11.0.0"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.12",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
@@ -131,6 +133,7 @@
     "jest": "^23.6.0",
     "jest-styled-components": "^6.3.1",
     "nodemon": "^2.0.2",
+    "postcss": "^8.4.18",
     "prettier": "^1.15.3",
     "react-test-renderer": "^16.6.3",
     "redux-devtools-extension": "^2.13.7",
@@ -139,7 +142,8 @@
     "stylelint": "^10.0.1",
     "stylelint-config-recommended": "^2.2.0",
     "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.8.0"
+    "stylelint-processor-styled-components": "^1.8.0",
+    "tailwindcss": "^3.2.0"
   },
   "resolutions": {
     "terser": "3.14.1"
