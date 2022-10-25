@@ -87,3 +87,9 @@ export {
 } from "./lefoodNavigation";
 
 export { Globe, ChevronDownIcon } from "./footer";
+
+export {
+  ClockIcon,
+  HeartIcon,
+  CartIcon
+} from "./supplier"

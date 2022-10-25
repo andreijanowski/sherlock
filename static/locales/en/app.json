@@ -8,6 +8,8 @@
   "privatisations": "Privatisations",
   "integrations": "Integrations",
   "wholesaler": "Procurement",
+  "suppliers": "Suppliers",
+  "allSuppliers": "All Suppliers",
   "socialMedia": "Social media (soon)",
   "billing": "Billing (soon)",
   "manageProfile": {
