@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { connectSearchBox } from "react-instantsearch-dom";
-import { CartIcon, ClockIcon, HeartIcon } from "../Icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { func, string } from "prop-types";
+import { CartIcon, ClockIcon, HeartIcon } from "../Icons";
 
 const CustomSearchBox = React.forwardRef((props, myRef) => {
   const { currentRefinement, refine, t } = props;
@@ -11,7 +12,7 @@ const CustomSearchBox = React.forwardRef((props, myRef) => {
   });
 
   const handleChange = evt => {
-    const target = evt.target;
+    const { target } = evt;
 
     setState({
       ...state,
@@ -25,9 +26,7 @@ const CustomSearchBox = React.forwardRef((props, myRef) => {
 
   return (
     <div className="py-2 px-4 rounded-lg shadow-card flex justify-between bg-white items-center my-6">
-      <div className="font-semibold">
-        {t('app:allSuppliers')}
-      </div>
+      <div className="font-semibold">{t("app:allSuppliers")}</div>
       <div className="relative">
         <input
           ref={myRef}
@@ -54,6 +53,12 @@ const CustomSearchBox = React.forwardRef((props, myRef) => {
     </div>
   );
 });
+
+CustomSearchBox.propTypes = {
+  t: func.isRequired,
+  refine: func.isRequired,
+  currentRefinement: string.isRequired
+};
 
 const ConnectedSearchBox = connectSearchBox(CustomSearchBox);
 

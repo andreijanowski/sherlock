@@ -152,7 +152,7 @@ export const SidebarExpandIcon = () => (
   </svg>
 );
 
-export const SearchIcon = (props= {}) => (
+export const SearchIcon = (props = {}) => (
   <svg
     viewBox="0 0 24 24"
     width="1em"

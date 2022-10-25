@@ -46,7 +46,7 @@ module.exports = {
       opacity: {
         0.5: 0.5
       }
-    },
+    }
   },
   plugins: []
 };
