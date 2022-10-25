@@ -124,7 +124,7 @@ module.exports = routes()
   .add("app/stripeOauth", `/:lng(${languagesPattern})/stripe-oauth`)
   .add("app/subscriptions", `/:lng(${languagesPattern})/app/subscriptions`)
   .add("app/integrations", `/:lng(${languagesPattern})/app/integrations`)
-  .add("app/wholesalers", `/:lng(${languagesPattern})/app/wholesalers`)
+  .add("app/suppliers", `/:lng(${languagesPattern})/app/wholesalers`)
   .add(
     "app/influencerManagement/marketing",
     `/:lng(${languagesPattern})/app/influencer-management/marketing`

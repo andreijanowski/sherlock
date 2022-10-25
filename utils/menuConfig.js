@@ -34,7 +34,6 @@ import {
 } from "components/Icons";
 import {
   PARTNERS_CATEGORIES,
-  WHOLESALERS_CATEGORIES
 } from "sections/integrations/utils";
 
 const generateSettingsSubmenu = (t, logout) => [
@@ -135,19 +134,6 @@ const generateIntegrationsSubmenu = t =>
       : {
           route: `/app/integrations`,
           label: t(`app:manageIntegrations.all`)
-        }
-  );
-
-const generateWholesalersSubmenu = t =>
-  WHOLESALERS_CATEGORIES.map(category =>
-    category
-      ? {
-          route: `/app/wholesalers?category=${category}`,
-          label: t(`app:wholesalersCategories.${category}`)
-        }
-      : {
-          route: `/app/wholesalers`,
-          label: t(`app:wholesalersCategories.search`)
         }
   );
 
@@ -268,10 +254,9 @@ export const getMenuConfig = ({
       },
       {
         basePath: "/app/wholesalers",
-        route: "/app/wholesalers?category=preferred",
+        route: "/app/wholesalers",
         icon: Wholesalers,
         label: t("app:wholesaler"),
-        submenuItems: generateWholesalersSubmenu(t)
       },
       {
         basePath: "/app/stock-management",

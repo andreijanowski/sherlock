@@ -39,8 +39,14 @@ module.exports = {
       minWidth: sizes,
       maxHeight: sizes,
       maxWidth: sizes,
-      borderRadius: sizes
-    }
+      borderRadius: sizes,
+      boxShadow: {
+        card: "0 0 20px rgba(0, 0, 0, 0.15)"
+      },
+      opacity: {
+        0.5: 0.5
+      }
+    },
   },
   plugins: []
 };
