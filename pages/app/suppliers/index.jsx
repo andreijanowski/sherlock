@@ -8,6 +8,7 @@ import { pathToSearchState } from "utils/algolia";
 import SearchApp from "components/Suppliers/SearchApp";
 import algoliasearchLite from "algoliasearch/lite";
 import { PUBLIC_ALGOLIA_CLIENT_KEY, ALGOLIA_APP_ID } from "consts";
+import { connect } from "react-redux";
 
 const searchClient = algoliasearchLite(
   ALGOLIA_APP_ID,
@@ -49,4 +50,13 @@ SuppliersPage.getInitialProps = async context => {
   };
 };
 
-export default requireAuth(true)(withTranslation(namespaces)(SuppliersPage));
+export default requireAuth(true)(
+  withTranslation(namespaces)(
+    connect(
+      (state, { i18n }) => ({
+        lng: (i18n && i18n.language) || "en"
+      }),
+      {}
+    )(SuppliersPage)
+  )
+);
