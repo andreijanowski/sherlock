@@ -32,9 +32,7 @@ import {
   InfluencerManagement,
   Intelligence
 } from "components/Icons";
-import {
-  PARTNERS_CATEGORIES,
-} from "sections/integrations/utils";
+import { PARTNERS_CATEGORIES } from "sections/integrations/utils";
 
 const generateSettingsSubmenu = (t, logout) => [
   {
@@ -256,7 +254,7 @@ export const getMenuConfig = ({
         basePath: "/app/wholesalers",
         route: "/app/wholesalers",
         icon: Wholesalers,
-        label: t("app:wholesaler"),
+        label: t("app:wholesaler")
       },
       {
         basePath: "/app/stock-management",

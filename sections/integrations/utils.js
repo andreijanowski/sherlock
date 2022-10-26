@@ -58,4 +58,4 @@ export const SUPPLIER_CATEGORIES = [
   "Meat",
   "Very loooooooong category to see how it looks like",
   "fruits and veggies"
-]
+];

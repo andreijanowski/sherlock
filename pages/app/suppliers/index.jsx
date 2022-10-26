@@ -4,17 +4,15 @@ import { findResultsState } from "react-instantsearch-dom/server";
 import AppLayout from "layout/App";
 import { func, string } from "prop-types";
 import requireAuth from "lib/requireAuth";
-import {
-  pathToSearchState,
-} from "utils/algolia";
+import { pathToSearchState } from "utils/algolia";
 import SearchApp from "components/Suppliers/SearchApp";
 import algoliasearchLite from "algoliasearch/lite";
-import {
-  PUBLIC_ALGOLIA_CLIENT_KEY,
-  ALGOLIA_APP_ID,
-} from "consts";
+import { PUBLIC_ALGOLIA_CLIENT_KEY, ALGOLIA_APP_ID } from "consts";
 
-const searchClient = algoliasearchLite(ALGOLIA_APP_ID, PUBLIC_ALGOLIA_CLIENT_KEY);
+const searchClient = algoliasearchLite(
+  ALGOLIA_APP_ID,
+  PUBLIC_ALGOLIA_CLIENT_KEY
+);
 
 const namespaces = ["forms", "app"];
 
@@ -23,26 +21,18 @@ const defaultProps = {
   indexName: "Supplier_staging"
 };
 
-const SuppliersPage = ({ t, lng }) => {
-  return (
-    <AppLayout
-      t={t}
-      lng={lng}
-      mainIcon="wholesalers"
-      header={t("app:suppliers")}
-    >
-      <SearchApp {...defaultProps} t={t} />
-    </AppLayout>
-  );
-};
+const SuppliersPage = ({ t, lng }) => (
+  <AppLayout t={t} lng={lng} mainIcon="wholesalers" header={t("app:suppliers")}>
+    <SearchApp {...defaultProps} t={t} />
+  </AppLayout>
+);
 
 SuppliersPage.propTypes = {
   t: func.isRequired,
-  lng: string.isRequired,
+  lng: string.isRequired
 };
 
-SuppliersPage.defaultProps = {
-};
+SuppliersPage.defaultProps = {};
 
 SuppliersPage.getInitialProps = async context => {
   const { req, res, query, ...restProps } = context;
