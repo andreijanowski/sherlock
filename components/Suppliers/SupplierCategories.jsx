@@ -15,8 +15,8 @@ const IconButton = ({ onClick, disabled, ...restProps }) => (
     onClick={onClick}
     onPress={() => {}}
     className={clsx(
-      "text-gray-700 h-full text-center z-10 p-0 m-0 transition-all ease-in-out duration-300 cursor-pointer flex items-center",
-      disabled ? "cursor-not-allowed opacity-0.5" : ""
+      "h-full text-center z-10 p-0 m-0 transition-all ease-in-out duration-300 cursor-pointer flex items-center",
+      disabled ? "cursor-not-allowed text-gray-300" : "text-gray-700"
     )}
   >
     <FontAwesomeIcon className="h-6 w-6" {...restProps} />
@@ -123,7 +123,7 @@ const SuppliersCategories = ({ refine }) => {
               className={clsx(
                 "carousel-item text-center relative snap-start py-3 px-4 text-gray-700 text-sm whitespace-nowrap cursor-pointer",
                 selectedCategory === item.value
-                  ? "bg-blue-700 text-white rounded-lg"
+                  ? "font-semibold text-black"
                   : ""
               )}
               onClick={() => handleChange(item.value)}
