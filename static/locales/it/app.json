@@ -10,6 +10,8 @@
   "wholesaler": "Approvvigionamento",
   "suppliers": "Fornitrici",
   "allSuppliers": "Tutti i fornitori",
+  "supplierSearchPlaceholder": "Cerca prodotto, marchio o categoria",
+  "noSuppliers": "Nessun fornitore",
   "socialMedia": "Social media",
   "billing": "Fatturazione",
   "manageProfile": {

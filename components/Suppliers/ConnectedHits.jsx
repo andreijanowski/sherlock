@@ -39,7 +39,7 @@ CustomListItem.propTypes = {
   className: string.isRequired
 };
 
-const CustomHits = ({ hits, hasMore, refineNext, searching }) => {
+const CustomHits = ({ hits, hasMore, refineNext, searching, t }) => {
   const [ref, inView] = useInView({
     threshold: 0.9
   });
@@ -67,7 +67,7 @@ const CustomHits = ({ hits, hasMore, refineNext, searching }) => {
               />
             ))
           ) : (
-            <div>No Suppliers</div>
+            <div>{t("app:noSuppliers")}</div>
           )}
           <li className="ais-InfiniteHits-sentinel hidden" />
         </div>
@@ -80,7 +80,8 @@ CustomHits.propTypes = {
   hits: shape().isRequired,
   hasMore: bool.isRequired,
   refineNext: func.isRequired,
-  searching: bool.isRequired
+  searching: bool.isRequired,
+  t: func.isRequired
 };
 
 const ConnectedHits = connectStateResults(connectInfiniteHits(CustomHits));

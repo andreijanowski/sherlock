@@ -32,9 +32,9 @@ const SuppliersPage = ({ t, lng }) => (
       categoryName="supplier_categories.name"
       indexName="Supplier_staging"
       label={t("app:allSuppliers")}
-      placeholder="Search product, brand or category"
+      placeholder={t("app:supplierSearchPlaceholder")}
     >
-      <ConnectedHits />
+      <ConnectedHits t={t} />
     </SearchApp>
   </AppLayout>
 );
