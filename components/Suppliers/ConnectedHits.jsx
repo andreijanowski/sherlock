@@ -8,13 +8,20 @@ const CustomListItem = props => {
   const { hit, className } = props;
 
   return (
-    <div className={clsx("bg-white rounded-xl shadow-card p-3", className)}>
-      <div className="h-30 flex justify-center items-center shadow-card rounded-lg overflow-hidden p-4">
-        <img src={hit.logo?.url} alt="logo" className="max-h-24 w-full" />
-      </div>
+    <div
+      className={clsx(
+        "bg-white rounded-4 shadow-card min-w-64 max-w-64 mr-4 mb-4 p-2",
+        className
+      )}
+    >
+      <img
+        src={hit.logo?.url}
+        alt="logo"
+        className="h-32.5 w-full rounded-4.5"
+      />
       <div className="px-3 py-4">
         <div className="font-semibold mb-2 break-all">{hit.name}</div>
-        <div className="text-sm text-gray-700 break-all">
+        <div className="text-sm text-gray-500 break-all">
           {(hit.supplier_categories.map(item => item.name) || []).join(", ")}
         </div>
       </div>
@@ -40,10 +47,7 @@ const CustomHits = ({ hits, hasMore, refineNext }) => {
 
   return (
     <div className="ais-InfiniteHits">
-      <div
-        ref={ref}
-        className="w-full rounded-xl shadow-card bg-white p-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ais-InfiniteHits-list"
-      >
+      <div ref={ref} className="w-full flex flex-wrap ais-InfiniteHits-list">
         {Object.values(hits).length ? (
           Object.values(hits).map(hit => (
             <CustomListItem

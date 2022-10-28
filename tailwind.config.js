@@ -2,6 +2,7 @@ const sizes = {};
 // eslint-disable-next-line no-plusplus
 for (let i = 0; i < 200; i++) {
   sizes[i] = `${i / 4}rem`;
+  sizes[`${i}.5`] = `${(i + 0.5) / 4}rem`;
 }
 
 /** @type {import('tailwindcss').Config} */
@@ -14,6 +15,13 @@ module.exports = {
   mode: "jit",
   theme: {
     extend: {
+      colors: {
+        gray: {
+          300: "#A5A8AE",
+          500: "#787A7F",
+          700: "#4E4D66"
+        }
+      },
       fontSize: {
         xxs: ["10px"],
         xs: ["12px"],
@@ -41,7 +49,7 @@ module.exports = {
       maxWidth: sizes,
       borderRadius: sizes,
       boxShadow: {
-        card: "0 0 20px rgba(0, 0, 0, 0.15)"
+        card: "0px 0px 18px rgba(55, 81, 255, 0.15)"
       },
       opacity: {
         0.5: 0.5
