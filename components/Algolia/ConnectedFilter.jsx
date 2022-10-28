@@ -5,11 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { func, string } from "prop-types";
 import { CartIcon, ClockIcon, HeartIcon } from "../Icons";
 
-const CustomSearchBox = React.forwardRef((props, myRef) => {
-  const { currentRefinement, refine, t } = props;
-  const [state, setState] = useState({
-    name: currentRefinement
-  });
+const CustomFilter = React.forwardRef((props, myRef) => {
+  const { currentRefinement, refine, label, placeholder } = props;
+  const [state, setState] = useState({ name: currentRefinement });
 
   const handleChange = evt => {
     const { target } = evt;
@@ -20,19 +18,19 @@ const CustomSearchBox = React.forwardRef((props, myRef) => {
     });
   };
 
-  const handleSubmit = objValues => {
-    refine(objValues.name);
+  const handleSubmit = ({ name }) => {
+    refine(name);
   };
 
   return (
     <div className="py-2 px-4 rounded-lg shadow-card flex justify-between bg-white items-center my-6">
-      <div className="font-semibold">{t("app:allSuppliers")}</div>
+      <div className="font-semibold">{label}</div>
       <div className="relative">
         <input
           ref={myRef}
           id="name"
           name="name"
-          placeholder="Search product, brand or category"
+          placeholder={placeholder}
           defaultValue={currentRefinement}
           onChange={handleChange}
           size="small"
@@ -54,12 +52,13 @@ const CustomSearchBox = React.forwardRef((props, myRef) => {
   );
 });
 
-CustomSearchBox.propTypes = {
-  t: func.isRequired,
+CustomFilter.propTypes = {
+  label: string.isRequired,
+  placeholder: string.isRequired,
   refine: func.isRequired,
   currentRefinement: string.isRequired
 };
 
-const ConnectedSearchBox = connectSearchBox(CustomSearchBox);
+const ConnectedFilter = connectSearchBox(CustomFilter);
 
-export default ConnectedSearchBox;
+export default ConnectedFilter;
