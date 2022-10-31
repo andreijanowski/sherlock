@@ -5,10 +5,12 @@ import AppLayout from "layout/App";
 import { func, string } from "prop-types";
 import requireAuth from "lib/requireAuth";
 import { pathToSearchState } from "utils/algolia";
-import SearchApp from "components/Suppliers/SearchApp";
+import SearchApp from "components/Algolia/SearchApp";
 import algoliasearchLite from "algoliasearch/lite";
 import { PUBLIC_ALGOLIA_CLIENT_KEY, ALGOLIA_APP_ID } from "consts";
 import { connect } from "react-redux";
+import ConnectedHits from "components/Suppliers/ConnectedHits";
+import { SUPPLIER_CATEGORIES } from "sections/integrations/utils";
 
 const searchClient = algoliasearchLite(
   ALGOLIA_APP_ID,
@@ -24,7 +26,16 @@ const defaultProps = {
 
 const SuppliersPage = ({ t, lng }) => (
   <AppLayout t={t} lng={lng} mainIcon="wholesalers" header={t("app:suppliers")}>
-    <SearchApp {...defaultProps} t={t} />
+    <SearchApp
+      searchClient={searchClient}
+      categories={SUPPLIER_CATEGORIES}
+      categoryName="supplier_categories.name"
+      indexName="Supplier_staging"
+      label={t("app:allSuppliers")}
+      placeholder={t("app:supplierSearchPlaceholder")}
+    >
+      <ConnectedHits t={t} />
+    </SearchApp>
   </AppLayout>
 );
 

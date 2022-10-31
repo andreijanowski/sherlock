@@ -1,8 +1,13 @@
 import React, { useEffect } from "react";
-import { connectInfiniteHits } from "react-instantsearch-dom";
+import {
+  connectInfiniteHits,
+  connectStateResults
+} from "react-instantsearch-dom";
 import clsx from "clsx";
 import { useInView } from "react-intersection-observer";
 import { func, bool, string, shape } from "prop-types";
+import { PulseLoader } from "react-spinners";
+import { theme } from "utils/theme";
 
 const CustomListItem = props => {
   const { hit, className } = props;
@@ -34,7 +39,7 @@ CustomListItem.propTypes = {
   className: string.isRequired
 };
 
-const CustomHits = ({ hits, hasMore, refineNext }) => {
+const CustomHits = ({ hits, hasMore, refineNext, searching, t }) => {
   const [ref, inView] = useInView({
     threshold: 0.9
   });
@@ -47,20 +52,26 @@ const CustomHits = ({ hits, hasMore, refineNext }) => {
 
   return (
     <div className="ais-InfiniteHits">
-      <div ref={ref} className="w-full flex flex-wrap ais-InfiniteHits-list">
-        {Object.values(hits).length ? (
-          Object.values(hits).map(hit => (
-            <CustomListItem
-              className="ais-InfiniteHits-item"
-              key={hit.objectID}
-              hit={hit}
-            />
-          ))
-        ) : (
-          <div>No Suppliers</div>
-        )}
-        <li className="ais-InfiniteHits-sentinel hidden" />
-      </div>
+      {searching ? (
+        <div className="flex justify-center">
+          <PulseLoader color={`rgb(${theme.colors.blue})`} />
+        </div>
+      ) : (
+        <div ref={ref} className="w-full flex flex-wrap ais-InfiniteHits-list">
+          {Object.values(hits).length ? (
+            Object.values(hits).map(hit => (
+              <CustomListItem
+                className="ais-InfiniteHits-item"
+                key={hit.objectID}
+                hit={hit}
+              />
+            ))
+          ) : (
+            <div>{t("app:noSuppliers")}</div>
+          )}
+          <li className="ais-InfiniteHits-sentinel hidden" />
+        </div>
+      )}
     </div>
   );
 };
@@ -68,9 +79,11 @@ const CustomHits = ({ hits, hasMore, refineNext }) => {
 CustomHits.propTypes = {
   hits: shape().isRequired,
   hasMore: bool.isRequired,
-  refineNext: func.isRequired
+  refineNext: func.isRequired,
+  searching: bool.isRequired,
+  t: func.isRequired
 };
 
-const ConnectedHits = connectInfiniteHits(CustomHits);
+const ConnectedHits = connectStateResults(connectInfiniteHits(CustomHits));
 
 export default ConnectedHits;

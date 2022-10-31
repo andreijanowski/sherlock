@@ -1,8 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { SUPPLIER_CATEGORIES } from "sections/integrations/utils";
 import clsx from "clsx";
 import { connectRefinementList } from "react-instantsearch-dom";
-import { bool, func } from "prop-types";
+import { arrayOf, bool, func, string } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
@@ -28,7 +27,7 @@ IconButton.propTypes = {
   disabled: bool.isRequired
 };
 
-const SuppliersCategories = ({ refine }) => {
+const Categories = ({ refine, categories }) => {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carousel = useRef(null);
@@ -36,7 +35,7 @@ const SuppliersCategories = ({ refine }) => {
 
   const items = useMemo(
     () =>
-      SUPPLIER_CATEGORIES.map(item =>
+      categories.map(item =>
         item === ""
           ? {
               label: "All",
@@ -50,7 +49,7 @@ const SuppliersCategories = ({ refine }) => {
               value: item
             }
       ),
-    []
+    [categories]
   );
 
   const movePrev = () => {
@@ -137,8 +136,9 @@ const SuppliersCategories = ({ refine }) => {
   );
 };
 
-SuppliersCategories.propTypes = {
-  refine: func.isRequired
+Categories.propTypes = {
+  refine: func.isRequired,
+  categories: arrayOf(string).isRequired
 };
 
-export default connectRefinementList(SuppliersCategories);
+export default connectRefinementList(Categories);

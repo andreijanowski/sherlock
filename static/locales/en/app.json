@@ -10,6 +10,8 @@
   "wholesaler": "Procurement",
   "suppliers": "Suppliers",
   "allSuppliers": "All Suppliers",
+  "supplierSearchPlaceholder": "Search product, brand or category",
+  "noSuppliers": "No Suppliers",
   "socialMedia": "Social media (soon)",
   "billing": "Billing (soon)",
   "manageProfile": {
