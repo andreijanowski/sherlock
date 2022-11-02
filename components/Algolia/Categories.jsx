@@ -1,4 +1,10 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from "react";
 import clsx from "clsx";
 import { connectRefinementList } from "react-instantsearch-dom";
 import { arrayOf, bool, func, string } from "prop-types";
@@ -58,28 +64,31 @@ const Categories = ({ refine, categories }) => {
     }
   };
 
-  const moveNext = () => {
+  const moveNext = useCallback(() => {
     if (
       carousel.current !== null &&
       carousel.current.offsetWidth * currentIndex <= maxScrollWidth.current
     ) {
       setCurrentIndex(prevState => prevState + 1);
     }
-  };
+  }, [currentIndex]);
 
-  const isDisabled = direction => {
-    if (direction === "prev") {
-      return currentIndex <= 0;
-    }
+  const isDisabled = useCallback(
+    direction => {
+      if (direction === "prev") {
+        return currentIndex <= 0;
+      }
 
-    if (direction === "next" && carousel.current !== null) {
-      return (
-        carousel.current.offsetWidth * currentIndex >= maxScrollWidth.current
-      );
-    }
+      if (direction === "next" && carousel.current !== null) {
+        return (
+          carousel.current.offsetWidth * currentIndex >= maxScrollWidth.current
+        );
+      }
 
-    return false;
-  };
+      return false;
+    },
+    [currentIndex]
+  );
 
   useEffect(() => {
     if (carousel !== null && carousel.current !== null) {
@@ -93,12 +102,16 @@ const Categories = ({ refine, categories }) => {
       : 0;
   }, []);
 
-  const handleChange = value => {
-    setSelectedCategory(value);
-    refine(value);
-  };
+  const handleChange = useCallback(
+    value => {
+      setSelectedCategory(value);
+      refine(value);
+    },
+    [refine]
+  );
+
   return (
-    <div className="carousel my-6 mx-auto relative">
+    <div className="carousel my-6 mx-auto relative w-full">
       <div className="overflow-hidden px-10">
         <div className="flex justify-between absolute top h-full left-0 right-0">
           <IconButton
