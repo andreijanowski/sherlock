@@ -3,21 +3,21 @@ import {
   AppManager,
   Bookings,
   Clients,
-  CustomerLoyalty,
+  // CustomerLoyalty,
   Dashboard,
   Delivery,
   EventsManagement,
-  FoodWaste,
+  // FoodWaste,
   InfluencerManagement,
   IntegrationHub,
   Intelligence,
   MenuManagement,
   Payments,
-  Payroll,
+  // Payroll,
   PresenceManagement,
   Restaurant,
   Reviews,
-  StockManagement,
+  // StockManagement,
   Wholesalers
 } from "components/Icons";
 
@@ -112,25 +112,25 @@ export const menuItems = [
         icon: Wholesalers,
         description: "Connecting Suppliers",
         href: "/product/operations#procurement"
-      },
-      {
-        title: "Stock Management",
-        icon: StockManagement,
-        description: "Intelligent Stock",
-        href: "/product/operations#stockManagement"
-      },
-      {
-        title: "HR & Payroll",
-        icon: Payroll,
-        description: "Employee Management",
-        status: WORK_STATUS.COMING_SOON
-      },
-      {
-        title: "Foodwaste",
-        icon: FoodWaste,
-        description: "Reducing Waste",
-        status: WORK_STATUS.COMING_SOON
       }
+      // {
+      //   title: "Stock Management",
+      //   icon: StockManagement,
+      //   description: "Intelligent Stock",
+      //   href: "/product/operations#stockManagement"
+      // },
+      // {
+      //   title: "HR & Payroll",
+      //   icon: Payroll,
+      //   description: "Employee Management",
+      //   status: WORK_STATUS.COMING_SOON
+      // },
+      // {
+      //   title: "Foodwaste",
+      //   icon: FoodWaste,
+      //   description: "Reducing Waste",
+      //   status: WORK_STATUS.COMING_SOON
+      // }
     ]
   },
   {
@@ -159,13 +159,13 @@ export const menuItems = [
         icon: Adv,
         description: "Tailor Made Ads",
         href: "/product/marketing#contentManagement"
-      },
-      {
-        title: "Customer Loyalty",
-        icon: CustomerLoyalty,
-        description: "Loyalty Programs",
-        status: WORK_STATUS.COMING_SOON
       }
+      // {
+      //   title: "Customer Loyalty",
+      //   icon: CustomerLoyalty,
+      //   description: "Loyalty Programs",
+      //   status: WORK_STATUS.COMING_SOON
+      // }
     ]
   }
 ];

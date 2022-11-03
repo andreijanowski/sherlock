@@ -120,7 +120,7 @@ AppLayout.defaultProps = {
   containerComponent: undefined,
   mainIcon: null,
   header: null,
-  role: null.AppLayout,
+  role: null,
   hasBidCheck: false
 };
 
