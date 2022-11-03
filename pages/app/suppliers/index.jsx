@@ -8,7 +8,8 @@ import algoliasearchLite from "algoliasearch/lite";
 import { PUBLIC_ALGOLIA_CLIENT_KEY, ALGOLIA_APP_ID } from "consts";
 import { connect } from "react-redux";
 import ConnectedHits from "components/Suppliers/ConnectedHits";
-import { SUPPLIER_CATEGORIES } from "sections/integrations/utils";
+import Loading from "../../../components/Suppliers/Loading";
+import SupplierCategories from "../../../components/Suppliers/SupplierCategories";
 
 const searchClient = algoliasearchLite(
   ALGOLIA_APP_ID,
@@ -21,13 +22,14 @@ const SuppliersPage = ({ t, lng }) => (
   <AppLayout t={t} lng={lng} mainIcon="wholesalers" header={t("app:suppliers")}>
     <SearchApp
       searchClient={searchClient}
-      categories={SUPPLIER_CATEGORIES}
-      categoryName="supplier_categories.name"
       indexName="Supplier_staging"
       label={t("app:allSuppliers")}
       placeholder={t("app:supplierSearchPlaceholder")}
     >
-      <ConnectedHits t={t} />
+      <SupplierCategories searchClient={searchClient} lng={lng} />
+      <Loading>
+        <ConnectedHits t={t} />
+      </Loading>
     </SearchApp>
   </AppLayout>
 );
