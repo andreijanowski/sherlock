@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import Cookies from "js-cookie";
 import { Flex } from "@rebass/grid";
-import { node, func, string } from "prop-types";
+import { bool, node, func, string } from "prop-types";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import { Popup } from "components/modals";
@@ -11,6 +11,7 @@ import { logout as logoutAction } from "actions/auth";
 import { BASIC_ROLE } from "sagas/users";
 
 const AppLayout = ({
+  businessId,
   children,
   mainIcon,
   header,
@@ -19,7 +20,8 @@ const AppLayout = ({
   role,
   createBusiness,
   logout,
-  containerComponent
+  containerComponent,
+  hasBidCheck
 }) => {
   const hasBOAgreement = Cookies.get("BOA");
   const router = useRouter();
@@ -33,6 +35,30 @@ const AppLayout = ({
     }, 2000);
     return () => clearTimeout(timer);
   }, [createBusiness, hasBOAgreement, role]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (
+        hasBidCheck &&
+        hasBOAgreement &&
+        role === "business_member" &&
+        !businessId
+      ) {
+        createBusiness(() => {
+          router.push(`/${lng}/app/profile/basic-information/`);
+        });
+      }
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [
+    createBusiness,
+    hasBOAgreement,
+    role,
+    businessId,
+    router,
+    lng,
+    hasBidCheck
+  ]);
 
   const onConfirmModalSubmit = useCallback(() => {
     Cookies.set("BOA", true);
@@ -76,6 +102,7 @@ const AppLayout = ({
 };
 
 AppLayout.propTypes = {
+  businessId: string,
   children: node.isRequired,
   containerComponent: node,
   mainIcon: string,
@@ -84,14 +111,17 @@ AppLayout.propTypes = {
   lng: string.isRequired,
   createBusiness: func.isRequired,
   logout: func.isRequired,
-  role: string
+  role: string,
+  hasBidCheck: bool
 };
 
 AppLayout.defaultProps = {
+  businessId: "",
   containerComponent: undefined,
   mainIcon: null,
   header: null,
-  role: null
+  role: null.AppLayout,
+  hasBidCheck: false
 };
 
 export default connect(
