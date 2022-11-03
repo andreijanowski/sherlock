@@ -69,6 +69,7 @@ const Dashboard = ({
       t={t}
       lng={lng}
       businessId={businessId}
+      hasBidCheck
     >
       <ButtonsWrapper>
         {tabs.map(tab => (
