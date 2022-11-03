@@ -11,6 +11,7 @@ import { logout as logoutAction } from "actions/auth";
 import { BASIC_ROLE } from "sagas/users";
 
 const AppLayout = ({
+  businessId,
   children,
   mainIcon,
   header,
@@ -33,6 +34,14 @@ const AppLayout = ({
     }, 2000);
     return () => clearTimeout(timer);
   }, [createBusiness, hasBOAgreement, role]);
+
+  useEffect(() => {
+    if (hasBOAgreement && role === "business_member" && !businessId) {
+      createBusiness(() => {
+        router.push(`/${lng}/app`);
+      });
+    }
+  }, [createBusiness, hasBOAgreement, role, businessId, router, lng]);
 
   const onConfirmModalSubmit = useCallback(() => {
     Cookies.set("BOA", true);
@@ -76,6 +85,7 @@ const AppLayout = ({
 };
 
 AppLayout.propTypes = {
+  businessId: string,
   children: node.isRequired,
   containerComponent: node,
   mainIcon: string,
@@ -88,6 +98,7 @@ AppLayout.propTypes = {
 };
 
 AppLayout.defaultProps = {
+  businessId: "",
   containerComponent: undefined,
   mainIcon: null,
   header: null,

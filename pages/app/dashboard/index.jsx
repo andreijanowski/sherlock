@@ -68,6 +68,7 @@ const Dashboard = ({
       }}
       t={t}
       lng={lng}
+      businessId={businessId}
     >
       <ButtonsWrapper>
         {tabs.map(tab => (
