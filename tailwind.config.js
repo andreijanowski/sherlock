@@ -1,6 +1,6 @@
 const sizes = {};
 // eslint-disable-next-line no-plusplus
-for (let i = 0; i < 200; i++) {
+for (let i = 0; i < 400; i++) {
   sizes[i] = `${i / 4}rem`;
   sizes[`${i}.5`] = `${(i + 0.5) / 4}rem`;
 }
@@ -15,6 +15,15 @@ module.exports = {
   mode: "jit",
   theme: {
     extend: {
+      screens: {
+        xl: "1440px",
+        "2xl": "1840px",
+        "3xl": "2080px",
+        "4xl": "2480px",
+        "5xl": "2800px",
+        "6xl": "3200px",
+        "7xl": "3600px"
+      },
       colors: {
         gray: {
           300: "#A5A8AE",
