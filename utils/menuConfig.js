@@ -21,11 +21,11 @@ import {
   Payments,
   Photography,
   Reviews,
-  StockManagement,
-  Payroll,
-  FoodWaste,
+  // StockManagement,
+  // Payroll,
+  // FoodWaste,
   PresenceManagement,
-  CustomerLoyalty,
+  // CustomerLoyalty,
   EventsManagement,
   Catering,
   PrivateEvents,
@@ -255,25 +255,25 @@ export const getMenuConfig = ({
         route: "/app/wholesalers",
         icon: Wholesalers,
         label: t("app:wholesaler")
-      },
-      {
-        basePath: "/app/stock-management",
-        route: "/app/stock-management/",
-        icon: StockManagement,
-        label: t("app:stockManagement")
-      },
-      {
-        basePath: "/app/payroll",
-        route: "/app/payroll/",
-        icon: Payroll,
-        label: t("app:payroll")
-      },
-      {
-        basePath: "/app/food-waste",
-        route: "/app/food-waste/",
-        icon: FoodWaste,
-        label: t("app:foodWaste")
       }
+      // {
+      //   basePath: "/app/stock-management",
+      //   route: "/app/stock-management/",
+      //   icon: StockManagement,
+      //   label: t("app:stockManagement")
+      // },
+      // {
+      //   basePath: "/app/payroll",
+      //   route: "/app/payroll/",
+      //   icon: Payroll,
+      //   label: t("app:payroll")
+      // },
+      // {
+      //   basePath: "/app/food-waste",
+      //   route: "/app/food-waste/",
+      //   icon: FoodWaste,
+      //   label: t("app:foodWaste")
+      // }
     ]
   },
   {
@@ -297,13 +297,13 @@ export const getMenuConfig = ({
         route: "/app/reviews/",
         icon: Reviews,
         label: t("app:reviews")
-      },
-      {
-        basePath: "/app/loyalty",
-        route: "/app/loyalty/",
-        icon: CustomerLoyalty,
-        label: t("app:loyalty")
       }
+      // {
+      //   basePath: "/app/loyalty",
+      //   route: "/app/loyalty/",
+      //   icon: CustomerLoyalty,
+      //   label: t("app:loyalty")
+      // }
     ]
   },
   {

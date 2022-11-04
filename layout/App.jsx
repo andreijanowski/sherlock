@@ -38,27 +38,14 @@ const AppLayout = ({
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (
-        hasBidCheck &&
-        hasBOAgreement &&
-        role === "business_member" &&
-        !businessId
-      ) {
+      if (hasBidCheck && role === "business_member" && !businessId) {
         createBusiness(() => {
           router.push(`/${lng}/app/profile/basic-information/`);
         });
       }
     }, 2000);
     return () => clearTimeout(timer);
-  }, [
-    createBusiness,
-    hasBOAgreement,
-    role,
-    businessId,
-    router,
-    lng,
-    hasBidCheck
-  ]);
+  }, [createBusiness, role, businessId, router, lng, hasBidCheck]);
 
   const onConfirmModalSubmit = useCallback(() => {
     Cookies.set("BOA", true);
