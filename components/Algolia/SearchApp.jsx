@@ -3,19 +3,16 @@ import { InstantSearch, Configure } from "react-instantsearch-dom";
 
 import { arrayOf, node, number, oneOf, string } from "prop-types";
 import ConnectedFilter from "./ConnectedFilter";
-import Categories from "./Categories";
 
 const SearchApp = ({
   label,
   placeholder,
   indexName,
   hitsPerPage,
-  categories,
-  categoryName,
   children,
   ...restProps
 }) => (
-  <div>
+  <div className="flex-1 flex flex-col">
     <InstantSearch
       indexName={indexName}
       resultsState={restProps.resultsState}
@@ -28,7 +25,6 @@ const SearchApp = ({
 
       <ConnectedFilter label={label} placeholder={placeholder} />
 
-      <Categories categories={categories} attribute={categoryName} />
       {children}
     </InstantSearch>
   </div>
@@ -37,8 +33,6 @@ const SearchApp = ({
 SearchApp.propTypes = {
   label: string,
   placeholder: string,
-  categories: arrayOf(string).isRequired,
-  categoryName: string.isRequired,
   hitsPerPage: number,
   indexName: string.isRequired,
   children: oneOf([arrayOf(node), node]).isRequired
@@ -47,7 +41,7 @@ SearchApp.propTypes = {
 SearchApp.defaultProps = {
   label: "",
   placeholder: "",
-  hitsPerPage: 10
+  hitsPerPage: 50
 };
 
 export default SearchApp;
