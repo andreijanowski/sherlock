@@ -53,6 +53,8 @@ const ProfileLayout = ({
         t,
         lng
       }}
+      businessId={businessId}
+      hasBidCheck
     >
       {business && business.get("state") !== "published" && (
         <PublishMobileIconWrapper>
