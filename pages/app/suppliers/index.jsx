@@ -1,7 +1,7 @@
 import React from "react";
 import { withTranslation } from "i18n";
 import AppLayout from "layout/App";
-import { func, string } from "prop-types";
+import { func, shape, string } from "prop-types";
 import requireAuth from "lib/requireAuth";
 import SearchApp from "components/Algolia/SearchApp";
 import algoliasearchLite from "algoliasearch/lite";
@@ -18,36 +18,52 @@ const searchClient = algoliasearchLite(
 
 const namespaces = ["forms", "app"];
 
-const SuppliersPage = ({ t, lng }) => (
-  <AppLayout t={t} lng={lng} mainIcon="wholesalers" header={t("app:suppliers")}>
-    <SearchApp
-      searchClient={searchClient}
-      indexName="Supplier_staging"
-      label={t("app:allSuppliers")}
-      placeholder={t("app:supplierSearchPlaceholder")}
+const SuppliersPage = ({ t, lng, business }) => {
+  const city = business?.get("city");
+  const country = business?.get("country");
+
+  return (
+    <AppLayout
+      t={t}
+      lng={lng}
+      mainIcon="wholesalers"
+      header={t("app:suppliers")}
     >
-      <SupplierCategories searchClient={searchClient} lng={lng} />
-      <Loading>
-        <ConnectedHits t={t} />
-      </Loading>
-    </SearchApp>
-  </AppLayout>
-);
+      <SearchApp
+        searchClient={searchClient}
+        indexName="Supplier_staging"
+        label={t("app:allSuppliers")}
+        placeholder={t("app:supplierSearchPlaceholder")}
+      >
+        <SupplierCategories searchClient={searchClient} lng={lng} />
+        <Loading>
+          <ConnectedHits t={t} city={city} country={country} />
+        </Loading>
+      </SearchApp>
+    </AppLayout>
+  );
+};
 
 SuppliersPage.propTypes = {
   t: func.isRequired,
-  lng: string.isRequired
+  lng: string.isRequired,
+  business: shape()
 };
 
-SuppliersPage.defaultProps = {};
+SuppliersPage.defaultProps = {
+  business: null
+};
+
+const mapState = (state, { i18n }) => {
+  const businessData = state.getIn(["users", "currentBusiness", "data"]);
+  const business = businessData && businessData.get("businesses").first();
+
+  return {
+    business: business && business.get("attributes"),
+    lng: (i18n && i18n.language) || "en"
+  };
+};
 
 export default requireAuth(true)(
-  withTranslation(namespaces)(
-    connect(
-      (state, { i18n }) => ({
-        lng: (i18n && i18n.language) || "en"
-      }),
-      {}
-    )(SuppliersPage)
-  )
+  withTranslation(namespaces)(connect(mapState, {})(SuppliersPage))
 );
