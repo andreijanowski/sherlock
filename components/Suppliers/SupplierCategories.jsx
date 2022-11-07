@@ -32,7 +32,6 @@ const SupplierCategories = ({ searchClient, lng }) => {
     [lng, categories]
   );
 
-  console.log("searchClient", searchClient);
   return (
     <div>
       <div>

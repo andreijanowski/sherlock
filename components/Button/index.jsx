@@ -236,10 +236,25 @@ const accept = css`
 const withImageActive = css`
   color: rgb(${p => p.theme.colors.white});
   background-color: rgb(${p => p.theme.colors.blue});
+  ${p =>
+    p.gradient &&
+    `background: linear-gradient(
+      to right,
+      rgba(${p.theme.colors.b2bSecondary}, 1),
+      rgb(${p.theme.colors.blue})
+    );`}
   fill: rgb(${p => p.theme.colors.white});
   stroke: rgb(${p => p.theme.colors.white});
   ${p => p.red && `background-color: rgb(${p.theme.colors.ruby});`}
   ${p => p.greenHaze && `background-color: rgb(${p.theme.colors.greenHaze});`}
+
+  svg {
+    path,
+    .primary,
+    .secondary {
+      stroke: rgb(${p => p.theme.colors.white});
+    }
+  }
 `;
 
 const withImage = css`
