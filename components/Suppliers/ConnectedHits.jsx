@@ -35,8 +35,8 @@ const CustomHits = ({ hits, hasMore, refineNext, t, city, country }) => {
   const filterHits = useMemo(
     () =>
       hits.filter(item => {
-        if (item?.countries?.length) {
-          return item.countries.includes(country);
+        if (item?.country_codes_names?.length) {
+          return item.country_codes_names.includes(country);
         }
         if (item.cities?.length) {
           return item.cities.includes(city);
