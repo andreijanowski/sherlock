@@ -6,6 +6,7 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import { Flex } from "@rebass/grid";
+import { IntegrationHub, Pocket, Timer } from "icons";
 import PartnersSearchBox from "components/PartnersSearchBox";
 import AppLayout from "layout/App";
 import { PARTNERS_CATEGORIES, PARTNERS_URL } from "sections/integrations/utils";
@@ -17,9 +18,20 @@ import {
 } from "components";
 import IntegrationsList from "sections/integrations";
 import { IconWrapper } from "components/Dashboard/styled";
-import { INTEGRATIONS_FILTERS, filters } from "./utils";
 
 const namespaces = ["forms", "app"];
+
+const INTEGRATIONS_FILTERS = {
+  ALL: "all",
+  AVAILABLE: "available",
+  COMING_SOON: "coming_soon"
+};
+
+const filters = [
+  { name: INTEGRATIONS_FILTERS.ALL, icon: <IntegrationHub /> },
+  { name: INTEGRATIONS_FILTERS.AVAILABLE, icon: <Pocket /> },
+  { name: INTEGRATIONS_FILTERS.COMING_SOON, icon: <Timer /> }
+];
 
 const IntegrationsPage = ({ t, lng, partners, isLoading }) => {
   const [currentFilter, setCurrentFilter] = useState(filters[0]);
