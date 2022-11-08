@@ -49,7 +49,7 @@ const IntegrationsPage = ({ t, lng, partners, isLoading }) => {
       mainIcon="integrations"
       header={t("app:integrations")}
     >
-      <Flex mb={4} mx={2}>
+      <Flex mb={4} mx={2} flexWrap={["wrap"]}>
         {filters.map(tab => (
           <Button
             key={tab.name}
