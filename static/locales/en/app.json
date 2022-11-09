@@ -9,6 +9,7 @@
   "integrations": "Integrations",
   "wholesaler": "Procurement",
   "suppliers": "Suppliers",
+  "menuSuppliers": "Suppliers",
   "allSuppliers": "All Suppliers",
   "supplierSearchPlaceholder": "Search product, brand or category",
   "noSuppliers": "No Suppliers",

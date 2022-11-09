@@ -254,7 +254,7 @@ export const getMenuConfig = ({
         basePath: "/app/wholesalers",
         route: "/app/wholesalers",
         icon: Wholesalers,
-        label: t("app:wholesaler")
+        label: t("app:menuSuppliers")
       }
       // {
       //   basePath: "/app/stock-management",

@@ -66,7 +66,6 @@ const Categories = ({ refine, categories }) => {
 
   const moveNext = useCallback(() => {
     if (
-      carousel.current !== null &&
       carousel.current.offsetWidth * currentIndex <= maxScrollWidth.current
     ) {
       setCurrentIndex(prevState => prevState + 1);
@@ -133,7 +132,7 @@ const Categories = ({ refine, categories }) => {
             <Box
               key={item.value}
               className={clsx(
-                "carousel-item text-center relative snap-start py-3 px-4 text-gray-700 text-sm whitespace-nowrap cursor-pointer",
+                "carousel-item text-center relative snap-start py-3 px-2 text-gray-700 text-sm whitespace-nowrap cursor-pointer",
                 selectedCategory === item.value
                   ? "font-semibold text-black"
                   : ""
