@@ -97,7 +97,7 @@ const Categories = ({ refine, categories }) => {
     maxScrollWidth.current = carousel.current
       ? carousel.current.scrollWidth - carousel.current.offsetWidth
       : 0;
-  }, []);
+  }, [categories]);
 
   const handleChange = useCallback(
     value => {
@@ -108,7 +108,7 @@ const Categories = ({ refine, categories }) => {
   );
 
   return (
-    <div className="carousel my-6 mx-auto relative w-full">
+    <div className="carousel mx-auto relative w-full mb-2">
       <div className="overflow-hidden px-10">
         <div className="flex justify-between absolute top h-full left-0 right-0">
           <IconButton

@@ -37,7 +37,7 @@ const CustomFilter = React.forwardRef((props, myRef) => {
   );
 
   return (
-    <div className="py-2 px-4 rounded-lg shadow-card flex justify-between bg-white items-center my-6">
+    <div className="py-2 px-4 rounded-lg shadow-card flex justify-between bg-white items-center mt-6 mb-4">
       <div className="font-semibold">{label}</div>
       <div className="relative">
         <input
