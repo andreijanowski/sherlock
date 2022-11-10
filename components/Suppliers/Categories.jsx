@@ -65,9 +65,7 @@ const Categories = ({ refine, categories }) => {
   };
 
   const moveNext = useCallback(() => {
-    if (
-      carousel.current.offsetWidth * currentIndex <= maxScrollWidth.current
-    ) {
+    if (carousel.current.offsetWidth * currentIndex <= maxScrollWidth.current) {
       setCurrentIndex(prevState => prevState + 1);
     }
   }, [currentIndex]);
