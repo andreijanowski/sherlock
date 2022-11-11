@@ -91,3 +91,5 @@ export {
 export { Globe, ChevronDownIcon } from "./footer";
 
 export { ClockIcon, HeartIcon, CartIcon } from "./supplier";
+
+export { ArrowLeftIcon, FavouriteIcon } from "./products";

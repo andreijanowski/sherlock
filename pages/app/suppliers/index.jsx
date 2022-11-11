@@ -37,7 +37,7 @@ const SuppliersPage = ({ t, lng, business }) => {
       >
         <SupplierCategories searchClient={searchClient} lng={lng} />
         <Loading>
-          <ConnectedHits t={t} city={city} country={country} />
+          <ConnectedHits t={t} lng={lng} city={city} country={country} />
         </Loading>
       </SearchApp>
     </AppLayout>

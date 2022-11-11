@@ -10,6 +10,8 @@ const SearchApp = ({
   indexName,
   hitsPerPage,
   children,
+  backUrl,
+  filters,
   ...restProps
 }) => (
   <div className="flex-1 flex flex-col">
@@ -21,9 +23,13 @@ const SearchApp = ({
       createURL={restProps.createURL}
       {...restProps}
     >
-      <Configure hitsPerPage={hitsPerPage} />
+      <Configure hitsPerPage={hitsPerPage} filters={filters} />
 
-      <ConnectedFilter label={label} placeholder={placeholder} />
+      <ConnectedFilter
+        backUrl={backUrl}
+        label={label}
+        placeholder={placeholder}
+      />
 
       {children}
     </InstantSearch>
@@ -35,13 +41,17 @@ SearchApp.propTypes = {
   placeholder: string,
   hitsPerPage: number,
   indexName: string.isRequired,
-  children: oneOf([arrayOf(node), node]).isRequired
+  children: oneOf([arrayOf(node), node]).isRequired,
+  backUrl: string,
+  filters: string
 };
 
 SearchApp.defaultProps = {
   label: "",
   placeholder: "",
-  hitsPerPage: 50
+  hitsPerPage: 50,
+  backUrl: "",
+  filters: ""
 };
 
 export default SearchApp;

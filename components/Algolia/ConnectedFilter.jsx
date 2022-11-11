@@ -4,13 +4,22 @@ import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { func, string } from "prop-types";
 import debounce from "debounce";
-import { CartIcon, ClockIcon, HeartIcon } from "../Icons";
+import { Box } from "@rebass/grid";
+import { useRouter } from "next/router";
+import {
+  ArrowLeftIcon,
+  CartIcon,
+  ClockIcon,
+  HeartIcon,
+  FavouriteIcon
+} from "../Icons";
 
 const DEBOUNCE = 300;
 
 const CustomFilter = React.forwardRef((props, myRef) => {
-  const { currentRefinement, refine, label, placeholder } = props;
+  const { currentRefinement, refine, label, placeholder, backUrl } = props;
   const [value, setValue] = useState(currentRefinement);
+  const router = useRouter();
 
   const onSubmit = useCallback(
     query => {
@@ -38,7 +47,25 @@ const CustomFilter = React.forwardRef((props, myRef) => {
 
   return (
     <div className="py-2 px-4 rounded-lg shadow-card flex justify-between bg-white items-center my-6">
-      <div className="font-semibold">{label}</div>
+      <div className="flex space-x-4 items-center">
+        {backUrl && (
+          <Box
+            className="shadow-card w-10 h-10 rounded flex items-center justify-center cursor-pointer"
+            onClick={() => router.push(backUrl)}
+          >
+            <ArrowLeftIcon />
+          </Box>
+        )}
+        <div>
+          <div className="font-semibold">{label}</div>
+          {backUrl && (
+            <div className="flex space-x-2 mt-1 text-sm items-center">
+              <div>Add to favourite</div>
+              <FavouriteIcon />
+            </div>
+          )}
+        </div>
+      </div>
       <div className="relative">
         <input
           ref={myRef}
@@ -73,7 +100,12 @@ CustomFilter.propTypes = {
   label: string.isRequired,
   placeholder: string.isRequired,
   refine: func.isRequired,
-  currentRefinement: string.isRequired
+  currentRefinement: string.isRequired,
+  backUrl: string
+};
+
+CustomFilter.defaultProps = {
+  backUrl: ""
 };
 
 const ConnectedFilter = connectSearchBox(CustomFilter);

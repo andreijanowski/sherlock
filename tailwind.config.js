@@ -28,7 +28,8 @@ module.exports = {
         gray: {
           300: "#A5A8AE",
           500: "#787A7F",
-          700: "#4E4D66"
+          700: "#4E4D66",
+          900: "#20201F"
         }
       },
       fontSize: {
@@ -39,7 +40,7 @@ module.exports = {
         md: ["15px"],
         base: ["16px"],
         lg: ["18px"],
-        xl: ["21x"],
+        xl: ["24px"],
         "2xl": "28px",
         "2xl-1": "30px",
         "2xl-2": "32px",
@@ -50,6 +51,9 @@ module.exports = {
         "5xl": `52px`,
         "6xl": `56px`,
         "7xl": `60px`
+      },
+      fontFamily: {
+        poppins: ["Poppins"]
       },
       spacing: sizes,
       minHeight: sizes,
