@@ -51,6 +51,13 @@ const ProductsGrid = ({ hits, hasMore, refineNext, t, lng }) => {
     if (!product) {
       return;
     }
+    if (product.count === 1) {
+      setSelectedProductIds(
+        selectedProductIds.filter(item => item !== productId)
+      );
+      return;
+    }
+
     setProducts(
       products.map(item =>
         item.objectID === productId

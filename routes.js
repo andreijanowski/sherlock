@@ -125,10 +125,7 @@ module.exports = routes()
   .add("app/subscriptions", `/:lng(${languagesPattern})/app/subscriptions`)
   .add("app/integrations", `/:lng(${languagesPattern})/app/integrations`)
   .add("app/suppliers", `/:lng(${languagesPattern})/app/suppliers`)
-  .add(
-    "app/products",
-    `/:lng(${languagesPattern})/app/suppliers/:name/products`
-  )
+  .add("app/products", `/:lng(${languagesPattern})/app/suppliers/:id/products`)
   .add(
     "app/influencerManagement/marketing",
     `/:lng(${languagesPattern})/app/influencer-management/marketing`

@@ -29,7 +29,7 @@ const ProductCard = ({
       <img
         src={product?.image?.url}
         alt="logo"
-        className="h-32.5 w-full rounded-4.5"
+        className="h-32.5 w-full rounded-4.5 object-cover"
       />
       <div className="mt-3 px-2 flex flex-col justify-between flex-auto">
         <div className="flex justify-between flex-auto space-x-3">
