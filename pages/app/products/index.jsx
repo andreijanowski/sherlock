@@ -62,7 +62,7 @@ const ProductsPage = ({ t, lng }) => {
           disabled
         />
         <Loading>
-          <ProductsGrid t={t} />
+          <ProductsGrid t={t} supplier={supplier} />
         </Loading>
       </SearchApp>
     </AppLayout>

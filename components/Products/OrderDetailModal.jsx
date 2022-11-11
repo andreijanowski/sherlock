@@ -10,7 +10,8 @@ const OrderDetailModal = ({
   onClose,
   products,
   increase,
-  decrease
+  decrease,
+  supplier
 }) => {
   const ref = useRef(null);
 
@@ -37,8 +38,14 @@ const OrderDetailModal = ({
           <div className="px-15.5">
             <div className="font-bold text-xl mb-5">My cart</div>
 
-            <div className="font-semibold text-gray-900 text-lg">Bakus</div>
-            <div className="text-gray-500 mb-4">Wine Cellar</div>
+            <div className="font-semibold text-gray-900 text-lg">
+              {supplier?.name}
+            </div>
+            <div className="text-gray-500 mb-4">
+              {(
+                supplier?.supplier_categories.map(item => item.name) || []
+              ).join(", ")}
+            </div>
           </div>
 
           <div className="flex-1 px-15.5 overflow-auto">
@@ -94,7 +101,8 @@ OrderDetailModal.propTypes = {
   isOpen: bool.isRequired,
   onClose: func.isRequired,
   increase: func.isRequired,
-  decrease: func.isRequired
+  decrease: func.isRequired,
+  supplier: shape().isRequired
 };
 
 export default OrderDetailModal;

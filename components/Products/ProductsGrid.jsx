@@ -5,7 +5,7 @@ import { func, bool, string, shape } from "prop-types";
 import ProductCard from "./ProductCard";
 import OrderDetailModal from "./OrderDetailModal";
 
-const ProductsGrid = ({ hits, hasMore, refineNext, t, lng }) => {
+const ProductsGrid = ({ hits, hasMore, refineNext, t, lng, supplier }) => {
   const [selectedProductIds, setSelectedProductIds] = useState([]);
   const [products, setProducts] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -117,6 +117,7 @@ const ProductsGrid = ({ hits, hasMore, refineNext, t, lng }) => {
         decrease={decrease}
         onClose={() => setIsOpen(false)}
         isOpen={isOpen}
+        supplier={supplier}
       />
     </div>
   );
@@ -127,7 +128,8 @@ ProductsGrid.propTypes = {
   hasMore: bool.isRequired,
   refineNext: func.isRequired,
   t: func.isRequired,
-  lng: string.isRequired
+  lng: string.isRequired,
+  supplier: shape().isRequired
 };
 
 const ConnectedHits = connectInfiniteHits(ProductsGrid);
