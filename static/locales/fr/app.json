@@ -13,6 +13,11 @@
   "allSuppliers": "Tous les fournisseurs",
   "supplierSearchPlaceholder": "Rechercher un produit, une marque ou une catégorie",
   "noSuppliers": "Aucun fournisseur",
+  "noProducts": "Aucun produit",
+  "addToFavourite": "Ajouter aux favoris",
+  "finalizeMyOrder": "Finaliser ma commande",
+  "myCart": "Mon panier",
+  "all": "Toute",
   "socialMedia": "Les médias sociaux (bientôt)",
   "billing": "Facturation (bientôt)",
   "manageProfile": {

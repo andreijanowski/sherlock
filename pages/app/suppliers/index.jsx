@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { withTranslation } from "i18n";
 import AppLayout from "layout/App";
 import { func, shape, string } from "prop-types";
@@ -22,6 +22,18 @@ const SuppliersPage = ({ t, lng, business }) => {
   const city = business?.get("city");
   const country = business?.get("country");
 
+  const filters = useMemo(() => {
+    const queries = [];
+    if (country) {
+      queries.push(`(country_codes_names: "${country}")`);
+    }
+    if (city) {
+      queries.push(`(cities: "${city}")`);
+    }
+
+    return queries.join(" AND ");
+  }, [city, country]);
+
   return (
     <AppLayout
       t={t}
@@ -34,10 +46,12 @@ const SuppliersPage = ({ t, lng, business }) => {
         indexName="Supplier_staging"
         label={t("app:allSuppliers")}
         placeholder={t("app:supplierSearchPlaceholder")}
+        filters={filters}
+        t={t}
       >
-        <SupplierCategories searchClient={searchClient} lng={lng} />
+        <SupplierCategories searchClient={searchClient} lng={lng} t={t} />
         <Loading>
-          <ConnectedHits t={t} city={city} country={country} />
+          <ConnectedHits t={t} lng={lng} />
         </Loading>
       </SearchApp>
     </AppLayout>
