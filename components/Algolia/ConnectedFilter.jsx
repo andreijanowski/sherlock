@@ -17,7 +17,7 @@ import {
 const DEBOUNCE = 300;
 
 const CustomFilter = React.forwardRef((props, myRef) => {
-  const { currentRefinement, refine, label, placeholder, backUrl } = props;
+  const { currentRefinement, refine, label, placeholder, backUrl, t } = props;
   const [value, setValue] = useState(currentRefinement);
   const router = useRouter();
 
@@ -60,7 +60,7 @@ const CustomFilter = React.forwardRef((props, myRef) => {
           <div className="font-semibold">{label}</div>
           {backUrl && (
             <div className="flex space-x-2 mt-1 text-sm items-center">
-              <div>Add to favourite</div>
+              <div>{t("app:addToFavourite")}</div>
               <FavouriteIcon />
             </div>
           )}
@@ -101,7 +101,8 @@ CustomFilter.propTypes = {
   placeholder: string.isRequired,
   refine: func.isRequired,
   currentRefinement: string.isRequired,
-  backUrl: string
+  backUrl: string,
+  t: func.isRequired
 };
 
 CustomFilter.defaultProps = {

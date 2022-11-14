@@ -14,6 +14,10 @@
   "supplierSearchPlaceholder": "Cerca prodotto, marchio o categoria",
   "noSuppliers": "Nessun fornitore",
   "noProducts": "Nessun prodotto",
+  "addToFavourite": "Aggiungi ai preferiti",
+  "finalizeMyOrder": "Finalizza il mio ordine",
+  "myCart": "La mia carta",
+  "all": "Tutto",
   "socialMedia": "Social media",
   "billing": "Fatturazione",
   "manageProfile": {

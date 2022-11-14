@@ -11,7 +11,8 @@ const OrderDetailModal = ({
   products,
   increase,
   decrease,
-  supplier
+  supplier,
+  t
 }) => {
   const ref = useRef(null);
 
@@ -36,7 +37,7 @@ const OrderDetailModal = ({
             onClick={onClose}
           />
           <div className="px-15.5">
-            <div className="font-bold text-xl mb-5">My cart</div>
+            <div className="font-bold text-xl mb-5">{t("app:myCart")}</div>
 
             <div className="font-semibold text-gray-900 text-lg">
               {supplier?.name}
@@ -86,7 +87,7 @@ const OrderDetailModal = ({
           </div>
           <div className="absolute w-full bottom-0 left-0 h-21 flex items-center justify-center space-x-3 shadow-card bg-white">
             <div className="text-gray-900 text-xl font-semibold">
-              Finalize my order
+              {t("app:finalizeMyOrder")}
             </div>
             <CartIcon className="w-6 text-gray-900" />
           </div>
@@ -102,7 +103,8 @@ OrderDetailModal.propTypes = {
   onClose: func.isRequired,
   increase: func.isRequired,
   decrease: func.isRequired,
-  supplier: shape().isRequired
+  supplier: shape().isRequired,
+  t: func.isRequired
 };
 
 export default OrderDetailModal;

@@ -14,6 +14,10 @@
   "supplierSearchPlaceholder": "Search product, brand or category",
   "noSuppliers": "No Suppliers",
   "noProducts": "No Products",
+  "addToFavourite": "Add to favourite",
+  "finalizeMyOrder": "Finalize my order",
+  "myCart": "My cart",
+  "all": "All",
   "socialMedia": "Social media (soon)",
   "billing": "Billing (soon)",
   "manageProfile": {

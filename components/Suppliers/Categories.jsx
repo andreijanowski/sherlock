@@ -33,7 +33,7 @@ IconButton.propTypes = {
   disabled: bool.isRequired
 };
 
-const Categories = ({ refine, categories, disabled }) => {
+const Categories = ({ refine, categories, disabled, t }) => {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carousel = useRef(null);
@@ -44,7 +44,7 @@ const Categories = ({ refine, categories, disabled }) => {
       categories.map(item =>
         item === ""
           ? {
-              label: "All",
+              label: t("app:all"),
               value: ""
             }
           : {
@@ -55,7 +55,7 @@ const Categories = ({ refine, categories, disabled }) => {
               value: item
             }
       ),
-    [categories]
+    [categories, t]
   );
 
   const movePrev = () => {
@@ -151,7 +151,8 @@ const Categories = ({ refine, categories, disabled }) => {
 Categories.propTypes = {
   refine: func.isRequired,
   categories: arrayOf(string).isRequired,
-  disabled: bool
+  disabled: bool,
+  t: func.isRequired
 };
 
 Categories.defaultProps = {

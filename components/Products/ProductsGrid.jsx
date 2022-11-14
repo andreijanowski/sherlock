@@ -118,6 +118,7 @@ const ProductsGrid = ({ hits, hasMore, refineNext, t, lng, supplier }) => {
         onClose={() => setIsOpen(false)}
         isOpen={isOpen}
         supplier={supplier}
+        t={t}
       />
     </div>
   );

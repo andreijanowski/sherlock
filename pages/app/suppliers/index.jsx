@@ -47,8 +47,9 @@ const SuppliersPage = ({ t, lng, business }) => {
         label={t("app:allSuppliers")}
         placeholder={t("app:supplierSearchPlaceholder")}
         filters={filters}
+        t={t}
       >
-        <SupplierCategories searchClient={searchClient} lng={lng} />
+        <SupplierCategories searchClient={searchClient} lng={lng} t={t} />
         <Loading>
           <ConnectedHits t={t} lng={lng} />
         </Loading>

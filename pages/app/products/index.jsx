@@ -55,11 +55,13 @@ const ProductsPage = ({ t, lng }) => {
         backUrl={`/${lng}/app/suppliers`}
         placeholder={t("app:supplierSearchPlaceholder")}
         filters={`supplier_name: "${name}"`}
+        t={t}
       >
         <Categories
           categories={categories}
           attribute="supplier_categories.name"
           disabled
+          t={t}
         />
         <Loading>
           <ProductsGrid t={t} supplier={supplier} />

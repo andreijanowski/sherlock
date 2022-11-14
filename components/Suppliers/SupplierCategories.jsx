@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { shape, string } from "prop-types";
+import { func, shape, string } from "prop-types";
 import { PulseLoader } from "react-spinners";
 import Categories from "./Categories";
 import { theme } from "../../utils/theme";
 
-const SupplierCategories = ({ searchClient, lng }) => {
+const SupplierCategories = ({ searchClient, lng, t }) => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -45,6 +45,7 @@ const SupplierCategories = ({ searchClient, lng }) => {
           <Categories
             categories={supplierCategories}
             attribute="supplier_categories.name"
+            t={t}
           />
         )}
       </div>
@@ -54,7 +55,8 @@ const SupplierCategories = ({ searchClient, lng }) => {
 
 SupplierCategories.propTypes = {
   lng: string.isRequired,
-  searchClient: shape().isRequired
+  searchClient: shape().isRequired,
+  t: func.isRequired
 };
 
 export default SupplierCategories;
