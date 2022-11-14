@@ -69,7 +69,7 @@ const mediaKitLink =
   "https://drive.google.com/drive/folders/1iZyNJbszSyRPG3ZWwNKVGws9UdSrdv-z";
 const becomePartnerLink = `https://foodetective.typeform.com/to/tzqu8b`;
 
-const apiGuideLink = `${API_URL}/static_pages/api-auth-guide`;
+const apiGuideLink = `https://developer.foodetective.co`;
 
 const rollbarConfig = {
   accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
