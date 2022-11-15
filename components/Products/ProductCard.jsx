@@ -10,12 +10,11 @@ const ProductCard = ({
   className,
   onAdd,
   selected,
-  increase,
-  decrease
+  onChangeCount
 }) => {
   const handleClick = () => {
     if (!selected) {
-      onAdd(product.objectID);
+      onAdd(product);
     }
   };
 
@@ -47,13 +46,13 @@ const ProductCard = ({
             <FontAwesomeIcon
               icon={faMinus}
               className="cursor-pointer text-sm text-gray-900 cursor-pointer"
-              onClick={() => decrease(product.objectID)}
+              onClick={() => onChangeCount(product.objectID, product.count - 1)}
             />
             <div>{product.count || 0}</div>
             <FontAwesomeIcon
               icon={faPlus}
               className="cursor-pointer text-sm text-gray-900 cursor-pointer"
-              onClick={() => increase(product.objectID)}
+              onClick={() => onChangeCount(product.objectID, product.count + 1)}
             />
           </div>
           <Box
@@ -76,8 +75,7 @@ ProductCard.propTypes = {
   className: string.isRequired,
   selected: bool.isRequired,
   onAdd: func.isRequired,
-  increase: func.isRequired,
-  decrease: func.isRequired
+  onChangeCount: func.isRequired
 };
 
 export default ProductCard;

@@ -24,6 +24,7 @@ import payments from "./payments";
 import dashboard from "./dashboard";
 import newsroom from "./newsroom";
 import intelligence from "./intelligence";
+import products from "./products";
 
 export default {
   app,
@@ -51,5 +52,6 @@ export default {
   plans,
   payments,
   newsroom,
-  intelligence
+  intelligence,
+  products
 };
