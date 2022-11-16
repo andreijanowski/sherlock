@@ -25,10 +25,10 @@ const SuppliersPage = ({ t, lng, business }) => {
   const filters = useMemo(() => {
     const queries = [];
     if (country) {
-      queries.push(`(country_codes_names: "${country}")`);
+      // queries.push(`(country_codes_names: "${country}")`);
     }
     if (city) {
-      queries.push(`(cities: "${city}")`);
+      // queries.push(`(cities: "${city}")`);
     }
 
     return queries.join(" AND ");
