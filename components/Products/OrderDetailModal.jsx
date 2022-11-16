@@ -1,15 +1,52 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import Modal from "react-responsive-modal";
 import { arrayOf, bool, func, shape } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { groupBy } from "lodash";
+import { connect } from "react-redux";
 import { CartIcon, CloseCircleIcon } from "../Icons";
+import {
+  removeProductToCart,
+  setProductsToCart,
+  updateProductToCart
+} from "../../data/actions/products";
 
-const OrderDetailModal = ({ isOpen, onClose, products, onChangeCount, t }) => {
+const OrderDetailModal = ({
+  isOpen,
+  onClose,
+  products,
+  t,
+  updateProduct,
+  removeProduct,
+  setProducts
+}) => {
   const groupedBySupplier = useMemo(() => groupBy(products, "supplier_name"), [
     products
   ]);
+
+  const onChangeCount = (productId, count) => {
+    if (count === 0) {
+      removeProduct(productId);
+    } else {
+      updateProduct(productId, count);
+    }
+  };
+
+  useEffect(() => {
+    const productsString = window.localStorage.getItem("cart_products");
+    if (productsString) {
+      try {
+        const parsedProducts = JSON.parse(productsString);
+
+        if (parsedProducts.length) {
+          setProducts(parsedProducts);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  }, [setProducts]);
 
   return (
     <div>
@@ -57,7 +94,7 @@ const OrderDetailModal = ({ isOpen, onClose, products, onChangeCount, t }) => {
                         className="min-w-33 max-w-33 w-full rounded-4.5 h-33 object-cover"
                       />
                     </div>
-                    <div>
+                    <div className="select-none">
                       <div className="font-semibold">{product.name}</div>
                       <div className="text-gray-500 text-sm">
                         {product.description?.slice(0, 100)}
@@ -70,7 +107,7 @@ const OrderDetailModal = ({ isOpen, onClose, products, onChangeCount, t }) => {
                             onChangeCount(product.objectID, product.count - 1)
                           }
                         />
-                        <div>{product.count}</div>
+                        <div className="select-none">{product.count}</div>
                         <FontAwesomeIcon
                           icon={faPlus}
                           className="cursor-pointer text-sm cursor-pointer"
@@ -79,8 +116,11 @@ const OrderDetailModal = ({ isOpen, onClose, products, onChangeCount, t }) => {
                           }
                         />
                       </div>
-                      <div className="flex text-sm">
-                        <div>{product.price_per_unit_cents || 0}€/</div>
+                      <div className="flex text-sm select-none">
+                        <div>
+                          {product.price_per_unit_cents || 0}€
+                          {product.units ? "/" : ""}
+                        </div>
                         <div>{product.units}</div>
                       </div>
                     </div>
@@ -106,8 +146,24 @@ OrderDetailModal.propTypes = {
   products: arrayOf(shape()).isRequired,
   isOpen: bool.isRequired,
   onClose: func.isRequired,
-  onChangeCount: func.isRequired,
-  t: func.isRequired
+  t: func.isRequired,
+  updateProduct: func.isRequired,
+  removeProduct: func.isRequired,
+  setProducts: func.isRequired
 };
 
-export default OrderDetailModal;
+const mapStateToProps = state => {
+  const products = state.getIn(["products", "selectedProducts"]);
+
+  return {
+    products: products.size ? products.toJS() : []
+  };
+};
+
+const mapDispatchToProps = {
+  updateProduct: updateProductToCart,
+  removeProduct: removeProductToCart,
+  setProducts: setProductsToCart
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderDetailModal);

@@ -4,11 +4,9 @@ import { useInView } from "react-intersection-observer";
 import { func, bool, string, shape, arrayOf } from "prop-types";
 import { connect } from "react-redux";
 import ProductCard from "./ProductCard";
-import OrderDetailModal from "./OrderDetailModal";
 import {
   addProductToCart,
   removeProductToCart,
-  setProductsToCart,
   updateProductToCart
 } from "../../data/actions/products";
 
@@ -22,11 +20,9 @@ const ProductsGrid = ({
   cartProducts,
   addProduct,
   updateProduct,
-  removeProduct,
-  resetProducts
+  removeProduct
 }) => {
   const [products, setProducts] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
 
   const [ref, inView] = useInView({
     threshold: 0.9
@@ -68,7 +64,7 @@ const ProductsGrid = ({
           item.objectID === productId
             ? {
                 ...item,
-                count
+                count: count > 0 ? count : 1
               }
             : item
         )
@@ -87,27 +83,6 @@ const ProductsGrid = ({
       supplier
     });
   };
-
-  useEffect(() => {
-    if (cartProducts.length) {
-      setIsOpen(true);
-    }
-  }, [cartProducts]);
-
-  useEffect(() => {
-    const productsString = window.localStorage.getItem("cart_products");
-    if (productsString) {
-      try {
-        const parsedProducts = JSON.parse(productsString);
-
-        if (parsedProducts.length) {
-          resetProducts(parsedProducts);
-        }
-      } catch (err) {
-        console.error(err);
-      }
-    }
-  }, [resetProducts]);
 
   return (
     <div className="ais-InfiniteHits">
@@ -133,13 +108,6 @@ const ProductsGrid = ({
         </div>
       </div>
       <div className="ais-InfiniteHits-sentinel h-8 opacity-0" ref={ref} />
-      <OrderDetailModal
-        products={cartProducts}
-        onChangeCount={onChangeCount}
-        onClose={() => setIsOpen(false)}
-        isOpen={isOpen}
-        t={t}
-      />
     </div>
   );
 };
@@ -154,8 +122,7 @@ ProductsGrid.propTypes = {
   cartProducts: arrayOf(shape()).isRequired,
   addProduct: func.isRequired,
   updateProduct: func.isRequired,
-  removeProduct: func.isRequired,
-  resetProducts: func.isRequired
+  removeProduct: func.isRequired
 };
 
 const ConnectedHits = connectInfiniteHits(ProductsGrid);
@@ -171,8 +138,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   addProduct: addProductToCart,
   updateProduct: updateProductToCart,
-  removeProduct: removeProductToCart,
-  resetProducts: setProductsToCart
+  removeProduct: removeProductToCart
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConnectedHits);
