@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import { connectSearchBox } from "react-instantsearch-dom";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { arrayOf, func, shape, string } from "prop-types";
+import { arrayOf, bool, func, shape, string } from "prop-types";
 import debounce from "debounce";
 import { Box } from "@rebass/grid";
 import { useRouter } from "next/router";
@@ -26,7 +26,9 @@ const CustomFilter = React.forwardRef((props, myRef) => {
     placeholder,
     backUrl,
     t,
-    cartProducts
+    cartProducts,
+    hasFavourite,
+    hasBack
   } = props;
   const [value, setValue] = useState(currentRefinement);
   const router = useRouter();
@@ -56,21 +58,29 @@ const CustomFilter = React.forwardRef((props, myRef) => {
     [debouncedOnChange]
   );
 
+  const goBack = async () => {
+    if (backUrl) {
+      await router.push(backUrl);
+    } else {
+      await router.back();
+    }
+  };
+
   return (
     <div>
-      <div className="py-2 px-4 rounded-lg shadow-card flex justify-between bg-white items-center my-6">
+      <div className="py-4 px-6.5 rounded-6 shadow-card flex justify-between bg-white items-center my-6">
         <div className="flex space-x-4 items-center">
-          {backUrl && (
+          {hasBack && (
             <Box
               className="shadow-card w-10 h-10 rounded flex items-center justify-center cursor-pointer"
-              onClick={() => router.push(backUrl)}
+              onClick={goBack}
             >
               <ArrowLeftIcon />
             </Box>
           )}
           <div>
             <div className="font-semibold">{label}</div>
-            {backUrl && (
+            {hasFavourite && (
               <div className="flex space-x-2 mt-1 text-sm items-center">
                 <div>{t("app:addToFavourite")}</div>
                 <FavouriteIcon />
@@ -127,7 +137,9 @@ CustomFilter.propTypes = {
   currentRefinement: string.isRequired,
   backUrl: string,
   t: func.isRequired,
-  cartProducts: arrayOf(shape()).isRequired
+  cartProducts: arrayOf(shape()).isRequired,
+  hasFavourite: bool.isRequired,
+  hasBack: bool.isRequired
 };
 
 CustomFilter.defaultProps = {
