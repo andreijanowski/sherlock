@@ -1,14 +1,28 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connectInfiniteHits } from "react-instantsearch-dom";
 import { useInView } from "react-intersection-observer";
-import { func, bool, string, shape } from "prop-types";
+import { func, bool, string, shape, arrayOf } from "prop-types";
+import { connect } from "react-redux";
 import ProductCard from "./ProductCard";
-import OrderDetailModal from "./OrderDetailModal";
+import {
+  addProductToCart,
+  removeProductToCart,
+  updateProductToCart
+} from "../../data/actions/products";
 
-const ProductsGrid = ({ hits, hasMore, refineNext, t, lng, supplier }) => {
-  const [selectedProductIds, setSelectedProductIds] = useState([]);
+const ProductsGrid = ({
+  hits,
+  hasMore,
+  refineNext,
+  t,
+  lng,
+  supplier,
+  cartProducts,
+  addProduct,
+  updateProduct,
+  removeProduct
+}) => {
   const [products, setProducts] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
 
   const [ref, inView] = useInView({
     threshold: 0.9
@@ -21,72 +35,54 @@ const ProductsGrid = ({ hits, hasMore, refineNext, t, lng, supplier }) => {
   }, [hasMore, inView, refineNext]);
 
   useEffect(() => {
-    setProducts(
+    setProducts(prev =>
       hits.map(item => ({
         ...item,
-        count: 1
+        count:
+          prev.find(product => product.objectID === item.objectID)?.count || 1
       }))
     );
   }, [hits]);
 
-  const increase = productId => {
-    const product = products.find(item => item.objectID === productId);
-    if (!product) {
-      return;
-    }
-    setProducts(
-      products.map(item =>
-        item.objectID === productId
-          ? {
-              ...item,
-              count: product.count + 1
-            }
-          : item
-      )
-    );
-  };
-
-  const decrease = productId => {
-    const product = products.find(item => item.objectID === productId);
-    if (!product) {
-      return;
-    }
-    if (product.count === 1) {
-      setSelectedProductIds(
-        selectedProductIds.filter(item => item !== productId)
-      );
-      return;
-    }
-
-    setProducts(
-      products.map(item =>
-        item.objectID === productId
-          ? {
-              ...item,
-              count: product.count - 1
-            }
-          : item
-      )
-    );
-  };
-
-  const onAddProduct = productId => {
-    setSelectedProductIds([...selectedProductIds, productId]);
-  };
-
   useEffect(() => {
-    if (selectedProductIds.length) {
-      setIsOpen(true);
-    }
-  }, [selectedProductIds]);
+    setProducts(prev =>
+      prev.map(item => ({
+        ...item,
+        count:
+          cartProducts.find(
+            selectedProduct => selectedProduct.objectID === item.objectID
+          )?.count || item.count
+      }))
+    );
+  }, [cartProducts]);
 
-  const selectedProducts = useMemo(
-    () =>
-      selectedProductIds.map(item =>
-        products.find(product => product.objectID === item)
-      ),
-    [products, selectedProductIds]
-  );
+  const onChangeCount = (productId, count) => {
+    const product = products.find(item => item.objectID === productId);
+    if (product) {
+      setProducts(
+        products.map(item =>
+          item.objectID === productId
+            ? {
+                ...item,
+                count: count > 0 ? count : 1
+              }
+            : item
+        )
+      );
+    }
+    if (count === 0) {
+      removeProduct(productId);
+    } else {
+      updateProduct(productId, count);
+    }
+  };
+
+  const onAddProduct = product => {
+    addProduct({
+      ...product,
+      supplier
+    });
+  };
 
   return (
     <div className="ais-InfiniteHits">
@@ -100,9 +96,10 @@ const ProductsGrid = ({ hits, hasMore, refineNext, t, lng, supplier }) => {
                 product={hit}
                 lng={lng}
                 onAdd={onAddProduct}
-                selected={selectedProductIds.includes(hit.objectID)}
-                increase={increase}
-                decrease={decrease}
+                selected={
+                  !!cartProducts.find(item => item.objectID === hit.objectID)
+                }
+                onChangeCount={onChangeCount}
               />
             ))
           ) : (
@@ -111,15 +108,6 @@ const ProductsGrid = ({ hits, hasMore, refineNext, t, lng, supplier }) => {
         </div>
       </div>
       <div className="ais-InfiniteHits-sentinel h-8 opacity-0" ref={ref} />
-      <OrderDetailModal
-        products={selectedProducts}
-        increase={increase}
-        decrease={decrease}
-        onClose={() => setIsOpen(false)}
-        isOpen={isOpen}
-        supplier={supplier}
-        t={t}
-      />
     </div>
   );
 };
@@ -130,9 +118,27 @@ ProductsGrid.propTypes = {
   refineNext: func.isRequired,
   t: func.isRequired,
   lng: string.isRequired,
-  supplier: shape().isRequired
+  supplier: shape().isRequired,
+  cartProducts: arrayOf(shape()).isRequired,
+  addProduct: func.isRequired,
+  updateProduct: func.isRequired,
+  removeProduct: func.isRequired
 };
 
 const ConnectedHits = connectInfiniteHits(ProductsGrid);
 
-export default ConnectedHits;
+const mapStateToProps = state => {
+  const products = state.getIn(["products", "selectedProducts"]);
+
+  return {
+    cartProducts: products.size ? products.toJS() : []
+  };
+};
+
+const mapDispatchToProps = {
+  addProduct: addProductToCart,
+  updateProduct: updateProductToCart,
+  removeProduct: removeProductToCart
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ConnectedHits);
