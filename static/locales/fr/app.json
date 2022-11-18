@@ -17,7 +17,9 @@
   "addToFavourite": "Ajouter aux favoris",
   "finalizeMyOrder": "Finaliser ma commande",
   "myCart": "Mon panier",
-  "all": "Toute",
+  "all": "Tous",
+  "add": "Ajouter",
+  "added": "Ajoutée",
   "socialMedia": "Les médias sociaux (bientôt)",
   "billing": "Facturation (bientôt)",
   "manageProfile": {

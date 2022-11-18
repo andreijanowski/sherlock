@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connectInfiniteHits } from "react-instantsearch-dom";
 import clsx from "clsx";
 import { useInView } from "react-intersection-observer";
-import { func, bool, string, shape } from "prop-types";
+import { func, bool, string, shape, arrayOf } from "prop-types";
 import { useRouter } from "next/router";
 import { Box } from "@rebass/grid";
 
@@ -29,7 +29,7 @@ const CustomListItem = ({ hit, className, lng }) => {
       <div className="px-3 py-4">
         <div className="font-semibold mb-2 break-all">{hit.name}</div>
         <div className="text-sm text-gray-500 break-all">
-          {(hit.supplier_categories.map(item => item.name) || []).join(", ")}
+          {(hit.supplier_categories?.map(item => item.name) || []).join(", ")}
         </div>
       </div>
     </Box>
@@ -77,7 +77,7 @@ const CustomHits = ({ hits, hasMore, refineNext, t, lng }) => {
 };
 
 CustomHits.propTypes = {
-  hits: shape().isRequired,
+  hits: arrayOf(shape()).isRequired,
   hasMore: bool.isRequired,
   refineNext: func.isRequired,
   t: func.isRequired,
