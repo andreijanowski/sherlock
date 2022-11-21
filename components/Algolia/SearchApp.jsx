@@ -1,7 +1,7 @@
 import React from "react";
 import { InstantSearch, Configure } from "react-instantsearch-dom";
 
-import { arrayOf, func, node, number, oneOf, string } from "prop-types";
+import { arrayOf, bool, func, node, number, oneOf, string } from "prop-types";
 import ConnectedFilter from "./ConnectedFilter";
 
 const SearchApp = ({
@@ -13,6 +13,8 @@ const SearchApp = ({
   backUrl,
   filters,
   t,
+  hasFavourite,
+  hasBack,
   ...restProps
 }) => (
   <div className="flex-1 flex flex-col">
@@ -31,6 +33,8 @@ const SearchApp = ({
         label={label}
         placeholder={placeholder}
         t={t}
+        hasBack={hasBack}
+        hasFavourite={hasFavourite}
       />
 
       {children}
@@ -46,7 +50,9 @@ SearchApp.propTypes = {
   children: oneOf([arrayOf(node), node]).isRequired,
   backUrl: string,
   filters: string,
-  t: func.isRequired
+  t: func.isRequired,
+  hasFavourite: bool,
+  hasBack: bool
 };
 
 SearchApp.defaultProps = {
@@ -54,7 +60,9 @@ SearchApp.defaultProps = {
   placeholder: "",
   hitsPerPage: 50,
   backUrl: "",
-  filters: ""
+  filters: "",
+  hasFavourite: false,
+  hasBack: false
 };
 
 export default SearchApp;

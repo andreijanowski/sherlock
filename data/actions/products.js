@@ -5,7 +5,8 @@ import {
   ADD_PRODUCT_TO_CART,
   UPDATE_PRODUCT_TO_CART,
   REMOVE_PRODUCT_TO_CART,
-  SET_PRODUCTS_TO_CART
+  SET_PRODUCTS_TO_CART,
+  REMOVE_PRODUCTS_BY_SUPPLIER_TO_CART
 } from "types/products";
 import { getRelationships } from "./utils";
 
@@ -81,5 +82,12 @@ export const setProductsToCart = products => ({
   type: SET_PRODUCTS_TO_CART,
   payload: {
     products
+  }
+});
+
+export const removeProductsBySupplier = supplierName => ({
+  type: REMOVE_PRODUCTS_BY_SUPPLIER_TO_CART,
+  payload: {
+    supplierName
   }
 });
