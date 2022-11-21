@@ -25,6 +25,8 @@ import dashboard from "./dashboard";
 import newsroom from "./newsroom";
 import intelligence from "./intelligence";
 import products from "./products";
+import supplierOrders from "./supplierOrders";
+import supplierElements from "./supplierElements";
 
 export default {
   app,
@@ -53,5 +55,7 @@ export default {
   payments,
   newsroom,
   intelligence,
-  products
+  products,
+  supplierOrders,
+  supplierElements
 };

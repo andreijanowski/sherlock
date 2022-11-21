@@ -3,7 +3,8 @@ import {
   UPDATE_PRODUCT_TO_CART,
   REMOVE_PRODUCT_TO_CART,
   SET_PRODUCTS_TO_CART,
-  REMOVE_PRODUCTS_BY_SUPPLIER_TO_CART
+  REMOVE_PRODUCTS_BY_SUPPLIER_TO_CART,
+  CLEAR_CART
 } from "types/products";
 import { fromJS, Record } from "immutable";
 
@@ -58,6 +59,10 @@ const reducer = (state = initialState, { type, payload }) => {
 
       window.localStorage.setItem("cart_products", JSON.stringify(products));
       return state.setIn(["selectedProducts"], fromJS(products));
+    }
+    case CLEAR_CART: {
+      window.localStorage.setItem("cart_products", JSON.stringify([]));
+      return state.setIn(["selectedProducts"], fromJS([]));
     }
     default: {
       return state;
