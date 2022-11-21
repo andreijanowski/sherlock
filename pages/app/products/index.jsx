@@ -53,6 +53,8 @@ const ProductsPage = ({ t, lng }) => {
         indexName="SupplierProduct_staging"
         label={name}
         backUrl={`/${lng}/app/suppliers`}
+        hasBack
+        hasFavourite
         placeholder={t("app:supplierSearchPlaceholder")}
         filters={`supplier_name: "${name}"`}
         t={t}
