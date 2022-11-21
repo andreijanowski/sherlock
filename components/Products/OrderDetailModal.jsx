@@ -5,6 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { groupBy } from "lodash";
 import { connect } from "react-redux";
+import { Box } from "@rebass/grid";
+import { useRouter } from "next/router";
+import { useLng } from "utils/hooks";
 import { CartIcon, CloseCircleIcon } from "../Icons";
 import {
   removeProductToCart,
@@ -21,6 +24,8 @@ const OrderDetailModal = ({
   removeProduct,
   setProducts
 }) => {
+  const router = useRouter();
+  const lng = useLng();
   const groupedBySupplier = useMemo(() => groupBy(products, "supplier_name"), [
     products
   ]);
@@ -130,11 +135,16 @@ const OrderDetailModal = ({
             ))}
           </div>
 
-          <div className="absolute w-full bottom-0 left-0 h-21 flex items-center justify-center space-x-3 shadow-card bg-white">
-            <div className="text-gray-900 text-xl font-semibold">
-              {t("app:finalizeMyOrder")}
-            </div>
-            <CartIcon className="w-6 text-gray-900" />
+          <div className="absolute w-full bottom-0 left-0 h-21 flex items-center justify-center shadow-card bg-white">
+            <Box
+              className="flex items-center space-x-3 cursor-pointer"
+              onClick={() => router.push(`/${lng}/app/cart`)}
+            >
+              <div className="text-gray-900 text-xl font-semibold">
+                {t("app:finalizeMyOrder")}
+              </div>
+              <CartIcon className="w-6 text-gray-900" />
+            </Box>
           </div>
         </div>
       </Modal>
