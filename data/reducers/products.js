@@ -2,7 +2,8 @@ import {
   ADD_PRODUCT_TO_CART,
   UPDATE_PRODUCT_TO_CART,
   REMOVE_PRODUCT_TO_CART,
-  SET_PRODUCTS_TO_CART
+  SET_PRODUCTS_TO_CART,
+  REMOVE_PRODUCTS_BY_SUPPLIER_TO_CART
 } from "types/products";
 import { fromJS, Record } from "immutable";
 
@@ -47,6 +48,16 @@ const reducer = (state = initialState, { type, payload }) => {
     }
     case SET_PRODUCTS_TO_CART: {
       return state.setIn(["selectedProducts"], fromJS(payload.products));
+    }
+    case REMOVE_PRODUCTS_BY_SUPPLIER_TO_CART: {
+      let products = state.get("selectedProducts").toJS();
+
+      products = products.filter(
+        item => item.supplier_name !== payload.supplierName
+      );
+
+      window.localStorage.setItem("cart_products", JSON.stringify(products));
+      return state.setIn(["selectedProducts"], fromJS(products));
     }
     default: {
       return state;
