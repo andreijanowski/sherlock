@@ -68,7 +68,7 @@ const CustomFilter = React.forwardRef((props, myRef) => {
 
   return (
     <div>
-      <div className="py-4 px-6.5 rounded-6 shadow-card flex justify-between bg-white items-center my-6">
+      <div className="py-4 px-6.5 rounded-6 shadow-card flex-col space-y-4 flex lg:flex-row lg:space-y-0 justify-between bg-white items-center my-4 md:my-6">
         <div className="flex space-x-4 items-center">
           {hasBack && (
             <Box
@@ -95,7 +95,7 @@ const CustomFilter = React.forwardRef((props, myRef) => {
             placeholder={placeholder}
             defaultValue={currentRefinement}
             onChange={handleChange}
-            className="py-2 px-4 border border-gray-300 h-12 rounded min-w-100 pr-10 focus:outline-none"
+            className="py-2 px-4 border border-gray-300 h-12 rounded md:min-w-100 pr-10 focus:outline-none"
           />
           <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 flex items-center space-x-3">
             {value && (

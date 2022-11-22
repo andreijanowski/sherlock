@@ -30,6 +30,12 @@
   "cart": "Carro",
   "socialMedia": "Redes sociales (pronto)",
   "billing": "Facturación (pronto)",
+  "requestSuccessSent": {
+    "title": "¡Su solicitud fue enviada con éxito!",
+    "description": "Puede encontrar sus pedidos en la pestaña de historial y reordenarlos cuando sea necesario.",
+    "goToOrderHistory": "Ir al historial de pedidos",
+    "gotIt": "Entiendo"
+  },
   "manageProfile": {
     "manageProfile": "Administrar perfil",
     "basicInformation": "Información básica",
