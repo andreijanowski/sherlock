@@ -183,6 +183,50 @@ https://sherlock.foodetective.co
 
 ## Checks
 
+### Translations
+
+Currently, you will need to install simpleen globally.
+
+```bash
+$ yarn add --global simpleen
+```
+
+When updating specific text in a `<language>/*.json` file under `static/locales`:
+
+#### Adding/Updating Translations
+
+For adding new text for translations please add only to the en.json and run:
+
+```bash
+$ yarn translate
+```
+
+This will automatically translate and update all the files under translated.
+
+You will then need to check the translations and fix any issues such as simpleen replacing `}}` with `}`.
+
+Then you should commit your changes and upload the translations to simpleen.
+
+```bash
+$ yarn simpleen upload
+```
+
+#### Manually Updating Translations
+
+For manually editing one specific entry in lets say es.json, after adding the entry change run:
+
+```bash
+$ yarn simpleen upload
+```
+
+#### Usage
+
+To see available simpleen credits run
+
+```bash
+$ yarn simpleen usage
+```
+
 ### Linters
 
 `yarn lint` triggers linters:
