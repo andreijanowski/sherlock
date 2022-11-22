@@ -3,14 +3,8 @@ import { getGroupsData } from "../utils";
 
 export const getInitialValues = ({ business, businessGroups }) => {
   if (business) {
-    const {
-      types,
-      cuisines,
-      foodsAndDrinks,
-      quirks,
-      diets,
-      michelinStars
-    } = getGroupsData(businessGroups);
+    const { types, cuisines, foodsAndDrinks, quirks, diets, michelinStars } =
+      getGroupsData(businessGroups);
 
     const phoneCountry = countriesPhoneCodes.find(
       ({ value: { code, prefix } }) =>

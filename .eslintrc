@@ -1,48 +1,48 @@
 {
-    "env": {
-        "browser": true,
-        "node": true
-    },
-    "extends": [
-        "airbnb",
-        "prettier"
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "extends": [
+    "airbnb",
+    "prettier"
+  ],
+  "parser": "babel-eslint",
+  "plugins": [
+    "prettier",
+    "react-hooks"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error"
     ],
-    "parser": "babel-eslint",
-    "plugins": [
-        "prettier",
-        "react-hooks"
-    ],
-    "rules": {
-        "prettier/prettier": [
-            "error"
-        ],
-        "react-hooks/rules-of-hooks": "error",
-        "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.jsx"
+      ],
+      "rules": {
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-one-expression-per-line": "off",
+        "jsx-a11y/anchor-is-valid": "off",
+        "react/jsx-indent": "off",
+        "react/jsx-closing-tag-location": "off",
+        "no-underscore-dangle": "off"
+      }
     },
-    "overrides": [
-        {
-            "files": [
-                "*.jsx"
-            ],
-            "rules": {
-                "react/react-in-jsx-scope": "off",
-                "react/jsx-one-expression-per-line": "off",
-                "jsx-a11y/anchor-is-valid": "off",
-                "react/jsx-indent": "off",
-                "react/jsx-closing-tag-location": "off",
-                "no-underscore-dangle": "off"
-            }
-        },
-        {
-            "files": [
-                "*.js",
-                "*.jsx"
-            ],
-            "rules": {
-                "no-console": "off",
-                "import/no-unresolved": "off",
-                "import/prefer-default-export": "off"
-            }
-        }
-    ]
+    {
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {
+        "no-console": "off",
+        "import/no-unresolved": "off",
+        "import/prefer-default-export": "off"
+      }
+    }
+  ]
 }

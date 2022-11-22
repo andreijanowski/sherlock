@@ -26,9 +26,10 @@ const OrderDetailModal = ({
 }) => {
   const router = useRouter();
   const lng = useLng();
-  const groupedBySupplier = useMemo(() => groupBy(products, "supplier_name"), [
-    products
-  ]);
+  const groupedBySupplier = useMemo(
+    () => groupBy(products, "supplier_name"),
+    [products]
+  );
 
   const onChangeCount = (productId, count) => {
     if (count === 0) {

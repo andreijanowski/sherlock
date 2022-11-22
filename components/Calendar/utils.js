@@ -138,11 +138,7 @@ export const parseEvents = ({
 };
 
 export const parseDateTime = (date, time) =>
-  moment(date)
-    .hour(0)
-    .minute(0)
-    .second(time)
-    .format("h:mm a");
+  moment(date).hour(0).minute(0).second(time).format("h:mm a");
 
 export const preparePeriodsList = t => [
   {

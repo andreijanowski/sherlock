@@ -110,10 +110,8 @@ const PARTNERS_URL =
 const CAREERS_FOODETECTIVE_EMAIL = "hello@foodetective.co";
 
 const USER_GUIDES_URL = {
-  fr:
-    "https://docs.google.com/document/d/18ytc8_ToYltMyFM-Yiax2lXMU7DgvvBvC5SeTtBTstc/edit",
-  en:
-    "https://docs.google.com/document/d/1DvgZpRWiBHzoHAwvhI9u1UFOl2ce8TZf2W7FHhsyKKY/edit"
+  fr: "https://docs.google.com/document/d/18ytc8_ToYltMyFM-Yiax2lXMU7DgvvBvC5SeTtBTstc/edit",
+  en: "https://docs.google.com/document/d/1DvgZpRWiBHzoHAwvhI9u1UFOl2ce8TZf2W7FHhsyKKY/edit"
 };
 
 const PARTOO_SDK_URL =
