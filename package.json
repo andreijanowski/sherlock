@@ -44,6 +44,7 @@
     "currency-codes": "^1.5.0",
     "debounce": "^1.2.1",
     "deep-object-diff": "^1.1.9",
+    "dompurify": "^2.4.1",
     "dotenv": "^8.0.0",
     "downshift": "^3.2.10",
     "express": "^4.17.1",
@@ -113,7 +114,7 @@
     "styled-components": "^4.2.1",
     "styled-normalize": "^8.0.6",
     "uuid": "^3.3.2",
-    "validator": "^11.0.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.12",

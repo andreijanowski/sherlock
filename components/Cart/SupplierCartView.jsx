@@ -1,12 +1,20 @@
 import React, { useMemo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { arrayOf, func, shape } from "prop-types";
+import { arrayOf, func, shape, string } from "prop-types";
 import { Box } from "@rebass/grid";
 import { TrashIcon } from "../Icons";
 import { useTranslation } from "../../i18n";
 
-const SupplierCartView = ({ products, onChangeCount, removeProducts }) => {
+const SupplierCartView = ({
+  products,
+  onChangeCount,
+  removeProducts,
+  comment,
+  onChangeComment,
+  deliveryDate,
+  onChangeDate
+}) => {
   const { t } = useTranslation();
 
   const totalPrice = useMemo(
@@ -84,7 +92,9 @@ const SupplierCartView = ({ products, onChangeCount, removeProducts }) => {
           <div className="text-gray-900 mb-2">{t("app:deliveryDate")}</div>
           <input
             className="text-gray-900 bg-white border border-gray-300 h-13 px-5 py-2 focus:outline-none w-full rounded"
-            placeholder=""
+            type="date"
+            value={deliveryDate}
+            onChange={e => onChangeDate(e.target.value)}
           />
         </div>
         <div>
@@ -92,6 +102,8 @@ const SupplierCartView = ({ products, onChangeCount, removeProducts }) => {
           <textarea
             className="w-full focus:outline-none border border-gray-300 h-28 rounded px-5 py-3"
             rows={4}
+            value={comment}
+            onChange={e => onChangeComment(e.target.value)}
           />
         </div>
       </div>
@@ -110,7 +122,16 @@ const SupplierCartView = ({ products, onChangeCount, removeProducts }) => {
 SupplierCartView.propTypes = {
   products: arrayOf(shape()).isRequired,
   onChangeCount: func.isRequired,
-  removeProducts: func.isRequired
+  removeProducts: func.isRequired,
+  comment: string,
+  onChangeComment: func.isRequired,
+  deliveryDate: string,
+  onChangeDate: func.isRequired
+};
+
+SupplierCartView.defaultProps = {
+  comment: "",
+  deliveryDate: new Date()
 };
 
 export default SupplierCartView;

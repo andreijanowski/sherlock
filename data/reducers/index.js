@@ -26,6 +26,8 @@ import newsroom from "./newsroom";
 import intelligence from "./intelligence";
 import products from "./products";
 import suppliers from "./suppliers";
+import supplierOrders from "./supplierOrders";
+import supplierElements from "./supplierElements";
 
 export default {
   app,
@@ -55,5 +57,7 @@ export default {
   newsroom,
   intelligence,
   products,
+  supplierOrders,
+  supplierElements,
   suppliers
 };
