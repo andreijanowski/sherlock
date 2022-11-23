@@ -24,7 +24,8 @@ import {
   FETCH_WORST_SALES_REQUEST,
   FETCH_LIVE_STREAM_REQUEST,
   FETCH_DOWNLOAD_POS_MENU_REQUEST,
-  POST_UPLOAD_POS_MENU_REQUEST
+  POST_UPLOAD_POS_MENU_REQUEST,
+  FETCH_BUSINESS_FAVORITE_SUPPLIERS_REQUEST
 } from "types/businesses";
 
 const PER_PAGE = 200;
@@ -352,4 +353,17 @@ export const uploadPOSMenu = id => ({
     endpoint: `/api/v1/businesses/${id}/hubrise/upload_catalog`
   },
   meta: { thunk: true, id }
+});
+
+export const fetchBusinessFavoriteSuppliers = (id, page = 1) => ({
+  type: FETCH_BUSINESS_FAVORITE_SUPPLIERS_REQUEST,
+  payload: {
+    method: "GET",
+    endpoint: `/api/v1/businesses/${id}/favorite_suppliers`,
+    params: {
+      per_page: PER_PAGE,
+      page
+    }
+  },
+  meta: { thunk: true, page }
 });

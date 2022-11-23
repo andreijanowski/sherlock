@@ -28,7 +28,8 @@ const CustomFilter = React.forwardRef((props, myRef) => {
     t,
     cartProducts,
     hasFavourite,
-    hasBack
+    hasBack,
+    onAddToFavorite
   } = props;
   const [value, setValue] = useState(currentRefinement);
   const router = useRouter();
@@ -81,10 +82,13 @@ const CustomFilter = React.forwardRef((props, myRef) => {
           <div>
             <div className="font-semibold">{label}</div>
             {hasFavourite && (
-              <div className="flex space-x-2 mt-1 text-sm items-center">
+              <Box
+                className="flex space-x-2 mt-1 text-sm items-center cursor-pointer"
+                onClick={onAddToFavorite}
+              >
                 <div>{t("app:addToFavourite")}</div>
                 <FavouriteIcon />
-              </div>
+              </Box>
             )}
           </div>
         </div>
@@ -139,11 +143,13 @@ CustomFilter.propTypes = {
   t: func.isRequired,
   cartProducts: arrayOf(shape()).isRequired,
   hasFavourite: bool.isRequired,
-  hasBack: bool.isRequired
+  hasBack: bool.isRequired,
+  onAddToFavorite: func
 };
 
 CustomFilter.defaultProps = {
-  backUrl: ""
+  backUrl: "",
+  onAddToFavorite: () => {}
 };
 
 const ConnectedFilter = connectSearchBox(CustomFilter);
