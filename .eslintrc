@@ -9,6 +9,7 @@
   ],
   "rules": {
     "import/no-anonymous-default-export": "off",
+    "prettier/prettier": "warn"
   },
   "overrides": [
     {
