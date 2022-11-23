@@ -3,7 +3,6 @@ import { connectSearchBox } from "react-instantsearch-dom";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { arrayOf, bool, func, shape, string } from "prop-types";
-import debounce from "debounce";
 import { Box } from "@rebass/grid";
 import { useRouter } from "next/router";
 import { connect } from "react-redux";
@@ -15,6 +14,7 @@ import {
   FavouriteIcon
 } from "../Icons";
 import OrderDetailModal from "../Products/OrderDetailModal";
+import { useDebouncedCallback } from "use-debounce";
 
 const DEBOUNCE = 300;
 
@@ -41,9 +41,7 @@ const CustomFilter = React.forwardRef((props, myRef) => {
     [refine]
   );
 
-  const debouncedOnChange = useCallback(debounce(onSubmit, DEBOUNCE), [
-    onSubmit
-  ]);
+  const debouncedOnChange = useDebouncedCallback(onSubmit, DEBOUNCE);
 
   const clearSearch = useCallback(() => {
     setValue("");
