@@ -141,6 +141,7 @@
     "nodemon": "^2.0.2",
     "postcss": "^8.4.18",
     "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.13",
     "react-test-renderer": "^16.6.3",
     "redux-devtools-extension": "^2.13.7",
     "redux-logger": "^3.0.6",
