@@ -99,11 +99,13 @@ const TableDetails = ({
                     }).format("hh:mm A")}`,
                     value: [
                       `${r.getIn(["attributes", "name"])}`,
-                      `${tableReservationBooking &&
+                      `${
+                        tableReservationBooking &&
                         tableReservationBooking.getIn([
                           "attributes",
                           "seatsTaken"
-                        ])} ${t("seatsTaken")} (${t("partySize")}: ${r.getIn([
+                        ])
+                      } ${t("seatsTaken")} (${t("partySize")}: ${r.getIn([
                         "attributes",
                         "partySize"
                       ])})`

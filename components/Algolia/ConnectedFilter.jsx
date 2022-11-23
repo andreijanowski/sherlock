@@ -3,7 +3,6 @@ import { connectSearchBox } from "react-instantsearch-dom";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { arrayOf, bool, func, shape, string } from "prop-types";
-import debounce from "debounce";
 import { Box } from "@rebass/grid";
 import { useRouter } from "next/router";
 import { connect } from "react-redux";
@@ -15,6 +14,7 @@ import {
   FavouriteIcon
 } from "../Icons";
 import OrderDetailModal from "../Products/OrderDetailModal";
+import { useDebouncedCallback } from "use-debounce";
 
 const DEBOUNCE = 300;
 
@@ -42,9 +42,7 @@ const CustomFilter = React.forwardRef((props, myRef) => {
     [refine]
   );
 
-  const debouncedOnChange = useCallback(debounce(onSubmit, DEBOUNCE), [
-    onSubmit
-  ]);
+  const debouncedOnChange = useDebouncedCallback(onSubmit, DEBOUNCE);
 
   const clearSearch = useCallback(() => {
     setValue("");
@@ -69,11 +67,11 @@ const CustomFilter = React.forwardRef((props, myRef) => {
 
   return (
     <div>
-      <div className="py-4 px-6.5 rounded-6 shadow-card flex-col space-y-4 flex lg:flex-row lg:space-y-0 justify-between bg-white items-center my-4 md:my-6">
-        <div className="flex space-x-4 items-center">
+      <div className="my-4 flex flex-col items-center justify-between space-y-4 rounded-6 bg-white py-4 px-6.5 shadow-card md:my-6 lg:flex-row lg:space-y-0">
+        <div className="flex items-center space-x-4">
           {hasBack && (
             <Box
-              className="shadow-card w-10 h-10 rounded flex items-center justify-center cursor-pointer"
+              className="flex h-10 w-10 cursor-pointer items-center justify-center rounded shadow-card"
               onClick={goBack}
             >
               <ArrowLeftIcon />
@@ -83,7 +81,7 @@ const CustomFilter = React.forwardRef((props, myRef) => {
             <div className="font-semibold">{label}</div>
             {hasFavourite && (
               <Box
-                className="flex space-x-2 mt-1 text-sm items-center cursor-pointer"
+                className="mt-1 flex cursor-pointer items-center space-x-2 text-sm"
                 onClick={onAddToFavorite}
               >
                 <div>{t("app:addToFavourite")}</div>
@@ -99,9 +97,9 @@ const CustomFilter = React.forwardRef((props, myRef) => {
             placeholder={placeholder}
             defaultValue={currentRefinement}
             onChange={handleChange}
-            className="py-2 px-4 border border-gray-300 h-12 rounded md:min-w-100 pr-10 focus:outline-none"
+            className="h-12 rounded border border-gray-300 py-2 px-4 pr-10 focus:outline-none md:min-w-100"
           />
-          <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 flex items-center space-x-3">
+          <div className="absolute right-4 top-1/2 flex -translate-y-1/2 transform items-center space-x-3 text-gray-500">
             {value && (
               <FontAwesomeIcon
                 icon={faTimes}
@@ -113,11 +111,11 @@ const CustomFilter = React.forwardRef((props, myRef) => {
           </div>
         </div>
 
-        <div className="flex space-x-4 flex-shrink-0">
-          <ClockIcon className="text-gray-700 w-5 shrink-0" />
-          <HeartIcon className="text-gray-700 w-5 shrink-0 cursor-pointer" />
+        <div className="flex flex-shrink-0 space-x-4">
+          <ClockIcon className="w-5 shrink-0 text-gray-700" />
+          <HeartIcon className="w-5 shrink-0 cursor-pointer text-gray-700" />
           <Box
-            className="text-gray-700 cursor-pointer flex space-x-1 items-center"
+            className="flex cursor-pointer items-center space-x-1 text-gray-700"
             onClick={() => setIsOpen(true)}
           >
             <CartIcon className="w-5 shrink-0" />

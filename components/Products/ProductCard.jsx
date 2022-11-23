@@ -24,7 +24,7 @@ const ProductCard = ({
   return (
     <div
       className={clsx(
-        "bg-white rounded-4 flex flex-col shadow-card w-full p-2",
+        "flex w-full flex-col rounded-4 bg-white p-2 shadow-card",
         className
       )}
     >
@@ -33,12 +33,12 @@ const ProductCard = ({
         alt="logo"
         className="h-32.5 w-full rounded-4.5 object-cover"
       />
-      <div className="mt-3 px-2 flex flex-col justify-between flex-auto select-none">
-        <div className="flex justify-between flex-auto space-x-3">
-          <div className="flex-auto shrink-1 inline">
+      <div className="mt-3 flex flex-auto select-none flex-col justify-between px-2">
+        <div className="flex flex-auto justify-between space-x-3">
+          <div className="shrink-1 inline flex-auto">
             <div className="font-semibold">{product.name}</div>
           </div>
-          <div className="text-sm shrink-0 font-medium text-right">
+          <div className="shrink-0 text-right text-sm font-medium">
             <div>
               {parseCentsPriceToDottedFormat(
                 product.price_per_unit_cents || 0,
@@ -49,27 +49,27 @@ const ProductCard = ({
             <div>{product.units}</div>
           </div>
         </div>
-        <div className="text-gray-500 max-w-40 text-sm truncate">
+        <div className="max-w-40 truncate text-sm text-gray-500">
           {product.description}
         </div>
 
-        <div className="flex space-x-3 mt-3">
-          <div className="rounded-full h-10 w-21 flex space-x-2 items-center justify-center border border-black">
+        <div className="mt-3 flex space-x-3">
+          <div className="flex h-10 w-21 items-center justify-center space-x-2 rounded-full border border-black">
             <FontAwesomeIcon
               icon={faMinus}
-              className="cursor-pointer text-sm text-gray-900 cursor-pointer"
+              className="cursor-pointer cursor-pointer text-sm text-gray-900"
               onClick={() => onChangeCount(product.objectID, product.count - 1)}
             />
             <div>{product.count || 0}</div>
             <FontAwesomeIcon
               icon={faPlus}
-              className="cursor-pointer text-sm text-gray-900 cursor-pointer"
+              className="cursor-pointer cursor-pointer text-sm text-gray-900"
               onClick={() => onChangeCount(product.objectID, product.count + 1)}
             />
           </div>
           <Box
             className={clsx(
-              "rounded-full h-10 flex-1 flex justify-center items-center text-white cursor-pointer",
+              "flex h-10 flex-1 cursor-pointer items-center justify-center rounded-full text-white",
               selected ? "bg-gray-700" : "bg-gray-900"
             )}
             onClick={handleClick}

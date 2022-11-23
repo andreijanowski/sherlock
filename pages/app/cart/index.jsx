@@ -50,9 +50,10 @@ const CartPage = ({
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const groupedBySupplier = useMemo(() => groupBy(products, "supplier_name"), [
-    products
-  ]);
+  const groupedBySupplier = useMemo(
+    () => groupBy(products, "supplier_name"),
+    [products]
+  );
 
   const totalPrice = useMemo(
     () =>
@@ -141,8 +142,8 @@ const CartPage = ({
         t={t}
         hasBack
       >
-        <div className="rounded-6 shadow-card bg-white my-4 md:my-6 overflow-hidden">
-          <div className="py-6 md:py-8 px-6 md:px-8.5">
+        <div className="my-4 overflow-hidden rounded-6 bg-white shadow-card md:my-6">
+          <div className="py-6 px-6 md:py-8 md:px-8.5">
             {Object.values(groupedBySupplier).map(supplierProducts => {
               const supplierId = supplierProducts[0]?.supplier?.objectID;
               return (
@@ -158,21 +159,21 @@ const CartPage = ({
                 />
               );
             })}
-            <div className="flex justify-between items-center">
-              <div className="text-blue-900 text-xl font-bold">
+            <div className="flex items-center justify-between">
+              <div className="text-xl font-bold text-blue-900">
                 {t("app:estimatedTotal")}
               </div>
-              <div className="text-blue-900 text-xl font-bold">
+              <div className="text-xl font-bold text-blue-900">
                 {parseCentsPriceToDottedFormat(totalPrice, "EUR")}€
               </div>
             </div>
-            <div className="text-xs text-gray-700 mb-2">
+            <div className="mb-2 text-xs text-gray-700">
               {t("app:cartSummary")}
             </div>
           </div>
 
           <Box
-            className="w-full bg-green-50 text-green-700 text-xl font-bold h-25 flex items-center justify-center rounded-3 cursor-pointer"
+            className="flex h-25 w-full cursor-pointer items-center justify-center rounded-3 bg-green-50 text-xl font-bold text-green-700"
             onClick={onConfirmRequest}
           >
             {loading ? (
@@ -209,11 +210,7 @@ const mapStateToProps = state => {
   const businessData = state.getIn(["users", "currentBusiness", "data"]);
 
   const businessId =
-    businessData &&
-    businessData
-      .get("businesses")
-      .keySeq()
-      .first();
+    businessData && businessData.get("businesses").keySeq().first();
 
   return {
     products: products.size ? products.toJS() : [],

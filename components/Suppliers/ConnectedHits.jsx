@@ -25,7 +25,7 @@ const CustomListItem = ({
   return (
     <Box
       className={clsx(
-        "bg-white cursor-pointer rounded-4 shadow-card w-full p-2 relative",
+        "relative w-full cursor-pointer rounded-4 bg-white p-2 shadow-card",
         className
       )}
       onClick={() =>
@@ -40,7 +40,7 @@ const CustomListItem = ({
         className="h-32.5 w-full rounded-4.5"
       />
       <Box
-        className="absolute right-4 top-4 w-7 h-7 flex items-center justify-center rounded-2 bg-gray-100"
+        className="absolute right-4 top-4 flex h-7 w-7 items-center justify-center rounded-2 bg-gray-100"
         onClick={onToggleFavorite}
       >
         {isFavorite ? (
@@ -50,8 +50,8 @@ const CustomListItem = ({
         )}
       </Box>
       <div className="px-3 py-4">
-        <div className="font-semibold mb-2 break-all">{hit.name}</div>
-        <div className="text-sm text-gray-500 break-all">
+        <div className="mb-2 break-all font-semibold">{hit.name}</div>
+        <div className="break-all text-sm text-gray-500">
           {(hit.supplier_categories?.map(item => item.name) || []).join(", ")}
         </div>
       </div>
@@ -88,8 +88,8 @@ const CustomHits = ({
 
   return (
     <div className="ais-InfiniteHits">
-      <div className="w-full min-h-200">
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 5xl:grid-cols-9 6xl:grid-cols-10 7xl:grid-cols-11 gap-4 lg:gap-6 4xl:gap-8 ais-InfiniteHits-list">
+      <div className="min-h-200 w-full">
+        <div className="ais-InfiniteHits-list grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-6 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 4xl:gap-8 5xl:grid-cols-9 6xl:grid-cols-10 7xl:grid-cols-11">
           {hits.length ? (
             hits.map(hit => (
               <CustomListItem

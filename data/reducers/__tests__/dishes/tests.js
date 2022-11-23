@@ -153,12 +153,9 @@ describe("Dishes reducer", () => {
       ).toBe(postPictureSuccess.payload.rawData.data.id);
       expect(state.getIn(["data", "pictures"])).toBeDefined();
       expect(state.getIn(["data", "pictures"]).size).toBe(1);
-      expect(
-        state
-          .getIn(["data", "pictures"])
-          .first()
-          .get("id")
-      ).toBe(postPictureSuccess.payload.rawData.data.id);
+      expect(state.getIn(["data", "pictures"]).first().get("id")).toBe(
+        postPictureSuccess.payload.rawData.data.id
+      );
     });
   });
 

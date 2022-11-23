@@ -10,10 +10,7 @@ const ListItem = ({ item, removeWidget, setEditedWidgetId }) => (
       <Flex flexDirection="column" width={1}>
         <Domain>
           {item.getIn(["attributes", "domains"]) &&
-            item
-              .getIn(["attributes", "domains"])
-              .toArray()
-              .toString()}
+            item.getIn(["attributes", "domains"]).toArray().toString()}
         </Domain>
         <ApiKey>API_KEY: {item.getIn(["attributes", "apiKey"])}</ApiKey>
       </Flex>
