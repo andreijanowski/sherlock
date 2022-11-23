@@ -27,9 +27,10 @@ const OrderDetailModal = ({
 }) => {
   const router = useRouter();
   const lng = useLng();
-  const groupedBySupplier = useMemo(() => groupBy(products, "supplier_name"), [
-    products
-  ]);
+  const groupedBySupplier = useMemo(
+    () => groupBy(products, "supplier_name"),
+    [products]
+  );
 
   const onChangeCount = (productId, count) => {
     if (count === 0) {
@@ -67,23 +68,23 @@ const OrderDetailModal = ({
           closeIcon: "hidden"
         }}
       >
-        <div className="flex flex-col h-screen flex-auto pt-17 pb-5">
+        <div className="flex h-screen flex-auto flex-col pt-17 pb-5">
           <CloseCircleIcon
             className="absolute right-4 top-4 cursor-pointer"
             onClick={onClose}
           />
-          <div className="px-15.5 flex-1 overflow-auto mb-20">
-            <div className="font-bold text-xl mb-5">{t("app:myCart")}</div>
+          <div className="mb-20 flex-1 overflow-auto px-15.5">
+            <div className="mb-5 text-xl font-bold">{t("app:myCart")}</div>
 
             {Object.values(groupedBySupplier).map(supplierProducts => (
               <div
                 key={supplierProducts[0]?.supplier?.objectID}
                 className="mb-8"
               >
-                <div className="font-semibold text-gray-900 text-lg">
+                <div className="text-lg font-semibold text-gray-900">
                   {supplierProducts[0]?.supplier?.name}
                 </div>
-                <div className="text-gray-500 mb-4">
+                <div className="mb-4 text-gray-500">
                   {(
                     supplierProducts[0]?.supplier?.supplier_categories?.map(
                       item => item.name
@@ -92,23 +93,23 @@ const OrderDetailModal = ({
                 </div>
 
                 {supplierProducts.map(product => (
-                  <div key={product.objectID} className="flex space-x-4 mb-4">
+                  <div key={product.objectID} className="mb-4 flex space-x-4">
                     <div className="">
                       <img
                         src={product?.image?.url}
                         alt="logo"
-                        className="min-w-33 max-w-33 w-full rounded-4.5 h-33 object-cover"
+                        className="h-33 w-full min-w-33 max-w-33 rounded-4.5 object-cover"
                       />
                     </div>
                     <div className="select-none">
                       <div className="font-semibold">{product.name}</div>
-                      <div className="text-gray-500 text-sm">
+                      <div className="text-sm text-gray-500">
                         {product.description?.slice(0, 100)}
                       </div>
                       <div className="rounded-2.5 h-10 w-23 my-2.5 flex space-x-2 items-center justify-center border border-[#0F1138] text-gray-900">
                         <FontAwesomeIcon
                           icon={faMinus}
-                          className="cursor-pointer text-sm cursor-pointer"
+                          className="cursor-pointer cursor-pointer text-sm"
                           onClick={() =>
                             onChangeCount(product.objectID, product.count - 1)
                           }
@@ -116,7 +117,7 @@ const OrderDetailModal = ({
                         <div className="select-none">{product.count}</div>
                         <FontAwesomeIcon
                           icon={faPlus}
-                          className="cursor-pointer text-sm cursor-pointer"
+                          className="cursor-pointer cursor-pointer text-sm"
                           onClick={() =>
                             onChangeCount(product.objectID, product.count + 1)
                           }
@@ -139,9 +140,9 @@ const OrderDetailModal = ({
             ))}
           </div>
 
-          <div className="absolute w-full bottom-0 left-0 h-21 flex items-center justify-center shadow-card bg-white">
+          <div className="absolute bottom-0 left-0 flex h-21 w-full items-center justify-center bg-white shadow-card">
             <Box
-              className="flex items-center space-x-3 cursor-pointer"
+              className="flex cursor-pointer items-center space-x-3"
               onClick={() => router.push(`/${lng}/app/cart`)}
             >
               <div className="text-gray-900 text-[22px] font-semibold">

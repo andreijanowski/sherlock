@@ -7,7 +7,7 @@ import { theme } from "utils/theme";
 const Loading = ({ searching, children }) => (
   <div className="flex flex-col justify-end">
     {searching && (
-      <div className="flex-1 flex items-center justify-center">
+      <div className="flex flex-1 items-center justify-center">
         <PulseLoader color={`rgb(${theme.colors.blue})`} />
       </div>
     )}

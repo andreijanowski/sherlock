@@ -126,11 +126,7 @@ const mapState = (state, { i18n }) => {
   const suppliersData = state.getIn(["suppliers", "data", "suppliers"]);
 
   const businessId =
-    businessData &&
-    businessData
-      .get("businesses")
-      .keySeq()
-      .first();
+    businessData && businessData.get("businesses").keySeq().first();
 
   return {
     business: business && business.get("attributes"),

@@ -20,19 +20,19 @@ const SuccessModal = ({ isOpen, onClose }) => {
         closeIcon: "hidden"
       }}
     >
-      <div className="bg-white w-170">
-        <div className="w-full bg-blue-800 text-white font-bold p-10 text-center text-xl">
+      <div className="w-170 bg-white">
+        <div className="w-full bg-blue-800 p-10 text-center text-xl font-bold text-white">
           {t("app:requestSuccessSent.title")}
         </div>
         <div className="p-8">
-          <div className="text-blue-A900 text-center mb-8 max-w-120 mx-auto font-semibold">
+          <div className="mx-auto mb-8 max-w-120 text-center font-semibold text-blue-A900">
             {t("app:requestSuccessSent.description")}
           </div>
           <div className="flex justify-center">
             <img src="/static/img/orderHistory.png" alt="tablet" />
           </div>
 
-          <div className="flex items-center space-x-4 mt-12 justify-center mb-4">
+          <div className="mt-12 mb-4 flex items-center justify-center space-x-4">
             <Box
               className="text-blue-600 cursor-pointer font-semibold leading-1.4"
               onClick={() => router.push(`/${lng}/app/suppliers`)}

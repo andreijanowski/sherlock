@@ -24,7 +24,7 @@ const ProductCard = ({
   return (
     <div
       className={clsx(
-        "bg-white rounded-4 flex flex-col shadow-card w-full p-2",
+        "flex w-full flex-col rounded-4 bg-white p-2 shadow-card",
         className
       )}
     >
@@ -53,13 +53,13 @@ const ProductCard = ({
           <div className="flex-2 rounded-2.5 h-10 w-21 flex space-x-2 items-center justify-center border border-[#0F1138]">
             <FontAwesomeIcon
               icon={faMinus}
-              className="cursor-pointer text-sm text-gray-900 cursor-pointer"
+              className="cursor-pointer cursor-pointer text-sm text-gray-900"
               onClick={() => onChangeCount(product.objectID, product.count - 1)}
             />
             <div>{product.count || 0}</div>
             <FontAwesomeIcon
               icon={faPlus}
-              className="cursor-pointer text-sm text-gray-900 cursor-pointer"
+              className="cursor-pointer cursor-pointer text-sm text-gray-900"
               onClick={() => onChangeCount(product.objectID, product.count + 1)}
             />
           </div>

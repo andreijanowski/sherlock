@@ -12,7 +12,7 @@ const CustomListItem = ({ hit, className, lng }) => {
   return (
     <Box
       className={clsx(
-        "bg-white cursor-pointer rounded-4 shadow-card w-full p-2 relative",
+        "relative w-full cursor-pointer rounded-4 bg-white p-2 shadow-card",
         className
       )}
       onClick={() =>
@@ -55,8 +55,8 @@ const CustomHits = ({ hits, hasMore, refineNext, t, lng }) => {
 
   return (
     <div className="ais-InfiniteHits">
-      <div className="w-full min-h-200">
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 5xl:grid-cols-9 6xl:grid-cols-10 7xl:grid-cols-11 gap-4 lg:gap-6 4xl:gap-8 ais-InfiniteHits-list">
+      <div className="min-h-200 w-full">
+        <div className="ais-InfiniteHits-list grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-6 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 4xl:gap-8 5xl:grid-cols-9 6xl:grid-cols-10 7xl:grid-cols-11">
           {hits.length ? (
             hits.map(hit => (
               <CustomListItem

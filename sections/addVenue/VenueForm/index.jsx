@@ -133,7 +133,6 @@ class VenueForm extends PureComponent {
                         <Field
                           name="venueNumberCustom"
                           component="input"
-                          autoFocus
                           placeholder={t("forms:placeholder.custom")}
                         />
                       ) : (

@@ -182,9 +182,7 @@ export const fetchBusinessReservations = (
   startDate = moment({ h: 0, m: 0, s: 0, ms: 0 })
     .subtract(7, "d")
     .toISOString(),
-  endDate = moment({ h: 0, m: 0, s: 0, ms: 0 })
-    .add(1, "y")
-    .toISOString(),
+  endDate = moment({ h: 0, m: 0, s: 0, ms: 0 }).add(1, "y").toISOString(),
   from = 0,
   to = 86400
 ) => ({

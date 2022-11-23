@@ -17,7 +17,7 @@ const SearchApp = ({
   hasBack,
   ...restProps
 }) => (
-  <div className="flex-1 flex flex-col">
+  <div className="flex flex-1 flex-col">
     <InstantSearch
       indexName={indexName}
       resultsState={restProps.resultsState}

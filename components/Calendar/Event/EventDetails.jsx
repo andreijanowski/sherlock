@@ -40,8 +40,9 @@ const EventDetails = ({
         </Time>
         <Name>{event.resource.name}</Name>
         {!!event.resource.priceCents && (
-          <Price>{`${normalizePrice(event.resource.priceCents)}${event.resource
-            .currency || ""}`}</Price>
+          <Price>{`${normalizePrice(event.resource.priceCents)}${
+            event.resource.currency || ""
+          }`}</Price>
         )}
       </MainInfo>
       <Flex

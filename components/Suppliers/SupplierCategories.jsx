@@ -37,7 +37,7 @@ const SupplierCategories = ({ searchClient, lng, t }) => {
     <div>
       <div>
         {loading ? (
-          <div className="flex-1 flex items-center justify-center py-3">
+          <div className="flex flex-1 items-center justify-center py-3">
             <PulseLoader color={`rgb(${theme.colors.blue})`} />
           </div>
         ) : (
