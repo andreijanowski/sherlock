@@ -29,7 +29,7 @@ const CustomListItem = ({ hit, className, lng }) => {
       <div className="px-3 py-4">
         <div className="font-semibold mb-2 break-all">{hit.name}</div>
         <div className="text-sm text-gray-500 break-all">
-          {(hit.supplier_categories?.map(item => item.name) || []).join(", ")}
+          {(hit.supplier_categories?.map(item => item?.name) || []).join(", ")}
         </div>
       </div>
     </Box>

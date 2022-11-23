@@ -34,10 +34,11 @@ const ProductsPage = ({ t, lng }) => {
   }, [name, id]);
 
   const categories = useMemo(
-    () => [
-      "",
-      ...(supplier?.supplier_categories?.map(item => item.name) || [])
-    ],
+    () =>
+      supplier?.supplier_categories?.map(item => ({
+        label: item.name,
+        value: item.name
+      })) || [],
     [supplier]
   );
 
