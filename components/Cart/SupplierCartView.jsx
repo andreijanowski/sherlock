@@ -25,25 +25,25 @@ const SupplierCartView = ({
   );
 
   return (
-    <div className="mb-8 relative">
-      <div className="font-semibold text-blue-900 text-xl">
+    <div className="relative mb-8">
+      <div className="text-xl font-semibold text-blue-900">
         {products[0]?.supplier?.name}
       </div>
-      <div className="text-gray-500 mb-6">
+      <div className="mb-6 text-gray-500">
         {(
           products[0]?.supplier?.supplier_categories?.map(item => item.name) ||
           []
         ).join(", ")}
       </div>
       <Box
-        className="absolute right-0 top-0 flex items-center space-x-2 cursor-pointer"
+        className="absolute right-0 top-0 flex cursor-pointer items-center space-x-2"
         onClick={() => removeProducts(products[0]?.supplier?.name)}
       >
         <div>{t("app:deleteAllItems")}</div>
         <TrashIcon width={16} />
       </Box>
 
-      <div className="flex space-x-8 mb-5 overflow-x-auto overflow-y-hidden">
+      <div className="mb-5 flex space-x-8 overflow-x-auto overflow-y-hidden">
         {products.map(product => (
           <div key={product.objectID} className="mb-4">
             <div className="flex space-x-4">
@@ -51,19 +51,19 @@ const SupplierCartView = ({
                 <img
                   src={product?.image?.url}
                   alt="logo"
-                  className="min-w-33 max-w-33 w-full rounded-4.5 h-33 object-cover"
+                  className="h-33 w-full min-w-33 max-w-33 rounded-4.5 object-cover"
                 />
               </div>
-              <div className="select-none max-w-40 flex flex-col justify-between">
+              <div className="flex max-w-40 select-none flex-col justify-between">
                 <div className="font-semibold">{product.name}</div>
                 <div>
-                  <div className="text-gray-500 text-sm truncate">
+                  <div className="truncate text-sm text-gray-500">
                     {product.description?.slice(0, 100)}
                   </div>
-                  <div className="rounded-full h-10 w-23 my-2.5 flex space-x-2 items-center justify-center border border-gray-900 text-gray-900">
+                  <div className="my-2.5 flex h-10 w-23 items-center justify-center space-x-2 rounded-full border border-gray-900 text-gray-900">
                     <FontAwesomeIcon
                       icon={faMinus}
-                      className="cursor-pointer text-sm cursor-pointer"
+                      className="cursor-pointer cursor-pointer text-sm"
                       onClick={() =>
                         onChangeCount(product.objectID, product.count - 1)
                       }
@@ -71,13 +71,13 @@ const SupplierCartView = ({
                     <div className="select-none">{product.count}</div>
                     <FontAwesomeIcon
                       icon={faPlus}
-                      className="cursor-pointer text-sm cursor-pointer"
+                      className="cursor-pointer cursor-pointer text-sm"
                       onClick={() =>
                         onChangeCount(product.objectID, product.count + 1)
                       }
                     />
                   </div>
-                  <div className="flex text-sm select-none">
+                  <div className="flex select-none text-sm">
                     <div>
                       {parseCentsPriceToDottedFormat(
                         product.price_per_unit_cents || 0,
@@ -91,25 +91,25 @@ const SupplierCartView = ({
               </div>
             </div>
             {!product.price_per_unit_cents && (
-              <div className="text-red-500 text-sm mt-3">Price is required</div>
+              <div className="mt-3 text-sm text-red-500">Price is required</div>
             )}
           </div>
         ))}
       </div>
       <div className="max-w-160">
         <div className="mb-5">
-          <div className="text-gray-900 mb-2">{t("app:deliveryDate")}</div>
+          <div className="mb-2 text-gray-900">{t("app:deliveryDate")}</div>
           <input
-            className="text-gray-900 bg-white border border-gray-300 h-13 px-5 py-2 focus:outline-none w-full rounded"
+            className="h-13 w-full rounded border border-gray-300 bg-white px-5 py-2 text-gray-900 focus:outline-none"
             type="date"
             value={deliveryDate}
             onChange={e => onChangeDate(e.target.value)}
           />
         </div>
         <div>
-          <div className="text-gray-900 mb-2">{t("app:comment")}</div>
+          <div className="mb-2 text-gray-900">{t("app:comment")}</div>
           <textarea
-            className="w-full focus:outline-none border border-gray-300 h-28 rounded px-5 py-3"
+            className="h-28 w-full rounded border border-gray-300 px-5 py-3 focus:outline-none"
             rows={4}
             value={comment}
             onChange={e => onChangeComment(e.target.value)}
@@ -117,11 +117,11 @@ const SupplierCartView = ({
         </div>
       </div>
 
-      <div className="flex justify-between my-6">
-        <div className="text-gray-700 text-[22px] font-bold">
+      <div className="my-6 flex justify-between">
+        <div className="text-[22px] font-bold text-gray-700">
           {t("app:total")}
         </div>
-        <div className="text-gray-700 text-[22px] font-bold">
+        <div className="text-[22px] font-bold text-gray-700">
           {parseCentsPriceToDottedFormat(totalPrice, "EUR")}€
         </div>
       </div>

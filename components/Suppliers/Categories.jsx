@@ -20,7 +20,7 @@ const IconButton = ({ onClick, disabled, ...restProps }) => (
     onClick={onClick}
     onPress={() => {}}
     className={clsx(
-      "h-full text-center z-10 p-0 m-0 transition-all ease-in-out duration-300 cursor-pointer flex items-center",
+      "z-10 m-0 flex h-full cursor-pointer items-center p-0 text-center transition-all duration-300 ease-in-out",
       disabled ? "cursor-not-allowed text-gray-300" : "text-gray-700"
     )}
   >
@@ -110,9 +110,9 @@ const Categories = ({ refine, categories, disabled, t }) => {
   );
 
   return (
-    <div className="carousel mx-auto relative w-full mb-2">
+    <div className="carousel relative mx-auto mb-2 w-full">
       <div className="overflow-hidden px-10">
-        <div className="flex justify-between absolute top h-full left-0 right-0">
+        <div className="top absolute left-0 right-0 flex h-full justify-between">
           <IconButton
             onClick={movePrev}
             icon={faChevronLeft}
@@ -126,13 +126,13 @@ const Categories = ({ refine, categories, disabled, t }) => {
         </div>
         <div
           ref={carousel}
-          className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
+          className="carousel-container relative z-0 flex touch-pan-x snap-x snap-mandatory gap-1 overflow-hidden scroll-smooth"
         >
           {items.map(item => (
             <Box
               key={item.value}
               className={clsx(
-                "carousel-item text-center relative snap-start py-3 px-2 text-gray-700 text-sm whitespace-nowrap cursor-pointer",
+                "carousel-item relative cursor-pointer snap-start whitespace-nowrap py-3 px-2 text-center text-sm text-gray-700",
                 selectedCategory === item.value
                   ? "font-semibold text-black"
                   : ""
