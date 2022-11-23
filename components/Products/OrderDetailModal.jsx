@@ -105,7 +105,7 @@ const OrderDetailModal = ({
                       <div className="text-gray-500 text-sm">
                         {product.description?.slice(0, 100)}
                       </div>
-                      <div className="rounded-full h-10 w-23 my-2.5 flex space-x-2 items-center justify-center border border-gray-900 text-gray-900">
+                      <div className="rounded-2.5 h-10 w-23 my-2.5 flex space-x-2 items-center justify-center border border-[#0F1138] text-gray-900">
                         <FontAwesomeIcon
                           icon={faMinus}
                           className="cursor-pointer text-sm cursor-pointer"
@@ -122,16 +122,19 @@ const OrderDetailModal = ({
                           }
                         />
                       </div>
-                      <div className="flex text-sm select-none">
-                        <div>
-                          {parseCentsPriceToDottedFormat(
-                            product.price_per_unit_cents || 0,
-                            "EUR"
-                          )}
-                          €{product.units ? "/" : ""}
+                      {(product.price_per_unit_cents === 0 ||
+                        product.price_per_unit_cents) && (
+                        <div className="flex text-sm select-none">
+                          <div>
+                            {parseCentsPriceToDottedFormat(
+                              product.price_per_unit_cents || 0,
+                              "EUR"
+                            )}
+                            €{product.units ? "/" : ""}
+                          </div>
+                          <div>{product.units}</div>
                         </div>
-                        <div>{product.units}</div>
-                      </div>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -144,7 +147,7 @@ const OrderDetailModal = ({
               className="flex items-center space-x-3 cursor-pointer"
               onClick={() => router.push(`/${lng}/app/cart`)}
             >
-              <div className="text-gray-900 text-xl font-semibold">
+              <div className="text-gray-900 text-[22px] font-semibold">
                 {t("app:finalizeMyOrder")}
               </div>
               <CartIcon className="w-6 text-gray-900" />
