@@ -33,8 +33,11 @@ module.exports = {
           900: "#20201F"
         },
         blue: {
+          600: "#0F113B",
+          800: "#0F1554",
+          900: "#11142D",
+          A900: "#00002B"
           700: "#0F1554",
-          900: "#11142D"
         },
         green: {
           50: "#E0F0ED",
@@ -72,6 +75,13 @@ module.exports = {
       borderRadius: sizes,
       boxShadow: {
         card: "0px 0px 18px rgba(55, 81, 255, 0.15)"
+      },
+      backgroundImage: {
+        linear2:
+          "linear-gradient(89.67deg, rgba(76, 104, 255, 0.2) 46.33%, rgba(0, 0, 0, 0) 99.68%)"
+      },
+      lineHeight: {
+        1.4: 1.4
       },
       opacity: {
         0.5: 0.5

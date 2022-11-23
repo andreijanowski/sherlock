@@ -30,6 +30,12 @@
   "cart": "Wagen",
   "socialMedia": "Social Media (bald)",
   "billing": "Abrechnung (bald)",
+  "requestSuccessSent": {
+    "title": "Ihre Anfrage wurde erfolgreich versendet!",
+    "description": "Sie können Ihre Bestellungen auf der Registerkarte \"Verlauf\" finden und bei Bedarf nachbestellen.",
+    "goToOrderHistory": "Gehen Sie zum Bestellverlauf",
+    "gotIt": "Ich habs"
+  },
   "manageProfile": {
     "manageProfile": "Profil verwalten",
     "basicInformation": "Grundinformation",

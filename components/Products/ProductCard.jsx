@@ -5,6 +5,7 @@ import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Box } from "@rebass/grid";
 import { useTranslation } from "../../i18n";
+import { parseCentsPriceToDottedFormat } from "../../utils/price";
 
 const ProductCard = ({
   product,
@@ -39,7 +40,11 @@ const ProductCard = ({
           </div>
           <div className="text-sm shrink-0 font-medium text-right">
             <div>
-              {product.price_per_unit_cents || 0}€{product.units ? "/" : ""}
+              {parseCentsPriceToDottedFormat(
+                product.price_per_unit_cents || 0,
+                "EUR"
+              )}
+              €{product.units ? "/" : ""}
             </div>
             <div>{product.units}</div>
           </div>

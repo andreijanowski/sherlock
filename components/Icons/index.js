@@ -90,7 +90,7 @@ export {
 
 export { Globe, ChevronDownIcon } from "./footer";
 
-export { ClockIcon, HeartIcon, CartIcon } from "./supplier";
+export { ClockIcon, HeartIcon, CartIcon, ChevronRightIcon } from "./supplier";
 
 export {
   ArrowLeftIcon,

@@ -30,6 +30,12 @@
   "cart": "Chariot",
   "socialMedia": "Les médias sociaux (bientôt)",
   "billing": "Facturation (bientôt)",
+  "requestSuccessSent": {
+    "title": "Votre demande a été envoyée avec succès !",
+    "description": "Vous pouvez retrouver vos commandes dans l'onglet historique et les réorganiser si nécessaire.",
+    "goToOrderHistory": "Accéder à l'historique des commandes",
+    "gotIt": "J'ai compris"
+  },
   "manageProfile": {
     "manageProfile": "Gérer le profil",
     "basicInformation": "Informations de base",
