@@ -36,6 +36,7 @@ import { handleGtagEvent } from "utils/gtag";
 import { appWithTranslation } from "../i18n";
 import createStore from "../data/store";
 import "../styles/tailwind.css";
+import "../styles/quill.snow.css";
 
 config.autoAddCss = false;
 
