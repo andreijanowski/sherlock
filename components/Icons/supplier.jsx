@@ -45,3 +45,22 @@ export const CartIcon = props => (
     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
   </svg>
 );
+
+export const ChevronRightIcon = props => (
+  <svg
+    width="9"
+    height="14"
+    viewBox="0 0 9 14"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M2 12L7 7L2 2"
+      stroke="white"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);

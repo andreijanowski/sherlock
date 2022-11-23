@@ -5,6 +5,7 @@ import { arrayOf, func, shape, string } from "prop-types";
 import { Box } from "@rebass/grid";
 import { TrashIcon } from "../Icons";
 import { useTranslation } from "../../i18n";
+import { parseCentsPriceToDottedFormat } from "../../utils/price";
 
 const SupplierCartView = ({
   products,
@@ -42,48 +43,56 @@ const SupplierCartView = ({
         <TrashIcon width={16} />
       </Box>
 
-      <div className="flex space-x-8 mb-5 overflow-x-auto">
+      <div className="flex space-x-8 mb-5 overflow-x-auto overflow-y-hidden">
         {products.map(product => (
-          <div key={product.objectID} className="flex space-x-4 mb-4">
-            <div className="">
-              <img
-                src={product?.image?.url}
-                alt="logo"
-                className="min-w-33 max-w-33 w-full rounded-4.5 h-33 object-cover"
-              />
-            </div>
-            <div className="select-none max-w-40 flex flex-col justify-between">
-              <div className="font-semibold">{product.name}</div>
-              <div>
-                <div className="text-gray-500 text-sm truncate">
-                  {product.description?.slice(0, 100)}
-                </div>
-                <div className="rounded-full h-10 w-23 my-2.5 flex space-x-2 items-center justify-center border border-gray-900 text-gray-900">
-                  <FontAwesomeIcon
-                    icon={faMinus}
-                    className="cursor-pointer text-sm cursor-pointer"
-                    onClick={() =>
-                      onChangeCount(product.objectID, product.count - 1)
-                    }
-                  />
-                  <div className="select-none">{product.count}</div>
-                  <FontAwesomeIcon
-                    icon={faPlus}
-                    className="cursor-pointer text-sm cursor-pointer"
-                    onClick={() =>
-                      onChangeCount(product.objectID, product.count + 1)
-                    }
-                  />
-                </div>
-                <div className="flex text-sm select-none">
-                  <div>
-                    {product.price_per_unit_cents || 0}€
-                    {product.units ? "/" : ""}
+          <div key={product.objectID} className="mb-4">
+            <div className="flex space-x-4">
+              <div className="">
+                <img
+                  src={product?.image?.url}
+                  alt="logo"
+                  className="min-w-33 max-w-33 w-full rounded-4.5 h-33 object-cover"
+                />
+              </div>
+              <div className="select-none max-w-40 flex flex-col justify-between">
+                <div className="font-semibold">{product.name}</div>
+                <div>
+                  <div className="text-gray-500 text-sm truncate">
+                    {product.description?.slice(0, 100)}
                   </div>
-                  <div>{product.units}</div>
+                  <div className="rounded-full h-10 w-23 my-2.5 flex space-x-2 items-center justify-center border border-gray-900 text-gray-900">
+                    <FontAwesomeIcon
+                      icon={faMinus}
+                      className="cursor-pointer text-sm cursor-pointer"
+                      onClick={() =>
+                        onChangeCount(product.objectID, product.count - 1)
+                      }
+                    />
+                    <div className="select-none">{product.count}</div>
+                    <FontAwesomeIcon
+                      icon={faPlus}
+                      className="cursor-pointer text-sm cursor-pointer"
+                      onClick={() =>
+                        onChangeCount(product.objectID, product.count + 1)
+                      }
+                    />
+                  </div>
+                  <div className="flex text-sm select-none">
+                    <div>
+                      {parseCentsPriceToDottedFormat(
+                        product.price_per_unit_cents || 0,
+                        "EUR"
+                      )}
+                      €{product.units ? "/" : ""}
+                    </div>
+                    <div>{product.units}</div>
+                  </div>
                 </div>
               </div>
             </div>
+            {!product.price_per_unit_cents && (
+              <div className="text-red-500 text-sm mt-3">Price is required</div>
+            )}
           </div>
         ))}
       </div>
@@ -112,7 +121,9 @@ const SupplierCartView = ({
         <div className="text-gray-700 text-[22px] font-bold">
           {t("app:total")}
         </div>
-        <div className="text-gray-700 text-[22px] font-bold">{totalPrice}€</div>
+        <div className="text-gray-700 text-[22px] font-bold">
+          {parseCentsPriceToDottedFormat(totalPrice, "EUR")}€
+        </div>
       </div>
       <hr className="border-b border-dashed" />
     </div>

@@ -10,7 +10,6 @@ import { connect } from "react-redux";
 import { groupBy } from "lodash";
 import { Box } from "@rebass/grid";
 import { PulseLoader } from "react-spinners";
-import { useRouter } from "next/router";
 import { useLng } from "../../../utils/hooks";
 import {
   clearCart,
@@ -25,6 +24,8 @@ import {
 } from "../../../data/actions/supplierOrders";
 import { postSupplierElements } from "../../../data/actions/supplierElements";
 import { colors } from "../../../utils/theme";
+import { parseCentsPriceToDottedFormat } from "../../../utils/price";
+import SuccessModal from "../../../components/Cart/SuccessModal";
 
 const searchClient = algoliasearchLite(
   ALGOLIA_APP_ID,
@@ -47,7 +48,7 @@ const CartPage = ({
   const [comments, setComments] = useState({});
   const [deliveryDates, setDeliveryDates] = useState({});
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
 
   const groupedBySupplier = useMemo(
     () => groupBy(products, "supplier_name"),
@@ -84,6 +85,10 @@ const CartPage = ({
 
   const onConfirmRequest = async () => {
     if (!businessId || loading) return;
+    const isValid = !products.some(item => !item.price_per_unit_cents);
+    if (!isValid) {
+      return;
+    }
 
     try {
       setLoading(true);
@@ -114,7 +119,7 @@ const CartPage = ({
         })
       );
       cleanCart();
-      await router.push(`/${lng}/app/suppliers`);
+      setIsOpen(true);
     } catch (err) {
       console.error(err);
     } finally {
@@ -137,8 +142,8 @@ const CartPage = ({
         t={t}
         hasBack
       >
-        <div className="rounded-6 shadow-card bg-white my-6 overflow-hidden">
-          <div className="py-8 px-8.5 ">
+        <div className="rounded-6 shadow-card bg-white my-4 md:my-6 overflow-hidden">
+          <div className="py-6 md:py-8 px-6 md:px-8.5">
             {Object.values(groupedBySupplier).map(supplierProducts => {
               const supplierId = supplierProducts[0]?.supplier?.objectID;
               return (
@@ -159,7 +164,7 @@ const CartPage = ({
                 {t("app:estimatedTotal")}
               </div>
               <div className="text-blue-900 text-xl font-bold">
-                {totalPrice}€
+                {parseCentsPriceToDottedFormat(totalPrice, "EUR")}€
               </div>
             </div>
             <div className="text-xs text-gray-700 mb-2">
@@ -179,6 +184,7 @@ const CartPage = ({
           </Box>
         </div>
       </SearchApp>
+      <SuccessModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </AppLayout>
   );
 };

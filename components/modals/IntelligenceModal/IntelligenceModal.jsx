@@ -49,6 +49,7 @@ const IntelligenceModal = ({
             </Flex>
           </Header>
           <Description
+            className="ql-editor ql-snow"
             dangerouslySetInnerHTML={{
               __html: dompurify.sanitize(description)
             }}

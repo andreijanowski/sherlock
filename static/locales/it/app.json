@@ -30,6 +30,12 @@
   "cart": "Carrello",
   "socialMedia": "Social media",
   "billing": "Fatturazione",
+  "requestSuccessSent": {
+    "title": "La tua richiesta è stata inviata con successo!",
+    "description": "Puoi trovare i tuoi ordini nella scheda cronologia e riordinare quando necessario.",
+    "goToOrderHistory": "Vai a Cronologia ordini",
+    "gotIt": "Fatto"
+  },
   "manageProfile": {
     "manageProfile": "Gestisci profilo",
     "basicInformation": "Informazioni di base",

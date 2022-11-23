@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { withTranslation } from "i18n";
 import AppLayout from "layout/App";
 import { func, shape, string } from "prop-types";
@@ -10,6 +10,11 @@ import { connect } from "react-redux";
 import ConnectedHits from "components/Suppliers/ConnectedHits";
 import Loading from "../../../components/Suppliers/Loading";
 import SupplierCategories from "../../../components/Suppliers/SupplierCategories";
+import {
+  postRemoveSupplierToFavorites,
+  postSupplierToFavorites
+} from "../../../data/actions/suppliers";
+import { fetchBusinessFavoriteSuppliers } from "../../../data/actions/businesses";
 
 const searchClient = algoliasearchLite(
   ALGOLIA_APP_ID,
@@ -18,7 +23,16 @@ const searchClient = algoliasearchLite(
 
 const namespaces = ["forms", "app"];
 
-const SuppliersPage = ({ t, lng, business }) => {
+const SuppliersPage = ({
+  t,
+  lng,
+  business,
+  addSupplierToFavorites,
+  businessId,
+  getBusinessFavoriteSuppliers,
+  suppliersData,
+  removeSupplierFromFavorites
+}) => {
   const city = business?.get("city");
   const country = business?.get("country");
 
@@ -35,6 +49,31 @@ const SuppliersPage = ({ t, lng, business }) => {
 
     return queries.join(" AND ");
   }, [city, country]);
+
+  const onChangeFavoriteSupplier = async (supplierId, isFavorite) => {
+    if (!businessId) {
+      return;
+    }
+
+    if (isFavorite) {
+      await addSupplierToFavorites({
+        supplierId,
+        businessId
+      });
+    } else {
+      const favoriteId = suppliersData
+        ?.get(supplierId)
+        ?.getIn(["attributes", "favoriteId"]);
+      await removeSupplierFromFavorites(favoriteId);
+    }
+    await getBusinessFavoriteSuppliers(businessId);
+  };
+
+  useEffect(() => {
+    if (businessId) {
+      getBusinessFavoriteSuppliers(businessId);
+    }
+  }, [businessId, getBusinessFavoriteSuppliers]);
 
   return (
     <AppLayout
@@ -53,7 +92,12 @@ const SuppliersPage = ({ t, lng, business }) => {
       >
         <SupplierCategories searchClient={searchClient} lng={lng} t={t} />
         <Loading>
-          <ConnectedHits t={t} lng={lng} />
+          <ConnectedHits
+            t={t}
+            lng={lng}
+            onChangeFavoriteSupplier={onChangeFavoriteSupplier}
+            suppliersData={suppliersData}
+          />
         </Loading>
       </SearchApp>
     </AppLayout>
@@ -63,23 +107,47 @@ const SuppliersPage = ({ t, lng, business }) => {
 SuppliersPage.propTypes = {
   t: func.isRequired,
   lng: string.isRequired,
-  business: shape()
+  business: shape(),
+  addSupplierToFavorites: func.isRequired,
+  removeSupplierFromFavorites: func.isRequired,
+  businessId: string,
+  getBusinessFavoriteSuppliers: func.isRequired,
+  suppliersData: shape().isRequired
 };
 
 SuppliersPage.defaultProps = {
-  business: null
+  business: null,
+  businessId: ""
 };
 
 const mapState = (state, { i18n }) => {
   const businessData = state.getIn(["users", "currentBusiness", "data"]);
   const business = businessData && businessData.get("businesses").first();
+  const suppliersData = state.getIn(["suppliers", "data", "suppliers"]);
+
+  const businessId =
+    businessData &&
+    businessData
+      .get("businesses")
+      .keySeq()
+      .first();
 
   return {
     business: business && business.get("attributes"),
-    lng: (i18n && i18n.language) || "en"
+    lng: (i18n && i18n.language) || "en",
+    businessId,
+    suppliersData
   };
 };
 
+const mapDispatchToProps = {
+  addSupplierToFavorites: postSupplierToFavorites,
+  removeSupplierFromFavorites: postRemoveSupplierToFavorites,
+  getBusinessFavoriteSuppliers: fetchBusinessFavoriteSuppliers
+};
+
 export default requireAuth(true)(
-  withTranslation(namespaces)(connect(mapState, {})(SuppliersPage))
+  withTranslation(namespaces)(
+    connect(mapState, mapDispatchToProps)(SuppliersPage)
+  )
 );
