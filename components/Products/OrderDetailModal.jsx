@@ -14,7 +14,7 @@ import {
   setProductsToCart,
   updateProductToCart
 } from "../../data/actions/products";
-import { parseCentsPriceToDottedFormat } from "../../utils/price";
+import { convertToFound } from "../../utils/price";
 
 const OrderDetailModal = ({
   isOpen,
@@ -126,11 +126,8 @@ const OrderDetailModal = ({
                         product.price_per_unit_cents) && (
                         <div className="flex text-sm select-none">
                           <div>
-                            {parseCentsPriceToDottedFormat(
-                              product.price_per_unit_cents || 0,
-                              "EUR"
-                            )}
-                            €{product.units ? "/" : ""}
+                            {convertToFound(product.price_per_unit_cents)}€
+                            {product.units ? "/" : ""}
                           </div>
                           <div>{product.units}</div>
                         </div>

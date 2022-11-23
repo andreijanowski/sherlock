@@ -7,13 +7,7 @@ import debounce from "debounce";
 import { Box } from "@rebass/grid";
 import { useRouter } from "next/router";
 import { connect } from "react-redux";
-import {
-  ArrowLeftIcon,
-  CartIcon,
-  ClockIcon,
-  HeartIcon,
-  FavouriteIcon
-} from "../Icons";
+import { ArrowLeftIcon, CartIcon, ClockIcon, FavouriteIcon } from "../Icons";
 import OrderDetailModal from "../Products/OrderDetailModal";
 
 const DEBOUNCE = 300;
@@ -115,7 +109,6 @@ const CustomFilter = React.forwardRef((props, myRef) => {
 
         <div className="flex space-x-4 flex-shrink-0">
           <ClockIcon className="text-gray-700 w-5 shrink-0" />
-          <HeartIcon className="text-gray-700 w-5 shrink-0 cursor-pointer" />
           <Box
             className="text-gray-700 cursor-pointer flex space-x-1 items-center"
             onClick={() => setIsOpen(true)}

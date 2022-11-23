@@ -3,7 +3,6 @@ import Modal from "react-responsive-modal";
 import { useRouter } from "next/router";
 import { Box } from "@rebass/grid";
 import { bool, func } from "prop-types";
-import { ChevronRightIcon } from "../Icons";
 import { useTranslation } from "../../i18n";
 import { useLng } from "../../utils/hooks";
 
@@ -36,18 +35,9 @@ const SuccessModal = ({ isOpen, onClose }) => {
           <div className="flex items-center space-x-4 mt-12 justify-center mb-4">
             <Box
               className="text-blue-600 cursor-pointer font-semibold leading-1.4"
-              onClick={onClose}
+              onClick={() => router.push(`/${lng}/app/suppliers`)}
             >
               {t("app:requestSuccessSent.gotIt")}
-            </Box>
-            <Box
-              className="flex items-center space-x-2 bg-blue-800 bg-linear2 py-2 px-6 rounded-full cursor-pointer"
-              onClick={() => router.push(`/${lng}/app/suppliers/orders`)}
-            >
-              <span className="text-white font-semibold leading-1.4">
-                {t("app:requestSuccessSent.goToOrderHistory")}
-              </span>
-              <ChevronRightIcon />
             </Box>
           </div>
         </div>
