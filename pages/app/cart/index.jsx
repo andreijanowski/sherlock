@@ -100,8 +100,6 @@ const CartPage = ({
           if (result?.rawData && result.rawData?.data) {
             const orderId = result.rawData?.data?.id;
 
-            await sendSupplierOrderEmail(orderId);
-
             await Promise.all(
               supplierProducts.map(async product => {
                 await createSupplierElements({
@@ -111,6 +109,8 @@ const CartPage = ({
                 });
               })
             );
+  
+            await sendSupplierOrderEmail(orderId);
           }
         })
       );
