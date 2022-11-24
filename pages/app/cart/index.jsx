@@ -85,10 +85,6 @@ const CartPage = ({
 
   const onConfirmRequest = async () => {
     if (!businessId || loading) return;
-    const isValid = !products.some(item => !item.price_per_unit_cents);
-    if (!isValid) {
-      return;
-    }
 
     try {
       setLoading(true);
@@ -163,7 +159,7 @@ const CartPage = ({
               <div className="text-xl font-bold text-blue-900">
                 {t("app:estimatedTotal")}
               </div>
-              <div className="text-blue-900 text-xl font-bold">
+              <div className="text-xl font-bold text-blue-900">
                 {convertToFound(totalPrice)}€
               </div>
             </div>

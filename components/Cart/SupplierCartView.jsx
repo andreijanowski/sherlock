@@ -54,13 +54,13 @@ const SupplierCartView = ({
                   className="h-33 w-full min-w-33 max-w-33 rounded-4.5 object-cover"
                 />
               </div>
-              <div className="select-none max-w-40 flex flex-col">
+              <div className="flex max-w-40 select-none flex-col">
                 <div className="font-semibold">{product.name}</div>
                 <div>
                   <div className="truncate text-sm text-gray-500">
                     {product.description?.slice(0, 100)}
                   </div>
-                  <div className="rounded-2.5 h-10 w-23 my-2.5 flex space-x-2 items-center justify-center border border-[#0F1138] text-gray-900">
+                  <div className="my-2.5 flex h-10 w-23 items-center justify-center space-x-2 rounded-2.5 border border-[#0F1138] text-gray-900">
                     <FontAwesomeIcon
                       icon={faMinus}
                       className="cursor-pointer cursor-pointer text-sm"
@@ -77,9 +77,8 @@ const SupplierCartView = ({
                       }
                     />
                   </div>
-                  {(product.price_per_unit_cents === 0 ||
-                    product.price_per_unit_cents) && (
-                    <div className="flex text-sm select-none">
+                  {!!product.price_per_unit_cents && (
+                    <div className="flex select-none text-sm">
                       <div>
                         {convertToFound(product.price_per_unit_cents)}€
                         {product.units ? "/" : ""}
@@ -90,9 +89,6 @@ const SupplierCartView = ({
                 </div>
               </div>
             </div>
-            {!product.price_per_unit_cents && (
-              <div className="mt-3 text-sm text-red-500">Price is required</div>
-            )}
           </div>
         ))}
       </div>
@@ -121,7 +117,7 @@ const SupplierCartView = ({
         <div className="text-[22px] font-bold text-gray-700">
           {t("app:total")}
         </div>
-        <div className="text-gray-700 text-[22px] font-bold">
+        <div className="text-[22px] font-bold text-gray-700">
           {convertToFound(totalPrice)}€
         </div>
       </div>
