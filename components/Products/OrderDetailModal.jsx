@@ -14,7 +14,7 @@ import {
   setProductsToCart,
   updateProductToCart
 } from "../../data/actions/products";
-import { parseCentsPriceToDottedFormat } from "../../utils/price";
+import { convertToFound } from "../../utils/price";
 
 const OrderDetailModal = ({
   isOpen,
@@ -106,7 +106,7 @@ const OrderDetailModal = ({
                       <div className="text-sm text-gray-500">
                         {product.description?.slice(0, 100)}
                       </div>
-                      <div className="my-2.5 flex h-10 w-23 items-center justify-center space-x-2 rounded-full border border-gray-900 text-gray-900">
+                      <div className="rounded-2.5 h-10 w-23 my-2.5 flex space-x-2 items-center justify-center border border-[#0F1138] text-gray-900">
                         <FontAwesomeIcon
                           icon={faMinus}
                           className="cursor-pointer cursor-pointer text-sm"
@@ -123,16 +123,16 @@ const OrderDetailModal = ({
                           }
                         />
                       </div>
-                      <div className="flex select-none text-sm">
-                        <div>
-                          {parseCentsPriceToDottedFormat(
-                            product.price_per_unit_cents || 0,
-                            "EUR"
-                          )}
-                          €{product.units ? "/" : ""}
+                      {(product.price_per_unit_cents === 0 ||
+                        product.price_per_unit_cents) && (
+                        <div className="flex text-sm select-none">
+                          <div>
+                            {convertToFound(product.price_per_unit_cents)}€
+                            {product.units ? "/" : ""}
+                          </div>
+                          <div>{product.units}</div>
                         </div>
-                        <div>{product.units}</div>
-                      </div>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -145,7 +145,7 @@ const OrderDetailModal = ({
               className="flex cursor-pointer items-center space-x-3"
               onClick={() => router.push(`/${lng}/app/cart`)}
             >
-              <div className="text-xl font-semibold text-gray-900">
+              <div className="text-gray-900 text-[22px] font-semibold">
                 {t("app:finalizeMyOrder")}
               </div>
               <CartIcon className="w-6 text-gray-900" />

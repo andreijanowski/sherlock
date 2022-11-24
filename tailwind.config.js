@@ -34,10 +34,13 @@ module.exports = {
         },
         blue: {
           600: "#0F113B",
+          700: "#0F1554",
           800: "#0F1554",
           900: "#11142D",
-          700: "#0F1554",
           A900: "#00002B"
+        },
+        indigo: {
+          "700": "#4C68FF"
         },
         green: {
           50: "#E0F0ED",
@@ -76,15 +79,20 @@ module.exports = {
       boxShadow: {
         card: "0px 0px 18px rgba(55, 81, 255, 0.15)"
       },
-      backgroundImage: {
-        linear2:
-          "linear-gradient(89.67deg, rgba(76, 104, 255, 0.2) 46.33%, rgba(0, 0, 0, 0) 99.68%)"
-      },
-      lineHeight: {
-        1.4: 1.4
-      },
       opacity: {
         0.5: 0.5
+      },
+      lineHeight: {
+        1.4: 1.4,
+        1.5: 1.5
+      },
+      backgroundImage: {
+        button:
+          "linear-gradient(89.71deg, #050732 21.63%, rgba(0, 0, 0, 0) 98.23%, rgba(5, 7, 50, 0) 98.23%)",
+        linear2:
+          "linear-gradient(89.67deg, rgba(76, 104, 255, 0.2) 46.33%, rgba(0, 0, 0, 0) 99.68%)",
+        linear3:
+          "linear-gradient(90.07deg, #050732 32.52%, rgba(5, 7, 50, 0) 100.15%)"
       }
     }
   },

@@ -6,13 +6,7 @@ import { arrayOf, bool, func, shape, string } from "prop-types";
 import { Box } from "@rebass/grid";
 import { useRouter } from "next/router";
 import { connect } from "react-redux";
-import {
-  ArrowLeftIcon,
-  CartIcon,
-  ClockIcon,
-  HeartIcon,
-  FavouriteIcon
-} from "../Icons";
+import { ArrowLeftIcon, CartIcon, ClockIcon, FavouriteIcon } from "../Icons";
 import OrderDetailModal from "../Products/OrderDetailModal";
 import { useDebouncedCallback } from "use-debounce";
 
@@ -111,9 +105,8 @@ const CustomFilter = React.forwardRef((props, myRef) => {
           </div>
         </div>
 
-        <div className="flex flex-shrink-0 space-x-4">
-          <ClockIcon className="w-5 shrink-0 text-gray-700" />
-          <HeartIcon className="w-5 shrink-0 cursor-pointer text-gray-700" />
+        <div className="flex space-x-4 flex-shrink-0">
+          <ClockIcon className="text-gray-700 w-5 shrink-0" />
           <Box
             className="flex cursor-pointer items-center space-x-1 text-gray-700"
             onClick={() => setIsOpen(true)}

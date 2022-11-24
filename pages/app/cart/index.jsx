@@ -24,7 +24,7 @@ import {
 } from "../../../data/actions/supplierOrders";
 import { postSupplierElements } from "../../../data/actions/supplierElements";
 import { colors } from "../../../utils/theme";
-import { parseCentsPriceToDottedFormat } from "../../../utils/price";
+import { convertToFound } from "../../../utils/price";
 import SuccessModal from "../../../components/Cart/SuccessModal";
 
 const searchClient = algoliasearchLite(
@@ -163,8 +163,8 @@ const CartPage = ({
               <div className="text-xl font-bold text-blue-900">
                 {t("app:estimatedTotal")}
               </div>
-              <div className="text-xl font-bold text-blue-900">
-                {parseCentsPriceToDottedFormat(totalPrice, "EUR")}€
+              <div className="text-blue-900 text-xl font-bold">
+                {convertToFound(totalPrice)}€
               </div>
             </div>
             <div className="mb-2 text-xs text-gray-700">

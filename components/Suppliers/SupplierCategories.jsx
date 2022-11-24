@@ -25,12 +25,11 @@ const SupplierCategories = ({ searchClient, lng, t }) => {
   }, [searchClient]);
 
   const supplierCategories = useMemo(
-    () => [
-      "",
-      ...categories.map(item =>
-        item[`name_${lng}`] ? item[`name_${lng}`] : item.name_en
-      )
-    ],
+    () =>
+      categories.map(item => ({
+        label: item[`name_${lng}`] ? item[`name_${lng}`] : item.name_en,
+        value: item.name
+      })),
     [lng, categories]
   );
 

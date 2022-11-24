@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import clsx from "clsx";
 import { connectRefinementList } from "react-instantsearch-dom";
-import { arrayOf, bool, func, string } from "prop-types";
+import { arrayOf, bool, func, shape } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
@@ -41,19 +41,19 @@ const Categories = ({ refine, categories, disabled, t }) => {
 
   const items = useMemo(
     () =>
-      categories.map(item =>
-        item === ""
-          ? {
-              label: t("app:all"),
-              value: ""
-            }
-          : {
-              label: item
-                .split("_")
-                .map(str => `${str[0].toUpperCase()}${str.slice(1)}`)
-                .join(" "),
-              value: item
-            }
+      [
+        {
+          label: t("app:all"),
+          value: ""
+        }
+      ].concat(
+        categories.map(item => ({
+          label: item.label
+            .split("_")
+            .map(str => `${str[0]?.toUpperCase()}${str.slice(1)}`)
+            .join(" "),
+          value: item.value
+        }))
       ),
     [categories, t]
   );
@@ -100,10 +100,10 @@ const Categories = ({ refine, categories, disabled, t }) => {
   }, [categories]);
 
   const handleChange = useCallback(
-    value => {
-      setSelectedCategory(value);
+    item => {
+      setSelectedCategory(item.value);
       if (!disabled) {
-        refine(value);
+        refine(item.value);
       }
     },
     [refine, disabled]
@@ -137,7 +137,7 @@ const Categories = ({ refine, categories, disabled, t }) => {
                   ? "font-semibold text-black"
                   : ""
               )}
-              onClick={() => handleChange(item.value)}
+              onClick={() => handleChange(item)}
             >
               {item.label}
             </Box>
@@ -150,7 +150,7 @@ const Categories = ({ refine, categories, disabled, t }) => {
 
 Categories.propTypes = {
   refine: func.isRequired,
-  categories: arrayOf(string).isRequired,
+  categories: arrayOf(shape()).isRequired,
   disabled: bool,
   t: func.isRequired
 };
