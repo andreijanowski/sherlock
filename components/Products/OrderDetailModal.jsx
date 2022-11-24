@@ -106,7 +106,7 @@ const OrderDetailModal = ({
                       <div className="text-sm text-gray-500">
                         {product.description?.slice(0, 100)}
                       </div>
-                      <div className="rounded-2.5 h-10 w-23 my-2.5 flex space-x-2 items-center justify-center border border-[#0F1138] text-gray-900">
+                      <div className="my-2.5 flex h-10 w-23 items-center justify-center space-x-2 rounded-2.5 border border-[#0F1138] text-gray-900">
                         <FontAwesomeIcon
                           icon={faMinus}
                           className="cursor-pointer cursor-pointer text-sm"
@@ -123,9 +123,8 @@ const OrderDetailModal = ({
                           }
                         />
                       </div>
-                      {(product.price_per_unit_cents === 0 ||
-                        product.price_per_unit_cents) && (
-                        <div className="flex text-sm select-none">
+                      {!!product.price_per_unit_cents && (
+                        <div className="flex select-none text-sm">
                           <div>
                             {convertToFound(product.price_per_unit_cents)}€
                             {product.units ? "/" : ""}
@@ -145,7 +144,7 @@ const OrderDetailModal = ({
               className="flex cursor-pointer items-center space-x-3"
               onClick={() => router.push(`/${lng}/app/cart`)}
             >
-              <div className="text-gray-900 text-[22px] font-semibold">
+              <div className="text-[22px] font-semibold text-gray-900">
                 {t("app:finalizeMyOrder")}
               </div>
               <CartIcon className="w-6 text-gray-900" />
