@@ -27,6 +27,7 @@ module.exports = {
       colors: {
         gray: {
           100: "#f0f0f0",
+          200: "#DCDFEF",
           300: "#A5A8AE",
           500: "#787A7F",
           700: "#4E4D66",
@@ -40,7 +41,7 @@ module.exports = {
           A900: "#00002B"
         },
         indigo: {
-          "700": "#4C68FF"
+          700: "#4C68FF"
         },
         green: {
           50: "#E0F0ED",

@@ -126,6 +126,7 @@ module.exports = routes()
   .add("app/integrations", `/:lng(${languagesPattern})/app/integrations`)
   .add("app/suppliers", `/:lng(${languagesPattern})/app/suppliers`)
   .add("app/products", `/:lng(${languagesPattern})/app/suppliers/:id/products`)
+  .add("app/orders", `/:lng(${languagesPattern})/app/suppliers/orders`)
   .add("app/cart", `/:lng(${languagesPattern})/app/cart`)
   .add(
     "app/influencerManagement/marketing",

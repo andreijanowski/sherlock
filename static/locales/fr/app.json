@@ -36,6 +36,12 @@
     "goToOrderHistory": "Accéder à l'historique des commandes",
     "gotIt": "J'ai compris"
   },
+  "orderHistory": "Historique des commandes",
+  "suppliersName": "Nom du fournisseur",
+  "orderId": "ID de la commande",
+  "productsOrdered": "Produits commandés",
+  "wantEditOrRepeat": "Voulez-vous modifier ou répéter ?",
+  "date": "Date",
   "manageProfile": {
     "manageProfile": "Gérer le profil",
     "basicInformation": "Informations de base",
