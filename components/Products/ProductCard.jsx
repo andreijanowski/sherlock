@@ -55,7 +55,7 @@ const ProductCard = ({
               className="cursor-pointer cursor-pointer text-sm text-gray-900"
               onClick={() => onChangeCount(product.objectID, product.count - 1)}
             />
-            <div>{product.count || 0}</div>
+            <div className="leading-1">{product.count || 0}</div>
             <FontAwesomeIcon
               icon={faPlus}
               className="cursor-pointer cursor-pointer text-sm text-gray-900"
