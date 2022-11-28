@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "mgmcdermott.vscode-language-babel",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "mhutchie.git-graph",
+    "antfu.iconify",
+    "csstools.postcss",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "pflannery.vscode-versionlens",
+    "redhat.vscode-yaml"
+  ]
+}
