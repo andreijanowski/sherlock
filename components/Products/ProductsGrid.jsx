@@ -87,7 +87,7 @@ const ProductsGrid = ({
   return (
     <div className="ais-InfiniteHits">
       <div className="min-h-200 w-full">
-        <div className="ais-InfiniteHits-list grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-6 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 4xl:gap-8 5xl:grid-cols-9 6xl:grid-cols-10 7xl:grid-cols-11">
+        <div className="ais-InfiniteHits-list grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 4xl:gap-8 5xl:grid-cols-9 6xl:grid-cols-10 7xl:grid-cols-11">
           {products.length ? (
             products.map(hit => (
               <ProductCard
