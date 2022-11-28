@@ -16,6 +16,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
+        "2lg": "1280px",
         xl: "1440px",
         "2xl": "1840px",
         "3xl": "2080px",
@@ -84,6 +85,7 @@ module.exports = {
         0.5: 0.5
       },
       lineHeight: {
+        1: 1,
         1.4: 1.4,
         1.5: 1.5
       },

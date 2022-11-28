@@ -114,7 +114,9 @@ const OrderDetailModal = ({
                             onChangeCount(product.objectID, product.count - 1)
                           }
                         />
-                        <div className="select-none">{product.count}</div>
+                        <div className="select-none leading-1">
+                          {product.count}
+                        </div>
                         <FontAwesomeIcon
                           icon={faPlus}
                           className="cursor-pointer cursor-pointer text-sm"
