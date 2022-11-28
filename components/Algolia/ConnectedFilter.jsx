@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { ArrowLeftIcon, CartIcon, ClockIcon, FavouriteIcon } from "../Icons";
 import OrderDetailModal from "../Products/OrderDetailModal";
 import { useDebouncedCallback } from "use-debounce";
+import { useLng } from "../../utils/hooks";
 
 const DEBOUNCE = 300;
 
@@ -26,8 +27,9 @@ const CustomFilter = React.forwardRef((props, myRef) => {
     onAddToFavorite
   } = props;
   const [value, setValue] = useState(currentRefinement);
-  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+  const lng = useLng();
 
   const onSubmit = useCallback(
     query => {
@@ -57,6 +59,10 @@ const CustomFilter = React.forwardRef((props, myRef) => {
     } else {
       await router.back();
     }
+  };
+
+  const goToOrderHistory = async () => {
+    await router.push(`/${lng}/app/suppliers/orders`);
   };
 
   return (
@@ -105,8 +111,11 @@ const CustomFilter = React.forwardRef((props, myRef) => {
           </div>
         </div>
 
-        <div className="flex space-x-4 flex-shrink-0">
-          <ClockIcon className="text-gray-700 w-5 shrink-0" />
+        <div className="flex flex-shrink-0 space-x-4">
+          <ClockIcon
+            className="w-5 shrink-0 cursor-pointer text-gray-700"
+            onClick={goToOrderHistory}
+          />
           <Box
             className="flex cursor-pointer items-center space-x-1 text-gray-700"
             onClick={() => setIsOpen(true)}

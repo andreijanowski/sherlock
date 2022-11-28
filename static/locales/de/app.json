@@ -36,6 +36,12 @@
     "goToOrderHistory": "Gehen Sie zum Bestellverlauf",
     "gotIt": "Ich habs"
   },
+  "orderHistory": "Bestellverlauf",
+  "suppliersName": "Name des Lieferanten",
+  "orderId": "Auftrags-ID",
+  "productsOrdered": "Produkte bestellt",
+  "wantEditOrRepeat": "Möchten Sie bearbeiten oder wiederholen?",
+  "date": "Datum",
   "manageProfile": {
     "manageProfile": "Profil verwalten",
     "basicInformation": "Grundinformation",
