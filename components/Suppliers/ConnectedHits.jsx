@@ -27,8 +27,8 @@ const CustomListItem = ({ hit, className, lng }) => {
         className="h-32.5 w-full rounded-4.5"
       />
       <div className="px-3 py-4">
-        <div className="font-semibold mb-2 break-all">{hit.name}</div>
-        <div className="text-sm text-gray-500 break-all">
+        <div className="mb-2 break-all font-semibold">{hit.name}</div>
+        <div className="break-all text-sm text-gray-500">
           {(hit.supplier_categories?.map(item => item?.name) || []).join(", ")}
         </div>
       </div>
@@ -56,7 +56,7 @@ const CustomHits = ({ hits, hasMore, refineNext, t, lng }) => {
   return (
     <div className="ais-InfiniteHits">
       <div className="min-h-200 w-full">
-        <div className="ais-InfiniteHits-list grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-6 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 4xl:gap-8 5xl:grid-cols-9 6xl:grid-cols-10 7xl:grid-cols-11">
+        <div className="ais-InfiniteHits-list grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 2lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 4xl:gap-8 5xl:grid-cols-9 6xl:grid-cols-10 7xl:grid-cols-11">
           {hits.length ? (
             hits.map(hit => (
               <CustomListItem

@@ -16,6 +16,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
+        "2lg": "1280px",
         xl: "1440px",
         "2xl": "1840px",
         "3xl": "2080px",
@@ -40,7 +41,7 @@ module.exports = {
           A900: "#00002B"
         },
         indigo: {
-          "700": "#4C68FF"
+          700: "#4C68FF"
         },
         green: {
           50: "#E0F0ED",
@@ -83,6 +84,7 @@ module.exports = {
         0.5: 0.5
       },
       lineHeight: {
+        1: 1,
         1.4: 1.4,
         1.5: 1.5
       },
