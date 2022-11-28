@@ -36,12 +36,6 @@
     "goToOrderHistory": "Go to Orders History",
     "gotIt": "Got it"
   },
-  "orderHistory": "Order History",
-  "suppliersName": "Suppliers Name",
-  "orderId": "Order’s ID",
-  "productsOrdered": "Products Ordered",
-  "wantEditOrRepeat": "Want To Edit or Repeat?",
-  "date": "Date",
   "manageProfile": {
     "manageProfile": "Manage Profile",
     "basicInformation": "Basic Information",

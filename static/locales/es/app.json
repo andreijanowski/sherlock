@@ -36,12 +36,6 @@
     "goToOrderHistory": "Ir al historial de pedidos",
     "gotIt": "Entiendo"
   },
-  "orderHistory": "Historial de pedidos",
-  "suppliersName": "Nombre del proveedor",
-  "orderId": "ID del pedido",
-  "productsOrdered": "Productos pedidos",
-  "wantEditOrRepeat": "¿Quieres editar o repetir?",
-  "date": "Fecha",
   "manageProfile": {
     "manageProfile": "Administrar perfil",
     "basicInformation": "Información básica",
