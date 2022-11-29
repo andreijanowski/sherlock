@@ -147,7 +147,6 @@ const PUBLIC_ALGOLIA_CLIENT_KEY = !dev ? "bf853662d2e5fcefa6f63a5a59be6352" : "5
 const ALGOLIA_APP_ID = !dev ? "ZIJ9XATQMM" : "USKQIQBYHF";
 
   const ALGOLIA_ENVIRONMENT = !dev ? "production" : "staging";
-  console.log(ALGOLIA_ENVIRONMENT)
 
 module.exports = {
   contentTypes,
