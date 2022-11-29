@@ -106,8 +106,9 @@ const ReservationDetails = ({
           <>
             <SliderSubheader>{t("tablesList")}</SliderSubheader>
             {reservationTables.map(table => {
-              const reservationBookings =
-                getReservationBookings(reservationDetails);
+              const reservationBookings = getReservationBookings(
+                reservationDetails
+              );
               const tableReservationBooking =
                 bookings &&
                 reservationBookings
@@ -125,13 +126,13 @@ const ReservationDetails = ({
                     name: t("numberLabel"),
                     value: [
                       table.tableNumber,
-                      `${
-                        tableReservationBooking &&
+                      `${tableReservationBooking &&
                         tableReservationBooking.getIn([
                           "attributes",
                           "seatsTaken"
-                        ])
-                      } ${t("of")} ${table.numberOfSeats} ${t("seatsTaken")} `
+                        ])} ${t("of")} ${table.numberOfSeats} ${t(
+                        "seatsTaken"
+                      )} `
                     ]
                   }}
                 />

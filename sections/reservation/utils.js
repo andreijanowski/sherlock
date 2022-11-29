@@ -209,7 +209,10 @@ export const checkIfTableIsAvailable = ({
       if (from > to) {
         return (
           (r.date === date && r.to >= from && r.from <= 86400) ||
-          (r.date === moment(date).add(1, "d").format("YYYY-MM-DD") &&
+          (r.date ===
+            moment(date)
+              .add(1, "d")
+              .format("YYYY-MM-DD") &&
             r.to >= 0 &&
             r.from <= from)
         );

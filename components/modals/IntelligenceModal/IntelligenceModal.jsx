@@ -3,7 +3,6 @@ import { string, func } from "prop-types";
 import { Modal } from "components";
 import { Box, Flex } from "@rebass/grid";
 import { connect } from "react-redux";
-import dompurify from "dompurify";
 import {
   Image,
   ModalStyles,
@@ -48,12 +47,7 @@ const IntelligenceModal = ({
               </Flex>
             </Flex>
           </Header>
-          <Description
-            className="ql-editor ql-snow"
-            dangerouslySetInnerHTML={{
-              __html: dompurify.sanitize(description)
-            }}
-          />
+          <Description>{description}</Description>
         </Wrapper>
       </Modal>
     </>

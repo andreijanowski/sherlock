@@ -166,11 +166,13 @@ const LefoodLayout = ({
     normalizePrice(business && business.get("minAmountForDeliveryCents"))
   );
   const [isStopOrdersModalVisible, setStopOrdersModalVisible] = useState(false);
-  const [isFinishOrdersModalVisible, setFinishOrdersModalVisible] =
-    useState(false);
+  const [isFinishOrdersModalVisible, setFinishOrdersModalVisible] = useState(
+    false
+  );
   const [isCurrencyModalVisible, setCurrencyModalVisible] = useState(false);
-  const [isStripeSetupModalVisible, setStripeSetupModalVisible] =
-    useState(false);
+  const [isStripeSetupModalVisible, setStripeSetupModalVisible] = useState(
+    false
+  );
 
   useEffect(() => {
     setMinAmountForDeliveryCents(

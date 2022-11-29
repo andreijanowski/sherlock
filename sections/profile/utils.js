@@ -40,8 +40,9 @@ const checkLengthRange = (array, minLength, maxLength) =>
   array.length >= minLength && array.length <= maxLength;
 
 const checkIsBasicInformationValid = (business, businessGroups) => {
-  const { types, cuisines, foodsAndDrinks, quirks } =
-    getGroupsData(businessGroups);
+  const { types, cuisines, foodsAndDrinks, quirks } = getGroupsData(
+    businessGroups
+  );
   return (
     business.get("name") &&
     business.get("city") &&

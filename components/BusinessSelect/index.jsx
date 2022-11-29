@@ -32,10 +32,10 @@ const BusinessSelect = ({
     [business, businessId, t]
   );
 
-  const items = useMemo(
-    () => prepareBusinessesList(t, businesses),
-    [t, businesses]
-  );
+  const items = useMemo(() => prepareBusinessesList(t, businesses), [
+    t,
+    businesses
+  ]);
 
   const handleChange = useCallback(
     newBusiness => {

@@ -44,18 +44,4 @@ export const WHOLESALERS_CATEGORIES = [
   "other"
 ];
 
-export const WHOLESALERS_URL = "/app/suppliers";
-
-export const SUPPLIER_CATEGORIES = [
-  "",
-  "Beverages",
-  "Pasta",
-  "beer",
-  "Water",
-  "frozen product",
-  "Alcohol",
-  "FMCG",
-  "Meat",
-  "Very loooooooong category to see how it looks like",
-  "fruits and veggies"
-];
+export const WHOLESALERS_URL = "/app/wholesalers";

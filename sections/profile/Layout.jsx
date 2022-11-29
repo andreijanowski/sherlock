@@ -53,8 +53,6 @@ const ProfileLayout = ({
         t,
         lng
       }}
-      businessId={businessId}
-      hasBidCheck
     >
       {business && business.get("state") !== "published" && (
         <PublishMobileIconWrapper>
@@ -63,9 +61,9 @@ const ProfileLayout = ({
             icon={["fa", "check"]}
             onClick={showPublishModal}
           />
-          <PublishHeader>{`${t("app:manageProfile.publish")}: ${
-            business.get("name") || t("app:manageProfile.unnamedBusiness")
-          }`}</PublishHeader>
+          <PublishHeader>{`${t("app:manageProfile.publish")}: ${business.get(
+            "name"
+          ) || t("app:manageProfile.unnamedBusiness")}`}</PublishHeader>
         </PublishMobileIconWrapper>
       )}
       {children}
