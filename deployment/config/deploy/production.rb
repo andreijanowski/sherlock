@@ -9,7 +9,7 @@ set :repo_url, 'git@github.com:Foodetective/Foodetective-btb-web'
 set :deploy_to, -> { "/home/deploy/apps/#{fetch(:application)}" }
 set :dockerfile, -> { 'docker/Dockerfile.staging' }
 
-set :branch, 'Main'
+set :branch, 'main'
 
 namespace :deploy do
     def compose(cmd, role)

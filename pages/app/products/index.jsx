@@ -5,7 +5,11 @@ import { func, string } from "prop-types";
 import requireAuth from "lib/requireAuth";
 import SearchApp from "components/Algolia/SearchApp";
 import algoliasearchLite from "algoliasearch/lite";
-import { PUBLIC_ALGOLIA_CLIENT_KEY, ALGOLIA_APP_ID } from "consts";
+import {
+  PUBLIC_ALGOLIA_CLIENT_KEY,
+  ALGOLIA_APP_ID,
+  ALGOLIA_ENVIRONMENT
+} from "consts";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import Loading from "../../../components/Suppliers/Loading";
@@ -25,7 +29,7 @@ const ProductsPage = ({ t, lng }) => {
   const [supplier, setSupplier] = useState();
 
   useEffect(() => {
-    const index = searchClient.initIndex("Supplier_staging");
+    const index = searchClient.initIndex(`Supplier_${ALGOLIA_ENVIRONMENT}`);
 
     index.search(name).then(res => {
       const data = res.hits.find(hit => hit.objectID === id);
@@ -51,7 +55,7 @@ const ProductsPage = ({ t, lng }) => {
     >
       <SearchApp
         searchClient={searchClient}
-        indexName="SupplierProduct_staging"
+        indexName={`SupplierProduct_${ALGOLIA_ENVIRONMENT}`}
         label={name}
         backUrl={`/${lng}/app/suppliers`}
         hasBack
