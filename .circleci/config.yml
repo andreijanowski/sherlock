@@ -57,8 +57,8 @@ jobs:
     <<: *node_machine
     steps:
       - run:
-        # we need to overwrite default AWS_ credentials
-        # because they exists in CircleCI
+          # we need to overwrite default AWS_ credentials
+          # because they exists in CircleCI
           name: "set ENV for deploying staging"
           command: |
             echo 'export AWS_ACCESS_KEY_ID=$NEW_STAGING_AWS_ACCESS_KEY_ID' >> $BASH_ENV;
@@ -83,8 +83,8 @@ jobs:
     steps:
       - checkout
       - run:
-        # we need to overwrite default AWS_ credentials
-        # because they exists in CircleCI
+          # we need to overwrite default AWS_ credentials
+          # because they exists in CircleCI
           name: "set ENV for deploying staging"
           command: |
             echo 'export AWS_ACCESS_KEY_ID=$NEW_STAGING_AWS_ACCESS_KEY_ID' >> $BASH_ENV;
@@ -132,7 +132,7 @@ jobs:
           command: $(aws ecr get-login --no-include-email --region eu-central-1)
       - run:
           name: Build docker image
-          command: docker build --build-arg OAUTH_CALLBACK_URL --build-arg APP_URL --build-arg OAUTH_PUBLIC_CLIENT_ID --build-arg PUBLIC_FOODETECTIVE_URL --build-arg STAGING_FOODETECTIVE_URL --build-arg PROD_FOODETECTIVE_URL --build-arg OAUTH_SECRET_CLIENT_ID --build-arg PUBLIC_API_URL --build-arg PUBLIC_GOOGLE_MAPS_API_KEY --build-arg PUBLIC_PUSHER_APP_CLUSTER --build-arg PUBLIC_PUSHER_APP_KEY --build-arg STRIPE_CLIENT_ID --build-arg PUBLIC_STRIPE_API_KEY --build-arg PUBLIC_GOOGLE_TAG_MANAGER_ID --build-arg PUBLIC_FACEBOOK_PIXEL_ID --build-arg PUBLIC_GOOGLE_ANALYTICS_ID --build-arg PUBLIC_FOODETECTIVE_URL --build-arg COMMUNITY_MANAGEMENT_TYPEFORM_ID --build-arg MARKETING_TYPEFORM_ID --build-arg PHOTOGRAPHY_TYPEFORM_ID --build-arg ROLLBAR_ACCESS_TOKEN --build-arg PLANS_BUSINESS_EXAMPLE_LINK --build-arg LINKEDIN_ADS_ID --build-arg PARTOO_SDK_URL --build-arg GOOGLE_ADS_ID --build-arg GOOGLE_ADS_DEMO_BUTTON_EVENT_ID --build-arg GOOGLE_ADS_PAGE_VIEW_EVENT_ID --build-arg NEWSLETTER_GOOGLE_SHEET_ID --build-arg GOOGLE_SHEET_SERVICE_ACCOUNT_EMAIL --build-arg GOOGLE_SHEET_SERVICE_ACCOUNT_KEY -t foodetective-btb-web-main-${CIRCLE_SHA1} -f docker/Dockerfile.production .
+          command: docker build --build-arg OAUTH_CALLBACK_URL --build-arg APP_URL --build-arg OAUTH_PUBLIC_CLIENT_ID --build-arg PUBLIC_FOODETECTIVE_URL --build-arg STAGING_FOODETECTIVE_URL --build-arg PROD_FOODETECTIVE_URL --build-arg OAUTH_SECRET_CLIENT_ID --build-arg PUBLIC_API_URL --build-arg PUBLIC_GOOGLE_MAPS_API_KEY --build-arg PUBLIC_PUSHER_APP_CLUSTER --build-arg PUBLIC_PUSHER_APP_KEY --build-arg STRIPE_CLIENT_ID --build-arg PUBLIC_STRIPE_API_KEY --build-arg PUBLIC_GOOGLE_TAG_MANAGER_ID --build-arg PUBLIC_FACEBOOK_PIXEL_ID --build-arg PUBLIC_GOOGLE_ANALYTICS_ID --build-arg PUBLIC_FOODETECTIVE_URL --build-arg COMMUNITY_MANAGEMENT_TYPEFORM_ID --build-arg MARKETING_TYPEFORM_ID --build-arg PHOTOGRAPHY_TYPEFORM_ID --build-arg ROLLBAR_ACCESS_TOKEN --build-arg PLANS_BUSINESS_EXAMPLE_LINK --build-arg LINKEDIN_ADS_ID --build-arg PARTOO_SDK_URL --build-arg GOOGLE_ADS_ID --build-arg GOOGLE_ADS_DEMO_BUTTON_EVENT_ID --build-arg GOOGLE_ADS_PAGE_VIEW_EVENT_ID --build-arg NEWSLETTER_GOOGLE_SHEET_ID --build-arg GOOGLE_SHEET_SERVICE_ACCOUNT_EMAIL --build-arg GOOGLE_SHEET_SERVICE_ACCOUNT_KEY --build-arg ALGOLIA_ENVIRONMENT -t foodetective-btb-web-main-${CIRCLE_SHA1} -f docker/Dockerfile.production .
       - run:
           name: Push image to AWS ECR
           command: |
@@ -184,7 +184,7 @@ workflows:
           filters:
             branches:
               only: develop
-          context: 
+          context:
             - slack-secrets
       - deploy_staging:
           requires:
@@ -192,7 +192,7 @@ workflows:
           filters:
             branches:
               only: develop
-          context: 
+          context:
             - slack-secrets
       ###   PRODUCTION   ###
       - build_push_docker:
@@ -201,7 +201,7 @@ workflows:
           filters:
             branches:
               only: main
-          context: 
+          context:
             - slack-secrets
       - deploy_production_front:
           requires:
@@ -210,5 +210,5 @@ workflows:
           filters:
             branches:
               only: main
-          context: 
+          context:
             - slack-secrets
