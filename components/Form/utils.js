@@ -31,7 +31,10 @@ export const formatTimeNumber = s => {
 
 export const formatPartialTimeString = s => {
   if (partiallyTimeRegexp.test(s)) {
-    return s.slice(0, 2).concat(":").concat(s.slice(2));
+    return s
+      .slice(0, 2)
+      .concat(":")
+      .concat(s.slice(2));
   }
   return s;
 };

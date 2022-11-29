@@ -1,6 +1,8 @@
 import React from "react";
+
 import { bool, func, shape, string } from "prop-types";
-import { addProtocol, getUrlSection } from "utils/urls";
+
+import { addProtocol } from "utils/urls";
 import { useT, useLng } from "utils/hooks";
 import { SwitchBlogButton } from "components/Landing";
 import {
@@ -44,14 +46,7 @@ const TopSection = ({
           <MainArticle
             href={
               isBlog
-                ? `/${lng}/blog-posts/${article.getIn([
-                    "attributes",
-                    "category"
-                  ])}/${article.getIn(["attributes", "slug"])}/${getUrlSection(
-                    article.getIn(["links", "self"]),
-                    "/",
-                    2
-                  )}`
+                ? `/${lng}${article.getIn(["links", "self"])}`
                 : addProtocol(article.getIn(["attributes", "url"]))
             }
             target={isBlog ? "" : "_blank"}

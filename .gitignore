@@ -25,11 +25,7 @@ localhost-key.pem
 localhost.pem
 
 # IDEs
+.vscode
 .idea
-
 # Sentry
 .sentryclirc
-
-# cache files
-.eslintcache
-.stylelintcache

@@ -32,8 +32,10 @@ const IntegrationTile = ({
   handleTrackClickEvent
 }) => {
   const name = partner.get("name");
-  const { isOrkestroIntegration, isIntegratedWithServices } =
-    getServiceIntegrationMeta(partner);
+  const {
+    isOrkestroIntegration,
+    isIntegratedWithServices
+  } = getServiceIntegrationMeta(partner);
 
   const { isIntegrated } = getIntegrationStates(partner, isOrkestroConnected);
 

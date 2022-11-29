@@ -4,6 +4,7 @@ import { withTranslation } from "i18n";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
+import debounce from "debounce";
 
 import { CloseIcon, SearchIcon } from "components/Icons";
 import { fetchPartners, fetchAvailablePartners } from "actions/partners";
@@ -11,7 +12,6 @@ import { WHOLESALERS_URL } from "sections/integrations/utils";
 import { withVisibilityRange } from "utils/hoc/withVisibilityRange";
 import { Input, LeftIcon, RightIcon, Wrapper } from "./styled";
 import { getPartnersFilter } from "./utils";
-import { useDebouncedCallback } from "use-debounce";
 
 const namespaces = ["app"];
 
@@ -25,7 +25,9 @@ const DebouncedInput = ({
 }) => {
   const [value, setValue] = useState("");
 
-  const debouncedOnChange = useDebouncedCallback(onChange, DEBOUNCE);
+  const debouncedOnChange = useCallback(debounce(onChange, DEBOUNCE), [
+    onChange
+  ]);
 
   const clearSearch = useCallback(() => {
     setValue("");

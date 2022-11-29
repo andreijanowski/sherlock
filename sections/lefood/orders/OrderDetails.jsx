@@ -108,10 +108,10 @@ const OrderDetails = ({
             }}
           />
           {orderDetails.getIn(["attributes", "state"]) === "rejected" &&
-            `${t("rejectReason")}: ${
-              orderDetails.getIn(["attributes", "otherRejectionReason"]) ||
-              t(orderDetails.getIn(["attributes", "rejectReason"]))
-            }`}
+            `${t("rejectReason")}: ${orderDetails.getIn([
+              "attributes",
+              "otherRejectionReason"
+            ]) || t(orderDetails.getIn(["attributes", "rejectReason"]))}`}
           {orderDetails.getIn(["relationships", "elements", "data"]) &&
             orderDetails
               .getIn(["relationships", "elements", "data"])

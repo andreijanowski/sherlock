@@ -3,11 +3,11 @@ import { func } from "prop-types";
 
 import Link from "components/Link";
 import { useLng } from "utils/hooks";
-import { Container, Description, IconContainer, Title, Status } from "./styled";
+import { Container, Description, IconContainer, Title } from "./styled";
 import { linkShape } from "../types";
 
 const LinkItem = ({
-  link: { icon: Icon, title, description, href, status },
+  link: { icon: Icon, title, description, href },
   onLinkClick
 }) => {
   const lng = useLng();
@@ -34,14 +34,11 @@ const LinkItem = ({
 
   return wrapContent(
     <Container width={["100%", null, null, 210, 285]} {...props}>
-      <IconContainer comingSoon={status}>
+      <IconContainer>
         <Icon />
       </IconContainer>
-      <Title mb="1px" comingSoon={status}>
-        {title}
-      </Title>
-      {status && <Status>Coming Soon</Status>}
-      <Description comingSoon={status}>{description}</Description>
+      <Title mb="1px">{title}</Title>
+      <Description>{description}</Description>
     </Container>
   );
 };

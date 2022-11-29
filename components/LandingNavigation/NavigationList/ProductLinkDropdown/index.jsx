@@ -1,6 +1,7 @@
 import React from "react";
 import { Box } from "@rebass/grid";
 import { func } from "prop-types";
+
 import LinksGroup from "./LinksGroup";
 import { menuItems } from "./utils";
 import { Container } from "./styled";

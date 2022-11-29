@@ -34,8 +34,9 @@ export const isServiceIntegrationConnected = (partner, isOrkestroConnected) =>
   getServiceIntegrationStates(partner, isOrkestroConnected).isIntegrated;
 
 export const isInternalIntegrationConnectedOrPending = partner => {
-  const { isIntegrated, isIntegrationPending } =
-    getInternalIntegrationStates(partner);
+  const { isIntegrated, isIntegrationPending } = getInternalIntegrationStates(
+    partner
+  );
 
   return isIntegrationPending || isIntegrated;
 };
