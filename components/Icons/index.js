@@ -52,9 +52,7 @@ export {
   OperationalReport,
   Intelligence,
   Fork,
-  Adv,
-  Pocket,
-  Timer
+  Adv
 } from "./navigation";
 export {
   Docs,
@@ -89,12 +87,3 @@ export {
 } from "./lefoodNavigation";
 
 export { Globe, ChevronDownIcon } from "./footer";
-
-export { ClockIcon, HeartIcon, CartIcon, ChevronRightIcon } from "./supplier";
-
-export {
-  ArrowLeftIcon,
-  FavouriteIcon,
-  CloseCircleIcon,
-  TrashIcon
-} from "./products";

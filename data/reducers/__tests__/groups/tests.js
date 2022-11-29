@@ -10,9 +10,8 @@ import {
 } from "./mocks";
 
 const fetchGroupsSuccess = fetchGroupsSuccessAction();
-const groupsLength = Object.entries(
-  fetchGroupsSuccess.payload.data.groups
-).length;
+const groupsLength = Object.entries(fetchGroupsSuccess.payload.data.groups)
+  .length;
 
 let state = reducer(initialState, {});
 

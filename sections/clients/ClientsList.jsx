@@ -2,6 +2,7 @@ import React, { useCallback, useState, useEffect } from "react";
 import { func, shape, number, string, bool } from "prop-types";
 import { connect } from "react-redux";
 import { action as toggleMenuAction } from "redux-burger-menu/immutable";
+import { debounce } from "lodash";
 
 import {
   selectClientsData,
@@ -17,7 +18,6 @@ import {
   ClientsCards
 } from "components/Clients";
 import { useWindowWidthLessThen } from "utils/hooks";
-import { useDebouncedCallback } from "use-debounce";
 
 const INITIAL_PAGE = 1;
 const INITIAL_SEARCH = "";
@@ -46,16 +46,13 @@ const ClientsList = ({
     [toggleMenu]
   );
 
-  const onSearchUpdate = useDebouncedCallback(
-    useCallback(
-      newSearch => {
-        setPage(INITIAL_PAGE);
-        setSearch(newSearch);
-        fetchBusinessClients(currentBusinessId, INITIAL_PAGE, newSearch);
-      },
-      [currentBusinessId, fetchBusinessClients]
-    ),
-    INPUT_DELAY
+  const onSearchUpdate = useCallback(
+    debounce(newSearch => {
+      setPage(INITIAL_PAGE);
+      setSearch(newSearch);
+      fetchBusinessClients(currentBusinessId, INITIAL_PAGE, newSearch);
+    }, INPUT_DELAY),
+    [currentBusinessId]
   );
 
   const onLoadMoreClick = useCallback(() => {

@@ -34,7 +34,8 @@ export const menuItems = [
         title: "Intelligence",
         description: "Intelligent Notifications",
         icon: Intelligence,
-        href: "/product/analytics#intelligence"
+        href: "/product/analytics#intelligence",
+        status: WORK_STATUS.IN_PROGRESS
       },
       {
         title: "Dashboard",
@@ -116,7 +117,7 @@ export const menuItems = [
         title: "Stock Management",
         icon: StockManagement,
         description: "Intelligent Stock",
-        status: WORK_STATUS.COMING_SOON
+        href: "/product/operations#stockManagement"
       },
       {
         title: "HR & Payroll",

@@ -13,22 +13,22 @@ export const getConfig = t => [
     title: t("navigation.columnOne.title"),
     name: "columnOne",
     hrefs: {
-      0: {
+      "0": {
         href: becomePartnerLink,
         target: "_blank",
         rel: "noreferrer noopener"
       },
-      1: {
+      "1": {
         href: `mailto:hello@foodetective.co?subject=${t("workInFoodetective")}`,
         target: "_blank",
         rel: "noreferrer noopener"
       },
-      2: {
+      "2": {
         href: LICENSING_TYPEFORM_LINK,
         target: "_blank",
         rel: "noreferrer noopener"
       },
-      3: {
+      "3": {
         href: INVEST_TYPEFORM_LINK,
         target: "_blank",
         rel: "noreferrer noopener"
@@ -39,17 +39,17 @@ export const getConfig = t => [
     title: t("navigation.columnTwo.title"),
     name: "columnTwo",
     hrefs: {
-      0: {
+      "0": {
         href: "https://medium.com/@foodetective",
         target: "_blank",
         rel: "noreferrer noopener"
       },
-      1: {
+      "1": {
         href: mediaKitLink,
         target: "_blank",
         rel: "noreferrer noopener"
       },
-      2: {
+      "2": {
         href: apiGuideLink,
         target: "_blank",
         rel: "noreferrer noopener"
@@ -60,12 +60,12 @@ export const getConfig = t => [
     title: t("navigation.columnThree.title"),
     name: "columnThree",
     hrefs: {
-      0: {
+      "0": {
         href: privacyPolicyLink,
         target: "_blank",
         rel: "noreferrer noopener"
       },
-      1: {
+      "1": {
         href: termsAndConditionsLink,
         target: "_blank",
         rel: "noreferrer noopener"
