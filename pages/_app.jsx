@@ -131,17 +131,17 @@ class MyApp extends App {
       return <></>;
     }
     return (
-      // <ErrorBoundaryProvider config={rollbarConfig}>
-      <ErrorBoundary>
-        <Provider store={store}>
-          <ThemeProvider theme={theme}>
-            <StripeProvider stripe={this.state.stripe}>
-              <Layout {...{ pageProps, Component }} />
-            </StripeProvider>
-          </ThemeProvider>
-        </Provider>
-      </ErrorBoundary>
-      // </ErrorBoundaryProvider>
+      <ErrorBoundaryProvider config={rollbarConfig}>
+        <ErrorBoundary>
+          <Provider store={store}>
+            <ThemeProvider theme={theme}>
+              <StripeProvider stripe={this.state.stripe}>
+                <Layout {...{ pageProps, Component }} />
+              </StripeProvider>
+            </ThemeProvider>
+          </Provider>
+        </ErrorBoundary>
+      </ErrorBoundaryProvider>
     );
   }
 }
