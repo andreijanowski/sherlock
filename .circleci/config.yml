@@ -183,16 +183,26 @@ workflows:
             - checkout_code
           filters:
             branches:
+<<<<<<< HEAD
               only: develop
           context:
+=======
+              only: Develop
+          context: 
+>>>>>>> main
             - slack-secrets
       - deploy_staging:
           requires:
             - build_image_staging
           filters:
             branches:
+<<<<<<< HEAD
               only: develop
           context:
+=======
+              only: Develop
+          context: 
+>>>>>>> main
             - slack-secrets
       ###   PRODUCTION   ###
       - build_push_docker:
@@ -200,8 +210,13 @@ workflows:
             - checkout_code
           filters:
             branches:
+<<<<<<< HEAD
               only: main
           context:
+=======
+              only: Main
+          context: 
+>>>>>>> main
             - slack-secrets
       - deploy_production_front:
           requires:
@@ -209,6 +224,12 @@ workflows:
             - build_push_docker
           filters:
             branches:
+<<<<<<< HEAD
               only: main
           context:
             - slack-secrets
+=======
+              only: Main
+          context: 
+            - slack-secrets
+>>>>>>> main

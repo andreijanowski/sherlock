@@ -166,8 +166,14 @@ class BasicInformation extends PureComponent {
       getProfileBusiness,
       query
     } = this.props;
-    const { types, cuisines, foodsAndDrinks, quirks, diets, michelinStars } =
-      this.state;
+    const {
+      types,
+      cuisines,
+      foodsAndDrinks,
+      quirks,
+      diets,
+      michelinStars
+    } = this.state;
     const initialValues = getInitialValues({ business, businessGroups });
     return (
       <ProfileLayout

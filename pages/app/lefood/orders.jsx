@@ -415,8 +415,9 @@ export default requireAuth(true)(
           ]),
           connectedWithOrkestro: selectIsConnectedWithOrkestro(state),
           lng: (i18n && i18n.language) || "en",
-          isOrkestroDeliveryConfirmationEnabled:
-            selectIsOrkestroDeliveryConfirmationEnabled(state),
+          isOrkestroDeliveryConfirmationEnabled: selectIsOrkestroDeliveryConfirmationEnabled(
+            state
+          ),
           settings: selectBusinessSettingsObject(state)
         };
       },

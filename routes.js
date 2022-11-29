@@ -124,9 +124,7 @@ module.exports = routes()
   .add("app/stripeOauth", `/:lng(${languagesPattern})/stripe-oauth`)
   .add("app/subscriptions", `/:lng(${languagesPattern})/app/subscriptions`)
   .add("app/integrations", `/:lng(${languagesPattern})/app/integrations`)
-  .add("app/suppliers", `/:lng(${languagesPattern})/app/suppliers`)
-  .add("app/products", `/:lng(${languagesPattern})/app/suppliers/:id/products`)
-  .add("app/cart", `/:lng(${languagesPattern})/app/cart`)
+  .add("app/wholesalers", `/:lng(${languagesPattern})/app/wholesalers`)
   .add(
     "app/influencerManagement/marketing",
     `/:lng(${languagesPattern})/app/influencer-management/marketing`
@@ -162,10 +160,7 @@ module.exports = routes()
   .add("developers", `/:lng(${languagesPattern})/developers`)
   .add("demo_booked", `/:lng(${languagesPattern})/demo_booked`)
   .add("newsroom", `/:lng(${languagesPattern})/newsroom`)
-  .add(
-    "blogposts/detail",
-    `/:lng(${languagesPattern})/blog-posts/:category/:slug/:id`
-  )
+  .add("blogposts/detail", `/:lng(${languagesPattern})/blog-posts/:id`)
   .add(
     "sign-up-confirmation",
     `/:lng(${languagesPattern})/sign-up-confirmation`

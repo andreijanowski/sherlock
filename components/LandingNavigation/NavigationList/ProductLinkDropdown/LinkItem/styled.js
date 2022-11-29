@@ -40,11 +40,6 @@ export const Container = styled(Box)`
 export const Title = styled(Body)`
   font-weight: 600;
   font-size: 14px;
-  ${p =>
-    p.comingSoon &&
-    `
-      color: rgb(${themeGet("colors.importGray")});
-  `};
   color: inherit;
 
   &:hover {
@@ -58,23 +53,18 @@ export const Title = styled(Body)`
 export const Description = styled(Body)`
   font-size: 14px;
   color: rgb(${themeGet("colors.rollingStone")});
-  ${p =>
-    p.comingSoon &&
-    `
-      color: rgb(${themeGet("colors.importGray")});
-  `};
 `;
 
 export const Status = styled.div`
   position: absolute;
-  right: 6px;
-  top: -4px;
+  right: 8px;
+  top: -5px;
   transform: translateY(-50%);
   padding: 6px 10px;
   border-radius: 24px;
   font-weight: 600;
-  font-size: 8px;
-  line-height: 12px;
+  font-size: 10px;
+  line-height: 14px;
   border: 1px solid;
   ${p => {
     switch (p.status) {

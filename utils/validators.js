@@ -1,13 +1,11 @@
 import moment from "moment";
 import { isEmail as isValidEmail, isInt, isNumeric } from "validator";
 
-export const composeValidators =
-  (...validators) =>
-  (...values) =>
-    validators.reduce(
-      (error, validator) => error || validator(...values),
-      undefined
-    );
+export const composeValidators = (...validators) => (...values) =>
+  validators.reduce(
+    (error, validator) => error || validator(...values),
+    undefined
+  );
 
 export const required = t => value =>
   value ? undefined : t("forms:validation.error.required");
@@ -25,14 +23,12 @@ export const validateLength = (t, min, max) => value =>
     ? t("forms:validation.error.length", { min, max })
     : undefined;
 
-export const minPasswordLength =
-  t =>
-  (value = "") =>
-    value.length >= 8
-      ? undefined
-      : t("forms:validation.error.password", {
-          length: 8
-        });
+export const minPasswordLength = t => (value = "") =>
+  value.length >= 8
+    ? undefined
+    : t("forms:validation.error.password", {
+        length: 8
+      });
 
 export const validatePassword = t =>
   composeValidators(required(t), minPasswordLength(t));
@@ -68,7 +64,10 @@ export const validateTableName = t =>
 
 export const validateFileExtensions = (t, extensions) => value => {
   if (!value) return undefined;
-  const fileExt = value.name.split(".").slice(-1)[0].toLocaleLowerCase();
+  const fileExt = value.name
+    .split(".")
+    .slice(-1)[0]
+    .toLocaleLowerCase();
   return extensions.includes(`.${fileExt}`)
     ? undefined
     : t("forms:validation.error.invalid_files");
@@ -76,8 +75,7 @@ export const validateFileExtensions = (t, extensions) => value => {
 
 export const matchYoutubeUrl = t => url => {
   if (!url) return undefined;
-  const p =
-    /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+  const p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
   if (url.match(p)) {
     return undefined;
   }

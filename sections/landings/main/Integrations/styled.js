@@ -27,7 +27,6 @@ export const BlueText = styled.span`
 export const ImageContainer = styled.div`
   position: relative;
   text-align: center;
-  width: 1109px;
 
   @media (max-width: ${p => p.theme.breakpoints[1]}) {
     width: 100%;
