@@ -72,7 +72,6 @@ const blue = css`
 
   &:hover:enabled {
     color: rgb(${p => p.theme.colors.white});
-    ${"" /* background-color: rgba(${p => p.theme.colors.blue}, 1); */}
     box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.blue}, 0.48);
     background: linear-gradient(
       to right,
