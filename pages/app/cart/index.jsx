@@ -54,10 +54,9 @@ const CartPage = ({
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const groupedBySupplier = useMemo(
-    () => groupBy(products, "supplier_name"),
-    [products]
-  );
+  const groupedBySupplier = useMemo(() => groupBy(products, "supplier_name"), [
+    products
+  ]);
 
   const totalPrice = useMemo(
     () =>
@@ -210,7 +209,11 @@ const mapStateToProps = state => {
   const businessData = state.getIn(["users", "currentBusiness", "data"]);
 
   const businessId =
-    businessData && businessData.get("businesses").keySeq().first();
+    businessData &&
+    businessData
+      .get("businesses")
+      .keySeq()
+      .first();
 
   return {
     products: products.size ? products.toJS() : [],

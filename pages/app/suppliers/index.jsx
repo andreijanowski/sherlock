@@ -5,11 +5,7 @@ import { func, shape, string } from "prop-types";
 import requireAuth from "lib/requireAuth";
 import SearchApp from "components/Algolia/SearchApp";
 import algoliasearchLite from "algoliasearch/lite";
-import {
-  PUBLIC_ALGOLIA_CLIENT_KEY,
-  ALGOLIA_APP_ID,
-  ALGOLIA_ENVIRONMENT
-} from "consts";
+import { PUBLIC_ALGOLIA_CLIENT_KEY, ALGOLIA_APP_ID, ALGOLIA_ENVIRONMENT } from "consts";
 import { connect } from "react-redux";
 import ConnectedHits from "components/Suppliers/ConnectedHits";
 import Loading from "../../../components/Suppliers/Loading";
