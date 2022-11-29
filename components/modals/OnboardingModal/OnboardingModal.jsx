@@ -82,14 +82,10 @@ const OnboardingModal = memo(
       // eslint-disable-next-line
     }, []);
 
-    const initialPeriods = businessOpenPeriods
-      ? parsePeriods(businessOpenPeriods)
-      : {};
-
     const initialValues = useMemo(
       () => ({
         ...getInitialValues({ business, businessGroups }),
-        periods: initialPeriods,
+        periods: businessOpenPeriods ? parsePeriods(businessOpenPeriods) : {},
         ...getImagesValues({
           business,
           businessMenus,
@@ -103,9 +99,9 @@ const OnboardingModal = memo(
         business,
         businessGroups,
         businessMenus,
+        businessOpenPeriods,
         businessPictures,
-        businessProducts,
-        initialPeriods
+        businessProducts
       ]
     );
 

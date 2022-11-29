@@ -28,14 +28,8 @@ const Tags = ({
 }) => {
   const t = useT(["basicInformation", "contactInformation"]);
 
-  const {
-    types,
-    cuisines,
-    foodsAndDrinks,
-    quirks,
-    diets,
-    michelinStars
-  } = groupsData;
+  const { types, cuisines, foodsAndDrinks, quirks, diets, michelinStars } =
+    groupsData;
 
   return (
     <FinalForm

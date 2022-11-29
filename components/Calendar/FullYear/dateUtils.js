@@ -8,9 +8,7 @@ export function weeksOfMonth(m, events) {
   const thisMonth = m.month();
   const weeks = [];
 
-  const month = moment(m)
-    .startOf("month")
-    .startOf("week");
+  const month = moment(m).startOf("month").startOf("week");
 
   do {
     const date = month.clone();
@@ -33,12 +31,8 @@ export function weeksOfMonth(m, events) {
  *  @param {string|Date|moment} moment any date in the target month
  */
 export function monthEdges(month) {
-  const start = moment(month)
-    .startOf("month")
-    .startOf("week");
-  const end = moment(month)
-    .endOf("month")
-    .endOf("week");
+  const start = moment(month).startOf("month").startOf("week");
+  const end = moment(month).endOf("month").endOf("week");
 
   const result = [];
 

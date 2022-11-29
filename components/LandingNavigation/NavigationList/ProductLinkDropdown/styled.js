@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
-
 import { downThanBreakpoint, themeGet } from "utils/theme";
 
 export const Container = styled(Flex)`

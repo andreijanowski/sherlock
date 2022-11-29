@@ -183,7 +183,7 @@ workflows:
             - checkout_code
           filters:
             branches:
-              only: Develop
+              only: develop
           context: 
             - slack-secrets
       - deploy_staging:
@@ -191,7 +191,7 @@ workflows:
             - build_image_staging
           filters:
             branches:
-              only: Develop
+              only: develop
           context: 
             - slack-secrets
       ###   PRODUCTION   ###
@@ -200,7 +200,7 @@ workflows:
             - checkout_code
           filters:
             branches:
-              only: Main
+              only: main
           context: 
             - slack-secrets
       - deploy_production_front:
@@ -209,6 +209,6 @@ workflows:
             - build_push_docker
           filters:
             branches:
-              only: Main
+              only: main
           context: 
             - slack-secrets
