@@ -5,7 +5,7 @@ const API_URL = process.env.PUBLIC_API_URL;
 const APP_URL = process.env.APP_URL;
 const FOODETECTIVE_URL = process.env.PUBLIC_FOODETECTIVE_URL;
 
-const dev = process.env.NODE_ENV === "production";
+const dev = process.env.NODE_ENV !== "production";
 
 const NETGURU_DEV_PASSWORD = process.env.NETGURU_DEV_PASSWORD;
 const OAUTH_CALLBACK_URL = process.env.OAUTH_CALLBACK_URL;
