@@ -91,7 +91,7 @@ const PartnerTileButtons = ({
         <ButtonWrapper />
       )}
       <ButtonWrapper isIntegration={isIntegration} onClick={handleOrder}>
-        <BlueButton big={isBig} {...getIntegrationLinkProps(partner)}>
+        <BlueButton big={isBig} {...getIntegrationLinkProps(partner)} gradient>
           {linkLabel}
         </BlueButton>
       </ButtonWrapper>

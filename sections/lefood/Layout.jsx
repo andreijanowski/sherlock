@@ -411,7 +411,12 @@ const LefoodLayout = ({
           <Flex width={1} mt={3} flexWrap="wrap">
             <Box pr={3} mb={2}>
               <Link route="/app/lefood/orders/" lng={lng}>
-                <Button as="a" styleName="withImage" active={page === "orders"}>
+                <Button
+                  as="a"
+                  styleName="withImage"
+                  active={page === "orders"}
+                  gradient
+                >
                   <ButtonWithImageIconWrapper>
                     <Orders />
                   </ButtonWithImageIconWrapper>
@@ -426,7 +431,7 @@ const LefoodLayout = ({
                   value={currentAverageDeliveryTime}
                   onChange={onAverageDeliveryTimeChange}
                   ButtonComponent={p => (
-                    <Button styleName="withImage" {...p}>
+                    <Button styleName="withImage" {...p} gradient>
                       <ButtonWithImageIconWrapper>
                         <Time />
                       </ButtonWithImageIconWrapper>
@@ -445,7 +450,11 @@ const LefoodLayout = ({
             </Tippy>
             <Tippy content={t("minAmountForDelivery")}>
               <Box pr={3} mb={2}>
-                <Button styleName="withImage" onClick={showCurrencyModal}>
+                <Button
+                  styleName="withImage"
+                  onClick={showCurrencyModal}
+                  gradient
+                >
                   <ButtonWithImageIconWrapper>
                     <Price />
                   </ButtonWithImageIconWrapper>
@@ -467,6 +476,7 @@ const LefoodLayout = ({
                   as="a"
                   styleName="withImage"
                   active={page === "orderingHours"}
+                  gradient
                 >
                   <ButtonWithImageIconWrapper>
                     <Clock />
@@ -484,6 +494,7 @@ const LefoodLayout = ({
                   styleName="withImage"
                   active={page === "deliveryArea"}
                   disabled={connectedWithOrkestro}
+                  gradient
                 >
                   <ButtonWithImageIconWrapper>
                     <Location />
@@ -498,6 +509,7 @@ const LefoodLayout = ({
                   as="a"
                   styleName="withImage"
                   active={page === "ordersHistory"}
+                  gradient
                 >
                   <ButtonWithImageIconWrapper>
                     <Reservations />

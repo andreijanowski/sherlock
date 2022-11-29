@@ -80,6 +80,7 @@ const Dashboard = ({
             active={currentTab.name === tab.name}
             onClick={() => switchCurrentTab(tab)}
             margin="10px 32px 0 0"
+            gradient
           >
             <ButtonWithImageIconWrapper>
               <IconWrapper active={currentTab.name === tab.name}>

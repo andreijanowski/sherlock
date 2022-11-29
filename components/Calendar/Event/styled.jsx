@@ -129,6 +129,6 @@ export const ExtendedButton = styled(Button)`
     margin: auto;
     height: 36px;
     font-size: ${p => p.theme.fontSizes.f14};
-    line-height: ${p => p.theme.fontSizes.f14};
+    ${"" /* line-height: ${p => p.theme.fontSizes.f14}; */}
   }
 `;

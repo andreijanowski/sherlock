@@ -37,14 +37,19 @@ const IntelligenceTileButton = ({ t, data }) => {
                 t={t}
                 big
                 url={videoUrl}
-                styleName="darkBlue"
+                styleName="blueDegrade"
               />
             )}
           </ButtonWrapper>
         )}
         {description && (
           <ButtonWrapper>
-            <BlueButton big as="a" styleName="darkBlue" onClick={toggleChecked}>
+            <BlueButton
+              big
+              as="a"
+              styleName="blueDegrade"
+              onClick={toggleChecked}
+            >
               {t("app:seeMore")}
             </BlueButton>
             {checked && (
@@ -67,7 +72,7 @@ const IntelligenceTileButton = ({ t, data }) => {
             as="a"
             target="_blank"
             href={`${redirectionUrl}`}
-            styleName="darkBlue"
+            styleName="blueDegrade"
           >
             {redirectionText ? (
               <>

@@ -72,8 +72,13 @@ const blue = css`
 
   &:hover:enabled {
     color: rgb(${p => p.theme.colors.white});
-    background-color: rgba(${p => p.theme.colors.blue}, 1);
+    ${"" /* background-color: rgba(${p => p.theme.colors.blue}, 1); */}
     box-shadow: 0 1px 3px 0 rgba(${p => p.theme.colors.blue}, 0.48);
+    background: linear-gradient(
+      to right,
+      rgba(${p => p.theme.colors.b2bSecondary}, 1),
+      rgb(${p => p.theme.colors.blue})
+    );
   }
 
   @media (min-width: ${p => p.theme.breakpoints[0]}) {
@@ -133,6 +138,7 @@ const goToApiDocs = css`
 
 const becomePartner = css`
   ${login};
+  border-radius: 6px;
   margin: 0 0 16px;
   background: rgba(${p => p.theme.colors.purpleBlue}, 1);
   box-shadow: none;
@@ -158,6 +164,16 @@ const navyBlue = css`
 
 const darkBlue = css`
   background-color: rgb(${p => p.theme.colors.darkBlue});
+  ${planButton};
+`;
+
+const blueDegrade = css`
+  height: 40px;
+  background: linear-gradient(
+    to right,
+    rgba(${p => p.theme.colors.b2bSecondary}, 1),
+    rgb(${p => p.theme.colors.blue})
+  );
   ${planButton};
 `;
 
@@ -315,7 +331,6 @@ const Button = styled.button`
   overflow: hidden;
   font-weight: ${p => p.fontWeight || p.theme.fontWeights.medium};
   font-size: ${p => p.fontSize || p.theme.fontSizes.f16};
-  line-height: 1.5;
   text-decoration: none;
   border-radius: ${p => p.radius || p.theme.radius.default};
   cursor: pointer;
@@ -331,6 +346,7 @@ const Button = styled.button`
   ${p => p.styleName === "deepSkyBlue" && deepSkyBlue};
   ${p => p.styleName === "navyBlue" && navyBlue};
   ${p => p.styleName === "darkBlue" && darkBlue};
+  ${p => p.styleName === "blueDegrade" && blueDegrade};
   ${p => p.styleName === "green" && green};
   ${p => p.styleName === "white" && white};
   ${p => p.styleName === "hanPurple" && hanPurple};
