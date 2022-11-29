@@ -3,13 +3,16 @@ import { func, shape, string } from "prop-types";
 import { PulseLoader } from "react-spinners";
 import Categories from "./Categories";
 import { theme } from "../../utils/theme";
+import { ALGOLIA_ENVIRONMENT } from "consts";
 
 const SupplierCategories = ({ searchClient, lng, t }) => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const index = searchClient.initIndex("SupplierCategory_staging");
+    const index = searchClient.initIndex(
+      `SupplierCategory_${ALGOLIA_ENVIRONMENT}`
+    );
 
     setLoading(true);
     index
