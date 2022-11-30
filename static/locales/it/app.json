@@ -36,6 +36,12 @@
     "goToOrderHistory": "Vai a Cronologia ordini",
     "gotIt": "Fatto"
   },
+  "orderHistory": "Cronologia ordini",
+  "suppliersName": "Nome fornitori",
+  "orderId": "ID dell'ordine",
+  "productsOrdered": "Prodotti ordinati",
+  "wantEditOrRepeat": "Vuoi modificare o ripetere?",
+  "date": "Data",
   "manageProfile": {
     "manageProfile": "Gestisci profilo",
     "basicInformation": "Informazioni di base",
