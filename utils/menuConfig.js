@@ -21,21 +21,18 @@ import {
   Payments,
   Photography,
   Reviews,
-  StockManagement,
-  Payroll,
-  FoodWaste,
+  // StockManagement,
+  // Payroll,
+  // FoodWaste,
   PresenceManagement,
-  CustomerLoyalty,
+  // CustomerLoyalty,
   EventsManagement,
   Catering,
   PrivateEvents,
   InfluencerManagement,
   Intelligence
 } from "components/Icons";
-import {
-  PARTNERS_CATEGORIES,
-  WHOLESALERS_CATEGORIES
-} from "sections/integrations/utils";
+import { PARTNERS_CATEGORIES } from "sections/integrations/utils";
 
 const generateSettingsSubmenu = (t, logout) => [
   {
@@ -135,19 +132,6 @@ const generateIntegrationsSubmenu = t =>
       : {
           route: `/app/integrations`,
           label: t(`app:manageIntegrations.all`)
-        }
-  );
-
-const generateWholesalersSubmenu = t =>
-  WHOLESALERS_CATEGORIES.map(category =>
-    category
-      ? {
-          route: `/app/wholesalers?category=${category}`,
-          label: t(`app:wholesalersCategories.${category}`)
-        }
-      : {
-          route: `/app/wholesalers`,
-          label: t(`app:wholesalersCategories.search`)
         }
   );
 
@@ -267,30 +251,29 @@ export const getMenuConfig = ({
         label: t("app:payments")
       },
       {
-        basePath: "/app/wholesalers",
-        route: "/app/wholesalers?category=preferred",
+        basePath: "/app/suppliers",
+        route: "/app/suppliers",
         icon: Wholesalers,
-        label: t("app:wholesaler"),
-        submenuItems: generateWholesalersSubmenu(t)
-      },
-      {
-        basePath: "/app/stock-management",
-        route: "/app/stock-management/",
-        icon: StockManagement,
-        label: t("app:stockManagement")
-      },
-      {
-        basePath: "/app/payroll",
-        route: "/app/payroll/",
-        icon: Payroll,
-        label: t("app:payroll")
-      },
-      {
-        basePath: "/app/food-waste",
-        route: "/app/food-waste/",
-        icon: FoodWaste,
-        label: t("app:foodWaste")
+        label: t("app:menuSuppliers")
       }
+      // {
+      //   basePath: "/app/stock-management",
+      //   route: "/app/stock-management/",
+      //   icon: StockManagement,
+      //   label: t("app:stockManagement")
+      // },
+      // {
+      //   basePath: "/app/payroll",
+      //   route: "/app/payroll/",
+      //   icon: Payroll,
+      //   label: t("app:payroll")
+      // },
+      // {
+      //   basePath: "/app/food-waste",
+      //   route: "/app/food-waste/",
+      //   icon: FoodWaste,
+      //   label: t("app:foodWaste")
+      // }
     ]
   },
   {
@@ -314,13 +297,13 @@ export const getMenuConfig = ({
         route: "/app/reviews/",
         icon: Reviews,
         label: t("app:reviews")
-      },
-      {
-        basePath: "/app/loyalty",
-        route: "/app/loyalty/",
-        icon: CustomerLoyalty,
-        label: t("app:loyalty")
       }
+      // {
+      //   basePath: "/app/loyalty",
+      //   route: "/app/loyalty/",
+      //   icon: CustomerLoyalty,
+      //   label: t("app:loyalty")
+      // }
     ]
   },
   {

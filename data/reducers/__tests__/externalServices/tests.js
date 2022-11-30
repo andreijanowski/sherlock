@@ -11,7 +11,7 @@ import {
   fetchBusinessLinkSuccessAction,
   patchExternalServiceLinkSuccessAction,
   connectExternalServiceLinkSuccessAction,
-  deleteExternalServiceLinkSuccessAction,
+  deleteExternalServiceLinkSuccessAction
 } from "./mocks";
 
 let state;
@@ -21,21 +21,21 @@ const businessLinksSuccessAction = fetchBusinessLinkSuccessAction();
 
 const service = {
   id: "123e4567-e89b-12d3-a456-426614174000",
-  name: "test service",
+  name: "test service"
 };
 
 const updatedService = {
   ...service,
-  name: "new test service",
+  name: "new test service"
 };
 
 const connectServiceSuccessAction = connectExternalServiceLinkSuccessAction({
   id: service.id,
-  data: service,
+  data: service
 });
 const patchServiceSuccessAction = patchExternalServiceLinkSuccessAction({
   id: updatedService.id,
-  data: updatedService,
+  data: updatedService
 });
 const deleteServiceSuccessAction = deleteExternalServiceLinkSuccessAction(
   service.id

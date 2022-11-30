@@ -38,7 +38,6 @@ services:
       - NEWSLETTER_GOOGLE_SHEET_ID
       - GOOGLE_SHEET_SERVICE_ACCOUNT_EMAIL
       - GOOGLE_SHEET_SERVICE_ACCOUNT_KEY
-      - ALGOLIA_ENVIRONMENT
     networks:
       - frontend
     expose:

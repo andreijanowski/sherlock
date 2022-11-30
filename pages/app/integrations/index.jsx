@@ -1,19 +1,40 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { withTranslation } from "i18n";
 import requireAuth from "lib/requireAuth";
 import { func, string, shape, bool } from "prop-types";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
+import { Flex } from "@rebass/grid";
+import { IntegrationHub, Pocket, Timer } from "icons";
 import PartnersSearchBox from "components/PartnersSearchBox";
 import AppLayout from "layout/App";
 import { PARTNERS_CATEGORIES, PARTNERS_URL } from "sections/integrations/utils";
-import { LoadingIndicator } from "components";
+import {
+  Button,
+  ButtonWithImageIconWrapper,
+  ButtonWithImageText,
+  LoadingIndicator
+} from "components";
 import IntegrationsList from "sections/integrations";
+import { IconWrapper } from "components/Dashboard/styled";
 
 const namespaces = ["forms", "app"];
 
+const INTEGRATIONS_FILTERS = {
+  ALL: "all",
+  AVAILABLE: "available",
+  COMING_SOON: "coming_soon"
+};
+
+const filters = [
+  { name: INTEGRATIONS_FILTERS.ALL, icon: <IntegrationHub /> },
+  { name: INTEGRATIONS_FILTERS.AVAILABLE, icon: <Pocket /> },
+  { name: INTEGRATIONS_FILTERS.COMING_SOON, icon: <Timer /> }
+];
+
 const IntegrationsPage = ({ t, lng, partners, isLoading }) => {
+  const [currentFilter, setCurrentFilter] = useState(filters[0]);
   const {
     query: { category },
     push
@@ -26,6 +47,13 @@ const IntegrationsPage = ({ t, lng, partners, isLoading }) => {
     }
   }, [category, push]);
 
+  const filteredPartners =
+    currentFilter.name === INTEGRATIONS_FILTERS.ALL
+      ? partners
+      : partners.filter(
+          p => p.getIn(["attributes", "status"]) === currentFilter.name
+        );
+
   return (
     <AppLayout
       t={t}
@@ -33,9 +61,29 @@ const IntegrationsPage = ({ t, lng, partners, isLoading }) => {
       mainIcon="integrations"
       header={t("app:integrations")}
     >
+      <Flex mb={4} mx={2} flexWrap={["wrap"]}>
+        {filters.map(tab => (
+          <Button
+            key={tab.name}
+            as="a"
+            styleName="withImage"
+            active={currentFilter.name === tab.name}
+            onClick={() => setCurrentFilter(tab)}
+            margin="10px 16px 0 0"
+            gradient
+          >
+            <ButtonWithImageIconWrapper>
+              <IconWrapper active={currentFilter.name === tab.name}>
+                {tab.icon}
+              </IconWrapper>
+            </ButtonWithImageIconWrapper>
+            <ButtonWithImageText>{t(tab.name)}</ButtonWithImageText>
+          </Button>
+        ))}
+      </Flex>
       <PartnersSearchBox visibilityRange={[60, 640]} />
-      {partners && partners.size > 0 && (
-        <IntegrationsList partners={partners} isIntegrations t={t} />
+      {filteredPartners && filteredPartners.size > 0 && (
+        <IntegrationsList partners={filteredPartners} isIntegrations t={t} />
       )}
       {isLoading && <LoadingIndicator hasTransparentBackground />}
     </AppLayout>

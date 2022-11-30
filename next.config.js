@@ -10,7 +10,7 @@ module.exports = {
   sentry: {
     hideSourceMaps: true,
     autoInstrumentServerFunctions: true
-  },  
+  },
   trailingSlash: true,
   webpack: (config, { isServer }) => {
     const env = Object.keys(process.env).reduce((acc, curr) => {
