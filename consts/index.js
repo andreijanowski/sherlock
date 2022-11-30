@@ -1,5 +1,6 @@
 const { languages, languagesPattern } = require("./languages");
 /* eslint-disable prefer-destructuring */
+const dev = process.env.NODE_ENV !== "production";
 
 const API_URL = process.env.PUBLIC_API_URL;
 const APP_URL = process.env.APP_URL;
@@ -141,11 +142,12 @@ const GOOGLE_SHEET_SERVICE_ACCOUNT_EMAIL =
 const GOOGLE_SHEET_SERVICE_ACCOUNT_KEY =
   process.env.GOOGLE_SHEET_SERVICE_ACCOUNT_KEY;
 
-const PUBLIC_ALGOLIA_CLIENT_KEY =
-  process.env.PUBLIC_ALGOLIA_CLIENT_KEY || "569fb18902ca15de527353225a6ba63a";
-const ALGOLIA_APP_ID = process.env.PUBLIC_ALGOLIA_APP_ID || "USKQIQBYHF";
-const PUBLIC_ALGOLIA_INDEX_SUFFIX =
-  process.env.PUBLIC_ALGOLIA_INDEX_SUFFIX || "staging";
+const PUBLIC_ALGOLIA_CLIENT_KEY = !dev
+  ? "bf853662d2e5fcefa6f63a5a59be6352"
+  : "569fb18902ca15de527353225a6ba63a";
+const ALGOLIA_APP_ID = !dev ? "ZIJ9XATQMM" : "USKQIQBYHF";
+
+const ALGOLIA_ENVIRONMENT = !dev ? "production" : "staging";
 
 module.exports = {
   contentTypes,
@@ -207,5 +209,5 @@ module.exports = {
   LP_PROD_URL,
   PUBLIC_ALGOLIA_CLIENT_KEY,
   ALGOLIA_APP_ID,
-  PUBLIC_ALGOLIA_INDEX_SUFFIX
+  ALGOLIA_ENVIRONMENT
 };
