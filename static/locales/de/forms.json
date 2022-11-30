@@ -165,5 +165,8 @@
   "unpublish": "Unveröffentlicht",
   "next": "Weiter",
   "yes": "Ja",
-  "no": "Nein"
+  "no": "Nein",
+  "all": "Alles",
+  "available": "Verfügbar",
+  "coming_soon": "Demnächst"
 }

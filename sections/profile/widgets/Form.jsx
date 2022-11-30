@@ -56,9 +56,9 @@ const WidgetForm = ({
                     <Flex>
                       <Box width={1} mb={3}>
                         <StyledButton fluid styleName="hanPurple" as="div">
-                          {`<script>var s=document.createElement('script');s.onload=function(){window.foodetectiveWidget.init("${apiKey}","YOUR_WRAPPER_ID_HERE");};s.src="${!isServer &&
-                            window.location
-                              .origin}/static/widget/entry.js";document.head.appendChild(s);</script>`}
+                          {`<script>var s=document.createElement('script');s.onload=function(){window.foodetectiveWidget.init("${apiKey}","YOUR_WRAPPER_ID_HERE");};s.src="${
+                            !isServer && window.location.origin
+                          }/static/widget/entry.js";document.head.appendChild(s);</script>`}
                         </StyledButton>
                       </Box>
                     </Flex>

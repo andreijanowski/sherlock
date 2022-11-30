@@ -12,13 +12,13 @@ import {
   Clients,
   Payments,
   Wholesalers,
-  StockManagement,
-  Payroll,
-  FoodWaste,
+  // StockManagement,
+  // Payroll,
+  // FoodWaste,
   InfluencerManagement,
   PresenceManagement,
   Reviews,
-  CustomerLoyalty,
+  // CustomerLoyalty,
   CustomerSupport,
   OperationalReport
 } from "components/Icons";
@@ -184,37 +184,37 @@ export const getTableConfig = ({ t, isLandingPage }) => [
               { isAvailable: true },
               { isAvailable: true }
             ]
-          },
-          {
-            icon: StockManagement,
-            label: t("app:stockManagement"),
-            isComingSoon: true,
-            columns: [
-              { isAvailable: false },
-              { isAvailable: true },
-              { isAvailable: true }
-            ]
-          },
-          {
-            icon: Payroll,
-            label: t("app:payroll"),
-            isComingSoon: true,
-            columns: [
-              { isAvailable: false },
-              { isAvailable: false },
-              { isAvailable: true }
-            ]
-          },
-          {
-            icon: FoodWaste,
-            label: t("app:foodWaste"),
-            isComingSoon: true,
-            columns: [
-              { isAvailable: false },
-              { isAvailable: false },
-              { isAvailable: true }
-            ]
           }
+          // {
+          //   icon: StockManagement,
+          //   label: t("app:stockManagement"),
+          //   isComingSoon: true,
+          //   columns: [
+          //     { isAvailable: false },
+          //     { isAvailable: true },
+          //     { isAvailable: true }
+          //   ]
+          // },
+          // {
+          //   icon: Payroll,
+          //   label: t("app:payroll"),
+          //   isComingSoon: true,
+          //   columns: [
+          //     { isAvailable: false },
+          //     { isAvailable: false },
+          //     { isAvailable: true }
+          //   ]
+          // },
+          // {
+          //   icon: FoodWaste,
+          //   label: t("app:foodWaste"),
+          //   isComingSoon: true,
+          //   columns: [
+          //     { isAvailable: false },
+          //     { isAvailable: false },
+          //     { isAvailable: true }
+          //   ]
+          // }
         ]
       },
       {
@@ -249,17 +249,17 @@ export const getTableConfig = ({ t, isLandingPage }) => [
               { isAvailable: true },
               { isAvailable: true }
             ]
-          },
-          {
-            icon: CustomerLoyalty,
-            label: t("app:loyalty"),
-            isComingSoon: true,
-            columns: [
-              { isAvailable: false },
-              { isAvailable: false },
-              { isAvailable: true }
-            ]
           }
+          // {
+          //   icon: CustomerLoyalty,
+          //   label: t("app:loyalty"),
+          //   isComingSoon: true,
+          //   columns: [
+          //     { isAvailable: false },
+          //     { isAvailable: false },
+          //     { isAvailable: true }
+          //   ]
+          // }
         ]
       }
     ]

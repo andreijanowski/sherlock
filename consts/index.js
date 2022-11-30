@@ -1,11 +1,10 @@
 const { languages, languagesPattern } = require("./languages");
 /* eslint-disable prefer-destructuring */
+const dev = process.env.NODE_ENV !== "production";
 
 const API_URL = process.env.PUBLIC_API_URL;
 const APP_URL = process.env.APP_URL;
 const FOODETECTIVE_URL = process.env.PUBLIC_FOODETECTIVE_URL;
-
-const dev = process.env.NODE_ENV !== "production";
 
 const NETGURU_DEV_PASSWORD = process.env.NETGURU_DEV_PASSWORD;
 const OAUTH_CALLBACK_URL = process.env.OAUTH_CALLBACK_URL;
@@ -71,7 +70,7 @@ const mediaKitLink =
   "https://drive.google.com/drive/folders/1iZyNJbszSyRPG3ZWwNKVGws9UdSrdv-z";
 const becomePartnerLink = `https://foodetective.typeform.com/to/tzqu8b`;
 
-const apiGuideLink = `https://developer.foodetective.co/`;
+const apiGuideLink = `https://developer.foodetective.co`;
 
 const rollbarConfig = {
   accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
@@ -112,10 +111,8 @@ const PARTNERS_URL =
 const CAREERS_FOODETECTIVE_EMAIL = "hello@foodetective.co";
 
 const USER_GUIDES_URL = {
-  fr:
-    "https://docs.google.com/document/d/18ytc8_ToYltMyFM-Yiax2lXMU7DgvvBvC5SeTtBTstc/edit",
-  en:
-    "https://docs.google.com/document/d/1DvgZpRWiBHzoHAwvhI9u1UFOl2ce8TZf2W7FHhsyKKY/edit"
+  fr: "https://docs.google.com/document/d/18ytc8_ToYltMyFM-Yiax2lXMU7DgvvBvC5SeTtBTstc/edit",
+  en: "https://docs.google.com/document/d/1DvgZpRWiBHzoHAwvhI9u1UFOl2ce8TZf2W7FHhsyKKY/edit"
 };
 
 const PARTOO_SDK_URL =
@@ -145,12 +142,12 @@ const GOOGLE_SHEET_SERVICE_ACCOUNT_EMAIL =
 const GOOGLE_SHEET_SERVICE_ACCOUNT_KEY =
   process.env.GOOGLE_SHEET_SERVICE_ACCOUNT_KEY;
 
-const PUBLIC_ALGOLIA_CLIENT_KEY = !dev ? "bf853662d2e5fcefa6f63a5a59be6352" : "569fb18902ca15de527353225a6ba63a";
+const PUBLIC_ALGOLIA_CLIENT_KEY = !dev
+  ? "bf853662d2e5fcefa6f63a5a59be6352"
+  : "569fb18902ca15de527353225a6ba63a";
 const ALGOLIA_APP_ID = !dev ? "ZIJ9XATQMM" : "USKQIQBYHF";
 
-  const ALGOLIA_ENVIRONMENT = !dev ? "production" : "staging";
-
-const ALGOLIA_ENVIRONMENT = process.env.ALGOLIA_ENVIRONMENT;
+const ALGOLIA_ENVIRONMENT = !dev ? "production" : "staging";
 
 module.exports = {
   contentTypes,

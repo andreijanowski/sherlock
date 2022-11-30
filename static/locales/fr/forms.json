@@ -165,5 +165,8 @@
   "unpublish": "Dépublier",
   "next": "Suivant",
   "yes": "Oui",
-  "no": "Non"
+  "no": "Non",
+  "all": "Voir tout",
+  "available": "Disponibles",
+  "coming_soon": "A venir"
 }

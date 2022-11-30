@@ -453,14 +453,8 @@ class ReservationsPage extends PureComponent {
       ]
     });
     this.setState(state => {
-      const {
-        columns,
-        source,
-        destination,
-        draggableId,
-        choosenSlot,
-        slots
-      } = state;
+      const { columns, source, destination, draggableId, choosenSlot, slots } =
+        state;
       const sourceColumn = columns[source.droppableId];
       const newSourceReservationIds = Array.from(sourceColumn.reservationIds);
       newSourceReservationIds.splice(source.index, 1);

@@ -45,11 +45,13 @@ const NewsroomPage = ({
 }) => {
   const [isBlog, setIsBlog] = useState(true);
   const lng = useLng();
+
   useEffect(() => {
     fetchBlogPosts(1, lng).then(fetchNewsPosts(1).then(fetchImage()));
   }, [fetchNewsPosts, fetchImage, fetchBlogPosts, lng]);
 
   const handleChange = () => setIsBlog(!isBlog);
+
   const mainArticle = isBlog
     ? blogList && blogList.getIn(["data"]).first()
     : newsList && newsList.getIn(["data"]).first();

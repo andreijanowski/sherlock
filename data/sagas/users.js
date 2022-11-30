@@ -13,7 +13,8 @@ import {
   fetchBusinessServiceLinks,
   fetchBusinessCards,
   fetchBusinessSubscriptions,
-  fetchBusinessClients
+  fetchBusinessClients,
+  fetchBusinessFavoriteSuppliers
 } from "actions/businesses";
 import { UPDATE_PROFILE_SUCCESS } from "types/users";
 import { SET_CURRENT_BUSINESS } from "types/app";
@@ -52,6 +53,7 @@ function* fetchBusinessData({ payload: { id } }) {
   yield fetchAllBusinessData(fetchBusinessTables, id);
   yield fetchAllBusinessData(fetchBusinessReservations, id);
   yield fetchAllBusinessData(fetchBusinessWidgets, id);
+  yield fetchAllBusinessData(fetchBusinessFavoriteSuppliers, id);
   yield put(fetchBusinessPartnerships(id));
   yield put(fetchBusinessClients(id));
 }
