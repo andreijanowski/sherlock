@@ -17,3 +17,7 @@ export const addProtocol = url => {
 
   return `https${divider}${divided[1]}`;
 };
+
+export const getUrlSection = (str, operator, level) => {
+  return str.split(`${operator}`)[level];
+};

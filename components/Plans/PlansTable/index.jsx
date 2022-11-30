@@ -17,10 +17,10 @@ const PlansTable = ({
   onPlanChooseClick
 }) => {
   const { t } = useTranslation("plans");
-  const config = useMemo(() => getTableConfig({ t, isLandingPage }), [
-    isLandingPage,
-    t
-  ]);
+  const config = useMemo(
+    () => getTableConfig({ t, isLandingPage }),
+    [isLandingPage, t]
+  );
 
   return (
     <TableContainer>

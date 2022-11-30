@@ -2,7 +2,7 @@ import React from "react";
 import { bool, shape, func, number } from "prop-types";
 import moment from "moment";
 import { useT, useLng } from "utils/hooks";
-import { addProtocol } from "utils/urls";
+import { addProtocol, getUrlSection } from "utils/urls";
 import Button from "components/styleguide/Button";
 import {
   Article,
@@ -50,7 +50,14 @@ const ArticlesSection = ({
           {articles.getIn(["data"]).map(article => (
             <BlogPost
               key={article.getIn(["id"])}
-              href={`/${lng}${article.getIn(["links", "self"])}`}
+              href={`/${lng}/blog-posts/${article.getIn([
+                "attributes",
+                "category"
+              ])}/${article.getIn(["attributes", "slug"])}/${getUrlSection(
+                article.getIn(["links", "self"]),
+                "/",
+                2
+              )}`}
             >
               <Image
                 src={article.getIn(["attributes", "coverPicture", "url"])}
