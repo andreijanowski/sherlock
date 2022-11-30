@@ -267,7 +267,7 @@ const CreateCateringForm = ({ t, lng, isSending, handleFormSubmit }) => (
                 );
               }}
             >
-              {t("events:forms:cancel")}
+              {t("forms:cancel")}
             </Button>
           </Box>
           <Box width={1 / 2} px={2}>

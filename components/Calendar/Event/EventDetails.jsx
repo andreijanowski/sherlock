@@ -51,7 +51,7 @@ const EventDetails = ({
         mt={[2, 0]}
       >
         <ExtendedButton
-          styleName="smallBlue"
+          styleName="blueDegrade"
           onClick={() => {
             setEditedEvent(event.resource);
             Router.pushRoute(

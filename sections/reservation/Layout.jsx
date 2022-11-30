@@ -123,6 +123,7 @@ const ReservationLayout = ({
               as="a"
               styleName="withImage"
               active={page === "reservations"}
+              gradient
             >
               <ButtonWithImageIconWrapper>
                 <ProfileContact />
@@ -133,7 +134,12 @@ const ReservationLayout = ({
         </Box>
         <Box pr={3} mb={2}>
           <Link route="/app/reservation/tables/" lng={lng}>
-            <Button as="a" styleName="withImage" active={page === "tables"}>
+            <Button
+              as="a"
+              styleName="withImage"
+              active={page === "tables"}
+              gradient
+            >
               <ButtonWithImageIconWrapper>
                 <ProfileAdditionaInfo />
               </ButtonWithImageIconWrapper>
@@ -143,7 +149,7 @@ const ReservationLayout = ({
         </Box>
         <Box pr={3} mb={2}>
           <Tippy content={t("timeSlots")}>
-            <Button styleName="withImage" as="label">
+            <Button styleName="withImage" as="label" gradient>
               <ButtonWithImageIconWrapper>
                 <Time />
               </ButtonWithImageIconWrapper>
@@ -166,7 +172,7 @@ const ReservationLayout = ({
         </Box>
         <Box pr={3} mb={2}>
           <Tippy content={t("timeOfStay")}>
-            <Button styleName="withImage" as="label">
+            <Button styleName="withImage" as="label" gradient>
               <ButtonWithImageIconWrapper>
                 <Clock />
               </ButtonWithImageIconWrapper>
@@ -189,7 +195,7 @@ const ReservationLayout = ({
         </Box>
         <Box pr={3} mb={2}>
           <Tippy content={t("minTimeBeforeReservation")}>
-            <Button styleName="withImage" as="label">
+            <Button styleName="withImage" as="label" gradient>
               <ButtonWithImageIconWrapper>
                 <ProfileOpeningHours />
               </ButtonWithImageIconWrapper>
@@ -212,7 +218,7 @@ const ReservationLayout = ({
         </Box>
         <Box pr={3} mb={2}>
           <Tippy content={t("maxReservationSize")}>
-            <Button styleName="withImage" as="label">
+            <Button styleName="withImage" as="label" gradient>
               <ButtonWithImageIconWrapper>
                 <ProfileMembers />
               </ButtonWithImageIconWrapper>

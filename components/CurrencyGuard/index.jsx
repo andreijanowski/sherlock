@@ -66,7 +66,7 @@ const CurrencyGuard = ({
         >
           <H2 textAlign="center">{t("stripeCurrencyNotSet")}</H2>
           <Box>
-            <Button onClick={onShowStripeCurrencyModal} styleName="blue">
+            <Button onClick={onShowStripeCurrencyModal}>
               {t("setStripeCurrency")}
             </Button>
           </Box>

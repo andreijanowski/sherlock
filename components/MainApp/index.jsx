@@ -192,12 +192,16 @@ const MainApp = ({
         >
           {prevRoute && (
             <Link lng={lng} route={prevRoute}>
-              <Button styleName="blue">{t("common:prev")}</Button>
+              <Button styleName="blue" gradient>
+                {t("common:prev")}
+              </Button>
             </Link>
           )}
           {nextRoute && (
             <Link lng={lng} route={nextRoute}>
-              <Button styleName="blue">{t("common:next")}</Button>
+              <Button styleName="blue" gradient>
+                {t("common:next")}
+              </Button>
             </Link>
           )}
         </Flex>

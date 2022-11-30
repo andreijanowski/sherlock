@@ -62,9 +62,7 @@ export const ButtonWrapper = styled(Box)`
   }
 `;
 
-export const BlueButton = styled(Button).attrs({
-  styleName: "darkBlue"
-})`
+export const BlueButton = styled(Button)`
   ${CommonButtonStyles}
   max-height: 40px;
   display: flex;
