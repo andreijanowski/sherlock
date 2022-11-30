@@ -8,7 +8,8 @@ import algoliasearchLite from "algoliasearch/lite";
 import {
   PUBLIC_ALGOLIA_CLIENT_KEY,
   ALGOLIA_APP_ID,
-  ALGOLIA_ENVIRONMENT
+  ALGOLIA_ENVIRONMENT,
+  ALGOLIA_SUPPLIER_PRODUCT_INDEX_NAME
 } from "consts";
 import { connect } from "react-redux";
 import { groupBy } from "lodash";
@@ -136,7 +137,7 @@ const CartPage = ({
     >
       <SearchApp
         searchClient={searchClient}
-        indexName={`SupplierProduct_${ALGOLIA_ENVIRONMENT}`}
+        indexName={`${ALGOLIA_SUPPLIER_PRODUCT_INDEX_NAME}_${ALGOLIA_ENVIRONMENT}`}
         label={t("app:cart")}
         placeholder={t("app:supplierSearchPlaceholder")}
         t={t}

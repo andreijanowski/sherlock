@@ -105,8 +105,8 @@ const CustomFilter = React.forwardRef((props, myRef) => {
           </div>
         </div>
 
-        <div className="flex space-x-4 flex-shrink-0">
-          <ClockIcon className="text-gray-700 w-5 shrink-0" />
+        <div className="flex flex-shrink-0 space-x-4">
+          <ClockIcon className="w-5 shrink-0 text-gray-700" />
           <Box
             className="flex cursor-pointer items-center space-x-1 text-gray-700"
             onClick={() => setIsOpen(true)}

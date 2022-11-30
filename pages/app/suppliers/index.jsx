@@ -8,7 +8,8 @@ import algoliasearchLite from "algoliasearch/lite";
 import {
   PUBLIC_ALGOLIA_CLIENT_KEY,
   ALGOLIA_APP_ID,
-  ALGOLIA_ENVIRONMENT
+  ALGOLIA_ENVIRONMENT,
+  ALGOLIA_SUPPLIER_INDEX_NAME
 } from "consts";
 import { connect } from "react-redux";
 import ConnectedHits from "components/Suppliers/ConnectedHits";
@@ -88,7 +89,7 @@ const SuppliersPage = ({
     >
       <SearchApp
         searchClient={searchClient}
-        indexName={`Supplier_${ALGOLIA_ENVIRONMENT}`}
+        indexName={`${ALGOLIA_SUPPLIER_INDEX_NAME}_${ALGOLIA_ENVIRONMENT}`}
         label={t("app:allSuppliers")}
         placeholder={t("app:supplierSearchPlaceholder")}
         filters={filters}
