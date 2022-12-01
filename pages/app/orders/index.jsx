@@ -9,7 +9,7 @@ import AppLayout from "layout/App";
 import OrdersTable from "components/Suppliers/Orders/OrdersTable";
 import { useLng } from "utils/hooks";
 import { fetchBusinessSupplierOrdersHistory } from "actions/businesses";
-import { mergeOrdersData } from "./utils";
+import { mergeOrdersData } from "utils/supplierUtils";
 import { useTranslation } from "i18n";
 
 const searchClient = algoliasearchLite(
