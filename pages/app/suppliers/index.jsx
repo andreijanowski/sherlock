@@ -8,17 +8,18 @@ import algoliasearchLite from "algoliasearch/lite";
 import {
   PUBLIC_ALGOLIA_CLIENT_KEY,
   ALGOLIA_APP_ID,
-  ALGOLIA_ENVIRONMENT
+  ALGOLIA_ENVIRONMENT,
+  ALGOLIA_SUPPLIER_INDEX_NAME
 } from "consts";
 import { connect } from "react-redux";
 import ConnectedHits from "components/Suppliers/ConnectedHits";
-import Loading from "../../../components/Suppliers/Loading";
-import SupplierCategories from "../../../components/Suppliers/SupplierCategories";
+import Loading from "components/Suppliers/Loading";
+import SupplierCategories from "components/Suppliers/SupplierCategories";
 import {
   postRemoveSupplierToFavorites,
   postSupplierToFavorites
-} from "../../../data/actions/suppliers";
-import { fetchBusinessFavoriteSuppliers } from "../../../data/actions/businesses";
+} from "actions/suppliers";
+import { fetchBusinessFavoriteSuppliers } from "actions/businesses";
 
 const searchClient = algoliasearchLite(
   ALGOLIA_APP_ID,
@@ -88,7 +89,7 @@ const SuppliersPage = ({
     >
       <SearchApp
         searchClient={searchClient}
-        indexName={`Supplier_${ALGOLIA_ENVIRONMENT}`}
+        indexName={`${ALGOLIA_SUPPLIER_INDEX_NAME}_${ALGOLIA_ENVIRONMENT}`}
         label={t("app:allSuppliers")}
         placeholder={t("app:supplierSearchPlaceholder")}
         filters={filters}

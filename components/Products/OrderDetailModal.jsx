@@ -13,8 +13,8 @@ import {
   removeProductToCart,
   setProductsToCart,
   updateProductToCart
-} from "../../data/actions/products";
-import { convertToFound } from "../../utils/price";
+} from "actions/products";
+import { convertToFound } from "utils/price";
 
 const OrderDetailModal = ({
   isOpen,

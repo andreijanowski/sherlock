@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { withTranslation } from "i18n";
 import AppLayout from "layout/App";
 import { func, string } from "prop-types";
@@ -8,13 +8,16 @@ import algoliasearchLite from "algoliasearch/lite";
 import {
   PUBLIC_ALGOLIA_CLIENT_KEY,
   ALGOLIA_APP_ID,
-  ALGOLIA_ENVIRONMENT
+  ALGOLIA_ENVIRONMENT,
+  ALGOLIA_SUPPLIER_PRODUCT_INDEX_NAME,
+  ALGOLIA_SUPPLIER_INDEX_NAME,
+  ALGOLIA_SUPPLIER_PRODUCT_CATEGORY_INDEX_NAME
 } from "consts";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
-import Loading from "../../../components/Suppliers/Loading";
-import ProductsGrid from "../../../components/Products/ProductsGrid";
-import Categories from "../../../components/Suppliers/Categories";
+import Loading from "components/Suppliers/Loading";
+import ProductsGrid from "components/Products/ProductsGrid";
+import Categories from "components/Suppliers/Categories";
 
 const searchClient = algoliasearchLite(
   ALGOLIA_APP_ID,
@@ -27,24 +30,31 @@ const ProductsPage = ({ t, lng }) => {
   const router = useRouter();
   const { name, id } = router.query;
   const [supplier, setSupplier] = useState();
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    const index = searchClient.initIndex(`Supplier_${ALGOLIA_ENVIRONMENT}`);
+    const index = searchClient.initIndex(
+      `${ALGOLIA_SUPPLIER_INDEX_NAME}_${ALGOLIA_ENVIRONMENT}`
+    );
 
     index.search(name).then(res => {
       const data = res.hits.find(hit => hit.objectID === id);
       setSupplier(data);
     });
-  }, [name, id]);
 
-  const categories = useMemo(
-    () =>
-      supplier?.supplier_categories?.map(item => ({
-        label: item.name,
-        value: item.name
-      })) || [],
-    [supplier]
-  );
+    const categoryIndex = searchClient.initIndex(
+      `${ALGOLIA_SUPPLIER_PRODUCT_CATEGORY_INDEX_NAME}_${ALGOLIA_ENVIRONMENT}`
+    );
+
+    categoryIndex.search().then(res => {
+      setCategories(
+        res.hits.map(item => ({
+          label: item.name,
+          value: item.name
+        }))
+      );
+    });
+  }, [name, id]);
 
   return (
     <AppLayout
@@ -55,7 +65,7 @@ const ProductsPage = ({ t, lng }) => {
     >
       <SearchApp
         searchClient={searchClient}
-        indexName={`SupplierProduct_${ALGOLIA_ENVIRONMENT}`}
+        indexName={`${ALGOLIA_SUPPLIER_PRODUCT_INDEX_NAME}_${ALGOLIA_ENVIRONMENT}`}
         label={name}
         backUrl={`/${lng}/app/suppliers`}
         hasBack

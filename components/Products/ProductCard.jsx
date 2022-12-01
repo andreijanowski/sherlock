@@ -4,8 +4,8 @@ import { bool, func, shape, string } from "prop-types";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Box } from "@rebass/grid";
-import { useTranslation } from "../../i18n";
-import { convertToFound } from "../../utils/price";
+import { useTranslation } from "i18n";
+import { convertToFound } from "utils/price";
 
 const ProductCard = ({
   product,

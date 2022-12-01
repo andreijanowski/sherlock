@@ -3,8 +3,8 @@ import Modal from "react-responsive-modal";
 import { useRouter } from "next/router";
 import { Box } from "@rebass/grid";
 import { bool, func } from "prop-types";
-import { useTranslation } from "../../i18n";
-import { useLng } from "../../utils/hooks";
+import { useTranslation } from "i18n";
+import { useLng } from "utils/hooks";
 
 const SuccessModal = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
@@ -34,7 +34,7 @@ const SuccessModal = ({ isOpen, onClose }) => {
 
           <div className="mt-12 mb-4 flex items-center justify-center space-x-4">
             <Box
-              className="text-blue-600 cursor-pointer font-semibold leading-1.4"
+              className="cursor-pointer font-semibold leading-1.4 text-blue-600"
               onClick={() => router.push(`/${lng}/app/suppliers`)}
             >
               {t("app:requestSuccessSent.gotIt")}
