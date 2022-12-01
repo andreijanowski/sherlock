@@ -3,8 +3,8 @@ import Modal from "react-responsive-modal";
 import { useRouter } from "next/router";
 import { Box } from "@rebass/grid";
 import { bool, func } from "prop-types";
-import { useTranslation } from "../../i18n";
-import { useLng } from "../../utils/hooks";
+import { useTranslation } from "i18n";
+import { useLng } from "utils/hooks";
 
 const SuccessModal = ({ isOpen, onClose }) => {
   const { t } = useTranslation();

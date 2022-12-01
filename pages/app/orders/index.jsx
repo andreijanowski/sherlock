@@ -4,13 +4,13 @@ import { connect } from "react-redux";
 import SearchApp from "components/Algolia/SearchApp";
 import algoliasearchLite from "algoliasearch/lite";
 import { ALGOLIA_APP_ID, PUBLIC_ALGOLIA_CLIENT_KEY } from "consts";
-import requireAuth from "../../../lib/requireAuth";
-import AppLayout from "../../../layout/App";
-import OrdersTable from "../../../components/Suppliers/Orders/OrdersTable";
-import { useLng } from "../../../utils/hooks";
-import { fetchBusinessSupplierOrdersHistory } from "../../../data/actions/businesses";
+import requireAuth from "lib/requireAuth";
+import AppLayout from "layout/App";
+import OrdersTable from "components/Suppliers/Orders/OrdersTable";
+import { useLng } from "utils/hooks";
+import { fetchBusinessSupplierOrdersHistory } from "actions/businesses";
 import { mergeOrdersData } from "./utils";
-import { useTranslation } from "../../../i18n";
+import { useTranslation } from "i18n";
 
 const searchClient = algoliasearchLite(
   ALGOLIA_APP_ID,

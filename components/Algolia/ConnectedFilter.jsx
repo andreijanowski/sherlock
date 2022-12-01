@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { ArrowLeftIcon, CartIcon, ClockIcon, FavouriteIcon } from "../Icons";
 import OrderDetailModal from "../Products/OrderDetailModal";
 import { useDebouncedCallback } from "use-debounce";
-import { useLng } from "../../utils/hooks";
+import { useLng } from "utils/hooks";
 
 const DEBOUNCE = 300;
 

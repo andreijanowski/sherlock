@@ -15,22 +15,22 @@ import { connect } from "react-redux";
 import { groupBy } from "lodash";
 import { Box } from "@rebass/grid";
 import { PulseLoader } from "react-spinners";
-import { useLng } from "../../../utils/hooks";
+import { useLng } from "utils/hooks";
+import SupplierCartView from "components/Cart/SupplierCartView";
+import SuccessModal from "components/Cart/SuccessModal";
 import {
   clearCart,
   removeProductsBySupplier,
   removeProductToCart,
   updateProductToCart
-} from "../../../data/actions/products";
-import SupplierCartView from "../../../components/Cart/SupplierCartView";
+} from "actions/products";
 import {
   postSupplierOrder,
   postSupplierOrderEmail
-} from "../../../data/actions/supplierOrders";
-import { postSupplierElements } from "../../../data/actions/supplierElements";
-import { colors } from "../../../utils/theme";
-import { convertToFound } from "../../../utils/price";
-import SuccessModal from "../../../components/Cart/SuccessModal";
+} from "actions/supplierOrders";
+import { postSupplierElements } from "actions/supplierElements";
+import { colors } from "utils/theme";
+import { convertToFound } from "utils/price";
 
 const searchClient = algoliasearchLite(
   ALGOLIA_APP_ID,

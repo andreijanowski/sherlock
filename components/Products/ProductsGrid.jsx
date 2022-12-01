@@ -8,7 +8,7 @@ import {
   addProductToCart,
   removeProductToCart,
   updateProductToCart
-} from "../../data/actions/products";
+} from "actions/products";
 
 const ProductsGrid = ({
   hits,

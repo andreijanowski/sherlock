@@ -15,9 +15,9 @@ import {
 } from "consts";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
-import Loading from "../../../components/Suppliers/Loading";
-import ProductsGrid from "../../../components/Products/ProductsGrid";
-import Categories from "../../../components/Suppliers/Categories";
+import Loading from "components/Suppliers/Loading";
+import ProductsGrid from "components/Products/ProductsGrid";
+import Categories from "components/Suppliers/Categories";
 
 const searchClient = algoliasearchLite(
   ALGOLIA_APP_ID,

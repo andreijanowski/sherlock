@@ -4,8 +4,8 @@ import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { arrayOf, func, shape, string } from "prop-types";
 import { Box } from "@rebass/grid";
 import { TrashIcon } from "../Icons";
-import { useTranslation } from "../../i18n";
-import { convertToFound } from "../../utils/price";
+import { useTranslation } from "i18n";
+import { convertToFound } from "utils/price";
 
 const SupplierCartView = ({
   products,

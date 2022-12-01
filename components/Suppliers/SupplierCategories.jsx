@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { func, shape, string } from "prop-types";
 import { PulseLoader } from "react-spinners";
 import Categories from "./Categories";
-import { theme } from "../../utils/theme";
+import { theme } from "utils/theme";
 import {
   ALGOLIA_ENVIRONMENT,
   ALGOLIA_SUPPLIER_CATEGORY_INDEX_NAME

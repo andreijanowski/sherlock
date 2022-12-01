@@ -3,7 +3,7 @@ import { bool, shape } from "prop-types";
 import { useTranslation } from "i18n";
 import { PulseLoader } from "react-spinners";
 import OrderTableRow from "./OrderTableRow";
-import { theme } from "../../../utils/theme";
+import { theme } from "utils/theme";
 
 const OrdersTable = ({ supplierOrders, loading }) => {
   const { t } = useTranslation();
