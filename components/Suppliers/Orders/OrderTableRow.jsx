@@ -14,7 +14,12 @@ const OrderTableRow = ({ order }) => {
         </div>
       </td>
       <td className="border-b border-t border-gray-200 px-4 py-5 align-top">
-        <div className="flex h-9 items-center space-x-4 text-sm">
+        <div className="flex h-9 items-center space-x-1 text-sm">
+          <img
+            src={order.supplierLogo}
+            className="h-6 w-6 rounded-full shadow"
+            alt="logo"
+          />
           <div className="font-semibold uppercase">{order.supplierName}</div>
         </div>
       </td>

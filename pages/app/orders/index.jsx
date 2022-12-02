@@ -74,6 +74,7 @@ const mapStateToProps = state => {
     "data",
     "supplierOrders"
   ]);
+  const suppliers = state.getIn(["supplierOrders", "data", "suppliers"]);
   const supplierElements = state.getIn([
     "supplierOrders",
     "data",
@@ -94,7 +95,8 @@ const mapStateToProps = state => {
     supplierOrders: mergeOrdersData(
       supplierOrders,
       supplierElements,
-      supplierProducts
+      supplierProducts,
+      suppliers
     )
   };
 };

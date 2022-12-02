@@ -66,6 +66,10 @@ const reducer = (state = initialState, { type, payload, meta }) => {
         newState = newState.setIn(["data"], fromJS(payload.data));
       } else {
         newState = newState.mergeIn(
+          ["data", "suppliers"],
+          fromJS(payload.data.suppliers)
+        );
+        newState = newState.mergeIn(
           ["data", "supplierOrders"],
           fromJS(payload.data.supplierOrders)
         );
