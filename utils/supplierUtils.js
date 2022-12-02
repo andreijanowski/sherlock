@@ -1,4 +1,4 @@
-export const mergeOrdersData = (orders, elements, products) => {
+export const mergeOrdersData = (orders, elements, products, suppliers) => {
   if (!orders) return undefined;
 
   return orders.map(order => {
@@ -12,6 +12,7 @@ export const mergeOrdersData = (orders, elements, products) => {
       "supplierProducts",
       "data"
     ]);
+    const orderSupplier = order.getIn(["relationships", "supplier", "data"]);
 
     let updatedOrder = order;
 
@@ -26,6 +27,13 @@ export const mergeOrdersData = (orders, elements, products) => {
       updatedOrder = updatedOrder.setIn(
         ["relationships", "supplierProducts", "data"],
         orderProducts.map(e => products.get(e.get("id")))
+      );
+    }
+
+    if (orderSupplier) {
+      updatedOrder = updatedOrder.setIn(
+        ["relationships", "supplier", "data"],
+        suppliers.get(orderSupplier.get("id"))
       );
     }
     return updatedOrder;
