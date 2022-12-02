@@ -29,27 +29,20 @@ const OrdersTable = ({ supplierOrders, loading }) => {
       const elements = order
         ?.getIn(["relationships", "supplierElements", "data"])
         ?.toJS();
+      const products = order
+        ?.getIn(["relationships", "supplierProducts", "data"])
+        ?.toJS();
+      const supplier = order?.getIn(["relationships", "supplier", "data"]);
 
       return {
         desiredDeliveryDate,
         comment,
         orderId,
         elements: elements || [],
-        supplierName: order?.getIn([
-          "relationships",
-          "supplier",
-          "data",
-          "attributes",
-          "name"
-        ]),
-        supplierLogo: order?.getIn([
-          "relationships",
-          "supplier",
-          "data",
-          "attributes",
-          "logo",
-          "url"
-        ])
+        supplier: supplier?.toJS(),
+        supplierName: supplier?.getIn(["attributes", "name"]),
+        products,
+        supplierLogo: supplier?.getIn(["attributes", "logo", "url"])
       };
     });
   }, [supplierOrders]);

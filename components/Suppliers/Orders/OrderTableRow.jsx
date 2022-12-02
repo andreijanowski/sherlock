@@ -1,10 +1,54 @@
 import React, { useState } from "react";
 import moment from "moment";
 import { Box } from "@rebass/grid";
-import { shape } from "prop-types";
+import { func, shape, string } from "prop-types";
+import RepeatOrderModal from "./RepeatOrderModal";
+import RepeatSuccessModal from "./RepeatSuccessModal";
+import {
+  postSupplierOrder,
+  postSupplierOrderEmail
+} from "../../../data/actions/supplierOrders";
+import { postSupplierElements } from "../../../data/actions/supplierElements";
+import { connect } from "react-redux";
+import { useTranslation } from "i18n";
 
-const OrderTableRow = ({ order }) => {
+const OrderTableRow = ({
+  order,
+  businessId,
+  createSupplierOrder,
+  createSupplierElements,
+  sendSupplierOrderEmail
+}) => {
   const [expanded, setExpanded] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+  const { t } = useTranslation();
+
+  const onRepeatOrder = async (deliveryDate, comment, elements) => {
+    const result = await createSupplierOrder({
+      desiredDeliveryDate: deliveryDate,
+      comment,
+      businessId,
+      supplierId: order.supplier.id
+    });
+
+    if (result?.rawData && result.rawData?.data) {
+      const orderId = result.rawData?.data?.id;
+
+      await Promise.all(
+        elements.map(async element => {
+          await createSupplierElements({
+            quantity: element.quantity,
+            supplierOrderId: orderId,
+            supplierProductId: element.supplierProductId
+          });
+        })
+      );
+
+      await sendSupplierOrderEmail(orderId);
+      setIsSuccessModalOpen(true);
+    }
+  };
 
   return (
     <tr className="">
@@ -39,7 +83,7 @@ const OrderTableRow = ({ order }) => {
               ))}
             </div>
             <div className="text-gray-900">
-              <span className="mr-2 font-bold italic">Comment:</span>
+              <span className="mr-2 font-bold italic">{t("app:comment")}:</span>
               <span>{order.comment}</span>
             </div>
           </div>
@@ -48,7 +92,7 @@ const OrderTableRow = ({ order }) => {
           className="cursor-pointer text-sm font-semibold text-gray-900 underline"
           onClick={() => setExpanded(!expanded)}
         >
-          {expanded ? "Hide Order" : "See Order"}
+          {expanded ? t("app:hideOrder") : t("app:seeOrder")}
         </Box>
       </td>
       <td className="border-b border-t border-gray-200 px-4 py-5">
@@ -56,17 +100,49 @@ const OrderTableRow = ({ order }) => {
           <button
             type="button"
             className="rounded-full bg-indigo-700 bg-button py-2 px-6 text-white"
+            onClick={() => setIsOpen(true)}
           >
-            Repeat
+            {t("app:repeat")}
           </button>
         </div>
       </td>
+      <RepeatOrderModal
+        onClose={() => setIsOpen(false)}
+        isOpen={isOpen}
+        order={order}
+        onRepeatOrder={onRepeatOrder}
+      />
+      <RepeatSuccessModal
+        onClose={() => setIsSuccessModalOpen(false)}
+        isOpen={isSuccessModalOpen}
+      />
     </tr>
   );
 };
 
 OrderTableRow.propTypes = {
-  order: shape().isRequired
+  order: shape().isRequired,
+  businessId: string.isRequired,
+  createSupplierOrder: func.isRequired,
+  createSupplierElements: func.isRequired,
+  sendSupplierOrderEmail: func.isRequired
 };
 
-export default OrderTableRow;
+const mapStateToProps = state => {
+  const businessData = state.getIn(["users", "currentBusiness", "data"]);
+
+  const businessId =
+    businessData && businessData.get("businesses").keySeq().first();
+
+  return {
+    businessId
+  };
+};
+
+const mapDispatchToProps = {
+  createSupplierOrder: postSupplierOrder,
+  sendSupplierOrderEmail: postSupplierOrderEmail,
+  createSupplierElements: postSupplierElements
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderTableRow);

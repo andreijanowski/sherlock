@@ -30,10 +30,20 @@
   "cart": "Carro",
   "socialMedia": "Redes sociales (pronto)",
   "billing": "Facturación (pronto)",
+  "repeatRequest": "Repita la solicitud",
+  "repeat": "Repetir",
+  "hideOrder": "Ocultar pedido",
+  "seeOrder": "Ver Pedido",
   "requestSuccessSent": {
     "title": "¡Su solicitud fue enviada con éxito!",
     "description": "Puede encontrar sus pedidos en la pestaña de historial y reordenarlos cuando sea necesario.",
     "goToOrderHistory": "Ir al historial de pedidos",
+    "gotIt": "Entiendo"
+  },
+  "orderRepeatSuccessSent": {
+    "title": "Su solicitud fue enviada",
+    "description": "Pronto recibirá la factura final de los proveedores solicitados.",
+    "continue": "Continuar ordenando",
     "gotIt": "Entiendo"
   },
   "orderHistory": "Historial de pedidos",
