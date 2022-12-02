@@ -30,10 +30,20 @@
   "socialMedia": "Social media (soon)",
   "cart": "Cart",
   "billing": "Billing (soon)",
+  "repeatRequest": "Repeat the Request",
+  "repeat": "Repeat",
+  "hideOrder": "Hide Order",
+  "seeOrder": "See Order",
   "requestSuccessSent": {
     "title": "Your request was successfully sent!",
     "description": "You can find your orders in the history tab and reorder when needed.",
     "goToOrderHistory": "Go to Orders History",
+    "gotIt": "Got it"
+  },
+  "orderRepeatSuccessSent": {
+    "title": "Your request was sent",
+    "description": "You will soon receive the final invoice from requested suppliers.",
+    "continue": "Continue Ordering",
     "gotIt": "Got it"
   },
   "orderHistory": "Order History",

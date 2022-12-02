@@ -30,10 +30,20 @@
   "cart": "Panier",
   "socialMedia": "Les médias sociaux (bientôt)",
   "billing": "Facturation (bientôt)",
+  "repeatRequest": "Répétez la demande",
+  "repeat": "Répéter",
+  "hideOrder": "Masquer la commande",
+  "seeOrder": "Voir la commande",
   "requestSuccessSent": {
     "title": "Votre demande a été envoyée avec succès !",
     "description": "Vous pouvez retrouver vos commandes dans l'onglet historique et les réorganiser si nécessaire.",
     "goToOrderHistory": "Accéder à l'historique des commandes",
+    "gotIt": "J'ai compris"
+  },
+  "orderRepeatSuccessSent": {
+    "title": "Votre demande a été envoyée",
+    "description": "Vous recevrez bientôt la facture finale des fournisseurs demandés.",
+    "continue": "Continuer la commande",
     "gotIt": "J'ai compris"
   },
   "orderHistory": "Historique des commandes",

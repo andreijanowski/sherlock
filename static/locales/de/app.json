@@ -30,10 +30,20 @@
   "cart": "Wagen",
   "socialMedia": "Social Media (bald)",
   "billing": "Abrechnung (bald)",
+  "repeatRequest": "Wiederholen Sie die Anfrage",
+  "repeat": "Wiederholen",
+  "hideOrder": "Bestellung ausblenden",
+  "seeOrder": "Siehe Bestellung",
   "requestSuccessSent": {
     "title": "Ihre Anfrage wurde erfolgreich versendet!",
     "description": "Sie können Ihre Bestellungen auf der Registerkarte \"Verlauf\" finden und bei Bedarf nachbestellen.",
     "goToOrderHistory": "Gehen Sie zum Bestellverlauf",
+    "gotIt": "Ich habs"
+  },
+  "orderRepeatSuccessSent": {
+    "title": "Ihre Anfrage wurde gesendet",
+    "description": "Sie erhalten in Kürze die Schlussrechnung von angefragten Lieferanten.",
+    "continue": "Bestellen Sie weiter",
     "gotIt": "Ich habs"
   },
   "orderHistory": "Bestellverlauf",

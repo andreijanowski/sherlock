@@ -30,10 +30,20 @@
   "cart": "Carrello",
   "socialMedia": "Social media",
   "billing": "Fatturazione",
+  "repeatRequest": "Ripeti la richiesta",
+  "repeat": "Ripetere",
+  "hideOrder": "Nascondi ordine",
+  "seeOrder": "Vedi Ordine",
   "requestSuccessSent": {
     "title": "La tua richiesta è stata inviata con successo!",
     "description": "Puoi trovare i tuoi ordini nella scheda cronologia e riordinare quando necessario.",
     "goToOrderHistory": "Vai a Cronologia ordini",
+    "gotIt": "Fatto"
+  },
+  "orderRepeatSuccessSent": {
+    "title": "La tua richiesta è stata inviata",
+    "description": "A breve riceverai la fattura finale dai fornitori richiesti.",
+    "continue": "Continua a ordinare",
     "gotIt": "Fatto"
   },
   "orderHistory": "Cronologia ordini",
