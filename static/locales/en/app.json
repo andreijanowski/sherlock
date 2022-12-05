@@ -50,7 +50,7 @@
   "suppliersName": "Suppliers Name",
   "orderId": "Order’s ID",
   "productsOrdered": "Products Ordered",
-  "wantEditOrRepeat": "Want To Edit or Repeat?",
+  "repeatThisOrder": "Repeat this order ?",
   "date": "Date",
   "manageProfile": {
     "manageProfile": "Manage Profile",

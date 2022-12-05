@@ -13,7 +13,7 @@ const OrdersTable = ({ supplierOrders, loading }) => {
     t("app:suppliersName"),
     t("app:orderId"),
     t("app:productsOrdered"),
-    t("app:wantEditOrRepeat")
+    t("app:repeatThisOrder")
   ];
 
   const dataSource = useMemo(() => {
@@ -53,7 +53,7 @@ const OrdersTable = ({ supplierOrders, loading }) => {
         <thead>
           <tr>
             {headers.map(header => (
-              <th key={header} className="px-4 py-5 text-left">
+              <th key={header} className="px-4 py-5 text-center">
                 {header}
               </th>
             ))}

@@ -52,13 +52,13 @@ const OrderTableRow = ({
 
   return (
     <tr className="">
-      <td className="border-b border-t border-gray-200 px-4 py-5 align-top text-sm">
-        <div className="flex h-9 items-center">
-          {moment(order.desiredDeliveryDate).format("MMMM Do YYYY")}
+      <td className="border-b border-t border-gray-200 px-4 py-5 text-center align-top text-sm">
+        <div className="flex h-9 items-center justify-center">
+          {moment(order.desiredDeliveryDate).format("DD.MM.YYYY")}
         </div>
       </td>
-      <td className="border-b border-t border-gray-200 px-4 py-5 align-top">
-        <div className="flex h-9 items-center space-x-1 text-sm">
+      <td className="border-b border-t border-gray-200 px-4 py-5 text-center align-top">
+        <div className="flex h-9 items-center justify-center space-x-1 text-sm">
           <img
             src={order.supplierLogo}
             className="h-6 w-6 rounded-full shadow"
@@ -67,12 +67,14 @@ const OrderTableRow = ({
           <div className="font-semibold uppercase">{order.supplierName}</div>
         </div>
       </td>
-      <td className="border-b border-t border-gray-200 px-4 py-5 align-top text-sm">
-        <div className="flex h-9 items-center">{order.orderId}</div>
+      <td className="border-b border-t border-gray-200 px-4 py-5 text-center align-top text-sm">
+        <div className="flex h-9 items-center justify-center">
+          {order.orderId}
+        </div>
       </td>
-      <td className="w-1/5 border-b border-t border-gray-200 px-4 py-5">
+      <td className="w-1/5 border-b border-t border-gray-200 px-4 py-5 text-center">
         {expanded && (
-          <div className="mb-6 text-sm">
+          <div className="mb-6 flex flex-col items-center text-sm">
             <div className="mb-6">
               {order.elements.map(item => (
                 <div className="mb-1 flex space-x-2">
@@ -95,11 +97,11 @@ const OrderTableRow = ({
           {expanded ? t("app:hideOrder") : t("app:seeOrder")}
         </Box>
       </td>
-      <td className="border-b border-t border-gray-200 px-4 py-5">
-        <div className="flex h-9 items-center">
+      <td className="border-b border-t border-gray-200 px-4 py-5 text-center">
+        <div className="flex h-9 items-center justify-center">
           <button
             type="button"
-            className="rounded-full bg-indigo-700 bg-button py-2 px-6 text-white"
+            className="rounded-2.5 bg-indigo-700 bg-button py-2 px-6 leading-1.4 text-white"
             onClick={() => setIsOpen(true)}
           >
             {t("app:repeat")}

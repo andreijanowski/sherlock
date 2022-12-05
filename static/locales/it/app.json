@@ -50,7 +50,7 @@
   "suppliersName": "Nome fornitori",
   "orderId": "ID dell'ordine",
   "productsOrdered": "Prodotti ordinati",
-  "wantEditOrRepeat": "Vuoi modificare o ripetere?",
+  "repeatThisOrder": "Ripetere questo ordine?",
   "date": "Data",
   "manageProfile": {
     "manageProfile": "Gestisci profilo",
