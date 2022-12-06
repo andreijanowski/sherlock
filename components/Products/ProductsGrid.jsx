@@ -9,6 +9,7 @@ import {
   removeProductToCart,
   updateProductToCart
 } from "actions/products";
+import ProductDetailModal from "./ProductDetailModal";
 
 const ProductsGrid = ({
   hits,
@@ -23,6 +24,8 @@ const ProductsGrid = ({
   removeProduct
 }) => {
   const [products, setProducts] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState();
 
   const [ref, inView] = useInView({
     threshold: 0.9
@@ -69,6 +72,12 @@ const ProductsGrid = ({
             : item
         )
       );
+      if (selectedProduct?.objectID === productId) {
+        setSelectedProduct({
+          ...selectedProduct,
+          count: count > 0 ? count : 1
+        });
+      }
     }
     if (count === 0) {
       removeProduct(productId);
@@ -82,6 +91,11 @@ const ProductsGrid = ({
       ...product,
       supplier
     });
+  };
+
+  const onChangeSelectedProduct = product => {
+    setSelectedProduct(product);
+    setIsOpen(true);
   };
 
   return (
@@ -100,6 +114,7 @@ const ProductsGrid = ({
                   !!cartProducts.find(item => item.objectID === hit.objectID)
                 }
                 onChangeCount={onChangeCount}
+                onClick={onChangeSelectedProduct}
               />
             ))
           ) : (
@@ -108,6 +123,18 @@ const ProductsGrid = ({
         </div>
       </div>
       <div className="ais-InfiniteHits-sentinel h-8 opacity-0" ref={ref} />
+      <ProductDetailModal
+        product={selectedProduct}
+        onClose={() => setIsOpen(false)}
+        isOpen={isOpen}
+        selected={
+          !!cartProducts.find(
+            item => item.objectID === selectedProduct?.objectID
+          )
+        }
+        onChangeCount={onChangeCount}
+        onAdd={onAddProduct}
+      />
     </div>
   );
 };

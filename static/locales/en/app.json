@@ -52,6 +52,10 @@
   "productsOrdered": "Products Ordered",
   "wantEditOrRepeat": "Want To Edit or Repeat?",
   "date": "Date",
+  "chooseQuantity": "Choose quantity",
+  "addCart": "Add to Cart",
+  "goToCart": "Go to Cart",
+  "continueShopping": "Continue Shopping",
   "manageProfile": {
     "manageProfile": "Manage Profile",
     "basicInformation": "Basic Information",
