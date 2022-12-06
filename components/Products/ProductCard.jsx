@@ -12,21 +12,34 @@ const ProductCard = ({
   className,
   onAdd,
   selected,
-  onChangeCount
+  onChangeCount,
+  onClick
 }) => {
   const { t } = useTranslation();
-  const handleClick = () => {
+  const handleClick = e => {
+    e.stopPropagation();
     if (!selected) {
       onAdd(product);
     }
   };
 
+  const onIncreaseCount = e => {
+    e.stopPropagation();
+    onChangeCount(product.objectID, product.count + 1);
+  };
+
+  const onDecreaseCount = e => {
+    e.stopPropagation();
+    onChangeCount(product.objectID, product.count - 1);
+  };
+
   return (
-    <div
+    <Box
       className={clsx(
         "flex w-full flex-col rounded-4 bg-white p-2 shadow-card",
         className
       )}
+      onClick={() => onClick(product)}
     >
       <img
         src={product?.image?.url}
@@ -49,19 +62,22 @@ const ProductCard = ({
         </div>
 
         <div className="mt-3 flex space-x-3">
-          <div className="flex-2 flex h-10 w-21 items-center justify-center space-x-2 rounded-2.5 border border-[#0F1138]">
+          <Box
+            className="flex-2 flex h-10 w-21 items-center justify-center space-x-2 rounded-2.5 border border-[#0F1138]"
+            onClick={e => e.stopPropagation()}
+          >
             <FontAwesomeIcon
               icon={faMinus}
               className="cursor-pointer cursor-pointer text-sm text-gray-900"
-              onClick={() => onChangeCount(product.objectID, product.count - 1)}
+              onClick={onDecreaseCount}
             />
             <div className="leading-1">{product.count || 0}</div>
             <FontAwesomeIcon
               icon={faPlus}
               className="cursor-pointer cursor-pointer text-sm text-gray-900"
-              onClick={() => onChangeCount(product.objectID, product.count + 1)}
+              onClick={onIncreaseCount}
             />
-          </div>
+          </Box>
           <Box
             className={clsx(
               "flex-3 flex h-10 flex-1 cursor-pointer items-center justify-center rounded-2.5",
@@ -75,7 +91,7 @@ const ProductCard = ({
           </Box>
         </div>
       </div>
-    </div>
+    </Box>
   );
 };
 
@@ -84,7 +100,8 @@ ProductCard.propTypes = {
   className: string.isRequired,
   selected: bool.isRequired,
   onAdd: func.isRequired,
-  onChangeCount: func.isRequired
+  onChangeCount: func.isRequired,
+  onClick: func.isRequired
 };
 
 export default ProductCard;
