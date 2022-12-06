@@ -50,7 +50,7 @@
   "suppliersName": "Name des Lieferanten",
   "orderId": "Auftrags-ID",
   "productsOrdered": "Produkte bestellt",
-  "wantEditOrRepeat": "Möchten Sie bearbeiten oder wiederholen?",
+  "repeatThisOrder": "Diesen Auftrag wiederholen?",
   "date": "Datum",
   "chooseQuantity": "Menge wählen",
   "addCart": "In den Warenkorb",

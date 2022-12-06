@@ -50,7 +50,7 @@
   "suppliersName": "Suppliers Name",
   "orderId": "Order’s ID",
   "productsOrdered": "Products Ordered",
-  "wantEditOrRepeat": "Want To Edit or Repeat?",
+  "repeatThisOrder": "Repeat this order ?",
   "date": "Date",
   "chooseQuantity": "Choose quantity",
   "addCart": "Add to Cart",
