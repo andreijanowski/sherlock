@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { bool, shape } from "prop-types";
+import moment from "moment";
 import { useTranslation } from "i18n";
 import { PulseLoader } from "react-spinners";
 import OrderTableRow from "./OrderTableRow";
@@ -19,32 +20,32 @@ const OrdersTable = ({ supplierOrders, loading }) => {
   const dataSource = useMemo(() => {
     if (!supplierOrders) return [];
 
-    return supplierOrders.valueSeq().map(order => {
-      const desiredDeliveryDate = order?.getIn([
-        "attributes",
-        "desiredDeliveryDate"
-      ]);
-      const comment = order?.getIn(["attributes", "comment"]);
-      const orderId = order?.get("id");
-      const elements = order
-        ?.getIn(["relationships", "supplierElements", "data"])
-        ?.toJS();
-      const products = order
-        ?.getIn(["relationships", "supplierProducts", "data"])
-        ?.toJS();
-      const supplier = order?.getIn(["relationships", "supplier", "data"]);
+    return supplierOrders
+      .valueSeq()
+      .map(order => {
+        const createdAt = order?.getIn(["attributes", "createdAt"]);
+        const comment = order?.getIn(["attributes", "comment"]);
+        const orderId = order?.get("id");
+        const elements = order
+          ?.getIn(["relationships", "supplierElements", "data"])
+          ?.toJS();
+        const products = order
+          ?.getIn(["relationships", "supplierProducts", "data"])
+          ?.toJS();
+        const supplier = order?.getIn(["relationships", "supplier", "data"]);
 
-      return {
-        desiredDeliveryDate,
-        comment,
-        orderId,
-        elements: elements || [],
-        supplier: supplier?.toJS(),
-        supplierName: supplier?.getIn(["attributes", "name"]),
-        products,
-        supplierLogo: supplier?.getIn(["attributes", "logo", "url"])
-      };
-    });
+        return {
+          createdAt,
+          comment,
+          orderId,
+          elements: elements || [],
+          supplier: supplier?.toJS(),
+          supplierName: supplier?.getIn(["attributes", "name"]),
+          products,
+          supplierLogo: supplier?.getIn(["attributes", "logo", "url"])
+        };
+      })
+      .sort((a, b) => (moment(a.createdAt).isBefore(b.createdAt) ? 1 : -1));
   }, [supplierOrders]);
 
   return (
