@@ -50,7 +50,7 @@
   "suppliersName": "Nom du fournisseur",
   "orderId": "ID de la commande",
   "productsOrdered": "Produits commandés",
-  "repeatThisOrder": "Refaire cette commande ?",
+  "repeatThisOrder": "Répéter cette commande ?",
   "date": "Date",
   "chooseQuantity": "Choisissez la quantité",
   "addCart": "Ajouter au Panier",
