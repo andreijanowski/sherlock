@@ -24,6 +24,7 @@ import {
 import { Flex, Box } from "@rebass/grid";
 import Tippy from "@tippy.js/react";
 import { Orange } from "./styled";
+import { Icon } from "@iconify-icon/react";
 
 const ReservationLayout = ({
   t,
@@ -47,6 +48,9 @@ const ReservationLayout = ({
   const [maxReservationSize, setMaxReservationSize] = useState(
     business && business.get("maxReservationSize")
   );
+  const [autoAcceptBookingLimit, setAutoAcceptBookingLimit] = useState(
+    business && business.get("autoAcceptBookingLimit")
+  );
 
   useEffect(() => {
     setTimeSlots(business && business.get("timeSlots") / 60);
@@ -55,6 +59,9 @@ const ReservationLayout = ({
       business && business.get("minTimeBeforeReservation") / 60
     );
     setMaxReservationSize(business && business.get("maxReservationSize"));
+    setAutoAcceptBookingLimit(
+      business && business.get("autoAcceptBookingLimit")
+    );
   }, [business]);
 
   const isInfoBarVisible =
@@ -231,6 +238,29 @@ const ReservationLayout = ({
                   onBlur={() =>
                     updateBusiness(currentBusinessId, {
                       maxReservationSize
+                    })
+                  }
+                />
+                <span>{` ${t("people")}`}</span>
+              </ButtonWithImageText>
+            </Button>
+          </Tippy>
+        </Box>
+        <Box pr={3} mb={2}>
+          <Tippy content={t("autoAcceptReservations")}>
+            <Button styleName="withImage" as="label" gradient>
+              <ButtonWithImageIconWrapper>
+                <Icon icon="lucide:user-check" height={24} />
+              </ButtonWithImageIconWrapper>
+              <ButtonWithImageText>
+                <AutosizeInput
+                  value={autoAcceptBookingLimit}
+                  onChange={e => {
+                    setAutoAcceptBookingLimit(e.target.value);
+                  }}
+                  onBlur={() =>
+                    updateBusiness(currentBusinessId, {
+                      autoAcceptBookingLimit
                     })
                   }
                 />
