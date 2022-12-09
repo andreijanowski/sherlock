@@ -137,3 +137,22 @@ export const TrashIcon = props => (
     />
   </svg>
 );
+
+export const CheckIcon = props => (
+  <svg
+    width="20"
+    height="16"
+    viewBox="0 0 20 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M18 2L7 14L2 8.54545"
+      stroke="#20201F"
+      strokeWidth="4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);

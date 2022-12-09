@@ -52,6 +52,10 @@
   "productsOrdered": "Produkte bestellt",
   "repeatThisOrder": "Diesen Auftrag wiederholen?",
   "date": "Datum",
+  "chooseQuantity": "Menge wählen",
+  "addCart": "In den Warenkorb",
+  "goToCart": "Zum Warenkorb",
+  "continueShopping": "Weiter einkaufen",
   "manageProfile": {
     "manageProfile": "Profil verwalten",
     "basicInformation": "Grundinformation",
