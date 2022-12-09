@@ -1372,6 +1372,18 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@floating-ui/core@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.0.4.tgz#03066eaea8e9b2a2cd3f5aaa60f1e0f580ebe88e"
+  integrity sha512-FPFLbg2b06MIw1dqk2SOEMAMX3xlrreGjcui5OTxfBDtaKTmh0kioOVjT8gcfl58juawL/yF+S+gnq8aUYQx/Q==
+
+"@floating-ui/dom@^1.0.4":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.0.9.tgz#3ae1d3e776bc90b9d33b1922f9498fb6f80f3b12"
+  integrity sha512-nF9P6/BoARdt+h+CdUW3td4EUVngeDONCGuzRgnZveRZiJETx63cxhinE0JaPPC2tbcdTY9IGZocS5/7ag3xRg==
+  dependencies:
+    "@floating-ui/core" "^1.0.4"
+
 "@fortawesome/fontawesome-common-types@^0.1.7":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.1.7.tgz#4336c4b06d0b5608ff1215464b66fcf9f4795284"
@@ -1448,6 +1460,18 @@
   dependencies:
     gud "^1.0.0"
     warning "^4.0.3"
+
+"@iconify-icon/react@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@iconify-icon/react/-/react-1.0.2.tgz#2e5d1fe1477489af3735949a4579a12afb0f4bf2"
+  integrity sha512-3FD/gfouK+H5RS1JjJ5Eg4VNWZD1dmlMDpdi929ZNMw+CiH6/0iROkAqYyXZipq4YM28Isr+9OIpwFExP+7kGA==
+  dependencies:
+    iconify-icon "^1.0.2"
+
+"@iconify/types@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@iconify/types/-/types-2.0.0.tgz#ab0e9ea681d6c8a1214f30cd741fe3a20cc57f57"
+  integrity sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==
 
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"
@@ -2067,6 +2091,11 @@
   integrity sha512-rEUrBSGIoSFuYxwBYtlUFMlE2CwGhmW+w9355/5oduSw8e5h2+Tj4UrAGNNgP9915++wj5vkQo0UuOBqOAq4nw==
   dependencies:
     tslib "^2.4.0"
+
+"@tailwindcss/line-clamp@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@tailwindcss/line-clamp/-/line-clamp-0.4.2.tgz#f353c5a8ab2c939c6267ac5b907f012e5ee130f9"
+  integrity sha512-HFzAQuqYCjyy/SX9sLGB1lroPzmcnWv1FHkIpmypte10hptf4oPUfucryMKovZh2u0uiS9U5Ty3GghWfEJGwVw==
 
 "@tippy.js/react@^2.2.0":
   version "2.2.3"
@@ -3636,7 +3665,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.5, classnames@^2.2.6:
+classnames@^2.2.5, classnames@^2.2.6, classnames@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.2.tgz#351d813bf0137fcc6a76a16b88208d2560a0d924"
   integrity sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==
@@ -6411,6 +6440,13 @@ i18next@^17.0.9:
   integrity sha512-4nY+yaENaoZKmpbiDXPzucVHCN3hN9Z9Zk7LyQXVOKVIpnYOJ3L/yxHJlBPtJDq3PGgjFwA0QBFm/26Z0iDT5A==
   dependencies:
     "@babel/runtime" "^7.3.1"
+
+iconify-icon@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/iconify-icon/-/iconify-icon-1.0.2.tgz#18ce2557e95dd3c8877f6f3b3111e569a24a138d"
+  integrity sha512-mehAvz2a4eUAlPo76Wul4zzsPNr3hbOHiauMhPrTVIdLOt0AnccnNloh1EeTO3tYeBv7iaJZfdCPHczvi+CkXQ==
+  dependencies:
+    "@iconify/types" "^2.0.0"
 
 iconv-lite@0.4.24, iconv-lite@^0.4.17, iconv-lite@^0.4.24:
   version "0.4.24"
@@ -10140,6 +10176,14 @@ react-timekeeper@^1.1.0:
     prop-types "^15.5.10"
     radium "^0.19.1"
     react-motion "^0.4.7"
+
+react-tooltip@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/react-tooltip/-/react-tooltip-5.0.0.tgz#5e68f2ebd46e47ad03ee348050ed444b603b657b"
+  integrity sha512-e7V+Umk8nKPIiyDqnFfwnx+5kYvwHyowwmqaKHkLU6plF6mwMFfDeh4pr+xe7urqWt2pyWmI2p5h2zPJTNGmRQ==
+  dependencies:
+    "@floating-ui/dom" "^1.0.4"
+    classnames "^2.3.2"
 
 react-transition-group@2.9.0, react-transition-group@^2.9.0:
   version "2.9.0"

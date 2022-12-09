@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { connectStripe } from "actions/auth";
 import { fetchProfileBusiness } from "actions/users";
 import AppLayout from "layout/App";
-import { LoadingIndicator, H2, Button, Link } from "components";
+import { LoadingIndicator, H2, StyledButton, Link } from "components";
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -125,7 +125,7 @@ class StripeOauth extends PureComponent {
               />
             </Icon>
             <Link lng={lng} route="/app/lefood/orders/">
-              <Button styleName="blue">{t("goToOrders")}</Button>
+              <StyledButton styleName="blue">{t("goToOrders")}</StyledButton>
             </Link>
           </Container>
         )}

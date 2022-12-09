@@ -1,4 +1,4 @@
-import { Modal, Button, ModalHeader } from "components";
+import { Modal, StyledButton, ModalHeader } from "components";
 import { StopOrdersModalIcon } from "icons";
 import { func, bool } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
@@ -11,24 +11,24 @@ const StopOrdersModal = ({ isOpen, onClose, stopOrders, t }) => (
       <Box width={1}>
         <Flex mx={-2}>
           <Box width={1 / 2} px={2}>
-            <Button
+            <StyledButton
               styleName="blue"
               type="button"
               onClick={onClose}
               width="100%"
             >
               {t("no")}
-            </Button>
+            </StyledButton>
           </Box>
           <Box width={1 / 2} px={2}>
-            <Button
+            <StyledButton
               styleName="blue"
               type="submit"
               width="100%"
               onClick={stopOrders}
             >
               {t("yes")}
-            </Button>
+            </StyledButton>
           </Box>
         </Flex>
       </Box>

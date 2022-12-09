@@ -2,7 +2,7 @@ import React from "react";
 import { Field, Form } from "react-final-form";
 import { arrayOf, func, shape, string } from "prop-types";
 
-import { Button, FormDropdown, FormInput, H3 } from "components";
+import { StyledButton, FormDropdown, FormInput, H3 } from "components";
 import { required } from "utils/validators";
 import { ButtonsWrap, Wrapper } from "./styled";
 
@@ -33,12 +33,12 @@ const AddServiceLinkForm = ({ onSubmit, serviceItems, onClose, t }) => (
             placeholder={t("additionalInformation:urlPlaceholder")}
           />
           <ButtonsWrap>
-            <Button type="button" styleName="reject" onClick={onClose}>
+            <StyledButton type="button" styleName="reject" onClick={onClose}>
               {t("forms:cancel")}
-            </Button>
-            <Button styleName="accept" disabled={submitting}>
+            </StyledButton>
+            <StyledButton styleName="accept" disabled={submitting}>
               {t("forms:save")}
-            </Button>
+            </StyledButton>
           </ButtonsWrap>
         </Wrapper>
       );

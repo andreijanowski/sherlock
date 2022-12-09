@@ -7,7 +7,7 @@ import Tippy from "@tippy.js/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
-  Button,
+  StyledButton,
   ButtonWithImageText,
   ButtonWithImageIconWrapper,
   Link,
@@ -411,7 +411,7 @@ const LefoodLayout = ({
           <Flex width={1} mt={3} flexWrap="wrap">
             <Box pr={3} mb={2}>
               <Link route="/app/lefood/orders/" lng={lng}>
-                <Button
+                <StyledButton
                   as="a"
                   styleName="withImage"
                   active={page === "orders"}
@@ -421,7 +421,7 @@ const LefoodLayout = ({
                     <Orders />
                   </ButtonWithImageIconWrapper>
                   <ButtonWithImageText>{t("orders")}</ButtonWithImageText>
-                </Button>
+                </StyledButton>
               </Link>
             </Box>
             <Tippy content={t("averageDeliveryTime")}>
@@ -431,7 +431,7 @@ const LefoodLayout = ({
                   value={currentAverageDeliveryTime}
                   onChange={onAverageDeliveryTimeChange}
                   ButtonComponent={p => (
-                    <Button styleName="withImage" {...p} gradient>
+                    <StyledButton styleName="withImage" {...p} gradient>
                       <ButtonWithImageIconWrapper>
                         <Time />
                       </ButtonWithImageIconWrapper>
@@ -443,14 +443,14 @@ const LefoodLayout = ({
                       <Box pr={3}>
                         <ExpandIcon />
                       </Box>
-                    </Button>
+                    </StyledButton>
                   )}
                 />
               </OutlineFreeBox>
             </Tippy>
             <Tippy content={t("minAmountForDelivery")}>
               <Box pr={3} mb={2}>
-                <Button
+                <StyledButton
                   styleName="withImage"
                   onClick={showCurrencyModal}
                   gradient
@@ -467,12 +467,12 @@ const LefoodLayout = ({
                     />
                     {business.get("stripeCurrency")}
                   </ButtonWithImageText>
-                </Button>
+                </StyledButton>
               </Box>
             </Tippy>
             <Box pr={3} mb={2}>
               <Link route="/app/lefood/ordering-hours/" lng={lng}>
-                <Button
+                <StyledButton
                   as="a"
                   styleName="withImage"
                   active={page === "orderingHours"}
@@ -484,12 +484,12 @@ const LefoodLayout = ({
                   <ButtonWithImageText>
                     {t("orderingHours")}
                   </ButtonWithImageText>
-                </Button>
+                </StyledButton>
               </Link>
             </Box>
             <Box pr={3} mb={2}>
               <Link route="/app/lefood/delivery-area/" lng={lng}>
-                <Button
+                <StyledButton
                   as={connectedWithOrkestro ? "button" : "a"}
                   styleName="withImage"
                   active={page === "deliveryArea"}
@@ -500,12 +500,12 @@ const LefoodLayout = ({
                     <Location />
                   </ButtonWithImageIconWrapper>
                   <ButtonWithImageText>{t("deliveryArea")}</ButtonWithImageText>
-                </Button>
+                </StyledButton>
               </Link>
             </Box>
             <Box pr={3} mb={2}>
               <Link route="/app/lefood/orders-history/" lng={lng}>
-                <Button
+                <StyledButton
                   as="a"
                   styleName="withImage"
                   active={page === "ordersHistory"}
@@ -517,7 +517,7 @@ const LefoodLayout = ({
                   <ButtonWithImageText>
                     {t("ordersHistory")}
                   </ButtonWithImageText>
-                </Button>
+                </StyledButton>
               </Link>
             </Box>
             <Box pr={4}>
@@ -552,13 +552,17 @@ const LefoodLayout = ({
             </Box>
             <Box pr={3} mb={2}>
               {business.get("visibleInLefood") ? (
-                <Button styleName="withImage" red onClick={showStopOrdersModal}>
+                <StyledButton
+                  styleName="withImage"
+                  red
+                  onClick={showStopOrdersModal}
+                >
                   <ButtonWithImageIconWrapper>
                     <Pause />
                   </ButtonWithImageIconWrapper>
-                </Button>
+                </StyledButton>
               ) : (
-                <Button
+                <StyledButton
                   styleName="withImage"
                   greenHaze
                   onClick={onShowInLefoodClick}
@@ -566,7 +570,7 @@ const LefoodLayout = ({
                   <ButtonWithImageIconWrapper>
                     <FontAwesomeIcon icon={["fa", "play"]} />
                   </ButtonWithImageIconWrapper>
-                </Button>
+                </StyledButton>
               )}
             </Box>
             {ratio && currentSplitRatio !== undefined && (

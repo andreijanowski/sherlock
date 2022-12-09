@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { withTranslation } from "i18n";
-import { Modal, H3, Paragraph, Button } from "components";
+import { Modal, H3, Paragraph, StyledButton } from "components";
 import { func } from "prop-types";
 import isServer from "utils/isServer";
 import { privacyPolicyLink, termsAndConditionsLink } from "consts";
@@ -48,9 +48,9 @@ const CookiesModal = ({ t }) => {
             {t("termsAndConditions")}
           </a>
         </Paragraph>
-        <Button styleName="blue" onClick={onCookiesAccept}>
+        <StyledButton styleName="blue" onClick={onCookiesAccept}>
           {t("ok")}
-        </Button>
+        </StyledButton>
       </Wrapper>
     </Modal>
   );

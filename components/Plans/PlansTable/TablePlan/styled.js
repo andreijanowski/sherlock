@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 
-import { Button } from "components";
+import { StyledButton } from "components";
 
 export const PlanContainer = styled.div`
   display: inline-block;
@@ -46,7 +46,7 @@ export const PlanPeriod = styled(Box)`
   white-space: nowrap;
 `;
 
-export const PlansButton = styled(Button).attrs({
+export const PlansButton = styled(StyledButton).attrs({
   styleName: "becomePartner"
 })`
   margin: 0 auto;

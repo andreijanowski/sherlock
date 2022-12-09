@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
 
-import { Button } from "components";
+import { StyledButton } from "components";
 import { downThanBreakpoint } from "utils/theme";
 
 const CONTROL_BREAKPOINT = 3;
@@ -95,7 +95,7 @@ export const Form = styled.form`
   min-height: 540px;
 `;
 
-export const ImportButton = styled(Button).attrs({
+export const ImportButton = styled(StyledButton).attrs({
   type: "button",
   styleName: "underline"
 })`

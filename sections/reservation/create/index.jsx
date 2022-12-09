@@ -3,7 +3,7 @@ import { func, string, bool, number } from "prop-types";
 import { Form as FinalForm, Field } from "react-final-form";
 import {
   H3,
-  Button,
+  StyledButton,
   FormInput,
   FormSelect,
   FormDaypicker,
@@ -98,7 +98,7 @@ const CreateCateringForm = ({
         </Flex>
         <Flex flexWrap="wrap" justifyContent="center" mx={-2} mt={3}>
           <Box width={1 / 2} px={2}>
-            <Button
+            <StyledButton
               styleName="formBlue"
               fluid
               type="button"
@@ -107,12 +107,12 @@ const CreateCateringForm = ({
               }}
             >
               {t("cancel")}
-            </Button>
+            </StyledButton>
           </Box>
           <Box width={1 / 2} px={2}>
-            <Button styleName="formBlue" type="submit" fluid>
+            <StyledButton styleName="formBlue" type="submit" fluid>
               {t("save")}
-            </Button>
+            </StyledButton>
           </Box>
         </Flex>
         {isSending && <LoadingIndicator />}

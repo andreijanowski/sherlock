@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { Button } from "components";
+import { StyledButton } from "components";
 
-export const ButtonStyled = styled(Button)`
+export const ButtonStyled = styled(StyledButton)`
   width: auto;
 `;

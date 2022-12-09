@@ -1,11 +1,17 @@
 import { useState } from "react";
-import { FormInput, H3, Button, LoadingIndicator, Paragraph } from "components";
+import {
+  FormInput,
+  H3,
+  StyledButton,
+  LoadingIndicator,
+  Paragraph
+} from "components";
 import { Form as FinalForm } from "react-final-form";
 import { func, shape, string } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
 import { required } from "utils/validators";
 import isServer from "utils/isServer";
-import { Form, StyledButton } from "./styled";
+import { Form, StyledButton as OStyledButton } from "./styled";
 
 const WidgetForm = ({
   t,
@@ -55,11 +61,11 @@ const WidgetForm = ({
                     <Paragraph>{t("widgetScriptDescription")}</Paragraph>
                     <Flex>
                       <Box width={1} mb={3}>
-                        <StyledButton fluid styleName="hanPurple" as="div">
+                        <OStyledButton fluid styleName="hanPurple" as="div">
                           {`<script>var s=document.createElement('script');s.onload=function(){window.foodetectiveWidget.init("${apiKey}","YOUR_WRAPPER_ID_HERE");};s.src="${
                             !isServer && window.location.origin
                           }/static/widget/entry.js";document.head.appendChild(s);</script>`}
-                        </StyledButton>
+                        </OStyledButton>
                       </Box>
                     </Flex>
                   </>
@@ -77,19 +83,19 @@ const WidgetForm = ({
                 </Flex>
                 <Flex mx={-3}>
                   <Box mb={3} width={editMode ? 1 / 2 : 1} px={3}>
-                    <Button fluid styleName="blue" type="submit">
+                    <StyledButton fluid styleName="blue" type="submit">
                       {editMode ? t("editWidget") : t("addWidget")}
-                    </Button>
+                    </StyledButton>
                   </Box>
                   {editMode && (
                     <Box mb={3} width={1 / 2} px={3}>
-                      <Button
+                      <StyledButton
                         fluid
                         styleName="blue"
                         onClick={() => resetForm(true)}
                       >
                         {t("addNewWidget")}
-                      </Button>
+                      </StyledButton>
                     </Box>
                   )}
                 </Flex>

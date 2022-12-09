@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Paragraph, Button } from "components";
+import { Paragraph, StyledButton } from "components";
 import { Flex } from "@rebass/grid";
 
 export const DesciprtionWrapper = styled(Paragraph)`
@@ -64,7 +64,7 @@ export const RemoveButton = styled.button.attrs(() => ({
   }
 `;
 
-export const BottomButton = styled(Button)`
+export const BottomButton = styled(StyledButton)`
   position: absolute;
   bottom: 40px;
   width: 100%;

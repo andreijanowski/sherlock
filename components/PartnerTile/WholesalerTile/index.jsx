@@ -21,6 +21,8 @@ const WholesalerTile = ({
 
   const handleOrderNowClick = useCallback(
     e => {
+      console.log("WholesalerTile");
+      console.log(e);
       if (e) {
         e.preventDefault();
       }

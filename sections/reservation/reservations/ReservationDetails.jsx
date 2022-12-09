@@ -6,7 +6,7 @@ import {
   SliderHeader,
   SliderSubheader,
   SliderSpacer,
-  Button
+  StyledButton
 } from "components";
 import { Flex, Box } from "@rebass/grid";
 import moment from "moment";
@@ -172,7 +172,7 @@ const ReservationDetails = ({
         />
         <Flex mx={-1} mt={3} pb={3}>
           <Box width={1 / 2} px={1}>
-            <Button
+            <StyledButton
               fluid
               styleName="reject"
               onClick={e => {
@@ -187,10 +187,10 @@ const ReservationDetails = ({
               {reservationTables && reservationTables.length !== 0
                 ? t("cancel")
                 : t("reject")}
-            </Button>
+            </StyledButton>
           </Box>
           <Box width={1 / 2} px={1}>
-            <Button
+            <StyledButton
               fluid
               styleName="accept"
               onClick={e => {
@@ -201,7 +201,7 @@ const ReservationDetails = ({
               }}
             >
               {t("edit")}
-            </Button>
+            </StyledButton>
           </Box>
         </Flex>
       </>

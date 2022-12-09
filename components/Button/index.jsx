@@ -326,7 +326,7 @@ const underline = css`
   border: none;
 `;
 
-const Button = styled.button`
+const StyledButton = styled.button`
   overflow: hidden;
   font-weight: ${p => p.fontWeight || p.theme.fontWeights.medium};
   font-size: ${p => p.fontSize || p.theme.fontSizes.f16};
@@ -371,7 +371,7 @@ const Button = styled.button`
   }
 `;
 
-export default Button;
+export default StyledButton;
 
 export const ButtonWithImageText = styled.div`
   height: 40px;

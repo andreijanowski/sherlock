@@ -1,6 +1,6 @@
 import { PureComponent, createRef } from "react";
 import ReactCropper from "react-cropper";
-import { Modal, Button, LoadingIndicator } from "components";
+import { Modal, StyledButton, LoadingIndicator } from "components";
 import { Box, Flex } from "@rebass/grid";
 import { string, func, number, bool } from "prop-types";
 import { CropperStyles, Wrapper } from "./styled";
@@ -66,14 +66,18 @@ class Cropper extends PureComponent {
           />
           <Flex pt={4} mx={-2}>
             <Box width={1 / 2} px={2}>
-              <Button styleName="blue" onClick={hide} width="100%">
+              <StyledButton styleName="blue" onClick={hide} width="100%">
                 {cancel}
-              </Button>
+              </StyledButton>
             </Box>
             <Box width={1 / 2} px={2}>
-              <Button styleName="blue" onClick={this.handleCrop} width="100%">
+              <StyledButton
+                styleName="blue"
+                onClick={this.handleCrop}
+                width="100%"
+              >
                 {crop}
-              </Button>
+              </StyledButton>
             </Box>
           </Flex>
           {cropping && <LoadingIndicator />}
