@@ -5,7 +5,7 @@ import { Box, Flex } from "@rebass/grid";
 import { connect } from "react-redux";
 import { compose } from "redux";
 
-import { Button, H2 } from "components";
+import { StyledButton, H2 } from "components";
 import { patchBusiness } from "actions/businesses";
 import { setCurrentBusiness } from "actions/app";
 import StripeCurrencyModal from "components/StripeSetupModal/StripeCurrencyModal";
@@ -66,9 +66,9 @@ const CurrencyGuard = ({
         >
           <H2 textAlign="center">{t("stripeCurrencyNotSet")}</H2>
           <Box>
-            <Button onClick={onShowStripeCurrencyModal}>
+            <StyledButton onClick={onShowStripeCurrencyModal}>
               {t("setStripeCurrency")}
-            </Button>
+            </StyledButton>
           </Box>
         </Flex>
       )}

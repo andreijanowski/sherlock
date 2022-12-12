@@ -3,7 +3,7 @@ import { arrayOf, func, shape } from "prop-types";
 import { Box, Flex } from "@rebass/grid";
 import { Elements } from "react-stripe-elements";
 
-import { Button } from "components";
+import { StyledButton } from "components";
 import { Wrapper } from "../styled";
 import { Line } from "./styled";
 import CardForm from "./CardForm";
@@ -21,9 +21,9 @@ const PaymentsSection = ({
     <Flex mb={4} justifyContent="space-between" alignItems="center">
       <Box>{t("finishPoweringYouUp")}</Box>
       <Box>
-        <Button styleName="smallBlue" onClick={goToPlans}>
+        <StyledButton styleName="smallBlue" onClick={goToPlans}>
           {t("goBackToPlans")}
-        </Button>
+        </StyledButton>
       </Box>
     </Flex>
     <Line />

@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { Button } from "components";
+import { StyledButton } from "components";
 
 const CommonButtonStyles = css`
   width: 100%;
@@ -27,11 +27,11 @@ const CommonButtonStyles = css`
     );`}
 `;
 
-export const OutlineButton = styled(Button)`
+export const OutlineButton = styled(StyledButton)`
   ${CommonButtonStyles};
 `;
 
-export const BlueButton = styled(Button)`
+export const BlueButton = styled(StyledButton)`
   ${CommonButtonStyles}
   display: flex;
   align-items: center;

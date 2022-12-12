@@ -1,49 +1,21 @@
-import React, { useMemo, useState, useEffect } from "react";
-import { Box, Flex } from "@rebass/grid";
+import React, { useMemo } from "react";
 import { func, shape } from "prop-types";
-import IntelligenceTileButton from "../IntelligenceTileButton";
-import { Container, Image, ImageContainer, Name, Description } from "./styled";
+import TileButton from "./TileButtons";
+import TileInfo from "./TileInfo";
 import { getIntelligenceDataDetails } from "../utils";
 
 const IntelligenceTile = ({ data, t }) => {
-  const [state, setState] = useState();
-  const {
-    title,
-    redirectionText,
-    subtitle,
-    logoUrl,
-    videoUrl,
-    redirectionUrl,
-    description
-  } = useMemo(() => getIntelligenceDataDetails(data), [data]);
-
-  useEffect(() => {
-    setState({
-      title,
-      redirectionText,
-      subtitle,
-      logoUrl,
-      videoUrl,
-      redirectionUrl,
-      description
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  const details = useMemo(() => getIntelligenceDataDetails(data), [data]);
 
   return (
-    <Container>
-      <Flex mb={3}>
-        <Box as={ImageContainer} mr={2}>
-          <Image src={logoUrl} />
-        </Box>
-        <Flex flexDirection="column">
-          <Name>{title}</Name>
-          <Description>{subtitle}</Description>
-        </Flex>
-      </Flex>
-      <Box width={1} mb="24px" flex="auto" />
-      <IntelligenceTileButton t={t} data={{ ...state }} />
-    </Container>
+    <div
+      className={
+        "relative flex min-h-45 min-w-full flex-col justify-between rounded-4 border border-gray-300 bg-white p-7 shadow-card"
+      }
+    >
+      <TileInfo data={details} />
+      <TileButton t={t} data={details} />
+    </div>
   );
 };
 

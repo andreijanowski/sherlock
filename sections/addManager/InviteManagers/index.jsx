@@ -5,7 +5,7 @@ import { FieldArray } from "react-final-form-arrays";
 import { func } from "prop-types";
 import { Box, Flex } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { InputField, Button } from "components";
+import { InputField, StyledButton } from "components";
 import { isEmail } from "utils/validators";
 import {
   HelperTitle,
@@ -79,24 +79,24 @@ class InviteManagers extends PureComponent {
                     mt={[1, 2]}
                   >
                     <Box width={[1]} mt={[4, 0]} mr={[0, 2]}>
-                      <Button
+                      <StyledButton
                         type="button"
                         fluid
                         styleName="outlineBlue"
                         onClick={() => fields.push({ email: undefined })}
                       >
                         {t("addEmailButton")}
-                      </Button>
+                      </StyledButton>
                     </Box>
                     <Box width={[1]}>
-                      <Button
+                      <StyledButton
                         onClick={handleSubmit}
                         type="button"
                         fluid
                         styleName="outlineBlue"
                       >
                         {t("skip")}
-                      </Button>
+                      </StyledButton>
                     </Box>
                   </ButtonWrapper>
                   <Flex

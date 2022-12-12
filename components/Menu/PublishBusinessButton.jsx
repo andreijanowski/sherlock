@@ -3,7 +3,7 @@ import { string, shape, func } from "prop-types";
 import { Box } from "@rebass/grid";
 import { connect } from "react-redux";
 
-import { Button, Modal, H3, H4 } from "components";
+import { StyledButton, Modal, H3, H4 } from "components";
 import {
   selectBusinessGroups,
   selectBusinessProducts,
@@ -81,14 +81,14 @@ const PublishBusinessButton = ({
     <>
       {isButton ? (
         <Box p={1}>
-          <Button
+          <StyledButton
             styleName="accept"
             type="submit"
             width="100%"
             onClick={onClick}
           >
             {t(label)}
-          </Button>
+          </StyledButton>
         </Box>
       ) : (
         <Item onClick={onClick} color={color}>

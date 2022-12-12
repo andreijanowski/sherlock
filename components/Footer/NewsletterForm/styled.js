@@ -41,7 +41,7 @@ export const Input = styled.input`
   width: 100px;
 `;
 
-export const Button = styled(Box).attrs({ as: "button" })`
+export const StyledButton = styled(Box).attrs({ as: "button" })`
   padding: 4px 16px;
   font-size: 12px;
   line-height: 18px;

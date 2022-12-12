@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { func } from "prop-types";
 import { Form as FinalForm } from "react-final-form";
-import { FormInput, Button } from "components";
+import { FormInput, StyledButton } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Form, PasswordChangedMsg } from "sections/settings/styled";
 import { validatePassword } from "utils/validators";
@@ -64,13 +64,13 @@ class ChangePasswordForm extends PureComponent {
                 />
               </Box>
               <Box width={1}>
-                <Button
+                <StyledButton
                   type="submit"
                   styleName="blue"
                   disabled={invalid || submitting}
                 >
                   {t("common:update")}
-                </Button>
+                </StyledButton>
               </Box>
               {wasPasswordChanged && (
                 <Box mt={3}>

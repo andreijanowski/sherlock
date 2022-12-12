@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { shape, string, func } from "prop-types";
-import { Button } from "components";
+import { StyledButton } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -49,16 +49,16 @@ const Order = ({ order, id, t, setRejectModalVisibility, updateOrder }) => (
     {order.getIn(["attributes", "rejectReason"]) && (
       <Flex mt={3}>
         <Box width={1}>
-          <Button fluid styleName="reject" onClick={() => null}>
+          <StyledButton fluid styleName="reject" onClick={() => null}>
             {t(order.getIn(["attributes", "rejectReason"]))}
-          </Button>
+          </StyledButton>
         </Box>
       </Flex>
     )}
     {order.getIn(["attributes", "state"]) === "waiting_for_approval" && (
       <Flex mx={-1} mt={3}>
         <Box width={1 / 2} px={1}>
-          <Button
+          <StyledButton
             fluid
             styleName="reject"
             onClick={e => {
@@ -67,10 +67,10 @@ const Order = ({ order, id, t, setRejectModalVisibility, updateOrder }) => (
             }}
           >
             {t("reject")}
-          </Button>
+          </StyledButton>
         </Box>
         <Box width={1 / 2} px={1}>
-          <Button
+          <StyledButton
             fluid
             styleName="accept"
             onClick={e => {
@@ -79,7 +79,7 @@ const Order = ({ order, id, t, setRejectModalVisibility, updateOrder }) => (
             }}
           >
             {t("accept")}
-          </Button>
+          </StyledButton>
         </Box>
       </Flex>
     )}

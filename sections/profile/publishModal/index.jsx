@@ -1,5 +1,5 @@
 import {
-  Button,
+  StyledButton,
   Paragraph,
   BlueText,
   ItalicText,
@@ -58,7 +58,7 @@ const PublishModal = ({
         <Step {...{ ...s, index, t, lng, close }} key={s.name} />
       ))}
       {business ? (
-        <Button
+        <StyledButton
           styleName="blue"
           onClick={() => {
             if (isBasicInformationValid) {
@@ -70,7 +70,7 @@ const PublishModal = ({
           }}
         >
           {t("publishModal:publish")}
-        </Button>
+        </StyledButton>
       ) : (
         <LoadingIndicator />
       )}

@@ -3,7 +3,7 @@ import arrayMutators from "final-form-arrays";
 import { FieldArray } from "react-final-form-arrays";
 import { FORM_ERROR } from "final-form";
 import { func, number } from "prop-types";
-import { FormInput, ActionIcon, Button } from "components";
+import { FormInput, ActionIcon, StyledButton } from "components";
 import { isInteger } from "utils/validators";
 import { Box, Flex } from "@rebass/grid";
 import { Error } from "./styled";
@@ -79,14 +79,19 @@ const SplitForm = ({ t, partySize, onClose, onSplit }) => (
         </Flex>
         <Flex flexDirection={["column-reverse", "row"]} mx={-2}>
           <Box width={1 / 2} px={2}>
-            <Button styleName="blue" fluid type="button" onClick={onClose}>
+            <StyledButton
+              styleName="blue"
+              fluid
+              type="button"
+              onClick={onClose}
+            >
               {t("cancel")}
-            </Button>
+            </StyledButton>
           </Box>
           <Box width={1 / 2} px={2}>
-            <Button styleName="blue" type="submit" fluid disabled={error}>
+            <StyledButton styleName="blue" type="submit" fluid disabled={error}>
               {t("split")}
-            </Button>
+            </StyledButton>
           </Box>
         </Flex>
         <Error pt={2}>{error}</Error>

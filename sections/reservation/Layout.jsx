@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { func, string, node, number, shape } from "prop-types";
 import AppLayout from "layout/App";
 import {
-  Button,
+  StyledButton,
   ButtonWithImageText,
   ButtonWithImageIconWrapper,
   Link,
@@ -126,7 +126,7 @@ const ReservationLayout = ({
       <Flex width={1} mt={3} flexWrap="wrap">
         <Box pr={3} mb={2}>
           <Link route="/app/reservation/reservations/" lng={lng}>
-            <Button
+            <StyledButton
               as="a"
               styleName="withImage"
               active={page === "reservations"}
@@ -136,12 +136,12 @@ const ReservationLayout = ({
                 <ProfileContact />
               </ButtonWithImageIconWrapper>
               <ButtonWithImageText>{t("reservations")}</ButtonWithImageText>
-            </Button>
+            </StyledButton>
           </Link>
         </Box>
         <Box pr={3} mb={2}>
           <Link route="/app/reservation/tables/" lng={lng}>
-            <Button
+            <StyledButton
               as="a"
               styleName="withImage"
               active={page === "tables"}
@@ -151,12 +151,12 @@ const ReservationLayout = ({
                 <ProfileAdditionaInfo />
               </ButtonWithImageIconWrapper>
               <ButtonWithImageText>{t("tables")}</ButtonWithImageText>
-            </Button>
+            </StyledButton>
           </Link>
         </Box>
         <Box pr={3} mb={2}>
           <Tippy content={t("timeSlots")}>
-            <Button styleName="withImage" as="label" gradient>
+            <StyledButton styleName="withImage" as="label" gradient>
               <ButtonWithImageIconWrapper>
                 <Time />
               </ButtonWithImageIconWrapper>
@@ -174,12 +174,12 @@ const ReservationLayout = ({
                 />
                 <span>{` ${t("min")}`}</span>
               </ButtonWithImageText>
-            </Button>
+            </StyledButton>
           </Tippy>
         </Box>
         <Box pr={3} mb={2}>
           <Tippy content={t("timeOfStay")}>
-            <Button styleName="withImage" as="label" gradient>
+            <StyledButton styleName="withImage" as="label" gradient>
               <ButtonWithImageIconWrapper>
                 <Clock />
               </ButtonWithImageIconWrapper>
@@ -197,12 +197,12 @@ const ReservationLayout = ({
                 />
                 <span>{` ${t("min")}`}</span>
               </ButtonWithImageText>
-            </Button>
+            </StyledButton>
           </Tippy>
         </Box>
         <Box pr={3} mb={2}>
           <Tippy content={t("minTimeBeforeReservation")}>
-            <Button styleName="withImage" as="label" gradient>
+            <StyledButton styleName="withImage" as="label" gradient>
               <ButtonWithImageIconWrapper>
                 <ProfileOpeningHours />
               </ButtonWithImageIconWrapper>
@@ -220,12 +220,12 @@ const ReservationLayout = ({
                 />
                 <span>{` ${t("min")}`}</span>
               </ButtonWithImageText>
-            </Button>
+            </StyledButton>
           </Tippy>
         </Box>
         <Box pr={3} mb={2}>
           <Tippy content={t("maxReservationSize")}>
-            <Button styleName="withImage" as="label" gradient>
+            <StyledButton styleName="withImage" as="label" gradient>
               <ButtonWithImageIconWrapper>
                 <ProfileMembers />
               </ButtonWithImageIconWrapper>
@@ -243,7 +243,7 @@ const ReservationLayout = ({
                 />
                 <span>{` ${t("people")}`}</span>
               </ButtonWithImageText>
-            </Button>
+            </StyledButton>
           </Tippy>
         </Box>
         <Box pr={3} mb={2}>

@@ -3,7 +3,7 @@ import { Flex, Box } from "@rebass/grid";
 import { func } from "prop-types";
 import { Form } from "react-final-form";
 
-import { Button, File, RadioButtonField } from "components";
+import { StyledButton, File, RadioButtonField } from "components";
 import {
   composeValidators,
   required,
@@ -109,9 +109,9 @@ const UploadStep = ({ t, onUploadSubmit }) => (
           </Flex>
           <Flex justifyContent="flex-end">
             <Box>
-              <Button styleName="smallBlue" type="submit">
+              <StyledButton styleName="smallBlue" type="submit">
                 {t("forms:next")}
-              </Button>
+              </StyledButton>
             </Box>
           </Flex>
         </StepWrapper>

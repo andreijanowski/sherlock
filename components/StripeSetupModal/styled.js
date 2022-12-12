@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, Paragraph } from "components";
+import { StyledButton, Paragraph } from "components";
 
 export const ParagraphStyled = styled(Paragraph)`
   text-align: center;
@@ -11,7 +11,7 @@ export const StripeLogo = styled.div`
   background-image: url("/static/img/StripeSLogo.png");
 `;
 
-export const StripeButtonStyled = styled(Button)`
+export const StripeButtonStyled = styled(StyledButton)`
   display: flex;
   justify-content: center;
   align-items: center;

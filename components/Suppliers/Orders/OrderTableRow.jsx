@@ -54,7 +54,7 @@ const OrderTableRow = ({
     <tr className="">
       <td className="border-b border-t border-gray-200 px-4 py-5 text-center align-top text-sm">
         <div className="flex h-9 items-center justify-center">
-          {moment(order.desiredDeliveryDate).format("DD.MM.YYYY")}
+          {moment(order.createdAt).format("DD.MM.YYYY")}
         </div>
       </td>
       <td className="border-b border-t border-gray-200 px-4 py-5 text-center align-top">
