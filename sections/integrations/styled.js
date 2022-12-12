@@ -24,13 +24,13 @@ export const GridWrapper = styled(Wrapper)`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 25px;
-  @media (max-width: 1400px) {
+  @media (max-width: 1600px) {
     grid-template-columns: repeat(3, 1fr);
   }
-  @media (max-width: 1100px) {
+  @media (max-width: 1280px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media (max-width: 900px) {
+  @media (max-width: 980px) {
     grid-template-columns: 1fr;
   }
 `;

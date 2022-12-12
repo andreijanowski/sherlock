@@ -81,7 +81,7 @@ const IntegrationsPage = ({ t, lng, partners, isLoading }) => {
           </StyledButton>
         ))}
       </Flex>
-      <PartnersSearchBox visibilityRange={[60, 640]} />
+      <PartnersSearchBox visibilityRange={[60, 672]} />
       {filteredPartners && filteredPartners.size > 0 && (
         <IntegrationsList partners={filteredPartners} isIntegrations t={t} />
       )}

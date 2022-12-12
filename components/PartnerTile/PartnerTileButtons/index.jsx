@@ -1,21 +1,21 @@
-import React from "react";
-import { arrayOf, func, oneOfType, shape, bool, string } from "prop-types";
+import React, { useState } from "react";
+import { arrayOf, func, oneOfType, shape, bool } from "prop-types";
 
-// import { getIntegrationLinkProps } from "utils/integrations";
-// import PlayVideoButton from "../PlayVideoButton";
-// import { BlueButton } from "../styled";
-// import { ButtonsContainer, ButtonWrapper } from "./styled";
+import { getIntegrationLinkProps } from "utils/integrations";
 import { Button } from "../../buttons";
 import clsx from "clsx";
+import { Modal } from "components/index";
+import YoutubeVideo from "components/YoutubeVideo";
 
 const PartnerTileButtons = ({
   t,
   partner,
   isIntegration,
-  linkLabel,
   onOrderNowClick,
   trackClickEvent
 }) => {
+  const [showVideo, setShowVideo] = useState(false);
+  const toggleVideo = () => setShowVideo(show => !show);
   const videoUrl = partner.get("videoUrl");
   const email = partner.get("email");
   const phone = partner.get("phone");
@@ -51,13 +51,16 @@ const PartnerTileButtons = ({
               variant={"outlined"}
               append="mdi:play"
               square
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
               rootClassName={"w-full font-bold text-primary-dark"}
+              onClick={toggleVideo}
             >
               {t("app:Video")}
             </Button>
+            {showVideo && (
+              <Modal open onClose={toggleVideo}>
+                <YoutubeVideo url={videoUrl} />
+              </Modal>
+            )}
           </div>
         )}
         {phone && (
@@ -127,9 +130,7 @@ const PartnerTileButtons = ({
             <Button
               color="gradient"
               square
-              href={`mailto: ${email}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              {...getIntegrationLinkProps(partner)}
               rootClassName={"w-full"}
               onClick={handleOrder}
             >
@@ -144,7 +145,6 @@ const PartnerTileButtons = ({
 
 PartnerTileButtons.propTypes = {
   partner: oneOfType([arrayOf(), shape()]).isRequired,
-  linkLabel: string.isRequired,
   isIntegration: bool,
   t: func.isRequired,
   onOrderNowClick: func,

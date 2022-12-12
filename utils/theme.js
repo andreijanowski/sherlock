@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 
-const breakpoints = ["40em", "52em", "64em", "75em"];
+const breakpoints = ["42em", "52em", "64em", "75em"];
 const breakpointsPx = ["575px", "767px", "992px", "1199px", "1399px"];
 
 const DEFAULT_BODY_PIXEL_SIZE = 16;
