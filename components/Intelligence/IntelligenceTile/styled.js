@@ -4,9 +4,10 @@ import { Flex } from "@rebass/grid";
 export const Container = styled(Flex)`
   position: relative;
   min-width: 100%;
-  min-height: 238px;
+  min-height: 180px;
   flex-direction: column;
-  padding: 24px 12px;
+  justify-content: space-between;
+  padding: 30px;
   border: 1px solid
     rgba(
       ${p =>

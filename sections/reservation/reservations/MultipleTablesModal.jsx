@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Modal, Button, ModalHeader } from "components";
+import { Modal, StyledButton, ModalHeader } from "components";
 import { func, bool, number } from "prop-types";
 import { RejectModalIcon } from "icons";
 import { Flex, Box } from "@rebass/grid";
@@ -40,7 +40,7 @@ const MultipleTablesModal = ({
             <Box width={1}>
               <Flex mx={-2}>
                 <Box width={1 / 3} px={2}>
-                  <Button
+                  <StyledButton
                     styleName="blue"
                     type="button"
                     width="100%"
@@ -48,10 +48,10 @@ const MultipleTablesModal = ({
                     onClick={onContinue}
                   >
                     {t("continueAnyway")}
-                  </Button>
+                  </StyledButton>
                 </Box>
                 <Box width={1 / 3} px={2}>
-                  <Button
+                  <StyledButton
                     styleName="blue"
                     type="submit"
                     width="100%"
@@ -59,10 +59,10 @@ const MultipleTablesModal = ({
                     onClick={onClose}
                   >
                     {t("cancel")}
-                  </Button>
+                  </StyledButton>
                 </Box>
                 <Box width={1 / 3} px={2}>
-                  <Button
+                  <StyledButton
                     styleName="blue"
                     type="submit"
                     width="100%"
@@ -70,7 +70,7 @@ const MultipleTablesModal = ({
                     onClick={() => setIsSplitFormVisible(true)}
                   >
                     {t("split")}
-                  </Button>
+                  </StyledButton>
                 </Box>
               </Flex>
             </Box>

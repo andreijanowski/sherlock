@@ -2,7 +2,7 @@ import { PureComponent } from "react";
 import { Form, Field } from "react-final-form";
 import { func } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { InputField, Button, RadioButtonField } from "components";
+import { InputField, StyledButton, RadioButtonField } from "components";
 import { required } from "utils/validators";
 import { Box } from "@rebass/grid";
 import {
@@ -148,7 +148,7 @@ class VenueForm extends PureComponent {
             </RadioButtonsContainer>
             <Separator size={32} />
             <Box width={[1, "auto"]}>
-              <Button
+              <StyledButton
                 onClick={handleSubmit}
                 styleName="blue"
                 fluid
@@ -159,7 +159,7 @@ class VenueForm extends PureComponent {
                 ) : (
                   t("startButton")
                 )}
-              </Button>
+              </StyledButton>
             </Box>
           </form>
         )}

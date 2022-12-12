@@ -1,5 +1,5 @@
 import { Flex, Box } from "@rebass/grid";
-import { Button, ButtonWithImageIconWrapper } from "components";
+import { StyledButton, ButtonWithImageIconWrapper } from "components";
 import { func, shape } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Table, Name, Price } from "./styled";
@@ -13,7 +13,7 @@ const ListItem = ({ item, t, removeTable, setEditedTableId }) => (
       <Price>{`${item.getIn(["attributes", "numberOfSeats"])} ${t(
         "seats"
       )} `}</Price>
-      <Button
+      <StyledButton
         styleName="withImage"
         blue
         onClick={() => setEditedTableId(item.get("id"))}
@@ -21,9 +21,9 @@ const ListItem = ({ item, t, removeTable, setEditedTableId }) => (
         <ButtonWithImageIconWrapper>
           <FontAwesomeIcon icon={["fa", "pen"]} />
         </ButtonWithImageIconWrapper>
-      </Button>
+      </StyledButton>
       <Box ml={1}>
-        <Button
+        <StyledButton
           styleName="withImage"
           red
           onClick={() => removeTable(item.get("id"))}
@@ -31,7 +31,7 @@ const ListItem = ({ item, t, removeTable, setEditedTableId }) => (
           <ButtonWithImageIconWrapper>
             <FontAwesomeIcon icon={["fa", "times"]} />
           </ButtonWithImageIconWrapper>
-        </Button>
+        </StyledButton>
       </Box>
     </Flex>
   </Table>

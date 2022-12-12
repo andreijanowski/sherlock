@@ -1,4 +1,4 @@
-import { FormInput, H3, Button } from "components";
+import { FormInput, H3, StyledButton } from "components";
 import { Form as FinalForm } from "react-final-form";
 import { func } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
@@ -51,11 +51,11 @@ const DeliveryForm = ({ t, addDelivery }) => (
             />
           </Box>
           <Box mb={3}>
-            <Button styleName="blue" type="submit">
+            <StyledButton styleName="blue" type="submit">
               <Box px={1}>
                 <FontAwesomeIcon icon={["fa", "plus"]} />
               </Box>
-            </Button>
+            </StyledButton>
           </Box>
         </Flex>
       </form>

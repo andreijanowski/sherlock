@@ -7,7 +7,7 @@ import { Flex } from "@rebass/grid";
 
 import PartooIframe from "components/PartooIframe";
 import {
-  Button,
+  StyledButton,
   ButtonWithImageIconWrapper,
   ButtonWithImageText
 } from "components";
@@ -73,7 +73,7 @@ const Dashboard = ({
     >
       <ButtonsWrapper>
         {tabs.map(tab => (
-          <Button
+          <StyledButton
             key={tab.name}
             as="a"
             styleName="withImage"
@@ -88,7 +88,7 @@ const Dashboard = ({
               </IconWrapper>
             </ButtonWithImageIconWrapper>
             <ButtonWithImageText>{t(tab.name)}</ButtonWithImageText>
-          </Button>
+          </StyledButton>
         ))}
       </ButtonsWrapper>
       {currentTab.name === tabs[0].name && (

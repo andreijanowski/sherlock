@@ -37,6 +37,7 @@ import { appWithTranslation } from "../i18n";
 import createStore from "../data/store";
 import "../styles/tailwind.css";
 import "../styles/quill.snow.css";
+import "react-tooltip/dist/react-tooltip.css";
 
 config.autoAddCss = false;
 

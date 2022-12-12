@@ -1,4 +1,4 @@
-import { Button, Modal } from "components";
+import { StyledButton, Modal } from "components";
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { noop } from "lodash";
@@ -38,21 +38,21 @@ const Confirm = ({
         )}
         <Content center={contentCenter}>{children}</Content>
         <ButtonsWrap>
-          <Button
+          <StyledButton
             styleName={inverseColors ? cancelStyle : confirmStyle}
             onClick={onConfirm}
             radius={buttonRadius}
             disabled={disabled}
           >
             {btnOkText}
-          </Button>
-          <Button
+          </StyledButton>
+          <StyledButton
             styleName={inverseColors ? confirmStyle : cancelStyle}
             onClick={onClose}
             radius={buttonRadius}
           >
             {btnCancelText}
-          </Button>
+          </StyledButton>
         </ButtonsWrap>
       </Body>
     </Modal>

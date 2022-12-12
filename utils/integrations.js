@@ -63,7 +63,7 @@ export const getIntegrationColoredStatus = (partner, isOrkestroConnected) => {
     };
   }
   if (isIntegrationPending) {
-    return { label: "app:manageIntegrations.pending", color: "243, 119, 15" };
+    return { label: "app:manageIntegrations.success", color: "243, 119, 15" };
   }
   return null;
 };

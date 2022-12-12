@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
-import Button from "components/styleguide/Button";
+import StyledButton from "components/styleguide/Button";
 
 export const ModalStyles = createGlobalStyle`
   .modal-overlay {
@@ -61,7 +61,7 @@ export const ButtonsWrapper = styled.div`
   justify-content: center;
 `;
 
-export const CancelButton = styled(Button)`
+export const CancelButton = styled(StyledButton)`
   border: 1px solid ${p => `rgb(${p.theme.colors.b2bSecondary})`};
   color: ${p => `rgb(${p.theme.colors.b2bSecondary})`};
   margin-right: 20px;

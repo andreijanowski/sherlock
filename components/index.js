@@ -1,7 +1,7 @@
 export { default as NotificationsCenter } from "./NotificationsCenter";
 export { default as FoodetectiveLogo } from "./FoodetectiveLogo";
 export {
-  default as Button,
+  default as StyledButton,
   ButtonWithImageText,
   ButtonWithImageIconWrapper
 } from "./Button";
