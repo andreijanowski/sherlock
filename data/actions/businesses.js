@@ -379,7 +379,7 @@ export const fetchBusinessSupplierOrdersHistory = (
       per_page: 15,
       page,
       include: "supplier_elements,supplier_products,supplier",
-      sort: "-placed_at",
+      sort: "-createdAt",
       filter
     }
   },
