@@ -1,6 +1,4 @@
 const { languages, languagesPattern } = require("./languages");
-/* eslint-disable prefer-destructuring */
-const dev = process.env.NODE_ENV !== "production";
 
 const API_URL = process.env.PUBLIC_API_URL;
 const APP_URL = process.env.APP_URL;
@@ -71,15 +69,6 @@ const mediaKitLink =
 const becomePartnerLink = `https://foodetective.typeform.com/to/tzqu8b`;
 
 const apiGuideLink = `https://developer.foodetective.co`;
-
-const rollbarConfig = {
-  accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
-  captureUncaught: true,
-  captureUnhandledRejections: true,
-  payload: {
-    environment: process.env.NODE_ENV || "development"
-  }
-};
 
 const LINKEDIN_ADS_ID = process.env.LINKEDIN_ADS_ID;
 
@@ -181,7 +170,6 @@ module.exports = {
   SUBSCRIPTION_PLANS,
   TYPEFORM_IDS,
   WHOLESALERS_CATEGORY,
-  rollbarConfig,
   LINKEDIN_ADS_ID,
   apiGuideLink,
   UBER_EATS_RESTAURANT_URL,
