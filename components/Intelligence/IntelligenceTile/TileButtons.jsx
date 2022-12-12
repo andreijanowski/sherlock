@@ -3,6 +3,8 @@ import { func, shape } from "prop-types";
 import { IntelligenceModal } from "components/modals";
 import { Button } from "../../buttons";
 import { PlayGradientIcon, InfoGardientIcon } from "../../Icons";
+import { Modal } from "components/index";
+import YoutubeVideo from "components/YoutubeVideo";
 import { Tooltip } from "react-tooltip";
 
 const TileButton = ({ t, data }) => {
@@ -17,7 +19,9 @@ const TileButton = ({ t, data }) => {
     description
   } = data;
   const [checked, setChecked] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
   const toggleChecked = () => setChecked(value => !value);
+  const toggleVideo = () => setShowVideo(show => !show);
   const openInNewTab = url => window.open(url, "_blank", "noreferrer");
 
   useEffect(() => {
@@ -42,10 +46,15 @@ const TileButton = ({ t, data }) => {
           <div className="mr-4 mt-2 h-9 w-9 last:mr-0">
             <button
               className="rounded-[50%] hover:bg-primary/[0.15]"
-              onClick={() => openInNewTab(videoUrl)}
+              onClick={toggleVideo}
             >
               <PlayGradientIcon />
             </button>
+            {showVideo && (
+              <Modal open onClose={toggleVideo}>
+                <YoutubeVideo url={videoUrl} />
+              </Modal>
+            )}
           </div>
         )}
         {description && (

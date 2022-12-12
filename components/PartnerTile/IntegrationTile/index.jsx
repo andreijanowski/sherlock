@@ -59,7 +59,6 @@ const IntegrationTile = ({
         t={t}
         partner={partner}
         isIntegration
-        linkLabel={t("app:manageIntegrations.goToWeb")}
         trackClickEvent={trackClickEvent}
       />
     </div>
