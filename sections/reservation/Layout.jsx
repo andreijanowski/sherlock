@@ -248,7 +248,7 @@ const ReservationLayout = ({
         </Box>
         <Box pr={3} mb={2}>
           <Tippy content={t("autoAcceptReservations")}>
-            <Button styleName="withImage" as="label" gradient>
+            <StyledButton styleName="withImage" as="label" gradient>
               <ButtonWithImageIconWrapper>
                 <Icon icon="lucide:user-check" height={24} />
               </ButtonWithImageIconWrapper>
@@ -266,7 +266,7 @@ const ReservationLayout = ({
                 />
                 <span>{` ${t("people")}`}</span>
               </ButtonWithImageText>
-            </Button>
+            </StyledButton>
           </Tippy>
         </Box>
         <ActionIcon
