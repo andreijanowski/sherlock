@@ -37,7 +37,7 @@ const TileButton = ({ t, data }) => {
 
   return (
     <>
-      <div className="mx-4 flex flex-wrap items-center">
+      <div className="mx-4 flex items-center justify-center">
         {videoUrl && (
           <div className="mr-4 mt-2 h-9 w-9 last:mr-0">
             <button
@@ -88,14 +88,14 @@ const TileButton = ({ t, data }) => {
                   <p className="text-xs text-white">{t("app:learnMore")}</p>
                 )}
               </Button>
+              {showTooltip && (
+                <Tooltip
+                  className="tooltip"
+                  anchorId={`url-tooltip-${id}`}
+                  content={redirectionText}
+                />
+              )}
             </div>
-            {showTooltip && (
-              <Tooltip
-                className="tooltip"
-                anchorId={`url-tooltip-${id}`}
-                content={redirectionText}
-              />
-            )}
           </>
         )}
       </div>

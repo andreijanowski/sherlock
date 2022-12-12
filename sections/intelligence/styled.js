@@ -21,7 +21,7 @@ export const GridWrapper = styled(Wrapper)`
   @media (max-width: 1400px) {
     grid-template-columns: repeat(3, 1fr);
   }
-  @media (max-width: 1100px) {
+  @media (max-width: 1280px) {
     grid-template-columns: repeat(2, 1fr);
   }
   @media (max-width: 900px) {
