@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Flex } from "@rebass/grid";
 import { arrayOf, func, shape } from "prop-types";
 
-import { Button } from "components";
+import { StyledButton } from "components";
 import Card from "../Payments/Card";
 
 const CurrentCardInfo = ({ t, currentPlan, cards, goToPayments }) => {
@@ -33,9 +33,9 @@ const CurrentCardInfo = ({ t, currentPlan, cards, goToPayments }) => {
           />
         </Box>
         <Box>
-          <Button styleName="smallBlue" onClick={goToPayments}>
+          <StyledButton styleName="smallBlue" onClick={goToPayments}>
             {t("changeCard")}
-          </Button>
+          </StyledButton>
         </Box>
       </Flex>
     </Flex>

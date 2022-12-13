@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import clsx from "clsx";
 import { connectRefinementList } from "react-instantsearch-dom";
-import { arrayOf, bool, func, string } from "prop-types";
+import { arrayOf, bool, func, shape } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
@@ -20,7 +20,7 @@ const IconButton = ({ onClick, disabled, ...restProps }) => (
     onClick={onClick}
     onPress={() => {}}
     className={clsx(
-      "h-full text-center z-10 p-0 m-0 transition-all ease-in-out duration-300 cursor-pointer flex items-center",
+      "z-10 m-0 flex h-full cursor-pointer items-center p-0 text-center transition-all duration-300 ease-in-out",
       disabled ? "cursor-not-allowed text-gray-300" : "text-gray-700"
     )}
   >
@@ -33,7 +33,7 @@ IconButton.propTypes = {
   disabled: bool.isRequired
 };
 
-const Categories = ({ refine, categories }) => {
+const Categories = ({ refine, categories, disabled, t }) => {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carousel = useRef(null);
@@ -41,21 +41,21 @@ const Categories = ({ refine, categories }) => {
 
   const items = useMemo(
     () =>
-      categories.map(item =>
-        item === ""
-          ? {
-              label: "All",
-              value: ""
-            }
-          : {
-              label: item
-                .split("_")
-                .map(str => `${str[0].toUpperCase()}${str.slice(1)}`)
-                .join(" "),
-              value: item
-            }
+      [
+        {
+          label: t("app:all"),
+          value: ""
+        }
+      ].concat(
+        categories.map(item => ({
+          label: item.label
+            .split("_")
+            .map(str => `${str[0]?.toUpperCase()}${str.slice(1)}`)
+            .join(" "),
+          value: item.value
+        }))
       ),
-    [categories]
+    [categories, t]
   );
 
   const movePrev = () => {
@@ -65,10 +65,7 @@ const Categories = ({ refine, categories }) => {
   };
 
   const moveNext = useCallback(() => {
-    if (
-      carousel.current !== null &&
-      carousel.current.offsetWidth * currentIndex <= maxScrollWidth.current
-    ) {
+    if (carousel.current.offsetWidth * currentIndex <= maxScrollWidth.current) {
       setCurrentIndex(prevState => prevState + 1);
     }
   }, [currentIndex]);
@@ -100,20 +97,22 @@ const Categories = ({ refine, categories }) => {
     maxScrollWidth.current = carousel.current
       ? carousel.current.scrollWidth - carousel.current.offsetWidth
       : 0;
-  }, []);
+  }, [categories]);
 
   const handleChange = useCallback(
-    value => {
-      setSelectedCategory(value);
-      refine(value);
+    item => {
+      setSelectedCategory(item.value);
+      if (!disabled) {
+        refine(item.value);
+      }
     },
-    [refine]
+    [refine, disabled]
   );
 
   return (
-    <div className="carousel my-6 mx-auto relative w-full">
+    <div className="carousel relative mx-auto mb-2 w-full">
       <div className="overflow-hidden px-10">
-        <div className="flex justify-between absolute top h-full left-0 right-0">
+        <div className="top absolute left-0 right-0 flex h-full justify-between">
           <IconButton
             onClick={movePrev}
             icon={faChevronLeft}
@@ -127,18 +126,18 @@ const Categories = ({ refine, categories }) => {
         </div>
         <div
           ref={carousel}
-          className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
+          className="carousel-container relative z-0 flex touch-pan-x snap-x snap-mandatory gap-1 overflow-hidden scroll-smooth"
         >
           {items.map(item => (
             <Box
               key={item.value}
               className={clsx(
-                "carousel-item text-center relative snap-start py-3 px-4 text-gray-700 text-sm whitespace-nowrap cursor-pointer",
+                "carousel-item relative cursor-pointer snap-start whitespace-nowrap py-3 px-2 text-center text-sm text-gray-700",
                 selectedCategory === item.value
                   ? "font-semibold text-black"
                   : ""
               )}
-              onClick={() => handleChange(item.value)}
+              onClick={() => handleChange(item)}
             >
               {item.label}
             </Box>
@@ -151,7 +150,13 @@ const Categories = ({ refine, categories }) => {
 
 Categories.propTypes = {
   refine: func.isRequired,
-  categories: arrayOf(string).isRequired
+  categories: arrayOf(shape()).isRequired,
+  disabled: bool,
+  t: func.isRequired
+};
+
+Categories.defaultProps = {
+  disabled: false
 };
 
 export default connectRefinementList(Categories);

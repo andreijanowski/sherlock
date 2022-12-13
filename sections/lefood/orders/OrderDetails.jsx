@@ -7,7 +7,7 @@ import { Map } from "immutable";
 import { connect } from "react-redux";
 
 import {
-  Button,
+  StyledButton,
   FormDropdown,
   SliderDetail,
   SliderHeader,
@@ -108,10 +108,10 @@ const OrderDetails = ({
             }}
           />
           {orderDetails.getIn(["attributes", "state"]) === "rejected" &&
-            `${t("rejectReason")}: ${orderDetails.getIn([
-              "attributes",
-              "otherRejectionReason"
-            ]) || t(orderDetails.getIn(["attributes", "rejectReason"]))}`}
+            `${t("rejectReason")}: ${
+              orderDetails.getIn(["attributes", "otherRejectionReason"]) ||
+              t(orderDetails.getIn(["attributes", "rejectReason"]))
+            }`}
           {orderDetails.getIn(["relationships", "elements", "data"]) &&
             orderDetails
               .getIn(["relationships", "elements", "data"])
@@ -291,7 +291,7 @@ const OrderDetails = ({
             "waiting_for_approval" && (
             <Flex mx={-1} mt={3} pb={3}>
               <Box width={1 / 2} px={1}>
-                <Button
+                <StyledButton
                   fluid
                   styleName="reject"
                   onClick={e => {
@@ -300,10 +300,10 @@ const OrderDetails = ({
                   }}
                 >
                   {t("reject")}
-                </Button>
+                </StyledButton>
               </Box>
               <Box width={1 / 2} px={1}>
-                <Button
+                <StyledButton
                   fluid
                   styleName="accept"
                   onClick={e => {
@@ -312,7 +312,7 @@ const OrderDetails = ({
                   }}
                 >
                   {t("accept")}
-                </Button>
+                </StyledButton>
               </Box>
             </Flex>
           )}

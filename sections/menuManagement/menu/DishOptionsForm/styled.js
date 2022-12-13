@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
-import { Button } from "components";
+import { StyledButton } from "components";
 
-export const ButtonStyled = styled(Button).attrs({
-  styleName: "smallBlue"
-})`
+export const ButtonStyled = styled(StyledButton)`
   width: auto;
 `;

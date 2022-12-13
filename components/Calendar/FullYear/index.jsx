@@ -64,9 +64,7 @@ export default class YearCalendar extends PureComponent {
       <CalendarWrapper>
         <Toolbar
           onNavigate={this.onNavigate}
-          label={moment(date)
-            .startOf("year")
-            .format("YYYY")}
+          label={moment(date).startOf("year").format("YYYY")}
         />
         <Wrapper>
           {this.getMonthRange().map(({ d, events }) => (

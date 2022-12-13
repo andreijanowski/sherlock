@@ -24,7 +24,9 @@ import {
   FETCH_WORST_SALES_REQUEST,
   FETCH_LIVE_STREAM_REQUEST,
   FETCH_DOWNLOAD_POS_MENU_REQUEST,
-  POST_UPLOAD_POS_MENU_REQUEST
+  POST_UPLOAD_POS_MENU_REQUEST,
+  FETCH_BUSINESS_FAVORITE_SUPPLIERS_REQUEST,
+  FETCH_BUSINESS_SUPPLIER_ORDERS_HISTORY_REQUEST
 } from "types/businesses";
 
 const PER_PAGE = 200;
@@ -181,9 +183,7 @@ export const fetchBusinessReservations = (
   startDate = moment({ h: 0, m: 0, s: 0, ms: 0 })
     .subtract(7, "d")
     .toISOString(),
-  endDate = moment({ h: 0, m: 0, s: 0, ms: 0 })
-    .add(1, "y")
-    .toISOString(),
+  endDate = moment({ h: 0, m: 0, s: 0, ms: 0 }).add(1, "y").toISOString(),
   from = 0,
   to = 86400
 ) => ({
@@ -352,4 +352,36 @@ export const uploadPOSMenu = id => ({
     endpoint: `/api/v1/businesses/${id}/hubrise/upload_catalog`
   },
   meta: { thunk: true, id }
+});
+
+export const fetchBusinessFavoriteSuppliers = (id, page = 1) => ({
+  type: FETCH_BUSINESS_FAVORITE_SUPPLIERS_REQUEST,
+  payload: {
+    method: "GET",
+    endpoint: `/api/v1/businesses/${id}/favorite_suppliers`,
+    params: {
+      per_page: PER_PAGE,
+      page
+    }
+  },
+  meta: { thunk: true, page }
+});
+
+export const fetchBusinessSupplierOrdersHistory = (
+  id,
+  page = 1,
+  filter = {}
+) => ({
+  type: FETCH_BUSINESS_SUPPLIER_ORDERS_HISTORY_REQUEST,
+  payload: {
+    endpoint: `/api/v1/businesses/${id}/supplier_orders`,
+    params: {
+      per_page: 15,
+      page,
+      include: "supplier_elements,supplier_products,supplier",
+      sort: "-createdAt",
+      filter
+    }
+  },
+  meta: { thunk: true, page }
 });

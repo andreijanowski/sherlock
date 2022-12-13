@@ -1,5 +1,5 @@
 import { func } from "prop-types";
-import { H2, Paragraph, Button } from "components";
+import { H2, Paragraph, StyledButton } from "components";
 import { SuccesWrapper } from "../styled";
 import Cake from "./Cake";
 
@@ -8,9 +8,9 @@ const SuccessSection = ({ t, goToPlans }) => (
     <Cake />
     <H2 mt={3}>{t("success")}</H2>
     <Paragraph>{t("successMessage")}</Paragraph>
-    <Button styleName="blue" onClick={goToPlans}>
+    <StyledButton styleName="blue" onClick={goToPlans}>
       {t("goBackToPlans")}
-    </Button>
+    </StyledButton>
   </SuccesWrapper>
 );
 

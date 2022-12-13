@@ -8,6 +8,7 @@ import { StripeButtonStyled, StripeLogo } from "./styled";
 const StripeButton = ({ children, businessId }) => (
   <StripeButtonStyled
     as="a"
+    styleName="blueDegrade"
     onClick={() => {
       const state = uuid();
       window.localStorage.setItem(

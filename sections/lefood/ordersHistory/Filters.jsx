@@ -1,5 +1,10 @@
 import { Form as FinalForm, Field } from "react-final-form";
-import { FormDaypicker, Button, H3, FormMultipleSelect } from "components";
+import {
+  FormDaypicker,
+  StyledButton,
+  H3,
+  FormMultipleSelect
+} from "components";
 import { Box } from "@rebass/grid";
 import { func, shape } from "prop-types";
 import { FiltersForm } from "./styled";
@@ -41,9 +46,9 @@ const Filters = ({ t, onFilterSubmit, filter }) => (
           />
         </Box>
         <Box mb={3}>
-          <Button styleName="formBlue" type="submit" fluid>
+          <StyledButton styleName="formBlue" type="submit" fluid>
             {t("filter")}
-          </Button>
+          </StyledButton>
         </Box>
       </FiltersForm>
     )}

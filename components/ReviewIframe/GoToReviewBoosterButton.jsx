@@ -20,7 +20,7 @@ const GoToReviewBoosterButton = ({
   }, [partooPage, connected, startPage, setConnected, setStartPage]);
 
   return (
-    <ButtonStyled onClick={onButtonClick}>
+    <ButtonStyled onClick={onButtonClick} gradient>
       {connected ? "Back" : "Review Booster"}
     </ButtonStyled>
   );

@@ -1,5 +1,4 @@
 const { languages, languagesPattern } = require("./languages");
-/* eslint-disable prefer-destructuring */
 
 const API_URL = process.env.PUBLIC_API_URL;
 const APP_URL = process.env.APP_URL;
@@ -69,16 +68,7 @@ const mediaKitLink =
   "https://drive.google.com/drive/folders/1iZyNJbszSyRPG3ZWwNKVGws9UdSrdv-z";
 const becomePartnerLink = `https://foodetective.typeform.com/to/tzqu8b`;
 
-const apiGuideLink = `${API_URL}/static_pages/api-auth-guide`;
-
-const rollbarConfig = {
-  accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
-  captureUncaught: true,
-  captureUnhandledRejections: true,
-  payload: {
-    environment: process.env.NODE_ENV || "development"
-  }
-};
+const apiGuideLink = `https://developer.foodetective.co`;
 
 const LINKEDIN_ADS_ID = process.env.LINKEDIN_ADS_ID;
 
@@ -110,10 +100,8 @@ const PARTNERS_URL =
 const CAREERS_FOODETECTIVE_EMAIL = "hello@foodetective.co";
 
 const USER_GUIDES_URL = {
-  fr:
-    "https://docs.google.com/document/d/18ytc8_ToYltMyFM-Yiax2lXMU7DgvvBvC5SeTtBTstc/edit",
-  en:
-    "https://docs.google.com/document/d/1DvgZpRWiBHzoHAwvhI9u1UFOl2ce8TZf2W7FHhsyKKY/edit"
+  fr: "https://docs.google.com/document/d/18ytc8_ToYltMyFM-Yiax2lXMU7DgvvBvC5SeTtBTstc/edit",
+  en: "https://docs.google.com/document/d/1DvgZpRWiBHzoHAwvhI9u1UFOl2ce8TZf2W7FHhsyKKY/edit"
 };
 
 const PARTOO_SDK_URL =
@@ -143,11 +131,17 @@ const GOOGLE_SHEET_SERVICE_ACCOUNT_EMAIL =
 const GOOGLE_SHEET_SERVICE_ACCOUNT_KEY =
   process.env.GOOGLE_SHEET_SERVICE_ACCOUNT_KEY;
 
-const PUBLIC_ALGOLIA_CLIENT_KEY =
-  process.env.PUBLIC_ALGOLIA_CLIENT_KEY || "569fb18902ca15de527353225a6ba63a";
-const ALGOLIA_APP_ID = process.env.PUBLIC_ALGOLIA_APP_ID || "USKQIQBYHF";
-const PUBLIC_ALGOLIA_INDEX_SUFFIX =
-  process.env.PUBLIC_ALGOLIA_INDEX_SUFFIX || "staging";
+const PUBLIC_ALGOLIA_CLIENT_KEY = process.env.PUBLIC_ALGOLIA_CLIENT_KEY;
+const ALGOLIA_APP_ID = process.env.PUBLIC_ALGOLIA_APP_ID;
+
+const ALGOLIA_ENVIRONMENT = process.env.ALGOLIA_ENVIRONMENT;
+const ALGOLIA_SUPPLIER_INDEX_NAME = process.env.ALGOLIA_SUPPLIER_INDEX_NAME;
+const ALGOLIA_SUPPLIER_PRODUCT_INDEX_NAME =
+  process.env.ALGOLIA_SUPPLIER_PRODUCT_INDEX_NAME;
+const ALGOLIA_SUPPLIER_CATEGORY_INDEX_NAME =
+  process.env.ALGOLIA_SUPPLIER_CATEGORY_INDEX_NAME;
+const ALGOLIA_SUPPLIER_PRODUCT_CATEGORY_INDEX_NAME =
+  process.env.ALGOLIA_SUPPLIER_PRODUCT_CATEGORY_INDEX_NAME;
 
 module.exports = {
   contentTypes,
@@ -176,7 +170,6 @@ module.exports = {
   SUBSCRIPTION_PLANS,
   TYPEFORM_IDS,
   WHOLESALERS_CATEGORY,
-  rollbarConfig,
   LINKEDIN_ADS_ID,
   apiGuideLink,
   UBER_EATS_RESTAURANT_URL,
@@ -209,5 +202,9 @@ module.exports = {
   LP_PROD_URL,
   PUBLIC_ALGOLIA_CLIENT_KEY,
   ALGOLIA_APP_ID,
-  PUBLIC_ALGOLIA_INDEX_SUFFIX
+  ALGOLIA_ENVIRONMENT,
+  ALGOLIA_SUPPLIER_INDEX_NAME,
+  ALGOLIA_SUPPLIER_PRODUCT_INDEX_NAME,
+  ALGOLIA_SUPPLIER_CATEGORY_INDEX_NAME,
+  ALGOLIA_SUPPLIER_PRODUCT_CATEGORY_INDEX_NAME
 };

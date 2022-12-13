@@ -11,7 +11,7 @@ import PartnersSearchBox from "components/PartnersSearchBox";
 import AppLayout from "layout/App";
 import { PARTNERS_CATEGORIES, PARTNERS_URL } from "sections/integrations/utils";
 import {
-  Button,
+  StyledButton,
   ButtonWithImageIconWrapper,
   ButtonWithImageText,
   LoadingIndicator
@@ -63,7 +63,7 @@ const IntegrationsPage = ({ t, lng, partners, isLoading }) => {
     >
       <Flex mb={4} mx={2} flexWrap={["wrap"]}>
         {filters.map(tab => (
-          <Button
+          <StyledButton
             key={tab.name}
             as="a"
             styleName="withImage"
@@ -78,10 +78,10 @@ const IntegrationsPage = ({ t, lng, partners, isLoading }) => {
               </IconWrapper>
             </ButtonWithImageIconWrapper>
             <ButtonWithImageText>{t(tab.name)}</ButtonWithImageText>
-          </Button>
+          </StyledButton>
         ))}
       </Flex>
-      <PartnersSearchBox visibilityRange={[60, 640]} />
+      <PartnersSearchBox visibilityRange={[60, 672]} />
       {filteredPartners && filteredPartners.size > 0 && (
         <IntegrationsList partners={filteredPartners} isIntegrations t={t} />
       )}

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
 
-import { Button } from "components";
+import { StyledButton } from "components";
 import { Subtitle } from "components/styleguide/Typography";
 import { downThanBreakpoint } from "utils/theme";
 
@@ -41,7 +41,7 @@ export const PartnersWrapper = styled.div`
   margin-bottom: 36px;
 `;
 
-export const MoreButton = styled(Button)`
+export const MoreButton = styled(StyledButton)`
   border: 0;
   color: rgb(${p => p.theme.colors.b2bSecondary});
   background-color: transparent;

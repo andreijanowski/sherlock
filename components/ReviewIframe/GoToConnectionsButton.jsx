@@ -23,7 +23,7 @@ const GoToConnectionsButton = ({
   }, [connected, partooPage, startPage]);
 
   return (
-    <ButtonStyled onClick={onButtonClick} mr={3}>
+    <ButtonStyled onClick={onButtonClick} mr={3} gradient>
       <Box mr={2}>
         <FontAwesomeIcon icon={connected ? faArrowLeft : faPlus} />
       </Box>

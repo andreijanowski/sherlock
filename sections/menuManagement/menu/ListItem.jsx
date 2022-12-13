@@ -1,5 +1,5 @@
 import { Flex, Box } from "@rebass/grid";
-import { Button, ButtonWithImageIconWrapper } from "components";
+import { StyledButton, ButtonWithImageIconWrapper } from "components";
 import { func, shape } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -40,7 +40,7 @@ const ListItem = ({ item, removeDish, setEditedDishId }) => {
           {item.getIn(["attributes", "currency"])}
         </Price>
         <Flex alignItems="center" ml={3}>
-          <Button
+          <StyledButton
             styleName="withImage"
             blue
             onClick={() => setEditedDishId(item.get("id"))}
@@ -48,9 +48,9 @@ const ListItem = ({ item, removeDish, setEditedDishId }) => {
             <ButtonWithImageIconWrapper>
               <FontAwesomeIcon icon={["fa", "pen"]} />
             </ButtonWithImageIconWrapper>
-          </Button>
+          </StyledButton>
           <Box ml={1}>
-            <Button
+            <StyledButton
               styleName="withImage"
               red
               onClick={() => removeDish(item.get("id"))}
@@ -58,7 +58,7 @@ const ListItem = ({ item, removeDish, setEditedDishId }) => {
               <ButtonWithImageIconWrapper>
                 <FontAwesomeIcon icon={["fa", "times"]} />
               </ButtonWithImageIconWrapper>
-            </Button>
+            </StyledButton>
           </Box>
         </Flex>
       </Actions>

@@ -44,7 +44,7 @@ export const WHOLESALERS_CATEGORIES = [
   "other"
 ];
 
-export const WHOLESALERS_URL = "/app/wholesalers";
+export const WHOLESALERS_URL = "/app/suppliers";
 
 export const SUPPLIER_CATEGORIES = [
   "",

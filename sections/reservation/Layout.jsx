@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { func, string, node, number, shape } from "prop-types";
 import AppLayout from "layout/App";
 import {
-  Button,
+  StyledButton,
   ButtonWithImageText,
   ButtonWithImageIconWrapper,
   Link,
@@ -24,6 +24,7 @@ import {
 import { Flex, Box } from "@rebass/grid";
 import Tippy from "@tippy.js/react";
 import { Orange } from "./styled";
+import { Icon } from "@iconify-icon/react";
 
 const ReservationLayout = ({
   t,
@@ -47,6 +48,9 @@ const ReservationLayout = ({
   const [maxReservationSize, setMaxReservationSize] = useState(
     business && business.get("maxReservationSize")
   );
+  const [autoAcceptBookingLimit, setAutoAcceptBookingLimit] = useState(
+    business && business.get("autoAcceptBookingLimit")
+  );
 
   useEffect(() => {
     setTimeSlots(business && business.get("timeSlots") / 60);
@@ -55,6 +59,9 @@ const ReservationLayout = ({
       business && business.get("minTimeBeforeReservation") / 60
     );
     setMaxReservationSize(business && business.get("maxReservationSize"));
+    setAutoAcceptBookingLimit(
+      business && business.get("autoAcceptBookingLimit")
+    );
   }, [business]);
 
   const isInfoBarVisible =
@@ -119,31 +126,37 @@ const ReservationLayout = ({
       <Flex width={1} mt={3} flexWrap="wrap">
         <Box pr={3} mb={2}>
           <Link route="/app/reservation/reservations/" lng={lng}>
-            <Button
+            <StyledButton
               as="a"
               styleName="withImage"
               active={page === "reservations"}
+              gradient
             >
               <ButtonWithImageIconWrapper>
                 <ProfileContact />
               </ButtonWithImageIconWrapper>
               <ButtonWithImageText>{t("reservations")}</ButtonWithImageText>
-            </Button>
+            </StyledButton>
           </Link>
         </Box>
         <Box pr={3} mb={2}>
           <Link route="/app/reservation/tables/" lng={lng}>
-            <Button as="a" styleName="withImage" active={page === "tables"}>
+            <StyledButton
+              as="a"
+              styleName="withImage"
+              active={page === "tables"}
+              gradient
+            >
               <ButtonWithImageIconWrapper>
                 <ProfileAdditionaInfo />
               </ButtonWithImageIconWrapper>
               <ButtonWithImageText>{t("tables")}</ButtonWithImageText>
-            </Button>
+            </StyledButton>
           </Link>
         </Box>
         <Box pr={3} mb={2}>
           <Tippy content={t("timeSlots")}>
-            <Button styleName="withImage" as="label">
+            <StyledButton styleName="withImage" as="label" gradient>
               <ButtonWithImageIconWrapper>
                 <Time />
               </ButtonWithImageIconWrapper>
@@ -161,12 +174,12 @@ const ReservationLayout = ({
                 />
                 <span>{` ${t("min")}`}</span>
               </ButtonWithImageText>
-            </Button>
+            </StyledButton>
           </Tippy>
         </Box>
         <Box pr={3} mb={2}>
           <Tippy content={t("timeOfStay")}>
-            <Button styleName="withImage" as="label">
+            <StyledButton styleName="withImage" as="label" gradient>
               <ButtonWithImageIconWrapper>
                 <Clock />
               </ButtonWithImageIconWrapper>
@@ -184,12 +197,12 @@ const ReservationLayout = ({
                 />
                 <span>{` ${t("min")}`}</span>
               </ButtonWithImageText>
-            </Button>
+            </StyledButton>
           </Tippy>
         </Box>
         <Box pr={3} mb={2}>
           <Tippy content={t("minTimeBeforeReservation")}>
-            <Button styleName="withImage" as="label">
+            <StyledButton styleName="withImage" as="label" gradient>
               <ButtonWithImageIconWrapper>
                 <ProfileOpeningHours />
               </ButtonWithImageIconWrapper>
@@ -207,12 +220,12 @@ const ReservationLayout = ({
                 />
                 <span>{` ${t("min")}`}</span>
               </ButtonWithImageText>
-            </Button>
+            </StyledButton>
           </Tippy>
         </Box>
         <Box pr={3} mb={2}>
           <Tippy content={t("maxReservationSize")}>
-            <Button styleName="withImage" as="label">
+            <StyledButton styleName="withImage" as="label" gradient>
               <ButtonWithImageIconWrapper>
                 <ProfileMembers />
               </ButtonWithImageIconWrapper>
@@ -230,7 +243,30 @@ const ReservationLayout = ({
                 />
                 <span>{` ${t("people")}`}</span>
               </ButtonWithImageText>
-            </Button>
+            </StyledButton>
+          </Tippy>
+        </Box>
+        <Box pr={3} mb={2}>
+          <Tippy content={t("autoAcceptReservations")}>
+            <StyledButton styleName="withImage" as="label" gradient>
+              <ButtonWithImageIconWrapper>
+                <Icon icon="lucide:user-check" height={24} />
+              </ButtonWithImageIconWrapper>
+              <ButtonWithImageText>
+                <AutosizeInput
+                  value={autoAcceptBookingLimit}
+                  onChange={e => {
+                    setAutoAcceptBookingLimit(e.target.value);
+                  }}
+                  onBlur={() =>
+                    updateBusiness(currentBusinessId, {
+                      autoAcceptBookingLimit
+                    })
+                  }
+                />
+                <span>{` ${t("people")}`}</span>
+              </ButtonWithImageText>
+            </StyledButton>
           </Tippy>
         </Box>
         <ActionIcon

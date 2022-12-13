@@ -13,7 +13,7 @@ class AutoSave extends React.Component {
     this.state = { values: props.values };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { active } = this.props;
     if (active && active !== nextProps.active) {
       this.save(active);

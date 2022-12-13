@@ -73,7 +73,9 @@ export {
   BellIcon,
   WatchVideosIcon,
   MainInfoIcon,
-  InfoIcon
+  InfoIcon,
+  PlayGradientIcon,
+  InfoGardientIcon
 } from "./mainControls";
 export {
   Orders,
@@ -90,4 +92,12 @@ export {
 
 export { Globe, ChevronDownIcon } from "./footer";
 
-export { ClockIcon, HeartIcon, CartIcon } from "./supplier";
+export { ClockIcon, HeartIcon, CartIcon, ChevronRightIcon } from "./supplier";
+
+export {
+  ArrowLeftIcon,
+  FavouriteIcon,
+  CloseCircleIcon,
+  TrashIcon,
+  CheckIcon
+} from "./products";

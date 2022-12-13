@@ -10,6 +10,7 @@ const AddEntityButton = ({ children, ...rest }) => (
   <Flex
     flexWrap="nowrap"
     alignItems="center"
+    styleName="blueDegrade"
     as={ButtonStyled}
     mb={3}
     {...rest}

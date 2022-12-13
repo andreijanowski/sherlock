@@ -17,7 +17,7 @@ const GoToConnectionsButton = ({ partooPage, startPage }) => {
   }, [isConnectionsOpened, partooPage, startPage]);
 
   return (
-    <ButtonStyled onClick={onButtonClick}>
+    <ButtonStyled onClick={onButtonClick} gradient>
       <Box mr={2}>
         <FontAwesomeIcon icon={isConnectionsOpened ? faArrowLeft : faPlus} />
       </Box>

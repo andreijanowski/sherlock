@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
-import { Button } from "components";
+import { StyledButton } from "components";
 
 export const ModalStyles = createGlobalStyle`
   .modal-modal {
@@ -41,7 +41,7 @@ export const UploadButton = styled.button`
   color: rgb(${p => p.theme.colors.blue});
 `;
 
-export const DownloadButton = styled(Button).attrs({
+export const DownloadButton = styled(StyledButton).attrs({
   styleName: "blue"
 })`
   border-radius: 22px;

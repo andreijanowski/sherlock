@@ -3,21 +3,21 @@ import {
   AppManager,
   Bookings,
   Clients,
-  // CustomerLoyalty,
+  CustomerLoyalty,
   Dashboard,
   Delivery,
   EventsManagement,
-  // FoodWaste,
+  FoodWaste,
   InfluencerManagement,
   IntegrationHub,
   Intelligence,
   MenuManagement,
   Payments,
-  // Payroll,
+  Payroll,
   PresenceManagement,
   Restaurant,
   Reviews,
-  // StockManagement,
+  StockManagement,
   Wholesalers
 } from "components/Icons";
 
@@ -34,8 +34,7 @@ export const menuItems = [
         title: "Intelligence",
         description: "Intelligent Notifications",
         icon: Intelligence,
-        href: "/product/analytics#intelligence",
-        status: WORK_STATUS.IN_PROGRESS
+        href: "/product/analytics#intelligence"
       },
       {
         title: "Dashboard",
@@ -112,25 +111,25 @@ export const menuItems = [
         icon: Wholesalers,
         description: "Connecting Suppliers",
         href: "/product/operations#procurement"
+      },
+      {
+        title: "Stock Management",
+        icon: StockManagement,
+        description: "Intelligent Stock",
+        status: WORK_STATUS.COMING_SOON
+      },
+      {
+        title: "HR & Payroll",
+        icon: Payroll,
+        description: "Employee Management",
+        status: WORK_STATUS.COMING_SOON
+      },
+      {
+        title: "Foodwaste",
+        icon: FoodWaste,
+        description: "Reducing Waste",
+        status: WORK_STATUS.COMING_SOON
       }
-      // {
-      //   title: "Stock Management",
-      //   icon: StockManagement,
-      //   description: "Intelligent Stock",
-      //   href: "/product/operations#stockManagement"
-      // },
-      // {
-      //   title: "HR & Payroll",
-      //   icon: Payroll,
-      //   description: "Employee Management",
-      //   status: WORK_STATUS.COMING_SOON
-      // },
-      // {
-      //   title: "Foodwaste",
-      //   icon: FoodWaste,
-      //   description: "Reducing Waste",
-      //   status: WORK_STATUS.COMING_SOON
-      // }
     ]
   },
   {
@@ -159,13 +158,13 @@ export const menuItems = [
         icon: Adv,
         description: "Tailor Made Ads",
         href: "/product/marketing#contentManagement"
+      },
+      {
+        title: "Customer Loyalty",
+        icon: CustomerLoyalty,
+        description: "Loyalty Programs",
+        status: WORK_STATUS.COMING_SOON
       }
-      // {
-      //   title: "Customer Loyalty",
-      //   icon: CustomerLoyalty,
-      //   description: "Loyalty Programs",
-      //   status: WORK_STATUS.COMING_SOON
-      // }
     ]
   }
 ];

@@ -1,17 +1,17 @@
 import { Flex } from "@rebass/grid";
 import styled from "styled-components";
 
-import { Button } from "components";
+import { StyledButton } from "components";
 import { downThanBreakpoint } from "utils/theme";
 
 export const Wrapper = styled(Flex).attrs(() => ({
   px: [3, 4],
   pt: [3, 4],
-  pb: [null, 3],
+  pb: [3, 4],
   flexWrap: "wrap"
 }))`
   background-color: rgb(${p => p.theme.colors.white});
-  border-radius: ${p => p.theme.radius.default};
+  border-radius: ${p => p.theme.radius.biggest};
   box-shadow: ${p =>
     p.isLandingPage ? "0" : `0 2px 6px 0 rgba(${p.theme.colors.blue}, 0.08);`};
 `;
@@ -23,14 +23,14 @@ export const NoPartners = styled(Flex)`
 export const GridWrapper = styled(Wrapper)`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 32px;
-  @media (max-width: 1400px) {
+  grid-gap: 25px;
+  @media (max-width: 1600px) {
     grid-template-columns: repeat(3, 1fr);
   }
-  @media (max-width: 1100px) {
+  @media (max-width: 1280px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  @media (max-width: 900px) {
+  @media (max-width: 980px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -40,7 +40,7 @@ export const BackToListButton = styled(Flex)`
   cursor: pointer;
 `;
 
-export const BlueButton = styled(Button)`
+export const BlueButton = styled(StyledButton)`
   width: auto;
 `;
 

@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 
-const breakpoints = ["40em", "52em", "64em", "75em"];
+const breakpoints = ["42em", "52em", "64em", "75em"];
 const breakpointsPx = ["575px", "767px", "992px", "1199px", "1399px"];
 
 const DEFAULT_BODY_PIXEL_SIZE = 16;
@@ -63,11 +63,11 @@ export const colors = {
   b2bSecondary: "15, 21, 85",
   yellow: "244, 181, 1, 1",
   gray: {
-    "2": "79, 79, 79",
-    "3": "130, 130, 130",
-    "4": "189, 189, 189",
-    "5": "192, 192, 192",
-    "6": "176, 170, 173"
+    2: "79, 79, 79",
+    3: "130, 130, 130",
+    4: "189, 189, 189",
+    5: "192, 192, 192",
+    6: "176, 170, 173"
   },
   gradient: `linear-gradient(89.71deg, #050732 21.63%, rgba(0, 0, 0, 0) 98.23%,
     rgba(5, 7, 50, 0) 98.23%), #4C68FF;`

@@ -6,7 +6,7 @@ import { contentTypes } from "consts";
 import { useT } from "utils/hooks";
 import { LoadingIndicator } from "components";
 import {
-  Button,
+  StyledButton,
   Caption,
   Container,
   Error,
@@ -69,9 +69,13 @@ const NewsletterForm = () => {
               onChange={onInputChange}
               placeholder={t("newsletter.email")}
             />
-            <Button disabled={isSendDisabled} onClick={onSendCLick} ml={2}>
+            <StyledButton
+              disabled={isSendDisabled}
+              onClick={onSendCLick}
+              ml={2}
+            >
               {t("newsletter.send")}
-            </Button>
+            </StyledButton>
           </InputWrapper>
           <Caption>{t("newsletter.caption")}</Caption>
           {status === STATUSES.FAIL && <Error>{t("newsletter.fail")}</Error>}

@@ -1,11 +1,10 @@
 import React from "react";
 import { bool, func, string } from "prop-types";
 import Switch from "react-switch";
-import { Flex } from "@rebass/grid";
 
 import { theme } from "utils/theme";
 import { getThemeHexColor } from "utils/colors";
-import { Option, SwitchWrapper } from "./styled";
+import clsx from "clsx";
 
 const IntegrationSwitch = ({
   t,
@@ -13,31 +12,43 @@ const IntegrationSwitch = ({
   isIntegrationConnected,
   onChange
 }) => (
-  <Flex width={1} alignItems="center">
-    <SwitchWrapper mr={3}>
+  <div className="flex items-center">
+    <div
+      className={clsx(
+        "mr-3 h-[29px] rounded-11 p-[3px]",
+        isIntegrationConnected
+          ? "bg-gradient-to-r from-primary-dark to-primary"
+          : "bg-gray-800"
+      )}
+    >
       <Switch
         disabled={isFetching}
         checked={isIntegrationConnected}
         onChange={onChange}
         uncheckedIcon={false}
         checkedIcon={false}
-        handleDiameter={21}
-        height={31}
-        width={80}
+        handleDiameter={16}
+        height={23}
+        width={55}
         offHandleColor={getThemeHexColor(theme.colors.mischka)}
-        onHandleColor={getThemeHexColor(theme.colors.navyBlue)}
-        offColor={getThemeHexColor(theme.colors.background)}
-        onColor={getThemeHexColor(theme.colors.background)}
+        onHandleColor={getThemeHexColor(theme.colors.landingDarkBlue)}
+        offColor={getThemeHexColor(theme.colors.white)}
+        onColor={getThemeHexColor(theme.colors.white)}
         boxShadow={`0 1px 3px rgba(${theme.colors.blue}, 0.48)`}
         activeBoxShadow={`0 0 0 3px rgba(${theme.colors.blue}, 0.48)`}
       />
-    </SwitchWrapper>
-    <Option dark={!isIntegrationConnected}>
+    </div>
+    <p
+      className={clsx(
+        "text-xs font-bold",
+        isIntegrationConnected && "text-primary-dark"
+      )}
+    >
       {isIntegrationConnected
         ? t("integrations:connected")
         : t("integrations:disconnected")}
-    </Option>
-  </Flex>
+    </p>
+  </div>
 );
 IntegrationSwitch.propTypes = {
   isFetching: bool.isRequired,
