@@ -28,9 +28,6 @@ const CustomListItem = ({ hit, className, lng }) => {
       />
       <div className="px-3 py-4">
         <div className="mb-2 break-all font-semibold">{hit.name}</div>
-        <div className="break-all text-sm text-gray-500">
-          {(hit.supplier_categories?.map(item => item?.name) || []).join(", ")}
-        </div>
       </div>
     </Box>
   );
