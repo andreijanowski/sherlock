@@ -5,20 +5,23 @@ import { connect } from "react-redux";
 import { Trans } from "i18n";
 import { generatePartooToken as generatePartooTokenAction } from "actions/users";
 import { selectIsPartooConnected } from "selectors/users";
-import { useT } from "utils/hooks";
+import { useT, useLng } from "utils/hooks";
 import CenteredSection from "components/CenteredSection";
 import { ConnectedContainer, IFrameContainer, TopPane } from "./styled";
 import GoToConnectionsButton from "./GoToConnectionsButton";
+import { updateProfile } from "actions/users";
 
 const BASE_CONTAINER_ID = "partoo-container";
 
 const PartooIframe = ({
   startPage,
   generatePartooToken,
-  isPartooConnected
+  isPartooConnected,
+  updateProfileHandler
 }) => {
   const [partooPage, setPartooPage] = useState(null);
   const t = useT();
+  const lng = useLng();
   const containerId = `${startPage}-${BASE_CONTAINER_ID}`;
 
   useEffect(() => {
@@ -55,6 +58,10 @@ const PartooIframe = ({
     };
   }, [containerId, generatePartooToken, isPartooConnected, startPage]);
 
+  useEffect(() => {
+    updateProfileHandler({ language: lng });
+  }, [lng]);
+
   return isPartooConnected ? (
     <ConnectedContainer>
       {partooPage && (
@@ -65,7 +72,7 @@ const PartooIframe = ({
           />
         </TopPane>
       )}
-      <IFrameContainer id={containerId} />
+      <IFrameContainer id={containerId} lang={lng} />
     </ConnectedContainer>
   ) : (
     <CenteredSection>
@@ -99,7 +106,8 @@ const mapState = state => ({
 });
 
 const mapDispatch = {
-  generatePartooToken: generatePartooTokenAction
+  generatePartooToken: generatePartooTokenAction,
+  updateProfileHandler: updateProfile
 };
 
 export default connect(mapState, mapDispatch)(PartooIframe);
