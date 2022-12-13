@@ -58,34 +58,27 @@ const Categories = ({ refine, categories, disabled, t }) => {
     [categories, t]
   );
 
-  const movePrev = () => {
+  const movePrev = useCallback(() => {
     if (currentIndex > 0) {
-      setCurrentIndex(prevState => prevState - 1);
-    }
-  };
-
-  const moveNext = useCallback(() => {
-    if (carousel.current.offsetWidth * currentIndex <= maxScrollWidth.current) {
-      setCurrentIndex(prevState => prevState + 1);
+      setCurrentIndex(prevState => prevState - 0.95);
     }
   }, [currentIndex]);
 
-  const isDisabled = useCallback(
-    direction => {
-      if (direction === "prev") {
-        return currentIndex <= 0;
-      }
+  const moveNext = useCallback(() => {
+    if (carousel.current.offsetWidth * currentIndex <= maxScrollWidth.current) {
+      setCurrentIndex(prevState => prevState + 0.95);
+    }
+  }, [currentIndex]);
 
-      if (direction === "next" && carousel.current !== null) {
-        return (
-          carousel.current.offsetWidth * currentIndex >= maxScrollWidth.current
-        );
-      }
+  const hasLeftOption = useMemo(() => {
+    return currentIndex <= 0;
+  }, [currentIndex]);
 
-      return false;
-    },
-    [currentIndex]
-  );
+  const hasRightOption = useMemo(() => {
+    return (
+      carousel.current?.offsetWidth * currentIndex >= maxScrollWidth.current
+    );
+  }, [currentIndex]);
 
   useEffect(() => {
     if (carousel !== null && carousel.current !== null) {
@@ -111,18 +104,32 @@ const Categories = ({ refine, categories, disabled, t }) => {
 
   return (
     <div className="carousel relative mx-auto mb-2 w-full">
-      <div className="overflow-hidden px-10">
+      <div
+        className={clsx(
+          "overflow-hidden",
+          !hasLeftOption && "pl-8",
+          !hasRightOption && "pr-8"
+        )}
+      >
         <div className="top absolute left-0 right-0 flex h-full justify-between">
-          <IconButton
-            onClick={movePrev}
-            icon={faChevronLeft}
-            disabled={isDisabled("prev")}
-          />
-          <IconButton
-            onClick={moveNext}
-            icon={faChevronRight}
-            disabled={isDisabled("next")}
-          />
+          {!hasLeftOption ? (
+            <IconButton
+              onClick={movePrev}
+              icon={faChevronLeft}
+              disabled={hasLeftOption}
+            />
+          ) : (
+            <div />
+          )}
+          {!hasRightOption ? (
+            <IconButton
+              onClick={moveNext}
+              icon={faChevronRight}
+              disabled={hasRightOption}
+            />
+          ) : (
+            <div />
+          )}
         </div>
         <div
           ref={carousel}
