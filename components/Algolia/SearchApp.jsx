@@ -1,5 +1,6 @@
 import React from "react";
 import { InstantSearch, Configure } from "react-instantsearch-dom";
+// import { InstantSearch, Configure } from "react-instantsearch-hooks";
 
 import { arrayOf, bool, func, node, number, oneOf, string } from "prop-types";
 import ConnectedFilter from "./ConnectedFilter";

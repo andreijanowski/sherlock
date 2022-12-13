@@ -29,6 +29,7 @@ const SupplierCategories = ({ searchClient, lng, t }) => {
         setLoading(false);
       });
   }, [searchClient]);
+  console.log(categories);
 
   const supplierCategories = useMemo(
     () =>
@@ -50,6 +51,8 @@ const SupplierCategories = ({ searchClient, lng, t }) => {
           <Categories
             categories={supplierCategories}
             attribute="supplier_categories.name"
+            // limit={1000}
+            // facetOrdering={false}
             t={t}
           />
         )}
