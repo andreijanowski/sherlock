@@ -30,10 +30,10 @@ const TileInfo = ({ data }) => {
         <h2 className="mb-1 text-ellipsis font-bold text-base text-primary-dark line-clamp-2">
           {title}
         </h2>
-        {statusType && statusType !== "integrated" ? (
+        {status && statusType !== "integrated" ? (
           <>
             <Badge
-              title={t(statusType)}
+              title={t(status.label)}
               type={statusType}
               rounded
               append={"ep:loading"}
