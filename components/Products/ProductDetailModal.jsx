@@ -52,7 +52,7 @@ const ProductDetailModal = ({
                   </div>
                 </td>
                 {!selected && (
-                  <td className="whitespace-nowrap py-1 text-center">
+                  <td className="whitespace-nowrap py-1 text-center align-bottom">
                     <div className="text-lg font-semibold leading-1.4 text-gray-900">
                       {t("app:chooseQuantity")}
                     </div>
@@ -62,7 +62,7 @@ const ProductDetailModal = ({
               <tr>
                 <td className="w-full py-1">
                   {!!product?.price_per_unit_cents && (
-                    <div className="text-xl font-bold leading-1.4">
+                    <div className="flex text-xl font-bold leading-1.4">
                       <div>
                         {convertToFound(product?.price_per_unit_cents)}€
                         {product?.units ? "/" : ""}
