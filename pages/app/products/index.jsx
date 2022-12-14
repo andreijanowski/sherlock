@@ -48,7 +48,7 @@ const ProductsPage = ({
       `${ALGOLIA_SUPPLIER_INDEX_NAME}_${ALGOLIA_ENVIRONMENT}`
     );
 
-    // fetchSupplierProductCategories({ include: "sub_categories" });
+    fetchSupplierProductCategories({ include: "sub_categories" });
 
     index
       .search(name)

@@ -82,12 +82,12 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       );
       if (meta.page === 1) {
         newState = newState.setIn(
-          ["data", "suppliers"],
+          ["suppliers", "suppliers"],
           fromJS(payload.data.suppliers)
         );
       } else {
         newState = newState.setIn(
-          ["data", "suppliers"],
+          ["suppliers", "suppliers"],
           fromJS(payload.data.suppliers)
         );
       }
