@@ -49,7 +49,7 @@ const ProductCard = ({
       <div className="mt-3 flex flex-auto select-none flex-col justify-between px-2">
         <div className="font-semibold leading-1.5">{product.name}</div>
         {!!product.price_per_unit_cents && (
-          <div className="flex shrink-0 text-sm text-sm font-medium leading-1.5">
+          <div className="flex shrink-0 text-sm font-medium leading-1.5">
             <div>
               {convertToFound(product.price_per_unit_cents)}€
               {product.units ? "/" : ""}
@@ -68,13 +68,13 @@ const ProductCard = ({
           >
             <FontAwesomeIcon
               icon={faMinus}
-              className="cursor-pointer cursor-pointer text-sm text-gray-900"
+              className="cursor-pointer text-sm text-gray-900"
               onClick={onDecreaseCount}
             />
             <div className="leading-1">{product.count || 0}</div>
             <FontAwesomeIcon
               icon={faPlus}
-              className="cursor-pointer cursor-pointer text-sm text-gray-900"
+              className="cursor-pointer text-sm text-gray-900"
               onClick={onIncreaseCount}
             />
           </Box>
