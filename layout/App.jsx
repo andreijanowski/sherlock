@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import Cookies from "js-cookie";
 import { Flex } from "@rebass/grid";
-import { bool, node, func, string } from "prop-types";
+import PropTypes, { bool, func, node, string } from "prop-types";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import { Popup } from "components/modals";
@@ -9,9 +9,15 @@ import { MainApp, NavigationContainer } from "components";
 import { postBusiness } from "actions/businesses";
 import { logout as logoutAction } from "actions/auth";
 import { BASIC_ROLE } from "sagas/users";
+import Immutable from "immutable";
 
+/**
+ * @typedef {Object} AppLayoutProps
+ * @property {Immutable.Map<string, any> | null} profileBusinesses
+ * @param {Omit<PropTypes.InferProps<AppLayout.propTypes>, "profileBusinesses"> & AppLayoutProps} props
+ */
 const AppLayout = ({
-  businessId,
+  profileBusinesses,
   children,
   mainIcon,
   header,
@@ -37,15 +43,17 @@ const AppLayout = ({
   }, [createBusiness, hasBOAgreement, role]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (hasBidCheck && role === "business_member" && !businessId) {
-        createBusiness(() => {
-          router.push(`/${lng}/app/profile/basic-information/`);
-        });
-      }
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, [createBusiness, role, businessId, router, lng, hasBidCheck]);
+    if (
+      hasBidCheck &&
+      role === "business_member" &&
+      profileBusinesses?.get("isSucceeded") &&
+      profileBusinesses?.get("data")?.size === 0
+    ) {
+      createBusiness(() => {
+        router.push(`/${lng}/app/profile/basic-information/`);
+      });
+    }
+  }, [profileBusinesses, createBusiness, hasBidCheck, lng, role, router]);
 
   const onConfirmModalSubmit = useCallback(() => {
     Cookies.set("BOA", true);
@@ -99,7 +107,8 @@ AppLayout.propTypes = {
   createBusiness: func.isRequired,
   logout: func.isRequired,
   role: string,
-  hasBidCheck: bool
+  hasBidCheck: bool,
+  profileBusinesses: PropTypes.instanceOf(Immutable.Map)
 };
 
 AppLayout.defaultProps = {
@@ -108,7 +117,8 @@ AppLayout.defaultProps = {
   mainIcon: null,
   header: null,
   role: null,
-  hasBidCheck: false
+  hasBidCheck: false,
+  profileBusinesses: null
 };
 
 export default connect(
@@ -118,6 +128,7 @@ export default connect(
     const role = user && user.getIn(["attributes", "role"]);
 
     return {
+      profileBusinesses: state.getIn(["users", "profileBusinesses"]),
       role
     };
   },
