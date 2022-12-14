@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import Cookies from "js-cookie";
 import { Flex } from "@rebass/grid";
-import PropTypes, { bool, node, func, string } from "prop-types";
+import PropTypes, { bool, func, node, string } from "prop-types";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
 import { Popup } from "components/modals";
@@ -11,8 +11,13 @@ import { logout as logoutAction } from "actions/auth";
 import { BASIC_ROLE } from "sagas/users";
 import Immutable from "immutable";
 
+/**
+ * @typedef {Object} AppLayoutProps
+ * @property {Immutable.Map<string, any> | null} profileBusinesses
+ * @param {Omit<PropTypes.InferProps<AppLayout.propTypes>, "profileBusinesses"> & AppLayoutProps} props
+ */
 const AppLayout = ({
-  businesses,
+  profileBusinesses,
   children,
   mainIcon,
   header,
@@ -38,12 +43,17 @@ const AppLayout = ({
   }, [createBusiness, hasBOAgreement, role]);
 
   useEffect(() => {
-    if (hasBidCheck && role === "business_member" && businesses?.size === 0) {
+    if (
+      hasBidCheck &&
+      role === "business_member" &&
+      profileBusinesses?.get("isSucceeded") &&
+      profileBusinesses?.get("data")?.size === 0
+    ) {
       createBusiness(() => {
         router.push(`/${lng}/app/profile/basic-information/`);
       });
     }
-  }, [businesses, createBusiness, hasBidCheck, lng, role, router]);
+  }, [profileBusinesses, createBusiness, hasBidCheck, lng, role, router]);
 
   const onConfirmModalSubmit = useCallback(() => {
     Cookies.set("BOA", true);
@@ -98,7 +108,7 @@ AppLayout.propTypes = {
   logout: func.isRequired,
   role: string,
   hasBidCheck: bool,
-  businesses: PropTypes.instanceOf(Immutable.Map)
+  profileBusinesses: PropTypes.instanceOf(Immutable.Map)
 };
 
 AppLayout.defaultProps = {
@@ -108,7 +118,7 @@ AppLayout.defaultProps = {
   header: null,
   role: null,
   hasBidCheck: false,
-  businesses: null
+  profileBusinesses: null
 };
 
 export default connect(
@@ -118,12 +128,7 @@ export default connect(
     const role = user && user.getIn(["attributes", "role"]);
 
     return {
-      businesses: state.getIn([
-        "users",
-        "profileBusinesses",
-        "data",
-        "businesses"
-      ]),
+      profileBusinesses: state.getIn(["users", "profileBusinesses"]),
       role
     };
   },
