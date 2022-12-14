@@ -1,8 +1,8 @@
 import Notifications from "react-notification-system-redux";
 import { connect } from "react-redux";
-import { instanceOf } from "prop-types";
+import PropTypes from "prop-types";
 import { withTranslation } from "i18n";
-import { List } from "immutable";
+import Immutable from "immutable";
 import { compose } from "redux";
 
 const namespaces = ["notifications", "forms"];
@@ -23,7 +23,10 @@ const NotificationCenter = ({ notifications }) => (
 );
 
 NotificationCenter.propTypes = {
-  notifications: instanceOf(List).isRequired
+  notifications: PropTypes.oneOfType([
+    PropTypes.instanceOf(Array),
+    PropTypes.instanceOf(Immutable.List)
+  ]).isRequired
 };
 
 const mapState = (state, { t }) => ({

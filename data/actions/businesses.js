@@ -28,6 +28,7 @@ import {
   FETCH_BUSINESS_FAVORITE_SUPPLIERS_REQUEST,
   FETCH_BUSINESS_SUPPLIER_ORDERS_HISTORY_REQUEST
 } from "types/businesses";
+import { FETCH_BUSINESS_EXCLUSIVE_SUPPLIERS_REQUEST } from "../types/businesses";
 
 const PER_PAGE = 200;
 const SALES_PER_PAGE = 25;
@@ -380,6 +381,18 @@ export const fetchBusinessSupplierOrdersHistory = (
       page,
       include: "supplier_elements,supplier_products,supplier",
       sort: "-createdAt",
+      filter
+    }
+  },
+  meta: { thunk: true, page }
+});
+export const fetchBusinessExclusiveSuppliers = (id, page = 1, filter = {}) => ({
+  type: FETCH_BUSINESS_EXCLUSIVE_SUPPLIERS_REQUEST,
+  payload: {
+    endpoint: `/api/v1/businesses/${id}/exclusive_suppliers`,
+    params: {
+      per_page: 15,
+      page,
       filter
     }
   },

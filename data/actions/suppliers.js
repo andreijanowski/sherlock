@@ -1,6 +1,7 @@
 import {
   ADD_SUPPLIER_TO_FAVORITES_REQUEST,
-  REMOVE_SUPPLIER_TO_FAVORITES_REQUEST
+  REMOVE_SUPPLIER_TO_FAVORITES_REQUEST,
+  FETCH_SUPPLIER_PRODUCT_CATEGORIES_REQUEST
 } from "types/suppliers";
 import { getRelationships } from "./utils";
 
@@ -29,4 +30,22 @@ export const postRemoveSupplierToFavorites = id => ({
     endpoint: `/api/v1/favorite_suppliers/${id}`
   },
   meta: { thunk: true, id }
+});
+
+export const getSupplierProductCategories = ({
+  include,
+  page = 1,
+  per_page = 200
+}) => ({
+  type: FETCH_SUPPLIER_PRODUCT_CATEGORIES_REQUEST,
+  payload: {
+    method: "GET",
+    endpoint: "/api/v1/supplier_product_categories",
+    params: {
+      include: include,
+      page: page,
+      per_page: per_page
+    }
+  },
+  meta: { thunk: true }
 });

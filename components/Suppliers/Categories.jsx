@@ -33,13 +33,13 @@ IconButton.propTypes = {
   disabled: bool.isRequired
 };
 
-const Categories = ({ refine, categories, disabled, t }) => {
+const Categories = ({ items, refine, categories, disabled, t }) => {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carousel = useRef(null);
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const items = useMemo(
+  const itemsMemoed = useMemo(
     () =>
       [
         {
@@ -135,7 +135,7 @@ const Categories = ({ refine, categories, disabled, t }) => {
           ref={carousel}
           className="carousel-container relative z-0 flex touch-pan-x snap-x snap-mandatory gap-1 overflow-hidden scroll-smooth"
         >
-          {items.map(item => (
+          {itemsMemoed.map(item => (
             <Box
               key={item.value}
               className={clsx(
