@@ -11,7 +11,6 @@ import {
   ALGOLIA_ENVIRONMENT,
   ALGOLIA_SUPPLIER_PRODUCT_INDEX_NAME,
   ALGOLIA_SUPPLIER_INDEX_NAME
-  // ALGOLIA_SUPPLIER_PRODUCT_CATEGORY_INDEX_NAME
 } from "consts";
 import { connect } from "react-redux";
 import { useRouter } from "next/router";
