@@ -2,6 +2,7 @@ import { createStore, applyMiddleware } from "redux";
 import { combineReducers } from "redux-immutable";
 import createSagaMiddleware from "redux-saga";
 import { middleware as thunkMiddleware } from "redux-saga-thunk";
+import { Iterable } from "immutable";
 import reducers from "reducers";
 import rootSaga from "sagas";
 
@@ -9,9 +10,16 @@ const sagaMiddleware = createSagaMiddleware();
 
 const bindMiddleware = middleware => {
   if (process.env.NODE_ENV !== "production") {
-    // eslint-disable-next-line import/no-extraneous-dependencies, global-require
     const { composeWithDevTools } = require("redux-devtools-extension");
-    return composeWithDevTools(applyMiddleware(...[...middleware]));
+    const { createLogger } = require(`redux-logger`);
+
+    const logger = createLogger({
+      stateTransformer: state =>
+        Iterable.isIterable(state) ? state.toJS() : state,
+      collapsed: (getState, action, logEntry) => !logEntry.error
+    });
+
+    return composeWithDevTools(applyMiddleware(logger, ...middleware));
   }
   return applyMiddleware(...middleware);
 };
