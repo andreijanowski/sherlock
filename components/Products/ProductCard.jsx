@@ -36,7 +36,7 @@ const ProductCard = ({
   return (
     <Box
       className={clsx(
-        "flex w-full flex-col rounded-4 bg-white p-2 shadow-card",
+        "flex w-full cursor-pointer flex-col rounded-4 bg-white p-2 shadow-card",
         className
       )}
       onClick={() => onClick(product)}

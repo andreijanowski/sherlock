@@ -4,6 +4,11 @@ import {
   FETCH_BUSINESS_FAVORITE_SUPPLIERS_FAIL
 } from "types/businesses";
 import { fromJS, Map, Record } from "immutable";
+import {
+  FETCH_BUSINESS_EXCLUSIVE_SUPPLIERS_FAIL,
+  FETCH_BUSINESS_EXCLUSIVE_SUPPLIERS_REQUEST,
+  FETCH_BUSINESS_EXCLUSIVE_SUPPLIERS_SUCCESS
+} from "../types/businesses";
 
 import {
   FETCH_SUPPLIER_PRODUCT_CATEGORIES_REQUEST,
@@ -15,7 +20,8 @@ export const initialState = Record({
   data: Map(),
   isFetching: false,
   isFailed: false,
-  isSucceeded: false
+  isSucceeded: false,
+  exclusiveSuppliers: Map()
 })();
 
 const reducer = (state = initialState, { type, payload, meta }) => {
@@ -50,6 +56,43 @@ const reducer = (state = initialState, { type, payload, meta }) => {
       return newState;
     }
     case FETCH_BUSINESS_FAVORITE_SUPPLIERS_FAIL: {
+      return state.merge(
+        Record({
+          isFetching: false,
+          isFailed: true
+        })()
+      );
+    }
+    case FETCH_BUSINESS_EXCLUSIVE_SUPPLIERS_REQUEST: {
+      return state.merge(
+        Record({
+          isFetching: true,
+          isFailed: false,
+          isSucceeded: false
+        })()
+      );
+    }
+    case FETCH_BUSINESS_EXCLUSIVE_SUPPLIERS_SUCCESS: {
+      let newState = state.merge(
+        Record({
+          isFetching: false,
+          isSucceeded: true
+        })()
+      );
+      if (meta.page === 1) {
+        newState = newState.setIn(
+          ["exclusiveSuppliers", "suppliers"],
+          fromJS(payload.data.suppliers)
+        );
+      } else {
+        newState = newState.mergeIn(
+          ["exclusiveSuppliers", "suppliers"],
+          fromJS(payload.data.suppliers)
+        );
+      }
+      return newState;
+    }
+    case FETCH_BUSINESS_EXCLUSIVE_SUPPLIERS_FAIL: {
       return state.merge(
         Record({
           isFetching: false,

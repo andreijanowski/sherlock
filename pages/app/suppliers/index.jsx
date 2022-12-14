@@ -19,7 +19,13 @@ import {
   postRemoveSupplierToFavorites,
   postSupplierToFavorites
 } from "actions/suppliers";
-import { fetchBusinessFavoriteSuppliers } from "actions/businesses";
+import {
+  fetchBusinessFavoriteSuppliers,
+  fetchBusinessExclusiveSuppliers
+} from "actions/businesses";
+import SupplierCard from "../../../components/Suppliers/SupplierCard";
+import Categories from "../../../components/Suppliers/Categories";
+import { uniq } from "lodash";
 
 const searchClient = algoliasearchLite(
   ALGOLIA_APP_ID,
@@ -36,7 +42,9 @@ const SuppliersPage = ({
   businessId,
   getBusinessFavoriteSuppliers,
   suppliersData,
-  removeSupplierFromFavorites
+  removeSupplierFromFavorites,
+  getBusinessExclusiveSuppliers,
+  exclusiveSuppliers
 }) => {
   const city = business?.get("city");
   const country = business?.get("country");
@@ -80,6 +88,20 @@ const SuppliersPage = ({
     }
   }, [businessId, getBusinessFavoriteSuppliers]);
 
+  useEffect(() => {
+    if (businessId) {
+      getBusinessExclusiveSuppliers(businessId);
+    }
+  }, [businessId, getBusinessExclusiveSuppliers]);
+
+  const exclusiveSuppliersCategories = useMemo(() => {
+    return uniq(
+      exclusiveSuppliers
+        ?.map(item => item.attributes.categories)
+        .reduce((au, el) => [...au, ...el], []) || []
+    );
+  }, [exclusiveSuppliers]);
+
   return (
     <AppLayout
       t={t}
@@ -95,15 +117,35 @@ const SuppliersPage = ({
         filters={filters}
         t={t}
       >
-        <SupplierCategories searchClient={searchClient} lng={lng} t={t} />
-        <Loading>
-          <ConnectedHits
+        {exclusiveSuppliers?.length ? (
+          <Categories
+            categories={exclusiveSuppliersCategories.map(item => ({
+              label: item,
+              value: item
+            }))}
+            attribute="supplier_categories.name"
+            disabled
             t={t}
-            lng={lng}
-            onChangeFavoriteSupplier={onChangeFavoriteSupplier}
-            suppliersData={suppliersData}
           />
-        </Loading>
+        ) : (
+          <SupplierCategories searchClient={searchClient} lng={lng} t={t} />
+        )}
+        {exclusiveSuppliers?.length ? (
+          <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 2lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 4xl:gap-8 5xl:grid-cols-9 6xl:grid-cols-10 7xl:grid-cols-11">
+            {exclusiveSuppliers.map(supplier => (
+              <SupplierCard key={supplier.id} supplier={supplier} />
+            ))}
+          </div>
+        ) : (
+          <Loading>
+            <ConnectedHits
+              t={t}
+              lng={lng}
+              onChangeFavoriteSupplier={onChangeFavoriteSupplier}
+              suppliersData={suppliersData}
+            />
+          </Loading>
+        )}
       </SearchApp>
     </AppLayout>
   );
@@ -117,7 +159,9 @@ SuppliersPage.propTypes = {
   removeSupplierFromFavorites: func.isRequired,
   businessId: string,
   getBusinessFavoriteSuppliers: func.isRequired,
-  suppliersData: shape().isRequired
+  suppliersData: shape().isRequired,
+  getBusinessExclusiveSuppliers: func.isRequired,
+  exclusiveSuppliers: shape().isRequired
 };
 
 SuppliersPage.defaultProps = {
@@ -129,6 +173,11 @@ const mapState = (state, { i18n }) => {
   const businessData = state.getIn(["users", "currentBusiness", "data"]);
   const business = businessData && businessData.get("businesses").first();
   const suppliersData = state.getIn(["suppliers", "data", "suppliers"]);
+  const exclusiveSuppliersData = state.getIn([
+    "suppliers",
+    "exclusiveSuppliers",
+    "suppliers"
+  ]);
 
   const businessId =
     businessData && businessData.get("businesses").keySeq().first();
@@ -137,14 +186,16 @@ const mapState = (state, { i18n }) => {
     business: business && business.get("attributes"),
     lng: (i18n && i18n.language) || "en",
     businessId,
-    suppliersData
+    suppliersData,
+    exclusiveSuppliers: exclusiveSuppliersData?.valueSeq()?.toJS()
   };
 };
 
 const mapDispatchToProps = {
   addSupplierToFavorites: postSupplierToFavorites,
   removeSupplierFromFavorites: postRemoveSupplierToFavorites,
-  getBusinessFavoriteSuppliers: fetchBusinessFavoriteSuppliers
+  getBusinessFavoriteSuppliers: fetchBusinessFavoriteSuppliers,
+  getBusinessExclusiveSuppliers: fetchBusinessExclusiveSuppliers
 };
 
 export default requireAuth(true)(
