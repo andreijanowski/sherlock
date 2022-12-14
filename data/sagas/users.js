@@ -16,11 +16,11 @@ import {
   fetchBusinessClients,
   fetchBusinessFavoriteSuppliers
 } from "actions/businesses";
-import { UPDATE_PROFILE_SUCCESS } from "types/users";
+
 import { SET_CURRENT_BUSINESS } from "types/app";
 import { POST_BUSINESS_SUCCESS } from "types/businesses";
 import { takeEvery, all, put, call, select } from "redux-saga/effects";
-import Notifications from "react-notification-system-redux";
+
 import { setCurrentBusiness } from "actions/app";
 import { fetchCategories } from "actions/categories";
 import { fetchBusinessPartnerships } from "actions/integrations";
@@ -58,14 +58,6 @@ function* fetchBusinessData({ payload: { id } }) {
   yield put(fetchBusinessClients(id));
 }
 
-function* showSuccesNotification() {
-  yield put(
-    Notifications.success({
-      message: "updateProfileSuccess"
-    })
-  );
-}
-
 function* setBusiness({
   payload: {
     rawData: {
@@ -97,6 +89,5 @@ function* onBusinessCreated(data) {
 
 export default all([
   takeEvery([POST_BUSINESS_SUCCESS], onBusinessCreated),
-  takeEvery([SET_CURRENT_BUSINESS], fetchBusinessData),
-  takeEvery(UPDATE_PROFILE_SUCCESS, showSuccesNotification)
+  takeEvery([SET_CURRENT_BUSINESS], fetchBusinessData)
 ]);

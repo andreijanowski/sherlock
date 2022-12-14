@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { bool, func, string } from "prop-types";
 import { connect } from "react-redux";
+import { useRouter } from "next/router";
 
 import { Trans } from "i18n";
 import { generatePartooToken as generatePartooTokenAction } from "actions/users";
@@ -22,6 +23,7 @@ const PartooIframe = ({
   const [partooPage, setPartooPage] = useState(null);
   const t = useT();
   const lng = useLng();
+  const router = useRouter();
   const containerId = `${startPage}-${BASE_CONTAINER_ID}`;
 
   useEffect(() => {
@@ -59,8 +61,10 @@ const PartooIframe = ({
   }, [containerId, generatePartooToken, isPartooConnected, startPage]);
 
   useEffect(() => {
+    const path = window && window.location.pathname.substring(4);
     updateProfileHandler({ language: lng });
-  }, [lng]);
+    router.push(`/${lng}/${path}`);
+  }, [lng, updateProfileHandler, router]);
 
   return isPartooConnected ? (
     <ConnectedContainer>
