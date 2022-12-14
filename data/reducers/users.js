@@ -71,6 +71,7 @@ const fieldsThatShouldBeUpdatedImmediatly = [
   "timeOfStay",
   "minTimeBeforeReservation",
   "maxReservationSize",
+  "autoAcceptBookingLimit",
   "hasCatering",
   "hasReservations",
   "hasPrivateEvents",

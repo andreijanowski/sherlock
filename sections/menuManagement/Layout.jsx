@@ -46,18 +46,18 @@ const AppManagerLayout = ({ business, t, lng, page, children }) => {
             isUberAvailable && (
             <Flex width={1} mt={3} flexWrap="wrap">
               <Box pr={3} mb={2}>
-                <Button onClick={onUploadToUberClick} styleName="withImage">
+                <StyledButton onClick={onUploadToUberClick} styleName="withImage">
                   <ButtonWithImageText>
                     {t("import.upload_to_uber")}
                   </ButtonWithImageText>
-                </Button>
+                </StyledButton>
               </Box>
               <Box pr={3} mb={2}>
-                <Button onClick={onDownloadFromUberClick} styleName="withImage">
+                <StyledButton onClick={onDownloadFromUberClick} styleName="withImage">
                   <ButtonWithImageText>
                     {t("import.download_from_uber")}
                   </ButtonWithImageText>
-                </Button>
+                </StyledButton>
               </Box>
             </Flex>
           )

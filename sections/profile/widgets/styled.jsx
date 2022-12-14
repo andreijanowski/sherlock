@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Flex } from "@rebass/grid";
-import { Button } from "components";
+import { StyledButton as StyleButton } from "components";
 
 export const Wrapper = styled(Flex).attrs(() => ({
   flexDirection: "column",
@@ -48,7 +48,7 @@ export const Form = styled.form`
   width: 100%;
 `;
 
-export const StyledButton = styled(Button)`
+export const StyledButton = styled(StyleButton)`
   font-family: monospace;
   word-wrap: break-word;
   cursor: text;

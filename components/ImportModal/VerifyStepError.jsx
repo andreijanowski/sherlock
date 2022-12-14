@@ -4,7 +4,7 @@ import { Box, Flex } from "@rebass/grid";
 
 import { Trans } from "i18n";
 import { CircleWarningIcon } from "components/Icons";
-import { Button } from "components";
+import { StyledButton } from "components";
 import { ErrorIcon, RedText, StepHeading, TableWrapper } from "./styled";
 import ImportErrorsTable from "./ImportErrorsTable";
 import { ERROR } from "./utils";
@@ -38,13 +38,13 @@ const VerifyStepError = ({ t, error, onUploadAgainClick }) => {
       )}
       <Flex justifyContent="flex-end">
         <Box>
-          <Button
+          <StyledButton
             styleName="smallBlue"
             type="button"
             onClick={onUploadAgainClick}
           >
             {t("lefood:import.upload_again")}
-          </Button>
+          </StyledButton>
         </Box>
       </Flex>
     </>

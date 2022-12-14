@@ -1,4 +1,4 @@
-import { Modal, Button, ModalHeader } from "components";
+import { Modal, StyledButton, ModalHeader } from "components";
 import { WarningIcon } from "icons";
 import { func, bool } from "prop-types";
 import { Flex } from "@rebass/grid";
@@ -8,9 +8,14 @@ const FinishOrdersModal = ({ isOpen, onClose, t }) => (
     <Flex flexDirection="column" alignItems="center" width={320}>
       <WarningIcon />
       <ModalHeader>{t("finishOrdersHeader")}</ModalHeader>
-      <Button onClick={onClose} styleName="blue" type="submit" width="100%">
+      <StyledButton
+        onClick={onClose}
+        styleName="blue"
+        type="submit"
+        width="100%"
+      >
         {t("back")}
-      </Button>
+      </StyledButton>
     </Flex>
   </Modal>
 );

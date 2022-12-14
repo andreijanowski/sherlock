@@ -4,7 +4,7 @@ import { Flex, Box } from "@rebass/grid";
 import { PulseLoader } from "react-spinners";
 import { colors } from "utils/theme";
 
-import { Modal, Button, FormSelect, Paragraph, H3 } from "components";
+import { Modal, StyledButton, FormSelect, Paragraph, H3 } from "components";
 import currencies from "utils/currencies";
 import { WarningIcon } from "icons";
 
@@ -49,18 +49,18 @@ const StripeCurrencyModal = ({
             <Flex mx={-2} flexDirection={["column", "row"]}>
               {!!stripeCurrency && (
                 <Box width={[1, 1 / 2]} px={2} mb={[3, 0]}>
-                  <Button
+                  <StyledButton
                     styleName="blue"
                     type="button"
                     onClick={onClose}
                     width="100%"
                   >
                     {t("cancel")}
-                  </Button>
+                  </StyledButton>
                 </Box>
               )}
               <Box width={stripeCurrency ? [1, 1 / 2] : 1} px={2}>
-                <Button
+                <StyledButton
                   styleName="blue"
                   type="submit"
                   disabled={
@@ -77,7 +77,7 @@ const StripeCurrencyModal = ({
                   ) : (
                     t("setStripeCurrency")
                   )}
-                </Button>
+                </StyledButton>
               </Box>
             </Flex>
           </Box>

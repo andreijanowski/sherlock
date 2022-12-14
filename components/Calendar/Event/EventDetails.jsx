@@ -1,4 +1,4 @@
-import { Button, Map } from "components";
+import { StyledButton, Map } from "components";
 import { shape, func, string } from "prop-types";
 import moment from "moment";
 import { normalizePrice } from "utils/normalizers";
@@ -40,8 +40,9 @@ const EventDetails = ({
         </Time>
         <Name>{event.resource.name}</Name>
         {!!event.resource.priceCents && (
-          <Price>{`${normalizePrice(event.resource.priceCents)}${event.resource
-            .currency || ""}`}</Price>
+          <Price>{`${normalizePrice(event.resource.priceCents)}${
+            event.resource.currency || ""
+          }`}</Price>
         )}
       </MainInfo>
       <Flex
@@ -50,7 +51,7 @@ const EventDetails = ({
         mt={[2, 0]}
       >
         <ExtendedButton
-          styleName="smallBlue"
+          styleName="blueDegrade"
           onClick={() => {
             setEditedEvent(event.resource);
             Router.pushRoute(
@@ -166,9 +167,9 @@ const EventDetails = ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button styleName="blue" onClick={() => null} width="100%">
+            <StyledButton styleName="blue" onClick={() => null} width="100%">
               {t("events:downloadMenu")}
-            </Button>
+            </StyledButton>
           </a>
         </Box>
       )}

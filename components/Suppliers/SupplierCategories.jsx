@@ -1,15 +1,21 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { shape, string } from "prop-types";
+import { func, shape, string } from "prop-types";
 import { PulseLoader } from "react-spinners";
 import Categories from "./Categories";
-import { theme } from "../../utils/theme";
+import { theme } from "utils/theme";
+import {
+  ALGOLIA_ENVIRONMENT,
+  ALGOLIA_SUPPLIER_CATEGORY_INDEX_NAME
+} from "consts";
 
-const SupplierCategories = ({ searchClient, lng }) => {
+const SupplierCategories = ({ searchClient, lng, t }) => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const index = searchClient.initIndex("SupplierCategory_staging");
+    const index = searchClient.initIndex(
+      `${ALGOLIA_SUPPLIER_CATEGORY_INDEX_NAME}_${ALGOLIA_ENVIRONMENT}`
+    );
 
     setLoading(true);
     index
@@ -25,12 +31,11 @@ const SupplierCategories = ({ searchClient, lng }) => {
   }, [searchClient]);
 
   const supplierCategories = useMemo(
-    () => [
-      "",
-      ...categories.map(item =>
-        item[`name_${lng}`] ? item[`name_${lng}`] : item.name_en
-      )
-    ],
+    () =>
+      categories.map(item => ({
+        label: item[`name_${lng}`] ? item[`name_${lng}`] : item.name_en,
+        value: item.name
+      })),
     [lng, categories]
   );
 
@@ -38,13 +43,14 @@ const SupplierCategories = ({ searchClient, lng }) => {
     <div>
       <div>
         {loading ? (
-          <div className="flex-1 flex items-center justify-center py-3">
+          <div className="flex flex-1 items-center justify-center py-3">
             <PulseLoader color={`rgb(${theme.colors.blue})`} />
           </div>
         ) : (
           <Categories
             categories={supplierCategories}
             attribute="supplier_categories.name"
+            t={t}
           />
         )}
       </div>
@@ -54,7 +60,8 @@ const SupplierCategories = ({ searchClient, lng }) => {
 
 SupplierCategories.propTypes = {
   lng: string.isRequired,
-  searchClient: shape().isRequired
+  searchClient: shape().isRequired,
+  t: func.isRequired
 };
 
 export default SupplierCategories;

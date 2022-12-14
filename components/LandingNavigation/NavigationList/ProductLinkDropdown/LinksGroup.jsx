@@ -11,7 +11,7 @@ const LinksGroup = ({ group, onLinkClick }) => (
     <LinksGroupTitle mb={4}>{group.title}</LinksGroupTitle>
     {group.items.map(item => (
       <Box key={item.title} mb={21}>
-        <LinkItem link={item} onLinkClick={onLinkClick} />
+        <LinkItem link={item} onLinkClick={onLinkClick} status={item.status} />
       </Box>
     ))}
   </>

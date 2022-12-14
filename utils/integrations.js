@@ -34,9 +34,8 @@ export const isServiceIntegrationConnected = (partner, isOrkestroConnected) =>
   getServiceIntegrationStates(partner, isOrkestroConnected).isIntegrated;
 
 export const isInternalIntegrationConnectedOrPending = partner => {
-  const { isIntegrated, isIntegrationPending } = getInternalIntegrationStates(
-    partner
-  );
+  const { isIntegrated, isIntegrationPending } =
+    getInternalIntegrationStates(partner);
 
   return isIntegrationPending || isIntegrated;
 };
@@ -64,7 +63,7 @@ export const getIntegrationColoredStatus = (partner, isOrkestroConnected) => {
     };
   }
   if (isIntegrationPending) {
-    return { label: "app:manageIntegrations.pending", color: "243, 119, 15" };
+    return { label: "app:manageIntegrations.success", color: "243, 119, 15" };
   }
   return null;
 };

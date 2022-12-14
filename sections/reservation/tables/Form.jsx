@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FormInput, H3, Button, LoadingIndicator } from "components";
+import { FormInput, H3, StyledButton, LoadingIndicator } from "components";
 import { Form as FinalForm } from "react-final-form";
 import { func, shape } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
@@ -68,9 +68,14 @@ const TableForm = ({ t, initialValues, setEditedTableId, addTable }) => {
                     />
                   </Box>
                   <Box mb={3} width={[1, 1 / 3]} px={2}>
-                    <Button fluid fullHeight styleName="blue" type="submit">
+                    <StyledButton
+                      fluid
+                      fullHeight
+                      styleName="blue"
+                      type="submit"
+                    >
                       {t("addTable")}
-                    </Button>
+                    </StyledButton>
                   </Box>
                 </Flex>
               </>

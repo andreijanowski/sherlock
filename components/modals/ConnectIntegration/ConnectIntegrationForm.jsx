@@ -2,7 +2,7 @@ import React from "react";
 import { Form } from "react-final-form";
 import { func, shape } from "prop-types";
 
-import { Button, FormInput } from "components";
+import { StyledButton, FormInput } from "components";
 import { required } from "utils/validators";
 import { useT } from "utils/hooks";
 import { Trans } from "i18n";
@@ -58,12 +58,12 @@ const ConnectIntegrationForm = ({ partner, onSubmit, onClose }) => {
               />
             </BodyStyled>
             <ButtonsWrap>
-              <Button type="button" styleName="reject" onClick={onClose}>
+              <StyledButton type="button" styleName="reject" onClick={onClose}>
                 {t("forms:cancel")}
-              </Button>
-              <Button styleName="accept" disabled={submitting}>
+              </StyledButton>
+              <StyledButton styleName="accept" disabled={submitting}>
                 {t("integrations:connect")}
-              </Button>
+              </StyledButton>
             </ButtonsWrap>
           </Wrapper>
         );

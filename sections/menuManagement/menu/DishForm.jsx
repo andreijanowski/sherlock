@@ -5,7 +5,7 @@ import { Box, Flex } from "@rebass/grid";
 import Cookies from "js-cookie";
 
 import {
-  Button,
+  StyledButton,
   DropzoneWithCropper,
   FormCheckbox,
   FormDropdown,
@@ -124,9 +124,9 @@ const DishForm = ({
         <FormCheckbox name="onUberEats" label={t("uber_availability")} />
       </Box>
       <Box mb={3}>
-        <Button fluid styleName="blue" type="button" onClick={submit}>
+        <StyledButton fluid styleName="blue" type="button" onClick={submit}>
           {initialValues.name ? t("Save") : t("addToMenu")}
-        </Button>
+        </StyledButton>
       </Box>
     </>
   );

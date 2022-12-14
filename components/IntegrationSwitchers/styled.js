@@ -14,11 +14,11 @@ export const Option = styled(Box)`
 `;
 
 export const SwitchWrapper = styled(Box)`
-  height: 39px;
-  padding: 4px;
+  height: 27px;
+  padding: 2px;
   background: linear-gradient(
     to right,
-    rgba(${p => p.theme.colors.dark}, 0.4),
+    rgba(${p => p.theme.colors.landingDarkBlue}),
     rgb(${p => p.theme.colors.blue})
   );
   border-radius: 45px;

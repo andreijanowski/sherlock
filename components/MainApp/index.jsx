@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { Form as FinalForm, FormSpy } from "react-final-form";
 import { MainInfoIcon } from "components/Icons";
 import {
-  Button,
+  StyledButton,
   InfoBar,
   LanguageSwitcher,
   Link,
@@ -192,12 +192,16 @@ const MainApp = ({
         >
           {prevRoute && (
             <Link lng={lng} route={prevRoute}>
-              <Button styleName="blue">{t("common:prev")}</Button>
+              <StyledButton styleName="blue" gradient>
+                {t("common:prev")}
+              </StyledButton>
             </Link>
           )}
           {nextRoute && (
             <Link lng={lng} route={nextRoute}>
-              <Button styleName="blue">{t("common:next")}</Button>
+              <StyledButton styleName="blue" gradient>
+                {t("common:next")}
+              </StyledButton>
             </Link>
           )}
         </Flex>

@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { func, shape } from "prop-types";
 import { Form as FinalForm, Field } from "react-final-form";
-import { FormInput, Button, LoadingIndicator } from "components";
+import { FormInput, StyledButton, LoadingIndicator } from "components";
 import { Flex, Box } from "@rebass/grid";
 import { Form, ConfirmationMsg } from "sections/settings/styled";
 import { validateEmail, required } from "utils/validators";
@@ -64,13 +64,13 @@ class UserBasicInfoForm extends PureComponent {
                 />
               </Box>
               <Box width={1}>
-                <Button
+                <StyledButton
                   type="submit"
                   styleName="blue"
                   disabled={invalid || submitting}
                 >
                   {t("common:update")}
-                </Button>
+                </StyledButton>
               </Box>
               {profile.getIn(["attributes", "unconfirmedEmail"]) && (
                 <Box my={3}>

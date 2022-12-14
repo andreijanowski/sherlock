@@ -1,4 +1,4 @@
-import { Modal, Button, ModalHeader } from "components";
+import { Modal, StyledButton, ModalHeader } from "components";
 import { RejectModalIcon } from "icons";
 import { func, bool } from "prop-types";
 import { Flex, Box } from "@rebass/grid";
@@ -12,24 +12,24 @@ const RemoveModal = ({ isOpen, onClose, t, handleRemove }) =>
         <Box width={1}>
           <Flex mx={-2}>
             <Box width={1 / 2} px={2}>
-              <Button
+              <StyledButton
                 styleName="blue"
                 type="button"
                 onClick={onClose}
                 width="100%"
               >
                 {t("cancel")}
-              </Button>
+              </StyledButton>
             </Box>
             <Box width={1 / 2} px={2}>
-              <Button
+              <StyledButton
                 styleName="blue"
                 type="button"
                 onClick={handleRemove}
                 width="100%"
               >
                 {t("confirm")}
-              </Button>
+              </StyledButton>
             </Box>
           </Flex>
         </Box>
