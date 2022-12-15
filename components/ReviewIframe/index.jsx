@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { bool, func } from "prop-types";
 import { connect } from "react-redux";
+import { useRouter } from "next/router";
 import { Trans } from "i18n";
 import { generatePartooToken as generatePartooTokenAction } from "actions/users";
 import { selectIsPartooConnected } from "selectors/users";
@@ -28,6 +29,7 @@ const ReviewIframe = ({
   );
   const [managementConnected, setManagementConnected] = useState(false);
   const [boosterConnected, setBoosterConnected] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (!isPartooConnected) return () => {};
@@ -66,7 +68,8 @@ const ReviewIframe = ({
 
   useEffect(() => {
     updateProfileHandler({ language: lng });
-  }, [lng]);
+    router.push(`/${lng}/app/reviews`);
+  }, [lng, updateProfileHandler, router]);
 
   return isPartooConnected ? (
     <ConnectedContainer>
