@@ -21,6 +21,8 @@ export const initialState = Record({
   isFetching: false,
   isFailed: false,
   isSucceeded: false,
+  isExclusiveFetching: false,
+  isExclusiveLoaded: false,
   exclusiveSuppliers: Map()
 })();
 
@@ -58,25 +60,24 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     case FETCH_BUSINESS_FAVORITE_SUPPLIERS_FAIL: {
       return state.merge(
         Record({
-          isFetching: false,
-          isFailed: true
+          isExclusiveFetching: false,
+          isExclusiveFailed: true
         })()
       );
     }
     case FETCH_BUSINESS_EXCLUSIVE_SUPPLIERS_REQUEST: {
       return state.merge(
         Record({
-          isFetching: true,
-          isFailed: false,
-          isSucceeded: false
+          isExclusiveFetching: true,
+          isExclusiveLoaded: false
         })()
       );
     }
     case FETCH_BUSINESS_EXCLUSIVE_SUPPLIERS_SUCCESS: {
       let newState = state.merge(
         Record({
-          isFetching: false,
-          isSucceeded: true
+          isExclusiveFetching: false,
+          isExclusiveLoaded: true
         })()
       );
       if (meta.page === 1) {
@@ -95,8 +96,8 @@ const reducer = (state = initialState, { type, payload, meta }) => {
     case FETCH_BUSINESS_EXCLUSIVE_SUPPLIERS_FAIL: {
       return state.merge(
         Record({
-          isFetching: false,
-          isFailed: true
+          isExclusiveFetching: false,
+          isExclusiveLoaded: true
         })()
       );
     }
