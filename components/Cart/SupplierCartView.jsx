@@ -20,7 +20,7 @@ const SupplierCartView = ({
 
   const totalPrice = useMemo(
     () =>
-      products.reduce((sum, el) => sum + el.count * el.price_per_unit_cents, 0),
+      products.reduce((sum, el) => sum + el.count * el.selling_price_cents, 0),
     [products]
   );
 
@@ -63,7 +63,7 @@ const SupplierCartView = ({
                   <div className="my-2.5 flex h-10 w-23 items-center justify-center space-x-2 rounded-2.5 border border-[#0F1138] text-gray-900">
                     <FontAwesomeIcon
                       icon={faMinus}
-                      className="cursor-pointer cursor-pointer text-sm"
+                      className="cursor-pointer text-sm"
                       onClick={() =>
                         onChangeCount(product.objectID, product.count - 1)
                       }
@@ -71,16 +71,16 @@ const SupplierCartView = ({
                     <div className="select-none leading-1">{product.count}</div>
                     <FontAwesomeIcon
                       icon={faPlus}
-                      className="cursor-pointer cursor-pointer text-sm"
+                      className="cursor-pointer text-sm"
                       onClick={() =>
                         onChangeCount(product.objectID, product.count + 1)
                       }
                     />
                   </div>
-                  {!!product.price_per_unit_cents && (
+                  {!!product.selling_price_cents && (
                     <div className="flex select-none text-sm">
                       <div>
-                        {convertToFound(product.price_per_unit_cents)}€
+                        {convertToFound(product.selling_price_cents)}€
                         {product.units ? "/" : ""}
                       </div>
                       <div>{product.units}</div>

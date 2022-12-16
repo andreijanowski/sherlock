@@ -62,7 +62,7 @@ const CartPage = ({
 
   const totalPrice = useMemo(
     () =>
-      products.reduce((sum, el) => sum + el.count * el.price_per_unit_cents, 0),
+      products.reduce((sum, el) => sum + el.count * el.selling_price_cents, 0),
     [products]
   );
 
@@ -165,7 +165,7 @@ const CartPage = ({
                 {t("app:estimatedTotal")}
               </div>
               <div className="text-xl font-bold text-blue-900">
-                {convertToFound(totalPrice)}€
+                {convertToFound(totalPrice)} €
               </div>
             </div>
             <div className="mb-2 text-xs text-gray-700">
@@ -173,16 +173,18 @@ const CartPage = ({
             </div>
           </div>
 
-          <Box
-            className="flex h-25 w-full cursor-pointer items-center justify-center rounded-3 bg-green-50 text-xl font-bold text-green-700"
-            onClick={onConfirmRequest}
-          >
-            {loading ? (
-              <PulseLoader size={16} color={`rgb(${colors.blue})`} loading />
-            ) : (
-              <span>{t("app:confirmRequest")}</span>
-            )}
-          </Box>
+          {products.length !== 0 && (
+            <Box
+              className="flex h-25 w-full cursor-pointer items-center justify-center rounded-3 bg-green-50 text-xl font-bold text-green-700"
+              onClick={onConfirmRequest}
+            >
+              {loading ? (
+                <PulseLoader size={16} color={`rgb(${colors.blue})`} loading />
+              ) : (
+                <span>{t("app:confirmRequest")}</span>
+              )}
+            </Box>
+          )}
         </div>
       </SearchApp>
       <SuccessModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
