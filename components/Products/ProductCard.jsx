@@ -48,6 +48,11 @@ const ProductCard = ({
       />
       <div className="mt-3 flex flex-auto select-none flex-col justify-between px-2">
         <div className="font-semibold leading-1.5">{product.name}</div>
+        {!!product.selling_price_cents && (
+          <div className="flex shrink-0 font-semibold leading-1.5">
+            <div>{convertToFound(product.selling_price_cents)} €</div>
+          </div>
+        )}
         {!!product.price_per_unit_cents && (
           <div className="flex shrink-0 text-sm font-medium leading-1.5">
             <div>

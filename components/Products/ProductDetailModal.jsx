@@ -40,58 +40,54 @@ const ProductDetailModal = ({
           <div className="text-xl font-bold leading-1.4 text-gray-900">
             {product?.name}
           </div>
-          <div className="leading-1.4 text-gray-500">
-            {product?.supplier_product_categories?.join(", ")}
-          </div>
+          {!!product?.selling_price_cents && (
+            <div className="mt-2 flex text-xl font-bold leading-1.4">
+              <div>{convertToFound(product?.selling_price_cents)} €</div>
+            </div>
+          )}
+          {!!product?.price_per_unit_cents && (
+            <div className="mb-2 flex text-sm font-medium leading-1.5 text-gray-500">
+              <div>
+                {convertToFound(product?.price_per_unit_cents)}€
+                {product?.units ? "/" : ""}
+              </div>
+              <div>{product?.units}</div>
+            </div>
+          )}
           <table className="mb-3 w-full">
             <tbody>
               <tr>
                 <td className="w-full py-1">
                   <div className="leading-1.4 text-black">
                     {product?.description}
-                  </div>
-                </td>
-                {!selected && (
-                  <td className="whitespace-nowrap py-1 text-center align-bottom">
-                    <div className="text-lg font-semibold leading-1.4 text-gray-900">
-                      {t("app:chooseQuantity")}
-                    </div>
-                  </td>
-                )}
-              </tr>
-              <tr>
-                <td className="w-full py-1">
-                  {!!product?.price_per_unit_cents && (
-                    <div className="flex text-xl font-bold leading-1.4">
-                      <div>
-                        {convertToFound(product?.price_per_unit_cents)}€
-                        {product?.units ? "/" : ""}
+                    {!selected && (
+                      <div className="my-2 text-lg font-semibold leading-1.4 text-gray-900">
+                        {t("app:chooseQuantity")}
                       </div>
-                      <div>{product?.units}</div>
-                    </div>
+                    )}
+                  </div>
+                  {!selected && (
+                    <td className="py-1 text-center">
+                      <div className="inline-flex items-center space-x-1 rounded-2.5 border border-blue-600 px-6 py-2 text-gray-900">
+                        <FontAwesomeIcon
+                          icon={faMinus}
+                          className="cursor-pointer text-sm text-gray-900"
+                          onClick={() =>
+                            onChangeCount(product?.objectID, product?.count - 1)
+                          }
+                        />
+                        <div>{product?.count}</div>
+                        <FontAwesomeIcon
+                          icon={faPlus}
+                          className="cursor-pointer text-sm text-gray-900"
+                          onClick={() =>
+                            onChangeCount(product?.objectID, product?.count + 1)
+                          }
+                        />
+                      </div>
+                    </td>
                   )}
                 </td>
-                {!selected && (
-                  <td className="py-1 text-center">
-                    <div className="inline-flex items-center space-x-1 rounded-2.5 border border-blue-600 px-6 py-2 text-gray-900">
-                      <FontAwesomeIcon
-                        icon={faMinus}
-                        className="cursor-pointer cursor-pointer text-sm text-gray-900"
-                        onClick={() =>
-                          onChangeCount(product?.objectID, product?.count - 1)
-                        }
-                      />
-                      <div>{product?.count}</div>
-                      <FontAwesomeIcon
-                        icon={faPlus}
-                        className="cursor-pointer cursor-pointer text-sm text-gray-900"
-                        onClick={() =>
-                          onChangeCount(product?.objectID, product?.count + 1)
-                        }
-                      />
-                    </div>
-                  </td>
-                )}
               </tr>
             </tbody>
           </table>
