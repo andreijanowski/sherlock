@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import { withTranslation } from "i18n";
 import AppLayout from "layout/App";
-import { func, shape, string } from "prop-types";
+import { bool, func, shape, string } from "prop-types";
 import requireAuth from "lib/requireAuth";
 import SearchApp from "components/Algolia/SearchApp";
 import algoliasearchLite from "algoliasearch/lite";
@@ -23,9 +23,11 @@ import {
   fetchBusinessFavoriteSuppliers,
   fetchBusinessExclusiveSuppliers
 } from "actions/businesses";
-import SupplierCard from "../../../components/Suppliers/SupplierCard";
-import Categories from "../../../components/Suppliers/Categories";
+import SupplierCard from "components/Suppliers/SupplierCard";
+import Categories from "components/Suppliers/Categories";
 import { uniq } from "lodash";
+import { PulseLoader } from "react-spinners";
+import { theme } from "utils/theme";
 
 const searchClient = algoliasearchLite(
   ALGOLIA_APP_ID,
@@ -44,7 +46,8 @@ const SuppliersPage = ({
   suppliersData,
   removeSupplierFromFavorites,
   getBusinessExclusiveSuppliers,
-  exclusiveSuppliers
+  exclusiveSuppliers,
+  isExclusiveLoaded
 }) => {
   const city = business?.get("city");
   const country = business?.get("country");
@@ -130,12 +133,20 @@ const SuppliersPage = ({
         ) : (
           <SupplierCategories searchClient={searchClient} lng={lng} t={t} />
         )}
-        {exclusiveSuppliers?.length ? (
-          <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 2lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 4xl:gap-8 5xl:grid-cols-9 6xl:grid-cols-10 7xl:grid-cols-11">
-            {exclusiveSuppliers.map(supplier => (
-              <SupplierCard key={supplier.id} supplier={supplier} />
-            ))}
-          </div>
+        {exclusiveSuppliers?.length || !isExclusiveLoaded ? (
+          <>
+            {!isExclusiveLoaded ? (
+              <div className="flex flex-1 items-center justify-center">
+                <PulseLoader color={`rgb(${theme.colors.blue})`} />
+              </div>
+            ) : (
+              <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 2lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 4xl:gap-8 5xl:grid-cols-9 6xl:grid-cols-10 7xl:grid-cols-11">
+                {exclusiveSuppliers.map(supplier => (
+                  <SupplierCard key={supplier.id} supplier={supplier} />
+                ))}
+              </div>
+            )}
+          </>
         ) : (
           <Loading>
             <ConnectedHits
@@ -161,7 +172,8 @@ SuppliersPage.propTypes = {
   getBusinessFavoriteSuppliers: func.isRequired,
   suppliersData: shape().isRequired,
   getBusinessExclusiveSuppliers: func.isRequired,
-  exclusiveSuppliers: shape().isRequired
+  exclusiveSuppliers: shape().isRequired,
+  isExclusiveLoaded: bool.isRequired
 };
 
 SuppliersPage.defaultProps = {
@@ -178,6 +190,7 @@ const mapState = (state, { i18n }) => {
     "exclusiveSuppliers",
     "suppliers"
   ]);
+  const isExclusiveLoaded = state.getIn(["suppliers", "isExclusiveLoaded"]);
 
   const businessId =
     businessData && businessData.get("businesses").keySeq().first();
@@ -187,7 +200,8 @@ const mapState = (state, { i18n }) => {
     lng: (i18n && i18n.language) || "en",
     businessId,
     suppliersData,
-    exclusiveSuppliers: exclusiveSuppliersData?.valueSeq()?.toJS()
+    exclusiveSuppliers: exclusiveSuppliersData?.valueSeq()?.toJS(),
+    isExclusiveLoaded
   };
 };
 
