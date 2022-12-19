@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  p {
+    @apply text-base;
+  }
+}
+
+.tooltip {
+  background: #4e4d66 !important;
+  max-width: 75% !important;
+}
+.tooltip div {
+  background: #4e4d66 !important;
+}

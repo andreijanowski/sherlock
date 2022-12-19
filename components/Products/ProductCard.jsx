@@ -4,29 +4,42 @@ import { bool, func, shape, string } from "prop-types";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Box } from "@rebass/grid";
-import { useTranslation } from "../../i18n";
-import { convertToFound } from "../../utils/price";
+import { useTranslation } from "i18n";
+import { convertToFound } from "utils/price";
 
 const ProductCard = ({
   product,
   className,
   onAdd,
   selected,
-  onChangeCount
+  onChangeCount,
+  onClick
 }) => {
   const { t } = useTranslation();
-  const handleClick = () => {
+  const handleClick = e => {
+    e.stopPropagation();
     if (!selected) {
       onAdd(product);
     }
   };
 
+  const onIncreaseCount = e => {
+    e.stopPropagation();
+    onChangeCount(product.objectID, product.count + 1);
+  };
+
+  const onDecreaseCount = e => {
+    e.stopPropagation();
+    onChangeCount(product.objectID, product.count - 1);
+  };
+
   return (
-    <div
+    <Box
       className={clsx(
-        "flex w-full flex-col rounded-4 bg-white p-2 shadow-card",
+        "flex w-full cursor-pointer flex-col rounded-4 bg-white p-2 shadow-card",
         className
       )}
+      onClick={() => onClick(product)}
     >
       <img
         src={product?.image?.url}
@@ -35,8 +48,13 @@ const ProductCard = ({
       />
       <div className="mt-3 flex flex-auto select-none flex-col justify-between px-2">
         <div className="font-semibold leading-1.5">{product.name}</div>
+        {!!product.selling_price_cents && (
+          <div className="flex shrink-0 font-semibold leading-1.5">
+            <div>{convertToFound(product.selling_price_cents)} €</div>
+          </div>
+        )}
         {!!product.price_per_unit_cents && (
-          <div className="flex shrink-0 text-sm text-sm font-medium leading-1.5">
+          <div className="flex shrink-0 text-sm font-medium leading-1.5">
             <div>
               {convertToFound(product.price_per_unit_cents)}€
               {product.units ? "/" : ""}
@@ -49,19 +67,22 @@ const ProductCard = ({
         </div>
 
         <div className="mt-3 flex space-x-3">
-          <div className="flex-2 flex h-10 w-21 items-center justify-center space-x-2 rounded-2.5 border border-[#0F1138]">
+          <Box
+            className="flex-2 flex h-10 w-21 items-center justify-center space-x-2 rounded-2.5 border border-[#0F1138]"
+            onClick={e => e.stopPropagation()}
+          >
             <FontAwesomeIcon
               icon={faMinus}
-              className="cursor-pointer cursor-pointer text-sm text-gray-900"
-              onClick={() => onChangeCount(product.objectID, product.count - 1)}
+              className="cursor-pointer text-sm text-gray-900"
+              onClick={onDecreaseCount}
             />
             <div className="leading-1">{product.count || 0}</div>
             <FontAwesomeIcon
               icon={faPlus}
-              className="cursor-pointer cursor-pointer text-sm text-gray-900"
-              onClick={() => onChangeCount(product.objectID, product.count + 1)}
+              className="cursor-pointer text-sm text-gray-900"
+              onClick={onIncreaseCount}
             />
-          </div>
+          </Box>
           <Box
             className={clsx(
               "flex-3 flex h-10 flex-1 cursor-pointer items-center justify-center rounded-2.5",
@@ -75,7 +96,7 @@ const ProductCard = ({
           </Box>
         </div>
       </div>
-    </div>
+    </Box>
   );
 };
 
@@ -84,7 +105,8 @@ ProductCard.propTypes = {
   className: string.isRequired,
   selected: bool.isRequired,
   onAdd: func.isRequired,
-  onChangeCount: func.isRequired
+  onChangeCount: func.isRequired,
+  onClick: func.isRequired
 };
 
 export default ProductCard;

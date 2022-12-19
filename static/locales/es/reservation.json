@@ -7,6 +7,7 @@
   "minTimeBeforeReservation": "tiempo mínimo antes de la reserva",
   "timeOfStay": "tiempo de estadía",
   "maxReservationSize": "tamaño máximo de reserva",
+  "autoAcceptReservations": "Aceptación automática de reservas",
   "and": "y",
   "toSeeAnyNewReservations": "para ver nuevas reservas",
   "partySize": "Tamaño fiesta",

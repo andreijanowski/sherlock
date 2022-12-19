@@ -8,28 +8,29 @@ import algoliasearchLite from "algoliasearch/lite";
 import {
   PUBLIC_ALGOLIA_CLIENT_KEY,
   ALGOLIA_APP_ID,
-  ALGOLIA_ENVIRONMENT
+  ALGOLIA_ENVIRONMENT,
+  ALGOLIA_SUPPLIER_PRODUCT_INDEX_NAME
 } from "consts";
 import { connect } from "react-redux";
 import { groupBy } from "lodash";
 import { Box } from "@rebass/grid";
 import { PulseLoader } from "react-spinners";
-import { useLng } from "../../../utils/hooks";
+import { useLng } from "utils/hooks";
+import SupplierCartView from "components/Cart/SupplierCartView";
+import SuccessModal from "components/Cart/SuccessModal";
 import {
   clearCart,
   removeProductsBySupplier,
   removeProductToCart,
   updateProductToCart
-} from "../../../data/actions/products";
-import SupplierCartView from "../../../components/Cart/SupplierCartView";
+} from "actions/products";
 import {
   postSupplierOrder,
   postSupplierOrderEmail
-} from "../../../data/actions/supplierOrders";
-import { postSupplierElements } from "../../../data/actions/supplierElements";
-import { colors } from "../../../utils/theme";
-import { convertToFound } from "../../../utils/price";
-import SuccessModal from "../../../components/Cart/SuccessModal";
+} from "actions/supplierOrders";
+import { postSupplierElements } from "actions/supplierElements";
+import { colors } from "utils/theme";
+import { convertToFound } from "utils/price";
 
 const searchClient = algoliasearchLite(
   ALGOLIA_APP_ID,
@@ -61,7 +62,7 @@ const CartPage = ({
 
   const totalPrice = useMemo(
     () =>
-      products.reduce((sum, el) => sum + el.count * el.price_per_unit_cents, 0),
+      products.reduce((sum, el) => sum + el.count * el.selling_price_cents, 0),
     [products]
   );
 
@@ -136,7 +137,7 @@ const CartPage = ({
     >
       <SearchApp
         searchClient={searchClient}
-        indexName={`SupplierProduct_${ALGOLIA_ENVIRONMENT}`}
+        indexName={`${ALGOLIA_SUPPLIER_PRODUCT_INDEX_NAME}_${ALGOLIA_ENVIRONMENT}`}
         label={t("app:cart")}
         placeholder={t("app:supplierSearchPlaceholder")}
         t={t}
@@ -164,7 +165,7 @@ const CartPage = ({
                 {t("app:estimatedTotal")}
               </div>
               <div className="text-xl font-bold text-blue-900">
-                {convertToFound(totalPrice)}€
+                {convertToFound(totalPrice)} €
               </div>
             </div>
             <div className="mb-2 text-xs text-gray-700">
@@ -172,16 +173,18 @@ const CartPage = ({
             </div>
           </div>
 
-          <Box
-            className="flex h-25 w-full cursor-pointer items-center justify-center rounded-3 bg-green-50 text-xl font-bold text-green-700"
-            onClick={onConfirmRequest}
-          >
-            {loading ? (
-              <PulseLoader size={16} color={`rgb(${colors.blue})`} loading />
-            ) : (
-              <span>{t("app:confirmRequest")}</span>
-            )}
-          </Box>
+          {products.length !== 0 && (
+            <Box
+              className="flex h-25 w-full cursor-pointer items-center justify-center rounded-3 bg-green-50 text-xl font-bold text-green-700"
+              onClick={onConfirmRequest}
+            >
+              {loading ? (
+                <PulseLoader size={16} color={`rgb(${colors.blue})`} loading />
+              ) : (
+                <span>{t("app:confirmRequest")}</span>
+              )}
+            </Box>
+          )}
         </div>
       </SearchApp>
       <SuccessModal isOpen={isOpen} onClose={() => setIsOpen(false)} />

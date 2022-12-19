@@ -10,7 +10,7 @@ import {
   FormDropdown,
   FormCheckbox,
   FormTextarea,
-  Button,
+  StyledButton,
   ModalHeader
 } from "components";
 import { RejectModalIcon } from "icons";
@@ -108,19 +108,19 @@ const RejectModal = ({
             <Box width={1}>
               <Flex mx={-2}>
                 <Box width={1 / 2} px={2}>
-                  <Button
+                  <StyledButton
                     styleName="blue"
                     type="button"
                     onClick={onClose}
                     width="100%"
                   >
                     {t("cancel")}
-                  </Button>
+                  </StyledButton>
                 </Box>
                 <Box width={1 / 2} px={2}>
-                  <Button styleName="blue" type="submit" width="100%">
+                  <StyledButton styleName="blue" type="submit" width="100%">
                     {t("confirm")}
-                  </Button>
+                  </StyledButton>
                 </Box>
               </Flex>
             </Box>

@@ -10,7 +10,7 @@ import { Box, Flex } from "@rebass/grid";
 import { func, shape } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { BlueText, Button, LoadingIndicator, Opacity } from "components";
+import { BlueText, StyledButton, LoadingIndicator, Opacity } from "components";
 import { theme } from "utils/theme";
 import { Container, Input, Label, Line } from "./styled";
 
@@ -110,9 +110,9 @@ class Form extends PureComponent {
               )}`}</Opacity>
             </Box>
             <Box>
-              <Button onClick={this.handleSubmit} styleName="blue">
+              <StyledButton onClick={this.handleSubmit} styleName="blue">
                 {t("upgradeMyPlan")}
-              </Button>
+              </StyledButton>
             </Box>
           </Flex>
         </Container>

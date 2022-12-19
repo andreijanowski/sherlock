@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { bool, func, string } from "prop-types";
 import { connect } from "react-redux";
+import { useRouter } from "next/router";
 
 import { Trans } from "i18n";
 import { generatePartooToken as generatePartooTokenAction } from "actions/users";
 import { selectIsPartooConnected } from "selectors/users";
-import { useT } from "utils/hooks";
+import { useT, useLng } from "utils/hooks";
 import CenteredSection from "components/CenteredSection";
 import { ConnectedContainer, IFrameContainer, TopPane } from "./styled";
 import GoToConnectionsButton from "./GoToConnectionsButton";
+import { updateProfile } from "actions/users";
 
 const BASE_CONTAINER_ID = "partoo-container";
 
 const PartooIframe = ({
   startPage,
   generatePartooToken,
-  isPartooConnected
+  isPartooConnected,
+  updateProfileHandler
 }) => {
   const [partooPage, setPartooPage] = useState(null);
   const t = useT();
+  const lng = useLng();
+  const router = useRouter();
   const containerId = `${startPage}-${BASE_CONTAINER_ID}`;
 
   useEffect(() => {
@@ -55,6 +60,12 @@ const PartooIframe = ({
     };
   }, [containerId, generatePartooToken, isPartooConnected, startPage]);
 
+  useEffect(() => {
+    const path = window && window.location.pathname.substring(4);
+    updateProfileHandler({ language: lng });
+    router.push(`/${lng}/${path}`);
+  }, [lng, updateProfileHandler, router]);
+
   return isPartooConnected ? (
     <ConnectedContainer>
       {partooPage && (
@@ -65,7 +76,7 @@ const PartooIframe = ({
           />
         </TopPane>
       )}
-      <IFrameContainer id={containerId} />
+      <IFrameContainer id={containerId} lang={lng} />
     </ConnectedContainer>
   ) : (
     <CenteredSection>
@@ -99,7 +110,8 @@ const mapState = state => ({
 });
 
 const mapDispatch = {
-  generatePartooToken: generatePartooTokenAction
+  generatePartooToken: generatePartooTokenAction,
+  updateProfileHandler: updateProfile
 };
 
 export default connect(mapState, mapDispatch)(PartooIframe);

@@ -1,7 +1,7 @@
 import { Flex, Box } from "@rebass/grid";
 import styled, { createGlobalStyle, css } from "styled-components";
 
-import { H2, H4, Button } from "components";
+import { H2, H4, StyledButton } from "components";
 
 const TRANSITION_TIME = "0.3s";
 
@@ -131,7 +131,7 @@ export const InstructionsNote = styled.p`
   font-style: italic;
 `;
 
-export const DownloadButton = styled(Button).attrs({
+export const DownloadButton = styled(StyledButton).attrs({
   styleName: "blue"
 })`
   min-width: 245px;

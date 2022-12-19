@@ -51,9 +51,9 @@ export const MainIconWrapper = styled(Flex).attrs(() => ({
     display: flex;
     height: 32px;
     font-size: 32px;
-    background-color: rgb(${p => p.theme.colors.blue});
+    background-color: rgb(${p => p.theme.colors.landingDarkBlue});
     border-radius: 24px;
-    box-shadow: 0 3px 8px 0 rgba(${p => p.theme.colors.blue}, 0.48);
+    box-shadow: 0 3px 8px 0 rgba(${p => p.theme.colors.landingDarkBlue}, 0.48);
   }
   @media (min-width: ${p => p.theme.breakpoints[2]}) {
     height: 48px;
@@ -64,7 +64,7 @@ export const MainIconWrapper = styled(Flex).attrs(() => ({
     color: rgb(${p => p.theme.colors.white});
   }
   svg .secondary {
-    color: rgb(${p => p.theme.colors.menuDarkBlue});
+    color: rgb(${p => p.theme.colors.white});
   }
 `;
 

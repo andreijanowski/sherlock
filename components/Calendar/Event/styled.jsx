@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Flex, Box } from "@rebass/grid";
-import { Button } from "components";
+import { StyledButton } from "components";
 
 export const Text = styled.div`
   overflow: hidden;
@@ -124,11 +124,11 @@ export const ModalContentWrapper = styled.div`
   }
 `;
 
-export const ExtendedButton = styled(Button)`
+export const ExtendedButton = styled(StyledButton)`
   @media (max-width: 640px) {
     margin: auto;
     height: 36px;
     font-size: ${p => p.theme.fontSizes.f14};
-    line-height: ${p => p.theme.fontSizes.f14};
+    ${"" /* line-height: ${p => p.theme.fontSizes.f14}; */}
   }
 `;

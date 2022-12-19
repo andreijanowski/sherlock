@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { Box } from "@rebass/grid";
 import { func, shape } from "prop-types";
 
-import { BoldText, Button, H3 } from "components";
+import { BoldText, StyledButton, H3 } from "components";
 import Confirm from "components/modals/Confirm";
 import { getPlanData } from "utils/plans";
 import PlanStatus from "./PlanStatus";
@@ -44,9 +44,12 @@ const CurrentPlanInfo = ({ t, currentPlan, handleCancelSubscription }) => {
       />
       {!planWillBeCanceled && (
         <Box mt={3}>
-          <Button onClick={onCancelSubscriptionClick} styleName="becomePartner">
+          <StyledButton
+            onClick={onCancelSubscriptionClick}
+            styleName="becomePartner"
+          >
             {t("plans:cancelSubscription")}
-          </Button>
+          </StyledButton>
         </Box>
       )}
       {showModal && (

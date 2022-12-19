@@ -1,28 +1,16 @@
 import React from "react";
 import { arrayOf, bool, func, oneOfType, shape, string } from "prop-types";
-import { Box, Flex } from "@rebass/grid";
 import { connect } from "react-redux";
 
 import {
-  InternalIntegrationSwitch,
-  OrchestroIntegrationSwitch
-} from "components";
-import {
   isIntegrationConnectedOrPending,
   getIntegrationColoredStatus,
-  getIntegrationStates,
   getServiceIntegrationMeta
-} from "utils/integrations";
+} from "../../../utils/integrations";
 import { createPartnerClickEvent } from "actions/partners";
 import PartnerTileButtons from "../PartnerTileButtons";
-import {
-  Container,
-  Image,
-  ImageContainer,
-  IntegrationFullyConnectedCheckmark,
-  IntegrationStatus,
-  Name
-} from "./styled";
+import TileInfo from "./TileInfo";
+import clsx from "clsx";
 
 const IntegrationTile = ({
   partner,
@@ -31,11 +19,10 @@ const IntegrationTile = ({
   isOrkestroConnected,
   handleTrackClickEvent
 }) => {
-  const name = partner.get("name");
+  const title = partner.get("name");
+  const logoUrl = partner.getIn(["logo", "url"]);
   const { isOrkestroIntegration, isIntegratedWithServices } =
     getServiceIntegrationMeta(partner);
-
-  const { isIntegrated } = getIntegrationStates(partner, isOrkestroConnected);
 
   const isConnectedOrPending = isIntegrationConnectedOrPending(
     partner,
@@ -43,43 +30,38 @@ const IntegrationTile = ({
   );
 
   const status = getIntegrationColoredStatus(partner, isOrkestroConnected);
+  const statusType = !!(status?.label.split(".").slice(-1)[0] === "success");
 
   const trackClickEvent = eventType => {
     handleTrackClickEvent(partnerId, { event_type: eventType });
   };
 
   return (
-    <Container isConnectedOrPending={isConnectedOrPending}>
-      <Flex mb={3}>
-        <Box as={ImageContainer} mr={2}>
-          <Image src={partner.getIn(["logo", "url"])} />
-        </Box>
-        <Name>{name}</Name>
-      </Flex>
-      {status && (
-        <IntegrationStatus color={status.color}>
-          {t(status.label)}
-        </IntegrationStatus>
+    <div
+      className={clsx(
+        "relative flex min-h-45 min-w-full flex-col justify-between rounded-4 border border-gray-300 bg-white p-7 shadow-card",
+        isConnectedOrPending && !statusType && "border-2 border-primary"
       )}
-      {isIntegrated && <IntegrationFullyConnectedCheckmark />}
-      <Box width={1} mb="24px" flex="auto">
-        {!isIntegratedWithServices && (
-          <InternalIntegrationSwitch
-            t={t}
-            partner={partner}
-            partnerId={partnerId}
-          />
-        )}
-        {isOrkestroIntegration && <OrchestroIntegrationSwitch t={t} />}
-      </Box>
+    >
+      <TileInfo
+        data={{
+          title,
+          logoUrl,
+          t,
+          isIntegratedWithServices,
+          isOrkestroIntegration,
+          partner,
+          partnerId,
+          status
+        }}
+      />
       <PartnerTileButtons
         t={t}
         partner={partner}
         isIntegration
-        linkLabel={t("app:manageIntegrations.goToWeb")}
         trackClickEvent={trackClickEvent}
       />
-    </Container>
+    </div>
   );
 };
 

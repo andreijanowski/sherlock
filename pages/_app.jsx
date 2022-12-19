@@ -2,10 +2,6 @@ import App from "next/app";
 import { Provider, connect } from "react-redux";
 import withRedux from "next-redux-wrapper";
 import withReduxSaga from "next-redux-saga";
-import {
-  Provider as ErrorBoundaryProvider,
-  ErrorBoundary
-} from "@rollbar/react";
 import forceLanguageInUrl from "utils/forceLanguageInUrl";
 import Layout from "layout";
 import { ThemeProvider } from "styled-components";
@@ -14,12 +10,7 @@ import isServer from "utils/isServer";
 import NProgress from "nprogress";
 import { Router } from "routes";
 import { StripeProvider } from "react-stripe-elements";
-import {
-  STRIPE_API_KEY,
-  GOOGLE_ANALYTICS_ID,
-  rollbarConfig,
-  GOOGLE_ADS_IDS
-} from "consts";
+import { GOOGLE_ADS_IDS, GOOGLE_ANALYTICS_ID, STRIPE_API_KEY } from "consts";
 import ReactGA from "react-ga";
 import { fromJS } from "immutable";
 import Cookies from "js-cookie";
@@ -37,6 +28,7 @@ import { appWithTranslation } from "../i18n";
 import createStore from "../data/store";
 import "../styles/tailwind.css";
 import "../styles/quill.snow.css";
+import "react-tooltip/dist/react-tooltip.css";
 
 config.autoAddCss = false;
 
@@ -131,17 +123,13 @@ class MyApp extends App {
       return <></>;
     }
     return (
-      <ErrorBoundaryProvider config={rollbarConfig}>
-        <ErrorBoundary>
-          <Provider store={store}>
-            <ThemeProvider theme={theme}>
-              <StripeProvider stripe={this.state.stripe}>
-                <Layout {...{ pageProps, Component }} />
-              </StripeProvider>
-            </ThemeProvider>
-          </Provider>
-        </ErrorBoundary>
-      </ErrorBoundaryProvider>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <StripeProvider stripe={this.state.stripe}>
+            <Layout {...{ pageProps, Component }} />
+          </StripeProvider>
+        </ThemeProvider>
+      </Provider>
     );
   }
 }

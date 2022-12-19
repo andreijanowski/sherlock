@@ -26,11 +26,26 @@ module.exports = {
         "7xl": "3600px"
       },
       colors: {
+        primary: {
+          DEFAULT: "#4C68FF",
+          dark: "#0f1554"
+        },
+        background: {
+          DEFAULT: "#f7f8fa",
+          dark: "#f2f2f2"
+        },
+        base: "#4E4D66",
+        success: "#1eaa66",
+        error: "#e22d66",
+        warning: "#f3770f",
         gray: {
           100: "#f0f0f0",
+          200: "#DCDFEF",
           300: "#A5A8AE",
+          400: "#9C9EAA",
           500: "#787A7F",
           700: "#4E4D66",
+          800: "#45474b",
           900: "#20201F"
         },
         blue: {
@@ -47,6 +62,9 @@ module.exports = {
           50: "#E0F0ED",
           700: "#05A054"
         }
+      },
+      dropShadow: {
+        custom: "0 2px 11px rgba(42, 90, 234, 0.22)"
       },
       fontSize: {
         xxs: ["10px"],
@@ -98,5 +116,5 @@ module.exports = {
       }
     }
   },
-  plugins: []
+  plugins: [require("@tailwindcss/line-clamp")]
 };

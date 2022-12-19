@@ -73,7 +73,9 @@ export {
   BellIcon,
   WatchVideosIcon,
   MainInfoIcon,
-  InfoIcon
+  InfoIcon,
+  PlayGradientIcon,
+  InfoGardientIcon
 } from "./mainControls";
 export {
   Orders,
@@ -96,5 +98,6 @@ export {
   ArrowLeftIcon,
   FavouriteIcon,
   CloseCircleIcon,
-  TrashIcon
+  TrashIcon,
+  CheckIcon
 } from "./products";

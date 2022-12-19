@@ -40,4 +40,13 @@ export const TopPane = styled(Flex)`
 
 export const ButtonStyled = styled(Button)`
   align-items: center;
+  border-radius: 6px;
+  height: 40px;
+  ${p =>
+    p.gradient &&
+    `background: linear-gradient(
+      to right,
+      rgba(${p.theme.colors.b2bSecondary}, 1),
+      rgb(${p.theme.colors.blue})
+    );`}
 `;

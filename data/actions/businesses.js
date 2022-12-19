@@ -25,8 +25,10 @@ import {
   FETCH_LIVE_STREAM_REQUEST,
   FETCH_DOWNLOAD_POS_MENU_REQUEST,
   POST_UPLOAD_POS_MENU_REQUEST,
-  FETCH_BUSINESS_FAVORITE_SUPPLIERS_REQUEST
+  FETCH_BUSINESS_FAVORITE_SUPPLIERS_REQUEST,
+  FETCH_BUSINESS_SUPPLIER_ORDERS_HISTORY_REQUEST
 } from "types/businesses";
+import { FETCH_BUSINESS_EXCLUSIVE_SUPPLIERS_REQUEST } from "../types/businesses";
 
 const PER_PAGE = 200;
 const SALES_PER_PAGE = 25;
@@ -361,6 +363,37 @@ export const fetchBusinessFavoriteSuppliers = (id, page = 1) => ({
     params: {
       per_page: PER_PAGE,
       page
+    }
+  },
+  meta: { thunk: true, page }
+});
+
+export const fetchBusinessSupplierOrdersHistory = (
+  id,
+  page = 1,
+  filter = {}
+) => ({
+  type: FETCH_BUSINESS_SUPPLIER_ORDERS_HISTORY_REQUEST,
+  payload: {
+    endpoint: `/api/v1/businesses/${id}/supplier_orders`,
+    params: {
+      per_page: 15,
+      page,
+      include: "supplier_elements,supplier_products,supplier",
+      sort: "-createdAt",
+      filter
+    }
+  },
+  meta: { thunk: true, page }
+});
+export const fetchBusinessExclusiveSuppliers = (id, page = 1, filter = {}) => ({
+  type: FETCH_BUSINESS_EXCLUSIVE_SUPPLIERS_REQUEST,
+  payload: {
+    endpoint: `/api/v1/businesses/${id}/exclusive_suppliers`,
+    params: {
+      per_page: 15,
+      page,
+      filter
     }
   },
   meta: { thunk: true, page }

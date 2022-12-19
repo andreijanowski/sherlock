@@ -1,5 +1,5 @@
 import { Flex } from "@rebass/grid";
-import { Button, ButtonWithImageIconWrapper } from "components";
+import { StyledButton, ButtonWithImageIconWrapper } from "components";
 import { func, shape } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Widget, Domain, ApiKey } from "./styled";
@@ -15,7 +15,7 @@ const ListItem = ({ item, removeWidget, setEditedWidgetId }) => (
         <ApiKey>API_KEY: {item.getIn(["attributes", "apiKey"])}</ApiKey>
       </Flex>
     </Flex>
-    <Button
+    <StyledButton
       styleName="withImage"
       red
       onClick={() => removeWidget(item.get("id"))}
@@ -23,7 +23,7 @@ const ListItem = ({ item, removeWidget, setEditedWidgetId }) => (
       <ButtonWithImageIconWrapper>
         <FontAwesomeIcon icon={["fa", "times"]} />
       </ButtonWithImageIconWrapper>
-    </Button>
+    </StyledButton>
   </Widget>
 );
 

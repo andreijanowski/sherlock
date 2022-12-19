@@ -60,7 +60,7 @@ export const LiveStream = () => (
         stroke-width: 5px;
         fill-rule: evenodd;
       }
-      
+
       .svg-livestream-cls-2 {
         fill: currentColor;
       }
@@ -201,17 +201,17 @@ export const Delivery = () => (
         fill: none;
         stroke-width: 4px;
       }
-      
+
       .svg-delivery-cls-1 {
         stroke: currentColor;
       }
-      
+
       .svg-delivery-cls-1,
       .svg-delivery-cls-3 {
         stroke-linecap: round;
         stroke-linejoin: round;
       }
-      
+
       .svg-delivery-cls-2,
       .svg-delivery-cls-3 {
         stroke: currentColor;
@@ -246,12 +246,12 @@ export const Catering = () => (
         stroke: currentColor;
         stroke-width: 4px;
       }
-      
+
       .svg-catering-cls-2,
       .svg-catering-cls-3 {
         fill: currentColor;
       }
-      
+
       .svg-catering-cls-2 {
         fill-rule: evenodd;
       }
@@ -753,12 +753,12 @@ export const Restaurant = () => (
           stroke-linecap: round;
           stroke-linejoin: round;
         }
-        
+
         .svg-restaurant-cls-1 {
           stroke: currentColor;
           stroke-width: 4px;
         }
-        
+
         .svg-restaurant-cls-2 {
           stroke: currentColor;
           stroke-width: 3px;
@@ -826,7 +826,7 @@ export const IntegrationHub = () => (
         stroke-linejoin: round;
         stroke-width: 3.5px;
       }
-      
+
       .svg-integration-hub-cls-1,
       .svg-integration-hub-cls-2,
       .svg-integration-hub-cls-3,
@@ -1001,7 +1001,7 @@ export const Bookings = () => (
         stroke: currentColor;
         stroke-width: 4px;
       }
-        
+
       .svg-bookings-cls-2,
       .svg-bookings-cls-3 {
         fill: currentColor;
@@ -1055,7 +1055,7 @@ export const PrivateEvents = () => (
         stroke-linejoin: round;
         stroke-width: 4px;
       }
-      
+
       .svg-private-events-cls-2 {
         fill: currentColor;
         fill-rule: evenodd;
@@ -1093,11 +1093,11 @@ export const Reviews = () => (
         stroke-linecap: round;
         stroke-linejoin: round;
       }
-      
+
       .svg-reviews-cls-1 {
         stroke-width: 1.76357;
       }
-      
+
       .svg-reviews-cls-2 {
         stroke-width: 1.54313;
       }
@@ -1132,13 +1132,13 @@ export const Detectives = () => (
         stroke: currentColor;
         stroke-width: 4px;
       }
-      
+
       .svg-detectives-cls-1,
       .svg-detectives-cls-2 {
         stroke-linecap: round;
         stroke-linejoin: round;
       }
-      
+
       .svg-detectives-cls-2 {
         fill: currentColor;
         stroke: currentColor;
@@ -1187,11 +1187,11 @@ export const CommunityManagement = () => (
         stroke-linejoin: round;
         stroke-width: 3px;
       }
-      
+
       .svg-community-management-cls-1 {
         stroke: currentColor;
       }
-      
+
       .svg-community-management-cls-2 {
         stroke: currentColor;
       }
@@ -1282,15 +1282,15 @@ export const Marketing = () => (
         stroke-linejoin: round;
         stroke-width: 4px;
       }
-      
+
       .svg-marketing-cls-1 {
         stroke: currentColor;
       }
-      
+
       .svg-marketing-cls-2 {
         stroke: currentColor;
       }
-      
+
       .svg-marketing-cls-3 {
         fill: currentColor;
         fill-rule: evenodd;
@@ -1325,11 +1325,11 @@ export const Clients = () => (
         stroke-linecap: round;
         stroke-linejoin: round;
       }
-      
+
       .svg-clients-cls-1 {
         stroke-width: 1.34911;
       }
-      
+
       .svg-clients-cls-2 {
         stroke-width: 2;
       }
@@ -1360,21 +1360,21 @@ export const StockManagement = () => (
         stroke-linecap: round;
         stroke-linejoin: round;
       }
-      
+
       .svg-stock-management-cls-1,
       .svg-stock-management-cls-3 {
         stroke: currentColor;
       }
-      
+
       .svg-stock-management-cls-1,
       .svg-stock-management-cls-2 {
         stroke-width: 3px;
       }
-      
+
       .svg-stock-management-cls-2 {
         stroke: currentColor;
       }
-      
+
       .svg-stock-management-cls-3 {
         stroke-width: 4px;
       }
@@ -1423,23 +1423,23 @@ export const Photography = () => (
         fill: none;
         stroke-width: 4px;
       }
-      
+
       .svg-photography-cls-1 {
         stroke: currentColor;
       }
-      
+
       .svg-photography-cls-1,
       .svg-photography-cls-2,
       .svg-photography-cls-3 {
         stroke - linecap: round;
         stroke-linejoin: round;
       }
-      
+
       .svg-photography-cls-2,
       .svg-photography-cls-3 {
         stroke: currentColor;
       }
-      
+
       .svg-photography-cls-3 {
         fill: currentColor;
       }`}</style>
@@ -1486,11 +1486,11 @@ export const DeliveryManagement = () => (
           fill: none;
           stroke-width: 4px;
         }
-        
+
         .svg-delivery-management-cls-1 {
           stroke: currentColor;
         }
-        
+
         .svg-delivery-management-cls-2 {
           stroke: currentColor;
           stroke-linecap: round;
@@ -1524,11 +1524,11 @@ export const Analytics = () => (
       .svg-analytics-cls-1 {
         fill: currentColor;
       }
-      
+
       .svg-analytics-cls-2 {
         fill: currentColor;
       }
-      
+
       .svg-analytics-cls-3 {
         fill: none;
         stroke: currentColor;
@@ -1536,7 +1536,7 @@ export const Analytics = () => (
         stroke-linejoin: round;
         stroke-width: 5px;
       }
-      
+
       .svg-analytics-cls-4 {
         fill: currentColor;
       }
@@ -1622,16 +1622,16 @@ export const AppManager = () => (
       .svg-app-manager-cls-1 {
         stroke-width: 0.702467;
       }
-      
+
       .svg-app-manager-cls-2 {
         fill: currentColor;
         stroke-width: 0.936623;
       }
-      
+
       .svg-app-manager-cls-3 {
         stroke-width: 1.87325;
       }
-      
+
       `}</style>
     </defs>
     <path
@@ -1923,7 +1923,7 @@ export const InfluencerManagement = () => (
         stroke-linejoin: round;
         stroke: currentColor;
       }
-      
+
       .svg-influencer-management-cls-1 {
         stroke-width: 1.1833;
       }
