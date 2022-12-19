@@ -33,7 +33,7 @@ IconButton.propTypes = {
   disabled: bool.isRequired
 };
 
-const Categories = ({ items, refine, categories, disabled, t }) => {
+const Categories = ({ refine, categories, disabled, t, onChange }) => {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carousel = useRef(null);
@@ -98,8 +98,11 @@ const Categories = ({ items, refine, categories, disabled, t }) => {
       if (!disabled) {
         refine(item.value);
       }
+      if (onChange) {
+        onChange(item.value);
+      }
     },
-    [refine, disabled]
+    [refine, disabled, onChange]
   );
 
   return (
@@ -159,11 +162,13 @@ Categories.propTypes = {
   refine: func.isRequired,
   categories: arrayOf(shape()).isRequired,
   disabled: bool,
-  t: func.isRequired
+  t: func.isRequired,
+  onChange: func
 };
 
 Categories.defaultProps = {
-  disabled: false
+  disabled: false,
+  onChange: () => {}
 };
 
 export default connectRefinementList(Categories);
