@@ -45,6 +45,7 @@ services:
       - ALGOLIA_SUPPLIER_CATEGORY_INDEX_NAME
       - ALGOLIA_SUPPLIER_PRODUCT_CATEGORY_INDEX_NAME
       - ALGOLIA_ENVIRONMENT
+      - PUBLIC_ALGOLIA_INDEX_SUFFIX
     networks:
       - frontend
     expose:
