@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { withTranslation } from "i18n";
 import AppLayout from "layout/App";
 import { bool, func, shape, string } from "prop-types";
@@ -51,6 +51,7 @@ const SuppliersPage = ({
 }) => {
   const city = business?.get("city");
   const country = business?.get("country");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const filters = useMemo(() => {
     const queries = [];
@@ -105,6 +106,18 @@ const SuppliersPage = ({
     );
   }, [exclusiveSuppliers]);
 
+  const filteredExclusiveSuppliers = useMemo(() => {
+    return exclusiveSuppliers.filter(
+      item =>
+        !selectedCategory ||
+        item.attributes?.categories?.includes(selectedCategory)
+    );
+  }, [exclusiveSuppliers, selectedCategory]);
+
+  const onCategoryChange = category => {
+    setSelectedCategory(category);
+  };
+
   return (
     <AppLayout
       t={t}
@@ -129,6 +142,7 @@ const SuppliersPage = ({
             attribute="supplier_categories.name"
             disabled
             t={t}
+            onChange={onCategoryChange}
           />
         ) : (
           <SupplierCategories searchClient={searchClient} lng={lng} t={t} />
@@ -141,7 +155,7 @@ const SuppliersPage = ({
               </div>
             ) : (
               <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 2lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 4xl:grid-cols-8 4xl:gap-8 5xl:grid-cols-9 6xl:grid-cols-10 7xl:grid-cols-11">
-                {exclusiveSuppliers.map(supplier => (
+                {filteredExclusiveSuppliers.map(supplier => (
                   <SupplierCard key={supplier.id} supplier={supplier} />
                 ))}
               </div>
